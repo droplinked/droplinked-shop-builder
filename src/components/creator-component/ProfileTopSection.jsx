@@ -15,7 +15,6 @@ let userinfo1 =userinfo;
 
 let mode = "posts"
 
-
 let modes = [
     {
         text: "Posts",
@@ -29,22 +28,6 @@ let modes = [
     },
 ];
 
-
-useEffect(() => {
-    
-    const fetchData = async () => {
-      
-      const data = await fetch('https://dev.flatlay.io/noauth/flatlay/details/mono?page=1');
-      
-      const json = await data.json();
-      setInfo(json.flatlays[0]);
-    }
-  
-    
-    fetchData()
-      .catch(console.error);;
-  }, [])
-  
 
 
 return(
@@ -83,12 +66,12 @@ return(
                     </>
                     }
                   <div className="img-wrap">
-                      <img src={profilePic} alt="" />
+                      <img src={userinfo1.profPic} alt="" />
                   </div>
                 </div>
 
                 <div className="user-data text-center">
-                    <h1 className="font-gt"> userNAme</h1>
+                    <h1 className="font-gt"> {userinfo1.username} </h1>
                 </div>
 
                 <div className="user-info d-flex justify-content-center mb-4">
