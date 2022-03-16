@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+    <g fill="none" fill-rule="evenodd">
+        <circle cx="15" cy="15" r="15" fill="#EFEBEA"/>
+        <g fill="#000" fill-rule="nonzero" transform="translate(11.029 6)">
+            <ellipse cx="3.5" cy="2.644" rx="2.692" ry="2.626"/>
+            <path d="M3.5 6.107L0.234 17.982 6.766 17.982z"/>
+        </g>
+    </g>
+</svg>
