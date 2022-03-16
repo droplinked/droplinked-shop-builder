@@ -1,37 +1,28 @@
-import creatorPic from "../../assest/search/creator.svg"
+
 import axios from "axios"
 import { useEffect, useState } from 'react'
 import ShopifyCard from "./ShopifyCard"
 
 import iconbg from "../../assest/creator/search/icon-bg.svg"
 import productIcon from "../../assest/creator/search/product.svg"
+
+
 export default function Box(){
 const[products , setProducts] = useState([]);
-    
-    const keyword = 'nike'
-    const page = 1
-    
-    
 
 
+    
         function getData(){
-            axios({
-                method: 'post',
-                url: '/v1/search',
-                baseURL: 'https://r4qwnd5837.execute-api.us-west-2.amazonaws.com',
-                data: {
-                    keyword,
-                    page,
-                },
-            })
-                .then(response => {
-                    console.log(response.data.frenzy);
-                    setProducts(response.data.frenzy)
+                                        
+            axios.post('https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search' , {
+                keyword: 'nike',
+                page: 1
+                 })
+                .then(response => { 
+                    setProducts(response.data.shopify)
                 })
-                
 
-
-        }
+         }
       
 
         
@@ -55,13 +46,13 @@ const[products , setProducts] = useState([]);
                        </span>
                        Products
                     </h2>
-                    {products != undefined && 
+                    {products != undefined  && 
                         <div className="list">
                         <div className="bullet-wrap row" >
-                            {products.map((product)=>{
+                            {products.map((product , i)=>{
                                 return(
-                                    <div className="col-6">
-                                        <ShopifyCard product={product}/>
+                                    <div  className="col-6" >
+                                        <ShopifyCard product={product.product_listing} key={i} />
                                      </div>
                                 )
                                 
