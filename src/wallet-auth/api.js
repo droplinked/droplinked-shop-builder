@@ -18,3 +18,12 @@ export const getAccountBalances = (principal, network = MAIN_NET) => {
 		url: `/extended/v1/address/${principal}/balances`,
 	})
 }
+
+export const hasToken = async (principal, token) => {
+	const response = await getAccountBalances(principal)
+	const nfts = response.data.non_fungible_tokens
+	const tokens = []
+	for (const key in nfts)
+		tokens.push(key)
+	return tokens.filter(value => value.includes(token)).length != 0
+}
