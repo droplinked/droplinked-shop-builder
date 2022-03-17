@@ -1,8 +1,9 @@
 import ProfileTopSection from '../components/creator-component/ProfileTopSection'
 import Box from '../components/creator-component/Box'
 
-import { authenticate, userSession } from '../wallet-auth/auth'
 import { useEffect, useState } from 'react'
+import { authenticate, userSession } from '../wallet-auth/auth'
+import { getAccountBalances, getUserAddress } from '../wallet-auth/api'
 
 export default function MainPage() {
 	let isLoggedIn = true
@@ -33,11 +34,34 @@ export default function MainPage() {
 		userSession.signUserOut('/')
 	}
 
+	function checkTokens(tokens) {
+		tokens.filter(value => value.includes('crashpunks'))
+		return tokens.length
+	}
+
 	return (
 		<>
 			<div id='profile-container'>
 				{userData ? (
-					<div onClick={() => onSignOut()}>sign out</div>
+					<>
+						<div onClick={() => onSignOut()}>sign out</div>
+						<div
+							onClick={() => {
+								// SP1XJC7RMAK03F2XP8KT27ST7S5C409DMVFWFJ4HD
+								const mainnet = getUserAddress(userData).mainnet
+								const balancesPromise = getAccountBalances(mainnet)
+								balancesPromise.then(response => {
+									const nfts = response.data.non_fungible_tokens
+									const nftKeys = []
+									for (const key in nfts) nftKeys.push(key)
+
+									if (checkTokens(nftKeys) === 0) console.log(false)
+									else console.log(true)
+								})
+							}}>
+							print balances
+						</div>
+					</>
 				) : (
 					<div onClick={() => authenticate()}>connect wallet</div>
 				)}
