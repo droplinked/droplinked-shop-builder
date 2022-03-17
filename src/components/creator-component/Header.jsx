@@ -11,14 +11,17 @@ export default function Header(props){
                     <a className="d-inline-block mr-3">
                         <img src={logo} alt="" />
                     </a>
-                    <div className="d-flex flex-row align-items-center ">    
+                    <div className="d-flex flex-row align-items-center justify-content-between ">    
                         <button
-                          className="btn btn-outline-secondary text-flatlay-black link2 text-nowrap"
+                          className="btn  text-flatlay-black  text-nowrap"
                           onClick={props.action}>
-                           {`${props.login ? `signOut` : `login`}`}
+                           {props.login?
+                           <h1><i className="bi bi-wallet-fill"></i></h1>:
+                           <h1><i className="bi bi-wallet2"></i></h1>}
                         </button>
-                        <button className="btn btn-outline-secondary text-flatlay-black link2 text-nowrap">
-                            test
+ 
+                        <button className="btn  text-flatlay-black  text-nowrap">
+                        <h1><i className="bi bi-person-circle"></i></h1>
                         </button>
                     </div>
                 </div>
