@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 export default function ShopifyCard(props){
 
@@ -23,9 +23,12 @@ export default function ShopifyCard(props){
                         </a>
                     </div>
                     <div className="col-6">
-                        <button className="btn btn-add-collection">
-                            Add To Collection
+                    <Link to="buy">
+                        <button className="buy-btn btn btn-primary">
+                        Buy
+                        
                         </button>
+                        </Link>
                     </div>
                 </div>
             </div>
