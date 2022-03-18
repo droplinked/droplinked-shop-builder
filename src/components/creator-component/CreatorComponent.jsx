@@ -4,11 +4,10 @@ export default function CreatorComponent(){
 
     return(
         <>
-        <div id="profile-container">
+        {/* <div id="profile-container">
         <ProfileTopSection/>
         </div>
-        <Box/>
-        
+        <Box/> */}
         </>
         )
     

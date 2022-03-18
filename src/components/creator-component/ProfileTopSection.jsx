@@ -10,7 +10,6 @@ export default function ProfileTopic() {
   let isCurrentUser = true;
   let isLoggedIn = false;
 
-  const [user, setInfo] = useState();
   let userinfo1 = userinfo;
   let topMainBackground = { backgroundImage: `url(${background})` };
 
@@ -28,17 +27,6 @@ export default function ProfileTopic() {
       name: "collections",
     },
   ];
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch(
-        "https://dev.flatlay.io/noauth/flatlay/details/mono?page=1"
-      );
-      const json = await data.json();
-      setInfo(json.flatlays[0]);
-    };
-    fetchData().catch(console.error);
-  }, []);
 
   return (
     <>
