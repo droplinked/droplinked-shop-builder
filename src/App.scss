@@ -768,3 +768,248 @@
         user-select: none;
     }
 }
+.main-shop{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top:25px;
+    width: 700px;
+    height: 723px;background: #FFFFFF;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    .main-image{
+        position: absolute;
+        width: 360px;
+        height: 420px;
+        left: 20px;
+        top: 20px;
+        border-radius: 16px;
+    }
+    .brand-name{
+        position: absolute;
+        left: 57.14%;
+        right: 2.86%;
+        top: 2.77%;
+        bottom: 92.25%;
+        font-family: 'Avenir Next';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 36px;
+        color: #4D4D4D;
+    }
+    .product-detail{
+        position: absolute;
+left: 57.14%;
+right: 2.86%;
+top: 8.85%;
+bottom: 79.53%;
+font-family: 'Avenir Next';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 21px;
+color: #4D4D4D;
+    }
+    .product-price{
+        
+position: absolute;
+left: 57.14%;
+right: 4.57%;
+top: 23.24%;
+bottom: 71.78%;
+font-family: 'Avenir Next';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 36px;
+color: #37A486;
+    }
+    .options-main{
+        display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: absolute;
+width: 268px;
+height: 109px;
+left: 400px;
+top: 224px;
+        .option-row-1{
+            top: 78px;
+            order: 2;
+        }
+        .option-row-20px{
+            top: 39px;
+            order: 1;
+        }
+        .option-row-3{
+            top: 0px;
+            order: 0;
+        }
+
+        .option-row{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 0px;
+            position: static;
+            width: 268px;
+            height: 31px;
+            left: 0px;
+            flex: none;
+            flex-grow: 0;
+            margin: 8px 0px;
+
+            .option-item{
+                display: flex;
+                justify-content: center;
+                padding: 6px 12px;
+                
+                position: static;
+                width: 130px;
+                height: 31px;
+                top: 0px;
+                border: 1px solid #C4C4C4;
+                box-sizing: border-box;
+                border-radius: 8px;             
+                flex: none;
+                flex-grow: 0;
+                flex-direction: row;
+                margin: 0px 8px;
+                align-items: center;
+            }
+        }
+    }
+
+    .btn-group{
+        position: absolute;
+        height: 32px;
+        left: 400px;
+        top: 365px;
+        width: 109px;
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .btn-group-block{
+            justify-content: center;
+            align-items: center;
+            padding: 8px;
+            //position: absolute;
+            width: 32px;
+            left: 477px;
+            top: 48.27%;
+            bottom: 47.3%;
+            background: #F6F6F6;
+            border-radius: 8px;
+            text-align: center;
+
+        }
+
+        .group-text{
+            
+            text-align: center;
+            padding: 8px;
+            //position: absolute;
+            width: 32px;
+            left: 477px;
+            top: 48.27%;
+            bottom: 47.3%;
+            background: #F6F6F6;
+            border-radius: 8px;
+        }
+
+
+    }
+
+
+    .add-to-basket{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 16px;
+        
+        position: absolute;
+        width: 272px;
+        left: 400px;
+        top: 56%;
+        bottom: 39.83%;
+        background: #353536;
+        border-radius: 8px;
+        flex-direction: row;
+        font-family: 'Avenir Next';
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+        color: #FFFFFF;
+        font-style: normal;
+    }
+    
+
+.image-item{
+    position: absolute;
+    height: 60px;
+    left: 278px;
+    top: 456px;
+    width: 60px;
+    border-radius: 8px;
+}
+
+.image-group-left{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 20px;
+    top: 470px;
+    border-radius: 25px;
+    background: #FFFFFF;
+    border-color: white;
+    filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.1));
+    }
+
+    .image-group-right{
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        left: 350px;
+        top: 470px;
+        border-radius: 25px;
+        background: #FFFFFF;
+        border-color: white;
+        filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.1));
+    }
+
+    .describe-text{
+        position: absolute;
+        right: 83.29%;
+        top: 75.8%;
+        bottom: 19.23%;
+        font-family: 'Avenir Next';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 36px;
+        color: #4D4D4D;
+        left: 2.86%;
+    }
+
+    .describtion-text{
+        position: absolute;
+        left: 2.86%;
+        right: 2.86%;
+        top: 81.88%;
+        bottom: 9.41%;
+        
+        font-family: 'Avenir Next';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        color: #4D4D4D;
+    }
+
+    
+}
