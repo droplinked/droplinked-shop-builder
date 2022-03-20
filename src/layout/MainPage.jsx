@@ -6,13 +6,13 @@ import { WalletProvider } from "../components/context/context";
 export default function MainPage() {
   return (
     <>
-      <WalletProvider>
+     
         <Header />
         <div id="profile-container">
           <ProfileTopSection />
           <Box />
         </div>
-      </WalletProvider>
+     
     </>
   );
 

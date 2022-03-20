@@ -11,11 +11,14 @@ import {
     Link,
     useParams
   } from "react-router-dom";
+  import { UseWalletInfo } from "../components/context/context";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Header from "../components/creator-component/Header"
 
 
 export default function Buy(){
+    const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
     
     let { buyId } = useParams();
 
@@ -46,6 +49,7 @@ export default function Buy(){
     if(products!= (undefined || [])){console.log(products)}
     
     return (<>
+    <Header />
     {(products!= undefined && products!= []) &&
            <div className="container-fluid" style={{width:'100vw' , height:'100vh'}}>
                <div className="row">
@@ -162,11 +166,25 @@ export default function Buy(){
                                 <div className="cart-items">
 
                                 </div>
-                                <button className="check-out-button"><p>Check Out</p> </button>
+                                {userData ?
+                                <Link to="/x">
+                                        <button className="check-out-button"
+                                        ><p>Check Out</p> 
+                                        </button>
+                               </Link>
+                                
+                                : <button className="check-out-button"
+                                     onClick={authenticate}>
+                                         <p>Check Out</p> 
+                                     </button>}
+                                
                             </div>
                    </div>
                </div>
            </div>
            }
     </>)
+
+
+        
 }

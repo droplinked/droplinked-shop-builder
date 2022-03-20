@@ -9,15 +9,18 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { WalletProvider } from "./components/context/context"
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
+      <WalletProvider>
+       <Routes>
           <Route  exact path="/" element={<MainPage />} />
           <Route   path="/buy/:buyId" element={<Buy />} />
           <Route   path="/*" element={<NotFound />} />
-      </Routes>
+       </Routes>
+      </WalletProvider>
     </BrowserRouter>
   );
 }
