@@ -12,6 +12,7 @@ import {
 import { WalletProvider } from "./components/context/context"
 import Checkout from "./components/checkout/Checkout"
 import Address from "./components/Address/Address"
+import Payments from "./components/Payments/Payments"
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +22,7 @@ function App() {
           <Route   path="/buy/:buyId" element={<Buy />} />
           <Route   path="/checkout" element={<Checkout />} />
           <Route   path="/address" element={<Address />} />
+          <Route   path="/payments" element={<Payments />} />
           <Route   path="/*" element={<NotFound />} />
        </Routes>
       </WalletProvider>

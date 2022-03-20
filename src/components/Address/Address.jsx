@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './address.scss'
-
+import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
 import add from './icons/add.png'
 
 class Address extends Component {
@@ -22,9 +22,11 @@ class Address extends Component {
 				</div>
 				{<NewAddress />}
 				<div className='text-center mt-4'>
+					<Link to="/payments">
 					<button className='btn btn-dark px-4 rounded-pill' disabled>
 						proceed to shipping
 					</button>
+					</Link>
 				</div>
 			</div>
 		)
