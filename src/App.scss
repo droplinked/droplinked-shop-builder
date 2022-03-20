@@ -1013,3 +1013,100 @@ top: 224px;
 
     
 }
+
+.my-cart-container{
+    position: relative;
+   width: 324px;
+   min-height: 178px;
+   
+   top: 25px;
+   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+   border-radius: 16px;
+   flex: none;
+   order: 0;
+   flex-grow: 0;
+   margin : 0 auto ;
+   background: #FFFFFF;
+
+
+    .mycart{
+        position: absolute;
+        height: 32px;
+        left: 16px;
+        top: 12px;
+        font-family: 'Avenir Next';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 32px;
+        letter-spacing: 0.5px;
+        color: #353536;
+        width: 80px;
+    }
+
+    .cart-total-cost{
+        position: absolute;
+        height: 39px;
+        left: 156px;
+        top: 8px;
+        width: 168px;
+        
+        text-align: center;
+        vertical-align: middle;
+            p{
+                margin:auto 0 ;
+                display: inline-block;
+                vertical-align: middle;
+            }
+       
+    }
+
+    .cart-items{
+        position: absolute;
+        width: 324px;
+        min-height: 66px;
+        left: 0px;
+        top: 49px;
+        border:1px solid;
+    }
+    .check-out-button{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 6px 20px;
+        position: absolute;
+        width: 97px;
+        height: 28px;
+        left: calc(50% - 97px/2 + 97.5px);
+        bottom: 20px;
+        background: #353536;
+        border-radius: 30px;
+            p{
+                position: static;
+                width: 57px;
+                height: 16px;
+                left: 20px;
+                top: 6px;
+                
+                font-family: 'Avenir Next';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 16px;
+                
+                /* White */
+                
+                color: #FFFFFF;
+                
+                
+                /* Inside auto layout */
+                
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                margin: 0px 5px;
+            }
+    }
+
+}

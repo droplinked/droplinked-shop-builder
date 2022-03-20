@@ -45,7 +45,7 @@ export default function Box() {
                 {products.map((product, i) => {
                   return (
                     <div className="col-6">
-                      <ShopifyCard product={product.product_listing} key={i} />
+                      <ShopifyCard product={product.product_listing} index={i} />
                     </div>
                   );
                 })}

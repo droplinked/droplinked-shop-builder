@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
       <Routes>
           <Route  exact path="/" element={<MainPage />} />
-          <Route   path="/buy" element={<Buy />} />
+          <Route   path="/buy/:buyId" element={<Buy />} />
           <Route   path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

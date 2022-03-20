@@ -12,8 +12,6 @@ export default function ShopifyCard(props) {
       }
     );
   }, []);
-  console.log(props.index);
-  console.log(token);
 
   return (
     <div className="content-wrap d-flex flex-column">
@@ -33,11 +31,11 @@ export default function ShopifyCard(props) {
           </div>
           <div className="col-6">
             {token ? (
-              <Link to="buy">
+              <Link to={`buy/${props.index}`}>
                 <button className="buy-btn btn btn-primary">Buy</button>
               </Link>
             ) : (
-              <Link to="x">
+              <Link to={`buy/${props.index}`}>
                 <button className="buy-btn btn btn-primary">Buy</button>
               </Link>
             )}

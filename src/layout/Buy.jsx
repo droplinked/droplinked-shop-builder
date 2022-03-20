@@ -3,25 +3,66 @@ import shoe1 from "../assest/shoe/shoe1.jpg"
 import shoe2 from "../assest/shoe/shoe2.jpg"
 import shoe3 from "../assest/shoe/shoe3.jpg"
 import shoe4 from "../assest/shoe/shoe4.jpg"
+import React from "react";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams
+  } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 
 export default function Buy(){
+    
+    let { buyId } = useParams();
+
+   const [products, setProducts] = useState();
+
+    function getData() {
+      axios
+        .post(
+          "https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search",
+          {
+            keyword: "nike",
+            page: 1,
+          }
+        )
+        .then((response) => {
+         setProducts(response.data.shopify[buyId].product_listing);
+        });
+    }
+  
+    useEffect(() => {
+      getData();
+    }, []);
+
+
+    console.log(buyId);
+    
+     //if(products != undefined && products[buyId] != undefined) console.log(products[buyId].product_listing)
+    if(products!= (undefined || [])){console.log(products)}
+    
     return (<>
+    {(products!= undefined && products!= []) &&
            <div className="container-fluid" style={{width:'100vw' , height:'100vh'}}>
                <div className="row">
                    <div className="col-1" style={{ height:"100vh"}}></div>
                    <div className="col-8 " style={{ height:"100vh"}}>
                        <div className="main-shop">
-                           <img src={shoeImg} alt="" className="main-image" />
-                           <div className="brand-name">Brand Name</div>
-                           <div className="product-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione vero voluptatem provident hic numquam necessitatibus.</div>
-                           <div className="product-price">$2000</div>
+                           <img src={products.images[0].src} alt="" className="main-image" />
+                           <div className="brand-name">{products.product_type}</div>
+                           <div className="product-detail">{products.title}</div>
+                           <div className="product-price">{products.variants[0].formatted_price}</div>
                            {/* options */}
                            <div className="options-main"> 
                                         {/* row1 */}
                                 <div className="option-row option-row-1">
-                                    <select className="option-item" style={{left: "138px" , order:'1'}} >
-                                     <option value="volvo">option</option>
-                                      <option value="saab">Saab</option>
+                                <select className="option-item" style={{left: "138px" , order:'1'}} >
+                                       <option value="volvo">option</option>
+                                        <option value="saab">Saab</option>
                                          <option value="fiat">Fiat</option>
                                          <option value="audi">Audi</option>
                                      </select>
@@ -36,19 +77,30 @@ export default function Buy(){
 
                               {/* row2 */}
                                 <div className="option-row option-row-2">
-                                  <select className="option-item" style={{left: "138px" , order:'1'}} >
+                                    {products.options[1] ? <>
+                                            <select className="option-item" style={{left: "138px" , order:'1'}} >
+                                            <option value="volvo">{products.options[1].values[0]}</option>
+                                            <option value="saab">{products.options[1].values[1]}</option>
+                                            <option value="fiat">{products.options[1].values[2]}</option>
+                                            <option value="audi">{products.options[1].values[3]}</option>
+                                        </select>
+                                        </>
+                                    :
+                                    <select className="option-item" style={{left: "138px" , order:'1'}} >
                                        <option value="volvo">option</option>
                                         <option value="saab">Saab</option>
                                          <option value="fiat">Fiat</option>
                                          <option value="audi">Audi</option>
                                      </select>
-                                     <select className="option-item" style={{left: "0px" , order:'0'}} >
-                                        <option value="volvo">option</option>
-                                        <option value="saab">Saab</option>
-                                         <option value="fiat">Fiat</option>
-                                         <option value="audi">Audi</option>
-                                      </select>
-
+                                    
+                                }
+                                     <select className="option-item" style={{left: "138px" , order:'1'}} >
+                                         <option value="volvo">{products.options[0].values[0]}</option>
+                                         <option value="saab">{products.options[0].values[1]}</option>
+                                         <option value="fiat">{products.options[0].values[2]}</option>
+                                         <option value="audi">{products.options[0].values[3]}</option>
+                                     </select>
+                                    
                                 </div>
                                  {/* row2 */}
 
@@ -61,11 +113,11 @@ export default function Buy(){
                                          <option value="audi">Audi</option>
                                      </select>
                                      <select className="option-item" style={{left: "0px" , order:'0'}} >
-                                        <option value="volvo">option</option>
-                                        <option value="saab">Saab</option>
+                                     <option value="volvo">option</option>
+                                      <option value="saab">Saab</option>
                                          <option value="fiat">Fiat</option>
                                          <option value="audi">Audi</option>
-                                      </select>
+                                     </select>
                                 </div>
                            </div>
                            {/* options */}
@@ -85,10 +137,10 @@ export default function Buy(){
                              
                                         
                                                     
-                                          <img src={shoe1} alt=""  className="image-item" style={{left: "278px"}}/>
-                                          <img src={shoe2} alt=""  className="image-item" style={{left: "206px"}}/>
-                                          <img src={shoe3} alt=""  className="image-item" style={{left: "134px"}}/>
-                                          <img src={shoe4} alt=""  className="image-item" style={{left: "62px"}}/>
+                                          <img src={products.images[1].src} alt=""  className="image-item" style={{left: "278px"}}/>
+                                          <img src={products.images[2].src} alt=""  className="image-item" style={{left: "206px"}}/>
+                                          <img src={products.images[3].src} alt=""  className="image-item" style={{left: "134px"}}/>
+                                          <img src={products.images[4].src} alt=""  className="image-item" style={{left: "62px"}}/>
                        
            
                                         <button className="image-group-right">{`>`}</button>
@@ -98,13 +150,23 @@ export default function Buy(){
                                     {/* image groupe */}
 
                                     <div className="describe-text">Describe</div>
-                                    <div className="describtion-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quod qui quaerat? Doloremque ipsa animi aliquid voluptate similique, vitae expedita cum illum reprehenderit deleniti doloribus, harum voluptas velit recusandae asperiores dolor. Repellendus, beatae. Vitae accusamus mollitia vel consectetur sunt cum voluptatibus reprehenderit, laboriosam, sed voluptatem officia? Neque beatae libero natus!</div>
+                                    <div className="describtion-text">{products.title}</div>
 
 
                        </div>
                    </div>
-                   <div className="col-3" style={{backgroundColor:'white', height:"100vh"}}></div>
+                   <div className="col-3" style={{ height:"100vh"}}>
+                            <div className="my-cart-container">
+                                <div className="mycart">My Cart</div>
+                                <div className="cart-total-cost"><p>total cost   $1200</p></div>
+                                <div className="cart-items">
+
+                                </div>
+                                <button className="check-out-button"><p>Check Out</p> </button>
+                            </div>
+                   </div>
                </div>
            </div>
+           }
     </>)
 }
