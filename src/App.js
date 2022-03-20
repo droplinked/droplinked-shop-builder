@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { WalletProvider } from "./components/context/context"
 import Checkout from "./components/checkout/Checkout"
-
+import Address from "./components/Address/Address"
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +20,7 @@ function App() {
           <Route  exact path="/" element={<MainPage />} />
           <Route   path="/buy/:buyId" element={<Buy />} />
           <Route   path="/checkout" element={<Checkout />} />
+          <Route   path="/address" element={<Address />} />
           <Route   path="/*" element={<NotFound />} />
        </Routes>
       </WalletProvider>

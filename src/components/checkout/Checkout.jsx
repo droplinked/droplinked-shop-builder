@@ -29,9 +29,11 @@ export default class Checkout extends Component {
 				</div>
 				<div className='p-3 d-flex flex-row justify-content-between align-items-center'>
 					<button className='btn btn-lg btn-light rounded-pill'>Continue Shopping</button>
+					<Link to="/address">
 					<button className='btn btn-dark btn-lg rounded-pill '>
 						Checkout | <span>$13.57</span>
 					</button>
+					</Link>
 				</div>
 			</div>
 		)
