@@ -10,6 +10,7 @@ import {
   Route,
 } from "react-router-dom";
 import { WalletProvider } from "./components/context/context"
+import Checkout from "./components/checkout/Checkout"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
        <Routes>
           <Route  exact path="/" element={<MainPage />} />
           <Route   path="/buy/:buyId" element={<Buy />} />
+          <Route   path="/checkout" element={<Checkout />} />
           <Route   path="/*" element={<NotFound />} />
        </Routes>
       </WalletProvider>

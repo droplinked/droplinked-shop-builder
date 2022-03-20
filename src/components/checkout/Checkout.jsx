@@ -4,8 +4,9 @@ import './checkout.scss'
 import add from './icons/add.png'
 import minus from './icons/minus.png'
 import remove from './icons/remove.png'
+import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
 
-export class Checkout extends Component {
+export default class Checkout extends Component {
 	render() {
 		return (
 			<div className='p-3 rounded bg-white shadow-sm checkout'>

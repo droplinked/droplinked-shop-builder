@@ -4,13 +4,7 @@ import shoe2 from "../assest/shoe/shoe2.jpg"
 import shoe3 from "../assest/shoe/shoe3.jpg"
 import shoe4 from "../assest/shoe/shoe4.jpg"
 import React from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useParams
-  } from "react-router-dom";
+import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
   import { UseWalletInfo } from "../components/context/context";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -167,7 +161,7 @@ export default function Buy(){
 
                                 </div>
                                 {userData ?
-                                <Link to="/x">
+                                <Link to="/checkout">
                                         <button className="check-out-button"
                                         ><p>Check Out</p> 
                                         </button>
