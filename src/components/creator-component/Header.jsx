@@ -2,7 +2,7 @@ import logo from "../../assest/shared/Flatlay-Logo.svg";
 
 import { UseWalletInfo } from "../context/context";
 
-export default function Header(props) {
+export default function Header() {
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
 
   return (
