@@ -1,0 +1,16 @@
+.payments {
+	padding: 30px 0;
+	background-color: #fff;
+	border-radius: 10px;
+	width: 100%;
+
+	&-new {
+		background-color: #eee;
+	}
+
+	input,
+	input:focus-visible {
+		border: none;
+		outline: transparent;
+	}
+}
