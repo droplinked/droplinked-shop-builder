@@ -58,18 +58,7 @@ export default function Buy(){
                            <div className="options-main"> 
                                         {/* row1 */}
                                 <div className="option-row option-row-1">
-                                <select className="option-item" style={{left: "138px" , order:'1'}} >
-                                       <option value="volvo">option</option>
-                                        <option value="saab">Saab</option>
-                                         <option value="fiat">Fiat</option>
-                                         <option value="audi">Audi</option>
-                                     </select>
-                                     <select className="option-item" style={{left: "0px" , order:'0'}} >
-                                     <option value="volvo">option</option>
-                                      <option value="saab">Saab</option>
-                                         <option value="fiat">Fiat</option>
-                                         <option value="audi">Audi</option>
-                                     </select>
+                                
                                 </div>
                                  {/* row1 */}
 
@@ -104,31 +93,20 @@ export default function Buy(){
 
 
                                 <div className="option-row option-row-3">
-                                <select className="option-item" style={{left: "138px" , order:'1'}} >
-                                       <option value="volvo">option</option>
-                                        <option value="saab">Saab</option>
-                                         <option value="fiat">Fiat</option>
-                                         <option value="audi">Audi</option>
-                                     </select>
-                                     <select className="option-item" style={{left: "0px" , order:'0'}} >
-                                     <option value="volvo">option</option>
-                                      <option value="saab">Saab</option>
-                                         <option value="fiat">Fiat</option>
-                                         <option value="audi">Audi</option>
-                                     </select>
+                                
                                 </div>
                            </div>
                            {/* options */}
 
                            {/* button group */}
                             <div className="btn-group">
-                                    <div className="btn-group-block">+</div>
-                                    <div className="group-text">1</div>
-                                    <div className="btn-group-block">-</div>
+                                    <button className="btn-group-block">+</button>
+                                    <div className="btn-group-block">1</div>
+                                    <button className="btn-group-block">-</button>
                             </div>
                            {/* button group */}
 
-                           <div className="add-to-basket">Add to basket</div>
+                           <div className="add-to-basket"><i class="bi bi-cart"></i>Add to basket</div>
 
 
                                     {/* image groupe */}

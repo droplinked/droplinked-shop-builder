@@ -842,15 +842,16 @@ color: #37A486;
     }
     .options-main{
         display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
+        align-items: flex-start;
+        padding: 0px;
+        
+        position: absolute;
+        width: 268px;
+        height: 109px;
+        left: 400px;
+        top: 224px;
+        flex-direction: column;
 
-position: absolute;
-width: 268px;
-height: 109px;
-left: 400px;
-top: 224px;
         .option-row-1{
             top: 78px;
             order: 2;
@@ -875,12 +876,12 @@ top: 224px;
             left: 0px;
             flex: none;
             flex-grow: 0;
-            margin: 8px 0px;
+            margin: 4px 0px;
 
             .option-item{
                 display: flex;
                 justify-content: center;
-                padding: 6px 12px;
+                padding: 0px 8px;
                 
                 position: static;
                 width: 130px;
@@ -905,7 +906,7 @@ top: 224px;
         position: absolute;
         height: 32px;
         left: 400px;
-        top: 365px;
+        top: 360px;
         width: 109px;
         
         display: flex;
@@ -913,10 +914,8 @@ top: 224px;
         justify-content: space-between;
 
         .btn-group-block{
-            justify-content: center;
-            align-items: center;
-            padding: 8px;
-            //position: absolute;
+            padding: 0;
+            border: none;  
             width: 32px;
             left: 477px;
             top: 48.27%;
@@ -924,20 +923,21 @@ top: 224px;
             background: #F6F6F6;
             border-radius: 8px;
             text-align: center;
+            vertical-align: middle;
 
         }
 
         .group-text{
-            
-            text-align: center;
-            padding: 8px;
-            //position: absolute;
+            padding-top: auto;
+            border: none;  
             width: 32px;
             left: 477px;
             top: 48.27%;
             bottom: 47.3%;
             background: #F6F6F6;
             border-radius: 8px;
+            text-align: center;
+            vertical-align: middle;
         }
 
 
@@ -949,11 +949,10 @@ top: 224px;
         justify-content: center;
         align-items: center;
         padding: 8px 16px;
-        
         position: absolute;
         width: 272px;
         left: 400px;
-        top: 56%;
+        top: 55%;
         bottom: 39.83%;
         background: #353536;
         border-radius: 8px;
@@ -964,6 +963,7 @@ top: 224px;
         line-height: 22px;
         color: #FFFFFF;
         font-style: normal;
+        height: 38px;
     }
     
 
@@ -985,10 +985,12 @@ top: 224px;
     border-radius: 25px;
     background: #FFFFFF;
     border-color: white;
-    filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.5));
+    border: none;
     }
 
     .image-group-right{
+        border: none;
         position: absolute;
         width: 32px;
         height: 32px;
@@ -997,7 +999,7 @@ top: 224px;
         border-radius: 25px;
         background: #FFFFFF;
         border-color: white;
-        filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.1));
+        filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.5));
     }
 
     .describe-text{
