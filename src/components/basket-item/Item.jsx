@@ -13,8 +13,8 @@ export default function Item(){
                 <div className="cost">$89.99</div>
                 <div className="item-color">
                     <div style={{marginRight:'2px'}}>Color</div>
-                    <div style={{width:"50%" , height:"25px" , border:'1px solid' , align:'center' , right:'0px'}}>
-                        <div style={{backgroundColor:"gray" , width:"90%" , height:"90%" , margin:"auto"}}></div>
+                    <div style={{width:"50%" , height:"25px" , border:'1px solid' , align:'center' , right:'0px' , borderRadius:'5px'}}>
+                        <div style={{backgroundColor:"gray" , width:"90%" , height:"90%" , margin:"auto" , top:'1px' , borderRadius:'5px'}}></div>
                     </div>
                 </div>
                 <div className="item-size">

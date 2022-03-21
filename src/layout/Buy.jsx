@@ -7,14 +7,14 @@ import React from "react";
 import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
   import { UseWalletInfo } from "../components/context/context";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState , useRef } from "react";
 import Header from "../components/creator-component/Header"
 import Item from "../components/basket-item/Item"
 
 
 export default function Buy(){
     const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
-    
+    const [ counter , setCounter]=useState(0);
     let { buyId } = useParams();
 
    const [products, setProducts] = useState();
@@ -101,13 +101,17 @@ export default function Buy(){
 
                            {/* button group */}
                             <div className="btn-group">
-                                    <button className="btn-group-block">+</button>
-                                    <div className="btn-group-block">1</div>
-                                    <button className="btn-group-block">-</button>
+                                    <button className="btn-group-block" 
+                                      onClick={()=>{setCounter(counter+1)}}
+                                    >+</button>
+                                    <input className="btn-group-block" value={counter}  />
+                                    <button className="btn-group-block"
+                                      onClick={()=>{setCounter(counter-1)}}
+                                    >-</button>
                             </div>
                            {/* button group */}
 
-                           <div className="add-to-basket"><i class="bi bi-cart"></i>Add to basket</div>
+                           <button className="add-to-basket"><i class="bi bi-cart"></i>Add to basket</button>
 
 
                                     {/* image groupe */}
