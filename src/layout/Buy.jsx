@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-route
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Header from "../components/creator-component/Header"
+import Item from "../components/basket-item/Item"
 
 
 export default function Buy(){
@@ -136,7 +137,7 @@ export default function Buy(){
                                 <div className="mycart">My Cart</div>
                                 <div className="cart-total-cost"><p>total cost   $1200</p></div>
                                 <div className="cart-items">
-
+                                   <Item />
                                 </div>
                                 {userData ?
                                 <Link to="/checkout">

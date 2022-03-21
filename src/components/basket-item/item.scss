@@ -1,0 +1,84 @@
+
+*{
+    box-sizing: border-box;
+}
+.basket-item{
+    
+    position: relative;
+    height: 60px;
+    width:290px ;
+    //background-color:blue;
+    margin : 0 auto;
+    display: flex;
+    align-items: center;
+
+    .basket-item-image{
+        border-radius: 12px;
+        height:90%;
+    }
+    .item-detail{
+        height:90%;
+        
+        right:0px;
+        position: relative;
+
+        .item-basket-name{
+            position:absolute;
+            font-family: 'Avenir Next';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            color: #4D4D4D;
+            display:inline-block;
+            left:5px;
+        }
+        .cost{
+            position:absolute;
+            font-family: 'Avenir Next';
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 36px;
+            font-style: normal;
+            display:inline-block;
+            right:2px;
+            top:20px;
+        }
+        .item-color{
+            position:absolute;
+            height:30px;
+            width:50px;
+            border-radius: 10px;
+            bottom:0px;
+            left:5px;
+            display:flex;
+            align-items:center;
+            justify-content: space-between;
+                div{
+                  
+                    text-align:center;
+                    font-size:10px;
+                    font-weight: bold;
+                    display: flex;
+                    justify-content: center;
+                    
+                }
+        }
+        .item-size{
+            position:absolute;
+            height:30px;
+            width:60px;
+           
+            bottom:0px;
+            left:75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           div{
+               display: inline-block;
+               text-align:center;
+                
+           }
+        }
+    }
+    
+}
