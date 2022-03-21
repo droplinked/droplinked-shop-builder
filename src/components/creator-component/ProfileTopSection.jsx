@@ -4,6 +4,10 @@ import userinfo from "./userinfo";
 import posts from "../../assest/profile/posts.svg";
 import collection from "../../assest/profile/collections-b.svg";
 import { useEffect, useState } from "react";
+import { UseWalletInfo } from "../context/context";
+import {getUserAddress} from "../../wallet-auth/api"
+import therLogo from "../../assest/ether.png"
+
 
 export default function ProfileTopic() {
   let isPublicProfile = false;
@@ -13,20 +17,8 @@ export default function ProfileTopic() {
   let userinfo1 = userinfo;
   let topMainBackground = { backgroundImage: `url(${background})` };
 
-  let mode = "posts";
-
-  let modes = [
-    {
-      text: "Posts",
-      imgUrl: posts,
-      name: "posts",
-    },
-    {
-      text: "Collections",
-      imgUrl: collection,
-      name: "collections",
-    },
-  ];
+  const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
+  const userAddress = (userData ? getUserAddress(userData): null)
 
   return (
     <>
@@ -84,21 +76,17 @@ export default function ProfileTopic() {
       </section>
 
       <section className="profile-top-section">
-        <div style={{ padding: "20px" }}>
-          <div className="post-collection-toggle d-flex">
-            {modes.map((item) => {
-              return (
-                <div
-                  className={`item d-flex align-items-end ${
-                    item.name == mode ? "active" : ""
-                  }`}
-                >
-                  <img src={item.imgUrl} alt="" />
-                  <p className="m-0 text">{item.text}</p>
-                </div>
-              );
-            })}
-          </div>
+      
+          <div className="post-collection-toggle">
+          {userData
+            ?<div className="profile-address">
+              <img src={therLogo} alt="" />
+              <p>{userAddress ?userAddress.mainnet : "" }</p>
+            </div>
+            :<div className="">
+
+            </div>
+          }         
         </div>
       </section>
     </>

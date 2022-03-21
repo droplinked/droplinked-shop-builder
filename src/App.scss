@@ -1121,3 +1121,33 @@ top: 224px;
     }
 
 }
+
+.profile-address{
+    border : 1px solid ;
+    border-color: gray;
+    border-radius:25px;
+    width : 200px ;
+    height: 40px;
+    padding:2px ;
+    overflow: hidden;
+    
+    display:flex ;
+    flex-direction: row;
+    padding: auto 0;
+    justify-content: center;
+    align-items: center;
+        p{  
+        
+            padding-top: 14px;
+            font-family: 'Avenir Next';
+            font-style: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+       img{
+           height:80%;
+           width: 30px;
+       }
+    
+}
