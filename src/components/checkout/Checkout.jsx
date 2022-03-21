@@ -5,6 +5,8 @@ import add from './icons/add.png'
 import minus from './icons/minus.png'
 import remove from './icons/remove.png'
 import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
+import tshirt from "../../assest/tshirt.jpg"
+
 
 export default class Checkout extends Component {
 	render() {
@@ -20,8 +22,7 @@ export default class Checkout extends Component {
 							<td></td>
 						</tr>
 						<CheckoutProduct />
-						<CheckoutProduct />
-						<CheckoutProduct />
+						
 					</tbody>
 				</table>
 				<div className='text-end p-3'>
@@ -48,12 +49,12 @@ class CheckoutProduct extends Component {
 					<div className='d-flex flex-row align-items-center'>
 						<img
 							className='mr-2 cursor-pointer checkout__product-img'
-							src='https://cdn.shopify.com/s/files/1/1857/6931/products/jIOxlFqFB7.jpg?v=1639708508'
+							src={tshirt}
 							alt=''
 						/>
 						<div>
 							<h2 className='m-0 cursor-pointer'>
-								Sri Sri Tattva Turmeric Cardiac Care Tablets
+								T-Shirt summer
 							</h2>
 							<p className='m-0 text-muted'>60 Tablets</p>
 						</div>
@@ -71,7 +72,7 @@ class CheckoutProduct extends Component {
 						<img className='checkout__product-counter-button' src={add} alt='' />
 					</div>
 				</td>
-				<td className='m-0'>$6.11 USD</td>
+				<td className='m-0'>$89.99 USD</td>
 				<td>
 					<img className='checkout__product-remove' src={remove} alt='' />
 				</td>

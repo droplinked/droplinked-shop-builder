@@ -127,7 +127,7 @@ export default function Buy(){
                                         <button className="image-group-right">{`>`}</button>
                                         <button className="image-group-left">{`<`}</button>
                               
-                            
+                             
                                     {/* image groupe */}
 
                                     <div className="describe-text">Describe</div>
