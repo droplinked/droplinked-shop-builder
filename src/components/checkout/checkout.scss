@@ -1,0 +1,44 @@
+.checkout {
+	font-size: 1rem;
+
+	table {
+		color: #212529;
+	}
+
+	&__product {
+		&-img {
+			width: 55px;
+			height: 55px;
+			object-fit: cover;
+		}
+
+		&-counter {
+			border: 1px solid #ddd;
+			border-radius: 100px;
+			overflow: hidden;
+			padding: 5px;
+
+			&-button {
+				width: 16px;
+				height: 16px;
+				cursor: pointer;
+			}
+
+			&-input {
+				display: inline-block;
+				max-width: 65px;
+				margin: auto;
+				text-align: center;
+				border: none;
+				background: none;
+				margin: 0 5px;
+			}
+		}
+
+		&-remove {
+			width: 24px;
+			height: 24px;
+			cursor: pointer;
+		}
+	}
+}
