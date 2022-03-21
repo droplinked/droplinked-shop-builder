@@ -1,4 +1,6 @@
 import logo from "../../assest/shared/Flatlay-Logo.svg";
+import { AiOutlineWallet } from "react-icons/ai";
+import { AiFillWallet } from "react-icons/ai";
 
 import { UseWalletInfo } from "../context/context";
 
@@ -19,11 +21,11 @@ export default function Header() {
             >
               {userData ? (
                 <h1>
-                  <i className="bi bi-wallet-fill"></i>
+                  <AiFillWallet />
                 </h1>
               ) : (
                 <h1>
-                  <i className="bi bi-wallet2"></i>
+                  <AiOutlineWallet />
                 </h1>
               )}
             </button>
