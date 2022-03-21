@@ -30,15 +30,6 @@ export default function Box() {
     <section style={{ padding: "20px" }}>
       <div className="box">
         <div className="search-component products all">
-          <h2 className="font-gt mt-3 mb-0 d-flex align-items-center">
-            <span
-              className="mr-2"
-              style={{ background: `${iconbg}`, center: "no-repeat" }}
-            >
-              <img src={productIcon} alt="" />
-            </span>
-            Products
-          </h2>
           {products != undefined && (
             <div className="list">
               <div className="bullet-wrap row">

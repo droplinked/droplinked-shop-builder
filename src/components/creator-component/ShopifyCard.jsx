@@ -20,7 +20,7 @@ export default function ShopifyCard(props) {
       </div>
       <div className="info">
         <p className="mt-1 mb-3 title">{props.product.title}</p>
-        <p className="mb-5 price">
+        <p className="mb-5 price" >
           {props.product.variants[0].formatted_price}
         </p>
         <div className="row">
