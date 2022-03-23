@@ -137,12 +137,21 @@ export default function Buy(){
                        </div>
                    </div>
                    <div className="col-3" style={{ height:"100vh"}}>
-                            <div className="my-cart-container">
+                            <div className="my-cart-container container d-flex ">
+                              <div className="row">
                                 <div className="mycart">My Cart</div>
                                 <div className="cart-total-cost"><p>total cost   $1200</p></div>
+                                </div>
+                                <div className="row">
                                 <div className="cart-items">
                                    <Item />
+                                   <Item />
+                                   <Item />
+                                   <Item />
+                                   
                                 </div>
+                                </div>
+                                <div className="row d-flex flex-row">
                                 {userData ?
                                 <Link to="/checkout">
                                         <button className="check-out-button"
@@ -154,6 +163,7 @@ export default function Buy(){
                                      onClick={authenticate}>
                                          <p>Check Out</p> 
                                      </button>}
+                                     </div>
                                 
                             </div>
                    </div>
