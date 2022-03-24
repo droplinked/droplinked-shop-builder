@@ -13,8 +13,10 @@ import { WalletProvider } from "./components/context/context"
 import Checkout from "./components/checkout/Checkout"
 import Address from "./components/Address/Address"
 import Payments from "./components/Payments/Payments"
+import CartContextProvider from "../src/components/context/CartContext"
 function App() {
   return (
+    <CartContextProvider>
     <BrowserRouter>
       <WalletProvider>
        <Routes>
@@ -27,6 +29,7 @@ function App() {
        </Routes>
       </WalletProvider>
     </BrowserRouter>
+    </CartContextProvider>
   );
 }
 
