@@ -6,10 +6,10 @@ export const CartContext = createContext()
 
 
 const CartContextProvider = ({children}) => {
-    const initialState = [];
+   
 
-    const [state, dispatch] = useReducer(CartReducer, { cartItems: [], ...sumItems([]) })
-
+    const [state, dispatch] = useReducer(CartReducer, { cartItems: [], ...sumItems([])}  ) 
+    
     const increase = payload => {
         console.log("dispatch method");
         dispatch({type: 'INCREASE', payload})

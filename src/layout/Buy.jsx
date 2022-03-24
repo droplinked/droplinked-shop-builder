@@ -11,11 +11,14 @@ import { useEffect, useState , useRef ,useContext } from "react";
 import Header from "../components/creator-component/Header"
 import Item from "../components/basket-item/Item"
 import {CartContext} from "../components/context/CartContext"
+import {useCart} from "../components/hooks/useCart"
 
 
 export default function Buy(){
-    const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
-    let { buyId } = useParams();
+
+   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
+   const { addProduct, cartItems, increase , decrease } = useCart();
+   let { buyId } = useParams();
    const [products, setProducts] = useState();
 
     function getData() {
@@ -36,15 +39,13 @@ export default function Buy(){
       getData();
     }, []);
 
-    const { addProduct, cartItems, increase ,decrease , itemCount  } = useContext(CartContext)
+    
 
     console.log(cartItems);
 
-    
-    //if(products!= (undefined || [])){console.log(products)}
-    //console.log(cartItems.find(item => item.product_id === products.product_id).quantity);
     return (<>
     <Header />
+
     {(products!= undefined && products!= []) &&
            <div className="container-fluid" style={{width:'100vw' , height:'100vh'}}>
                <div className="row">
@@ -99,26 +100,32 @@ export default function Buy(){
                            </div>
                            {/* options */}
 
+
                            {/* button group */}
-                           {!!cartItems.find(item => item.product_id === products.product_id)&&
+                           {
+                             
+                           !!cartItems.find(item => item.product_id === products.product_id)&&
                             <div className="btn-group">
                                     <button className="btn-group-block" 
-                                      onClick={()=>{
-                                         increase(products); console.log(itemCount);
-                                         }} >+</button>
+                                      onClick={()=>{increase(products)}}
+                                      >+</button>
+
                                     <input className="btn-group-block" value={ cartItems.find(item => item.product_id === products.product_id).quantity }  />
-                                    <button className="btn-group-block"
-                                      onClick={()=>{ decrease(products) }} >-</button>
+
+                                    <button className="btn-group-block" 
+                                    onClick={()=>{ decrease(products) }}
+                                     >-</button>
                             </div>
+
                             }
-                           {/* button group */}
+                           
                             {(!cartItems.find(item => item.product_id === products.product_id))&&
                             <button
                             onClick={() => {addProduct(products)}}
                             className="add-to-basket"><i class="bi bi-cart"></i>Add to basket</button>
                             }
+                            {/* button group */}
                            
-
 
                                     {/* image groupe */}
                              
@@ -175,7 +182,7 @@ export default function Buy(){
                    </div>
                </div>
            </div>
-           }
+    }
     </>)
 
 
