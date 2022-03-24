@@ -11,7 +11,7 @@ build_prod:
          - build/    
       expire_in: 1 hour
   only:
-    - morteza
+    - dev
 
 deploy_prod:
   stage: deploy
@@ -24,7 +24,7 @@ deploy_prod:
     - aws cloudfront create-invalidation --distribution-id=E2M36M6JJ7FMID --paths /
     - echo "Copying files complete"
   only:
-    - morteza
+    - dev
 
 
 
