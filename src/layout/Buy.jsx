@@ -17,7 +17,7 @@ import {useCart} from "../components/hooks/useCart"
 export default function Buy(){
 
    const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
-   const { addProduct, cartItems, increase , decrease } = useCart();
+   const { addProduct, cartItems, increase , decrease ,total} = useCart();
    let { buyId } = useParams();
    const [products, setProducts] = useState();
 
@@ -47,10 +47,10 @@ export default function Buy(){
     <Header />
 
     {(products!= undefined && products!= []) &&
-           <div className="container-fluid" style={{width:'100vw' , height:'100vh'}}>
+           <div className="container-fluid" style={{maxWidth:'100vw' , height:'100vh'}}>
                <div className="row">
-                   <div className="col-1" style={{ height:"100vh"}}></div>
-                   <div className="col-8 " style={{ height:"100vh"}}>
+                   <div className="col-1 d-hide" style={{ height:"100vh"}}></div>
+                   <div className="col-8 " style={{ height:"100vh" , backgroundColor:"blue"}}>
                        <div className="main-shop">
                            <img src={products.images[0].src} alt="" className="main-image" />
                            <div className="brand-name">{products.product_type}</div>
@@ -149,37 +149,42 @@ export default function Buy(){
 
                        </div>
                    </div>
-                   <div className="col-3" style={{ height:"100vh"}}>
-                            <div className="my-cart-container container d-flex ">
-                              <div className="row">
-                                <div className="mycart">My Cart</div>
-                                <div className="cart-total-cost"><p>total cost   $1200</p></div>
-                                </div>
-                                <div className="row">
-                                <div className="cart-items">
-                                   <Item />
-                                   <Item />
-                                   <Item />
-                                   <Item />
+                       <div className="col-3" style={{ height:"100vh" , backgroundColor:"black"}}>
+                             <div className="my-cart-container container d-flex ">
+                                   <div className="row d-flex flex-row justify-content-between" style={{ marginTop:"10px"}}>
+                                       <div className="mycart col-5">My Cart</div>
+                                       <div className="cart-total-cost col-7"><p>total cost   ${total}</p></div>
+                                   </div>
                                    
-                                </div>
-                                </div>
-                                <div className="row d-flex flex-row">
-                                {userData ?
-                                <Link to="/checkout">
-                                        <button className="check-out-button"
-                                        ><p>Check Out</p> 
+                                 <div className="row">
+                                       <div className="cart-items" >
+                                           {cartItems.length > 0 && 
+                                               cartItems.map((item)=>{
+                                                    return(<Item detail={item} />)
+                                               })
+                                           }
+                                      </div>
+                                 </div>
+
+                                <div className="row" style={{ position: "relative"}}>
+                                      
+                                      {userData ?
+                                      <Link to="/checkout">
+                                              <button className="check-out-button"
+                                              ><p>Check Out</p> 
+                                              </button>
+                                      </Link>
+
+                                      : <button className="check-out-button"
+                                           onClick={authenticate}>
+                                               <p>Check Out</p> 
                                         </button>
-                               </Link>
-                                
-                                : <button className="check-out-button"
-                                     onClick={authenticate}>
-                                         <p>Check Out</p> 
-                                     </button>}
-                                     </div>
+                                    }
+                                     
+                                </div>
                                 
                             </div>
-                   </div>
+                        </div>
                </div>
            </div>
     }

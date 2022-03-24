@@ -1060,7 +1060,7 @@ color: #37A486;
         line-height: 32px;
         letter-spacing: 0.5px;
         color: #353536;
-        width: 80px;
+        width: 100px;
     }
 
     .cart-total-cost{
@@ -1068,7 +1068,7 @@ color: #37A486;
         height: 39px;
         left: 156px;
         top: 8px;
-        width: 168px;
+        width: 200px;
         
         text-align: center;
         vertical-align: middle;
@@ -1082,19 +1082,19 @@ color: #37A486;
 
     .cart-items{
        margin:20px auto;
-        width: 324px;
+        width: 100%;
         min-height: 66px;
         left: 0px;
         top: 89px;
-        
-        padding-top: 2px;
         height:auto;
         display: flex;
-        flex-direction: column;
-        
+        flex-direction: column;   
     }
+    
     .check-out-button{
+        display: inline-block;
         margin-top:10px;
+        margin-left:  calc(50% - 97px/2 + 118.5px);
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -1102,9 +1102,9 @@ color: #37A486;
         padding: 6px 20px;
        
         width: 97px;
-        height: 28px;
-        left: calc(50% - 97px/2 + 97.5px);
-        bottom: 20px;
+        height: 30px;
+        //left: calc(50% - 97px/2 + 97.5px);
+        margin-bottom: 10px;
         background: #353536;
         border-radius: 30px;
             p{
