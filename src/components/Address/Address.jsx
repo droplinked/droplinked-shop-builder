@@ -2,9 +2,14 @@ import React, { Component } from 'react'
 import './address.scss'
 import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
 import add from './icons/add.png'
+import {useState} from "react"
+import { useForm } from 'react-hook-form'
 
-class Address extends Component {
-	render() {
+function Address () {
+	
+	const[addAddress , setAddAddress]=useState(false);
+	const[address , setAddress]=useState([]);
+	
 		return (
 			<div className='bg-white rounded-2 shadow-sm p-3 p-lg-4'>
 				<div className='d-flex flex-row align-items-center mb-4'>
@@ -13,14 +18,24 @@ class Address extends Component {
 					</h2>
 					<span className='text-muted'>select an address or add new one</span>
 				</div>
+
 				{<AddressItem />}
-				<div className='text-center p-3'>
-					<button className='btn'>
+
+				{!addAddress ?
+					<div className='text-center p-3'>
+					<button className='btn'
+						onClick={()=>{setAddAddress(true)}}
+					>
 						<img src={add} alt='add' width='18px' height='18px' />
 						<span className='ms-2'>add new address</span>
 					</button>
 				</div>
-				{<NewAddress />}
+				:
+				<div className='text-center mt-5'></div>
+				}
+
+				{addAddress && <NewAddress />}
+
 				<div className='text-center mt-4'>
 					<Link to="/payments">
 					<button className='btn btn-dark px-4 rounded-pill' disabled>
@@ -30,15 +45,20 @@ class Address extends Component {
 				</div>
 			</div>
 		)
-	}
+	
 }
 
-class NewAddress extends Component {
-	render() {
+function NewAddress () {
+	const { register, handleSubmit } = useForm()
+
+	function submitForm(data){
+
+	}
+	
 		return (
 			<div className='address-card p-3 rounded-2'>
 				<p className='text-center'>new address</p>
-				<form name='address_form'>
+				<form onSubmit={handleSubmit(submitForm)}>
 					<div className='row'>
 						<div className='col-12 col-lg-6'>
 							<div className='form-group'>
@@ -49,7 +69,9 @@ class NewAddress extends Component {
 										className='form-control'
 										id='first_name'
 										placeholder='First name'
-										required
+										{...register("firstName" ,{
+											required:"First name is required"
+										})}
 									/>
 								</div>
 							</div>
@@ -61,9 +83,10 @@ class NewAddress extends Component {
 									<input
 										type='text'
 										className='form-control'
-										id='last_name'
 										placeholder='Last name'
-										required
+										{...register("lastName",{
+											required:"Last name is required"
+										})}
 									/>
 								</div>
 							</div>
@@ -75,9 +98,10 @@ class NewAddress extends Component {
 									<input
 										type='text'
 										className='form-control'
-										id='line1'
 										placeholder='address line 1'
-										required
+										{...register("address1",{
+											required:"address line 1 is required"
+										})}
 									/>
 								</div>
 							</div>
@@ -89,9 +113,8 @@ class NewAddress extends Component {
 									<input
 										type='text'
 										className='form-control'
-										id='line2'
 										placeholder='address line 2 (building or unit #)'
-										required
+										{...register("address2")}
 									/>
 								</div>
 							</div>
@@ -103,9 +126,10 @@ class NewAddress extends Component {
 									<input
 										type='text'
 										className='form-control'
-										id='country'
 										placeholder='country'
-										required
+										{...register("country",{
+											required:"country is required"
+										})}
 									/>
 								</div>
 							</div>
@@ -117,9 +141,10 @@ class NewAddress extends Component {
 									<input
 										type='text'
 										className='form-control'
-										id='city'
 										placeholder='city'
-										required
+										{...register("city",{
+											required:"city is required"
+										})}
 									/>
 								</div>
 							</div>
@@ -131,9 +156,10 @@ class NewAddress extends Component {
 									<input
 										type='text'
 										className='form-control'
-										id='state'
 										placeholder='state'
-										required
+										{...register("state",{
+											required:"state is required"
+										})}
 									/>
 								</div>
 							</div>
@@ -145,17 +171,16 @@ class NewAddress extends Component {
 									<input
 										type='text'
 										className='form-control'
-										id='zip'
 										placeholder='zip'
-										required
+										{...register("zip",{
+											required:"zip is required"
+										})}
 									/>
 								</div>
 							</div>
 						</div>
 						<div className='d-flex align-items end justify-content-end'>
-							<button className='btn btn-dark btn-sm rounded-pill px-4' type='submit'>
-								save
-							</button>
+							<input className='btn btn-dark btn-sm rounded-pill px-4' type='submit' value="save" />
 							<button className='btn btn-sm ml=3' type='button'>
 								cancel
 							</button>
@@ -164,7 +189,7 @@ class NewAddress extends Component {
 				</form>
 			</div>
 		)
-	}
+	
 }
 
 class AddressItem extends Component {
