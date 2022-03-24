@@ -85,6 +85,13 @@
     }
 
 
-    
+    .item-quantity{ 
+        position: absolute;
+        left:160px;
+        width: 110px;
+        display: flex;
+        justify-content: flex-end;
+
+    }
     
 }

@@ -1,5 +1,5 @@
 import "./item.scss"
-import tshirt from "../../assest/tshirt.jpg"
+
 
 
 export default function Item(props){
@@ -9,6 +9,7 @@ export default function Item(props){
         <div className="basket-item ">
             <img src={props.detail.images[0].src} alt="" className="col-3 basket-item-image"/>
             <div className="item-detail col-9">
+                <div className="item-quantity">quantity :{props.detail.quantity}</div>
                 <div className="item-basket-name">{props.detail.title}</div>
                 <div className="cost"> {props.detail.variants[0].formatted_price} </div>
                 <div className="item-color">

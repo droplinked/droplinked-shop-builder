@@ -50,7 +50,7 @@ export default function Buy(){
            <div className="container-fluid" style={{maxWidth:'100vw' , height:'100vh'}}>
                <div className="row">
                    <div className="col-1 d-hide" style={{ height:"100vh"}}></div>
-                   <div className="col-8 " style={{ height:"100vh" , backgroundColor:"blue"}}>
+                   <div className="col-8 " style={{ height:"100vh" }}>
                        <div className="main-shop">
                            <img src={products.images[0].src} alt="" className="main-image" />
                            <div className="brand-name">{products.product_type}</div>
@@ -149,7 +149,7 @@ export default function Buy(){
 
                        </div>
                    </div>
-                       <div className="col-3" style={{ height:"100vh" , backgroundColor:"black"}}>
+                       <div className="col-3" style={{ height:"100vh" }}>
                              <div className="my-cart-container container d-flex ">
                                    <div className="row d-flex flex-row justify-content-between" style={{ marginTop:"10px"}}>
                                        <div className="mycart col-5">My Cart</div>
