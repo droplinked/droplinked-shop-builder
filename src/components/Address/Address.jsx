@@ -4,12 +4,17 @@ import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-route
 import add from './icons/add.png'
 import {useState} from "react"
 import { useForm } from 'react-hook-form'
+import { errorMonitor } from 'stream';
 
 function Address () {
 	
 	const[addAddress , setAddAddress]=useState(false);
 	const[address , setAddress]=useState([]);
-	
+	console.log(address);
+
+	function set(address){
+		setAddress(address);
+	}
 		return (
 			<div className='bg-white rounded-2 shadow-sm p-3 p-lg-4'>
 				<div className='d-flex flex-row align-items-center mb-4'>
@@ -19,7 +24,9 @@ function Address () {
 					<span className='text-muted'>select an address or add new one</span>
 				</div>
 
-				{<AddressItem />}
+				{address.length>0 && 
+				<AddressItem />
+				}
 
 				{!addAddress ?
 					<div className='text-center p-3'>
@@ -34,7 +41,7 @@ function Address () {
 				<div className='text-center mt-5'></div>
 				}
 
-				{addAddress && <NewAddress />}
+				{addAddress && <NewAddress address={address} set={set} />}
 
 				<div className='text-center mt-4'>
 					<Link to="/payments">
@@ -48,11 +55,14 @@ function Address () {
 	
 }
 
-function NewAddress () {
-	const { register, handleSubmit } = useForm()
+function NewAddress (props) {
+	const { register, handleSubmit , formState : {errors}  } = useForm()
 
 	function submitForm(data){
-
+		//console.log("add adress");
+		let array = props.address;
+		array.push(data);
+		props.set(array);
 	}
 	
 		return (
@@ -73,6 +83,7 @@ function NewAddress () {
 											required:"First name is required"
 										})}
 									/>
+									{errors.firstName && <p className="error">First name is required</p>}
 								</div>
 							</div>
 						</div>
@@ -88,6 +99,7 @@ function NewAddress () {
 											required:"Last name is required"
 										})}
 									/>
+									{errors.lastName && <p className="error">Last name is required</p>}
 								</div>
 							</div>
 						</div>
@@ -103,6 +115,7 @@ function NewAddress () {
 											required:"address line 1 is required"
 										})}
 									/>
+									{errors.address1 && <p className="error">address line 1 is required</p>}
 								</div>
 							</div>
 						</div>
@@ -131,6 +144,7 @@ function NewAddress () {
 											required:"country is required"
 										})}
 									/>
+									{errors.country && <p className="error">country is required</p>}
 								</div>
 							</div>
 						</div>
@@ -146,6 +160,7 @@ function NewAddress () {
 											required:"city is required"
 										})}
 									/>
+									{errors.city && <p className="error">city is required</p>}
 								</div>
 							</div>
 						</div>
@@ -161,6 +176,7 @@ function NewAddress () {
 											required:"state is required"
 										})}
 									/>
+									{errors.state && <p className="error">state is required</p>}
 								</div>
 							</div>
 						</div>
@@ -176,6 +192,7 @@ function NewAddress () {
 											required:"zip is required"
 										})}
 									/>
+									{errors.zip && <p className="error">zip is required</p>}
 								</div>
 							</div>
 						</div>
