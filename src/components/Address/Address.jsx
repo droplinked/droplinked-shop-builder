@@ -2,19 +2,21 @@ import React, { Component } from 'react'
 import './address.scss'
 import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
 import add from './icons/add.png'
-import {useState} from "react"
+import { useState , useEffect} from "react"
 import { useForm } from 'react-hook-form'
 import { errorMonitor } from 'stream';
+import { useAddress } from "../hooks/useAddress"
 
 function Address () {
 	
 	const[addAddress , setAddAddress]=useState(false);
-	const[address , setAddress]=useState([]);
-	console.log(address);
+	//const[address , setAddress]=useState([]);
+	const { addressList } = useAddress();
 
-	function set(address){
-		setAddress(address);
+	function cancelNewAddress(){
+		setAddAddress(false);
 	}
+
 		return (
 			<div className='bg-white rounded-2 shadow-sm p-3 p-lg-4'>
 				<div className='d-flex flex-row align-items-center mb-4'>
@@ -24,8 +26,11 @@ function Address () {
 					<span className='text-muted'>select an address or add new one</span>
 				</div>
 
-				{address.length>0 && 
-				<AddressItem />
+				{addressList.length>0 && 
+					addressList.map((item , i) =>{
+						return <AddressItem address={item} key={i}/>
+					})
+				
 				}
 
 				{!addAddress ?
@@ -41,7 +46,7 @@ function Address () {
 				<div className='text-center mt-5'></div>
 				}
 
-				{addAddress && <NewAddress address={address} set={set} />}
+				{addAddress && <NewAddress cancel={cancelNewAddress}/>}
 
 				<div className='text-center mt-4'>
 					<Link to="/payments">
@@ -57,12 +62,16 @@ function Address () {
 
 function NewAddress (props) {
 	const { register, handleSubmit , formState : {errors}  } = useForm()
+	const { add ,addressList} = useAddress();
+
+	useEffect(()=>{
+		console.log(addressList);
+	},[addressList])//
+
 
 	function submitForm(data){
-		//console.log("add adress");
-		let array = props.address;
-		array.push(data);
-		props.set(array);
+		add(data);
+		props.cancel();
 	}
 	
 		return (
@@ -198,7 +207,9 @@ function NewAddress (props) {
 						</div>
 						<div className='d-flex align-items end justify-content-end'>
 							<input className='btn btn-dark btn-sm rounded-pill px-4' type='submit' value="save" />
-							<button className='btn btn-sm ml=3' type='button'>
+							<button className='btn btn-sm ml=3' type='button'
+								onClick={()=>{props.cancel()}}
+							>
 								cancel
 							</button>
 						</div>
@@ -209,19 +220,19 @@ function NewAddress (props) {
 	
 }
 
-class AddressItem extends Component {
-	render() {
+function AddressItem (props) {
+	//
 		return (
 			<div className='address-card p-3 selected'>
 				<div className='cursor-pointer'>
 					<div className='d-flex flex-row align-items-center justify-content-between mb-2'>
 						<h3>
-							<strong>USA - Wymanmouth</strong>
+							<strong>{props.address.country} - {props.address.city}</strong>
 						</h3>
 						<span className='primary-badge'>primary</span>
 					</div>
-					<p className='text-muted mb-1'>6825 Von Viaduct Apt. 908</p>
-					<p className='text-muted mb-1'>Bilzen 54577 | Lewis Dickens</p>
+					<p className='text-muted mb-1'>{props.address.address1}</p>
+					<p className='text-muted mb-1'>{props.address.state} | {props.address.zip}</p>
 					<div className='d-flex align-items-center justify-content-end actions-container'>
 						<button className='btn btn-sm'>edit</button>
 						<button className='btn btn-sm text-danger ml-2'>remove</button>
@@ -229,7 +240,7 @@ class AddressItem extends Component {
 				</div>
 			</div>
 		)
-	}
+	
 }
 
 export default Address

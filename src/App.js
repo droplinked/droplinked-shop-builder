@@ -14,6 +14,7 @@ import Checkout from "./components/checkout/Checkout"
 import Address from "./components/Address/Address"
 import Payments from "./components/Payments/Payments"
 import CartContextProvider from "../src/components/context/CartContext"
+import AddressContextProvider from "../src/components/context/AddressContext"
 
 function App() {
   return (
@@ -25,7 +26,13 @@ function App() {
           <Route  exact path="/" element={<MainPage />} />
           <Route   path="/buy/:buyId" element={<Buy />} />
           <Route   path="/checkout" element={<Checkout />} />
-          <Route   path="/address" element={<Address />} />
+          
+             <Route   path="/address" element={
+               <AddressContextProvider>
+                <Address />
+              </AddressContextProvider>
+             } />
+          
           <Route   path="/payments" element={<Payments />} />
           <Route   path="/*" element={<NotFound />} />
        </Routes>
