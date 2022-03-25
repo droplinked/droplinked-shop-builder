@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
-
+import {useState} from 'react'
+import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
 import info from './icons/info.png'
 import add from './icons/add.png'
 import credit from './icons/credit-card.png'
 
 import './payments.scss'
 
-class Payments extends Component {
-	render() {
+function Payments () {
+	console.log("123456789101112".replace(/(\d{4}(?!\s))/g, "$1 "));
+
+	
 		return (
 			<div className='payments d-flex flex-column mb-4 px-4'>
 				<h2 className='text-center'>payments</h2>
@@ -27,20 +29,32 @@ class Payments extends Component {
 					</button>
 				</div>
 				{<NewPayment />}
+				<Link to="/confirm">
+					<button>
+						proceed to confirm
+					</button>
+				</Link>
 			</div>
 		)
-	}
+	
 }
 
-class NewPayment extends Component {
-	render() {
+function NewPayment () {
+	const[cardNumber , setCardNumber]=useState("")
+	function change(event){
+		setCardNumber(event.target.value.toString());
+	}
 		return (
 			<div className='card payments-new p-3 rounded-2'>
 				<p className='text-center'>new card</p>
 				<div>
 					<div className='bg-white rounded my-4 p-2 d-flex flex-row flex-nowrap'>
 						<img src={credit} alt='card' height='24px' />
-						<input type='text' placeholder='card number' className='ms-3 flex-grow-1' />
+						<input type='text' placeholder='card number' className='ms-3 flex-grow-1'
+						onChange={change}
+						value={cardNumber.replace(/(\d{4}(?!\s))/g, "$1 ")}
+						maxLength="19"
+						/>
 						<input type='text' placeholder='mm / yy' className='ms-3' />
 						<input type='text' placeholder='cvc' className='ms-3' />
 					</div>
@@ -55,7 +69,7 @@ class NewPayment extends Component {
 				</div>
 			</div>
 		)
-	}
+	
 }
 
 export default Payments

@@ -16,6 +16,7 @@ import Payments from "./components/Payments/Payments"
 import CartContextProvider from "../src/components/context/CartContext"
 import AddressContextProvider from "../src/components/context/AddressContext"
 import Shipping from "../src/components/shipping/Shipping"
+import Confirm from "./components/confirm-page/Confirm"
 function App() {
   return (
    
@@ -34,6 +35,7 @@ function App() {
              } />
           <Route   path="/Shipping" element={<Shipping />} />
           <Route   path="/payment" element={<Payments />} />
+          <Route   path="/confirm" element={<Confirm />} />
           <Route   path="/*" element={<NotFound />} />
        </Routes>
       </WalletProvider>
