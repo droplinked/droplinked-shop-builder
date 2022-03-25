@@ -15,7 +15,7 @@ import Address from "./components/Address/Address"
 import Payments from "./components/Payments/Payments"
 import CartContextProvider from "../src/components/context/CartContext"
 import AddressContextProvider from "../src/components/context/AddressContext"
-
+import Shipping from "../src/components/shipping/Shipping"
 function App() {
   return (
    
@@ -32,8 +32,8 @@ function App() {
                 <Address />
               </AddressContextProvider>
              } />
-          
-          <Route   path="/payments" element={<Payments />} />
+          <Route   path="/Shipping" element={<Shipping />} />
+          <Route   path="/payment" element={<Payments />} />
           <Route   path="/*" element={<NotFound />} />
        </Routes>
       </WalletProvider>

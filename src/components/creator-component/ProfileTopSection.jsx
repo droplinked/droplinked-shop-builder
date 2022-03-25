@@ -63,7 +63,7 @@ export default function ProfileTopic() {
           </div>
 
           <div className="user-data text-center">
-            <h1 className="font-gt"> {userinfo1.username} </h1>
+            <h1 className="font-gt">CrashPunks</h1>
           </div>
 
           {userinfo.myInterests.length > 0 && (

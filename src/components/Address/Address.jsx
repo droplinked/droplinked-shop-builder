@@ -49,7 +49,7 @@ function Address () {
 				{addAddress && <NewAddress cancel={cancelNewAddress}/>}
 
 				<div className='text-center mt-4'>
-					<Link to="/payments">
+					<Link to="/shipping">
 					<button className='btn btn-dark px-4 rounded-pill' disabled>
 						proceed to shipping
 					</button>
