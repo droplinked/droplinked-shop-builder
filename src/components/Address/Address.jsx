@@ -223,7 +223,7 @@ function NewAddress (props) {
 function AddressItem (props) {
 	//
 		return (
-			<div className='address-card p-3 selected'>
+			<div className='address-card p-3 selected' tabindex="0">
 				<div className='cursor-pointer'>
 					<div className='d-flex flex-row align-items-center justify-content-between mb-2'>
 						<h3>
