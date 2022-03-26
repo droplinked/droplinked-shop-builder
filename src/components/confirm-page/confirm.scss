@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 .checkout-bar-btn {
     display: flex;
     width: 25px;
@@ -168,4 +172,120 @@
 .trigger-btn {
 	display: inline-block;
 	margin: 100px auto;
+}
+
+.basket-item-title{
+    display: flex;
+    justify-content:center;
+    text-align: center;
+    
+    width:100%;
+    p{
+        font-size:35px;
+        font-family: 'Avenir Next';
+        top:50%;
+    }
+}
+.items{
+    margin-top:20px;
+    width:100%;
+    min-height: 50%;
+    height: auto;
+   
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+
+.basket-container{
+    display:flex;
+    
+    justify-content:space-between;
+
+    .basket-item-image{
+        width:100px;
+        height: 100px;
+        display: inline-block;
+        position:relative;
+        
+    }
+
+    .item-detail{
+        width:calc(100% - 120px);
+        height:100px;
+        display: relative;
+        right: 0px;
+        
+
+        .item-quantity{ 
+            position: absolute;
+            right:25px;
+            width: 110px;
+        }
+
+
+        .item-basket-name{
+            position: relative;
+            font-family: 'Avenir Next';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            color: #4D4D4D;
+            display:inline-block;
+            left:10px;
+            width: 150px;
+            top:5px;
+            max-height: 30px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .cost{
+            position: relative;
+            font-family: 'Avenir Next';
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 36px;
+            font-style: normal;
+            display:inline-block;
+            top:50px;
+        }
+
+        .item-color{
+            position:relative;
+            height:30px;
+            width:50px;
+            border-radius: 10px;
+            bottom:0px;
+            left:5px;
+            display:flex;
+            align-items:center;
+            justify-content: space-between;
+                div{
+                  
+                    text-align:center;
+                    font-size:10px;
+                    font-weight: bold;
+                    display: flex;
+                    justify-content: center;
+                    
+                }
+        }
+
+        .item-size{
+            position:relative;
+            height:30px;
+            width:62px;
+            bottom:0px;
+            left:70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           div{
+               display: inline-block;
+               text-align:center;
+                
+           }
+        }
+    }
 }

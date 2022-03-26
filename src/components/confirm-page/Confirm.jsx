@@ -1,9 +1,12 @@
 import "./confirm.scss"
+import { useState  } from "react"
+import {Link } from "react-router-dom";
+import { useCart } from "../hooks/useCart"
 
-import {useState} from "react"
+
 export default function Confirm(){
     const [Show, setModalShow] = useState(false);
-
+    const { clearCart , cartItems , total} = useCart();
 
     const showModal=()=>{setModalShow(true)}
     const hideModal=()=>{setModalShow(false)}
@@ -63,8 +66,14 @@ export default function Confirm(){
                     </div>
 
                     <div className="col-12 col-lg-5 mt-4 mt-lg-0"
-                    style={{backgroundColor:"lightgray"}}>
-                            <h1>item basket</h1>
+                    style={{border:"1px solid black"}}>
+                        <div className="basket-item-title"><p>basket item</p></div>
+                        <div className="items container">
+                            {cartItems.map((item)=>{
+                                return <Item detail={item} />
+                            })}
+                        </div>
+
                     </div>
 
                 </div>               
@@ -75,7 +84,7 @@ export default function Confirm(){
 
 
 function Modal(props){
-
+   // const history = useHistory();
     const showHideClassName = props.show ? "modal d-block" : "modal d-none";
     return(
 
@@ -93,11 +102,43 @@ function Modal(props){
 				    <p className="text-center">The purchase was successful.</p>
 			    </div>
 			    <div className="modal-footer">
-				    <button className="btn btn-success btn-block" data-dismiss="modal">OK</button>
+                <Link to="/">
+				    <button className="btn btn-success btn-block" data-dismiss="modal"
+                        onClick={()=>{
+                            return 
+                        }}
+                    >OK</button>
+                    </Link>
 			    </div>
 		    </div>
 	    </div>
     </div>     
 
 )
+}
+
+
+function Item(props){
+    let color = props.detail.options[0].values[0];
+
+    return(
+        <div className="basket-container ">
+            <img src={props.detail.images[0].src} alt="" className="basket-item-image col3"/>
+            <div className="item-detail col-9">
+                <div className="item-quantity">quantity :{props.detail.quantity}</div>
+                <div className="item-basket-name">{props.detail.title}</div>
+                <div className="cost"> {props.detail.variants[0].formatted_price} </div>
+                <div className="item-color">
+                    <div style={{marginRight:'2px'}}>Color</div>
+                    <div style={{width:"50%" , height:"25px" , border:'1px solid' , align:'center' , right:'0px' , borderRadius:'5px'}}>
+                        <div style={{backgroundColor:color , width:"90%" , height:"90%" , margin:"auto" , top:'1px' , borderRadius:'5px'}}></div>
+                    </div>
+                </div>
+                <div className="item-size">
+                    <div style={{color:"gray" , fontSize:"12px" , left:'2px'}}>Size</div>
+                    <div style={{color:"black" , fontSize:"15px" , left:'2px'}}>XXL</div>
+                </div>
+            </div>
+        </div>
+    )
 }
