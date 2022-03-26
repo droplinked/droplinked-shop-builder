@@ -107,6 +107,17 @@
 		h1 {
 			font-size: 18px;
 		}
+
+		.social {
+			display: inline-block;
+			color: #2d2d2e;
+			margin: 4px 20px;
+			font-size: 1.5rem;
+
+			&__ig {
+				font-size: 1.65rem;
+			}
+		}
 	}
 
 	.user-info {
@@ -386,8 +397,6 @@
 }
 
 .box {
-	border-radius: 10px;
-
 	.disable-load-more {
 		user-select: none;
 		cursor: default;
