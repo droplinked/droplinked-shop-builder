@@ -1,9 +1,16 @@
 import "./confirm.scss"
 
+import {useState} from "react"
 export default function Confirm(){
+    const [Show, setModalShow] = useState(false);
+
+
+    const showModal=()=>{setModalShow(true)}
+    const hideModal=()=>{setModalShow(false)}
 
     return(
         <>
+            <Modal show={Show} />
             <div className="p-3 p-lg-4">
                 <div className="row">
                     <div className="col-12 col-lg-7">
@@ -42,7 +49,11 @@ export default function Confirm(){
                             </div>
 
                             <div className="text-center mt-4">
-                                <button className="btn btn-dark px-4 rounded-5">Place order</button>
+                                
+                                <button className="btn btn-dark px-4 rounded-5 "
+                                    onClick={()=>{showModal()}}
+                                >Place order</button>
+                               
                             </div>
                             <div className="text-center mt-2">
                                 <button className="btn px-4 rounded-5">Back to payment</button>
@@ -56,8 +67,37 @@ export default function Confirm(){
                             <h1>item basket</h1>
                     </div>
 
-                </div>
-            </div>
+                </div>               
+            </div> 
         </>
     )
+}
+
+
+function Modal(props){
+
+    const showHideClassName = props.show ? "modal d-block" : "modal d-none";
+    return(
+
+    <div id="myModal" className={`${showHideClassName}`}>
+	    <div className="modal-dialog modal-confirm">
+		    <div className="modal-content">
+			    <div className="modal-header">
+				    <div className="icon-box">
+					    
+                    <i class="bi bi-check-lg"></i>
+				    </div>				
+				    <h4 className="modal-title w-100">Confirm!</h4>	
+			    </div>
+			    <div className="modal-body">
+				    <p className="text-center">The purchase was successful.</p>
+			    </div>
+			    <div className="modal-footer">
+				    <button className="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			    </div>
+		    </div>
+	    </div>
+    </div>     
+
+)
 }
