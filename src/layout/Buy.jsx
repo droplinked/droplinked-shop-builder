@@ -41,7 +41,7 @@ export default function Buy(){
 
     
 
-    console.log(cartItems);
+    
 
     return (<>
     <Header />

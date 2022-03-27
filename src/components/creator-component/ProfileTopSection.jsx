@@ -24,6 +24,7 @@ export default function ProfileTopic() {
 	const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo()
 	const userAddress = userData ? getUserAddress(userData) : null
 
+
 	return (
 		<>
 			<section className='profile-top-section'>
