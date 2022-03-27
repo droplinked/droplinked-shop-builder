@@ -10,13 +10,19 @@ import './payments.scss'
 function Payments () {
 	
 	const[cards , setCard]=useState([]);
+	const[showNewCard , setShowNewCard]=useState(false);
 
 		const setCardData = (data) => {
 			console.log(cards);
-			let lastArray = cards;
-			lastArray.push(data);
-			setCard(lastArray);
+			setCard([...cards, data]);
 		}
+
+		const toggleShow = () =>{
+			setShowNewCard(pre => !pre)
+		}
+
+
+
 		return (
 			<div className='payments d-flex flex-column mb-4 px-4'>
 				<h2 className='text-center'>payments</h2>
@@ -28,7 +34,7 @@ function Payments () {
 				?
 					
 						cards.map((card) =>{
-							return <div className='m-3'>
+							return <div className='m-3 card-item' tabindex="1">
 								<p>cartnumber:{card.CardNumber}</p>
 								<p>cardExpiratioin:{card.cardExpiratioin}</p>
 								<p>cardCvc:{card.cardCvc}</p>
@@ -45,14 +51,22 @@ function Payments () {
 				}
 				
 
+				{showNewCard 
+				?
+						<NewPayment add={setCardData} toggleFunc={toggleShow}/>
+				 :
+						 <div className='text-center p-3'>
+							 <button className='btn'
+							 onClick={()=>{toggleShow()}}>
+								 <img src={add} alt='add' width='18px' height='18px' />
+					 			 <span className='ms-2'>add new card</span>
+							 </button>
+						 </div>
+				}
+				
+				
 
-				<div className='text-center p-3'>
-					<button className='btn'>
-						<img src={add} alt='add' width='18px' height='18px' />
-						<span className='ms-2'>add new card</span>
-					</button>
-				</div>
-				{<NewPayment add={setCardData}/>}
+
 				<Link to="/confirm">
 					<button>
 						proceed to confirm
@@ -74,6 +88,7 @@ function NewPayment (props) {
 		if(cardNumber.length>17)document.getElementById("expire").focus();
 	}
 
+
 	function changeExpire(event){
 		if(event.target.value.length==2){
 			setCardExpire(event.target.value.toString()+"/")
@@ -83,6 +98,7 @@ function NewPayment (props) {
 		if(event.target.value.length==5)document.getElementById("cvc").focus();
 	}
 
+
 	const changeCvc= (event) => {
 		setCardCvc(event.target.value);
 	}
@@ -90,13 +106,18 @@ function NewPayment (props) {
 
 
 	const addNewCard =()=>{
-		let cardData = {
+		return {
 			CardNumber : cardNumber ,
 			cardExpiratioin : cardExpire , 
 			cardCvc : cardCvc
-		};
+		}
+	}
 
-		return cardData;
+
+	const clearAll = () =>{
+		setCardNumber("");
+		setCardExpire("");
+		setCardCvc("");
 	}
 
 		return (
@@ -129,6 +150,8 @@ function NewPayment (props) {
 					<button class='btn btn-dark btn-sm rounded-pill px-4' type='submit'
 						onClick={()=>{
 							props.add(addNewCard());
+							clearAll();
+							props.toggleFunc();
 						}}
 					>
 						save

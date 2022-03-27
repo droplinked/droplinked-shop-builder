@@ -13,8 +13,7 @@ export default function ShopifyCard(props) {
     );
   }, []);
 
-  return (
-    
+  return ( 
     <div className="content-wrap d-flex flex-column">
     
       <div className="img-wrap mr-3">
@@ -30,6 +29,5 @@ export default function ShopifyCard(props) {
         
       </div>
     </div>
-    
   );
 }
