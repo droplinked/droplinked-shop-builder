@@ -32,7 +32,7 @@ export default function Header() {
 
             <button className="btn  text-flatlay-black  text-nowrap">
               <h1>
-                <i className="bi bi-person-circle"></i>
+                <i class="bi bi-cart"></i>
               </h1>
             </button>
           </div>
