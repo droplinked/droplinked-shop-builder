@@ -1,9 +1,10 @@
 import {useState , useRef} from 'react'
-import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
+
 import info from './icons/info.png'
 import add from './icons/add.png'
 import credit from './icons/credit-card.png'
 import { useForm } from 'react-hook-form'
+import Creadit from "./Creadit"
 
 import './payments.scss'
 
@@ -24,55 +25,10 @@ function Payments () {
 
 
 		return (
-			<div className='payments d-flex flex-column mb-4 px-4'>
-				<h2 className='text-center'>payments</h2>
-				<p className='text text-center'>
-					keep cards on file to easily make one-click purchases
-				</p>
-
-				{cards.length>0
-				?
-					
-						cards.map((card) =>{
-							return <div className='m-3 card-item' tabindex="1">
-								<p>cartnumber:{card.CardNumber}</p>
-								<p>cardExpiratioin:{card.cardExpiratioin}</p>
-								<p>cardCvc:{card.cardCvc}</p>
-							</div>
-						})
-
-				:
-					<div className='m-3'>
-						<div className='p5 text-center text-muted'>
-							<img src={info} alt='info' width='24px' height='24px' />
-							<p>there is no card</p>
-						</div>
-					</div>
-				}
-				
-
-				{showNewCard 
-				?
-						<NewPayment add={setCardData} toggleFunc={toggleShow}/>
-				 :
-						 <div className='text-center p-3'>
-							 <button className='btn'
-							 onClick={()=>{toggleShow()}}>
-								 <img src={add} alt='add' width='18px' height='18px' />
-					 			 <span className='ms-2'>add new card</span>
-							 </button>
-						 </div>
-				}
-				
-				
-
-
-				<Link to="/confirm">
-					<button>
-						proceed to confirm
-					</button>
-				</Link>
+			<div className="main">
+				<Creadit />
 			</div>
+			
 		)
 	
 }
