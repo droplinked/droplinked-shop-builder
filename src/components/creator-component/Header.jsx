@@ -1,4 +1,5 @@
-import logo from "../../assest/shared/Flatlay-Logo.svg";
+
+import logo from "../../assest/header/cp-glitchlogo.png"
 import { AiOutlineWallet } from "react-icons/ai";
 import { AiFillWallet } from "react-icons/ai";
 import "./Header.scss"
@@ -11,11 +12,11 @@ export default function Header() {
   const[itemBasketShow , setItemBasketShow]=useState(false);
 
   return (<>
-    <div className="px-xl-5 border-bottom border-grey bg-white">
+    <div className="px-xl-5 border-bottom border-grey bg-white" >
       <div className="container-fluid px-3 py-3">
         <div className="d-flex flex-row align-items-center justify-content-between">
-          <a className="d-inline-block mr-3">
-            <img src={logo} alt="" />
+          <a className="d-inline-block mr-3" >
+            <img src={logo} alt="" style={{maxHeight:"100px"}} />
           </a>
           <div className="d-flex flex-row align-items-center justify-content-between ">
             <button

@@ -1,4 +1,4 @@
-import profilePic from '../../assest/profile.jpg'
+import profilePic from '../../assest/profile/crashpunks.gif'
 import background from '../../assest/background.jpg'
 import userinfo from './userinfo'
 import posts from '../../assest/profile/posts.svg'
