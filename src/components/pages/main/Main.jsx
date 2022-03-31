@@ -2,8 +2,16 @@ import "./main.scss"
 import logo from "../../../assest/shared/Flatlay-Logo.svg"
 import { useState , useEffect } from "react"
 import modalIcon from "../../../assest/modal/checked.png"
+import { AiOutlineWallet } from "react-icons/ai";
+import { UseWalletInfo } from "../../context/context"
+//import whiteWalletIcon from "../../../assest/header/white-wallet.png"
+import whiteWalletIcon from "../../../assest/header/wallet1.svg"
+import mainImg from "../../../assest/creator-box.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { GiWallet } from "react-icons/gi";
 
 export default function Main(){
+    const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
     const [modalState , setModalState] = useState(false);
 
     function toggleModal(){
@@ -11,12 +19,19 @@ export default function Main(){
     }
     return(<>
         <div  style={{backgroundColor:"#222"}}>
-            <div className="header container-fluid">
+            <div className="header container-fluid ">
                     {/* <img src={logo} alt="" className="headerImg  col-5 " /> */}
-                    <h1 className="headerText  col-5 " >droplinked</h1>
+                    <div className="headerText  col-5 d-flex justify-content-start">
+                             <h1 className="headerText" >droplinked</h1>
+                    </div>
+                   
                     <div  className="d-flex justify-content-between col-5 col-md-3 ">
-                    <button className="sign-in btn col-4">Sign in</button>
+                   
                     <button className="sign-up btn  col-7">Sign up free</button>
+                    
+                    <div className="col-4 d-flex justify-content-center">
+                        <GiWallet className="wallet-icon wallet-icon-login" />
+                    </div>
                     </div>
             </div>
 
@@ -37,21 +52,20 @@ export default function Main(){
 
                                      <div className="d-flex justify-content-between p-1  col-12 col-md-10 align-self-center   mt-3">
                                          <div className="description">
-                                             Distribute collections with your community <br/> to earn more cash &amp; crypto together .
+                                             Distribute collections with your community <br/> to earn more cash &amp; crypto together.
                                           </div>
                                      </div>
 
 
 
-                                    <div className="d-flex justify-content-between p-1  col-12 col-md-9 align-self-center  input-cover mt-4">
-                                        <div className="col-10  " style={{height:"50px" , paddingTop:"5px"}}>
-                                             <span  className="input-span">droplinked.com/ </span>
+                                    <div className="d-flex justify-content-between   col-12 col-md-9 align-self-center  input-cover mt-4">
+                                        <div className="col-10  " style={{height:"50px" , paddingTop:"4px"}}>
+                                             <span  className="input-span">droplinked.com/</span>
                                              <input type="text"  placeholder="username" aria-label="Username" aria-describedby="addon-wrapping"/>
                                         </div>
                                      </div>
-                                     <div className="d-flex justify-content-between p-1  col-12 col-md-9 align-self-center   input-cover "
-                                     style={{marginTop:"70px"}}>
-                                        <div className="col-10  " style={{height:"50px" , paddingTop:"5px"}}>
+                                     <div className="d-flex justify-content-between  col-12 col-md-9 align-self-center input-cover mt-4 ">
+                                        <div className="col-10  " style={{height:"50px" , paddingTop:"4px"}}>
                                              
                                              <input type="text"  placeholder="example@email.com" aria-label="Username" aria-describedby="addon-wrapping"/>
                                         </div>
@@ -66,7 +80,7 @@ export default function Main(){
 
 
                 <div className="col-12 col-xxl-5 right-side d-flex justify-content-between">
-                        <img src='https://www.bitski.com/marketing-images/creator-box.png' alt="" className='right-image' />
+                        <img src={mainImg} alt="" className='right-image' />
                 </div>
 
         </div>

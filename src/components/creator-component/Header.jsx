@@ -16,7 +16,7 @@ export default function Header() {
       <div className="container-fluid px-3 py-3">
         <div className="d-flex flex-row align-items-center justify-content-between">
           <a className="d-inline-block mr-3" >
-            <img src={logo} alt="" style={{maxHeight:"100px"}} />
+            <img src={logo} alt=""  />
           </a>
           <div className="d-flex flex-row align-items-center justify-content-between ">
             <button
