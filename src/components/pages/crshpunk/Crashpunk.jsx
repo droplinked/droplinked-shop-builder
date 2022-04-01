@@ -56,8 +56,9 @@ export default function Crashpunk(){
                 </div>
 
                 <div className="collections-wrapper d-flex flex-column justify-content-between">
+                   
                         <Collection name={"holder merch"} />
-                        <Collection name={"public merch"} />
+                        <Collection name={"public merch"} /> 
                         
                 </div>
 

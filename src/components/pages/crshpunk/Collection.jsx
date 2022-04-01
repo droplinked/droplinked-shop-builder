@@ -1,8 +1,8 @@
 import "./collection.scss"
 import Carousel from 'react-elastic-carousel'
-import colec1 from "../../../assest/image/crashpunk/collection/collection1.png"
-import colec2 from "../../../assest/image/crashpunk/collection/collection2.png"
-import colec3 from "../../../assest/image/crashpunk/collection/collection3.png"
+import colec1 from "../../../assest/image/crashpunk/collection/collection1.jpg"
+import colec2 from "../../../assest/image/crashpunk/collection/collection2.jpg"
+import colec3 from "../../../assest/image/crashpunk/collection/collection3.jpg"
 
 const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -17,24 +17,9 @@ export default function Collection(props){
     return (<>
 
          <div className="collection-main">
-            <div className="collection-header d-flex justify-content-between">
-                <div className="col-6 col-md-3">
-                    <p className="collection-text">{props.name}</p>
-                </div>
-                {/* <div className="col-6 col-md-3 d-flex justify-content-center" style={{border:"1px solid red"}}>
-                    <button className="seeMore-button"><p>See more</p></button>
-                </div> */}
-
-            </div>
-            <div className="collection-body">
-                <Carousel breakPoints={breakPoints} style={{height:"100%" , color:"00FFFB"}}>
-                        <Item />
-                        <Item />
-                        <Item />
-                        <Item />
-                        <Item />
-                </Carousel>
-            </div>
+                
+                        <Item />              
+             
          </div>
 
     </>)
@@ -48,11 +33,11 @@ function Item(){
             <div className="item-wrapper">
                 <div className="image-wrapper d-flex">
                     <div className="col-8">
-                        <img src={colec2} alt="" style={{width: '100%', height: '100%'}}/>
+                        <img src={colec2} alt="" style={{width: '100%', height: '100%' , border:"1px solid rgb(68,68,68"}}/>
                     </div>
                      <div className="col-4">
-                    <img src={colec3} alt="" style={{width: '100%', height: '50%'}}/>
-                    <img src={colec1} alt="" style={{width: '100%', height: '50%'}}/>
+                    <img src={colec3} alt="" style={{width: '100%', height: '50%', border:"1px solid rgb(68,68,68"}}/>
+                    <img src={colec1} alt="" style={{width: '100%', height: '50%', border:"1px solid rgb(68,68,68"}}/>
                     </div> 
                 </div>
                 <div className="collection-name">
