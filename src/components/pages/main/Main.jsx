@@ -9,7 +9,7 @@ import whiteWalletIcon from "../../../assest/header/wallet1.svg";
 import mainImg from "../../../assest/creator-box.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GiWallet } from "react-icons/gi";
-import whitelogo from "../../../assest/logo-black.svg"
+import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg"
 
 export default function Main() {
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
@@ -111,17 +111,13 @@ export default function Main() {
         <div className="d-flex justify-content-between"
           style={{ width: "100%", height: "80px", borderTop: "1px solid white" }}
         >       
-                <div className="d-flex row align-items-center justify-content-between"
+                <div className="d-flex row align-items-start justify-content-end"
                  style={{width:"88%" , height:"100%" ,  margin:"auto auto"}}>
-                     <div className="col-4 footer-text" style={{ color:"white"}}>
-                         <p>droplinked by FLATLAY</p>
+                     <div className="col-12 col-md-4 footer-text d-flex justify-content-between">
+                         <p>droplinked by <img src={whitelogo} className="footer-icon" /></p>
+                         
                      </div>
-                     <div className="col-4" style={{ maxHeight:"100%" , textAlign:"right"}}>
-                         <a href="flatlay.io">
-                            <img src={whitelogo} alt="" style={{backgroundColor:"white" ,maxHeight:"100%"}} />
-                         </a>
-                     </div>
-                     
+    
                  </div>
             
         </div>
