@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "AvenirNext";
+    //src: url(../../fonts/AvenirNextLTPro-Regular.otf);
+	src: url(./assest/fonts/AvenirNextLTPro-Regular.otf);
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -809,7 +815,7 @@
 		right: 2.86%;
 		top: 2.77%;
 		bottom: 92.25%;
-		font-family: 'Avenir Next';
+		font-family: 'AvenirNext';
 		font-style: normal;
 		font-weight: 600;
 		font-size: 18px;
@@ -822,7 +828,7 @@
 		right: 2.86%;
 		top: 8.85%;
 		bottom: 79.53%;
-		font-family: 'Avenir Next';
+		font-family: 'AvenirNext';
 		font-style: normal;
 		font-weight: 500;
 		font-size: 14px;
@@ -835,7 +841,7 @@
 		right: 4.57%;
 		top: 23.24%;
 		bottom: 71.78%;
-		font-family: 'Avenir Next';
+		font-family: 'AvenirNext';
 		font-style: normal;
 		font-weight: 700;
 		font-size: 24px;
@@ -955,7 +961,7 @@
 		background: #353536;
 		border-radius: 8px;
 		flex-direction: row;
-		font-family: 'Avenir Next';
+		font-family: 'AvenirNext';
 		font-weight: 500;
 		font-size: 16px;
 		line-height: 22px;
@@ -1004,7 +1010,7 @@
 		right: 83.29%;
 		top: 75.8%;
 		bottom: 19.23%;
-		font-family: 'Avenir Next';
+		font-family: 'AvenirNext';
 		font-style: normal;
 		font-weight: 600;
 		font-size: 18px;
@@ -1020,7 +1026,7 @@
 		top: 81.88%;
 		bottom: 9.41%;
 
-		font-family: 'Avenir Next';
+		font-family: 'AvenirNext';
 		font-style: normal;
 		font-weight: 500;
 		font-size: 14px;
@@ -1047,7 +1053,7 @@
 		height: 32px;
 		left: 16px;
 		top: 12px;
-		font-family: 'Avenir Next';
+		font-family: 'AvenirNext';
 		font-style: normal;
 		font-weight: 600;
 		font-size: 18px;
@@ -1106,7 +1112,7 @@
 			left: 20px;
 			top: 6px;
 
-			font-family: 'Avenir Next';
+			font-family: 'AvenirNext';
 			font-style: normal;
 			font-weight: 600;
 			font-size: 12px;
@@ -1142,7 +1148,7 @@
 	align-items: center;
 	p {
 		padding-top: 14px;
-		font-family: 'Avenir Next';
+		font-family: 'AvenirNext';
 		font-style: normal;
 		overflow: hidden;
 		text-overflow: ellipsis;

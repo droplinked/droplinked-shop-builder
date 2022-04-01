@@ -1,8 +1,4 @@
-import shoeImg from "../assest/shoe/shoe.jpg"
-import shoe1 from "../assest/shoe/shoe1.jpg"
-import shoe2 from "../assest/shoe/shoe2.jpg"
-import shoe3 from "../assest/shoe/shoe3.jpg"
-import shoe4 from "../assest/shoe/shoe4.jpg"
+
 import React from "react";
 import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
   import { UseWalletInfo } from "../components/context/context";

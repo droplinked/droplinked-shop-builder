@@ -1,12 +1,15 @@
 $bgimg:  linear-gradient(#04619f, #000000);
 $textColor : white;
+@import "../../../assest/scss/fonts/fonts.scss";
+
+
 
 
 
 *{
-    box-sizing: border-box;
-    
+    box-sizing: border-box; 
 }
+
 .page{
     
     width:100vw;
@@ -21,6 +24,7 @@ $textColor : white;
     justify-content:space-between;
     border-bottom: 4px solid black;
     
+    
 
     .sign-in{
         background-color: Transparent;
@@ -32,22 +36,32 @@ $textColor : white;
         border-radius:100px;
         color:white;
         background-color:#7a73fc;
+        font-family:"avenir" ;
+        font-size:25px;
+        //min-width:200px;
+       // width:100%;
+    }
+    .sign-up:hover{
+        
+        background-color:#5e56f5;
     }
 }
 .title{
     font-size:50px;
     font-weight: bold;
     margin-bottom: 10px;
-    margin-top:70px;
+    margin-top:40px;
     color:white;
+    font-family: "AvenirNextBold";
 }
 
 .description{
-    font-size:34px;
+    font-size:30px;
     font-weight: Medium;
     margin-top: 10px ;
     margin-bottom: 80px;
     color:white;
+    font-family:"avenir";
 }
 
 .register-input{
@@ -69,6 +83,7 @@ $textColor : white;
         font-size:25px;
         border-style: none;
         margin:auto 0px;
+        font-family:"avenir";
     }
     input{
         border-style: none;
@@ -76,6 +91,7 @@ $textColor : white;
         background-color:transparent;
         color:white;
         margin:auto 0px;
+        font-family:"avenir";
     }
     input:focus{
         border-style: none;
@@ -102,7 +118,7 @@ $textColor : white;
     min-height:100vh;
 
     .right-image{
-        margin:auto;
+        margin: auto auto;
         max-width:100%;
     }
 }
@@ -111,19 +127,25 @@ $textColor : white;
     width:100%;
     min-height:100%;
     background-color:bgcolor; 
+    padding-top: 0px;
+    
 }
 
 .form-button{
     background-color:#7a73fc;
-    //margin-left: 25px;
     border-radius: 25px 25px;
     color:white;
     border-style: none;
     font-size:25px;
     height:50px;
+    font-family:"avenir";
 }
 
+.form-button:hover{
+    background-color:#5e56f5;
+    color:black;
 
+}
 
 
 
@@ -185,14 +207,17 @@ $textColor : white;
 .headerText{
     color:white;
     font-weight:bold;
-    font-size:50px;
-   padding-left:0px;
+    //font-size:50px;
+    font-family: "avenir";
+    padding-top:10px;
 }
 
 .wallet-icon{
     width:50%;
     height:100%;
+    cursor: pointer;
 }
+
 
 .wallet-icon-login{
     color:white;
@@ -202,3 +227,28 @@ $textColor : white;
 .wallet-icon-logout{
     
 }
+
+.footer-text{
+    color:white;
+   
+    p{
+        //text-align: center;
+        margin:auto 0px;
+        padding-left:0px;
+        font-family:"avenir" ;
+        font-size:18px;
+    }
+    
+    
+}
+
+
+@media only screen and (min-width: 600px) {
+
+    body{
+        font-family:"avenir" ;
+        font-size:15px;
+    }
+          
+    
+  }
