@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { UseWalletInfo } from '../context/context'
 import { getUserAddress } from '../../wallet-auth/api'
 import therLogo from '../../assest/ether.png'
+import crashpunkLogo from "../../assest/image/crashpunk/crashpunkLogo.svg"
 
 /** socials */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -29,15 +30,14 @@ export default function ProfileTopic() {
 		<>
 			<section className='profile-top-section'>
 				
-					<div className='top-main' style={topMainBackground}>
-						{!isPublicProfile && (
+					<div className='top-main' >
+						{/* <div className='account-settings button' style={{ left: '24px', right: 'auto' }}>
+							Display public profile</div> */}
+							<img src={crashpunkLogo} className="top-main-logo"  style={{ left: '24px', right: 'auto' }} />
+						{/* {!isPublicProfile && (
 							<>
 								{isCurrentUser && isLoggedIn && <div className='account-settings button'>Account settings</div>}
-								{isCurrentUser && isLoggedIn && (
-									<div className='account-settings button' style={{ left: '24px', right: 'auto' }}>
-										Display public profile
-									</div>
-								)}
+								
 								{!isCurrentUser && isLoggedIn && (
 									<div className={`account-settings button ${userinfo1.isFollowed ? 'followed' : ''}`}>
 										{!userinfo1.isFollowed && <span>+ Follow</span>}
@@ -50,7 +50,7 @@ export default function ProfileTopic() {
 									</div>
 								)}
 							</>
-						)}
+						)} */}
 						<div className='img-wrap'>
 							<img src={profilePic} alt='' />
 						</div>

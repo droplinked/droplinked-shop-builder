@@ -1,11 +1,15 @@
-
+@font-face {
+    font-family: "AvenirNext";
+    src: url(../../../assest/fonts/AvenirNextLTPro-Regular.otf);
+	//src: url(./assest/fonts/AvenirNextLTPro-Regular.otf);
+}
 
 .collection-main{
     width:100%;
     min-height:300px;
     height:500px;
     margin-top:20px;
-    border:1px solid red;
+   // border:1px solid red;
     //background-image: linear-gradient(84.41deg, #F00190 0%, #00FFFB 100%);
     //padding:1px;
 
@@ -26,13 +30,14 @@
 }
 
 .collection-text{
-    font-family: 'Avenir Next';
+    font-family: 'AvenirNext';
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
     padding-top: 6px;
     padding-left:15px;
     color:#00FFFB;
+    
 }
 
 .item-wrapper{
@@ -50,35 +55,40 @@
     }
 
     .collection-name{
+        margin:10px 0px;
         width:100%;
-        height: 30px;
-  
+        height: 10%;
+        display: flex;
+        align-items: center;  
+        text-align:center;
+        padding-top:10px;
 
             p{
-                font-family: 'Avenir Next';
+                font-family: 'AvenirNext';
                 font-style: normal;
                 font-weight: 600;
-                font-size: 14px;
+                font-size: 26px;
                 line-height: 22px;
-                display: flex;
-                align-items: center;
                 color: #4D4D4D;
                 padding-left:10px;
-                padding-top:5px;
                 color:#00FFFB;
             }
 
     }
 
     .collection-id{
-        height: 24px;
+        height: 10%;
         width:100%;
+       
+        align-items: center;  
+      
+        padding-top:10px;
 
             p{
-                font-family: 'Avenir Next';
+                font-family: 'AvenirNext';
                 font-style: normal;
                 font-weight: 500;
-                font-size: 12px;
+                font-size: 18px;
                 line-height: 18px;
                 color: #4D4D4D;
                 padding-left:10px;

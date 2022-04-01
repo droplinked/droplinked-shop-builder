@@ -24,7 +24,7 @@ export default function Crashpunk(){
                         <Carousel>
                                <Carousel.Item interval={500}>
                                     <img
-                                      style={{maxHeight:"300px"}}
+                                      style={{maxHeight:"500px"}}
                                       className="d-block w-100"
                                       src={image1}
                                       alt="First slide"
@@ -35,7 +35,7 @@ export default function Crashpunk(){
 
                                 <Carousel.Item interval={500}>
                                     <img
-                                        style={{maxHeight:"300px"}}
+                                        style={{maxHeight:"500px"}}
                                         className="d-block w-100"
                                         src={image2}
                                         alt="Second slide"
@@ -44,7 +44,7 @@ export default function Crashpunk(){
 
                                 <Carousel.Item interval={500}>
                                      <img
-                                        style={{maxHeight:"300px"}}
+                                        style={{maxHeight:"500px"}}
                                         className="d-block w-100"
                                         src={image3}
                                         alt="Third slide"
@@ -77,7 +77,8 @@ function Header(){
     return(<>
     <div className="header-wrap">
         <div className="header-container justify-content-between">
-            <img src={logo} alt="" className="header-logo col-6 col-md-3" />
+            {/* <img src={logo} alt="" className="header-logo col-6 col-md-3" /> */}
+            <h1 style={{color:"white"}}>droplinked</h1>
             <div className="header-item col-6 col-md-3">
                 <RiShoppingBasketFill className="header-icon col-6"/>
                 <AiFillWallet className="header-icon col-6"/>

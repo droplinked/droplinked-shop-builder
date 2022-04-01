@@ -18,7 +18,7 @@ export default function Collection(props){
 
          <div className="collection-main">
                 
-                        <Item />              
+                        <Item name={props.name}/>              
              
          </div>
 
@@ -26,7 +26,7 @@ export default function Collection(props){
 }
 
 
-function Item(){
+function Item(props){
 
 
     return(<>
@@ -41,7 +41,7 @@ function Item(){
                     </div> 
                 </div>
                 <div className="collection-name">
-                    <p>Collection Name</p>
+                    <p>{props.name}</p>
                 </div>
                 <div className="collection-id">
                     <p>@crash_punk</p>
