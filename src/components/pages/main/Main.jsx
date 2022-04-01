@@ -115,7 +115,6 @@ export default function Main() {
                  style={{width:"88%" , height:"100%" ,  margin:"auto auto"}}>
                      <div className="col-12 col-md-4 footer-text d-flex justify-content-between">
                          <p>droplinked by <img src={whitelogo} className="footer-icon" /></p>
-                         
                      </div>
     
                  </div>

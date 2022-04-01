@@ -16,7 +16,6 @@
 
 .collection-wrapper{
     margin:0px auto;
-    
     max-width: 1200px;
     width:99%;
     min-height: 600px;
@@ -30,12 +29,8 @@
   	    align-items: center;
 
         .nft-imgs{
-           
             height:500px;
             width:500px;
-            // max-height: 100%;
-            // max-width:450px;
-            // min-width: 200px;
         }
     }
 
@@ -49,14 +44,22 @@
 }
 
 
+@media screen and (max-width: 600px) {
+    .gallery-wrapper{
+        width: 50%;
+        height: 300px;
+       
+        display: flex;
+        justify-content: center;
+  	    align-items: center;
 
+        .nft-imgs{
+            height:300px;
+            width:300px;
+        }
+    }
 
-
-
-
-
-
-
+}
 
 
 
@@ -98,3 +101,5 @@
     }
 }
 //           header styel
+
+

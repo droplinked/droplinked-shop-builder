@@ -6,13 +6,8 @@
 
 .collection-main{
     width:100%;
-    min-height:300px;
-    height:500px;
+    min-height:500px;
     margin-top:20px;
-   // border:1px solid red;
-    //background-image: linear-gradient(84.41deg, #F00190 0%, #00FFFB 100%);
-    //padding:1px;
-
 
 }
 
@@ -79,11 +74,8 @@
     .collection-id{
         height: 10%;
         width:100%;
-       
         align-items: center;  
-      
         padding-top:10px;
-
             p{
                 font-family: 'AvenirNext';
                 font-style: normal;
@@ -99,3 +91,61 @@
 
 
 }
+
+
+@media screen and (max-width: 600px) {
+   
+
+    .item-wrapper{
+        width: 300px;
+        height: 300px;
+    }
+
+    .collection-id{
+            p{
+                font-size: 14px;
+                padding-left:10px;
+                padding-top:5px;
+            }
+    }
+
+
+    .collection-name{
+            p{
+                font-size: 24px;
+                line-height: 22px;
+            }
+
+    }
+  }
+
+
+
+
+  @media screen and (max-width: 300px) {
+   
+
+    .item-wrapper{
+        width: 220px;
+        height: 220px;
+    }
+
+    .collection-id{
+            p{
+                font-size: 14px;
+                padding-left:10px;
+                padding-top:0px;
+            }
+    }
+
+
+    .collection-name{
+            p{
+                font-size: 24px;
+                line-height: 22px;
+                padding-top:0px;
+                padding-bottom: 10px;
+            }
+
+    }
+  }

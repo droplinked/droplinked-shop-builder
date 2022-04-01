@@ -20,12 +20,12 @@ export default function Crashpunk(){
 
             <div className="collection-wrapper">
                 <div className="gallery-wrapper">
-                    <div className="nft-imgs col-10">
+                    <div className="nft-imgs ">
                         <Carousel>
                                <Carousel.Item interval={500}>
                                     <img
-                                      style={{maxHeight:"500px"}}
-                                      className="d-block w-100"
+                                      
+                                      className="d-block w-100 nft-imgs"
                                       src={image1}
                                       alt="First slide"
                                     />
@@ -35,8 +35,8 @@ export default function Crashpunk(){
 
                                 <Carousel.Item interval={500}>
                                     <img
-                                        style={{maxHeight:"500px"}}
-                                        className="d-block w-100"
+                                       
+                                        className="d-block w-100 nft-imgs"
                                         src={image2}
                                         alt="Second slide"
                                     />
@@ -44,8 +44,8 @@ export default function Crashpunk(){
 
                                 <Carousel.Item interval={500}>
                                      <img
-                                        style={{maxHeight:"500px"}}
-                                        className="d-block w-100"
+                                        
+                                        className="d-block w-100 nft-imgs"
                                         src={image3}
                                         alt="Third slide"
                                      />

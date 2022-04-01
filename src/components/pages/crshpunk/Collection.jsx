@@ -16,10 +16,8 @@ export default function Collection(props){
 
     return (<>
 
-         <div className="collection-main">
-                
+         <div className="collection-main">    
                         <Item name={props.name}/>              
-             
          </div>
 
     </>)
