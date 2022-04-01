@@ -19,7 +19,9 @@
 }
 
 .profile-top-section {
-	border-bottom: 1px solid white;
+	//border-bottom: 2px solid white;
+	// linear-gradient(84.41deg, #F00190 0%, #00FFFB 100%);
+	
 
 	.image-preview-container {
 		position: relative;
@@ -88,7 +90,7 @@
 		.img-wrap {
 			position: absolute;
 			border-radius: 50%;
-			background-color: white;
+			background-color: #00FFFB;
 			bottom: 0;
 			left: 50%;
 			transform: translate(-50%, 50%);
@@ -116,9 +118,9 @@
 
 		.social {
 			display: inline-block;
-			color: #2d2d2e;
 			margin: 4px 20px;
 			font-size: 1.5rem;
+			color:#00FFFB;
 
 			&__ig {
 				font-size: 1.65rem;

@@ -28,7 +28,7 @@ export default function ProfileTopic() {
 	return (
 		<>
 			<section className='profile-top-section'>
-				<div style={{ padding: '20px' }}>
+				
 					<div className='top-main' style={topMainBackground}>
 						{!isPublicProfile && (
 							<>
@@ -59,17 +59,17 @@ export default function ProfileTopic() {
 					<div className='user-data text-center'>
 						<h1 className='font-gt'>CrashPunks</h1>
 						<div className='d-flex-inline flex-row align-items-center'>
-							<a href='https://discord.gg/crashpunks' target='_blank' rel='noreferrer' className='social'>
+							<a href='https://discord.gg/crashpunks' target='_blank' rel='noreferrer' className='social '>
 								<FontAwesomeIcon icon={faDiscord} />
 							</a>
-							<a href='http://crashpunks.com/' target='_blank' rel='noreferrer' className='social'>
+							<a href='http://crashpunks.com/' target='_blank' rel='noreferrer' className='social '>
 								<FontAwesomeIcon icon={faEarthAmericas} />
 							</a>
-							<a href='https://twitter.com/crashpunks' target='_blank' rel='noreferrer' className='social'>
+							<a href='https://twitter.com/crashpunks' target='_blank' rel='noreferrer' className='social '>
 								<FontAwesomeIcon icon={faTwitter} />
 							</a>
-							<a href='https://www.instagram.com/crashpunks/' target='_blank' rel='noreferrer' className='social social__ig'>
-								<FontAwesomeIcon icon={faInstagram} />
+							<a href='https://www.instagram.com/crashpunks/' target='_blank' rel='noreferrer' className='social social__ig '>
+								<FontAwesomeIcon icon={faInstagram} style={{color:"00FFFB"}} />
 							</a>
 						</div>
 					</div>
@@ -80,7 +80,7 @@ export default function ProfileTopic() {
 							<div className='carousel-wrap'>{/* p-carousel */}</div>
 						</div>
 					)}
-				</div>
+				<div style={{width:"100%" , height:"3px" , backgroundImage:"linear-gradient(84.41deg, #F00190 0%, #00FFFB 100%)" , marginTop:"10px"}}></div>
 			</section>
 
 			<section className='profile-top-section'>

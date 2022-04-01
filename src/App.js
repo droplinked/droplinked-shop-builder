@@ -18,6 +18,7 @@ import AddressContextProvider from "../src/components/context/AddressContext"
 import Shipping from "../src/components/shipping/Shipping"
 import Confirm from "./components/confirm-page/Confirm"
 import Main from "./components/pages/main/Main"
+import Crashpunk from "./components/pages/crshpunk/Crashpunk"
 function App() {
   return (
    
@@ -26,7 +27,8 @@ function App() {
       <WalletProvider>
        <Routes>
           <Route  exact path="/" element={<Main />} />
-          <Route   path="/crashpunk" element={<MainPage />} />
+          <Route   path="/crashpunk" element={<Crashpunk />} />
+          <Route   path="/main" element={<MainPage />} />
           <Route   path="/buy/:buyId" element={<Buy />} />
           <Route   path="/checkout" element={<Checkout />} />
           
