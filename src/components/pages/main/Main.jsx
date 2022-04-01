@@ -35,7 +35,17 @@ export default function Main() {
             </button>
 
             <div className="col-4 col-lg-4 d-flex justify-content-center">
-              <GiWallet className="wallet-icon wallet-icon-login" />
+                {userData
+                ?
+                    (<GiWallet className="wallet-icon wallet-icon-fill"
+                    onClick={onSignOut}
+                    />)
+                :
+                    (<GiWallet className="wallet-icon wallet-icon-notfill" 
+                        onClick={authenticate}
+                    />)
+                }
+              
             </div>
           </div>
         </div>
