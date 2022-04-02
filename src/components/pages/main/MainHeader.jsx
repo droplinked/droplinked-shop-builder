@@ -6,6 +6,7 @@ import mainImg from "../../../assest/creator-box.png";
 import { GiWallet } from "react-icons/gi";
 import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg"
 import walletIcon from "../../../assest/header/Unknown.svg"
+import {Link } from "react-router-dom";
 
 
 
@@ -19,9 +20,11 @@ export default function MainHeader(){
     <div className="header container-fluid">
           {/* <img src={logo} alt="" className="headerImg  col-5 " /> */}
           <div className="headerText  col-3 col-lg-4 d-flex justify-content-start align-self-center">
+            <Link to="/" style={{textDecoration:"none"}}>
             <h1 className="headerText col-10" style={{ paddingRight: "30px" }}>
               droplinked
             </h1>
+            </Link>
           </div>
 
           <div className="d-flex justify-content-between col-7 col-lg-4 ">
