@@ -6,7 +6,8 @@ import mainImg from "../../../assest/creator-box.png";
 import { GiWallet } from "react-icons/gi";
 import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg"
 import walletIcon from "../../../assest/header/Unknown.svg"
-import axios from "axios";
+import MainHeader from "./MainHeader"
+
 
 export default function Main() {
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
@@ -39,51 +40,8 @@ export default function Main() {
   return (
     <>
       <div style={{ backgroundColor: "#222" }}>
-        <div className="header container-fluid">
-          {/* <img src={logo} alt="" className="headerImg  col-5 " /> */}
-          <div className="headerText  col-3 col-lg-4 d-flex justify-content-start align-self-center">
-            <h1 className="headerText col-10" style={{ paddingRight: "30px" }}>
-              droplinked
-            </h1>
-          </div>
-
-          <div className="d-flex justify-content-between col-7 col-lg-4 ">
-            <div className="col-8 col-lg-6 d-flex justify-content-end align-self-center res-btn invisible" >
-                <button className="sign-up d-flex align-self-center">
-                  <p>Sign up free</p>
-                </button>
-            </div>
-            
-
-            <div className="col-3 col-lg-4 d-flex justify-content-center" >
-                
-                {userData?
-                      <img src={walletIcon} alt=""  className="wallet-icon wallet-icon-fill"  
-                      onClick={onSignOut}
-                      />
-                :
-                       <img src={walletIcon} alt=""  className="wallet-icon wallet-icon-notfill" 
-                       onClick={authenticate}  
-                      />
-
-                }
-
-
-                {/* {userData
-                ?
-                    (<GiWallet className="wallet-icon wallet-icon-fill"
-                    onClick={onSignOut}
-                    />)
-                :
-                    (<GiWallet className="wallet-icon wallet-icon-notfill" 
-                        onClick={authenticate}
-                    />)
-                } */}
-              
-            </div>
-          </div>
-        </div>
-
+        
+          <MainHeader />
         <div className="main container-fluid row ">
           <div className="col-12 col-md-7 left-side mb-2  align-self-center ">
             <div className="d-flex flex-column ">
@@ -196,3 +154,7 @@ function SeccessModal(props) {
     </div>
   );
 }
+
+
+
+

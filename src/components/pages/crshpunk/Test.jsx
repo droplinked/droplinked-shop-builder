@@ -4,13 +4,14 @@ import { RiShoppingBasketFill } from "react-icons/ri";
 import ProfileTopSection from "../../creator-component/ProfileTopSection"
 import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg"
 import walletIcon from "../../../assest/header/Unknown.svg"
+import MainHeader from "../main/MainHeader"
 
 export default function Test(){
 
 
     return(
         <div style={{backgroundColor:"#222" , minHeight:"100vh" , minWidth:"100vw"}}>
-            <Header />
+            <MainHeader />
             <div className="profile-wrapper">
                 <ProfileTopSection />  
             </div> 
