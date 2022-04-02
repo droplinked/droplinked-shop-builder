@@ -27,7 +27,7 @@ function App() {
       <WalletProvider>
        <Routes>
           <Route  exact path="/" element={<Main />} />
-          <Route   path="/crashpunk" element={<Test />} />
+          <Route   path="/crashpunks" element={<Test />} />
           <Route   path="/main" element={<MainPage />} />
           <Route   path="/buy/:buyId" element={<Buy />} />
           <Route   path="/checkout" element={<Checkout />} />
