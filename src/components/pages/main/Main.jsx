@@ -6,6 +6,7 @@ import mainImg from "../../../assest/creator-box.png";
 import { GiWallet } from "react-icons/gi";
 import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg"
 import walletIcon from "../../../assest/header/Unknown.svg"
+import axios from "axios";
 
 export default function Main() {
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
@@ -14,9 +15,22 @@ export default function Main() {
   const [email, setEmail] = useState("");
   
   function submitform() {
+    
+    axios
+      .post("https://uui8anv8g0.execute-api.eu-central-1.amazonaws.com/latest/register", {
+        name: userName,
+        email: email
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      doit();
+  }
+
+  function doit(){
     setModalState((pre) => !pre);
-    setUserName("");
-    setEmail("");
+        setUserName("");
+        setEmail("");
   }
   return (
     <>
@@ -67,7 +81,7 @@ export default function Main() {
         </div>
 
         <div className="main container-fluid row ">
-          <div className="col-12 col-xxl-7 left-side mb-2  align-self-center ">
+          <div className="col-12 col-md-7 left-side mb-2  align-self-center ">
             <div className="d-flex flex-column ">
               <div className="d-flex justify-content-between p-1  col-12 col-md-10 align-self-center   mt-0">
                 <div className="title ">Discover, create &amp; connect.</div>
@@ -126,7 +140,7 @@ export default function Main() {
             </div>
           </div>
 
-          <div className="col-12 col-xxl-5 right-side d-flex justify-content-between">
+          <div className="col-12 col-md-5 right-side d-flex justify-content-between">
             <img src={mainImg} alt="" className="right-image" />
           </div>
         </div>
