@@ -15,23 +15,27 @@ export default function Main() {
   const [email, setEmail] = useState("");
   
   function submitform() {
-    
-    axios
-      .post("https://uui8anv8g0.execute-api.eu-central-1.amazonaws.com/latest/register", {
-        name: userName,
-        email: email
+    if(email !="" && userName!=""){
+      fetch('https://uui8anv8g0.execute-api.eu-central-1.amazonaws.com/latest/register', {
+        method: 'POST',
+        body: JSON.stringify({ "name":userName , "email":email }),
+        headers: { 'Content-Type': 'application/json' },
       })
-      .then((response) => {
-        console.log(response.data);
-      })
+        .then(res => res.json())
+        .then(json => {console.log(json.user);})
+    }
       doit();
+     
   }
+  
 
   function doit(){
-    setModalState((pre) => !pre);
+        setModalState((pre) => !pre);
         setUserName("");
         setEmail("");
   }
+
+
   return (
     <>
       <div style={{ backgroundColor: "#222" }}>
@@ -132,6 +136,7 @@ export default function Main() {
                 style={{}}
                 onClick={() => {
                   submitform();
+                 
                 }}
               >
                 sign up
@@ -171,7 +176,7 @@ function SeccessModal(props) {
   useEffect(() => {
     setTimeout(() => {
       props.toggle();
-    }, 2000);
+    }, 1500);
   });
 
   return (

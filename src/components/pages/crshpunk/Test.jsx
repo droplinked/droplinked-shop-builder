@@ -3,6 +3,7 @@ import { AiFillWallet } from "react-icons/ai";
 import { RiShoppingBasketFill } from "react-icons/ri";
 import ProfileTopSection from "../../creator-component/ProfileTopSection"
 import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg"
+import walletIcon from "../../../assest/header/Unknown.svg"
 
 export default function Test(){
 
@@ -42,8 +43,10 @@ function Header(){
         <div className="header-container justify-content-between">
             <h1 style={{color:"white"}}>droplinked</h1>
             <div className="header-item col-6 col-md-3">
+                {/* <RiShoppingBasketFill className="header-icon col-6 invisible"/>
+                <AiFillWallet className="header-icon col-6"/> */}
                 <RiShoppingBasketFill className="header-icon col-6 invisible"/>
-                <AiFillWallet className="header-icon col-6"/>
+                <img src={walletIcon} alt=""  className="header-icon col-6"/>
             </div>
         </div>
     </div>
