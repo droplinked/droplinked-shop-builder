@@ -29,8 +29,8 @@ export default function Main() {
           </div>
 
           <div className="d-flex justify-content-between col-7 col-lg-4 ">
-            <div className="col-8 col-lg-6 d-flex justify-content-end align-self-center">
-                <button className="sign-up">
+            <div className="col-8 col-lg-6 d-flex justify-content-end align-self-center res-btn" >
+                <button className="sign-up d-flex align-self-center">
                   <p>Sign up free</p>
                 </button>
             </div>
