@@ -25,7 +25,7 @@ export default function Test(){
                 <div className="d-flex row align-items-start justify-content-end"
                  style={{width:"88%" , height:"100%" ,  margin:"auto auto"}}>
                      <div className="col-12 col-md-4 footer-text d-flex justify-content-between">
-                         <p>droplinked by <img src={whitelogo} className="footer-icon" /></p>
+                     <p>droplinked by<a href="https://flatlay.io/" style={{color:"inherit" , textDecoration:"none"}}><img src={whitelogo} className="footer-icon" /> </a></p>
                      </div>
     
                  </div>
