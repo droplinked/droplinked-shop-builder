@@ -1,22 +1,21 @@
 import "./main.scss";
-import logo from "../../../assest/shared/Flatlay-Logo.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect , useRef} from "react";
 import modalIcon from "../../../assest/modal/checked.png";
-import { AiOutlineWallet } from "react-icons/ai";
 import { UseWalletInfo } from "../../context/context";
-//import whiteWalletIcon from "../../../assest/header/white-wallet.png"
-import whiteWalletIcon from "../../../assest/header/wallet1.svg";
 import mainImg from "../../../assest/creator-box.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GiWallet } from "react-icons/gi";
 import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg"
 
 export default function Main() {
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
   const [modalState, setModalState] = useState(false);
-
-  function toggleModal() {
-    //setModalState((pre) => !pre);
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  
+  function submitform() {
+    setModalState((pre) => !pre);
+    setUserName("");
+    setEmail("");
   }
   return (
     <>
@@ -30,11 +29,14 @@ export default function Main() {
           </div>
 
           <div className="d-flex justify-content-between col-7 col-lg-4 ">
-            <button className="sign-up btn  col-8 col-lg-6">
-              Sign up free
-            </button>
+            <div className="col-8 col-lg-6 d-flex justify-content-end align-self-center">
+                <button className="sign-up">
+                  <p>Sign up free</p>
+                </button>
+            </div>
+            
 
-            <div className="col-4 col-lg-4 d-flex justify-content-center">
+            <div className="col-3 col-lg-4 d-flex justify-content-center">
                 {userData
                 ?
                     (<GiWallet className="wallet-icon wallet-icon-fill"
@@ -63,31 +65,37 @@ export default function Main() {
                   cash &amp; crypto together.
                 </div>
               </div>
-
+              
               <div className="d-flex justify-content-between   col-12 col-md-10 align-self-center  input-cover mt-4">
                 <div
-                  className="col-10 col-xl-11  "
+                  className="col-10 col-xl-11 d-flex"
                   style={{ height: "50px", paddingTop: "4px" }}
                 >
                   <span className="input-span">droplinked.com/</span>
                   <input
                     type="text"
+                    className=""
                     placeholder="username"
                     aria-label="Username"
                     aria-describedby="addon-wrapping"
+                    value={userName}
+                    onChange={(e)=>{setUserName(e.target.value)}}
                   />
                 </div>
               </div>
               <div className="d-flex justify-content-between  col-12 col-md-10 align-self-center input-cover mt-4 ">
                 <div
-                  className="col-10  "
+                  className="col-10"
                   style={{ height: "50px", paddingTop: "4px" }}
                 >
                   <input
+                   className="email-res"
                     type="text"
                     placeholder="example@email.com"
                     aria-label="Username"
                     aria-describedby="addon-wrapping"
+                    value={email}
+                    onChange={(e)=>{setEmail(e.target.value)}}
                   />
                 </div>
               </div>
@@ -95,11 +103,12 @@ export default function Main() {
                 className="col-12 col-md-10 align-self-center  form-button mt-4"
                 style={{}}
                 onClick={() => {
-                  toggleModal();
+                  submitform();
                 }}
               >
                 sign up
               </button>
+              
             </div>
           </div>
 
@@ -123,7 +132,7 @@ export default function Main() {
 
       </div>
 
-      {modalState && <SeccessModal toggle={toggleModal} />}
+      {modalState && <SeccessModal toggle={submitform} />}
     </>
   );
 }
@@ -137,7 +146,7 @@ function SeccessModal(props) {
 
   return (
     <div className="modal-main">
-      <div className="modal-body">
+      <div className="modal-body ">
         <div className="modal-head">
           <img
             src={modalIcon}
@@ -146,7 +155,7 @@ function SeccessModal(props) {
           />
         </div>
         <div className="modal-middle">
-          <h1>Your account has been created successfully.</h1>
+          <p>Your account has been created successfully.</p>
         </div>
       </div>
     </div>

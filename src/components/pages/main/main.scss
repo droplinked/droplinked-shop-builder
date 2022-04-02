@@ -36,7 +36,7 @@ $textColor : white;
         border-radius:100px;
         color:white;
         background-color:#7a73fc;
-        font-family:"avenir" ;
+        //font-family:"avenir" ;
         font-size:25px;
         //min-width:200px;
        // width:100%;
@@ -181,7 +181,7 @@ $textColor : white;
             opacity: 1;
             width:100%;
             height:60%;
-            background-color:lightblue;
+            background-color:#7a73fc;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -190,11 +190,19 @@ $textColor : white;
     .modal-middle{
     width:100%;
     height:40%;
-    background-color:white;
+    background-color:#222;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    p{
+        color:white;
+        font-weight:bold;
+        font-size:18px;
+        font-family: "avenir";
+        padding-top:10px;
+    }
     }
 
         
@@ -207,7 +215,7 @@ $textColor : white;
 .headerText{
     color:white;
     font-weight:bold;
-    //font-size:50px;
+    //font-size:20px;
     font-family: "avenir";
     padding-top:10px;
 }
@@ -259,12 +267,85 @@ $textColor : white;
 }
 
 
-@media only screen and (min-width: 600px) {
+@media only screen and (max-width: 600px) {
 
-    body{
-        font-family:"avenir" ;
-        font-size:15px;
+
+    .sign-up{
+        max-width:120px;
+        height:40px;
+        padding-top:5px;
+        border:none;
+        p{
+            font-size:18px;     
+            font-weight: bold;  
+        }   
     }
-          
+
+    .wallet-icon{
+        width:40px;
+        height:40px;
+        margin-top:5px;
+    }
+
+    .right-side{
+        min-height:50vh;
+    }
     
+
+
+    .input-cover{
+       // padding-top:15px;
+        align-items: center;
+        //padding-left:5px;
+
+   
+        .input-span{
+            flex:50%;
+            font-size:16px;
+            font-family:"avenir";
+            font-weight: bold;
+        }
+        input{
+            flex:50%;
+            font-size:16px;
+            font-family:"avenir";
+            font-weight: bold;
+        }
+    }
+
+    .email-res{
+        margin-top:auto 0px;
+        padding-top:10px;
+    }
+
+
+
+    .modal-main{
+
+        width:100%;
+        height:100%;
+    
+        .modal-body{
+           
+            width:80%;
+            height:70%;  
+            opacity: 1;
+            margin:0px auto;
+            .modal-head{
+                width:100%;
+                height:60%;
+            }
+            
+             .modal-middle{
+                 width:100%;
+                 height:40%;
+    
+                      p{
+                         font-size:14px;
+                         padding-top:10px;
+                     }
+        }
+  
+        }
+        }
   }
