@@ -80,7 +80,7 @@ export default function ProfileTopic() {
 							<div className='carousel-wrap'>{/* p-carousel */}</div>
 						</div>
 					)}
-				<div style={{width:"100%" , height:"3px" , backgroundImage:"linear-gradient(84.41deg, #F00190 0%, #00FFFB 100%)" , marginTop:"10px"}}></div>
+				{/* <div style={{width:"100%" , height:"3px" , backgroundImage:"linear-gradient(84.41deg, #F00190 0%, #00FFFB 100%)" , marginTop:"10px"}}></div> */}
 			</section>
 
 			<section className='profile-top-section'>
