@@ -27,6 +27,34 @@ deploy_dev:
     - dev
 
 
+build_prod:
+  stage: build
+  image: node:lts-alpine3.11
+  script:
+    - "npm install"
+    - CI=false npm run build
+  artifacts:    
+      paths:      
+         # Build folder      
+         - build/    
+      expire_in: 1 hour
+  only:
+    - dev
+
+deploy_prod:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  dependencies:
+    - build_prod
+  script:
+    - echo "copying files to s3://flatlaystorefronts/"
+    - aws s3 cp ./build s3://flatlaystorefront-main/ --recursive
+    - aws cloudfront create-invalidation --distribution-id=E36JNMRV4ZHN7G --paths /
+    - echo "Copying files complete"
+  only:
+    - dev
+
+
 
 stages:
   - build
