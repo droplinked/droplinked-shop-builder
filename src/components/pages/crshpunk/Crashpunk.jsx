@@ -72,7 +72,7 @@ export default function Crashpunk(){
 
 
 
-function Header(){
+export function Header(){
 
     return(<>
     <div className="header-wrap">
