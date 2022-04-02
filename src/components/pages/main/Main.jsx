@@ -5,6 +5,7 @@ import { UseWalletInfo } from "../../context/context";
 import mainImg from "../../../assest/creator-box.png";
 import { GiWallet } from "react-icons/gi";
 import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg"
+import walletIcon from "../../../assest/header/Unknown.svg"
 
 export default function Main() {
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
@@ -29,15 +30,28 @@ export default function Main() {
           </div>
 
           <div className="d-flex justify-content-between col-7 col-lg-4 ">
-            <div className="col-8 col-lg-6 d-flex justify-content-end align-self-center res-btn" >
+            <div className="col-8 col-lg-6 d-flex justify-content-end align-self-center res-btn invisible" >
                 <button className="sign-up d-flex align-self-center">
                   <p>Sign up free</p>
                 </button>
             </div>
             
 
-            <div className="col-3 col-lg-4 d-flex justify-content-center">
-                {userData
+            <div className="col-3 col-lg-4 d-flex justify-content-center" >
+                
+                {userData?
+                      <img src={walletIcon} alt=""  className="wallet-icon wallet-icon-fill"  
+                      onClick={onSignOut}
+                      />
+                :
+                       <img src={walletIcon} alt=""  className="wallet-icon wallet-icon-notfill" 
+                       onClick={authenticate}  
+                      />
+
+                }
+
+
+                {/* {userData
                 ?
                     (<GiWallet className="wallet-icon wallet-icon-fill"
                     onClick={onSignOut}
@@ -46,7 +60,7 @@ export default function Main() {
                     (<GiWallet className="wallet-icon wallet-icon-notfill" 
                         onClick={authenticate}
                     />)
-                }
+                } */}
               
             </div>
           </div>
@@ -122,9 +136,13 @@ export default function Main() {
         >       
                 <div className="d-flex row align-items-start justify-content-end"
                  style={{width:"88%" , height:"100%" ,  margin:"auto auto"}}>
+                   
                      <div className="col-12 col-md-4 footer-text d-flex justify-content-between">
-                         <p>droplinked by <img src={whitelogo} className="footer-icon" /></p>
+                     
+                         <p>droplinked by<a href="https://flatlay.io/" style={{color:"inherit" , textDecoration:"none"}}><img src={whitelogo} className="footer-icon" /> </a></p>
+                     
                      </div>
+                 
     
                  </div>
             
@@ -138,11 +156,11 @@ export default function Main() {
 }
 
 function SeccessModal(props) {
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     props.toggle();
-  //   }, 2000);
-  // });
+  useEffect(() => {
+    setTimeout(() => {
+      props.toggle();
+    }, 2000);
+  });
 
   return (
     <div className="modal-main">

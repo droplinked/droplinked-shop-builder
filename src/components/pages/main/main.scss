@@ -239,11 +239,13 @@ $textColor : white;
 
 .wallet-icon-notfill{
     color:white;
+    
    
 }
 
 .wallet-icon-fill{
     color:#5e56f5;
+    filter: grayscale(100%) brightness(30%) sepia(60%) hue-rotate(-110deg) saturate(500%) contrast(10);
 }
 
 .footer-text{
