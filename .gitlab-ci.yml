@@ -17,7 +17,7 @@ deploy_dev:
   stage: deploy
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   dependencies:
-    - build_prod
+    - build_dev
   script:
     - echo "copying files to s3://flatlaystorefront/"
     - aws s3 cp ./build s3://flatlaystorefront/ --recursive
