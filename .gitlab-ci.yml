@@ -19,7 +19,7 @@ deploy_dev:
   dependencies:
     - build_prod
   script:
-    - echo "copying files to s3://flatlaystorefronts/"
+    - echo "copying files to s3://flatlaystorefront/"
     - aws s3 cp ./build s3://flatlaystorefront/ --recursive
     - aws cloudfront create-invalidation --distribution-id=E2M36M6JJ7FMID --paths /
     - echo "Copying files complete"
