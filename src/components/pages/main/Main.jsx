@@ -138,11 +138,11 @@ export default function Main() {
 }
 
 function SeccessModal(props) {
-  useEffect(() => {
-    setTimeout(() => {
-      props.toggle();
-    }, 2000);
-  });
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     props.toggle();
+  //   }, 2000);
+  // });
 
   return (
     <div className="modal-main">
@@ -155,7 +155,7 @@ function SeccessModal(props) {
           />
         </div>
         <div className="modal-middle">
-          <p>Your account has been created successfully.</p>
+          <p>Welcome to the community! Learn more about what&#39;s to come at flatlay.io✌️</p>
         </div>
       </div>
     </div>
