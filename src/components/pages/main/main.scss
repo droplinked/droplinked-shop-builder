@@ -18,11 +18,13 @@ $textColor : white;
 
 .header{
     width:100%;
-    height:120px;
+    height:100px;
     display: flex;
-    padding: 30px 0px;
-    justify-content:space-between;
+    //padding: 0px 0px;
+    align-items: center;
+    justify-content:center;
     border-bottom: 4px solid black;
+   
     
     
 
@@ -114,7 +116,6 @@ $textColor : white;
 }
 
 .left-side{
-    
     min-height:100vh;
 }
 
@@ -133,7 +134,7 @@ $textColor : white;
     min-height:100%;
     background-color:bgcolor; 
     padding-top: 0px;
-    
+   
 }
 
 .form-button{
@@ -223,6 +224,7 @@ $textColor : white;
 
 
 .headerText{
+    max-width: 1200px;
     color:white;
     font-weight:bold;
     //font-size:20px;
@@ -231,16 +233,14 @@ $textColor : white;
 }
 
 .wallet-icon{
-    width:50%;
-    height:100%;
+    width:50px;
+    height:50px;
     cursor: pointer;
 }
 
 
 .wallet-icon-notfill{
-    color:white;
-    
-   
+    color:white;  
 }
 
 .wallet-icon-fill{
@@ -395,4 +395,59 @@ $textColor : white;
          padding-right:0px;
          padding-left:15px;
         }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .header-wrapper{
+      max-width:1200px;
+      width:100%;
+      //border:1px solid green;
+      height:80%;
+
+      .brand-logo{
+          //border:1px solid white;
+          display: flex;
+          justify-content:start;
+         
+          h1{
+              align-items: center;
+              margin:auto 0px;
+              //height:50px;
+           // border:1px solid red;
+            color:white;
+            font-weight:bold;
+            //font-size:20px;
+            font-family: "avenir";
+          }
+      }
+
+      .wallet{
+        
+        //border:1px solid white;
+        display: flex;
+        justify-content:end;
+        align-items:center;
+
+        img{
+            margin:auto 0px;
+           // border:1px solid green;
+            width:50px;
+            height:50px;
+             cursor: pointer;
+        }
+      }
   }
