@@ -1,0 +1,29 @@
+.footer-text{
+    color:white;
+    height:100%;
+   
+    p{
+        //text-align: center;
+        margin:auto 0px;
+        padding-left:30px;
+        font-family:"avenir" ;
+        font-size:18px;
+
+        .footer-icon{
+            filter: brightness(0) invert(1);
+            padding-left:5px;
+            max-height: 100%;
+        }   
+    }
+  
+}
+
+.footer-wrap{
+       
+       width:60px;
+       height:60px;
+       background-position: center;
+       background-size: cover;
+       border-radius: 50px;
+
+}

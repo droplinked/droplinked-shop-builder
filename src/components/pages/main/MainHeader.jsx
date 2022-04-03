@@ -1,6 +1,7 @@
 import "./mainHeader.scss";
 import { UseWalletInfo } from "../../context/context";
 import walletIcon from "../../../assest/header/Unknown.svg"
+import {Link } from "react-router-dom";
 
 
 
@@ -13,9 +14,19 @@ export default function MainHeader(){
     <div className="header container-fluid">
 
          <div className="header-wrapper d-flex justify-content-between">
+        
               <div className="brand-logo col-6 col-md-4">
-                 <h1>droplinked</h1>
+              
+                 <h1>
+                 <Link to="/" style={{textDecoration:"none" , color:"white"}}>
+                   droplinked 
+                   </Link>
+                   </h1>
+               
              </div>
+            
+             
+             
            <div className="wallet col-6 col-md-3">
                   {userData?
                       <img src={walletIcon} alt=""  className="wallet-icon wallet-icon-fill"  

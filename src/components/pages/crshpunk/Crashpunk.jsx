@@ -8,12 +8,14 @@ import image2 from "../../../assest/image/nft/img2.png"
 import image3 from "../../../assest/image/nft/img3.png"
 import Carousel from 'react-bootstrap/Carousel'
 import Collection from "./Collection"
+import MainHeader from "../main/MainHeader"
 
 export default function Crashpunk(){
 
-    return(<>
+    return(<div>
+            <MainHeader/>
             <div  style={{backgroundColor:"#222" , minHeight:"100vh" , minWidth:"100vw"}}>
-            <Header/>
+            
             <div className="profile-wrapper">
                 <ProfileTopSection />  
             </div>    
@@ -65,7 +67,7 @@ export default function Crashpunk(){
 
             </div>
             </div>
-    </>)
+    </div>)
 }
 
 

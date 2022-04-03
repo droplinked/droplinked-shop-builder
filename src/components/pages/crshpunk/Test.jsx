@@ -5,6 +5,7 @@ import ProfileTopSection from "../../creator-component/ProfileTopSection"
 import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg"
 import walletIcon from "../../../assest/header/Unknown.svg"
 import MainHeader from "../main/MainHeader"
+import Footer from "../main/Footer"
 
 export default function Test(){
 
@@ -19,18 +20,7 @@ export default function Test(){
             <iframe src="https://blocksurvey.io/survey/t/6de8a3bb-08d4-46bc-b3db-fafc5e2697c3/r/o"
              className="frame col-12 col-md-8"></iframe>
             </div>
-            <div className="d-flex justify-content-between"
-            style={{ width: "100%", height: "80px", borderTop: "1px solid white" }}
-                 >       
-                <div className="d-flex row align-items-start justify-content-end"
-                 style={{width:"88%" , height:"100%" ,  margin:"auto auto"}}>
-                     <div className="col-12 col-md-4 footer-text d-flex justify-content-between">
-                     <p>droplinked by  <a href="https://flatlay.io/" style={{color:"inherit" , textDecoration:"none"}}><img src={whitelogo} className="footer-icon" /> </a></p>
-                     </div>
-    
-                 </div>
-            
-        </div>
+            <Footer />
         </div>
   )
 }

@@ -7,6 +7,7 @@ import { GiWallet } from "react-icons/gi";
 import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg"
 import walletIcon from "../../../assest/header/Unknown.svg"
 import MainHeader from "./MainHeader"
+import Footer from "./Footer"
 
 
 export default function Main() {
@@ -108,21 +109,8 @@ export default function Main() {
           </div>
         </div>
 
-        <div className="d-flex justify-content-between"
-          style={{ width: "100%", height: "80px", borderTop: "1px solid white" }}
-        >       
-                <div className="d-flex row align-items-start justify-content-end"
-                 style={{width:"88%" , height:"100%" ,  margin:"auto auto"}}>
+                  <Footer /> 
                    
-                     <div className="col-12 col-md-4 footer-text d-flex justify-content-between">
-                         <p>droplinked by  <a href="https://flatlay.io/" style={{color:"inherit" , textDecoration:"none"}}><img src={whitelogo} className="footer-icon" /> </a></p>
-                     </div>
-                 
-    
-                 </div>
-            
-        </div>
-
       </div>
 
       {modalState && <SeccessModal toggle={submitform} />}
