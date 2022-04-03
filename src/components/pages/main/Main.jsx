@@ -47,7 +47,7 @@ export default function Main() {
           <div className="col-12 col-md-7 left-side mb-2  align-self-center ">
             <div className="d-flex flex-column ">
               <div className="d-flex justify-content-between p-1  col-12 col-md-10 align-self-center   mt-0">
-                <div className="title ">Discover, create &amp; connect.</div>
+                <div className="title d-none d-sm-inline">Discover, create &amp; connect.</div>
               </div>
 
               <div className="d-flex justify-content-between p-1  col-12 col-md-10 align-self-center   mt-3">

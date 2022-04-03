@@ -282,6 +282,20 @@ $textColor : white;
 @media only screen and (max-width: 600px) {
 
 
+    
+.left-side{
+    min-height:50vh;
+}
+
+
+    .description{
+       
+        margin-top: 10px ;
+        margin-bottom: 10px;
+    
+    }
+
+
     .res-btn{
        
         height:50px;
@@ -332,8 +346,12 @@ $textColor : white;
 
     .right-side{
         min-height:50vh;
+        width:100vw;
+        .right-image{
+            margin: auto auto;
+            max-width:100%;  
+        }
     }
-    
 
 
     .input-cover{

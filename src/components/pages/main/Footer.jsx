@@ -6,7 +6,7 @@ export default function Footer(){
 
     return(<>
     <div className="d-flex justify-content-between"
-            style={{ width: "100%", height: "80px", borderTop: "2px solid black" }}
+            style={{ width: "100%", height: "80px", borderTop: "1px solid white" }}
                  >       
                 <div className="d-flex row align-items-start justify-content-end"
                  style={{width:"88%" , height:"100%" ,  margin:"auto auto"  }}>
