@@ -33,7 +33,9 @@ export default function ProfileTopic() {
 					<div className='top-main' >
 						{/* <div className='account-settings button' style={{ left: '24px', right: 'auto' }}>
 							Display public profile</div> */}
+							
 							<img src={crashpunkLogo} className="top-main-logo"  style={{ left: '24px', right: 'auto' }} />
+							
 						{/* {!isPublicProfile && (
 							<>
 								{isCurrentUser && isLoggedIn && <div className='account-settings button'>Account settings</div>}
@@ -52,7 +54,9 @@ export default function ProfileTopic() {
 							</>
 						)} */}
 						<div className='img-wrap'>
-							<img src={profilePic} alt='' />
+							<a href="https://stxnft.com/collections/crashpunks">
+								<img src={profilePic} alt='' />
+							</a>
 						</div>
 					</div>
 
