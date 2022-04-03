@@ -5,12 +5,12 @@
     //padding: 0px 0px;
     align-items: center;
     justify-content:center;
-    border-bottom: 1px solid white;
-    padding: 0px 7%;
+    //border-bottom: 1px solid white;
+    //padding: 0px 7%;
 
 
     .header-wrapper{
-        max-width:1200px;
+        max-width:90%;
         width:100%;
         //border:1px solid green;
         height:80%;
@@ -49,7 +49,7 @@
 }
 
 .brand-logo{
-    //border:1px solid white;
+   // border:1px solid white;
     display: flex;
     justify-content:start;
    
@@ -78,10 +78,10 @@
 
 
 
-@media screen and (max-width: 1300px){
+// @media screen and (max-width: 1200px){
            
-    .brand-logo{
-        padding: 0px 4%;
-    }
+//     .brand-logo{
+//         //padding: 0px 4%;
+//     }
 
-  }
+//   }
