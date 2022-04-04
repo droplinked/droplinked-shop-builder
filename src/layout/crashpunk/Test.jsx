@@ -1,11 +1,9 @@
 import "./test.scss"
-import { AiFillWallet } from "react-icons/ai";
 import { RiShoppingBasketFill } from "react-icons/ri";
-import ProfileTopSection from "../../creator-component/ProfileTopSection"
-import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg"
-import walletIcon from "../../../assest/header/Unknown.svg"
-import MainHeader from "../main/MainHeader"
-import Footer from "../main/Footer"
+import ProfileTopSection from "../../components/features/top section/ProfileTopSection"
+import walletIcon from "../../assest/header/Unknown.svg"
+import MainHeader from "../../components/features/header/MainHeader"
+import Footer from "../../components/features/footer/Footer"
 
 export default function Test(){
 

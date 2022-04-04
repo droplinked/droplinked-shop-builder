@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './checkout.scss'
-
 import add from './icons/add.png'
 import minus from './icons/minus.png'
 import remove from './icons/remove.png'
 import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
-import tshirt from "../../assest/tshirt.jpg"
-import { useCart } from "../hooks/useCart"
+import { useCart } from "../../components/hooks/useCart"
 
 
 export default function Checkout () {

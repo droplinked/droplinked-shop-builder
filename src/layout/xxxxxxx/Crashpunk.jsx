@@ -1,14 +1,13 @@
 import "./crashpunk.scss"
-import logo from "../../../assest/image/crashpunk/crashpunkLogo.svg"
 import { AiFillWallet } from "react-icons/ai";
 import { RiShoppingBasketFill } from "react-icons/ri";
-import ProfileTopSection from "../../creator-component/ProfileTopSection"
+import ProfileTopSection from "../../components/creator-component/ProfileTopSection"
 import image1 from "../../../assest/image/nft/img1.png"
 import image2 from "../../../assest/image/nft/img2.png"
 import image3 from "../../../assest/image/nft/img3.png"
 import Carousel from 'react-bootstrap/Carousel'
-import Collection from "./Collection"
-import MainHeader from "../main/MainHeader"
+import Collection from "../../components/pages/crshpunk/Collection"
+import MainHeader from "../../components/features/header/MainHeader"
 
 export default function Crashpunk(){
 

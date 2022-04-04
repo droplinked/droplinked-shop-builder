@@ -1,0 +1,65 @@
+*{
+    box-sizing: border-box;
+}
+
+.collection-container{
+    border:1px solid green;
+
+   
+}
+
+.nft-gallery{
+        width:400px;
+        height:400px;
+        border:1px solid orange;
+        overflow: hidden;
+        border-radius: 15px;
+}
+
+.holder-merch{
+        width:400px;
+        height:400px;
+        border:1px solid orange;
+}
+
+.public-merch{
+        width:400px;
+        height:400px;
+        border:1px solid orange;
+}
+
+.carousel-img{
+    width:400px;
+    height:400px;
+    max-width:400px;
+    max-height:400px;
+}
+
+ //       ......................        media query 576px
+@media only screen and (max-width: 576px) {
+
+
+    .nft-gallery{
+        width:300px;
+        height:300px;
+}
+
+.holder-merch{
+        width:300px;
+        height:300px; 
+}
+
+.public-merch{
+        width:300px;
+        height:300px;
+}
+
+.carousel-img{
+    width:300px;
+    height:300px;
+    max-width:300px;
+    max-height:300px;
+}
+    
+  }
+ //      .....................     media query 576px

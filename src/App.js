@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.scss';
-import MainPage from './layout/MainPage'
-import NotFound from './layout/NotFound'
-import Buy from './layout/Buy'
-import { render } from "react-dom";
+import MainPage from './layout/mainpage/MainPage'
+import NotFound from './layout/notfound/NotFound'
+import Buy from './layout/buy/Buy'
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
 import { WalletProvider } from "./components/context/context"
-import Checkout from "./components/checkout/Checkout"
-import Address from "./components/Address/Address"
-import Payments from "./components/Payments/Payments"
+import Checkout from "./layout/checkout/Checkout"
+import Address from "./layout/address/Address"
+import Payments from "./layout/payment/Payments"
 import CartContextProvider from "../src/components/context/CartContext"
 import AddressContextProvider from "../src/components/context/AddressContext"
-import Shipping from "../src/components/shipping/Shipping"
-import Confirm from "./components/confirm-page/Confirm"
-import Main from "./components/pages/main/Main"
-import Test from "./components/pages/crshpunk/Test.jsx"
+import Shipping from "./layout/shiping/Shipping"
+import Confirm from "./layout/confirm/Confirm"
+import Main from "./layout/landing/Main"
+import Test from "./layout/crashpunk/Test.jsx"
+import Test1 from "./layout/test/Test1"
 function App() {
   return (
    
@@ -29,7 +28,7 @@ function App() {
           <Route  exact path="/" element={<Main />} />
           <Route   path="/crashpunks" element={<Test />} />
           <Route   path="/main" element={<MainPage />} />
-          <Route   path="/buy/:buyId" element={<Buy />} />
+          <Route   path="/test123" element={<Test1 />} />
           <Route   path="/checkout" element={<Checkout />} />
           
              <Route   path="/address" element={
@@ -37,9 +36,11 @@ function App() {
                 <Address />
               </AddressContextProvider>
              } />
+             <Route   path="/buy/:buyId" element={<Buy />} />
           <Route   path="/Shipping" element={<Shipping />} />
           <Route   path="/payment" element={<Payments />} />
           <Route   path="/confirm" element={<Confirm />} />
+          <Route   path="/test123" element={<Test1 />} />
           <Route   path="/*" element={<NotFound />} />
        </Routes>
       </WalletProvider>
