@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-route
 import add from './icons/add.png'
 import { useState , useEffect} from "react"
 import { useForm } from 'react-hook-form'
-import { useAddress } from "../../components/hooks/useAddress"
+import { useAddress } from "../../sevices/hooks/useAddress"
 
 function Address () {
 	

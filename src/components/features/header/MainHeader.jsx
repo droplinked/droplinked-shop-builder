@@ -1,5 +1,5 @@
 import "./mainHeader.scss";
-import { UseWalletInfo } from "../../context/context";
+import { UseWalletInfo } from "../../../sevices/context/context";
 import walletIcon from "../../../assest/header/Unknown.svg"
 import {Link } from "react-router-dom";
 

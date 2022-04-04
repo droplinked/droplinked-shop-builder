@@ -9,7 +9,7 @@ import {
 import  './credit.scss';
 import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
 import 'react-credit-cards/es/styles-compiled.css';
-import {useCart} from "../../components/hooks/useCart"
+
 
 export default class Creadit extends React.Component {
 

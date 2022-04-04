@@ -1,7 +1,7 @@
 import "./main.scss";
 import { useState, useEffect , useRef} from "react";
 import modalIcon from "../../assest/modal/checked.png";
-import { UseWalletInfo } from "../../components/context/context";
+import { UseWalletInfo } from "../../sevices/context/context";
 import mainImg from "../../assest/creator-box.png";
 import MainHeader from "../../components/features/header/MainHeader"
 import Footer from "../../components/features/footer/Footer"

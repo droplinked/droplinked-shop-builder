@@ -7,12 +7,12 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { WalletProvider } from "./components/context/context"
+import { WalletProvider } from "./sevices/context/context"
 import Checkout from "./layout/checkout/Checkout"
 import Address from "./layout/address/Address"
 import Payments from "./layout/payment/Payments"
-import CartContextProvider from "../src/components/context/CartContext"
-import AddressContextProvider from "../src/components/context/AddressContext"
+import CartContextProvider from "./sevices/context/CartContext"
+import AddressContextProvider from "./sevices/context/AddressContext"
 import Shipping from "./layout/shiping/Shipping"
 import Confirm from "./layout/confirm/Confirm"
 import Main from "./layout/landing/Main"

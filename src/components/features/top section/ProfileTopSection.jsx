@@ -1,7 +1,7 @@
 import profilePic from '../../../assest/profile/crashpunks.gif'
 import background from '../../../assest/background.jpg'
 import userinfo from '../../creator-component/userinfo'
-import { UseWalletInfo } from '../../context/context'
+import { UseWalletInfo } from '../../../sevices/context/context'
 import { getUserAddress } from '../../../wallet-auth/api'
 import therLogo from '../../../assest/ether.png'
 import crashpunkLogo from "../../../assest/image/crashpunk/crashpunkLogo.svg"

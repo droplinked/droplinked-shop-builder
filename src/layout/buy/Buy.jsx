@@ -1,13 +1,12 @@
 
 import React from "react";
 import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
-  import { UseWalletInfo } from "../../components/context/context";
+  import { UseWalletInfo } from "../../sevices/context/context";
 import axios from "axios";
 import { useEffect, useState , useRef ,useContext } from "react";
 import Header from "../../components/creator-component/Header"
 import Item from "../../components/features/basket item/Item"
-import {CartContext} from "../../components/context/CartContext"
-import {useCart} from "../../components/hooks/useCart"
+import {useCart} from "../../sevices/hooks/useCart"
 
 
 export default function Buy(){

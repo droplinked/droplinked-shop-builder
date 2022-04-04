@@ -1,11 +1,11 @@
 
-import logo from "../../../assest/header/cp-glitchlogo.png"
+import logo from "../../assest/header/cp-glitchlogo.png"
 import { AiOutlineWallet } from "react-icons/ai";
 import { AiFillWallet } from "react-icons/ai";
 import "./Header.scss";
-import { UseWalletInfo } from "../../../sevices/context/context";
+import { UseWalletInfo } from "../../sevices/context/context";
 import { useState } from "react"
-import { useCart } from "../../../sevices/hooks/useCart"
+import { useCart } from "../../sevices/hooks/useCart"
 
 export default function Header() {
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();

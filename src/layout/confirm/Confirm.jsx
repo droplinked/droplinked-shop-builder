@@ -1,7 +1,7 @@
 import "./confirm.scss"
 import { useState  } from "react"
 import {Link } from "react-router-dom";
-import { useCart } from "../../components/hooks/useCart"
+import { useCart } from "../../sevices/hooks/useCart"
 
 
 export default function Confirm(){
