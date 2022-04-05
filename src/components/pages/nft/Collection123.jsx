@@ -67,13 +67,20 @@ export default function Collection123(){
                     <div className="boxes">
                         <div className="image-wrapper d-flex">
                           <div className="image1 col-7">
+                          <div className="image-wrap">
                             <img src={productImg1} className="" alt="" />
+                            </div>
                           </div>
                           {/* img-thumbnail */}
 
                           <div className="images col-5">
+                              <div className="image-wrap">
                             <img src={productImg2} className="" alt="" />
+                            </div>
+                            <div className="image-wrap">
                             <img src={productImg3} className="" alt=""  />
+                            </div>
+                           
                            
                           </div>
 
@@ -94,13 +101,19 @@ export default function Collection123(){
                     <div className="boxes">
                         <div className="image-wrapper d-flex">
                           <div className="image1 col-7">
+                          <div className="image-wrap">
                             <img src={productImg1} className="" alt="" />
+                            </div>
                           </div>
                           {/* img-thumbnail */}
 
                           <div className="images col-5">
+                          <div className="image-wrap">
                             <img src={productImg2} className="" alt="" />
+                            </div>
+                            <div className="image-wrap">
                             <img src={productImg3} className="" alt="" />
+                            </div>
                           </div>
 
                         </div>
