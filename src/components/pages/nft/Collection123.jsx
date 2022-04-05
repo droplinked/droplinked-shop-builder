@@ -8,6 +8,7 @@ import image5 from "../../../assest/image/nft/Rectangle 11.jpg"
 import productImg1 from "../../../assest/image/crashpunk/collection/collection1.jpg"
 import productImg2 from "../../../assest/image/crashpunk/collection/collection2.jpg"
 import productImg3 from "../../../assest/image/crashpunk/collection/collection3.jpg"
+import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
 
 
 export default function Collection123(){
@@ -64,6 +65,7 @@ export default function Collection123(){
 
                 {/* merch gallery */}
                 <div className="d-flex justify-content-center p-4">
+                  <Link  to="/confirm">
                     <div className="boxes">
                         <div className="image-wrapper d-flex">
                           <div className="image1 col-7">
@@ -91,6 +93,7 @@ export default function Collection123(){
 
                         </div>
                     </div>
+                    </Link>
                 </div>
 
                 {/* merch gallery */}
@@ -98,6 +101,7 @@ export default function Collection123(){
 
                 {/* public gallery */}
                 <div className="d-flex justify-content-center p-4">
+                <Link  to="/confirm">
                     <div className="boxes">
                         <div className="image-wrapper d-flex">
                           <div className="image1 col-7">
@@ -123,6 +127,7 @@ export default function Collection123(){
 
                         </div>
                     </div>
+                    </Link>
                 </div>
 
                 {/* public gallery */}
