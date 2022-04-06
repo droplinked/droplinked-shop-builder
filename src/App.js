@@ -15,6 +15,7 @@ import Main from './layout/landing/Main';
 import Test from './layout/crashpunk/Test.jsx';
 import Test1 from './layout/test/Test1';
 import { ChakraProvider } from '@chakra-ui/react';
+import Products from './components/pages/products/Products';
 
 function App() {
 	return (
@@ -22,28 +23,30 @@ function App() {
 			<CartContextProvider>
 				<BrowserRouter>
 					<WalletProvider>
-						<Routes>
-							<Route exact path="/" element={<Main />} />
-							<Route path="/crashpunks" element={<Test />} />
-							<Route path="/main" element={<MainPage />} />
-							<Route path="/test123" element={<Test1 />} />
-							<Route path="/checkout" element={<Checkout />} />
-
-							<Route
-								path="/address"
-								element={
-									<AddressContextProvider>
-										<Address />
-									</AddressContextProvider>
-								}
-							/>
-							<Route path="/buy/:buyId" element={<Buy />} />
-							<Route path="/Shipping" element={<Shipping />} />
-							<Route path="/payment" element={<Payments />} />
-							<Route path="/confirm" element={<Confirm />} />
-							<Route path="/test123" element={<Test1 />} />
-							<Route path="/*" element={<NotFound />} />
-						</Routes>
+						<div className="bg-main-dark">
+							<Routes>
+								<Route exact path="/" element={<Main />} />
+								<Route path="/crashpunks" element={<Test />} />
+								<Route path="/main" element={<MainPage />} />
+								<Route path="/test123" element={<Test1 />} />
+								<Route path="/checkout" element={<Checkout />} />
+								<Route path="/products" element={<Products />} />
+								<Route
+									path="/address"
+									element={
+										<AddressContextProvider>
+											<Address />
+										</AddressContextProvider>
+									}
+								/>
+								<Route path="/buy/:buyId" element={<Buy />} />
+								<Route path="/Shipping" element={<Shipping />} />
+								<Route path="/payment" element={<Payments />} />
+								<Route path="/confirm" element={<Confirm />} />
+								<Route path="/test123" element={<Test1 />} />
+								<Route path="/*" element={<NotFound />} />
+							</Routes>
+						</div>
 					</WalletProvider>
 				</BrowserRouter>
 			</CartContextProvider>
