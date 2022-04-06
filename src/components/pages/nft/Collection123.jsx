@@ -65,7 +65,7 @@ export default function Collection123(){
 
                 {/* merch gallery */}
                 <div className="d-flex justify-content-center p-4">
-                  <Link  to="/confirm">
+                  <Link  to="/confirm" style={{textDecoration:"none"}}>
                     <div className="boxes">
                         <div className="image-wrapper d-flex">
                           <div className="image1 col-7">
@@ -101,7 +101,7 @@ export default function Collection123(){
 
                 {/* public gallery */}
                 <div className="d-flex justify-content-center p-4">
-                <Link  to="/confirm">
+                <Link  to="/confirm" style={{textDecoration:"none"}}>
                     <div className="boxes">
                         <div className="image-wrapper d-flex">
                           <div className="image1 col-7">
