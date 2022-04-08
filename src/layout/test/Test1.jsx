@@ -5,6 +5,7 @@ import Collection123 from "../../components/pages/nft/Collection123"
 import ProfileTopSection from "../../components/features/top section/ProfileTopSection"
 import React from 'react';
 import Product from "../product/Product.jsx"
+import Creadit from "../payment/Creadit"
 
 export default function Test1(){
 
@@ -14,7 +15,7 @@ export default function Test1(){
         <MainHeader/>
         <ProfileTopSection />
         <MainWrapper>
-        <Product />
+        <Creadit />
         </MainWrapper>
         <Footer/>
         </div>

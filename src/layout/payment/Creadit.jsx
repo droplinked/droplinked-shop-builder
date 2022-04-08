@@ -67,7 +67,7 @@ export default class Creadit extends React.Component {
 
     return (
       <div key="Payment">
-        <div className="App-payment">
+        <div className="App-payment" style={{width:"100%" , border:"1px solid white"}}>
           
           <Card
             number={number}
@@ -80,6 +80,7 @@ export default class Creadit extends React.Component {
           <form ref={c => (this.form = c)} onSubmit={this.handleSubmit}>
             <div className="form-group">
               <input
+                style={{backgroundColor:"#222" , color:"white", borderColor:"white"}}
                 type="tel"
                 name="number"
                 className="form-control"
@@ -93,6 +94,7 @@ export default class Creadit extends React.Component {
             </div>
             <div className="form-group">
               <input
+                style={{backgroundColor:"#222" , color:"white", borderColor:"white"}}
                 type="text"
                 name="name"
                 className="form-control"
@@ -105,6 +107,7 @@ export default class Creadit extends React.Component {
             <div className="row">
               <div className="col-6">
                 <input
+                  style={{backgroundColor:"#222" , color:"white", borderColor:"white"}}
                   type="tel"
                   name="expiry"
                   className="form-control"
@@ -117,6 +120,7 @@ export default class Creadit extends React.Component {
               </div>
               <div className="col-6">
                 <input
+                  style={{backgroundColor:"#222" , color:"white" , borderColor:"white"}}
                   type="tel"
                   name="cvc"
                   className="form-control"
@@ -132,7 +136,7 @@ export default class Creadit extends React.Component {
            
             <div className="form-actions">
               <Link  to="/confirm">
-              <button className="btn btn-primary btn-block" style={{width:"100%"}}>PAY </button>
+              <button className="btn btn-block" style={{width:"100%" , backgroundColor:"white" , color:"#222"}}>PAY </button>
               </Link>
             </div>
            
