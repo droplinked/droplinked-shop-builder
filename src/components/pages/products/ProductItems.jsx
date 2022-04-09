@@ -7,7 +7,8 @@ function ProductItems({ imageURL, brandName, cost }) {
 	const [showView, setView] = useState(false);
 
 	return (
-		<Box>
+		<Box padding={['5', 0, 0, 0, 0]}>
+			{/* these are buttons of each cards */}
 			<Box
 				display={'flex'}
 				flexDirection="column"
@@ -26,6 +27,7 @@ function ProductItems({ imageURL, brandName, cost }) {
 					setView(false);
 				}}
 			>
+				{/* book mark bar  */}
 				<Box
 					display={'flex'}
 					alignSelf={'end'}
@@ -45,6 +47,8 @@ function ProductItems({ imageURL, brandName, cost }) {
 						<BsBookmark size={'20'} />
 					</Badge>
 				</Box>
+
+				{/* view card */}
 				<Box
 					display={showView ? 'flex' : 'none'}
 					alignItems="baseline"
@@ -63,19 +67,27 @@ function ProductItems({ imageURL, brandName, cost }) {
 					</Badge>
 				</Box>
 			</Box>
+
+			{/* brand name and cost */}
 			<Box>
+				{/* brand name */}
 				<Box
 					mt="1"
 					textAlign={'left'}
 					fontWeight="semibold"
 					as="h4"
-					lineHeight="tight"
-					isTruncated
+					fontSize={['25', 20, 20, 20]}
 				>
 					{brandName}
 				</Box>
+				{/* cost name */}
 				<Box>
-					<Box as="span" fontWeight={'bold'} color="green.600" fontSize="sm">
+					<Box
+						as="span"
+						fontWeight={'bold'}
+						color="green.600"
+						fontSize={['25', 20, 20, 20]}
+					>
 						$ {cost}
 					</Box>
 				</Box>
@@ -86,7 +98,7 @@ function ProductItems({ imageURL, brandName, cost }) {
 
 ProductItems.defaultProps = {
 	imageURL:
-		'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg/800px-Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg',
+		'https://martinvalen.com/13342/men-s-notch-sole-sneakers-in-full-white.jpg',
 	brandName: 'Product',
 	cost: 75,
 };

@@ -4,7 +4,7 @@ import MainHeader from '../../features/header/MainHeader';
 import Footer from '../../features/footer/Footer';
 import { Box, Text } from '@chakra-ui/react';
 import ProductItems from './ProductItems';
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem, SimpleGrid } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
 function Products({ productHeader }) {
@@ -21,55 +21,49 @@ function Products({ productHeader }) {
 					<Text fontWeight={'semibold'} fontSize="3xl" pb="7">
 						{productHeader}
 					</Text>
-					<Grid templateColumns="repeat(4, 1fr)" gap={6}>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-						<GridItem>
-							<ProductItems />
-						</GridItem>
-					</Grid>
+
+					{/* grid section for make products like columns */}
+					<SimpleGrid columns={[1, 2, 4, 4, 4]} gap={6}>
+						{/* this is just for test, another day we wanna get data from server */}
+						<ProductItems />
+
+						<ProductItems />
+
+						<ProductItems />
+
+						<ProductItems />
+
+						<ProductItems />
+
+						<ProductItems />
+
+						<ProductItems />
+
+						<ProductItems />
+
+						<ProductItems />
+
+						<ProductItems />
+
+						<ProductItems />
+
+						<ProductItems />
+					</SimpleGrid>
 				</Box>
 			</MainWrapper>
+
+			{/* footer */}
 			<Footer />
 		</>
 	);
 }
 
+// default props
 Products.defaultProps = {
 	productHeader: 'Products',
 };
 
+// proptypes
 Products.propTypes = {
 	productHeader: PropTypes.string,
 };
