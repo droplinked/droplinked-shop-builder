@@ -6,6 +6,7 @@ import ProfileTopSection from "../../components/features/top section/ProfileTopS
 import React from 'react';
 import Product from "../product/Product.jsx"
 import Creadit from "../payment/Creadit"
+import Checkout from "../checkout/Checkout"
 
 export default function Test1(){
 
@@ -15,7 +16,9 @@ export default function Test1(){
         <MainHeader/>
         <ProfileTopSection />
         <MainWrapper>
-        <Creadit />
+            <div style={{padding:"20px"}}>
+                <Checkout />
+            </div>
         </MainWrapper>
         <Footer/>
         </div>

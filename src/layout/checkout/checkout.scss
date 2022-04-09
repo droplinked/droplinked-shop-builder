@@ -1,53 +1,203 @@
-.checkout {
-	font-size: 1rem;
+* {
+  box-sizing: border-box;
+}
 
-	table {
-		color: #212529;
-	}
+.checkout-wrapper {
+  width: 100%;
+  height: 700px;
 
-	&__product {
-		&-img {
-			width: 55px;
-			height: 55px;
-			object-fit: cover;
-		}
+  .checkout-header {
+    p {
+      color: white;
 
-		&-counter {
-			border: 1px solid #ddd;
-			border-radius: 100px;
-			overflow: hidden;
-			padding: 5px;
+      font-size: 26px;
+      font-weight: 700;
+      margin: auto 0px;
+    }
+  }
 
-			&-button {
-				width: 16px;
-				height: 16px;
-				cursor: pointer;
-			}
+  .checkout-items-body {
+    width: 100%;
 
-			&-input {
-				display: inline-block;
-				max-width: 65px;
-				margin: auto;
-				text-align: center;
-				border: none;
-				background: none;
-				margin: 0 5px;
-			}
-		}
+    .item-wrapper {
+      margin: 0px auto;
+      height: 100%;
+      width: 100%;
+      padding: 5px 0px;
+      border-bottom: 1px solid rgb(115, 114, 114);
+      .item-image {
+        width: 50px;
+        height: 50px;
+        margin: auto 0px;
+      }
+      .item-name {
+        padding-left: 5%;
+        margin: auto 0px;
+        color: white;
+        font-size: 26px;
+        font-weight: 600;
+      }
 
-		&-remove {
-			width: 24px;
-			height: 24px;
-			cursor: pointer;
-		}
-	}
+      .counter-wrapper {
+        margin: auto 0px;
+        border: 1px solid rgb(188, 186, 185);
+        width: 110px;
+        height: 50px;
+        border-radius: 25px;
+        overflow: hidden;
 
-	.title{
-		overflow: hidden ;
-		text-overflow: ellipsis;
-		font-size: 22px;
-		margin-left: 5px;
-		
-		max-height:60px;
-	}
+        div {
+          height: 50px;
+          display: flex;
+          justify-content: center;
+          padding: 0px;
+          p {
+            height: 100%;
+            margin: 0px;
+            color: aliceblue;
+            font-weight: 600;
+            font-size: 26px;
+            display: inline-block;
+            vertical-align: middle;
+          }
+        }
+      }
+
+      .price {
+        margin: auto 0px;
+        width: 110px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        p {
+          margin: auto 0px;
+          color: aliceblue;
+          font-weight: 600;
+          font-size: 26px;
+        }
+      }
+
+      .delet-item {
+        display: flex;
+        justify-content: center;
+        margin: auto 0px;
+        width: 50px;
+        height: 50px;
+
+        button {
+          border-radius: 25px;
+          color: red;
+          border: 1px solid rgb(167, 166, 169);
+          margin: auto 0px;
+        }
+      }
+    }
+  }
+
+  .checkout-footer {
+    float: right;
+    margin-top: 10px;
+    width: 100%;
+    .total-cost {
+      margin: 0px;
+      height: 50px;
+      width: 120px;
+      padding: 0px;
+      display: flex;
+      justify-content: end;
+      .cost {
+        color: white;
+        font-size: 26px;
+        font-weight: 600;
+        margin: auto 0px;
+      }
+
+      .name {
+        color: rgb(135, 135, 135);
+        font-size: 22px;
+        font-weight: 400;
+        margin: auto 0px;
+      }
+    }
+  }
+
+  .checkout-button {
+    margin: 10px 0px;
+    float: right;
+    background-color: aliceblue;
+    border-radius: 25px;
+    height: 50px;
+
+    .text {
+      display: flex;
+      justify-content: center;
+      p {
+        font-size: 24px;
+        font-weight: 500;
+        margin: auto 0px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .checkout-wrapper {
+    .checkout-header {
+      p {
+        font-size: 22px;
+        font-weight: 600;
+      }
+    }
+
+    .checkout-items-body {
+      .item-wrapper {
+        .item-name {
+          font-size: 22px;
+          font-weight: 600;
+        }
+
+        .counter-wrapper {
+          div {
+            p {
+              font-weight: 600;
+              font-size: 22px;
+            }
+
+        }
+
+        .price {
+          p {
+            font-weight: 600;
+            font-size: 22px;
+          }
+        }
+      }
+    }
+
+    .checkout-footer {
+      .total-cost {
+        .cost {
+          font-size: 22px;
+          font-weight: 600;
+        }
+
+        .name {
+          font-size: 22px;
+          font-weight: 400;
+        }
+      }
+    }
+
+    .checkout-button {
+      margin: 10px 0px;
+      .text {
+        p {
+          font-size: 22px;
+          font-weight: 500;
+          margin: auto 0px;
+        }
+      }
+    }
+  }
+}
 }
