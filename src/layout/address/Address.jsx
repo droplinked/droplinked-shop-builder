@@ -78,6 +78,7 @@ function NewAddress (props) {
 				<p className='text-center'>new address</p>
 				<form onSubmit={handleSubmit(submitForm)}>
 					<div className='row'>
+						<div className='header-text col-12'><p>My Address</p></div>
 						<div className='col-12 col-lg-6'>
 							<div className='form-group'>
 								<label htmlFor='first_name'>first name</label>
@@ -124,19 +125,6 @@ function NewAddress (props) {
 										})}
 									/>
 									{errors.address1 && <p className="error">address line 1 is required</p>}
-								</div>
-							</div>
-						</div>
-						<div className='col-12'>
-							<div className='form-group'>
-								<label htmlFor='line2'>address line 2 (building or unit #)</label>
-								<div>
-									<input
-										type='text'
-										className='form-control'
-										placeholder='address line 2 (building or unit #)'
-										{...register("address2")}
-									/>
 								</div>
 							</div>
 						</div>
@@ -204,10 +192,13 @@ function NewAddress (props) {
 								</div>
 							</div>
 						</div>
-						<div className='d-flex align-items end justify-content-end'>
-							<input className='btn btn-dark btn-sm rounded-pill px-4' type='submit' value="save" />
-							<button className='btn btn-sm ml=3' type='button'
+						<div className='d-flex align-items end justify-content-between'>
+							<input className='btn btn-light btn-sm rounded-pill px-4 col-5 col-md-4 ' type='submit' value="save" 
+								style={{fontSize:"15px" , fontWeight:"600"}}
+							/>
+							<button className='btn btn-sm ml=3 btn-light col-5 col-md-4' type='button'
 								onClick={()=>{props.cancel()}}
+								style={{fontSize:"15px" , fontWeight:"600"}}
 							>
 								cancel
 							</button>
@@ -242,4 +233,4 @@ function AddressItem (props) {
 	
 }
 
-export default Address
+export default NewAddress

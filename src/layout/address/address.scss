@@ -3,16 +3,24 @@
 
 	&-card {
 		position: relative;
-		background-color: #eee;
+		//background-color: #eee;
+		background: none;
 		margin: 10px 0px;
 		border-radius: 15px;
 
 		.form-group {
 			margin-bottom: 1rem;
+			
+		}
+		.form-control{
+			border:1px solid white;
+			background: none;
+			color: white;
 		}
 
 		label {
 			margin-bottom: 0.5rem;
+			color:white;
 		}
 
 		.selected {
@@ -41,7 +49,22 @@
 }
 .error{
 	color:red;
-	font-size:20px;
+	font-size:15px;
 	margin-top:2px;
 	margin-left:10px;
+}
+
+.save-btn{
+	background-color: white;
+	color:black;
+	font-size: 26px;
+	font-weight: 600;
+	
+}
+
+.header-text{
+	font-size: 26px;
+	font-weight: 600;
+	color: white;
+	margin-bottom: 10px;
 }

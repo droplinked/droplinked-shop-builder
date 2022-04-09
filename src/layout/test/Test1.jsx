@@ -7,6 +7,8 @@ import React from 'react';
 import Product from "../product/Product.jsx"
 import Creadit from "../payment/Creadit"
 import Checkout from "../checkout/Checkout"
+import NewAddress from "../address/Address"
+import Shipping from "../shiping/Shipping"
 
 export default function Test1(){
 
@@ -17,7 +19,7 @@ export default function Test1(){
         <ProfileTopSection />
         <MainWrapper>
             <div style={{padding:"20px"}}>
-                <Checkout />
+                <Shipping />
             </div>
         </MainWrapper>
         <Footer/>
