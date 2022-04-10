@@ -7,6 +7,7 @@ import image4 from "../../assest/image/product/image4.jpg";
 import image5 from "../../assest/image/product/image5.jpg";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
 
 export default function Product() {
   const [heightVar, setHeightToggle] = useState(false);
@@ -91,14 +92,14 @@ export default function Product() {
                   <p>+</p>
                 </div>
               </div>
-              <button className="add-to-basket-button">
+              <Link to="/shopping" className="add-to-basket-button">
                 <img
                   src={basketICon}
                   alt=""
                   style={{ width: "25px", height: "25px" }}
                 />
                 <p> add to basket</p>
-              </button>
+              </Link>
             </div>
           </div>
           {/* Top side */}

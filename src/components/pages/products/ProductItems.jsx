@@ -8,7 +8,7 @@ function ProductItems({ imageURL, brandName, cost }) {
 	const [showView, setView] = useState(false);
 
 	return (
-		<Link to="/shopping" style={{textDecoration:"none"}}>
+		<Link to="/product" style={{textDecoration:"none"}}>
 		<Box padding={['5', 0, 0, 0, 0]}>
 			{/* these are buttons of each cards */}
 			
