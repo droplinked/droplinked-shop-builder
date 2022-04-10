@@ -80,7 +80,7 @@ export default class Creadit extends React.Component {
             name={name}
             expiry={expiry}
             cvc={cvc}
-            focused={focuseds}
+            focused={focused}
             callback={this.handleCallback}
           />
           <form ref={(c) => (this.form = c)} onSubmit={this.handleSubmit}>
