@@ -3,9 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import modalIcon from "../../assest/modal/checked.png";
 import { UseWalletInfo } from "../../sevices/context/context";
 import mainImg from "../../assest/creator-box.png";
-import MainHeader from "../../components/features/header/MainHeader";
-import Footer from "../../components/features/footer/Footer";
-import MainWrapper from "../../components/Structure/page wrapper/MainWrapper";
+
 
 export default function Main() {
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
@@ -39,25 +37,25 @@ export default function Main() {
 
   return (
     <>
-      <div className="main container-fluid row ">
-        <div className="col-12 col-md-7 left-side mb-2  align-self-center ">
+      <div className="main d-flex row ">
+        <div className="col-12 col-md-7 left-side align-self-center " style={{padding:"0px"}}>
           <div className="d-flex flex-column ">
-            <div className="d-flex justify-content-between p-1  col-12 col-md-10 align-self-center   mt-0">
+            <div className="d-flex justify-content-between p-1  col-12  align-self-center ">
               <div className="title d-none d-sm-inline">
                 Discover, create &amp; connect.
               </div>
             </div>
 
-            <div className="d-flex justify-content-between p-1  col-12 col-md-10 align-self-center   mt-3">
+            <div className="d-flex justify-content-between p-1  col-12  align-self-center   mt-3">
               <div className="description">
                 Distribute collections with your community <br /> to earn more
                 cash &amp; crypto together.
               </div>
             </div>
 
-            <div className="d-flex justify-content-between   col-12 col-md-10 align-self-center  input-cover mt-4">
+            <div className="d-flex justify-content-start   col-12 col-md-12 align-self-center  input-cover mt-4">
               <div
-                className="col-10 col-xl-11 d-flex"
+                className="col-10 col-xl-12 d-flex"
                 style={{ height: "50px", paddingTop: "4px" }}
               >
                 <span className="input-span">droplinked.com/</span>
@@ -74,7 +72,7 @@ export default function Main() {
                 />
               </div>
             </div>
-            <div className="d-flex justify-content-between  col-12 col-md-10 align-self-center input-cover mt-4 ">
+            <div className="d-flex justify-content-between  col-12 col-md-12 align-self-center input-cover mt-4 ">
               <div
                 className="col-10"
                 style={{ height: "50px", paddingTop: "4px" }}
@@ -93,7 +91,7 @@ export default function Main() {
               </div>
             </div>
             <button
-              className="col-12 col-md-10 align-self-center  form-button mt-4"
+              className="col-12 col-md-12 align-self-center  form-button mt-4"
               style={{}}
               onClick={() => {
                 submitform();

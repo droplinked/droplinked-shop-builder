@@ -11,11 +11,7 @@ import PropTypes from 'prop-types';
 function Products({ productHeader }) {
 	return (
 		<>
-			{/* header */}
-			{/* <MainHeader /> */}
-
-			{/* main */}
-			{/* <MainWrapper> */}
+	
 				{/* items */}
 				<Box color={'white'}>
 					{/* product title */}
@@ -51,10 +47,7 @@ function Products({ productHeader }) {
 						<ProductItems />
 					</SimpleGrid>
 				</Box>
-			{/* </MainWrapper> */}
-
-			{/* footer */}
-			{/* <Footer /> */}
+		
 		</>
 	);
 }

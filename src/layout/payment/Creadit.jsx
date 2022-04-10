@@ -69,17 +69,18 @@ export default class Creadit extends React.Component {
     const { name, number, expiry, cvc, focused, issuer, formData } = this.state;
 
     return (
-      <div key="Payment">
+      <div key="Payment"
+      style={{ maxWidth: "100%"}}>
         <div
           className="App-payment"
-          style={{ width: "100%", border: "1px solid white" }}
+          style={{ width: "100%"}}
         >
           <Card
             number={number}
             name={name}
             expiry={expiry}
             cvc={cvc}
-            focused={focused}
+            focused={focuseds}
             callback={this.handleCallback}
           />
           <form ref={(c) => (this.form = c)} onSubmit={this.handleSubmit}>
