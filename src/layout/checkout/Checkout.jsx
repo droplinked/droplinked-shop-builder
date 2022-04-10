@@ -49,11 +49,11 @@ export default function Checkout () {
 					</div>
 				</div>
 				{/* cost */}
-
-				<div className='checkout-button col-12 col-md-4 col-sm-6 d-flex'>
+				
+				<Link to="/address" className='checkout-button col-12 col-md-4 col-sm-6 d-flex' style={{textDecoration:"none"}}>
 					<div className="text col-8" style={{borderRight:"1px solid black"}}><p>CHECKOUT</p></div>
 					<div className="text col-4"><p>$170.98</p></div>
-				</div>
+				</Link>
 
 			</div>
 		)

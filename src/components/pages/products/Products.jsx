@@ -7,14 +7,15 @@ import ProductItems from './ProductItems';
 import { Grid, GridItem, SimpleGrid } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
+
 function Products({ productHeader }) {
 	return (
 		<>
 			{/* header */}
-			<MainHeader />
+			{/* <MainHeader /> */}
 
 			{/* main */}
-			<MainWrapper>
+			{/* <MainWrapper> */}
 				{/* items */}
 				<Box color={'white'}>
 					{/* product title */}
@@ -50,10 +51,10 @@ function Products({ productHeader }) {
 						<ProductItems />
 					</SimpleGrid>
 				</Box>
-			</MainWrapper>
+			{/* </MainWrapper> */}
 
 			{/* footer */}
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	);
 }
