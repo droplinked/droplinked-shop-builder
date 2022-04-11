@@ -118,27 +118,6 @@ function SeccessModal(props) {
 		}, 1500);
 	});
 
-<<<<<<< HEAD
-	return (
-		<div className="modal-main">
-			<div className="modal-body ">
-				<div className="modal-head">
-					<img
-						src={modalIcon}
-						alt=""
-						style={{ maxWidth: '100%', maxHeight: '90%' }}
-					/>
-				</div>
-				<div className="modal-middle">
-					<p>
-						Welcome to the community! Learn more about what&#39;s to come at
-						flatlay.io✌️
-					</p>
-				</div>
-			</div>
-		</div>
-	);
-=======
   return (
     <div className="modal-main">
       <div className="modal-body ">
@@ -158,5 +137,4 @@ function SeccessModal(props) {
       </div>
     </div>
   );
->>>>>>> origin/behdad
 }

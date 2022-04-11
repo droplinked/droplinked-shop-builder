@@ -13,7 +13,6 @@ export default function MainWrapper({ children }) {
 					<div className="child-wrapper">{children}</div>
 				</div>
 			</div>
-
 			{/* side card */}
 			<Box display={['none', 'none', 'none', 'none', 'block']}>
 				<SideCard>
