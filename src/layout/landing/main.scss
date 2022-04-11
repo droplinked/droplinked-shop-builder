@@ -17,45 +17,9 @@ $textColor : white;
     height:100vh;
 }
 
-.header{
-    width:100%;
-    height:100px;
-    display: flex;
-    //padding: 0px 0px;
-    align-items: center;
-    justify-content:center;
-    border-bottom: 4px solid black;
-   
-    
-    
-
-    .sign-in{
-        background-color: Transparent;
-        color:white;
-        border : none;
-    }
-
-    .sign-up{
-        padding-top:20px;
-        text-align: center;
-        margin:auto;
-        border:none;
-        outline:none;
-        border-radius:100px;
-        color:white;
-        background-color:#7a73fc;
-        font-family:"avenir" ;
-        font-size:25px;
-        //min-width:200px;
-        //width:100%;
-    }
-    .sign-up:hover{
-        
-        background-color:#5e56f5;
-    }
-}
 .title{
-    font-size:50px;
+    width: 100%;
+    font-size:40px;
     font-weight: bold;
     margin-bottom: 10px;
     margin-top:40px;
@@ -70,6 +34,7 @@ $textColor : white;
     margin-bottom: 80px;
     color:white;
     font-family:"avenir";
+
 }
 
 .register-input{
@@ -80,7 +45,6 @@ $textColor : white;
 .input-cover{
     border-radius: 25px;
     outline-color: #7a73fc;
-    //border-color: #7a73fc;
     border:1px solid #7a73fc;
     overflow:hidden;
     padding:5px;
@@ -117,13 +81,15 @@ $textColor : white;
 }
 
 .left-side{
-    min-height:100vh;
+    height: 100vh;
+    width: 100%;
+    margin:0px;
 }
 
 .right-side{
-   
-    min-height:100vh;
-
+    height:100vh;
+    margin-right:0px;
+    
     .right-image{
         margin: auto auto;
         max-width:100%;
@@ -135,6 +101,7 @@ $textColor : white;
     min-height:100%;
     background-color:bgcolor; 
     padding-top: 0px;
+
    
 }
 
@@ -282,191 +249,10 @@ $textColor : white;
 
 @media only screen and (max-width: 600px) {
 
-
-    
-.left-side{
-    min-height:50vh;
-}
-
-
-    .description{
-       
-        margin-top: 10px ;
-        margin-bottom: 10px;
-    
+    .left-side{
+        height: auto;
     }
-
-
-    .res-btn{
-       
-        height:50px;
-      
-        text-align: start;
-        
-
-        
-            p{
-             
-                height:25px;
-                width:100%;
-                font-size:18px;
-                text-align: center;
-                padding-top:12px;
-            }
-
-            .sign-up{
-               
-                height:50px;
-                padding-top:0px;
-            }
-    
-       
-    }
-
-
-    .footer-text{
-        height:100%;
-        p{
-            padding-left:0px;
-            .footer-icon{
-                padding-left:2px;
-               width:50%;
-            }   
-        }
-      
-    }
-
-   
-
-    
-    .wallet-icon{
-        width:40px;
-        height:40px;
-        margin-top:5px;
-    }
-
     .right-side{
-        min-height:50vh;
-        width:100vw;
-        .right-image{
-            margin: auto auto;
-            max-width:100%;  
-        }
+        height: auto;
     }
-
-
-    .input-cover{
-       // padding-top:15px;
-        align-items: center;
-        //padding-left:5px;
-
-   
-        .input-span{
-            flex:50%;
-            font-size:16px;
-            font-family:"avenir";
-            font-weight: bold;
-        }
-        input{
-            flex:50%;
-            font-size:16px;
-            font-family:"avenir";
-            font-weight: bold;
-        }
-    }
-
-    .email-res{
-        margin-top:auto 0px;
-        padding-top:10px;
-    }
-
-
-
-    .modal-main{
-
-        width:100%;
-        height:100%;
-    
-        .modal-body{
-           
-            width:220px;
-            height:50%;  
-            margin:0px auto;
-            .modal-head{
-                width:100%;
-                height:15%;
-                padding:5px;
-            }
-             .modal-middle{
-                 width:100%;
-                 height:30%;
-                 padding:5px;
-                    p{
-                         font-size:12px;
-                         padding-top:10px; 
-                     }
-        }
-  
-        }
-        }
-
-        .headerText{
-         padding-right:0px;
-         padding-left:15px;
-        }
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  .header-wrapper{
-      max-width:1200px;
-      width:100%;
-      //border:1px solid green;
-      height:80%;
-
-      .brand-logo{
-          //border:1px solid white;
-          display: flex;
-          justify-content:start;
-         
-          h1{
-              align-items: center;
-              margin:auto 0px;
-              //height:50px;
-           // border:1px solid red;
-            color:white;
-            font-weight:bold;
-            //font-size:20px;
-            font-family: "avenir";
-          }
-      }
-
-      .wallet{
-        
-        //border:1px solid white;
-        display: flex;
-        justify-content:end;
-        align-items:center;
-
-        img{
-            margin:auto 0px;
-           // border:1px solid green;
-            width:50px;
-            height:50px;
-             cursor: pointer;
-        }
-      }
-  }
+}

@@ -4,6 +4,7 @@ import add from './icons/add.png'
 import minus from './icons/minus.png'
 import remove from './icons/remove.png'
 import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
+import image1 from "../../assest/image/product/image1.jpg";
 import { useCart } from "../../sevices/hooks/useCart"
 
 
@@ -13,91 +14,76 @@ export default function Checkout () {
 
 	
 		return (
-			<div className='p-3 rounded bg-white shadow-sm checkout'>
-				<h1>Shopping List</h1>
-				<table className='table'>
-					<tbody>
-						<tr className='text-muted'>
-							<td>Product</td>
-							<td>Amount</td>
-							<td>Price</td>
-							<td></td>
-						</tr>
-						{cartItems.length > 0
-							?
-							
-							cartItems.map((item)=>{
-								return <CheckoutProduct detail={item} />
-							})
-							
-							:
-							<>
-							<h1>no</h1>
-							</>
+			<div className='checkout-wrapper'>
+				{/* head  */}
+				<div className="checkout-header">
+					<p>My Cart</p>
+				</div>
+				{/* head  */}
+				{/* body  */}
+				<div className="checkout-items-body d-flex flex-column justify-content-between mt-3">
 
-						}
-						
-						
-					</tbody>
-				</table>
-				<div className='text-end p-3'>
-					<span className='text-muted'>Total Cost:</span> ${total}
+					{Item()}
+					{Item()}
+					{Item()}
+					{Item()}
+
 				</div>
-				<div className='p-3 d-flex flex-row justify-content-between align-items-center'>
-					<button className='btn btn-lg btn-light rounded-pill'>Continue Shopping</button>
-					<Link to="/address">
-					<button className='btn btn-dark btn-lg rounded-pill '>
-						Checkout | <span>${total}</span>
-					</button>
-					</Link>
+				{/* body  */}
+
+				{/* cost */}
+				<div className="checkout-footer col-12 col-md-4 col-sm-6">
+					<div className='d-flex flex-row-reverse' style={{width:"100%" }}>
+						<div className="total-cost"><p className='cost'>$159.99</p></div>
+						<div className="total-cost"><p className='name'>Total cost : </p></div>
+					</div>
+
+					<div className='d-flex flex-row-reverse' style={{width:"100%"}}>
+						<div className="total-cost"><p className='cost'>$15.98</p></div>
+						<div className="total-cost"><p className='name'>Shipping : </p></div>
+					</div>
+
+					<div className='d-flex flex-row-reverse' style={{width:"100%"}}>
+						<div className="total-cost"><p className='cost' style={{color:"paleturquoise"}}>-$15.98</p></div>
+						<div className="total-cost"><p className='name'>Discount : </p></div>
+					</div>
 				</div>
+				{/* cost */}
+				
+				<Link to="/address" className='checkout-button col-12 col-md-4 col-sm-6 d-flex' style={{textDecoration:"none"}}>
+					<div className="text col-8" style={{borderRight:"1px solid black"}}><p>CHECKOUT</p></div>
+					<div className="text col-4"><p>$170.98</p></div>
+				</Link>
+
 			</div>
 		)
-	
+
 }
 
-function CheckoutProduct (props) {
-	const { increase , decrease } = useCart();
-	
-		return (
-			<tr>
-				<td>
-					<div className='d-flex flex-row align-items-center'>
-						<img
-							className='mr-2 cursor-pointer checkout__product-img '
-							src={props.detail.images[0].src}
-							alt=''
-						/>
-						<div className=''>
-							<h2 className='m-0 cursor-pointer title ' style={{}}>
-							{props.detail.title} 
-							</h2>
-							<p className='m-0 text-muted'>60 Tablets</p>
-							
-						</div>
+
+function Item(){
+
+
+	return(<>
+	<div className="item-wrapper row d-flex mt-2" style={{marginBottom:"10px"}}>
+						 <div className='col-12 col-md-6  d-flex' style={{ padding:"0px" , height:"70px"}}>
+							 <img src={image1} alt="" className='item-image rounded' />
+							 <div className='item-name'>T-Shirt Summer Vibes</div>
+						 </div>
+						 <div className='col-12 col-md-6 d-flex justify-content-between' style={{ padding:"0px" , height:"70px"}}>
+									<div className="counter-wrapper d-flex justify-content-between row">
+											<div className='col-4' ><p style={{marginBottom:"5px"}}>-</p></div>
+											<div className='col-4'><p>12</p></div>
+											<div className='col-4' ><p style={{marginBottom:"5px"}}>+</p></div>
+									</div>
+
+									<div className='price'><p>$89.99</p></div>
+
+									<div className="delet-item">
+										<button type="button" className="btn-close btn-close-white" ></button>
+									</div>
+									
+						 </div>
 					</div>
-				</td>
-				<td>
-					<div className='checkout__product-counter d-flex flex-row justify-content-between align-items-center px-3'>
-						<img className='checkout__product-counter-button' src={minus} alt='' 
-							onClick={()=>{decrease(props.detail)}}
-						/>
-						<input
-							className='checkout__product-counter-input'
-							type='text'
-							readOnly
-							value={props.detail.quantity}
-						/>
-						<img className='checkout__product-counter-button' src={add} alt=''
-							onClick={()=>{increase(props.detail)}}
-						/>
-					</div>
-				</td>
-				<td className='m-0'>{props.detail.variants[0].formatted_price}</td>
-				<td>
-					<img className='checkout__product-remove' src={remove} alt='' />
-				</td>
-			</tr>
-		)
-	
+	</>)
 }

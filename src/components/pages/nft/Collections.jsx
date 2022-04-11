@@ -9,11 +9,13 @@ import productImg1 from "../../../assest/image/crashpunk/collection/collection1.
 import productImg2 from "../../../assest/image/crashpunk/collection/collection2.jpg"
 import productImg3 from "../../../assest/image/crashpunk/collection/collection3.jpg"
 import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
+import ProfileTopic from "../../features/top section/ProfileTopSection"
 
 
-export default function Collection123(){
+export default function Collections(){
 
     return(<>
+    <ProfileTopic />
           <div className="container-fluid collection-container d-flex flex-column">
                 {/* nft gallery */}
                  <div className="d-flex justify-content-center p-4">
@@ -65,7 +67,7 @@ export default function Collection123(){
 
                 {/* merch gallery */}
                 <div className="d-flex justify-content-center p-4">
-                  <Link  to="/confirm">
+                  <Link  to="/products" style={{textDecoration:"none"}}>
                     <div className="boxes">
                         <div className="image-wrapper d-flex">
                           <div className="image1 col-7">
@@ -101,7 +103,7 @@ export default function Collection123(){
 
                 {/* public gallery */}
                 <div className="d-flex justify-content-center p-4">
-                <Link  to="/confirm">
+                <Link  to="/products" style={{textDecoration:"none"}}>
                     <div className="boxes">
                         <div className="image-wrapper d-flex">
                           <div className="image1 col-7">

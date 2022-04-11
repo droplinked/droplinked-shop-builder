@@ -8,14 +8,11 @@ import { SimpleGrid } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import SideCard from '../../../layout/sideCard/SideCard';
 
+
 function Products({ productHeader }) {
 	return (
 		<>
-			{/* header */}
-			<MainHeader />
-
-			{/* main */}
-			<MainWrapper>
+	
 				{/* items */}
 				<Box color={'white'}>
 					{/* product title */}
@@ -51,10 +48,7 @@ function Products({ productHeader }) {
 						<ProductItems />
 					</SimpleGrid>
 				</Box>
-			</MainWrapper>
-
-			{/* footer */}
-			<Footer />
+		
 		</>
 	);
 }

@@ -20,15 +20,14 @@
         min-height: inherit;
         width:100%;
         max-width: 1200px;
-        padding:2vw;
         display:flex;
         justify-content: center;
         align-items: center;
-       
 
         .child-wrapper{
             width:100%;
             min-height:inherit;
+            padding:20px;
         }
         
     }

@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Box, Badge } from '@chakra-ui/react';
 import { BsBookmark } from 'react-icons/bs';
+import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
 
 function ProductItems({ imageURL, brandName, cost }) {
 	// state for showing save button
 	const [showView, setView] = useState(false);
 
 	return (
+		<Link to="/product" style={{textDecoration:"none"}}>
 		<Box padding={['5', 0, 0, 0, 0]}>
 			{/* these are buttons of each cards */}
+			
 			<Box
 				display={'flex'}
 				flexDirection="column"
@@ -93,6 +96,7 @@ function ProductItems({ imageURL, brandName, cost }) {
 				</Box>
 			</Box>
 		</Box>
+		</Link>
 	);
 }
 

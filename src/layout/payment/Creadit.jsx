@@ -1,26 +1,29 @@
-import React from 'react';
-import Card from 'react-credit-cards';
+import React from "react";
+import Card from "react-credit-cards";
 import {
   formatCreditCardNumber,
   formatCVC,
   formatExpirationDate,
   formatFormData,
-} from './utils';
-import  './credit.scss';
-import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
-import 'react-credit-cards/es/styles-compiled.css';
-
+} from "./utils";
+import "./credit.scss";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+} from "react-router-dom";
+import "react-credit-cards/es/styles-compiled.css";
 
 export default class Creadit extends React.Component {
-
-
   state = {
-    number: '',
-    name: '',
-    expiry: '',
-    cvc: '',
-    issuer: '',
-    focused: '',
+    number: "",
+    name: "",
+    expiry: "",
+    cvc: "",
+    issuer: "",
+    focused: "",
     formData: null,
   };
 
@@ -37,22 +40,22 @@ export default class Creadit extends React.Component {
   };
 
   handleInputChange = ({ target }) => {
-    if (target.name === 'number') {
+    if (target.name === "number") {
       target.value = formatCreditCardNumber(target.value);
-    } else if (target.name === 'expiry') {
+    } else if (target.name === "expiry") {
       target.value = formatExpirationDate(target.value);
-    } else if (target.name === 'cvc') {
+    } else if (target.name === "cvc") {
       target.value = formatCVC(target.value);
     }
 
     this.setState({ [target.name]: target.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { issuer } = this.state;
     const formData = [...e.target.elements]
-      .filter(d => d.name)
+      .filter((d) => d.name)
       .reduce((acc, d) => {
         acc[d.name] = d.value;
         return acc;
@@ -66,9 +69,12 @@ export default class Creadit extends React.Component {
     const { name, number, expiry, cvc, focused, issuer, formData } = this.state;
 
     return (
-      <div key="Payment">
-        <div className="App-payment">
-          
+      <div key="Payment"
+      style={{ maxWidth: "100%"}}>
+        <div
+          className="App-payment"
+          style={{ width: "100%"}}
+        >
           <Card
             number={number}
             name={name}
@@ -77,9 +83,14 @@ export default class Creadit extends React.Component {
             focused={focused}
             callback={this.handleCallback}
           />
-          <form ref={c => (this.form = c)} onSubmit={this.handleSubmit}>
+          <form ref={(c) => (this.form = c)} onSubmit={this.handleSubmit}>
             <div className="form-group">
               <input
+                style={{
+                  backgroundColor: "#222",
+                  color: "white",
+                  borderColor: "white",
+                }}
                 type="tel"
                 name="number"
                 className="form-control"
@@ -93,6 +104,11 @@ export default class Creadit extends React.Component {
             </div>
             <div className="form-group">
               <input
+                style={{
+                  backgroundColor: "#222",
+                  color: "white",
+                  borderColor: "white",
+                }}
                 type="text"
                 name="name"
                 className="form-control"
@@ -105,6 +121,11 @@ export default class Creadit extends React.Component {
             <div className="row">
               <div className="col-6">
                 <input
+                  style={{
+                    backgroundColor: "#222",
+                    color: "white",
+                    borderColor: "white",
+                  }}
                   type="tel"
                   name="expiry"
                   className="form-control"
@@ -117,6 +138,11 @@ export default class Creadit extends React.Component {
               </div>
               <div className="col-6">
                 <input
+                  style={{
+                    backgroundColor: "#222",
+                    color: "white",
+                    borderColor: "white",
+                  }}
                   type="tel"
                   name="cvc"
                   className="form-control"
@@ -129,25 +155,31 @@ export default class Creadit extends React.Component {
               </div>
             </div>
             <input type="hidden" name="issuer" value={issuer} />
-           
+
             <div className="form-actions">
-              <Link  to="/confirm">
-              <button className="btn btn-primary btn-block" style={{width:"100%"}}>PAY </button>
+              <Link to="/confirm">
+                <button
+                  className="btn btn-block"
+                  style={{
+                    width: "100%",
+                    backgroundColor: "white",
+                    color: "#222",
+                  }}
+                >
+                  PAY{" "}
+                </button>
               </Link>
             </div>
-           
           </form>
-          
-
 
           {formData && (
             <div className="App-highlight">
-              {formatFormData(formData).map((d, i) => <div key={i}>{d}</div>)}
+              {formatFormData(formData).map((d, i) => (
+                <div key={i}>{d}</div>
+              ))}
             </div>
           )}
-         
         </div>
-        
       </div>
     );
   }

@@ -8,11 +8,11 @@
    
     position: relative;
     &.selected {
-        box-shadow: 0 0 0px 3px #666;
+        box-shadow: 0 0 5px 10px rgb(248, 247, 247);
     }
 }
 .card-box:focus{
-    border:1px solid black;
+    box-shadow: 0px 2px  7px rgb(248, 247, 247);
 }
 
 .card-container {
@@ -40,4 +40,26 @@
     }
 
     
+}
+.process-btn{
+    font-size: 22px;
+    font-weight: 500;
+}
+
+
+.shipping-wrapper{
+    width: 100%;
+    
+
+    .head-text-wrapper{
+        text-align: center;
+        p{
+            margin:10px 0px;
+            font-size: 26px;
+            font-weight: 700;
+            color:white;
+        }
+    }
+
+
 }
