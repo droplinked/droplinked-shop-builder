@@ -5,13 +5,21 @@ import image2 from "../../assest/image/product/image2.jpg";
 import image3 from "../../assest/image/product/image3.jpg";
 import image4 from "../../assest/image/product/image4.jpg";
 import image5 from "../../assest/image/product/image5.jpg";
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState} from "react";
+import Loading from "../../components/features/loading/Loading";
 
 export default function Product() {
+  let { id } = useParams();
+  const [productDetail , setProductDetail] = useState();
   const [heightVar, setHeightToggle] = useState(false);
   const [imageCarousel, setImageCarousel] = useState(image1);
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const heightToggle = () => {
     setHeightToggle((pre) => !pre);
@@ -23,13 +31,17 @@ export default function Product() {
   return (
     <>
       <div className="product-wrapper">
+      {(productDetail==undefined) 
+          ?
+          <Loading />
+          :
         <div className="product-main">
-          {/* Top side */}
+         
 
           <div className="top-side d-flex justify-content-between row">
             <div className="d-flex flex-column col-md-7 col-12 ">
               <div className="image-side ">
-                <img src={imageCarousel} alt="" />
+                <img src={productDetail.images[0].src} alt="" />
               </div>
 
               {/* image carousel */}
@@ -37,22 +49,22 @@ export default function Product() {
                 <button className="slide-button">&#60;</button>
                 <img
                   className="slide-img"
-                  src={image2}
+                  src={productDetail.images[0].src}
                   onClick={() => toggle(image2)}
                 />
                 <img
                   className="slide-img"
-                  src={image3}
+                  src={productDetail.images[1].src}
                   onClick={() => toggle(image3)}
                 />
                 <img
                   className="slide-img"
-                  src={image4}
+                  src={productDetail.images[2].src}
                   onClick={() => toggle(image4)}
                 />
                 <img
                   className="slide-img"
-                  src={image5}
+                  src={productDetail.images[3].src}
                   onClick={() => toggle(image5)}
                 />
                 <button className="slide-button">&#62;</button>
@@ -66,20 +78,24 @@ export default function Product() {
               </div>
               <div className="product-describe">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Tempore quis dolorum unde? Dignissimos corrupti in modi dicta
-                  dolorum, vitae rem quae provident architecto ipsa
-                  voluptatibus!
+                  {productDetail.title}
                 </p>
               </div>
-              <div className="producr-price">$ 2.000</div>
+              <div className="producr-price">$ {productDetail.variants[0].price}</div>
               <div className="product-options flex-wrap d-flex justify-content-between">
-                <div className="product-option col-5"> {optionTest()}</div>
-                <div className="product-option col-5"> {optionTest()}</div>
-                <div className="product-option col-5"> {optionTest()}</div>
-                <div className="product-option col-5"> {optionTest()}</div>
-                <div className="product-option col-5"> {optionTest()}</div>
-                <div className="product-option col-5"> {optionTest()}</div>
+                {productDetail.options.map((item)=>{
+                  return(
+                    <div className="product-option col-5">
+                          <select>
+                            {item.values.map((val)=>{
+                              return(<option value={val}>{val}</option>)
+                            })}
+                              
+                          </select>
+                    </div>
+                  )
+                })}
+                
               </div>
               <div className="counter-group">
                 <div className="counter-button">
@@ -102,40 +118,38 @@ export default function Product() {
               </Link>
             </div>
           </div>
-          {/* Top side */}
+                {/* Top side */}
 
-          {/* Bottom side */}
           <div className="bottom-side">
             <div className="description">Description</div>
             <div className={`detail ${heightVar ? "open" : "close"}`}>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Praesentium delectus molestiae ab, quia, aliquam, maiores rerum
-              aliquid minima consequatur deleniti commodi maxime iste. Enim vero
-              unde assumenda voluptates asperiores est facilis similique numquam
-              totam doloremque, tempore provident. Repudiandae, deserunt.
-              Accusantium eligendi, illum magnam exercitationem deleniti iste
-              eaque cumque nemo aliquam sunt, animi dolor quod incidunt magni
-              pariatur minima explicabo architecto, porro natus vel ducimus
-              culpa velit. Libero nemo distinctio incidunt.
+              {productDetail.tags}
             </div>
             <div className="read-more">
               <button onClick={heightToggle}>read more</button>
             </div>
           </div>
-          {/* Bottom side */}
+          
+          
         </div>
+      }
       </div>
     </>
   );
-}
 
-function optionTest() {
-  return (
-    <select>
-      <option value="volvo">value 1</option>
-      <option value="saab">value 2</option>
-      <option value="opel">value 3</option>
-      <option value="audi">value 4</option>
-    </select>
-  );
+
+  function getData() {
+    axios
+      .post(
+        "https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search",
+        {
+          keyword: "tshirt",
+          page: 1,
+        }
+      )
+      .then((response) => {
+        console.log(response.data.shopify[id].product_listing);
+        setProductDetail(response.data.shopify[id].product_listing);
+      });
+  }
 }
