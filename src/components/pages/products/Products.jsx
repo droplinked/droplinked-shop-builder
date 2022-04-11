@@ -4,8 +4,9 @@ import MainHeader from '../../features/header/MainHeader';
 import Footer from '../../features/footer/Footer';
 import { Box, Text } from '@chakra-ui/react';
 import ProductItems from './ProductItems';
-import { Grid, GridItem, SimpleGrid } from '@chakra-ui/react';
+import { SimpleGrid } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
+import SideCard from '../../../layout/sideCard/SideCard';
 
 function Products({ productHeader }) {
 	return (
