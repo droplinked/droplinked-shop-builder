@@ -12,15 +12,32 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../../components/features/loading/Loading";
 import CustomCarousel from "../../components/features/carousel/CustomCarousel";
+import { useCart } from "../../sevices/hooks/useCart";
 
 export default function Product() {
   let { id } = useParams();
   const [productDetail, setProductDetail] = useState();
   const [heightVar, setHeightToggle] = useState(false);
+  const [itemCounter, setItemCounter] = useState(0);
+  const { addProduct, cartItems, increase, decrease } = useCart();
+
+  useEffect(() => {
+    console.log(cartItems);
+  });
 
   useEffect(() => {
     getData();
+    console.log(productDetail);
   }, []);
+
+  const addToBakset = () => {
+    if(cartItems.find((item) => item.product_id === productDetail.product_id) == undefined){
+      addProduct({product:productDetail , qun:itemCounter})
+    }else{
+      increase({product:productDetail , qun:itemCounter})
+    }
+    setItemCounter(0);
+  };
 
   const heightToggle = () => {
     setHeightToggle((pre) => !pre);
@@ -62,24 +79,37 @@ export default function Product() {
                   })}
                 </div>
                 <div className="counter-group">
-                  <div className="counter-button">
+                  <div
+                    className="counter-button"
+                    onClick={() => {
+                      if (itemCounter > 0) {
+                        setItemCounter((pre) => pre - 1);
+                      }
+                    }}
+                  >
                     <p>-</p>
                   </div>
                   <div className="counter-button">
-                    <p>1</p>
+                    <p>{itemCounter}</p>
                   </div>
-                  <div className="counter-button">
+                  <div
+                    className="counter-button"
+                    onClick={() => {
+                      setItemCounter((pre) => pre + 1);
+                    }}
+                  >
                     <p>+</p>
                   </div>
                 </div>
-                <Link to="/shopping" className="add-to-basket-button">
+                <button className="add-to-basket-button" 
+                onClick={() => {addToBakset()}}>
                   <img
                     src={basketICon}
                     alt=""
                     style={{ width: "25px", height: "25px" }}
                   />
                   <p> add to basket</p>
-                </Link>
+                </button>
               </div>
             </div>
             {/* Top side */}

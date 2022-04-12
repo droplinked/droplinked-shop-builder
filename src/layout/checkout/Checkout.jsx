@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState} from 'react'
 import './checkout.scss'
 import add from './icons/add.png'
 import minus from './icons/minus.png'
@@ -9,7 +9,7 @@ import { useCart } from "../../sevices/hooks/useCart"
 
 
 export default function Checkout () {
-	const { addProduct, cartItems ,total} = useCart();
+	const {  cartItems ,total} = useCart();
 
 
 	
@@ -22,11 +22,10 @@ export default function Checkout () {
 				{/* head  */}
 				{/* body  */}
 				<div className="checkout-items-body d-flex flex-column justify-content-between mt-3">
+					{cartItems.map((product)=>{
+							return (<Item product={product} />)
+					})}
 
-					{Item()}
-					{Item()}
-					{Item()}
-					{Item()}
 
 				</div>
 				{/* body  */}
@@ -61,23 +60,41 @@ export default function Checkout () {
 }
 
 
-function Item(){
+function Item({product}){
+	const { increase , decrease, addProduct, cartItems ,total} = useCart();
+	const [quen , setQuen] = useState(product.quantity);
 
+
+	const increaseItem = ()=>{
+		increase({product:product , qun:1})
+		setQuen(pre => pre+1)
+	}
+
+	const decreaseItem = ()=>{
+			if(quen>0){
+				decrease(product);
+				setQuen(pre => pre-1)
+			}
+	}
 
 	return(<>
 	<div className="item-wrapper row d-flex mt-2" style={{marginBottom:"10px"}}>
 						 <div className='col-12 col-md-6  d-flex' style={{ padding:"0px" , height:"70px"}}>
-							 <img src={image1} alt="" className='item-image rounded' />
-							 <div className='item-name'>T-Shirt Summer Vibes</div>
+							 <img src={product && product.images[0].src} alt="" className='item-image rounded' />
+							 <div className='item-name'>{product && product.title}</div>
 						 </div>
 						 <div className='col-12 col-md-6 d-flex justify-content-between' style={{ padding:"0px" , height:"70px"}}>
 									<div className="counter-wrapper d-flex justify-content-between row">
-											<div className='col-4' ><p style={{marginBottom:"5px"}}>-</p></div>
-											<div className='col-4'><p>12</p></div>
-											<div className='col-4' ><p style={{marginBottom:"5px"}}>+</p></div>
+											<div className='col-4 counter-btn left' 
+											onClick={()=>{decreaseItem()}}
+											><p style={{marginBottom:"5px"}}>-</p></div>
+											<div className='col-4'><p>{quen}</p></div>
+											<div className='col-4 counter-btn right' 
+											onClick={()=>{increaseItem()}}
+											><p style={{marginBottom:"5px"}}>+</p></div>
 									</div>
 
-									<div className='price'><p>$89.99</p></div>
+									<div className='price'><p>$ {product && product.variants[0].price}</p></div>
 
 									<div className="delet-item">
 										<button type="button" className="btn-close btn-close-white" ></button>

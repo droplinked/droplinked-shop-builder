@@ -1,9 +1,11 @@
-import React from 'react';
+import React , {useState} from 'react';
 
 import PropTypes from 'prop-types';
 import { Box, Image, Text } from '@chakra-ui/react';
 
-function SideCardItem({ title, color, size, cost, image }) {
+
+function SideCardItem({ title, color, size, cost, image, product }) {
+	console.log(product);
 	return (
 		<Box
 			color={'white'}
@@ -21,14 +23,14 @@ function SideCardItem({ title, color, size, cost, image }) {
 		>
 			{/* image */}
 			<Box paddingX="2" width={'100%'}>
-				<Image src={image} borderRadius="10"></Image>
+				<Image src={product && product.images[0].src} borderRadius="10"></Image>
 			</Box>
 
 			{/* content */}
 			<Box display={'flex'} flexDirection="column">
 				{/* header */}
 				<Text paddingX={2} fontWeight={'semibold'}>
-					{title}
+					{product && product.title}
 				</Text>
 
 				{/* information */}
@@ -55,7 +57,7 @@ function SideCardItem({ title, color, size, cost, image }) {
 						alignItems={'center'}
 						color="white"
 					>
-						<Text padding={'2'}>${cost}</Text>
+						<Text padding={'2'}>${product && product.variants[0].price}</Text>
 					</Box>
 				</Box>
 			</Box>

@@ -1,5 +1,12 @@
 import React from 'react';
 import { Box, Text, Button } from '@chakra-ui/react';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useParams,
+  } from "react-router-dom";
 
 function SideCard({ children }) {
 	return (
@@ -44,7 +51,9 @@ function SideCard({ children }) {
 				alignSelf="self-end"
 				margin="2"
 			>
+			<Link to="/shopping">
 				checkout
+				</Link>
 			</Button>
 		</Box>
 	);

@@ -12,11 +12,11 @@ export const CartReducer = (state, action) => {
     switch (action.type) {
 
         case "ADD_ITEM":
-            if (!state.cartItems.find(item => item.product_id === action.payload.product_id)) {
+            if (!state.cartItems.find(item => item.product_id === action.payload.product.product_id)) {
                 console.log("add item click");
                 state.cartItems.push({
-                    ...action.payload,
-                    quantity: 1
+                    ...action.payload.product,
+                    quantity:  action.payload.qun
                 })
             } 
             
@@ -34,7 +34,7 @@ export const CartReducer = (state, action) => {
             }
 
         case "INCREASE":
-            state.cartItems[state.cartItems.findIndex(item => item.product_id === action.payload.product_id)].quantity++
+            state.cartItems[state.cartItems.findIndex(item => item.product_id === action.payload.product.product_id)].quantity += action.payload.qun
             return {
                 ...state,
                 ...sumItems(state.cartItems),

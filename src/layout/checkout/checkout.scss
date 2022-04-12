@@ -171,6 +171,8 @@
             font-size: 22px;
           }
         }
+
+        
       }
     }
 
@@ -200,4 +202,14 @@
     }
   }
 }
+}
+
+.counter-btn{
+  cursor: pointer;
+}
+.left:hover{
+  border-right:1px solid gray
+}
+.right:hover{
+  border-left:1px solid gray
 }
