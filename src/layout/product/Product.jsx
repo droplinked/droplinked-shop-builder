@@ -13,22 +13,23 @@ import { useEffect, useState } from "react";
 import Loading from "../../components/features/loading/Loading";
 import CustomCarousel from "../../components/features/carousel/CustomCarousel";
 import { useCart } from "../../sevices/hooks/useCart";
+import useProductData from "../../sevices/hooks/useProductData"
 
 export default function Product() {
   let { id } = useParams();
-  const [productDetail, setProductDetail] = useState();
+  const [productDetail] = useProductData(id);
   const [heightVar, setHeightToggle] = useState(false);
   const [itemCounter, setItemCounter] = useState(0);
   const { addProduct, cartItems, increase, decrease } = useCart();
 
-  useEffect(() => {
-    console.log(cartItems);
-  });
+  // useEffect(() => {
+  //   console.log(productDetail);
+  // });
 
-  useEffect(() => {
-    getData();
-    console.log(productDetail);
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  //   console.log(productDetail);
+  // }, []);
 
   const addToBakset = () => {
     if(cartItems.find((item) => item.product_id === productDetail.product_id) == undefined){
@@ -46,7 +47,7 @@ export default function Product() {
   return (
     <>
       <div className="product-wrapper">
-        {productDetail == undefined ? (
+        {(productDetail == undefined) ? (
           <Loading />
         ) : (
           <div className="product-main">
@@ -129,17 +130,17 @@ export default function Product() {
     </>
   );
 
-  function getData() {
-    axios
-      .post(
-        "https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search",
-        {
-          keyword: "tshirt",
-          page: 1,
-        }
-      )
-      .then((response) => {
-        setProductDetail(response.data.shopify[id].product_listing);
-      });
-  }
+  // function getData() {
+  //   axios
+  //     .post(
+  //       "https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search",
+  //       {
+  //         keyword: "tshirt",
+  //         page: 1,
+  //       }
+  //     )
+  //     .then((response) => {
+  //       setProductDetail(response.data.shopify[id].product_listing);
+  //     });
+  // }
 }

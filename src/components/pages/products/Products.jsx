@@ -3,20 +3,21 @@ import { Box, Text } from "@chakra-ui/react";
 import ProductItems from "./ProductItems";
 import { SimpleGrid } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import SideCard from "../../../layout/sideCard/SideCard";
 import axios from "axios";
 import { useEffect, useState, useRef, useContext } from "react";
 import Loading from "../../features/loading/Loading";
+import useDate from "../../../sevices/hooks/useData"
 
 
 function Products({ productHeader }) {
-  const [products, setProducts] = useState();
-  const [loading, setLoading] = useState(true);
+  const [products] = useDate();
+  console.log(products);
+  //const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    console.log(products);
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   console.log(products);
+  //   getData();
+  // }, []);
 
   return (
     <>
@@ -27,7 +28,7 @@ function Products({ productHeader }) {
           {productHeader}
         </Text>
 
-        {products == undefined ? (
+        {(products == undefined) ? (
           <Loading />
         ) : (
           <SimpleGrid columns={[1, 2, 4, 4, 4]} gap={6}>
@@ -49,21 +50,21 @@ function Products({ productHeader }) {
     </>
   );
 
-  function getData() {
-    axios
-      .post(
-        "https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search",
-        {
-          keyword: "tshirt",
-          page: 1,
-        }
-      )
-      .then((response) => {
-        console.log(response.data.shopify);
-        setProducts(response.data.shopify);
-        setLoading(false);
-      });
-  }
+  // function getData() {
+  //   axios
+  //     .post(
+  //       "https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search",
+  //       {
+  //         keyword: "tshirt",
+  //         page: 1,
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data.shopify);
+  //       setProducts(response.data.shopify);
+  //       setLoading(false);
+  //     });
+  // }
 }
 
 // default props
