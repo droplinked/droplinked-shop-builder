@@ -61,7 +61,7 @@ export default function Checkout () {
 
 
 function Item({product}){
-	const { increase , decrease, addProduct, cartItems ,total} = useCart();
+	const { increase , decrease, addProduct, cartItems , removeProduct} = useCart();
 	const [quen , setQuen] = useState(product.quantity);
 
 
@@ -71,9 +71,11 @@ function Item({product}){
 	}
 
 	const decreaseItem = ()=>{
-			if(quen>0){
-				decrease(product);
+			if(product.quantity>1){
+				decrease(product)
 				setQuen(pre => pre-1)
+			}else if(product.quantity == 1){
+				removeProduct(product)
 			}
 	}
 
@@ -88,7 +90,7 @@ function Item({product}){
 											<div className='col-4 counter-btn left' 
 											onClick={()=>{decreaseItem()}}
 											><p style={{marginBottom:"5px"}}>-</p></div>
-											<div className='col-4'><p>{quen}</p></div>
+											<div className='col-4'><p>{product.quantity}</p></div>
 											<div className='col-4 counter-btn right' 
 											onClick={()=>{increaseItem()}}
 											><p style={{marginBottom:"5px"}}>+</p></div>

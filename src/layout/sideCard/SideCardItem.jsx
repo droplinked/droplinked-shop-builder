@@ -48,7 +48,7 @@ function SideCardItem({ title, color, size, cost, image, product }) {
 					{/* size */}
 					<Box display={'flex'} justifyContent="center" alignItems={'center'}>
 						<Text padding={'2'}>Size:</Text>
-						{size}
+						{product && product.quantity}
 					</Box>
 					{/* cost */}
 					<Box
