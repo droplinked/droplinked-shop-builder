@@ -55,9 +55,9 @@ export default function MainWrapper({ children }) {
           >
             <HamburgerMenu>
               <SideCard>
-                <SideCardItem />
-                <SideCardItem />
-                <SideCardItem />
+              {cartItems.map((product) => {
+                  return <SideCardItem product={product} />;
+                })}
               </SideCard>
             </HamburgerMenu>
           </Box>
