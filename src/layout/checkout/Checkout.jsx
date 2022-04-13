@@ -33,17 +33,17 @@ export default function Checkout () {
 				{/* cost */}
 				<div className="checkout-footer col-12 col-md-4 col-sm-6">
 					<div className='d-flex flex-row-reverse' style={{width:"100%" }}>
-						<div className="total-cost"><p className='cost'>$159.99</p></div>
+						<div className="total-cost"><p className='cost'>$ {total}</p></div>
 						<div className="total-cost"><p className='name'>Total cost : </p></div>
 					</div>
 
 					<div className='d-flex flex-row-reverse' style={{width:"100%"}}>
-						<div className="total-cost"><p className='cost'>$15.98</p></div>
+						<div className="total-cost"><p className='cost'>$ 0</p></div>
 						<div className="total-cost"><p className='name'>Shipping : </p></div>
 					</div>
 
 					<div className='d-flex flex-row-reverse' style={{width:"100%"}}>
-						<div className="total-cost"><p className='cost' style={{color:"paleturquoise"}}>-$15.98</p></div>
+						<div className="total-cost"><p className='cost' style={{color:"paleturquoise"}}>-$ 0</p></div>
 						<div className="total-cost"><p className='name'>Discount : </p></div>
 					</div>
 				</div>
@@ -51,7 +51,7 @@ export default function Checkout () {
 				
 				<Link to="/address" className='checkout-button col-12 col-md-4 col-sm-6 d-flex' style={{textDecoration:"none"}}>
 					<div className="text col-8" style={{borderRight:"1px solid black"}}><p>CHECKOUT</p></div>
-					<div className="text col-4"><p>$170.98</p></div>
+					<div className="text col-4"><p>$ {total}</p></div>
 				</Link>
 
 			</div>

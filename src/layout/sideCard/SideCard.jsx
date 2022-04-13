@@ -7,8 +7,11 @@ import {
 	Link,
 	useParams,
   } from "react-router-dom";
+  import { useCart } from  "../../sevices/hooks/useCart"
 
 function SideCard({ children }) {
+	const {  total } = useCart();
+
 	return (
 		// side card component with title - cost - checkout and this component get children for showing product item
 		<Box
@@ -34,7 +37,7 @@ function SideCard({ children }) {
 					<Text paddingX={'5'} color="gray">
 						total cost
 					</Text>
-					<Text>$0</Text>
+					<Text>$ {total}</Text>
 				</Box>
 			</Box>
 
