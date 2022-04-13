@@ -29,7 +29,7 @@ function SideCardItem({ title, color, size, cost, image, product }) {
 			{/* content */}
 			<Box display={'flex'} flexDirection="column">
 				{/* header */}
-				<Text paddingX={2} fontWeight={'semibold'}>
+				<Text noOfLines={1} paddingX={2} fontWeight={'semibold'}>
 					{product && product.title}
 				</Text>
 
