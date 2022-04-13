@@ -112,11 +112,11 @@ export default function Main() {
 }
 
 function SeccessModal(props) {
-  useEffect(() => {
-    setTimeout(() => {
-      props.toggle();
-    }, 1500);
-  });
+	useEffect(() => {
+		setTimeout(() => {
+			props.toggle();
+		}, 1500);
+	});
 
   return (
     <div className="modal-main">

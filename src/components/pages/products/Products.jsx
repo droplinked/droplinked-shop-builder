@@ -1,65 +1,80 @@
-import React from 'react';
-import MainWrapper from '../../Structure/page wrapper/MainWrapper';
-import MainHeader from '../../features/header/MainHeader';
-import Footer from '../../features/footer/Footer';
-import { Box, Text } from '@chakra-ui/react';
-import ProductItems from './ProductItems';
-import { Grid, GridItem, SimpleGrid } from '@chakra-ui/react';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Box, Text } from "@chakra-ui/react";
+import ProductItems from "./ProductItems";
+import { SimpleGrid } from "@chakra-ui/react";
+import PropTypes from "prop-types";
+import axios from "axios";
+import { useEffect, useState, useRef, useContext } from "react";
+import Loading from "../../features/loading/Loading";
+import useDate from "../../../sevices/hooks/useData"
 
 
 function Products({ productHeader }) {
-	return (
-		<>
-	
-				{/* items */}
-				<Box color={'white'}>
-					{/* product title */}
-					<Text fontWeight={'semibold'} fontSize="3xl" pb="7">
-						{productHeader}
-					</Text>
+  const [products] = useDate();
+  console.log(products);
+  //const [loading, setLoading] = useState(true);
 
-					{/* grid section for make products like columns */}
-					<SimpleGrid columns={[1, 2, 4, 4, 4]} gap={6}>
-						{/* this is just for test, another day we wanna get data from server */}
-						<ProductItems />
+  // useEffect(() => {
+  //   console.log(products);
+  //   getData();
+  // }, []);
 
-						<ProductItems />
+  return (
+    <>
+      {/* items */}
+      <Box color={"white"}>
+        {/* product title */}
+        <Text fontWeight={"semibold"} fontSize="3xl" pb="7">
+          {productHeader}
+        </Text>
 
-						<ProductItems />
+        {(products == undefined) ? (
+          <Loading />
+        ) : (
+          <SimpleGrid columns={[1, 2, 4, 4, 4]} gap={6}>
+            {/* this is just for test, another day we wanna get data from server */}
+            {products.map((item, index) => {
+              return (
+                <ProductItems
+                  imageURL={item.product_listing.images[0].src}
+                  brandName={item.product_listing.title}
+                  cost={item.product_listing.variants[0].price}
+                  id={index}
+                />
+              );
+            })}
+          </SimpleGrid>
+        )}
+        {/* grid section for make products like columns */}
+      </Box>
+    </>
+  );
 
-						<ProductItems />
-
-						<ProductItems />
-
-						<ProductItems />
-
-						<ProductItems />
-
-						<ProductItems />
-
-						<ProductItems />
-
-						<ProductItems />
-
-						<ProductItems />
-
-						<ProductItems />
-					</SimpleGrid>
-				</Box>
-		
-		</>
-	);
+  // function getData() {
+  //   axios
+  //     .post(
+  //       "https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search",
+  //       {
+  //         keyword: "tshirt",
+  //         page: 1,
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data.shopify);
+  //       setProducts(response.data.shopify);
+  //       setLoading(false);
+  //     });
+  // }
 }
 
 // default props
 Products.defaultProps = {
-	productHeader: 'Products',
+  productHeader: "Products",
 };
 
 // proptypes
 Products.propTypes = {
-	productHeader: PropTypes.string,
+  productHeader: PropTypes.string,
 };
 
 export default Products;

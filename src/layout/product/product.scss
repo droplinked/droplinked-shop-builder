@@ -18,20 +18,7 @@
     .top-side {
       //width: 100%;
 
-      .image-side {
-        width: 360px;
-        height: 420px;
-        border: 1px solid white;
-        border-radius: 16px;
-        background: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        img {
-          border-radius: 16px;
-          background: none;
-        }
-      }
+    
       .option-side {
         height: 420px;
         display: flex;
@@ -103,6 +90,7 @@
           justify-content: space-between;
           align-items: center;
           .counter-button {
+            cursor: pointer;
             width: 32px;
             height: 100%;
             text-align: center;
@@ -140,29 +128,7 @@
       }
     }
 
-    .image-groupe {
-      height: 60px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 15px 0px;
-
-      .slide-button {
-        width: 32px;
-        height: 32px;
-        border: 1px solid white;
-        border-radius: 25px;
-        color: white;
-        background: none;
-      }
-
-      .slide-img {
-        width: 60px;
-        height: 60px;
-        border-radius: 8px;
-      }
-    }
+    
 
     .bottom-side {
       width: 100%;

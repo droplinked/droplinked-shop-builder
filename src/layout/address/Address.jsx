@@ -211,7 +211,7 @@ function NewAddress(props) {
           </div>
           <div className="d-flex align-items end justify-content-between">
             <Link
-              to="/payment"
+              to="/shipping"
               className="btn btn-light btn-sm rounded-pill px-4 col-5 col-md-4 "
               type="submit"
               style={{ fontSize: "15px", fontWeight: "600", color: "black" }}

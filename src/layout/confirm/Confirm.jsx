@@ -15,7 +15,7 @@ export default function Confirm(){
         <>
             <Modal show={Show} />
             <div className="p-3 p-lg-4">
-                <div className="row">
+                <div className="d-flex justify-content-center">
                     <div className="col-12 col-lg-7">
                         <div className="bg-white rounded-2 shadow-sm p-3 p-lg-4">
                             <div>
@@ -65,7 +65,7 @@ export default function Confirm(){
                         </div>
                     </div>
 
-                    <div className="col-12 col-lg-5 mt-4 mt-lg-0"
+                    {/* <div className="col-12 col-lg-5 mt-4 mt-lg-0"
                     style={{border:"1px solid black"}}>
                         <div className="basket-item-title"><p>basket item</p></div>
                         <div className="items container">
@@ -74,7 +74,7 @@ export default function Confirm(){
                             })}
                         </div>
 
-                    </div>
+                    </div> */}
 
                 </div>               
             </div> 
