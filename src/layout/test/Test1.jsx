@@ -20,7 +20,7 @@ export default function Test1(){
         <ProfileTopSection />
         <MainWrapper>
             <div style={{padding:"20px"}}>
-                <Collections />
+                <Shipping />
             </div>
         </MainWrapper>
         <Footer/>

@@ -17,6 +17,7 @@ import MainWrapper from "./components/Structure/page wrapper/MainWrapper";
 import Collectoins from "./components/pages/nft/Collections";
 import Product from "./layout/product/Product";
 import Creadit from "./layout/payment/Creadit";
+import Shipping from "./layout/shiping/Shipping"
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                   <Route path="/product/:id" element={<Product />} />
                   <Route path="/shopping" element={<Checkout />} />
                   <Route path="/address" element={<Address />} />
+                  <Route path="/shipping" element={<Shipping />} />
                   <Route path="/payment" element={<Creadit />} />
                   <Route path="/confirm" element={<Confirm />} />
                   <Route path="/test123" element={<Test1 />} />
