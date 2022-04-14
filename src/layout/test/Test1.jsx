@@ -9,21 +9,19 @@ import Creadit from "../payment/Creadit"
 import Checkout from "../checkout/Checkout"
 import NewAddress from "../address/Address"
 import Shipping from "../shiping/Shipping"
-import Products from "../../components/pages/products/Products"
+import NewProduct from "../newProduct/NewProduct"
 
 export default function Test1(){
 
 
     return(
         <div style={{backgroundColor:"#222"}}>
-        <MainHeader/>
-        <ProfileTopSection />
+
         <MainWrapper>
-            <div style={{padding:"20px"}}>
-                <Shipping />
-            </div>
+            {/* <div style={{padding:"20px"}}> */}
+                <NewProduct />
+            {/* </div> */}
         </MainWrapper>
-        <Footer/>
         </div>
     )
 }
