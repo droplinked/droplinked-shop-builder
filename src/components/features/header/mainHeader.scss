@@ -1,73 +1,69 @@
-*{
+* {
   box-sizing: border-box;
+  font-family: inherit;
 }
 
-.header {
+.header-wrapper {
+  width: 100vw;
+  height: 68px;
+  background-color: none;
+  border-bottom: 5px solid #000000;
+}
 
+.header-body {
+  max-width: 1250px;
   width: 100%;
-  height: 70px;
+  height: 100%;
+  padding: 8px 20px;
+}
+
+.header-brand {
+  width: 250px;
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid white;
-
-  .header-wrapper {
-    padding: 0px 20px;
-    max-width: 1200px;
-    width: 100%;
-    height: 80%;
-
-    a {
-      text-decoration: none;
-    }
-
-    .wallet {
-      display: flex;
-      justify-content: end;
-      align-items: center;
-
-      img {
-        margin: auto 0px;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-      }
-    }
+  p {
+    padding-bottom: 8px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 60px;
+    vertical-align: text-top;
   }
 }
 
-.brand-logo {
-  display: flex;
-  justify-content: start;
+.header-nav {
+  width: 260px;
+  height: 100%;
 
-  h1 {
-    align-items: center;
-    margin: auto 0px;
-    color: white;
-    font-weight: bold;
-    font-family: "avenir";
+  .wallet-wrapper {
+    background-color: #353536;
+    border-radius: 8px;
+    box-shadow: 0 0 1px #ccc;
+    cursor: pointer;
+    img {
+      width: 21px;
+      height: 21px;
+      margin-right: 12px;
+    }
+    p {
+      color: #fff;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+      text-align: center;
+    }
   }
-}
 
-.wallet-icon-notfill {
-  color: white;
-}
 
-.wallet-icon-fill {
-  color: #5e56f5;
-  filter: grayscale(100%) brightness(30%) sepia(60%) hue-rotate(-110deg)
-    saturate(500%) contrast(10);
-}
-
-.brandName{
-    text-decoration: none;
-    color:white;
-    font-weight: 700;
-    font-family: "avenir";
-    font-size: 30px;
-}
-
-.brandName:hover{
-    text-decoration: none;
-    color: white;
+  .login-wrapper {
+    cursor: pointer;
+    p {
+      color: #fff;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
 }
