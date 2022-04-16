@@ -50,7 +50,7 @@ export default function Main() {
 
             <div className="d-flex justify-content-between p-1  col-12  align-self-center   mt-3">
               <ui className="description list-unstyled list-inline">
-               <li className="list-inline-item"> Distribute collections with your community </li>
+               <li className="list-inline-item"> Distribute collections with your community </li><br />
                <li className="list-inline-item"> to earn more cash &amp; crypto together.</li>
               </ui>
             </div>
