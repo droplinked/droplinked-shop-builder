@@ -41,99 +41,162 @@ export default function NewProduct() {
         {/* title and describe */}
 
         {/* option */}
-        <div className="input-wrapper mt-4"
-        >
+        <div className="input-wrapper mt-4">
           <label style={{ borderBottom: "1px solid", width: "100%" }}>
             SKU
           </label>
 
+          {optionCounter.length > 0 &&
+            optionCounter.map((op) => {
+              return (
+                <div className="option-wrapper">
+                  <div
+                    className="d-flex flex-column"
+                    style={{
+                      width: "100%",
+                      padding: "15px 0px",
+                    }}
+                  >
+                    <div className="option d-flex justify-content-between ">
+                      <select className="col-4 form-inp">
+                        <option value="Color">Color</option>
+                        <option value="Size">Size</option>
+                      </select>
+                      <input
+                        type="text"
+                        className="col-4 form-inp"
+                        placeholder="value"
+                        onChange={(e) => {
+                          setOption1(e.target.value);
+                        }}
+                      />
+                    </div>
 
-        {(optionCounter.length>0)&&
-        optionCounter.map((op)=>{
-          return (
-            <div style={{borderBottom:"1px solid white"}}>
-          <div
-            className="d-flex flex-column"
-            style={{
-              width: "100%",
-              padding: "15px 0px",
-            }}
-          >
-            <div className="option d-flex justify-content-between ">
-              <select className="col-5 option-select">
-                <option value="Color">Color</option>
-                <option value="Size">Size</option>
-              </select>
-              <input type="text" className="col-5 form-inp" placeholder="value" onChange={(e)=>{setOption1(e.target.value)}}/>
-            </div>
+                    {option1 && (
+                      <div className="option d-flex justify-content-between mt-3 ">
+                        <select className="col-4 option-select">
+                          <option value="Color">Color</option>
+                          <option value="Size">Size</option>
+                        </select>
+                        <input
+                          type="text"
+                          className="col-4 form-inp"
+                          placeholder="value"
+                        />
+                      </div>
+                    )}
+                  </div>
 
-            {option1 && (
-              <div className="option d-flex justify-content-between mt-3 ">
-                <select className="col-5 option-select">
-                  <option value="Color">Color</option>
-                  <option value="Size">Size</option>
-                </select>
-                <input type="text" className="col-5 form-inp" placeholder="value" />
-              </div>
-            )}
-          </div>
+                  <div>
+                    <label style={{ width: "100%", color: "white" }}>
+                      media
+                    </label>
+                    <input
+                      type="file"
+                      className="input-file-input"
+                      onChange={addImage}
+                      ref={inputFile}
+                    />
+                    {img.length <= 0 ? (
+                      <div
+                        className="first-media-wrap d-flex justify-content-center"
+                        onClick={chooseFile}
+                      >
+                        <div className="file-input ">
+                          <p>add image</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="media-wrap d-flex justify-content-start flex-wrap">
+                        {img.map((item) => {
+                          return (
+                            <div className="col-6 col-md-4 d-flex justify-content-center">
+                              <img
+                                src={item}
+                                className="media-img mt-2"
+                                alt=""
+                              />
+                            </div>
+                          );
+                        })}
+                        <div className="col-6 col-md-4 d-flex justify-content-center">
+                          <div
+                            className="media-img mt-2 d-flex justify-content-center"
+                            onClick={chooseFile}
+                          >
+                            <p>add image</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
 
-          <div>
-            <label style={{ width: "100%", color: "white" }}>media</label>
-            <input type="file" className="input-file-input" onChange={addImage} ref={inputFile} />
-            {img.length <= 0 ? (
-              <div className="first-media-wrap d-flex justify-content-center">
-                <div className="file-input" onClick={chooseFile}>
-                  <p>add image</p>
-                  
+                  <div
+                    className="d-flex justify-content-between mt-3"
+                    style={{ width: "100%" }}
+                  >
+                    <label className="col-4" style={{ color: "white" }}>
+                      price
+                    </label>
+                    <input
+                      type="text"
+                      className="col-4 form-inp"
+                      placeholder="$ 2.000"
+                      onChange={(e) => {
+                        setOption1(e.target.value);
+                      }}
+                    />
+                  </div>
+
+                  <div
+                    className="d-flex justify-content-between mt-3"
+                    style={{ width: "100%" }}
+                  >
+                    <label className="col-5" style={{ color: "white" }}>
+                      quantity
+                    </label>
+                    <input
+                      type="text"
+                      className="col-4 form-inp"
+                      placeholder="1"
+                      onChange={(e) => {
+                        setOption1(e.target.value);
+                      }}
+                    />
+                  </div>
+
+                  <div
+                    className="d-flex justify-content-between mt-3 mb-3"
+                    style={{ width: "100%" }}
+                  >
+                    <label className="col-5" style={{ color: "white" }}>
+                      externalID
+                    </label>
+                    <input
+                      type="text"
+                      className="col-4 form-inp"
+                      placeholder="1234"
+                      onChange={(e) => {
+                        setOption1(e.target.value);
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="media-wrap d-flex justify-content-start flex-wrap">
-                {img.map((item)=>{
-                  return (
-                  <div className="col-6 col-md-4 d-flex justify-content-center">
-                  <img src={item} className="media-img mt-2" alt="" />
-                  </div>)
-                })}
-                <div className="col-6 col-md-4 d-flex justify-content-center">
-                <div className="media-img mt-2 d-flex justify-content-center" onClick={chooseFile}><p>add image</p></div>
-                </div>
-              </div>
-            )}
+              );
+            })}
+
+          <div className="add-more-wrap d-flex justify-content-center mt-3">
+            <button
+              className="form-inp"
+              onClick={() => {
+                let arr = Array.from(optionCounter);
+                arr.push({});
+                setOptionCounter(arr);
+              }}
+            >
+              add more
+            </button>
           </div>
-
-          <div className="d-flex justify-content-between mt-3" style={{width:"100%"}}>
-          <label className="col-5" style={{  color: "white" }}>price</label>
-          <input type="text" className="col-5 form-inp" placeholder="$ 2.000" onChange={(e)=>{setOption1(e.target.value)}}/>
-          </div>
-
-          <div className="d-flex justify-content-between mt-3" style={{width:"100%"}}>
-          <label className="col-5" style={{  color: "white" }}>quantity</label>
-          <input type="text" className="col-5 form-inp" placeholder="1" onChange={(e)=>{setOption1(e.target.value)}}/>
-          </div>
-
-          <div className="d-flex justify-content-between mt-3 mb-3" style={{width:"100%"}}>
-          <label className="col-5" style={{  color: "white" }}>externalID</label>
-          <input type="text" className="col-5 form-inp" placeholder="1234" onChange={(e)=>{setOption1(e.target.value)}}/>
-          </div>
-        </div>
-          )
-        })
-         
-        }
-
-        <div className="add-more-wrap d-flex justify-content-center mt-3">
-          <button
-          onClick={()=>{
-            let arr = Array.from(optionCounter);
-            arr.push({});
-            setOptionCounter(arr);
-          }}
-          >add more</button>
-        </div>
-
-
         </div>
         {/* option */}
       </div>
@@ -145,6 +208,7 @@ export default function NewProduct() {
     let image = URL.createObjectURL(e.target.files[0]);
     arr.push(image);
     setImg(arr);
+    console.log(arr);
   }
 }
 
