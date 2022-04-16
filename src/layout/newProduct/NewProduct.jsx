@@ -1,8 +1,12 @@
 import "./newProduct.scss";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function NewProduct() {
   const inputFile = useRef(null);
+  const [optionCounter, setOptionCounter] = useState([]);
+  const [option1, setOption1] = useState("");
+  const [option2, setOption2] = useState("");
+  const [img, setImg] = useState([]);
 
   const chooseFile = () => {
     inputFile.current.click();
@@ -36,8 +40,119 @@ export default function NewProduct() {
         </div>
         {/* title and describe */}
 
-        {/* media */}
-        <div className="input-wrapper mt-4">
+        {/* option */}
+        <div className="input-wrapper mt-4"
+        >
+          <label style={{ borderBottom: "1px solid", width: "100%" }}>
+            SKU
+          </label>
+
+
+        {(optionCounter.length>0)&&
+        optionCounter.map((op)=>{
+          return (
+            <div style={{borderBottom:"1px solid white"}}>
+          <div
+            className="d-flex flex-column"
+            style={{
+              width: "100%",
+              padding: "15px 0px",
+            }}
+          >
+            <div className="option d-flex justify-content-between ">
+              <select className="col-5 option-select">
+                <option value="Color">Color</option>
+                <option value="Size">Size</option>
+              </select>
+              <input type="text" className="col-5 form-inp" placeholder="value" onChange={(e)=>{setOption1(e.target.value)}}/>
+            </div>
+
+            {option1 && (
+              <div className="option d-flex justify-content-between mt-3 ">
+                <select className="col-5 option-select">
+                  <option value="Color">Color</option>
+                  <option value="Size">Size</option>
+                </select>
+                <input type="text" className="col-5 form-inp" placeholder="value" />
+              </div>
+            )}
+          </div>
+
+          <div>
+            <label style={{ width: "100%", color: "white" }}>media</label>
+            <input type="file" className="input-file-input" onChange={addImage} ref={inputFile} />
+            {img.length <= 0 ? (
+              <div className="first-media-wrap d-flex justify-content-center">
+                <div className="file-input" onClick={chooseFile}>
+                  <p>add image</p>
+                  
+                </div>
+              </div>
+            ) : (
+              <div className="media-wrap d-flex justify-content-start flex-wrap">
+                {img.map((item)=>{
+                  return (
+                  <div className="col-6 col-md-4 d-flex justify-content-center">
+                  <img src={item} className="media-img mt-2" alt="" />
+                  </div>)
+                })}
+                <div className="col-6 col-md-4 d-flex justify-content-center">
+                <div className="media-img mt-2 d-flex justify-content-center" onClick={chooseFile}><p>add image</p></div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="d-flex justify-content-between mt-3" style={{width:"100%"}}>
+          <label className="col-5" style={{  color: "white" }}>price</label>
+          <input type="text" className="col-5 form-inp" placeholder="$ 2.000" onChange={(e)=>{setOption1(e.target.value)}}/>
+          </div>
+
+          <div className="d-flex justify-content-between mt-3" style={{width:"100%"}}>
+          <label className="col-5" style={{  color: "white" }}>quantity</label>
+          <input type="text" className="col-5 form-inp" placeholder="1" onChange={(e)=>{setOption1(e.target.value)}}/>
+          </div>
+
+          <div className="d-flex justify-content-between mt-3 mb-3" style={{width:"100%"}}>
+          <label className="col-5" style={{  color: "white" }}>externalID</label>
+          <input type="text" className="col-5 form-inp" placeholder="1234" onChange={(e)=>{setOption1(e.target.value)}}/>
+          </div>
+        </div>
+          )
+        })
+         
+        }
+
+        <div className="add-more-wrap d-flex justify-content-center mt-3">
+          <button
+          onClick={()=>{
+            let arr = Array.from(optionCounter);
+            arr.push({});
+            setOptionCounter(arr);
+          }}
+          >add more</button>
+        </div>
+
+
+        </div>
+        {/* option */}
+      </div>
+    </>
+  );
+
+  function addImage(e) {
+    let arr = Array.from(img);
+    let image = URL.createObjectURL(e.target.files[0]);
+    arr.push(image);
+    setImg(arr);
+  }
+}
+
+{
+  /* media */
+}
+{
+  /* <div className="input-wrapper mt-4">
           <div class="mb-3">
             <label for="formFile" class="form-label">
               Media
@@ -77,11 +192,17 @@ export default function NewProduct() {
               </div>
             </div>
           </div>
-        </div>
-        {/* media */}
+        </div> */
+}
+{
+  /* media */
+}
 
-        {/* option */}
-        <div className="input-wrapper mt-4">
+{
+  /* option */
+}
+{
+  /* <div className="input-wrapper mt-4">
           <label for="formFile" className="form-label">
             Option
           </label>
@@ -97,7 +218,7 @@ export default function NewProduct() {
               This product has options, like size or color
             </label>
           </div>
-          {/* add optin */}
+        
           <div className="option-wrapper ">
             <div className="mb-3">
               <label for="exampleFormControlInput1" className="form-label">
@@ -124,7 +245,7 @@ export default function NewProduct() {
               Done
             </button>
           </div>
-          {/* add optin */}
+          
           <div className="option-wrapper">
             <div
               className="optin-done-wrapper d-flex justify-content-between"
@@ -151,10 +272,16 @@ export default function NewProduct() {
               </div>
             </div>
           </div>
-        </div>
-        {/* option */}
-        {/* price */}
-        <div className="input-wrapper mt-4">
+        </div> */
+}
+{
+  /* option */
+}
+{
+  /* price */
+}
+{
+  /* <div className="input-wrapper mt-4">
           <div className="form-group">
             <label for="exampleInputEmail1">Price</label>
             <input
@@ -164,12 +291,18 @@ export default function NewProduct() {
               aria-describedby="emailHelp"
               placeholder="$ 200"
             />
-            {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
+             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> 
           </div>
-        </div>
-        {/* price */}
-        {/* inventory */}
-        <div className="input-wrapper mt-4">
+        </div> */
+}
+{
+  /* price */
+}
+{
+  /* inventory */
+}
+{
+  /* <div className="input-wrapper mt-4">
           <label for="exampleInputEmail1">Inventory</label>
 
           <div
@@ -185,7 +318,7 @@ export default function NewProduct() {
                 aria-describedby="emailHelp"
                 placeholder="$ 200"
               />
-              {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
+               <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> 
             </div>
 
             <div className="form-group col-12 col-md-6 mb-2">
@@ -197,7 +330,7 @@ export default function NewProduct() {
                 aria-describedby="emailHelp"
                 placeholder="$ 200"
               />
-              {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
+             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> 
             </div>
           </div>
 
@@ -235,9 +368,8 @@ export default function NewProduct() {
           </div>
           
 
-        </div>
-        {/* inventory */}
-      </div>
-    </>
-  );
+        </div> */
+}
+{
+  /* inventory */
 }

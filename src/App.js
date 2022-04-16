@@ -19,6 +19,7 @@ import Product from "./layout/product/Product";
 import Creadit from "./layout/payment/Creadit";
 import Shipping from "./layout/shiping/Shipping"
 import Header from "./components/features/old header/Header"
+import NewProduct from "./layout/newProduct/NewProduct"
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
                   <Route path="/shipping" element={<Shipping />} />
                   <Route path="/payment" element={<Creadit />} />
                   <Route path="/confirm" element={<Confirm />} />
-                  <Route path="/test123" element={<Test1 />} />
+                  <Route path="/test123" element={<NewProduct />} />
                   <Route path="/*" element={<NotFound />} />
                 </Routes>
               </MainWrapper>

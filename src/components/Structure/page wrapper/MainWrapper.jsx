@@ -29,7 +29,7 @@ export default function MainWrapper({ children }) {
       {/* main wrapper for maining everything */}
       <div className="wrapper">
         <div className="main-side" style={{ width: "100%" }}>
-          <div className="child-wrapper">{children}</div>
+          <div className="child-wrapper d-flex justify-content-center">{children}</div>
         </div>
       </div>
 
