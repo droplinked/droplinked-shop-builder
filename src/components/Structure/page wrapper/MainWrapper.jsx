@@ -25,7 +25,7 @@ export default function MainWrapper({ children }) {
   }, [location]);
 
   return (
-    <Box display={"flex"}>
+    <>
       {/* main wrapper for maining everything */}
       <div className="wrapper">
         <div className="main-side" style={{ width: "100%" }}>
@@ -33,9 +33,9 @@ export default function MainWrapper({ children }) {
         </div>
       </div>
 
-      {showCard && (
+      {/* {showCard && (
         <>
-          {/* side card */}
+          
           <Box display={["none", "none", "none", "none", "block"]}>
             {cartItems.length > 0 && (
               <SideCard>
@@ -45,7 +45,7 @@ export default function MainWrapper({ children }) {
               </SideCard>
             )}
           </Box>
-          {/* hambuerger button */}
+          
           <Box
             display={["block", "block", "block", "block", "none"]}
             position="fixed"
@@ -62,8 +62,9 @@ export default function MainWrapper({ children }) {
             </HamburgerMenu>
           </Box>
         </>
-      )}
-    </Box>
+      )} */}
+      </>
+    
   );
 }
 

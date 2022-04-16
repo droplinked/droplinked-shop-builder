@@ -28,12 +28,13 @@ $textColor : white;
 }
 
 .description{
-    font-size:30px;
-    font-weight: Medium;
+    font-size:24px;
+    font-weight: 400;
     margin-top: 10px ;
     margin-bottom: 80px;
     color:white;
     font-family:"avenir";
+    line-height: 33px;
 
 }
 
@@ -101,8 +102,6 @@ $textColor : white;
     min-height:100%;
     background-color:bgcolor; 
     padding-top: 0px;
-
-   
 }
 
 .form-button{
@@ -247,12 +246,26 @@ $textColor : white;
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
 
     .left-side{
-        height: auto;
+        height: 100%;
     }
     .right-side{
-        height: auto;
+        height: 100%;
+    }
+    .description{
+        font-size:18px;
+    }
+    .main{
+        flex-direction: column;
     }
 }
+
+@media only screen and (max-width: 1000px) {
+
+    .description{
+        font-size:20px;
+    }
+}
+

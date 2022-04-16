@@ -7,7 +7,7 @@ export default function MainHeader() {
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
 
   return (
-    <div className="header-wrapper d-flex justify-content-center">
+    <div className="header-wrapp d-flex justify-content-center">
       <div className="header-body d-flex justify-content-between">
 
         <Link to="/">
