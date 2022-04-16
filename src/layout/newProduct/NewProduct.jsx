@@ -42,8 +42,8 @@ export default function NewProduct() {
 
         {/* option */}
         <div className="input-wrapper mt-4">
-          <label style={{ borderBottom: "1px solid", width: "100%" }}>
-            SKU
+          <label style={{ width: "100%" , fontWeight:"bold" , fontSize:"24px"}}>
+            SKU Inventory
           </label>
 
           {optionCounter.length > 0 &&
@@ -136,15 +136,26 @@ export default function NewProduct() {
                     style={{ width: "100%" }}
                   >
                     <label className="col-4" style={{ color: "white" }}>
+                      SKU
+                    </label>
+                    <input
+                      type="text"
+                      className="col-4 form-inp"
+                      placeholder="13546"
+                    />
+                  </div>
+
+                  <div
+                    className="d-flex justify-content-between mt-3"
+                    style={{ width: "100%" }}
+                  >
+                    <label className="col-4" style={{ color: "white" }}>
                       price
                     </label>
                     <input
                       type="text"
                       className="col-4 form-inp"
                       placeholder="$ 2.000"
-                      onChange={(e) => {
-                        setOption1(e.target.value);
-                      }}
                     />
                   </div>
 
