@@ -11,13 +11,14 @@ import Test from "./layout/crashpunk/Test.jsx";
 import Test1 from "./layout/test/Test1";
 import { ChakraProvider } from "@chakra-ui/react";
 import Products from "./components/pages/products/Products";
-import MainHeader from "./components/features/header/MainHeader";
+//import MainHeader from "./components/features/header/MainHeader";
 import Footer from "./components/features/footer/Footer";
 import MainWrapper from "./components/Structure/page wrapper/MainWrapper";
 import Collectoins from "./components/pages/nft/Collections";
 import Product from "./layout/product/Product";
 import Creadit from "./layout/payment/Creadit";
 import Shipping from "./layout/shiping/Shipping"
+import Header from "./components/features/old header/Header"
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <BrowserRouter>
           <WalletProvider>
             <div className="bg-main-dark">
-              <MainHeader />
+              <Header />
               <MainWrapper>
                 <Routes>
                   <Route exact path="/" element={<Main />} />

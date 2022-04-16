@@ -4,7 +4,6 @@ import modalIcon from "../../assest/modal/checked.png";
 import { UseWalletInfo } from "../../sevices/context/context";
 import mainImg from "../../assest/creator-box.png";
 
-
 export default function Main() {
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
   const [modalState, setModalState] = useState(false);
@@ -37,8 +36,11 @@ export default function Main() {
 
   return (
     <>
-      <div className="main d-flex row ">
-        <div className="col-12 col-md-7 left-side align-self-center " style={{padding:"0px"}}>
+      <div className="main d-flex ">
+        <div
+          className="col-12 col-md-7 left-side align-self-center "
+          style={{ padding: "0px" }}
+        >
           <div className="d-flex flex-column ">
             <div className="d-flex justify-content-between p-1  col-12  align-self-center ">
               <div className="title d-none d-sm-inline">
@@ -47,10 +49,10 @@ export default function Main() {
             </div>
 
             <div className="d-flex justify-content-between p-1  col-12  align-self-center   mt-3">
-              <div className="description">
-                Distribute collections with your community <br /> to earn more
-                cash &amp; crypto together.
-              </div>
+              <ui className="description list-unstyled list-inline">
+               <li className="list-inline-item"> Distribute collections with your community </li>
+               <li className="list-inline-item"> to earn more cash &amp; crypto together.</li>
+              </ui>
             </div>
 
             <div className="d-flex justify-content-start   col-12 col-md-12 align-self-center  input-cover mt-4">
@@ -112,11 +114,11 @@ export default function Main() {
 }
 
 function SeccessModal(props) {
-	useEffect(() => {
-		setTimeout(() => {
-			props.toggle();
-		}, 1500);
-	});
+  useEffect(() => {
+    setTimeout(() => {
+      props.toggle();
+    }, 1500);
+  });
 
   return (
     <div className="modal-main">
