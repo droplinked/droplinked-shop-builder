@@ -80,18 +80,30 @@
 
 @media only screen and (max-width: 1000px) {
   .discover {
-    font-size: 62px;
+    font-size: 52px;
   }
   .earn {
-    font-size: 21px;
+    font-size: 20px;
   }
   .signup-wrapper {
     width: 80%;
     height: 68px;
   }
+  .item-span {
+    font-size: 18px;
+  }
+  .item-input {
+    font-size: 18px;
+  }
+  .item-button {
+    width: 20%;
+    p {
+      font-size: 12px;
+    }
+  }
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   .discover {
     font-size: 52px;
   }
@@ -101,5 +113,30 @@
   .signup-wrapper {
     width: 80%;
     height: 68px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .discover {
+    font-size: 48px;
+  }
+  .earn {
+    font-size: 20px;
+  }
+  .signup-wrapper {
+    width: 80%;
+    height: 68px;
+  }
+  .item-span {
+    font-size: 18px;
+  }
+  .item-input {
+    font-size: 18px;
+  }
+  .item-button {
+    width: 20%;
+    p {
+      font-size: 12px;
+    }
   }
 }

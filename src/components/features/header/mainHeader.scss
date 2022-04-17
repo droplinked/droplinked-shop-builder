@@ -4,7 +4,6 @@
 }
 
 .header-wrapp {
- 
   width: 100vw;
   height: 68px;
   background-color: none;
@@ -68,6 +67,10 @@
       line-height: 28px;
     }
   }
+}
+
+.sing-wallet {
+  filter: grayscale(100%) brightness(70%) sepia(50%) hue-rotate(-100deg) saturate(500%) contrast(1);
 }
 
 @media only screen and (max-width: 768px) {
