@@ -29,7 +29,7 @@ function App() {
       <CartContextProvider>
         <BrowserRouter>
           <WalletProvider>
-            <div className="bg-main-dark">
+            
               {/* <MainHeader /> */}
               {/* <MainWrapper> */}
                 <Routes>
@@ -48,7 +48,7 @@ function App() {
                 </Routes>
               {/* </MainWrapper>
               <Footer /> */}
-            </div>
+            
           </WalletProvider>
         </BrowserRouter>
       </CartContextProvider>

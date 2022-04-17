@@ -2,10 +2,11 @@
   box-sizing: border-box;
 }
 .footer-wrap {
-  width: 100vw;
+  min-width: 100vw;
   height: auto;
   padding: 10px 80px;
   border-radius: 0px;
+  background-color: #222222;
 }
 .footer-body {
   width: 100%;
