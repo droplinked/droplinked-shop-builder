@@ -5,10 +5,12 @@ import { useRef, useState } from "react";
 export default function NewProduct() {
   const inputFile = useRef(null);
   const [optionCounter, setOptionCounter] = useState([{}]);
+  const [select1, setSelect1] = useState("");
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
   const [img, setImg] = useState([]);
   const [addOption, setAddOption] = useState(true);
+  let optionValues = ["Color", "Size"];
 
   const chooseFile = () => {
     inputFile.current.click();
@@ -43,7 +45,7 @@ export default function NewProduct() {
         {/* title and describe */}
 
         {/* option */}
-        <div className="input-wrapper mt-4">
+        <div className="input-wrapper" style={{ marginTop: "60px" }}>
           <label
             style={{ width: "100%", fontWeight: "bold", fontSize: "24px" }}
           >
@@ -53,6 +55,8 @@ export default function NewProduct() {
           {optionCounter.map((op) => {
             return (
               <div className="option-wrapper">
+
+                {/* select option */}
                 <div
                   className="d-flex flex-column"
                   style={{
@@ -60,11 +64,19 @@ export default function NewProduct() {
                     padding: "15px 0px",
                   }}
                 >
+
+                  
                   <div className="option d-flex justify-content-between ">
                     <div className="col-5 col-md-4 form-inp">
-                      <select>
-                        <option value="Color">Color</option>
-                        <option value="Size">Size</option>
+                      <select
+                        value={select1}
+                        onChange={(e) => {
+                          setSelect1(e.target.value);
+                        }}
+                      >
+                        {optionValues.map((val) => {
+                          return <option value={val}>{val}</option>;
+                        })}
                       </select>
                     </div>
                     <input
@@ -92,8 +104,10 @@ export default function NewProduct() {
                     <div className="option d-flex justify-content-between mt-3 ">
                       <div className="col-5 col-md-4 form-inp">
                         <select>
-                          <option value="Color">Color</option>
-                          <option value="Size">Size</option>
+                          {optionValues.map((val) => {
+                            if (val != select1)
+                              return <option value={val}>{val}</option>;
+                          })}
                         </select>
                       </div>
                       <input
@@ -104,9 +118,17 @@ export default function NewProduct() {
                     </div>
                   )}
                 </div>
+                {/* select option */}
 
-                <div>
-                  <label style={{ width: "100%", color: "white" }}>media</label>
+
+                {/* media */}
+                <div style={{ marginBottom: "40px" }}>
+                  <label
+                    className="mb-2"
+                    style={{ width: "100%", color: "white" }}
+                  >
+                    media
+                  </label>
                   <input
                     type="file"
                     className="input-file-input"
@@ -115,11 +137,16 @@ export default function NewProduct() {
                   />
                   {img.length <= 0 ? (
                     <div
-                      className="first-media-wrap d-flex justify-content-center"
-                      onClick={chooseFile}
+                      className="d-flex justify-content-center "
+                      style={{ padding: "15px 0px" }}
                     >
-                      <div className="file-input ">
-                        <p>add image</p>
+                      <div
+                        className="first-media-wrap d-flex justify-content-center mt-2"
+                        onClick={chooseFile}
+                      >
+                        <div className="file-input">
+                          <p>add image</p>
+                        </div>
                       </div>
                     </div>
                   ) : (
@@ -133,51 +160,41 @@ export default function NewProduct() {
                       })}
                       <div className="col-6 col-md-4 d-flex justify-content-center">
                         <div
-                          className="media-img mt-2 d-flex justify-content-center"
+                          className="first-media-wrap d-flex justify-content-center mt-2"
                           onClick={chooseFile}
                         >
-                          <p>add image</p>
+                          <div className="file-input ">
+                            <p>add image</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   )}
                 </div>
 
-                <div
-                  className="d-flex justify-content-between mt-3"
-                  style={{ width: "100%" }}
-                >
-                  <label className="col-4" style={{ color: "white" }}>
-                    SKU
-                  </label>
-                  <input
-                    type="text"
-                    className="col-6 col-md-4 form-inp"
-                    placeholder="13546"
-                  />
-                </div>
+                {/* media */}
+
+                      {/* price  */}
 
                 <div
                   className="d-flex justify-content-between mt-3"
                   style={{ width: "100%" }}
                 >
-                  <label className="col-4" style={{ color: "white" }}>
-                    price
-                  </label>
+                  <label className="col-5 lable-style">price</label>
                   <input
                     type="text"
                     className="col-6 col-md-4 form-inp"
                     placeholder="$ 2.000"
                   />
                 </div>
+                {/* price  */}
 
+                {/* quantity */}
                 <div
                   className="d-flex justify-content-between mt-3"
                   style={{ width: "100%" }}
                 >
-                  <label className="col-5" style={{ color: "white" }}>
-                    quantity
-                  </label>
+                  <label className="col-5 lable-style">quantity</label>
                   <input
                     type="text"
                     className="col-6 col-md-4 form-inp"
@@ -187,14 +204,14 @@ export default function NewProduct() {
                     }}
                   />
                 </div>
+                {/* quantity */}
 
+                {/* externalID */}
                 <div
                   className="d-flex justify-content-between mt-3 mb-3"
                   style={{ width: "100%" }}
                 >
-                  <label className="col-5" style={{ color: "white" }}>
-                    externalID
-                  </label>
+                  <label className="col-5 lable-style">externalID</label>
                   <input
                     type="text"
                     className="col-6 col-md-4 form-inp"
@@ -204,6 +221,8 @@ export default function NewProduct() {
                     }}
                   />
                 </div>
+                {/* externalID */}
+                
               </div>
             );
           })}
