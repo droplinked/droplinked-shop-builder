@@ -1,5 +1,10 @@
 $borderColor: #7a73fc;
 $borderFocus: #5e56f5;
+*{
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
 .page-wrapper {
   width: 100%;
   max-width: 600px;
@@ -9,7 +14,6 @@ $borderFocus: #5e56f5;
 .input-wrapper {
   width: 100%;
   background-color: transparent;
-
   border-radius: 8px;
 
   label {
@@ -19,21 +23,26 @@ $borderFocus: #5e56f5;
   .description-input {
     background: transparent;
     background-color: none;
-    border: 1px solid white;
+    border: 2px solid white;
     color: white;
+    border-radius: 15px;
+    
   }
   .description-input:focus {
     background: transparent;
     background-color: none;
     color: white;
+    box-shadow: none;
+    border-color: $borderFocus;
   }
 }
 
 .form-inp {
+  text-align-last: center;
   border-radius: 25px;
   background-color: transparent;
   color: white;
-  border: 1px solid $borderColor;
+  border: 2px solid $borderColor;
   padding: 5px 10px;
 }
 .form-inp:focus {
@@ -119,13 +128,48 @@ $borderFocus: #5e56f5;
 }
 
 .option-wrapper {
-  border: 1px solid white;
+  border: 3px solid white;
   padding: 20px;
   margin: 40px 0px;
-  border-radius: 8px;
+  border-radius: 15px;
 }
 
 option {
   background-color: #222;
   color: white;
+}
+
+.add-option-btn{
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+border:1px solid $borderColor;
+cursor: pointer;
+padding-bottom: 5px;
+  p{
+    color: white;
+    margin: auto 0px;
+  }
+}
+.add-option-btn:hover{
+  border:1px solid $borderFocus;
+}
+
+.form-control:focus{
+  box-shadow: none;
+  outline: none;
+}
+
+select{
+  text-align-last: center;
+  width: 90%;
+  color:white;
+  background-color: transparent;
+  border:transparent;
+
+}
+
+select:focus{
+  border: none;
+  outline: none;
 }
