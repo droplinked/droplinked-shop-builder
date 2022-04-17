@@ -1,12 +1,38 @@
-import whitelogo from '../../../assest/image/footer/FlatlayLogo.svg';
-import './footer.scss';
-import { Text, Flex, Box, Image, Icon } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import whitelogo from "../../../assest/image/footer/FlatlayLogo.svg";
+import "./footer.scss";
+import { Text, Flex, Box, Image, Icon } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
-	return (
-		<>
-		{/* <div className="d-flex justify-content-between"
+  return (
+    <div className="footer-wrap">
+      <div className="footer-body d-flex align-item-center">
+				<div className="text"><p>droplinked by</p></div>
+				<Link to={'/'}>
+				<Image filter={'brightness(0) invert(1)'} src={whitelogo} maxW="45vw"/>
+				</Link>
+	  </div>
+    </div>
+  );
+}
+
+{
+  /* <Flex
+				justifyContent={'flex-start'}
+				borderColor="white"
+				paddingY={'2'}
+			>
+				<Link to={'/'}>
+					<Box display={'flex'} flexDirection="row">
+						<Text fontWeight={'bold'} fontSize="l" color={'white'} mr={"3"}>droplinked by  </Text>  
+						<Image filter={'brightness(0) invert(1)'} src={whitelogo}  maxW="45vw"/>
+					</Box>
+				</Link>
+			</Flex> */
+}
+
+{
+  /* <div className="d-flex justify-content-between"
             style={{ width: "100%", height: "80px", borderTop: "1px solid white" }}
                  >       
                 <div className="d-flex row align-items-start justify-content-end"
@@ -17,23 +43,5 @@ export default function Footer() {
     
                  </div>
             
-        </div> */}
-
-
-			<Flex
-				justifyContent={'flex-end'}
-				paddingX="10"
-				borderTop={'1px'}
-				borderColor="white"
-				paddingY={'2'}
-			>
-				<Link to={'/'}>
-					<Box display={'flex'} flexDirection="row">
-						<Text fontWeight={'bold'} fontSize="l" color={'white'} mr={"3"}>droplinked by  </Text>  
-						<Image filter={'brightness(0) invert(1)'} src={whitelogo}  maxW="45vw"/>
-					</Box>
-				</Link>
-			</Flex>
-		</>
-	);
+        </div> */
 }

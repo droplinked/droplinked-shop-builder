@@ -1,0 +1,65 @@
+.wrapper{
+    width: 500px;
+    height: 500px;
+    min-width: 500px;
+    min-height: 500px;
+    max-width: 500px;
+    max-height: 500px;
+    position: relative;
+    margin: auto 0px;
+}
+
+.inner-image{
+    width: auto;
+    height: 85px;
+    position: absolute;
+    top: -40px;
+    right:0px;
+   object-fit:fill;
+   
+}
+.outer-image{position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit:fill;
+    right:0px;
+}
+
+@media only screen and (max-width: 1200px){
+    .wrapper{
+        width: 400px;
+        height: 400px;
+        min-width: 400px;
+        min-height: 400px;
+        max-width: 400px;
+        max-height: 400px;
+        position: relative;
+    }
+    
+}
+@media only screen and (max-width: 1001px){
+    .wrapper{
+        width: 350px;
+        height: 350px;
+        min-width: 350px;
+        min-height: 350px;
+        max-width: 350px;
+        max-height: 350px;
+        position: relative;
+    }
+    
+}
+
+@media only screen and (max-width: 768px){
+
+    .wrapper{
+        width: 300px;
+        height: 300px;
+        min-width: 300px;
+        min-height: 300px;
+        max-width: 300px;
+        max-height: 300px;
+        border: 1px solid white;
+        position: relative;
+    }
+}

@@ -1,0 +1,19 @@
+.wraper{
+    padding: 100px 0px;
+    display: flex;
+}
+
+.sides{
+    min-height: 400px;
+}
+
+@media only screen and (max-width: 600px) {
+    .wraper{
+       flex-direction: column;
+       float: right;
+    }
+    .sides{
+        width: 100%;
+    }
+
+}

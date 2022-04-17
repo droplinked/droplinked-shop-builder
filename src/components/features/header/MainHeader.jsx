@@ -16,11 +16,11 @@ export default function MainHeader() {
           </div>
         </Link>
         
-        <div className="header-nav d-flex row">
+        <div className="header-nav d-flex ">
           <div className="login-wrapper col-6 d-flex align-items-center">
             <p>Login</p>
           </div>
-          <div className="wallet-wrapper col-6 d-flex align-items-center">
+          <div className="wallet-wrapper col-6 d-flex justify-content-center align-items-center">
             <img src={headerWalletIcon} alt="" />
             <p>Wallet</p>
           </div>

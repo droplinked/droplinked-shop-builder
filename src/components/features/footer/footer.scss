@@ -1,29 +1,33 @@
-.footer-text{
-    color:white;
-    height:100%;
-   
-    p{
-        //text-align: center;
-        margin:auto 0px;
-        padding-left:30px;
-        font-family:"avenir" ;
-        font-size:18px;
-
-        .footer-icon{
-            filter: brightness(0) invert(1);
-            padding-left:5px;
-            max-height: 100%;
-        }   
-    }
-  
+*{
+  box-sizing: border-box;
+}
+.footer-wrap {
+  width: 100vw;
+  height: auto;
+  padding: 10px 80px;
+  border-radius: 0px;
+}
+.footer-body {
+  width: 100%;
+  margin:auto 0px;
+  height: auto;
+  justify-content: start;
 }
 
-.footer-wrap{
-       
-       width:60px;
-       height:60px;
-       background-position: center;
-       background-size: cover;
-       border-radius: 50px;
+.text {
+    margin-right: 22px;
+  p {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    color: #fff;
+  }
+}
 
+
+
+@media only screen and (max-width: 768px) {
+  .footer-wrap {
+    padding: 0px 20px;
+  }
 }

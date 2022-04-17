@@ -1,0 +1,19 @@
+*{
+    box-sizing: border-box;
+}
+.main-wrapper{
+    margin: 0px;
+    outline: 0px;
+    overflow: hidden;
+    width: 100%;
+   height: auto;
+   padding-left: 80px;
+
+}
+
+@media only screen and (max-width: 768px) {
+    .main-wrapper{
+        padding-left: 20px;
+    }
+}
+
