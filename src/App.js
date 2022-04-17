@@ -20,6 +20,7 @@ import Creadit from "./layout/payment/Creadit";
 import Shipping from "./layout/shiping/Shipping"
 import Header from "./components/features/old header/Header"
 import NewProduct from "./layout/newProduct/NewProduct"
+import MainHeader from "./components/features/header/MainHeader"
 
 function App() {
   return (
@@ -28,8 +29,8 @@ function App() {
         <BrowserRouter>
           <WalletProvider>
             <div className="bg-main-dark">
-              <Header />
-              <MainWrapper>
+              <MainHeader />
+              {/* <MainWrapper>
                 <Routes>
                   <Route exact path="/" element={<Main />} />
                   <Route path="/crashpunks" element={<Test />} />
@@ -44,7 +45,7 @@ function App() {
                   <Route path="/test123" element={<NewProduct />} />
                   <Route path="/*" element={<NotFound />} />
                 </Routes>
-              </MainWrapper>
+              </MainWrapper> */}
               <Footer />
             </div>
           </WalletProvider>
