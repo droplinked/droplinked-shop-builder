@@ -78,15 +78,40 @@
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
   .discover {
-    font-size: 52px;
+    font-size: 62px;
   }
   .earn {
-    font-size: 20px;
+    font-size: 22px;
   }
   .signup-wrapper {
-    width: 80%;
+    width: 90%;
+    height: 68px;
+  }
+  .item-span {
+    font-size: 18px;
+  }
+  .item-input {
+    font-size: 18px;
+  }
+  .item-button {
+    width: 20%;
+    p {
+      font-size: 12px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .discover {
+    font-size: 46px;
+  }
+  .earn {
+    font-size: 16px;
+  }
+  .signup-wrapper {
+    width: 70%;
     height: 68px;
   }
   .item-span {

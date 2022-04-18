@@ -1,28 +1,31 @@
 .wrapper{
-    width: 500px;
-    height: 500px;
-    min-width: 500px;
-    min-height: 500px;
-    max-width: 500px;
-    max-height: 500px;
-    position: relative;
+    width: 550px;
+    height: 550px;
+    min-width: 550px;
+    min-height: 550px;
+    max-width: 550px;
+    max-height: 550px;
     margin: auto 0px;
+    float: right;
 }
 
-.inner-image{
-    width: auto;
-    height: 85px;
-    position: absolute;
-    top: -5px;
-    right:0px;
-   object-fit:fill;
-   
-}
-.outer-image{position: absolute;
+
+.outer-image{
     max-width: 100%;
     max-height: 100%;
     object-fit:fill;
-    right:0px;
+   // right:0px;
+}
+@media only screen and (max-width: 1300px){
+    .wrapper{
+        width: 500px;
+        height: 500px;
+        min-width: 500px;
+        min-height: 500px;
+        max-width: 500px;
+        max-height: 500px;
+    }
+    
 }
 
 @media only screen and (max-width: 1200px){
@@ -33,7 +36,6 @@
         min-height: 400px;
         max-width: 400px;
         max-height: 400px;
-        position: relative;
     }
     
 }
@@ -45,20 +47,19 @@
         min-height: 350px;
         max-width: 350px;
         max-height: 350px;
-        position: relative;
     }
     
 }
 
-@media only screen and (max-width: 810px){
+// @media only screen and (max-width: 810px){
 
-    .wrapper{
-        width: 300px;
-        height: 300px;
-        min-width: 300px;
-        min-height: 300px;
-        max-width: 300px;
-        max-height: 300px;
-        position: relative;
-    }
-}
+//     .wrapper{
+//         width: 300px;
+//         height: 300px;
+//         min-width: 300px;
+//         min-height: 300px;
+//         max-width: 300px;
+//         max-height: 300px;
+//         position: relative;
+//     }
+// }

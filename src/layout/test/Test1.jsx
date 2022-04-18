@@ -10,20 +10,18 @@ import HomePage from "../homepage/HomePage"
 
 
 
-export default function Test1(){
+export default function Test1() {
 
 
-    return(
-              <>
-                <MainHeader />
-                <HomeWrapper>
-                    
-                <HomePage />
-                    
-                </HomeWrapper>
-                <Footer />
-                </>
-                
-    )
+  return (
+    <>
+      <MainHeader />
+      <HomeWrapper>
+        <HomePage />
+      </HomeWrapper>
+      <Footer />
+    </>
+
+  )
 }
 
