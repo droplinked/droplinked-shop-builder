@@ -14,7 +14,7 @@ function HomeInput({open}) {
                     <span className="item-span">droplinked.com/</span>
                     <input type="text" placeholder="username" className="item-input" />
                 </div>
-                <button className="item-button" onClick={open}><p>Sign up</p> </button>
+                <button className="item-button" onClick={open}>Sign up</button>
             </div>
         </div>
     </>)

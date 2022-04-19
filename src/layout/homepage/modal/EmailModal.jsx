@@ -6,9 +6,10 @@ function EmailModal({close}) {
         <div className="modal-wrap">
             <div className="modal-body d-flex justify-content-center align-item-center">
                 <div className="close-wrap">
-                    <div className="close rounded-circle" onClick={close}>
-                        <span>&times;</span>
-                    </div>
+                    <button className="close rounded-circle" onClick={close}>
+                        &times;
+                    
+                    </button>
                 </div>
                 <div className="modal-contain d-flex flex-column">
 

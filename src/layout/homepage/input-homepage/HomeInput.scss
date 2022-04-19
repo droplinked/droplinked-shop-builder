@@ -5,6 +5,7 @@
 .left-side-wrap {
   margin: auto 0px;
   max-width: 100%;
+  border: 1px solid green;
 }
 .discover {
   font-style: normal;
@@ -49,7 +50,6 @@
   line-height: 28px;
   color: #fff;
   background: transparent;
-  
 }
 .item-input:focus {
   border: none;
@@ -65,21 +65,21 @@
   padding: 12px 20px;
   background: #6f41f3;
   border-radius: 8px;
- 
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  //line-height: 28px;
+  text-align: center;
+  color: #ffffff;
+  white-space: nowrap;
+  // p {
 
-  p {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 28px;
-    text-align: center;
-    color: #ffffff;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 10px;
-    padding-bottom: 5px;
-  }
+  //   flex: none;
+  //   order: 0;
+  //   flex-grow: 0;
+  //   margin: 0px 10px;
+  //   padding-bottom: 5px;
+  // }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -160,11 +160,12 @@
 @media only screen and (max-width: 768px) {
   .left-side-wrap {
     margin: 0px;
-padding-right: 20px;
-height: auto;
+    padding-right: 20px;
+    
   }
   .discover {
     font-size: 40px;
+    line-height: 52px;
   }
   .earn {
     font-size: 16px;
@@ -172,6 +173,7 @@ height: auto;
   .signup-wrapper {
     width: 100%;
     height: 68px;
+    
   }
   .item-span {
     font-size: 16px;
@@ -181,8 +183,7 @@ height: auto;
   }
   .item-button {
     width: 20%;
-    p {
-      font-size: 14px;
-    }
+
+    font-size: 14px;
   }
 }
