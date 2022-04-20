@@ -7,6 +7,7 @@ import React from 'react';
 import NewProduct from "../newProduct/NewProduct"
 import HomeWrapper from "../../components/Structure/new wrapper/HomeWrapper"
 import HomePage from "../homepage/HomePage"
+import CreatorPage from "../creator/CreatorPage"
 
 
 
@@ -17,7 +18,7 @@ export default function Test1() {
     <>
       <MainHeader />
       <HomeWrapper>
-        <HomePage />
+      <CreatorPage />
       </HomeWrapper>
       <Footer />
     </>
