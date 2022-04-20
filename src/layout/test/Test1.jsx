@@ -9,6 +9,7 @@ import HomeWrapper from "../../components/Structure/new wrapper/HomeWrapper"
 import HomePage from "../homepage/HomePage"
 import CreatorPage from "../creator/CreatorPage"
 import PostPage from "../postpage/PostPage"
+import CollectionPage from "../collection page/CollectionPage"
 
 
 
@@ -19,7 +20,7 @@ export default function Test1() {
     <>
       <MainHeader />
       <HomeWrapper>
-      <PostPage />
+      <CollectionPage />
       </HomeWrapper>
       <Footer />
     </>

@@ -1,5 +1,6 @@
 import "./Collection.scss"
 import nft1 from "../../../assest/image/nft/produc.jpg"
+
 function Collection() {
 
     return (<>

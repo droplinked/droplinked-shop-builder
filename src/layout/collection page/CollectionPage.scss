@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+}
+.products-wrap {
+  width: 100%;
+  max-width: 800px;
+}
+
+.title {
+  font-family: "AvenirNext";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 44px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.product-counter {
+  font-family: "AvenirNext";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #b3b3b3;
+  margin-top: 16px;
+}
+.wrap {
+  width: 100%;
+  padding: 20px 25px;
+  border: 1px solid #b3b3b3;
+  box-sizing: border-box;
+  border-radius: 16px;
+  margin-top: 24px;
+}
+
+.products-wrapper {
+  min-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: start;
+}
+
+.product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 240px;
+}
+
+.product-img {
+  width: 100%;
+  max-width: 187px;
+  max-height: 187px;
+}
+.product-image-wrap {
+  max-width: 187px;
+  max-height: 187px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.brand-name {
+  font-family: "AvenirNext";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  margin-top: 12px;
+}
+.price {
+  font-family: "AvenirNext";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #b3b3b3;
+  margin-top: 5px;
+}
+@media only screen and (max-width: 768px) {
+  .gr {
+    padding: 0px 15px;
+  }
+  .wrap {
+    padding: 16px;
+  }
+  .title {
+    font-size: 24px;
+    line-height: 33px;
+  }
+
+  .product-counter {
+    font-size: 12px;
+  }
+}
