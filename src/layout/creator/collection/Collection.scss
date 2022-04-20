@@ -6,11 +6,15 @@
 * {
   box-sizing: border-box;
 }
+body{
+  box-sizing: border-box;
+}
 
 .collection-wrapper {
   margin-top: 40px;
+  width:100%;
   max-width: 800px;
-  border: 1px solid #b3b3b3;
+ border: 1px solid #b3b3b3;
   box-sizing: border-box;
   border-radius: 16px;
   padding: 35px 25px;

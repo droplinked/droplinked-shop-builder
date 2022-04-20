@@ -8,6 +8,7 @@ import NewProduct from "../newProduct/NewProduct"
 import HomeWrapper from "../../components/Structure/new wrapper/HomeWrapper"
 import HomePage from "../homepage/HomePage"
 import CreatorPage from "../creator/CreatorPage"
+import PostPage from "../postpage/PostPage"
 
 
 
@@ -18,7 +19,7 @@ export default function Test1() {
     <>
       <MainHeader />
       <HomeWrapper>
-      <CreatorPage />
+      <PostPage />
       </HomeWrapper>
       <Footer />
     </>
