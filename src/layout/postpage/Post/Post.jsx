@@ -32,14 +32,14 @@ function Post() {
                             <div className="d-flex align-item-center"
                                 style={{ marginTop: "10px" }}>
 
-                                <img className="diamond" src={diamond2} alt="" />
+                                <img className="diamond ratio ratio-1x1" src={diamond2} alt="" />
                                 <span className="diamond-text">This is the 8,572nd rarest in the collection out of 9,216</span>
                             </div>
 
                             <div className="d-flex align-item-center"
                                 style={{ marginTop: "10px" }}>
 
-                                <img className="diamond" src={Vector} alt="" />
+                                <img className="diamond ratio ratio-1x1" src={Vector} alt="" />
                                 <span className="diamond-text">This is the 8,572nd rarest in the collection out of 9,216</span>
                             </div>
                         </div>

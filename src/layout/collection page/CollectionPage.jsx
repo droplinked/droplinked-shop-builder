@@ -14,34 +14,34 @@ function CollectionPage() {
                     <div className="wrap">
                         <div className=" row">
 
-                            <div className="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                            <div className="col-6 col-sm-3 col-md-6 col-lg-3 d-flex justify-content-center">
                                 {Product()}
                             </div>
-                            <div className="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                            <div className="col-6 col-sm-3 col-md-6 col-lg-3 d-flex justify-content-center">
                                 {Product()}
                             </div>
-                            <div className="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                            <div className="col-6 col-sm-3 col-md-6 col-lg-3 d-flex justify-content-center">
                                 {Product()}
                             </div>
-                            <div className="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                            <div className="col-6 col-sm-3 col-md-6 col-lg-3 d-flex justify-content-center">
                                 {Product()}
                             </div>
-                            <div className="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                            <div className="col-6 col-sm-3 col-md-6 col-lg-3 d-flex justify-content-center">
                                 {Product()}
                             </div>
-                            <div className="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                            <div className="col-6 col-sm-3 col-md-6 col-lg-3 d-flex justify-content-center">
                                 {Product()}
                             </div>
-                            <div className="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                            <div className="col-6 col-sm-3 col-md-6 col-lg-3 d-flex justify-content-center">
                                 {Product()}
                             </div>
-                            <div className="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                            <div className="col-6 col-sm-3 col-md-6 col-lg-3 d-flex justify-content-center">
                                 {Product()}
                             </div>
-                            <div className="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                            <div className="col-6 col-sm-3 col-md-6 col-lg-3 d-flex justify-content-center">
                                 {Product()}
                             </div>
-                            <div className="col-6 col-md-3 col-lg-3 d-flex justify-content-center">
+                            <div className="col-6 col-sm-3 col-md-6 col-lg-3 d-flex justify-content-center">
                                 {Product()}
                             </div>
                         </div>
