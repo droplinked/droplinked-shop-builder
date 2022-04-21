@@ -11,6 +11,7 @@ import HomePage from "./layout/homepage/HomePage";
 import CreatorPage from "./layout/creator/CreatorPage";
 import PostPage from "./layout/postpage/PostPage";
 import CollectionPage from "./layout/collection page/CollectionPage";
+import Test from "./layout/homepage test/Htest"
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
             <MainHeader />
             <HomeWrapper>
               <Routes>
-                <Route exact path="/" element={<HomePage />} />
+                <Route exact path="/" element={<Test />} />
                 <Route path="/creatorpage" element={<CreatorPage />} />
                 <Route path="/postpage" element={<PostPage />} />
                 <Route path="/collectionpage" element={<CollectionPage />} />

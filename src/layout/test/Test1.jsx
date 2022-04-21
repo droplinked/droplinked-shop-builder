@@ -10,6 +10,7 @@ import HomePage from "../homepage/HomePage"
 import CreatorPage from "../creator/CreatorPage"
 import PostPage from "../postpage/PostPage"
 import CollectionPage from "../collection page/CollectionPage"
+import Htest from "../test/Htest"
 
 
 
@@ -20,7 +21,7 @@ export default function Test1() {
     <>
       <MainHeader />
       <HomeWrapper>
-      <CollectionPage />
+      <Htest/>
       </HomeWrapper>
       <Footer />
     </>

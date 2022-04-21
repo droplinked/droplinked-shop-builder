@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+}
+.bod {
+  width: 100%;
+  padding-left: 80px;
+  display: flex;
+  height: auto;
+}
+
+.child {
+  width: 50%;
+}
+
+.input-form {
+  margin: auto 0px;
+}
+
+.discove {
+  font-family: "AvenirNext";
+  font-style: normal;
+  font-weight: 600;
+  //font-size: 72px;
+  font-size: 4.7vw;
+  line-height: 80px;
+  color: #ffffff;
+}
+.earn {
+  margin-top: 20px;
+  font-family: "AvenirNext";
+  font-style: normal;
+  font-weight: 400;
+  //font-size: 24px;
+  font-size: 1.6vw;
+  line-height: 33px;
+  color: #f6f6f6;
+}
+.signup-wrapper {
+  width: 85%;
+  //min-width: 521px;
+  height: 68px;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.item-span {
+  font-weight: 600;
+  //font-size: 24px;
+  font-size: 1.7vw;
+  line-height: 28px;
+  color: #fff;
+  // width: 50%;
+  margin: auto 0px;
+}
+.item-input {
+  //max-width: 50%;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.7vw;
+  line-height: 28px;
+  color: #fff;
+  background: transparent;
+  margin: auto 0px;
+}
+.item-input:focus {
+  border: none;
+  outline: none;
+}
+.item-button {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+  background: #6f41f3;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 600;
+  //font-size: 20px;
+  font-size: 1.4vw;
+  //line-height: 28px;
+  text-align: center;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.alert-wrap {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  margin-top: 12px;
+
+  img {
+    width: 20px;
+    height: 20px;
+    margin: auto 0px;
+  }
+
+  span {
+    margin: auto 0px;
+    padding-left: 5px;
+    font-family: "AvenirNext";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    font-size: 0.9vw;
+    line-height: 28px;
+    color: #b3b3b3;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .bod {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .child {
+    width: 100%;
+  }
+  .rg {
+    padding-right: 20px;
+    margin-bottom: 70px;
+  }
+  .discove {
+    font-size: 40px;
+    line-height: 52px;
+  }
+  .earn {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .signup-wrapper {
+    width: 100%;
+  }
+  .item-button {
+    width: 25%;
+    font-size: 16px;
+  }
+  .item-span {
+    font-size: 16px;
+    //font-size: 4.2vw;
+    line-height: 28px;
+  }
+  .item-input {
+    font-size: 16px;
+    line-height: 28px;
+    //font-size: 4.2vw;
+  }
+  .alert-wrap {
+    span {
+      font-size: 2vw;
+      // line-height: 28px;
+    }
+  }
+}
