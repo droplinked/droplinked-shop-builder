@@ -18,7 +18,7 @@ export default function Htest() {
                             <span className="item-span">droplinked.com/</span>
                             <input type="text" placeholder="username" className="item-input" /> 
                         </div>
-                        <button className="item-button" style={{ widht: "25%" }} >Sign up</button>
+                        <button className="item-button" >Sign up</button>
                     </div>
                     <div className="alert-wrap">
                         <img className="ratio ratio-1x1" src={alertIcon} alt="" />

@@ -36,7 +36,7 @@
   color: #f6f6f6;
 }
 .signup-wrapper {
-  width: 85%;
+  width: 75%;
   //min-width: 521px;
   height: 68px;
   border-radius: 8px;
@@ -69,6 +69,7 @@
   outline: none;
 }
 .item-button {
+  width:25%;
   height: 100%;
   display: flex;
   flex-direction: row;
