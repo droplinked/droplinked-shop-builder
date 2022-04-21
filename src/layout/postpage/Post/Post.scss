@@ -3,6 +3,7 @@
   max-width: 800px;
   display: flex;
   justify-content: center;
+  margin-top: 60px;
 }
 
 .side {
@@ -10,8 +11,8 @@
   max-width: 400px;
   max-height: 400px;
 }
-.sideR{
-    margin-left:15px;
+.sideR {
+  margin-left: 15px;
 }
 
 .post-img {
@@ -77,7 +78,7 @@
 .diamond {
   max-width: 22px;
   max-height: 22px;
-  margin:auto 0px;
+  margin: auto 0px;
 }
 .diamond-text {
   font-family: "AvenirNext";
@@ -151,12 +152,12 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .side {
-    height:auto;
-      }
+  .side {
+    height: auto;
+  }
   .sideR {
     margin-top: 32px;
-    margin-left:0px;
+    margin-left: 0px;
   }
 
   .explore {
@@ -196,12 +197,11 @@
     height: 15px;
   }
   .diamond-text {
-
     font-size: 12px;
     line-height: 20px;
     letter-spacing: 0.5px;
 
-    white-space:normal;
+    white-space: normal;
     padding-left: 10px;
   }
 }
