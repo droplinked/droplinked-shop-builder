@@ -7,11 +7,11 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Footer from "./components/features/footer/Footer";
 import MainHeader from "./components/features/header/MainHeader";
 import HomeWrapper from "./components/Structure/new wrapper/HomeWrapper";
-import HomePage from "./layout/homepage/HomePage";
 import CreatorPage from "./layout/creator/CreatorPage";
 import PostPage from "./layout/postpage/PostPage";
 import CollectionPage from "./layout/collection page/CollectionPage";
-import Test from "./layout/homepage test/Htest"
+import Test from "./layout/homepage test/HomePage"
+import HomePage from "./layout/homepage test/HomePage"
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
             <MainHeader />
             <HomeWrapper>
               <Routes>
-                <Route exact path="/" element={<Test />} />
+                <Route exact path="/" element={<HomePage />} />
                 <Route path="/creatorpage" element={<CreatorPage />} />
                 <Route path="/postpage" element={<PostPage />} />
                 <Route path="/collectionpage" element={<CollectionPage />} />

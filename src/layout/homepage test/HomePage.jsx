@@ -1,10 +1,16 @@
-import "./Htest.scss"
+import "./HomePage.scss"
 import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"
 import HomeInput from "../homepage/input-homepage/HomeInput"
 import alertIcon from "../../assest/feature/home page images/alert.png"
+import { useState } from "react"
+import EmailModal from "./modal/EmailModal"
 
 
 export default function Htest() {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (<>
         <div className="bod">
@@ -13,12 +19,12 @@ export default function Htest() {
                 <div className="input-form w-100">
                     <div className="discove">Discover, create <br />&amp; connect.</div>
                     <div className="earn">Earn money for sharing collections.</div>
-                    <div className="signup-wrapper">
-                        <div className="d-flex justify-content-start" style={{ width: "75%" , maxWidth:"75%" }}>
+                    <div className="signup-wrapper d-flex justify-content-between">
+                        <div className="d-flex justify-content-start" style={{ width: "75%", maxWidth: "75%" }}>
                             <span className="item-span">droplinked.com/</span>
-                            <input type="text" placeholder="username" className="item-input" /> 
+                            <input type="text" placeholder="username" className="item-input" />
                         </div>
-                        <button className="item-button" >Sign up</button>
+                        <button className="item-button" onClick={handleShow} >Sign up</button>
                     </div>
                     <div className="alert-wrap">
                         <img className="ratio ratio-1x1" src={alertIcon} alt="" />
@@ -33,8 +39,7 @@ export default function Htest() {
                 <img className="ratio ratio-1x1" src={figmaImage1} alt="" />
             </div>
             {/* image */}
-
-
         </div>
+        {show && <EmailModal close={handleClose} />}
     </>)
 }
