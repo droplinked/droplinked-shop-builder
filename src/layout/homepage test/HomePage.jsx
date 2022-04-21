@@ -2,11 +2,12 @@ import "./HomePage.scss"
 import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"
 import HomeInput from "../homepage/input-homepage/HomeInput"
 import alertIcon from "../../assest/feature/home page images/alert.png"
+
 import { useState } from "react"
 import EmailModal from "./modal/EmailModal"
 
 
-export default function Htest() {
+export default function HomePage() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);

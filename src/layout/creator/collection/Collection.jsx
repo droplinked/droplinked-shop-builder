@@ -5,12 +5,12 @@ function Collection() {
 
     return (<>
         <div className="row  d-flex justify-content-center gr">
-            <div className="col-12 col-md-8 d-flex justify-content-center">
+            <div className="col-12 col-sm-8 d-flex justify-content-center">
                 <div className="collection-wrapper ">
                     <div className="collection-child" >
                         <div className="header">
                             <p className="title ">Holder merch</p>
-                            <button className="see-more d-none d-md-flex"><p>See more</p></button>
+                            <button className="see-more d-none d-sm-flex"><p>See more</p></button>
                         </div>
 
                         {/* <div className="container-fluid d-flex justify-content-center" style={{ border: "1px solid green" , padding:"0px" }}> */}

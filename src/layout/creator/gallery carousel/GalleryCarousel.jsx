@@ -9,7 +9,7 @@ function GalleryCarousel() {
     return (<>
         {/* gallery wrap */}
         <div className="row d-flex justify-content-center gr">
-            <div className="col-12 col-md-8  d-flex justify-content-center">
+            <div className="col-12 col-sm-8  d-flex justify-content-center">
 
                 {/* button */}
                 {/* <div className="gallery-btn col-md-1 d-none  d-xl-flex justify-content-end align-item-center">
