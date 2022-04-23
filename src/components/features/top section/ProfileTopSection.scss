@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "AvenirNext";
 }
 
 .wrapper {
@@ -37,33 +38,36 @@
 }
 
 .user-data {
-    margin-top: 20px;
-
-  h1 {
-    font-size: 18px;
-  }
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 
   .social {
-    display: inline-block;
-    margin: 4px 15px;
-    font-size: 1.5rem;
-    color: #fff;
+    display: flex;
+    align-items: center;
+    margin: 4px 18px;
+    width: 30px;
+    height: 30px;
+    // max-height: 17px;
+    padding: auto 0px;
 
-    &__ig {
-      font-size: 1.65rem;
+    img {
+      display: flex;
+      margin: auto 0px;
+      // height:100%;
+      // width:100%;
     }
   }
 }
 
 @media only screen and (max-width: 768px) {
-
   .name-text {
     margin-top: 28px;
     font-size: 24px;
   }
-  .img-wrap{
-      width: 80px;
-      height: 80px;
+  .img-wrap {
+    width: 80px;
+    height: 80px;
   }
 }
 

@@ -5,16 +5,15 @@
 
 * {
   box-sizing: border-box;
+  font-family: "AvenirNext";
 }
-body{
-  box-sizing: border-box;
-}
+
 
 .collection-wrapper {
   margin-top: 40px;
-  width:100%;
+  width: 100%;
   max-width: 800px;
- border: 1px solid #b3b3b3;
+  border: 1px solid #b3b3b3;
   box-sizing: border-box;
   border-radius: 16px;
   padding: 35px 25px;
@@ -32,25 +31,32 @@ body{
   justify-content: space-between;
   border: 0px;
   outline: 0px;
+
 }
 
-.title {
-  font-style: normal;
-  font-family: "AvenirNext";
-  font-weight: 600;
-  font-size: 24px;
-  //line-height: 36px;
-  letter-spacing: 0.5px;
-  color: #ffffff;
+div.title {
+  display: flex;
+  p{
+    font-style: normal;
+    font-family: "AvenirNext";
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    line-height: 36px;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    margin:auto 0px;
+  }
   margin: 0px;
 }
 
 .see-more {
+
   background: #353536;
   border-radius: 8px;
   width: 90px;
   height: 100%;
-  //display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding: 4px 12px;
@@ -60,7 +66,7 @@ body{
     white-space: nowrap;
     font-weight: 500;
     font-size: 14px;
-    line-height: 28px;
+    line-height: 100%;
     text-align: center;
     color: #ffffff;
   }
@@ -126,11 +132,16 @@ body{
     margin-top: 40px;
     padding: 16px 15px;
   }
-  .title {
-    font-size: 16px;
-    line-height: 24px;
+  div.title {
+    p{
+      margin:auto 0px;
+
+      font-size: 16px;
+      line-height: 100%;
+    }
+   
   }
   .product-wrap {
-    margin-top: 16px;
+    margin-top: 12px;
   }
 }

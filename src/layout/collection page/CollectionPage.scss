@@ -5,6 +5,9 @@
   width: 100%;
   max-width: 800px;
 }
+.product-wrap{
+  margin-top: 28px;
+}
 
 .title {
   font-family: "AvenirNext";
@@ -29,7 +32,7 @@
 }
 .wrap {
   width: 100%;
-  padding: 20px 25px;
+  padding: 0px 25px 20px 25px;
   border: 1px solid #b3b3b3;
   box-sizing: border-box;
   border-radius: 16px;
@@ -87,7 +90,8 @@
     padding: 0px 15px;
   }
   .wrap {
-    padding: 16px;
+    padding:0px 16px;
+    padding-bottom: 28px;
   }
   .title {
     font-size: 24px;
@@ -96,5 +100,8 @@
 
   .product-counter {
     font-size: 12px;
+  }
+  .product-wrap{
+    margin-top: 24px;
   }
 }

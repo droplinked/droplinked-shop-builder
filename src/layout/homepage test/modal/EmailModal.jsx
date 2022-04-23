@@ -1,17 +1,15 @@
 import "./EmailModal.scss"
-
-function EmailModal({close}) {
+import closePng from "../../../assest/feature/home page images/Close.png"
+function EmailModal({ close }) {
 
     return (<>
         <div className="modal-wrap">
             <div className="modal-body d-flex justify-content-center align-item-center">
-                <div className="close-wrap">
-                    <button className="close rounded-circle" onClick={close}>
-                        &times;
-                    
-                    </button>
-                </div>
+           
                 <div className="modal-contain d-flex flex-column">
+                <div className="close-wrap">
+                    <img className="close rounded-circle ratio ratio-1x1" src={closePng} alt="closePng" onClick={close} />
+                </div>
 
                     {/* header */}
                     <div className="modal-headerr d-flex justify-content-center align-item-center">

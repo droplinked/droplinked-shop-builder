@@ -1,7 +1,7 @@
 import "./Collection.scss"
 import nft1 from "../../../assest/image/nft/produc.jpg"
 
-function Collection() {
+function Collection(props) {
 
     return (<>
         <div className="row  d-flex justify-content-center gr">
@@ -9,8 +9,8 @@ function Collection() {
                 <div className="collection-wrapper ">
                     <div className="collection-child" >
                         <div className="header">
-                            <p className="title ">Holder merch</p>
-                            <button className="see-more d-none d-sm-flex"><p>See more</p></button>
+                            <div className="title"><p>{props.name}</p></div>
+                            <button className="see-more d-flex"><p>See more</p></button>
                         </div>
 
                         {/* <div className="container-fluid d-flex justify-content-center" style={{ border: "1px solid green" , padding:"0px" }}> */}

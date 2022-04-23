@@ -13,7 +13,11 @@
 }
 
 .input-form {
-  margin: auto 0px;
+  margin-top: 4.5vw;
+  // margin: auto 0px;
+}
+.img-r {
+  padding-right: 16px;
 }
 
 .discove {
@@ -22,11 +26,12 @@
   font-weight: 600;
   //font-size: 72px;
   font-size: 4.7vw;
-  line-height: 80px;
+  line-height: 5.5vw;
+  // line-height: 80px;
   color: #ffffff;
 }
 .earn {
-  margin-top: 20px;
+  margin-top: 25px;
   font-family: "AvenirNext";
   font-style: normal;
   font-weight: 400;
@@ -36,13 +41,16 @@
   color: #f6f6f6;
 }
 .signup-wrapper {
-  width: 75%;
+  width: 70%;
   //min-width: 521px;
   height: 68px;
   border-radius: 8px;
   padding: 8px;
   display: flex;
   align-items: center;
+  border: 2px solid #8053ff;
+  box-sizing: border-box;
+  margin-top: 36px;
 }
 
 .item-span {
@@ -69,14 +77,14 @@
   outline: none;
 }
 .item-button {
-  width:25%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 12px 20px;
-  background: #6f41f3;
+  background: #8053ff;
   border-radius: 8px;
   font-style: normal;
   font-weight: 600;
@@ -119,6 +127,10 @@
   .child {
     width: 100%;
   }
+  .img-r {
+    padding-right: 0px;
+  }
+
   .rg {
     padding-right: 20px;
     margin-bottom: 70px;
@@ -133,10 +145,15 @@
   }
   .signup-wrapper {
     width: 100%;
+    max-height: 56px;
+    padding: 8px;
   }
   .item-button {
-    width: 35%;
-    font-size:16px;
+    width: 100%;
+    height: 40px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
   }
   .item-span {
     font-size: 16px;
@@ -150,7 +167,7 @@
   }
   .alert-wrap {
     span {
-      font-size: 2vw;
+      font-size: 2.5vw;
       // line-height: 28px;
     }
   }

@@ -7,8 +7,8 @@ function PostPage(){
     return(<div>
     <ProfileTopSection />
     <Post /> 
-    <Collection />
-    <Collection />
+    <Collection name="Holder merch" />
+    <Collection  name="Public merch"/>
     </div>)
 }
 

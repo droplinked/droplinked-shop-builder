@@ -3,6 +3,10 @@ import "./ProfileTopSection.scss"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter, faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons'
 import { faEarthAmericas } from '@fortawesome/free-solid-svg-icons'
+import instaIcon from "../../../assest/feature/top section/insta.png"
+import discord from "../../../assest/feature/top section/discord.png"
+import twitter from "../../../assest/feature/top section/twitter.png"
+import web from "../../../assest/feature/top section/web.png"
 
 export default function ProfileTopic() {
 
@@ -22,19 +26,19 @@ export default function ProfileTopic() {
 					<div className="name-text">CrashPunks</div>
 				</div>
 
-				<div className='user-data text-center'>
-					<div className='d-flex-inline flex-row align-items-center'>
-						<a href='https://discord.gg/crashpunks' target='_blank' rel='noreferrer' className='social '>
-							<FontAwesomeIcon icon={faDiscord} />
+				<div className='user-data'>
+					<div className='d-flex justify-content-between align-items-center'>
+						<a href='https://discord.gg/crashpunks' target='_blank' rel='noreferrer' className='social' >
+							<img src={discord} alt="" className=' ratio ratio-1x1' />
 						</a>
 						<a href='http://crashpunks.com/' target='_blank' rel='noreferrer' className='social '>
-							<FontAwesomeIcon icon={faEarthAmericas} />
+							<img src={web} alt="" className='ratio ratio-1x1'/>
 						</a>
-						<a href='https://twitter.com/crashpunks' target='_blank' rel='noreferrer' className='social '>
-							<FontAwesomeIcon icon={faTwitter} />
+						<a href='https://twitter.com/crashpunks' target='_blank' rel='noreferrer' className='social'>
+							<img src={twitter} alt="" className='ratio ratio-1x1' />
 						</a>
-						<a href='https://www.instagram.com/crashpunks/' target='_blank' rel='noreferrer' className='social social__ig '>
-							<FontAwesomeIcon icon={faInstagram} style={{ color: "fff" }} />
+						<a href='https://www.instagram.com/crashpunks/' target='_blank' rel='noreferrer' className='social'>
+							<img src={instaIcon} alt=""  className='ratio ratio-1x1' />
 						</a>
 					</div>
 				</div>

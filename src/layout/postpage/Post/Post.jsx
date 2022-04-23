@@ -40,7 +40,7 @@ function Post() {
                                 style={{ marginTop: "10px" }}>
 
                                 <img className="diamond ratio ratio-1x1" src={Vector} alt="" />
-                                <span className="diamond-text">This is the 8,572nd rarest in the collection out of 9,216</span>
+                                <span className="diamond-text">identical to box height, or 143%</span>
                             </div>
                         </div>
                     </div>
