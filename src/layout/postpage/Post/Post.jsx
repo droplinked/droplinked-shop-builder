@@ -7,9 +7,9 @@ function Post() {
 
     return (
         <div className="row d-flex justify-content-center ">
-            <div className=" col-12 col-md-8  d-flex justify-content-center">
-                <div className="post-wrapper gr">
-
+            <div className=" col-12 col-md-8  d-flex justify-content-center" style={{marginTop:"40px"}}>
+                <div className="post-wrapper post-gr d-flex justify-content-center">
+        
                     <div className="side ratio ratio-1x1 ">
                         <img className="post-img" src={nft2} alt="" />
                     </div>

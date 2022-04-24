@@ -5,8 +5,10 @@ import Product from "../../components/features/product/Product"
 function CollectionPage() {
 
     return (<>
-        <div className="row d-flex justify-content-center" style={{padding:"0px 12px"}}>
-            <div  className="gr">
+        <div className="row d-flex justify-content-center " style={{padding:"0px 12px"}}>
+           <div className="gr d-flex justify-content-center">
+
+           
             <div className="col-12 col-md-6 d-flex justify-content-center ">
                 <div className="products-wrap">
                     <div className="h-auto d-flex flex-column justify-content-center">
@@ -28,6 +30,7 @@ function CollectionPage() {
                 </div>
             </div>
             </div>
+            
         </div>
     </>)
 }
