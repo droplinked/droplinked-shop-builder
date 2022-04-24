@@ -12,6 +12,7 @@ import PostPage from "./layout/postpage/PostPage";
 import CollectionPage from "./layout/collection page/CollectionPage";
 import Test from "./layout/homepage test/HomePage"
 import HomePage from "./layout/homepage test/HomePage"
+import BuyProduct from "./layout/buy product/BuyProduct"
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
                 <Route path="/creatorpage" element={<CreatorPage />} />
                 <Route path="/postpage" element={<PostPage />} />
                 <Route path="/collectionpage" element={<CollectionPage />} />
-                <Route path="/*" element={<NotFound />} />
+                <Route path="/*" element={<BuyProduct />} />
               </Routes>
             </HomeWrapper>
             <Footer />

@@ -11,6 +11,7 @@ import CreatorPage from "../creator/CreatorPage"
 import PostPage from "../postpage/PostPage"
 import CollectionPage from "../collection page/CollectionPage"
 import Htest from "../test/Htest"
+import BuyProduct from "../buy product/BuyProduct"
 
 
 
@@ -21,7 +22,7 @@ export default function Test1() {
     <>
       <MainHeader />
       <HomeWrapper>
-      <Htest/>
+      <BuyProduct/>
       </HomeWrapper>
       <Footer />
     </>
