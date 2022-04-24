@@ -16,6 +16,7 @@ import BuyProduct from "./layout/buy product/BuyProduct"
 
 function App() {
   return (
+    <div style={{backgroundColor:"#222"}}>
     <ChakraProvider>
       <CartContextProvider>
         <BrowserRouter>
@@ -35,6 +36,7 @@ function App() {
         </BrowserRouter>
       </CartContextProvider>
     </ChakraProvider>
+    </div>
   );
 }
 

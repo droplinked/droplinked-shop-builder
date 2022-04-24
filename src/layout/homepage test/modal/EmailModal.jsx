@@ -7,13 +7,14 @@ function EmailModal({ close }) {
             <div className="modal-body d-flex justify-content-center align-item-center">
            
                 <div className="modal-contain d-flex flex-column">
-                <div className="close-wrap">
-                    <img className="close rounded-circle ratio ratio-1x1" src={closePng} alt="closePng" onClick={close} />
-                </div>
+              
 
                     {/* header */}
                     <div className="modal-headerr d-flex justify-content-center align-item-center">
                         <p>Create a free account</p>
+                        <div className="close-wrap">
+                    <img className="close rounded-circle ratio ratio-1x1" src={closePng} alt="closePng" onClick={close} />
+                </div>
                     </div>
                     {/* header */}
 

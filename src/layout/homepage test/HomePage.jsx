@@ -29,7 +29,7 @@ export default function HomePage() {
                             <button className="item-button" onClick={handleShow} >Sign up</button>
                         </div>
                     </div>
-                    <div className="alert-wrap">
+                    <div className="alert-wrap d-none">
                         <img className="ratio ratio-1x1" src={alertIcon} alt="" />
                         <span>URL already in use. Please try another. If you are the owner login here</span>
                     </div>

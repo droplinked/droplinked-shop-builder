@@ -1,7 +1,9 @@
 * {
   box-sizing: border-box;
   font-family: inherit;
+
 }
+
 
 .header-wrapp {
   width: 100vw;
@@ -85,6 +87,9 @@
     height: 50px;
     padding: 0px 20px;
     background-color: #222222;
+  }
+  .header-body{
+    margin-top:10px;
   }
   .header-brand {
     width: auto;
