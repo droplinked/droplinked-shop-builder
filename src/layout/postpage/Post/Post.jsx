@@ -26,7 +26,7 @@ function Post() {
                                 > 55 STX</span>
                             </div>
 
-                            <button className="buy-btn">Buy Now</button>
+                            <button className="post-buy-btn">Buy Now</button>
 
 
                             <div className="d-flex align-item-center"
@@ -40,7 +40,7 @@ function Post() {
                                 style={{ marginTop: "10px" }}>
 
                                 <img className="diamond ratio ratio-1x1" src={Vector} alt="" />
-                                <span className="diamond-text">identical to box height, or 143%</span>
+                                <span className="diamond-text">Listed 4% above the collection floor price</span>
                             </div>
                         </div>
                     </div>

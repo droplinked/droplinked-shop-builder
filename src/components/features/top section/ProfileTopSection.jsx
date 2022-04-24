@@ -14,7 +14,7 @@ export default function ProfileTopic() {
 		<>
 
 
-			<div className="wrapper">
+			<div className="top-section-wrapper">
 				<div className="d-flex justify-content-center align-content-center">
 					<a href="https://stxnft.com/collections/crashpunks">
 						<div className='img-wrap'>
@@ -44,39 +44,6 @@ export default function ProfileTopic() {
 				</div>
 
 			</div>
-			{/* <section className='profile-top-section'>
-
-				<div className='top-main'>
-					<div className='img-wrap'>
-						<a href="https://stxnft.com/collections/crashpunks">
-							<img src={profilePic} alt='' />
-						</a>
-					</div>
-				</div>
-
-				<div className="text-name">CrashPunks</div>
-
-				<div className='user-data text-center'>
-					<h1 className='font-gt'>CrashPunks</h1>
-					<div className='d-flex-inline flex-row align-items-center'>
-						<a href='https://discord.gg/crashpunks' target='_blank' rel='noreferrer' className='social '>
-							<FontAwesomeIcon icon={faDiscord} />
-						</a>
-						<a href='http://crashpunks.com/' target='_blank' rel='noreferrer' className='social '>
-							<FontAwesomeIcon icon={faEarthAmericas} />
-						</a>
-						<a href='https://twitter.com/crashpunks' target='_blank' rel='noreferrer' className='social '>
-							<FontAwesomeIcon icon={faTwitter} />
-						</a>
-						<a href='https://www.instagram.com/crashpunks/' target='_blank' rel='noreferrer' className='social social__ig '>
-							<FontAwesomeIcon icon={faInstagram} style={{ color: "fff" }} />
-						</a>
-					</div>
-				</div>
-
-
-
-			</section> */}
 
 
 		</>
