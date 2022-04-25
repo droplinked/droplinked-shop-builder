@@ -9,9 +9,12 @@ import EmailModal from "./modal/EmailModal"
 
 export default function HomePage() {
     const [show, setShow] = useState(false);
+    const [userName, setUsername] = useState("");
+    const [former, setForError] = useState(false)
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const cleatInput = () => setUsername("")
 
     return (<>
         <div className="bod">
@@ -21,18 +24,33 @@ export default function HomePage() {
                     <div className="discove">Discover, create <br />&amp; connect.</div>
                     <div className="earn">Earn money for sharing collections.</div>
                     <div className="signup-wrapper d-flex justify-content-between">
-                        <div className="d-flex justify-content-start" style={{ width: "75%", maxWidth: "75%"}}>
+                        <div className="d-flex justify-content-start" style={{ width: "75%", maxWidth: "75%" }}>
                             <span className="item-span">droplinked.com/</span>
-                            <input type="text" placeholder="username" className="item-input" />
+                            <input type="text" placeholder="username" className="item-input"
+                                onChange={(e) => { setUsername(e.target.value) }}
+                                value={userName}
+                            />
                         </div>
                         <div className="d-flex" style={{ width: "25%" }}>
-                            <button className="item-button" onClick={handleShow} >Sign up</button>
+                            <button className="item-button"
+                             onClick={()=>{
+                                 if(userName.trim() == ""){
+                                    setForError(true)
+                                 }else{
+                                    handleShow();
+                                 }
+                             }} 
+                             
+                             >Sign up</button>
                         </div>
                     </div>
-                    <div className="alert-wrap d-none">
-                        <img className="ratio ratio-1x1" src={alertIcon} alt="" />
-                        <span>URL already in use. Please try another. If you are the owner login here</span>
-                    </div>
+                    {former &&
+                        <div className="alert-wrap">
+                            <img className="ratio ratio-1x1" src={alertIcon} alt="" />
+                            <span>URL already in use. Please try another. If you are the owner login here</span>
+                        </div>
+                    }
+
                 </div>
             </div>
             {/* inputs */}
@@ -43,6 +61,6 @@ export default function HomePage() {
             </div>
             {/* image */}
         </div>
-        {show && <EmailModal close={handleClose} />}
+        {show && <EmailModal close={handleClose} name={userName} clear={cleatInput} />}
     </>)
 }

@@ -1,6 +1,33 @@
 import "./EmailModal.scss"
 import closePng from "../../../assest/feature/home page images/Close.png"
-function EmailModal({ close }) {
+import { useState, useEffect  } from "react";
+
+function EmailModal({ close  , name , clear}) {
+
+    const [email, setEmail] = useState("");
+
+
+    function submitform() {
+        if (email != "" && name != "") {
+          fetch(
+            "https://uui8anv8g0.execute-api.eu-central-1.amazonaws.com/latest/register",
+            {
+              method: "POST",
+              body: JSON.stringify({ name: name, email: email }),
+              headers: { "Content-Type": "application/json" },
+            }
+          )
+            .then((res) => res.json())
+            .then((json) => {
+              console.log(json.user);
+            });
+        }
+        clear();
+        setEmail("");
+        close();
+      }
+
+
 
     return (<>
         <div className="modal-wrap">
@@ -21,8 +48,13 @@ function EmailModal({ close }) {
                     {/* form */}
                     <div className="modal-form d-flex flex-column">
                         <div className="label">Email</div>
-                        <input type="email" className="modal-input" placeholder="example@email.com" />
-                        <button className="modal-button"><p>Sign up</p></button>
+                        <input type="email" className="modal-input" placeholder="example@email.com" 
+                        onChange={(e)=>{setEmail(e.target.value)}}
+                        value={email}
+                        />
+                        <button className="modal-button"
+                        onClick={()=>{submitform()}}
+                        ><p>Sign up</p></button>
                     </div>
                     {/* form */}
 
