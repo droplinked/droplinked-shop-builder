@@ -10,11 +10,12 @@ import HomeWrapper from "./components/Structure/new wrapper/HomeWrapper";
 import CreatorPage from "./layout/creator/CreatorPage";
 import PostPage from "./layout/postpage/PostPage";
 import CollectionPage from "./layout/collection page/CollectionPage";
-import Test from "./layout/homepage test/HomePage"
+
 import HomePage from "./layout/homepage test/HomePage"
 import BuyProduct from "./layout/buy product/BuyProduct"
 import Terms from "./layout/terms/Terms"
 import Privacy from "./layout/privacy/Privacy"
+import Crashpunks from "./layout/crashpunk/crashpunks"
 
 function App() {
   return (
@@ -32,7 +33,8 @@ function App() {
                 <Route path="/collectionpage" element={<CollectionPage />} />
                 <Route path="/terms" element={<Terms/>} />
                 <Route path="/privacy" element={<Privacy/>} />
-                <Route path="/*" element={<BuyProduct />} />
+                <Route path="/crashpunks" element={<Crashpunks/>} />
+                <Route path="/*" element={<NotFound />} />
               </Routes>
             </HomeWrapper>
             <Footer />
