@@ -93,7 +93,7 @@ function Terms() {
                     <p> Severability and Waiver. If, for whatever reason, a court of competent jurisdiction finds any term or condition in this Agreement to be unenforceable, all other terms and conditions will remain unaffected and in full force and effect. No waiver of any breach of any provision of this Agreement shall constitute a waiver of any prior, concurrent, or subsequent breach of the same or any other provisions hereof, and no waiver shall be effective unless made in writing and signed by an authorized representative of the waiving party. </p>
                     <p> ACKNOWLEDGEMENT. BY USING THE SERVICE OR ACCESSING THE SITE, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS OF USE AND AGREE TO BE BOUND BY THEM. </p>
                     <Link to="/privacy">
-                    <button className="terms-btn"><p>TERMS OF SERVICE</p></button>
+                    <button className="terms-btn"><p>PRIVACY POLICY</p></button>
                     </Link>
 
                 </div>
