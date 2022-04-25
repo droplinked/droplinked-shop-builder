@@ -1,4 +1,11 @@
 import "./Terms.scss"
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useParams,
+} from 'react-router-dom';
 
 
 function Terms() {
@@ -85,7 +92,9 @@ function Terms() {
                     <p> You can delete your Flatlay Card by logging in online at www.flat-lay.com or by contacting us at support (at) flatlay.io. Please allow up to ten (10) business days for your account to be deleted and remember that your account credits are deleted along with your account. We will maintain account records only as required or allowed by law. </p>
                     <p> Severability and Waiver. If, for whatever reason, a court of competent jurisdiction finds any term or condition in this Agreement to be unenforceable, all other terms and conditions will remain unaffected and in full force and effect. No waiver of any breach of any provision of this Agreement shall constitute a waiver of any prior, concurrent, or subsequent breach of the same or any other provisions hereof, and no waiver shall be effective unless made in writing and signed by an authorized representative of the waiving party. </p>
                     <p> ACKNOWLEDGEMENT. BY USING THE SERVICE OR ACCESSING THE SITE, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS OF USE AND AGREE TO BE BOUND BY THEM. </p>
+                    <Link to="/privacy">
                     <button className="terms-btn"><p>TERMS OF SERVICE</p></button>
+                    </Link>
 
                 </div>
             </div>

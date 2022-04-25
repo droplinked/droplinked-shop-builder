@@ -1,4 +1,10 @@
-
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useParams,
+} from 'react-router-dom';
 
 function Privacy() {
 
@@ -163,7 +169,9 @@ function Privacy() {
                         <br />
                         Email: support (at) theflatlay.com
                     </p>
+                    <Link to="/terms">
                     <button className="terms-btn"><p>TERMS OF SERVICE</p></button>
+                    </Link>
                 </div>
             </div>
         </div>
