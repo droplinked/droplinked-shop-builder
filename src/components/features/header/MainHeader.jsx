@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 import basket from "../../../assest/feature/header/basket-icon.png"
 import more from "../../../assest/feature/header/more.png"
 
+
 export default function MainHeader() {
+  let ur = window.location.pathname;
+  console.log(ur);
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
 
   return (
@@ -21,17 +24,20 @@ export default function MainHeader() {
           <div className="login-wrapper col-4 d-flex align-items-center">
             <p>Login</p>
           </div>
-          <div className="login-wrapper col-4 d-flex align-items-center">
-            <p>Cart</p>
-          </div>
+          {(ur != "/") &&
+            (<div className="login-wrapper col-4 d-flex align-items-center">
+              <p>Cart</p>
+            </div>)
+          }
+
           {userData ? (
             <div
               className="wallet-wrapper col-4 d-flex justify-content-center align-items-center"
               onClick={onSignOut}
             >
               <div className="d-flex justify-content-center h-auto">
-              <img src={headerWalletIcon} className="sing-wallet" alt="" />
-              <p>Wallet</p>
+                <img src={headerWalletIcon} className="sing-wallet" alt="" />
+                <p>Wallet</p>
               </div>
             </div>
           ) : (
@@ -39,10 +45,10 @@ export default function MainHeader() {
               className="wallet-wrapper col-4 d-flex justify-content-center align-items-center"
               onClick={authenticate}
             >
-               <div className="d-flex justify-content-center " >
-              <img src={headerWalletIcon} alt="" className="ratio ratio-1x1" />
+              <div className="d-flex justify-content-center " >
+                <img src={headerWalletIcon} alt="" className="ratio ratio-1x1" />
 
-              <p>Wallet</p>
+                <p>Wallet</p>
               </div>
             </div>
           )}
