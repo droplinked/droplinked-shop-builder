@@ -47,13 +47,11 @@ export default function Product() {
   return (
     <>
       <div className="product-wrapper">
-        {(productDetail == undefined) ? (
-          <Loading />
-        ) : (
+      
           <div className="product-main">
             <div className="top-side d-flex justify-content-between row">
               <div className="d-flex flex-column col-md-7 col-12 ">
-                <CustomCarousel imageArray={productDetail.images} />
+                <CustomCarousel imageArray={} />
               </div>
 
               <div className="option-side col-md-5 col-12">
@@ -61,10 +59,10 @@ export default function Product() {
                   <p>Brand names</p>
                 </div>
                 <div className="product-describe">
-                  <p>{productDetail.title}</p>
+                  <p>{}</p>
                 </div>
                 <div className="producr-price">
-                  $ {productDetail.variants[0].price}
+                  $ {}
                 </div>
                 <div className="product-options flex-wrap d-flex justify-content-between">
                   {productDetail.options.map((item) => {
@@ -125,7 +123,7 @@ export default function Product() {
               </div>
             </div>
           </div>
-        )}
+        
       </div>
     </>
   );

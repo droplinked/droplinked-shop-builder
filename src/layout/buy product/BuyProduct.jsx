@@ -12,9 +12,14 @@ function BuyProduct() {
     return (<>
         <div className="row">
             <div className="d-flex justify-content-center ">
-            <div className="col-md-7 col-12">
+            <div className="col-md-8 col-12">
                 <div className="buy-product-wraper">
-
+                            <div className="buy-up">
+                                <div className="image-carusel-wrap">
+                                    <div className="product-main-img"></div>
+                                </div>
+                                <div className="buy-product-form-wrap"></div>
+                            </div>
                 </div>
 
             </div>

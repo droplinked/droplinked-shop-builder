@@ -3,22 +3,44 @@
   font-family: "AvenirNext";
 }
 
-.buy-product-wraper{
-  border:1px solid white;
+.buy-product-wraper {
+  border: 1px solid white;
   width: 100%;
   height: 850px;
-  margin-right: 12px
+  margin-right: 12px;
+  padding: 24px;
+
+  .buy-up {
+    border: 1px solid rgb(244, 125, 125);
+    display: flex;
+    width: 100%;
+    height: 600px;
+  }
 }
-.product-bakset-wraper{
-  border:1px solid white;
+.image-carusel-wrap {
+  border: 1px solid rgb(99, 247, 58);
+  width: 50%;
+  height: 100%;
+
+  .product-main-img{
+    border: 1px solid rgb(247, 71, 58);
+    width: 100%;
+    height: calc(100% - 80px);
+  }
+}
+
+.buy-product-form-wrap {
+  border: 1px solid rgb(24, 205, 236);
+  width: 50%;
+  height: 100%;
+}
+
+.product-bakset-wraper {
+  border: 1px solid white;
   width: 100%;
   height: 250px;
-  margin-left: 12px
+  margin-left: 12px;
 }
 
 @media only screen and (max-width: 768px) {
-   
 }
-
-
-

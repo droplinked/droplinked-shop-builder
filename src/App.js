@@ -16,6 +16,7 @@ import BuyProduct from "./layout/buy product/BuyProduct"
 import Terms from "./layout/terms/Terms"
 import Privacy from "./layout/privacy/Privacy"
 import Crashpunks from "./layout/crashpunk/crashpunks"
+import Product from "./layout/product/Product"
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
                 <Route path="/terms" element={<Terms/>} />
                 <Route path="/privacy" element={<Privacy/>} />
                 <Route path="/crashpunks" element={<Crashpunks/>} />
-                <Route path="/buyproduct" element={<BuyProduct/>} />
+                <Route path="/buyproduct" element={<Product/>} />
                 <Route path="/*" element={<NotFound />} />
               </Routes>
             </HomeWrapper>
