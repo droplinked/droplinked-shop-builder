@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
+    <div style={{borderTop: "1px solid #B3B3B3"}}>
     <div className="footer-wrap">
       <div className="footer-body">
         <div className="leftside">
@@ -24,6 +25,7 @@ export default function Footer() {
           </a>
         </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -54,7 +54,10 @@ export default function MainHeader() {
           )}
         </div>
         <div className="mobile-nav d-flex d-md-none">
-          <img src={basket} alt="" />
+          {(ur != "/") &&
+            <img src={basket} alt="" />
+          }
+
           <img src={more} alt="" />
         </div>
       </div>

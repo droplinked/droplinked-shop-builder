@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 .footer-wrap {
-  border-top: 1px solid #B3B3B3;
+ // border-top: 1px solid #B3B3B3;
   height: 82px;
   min-width: 100vw;
   padding: 0px 80px;
@@ -68,7 +68,7 @@
 }
 @media only screen and (max-width: 768px) {
   .footer-wrap {
-    padding: 0px 20px;
+   padding: 0px 20px;
   }
   .footer-body {
     flex-direction: column;
