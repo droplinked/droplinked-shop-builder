@@ -10,10 +10,16 @@ import plus from "../../assest/feature/buy product/plusIcon.png"
 import minus from "../../assest/feature/buy product/minusIcon.png"
 import basket from "../../assest/feature/buy product/basketIcon.png"
 import readmoreIcon from "../../assest/feature/buy product/readmore.png"
+import icon1 from "../../assest/feature/buy product/saveIcon.png"
+import icon2 from "../../assest/feature/buy product/upIcon.png"
+import icon3 from "../../assest/feature/buy product/bigIcon.png"
+import icon4 from "../../assest/feature/buy product/big2Icon.png"
 import { useState } from "react"
+
 function BuyProduct() {
 
-    const[readmore , setReadmore] = useState(false)
+    const[readmore , setReadmore] = useState(false);
+    const[number , setNumber] = useState(1)
 
     return (<>
     <div className="product-page-wrap">
@@ -25,6 +31,24 @@ function BuyProduct() {
 
                         <div className="product-img-form-wr">
                             <div className="product-main-image" style={{ backgroundImage: `url(${mainImg})` }}>
+
+                            <div className="position-absolute d-flex justify-content-between " style={{top:"12px" , right:"12px" , width:"130px"}}>
+                                <div className="product-main-img-icon">
+                                <img src={icon3} className="product-icon-img" alt="" />
+                                </div>
+                                <div className="product-main-img-icon">
+                                    <img src={icon2} className="product-icon-img" alt="" />
+                                </div>
+                                <div className="product-main-img-icon">
+                                <img src={icon1} className="product-icon-img" alt="" />
+                                </div>
+                            </div>
+
+                                <div className="product-main-img-downicon">
+                                    <img src={icon4} alt="" />
+                                    <p>Official website</p>
+                                </div>
+
                             </div>
                             {/* ff */}
                            <div className=" w-100 d-flex justify-content-between" style={{height:"80px" , paddingTop:"10px"}}>
@@ -57,11 +81,15 @@ function BuyProduct() {
                             </div>
 
                             <div className="d-flex">
-                                <div className="product-counter-btn">
+                                <div className="product-counter-btn"
+                                onClick={()=>{setNumber(p => p+1)}}
+                                >
                                     <img src={plus} alt="" />
                                 </div>
-                                <div className="product-counter-btn" style={{margin:"0px 10px" , backgroundColor:"transparent"}}><p>1</p></div>
-                                <div className="product-counter-btn" >
+                                <div className="product-counter-btn" style={{margin:"0px 10px" , backgroundColor:"transparent"}}><p>{number}</p></div>
+                                <div className="product-counter-btn"
+                                onClick={()=>{setNumber(p => p-1)}}
+                                >
                                     <img src={minus} alt="" />
                                 </div>
                             </div>
@@ -110,11 +138,11 @@ function selection() {
 
     return (<>
         <div className="product-select-wrap">
-            <select className="product-select-text" name="cars" id="cars">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
+            <select className="product-select-text" name="size" id="cars">
+                <option value="volvo">small</option>
+                <option value="saab">medium</option>
+                <option value="opel">large</option>
+                <option value="audi">x large</option>
             </select>
         </div>
     </>)

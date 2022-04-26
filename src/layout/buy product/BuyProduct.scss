@@ -31,7 +31,6 @@
   border-radius: 16px;
 }
 .product-img-form-wr {
-  border: 1px solid blue;
   width: 50%;
   height: 480px;
   display: flex;
@@ -39,6 +38,7 @@
   justify-content: space-between;
 }
 .product-main-image {
+  position: relative;
   width: 100%;
   height: 100%;
   background-position: center;
@@ -46,14 +46,43 @@
   background-size: cover;
   border-radius: 16px;
 }
+.product-main-img-icon {
+  background-color: #222222;
+  border-radius: 50px;
+  padding: 9px;
 
-// .ff {
-//   width: 100%;
-//   height: 80px;
-//   display: flex;
-//   justify-content: space-between;
-//   padding-top: 10px;
-// }
+  img {
+    width: 16px;
+    height: 16px;
+  }
+}
+.product-main-img-downicon {
+  position: absolute;
+  //width: 120px;
+  background: #222222;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  padding: 6px 12px;
+  align-items: center;
+
+  img {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+  }
+  p {
+    vertical-align: middle;
+    font-family: "AvenirNext";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #ffffff;
+  }
+}
 
 .xv {
   max-width: 100%;
@@ -77,8 +106,9 @@
 }
 
 .product-carosel-img {
-  width: 15%;
   border-radius: 8px;
+  width: 15%;
+  aspect-ratio:1/1;
 }
 
 .product-brand-name {
@@ -127,6 +157,21 @@
   color: #b3b3b3;
   border: none;
   outline: none;
+
+  option {
+    font-family: "AvenirNext";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    color: #b3b3b3;
+    background: #222;
+    border: none;
+    outline: none;
+  }
+  option:hover {
+    background: #4a4a4a;
+  }
 }
 
 // .coun-wrp {
@@ -137,6 +182,7 @@
   background-color: #353536;
   border-radius: 8px;
   padding: 8px;
+  cursor: pointer;
 
   img {
     width: 15px;
@@ -152,6 +198,7 @@
     color: #ffffff;
   }
 }
+
 
 .product-addbasket-btn {
   background-color: #8053ff;
@@ -258,8 +305,15 @@
     padding-bottom: 80px;
   }
   .product-left-side {
-    margin-left: 10px;
-    padding-bottom: 0px;
+    margin-left: 0px;
+    margin-top: 30px;
+    padding-bottom: 40px;
+    margin-bottom: -30px;
+  }
+  .product-carosel-img {
+    aspect-ratio: 1 / 1;
+    width: 17%;
+    border-radius: 8px;
   }
 }
 
