@@ -16,7 +16,9 @@ export default function Footer() {
           </a>
         </div>
         <div className="righside">
+          <Link to="/terms">
           <span className="right-text">Terms of service</span>
+          </Link>
           <a href='https://twitter.com/flatlay'>
             <img src={twiter} className="icon-img be-i"/>
           </a>
