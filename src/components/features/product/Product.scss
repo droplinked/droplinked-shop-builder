@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 .product-wrap {
-  margin-top: 28px;
+  margin: 28px 0px 0px 0px;
+ max-width: 187px;
 }
 .product-image-wrap {
   max-width: 187px;
@@ -50,6 +51,8 @@
   opacity: 0.5;
 }
 .brand-name {
+  max-height: 110px;
+  //max-width: 100%;
   font-family: "AvenirNext";
   font-style: normal;
   font-weight: 500;
@@ -57,6 +60,7 @@
   line-height: 20px;
   color: #ffffff;
   margin-top: 12px;
+  overflow: hidden;
 }
 .priceS {
   font-family: "AvenirNext";

@@ -23,7 +23,7 @@ function Login({ close }) {
             localStorage.setItem("token", response.data.id);
             addProfile(response.data)
             close();
-            navigate('/collectionpage')
+            navigate('/productList')
         });
     }
 

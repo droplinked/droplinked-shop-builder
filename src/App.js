@@ -19,6 +19,7 @@ import Privacy from "./layout/privacy/Privacy";
 import Crashpunks from "./layout/crashpunk/crashpunks";
 //import Product from "./layout/product/Product"
 import Main from "./layout/landing/Main";
+import ProctuPageTest from "./layout/product list test/ProctuPageTest";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
                       path="/collectionpage"
                       element={<CollectionPage />}
                     />
+                    <Route path="/productList" element={<ProctuPageTest />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/privacy" element={<Privacy />} />
                     <Route path="/crashpunks" element={<Crashpunks />} />
