@@ -2,6 +2,7 @@ import "./App.scss";
 import NotFound from "./layout/notfound/NotFound";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WalletProvider } from "./sevices/context/context";
+import ProfileContextProvider from "./sevices/context/ProfileContext";
 import CartContextProvider from "./sevices/context/CartContext";
 import { ChakraProvider } from "@chakra-ui/react";
 import Footer from "./components/features/footer/Footer";
@@ -11,40 +12,45 @@ import CreatorPage from "./layout/creator/CreatorPage";
 import PostPage from "./layout/postpage/PostPage";
 import CollectionPage from "./layout/collection page/CollectionPage";
 
-import HomePage from "./layout/homepage test/HomePage"
-import BuyProduct from "./layout/buy product/BuyProduct"
-import Terms from "./layout/terms/Terms"
-import Privacy from "./layout/privacy/Privacy"
-import Crashpunks from "./layout/crashpunk/crashpunks"
+import HomePage from "./layout/homepage test/HomePage";
+import BuyProduct from "./layout/buy product/BuyProduct";
+import Terms from "./layout/terms/Terms";
+import Privacy from "./layout/privacy/Privacy";
+import Crashpunks from "./layout/crashpunk/crashpunks";
 //import Product from "./layout/product/Product"
-import Main from "./layout/landing/Main"
+import Main from "./layout/landing/Main";
 
 function App() {
   return (
-    <div style={{backgroundColor:"#222"}}>
-    <ChakraProvider>
-      <CartContextProvider>
-        <BrowserRouter>
-          <WalletProvider>
-            <MainHeader />
-            <HomeWrapper>
-              <Routes>
-                <Route exact path="/" element={<HomePage />} />
-                <Route path="/creatorpage" element={<CreatorPage />} />
-                <Route path="/postpage" element={<PostPage />} />
-                <Route path="/collectionpage" element={<CollectionPage />} />
-                <Route path="/terms" element={<Terms/>} />
-                <Route path="/privacy" element={<Privacy/>} />
-                <Route path="/crashpunks" element={<Crashpunks/>} />
-                <Route path="/buyproduct" element={<BuyProduct/>} />
-                <Route path="/*" element={<NotFound />} />
-              </Routes>
-            </HomeWrapper>
-            <Footer />
-          </WalletProvider>
-        </BrowserRouter>
-      </CartContextProvider>
-    </ChakraProvider>
+    <div style={{ backgroundColor: "#222" }}>
+      <ProfileContextProvider>
+        <ChakraProvider>
+          <CartContextProvider>
+            <BrowserRouter>
+              <WalletProvider>
+                <MainHeader />
+                <HomeWrapper>
+                  <Routes>
+                    <Route exact path="/" element={<HomePage />} />
+                    <Route path="/creatorpage" element={<CreatorPage />} />
+                    <Route path="/postpage" element={<PostPage />} />
+                    <Route
+                      path="/collectionpage"
+                      element={<CollectionPage />}
+                    />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/crashpunks" element={<Crashpunks />} />
+                    <Route path="/buyproduct" element={<BuyProduct />} />
+                    <Route path="/*" element={<NotFound />} />
+                  </Routes>
+                </HomeWrapper>
+                <Footer />
+              </WalletProvider>
+            </BrowserRouter>
+          </CartContextProvider>
+        </ChakraProvider>
+      </ProfileContextProvider>
     </div>
   );
 }
