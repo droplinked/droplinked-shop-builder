@@ -1,89 +1,74 @@
-import {BrowserRouter as Router, Switch,Route,Link, useParams} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./shipping.scss"
+import { useState, useEffect } from "react";
+import axios from 'axios';
+import { useProfile } from "../../sevices/hooks/useProfile"
 
-export default function Shipping(){
+export default function Shipping() {
+    const [shipingRates, setShippingRates] = useState([])
+    const { profile } = useProfile();
+    const personId = profile.id;
 
-    return(
-                <div className="shipping-wrapper">
+    useEffect(() => {
 
-                    <div className="head-text-wrapper d-flex justify-content-start">
-                            <p>Shipping</p>
-                    </div>
+        let shop = JSON.parse(localStorage.getItem('shopping_cart'))[0].shopName;
+        let checkoutID = JSON.parse(localStorage.getItem('checkout-createdCheckout')).token;
+        console.log();
+        axios.post('https://dev.flatlay.io/checkout/getshippingrates',
+            {
+                checkoutId: checkoutID,
+                shopName: shop
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: personId,
+                }
+            }).then((res) => {
+                console.log(res.data.shipping_rates);
+                setShippingRates(res.data.shipping_rates);
+            });
 
-                    <div className="option-wrapper d-flex flex-column">
-                        {ShippingItem()}
-                        {ShippingItem()}
-                        {ShippingItem()}
-                    </div>
 
-                    <div className="d-flex justify-content-center">
-                    <div className="text-center mt-4">
-                             <Link to="/payment">
-                             <button className="btn btn-light px-4 rounded-5 process-btn">
-                                  Proceed to payment
-                            </button>
-                            </Link>
-                         </div>
+    }, [])
 
-                    </div>
-
+    return (
+        <div className="shipping-wrapper">
+            <div className="head-text-wrapper d-flex justify-content-start">
+                <p>Shipping</p>
+            </div>
+            <div className="option-wrapper d-flex flex-column">
+                {(shipingRates != undefined) && shipingRates.map((shiping) => {
+                    return (<ShippingItem shipingDetail={shiping} />)
+                })}
+            </div>
+            <div className="d-flex justify-content-center">
+                <div className="text-center mt-4">
+                    <Link to="/payment">
+                        <button className="btn btn-light px-4 rounded-5 process-btn">
+                            Proceed to payment
+                        </button>
+                    </Link>
                 </div>
+            </div>
+        </div>
 
-
-
-
-
-    // <div className="container-fluid " style={{ height:'100vh'}}>
-    
-    //     <div className="p-3 p-lg-4">  
-    //         <div className="row">
-    //             <div className="col-12 col-lg-7">
-    //                 <div className="bg-white rounded-2 shadow-sm p-3 p-lg-4">
-    //                     <div className="mb-4">
-    //                         <h2 className="mb-1"><strong>Shipping</strong></h2>
-    //                         <span className="text-muted">Please select a shipping</span>
-    //                     </div>
-    //                     {/* loarding */}
-    //                     {/* <div className="p-5 text-center text-muted">
-    //                          <span>Loading ...</span>
-    //                     </div> */}
-    //                     {/* loarding */}
-    //                     <div className="card-container" >   
-    //                         <div className="card-box rounded-2 p-3 mb-3" tabindex="0" >
-    //                             <div className="cursor-pointer d-flex flex-row align-items-center justify-content-between">
-    //                                  <strong>First Class Package International</strong>
-    //                                  <span>$15.34</span>
-    //                             </div>
-    //                         </div>
-    //                     </div>
-    //                     <div className="text-center mt-4">
-    //                         <Link to="/payment">
-    //                         <button className="btn btn-dark px-4 rounded-5">
-    //                              Proceed to payment
-    //                         </button>
-    //                         </Link>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
-        
-    // </div>
     )
 }
 
-function ShippingItem(){
+function ShippingItem({ shipingDetail }) {
 
-
-    return(
-
-
-        <div className="d-flex justify-content-center mt-3" style={{width:"100%"}}>
+    return (
+        <div className="d-flex justify-content-center mt-3 selected" style={{ width: "100%" }} tabindex="0"
+        onFocus={()=>{
+            localStorage.setItem('checkout-selectedShipping', JSON.stringify(shipingDetail));
+        }}
+        >
             <div className="card-box rounded-2 p-3 mb-3 col-md-6 col-12 " tabindex="0" >
                 <div className="cursor-pointer d-flex flex-row align-items-center justify-content-between">
-                    <strong>First Class Package International</strong>
-                    <span>$15.34</span>
-                 </div>
+                    <strong>{shipingDetail.title}</strong>
+                    <span>$ ${shipingDetail.price}</span>
+                </div>
             </div>
         </div>
 
