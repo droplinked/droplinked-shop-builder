@@ -11,7 +11,7 @@ import HomeWrapper from "./components/Structure/new wrapper/HomeWrapper";
 import CreatorPage from "./layout/creator/CreatorPage";
 import PostPage from "./layout/postpage/PostPage";
 import CollectionPage from "./layout/collection page/CollectionPage";
-
+import Checkout from "./layout/checkout/Checkout"
 import HomePage from "./layout/homepage test/HomePage";
 import BuyProduct from "./layout/buy product/BuyProduct";
 import Terms from "./layout/terms/Terms";
@@ -39,6 +39,7 @@ function App() {
                       path="/collectionpage"
                       element={<CollectionPage />}
                     />
+                     <Route path="/cart" element={<Checkout />} />
                     <Route path="/productList" element={<ProctuPageTest />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/privacy" element={<Privacy />} />
