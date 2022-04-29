@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Box, Image, Text } from '@chakra-ui/react';
 
 
-function SideCardItem({ title, color, size, cost, image, product }) {
+function SideCardItem({ title, color, size, cost, image , amount , product , detail}) {
 	console.log(product);
 	return (
 		<Box
@@ -22,21 +22,21 @@ function SideCardItem({ title, color, size, cost, image, product }) {
 			marginY="2"
 		>
 			{/* image */}
-			<Box paddingX="2" width={'100%'}>
-				<Image src={product && product.images[0].src} borderRadius="10"></Image>
+			<Box paddingX="2" width={'100%'} maxWidth={"80px"}>
+				<Image src={image} borderRadius="10"></Image>
 			</Box>
 
 			{/* content */}
 			<Box display={'flex'} flexDirection="column">
 				{/* header */}
 				<Text noOfLines={1} paddingX={2} fontWeight={'semibold'}>
-					{product && product.title}
+					{title}
 				</Text>
 
 				{/* information */}
 				<Box display={'flex'} color="gray" fontWeight={'semibold'}>
 					{/* color */}
-					<Box display={'flex'} justifyContent="center" alignItems={'center'}>
+					{/* <Box display={'flex'} justifyContent="center" alignItems={'center'}>
 						<Text padding={'2'}>Color:</Text>
 						<Box
 							backgroundColor={color}
@@ -44,11 +44,10 @@ function SideCardItem({ title, color, size, cost, image, product }) {
 							height="2"
 							borderRadius={'sm'}
 						></Box>
-					</Box>
+					</Box> */}
 					{/* size */}
 					<Box display={'flex'} justifyContent="center" alignItems={'center'}>
-						<Text padding={'2'}>Size:</Text>
-						{product && product.quantity}
+						<Text padding={'2'}>{detail}</Text>
 					</Box>
 					{/* cost */}
 					<Box
@@ -57,7 +56,7 @@ function SideCardItem({ title, color, size, cost, image, product }) {
 						alignItems={'center'}
 						color="white"
 					>
-						<Text padding={'2'}>${product && product.variants[0].price}</Text>
+						<Text padding={'2'}>${cost}</Text>
 					</Box>
 				</Box>
 			</Box>

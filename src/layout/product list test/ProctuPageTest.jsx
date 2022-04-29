@@ -10,7 +10,7 @@ function ProctuPageTest() {
     useEffect(() => {
         axios.post('https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search',
             {
-                keyword: 'nike',
+                keyword: 'tshirt',
                 page: 1,
             }).then((response) => {
                 console.log(response.data.shopify);

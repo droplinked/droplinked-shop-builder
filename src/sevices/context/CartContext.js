@@ -8,43 +8,37 @@ export const CartContext = createContext()
 const CartContextProvider = ({children}) => {
    
 
-    const [state, dispatch] = useReducer(CartReducer, { cartItems: [], ...sumItems([])}  ) 
+    const [state, dispatch] = useReducer(CartReducer, []  ) 
     
     const increase = payload => {
-        console.log("dispatch method");
         dispatch({type: 'INCREASE', payload})
     }
 
-    const decrease = payload => {
-        dispatch({type: 'DECREASE', payload})
-    }
+    // const decrease = payload => {
+    //     dispatch({type: 'DECREASE', payload})
+    // }
 
-    const addProduct = payload => {
+    // const addProduct = payload => {
        
-        dispatch({type: 'ADD_ITEM', payload})
-    }
+    //     dispatch({type: 'ADD_ITEM', payload})
+    // }
 
-    const removeProduct = payload => {
-        dispatch({type: 'REMOVE_ITEM', payload})
-    }
+    // const removeProduct = payload => {
+    //     dispatch({type: 'REMOVE_ITEM', payload})
+    // }
 
-    const clearCart = () => {
-        dispatch({type: 'CLEAR'})
-    }
+    // const clearCart = () => {
+    //     dispatch({type: 'CLEAR'})
+    // }
 
-    const handleCheckout = () => {
-        console.log('CHECKOUT', state);
-        dispatch({type: 'CHECKOUT'})
-    }
+    // const handleCheckout = () => {
+    //     console.log('CHECKOUT', state);
+    //     dispatch({type: 'CHECKOUT'})
+    // }
 
     const contextValues = {
-        removeProduct,
-        addProduct,
         increase,
-        decrease,
-        clearCart,
-        handleCheckout,
-        ...state
+        state
     } 
 
     return ( 

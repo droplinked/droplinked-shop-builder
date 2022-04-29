@@ -43,7 +43,7 @@ function App() {
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/privacy" element={<Privacy />} />
                     <Route path="/crashpunks" element={<Crashpunks />} />
-                    <Route path="/buyproduct" element={<BuyProduct />} />
+                    <Route path="/product/:id" element={<BuyProduct />} />
                     <Route path="/*" element={<NotFound />} />
                   </Routes>
                 </HomeWrapper>
