@@ -20,6 +20,7 @@ import Crashpunks from "./layout/crashpunk/crashpunks";
 //import Product from "./layout/product/Product"
 import Main from "./layout/landing/Main";
 import ProctuPageTest from "./layout/product list test/ProctuPageTest";
+import Address from "./layout/address/Address"
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
                       element={<CollectionPage />}
                     />
                      <Route path="/cart" element={<Checkout />} />
+                     <Route path="/address" element={<Address />} />
                     <Route path="/productList" element={<ProctuPageTest />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/privacy" element={<Privacy />} />

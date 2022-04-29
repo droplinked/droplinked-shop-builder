@@ -1,71 +1,152 @@
 import React, { Component } from "react";
 import "./address.scss";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import add from "./icons/add.png";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAddress } from "../../sevices/hooks/useAddress";
+import { useProfile } from "../../sevices/hooks/useProfile"
+import axios from 'axios';
 
-// function Address () {
+function Address() {
 
-// 	const[addAddress , setAddAddress]=useState(false);
-// 	//const[address , setAddress]=useState([]);
-// 	const { addressList } = useAddress();
+  const [addAddress, setAddAddress] = useState(false);
+  const [address, setAddress] = useState([]);
+  const [addressList, setAddressList] = useState([]);
+  const { profile } = useProfile();
+  const personId = profile.id;
 
-// 	function cancelNewAddress(){
-// 		setAddAddress(false);
-// 	}
+  useEffect(() => {
+    axios.get(`https://dev.flatlay.io/user/address`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: personId,
+      }
+    }).then((res) => {
+      console.log(res.data);
+      setAddressList(res.data.address)
+    })
 
-// 		return (
-// 			<div className='bg-white rounded-2 shadow-sm p-3 p-lg-4'>
-// 				<div className='d-flex flex-row align-items-center mb-4'>
-// 					<h2 className='m-0 me-3'>
-// 						<strong>my address</strong>
-// 					</h2>
-// 					<span className='text-muted'>select an address or add new one</span>
-// 				</div>
 
-// 				{addressList.length>0 &&
-// 					addressList.map((item , i) =>{
-// 						return <AddressItem address={item} key={i}/>
-// 					})
+  }, [])
 
-// 				}
+  const updateAddress = () => {
+    axios.get(`https://dev.flatlay.io/user/address`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: personId,
+      }
+    }).then((res) => {
+      console.log(res.data);
+      setAddressList(res.data.address)
+    })
 
-// 				{!addAddress ?
-// 					<div className='text-center p-3'>
-// 					<button className='btn'
-// 						onClick={()=>{setAddAddress(true)}}
-// 					>
-// 						<img src={add} alt='add' width='18px' height='18px' />
-// 						<span className='ms-2'>add new address</span>
-// 					</button>
-// 				</div>
-// 				:
-// 				<div className='text-center mt-5'></div>
-// 				}
+  }
 
-// 				{addAddress && <NewAddress cancel={cancelNewAddress}/>}
+  function cancelNewAddress() {
+    setAddAddress(false);
+  }
 
-// 				<div className='text-center mt-4'>
-// 					<Link to="/shipping">
-// 					<button className='btn btn-dark px-4 rounded-pill' disabled>
-// 						proceed to shipping
-// 					</button>
-// 					</Link>
-// 				</div>
-// 			</div>
-// 		)
+  function proccess() {
+    let x = JSON.parse(localStorage.getItem('shopping_cart'));
 
-// }
+    let shop = x[0].shopName;
+    let variantArr = x.map((item) => {
+      return {
+        quantity: item.amount,
+        variant_id: item.variant.id
+      }
+    })
+    let adr = JSON.parse(localStorage.getItem('checkout-selectedAddress')).address;
+    let selectedAddress = {
+      address1: adr.line1,
+      address2: adr.line1 || "",
+      city: adr.city,
+      country: adr.country,
+      first_name: adr.first_name,
+      last_name: adr.last_name,
+      phone: "",
+      province: adr.state,
+      zip: adr.zip
 
-function NewAddress(props) {
+    }
+
+    axios.post('https://dev.flatlay.io/checkout',
+      {
+        checkoutItem: {
+          checkout: {
+            billing_address: selectedAddress,
+            email: profile.email,
+            line_items: variantArr,
+            shipping_address: selectedAddress
+          }
+        },
+        shopName: shop,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: personId,
+        }
+      }).then((res) => {
+        console.log(res.data);
+        localStorage.setItem('checkout-createdCheckout', JSON.stringify(res.data.checkout));
+      });
+
+
+  }
+
+  return (
+    <div className='bg-white rounded-2 shadow-sm p-3 p-lg-4'>
+      <div className='d-flex flex-row align-items-center mb-4'>
+        <h2 className='m-0 me-3'>
+          <strong>my address</strong>
+        </h2>
+        <span className='text-muted'>select an address or add new one</span>
+      </div>
+
+      {(addressList != undefined) &&
+        addressList.map((item, i) => {
+          return <AddressItem address={item} key={i} />
+        })
+
+      }
+
+      {!addAddress ?
+        <div className='text-center p-3'>
+          <button className='btn'
+            onClick={() => { setAddAddress(true) }}
+          >
+            <img src={add} alt='add' width='18px' height='18px' />
+            <span className='ms-2'>add new address</span>
+          </button>
+        </div>
+        :
+        <div className='text-center mt-5'></div>
+      }
+
+      {addAddress && <NewAddress cancel={cancelNewAddress} update={updateAddress} />}
+
+      <div className='text-center mt-4'>
+        <Link to="/shipping">
+          <button className='btn btn-dark px-4 rounded-pill'
+            onClick={() => {
+              proccess()
+            }}
+          >
+            proceed to shipping
+          </button>
+        </Link>
+      </div>
+    </div>
+  )
+
+}
+
+function NewAddress({ cancel, update }) {
+  const { profile } = useProfile();
+  const personId = profile.id;
+
   const {
     register,
     handleSubmit,
@@ -78,8 +159,19 @@ function NewAddress(props) {
   }, [addressList]); //
 
   function submitForm(data) {
-    add(data);
-    props.cancel();
+    let address = data
+
+    axios.post('https://dev.flatlay.io/user/address',
+      address,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: personId,
+        }
+      }).then((res) => {
+        console.log(res.data);
+      });
+    update();
   }
 
   return (
@@ -99,7 +191,7 @@ function NewAddress(props) {
                   className="form-control"
                   id="first_name"
                   placeholder="First name"
-                  {...register("firstName", {
+                  {...register("first_name", {
                     required: "First name is required",
                   })}
                 />
@@ -117,7 +209,7 @@ function NewAddress(props) {
                   type="text"
                   className="form-control"
                   placeholder="Last name"
-                  {...register("lastName", {
+                  {...register("last_name", {
                     required: "Last name is required",
                   })}
                 />
@@ -135,7 +227,7 @@ function NewAddress(props) {
                   type="text"
                   className="form-control"
                   placeholder="address line 1"
-                  {...register("address1", {
+                  {...register("line1", {
                     required: "address line 1 is required",
                   })}
                 />
@@ -210,22 +302,20 @@ function NewAddress(props) {
             </div>
           </div>
           <div className="d-flex align-items end justify-content-between">
-            <Link
-              to="/shipping"
+            <button
+              //to="/shipping"
               className="btn btn-light btn-sm rounded-pill px-4 col-5 col-md-4 "
               type="submit"
               style={{ fontSize: "15px", fontWeight: "600", color: "black" }}
               value="save"
             >
               save
-            </Link>
+            </button>
 
             <button
               className="btn btn-sm ml=3 btn-light col-5 col-md-4"
               type="button"
-              onClick={() => {
-                props.cancel();
-              }}
+              onClick={cancel}
               style={{ fontSize: "15px", fontWeight: "600" }}
             >
               cancel
@@ -237,30 +327,34 @@ function NewAddress(props) {
   );
 }
 
-// function AddressItem(props) {
-//   //
-//   return (
-//     <div className="address-card p-3 selected" tabindex="0">
-//       <div className="cursor-pointer">
-//         <div className="d-flex flex-row align-items-center justify-content-between mb-2">
-//           <h3>
-//             <strong>
-//               {props.address.country} - {props.address.city}
-//             </strong>
-//           </h3>
-//           <span className="primary-badge">primary</span>
-//         </div>
-//         <p className="text-muted mb-1">{props.address.address1}</p>
-//         <p className="text-muted mb-1">
-//           {props.address.state} | {props.address.zip}
-//         </p>
-//         <div className="d-flex align-items-center justify-content-end actions-container">
-//           <button className="btn btn-sm">edit</button>
-//           <button className="btn btn-sm text-danger ml-2">remove</button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+function AddressItem({ address }) {
+  //
+  return (
+    <div className="address-card p-3 selected" tabindex="0"
+      onFocus={() => {
+        localStorage.setItem('checkout-selectedAddress', JSON.stringify(address));
+      }}
+    >
+      <div className="cursor-pointer">
+        <div className="d-flex flex-row align-items-center justify-content-between mb-2">
+          <h3>
+            <strong>
+              {address.address.country} - {address.address.city}
+            </strong>
+          </h3>
+          <span className="primary-badge">primary</span>
+        </div>
+        <p className="text-muted mb-1">{address.address.address1}</p>
+        <p className="text-muted mb-1">
+          {address.address.state} | {address.address.zip}
+        </p>
+        <div className="d-flex align-items-center justify-content-end actions-container">
+          <button className="btn btn-sm">edit</button>
+          <button className="btn btn-sm text-danger ml-2">remove</button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-export default NewAddress;
+export default Address;
