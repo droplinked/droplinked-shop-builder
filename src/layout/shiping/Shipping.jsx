@@ -32,6 +32,39 @@ export default function Shipping() {
 
     }, [])
 
+
+    const proceeToPayment = () => {
+
+        let shop = JSON.parse(localStorage.getItem('shopping_cart'))[0].shopName;
+        let chID = JSON.parse(localStorage.getItem('checkout-createdCheckout')).token;
+        let hand = JSON.parse(localStorage.getItem('checkout-selectedShipping')).handle;
+
+        axios.post('https://dev.flatlay.io/checkout/update',
+            {
+                shopName: shop,
+                checkoutId: chID,
+                checkoutItem: {
+                    checkout: {
+                        token: chID,
+                        shipping_line: {
+                            handle: hand,
+                        },
+                    },
+                },
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: personId,
+                }
+            }).then((res) => {
+                console.log(res.data);
+                localStorage.setItem('checkout-createdCheckout', JSON.stringify(res.data.checkout));
+            });
+
+    }
+
+
     return (
         <div className="shipping-wrapper">
             <div className="head-text-wrapper d-flex justify-content-start">
@@ -45,9 +78,11 @@ export default function Shipping() {
             <div className="d-flex justify-content-center">
                 <div className="text-center mt-4">
                     <Link to="/payment">
-                        <button className="btn btn-light px-4 rounded-5 process-btn">
-                            Proceed to payment
-                        </button>
+                    <button className="btn btn-light px-4 rounded-5 process-btn"
+                        onClick={proceeToPayment}
+                    >
+                        Proceed to payment
+                    </button>
                     </Link>
                 </div>
             </div>
@@ -60,9 +95,9 @@ function ShippingItem({ shipingDetail }) {
 
     return (
         <div className="d-flex justify-content-center mt-3 selected" style={{ width: "100%" }} tabindex="0"
-        onFocus={()=>{
-            localStorage.setItem('checkout-selectedShipping', JSON.stringify(shipingDetail));
-        }}
+            onFocus={() => {
+                localStorage.setItem('checkout-selectedShipping', JSON.stringify(shipingDetail));
+            }}
         >
             <div className="card-box rounded-2 p-3 mb-3 col-md-6 col-12 " tabindex="0" >
                 <div className="cursor-pointer d-flex flex-row align-items-center justify-content-between">
