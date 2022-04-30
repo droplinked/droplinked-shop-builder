@@ -15,6 +15,8 @@ import {
   useParams,
 } from "react-router-dom";
 import "react-credit-cards/es/styles-compiled.css";
+import { useState, useRef, useEffect } from 'react'
+import axios from 'axios';
 
 export default class Creadit extends React.Component {
   state = {
@@ -60,8 +62,37 @@ export default class Creadit extends React.Component {
         acc[d.name] = d.value;
         return acc;
       }, {});
-
+    let month = formData.expiry.substring(0, 2);
+    let year = formData.expiry.slice(-2)
+    let cartNum = formData.number.replace(/ /g, '');
+    let cv2 = formData.cvc;
+    console.log(month);
+    console.log(year);
+    console.log(cartNum);
+    console.log(cv2);
     this.setState({ formData });
+    let card = []
+
+    // axios.post('https://api.stripe.com/v1/tokens',
+
+    //   {
+    //     customer: "cus_IvToU5eNcdD15k"
+    //   }
+    //   ,
+    //   {
+    //     headers: {
+    //       "Content-Type": "application/x-www-form-urlencoded",
+    //       authorization: "Bearer sk_live_4Vg5xp0cOVvryFgCy13nQmP9",
+    //       "Stripe-Account": "acct_1BOBTbCwJzg4TUjz"
+    //     }
+    //   }).then((res) => {
+    //     console.log(res.data);
+
+    //   });
+
+
+
+
     this.form.reset();
   };
 
@@ -70,10 +101,10 @@ export default class Creadit extends React.Component {
 
     return (
       <div key="Payment"
-      style={{ maxWidth: "100%"}}>
+        style={{ maxWidth: "100%" }}>
         <div
           className="App-payment"
-          style={{ width: "100%"}}
+          style={{ width: "100%" }}
         >
           <Card
             number={number}
@@ -129,7 +160,7 @@ export default class Creadit extends React.Component {
                   type="tel"
                   name="expiry"
                   className="form-control"
-                  placeholder="Valid Thru"
+                  placeholder="MM / YY"
                   pattern="\d\d/\d\d"
                   required
                   onChange={this.handleInputChange}
@@ -157,18 +188,19 @@ export default class Creadit extends React.Component {
             <input type="hidden" name="issuer" value={issuer} />
 
             <div className="form-actions">
-              <Link to="/confirm">
-                <button
-                  className="btn btn-block"
-                  style={{
-                    width: "100%",
-                    backgroundColor: "white",
-                    color: "#222",
-                  }}
-                >
-                  PAY{" "}
-                </button>
-              </Link>
+              {/* <Link to="/confirm"> */}
+              <button
+                type="submit"
+                className="btn btn-block"
+                style={{
+                  width: "100%",
+                  backgroundColor: "white",
+                  color: "#222",
+                }}
+              >
+                PAY{" "}
+              </button>
+              {/* </Link> */}
             </div>
           </form>
 
