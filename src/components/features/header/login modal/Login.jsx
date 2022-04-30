@@ -10,7 +10,7 @@ function Login({ close }) {
     const navigate = useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [type, setType] = useState("creator")
-    const { addProfile } = useProfile();
+    const {profile , addProfile } = useProfile();
 
     const submitForm = (data) => {
         axios.get('https://dev.flatlay.io/login', {

@@ -1,32 +1,32 @@
-import { createContext, useReducer } from 'react';
-import { ProflieReduser } from './ProfileReducer';
-import { useState } from "react"
+import { createContext, useReducer } from "react";
+import { ProflieReduser } from "./ProfileReducer";
+import { useState , useEffect } from "react";
 
-export const ProfileContext = createContext()
+export const ProfileContext = createContext();
 
+const ProfileContextProvider = ({ children }) => {
+  //const [profile , setProfile] = useState({})
+  const [profile, dispatch] = useReducer(ProflieReduser, ( JSON.parse(localStorage.getItem("profile"))) || null);
 
+  const addProfile = (payload) => {
+    dispatch({ type: "ADD_PROFILE", payload });
+  };
 
-const ProfileContextProvider = ({children}) => {
-   
-const [profile , setProfile] = useState({})
-    //const [profile, dispatch] = useReducer(ProflieReduser, {}  ) 
-    
-    const addProfile = payload => {
-        setProfile(payload);
-    }
+  const logout = () => {
+    dispatch({type:"LOGOUT"});
+  };
 
-    
+  const contextValues = {
+    addProfile,
+    logout,
+    profile,
+  };
 
-    const contextValues = {
-        addProfile,
-        profile
-    } 
+  return (
+    <ProfileContext.Provider value={contextValues}>
+      {children}
+    </ProfileContext.Provider>
+  );
+};
 
-    return ( 
-        <ProfileContext.Provider value={contextValues} >
-            { children }
-        </ProfileContext.Provider>
-     );
-}
- 
 export default ProfileContextProvider;

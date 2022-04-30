@@ -14,9 +14,9 @@ function MainHeader() {
   let ur = window.location.pathname;
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
   const [emailModal, setEmailModal] = useState(false);
-  const { profile } = useProfile();
+  const { profile, logout } = useProfile();
 
-
+  console.log(profile);
 
   const showModal = () => {
     setEmailModal(true)
@@ -25,6 +25,7 @@ function MainHeader() {
   const hideModal = () => {
     setEmailModal(false)
   }
+
 
   return (<>
     <div className="header-wrapp d-flex justify-content-center">
@@ -36,11 +37,20 @@ function MainHeader() {
         </Link>
 
         <div className="header-nav d-md-flex d-none ">
-          <div className="login-wrapper col-4 d-flex align-items-center"
-            onClick={showModal}
-          >
-            <p>Login</p>
-          </div>
+          {(profile == null) ?
+            <div className="login-wrapper col-4 d-flex align-items-center"
+              onClick={showModal}
+            >
+              <p>Login</p>
+            </div>
+            :
+            <div className="login-wrapper col-4 d-flex align-items-center"
+              onClick={() => { logout() }}
+            >
+              <p>Logout</p>
+            </div>
+          }
+
           {(ur != "/") &&
             (<div className="login-wrapper col-4 d-flex align-items-center">
               <p>Cart</p>

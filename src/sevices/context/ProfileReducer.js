@@ -1,15 +1,15 @@
 export const ProflieReduser = (profile, action) => {
-    console.log(profile);
-    switch (action.type) {
+    
+  switch (action.type) {
+    case "ADD_PROFILE":
+      localStorage.setItem('profile', JSON.stringify(action.payload));
+      return { ...action.payload};
 
-        case "ADD_PROFILE":
-            // console.log("state");
-            // console.log(profile);
-            return {...profile}
+      case "LOGOUT":
+        localStorage.setItem('profile', null);
+        return null
 
-        
-        default:
-            return profile
-
-    }
-}
+    default:
+      return profile;
+  }
+};
