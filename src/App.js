@@ -11,7 +11,7 @@ import HomeWrapper from "./components/Structure/new wrapper/HomeWrapper";
 import CreatorPage from "./layout/creator/CreatorPage";
 import PostPage from "./layout/postpage/PostPage";
 import CollectionPage from "./layout/collection page/CollectionPage";
-import Checkout from "./layout/checkout/Checkout"
+import Checkout from "./layout/checkout/Checkout";
 import HomePage from "./layout/homepage test/HomePage";
 import BuyProduct from "./layout/buy product/BuyProduct";
 import Terms from "./layout/terms/Terms";
@@ -20,8 +20,9 @@ import Crashpunks from "./layout/crashpunk/crashpunks";
 //import Product from "./layout/product/Product"
 import Main from "./layout/landing/Main";
 import ProctuPageTest from "./layout/product list test/ProctuPageTest";
-import Address from "./layout/address/Address"
-import Shipping from "./layout/shiping/Shipping"
+import Address from "./layout/address/Address";
+import Shipping from "./layout/shiping/Shipping";
+import Payments from "./layout/payment/Payments";
 
 function App() {
   return (
@@ -41,10 +42,11 @@ function App() {
                       path="/collectionpage"
                       element={<CollectionPage />}
                     />
-                     <Route path="/cart" element={<Checkout />} />
-                     <Route path="/address" element={<Address />} />
-                     <Route path="/shipping" element={<Shipping />} />
+                    <Route path="/cart" element={<Checkout />} />
+                    <Route path="/address" element={<Address />} />
+                    <Route path="/shipping" element={<Shipping />} />
                     <Route path="/productList" element={<ProctuPageTest />} />
+                    <Route path="/payment" element={<Payments />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/privacy" element={<Privacy />} />
                     <Route path="/crashpunks" element={<Crashpunks />} />

@@ -1,31 +1,66 @@
-import {useState , useRef} from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Creadit from "./Creadit"
+import axios from 'axios';
+import { useProfile } from "../../sevices/hooks/useProfile"
+//import { PaymentElement } from '@stripe/react-stripe-js';
+import { Elements, PaymentElement } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 import './payments.scss'
 
-function Payments () {
-	
-	const[cards , setCard]=useState([]);
-	const[showNewCard , setShowNewCard]=useState(false);
 
-		const setCardData = (data) => {
-			console.log(cards);
-			setCard([...cards, data]);
-		}
+const stripePromise = loadStripe('pk_test_VOOyyYjgzqdm8I3SrBqmh9qY');
 
-		const toggleShow = () =>{
-			setShowNewCard(pre => !pre)
-		}
+function Payments() {
+	const { profile } = useProfile();
+	const personId = profile.id;
+
+	const [cards, setCard] = useState([]);
+	const [showNewCard, setShowNewCard] = useState(false);
+
+	const options = {
+		// passing the client secret obtained from the server
+		clientSecret: '{{CLIENT_SECRET}}',
+	};
+
+
+	useEffect(() => {
+		axios.post('https://dev.flatlay.io/stripe/customer',
+			{
+
+			},
+			{
+				headers: {
+					"Content-Type": "application/json",
+					authorization: personId,
+				}
+			}).then((res) => {
+				console.log(res.data.customerID);
+				localStorage.setItem('checkout-customerId', JSON.stringify(res.data.customerID));
+			});
+
+	}, [])
+
+	const setCardData = (data) => {
+		console.log(cards);
+		setCard([...cards, data]);
+	}
+
+	const toggleShow = () => {
+		setShowNewCard(pre => !pre)
+	}
 
 
 
-		return (
+	return (
+		<>
 			<div className="main">
 				<Creadit />
 			</div>
-			
-		)
-	
+		</>
+
+	)
+
 }
 
 // function NewPayment (props) {
@@ -113,7 +148,7 @@ function Payments () {
 // 				</div>
 // 			</div>
 // 		)
-	
+
 // }
 
 export default Payments
