@@ -23,6 +23,7 @@ import ProctuPageTest from "./layout/product list test/ProctuPageTest";
 import Address from "./layout/address/Address";
 import Shipping from "./layout/shiping/Shipping";
 import Payments from "./layout/payment/Payments";
+import Confirm from "./layout/confirm/Confirm";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
                     <Route path="/payment" element={<Payments />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/confirm" element={<Confirm />} />   
                     <Route path="/crashpunks" element={<Crashpunks />} />
                     <Route path="/product/:id" element={<BuyProduct />} />
                     <Route path="/*" element={<NotFound />} />

@@ -3,6 +3,7 @@ import Creadit from "./Creadit"
 import axios from 'axios';
 import { useProfile } from "../../sevices/hooks/useProfile"
 import StripContainer from './StripContainer';
+import {Link } from "react-router-dom";
 
 import './payments.scss'
 
@@ -48,6 +49,10 @@ function Payments() {
 				<div style={{ backgroundColor: "white" , width:"50%" , height:"auto" }}>
 					<StripContainer />
 				</div>
+				<Link to="/confirm">
+					<button style={{backgroundColor:"white"}}>continue</button>
+				</Link>
+
 				{/* <Creadit /> */}
 			</div>
 		</>
