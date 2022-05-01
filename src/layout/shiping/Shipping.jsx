@@ -13,7 +13,7 @@ export default function Shipping() {
 
         let shop = JSON.parse(localStorage.getItem('shopping_cart'))[0].shopName;
         let checkoutID = JSON.parse(localStorage.getItem('checkout-createdCheckout')).token;
-        console.log();
+        
         axios.post('https://dev.flatlay.io/checkout/getshippingrates',
             {
                 checkoutId: checkoutID,

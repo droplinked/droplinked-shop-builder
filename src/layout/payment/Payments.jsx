@@ -3,7 +3,7 @@ import Creadit from "./Creadit"
 import axios from 'axios';
 import { useProfile } from "../../sevices/hooks/useProfile"
 import StripContainer from './StripContainer';
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import './payments.scss'
 
@@ -11,8 +11,8 @@ function Payments() {
 	const { profile } = useProfile();
 	const personId = profile.id;
 
-	const [cards, setCard] = useState([]);
-	const [showNewCard, setShowNewCard] = useState(false);
+	const [cards, setCard] = useState(null);
+	const [showbtn, setShowBtn] = useState(false);
 
 
 	useEffect(() => {
@@ -26,32 +26,30 @@ function Payments() {
 					authorization: personId,
 				}
 			}).then((res) => {
-				console.log(res.data.customerID);
+				//console.log(res.data.customerID);
 				localStorage.setItem('checkout-customerId', JSON.stringify(res.data.customerID));
 			});
 
+
 	}, [])
 
-	const setCardData = (data) => {
-		console.log(cards);
-		setCard([...cards, data]);
-	}
-
-	const toggleShow = () => {
-		setShowNewCard(pre => !pre)
+	const addcart = (cr)=>{
+		setCard(cr);
 	}
 
 
 
 	return (
 		<>
-			<div className="main d-flex justify-content-center align-items-center">
-				<div style={{ backgroundColor: "white" , width:"50%" , height:"auto" }}>
-					<StripContainer />
+			<div className="main d-flex flex-column justify-content-center align-items-center">
+				<div style={{ padding: "0px", backgroundColor: "#222", width: "100%", height: "auto" }}>
+					<StripContainer add={addcart}/>
 				</div>
-				<Link to="/confirm">
-					<button style={{backgroundColor:"white"}}>continue</button>
-				</Link>
+				{(cards != null) &&
+					<Link to="/confirm">
+						<button className='payment-page-con-btn' >continue to confirm</button>
+					</Link>
+				}
 
 				{/* <Creadit /> */}
 			</div>

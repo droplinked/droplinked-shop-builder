@@ -6,9 +6,10 @@ import PaymentForm from "./PaymentForm";
 
 const stripePromise = loadStripe('pk_test_VOOyyYjgzqdm8I3SrBqmh9qY');
 
-function StripContainer() {
+function StripContainer({add}) {
 
     const inputStyle = {
+      border:"1px solid red",
         iconColor: '#c4f0ff',
         color: 'red',
         fontWeight: '500',
@@ -27,7 +28,7 @@ function StripContainer() {
 
 return (
     <Elements stripe={stripePromise}>
-        <PaymentForm />
+        <PaymentForm add={add} />
     </Elements>
 );
 
