@@ -28,12 +28,11 @@
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
   animation-duration: 0.4s;
-  padding: 20px 48px 48px 48px;
+  padding: 30px 48px 48px 48px;
 }
 
 .email-modal-contain {
   // position: relative;
-
   box-sizing: border-box;
   margin: auto;
   width: 100%;
@@ -55,8 +54,9 @@
 }
 
 .creato-brand-btn {
-  padding: 8px 0px;
-  width: 40%;
+  padding: 8px 5px;
+  min-width: 40%;
+  width: auto;
   border-radius: 10px;
   border: 2px solid #8053ff;
   font-family: "AvenirNext";
@@ -72,9 +72,9 @@
 }
 
 .email-modal-input-wrap {
+  padding:0px;
   width: 100%;
   margin-top: 20px;
-
 }
 .login-modal-input {
   border: 2px solid #b3b3b3;
@@ -88,20 +88,34 @@
   line-height: 28px;
   color: #ffffff;
   padding: 13px 5px;
-  background: transparent;
-  background: none;
+  background-color: transparent;
+
   outline: none;
   margin-top: 15px;
 }
 .login-modal-input:focus {
   border: 2px solid #8053ff;
-  background: transparent;
-  background: none;
+  background-color: transparent;
   outline: none;
+  color: #ffffff;
+}
+.login-modal-input::placeholder {
+  color: #b3b3b3;
+}
+
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// input:-webkit-autofill:active {
+//   color: #b3b3b3;
+//   transition: background-color 500s ease-in-out 0s;
+// }
+.login-modal-f{
+  min-width:100%;
 }
 
 .login-modal-submit-btn {
-  width: 50%;
+  width: 100%;
   font-family: "AvenirNext";
   font-style: normal;
   font-weight: 400;
@@ -112,18 +126,19 @@
   background-color: #8053ff;
   border-radius: 8px;
   margin: 15px auto 0px auto;
-  
 }
 
-.login-modal-error{
-    margin-top: 5px;
-    font-family: "AvenirNext";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 18px;
-    color: #8053ff;
+.login-modal-error {
+  margin-top: 5px;
+  font-family: "AvenirNext";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  color: #8053ff;
 }
+
+
 @-webkit-keyframes animatetop {
   from {
     top: -300px;
@@ -146,21 +161,40 @@
   }
 }
 
+@media only screen and (max-width: 1000px) {
+  .creato-brand-btn {
+    font-size: 22px;
+    line-height: 20px;
+  }
+}
+
 @media only screen and (max-width: 900px) {
   .email-modal-body {
     height: 392px;
     margin: auto;
     width: 90%;
+    padding: 30px 20px 30px 20px;
   }
   .email-modal-contain {
     width: 100%;
     padding: 4px 4px 80px 4px;
   }
   .creato-brand-btn {
-    padding: 10px 0px;
-
+    padding: 10px 5px;
     border: 2px solid #8053ff;
     font-size: 18px;
     line-height: 20px;
+  }
+
+  .login-modal-submit-btn {
+    width: 100%;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 20px 15px;
+
+    margin: 15px auto 0px auto;
+  }
+  .email-modal-input-wrap {
+    padding-right: 0px;
   }
 }

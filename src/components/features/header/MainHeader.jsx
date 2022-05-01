@@ -25,7 +25,7 @@ function MainHeader() {
   const hideModal = () => {
     setEmailModal(false)
   }
-
+console.log(profile);
 
   return (<>
     <div className="header-wrapp d-flex justify-content-center">
@@ -37,7 +37,7 @@ function MainHeader() {
         </Link>
 
         <div className="header-nav d-md-flex d-none ">
-          {(profile == null) ?
+          {(profile == null || profile == undefined) ?
             <div className="login-wrapper col-4 d-flex align-items-center"
               onClick={showModal}
             >
