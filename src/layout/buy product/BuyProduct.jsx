@@ -34,8 +34,10 @@ function BuyProduct() {
     const [images, setImages] = useState([]);
     let optionsVal = [];
     const { profile } = useProfile();
-    const { increase } = useCart();
+    const { state , increase } = useCart();
     const personId = profile.id;
+
+  
 
     useEffect(() => {
         axios.get(`https://dev.flatlay.io/product/${id}`, {
@@ -54,10 +56,10 @@ function BuyProduct() {
 
     }, [])
 
- 
-  
 
-   
+
+
+
     const findVariant = () => {
         let selectedVariant = {};
         let con = true;
@@ -182,7 +184,7 @@ function BuyProduct() {
                                 </div>
                                 <div className="product-down-wrp">
                                     <div className="product-describe-text">Description</div>
-                                    <div  id="s" className={`product-detail-text ${readmore ? "" : "showReadMore"}`} dangerouslySetInnerHTML={{__html: product.body_html}}></div>
+                                    <div id="s" className={`product-detail-text ${readmore ? "" : "showReadMore"}`} dangerouslySetInnerHTML={{ __html: product.body_html }}></div>
                                     <button className="product-readmore-btn"
                                         onClick={() => { setReadmore(p => !p) }}
                                     >
@@ -193,9 +195,11 @@ function BuyProduct() {
 
                             </>)}
                     </div>
+                    {(state.length > 0) &&
                     <div className="col-4 d-none d-md-inline">
                         <Side />
                     </div>
+                    }
                 </div>
 
             </div>

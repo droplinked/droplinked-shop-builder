@@ -8,6 +8,7 @@ import image1 from "../../assest/image/product/image1.jpg";
 import { useCart } from "../../sevices/hooks/useCart"
 
 
+
 export default function Checkout() {
 	const { state, increase } = useCart();
 
@@ -15,17 +16,18 @@ export default function Checkout() {
 		let totalCost;
 		let arr = [];
 		if (state != undefined) {
-		arr = state.map((item)=>{
-			 return parseFloat(item.variant.price)
-		})
+			arr = state.map((item) => {
+				return parseFloat(item.variant.price * item.amount)
+			})
 		}
-		totalCost = arr.reduce((a,b)=>{return a+b} , 0)
+		totalCost = arr.reduce((a, b) => { return a + b }, 0)
 		return totalCost;
 	}
 
 
 
 	return (
+
 		<div className='checkout-wrapper'>
 			{/* head  */}
 			<div className="checkout-header">
@@ -61,12 +63,13 @@ export default function Checkout() {
 			</div>
 			{/* cost */}
 
-			<Link to="/address" className='checkout-button col-12 col-md-4 col-sm-6 d-flex' style={{ textDecoration: "none" }}>
-				<div className="text col-7" style={{ borderRight: "1px solid black" }}><p style={{ color: "black" }}>CHECKOUT</p></div>
-				<div className="text col-5" ><p style={{ color: "black" }}>${total()}</p></div>
+			<Link to="/address" className='checkout-button col-12 col-md-4 col-sm-6 ' style={{ textDecoration: "none" }}>
+				<div className="text w-100">checkout</div>
+				{/* <div className="text col-5" >${total()}</div> */}
 			</Link>
 
 		</div>
+
 	)
 
 }
@@ -74,38 +77,38 @@ export default function Checkout() {
 
 function Item({ product, variant, amount }) {
 	//	const { increase , decrease, addProduct, cartItems , removeProduct} = useCart();
-	const [quen, setQuen] = useState(amount);
+	const [am, setamoutn] = useState(amount);
+	const { state, increase } = useCart();
 
-
+	let total = (amount * variant.price)
 	const increaseItem = () => {
-		// increase({product:product , qun:1})
-		setQuen(pre => pre + 1)
+		increase({
+			amount: 1,
+			product: product,
+			shopName: product.shopName,
+			variant: variant
+		})
 	}
 
 	const decreaseItem = () => {
-		if (amount > 1) {
-			// decrease(product)
-			setQuen(pre => pre - 1)
-		} else if (amount == 1) {
-			//removeProduct(product)
-		}
+
 	}
 
 	return (<>
 		<div className="item-wrapper row d-flex mt-2" style={{ marginBottom: "10px" }}>
-			<div className='col-12 col-md-6  d-flex' style={{ padding: "0px", height: "70px" }}>
+			<div className='col-12 col-md-6  d-flex' style={{ padding: "0px", height: "100%" }}>
 				<img src={product && product.images[0].src} alt="" className='item-image rounded' />
 				<div className='item-name'>{product && product.title}</div>
 			</div>
-			<div className='col-12 col-md-6 d-flex justify-content-between' style={{ padding: "0px", height: "70px" }}>
+			<div className='col-12 col-md-6 d-flex justify-content-between' style={{ padding: "0px", height: "100%", margin: "auto 0px" }}>
 				<div className="counter-wrapper d-flex justify-content-between row">
 					<div className='col-4 counter-btn left'
 						onClick={() => { decreaseItem() }}
-					><p style={{ marginBottom: "5px" }}>-</p></div>
-					<div className='col-4'><p>{amount}</p></div>
+					>-</div>
+					<div className='col-4'>{amount}</div>
 					<div className='col-4 counter-btn right'
 						onClick={() => { increaseItem() }}
-					><p style={{ marginBottom: "5px" }}>+</p></div>
+					>+</div>
 				</div>
 
 				<div className='price'><p>$ {variant.price}</p></div>

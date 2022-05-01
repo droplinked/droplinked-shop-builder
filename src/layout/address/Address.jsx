@@ -51,6 +51,7 @@ function Address() {
     let x = JSON.parse(localStorage.getItem('shopping_cart'));
 
     let shop = x[0].shopName;
+    console.log(shop);
     let variantArr = x.map((item) => {
       return {
         quantity: item.amount,
@@ -128,7 +129,7 @@ function Address() {
       {addAddress && <NewAddress cancel={cancelNewAddress} update={updateAddress} />}
 
       <div className='text-center mt-4'>
-        <Link to="/shipping">
+        {/* <Link to="/shipping"> */}
           <button className='btn btn-dark px-4 rounded-pill'
             onClick={() => {
               proccess()
@@ -136,7 +137,7 @@ function Address() {
           >
             proceed to shipping
           </button>
-        </Link>
+        {/* </Link> */}
       </div>
     </div>
   )

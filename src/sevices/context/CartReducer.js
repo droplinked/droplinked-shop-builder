@@ -1,68 +1,48 @@
-
-
-export const sumItems = cartItems => {
-    
-    let itemCount = cartItems.reduce((total, product) => total + product.quantity, 0);
-    let total = cartItems.reduce((total, product) => total + parseFloat(product.variants[0].price) * product.quantity, 0).toFixed(2);
-    return { itemCount, total }
-}
-
 export const CartReducer = (state, action) => {
-    
-    switch (action.type) {
+  switch (action.type) {
+    case "INCREASE":
+      // state.cartItems[state.cartItems.findIndex(item => item.product_id === action.payload.product.product_id)].quantity += action.payload.qun
+      let lastArray = [];
+      lastArray.push(...state);
 
-        // case "ADD_ITEM":
-        //     if (!state.cartItems.find(item => item.product_id === action.payload.product.product_id)) {
-        //         console.log("add item click");
-        //         state.cartItems.push({
-        //             ...action.payload.product,
-        //             quantity:  action.payload.qun
-        //         })
-        //     } 
-            
-        //     return {
-        //         ...state,
-        //         ...sumItems(state.cartItems),
-        //         cartItems: [...state.cartItems]
-        //     }
+      let find = lastArray.find((e) => {
+        return e.variant.id == action.payload.variant.id;
+      });
+      if (find != undefined) {
+        lastArray = lastArray.filter((item) => {
+          if (item.variant.id == action.payload.variant.id) {
+            item.amount += action.payload.amount;
+          }
+          return item;
+        });
+      } else {
+        lastArray.push(action.payload);
+      }
+      console.log(lastArray);
+      localStorage.setItem("shopping_cart", JSON.stringify(lastArray));
+      return lastArray;
 
-        // case "REMOVE_ITEM":
-        //     return {
-        //         ...state,
-        //         ...sumItems(state.cartItems.filter(item => item.product_id !== action.payload.product_id)),
-        //         cartItems: [...state.cartItems.filter(item => item.product_id !== action.payload.product_id)]
-        //     }
+    // case "DECREASE":
+    //     state.cartItems[state.cartItems.findIndex(item => item.product_id === action.payload.product_id)].quantity--
+    //     return {
+    //         ...state,
+    //         ...sumItems(state.cartItems),
+    //         cartItems: [...state.cartItems]
+    //     }
 
-        case "INCREASE":
-           // state.cartItems[state.cartItems.findIndex(item => item.product_id === action.payload.product.product_id)].quantity += action.payload.qun
-           let lastArray = [];
-           lastArray.push(...state)
-           lastArray.push(action.payload);
-           localStorage.setItem("shopping_cart", JSON.stringify(lastArray));
-            return lastArray
+    // case "CHECKOUT":
+    //     return {
+    //         cartItems: [],
+    //         checkout: true,
+    //         ...sumItems([]),
+    //     }
 
-        // case "DECREASE":
-        //     state.cartItems[state.cartItems.findIndex(item => item.product_id === action.payload.product_id)].quantity--
-        //     return {
-        //         ...state,
-        //         ...sumItems(state.cartItems),
-        //         cartItems: [...state.cartItems]
-        //     }
-
-        // case "CHECKOUT":
-        //     return {
-        //         cartItems: [],
-        //         checkout: true,
-        //         ...sumItems([]),
-        //     }
-
-        // case "CLEAR":
-        //         return {
-        //             cartItems: [],
-        //             ...sumItems([]),
-        //         }
-        default:
-            return state
-
-    }
-}
+    // case "CLEAR":
+    //         return {
+    //             cartItems: [],
+    //             ...sumItems([]),
+    //         }
+    default:
+      return state;
+  }
+};

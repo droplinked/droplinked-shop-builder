@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Side() {
  const  {state ,increase}  = useCart();
- console.log(state);
+ //console.log(state);
 
     return (
         <div className="product-bakset-wraper d-flex flex-column">
@@ -18,7 +18,7 @@ function Side() {
                          detail={item.variant.title}
                          /> )
                 })}
-                <Link to="/cart">
+                <Link to="/cart"  className="side-basket-btn">
                 <button>Check out</button>
                 </Link>
         </div>)
