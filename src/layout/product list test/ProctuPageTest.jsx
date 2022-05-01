@@ -30,17 +30,22 @@ function ProctuPageTest() {
 
             {(product == null)
                 ?
-                <div className="col-md-8 col-12 h-auto product-list-wrap justify-content-center" >
+                <div className="col-md-10 col-12 h-auto product-list-wrap justify-content-center" >
                     <Loading />
                 </div>
                 :
-                <div className="col-md-8 col-12 h-auto product-list-wrap" >
+
+                <div className="col-md-10 col-12 h-auto product-list-wrap row" >
                     <h1>x</h1>
                     {product.map((item) => {
                         return <Product title={item.title} price={item.variants[0].formatted_price} imageUrl={item.images[0].src} id={item.product_id} />
                     })}
+
                 </div>
+
             }
+
+
 
         </div>
     </>)
