@@ -14,9 +14,10 @@ function MainHeader() {
   let ur = window.location.pathname;
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
   const [emailModal, setEmailModal] = useState(false);
+  const [mobilNav, setMobileNav] = useState(false);
   const { profile, logout } = useProfile();
 
-  console.log(profile);
+  console.log(ur);
 
   const showModal = () => {
     setEmailModal(true)
@@ -25,9 +26,26 @@ function MainHeader() {
   const hideModal = () => {
     setEmailModal(false)
   }
-console.log(profile);
+
+
 
   return (<>
+    {mobilNav &&
+      <div className="d-flex justify-content-end">
+        <div className="header-dropnav-body">
+          {(profile == null || profile == undefined) ?
+            <div className="header-dropnav-item"
+              onClick={() => { showModal(); setMobileNav(false); }}
+            ><p>Login</p></div>
+            :
+            <div className="header-dropnav-item"
+              onClick={() => { logout(); setMobileNav(false); }}
+            ><p>Logout</p></div>
+          }
+
+        </div>
+      </div>
+    }
     <div className="header-wrapp d-flex justify-content-center">
       <div className="header-body d-flex justify-content-between">
         <Link to="/">
@@ -51,7 +69,7 @@ console.log(profile);
             </div>
           }
 
-          {(ur != "/") &&
+          {((ur != "/") || (ur != null)) &&
             (<div className="login-wrapper col-4 d-flex align-items-center">
               <p>Cart</p>
             </div>)
@@ -81,14 +99,22 @@ console.log(profile);
           )}
         </div>
         <div className="mobile-nav d-flex d-md-none">
-          {(ur != "/") &&
+          {((ur != "/") || (ur != null)) &&
             <img src={basket} alt="" />
           }
 
-          <img src={more} alt="" />
+          <img src={more} alt=""
+            onClick={() => { setMobileNav(p => !p) }}
+          />
+
         </div>
+
       </div>
+
+
     </div>
+
+
     {emailModal && <Login close={hideModal} />}
   </>
   );
