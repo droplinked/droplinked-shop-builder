@@ -67,24 +67,23 @@ export default function Shipping() {
 
     return (
         <div className="shipping-wrapper">
+
             <div className="head-text-wrapper d-flex justify-content-start">
                 <p>Shipping</p>
             </div>
-            <div className="option-wrapper d-flex flex-column">
+            <div className="option-wrapper d-flex flex-column" style={{ border: "1px solid white" }}>
                 {(shipingRates != undefined) && shipingRates.map((shiping) => {
                     return (<ShippingItem shipingDetail={shiping} />)
                 })}
             </div>
             <div className="d-flex justify-content-center">
-                <div className="text-center mt-4">
-                    <Link to="/payment">
-                    <button className="btn btn-light px-4 rounded-5 process-btn"
+                <Link to="/payment">
+                    <button className="shiping-process-ahiping"
                         onClick={proceeToPayment}
                     >
                         Proceed to payment
                     </button>
-                    </Link>
-                </div>
+                </Link>
             </div>
         </div>
 
@@ -94,15 +93,15 @@ export default function Shipping() {
 function ShippingItem({ shipingDetail }) {
 
     return (
-        <div className="d-flex justify-content-center mt-3 selected" style={{ width: "100%" }} tabindex="0"
+        <div className="d-flex justify-content-center mt-3 selected  h-auto" style={{padding:"10px 0px"}} tabindex="0"
             onFocus={() => {
                 localStorage.setItem('checkout-selectedShipping', JSON.stringify(shipingDetail));
             }}
         >
-            <div className="card-box rounded-2 p-3 mb-3 col-md-6 col-12 " tabindex="0" >
-                <div className="cursor-pointer d-flex flex-row align-items-center justify-content-between">
-                    <strong>{shipingDetail.title}</strong>
-                    <span>$ ${shipingDetail.price}</span>
+            <div className="rounded-2 p-3  col-md-6 col-12 shiping-item-wrap " tabindex="0" >
+                <div className="cursor-pointer d-flex flex-row align-items-center justify-content-between selected">
+                    <strong className="text-in-shiping">{shipingDetail.title}</strong>
+                    <span className="text-in-shiping">$ ${shipingDetail.price}</span>
                 </div>
             </div>
         </div>
