@@ -54,7 +54,10 @@ function BuyProduct() {
 
     }, [])
 
+ 
+  
 
+   
     const findVariant = () => {
         let selectedVariant = {};
         let con = true;
@@ -114,20 +117,22 @@ function BuyProduct() {
                                             </div>
 
                                         </div>
-                                        {/* ff */}
+
                                         <div className=" w-100 d-flex justify-content-between" style={{ height: "80px", paddingTop: "10px" }}>
+                                            {(images.length > 1) && <>
+                                                <div className="product-carusel-btn">
+                                                    <img src={left} className="w-100 h-100" alt="" />
+                                                </div>
+                                                {images.map((img, i) => {
+                                                    if (i > 0 && i < 5) return (<img className="product-carosel-img" src={img} alt="" />)
+                                                })}
 
-                                            <div className="product-carusel-btn">
-                                                <img src={left} className="w-100 h-100" alt="" />
-                                            </div>
-                                            {images.map((img, i) => {
-                                                if (i > 0 && i < 5) return (<img className="product-carosel-img" src={img} alt="" />)
-                                            })}
-
-                                            <div className="product-carusel-btn">
-                                                <img src={right} className="w-100 h-100" alt="" />
-                                            </div>
+                                                <div className="product-carusel-btn">
+                                                    <img src={right} className="w-100 h-100" alt="" />
+                                                </div>
+                                            </>}
                                         </div>
+
                                     </div>
 
                                     <div className="product-img-form-wr product-left-side" >
@@ -177,7 +182,7 @@ function BuyProduct() {
                                 </div>
                                 <div className="product-down-wrp">
                                     <div className="product-describe-text">Description</div>
-                                    <div className={`product-detail-text ${readmore ? "" : "showReadMore"}`}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel sapiente est non qui aut minus, quia blanditiis assumenda harum alias accusantium voluptatum vitae error asperiores dicta veniam maiores quidem. Unde vero est quibusdam, ipsum voluptate hic impedit? Unde consequuntur odit rem nisi delectus aperiam quis ipsum reiciendis magni recusandae. Laborum facilis iusto quis harum expedita? Quam perspiciatis cum ab at aperiam iste doloribus! Vero non corporis ad suscipit sunt ipsam quam dolores nulla? Cumque laboriosam id animi nulla at pariatur exercitationem aperiam dolor nihil corrupti explicabo deserunt, ducimus dicta assumenda modi, nemo ullam, quis perferendis quae eveniet! Reiciendis eaque possimus incidunt molestias. Et sit labore odio vel eum iste! Nihil modi doloremque fugiat molestiae quod enim nulla nisi deserunt accusantium voluptatibus aut eveniet maiores optio pariatur nesciunt, nostrum corrupti debitis sint hic, inventore rem tenetur voluptatem. Cum, eum ratione error quam earum suscipit aliquam molestias iusto voluptatibus magnam dolor animi!</div>
+                                    <div  id="s" className={`product-detail-text ${readmore ? "" : "showReadMore"}`} dangerouslySetInnerHTML={{__html: product.body_html}}></div>
                                     <button className="product-readmore-btn"
                                         onClick={() => { setReadmore(p => !p) }}
                                     >
