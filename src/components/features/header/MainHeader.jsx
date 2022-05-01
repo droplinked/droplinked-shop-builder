@@ -17,7 +17,7 @@ function MainHeader() {
   const [mobilNav, setMobileNav] = useState(false);
   const { profile, logout } = useProfile();
 
-  console.log(ur);
+  
 
   const showModal = () => {
     setEmailModal(true)
@@ -69,7 +69,7 @@ function MainHeader() {
             </div>
           }
 
-          {((ur != "/") || (ur != null)) &&
+          {((window.location.pathname != "/")) &&
             (<div className="login-wrapper col-4 d-flex align-items-center">
               <p>Cart</p>
             </div>)
