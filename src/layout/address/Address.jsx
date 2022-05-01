@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./address.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import add from "./icons/add.png";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -8,7 +8,9 @@ import { useAddress } from "../../sevices/hooks/useAddress";
 import { useProfile } from "../../sevices/hooks/useProfile"
 import axios from 'axios';
 
+
 function Address() {
+  let navigate = useNavigate();
 
   const [addAddress, setAddAddress] = useState(false);
   const [address, setAddress] = useState([]);
@@ -92,6 +94,9 @@ function Address() {
       }).then((res) => {
         console.log(res.data);
         localStorage.setItem('checkout-createdCheckout', JSON.stringify(res.data.checkout));
+        navigate("../shipping", { replace: true });
+
+
       });
 
 
@@ -100,18 +105,18 @@ function Address() {
   return (
     <div className='w-100 address-rs-p'>
       <div className='d-flex justify-content-center align-items-center mb-4'>
-        
-          <strong className="myaddress-style">my address</strong>
-        
+
+        <strong className="myaddress-style">my address</strong>
+
         {/* <span className='text-muted txm-add'>select an address or add new one</span> */}
       </div>
-      <div style={{width:"auto" , padding:"0px 5px" , height:"auto" , border: "1px solid #B3B3B3" , borderRadius:"16px"}}>
-      {(addressList != undefined) &&
-        addressList.map((item, i) => {
-          return <AddressItem address={item} key={i} />
-        })
+      <div style={{ width: "auto", padding: "0px 5px", height: "auto", border: "1px solid #B3B3B3", borderRadius: "16px" }}>
+        {(addressList != undefined) &&
+          addressList.map((item, i) => {
+            return <AddressItem address={item} key={i} />
+          })
 
-      }
+        }
       </div>
 
       {!addAddress ?
@@ -120,7 +125,7 @@ function Address() {
             onClick={() => { setAddAddress(true) }}
           >
             {/* <img className="" src={add} alt='add' width='18px' height='18px' /> */}
-            <span className='' style={{color:"white"}}>add new address</span>
+            <span className='' style={{ color: "white" }}>add new address</span>
           </button>
         </div>
         :
@@ -130,15 +135,15 @@ function Address() {
       {addAddress && <NewAddress cancel={cancelNewAddress} update={updateAddress} />}
 
       <div className='text-center mt-4'>
-        <Link to="/shipping">
-          <button className='add-address-btn'
-            onClick={() => {
-              proccess()
-            }}
-          >
-            proceed to shipping
-          </button>
-        </Link>
+        {/* <Link to="/shipping"> */}
+        <button className='add-address-btn'
+          onClick={() => {
+            proccess()
+          }}
+        >
+          proceed to shipping
+        </button>
+        {/* </Link> */}
       </div>
     </div>
   )

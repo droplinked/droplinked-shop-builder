@@ -99,7 +99,7 @@ function MainHeader() {
           )}
         </div>
         <div className="mobile-nav d-flex d-md-none">
-          {((ur != "/") || (ur != null)) &&
+          {((window.location.pathname != "/")) &&
             <img src={basket} alt="" />
           }
 
