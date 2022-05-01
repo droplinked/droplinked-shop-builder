@@ -68,3 +68,65 @@
   color: white;
   margin-bottom: 10px;
 }
+
+.myaddress-style {
+  font-family: "AvenirNext";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 44px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.address-rs-p {
+  padding: 0px 80px;
+}
+
+.address-card{
+  cursor: pointer;
+  border:1px solid rgb(64, 64, 64);
+  height: auto;
+  padding:10px 0px;
+}
+
+.addres-contry-city{
+  font-family: "AvenirNext";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.address-txt {
+  font-family: "AvenirNext";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
+  padding:5px 0px;
+}
+
+.add-address-btn{
+  padding: 12px 12px;
+  background: #8053FF;
+border-radius: 8px;
+font-family: 'AvenirNext';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 20px;
+text-align: center;
+color: #FFFFFF;
+margin-top: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .address-rs-p {
+    padding: 0px 20px;
+  }
+}

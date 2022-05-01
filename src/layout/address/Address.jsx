@@ -98,28 +98,29 @@ function Address() {
   }
 
   return (
-    <div className='bg-white rounded-2 shadow-sm p-3 p-lg-4'>
-      <div className='d-flex flex-row align-items-center mb-4'>
-        <h2 className='m-0 me-3'>
-          <strong>my address</strong>
-        </h2>
-        <span className='text-muted'>select an address or add new one</span>
+    <div className='w-100 address-rs-p'>
+      <div className='d-flex justify-content-center align-items-center mb-4'>
+        
+          <strong className="myaddress-style">my address</strong>
+        
+        {/* <span className='text-muted txm-add'>select an address or add new one</span> */}
       </div>
-
+      <div style={{width:"auto" , padding:"0px 5px" , height:"auto" , border: "1px solid #B3B3B3" , borderRadius:"16px"}}>
       {(addressList != undefined) &&
         addressList.map((item, i) => {
           return <AddressItem address={item} key={i} />
         })
 
       }
+      </div>
 
       {!addAddress ?
-        <div className='text-center p-3'>
-          <button className='btn'
+        <div className='text-center h-auto'>
+          <button className='add-address-btn'
             onClick={() => { setAddAddress(true) }}
           >
-            <img src={add} alt='add' width='18px' height='18px' />
-            <span className='ms-2'>add new address</span>
+            {/* <img className="" src={add} alt='add' width='18px' height='18px' /> */}
+            <span className='' style={{color:"white"}}>add new address</span>
           </button>
         </div>
         :
@@ -129,15 +130,15 @@ function Address() {
       {addAddress && <NewAddress cancel={cancelNewAddress} update={updateAddress} />}
 
       <div className='text-center mt-4'>
-        {/* <Link to="/shipping"> */}
-          <button className='btn btn-dark px-4 rounded-pill'
+        <Link to="/shipping">
+          <button className='add-address-btn'
             onClick={() => {
               proccess()
             }}
           >
             proceed to shipping
           </button>
-        {/* </Link> */}
+        </Link>
       </div>
     </div>
   )
@@ -305,19 +306,17 @@ function NewAddress({ cancel, update }) {
           <div className="d-flex align-items end justify-content-between">
             <button
               //to="/shipping"
-              className="btn btn-light btn-sm rounded-pill px-4 col-5 col-md-4 "
+              className="col-5 col-md-4 add-address-btn"
               type="submit"
-              style={{ fontSize: "15px", fontWeight: "600", color: "black" }}
               value="save"
             >
               save
             </button>
 
             <button
-              className="btn btn-sm ml=3 btn-light col-5 col-md-4"
+              className="col-5 col-md-4 add-address-btn"
               type="button"
               onClick={cancel}
-              style={{ fontSize: "15px", fontWeight: "600" }}
             >
               cancel
             </button>
@@ -339,17 +338,17 @@ function AddressItem({ address }) {
       <div className="cursor-pointer">
         <div className="d-flex flex-row align-items-center justify-content-between mb-2">
           <h3>
-            <strong>
+            <strong className="addres-contry-city">
               {address.address.country} - {address.address.city}
             </strong>
           </h3>
-          <span className="primary-badge">primary</span>
+          <span className="color-white">primary</span>
         </div>
-        <p className="text-muted mb-1">{address.address.address1}</p>
-        <p className="text-muted mb-1">
+        <p className="address-txt mb-1 d-flex justify-content-start">{address.address.line1}</p>
+        <p className="address-txt mb-1 d-flex justify-content-start" >
           {address.address.state} | {address.address.zip}
         </p>
-        <div className="d-flex align-items-center justify-content-end actions-container">
+        <div className="d-flex align-items-center justify-content-end actions-container" >
           <button className="btn btn-sm">edit</button>
           <button className="btn btn-sm text-danger ml-2">remove</button>
         </div>
