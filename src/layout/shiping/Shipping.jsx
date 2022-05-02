@@ -71,7 +71,7 @@ export default function Shipping() {
             <div className="head-text-wrapper d-flex justify-content-start">
                 <p>Shipping</p>
             </div>
-            <div className="option-wrapper d-flex flex-column" style={{ border: "1px solid white" }}>
+            <div className=" d-flex flex-column" style={{ border: "1px solid white", borderRadius:"15px" , width:"80%" }}>
                 {(shipingRates != undefined) && shipingRates.map((shiping) => {
                     return (<ShippingItem shipingDetail={shiping} />)
                 })}
@@ -93,13 +93,13 @@ export default function Shipping() {
 function ShippingItem({ shipingDetail }) {
 
     return (
-        <div className="d-flex justify-content-center mt-3 selected  h-auto" style={{padding:"10px 0px"}} tabindex="0"
+        <div className="d-flex justify-content-center mt-3  h-auto" style={{padding:"10px 0px"}} 
             onFocus={() => {
                 localStorage.setItem('checkout-selectedShipping', JSON.stringify(shipingDetail));
             }}
         >
             <div className="rounded-2 p-3  col-md-6 col-12 shiping-item-wrap " tabindex="0" >
-                <div className="cursor-pointer d-flex flex-row align-items-center justify-content-between selected">
+                <div className="cursor-pointer d-flex flex-row align-items-center justify-content-between" tabindex="0">
                     <strong className="text-in-shiping">{shipingDetail.title}</strong>
                     <span className="text-in-shiping">$ ${shipingDetail.price}</span>
                 </div>
