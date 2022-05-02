@@ -32,12 +32,12 @@ function BuyProduct() {
     const [product, setPrudoct] = useState(null);
     const [shopName, setShopName] = useState("");
     const [images, setImages] = useState([]);
-    let optionsVal = [];
+    const [optionsVal, setOptionsVal] = useState([]);
     const { profile } = useProfile();
-    const { state , increase } = useCart();
+    const { state, increase } = useCart();
     const personId = profile.id;
 
-  
+
 
     useEffect(() => {
         axios.get(`https://dev.flatlay.io/product/${id}`, {
@@ -57,7 +57,19 @@ function BuyProduct() {
     }, [])
 
 
+    useEffect(() => {
+        let arr = [];
+        if(product != null){
+        {product.options.forEach((option) =>{
+            arr.push(option.values[0])
+        })}
+        setOptionsVal(arr)
+    }
+    }, [product])
 
+   
+
+    
 
 
     const findVariant = () => {
@@ -126,7 +138,22 @@ function BuyProduct() {
                                                     <img src={left} className="w-100 h-100" alt="" />
                                                 </div>
                                                 {images.map((img, i) => {
-                                                    if (i > 0 && i < 5) return (<img className="product-carosel-img" src={img} alt="" />)
+                                                    if (i > 0 && i < 5) return (<img className="product-carosel-img" src={img} alt=""
+                                                     onClick={()=>{
+                                                         
+                                                         let imagesArray = []
+                                                 
+                                                         images.forEach((itemi)=>{
+                                                            imagesArray.push(itemi)
+                                                         })
+                                                           
+                                                         let selectImg = imagesArray[i];
+                                                         imagesArray[i] = imagesArray[0]
+                                                         imagesArray[0] = selectImg;
+                                                         setImages(imagesArray);
+                                                     }}
+                                                     
+                                                     />)
                                                 })}
 
                                                 <div className="product-carusel-btn">
@@ -144,11 +171,15 @@ function BuyProduct() {
 
                                         <div className="w-100 d-flex justify-content-between flex-wrap">
                                             {product.options.map((option, i) => {
-                                                optionsVal[i] = option.values[0];
+                                               
                                                 return (<div className="product-select-wrap">
-                                                    <select className="product-select-text" value={optionsVal[i]}
-                                                        onChange={(e) => { optionsVal[i] = e.target.value }}
-                                                    >
+                                                    <select className="product-select-text"
+                                                        onChange={(e) => {
+                                                             let vl = optionsVal
+                                                             vl[i] = e.target.value
+                                                             setOptionsVal(vl)
+                                                             console.log(optionsVal)
+                                                        }}>
                                                         {option.values.map((val) => {
                                                             return <option value={val}>{val}</option>
                                                         })}
@@ -196,9 +227,9 @@ function BuyProduct() {
                             </>)}
                     </div>
                     {(state.length > 0) &&
-                    <div className="col-4 d-none d-md-inline">
-                        <Side />
-                    </div>
+                        <div className="col-4 d-none d-md-inline">
+                            <Side />
+                        </div>
                     }
                 </div>
 
