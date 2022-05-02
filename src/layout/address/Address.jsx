@@ -7,11 +7,12 @@ import { useForm } from "react-hook-form";
 import { useAddress } from "../../sevices/hooks/useAddress";
 import { useProfile } from "../../sevices/hooks/useProfile"
 import axios from 'axios';
+import Loading from "../../components/features/loading/Loading"
 
 
 function Address() {
   let navigate = useNavigate();
-
+  const [loadingState, setLoadignState] = useState(true)
   const [addAddress, setAddAddress] = useState(false);
   const [address, setAddress] = useState([]);
   const [addressList, setAddressList] = useState([]);
@@ -110,13 +111,15 @@ function Address() {
 
         {/* <span className='text-muted txm-add'>select an address or add new one</span> */}
       </div>
+
       <div style={{ width: "auto", padding: "0px 5px", height: "auto", border: "1px solid #B3B3B3", borderRadius: "16px" }}>
+        ({(addressList == []) &&
+          <Loading />
+        }
         {(addressList != undefined) &&
           addressList.map((item, i) => {
             return <AddressItem address={item} key={i} />
-          })
-
-        }
+          })})
       </div>
 
       {!addAddress ?
