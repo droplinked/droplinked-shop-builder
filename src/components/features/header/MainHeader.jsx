@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import basket from "../../../assest/feature/header/basket-icon.png"
 import more from "../../../assest/feature/header/more.png"
 import Login from "./login modal/Login"
+import Sign from "./sign in modal/Sign"
 import { useState, useEffect } from "react"
 import { useProfile } from "../../../sevices/hooks/useProfile"
 
@@ -14,10 +15,11 @@ function MainHeader() {
   let ur = window.location.pathname;
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
   const [emailModal, setEmailModal] = useState(false);
+  const [SignModal, setSignModal] = useState(false);
   const [mobilNav, setMobileNav] = useState(false);
   const { profile, logout } = useProfile();
 
-  
+
 
   const showModal = () => {
     setEmailModal(true)
@@ -26,6 +28,15 @@ function MainHeader() {
   const hideModal = () => {
     setEmailModal(false)
   }
+
+  const showSign = () => {
+    setSignModal(true)
+  }
+
+  const hideSign = () => {
+    setSignModal(false)
+  }
+
 
 
 
@@ -114,8 +125,8 @@ function MainHeader() {
 
     </div>
 
-
-    {emailModal && <Login close={hideModal} />}
+    {SignModal && <Sign close={hideSign} showSign={showModal} />}
+    {emailModal && <Login close={hideModal} showSign={showSign} />}
   </>
   );
 }

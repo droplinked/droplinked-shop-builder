@@ -1,4 +1,4 @@
-import "./Login.scss"
+import "./Sign.scss"
 import closePng from "../../../../assest/feature/home page images/Close.png"
 import { useState } from "react"
 import { useForm } from "react-hook-form";
@@ -6,26 +6,31 @@ import { useProfile } from "../../../../sevices/hooks/useProfile"
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
-function Login({ close, showSign }) {
+function Sign({ close, showSign }) {
     const navigate = useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [type, setType] = useState("creator")
     const { profile, addProfile } = useProfile();
 
     const submitForm = (data) => {
-        axios.get('https://dev.flatlay.io/login', {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: "Basic " + window.btoa(data.email + ":" + data.passsword),
-            }
+
+        axios.post('https://dev.flatlay.io/signup', {
+            email: data.email,
+            interests: "[\"61917\",\"61689\",\"128282\",\"61991\"]",
+            password: data.passsword,
+            username: data.username
         }
         ).then((response) => {
-            localStorage.setItem("token", response.data.id);
-            addProfile(response.data)
-            close();
-            navigate('/productList')
+            if(response.data.message == "Registration Successful!"){
+                close();
+            }else{
+                
+            }
         });
     }
+
+
+
 
     return (
         <div className="email-modal-wrap">
@@ -50,6 +55,13 @@ function Login({ close, showSign }) {
                             <input
                                 style={{ backgroundColor: "transparent" }}
                                 className="login-modal-input"
+                                type="text" placeholder="username" {...register("username", { required: true })}
+                                autoComplete="off"
+                            />
+                            <p className="login-modal-error">{errors.username && "please enter username"}</p>
+                            <input
+                                style={{ backgroundColor: "transparent" }}
+                                className="login-modal-input"
                                 type="email" placeholder="email@example.com" {...register("email", { required: true })}
                                 autoComplete="off"
                             />
@@ -63,13 +75,13 @@ function Login({ close, showSign }) {
                             <div className="d-flex h-100 justify-content-between">
                                 <input
                                     className="login-modal-submit-btn"
-                                    type="submit" value="Login" />
+                                    type="submit" value="Continue" />
                             </div>
                         </form>
                         <div className="d-flex justify-content-center alredy-modal">
-                            <p>Don’t have an account?</p><span
+                            <p>Already have an account?</p><span
                                 onClick={() => { close(); showSign(); }}
-                            >Register now</span>
+                            >Go to login</span>
                         </div>
                     </div>
                 </div>
@@ -78,4 +90,4 @@ function Login({ close, showSign }) {
     )
 }
 
-export default Login
+export default Sign
