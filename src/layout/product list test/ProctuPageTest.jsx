@@ -25,7 +25,7 @@ function ProctuPageTest() {
     return (<>
         <ProfileTopic />
 
-        <div className="row w-100 d-flex justify-content-center mt-5">
+        <div className=" w-100 d-flex justify-content-center mt-5" style={{padding:"12px"}}>
 
 
             {(product == null)
@@ -36,7 +36,6 @@ function ProctuPageTest() {
                 :
 
                 <div className="col-md-10 col-12 h-auto product-list-wrap row" >
-                    <h1>x</h1>
                     {product.map((item) => {
                         return <Product title={item.title} price={item.variants[0].formatted_price} imageUrl={item.images[0].src} id={item.product_id} />
                     })}
