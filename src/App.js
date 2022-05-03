@@ -24,6 +24,7 @@ import Address from "./layout/address/Address";
 import Shipping from "./layout/shiping/Shipping";
 import Payments from "./layout/payment/Payments";
 import Confirm from "./layout/confirm/Confirm";
+import RoleSet from "./layout/role set page/RoleSetPage"
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                     <Route path="/privacy" element={<Privacy />} />
                     <Route path="/confirm" element={<Confirm />} />   
                     <Route path="/crashpunks" element={<Crashpunks />} />
+                    <Route path="/roleset" element={<RoleSet />} />
                     <Route path="/product/:id" element={<BuyProduct />} />
                     <Route path="/*" element={<NotFound />} />
                   </Routes>

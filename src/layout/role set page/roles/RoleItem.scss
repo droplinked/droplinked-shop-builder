@@ -1,0 +1,52 @@
+.role-item-wrap {
+  width: 100%;
+  border: 1px solid white;
+  padding: 10px;
+  height: auto;
+  margin-bottom: 10px;
+
+  .name-type {
+    font-family: "AvenirNext";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 22px;
+    text-align: center;
+    color: #ffffff;
+  }
+  .address-text {
+    margin-top: 20px;
+    overflow: hidden;
+    font-family: "AvenirNext";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: #ffffff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .role-item-wrap {
+  
+    .name-type {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 16px;
+    }
+    .address-text {
+
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 14px;
+
+    }
+  }
+  
+
+}
