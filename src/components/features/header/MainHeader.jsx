@@ -1,7 +1,7 @@
 import "./mainHeader.scss";
 import { UseWalletInfo } from "../../../sevices/context/context";
 import headerWalletIcon from "../../../assest/header/headerWalletIcon.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import basket from "../../../assest/feature/header/basket-icon.png"
 import more from "../../../assest/feature/header/more.png"
 import Login from "./login modal/Login"
@@ -17,7 +17,9 @@ function MainHeader() {
   const [emailModal, setEmailModal] = useState(false);
   const [SignModal, setSignModal] = useState(false);
   const [mobilNav, setMobileNav] = useState(false);
+  const [desktopNav, setDesktopNav] = useState(true);
   const { profile, logout } = useProfile();
+  let navigate = useNavigate();
 
 
 
@@ -49,9 +51,19 @@ function MainHeader() {
               onClick={() => { showModal(); setMobileNav(false); }}
             ><p>Login</p></div>
             :
+            <>
             <div className="header-dropnav-item"
               onClick={() => { logout(); setMobileNav(false); }}
             ><p>Logout</p></div>
+            <div className="header-dropnav-item"><p>Setting</p></div>
+            <div className="header-dropnav-item"
+              onClick={() => { navigate("../collectionmanagement", { replace: true })}}
+            ><p>Collection management</p></div>
+            <div className="header-dropnav-item"
+              onClick={() => { navigate("../ruleset", { replace: true }) }}
+            ><p>Rule set</p></div>
+            <div className="header-dropnav-item"><p>Add product</p></div>
+            </>
           }
 
         </div>
@@ -73,10 +85,28 @@ function MainHeader() {
               <p>Login</p>
             </div>
             :
-            <div className="login-wrapper col-4 d-flex align-items-center"
-              onClick={() => { logout() }}
-            >
-              <p>Logout</p>
+            <div className="login-wrapper col-4 d-flex align-items-center">
+              {/* <p>Logout</p> */}
+              <div className="header-profile-wraper"
+                onClick={() => { setDesktopNav(p => !p) }}
+              >B</div>
+              {(desktopNav) &&
+                <div className="desktop-nav">
+                  <div className="item"
+                    onClick={() => { logout();setDesktopNav(false) }}
+                  >Logout</div>
+                  <div className="item">Setting</div>
+                  <div
+                    onClick={() => { navigate("../collectionmanagement", { replace: true });setDesktopNav(false) }}
+                    className="item">Collection management</div>
+
+                  <div
+                    onClick={() => { navigate("../ruleset", { replace: true });setDesktopNav(false) }}
+                    className="item">Rule set</div>
+                  <div className="item">Add product</div>
+                </div>
+              }
+
             </div>
           }
 

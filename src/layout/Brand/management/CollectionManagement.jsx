@@ -7,7 +7,7 @@ import AddCollectoin from "./add collection modal/AddCollection"
 
 export default function CollectionManagement() {
     const navigate = useNavigate()
-    const [modal, setModal] = useState(true)
+    const [modal, setModal] = useState(false)
     const [show, setShow] = useState(false)
     const [product, setProduct] = useState(null)
     useEffect(() => {
