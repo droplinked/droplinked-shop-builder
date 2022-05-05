@@ -4,6 +4,7 @@ import Product from "../../../components/features/product/Product"
 import Loading from "../../../components/features/loading/Loading"
 import { useState, useEffect } from "react"
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 function Collection(props) {
 
@@ -29,7 +30,18 @@ function Collection(props) {
                         <div className="collection-child" >
                             <div className="header">
                                 <div className="titleS"><p>{props.name}</p></div>
-                                <button className="see-more d-flex "><p>See more</p></button>
+                                {(props.data)
+                                    ?
+                                    <>
+                                        <Link to="/collectionpage">
+                                            <button className="see-more d-flex"><p>See more</p></button>
+                                        </Link>
+                                    </>
+
+                                    :
+                                    <button className="see-more d-flex" disabled><p>See more</p></button>
+                                }
+
                             </div>
 
 
