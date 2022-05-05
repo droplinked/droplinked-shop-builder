@@ -45,7 +45,7 @@ function Collection(props) {
                             </div>
 
 
-                            <div className="products-wrapper row">
+                            <div className="collectio-products-wrapper row">
                                 {(product != null)
                                     ? <>
                                         {(props.data)

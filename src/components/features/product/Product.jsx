@@ -20,10 +20,11 @@ function Product({ price, title, imageUrl, id }) {
                         <div className="product-image-wrap"
                             onMouseLeave={() => setViewBtn(false)}
                             onMouseEnter={() => setViewBtn(true)}
+
                         >
                             <img className="product-save-btn" src={savebtn} alt="" />
                             <div className="ratio ratio-1x1">
-                            <img className={` main-img ${(viewBtn) ? "product-img-opacity" : ""}`} src={imageUrl} />
+                                <img className={`main-img ${(viewBtn) ? "product-img-opacity" : ""}`} src={imageUrl} />
                             </div>
                             {viewBtn && <div className="product-view-btn"><p>View</p></div>}
                         </div>
@@ -34,9 +35,12 @@ function Product({ price, title, imageUrl, id }) {
                         <div className="product-image-wrap"
                             onMouseLeave={() => setViewBtn(false)}
                             onMouseEnter={() => setViewBtn(true)}
+
                         >
                             <img className="product-save-btn" src={savebtn} alt="" />
-                            <img className={`ratio ratio-1x1 h-100 ${(viewBtn) ? "product-img-opacity" : ""}`} src={imageUrl} />
+                            <div className="ratio ratio-1x1">
+                                <img className={` main-img ${(viewBtn) ? "product-img-opacity" : ""}`} src={imageUrl} />
+                            </div>
                             {viewBtn && <div className="product-view-btn"><p>View</p></div>}
                         </div>
                     </Link>
