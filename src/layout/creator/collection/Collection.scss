@@ -72,10 +72,21 @@ div.titleS {
 }
 
 .products-wrapper {
+ // border:1px solid red;
   min-width: 100%;
   box-sizing: border-box;
   display: flex;
   justify-content: start;
+  flex-wrap: wrap;
+  height:auto;
+
+  .empty-text{
+    font-family: "AvenirNext";
+    font-weight: 600;
+    font-size: 34px;
+    color: #ffffff;
+    line-height:auto;
+  }
 }
 
 .product-wrap {

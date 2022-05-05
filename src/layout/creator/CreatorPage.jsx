@@ -14,11 +14,11 @@ function CreatorPage() {
         {/* gallery carusel */}
 
         {/* collection  */}
-        <Collection name="Holder merch" />
+        <Collection name="Public merch" data={false}/>
         {/* collection  */}
 
         {/* collection  */}
-        <Collection  name="Public merch"/>
+        <Collection  name="Holder merch"  data={true}/>
         {/* collection  */}
 s
 

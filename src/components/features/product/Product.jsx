@@ -11,8 +11,8 @@ function Product({ price, title, imageUrl, id }) {
     const { profile } = useProfile();
 
     return (
-        <div className="col-6 col-sm-3 col-md-6 col-lg-3 d-flex justify-content-center ">
-            <div className="product-wrap" >
+        <div className="col-6 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center h-auto">
+            <div className="product-wrap mt-3" >
 
                 {(profile == null)
                     ?
@@ -22,7 +22,9 @@ function Product({ price, title, imageUrl, id }) {
                             onMouseEnter={() => setViewBtn(true)}
                         >
                             <img className="product-save-btn" src={savebtn} alt="" />
-                            <img className={`ratio ratio-1x1 ${(viewBtn) ? "product-img-opacity" : ""}`} src={imageUrl} />
+                            <div className="ratio ratio-1x1">
+                            <img className={` main-img ${(viewBtn) ? "product-img-opacity" : ""}`} src={imageUrl} />
+                            </div>
                             {viewBtn && <div className="product-view-btn"><p>View</p></div>}
                         </div>
                     </Link>

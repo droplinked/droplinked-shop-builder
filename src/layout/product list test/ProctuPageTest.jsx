@@ -7,12 +7,13 @@ import Product from "../../components/features/product/Product"
 
 function ProctuPageTest() {
     const [product, setProduct] = useState(null)
+    
     useEffect(() => {
         axios.post('https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search',
             {
                 page: 1,
-                //shop_domain: "crashpunks-gear.myshopify.com",
-                keyword: "tshirt"
+                shop_domain: "crashpunks-gear.myshopify.com",
+                keyword: ""
             }).then((response) => {
                 console.log(response.data.shopify);
                 let x = response.data.shopify.map((item) => { return item.product_listing })
