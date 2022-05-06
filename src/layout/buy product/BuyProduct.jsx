@@ -35,7 +35,7 @@ function BuyProduct() {
     const [optionsVal, setOptionsVal] = useState([]);
     const { profile } = useProfile();
     const { state, increase } = useCart();
-    const personId = profile.id;
+   // const personId = profile.id;
 
 
 
@@ -43,7 +43,7 @@ function BuyProduct() {
         axios.get(`https://dev.flatlay.io/product/${id}`, {
             headers: {
                 "Content-Type": "application/json",
-                authorization: personId,
+                authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJlZGkubW5zQGdtYWlsLmNvbSIsInVzZXJJZCI6IjEzMTMyMCIsImlhdCI6MTY1MTg0NDI0MSwiZXhwIjoxNjU3MDI4MjQxfQ.v--CI4iWCjvmS_34u1zRF-inryI6zTitk-IprJm0Zw8",
             }
         }).then((res) => {
             setPrudoct(res.data.product_listing);

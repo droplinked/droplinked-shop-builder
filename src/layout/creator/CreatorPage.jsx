@@ -14,7 +14,7 @@ function CreatorPage() {
         {/* gallery carusel */}
 
         {/* collection  */}
-        <Collection name="Public merch" data={false}/>
+        {/* <Collection name="Public merch" data={false}/> */}
         {/* collection  */}
 
         {/* collection  */}
