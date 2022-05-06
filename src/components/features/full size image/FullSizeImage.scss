@@ -1,0 +1,52 @@
+.full-size-img-wraper {
+  position: fixed; /* Stay in place */
+  z-index: 40; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.6);
+
+  .icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .main-img {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    //background-size: cover;
+    background-size: auto;
+  }
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .full-size-img-wraper {
+      
+        .icon {
+          cursor: pointer;
+          width: 25px;
+          height: 25px;
+        }
+      
+        .main-img {
+          width: 95%;
+          height: 90%;
+          margin: auto;
+          background-size: contain;
+        }
+      }
+
+  }
+  

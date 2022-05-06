@@ -8,7 +8,7 @@
 .product-whole-border {
   padding: 24px;
   height: auto;
-  border: 1px solid #b3b3b3;
+ // border: 1px solid #b3b3b3;
   box-sizing: border-box;
   border-radius: 16px;
 }
@@ -35,10 +35,12 @@
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  //background-size: cover;
+  background-size: contain;
   border-radius: 16px;
 }
 .product-main-img-icon {
+  cursor: pointer;
   background-color: #222222;
   border-radius: 50px;
   padding: 9px;
@@ -98,6 +100,7 @@
 }
 
 .product-carosel-img {
+  cursor: pointer;
   border-radius: 8px;
   width: 15%;
   aspect-ratio:1/1;
@@ -316,5 +319,8 @@
   }
   .product-whole-border {
     padding: 8px;
+  }
+  .product-img-form-wr {
+    height: 350px;
   }
 }

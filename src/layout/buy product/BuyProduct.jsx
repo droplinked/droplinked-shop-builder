@@ -21,6 +21,8 @@ import { useParams } from "react-router-dom";
 import Loading from "../../components/features/loading/Loading"
 import { useCart } from "../../sevices/hooks/useCart"
 import Side from "./cart-component/Side"
+import { log } from "react-modal/lib/helpers/ariaAppHider"
+import FullSizeImage from "../../components/features/full size image/FullSizeImage"
 
 
 
@@ -32,10 +34,12 @@ function BuyProduct() {
     const [product, setPrudoct] = useState(null);
     const [shopName, setShopName] = useState("");
     const [images, setImages] = useState([]);
+    const [mainImage, setMainImage] = useState("");
     const [optionsVal, setOptionsVal] = useState([]);
     const { profile } = useProfile();
     const { state, increase } = useCart();
-   // const personId = profile.id;
+    const [fullsizeImage, setFullSizeImage] = useState(false);
+    // const personId = profile.id;
 
 
 
@@ -52,6 +56,7 @@ function BuyProduct() {
                 return item.src
             })
             setImages(imglist);
+            setMainImage(imglist[0])
         })
 
     }, [])
@@ -59,17 +64,19 @@ function BuyProduct() {
 
     useEffect(() => {
         let arr = [];
-        if(product != null){
-        {product.options.forEach((option) =>{
-            arr.push(option.values[0])
-        })}
-        setOptionsVal(arr)
-    }
+        if (product != null) {
+            {
+                product.options.forEach((option) => {
+                    arr.push(option.values[0])
+                })
+            }
+            setOptionsVal(arr)
+        }
     }, [product])
 
-   
 
-    
+
+
 
 
     const findVariant = () => {
@@ -99,6 +106,10 @@ function BuyProduct() {
         })
     }
 
+    const closeFullsize = ()=>{
+        setFullSizeImage(false)
+    }
+
 
 
     return (<>
@@ -111,18 +122,19 @@ function BuyProduct() {
                                 <div className="buy-product-wraper">
 
                                     <div className="product-img-form-wr">
-                                        <div className="product-main-image" style={{ backgroundImage: `url(${images[0]})` }}>
+                                        <div className="product-main-image" style={{ backgroundImage: `url(${mainImage})`}}>
 
-                                            <div className="position-absolute d-flex justify-content-between " style={{ top: "12px", right: "12px", width: "130px" }}>
-                                                <div className="product-main-img-icon">
+                                            <div className="position-absolute d-flex justify-content-end " style={{ top: "12px", right: "12px", width: "130px" }}>
+                                                <div className="product-main-img-icon"
+                                                    onClick={() => { setFullSizeImage(p => !p) }}>
                                                     <img src={icon3} className="product-icon-img" alt="" />
                                                 </div>
-                                                <div className="product-main-img-icon">
+                                                {/*  <div className="product-main-img-icon">
                                                     <img src={icon2} className="product-icon-img" alt="" />
                                                 </div>
                                                 <div className="product-main-img-icon">
                                                     <img src={icon1} className="product-icon-img" alt="" />
-                                                </div>
+                                                </div>*/}
                                             </div>
 
                                             <div className="product-main-img-downicon">
@@ -138,22 +150,8 @@ function BuyProduct() {
                                                     <img src={left} className="w-100 h-100" alt="" />
                                                 </div>
                                                 {images.map((img, i) => {
-                                                    if (i > 0 && i < 5) return (<img className="product-carosel-img" src={img} alt=""
-                                                     onClick={()=>{
-                                                         
-                                                         let imagesArray = []
-                                                 
-                                                         images.forEach((itemi)=>{
-                                                            imagesArray.push(itemi)
-                                                         })
-                                                           
-                                                         let selectImg = imagesArray[i];
-                                                         imagesArray[i] = imagesArray[0]
-                                                         imagesArray[0] = selectImg;
-                                                         setImages(imagesArray);
-                                                     }}
-                                                     
-                                                     />)
+                                                    if (i >= 0 && i < 4) return (<img className="product-carosel-img" src={img} alt=""
+                                                        onClick={() => { setMainImage(images[i]) }} />)
                                                 })}
 
                                                 <div className="product-carusel-btn">
@@ -164,21 +162,21 @@ function BuyProduct() {
 
                                     </div>
 
-                                    <div className="product-img-form-wr product-left-side" >
+                                    <div className="product-img-form-wr product-left-side">
                                         <div className="product-brand-name">{product.title}</div>
                                         <div className="product-text-brand">{product.handle}</div>
                                         <div className="product-price">{product.variants[0].formatted_price}</div>
 
                                         <div className="w-100 d-flex justify-content-between flex-wrap">
                                             {product.options.map((option, i) => {
-                                               
+
                                                 return (<div className="product-select-wrap">
                                                     <select className="product-select-text"
                                                         onChange={(e) => {
-                                                             let vl = optionsVal
-                                                             vl[i] = e.target.value
-                                                             setOptionsVal(vl)
-                                                             console.log(optionsVal)
+                                                            let vl = optionsVal
+                                                            vl[i] = e.target.value
+                                                            setOptionsVal(vl)
+                                                            console.log(optionsVal)
                                                         }}>
                                                         {option.values.map((val) => {
                                                             return <option value={val}>{val}</option>
@@ -237,6 +235,7 @@ function BuyProduct() {
 
 
         </div>
+        {fullsizeImage && <FullSizeImage image={mainImage} close={closeFullsize}/>}
     </>)
 }
 
