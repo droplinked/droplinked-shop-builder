@@ -26,6 +26,7 @@ import Payments from "./layout/payment/Payments";
 import Confirm from "./layout/confirm/Confirm";
 import RoleSet from "./layout/role set page/RoleSetPage";
 import CollectionManagement from "./layout/Brand/management/CollectionManagement";
+import Settings from "./layout/Customer/settings/Setting";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
                     <Route path="/shipping" element={<Shipping />} />
                     <Route path="/productList" element={<ProctuPageTest />} />
                     <Route path="/payment" element={<Payments />} />
+                    <Route path="/settings" element={<Settings />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/privacy" element={<Privacy />} />
                     <Route path="/confirm" element={<Confirm />} />
