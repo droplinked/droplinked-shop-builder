@@ -17,7 +17,7 @@ export default function NewProduct() {
   };
 
   return (
-    <>
+    <div className="d-flex justify-content-center">
       <div className="page-wrapper d-flex flex-column ">
         {/* title and describe */}
         <div className="input-wrapper mt-4">
@@ -242,7 +242,7 @@ export default function NewProduct() {
         </div>
         {/* option */}
       </div>
-    </>
+    </div>
   );
 
   function addImage(e) {

@@ -27,6 +27,7 @@ import Confirm from "./layout/confirm/Confirm";
 import RoleSet from "./layout/role set page/RoleSetPage";
 import CollectionManagement from "./layout/Brand/management/CollectionManagement";
 import Settings from "./layout/Customer/settings/Setting";
+import NewProduct from "./layout/newProduct/NewProduct"
 
 function App() {
   return (
@@ -50,7 +51,8 @@ function App() {
                     <Route
                       path="/collectionmanagement"
                       element={<CollectionManagement />}
-                    />
+                    /> 
+                    <Route path="/addProduct" element={<NewProduct />} />
                     <Route path="/address" element={<Address />} />
                     <Route path="/shipping" element={<Shipping />} />
                     <Route path="/productList" element={<ProctuPageTest />} />
