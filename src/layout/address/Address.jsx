@@ -8,6 +8,7 @@ import { useAddress } from "../../sevices/hooks/useAddress";
 import { useProfile } from "../../sevices/hooks/useProfile"
 import axios from 'axios';
 import Loading from "../../components/features/loading/Loading"
+import NotEnough from "../../components/errors component/not_enough/NotEnough";
 
 
 function Address() {
@@ -16,6 +17,7 @@ function Address() {
   const [addAddress, setAddAddress] = useState(false);
   const [address, setAddress] = useState([]);
   const [addressList, setAddressList] = useState([]);
+  const [enoughError, setEnoughError] = useState(false)
   const { profile } = useProfile();
   const personId = profile.id;
 
@@ -48,6 +50,13 @@ function Address() {
 
   function cancelNewAddress() {
     setAddAddress(false);
+  }
+
+  const closeErrore = () => {
+    setTimeout(() => {
+      setEnoughError(false)
+    }, "4000")
+
   }
 
   function proccess() {
@@ -93,12 +102,14 @@ function Address() {
           authorization: personId,
         }
       }).then((res) => {
-        console.log(res.data);
-        localStorage.setItem('checkout-createdCheckout', JSON.stringify(res.data.checkout));
-        navigate("../shipping", { replace: true });
-
-
-      });
+        if (res.data.errors) {
+          setEnoughError(true);
+          closeErrore();
+        } else {
+          localStorage.setItem('checkout-createdCheckout', JSON.stringify(res.data.checkout));
+          navigate("../shipping", { replace: true });
+        }
+      })
 
 
   }
@@ -148,6 +159,7 @@ function Address() {
         </button>
         {/* </Link> */}
       </div>
+      {enoughError && <NotEnough />}
     </div>
   )
 
