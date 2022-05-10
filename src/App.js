@@ -28,6 +28,7 @@ import RoleSet from "./layout/role set page/RoleSetPage";
 import CollectionManagement from "./layout/Brand/management/CollectionManagement";
 import Settings from "./layout/Customer/settings/Setting";
 import NewProduct from "./layout/newProduct/NewProduct"
+import CrashpunkDemo from "./layout/crash punks demo/CrahspunkDemo"
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
                       path="/collectionmanagement"
                       element={<CollectionManagement />}
                     /> 
+                     <Route path="/crashpunksdemo" element={<CrashpunkDemo />} />
                     <Route path="/addProduct" element={<NewProduct />} />
                     <Route path="/address" element={<Address />} />
                     <Route path="/shipping" element={<Shipping />} />

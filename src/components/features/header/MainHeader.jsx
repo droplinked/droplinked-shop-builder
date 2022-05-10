@@ -17,7 +17,7 @@ function MainHeader() {
   const [emailModal, setEmailModal] = useState(false);
   const [SignModal, setSignModal] = useState(false);
   const [mobilNav, setMobileNav] = useState(false);
-  const [desktopNav, setDesktopNav] = useState(true);
+  const [desktopNav, setDesktopNav] = useState(false);
   const { profile, logout } = useProfile();
   let navigate = useNavigate();
 
