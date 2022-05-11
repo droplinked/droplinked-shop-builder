@@ -18,6 +18,7 @@ function Address() {
   const [address, setAddress] = useState([]);
   const [addressList, setAddressList] = useState([]);
   const [enoughError, setEnoughError] = useState(false)
+  const [proccessLo, setProccess] = useState(false)
   const { profile } = useProfile();
   const personId = profile.id;
 
@@ -53,6 +54,7 @@ function Address() {
   }
 
   const closeErrore = () => {
+    setProccess(false);
     setTimeout(() => {
       setEnoughError(false)
     }, "4000")
@@ -60,6 +62,7 @@ function Address() {
   }
 
   function proccess() {
+    setProccess(true)
     let x = JSON.parse(localStorage.getItem('shopping_cart'));
 
     let shop = x[0].shopName;
@@ -105,7 +108,9 @@ function Address() {
         if (res.data.errors) {
           setEnoughError(true);
           closeErrore();
+          setProccess(false)
         } else {
+          setProccess(false)
           localStorage.setItem('checkout-createdCheckout', JSON.stringify(res.data.checkout));
           navigate("../shipping", { replace: true });
         }
@@ -150,13 +155,11 @@ function Address() {
 
       <div className='text-center mt-4'>
         {/* <Link to="/shipping"> */}
-        <button className='add-address-btn'
-          onClick={() => {
-            proccess()
-          }}
-        >
-          proceed to shipping
-        </button>
+        {(proccessLo) ?
+          <button className='add-address-btn'>Loading</button>
+          :
+          <button className='add-address-btn' onClick={() => { proccess() }}>proceed to shippin</button>
+        }
         {/* </Link> */}
       </div>
       {enoughError && <NotEnough />}
