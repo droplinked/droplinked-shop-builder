@@ -16,7 +16,6 @@ function Collection(props) {
                 shop_domain: "crashpunks-gear.myshopify.com",
                 keyword: ""
             }).then((response) => {
-                console.log(response.data.shopify);
                 let x = response.data.shopify.map((item) => { return item.product_listing })
                 setProduct(x)
             });
