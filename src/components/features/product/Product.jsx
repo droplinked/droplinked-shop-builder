@@ -21,7 +21,7 @@ function Product({ price, title, imageUrl, id }) {
             let testnet = userData.profile.stxAddress.testnet;
             fetchPrincipalNFTs(
                 testnet,
-                "SPQZF23W7SEYBFG5JQ496NMY0G7379SRYEDREMSV.Candy::candy",
+                "SP3QSAJQ4EA8WXEDSRRKMZZ29NH91VZ6C5X88FGZQ.crashpunks-v2::crashpunks-v2",
                 1,
                 0
             )
