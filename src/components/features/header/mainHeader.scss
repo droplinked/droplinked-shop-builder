@@ -12,7 +12,7 @@
     padding: 8px 0px;
 
     a {
-     margin:auto 0px;
+      margin: auto 0px;
       .header-brand {
         // width: 180px;
         // height: 100%;
@@ -148,7 +148,7 @@
         font-size: 28px;
       }
       .login-wrapper {
-        padding: 8px 0px;
+        padding: 8px 0px 6px 0px;
         width: 100px;
         font-weight: 600;
         font-size: 16px;
@@ -170,19 +170,21 @@
   }
 }
 
-// @media only screen and (max-width: 768px) {
-//   .header-wrapp {
-//     padding: 0px 20px;
-//     .header-body {
-//       .header-brand {
-//         font-weight: 600;
-//         font-size: 28px;
-//       }
-//       .login-wrapper {
-//         padding: 0px 0px;
-//         width: 80px;
-//         font-size: 12px;
-//       }
-//     }
-//   }
-// }
+@media only screen and (max-width: 500px) {
+  .header-wrapp {
+    padding: 0px 20px;
+    .header-body {
+      .header-brand {
+        font-weight: 600;
+        font-size: 24px;
+      }
+      .login-wrapper {
+        padding: 8px 0px 6px 0px;
+        width: 80px;
+        font-weight: 600;
+        font-size: 14px;
+        border-radius: 8px;
+      }
+    }
+  }
+}
