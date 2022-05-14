@@ -113,15 +113,15 @@ input:-webkit-autofill:focus {
       width: 100%;
       display: flex;
       text-align-last: center;
+
       p {
-       // text-align-last: center;
         margin: 0px auto;
         color: #b3b3b3;
         font-family: "AvenirNext";
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
-        line-height: 28px;
+        //line-height: 28px;
         a {
           cursor: pointer;
           color: #ffffff;
@@ -156,15 +156,18 @@ input:-webkit-autofill:focus {
 
 @media only screen and (max-width: 768px) {
   .signup-wraper {
-    padding-top: 100px; /* Location of the box */
-    padding-bottom: 50px;
+   // padding-top: 100px; 
+  // padding-bottom: 50px;
+    width:100vw;
+    padding: 100px 20px 50px 20px;
     .signup-body {
-        margin:auto 12px;
+        margin:auto;
       width: 100%;
       padding: 20px 20px 60px 20px;
       .title {
         font-size: 20px;
         .close-btn {
+          top: 4px;
           width: 24px;
           height:24px;
         }
@@ -184,6 +187,7 @@ input:-webkit-autofill:focus {
       }
 
       .sign-up-btn {
+        padding: 12px 0px 11px 0px;
         margin-top: 12px;
         font-size: 16px;
       }
