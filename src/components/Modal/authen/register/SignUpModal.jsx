@@ -1,7 +1,7 @@
 import "./SignUpModal.scss"
 import closePng from "../../../../assest/feature/home page images/Close.png"
 
-export default function SignUpModal({ close, shopname }) {
+export default function SignUpModal({ close, shopname ,switchToggle }) {
 
     return (
         <div className="signup-wraper">
@@ -48,7 +48,7 @@ export default function SignUpModal({ close, shopname }) {
                 </div>
                 {/* text */}
                 <div className="text mt-2">
-                    <p>Already have an account? <a>Login</a></p>
+                    <p>Already have an account? <a onClick={switchToggle}>Login</a></p>
                 </div>
             </div>
         </div>

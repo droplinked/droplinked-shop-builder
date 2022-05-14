@@ -3,20 +3,30 @@ import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"
 //import HomeInput from "../homepage/input-homepage/HomeInput"
 import alertIcon from "../../assest/feature/home page images/alert.png"
 import SignUpModal from "../../components/Modal/authen/register/SignUpModal"
+import LoginModal from "../../components/Modal/authen/login/LoginModal"
 
 import { useState } from "react"
 import EmailModal from "./modal/EmailModal"
 
 
 export default function HomePage() {
-    const [show, setShow] = useState(false);
+    const [showSignup, setShowSignup] = useState(false);
+    const [showLogin, setLogin] = useState(false);
     const [userName, setUsername] = useState("");
     const [former, setForError] = useState(false)
 
     const toggleSignUp = () => {
-        setShow(p => !p)
+        setShowSignup(p => !p)
     }
 
+    const toggleLogin = () => {
+        setLogin(p => !p)
+    }
+
+    const switchModal = ()=>{
+        toggleSignUp();
+        toggleLogin();
+    }
 
     return (<>
         <div className="bod">
@@ -63,6 +73,7 @@ export default function HomePage() {
             </div>
             {/* image */}
         </div>
-        {show && <SignUpModal close={toggleSignUp} shopname={userName} />}
+        {showSignup && <SignUpModal close={toggleSignUp} shopname={userName} switchToggle={switchModal} />}
+        {showLogin && <LoginModal close={toggleLogin} switchToggle={switchModal} />}
     </>)
 }

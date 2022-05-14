@@ -2,11 +2,14 @@ import "./Landing.header.style.scss"
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import SignUpModal from "../../../Modal/authen/register/SignUpModal"
-
+import LoginModal from "../../../Modal/authen/login/LoginModal"
 export default function LandingHeader() {
-    const [modal, setModal] = useState(false)
+    const [signUpmodal, setSignModal] = useState(false)
+    const [loginmodal, setloginModal] = useState(false)
 
-    const toggle = () => { setModal(p => !p) }
+    const togglesignup = () => { setSignModal(p => !p) }
+    const toggleLogin = () => { setloginModal(p => !p) }
+    const switchToggl = () => { togglesignup(); toggleLogin(); }
     return (<>
         <div className="header-body d-flex justify-content-between">
             <Link to="/">
@@ -15,11 +18,12 @@ export default function LandingHeader() {
                 </div>
             </Link>
             <div className="d-flex">
-                <div className="login-wrapper">Login</div>
-                <div className="login-wrapper" style={{ backgroundColor: "#353536" }} onClick={toggle}>Join today</div>
+                <div className="login-wrapper" onClick={toggleLogin}>Login</div>
+                <div className="login-wrapper" style={{ backgroundColor: "#353536" }} onClick={togglesignup}>Join today</div>
             </div>
         </div>
-        {modal && <SignUpModal close={toggle} />}
+        {signUpmodal && <SignUpModal close={togglesignup} switchToggle={switchToggl} />}
+        {loginmodal && <LoginModal close={toggleLogin} switchToggle={switchToggl} />}
     </>
     )
 }
