@@ -2,6 +2,7 @@ import "./HomePage.scss"
 import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"
 //import HomeInput from "../homepage/input-homepage/HomeInput"
 import alertIcon from "../../assest/feature/home page images/alert.png"
+import SignUpModal from "../../components/Modal/authen/register/SignUpModal"
 
 import { useState } from "react"
 import EmailModal from "./modal/EmailModal"
@@ -12,9 +13,10 @@ export default function HomePage() {
     const [userName, setUsername] = useState("");
     const [former, setForError] = useState(false)
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const cleatInput = () => setUsername("")
+    const toggleSignUp = () => {
+        setShow(p => !p)
+    }
+
 
     return (<>
         <div className="bod">
@@ -33,15 +35,15 @@ export default function HomePage() {
                         </div>
                         <div className="d-flex" style={{ width: "25%" }}>
                             <button className="item-button"
-                             onClick={()=>{
-                                 if(userName.trim() == ""){
-                                    setForError(true)
-                                 }else{
-                                    handleShow();
-                                 }
-                             }} 
-                             
-                             >Sign up</button>
+                                onClick={() => {
+                                    if (userName.trim() == "") {
+                                        setForError(true)
+                                    } else {
+                                        toggleSignUp();
+                                    }
+                                }}
+
+                            >Sign up</button>
                         </div>
                     </div>
                     {former &&
@@ -61,6 +63,6 @@ export default function HomePage() {
             </div>
             {/* image */}
         </div>
-        {show && <EmailModal close={handleClose} name={userName} clear={cleatInput} />}
+        {show && <SignUpModal close={toggleSignUp} shopname={userName} />}
     </>)
 }
