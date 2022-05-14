@@ -9,6 +9,7 @@ import Sign from "./sign in modal/Sign"
 import { useState, useEffect } from "react"
 import { useProfile } from "../../../sevices/hooks/useProfile"
 import LandingHeader from "./landin page header/Landing.header"
+import PageHeader from "./other Page header/Pages.Header"
 
 
 
@@ -43,16 +44,14 @@ function MainHeader() {
 
   return (
     <div className="header-wrapp">
-      {(ur == "/") &&
+      {(ur == "/")
+        ?
         <LandingHeader />
+        :
+        <PageHeader />
       }
     </div>
   )
-
-
-
-
-
 
 }
 
