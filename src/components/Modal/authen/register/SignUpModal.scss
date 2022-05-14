@@ -22,7 +22,7 @@ input:-webkit-autofill:focus {
     box-sizing: border-box;
     height: auto;
     margin: auto;
-    width: 600px;
+    width: 500px;
     background: #353536;
     box-shadow: 0px 2px 30px rgba(85, 88, 90, 0.1);
     border-radius: 24px;
@@ -30,7 +30,7 @@ input:-webkit-autofill:focus {
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
-    padding: 10px 30px 30px 30px;
+    padding: 20px 40px 40px 40px;
 
     .title {
       height: auto;
@@ -51,6 +51,39 @@ input:-webkit-autofill:focus {
         cursor: pointer;
         top: 5px;
         right: 0px;
+      }
+    }
+
+    .modal-shopname-input {
+      display: flex;
+      border: 2px solid #b3b3b3;
+      border-radius: 8px;
+      background-color: transparent;
+      padding: 13px 16px;
+
+      span {
+        font-family: "AvenirNext";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 28px;
+        color: #ffffff;
+      }
+      .modal-shopname-input-inpt {
+        border: none;
+        background-color: transparent;
+        outline: none;
+        padding: 0px;
+        font-family: "AvenirNext";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 28px;
+        color: #ffffff;
+        &:focus {
+          border: none;
+          outline: none;
+        }
       }
     }
 
@@ -115,6 +148,7 @@ input:-webkit-autofill:focus {
       text-align-last: center;
 
       p {
+        text-align: center;
         margin: 0px auto;
         color: #b3b3b3;
         font-family: "AvenirNext";
@@ -156,12 +190,12 @@ input:-webkit-autofill:focus {
 
 @media only screen and (max-width: 768px) {
   .signup-wraper {
-   // padding-top: 100px; 
-  // padding-bottom: 50px;
-    width:100vw;
-    padding: 100px 20px 50px 20px;
+    // padding-top: 100px;
+    // padding-bottom: 50px;
+    width: 100vw;
+    padding: 30px 30px 30px 30px;
     .signup-body {
-        margin:auto;
+      margin: auto;
       width: 100%;
       padding: 20px 20px 60px 20px;
       .title {
@@ -169,7 +203,18 @@ input:-webkit-autofill:focus {
         .close-btn {
           top: 2px;
           width: 24px;
-          height:24px;
+          height: 24px;
+        }
+      }
+      .modal-shopname-input {
+
+        span {
+          font-weight: 400;
+          font-size: 16px;
+        }
+        .modal-shopname-input-inpt {
+          font-weight: 400;
+          font-size: 16px;
         }
       }
 
@@ -193,9 +238,10 @@ input:-webkit-autofill:focus {
       }
 
       .text {
-        p {
+    
+        p{
+   text-align: center;
           font-size: 12px;
-
         }
       }
     }

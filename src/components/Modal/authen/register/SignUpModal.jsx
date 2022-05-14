@@ -1,8 +1,9 @@
 import "./SignUpModal.scss"
 import closePng from "../../../../assest/feature/home page images/Close.png"
+import { Link } from "react-router-dom";
+import { useState } from "react"
 
-export default function SignUpModal({ close, shopname ,switchToggle }) {
-
+export default function SignUpModal({ close, shopname, switchToggle }) {
     return (
         <div className="signup-wraper">
             <div className="signup-body">
@@ -23,7 +24,7 @@ export default function SignUpModal({ close, shopname ,switchToggle }) {
                     <label >Password</label>
                     <input type="password" placeholder="Password" />
                 </div>
-                
+
                 {/* input */}
                 <div className="input-label">
                     <label >Confirm Password</label>
@@ -33,18 +34,22 @@ export default function SignUpModal({ close, shopname ,switchToggle }) {
                 {/* input */}
                 <div className="input-label">
                     <label >Shop domain</label>
-                    {(shopname == undefined) ?
-                        <input type="text" placeholder="droplinked.io/shopname" readonly />
-                        :
-                        <input type="text" value={`droplinked.io/${shopname}`} placeholder="droplinked.io/shopname" readonly />
-                    }
+                    <div className="modal-shopname-input">
+                        <span>droplinked.com/</span>
+                        {(shopname == undefined) ?
+                            <input type="text" className="modal-shopname-input-inpt" placeholder="shopname" />
+                            :
+                            <input type="text" value={shopname} className="modal-shopname-input-inpt" placeholder="shopname" />
+                        }
+                    </div>
+
                 </div>
                 {/* button */}
                 <button className="sign-up-btn">Sign up</button>
 
                 {/* text */}
                 <div className="text mt-4">
-                    <p>By Creating an account, you agree to the <a>Terms & Conditions</a> and <a>Privacy</a>.</p>
+                    <p>By Creating an account, you agree to the <Link to="/terms">Terms & Conditions</Link> and <Link to="/privacy">Privacy</Link>.</p>
                 </div>
                 {/* text */}
                 <div className="text mt-2">
