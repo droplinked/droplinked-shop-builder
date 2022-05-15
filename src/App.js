@@ -66,7 +66,7 @@ function App() {
                     <Route path="/confirm" element={<Confirm />} />
                     <Route path="/crashpunks" element={<Crashpunks />} />
                     <Route path="/ruleset" element={<RoleSet />} />
-                    <Route path="/sendLink" element={<ThankPage />} />
+                    <Route path="/emailConfirmation" element={<ThankPage />} />
                     <Route path="/product/:id" element={<BuyProduct />} />
                     <Route path="/*" element={<NotFound />} />
                   </Routes>

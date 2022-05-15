@@ -1,9 +1,18 @@
 import "./SignUpModal.scss"
 import closePng from "../../../../assest/feature/home page images/Close.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react"
+import { useForm } from "react-hook-form";
 
 export default function SignUpModal({ close, shopname, switchToggle }) {
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    let navigate = useNavigate();
+
+    const onSubmit = data => {
+        console.log(data);
+        navigate("/emailConfirmation");
+    };
+
     return (
         <div className="signup-wraper">
             <div className="signup-body">
@@ -12,40 +21,53 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
                 <div className="title">Create a free account
                     <img className="close-btn" src={closePng} alt="" onClick={close} />
                 </div>
-
-                {/* inout */}
-                <div className="input-label">
-                    <label>Email</label>
-                    <input type="email" placeholder="example@email.com" />
-                </div>
-
-                {/* input */}
-                <div className="input-label">
-                    <label >Password</label>
-                    <input type="password" placeholder="Password" />
-                </div>
-
-                {/* input */}
-                <div className="input-label">
-                    <label >Confirm Password</label>
-                    <input type="password" placeholder="Confirm Password" />
-                </div>
-
-                {/* input */}
-                <div className="input-label">
-                    <label >Shop domain</label>
-                    <div className="modal-shopname-input">
-                        <span>droplinked.com/</span>
-                        {(shopname == undefined) ?
-                            <input type="text" className="modal-shopname-input-inpt" placeholder="shopname" />
-                            :
-                            <input type="text" value={shopname} className="modal-shopname-input-inpt" placeholder="shopname" />
-                        }
+                <form onSubmit={handleSubmit(onSubmit)}
+                    style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>
+                    {/* inout */}
+                    <div className="input-label">
+                        <label>Email</label>
+                        <input type="email" placeholder="example@email.com"
+                            {...register("email", { required: true })} />
+                        {errors.email?.type === 'required' && <span className="signup-modal-error">email is required</span>}
                     </div>
 
-                </div>
-                {/* button */}
-                <button className="sign-up-btn">Sign up</button>
+                    {/* input */}
+                    <div className="input-label">
+                        <label >Password</label>
+                        <input type="password" placeholder="Password"
+                            {...register("password", { required: true, minLength: 8 })} />
+                        {errors.password?.type === 'required' && <span className="signup-modal-error">password is required</span>}
+                        {errors.password?.type === 'minLength' && <span className="signup-modal-error">password must be at least 8 characters</span>}
+                    </div>
+
+                    {/* input */}
+                    <div className="input-label">
+                        <label >Confirm Password</label>
+                        <input type="password" placeholder="Confirm Password"
+                            {...register("confirmPassword", { required: true, minLength: 8 })} />
+                        {errors.confirmPassword?.type === 'required' && <span className="signup-modal-error">password is required</span>}
+                        {errors.confirmPassword?.type === 'minLength' && <span className="signup-modal-error">password must be at least 8 characters</span>}
+                    </div>
+
+                    {/* input */}
+                    <div className="input-label">
+                        <label >Shop domain</label>
+                        <div className="modal-shopname-input">
+                            <span>droplinked.com/</span>
+                            {(shopname == undefined) ?
+                                <input type="text" className="modal-shopname-input-inpt" placeholder="shopname"
+                                    {...register("shopname", { required: true })} />
+                                :
+                                <input type="text" value={shopname} className="modal-shopname-input-inpt" placeholder="shopname"
+                                    {...register("shopname", { required: true })} />
+                            }
+                        </div>
+                        {errors.shopname?.type === 'required' && <span className="signup-modal-error">shopname is required</span>}
+                    </div>
+
+                    {/* button */}
+                    <button className="sign-up-btn" type="submit">Sign up</button>
+                </form>
 
                 {/* text */}
                 <div className="text mt-4">
