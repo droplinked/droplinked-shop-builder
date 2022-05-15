@@ -1,0 +1,70 @@
+.Register-structure-wrapper {
+  // font-family: "AvenirNext";
+  font-style: normal;
+  color: #ffffff;
+  width: 100%;
+  padding: 0px 80px;
+  display: flex;
+  justify-content: center;
+  .Register-structure-body {
+    width: 100%;
+    max-width: 900px;
+    border: 1px solid white;
+    display: flex;
+
+    .Register-structure-sidebar {
+      padding: 40px 0px;
+      border-right: 1px solid white;
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+
+      .item {
+        margin: 0px auto;
+        width: 95%;
+        background: #353536;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 16px;
+        text-align: center;
+        padding: 12px 0px;
+        margin-bottom: 15px;
+      }
+    }
+    .Register-structure-content {
+      padding: 40px 10px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Register-structure-wrapper {
+    padding: 0px 20px;
+    .Register-structure-body {
+      width: 100%;
+      max-width: 900px;
+      border: 1px solid white;
+      display: flex;
+      flex-direction: column;
+
+      .Register-structure-sidebar {
+        border-bottom: 1px solid red;
+        width: 100%;
+        padding: 20px 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .item {
+          margin: 0px 0px;
+          width: 20%;
+          font-size: 8px;
+          text-align: center;
+          padding: 12px 0px 9px 0px;
+        }
+      }
+      .Register-structure-content {
+        padding: 20px 10px;
+      }
+    }
+  }
+}

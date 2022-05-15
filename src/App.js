@@ -27,9 +27,10 @@ import Confirm from "./layout/confirm/Confirm";
 import RoleSet from "./layout/role set page/RoleSetPage";
 import CollectionManagement from "./layout/Brand/management/CollectionManagement";
 import Settings from "./layout/Customer/settings/Setting";
-import NewProduct from "./layout/newProduct/NewProduct"
-import CrashpunkDemo from "./layout/crash punks demo/CrahspunkDemo"
-import ThankPage from "./layout/registering/thanks for register/ThankForRegister"
+import NewProduct from "./layout/newProduct/NewProduct";
+import CrashpunkDemo from "./layout/crash punks demo/CrahspunkDemo";
+import ThankPage from "./layout/registering/thanks for register/ThankForRegister";
+import RegisterStructure from "./layout/registering/register structure/RegisterStructure";
 
 function App() {
   return (
@@ -43,6 +44,10 @@ function App() {
                 <HomeWrapper>
                   <Routes>
                     <Route exact path="/" element={<HomePage />} />
+                    <Route path="/register" element={<RegisterStructure />}>
+
+                    </Route>
+
                     <Route path="/creatorpage" element={<CreatorPage />} />
                     <Route path="/postpage" element={<PostPage />} />
                     <Route
@@ -53,8 +58,8 @@ function App() {
                     <Route
                       path="/collectionmanagement"
                       element={<CollectionManagement />}
-                    /> 
-                     <Route path="/crashpunksdemo" element={<CrashpunkDemo />} />
+                    />
+                    <Route path="/crashpunksdemo" element={<CrashpunkDemo />} />
                     <Route path="/addProduct" element={<NewProduct />} />
                     <Route path="/address" element={<Address />} />
                     <Route path="/shipping" element={<Shipping />} />
