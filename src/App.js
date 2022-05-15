@@ -29,6 +29,7 @@ import CollectionManagement from "./layout/Brand/management/CollectionManagement
 import Settings from "./layout/Customer/settings/Setting";
 import NewProduct from "./layout/newProduct/NewProduct"
 import CrashpunkDemo from "./layout/crash punks demo/CrahspunkDemo"
+import ThankPage from "./layout/registering/thanks for register/ThankForRegister"
 
 function App() {
   return (
@@ -65,6 +66,7 @@ function App() {
                     <Route path="/confirm" element={<Confirm />} />
                     <Route path="/crashpunks" element={<Crashpunks />} />
                     <Route path="/ruleset" element={<RoleSet />} />
+                    <Route path="/sendLink" element={<ThankPage />} />
                     <Route path="/product/:id" element={<BuyProduct />} />
                     <Route path="/*" element={<NotFound />} />
                   </Routes>
