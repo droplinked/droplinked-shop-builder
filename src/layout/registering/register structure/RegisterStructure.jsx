@@ -1,8 +1,8 @@
 import "./RegisterStructure.scss"
 
-export default function RegisterStructure({children}){
+export default function RegisterStructure({ children }) {
 
-    return(
+    return (
         <div className="Register-structure-wrapper">
             <div className="Register-structure-body">
                 <div className="Register-structure-sidebar">
@@ -11,7 +11,7 @@ export default function RegisterStructure({children}){
                     <div className="item">Type of IMS</div>
                     <div className="item">Choose a plan</div>
                 </div>
-                <div className="Register-structure-content">{children}</div>
+                <div className="Register-structure-content">{ children }</div>
             </div>
         </div>
     )
