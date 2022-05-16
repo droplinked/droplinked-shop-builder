@@ -32,6 +32,7 @@ import CrashpunkDemo from "./layout/crash punks demo/CrahspunkDemo";
 import ThankPage from "./layout/registering/thanks for register/ThankForRegister";
 import RegisterStructure from "./layout/registering/register structure/RegisterStructure";
 import PersonalInfo from"./layout/registering/personal info/PersonalInfo"
+import ShopInfo from "./layout/registering/shop info/ShopInfo"
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
                     <Route exact path="/" element={<HomePage />} />
                       
                     <Route  path="/register/personalInfo" element={<PersonalInfo />} />
+                    <Route  path="/register/shopInfo" element={<ShopInfo />} />
                     
                     <Route path="/creatorpage" element={<CreatorPage />} />
                     <Route path="/postpage" element={<PostPage />} />
