@@ -34,6 +34,7 @@ import RegisterStructure from "./layout/registering/register structure/RegisterS
 import PersonalInfo from"./layout/registering/personal info/PersonalInfo"
 import ShopInfo from "./layout/registering/shop info/ShopInfo"
 import ImsSelect from "./layout/registering/IMS select/ImsSelect"
+import RegisterPayment from "./layout/registering/register payment page/RegisterPayment"
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
                     <Route  path="/register/personalInfo" element={<PersonalInfo />} />
                     <Route  path="/register/shopInfo" element={<ShopInfo />} />
                     <Route  path="/register/IMSSelect" element={<ImsSelect />} />
+                    <Route  path="/register/payment" element={<RegisterPayment />} />
                     
                     <Route path="/creatorpage" element={<CreatorPage />} />
                     <Route path="/postpage" element={<PostPage />} />
