@@ -6,7 +6,7 @@ export default function ImsSelect() {
     const [ImsSystem, setImsSystem] = useState(undefined);
 
     return (
-        <RegisterStructure>
+        <RegisterStructure level={"imstype"}>
             <div className="ims-select-wrapper">
                 <div className="header">Select an inventory management system</div>
                 <div className="w-100 d-flex justify-content-between" style={{marginTop:"60px"}}>

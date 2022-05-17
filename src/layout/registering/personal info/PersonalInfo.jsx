@@ -18,7 +18,7 @@ export default function PersonalInfo() {
 
 
     return (
-        <RegisterStructure >
+        <RegisterStructure level={"personalinfo"}>
             <div className="register-personalinfo-wrapper">
 
                 <div className="input-perosnal-image" onClick={chooseFile}

@@ -24,7 +24,7 @@ export default function ShopInfo() {
     const addAddressF = (e) => {
         setAddressdata(e)
     }
-    return (<RegisterStructure>
+    return (<RegisterStructure level={"shopinfo"}>
         <div className="register-shopinfo-wrapper">
             {(!showAddress) && <>
                 <div className="input-perosnal-image" onClick={chooseFile} style={{ backgroundImage: `url(${(profileImg == undefined) ? img : profileImg})` }}>

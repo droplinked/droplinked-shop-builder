@@ -23,13 +23,19 @@
       .item {
         margin: 0px auto;
         width: 95%;
-        background: #353536;
+
         border-radius: 8px;
         font-weight: 500;
         font-size: 16px;
         text-align: center;
         padding: 12px 0px;
         margin-bottom: 15px;
+      }
+       .selecteditem {
+        background: #8053FF;
+      }
+       .unselecteditem {
+        background: #353536;
       }
     }
     .Register-structure-content {

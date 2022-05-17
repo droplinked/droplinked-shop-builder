@@ -10,7 +10,7 @@ function RegisterPayment() {
     const options = { clientSecret: '{{CLIENT_SECRET}}' }
 
     return (
-        <RegisterStructure>
+        <RegisterStructure level={"payment"}>
             <Elements stripe={stripePromise} options={options}>
                 <PaymentForm />
             </Elements>

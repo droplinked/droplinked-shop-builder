@@ -56,15 +56,9 @@ function App() {
                     
                     <Route path="/creatorpage" element={<CreatorPage />} />
                     <Route path="/postpage" element={<PostPage />} />
-                    <Route
-                      path="/collectionpage"
-                      element={<CollectionPage />}
-                    />
+                    <Route path="/collectionpage" element={<CollectionPage />}/>
                     <Route path="/cart" element={<Checkout />} />
-                    <Route
-                      path="/collectionmanagement"
-                      element={<CollectionManagement />}
-                    />
+                    <Route path="/collectionmanagement" element={<CollectionManagement />}/>
                     <Route path="/crashpunksdemo" element={<CrashpunkDemo />} />
                     <Route path="/addProduct" element={<NewProduct />} />
                     <Route path="/address" element={<Address />} />
