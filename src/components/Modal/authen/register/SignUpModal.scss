@@ -32,6 +32,14 @@ input:-webkit-autofill:focus {
     animation-duration: 0.4s;
     padding: 20px 40px 40px 40px;
 
+    & .handle-error{
+      height: 30px;
+      text-align: center;
+      color:#8053ff;
+      font-size: 16px;
+      justify-content: center;
+    }
+
     .title {
       height: auto;
       line-height: auto;
@@ -147,6 +155,7 @@ input:-webkit-autofill:focus {
         background: #7241f9;
       }
     }
+  
 
     .text {
       width: 100%;

@@ -3,15 +3,42 @@ import closePng from "../../../../assest/feature/home page images/Close.png"
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 export default function SignUpModal({ close, shopname, switchToggle }) {
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(undefined)
     const { register, formState: { errors }, handleSubmit } = useForm();
     let navigate = useNavigate();
 
+
+
     const onSubmit = data => {
-        console.log(data);
-        navigate("/emailConfirmation");
+        setLoading(true)
+
+        let info = {
+            email: data.email,
+            password: data.password,
+            confirmPass: data.confirmPassword,
+            shopName: data.shopname
+        }
+
+        if (info.password !== info.confirmPass) {
+            setError("password not match")
+            return;
+        }
+
+        axios.post('https://api.droplinked.com/dev/producer/signup', info)
+            .then((res) => {
+                navigate("/emailConfirmation");
+            })
+            .catch(error => {
+                setError(error.response.data.message.message);
+                setLoading(false)
+            });
     };
+
+
 
     return (
         <div className="signup-wraper">
@@ -21,7 +48,9 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
                 <div className="title">Create a free account
                     <img className="close-btn" src={closePng} alt="" onClick={close} />
                 </div>
+                <div className="handle-error">{(error != undefined) && error}</div>
                 <form onSubmit={handleSubmit(onSubmit)}
+                 onChange={()=>{if(loading){setLoading(false)}}}
                     style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>
                     {/* inout */}
                     <div className="input-label">
@@ -66,7 +95,13 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
                     </div>
 
                     {/* button */}
-                    <button className="sign-up-btn" type="submit">Sign up</button>
+                    {(loading)
+                        ?
+                        <button className="sign-up-btn" style={{ backgroundColor: "#b3b3b3" }} >Sign up</button>
+                        :
+                        <button className="sign-up-btn" type="submit" >Sign up</button>
+                    }
+
                 </form>
 
                 {/* text */}
