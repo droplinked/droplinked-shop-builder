@@ -1,10 +1,56 @@
 import "./LoginModal.style.scss"
+import axios from 'axios';
 import closePng from "../../../../assest/feature/home page images/Close.png"
 import { useForm } from "react-hook-form";
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginModal({ close, switchToggle }) {
+    const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState(undefined)
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+    let navigate = useNavigate();
+
+    const onSubmit = data => {
+
+        setLoading(true)
+
+        let info = {
+            email: data.email,
+            password: data.password
+        }
+
+        axios.post('https://api.droplinked.com/dev/producer/signin', info)
+            .then((res) => {
+
+                switch (res.data.user.status) {
+                    case "NEW":
+                        setMessage("you must virified your account")
+                        setLoading(false)
+                        return;
+                    case "VERIFIED":
+                        navigate("/register/personalInfo");
+                        return;
+                    case "PROFILE_COMPLETED":
+                        navigate("/register/shopInfo");
+                        return;
+                    case "SHOP_INFO_COMPLETED":
+                        navigate("/register/IMSSelect");
+                        return;
+                    case "ACTIVE":
+                        navigate(`/${res.data.user.shopName}`);
+                        return;
+                    case "DELETED":
+                        setMessage("your account has been deleted")
+                        setLoading(false)
+                        return;
+                }
+            })
+            .catch(error => {
+                setMessage(error.response.data.message.message)
+                setLoading(false)
+            });
+    };
 
     return (<>
         <div className="login-modal-wraper">
@@ -12,12 +58,13 @@ export default function LoginModal({ close, switchToggle }) {
                 <div className="title">Login
                     <img className="close-btn" src={closePng} alt="" onClick={close} />
                 </div>
-                <form onSubmit={handleSubmit(onSubmit)}
+                <div className="handle-error">{(message != undefined) && message}</div>
+                <form onSubmit={handleSubmit(onSubmit) }
                     style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>
 
                     <div className="input-label">
                         <label>Email</label>
-                        <input type="email" placeholder="Shopname"
+                        <input type="email" placeholder="Example@email.com"
                             {...register("email", { required: true })} />
                     </div>
                     {errors.email?.type === 'required' && <span className="signup-modal-error">email is required</span>}
@@ -28,7 +75,13 @@ export default function LoginModal({ close, switchToggle }) {
                             {...register("password", { required: true })} />
                     </div>
                     {errors.password?.type === 'required' && <span className="signup-modal-error">password is required</span>}
-                    <input className="submit-login-modal" value="Login" type="submit" />
+                    {(loading)
+                        ?
+                        <input className="submit-login-modal" value="Login" style={{ backgroundColor: "#b3b3b3", outline: "none" }} />
+                        :
+                        <input className="submit-login-modal" value="Login" type="submit" />
+                    }
+
                 </form>
 
                 <div className="text mt-4">

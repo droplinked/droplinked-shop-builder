@@ -54,6 +54,14 @@ input:-webkit-autofill:focus {
       }
     }
 
+    & .handle-error {
+      height: 30px;
+      text-align: center;
+      color: #8053ff;
+      font-size: 16px;
+      justify-content: center;
+    }
+
     .input-label {
       margin-top: 20px;
       // border: 1px solid white;
@@ -145,10 +153,10 @@ input:-webkit-autofill:focus {
       padding: 12px 0px;
     }
 
-    .signup-modal-error{
+    .signup-modal-error {
       font-family: "AvenirNext";
       font-weight: 400;
-      font-size:12px;
+      font-size: 12px;
       color: red;
     }
   }
@@ -195,6 +203,10 @@ input:-webkit-autofill:focus {
         }
       }
 
+      & .handle-error {
+        height: 30px;
+        font-size: 12px;
+      }
       .input-label {
         margin-top: 12px;
         label {
@@ -224,8 +236,8 @@ input:-webkit-autofill:focus {
         margin-top: 12px;
         font-size: 16px;
       }
-      .signup-modal-error{
-        font-size:8px;
+      .signup-modal-error {
+        font-size: 8px;
       }
     }
   }

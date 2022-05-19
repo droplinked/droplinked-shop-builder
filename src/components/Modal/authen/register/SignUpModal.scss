@@ -221,6 +221,9 @@ input:-webkit-autofill:focus {
           height: 24px;
         }
       }
+      & .handle-error{
+        font-size: 12px;
+      }
       .modal-shopname-input {
         span {
           font-weight: 400;
