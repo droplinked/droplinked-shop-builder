@@ -16,6 +16,7 @@ import PageHeader from "./other Page header/Pages.Header"
 function MainHeader() {
   let ur = window.location.pathname;
   const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
+  
   const [emailModal, setEmailModal] = useState(false);
   const [SignModal, setSignModal] = useState(false);
   const [mobilNav, setMobileNav] = useState(false);

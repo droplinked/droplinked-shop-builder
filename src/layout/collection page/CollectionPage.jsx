@@ -30,7 +30,7 @@ function CollectionPage() {
                     <div className="products-wrap">
                         <div className="h-auto d-flex flex-column justify-content-center">
                             <div className="colection-title">Holder merch</div>
-                            <div className="product-counter">3 Products</div>
+                            <div className="product-counter">2 Products</div>
                         </div>
                         <div className="wrap">
                             <div className=" row">

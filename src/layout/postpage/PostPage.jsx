@@ -7,7 +7,7 @@ function PostPage(){
     return(<div>
     <ProfileTopSection />
     <Post /> 
-    <Collection name="Holder merch" />
+    <Collection name="Holder merch" data={true}/>
     <Collection  name="Public merch"/>
     </div>)
 }

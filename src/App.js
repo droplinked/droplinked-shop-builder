@@ -47,13 +47,11 @@ function App() {
                 <MainHeader />
                 <HomeWrapper>
                   <Routes>
-                    <Route exact path="/" element={<HomePage />} />
-                      
+                    <Route exact path="/" element={<HomePage />} />                   
                     <Route  path="/register/personalInfo" element={<PersonalInfo />} />
                     <Route  path="/register/shopInfo" element={<ShopInfo />} />
                     <Route  path="/register/IMSSelect" element={<ImsSelect />} />
-                    <Route  path="/register/payment" element={<RegisterPayment />} />
-                    
+                    <Route  path="/register/payment" element={<RegisterPayment />} />              
                     <Route path="/creatorpage" element={<CreatorPage />} />
                     <Route path="/postpage" element={<PostPage />} />
                     <Route path="/collectionpage" element={<CollectionPage />}/>
