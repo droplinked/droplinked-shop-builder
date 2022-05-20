@@ -23,6 +23,9 @@ import { useCart } from "../../sevices/hooks/useCart"
 import Side from "./cart-component/Side"
 import { log } from "react-modal/lib/helpers/ariaAppHider"
 import FullSizeImage from "../../components/features/full size image/FullSizeImage"
+import { UseWalletInfo } from "../../sevices/context/context"
+import { fetchPrincipalNFTs } from "../../sevices/functoinal-service/NFTcheck"
+import ErrorModal from "../../components/errors component/error modal/ErrorModal"
 
 
 
@@ -36,10 +39,13 @@ function BuyProduct() {
     const [images, setImages] = useState([]);
     const [mainImage, setMainImage] = useState("");
     const [optionsVal, setOptionsVal] = useState([]);
+    const [hasNFT, setHasNFT] = useState([])
+    const [error, setError] = useState(false)
     const { profile } = useProfile();
     const { state, increase } = useCart();
     const [fullsizeImage, setFullSizeImage] = useState(false);
     // const personId = profile.id;
+    const { userData, authenticate } = UseWalletInfo();
 
 
 
@@ -59,6 +65,25 @@ function BuyProduct() {
             setMainImage(imglist[0])
         })
 
+        if (userData != undefined) {
+            let mainet = userData.profile.stxAddress.mainnet;
+            let testnet = userData.profile.stxAddress.testnet;
+            fetchPrincipalNFTs(
+                mainet,
+                "SP3QSAJQ4EA8WXEDSRRKMZZ29NH91VZ6C5X88FGZQ.crashpunks-v2::crashpunks-v2",
+                1,
+                0
+            )
+                .then((results) => {
+                    console.log("result");
+                    console.log(results)
+                    setHasNFT(results)
+                })
+                .catch((reason) => {
+                    console.log("could not fetch user nfts")
+                })
+        }
+
     }, [])
 
 
@@ -72,6 +97,8 @@ function BuyProduct() {
             }
             setOptionsVal(arr)
         }
+
+
     }, [product])
 
 
@@ -106,8 +133,19 @@ function BuyProduct() {
         })
     }
 
-    const closeFullsize = ()=>{
+    const closeFullsize = () => {
         setFullSizeImage(false)
+    }
+
+    const clickOnProduct = () => {
+        if (userData == undefined) {
+            authenticate();
+        } else {
+            setError(true)
+            setTimeout(() => {
+                setError(false)
+            }, "3000")
+        }
     }
 
 
@@ -122,7 +160,7 @@ function BuyProduct() {
                                 <div className="buy-product-wraper">
 
                                     <div className="product-img-form-wr">
-                                        <div className="product-main-image" style={{ backgroundImage: `url(${mainImage})`}}>
+                                        <div className="product-main-image" style={{ backgroundImage: `url(${mainImage})` }}>
 
                                             <div className="position-absolute d-flex justify-content-end " style={{ top: "12px", right: "12px", width: "130px" }}>
                                                 <div className="product-main-img-icon"
@@ -200,14 +238,26 @@ function BuyProduct() {
                                             </div>
                                         </div>
 
-                                        <button className="product-addbasket-btn"
-                                            onClick={addItem}
-                                        >
-                                            <div className="d-flex justify-content-center align-items-center" style={{ height: "18px" }}>
-                                                <img src={basket} className="h-100" alt="" />
-                                                <p className="product-add-basket-text">Add to basket</p>
-                                            </div>
-                                        </button>
+                                        {(hasNFT.length > 0) ?
+                                            <button className="product-addbasket-btn"
+                                                onClick={addItem}
+                                            >
+                                                <div className="d-flex justify-content-center align-items-center" style={{ height: "18px" }}>
+                                                    <img src={basket} className="h-100" alt="" />
+                                                    <p className="product-add-basket-text">Add to basket</p>
+                                                </div>
+                                            </button>
+                                            :
+                                            <button className="product-addbasket-btn"
+                                            onClick={clickOnProduct}
+                                            >
+                                                <div className="d-flex justify-content-center align-items-center" style={{ height: "18px" }}>
+                                                    <img src={basket} className="h-100" alt="" />
+                                                    <p className="product-add-basket-text">Add to basket</p>
+                                                </div>
+                                            </button>
+                                        }
+
                                     </div>
 
                                 </div>
@@ -235,7 +285,12 @@ function BuyProduct() {
 
 
         </div>
-        {fullsizeImage && <FullSizeImage image={mainImage} close={closeFullsize}/>}
+        {fullsizeImage && <FullSizeImage image={mainImage} close={closeFullsize} />}
+        {error && 
+        <div style={{position:"fixed",maxWidth:"200px" , maxHeight:"100px"}}>
+        <ErrorModal>you haven't NFT</ErrorModal>
+        </div>
+        }
     </>)
 }
 
