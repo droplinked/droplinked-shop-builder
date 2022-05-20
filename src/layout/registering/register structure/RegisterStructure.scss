@@ -31,10 +31,10 @@
         padding: 12px 0px;
         margin-bottom: 15px;
       }
-       .selecteditem {
-        background: #8053FF;
+      .selecteditem {
+        background: #8053ff;
       }
-       .unselecteditem {
+      .unselecteditem {
         background: #353536;
       }
     }
@@ -43,18 +43,32 @@
       padding: 40px 10px;
       display: flex;
 
+      & .loading-btn {
+        background-color: #666666;
+      }
+      & .non-loading-btn {
+        background-color: #8053ff;
+      }
+
       .next-back-btn {
         text-align: center;
         margin-top: 40px;
         font-family: "AvenirNext";
         font-style: normal;
         color: #ffffff;
-        background-color: #666;
         font-size: 20px;
         font-weight: 600;
         width: 150px;
         padding: 13px 16px;
         border-radius: 10px;
+      }
+
+      & .register-error {
+        color: red;
+        font-family: "AvenirNext";
+        font-style: normal;
+        font-size: 16px;
+        font-weight:600;
       }
     }
   }
@@ -94,6 +108,10 @@
           font-size: 16px;
           width: 100px;
           padding: 13px 16px 10px 16px;
+        }
+
+        & .register-error {
+          font-size: 12px;
         }
       }
     }

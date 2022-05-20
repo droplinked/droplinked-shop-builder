@@ -2,7 +2,7 @@ import "./LoginModal.style.scss"
 import axios from 'axios';
 import closePng from "../../../../assest/feature/home page images/Close.png"
 import { useForm } from "react-hook-form";
-import { useState } from "react"
+import { useState , useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
 
 export default function LoginModal({ close, switchToggle }) {
@@ -30,15 +30,19 @@ export default function LoginModal({ close, switchToggle }) {
                         return;
                     case "VERIFIED":
                         navigate("/register/personalInfo");
+                        localStorage.setItem('profile', JSON.stringify(res.data));
                         return;
                     case "PROFILE_COMPLETED":
                         navigate("/register/shopInfo");
+                        localStorage.setItem('profile', JSON.stringify(res.data));
                         return;
                     case "SHOP_INFO_COMPLETED":
                         navigate("/register/IMSSelect");
+                        localStorage.setItem('profile', JSON.stringify(res.data));
                         return;
                     case "ACTIVE":
                         navigate(`/${res.data.user.shopName}`);
+                        localStorage.setItem('profile', JSON.stringify(res.data));
                         return;
                     case "DELETED":
                         setMessage("your account has been deleted")
