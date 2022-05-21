@@ -20,7 +20,6 @@ export default function PersonalInfo() {
         inputFile.current.click();
     };
 
-    console.log(token);
 
     const enterImage = (e) => {
         // let uploadimg = e.target.files[0];
@@ -74,7 +73,6 @@ export default function PersonalInfo() {
 
     const onSubmit = data => {
         setLoading(true)
-        console.log(data);
         let profileInfo = {
             firstname: data.firstName,
             lastname: data.lastName,
@@ -84,6 +82,11 @@ export default function PersonalInfo() {
         axios.put('https://api.droplinked.com/dev/producer/profile', profileInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         ).then(res => {
+            let profile = {
+                jwt: user.jwt,
+                user: res.data
+            }
+            localStorage.setItem("profile", JSON.stringify(profile));
             navigate("/register/shopInfo");
         })
             .catch(err => {

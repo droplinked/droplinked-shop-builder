@@ -45,6 +45,10 @@ export default function LoginModal({ close, switchToggle }) {
                         addProfile(res.data)
                         navigate("/register/IMSSelect");
                         return;
+                        case  "IMS_TYPE_COMPLETED":
+                            addProfile(res.data)
+                            navigate("/register/payment");
+                            return;
                     case "ACTIVE":
                         addProfile(res.data)
                         navigate(`/${res.data.user.shopName}`);

@@ -1,7 +1,6 @@
 export const ProflieReduser = (profile, action) => {
   switch (action.type) {
     case "ADD_PROFILE":
-     
       localStorage.setItem("profile", JSON.stringify(action.payload));
       return { ...action.payload };
 

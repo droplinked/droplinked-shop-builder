@@ -49,9 +49,12 @@ export default function ShopInfo() {
         axios.put('https://api.droplinked.com/dev/producer/shop/info', shopInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         )
-            .then(e => {
-                console.log(e.data);
-                localStorage.setItem('shopInfo', JSON.stringify(e.data))
+            .then(res => {
+                let profile = {
+                    jwt: user.jwt,
+                    user: res.data
+                }
+                localStorage.setItem("profile", JSON.stringify(profile));
                 navigate("/register/IMSSelect");
             }
             )
