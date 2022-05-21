@@ -9,6 +9,7 @@ const ProfileContextProvider = ({ children }) => {
   const [profile, dispatch] = useReducer(ProflieReduser, ( JSON.parse(localStorage.getItem("profile"))) || null);
 
   const addProfile = (payload) => {
+    console.log(payload);
     dispatch({ type: "ADD_PROFILE", payload });
   };
 

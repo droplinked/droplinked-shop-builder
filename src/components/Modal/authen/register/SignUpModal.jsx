@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignUpModal({ close, shopname, switchToggle }) {
     const [loading, setLoading] = useState(false)
@@ -24,7 +26,7 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
         }
 
         if (info.password !== info.confirmPass) {
-            setError("password not match")
+            toast.error("password not match")
             return;
         }
 
@@ -34,7 +36,7 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
                 navigate("/emailConfirmation");
             })
             .catch(error => {
-                setError(error.response.data.message.message);
+                toast.error(error.response.data.message.message);
                 setLoading(false)
             });
     };
@@ -49,7 +51,6 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
                 <div className="title">Create a free account
                     <img className="close-btn" src={closePng} alt="" onClick={close} />
                 </div>
-                <div className="handle-error">{(error != undefined) && error}</div>
                 <form onSubmit={handleSubmit(onSubmit)}
                  onChange={()=>{if(loading){setLoading(false)}}}
                     style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>
@@ -114,6 +115,16 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
                     <p>Already have an account? <a onClick={switchToggle}>Login</a></p>
                 </div>
             </div>
+            <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover />
         </div>
     )
 }

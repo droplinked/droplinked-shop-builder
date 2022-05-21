@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { useProfile } from "../../../../sevices/hooks/useProfile"
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginModal({ close, switchToggle }) {
     const [loading, setLoading] = useState(false)
@@ -27,34 +29,34 @@ export default function LoginModal({ close, switchToggle }) {
 
                 switch (res.data.user.status) {
                     case "NEW":
-                        setMessage("you must virified your account")
+                        toast.error("you must virified your account")
                         localStorage.setItem('registerEmail', JSON.stringify(info.email))
                         setLoading(false)
                         return;
                     case "VERIFIED":
-                        navigate("/register/personalInfo");
                         addProfile(res.data)
+                        navigate("/register/personalInfo");
                         return;
                     case "PROFILE_COMPLETED":
-                        navigate("/register/shopInfo");
                         addProfile(res.data)
+                        navigate("/register/shopInfo");
                         return;
                     case "SHOP_INFO_COMPLETED":
-                        navigate("/register/IMSSelect");
                         addProfile(res.data)
+                        navigate("/register/IMSSelect");
                         return;
                     case "ACTIVE":
-                        navigate(`/${res.data.user.shopName}`);
                         addProfile(res.data)
+                        navigate(`/${res.data.user.shopName}`);
                         return;
                     case "DELETED":
-                        setMessage("your account has been deleted")
+                        toast.error("your account has been deleted")
                         setLoading(false)
                         return;
                 }
             })
             .catch(error => {
-                setMessage(error.response.data.message.message)
+                toast.error(error.response.data.message.message)
                 setLoading(false)
             });
     };
@@ -65,7 +67,7 @@ export default function LoginModal({ close, switchToggle }) {
                 <div className="title">Login
                     <img className="close-btn" src={closePng} alt="" onClick={close} />
                 </div>
-                <div className="handle-error">{(message != undefined) && message}</div>
+
                 <form onSubmit={handleSubmit(onSubmit)}
                     style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>
 
@@ -98,7 +100,19 @@ export default function LoginModal({ close, switchToggle }) {
                     <p>Don’t have an account ? <a onClick={switchToggle}>Register now</a></p>
                 </div>
             </div>
+
+
         </div>
+        <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover />
 
     </>)
 }
