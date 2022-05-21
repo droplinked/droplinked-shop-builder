@@ -8,8 +8,10 @@ export default function ShopInfo() {
     const [profileImg, setProfileImg] = useState(undefined)
     const [showAddress, setShowAddress] = useState(false)
     const [addressData, setAddressdata] = useState(undefined)
+    const [loading, setLoading] = useState(false)
+    const shopname = JSON.parse(localStorage.getItem('profile')).user.shopName;
+
     const inputFile = useRef(null);
-    console.log(addressData);
     const chooseFile = () => {
         inputFile.current.click();
     };
@@ -33,7 +35,7 @@ export default function ShopInfo() {
 
                 <div className="register-label-input ">
                     <label>ShopName</label>
-                    <input type="text" placeholder="" value="droplinked.io/shopname" readonly />
+                    <input type="text" placeholder="" value={`droplinked.io/${shopname}`} readonly />
                 </div>
 
                 <div className="register-label-input ">
@@ -63,18 +65,18 @@ export default function ShopInfo() {
 
                 {(addressData == undefined )?
                     <div className="d-flex justify-content-center">
-                        <button className="next-back-btn" style={{ width: "200px" }} onClick={() => setShowAddress(true)}>Add shop address</button>
+                        <button className="next-back-btn" style={{ width: "250px" , border:"1px solid white" , fontSize:"18px" }} onClick={() => setShowAddress(true)}>Add shop address</button>
                     </div>
                 :
-                <div className="address-detail-shopinfo">{`addressLine : ${addressData.line1}  /  city : ${addressData.city}  /  zip : ${addressData.zip}`}</div>  
+                <div className="address-detail-shopinfo">{`addressLine : ${addressData.line1}  |  city : ${addressData.city}  |  zip : ${addressData.Zip}`}<button className="edit-address-detail" onClick={()=>{setShowAddress(true)}}>edit</button></div>  
                 }
                 <div className="d-flex justify-content-between w-100">
-                    <input className="next-back-btn" value="cancel" />
-                    <input type="submit" className="next-back-btn" value="next" />
+                    <button className={`next-back-btn ${(loading?"loading-btn":"non-loading-btn")}`} >cancel</button>
+                    <button className={`next-back-btn ${(loading?"loading-btn":"non-loading-btn")}`} >next</button>
                 </div>
             </>
             }
-            {showAddress && <ShopInfoAddress close={closeAddres} addAddressF={addAddressF} />}
+            {showAddress && <ShopInfoAddress close={closeAddres} addAddressF={addAddressF} addressData={addressData} />}
 
 
 

@@ -1,12 +1,24 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
-export default function ShopInfoAddress({ close, addAddressF }) {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+export default function ShopInfoAddress({ close, addAddressF, addressData }) {
+    const { register, formState: { errors }, handleSubmit } = useForm({
+        defaultValues: {
+            line1: (addressData) && addressData.line1,
+            country: (addressData) && addressData.country,
+            city: (addressData) && addressData.city,
+            state: (addressData) && addressData.state,
+            Zip: (addressData) && addressData.Zip
+
+        }
+    });
+    const [loading, setLoading] = useState(false)
 
     const onSubmit = data => {
         addAddressF(data);
         close();
     };
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -46,8 +58,8 @@ export default function ShopInfoAddress({ close, addAddressF }) {
                     {errors.Zip?.type === 'required' && <span className="span-error">Zip is required</span>}
                 </div>
             </div>
-            
-            <input type="submit" className="next-back-btn" value="save" />
+
+            <input type="submit" className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`} value="save" />
         </form>
     )
 }
