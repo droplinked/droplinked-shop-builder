@@ -26,6 +26,7 @@ export default function LoginModal({ close, switchToggle }) {
                 switch (res.data.user.status) {
                     case "NEW":
                         setMessage("you must virified your account")
+                        localStorage.setItem('registerEmail', JSON.stringify(info.email))
                         setLoading(false)
                         return;
                     case "VERIFIED":
