@@ -7,13 +7,20 @@ import axios from 'axios';
 import img from "../../../assest/image/default profile/icons8-user-100.png"
 
 export default function PersonalInfo() {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    let user = JSON.parse(localStorage.getItem('profile'));
+
+    const { register, formState: { errors }, handleSubmit } = useForm({
+        defaultValues: {
+            firstName : (user.user.firstname) && user.user.firstname,
+            lastName : (user.user.lastname) && user.user.lastname,
+            phoneNumber : (user.user.phone) && user.user.phone
+        }
+    });
     const [profileImg, setProfileImg] = useState(undefined)
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState(undefined);
 
     const inputFile = useRef(null);
-    let user = JSON.parse(localStorage.getItem('profile'));
     let navigate = useNavigate();
     const token = user.jwt;
     const chooseFile = () => {
