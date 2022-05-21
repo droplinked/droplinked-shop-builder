@@ -1,10 +1,18 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import axios from "axios"
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ShopInfoAddress({ close, addAddressF, addressData }) {
+    const [loading, setLoading] = useState(false)
+    let user = JSON.parse(localStorage.getItem('profile'));
+    const token = user.jwt;
+
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: {
             line1: (addressData) && addressData.line1,
+            line2: (addressData && (addressData.line2 != undefined)) && addressData.line2,
             country: (addressData) && addressData.country,
             city: (addressData) && addressData.city,
             state: (addressData) && addressData.state,
@@ -12,15 +20,40 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
 
         }
     });
-    const [loading, setLoading] = useState(false)
+
 
     const onSubmit = data => {
-        addAddressF(data);
-        close();
+        setLoading(true);
+
+        let addresInfo = {
+            addressLine1: data.line1,
+            addressLine2: data.line2,
+            country: data.country,
+            city: data.city,
+            state: data.state,
+            zip: data.Zip
+        }
+        axios.post('https://api.droplinked.com/dev/producer/shop/address', addresInfo,
+            { headers: { Authorization: 'Bearer ' + token } })
+            .then(e => {
+                toast.success("address added")
+                localStorage.setItem('address', JSON.stringify(e.data.addressBook))
+                addAddressF(data);
+                close();
+            })
+            .catch(e => {
+                toast.error(e.response.data.message.message)
+                setLoading(false);
+            })
+
+
+
     };
 
 
-    return (
+
+
+    return (<>
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="register-label-input ">
                 <label>Address line 1</label>
@@ -30,7 +63,7 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
 
             <div className="register-label-input ">
                 <label>Address line 2 ( building of unit # )</label>
-                <input type="text" placeholder="Address line 2 ( building of unit # )" />
+                <input type="text" placeholder="Address line 2 ( building of unit # )" {...register("line2")} />
             </div>
 
             <div className="d-flex justify-content-between w-100" style={{ maxWidth: "100%" }}>
@@ -61,5 +94,16 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
 
             <input type="submit" className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`} value="save" />
         </form>
+        <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover />
+    </>
     )
 }
