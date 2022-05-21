@@ -2,12 +2,14 @@ import "./LoginModal.style.scss"
 import axios from 'axios';
 import closePng from "../../../../assest/feature/home page images/Close.png"
 import { useForm } from "react-hook-form";
-import { useState , useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import { useProfile } from "../../../../sevices/hooks/useProfile"
 
 export default function LoginModal({ close, switchToggle }) {
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState(undefined)
+    const { addProfile } = useProfile()
     const { register, formState: { errors }, handleSubmit } = useForm();
     let navigate = useNavigate();
 
@@ -31,19 +33,19 @@ export default function LoginModal({ close, switchToggle }) {
                         return;
                     case "VERIFIED":
                         navigate("/register/personalInfo");
-                        localStorage.setItem('profile', JSON.stringify(res.data));
+                        addProfile(res.data)
                         return;
                     case "PROFILE_COMPLETED":
                         navigate("/register/shopInfo");
-                        localStorage.setItem('profile', JSON.stringify(res.data));
+                        addProfile(res.data)
                         return;
                     case "SHOP_INFO_COMPLETED":
                         navigate("/register/IMSSelect");
-                        localStorage.setItem('profile', JSON.stringify(res.data));
+                        addProfile(res.data)
                         return;
                     case "ACTIVE":
                         navigate(`/${res.data.user.shopName}`);
-                        localStorage.setItem('profile', JSON.stringify(res.data));
+                        addProfile(res.data)
                         return;
                     case "DELETED":
                         setMessage("your account has been deleted")
@@ -64,7 +66,7 @@ export default function LoginModal({ close, switchToggle }) {
                     <img className="close-btn" src={closePng} alt="" onClick={close} />
                 </div>
                 <div className="handle-error">{(message != undefined) && message}</div>
-                <form onSubmit={handleSubmit(onSubmit) }
+                <form onSubmit={handleSubmit(onSubmit)}
                     style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>
 
                     <div className="input-label">

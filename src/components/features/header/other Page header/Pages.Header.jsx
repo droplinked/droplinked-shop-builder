@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { UseWalletInfo } from "../../../../sevices/context/context";
 import headerWalletIcon from "../../../../assest/header/headerWalletIcon.svg";
 import { useState, useEffect } from "react"
+import { useProfile } from "../../../../sevices/hooks/useProfile"
 
 export default function PageHeader() {
     const [toggleHeader, setToggleHeader] = useState(false)
     const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
+    const { profile , logout } = useProfile()
 
     return (
         <>
@@ -17,7 +19,7 @@ export default function PageHeader() {
                     </div>
                 </Link>
                 <div className="d-flex">
-                    {(false) ?
+                    {(profile != null) ?
                         <div className="login-wrapper">
                             <div className="header-profile" onClick={() => { setToggleHeader(p => !p) }}>B</div>
                             {toggleHeader &&
@@ -25,6 +27,7 @@ export default function PageHeader() {
                                     <div className="header-nav-item">Profile</div>
                                     <div className="header-nav-item">Settings</div>
                                     <div className="header-nav-item">Test</div>
+                                    <div className="header-nav-item" onClick={logout}>logout</div>
                                 </div>
                             }
                         </div>

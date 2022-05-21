@@ -31,10 +31,10 @@ import NewProduct from "./layout/newProduct/NewProduct";
 import CrashpunkDemo from "./layout/crash punks demo/CrahspunkDemo";
 import ThankPage from "./layout/registering/thanks for register/ThankForRegister";
 import RegisterStructure from "./layout/registering/register structure/RegisterStructure";
-import PersonalInfo from"./layout/registering/personal info/PersonalInfo"
-import ShopInfo from "./layout/registering/shop info/ShopInfo"
-import ImsSelect from "./layout/registering/IMS select/ImsSelect"
-import RegisterPayment from "./layout/registering/register payment page/RegisterPayment"
+import PersonalInfo from "./layout/registering/personal info/PersonalInfo";
+import ShopInfo from "./layout/registering/shop info/ShopInfo";
+import ImsSelect from "./layout/registering/IMS select/ImsSelect";
+import RegisterPayment from "./layout/registering/register payment page/RegisterPayment";
 
 function App() {
   return (
@@ -42,21 +42,33 @@ function App() {
       <ProfileContextProvider>
         <ChakraProvider>
           <CartContextProvider>
-            <BrowserRouter>
-              <WalletProvider>
+            <WalletProvider>
+              <BrowserRouter>
                 <MainHeader />
                 <HomeWrapper>
                   <Routes>
-                    <Route exact path="/" element={<HomePage />} />                   
-                    <Route  path="/register/personalInfo" element={<PersonalInfo />} />
-                    <Route  path="/register/shopInfo" element={<ShopInfo />} />
-                    <Route  path="/register/IMSSelect" element={<ImsSelect />} />
-                    <Route  path="/register/payment" element={<RegisterPayment />} />              
+                    <Route exact path="/" element={<HomePage />} />
+                    <Route
+                      path="/register/personalInfo"
+                      element={<PersonalInfo />}
+                    />
+                    <Route path="/register/shopInfo" element={<ShopInfo />} />
+                    <Route path="/register/IMSSelect" element={<ImsSelect />} />
+                    <Route
+                      path="/register/payment"
+                      element={<RegisterPayment />}
+                    />
                     <Route path="/creatorpage" element={<CreatorPage />} />
                     <Route path="/postpage" element={<PostPage />} />
-                    <Route path="/collectionpage" element={<CollectionPage />}/>
+                    <Route
+                      path="/collectionpage"
+                      element={<CollectionPage />}
+                    />
                     <Route path="/cart" element={<Checkout />} />
-                    <Route path="/collectionmanagement" element={<CollectionManagement />}/>
+                    <Route
+                      path="/collectionmanagement"
+                      element={<CollectionManagement />}
+                    />
                     <Route path="/crashpunksdemo" element={<CrashpunkDemo />} />
                     <Route path="/addProduct" element={<NewProduct />} />
                     <Route path="/address" element={<Address />} />
@@ -75,8 +87,8 @@ function App() {
                   </Routes>
                 </HomeWrapper>
                 <Footer />
-              </WalletProvider>
-            </BrowserRouter>
+              </BrowserRouter>
+            </WalletProvider>
           </CartContextProvider>
         </ChakraProvider>
       </ProfileContextProvider>
