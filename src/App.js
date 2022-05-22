@@ -35,6 +35,7 @@ import PersonalInfo from "./layout/registering/personal info/PersonalInfo";
 import ShopInfo from "./layout/registering/shop info/ShopInfo";
 import ImsSelect from "./layout/registering/IMS select/ImsSelect";
 import RegisterPayment from "./layout/registering/register payment page/RegisterPayment";
+import Test1 from "./layout/test/Test1"
 
 function App() {
   return (
@@ -83,6 +84,7 @@ function App() {
                     <Route path="/ruleset" element={<RoleSet />} />
                     <Route path="/emailConfirmation" element={<ThankPage />} />
                     <Route path="/product/:id" element={<BuyProduct />} />
+                    <Route path="test" element={<Test1 />} />
                     <Route path="/*" element={<NotFound />} />
                   </Routes>
                 </HomeWrapper>
