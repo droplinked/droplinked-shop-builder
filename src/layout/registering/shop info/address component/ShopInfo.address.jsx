@@ -10,12 +10,12 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
 
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: {
-            line1: (addressData) && addressData.line1,
-            line2: (addressData && (addressData.line2 != undefined)) && addressData.line2,
+            line1: (addressData) && addressData.addressLine1,
+            line2: (addressData && (addressData.addressLine2 != undefined)) && addressData.addressLine2,
             country: (addressData) && addressData.country,
             city: (addressData) && addressData.city,
             state: (addressData) && addressData.state,
-            Zip: (addressData) && addressData.Zip
+            Zip: (addressData) && addressData.zip
 
         }
     });
@@ -37,7 +37,7 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
             .then(e => {
                 toast.success("address added")
                 localStorage.setItem('address', JSON.stringify(e.data.addressBook))
-                addAddressF(data);
+                addAddressF(addresInfo);
                 close();
             })
             .catch(e => {

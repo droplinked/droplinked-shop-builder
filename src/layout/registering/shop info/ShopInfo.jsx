@@ -17,6 +17,7 @@ export default function ShopInfo() {
     const [loading, setLoading] = useState(false)
     const [uploadingImage, setUploadingImage] = useState(false);
     const { updateProfile, profile } = useProfile()
+    let x =1 ;
     let user = profile
     const shopname = user.shopName;
     const token = JSON.parse(localStorage.getItem('token'));
@@ -29,13 +30,13 @@ export default function ShopInfo() {
     const twitterInp = useRef(null);
     const instaInp = useRef(null);
 
-    // useEffect(()=>{
-    //     if(user.shopAddressID){
-    //     axios.get(`https://api.droplinked.com/dev/producer/shop/address/${user.shopAddressID}`,
-    //     {headers: { Authorization: 'Bearer ' + token } })
-    //     .then(e => console.log(e)) 
-    // }
-    // })
+    useEffect(()=>{
+        if(user.shopAddressID){
+        axios.get(`https://api.droplinked.com/dev/producer/shop/address/${user.shopAddressID}`,
+        {headers: { Authorization: 'Bearer ' + token } })
+        .then(e => setAddressdata(e.data.addressBook)) 
+    }
+    },[x])
 
     const submitForm = () => {
         setLoading(true);
@@ -168,10 +169,12 @@ export default function ShopInfo() {
                         <button className="next-back-btn" style={{ width: "250px", border: "1px solid white", fontSize: "18px" }} onClick={() => setShowAddress(true)}>Add shop address</button>
                     </div>
                     :
-                    <div className="address-detail-shopinfo">{`addressLine : ${addressData.line1}  |  city : ${addressData.city}  |  zip : ${addressData.Zip}`}<button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>edit</button></div>
+                    <div className="address-detail-shopinfo">{`addressLine : ${addressData.line1 || addressData.addressLine1}  |  city : ${addressData.city}  |  zip : ${addressData.Zip || addressData.zip }`}<button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>edit</button></div>
                 }
                 <div className="d-flex justify-content-between w-100">
-                    <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`} >cancel</button>
+                    <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`} 
+                    onClick={()=>{navigate("/register/personalInfo")}}
+                    >back</button>
                     <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
                         onClick={submitForm}
                     >next</button>
