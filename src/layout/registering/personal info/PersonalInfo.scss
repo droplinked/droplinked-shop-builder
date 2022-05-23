@@ -23,6 +23,9 @@
     cursor: pointer;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .register-label-input {
