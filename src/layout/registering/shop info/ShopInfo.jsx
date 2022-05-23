@@ -30,13 +30,6 @@ export default function ShopInfo() {
     const twitterInp = useRef(null);
     const instaInp = useRef(null);
 
-    useEffect(() => {
-        descriptionInp.current.value = user.description || ""
-        siteInp.current.value = user.web || ""
-        discordInp.current.value = user.discord || ""
-        twitterInp.current.value = user.twitter || ""
-        instaInp.current.value = user.instagram || ""
-    })
 
     useEffect(() => {
         if (user.shopAddressID) {
@@ -149,27 +142,27 @@ export default function ShopInfo() {
 
                 <div className="register-label-input ">
                     <label>about your shop</label>
-                    <input type="text" placeholder="about shop" ref={descriptionInp} />
+                    <input type="text" placeholder="about shop" ref={descriptionInp} defaultValue={user.description || ""} />
                 </div>
 
                 <div className="register-label-input ">
                     <label>Web site</label>
-                    <input type="text" placeholder="www.droplinked.io" ref={siteInp} />
+                    <input type="text" placeholder="www.droplinked.io" ref={siteInp} defaultValue={user.web || ""} />
                 </div>
 
                 <div className="register-label-input ">
                     <label>Discord</label>
-                    <input type="text" placeholder="droplinke#0810" ref={discordInp} />
+                    <input type="text" placeholder="droplinke#0810" ref={discordInp} defaultValue={user.discord || ""} />
                 </div>
 
                 <div className="register-label-input ">
                     <label>Twitter</label>
-                    <input type="text" placeholder="twitter.com/username" ref={twitterInp} />
+                    <input type="text" placeholder="twitter.com/username" ref={twitterInp} defaultValue={user.twitter || ""} />
                 </div>
 
                 <div className="register-label-input ">
                     <label>Instagram</label>
-                    <input type="text" placeholder="instagram/username" ref={instaInp} />
+                    <input type="text" placeholder="instagram/username" ref={instaInp} defaultValue={user.instagram || ""} />
                 </div>
 
                 {(addressData == undefined) ?
