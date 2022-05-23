@@ -62,7 +62,7 @@ export default function PersonalInfo() {
 
         const formData = new FormData();
         formData.append("image", file);
-        axios.post('http://18.215.217.156:2021/upload', formData)
+        axios.post('https://18.215.217.156:2021/upload', formData)
             .then(e => {
                 setUploadingImage(false);
                 toast.success(e.data.message);
@@ -137,7 +137,7 @@ export default function PersonalInfo() {
                     <div className="register-label-input ">
                         <label>Phone number</label>
                         <input type="number" placeholder="phone number"
-                            {...register("phoneNumber", { required: true })} />
+                            {...register("phoneNumber")} />
                     </div>
                     {errors.phoneNumber?.type === 'required' && <span className="register-error">phone number is required</span>}
                     <div className="d-flex justify-content-end w-100">

@@ -1,4 +1,4 @@
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+ // import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 let sy = {
     backgroundColor: "#8053FF",
@@ -36,8 +36,8 @@ let cardOptions = {
 
 function PaymentForm() {
 
-    const stripe = useStripe();
-    const elements = useElements();
+    // const stripe = useStripe();
+    // const elements = useElements();
 
 
 
@@ -46,7 +46,7 @@ function PaymentForm() {
         className="pay-fomr-ss"
         >
             <p>Payment</p>
-            <CardElement options={cardOptions}/>
+            {/* <CardElement options={cardOptions}/> */}
             <button type="submit">Submit</button>
         </form>
     );

@@ -17,7 +17,7 @@ export default function ShopInfo() {
     const [loading, setLoading] = useState(false)
     const [uploadingImage, setUploadingImage] = useState(false);
     const { updateProfile, profile } = useProfile()
-    let x =1 ;
+    let x = 1;
     let user = profile
     const shopname = user.shopName;
     const token = JSON.parse(localStorage.getItem('token'));
@@ -30,13 +30,21 @@ export default function ShopInfo() {
     const twitterInp = useRef(null);
     const instaInp = useRef(null);
 
-    useEffect(()=>{
-        if(user.shopAddressID){
-        axios.get(`https://api.droplinked.com/dev/producer/shop/address/${user.shopAddressID}`,
-        {headers: { Authorization: 'Bearer ' + token } })
-        .then(e => setAddressdata(e.data.addressBook)) 
-    }
-    },[x])
+    useEffect(() => {
+        descriptionInp.current.value = user.description || ""
+        siteInp.current.value = user.web || ""
+        discordInp.current.value = user.discord || ""
+        twitterInp.current.value = user.twitter || ""
+        instaInp.current.value = user.instagram || ""
+    })
+
+    useEffect(() => {
+        if (user.shopAddressID) {
+            axios.get(`https://api.droplinked.com/dev/producer/shop/address/${user.shopAddressID}`,
+                { headers: { Authorization: 'Bearer ' + token } })
+                .then(e => setAddressdata(e.data.addressBook))
+        }
+    }, [x])
 
     const submitForm = () => {
         setLoading(true);
@@ -141,27 +149,27 @@ export default function ShopInfo() {
 
                 <div className="register-label-input ">
                     <label>about your shop</label>
-                    <input type="text" placeholder="about shop" ref={descriptionInp} value={(user.description)?user.description:""} />
+                    <input type="text" placeholder="about shop" ref={descriptionInp} />
                 </div>
 
                 <div className="register-label-input ">
                     <label>Web site</label>
-                    <input type="text" placeholder="www.droplinked.io" ref={siteInp} value={(user.web)?user.web:""}/>
+                    <input type="text" placeholder="www.droplinked.io" ref={siteInp} />
                 </div>
 
                 <div className="register-label-input ">
                     <label>Discord</label>
-                    <input type="text" placeholder="droplinke#0810" ref={discordInp} value={(user.discord)?user.discord:""}/>
+                    <input type="text" placeholder="droplinke#0810" ref={discordInp} />
                 </div>
 
                 <div className="register-label-input ">
                     <label>Twitter</label>
-                    <input type="text" placeholder="twitter.com/username" ref={twitterInp} value={(user.twitter)?user.twitter:""}/>
+                    <input type="text" placeholder="twitter.com/username" ref={twitterInp} />
                 </div>
 
                 <div className="register-label-input ">
                     <label>Instagram</label>
-                    <input type="text" placeholder="instagram/username" ref={instaInp} value={(user.instagram)?user.instagram:""}/>
+                    <input type="text" placeholder="instagram/username" ref={instaInp} />
                 </div>
 
                 {(addressData == undefined) ?
@@ -169,11 +177,11 @@ export default function ShopInfo() {
                         <button className="next-back-btn" style={{ width: "250px", border: "1px solid white", fontSize: "18px" }} onClick={() => setShowAddress(true)}>Add shop address</button>
                     </div>
                     :
-                    <div className="address-detail-shopinfo">{`addressLine : ${addressData.line1 || addressData.addressLine1}  |  city : ${addressData.city}  |  zip : ${addressData.Zip || addressData.zip }`}<button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>edit</button></div>
+                    <div className="address-detail-shopinfo">{`addressLine : ${addressData.line1 || addressData.addressLine1}  |  city : ${addressData.city}  |  zip : ${addressData.Zip || addressData.zip}`}<button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>edit</button></div>
                 }
                 <div className="d-flex justify-content-between w-100">
-                    <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`} 
-                    onClick={()=>{navigate("/register/personalInfo")}}
+                    <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
+                        onClick={() => { navigate("/register/personalInfo") }}
                     >back</button>
                     <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
                         onClick={submitForm}

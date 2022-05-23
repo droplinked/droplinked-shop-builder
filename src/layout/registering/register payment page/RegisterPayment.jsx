@@ -1,19 +1,19 @@
 import "./RegisterPayment.scss"
 import RegisterStructure from "../register structure/RegisterStructure"
 import PaymentForm from "./payment-form/PaymentForm"
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+//import { Elements } from '@stripe/react-stripe-js';
+//import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_test_qblFNYngBkEdjEZ16jxxoWSM');
+//const stripePromise = loadStripe('pk_test_qblFNYngBkEdjEZ16jxxoWSM');
 
 function RegisterPayment() {
-    const options = { clientSecret: '{{CLIENT_SECRET}}' }
+ //   const options = { clientSecret: '{{CLIENT_SECRET}}' }
 
     return (
         <RegisterStructure level={"payment"}>
-            <Elements stripe={stripePromise} options={options}>
+            {/* <Elements stripe={stripePromise} options={options}>
                 <PaymentForm />
-            </Elements>
+            </Elements> */}
         </RegisterStructure>
     )
 }

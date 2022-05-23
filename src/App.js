@@ -35,7 +35,8 @@ import PersonalInfo from "./layout/registering/personal info/PersonalInfo";
 import ShopInfo from "./layout/registering/shop info/ShopInfo";
 import ImsSelect from "./layout/registering/IMS select/ImsSelect";
 import RegisterPayment from "./layout/registering/register payment page/RegisterPayment";
-import Test1 from "./layout/test/Test1"
+import Test1 from "./layout/test/Test1";
+import ScrollTop from "./components/features/scrolltop/ScrollTop";
 
 function App() {
   return (
@@ -47,46 +48,57 @@ function App() {
               <BrowserRouter>
                 <MainHeader />
                 <HomeWrapper>
-                  <Routes>
-                    <Route exact path="/" element={<HomePage />} />
-                    <Route
-                      path="/register/personalInfo"
-                      element={<PersonalInfo />}
-                    />
-                    <Route path="/register/shopInfo" element={<ShopInfo />} />
-                    <Route path="/register/IMSSelect" element={<ImsSelect />} />
-                    <Route
-                      path="/register/payment"
-                      element={<RegisterPayment />}
-                    />
-                    <Route path="/creatorpage" element={<CreatorPage />} />
-                    <Route path="/postpage" element={<PostPage />} />
-                    <Route
-                      path="/collectionpage"
-                      element={<CollectionPage />}
-                    />
-                    <Route path="/cart" element={<Checkout />} />
-                    <Route
-                      path="/collectionmanagement"
-                      element={<CollectionManagement />}
-                    />
-                    <Route path="/crashpunksdemo" element={<CrashpunkDemo />} />
-                    <Route path="/addProduct" element={<NewProduct />} />
-                    <Route path="/address" element={<Address />} />
-                    <Route path="/shipping" element={<Shipping />} />
-                    <Route path="/productList" element={<ProctuPageTest />} />
-                    <Route path="/payment" element={<Payments />} />
-                    <Route path="/settings" element={<Settings />} />
-                    <Route path="/terms" element={<Terms />} />
-                    <Route path="/privacy" element={<Privacy />} />
-                    <Route path="/confirm" element={<Confirm />} />
-                    <Route path="/crashpunks" element={<Crashpunks />} />
-                    <Route path="/ruleset" element={<RoleSet />} />
-                    <Route path="/emailConfirmation" element={<ThankPage />} />
-                    <Route path="/product/:id" element={<BuyProduct />} />
-                    <Route path="test" element={<Test1 />} />
-                    <Route path="/*" element={<NotFound />} />
-                  </Routes>
+                  <ScrollTop>
+                    <Routes>
+                      <Route exact path="/" element={<HomePage />} />
+                      <Route
+                        path="/register/personalInfo"
+                        element={<PersonalInfo />}
+                      />
+                      <Route path="/register/shopInfo" element={<ShopInfo />} />
+                      <Route
+                        path="/register/IMSSelect"
+                        element={<ImsSelect />}
+                      />
+                      <Route
+                        path="/register/payment"
+                        element={<RegisterPayment />}
+                      />
+                      <Route path="/creatorpage" element={<CreatorPage />} />
+                      <Route path="/postpage" element={<PostPage />} />
+                      <Route
+                        path="/collectionpage"
+                        element={<CollectionPage />}
+                      />
+                      <Route path="/cart" element={<Checkout />} />
+                      <Route
+                        path="/collectionmanagement"
+                        element={<CollectionManagement />}
+                      />
+                      <Route
+                        path="/crashpunksdemo"
+                        element={<CrashpunkDemo />}
+                      />
+                      <Route path="/addProduct" element={<NewProduct />} />
+                      <Route path="/address" element={<Address />} />
+                      <Route path="/shipping" element={<Shipping />} />
+                      <Route path="/productList" element={<ProctuPageTest />} />
+                      <Route path="/payment" element={<Payments />} />
+                      <Route path="/settings" element={<Settings />} />
+                      <Route path="/terms" element={<Terms />} />
+                      <Route path="/privacy" element={<Privacy />} />
+                      <Route path="/confirm" element={<Confirm />} />
+                      <Route path="/crashpunks" element={<Crashpunks />} />
+                      <Route path="/ruleset" element={<RoleSet />} />
+                      <Route
+                        path="/emailConfirmation"
+                        element={<ThankPage />}
+                      />
+                      <Route path="/product/:id" element={<BuyProduct />} />
+                      <Route path="test" element={<Test1 />} />
+                      <Route path="/*" element={<NotFound />} />
+                    </Routes>
+                  </ScrollTop>
                 </HomeWrapper>
                 <Footer />
               </BrowserRouter>
