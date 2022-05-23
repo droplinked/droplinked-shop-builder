@@ -28,10 +28,11 @@ export default function ImsSelect() {
                 { headers: { Authorization: 'Bearer ' + token } }
             ).then(res => {
                 updateProfile(res.data)
+                toast.success("account created")
                 navigate(`/${user.shopName}`);
             }).catch(e => {
                 toast.error(e.response.data.message.message)
-                setLoading(false);   
+                setLoading(false);
             })
         }
     }
@@ -48,8 +49,8 @@ export default function ImsSelect() {
                         onClick={() => { setImsSystem("SHOPIFY") }}>Shopify</button>
                 </div>
                 <div className="d-flex justify-content-between w-100 mt-5">
-                    <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}  
-                    onClick={()=>{navigate("/register/shopInfo")}}
+                    <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
+                        onClick={() => { navigate("/register/shopInfo") }}
                     >back</button>
                     <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
                         onClick={submitType}
