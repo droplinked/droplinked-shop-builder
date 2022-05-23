@@ -6,8 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function ShopInfoAddress({ close, addAddressF, addressData }) {
     const [loading, setLoading] = useState(false)
-    let user = JSON.parse(localStorage.getItem('profile'));
-    const token = user.jwt;
+    const token = JSON.parse(localStorage.getItem('token'));
 
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: {
