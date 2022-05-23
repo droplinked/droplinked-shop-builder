@@ -5,13 +5,17 @@ import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useProfile } from "../../../sevices/hooks/useProfile"
 
 export default function ImsSelect() {
     const [ImsSystem, setImsSystem] = useState(undefined);
     const [loading, setLoading] = useState(false);
-    let user = JSON.parse(localStorage.getItem('profile'));
-    const token = user.jwt;
+    const { updateProfile, profile } = useProfile()
     let navigate = useNavigate();
+
+    let user = profile
+    const token = JSON.parse(localStorage.getItem('token'));
+
 
     const submitType = () => {
         setLoading(true)
@@ -23,11 +27,7 @@ export default function ImsSelect() {
             axios.post('https://api.droplinked.com/dev/producer/profile/ims', ImsType,
                 { headers: { Authorization: 'Bearer ' + token } }
             ).then(res => {
-                let profile = {
-                    jwt: user.jwt,
-                    user: res.data
-                }
-                localStorage.setItem("profile", JSON.stringify(profile));
+                updateProfile(res.data)
                 navigate("/register/payment");
             }).catch(e => {
                 toast.error(e.response.data.message.message)
