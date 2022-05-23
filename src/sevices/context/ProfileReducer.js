@@ -1,7 +1,8 @@
 export const ProflieReduser = (profile, action) => {
   switch (action.type) {
     case "ADD_PROFILE":
-      localStorage.setItem("profile", JSON.stringify(action.payload));
+      localStorage.setItem("token", JSON.stringify(action.payload.jwt));
+      localStorage.setItem("profile", JSON.stringify(action.payload.user));
       return { ...action.payload };
 
     case "LOGOUT":

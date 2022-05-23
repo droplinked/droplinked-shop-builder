@@ -1,6 +1,6 @@
 import "./PersonalInfo.scss"
 import RegisterStructure from "../register structure/RegisterStructure"
-import { useRef, useState } from "react";
+import { useRef, useState , useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -15,18 +15,24 @@ export default function PersonalInfo() {
     const [uploadingImage, setUploadingImage] = useState(false);
 
     let user = JSON.parse(localStorage.getItem('profile'));
+    const token = JSON.parse(localStorage.getItem('token'));
 
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: {
-            firstName: (user.user.firstname) && user.user.firstname,
-            lastName: (user.user.lastname) && user.user.lastname,
-            phoneNumber: (user.user.phone) && user.user.phone
+            firstName: (user.firstname)? user.firstname : "",
+            lastName: (user.lastname) ? user.lastname : "",
+            phoneNumber: (user.phone) ? user.phone : ""
         }
     });
 
+    useEffect(()=>{
+        if(user.avatar){
+            setProfileImg(user.avatar)
+        }
+    })
+
     const inputFile = useRef(null);
     let navigate = useNavigate();
-    const token = user.jwt;
     const chooseFile = () => {
         inputFile.current.click();
     };
@@ -81,11 +87,7 @@ export default function PersonalInfo() {
         axios.put('https://api.droplinked.com/dev/producer/profile', profileInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         ).then(res => {
-            let profile = {
-                jwt: user.jwt,
-                user: res.data
-            }
-            localStorage.setItem("profile", JSON.stringify(profile));
+            localStorage.setItem("profile", JSON.stringify(res.data));
             navigate("/register/shopInfo");
         })
             .catch(err => {
@@ -128,7 +130,7 @@ export default function PersonalInfo() {
                     </div>
                     <div className="register-label-input ">
                         <label>Email</label>
-                        <input type="email" placeholder="email" readonly value={user.user.email} />
+                        <input type="email" placeholder="email" readonly value={user.email} />
                     </div>
                     <div className="register-label-input ">
                         <label>Phone number</label>
