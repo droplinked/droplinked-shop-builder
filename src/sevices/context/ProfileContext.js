@@ -12,6 +12,10 @@ const ProfileContextProvider = ({ children }) => {
     dispatch({ type: "ADD_PROFILE", payload });
   };
 
+  const updateProfile = (payload) => {
+    dispatch({ type: "UPDATE_PROFILE", payload });
+  };
+
   const logout = () => {
     dispatch({type:"LOGOUT"});
   };
@@ -19,6 +23,7 @@ const ProfileContextProvider = ({ children }) => {
   const contextValues = {
     addProfile,
     logout,
+    updateProfile,
     profile,
   };
 

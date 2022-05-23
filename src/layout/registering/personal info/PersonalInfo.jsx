@@ -7,12 +7,14 @@ import axios from 'axios';
 import img from "../../../assest/image/default profile/icons8-user-100.png"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useProfile } from "../../../sevices/hooks/useProfile"
 
 export default function PersonalInfo() {
     const [profileImg, setProfileImg] = useState(undefined)
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState(undefined);
     const [uploadingImage, setUploadingImage] = useState(false);
+    const { updateProfile } = useProfile()
 
     let user = JSON.parse(localStorage.getItem('profile'));
     const token = JSON.parse(localStorage.getItem('token'));
@@ -87,7 +89,7 @@ export default function PersonalInfo() {
         axios.put('https://api.droplinked.com/dev/producer/profile', profileInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         ).then(res => {
-            localStorage.setItem("profile", JSON.stringify(res.data));
+            updateProfile(res.data)
             navigate("/register/shopInfo");
         })
             .catch(err => {

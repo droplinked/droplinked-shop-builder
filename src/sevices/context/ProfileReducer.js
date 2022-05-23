@@ -5,6 +5,10 @@ export const ProflieReduser = (profile, action) => {
       localStorage.setItem("profile", JSON.stringify(action.payload.user));
       return { ...action.payload };
 
+      case "UPDATE_PROFILE":
+      localStorage.setItem("profile", JSON.stringify(action.payload));
+      return { ...action.payload };
+
     case "LOGOUT":
       localStorage.setItem("profile", null);
       localStorage.setItem("shopping_cart", null);
