@@ -5,27 +5,34 @@ import rightBtn from "../../../assest/image/component assest/gallery btn/right.p
 import leftBtn from "../../../assest/image/component assest/gallery btn/left.png"
 import img1 from "./hardcode image/1504.png"
 import img2 from "./hardcode image/1724.png"
-import img3 from "./hardcode image/3002.png"
+import img3 from "./hardcode image/1724.png"
 import img4 from "./hardcode image/4307.png"
 import img5 from "./hardcode image/5002.png"
 import img6 from "./hardcode image/5627.png"
-import { useState } from "react"
+import { useState , useRef } from "react"
 
 function GalleryCarousel() {
     const [num1, setNum] = useState(0)
+    
+
+    const NftId = ["1501", "1724", "1724", "4307", "5002", "5627"];
 
     const imageArray = [img1, img2, img3, img4, img5, img6];
 
 
     const nextImg = () => {
-        (num1 == 4) ? setNum(0) : setNum(p => p + 1)
+        (num1 >= 3) ? setNum(0) : setNum(p => p + 2)
+        clearTimeout(timer);
     }
 
     const backImg = () => {
         (num1 == 0) ? setNum(4) : setNum(p => p - 1)
+        clearTimeout(timer);
     }
 
-    setTimeout(nextImg, 5000);
+    const timer = () =>  setTimeout(nextImg, 5000);
+
+    timer();
 
     return (<>
         {/* gallery wrap */}
@@ -33,12 +40,20 @@ function GalleryCarousel() {
             <div className="col-12 col-sm-8  d-flex justify-content-center" >
 
                 <div className="gallery-wrapper ">
-                    <div className="image-wrap ">
-                        <img className="ratio ratio-1x1" src={imageArray[num1]} />
-                    </div>
+
                     <div className="image-wrap">
-                        <img className="ratio ratio-1x1" src={imageArray[num1 + 1]} />
+                        <a href={`https://gamma.io/collections/crashpunks/${NftId[num1]}`}>
+                            <img className="ratio ratio-1x1" src={`https://ipfs.io/ipfs/Qmb84UcaMr1MUwNbYBnXWHM3kEaDcYrKuPWwyRLVTNKELC/${NftId[num1]}.png`} />
+                        </a>
                     </div>
+
+
+                    <div className="image-wrap">
+                        <a href={`https://gamma.io/collections/crashpunks/${NftId[num1 + 1]}`}>
+                            <img className="ratio ratio-1x1" src={`https://ipfs.io/ipfs/Qmb84UcaMr1MUwNbYBnXWHM3kEaDcYrKuPWwyRLVTNKELC/${NftId[num1 + 1]}.png`} />
+                        </a>
+                    </div>
+
                 </div>
 
             </div>
