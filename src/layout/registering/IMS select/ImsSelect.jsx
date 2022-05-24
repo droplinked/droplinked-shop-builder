@@ -54,7 +54,7 @@ export default function ImsSelect() {
                     >back</button>
                     <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
                         onClick={submitType}
-                    >next</button>
+                    >submit</button>
                 </div>
             </div>
             <ToastContainer

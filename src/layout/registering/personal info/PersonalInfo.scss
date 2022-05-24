@@ -51,6 +51,10 @@
       padding: 12px 16px;
       outline: none;
       background-color: transparent;
+
+      &:focus{
+        border: 2px solid #8053ff;
+      }
     }
   }
   form {
