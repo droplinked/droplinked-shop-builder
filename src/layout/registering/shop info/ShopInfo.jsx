@@ -101,7 +101,7 @@ export default function ShopInfo() {
 
         const formData = new FormData();
         formData.append("image", file);
-        axios.post('http://18.215.217.156:2021/upload', formData)
+        axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
                 setUploadingImage(false);
                 toast.success(e.data.message);

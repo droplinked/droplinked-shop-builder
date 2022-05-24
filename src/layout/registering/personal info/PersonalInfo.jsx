@@ -62,7 +62,7 @@ export default function PersonalInfo() {
 
         const formData = new FormData();
         formData.append("image", file);
-        axios.post('https://18.215.217.156:2021/upload', formData)
+        axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
                 setUploadingImage(false);
                 toast.success(e.data.message);
