@@ -9,11 +9,13 @@ import img3 from "./hardcode image/1724.png"
 import img4 from "./hardcode image/4307.png"
 import img5 from "./hardcode image/5002.png"
 import img6 from "./hardcode image/5627.png"
-import { useState , useRef } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
 
 function GalleryCarousel() {
     const [num1, setNum] = useState(0)
-    
+    const [onetime, setOne] = useState(false)
+
 
     const NftId = ["1501", "1724", "1724", "4307", "5002", "5627"];
 
@@ -30,9 +32,18 @@ function GalleryCarousel() {
         clearTimeout(timer);
     }
 
-    const timer = () =>  setTimeout(nextImg, 5000);
-
+    const timer = () => setTimeout(nextImg, 5000);
     timer();
+
+    useEffect(() => {
+        NftId.forEach((item) => {
+            axios.get(`https://gamma.io/api/v1/collections/SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ.free-punks-v0/${item}`)
+                .then(e => { })
+                .catch(e => console.log(e))
+        })
+    }, [onetime])
+
+
 
     return (<>
         {/* gallery wrap */}
