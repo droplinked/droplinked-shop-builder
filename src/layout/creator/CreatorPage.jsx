@@ -20,11 +20,10 @@ function CreatorPage() {
         {/* collection  */}
         {/* <Collection name="Public merch" data={false}/> */}
         {/* collection  */}
-
+<div style={{height: '30px'}}></div>
         {/* collection  */}
         <Collection  name="Holder merch"  data={true}/>
         {/* collection  */}
-s
 
     </div>)
 }
