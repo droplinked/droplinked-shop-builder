@@ -136,33 +136,33 @@ export default function ShopInfo() {
                 </div>
 
                 <div className="register-label-input ">
-                    <label>ShopName</label>
+                    <label>shopname</label>
                     <input type="text" placeholder="" value={`droplinked.io/${shopname}`} readonly />
                 </div>
 
                 <div className="register-label-input ">
                     <label>about your shop</label>
-                    <input type="text" placeholder="about shop" ref={descriptionInp} defaultValue={user.description || ""} />
+                    <input type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""} />
                 </div>
 
                 <div className="register-label-input ">
-                    <label>Web site</label>
-                    <input type="text" placeholder="www.droplinked.io" ref={siteInp} defaultValue={user.web || ""} />
+                    <label>website</label>
+                    <input type="text" placeholder="www.droplinked.com" ref={siteInp} defaultValue={user.web || ""} />
                 </div>
 
                 <div className="register-label-input ">
-                    <label>Discord</label>
+                    <label>discord</label>
                     <input type="text" placeholder="droplinke#0810" ref={discordInp} defaultValue={user.discord || ""} />
                 </div>
 
                 <div className="register-label-input ">
-                    <label>Twitter</label>
-                    <input type="text" placeholder="twitter.com/username" ref={twitterInp} defaultValue={user.twitter || ""} />
+                    <label>twitter</label>
+                    <input type="text" placeholder="username" ref={twitterInp} defaultValue={user.twitter || ""} />
                 </div>
 
                 <div className="register-label-input ">
-                    <label>Instagram</label>
-                    <input type="text" placeholder="instagram/username" ref={instaInp} defaultValue={user.instagram || ""} />
+                    <label>instagram</label>
+                    <input type="text" placeholder="username" ref={instaInp} defaultValue={user.instagram || ""} />
                 </div>
 
                 {(addressData == undefined) ?
@@ -170,7 +170,15 @@ export default function ShopInfo() {
                         <button className="next-back-btn" style={{ width: "250px", border: "1px solid white", fontSize: "18px" }} onClick={() => setShowAddress(true)}>Add shop address</button>
                     </div>
                     :
-                    <div className="address-detail-shopinfo">{`addressLine : ${addressData.line1 || addressData.addressLine1}  |  city : ${addressData.city}  |  zip : ${addressData.Zip || addressData.zip}`}<button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>edit</button></div>
+                    <div className="address-detail-shopinfo">
+                        <span>{addressData.country} - {addressData.city}</span>
+                        <span>{addressData.line1 || addressData.addressLine1}</span>
+                        <span>{addressData.Zip || addressData.zip}</span>
+                        <div className="m-2 d-flex justify-content-between">
+                            <button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>edit</button>
+                            <button className="edit-address-detail" style={{color:"red"}} onClick={() => { setAddressdata(undefined) }}>delete</button></div>
+                    </div>
+
                 }
                 <div className="d-flex justify-content-between w-100">
                     <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}

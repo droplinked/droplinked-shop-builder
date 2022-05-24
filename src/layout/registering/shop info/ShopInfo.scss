@@ -11,30 +11,31 @@
 
   .address-detail-shopinfo {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     margin-top: 30px;
     border: 2px solid #b3b3b3;
     padding: 12px 16px;
-    font-family: "AvenirNext";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    color: #fff;
     border-radius: 8px;
     overflow: hidden;
 
-    & .edit-address-detail{
+    &span {
+      font-family: "AvenirNext";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    & .edit-address-detail {
       width: 50px;
       font-size: 16px;
       color: #8053ff;
     }
-
-   
   }
 
   .input-perosnal-image {
     margin: 0px auto;
-    border: 5px solid white;
+    border: 3px solid white;
     width: 100px;
     height: 100px;
     border-radius: 50px;
@@ -85,7 +86,7 @@
       font-size: 16px;
       padding: 12px 14px 9px 14px;
 
-      & .edit-address-detail{
+      & .edit-address-detail {
         font-size: 12px;
       }
     }

@@ -1,7 +1,7 @@
 .Register-structure-wrapper {
   font-family: "AvenirNext";
   font-style: normal;
-  color: #ffffff;
+  color: hsl(0, 0%, 100%);
   width: 100%;
   padding: 0px 80px;
   display: flex;
@@ -14,9 +14,9 @@
     display: flex;
 
     .Register-structure-sidebar {
-      padding: 40px 0px;
+      padding: 40px 10px;
       border-right: 1px solid white;
-      width: 20%;
+      width: 30%;
       display: flex;
       flex-direction: column;
 
@@ -26,7 +26,7 @@
 
         border-radius: 8px;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 14px;
         text-align: center;
         padding: 12px 0px;
         margin-bottom: 15px;
@@ -40,7 +40,7 @@
     }
     .Register-structure-content {
       width: 100%;
-      padding: 40px 10px;
+      padding: 40px 30px;
       display: flex;
 
       & .loading-btn {

@@ -141,7 +141,7 @@ export default function PersonalInfo() {
                     </div>
                     {errors.phoneNumber?.type === 'required' && <span className="register-error">phone number is required</span>}
                     <div className="d-flex justify-content-end w-100">
-                        <input type="submit" className={`next-back-btn ${(loading) ? "loading-btn" : "non-loading-btn"}`} />
+                        <input type="submit" value="next" className={`next-back-btn ${(loading) ? "loading-btn" : "non-loading-btn"}`} />
                     </div>
                 </form>
                 <ToastContainer
