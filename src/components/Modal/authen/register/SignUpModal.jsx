@@ -32,6 +32,7 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
 
         axios.post('https://api.droplinked.com/dev/producer/signup', info)
             .then((res) => {
+                close()
                 localStorage.setItem('registerEmail', JSON.stringify(info.email))
                 navigate("/emailConfirmation");
             })

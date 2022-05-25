@@ -26,12 +26,13 @@ export default function LoginModal({ close, switchToggle }) {
 
         axios.post('https://api.droplinked.com/dev/producer/signin', info)
             .then((res) => {
-
+                close();
                 switch (res.data.user.status) {
                     case "NEW":
                         toast.error("you must virified your account")
                         localStorage.setItem('registerEmail', JSON.stringify(info.email))
                         setLoading(false)
+                        navigate("/emailConfirmation");
                         return;
                     case "VERIFIED":
                         addProfile(res.data)
@@ -47,11 +48,11 @@ export default function LoginModal({ close, switchToggle }) {
                         return;
                         case  "IMS_TYPE_COMPLETED":
                             addProfile(res.data)
-                            navigate("/register/payment");
+                            navigate(`/shop/${res.data.user.shopName}`);
                             return;
                     case "ACTIVE":
                         addProfile(res.data)
-                        navigate(`/${res.data.user.shopName}`);
+                        navigate(`/shop/${res.data.user.shopName}`);
                         return;
                     case "DELETED":
                         toast.error("your account has been deleted")

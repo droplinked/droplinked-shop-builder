@@ -8,38 +8,25 @@ import axios from "axios"
 
 
 export default function Test1() {
- 
-
-  const changeimg = (e) => {
-
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
-
-    axios.post('http://18.215.217.156:2021/upload', formData)
-      .then(e =>{
-       
-      })
-      .catch(e => console.log(e))
 
 
-    // const reader = new FileReader();
-    // reader.onload = () => {
-    //   image = reader.result.toString();
-    //   changeAvatar();
-    // };
-    // reader.readAsDataURL(file);
 
-    // axios.post('http://18.215.217.156:2021/upload', {image:formData})
-    //   .then(res => { console.log(res) })
-    //   .catch(e => { console.log(e) })
+
+    // axios.post('https://api.droplinked.com/develop/remove-user', { email: "bedi.mns@gmail.com" },
+    //   { headers: { Authorization: 'Bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGIzYTNjYzRmNTk4ZTNmMzRmMWMzNSIsImlhdCI6MTY1MzQ5NDk2OH0.A3j5yhnO1-6PhcyOA8igqvXBPuz_GItZv7DoyVy7VJI",
+    //   'Access-Control-Allow-Origin' : '*'
+    //  } }
+    // ).then(res => {
+    //   console.log(res);
+    // }).catch(e => {
+    //   console.log(e);
+    // })
+
+    return (
+      <>
+        <input type="file"  />
+      </>
+
+    )
   }
-
-  return (
-    <>
-      <input type="file" onChange={changeimg} />
-    </>
-
-  )
-}
 

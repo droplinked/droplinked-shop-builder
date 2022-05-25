@@ -37,6 +37,7 @@ import ImsSelect from "./layout/registering/IMS select/ImsSelect";
 import RegisterPayment from "./layout/registering/register payment page/RegisterPayment";
 import Test1 from "./layout/test/Test1";
 import ScrollTop from "./components/features/scrolltop/ScrollTop";
+import ShopPage from "./layout/Producer pages/Main page/shop page/Shop-page-component"
 
 function App() {
   return (
@@ -79,6 +80,7 @@ function App() {
                         path="/crashpunksdemo"
                         element={<CrashpunkDemo />}
                       />
+                       <Route path="/shop/:shopname" element={<ShopPage />} />
                       <Route path="/addProduct" element={<NewProduct />} />
                       <Route path="/address" element={<Address />} />
                       <Route path="/shipping" element={<Shipping />} />

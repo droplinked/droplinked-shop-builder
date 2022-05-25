@@ -22,7 +22,8 @@ export default function DefaulHeader() {
 
 
     return (<>
-        {(url == "/") ?
+    <HeaderItem click={toggleLogin} style={{backgroundColor:"#222"}}>login</HeaderItem>
+        {(url == "/" || url=="/emailConfirmation") ?
             <HeaderItem click={togglesignup}>Join today</HeaderItem>
             :
             <>
@@ -34,7 +35,7 @@ export default function DefaulHeader() {
                 }
             </>
         }
-        <HeaderItem click={toggleLogin}>login</HeaderItem>
+        
 
         {signUpmodal && <SignUpModal close={togglesignup} switchToggle={switchToggl} />}
         {loginmodal && <LoginModal close={toggleLogin} switchToggle={switchToggl} />}

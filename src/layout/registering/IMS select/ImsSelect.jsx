@@ -29,7 +29,7 @@ export default function ImsSelect() {
             ).then(res => {
                 updateProfile(res.data)
                 toast.success("account created")
-                navigate(`/${user.shopName}`);
+                navigate(`/shop/${user.shopName}`);
             }).catch(e => {
                 toast.error(e.response.data.message.message)
                 setLoading(false);

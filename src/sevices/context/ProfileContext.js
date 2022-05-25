@@ -18,6 +18,7 @@ const ProfileContextProvider = ({ children }) => {
 
   const logout = () => {
     dispatch({type:"LOGOUT"});
+    window.location.replace('/');
   };
 
   const contextValues = {

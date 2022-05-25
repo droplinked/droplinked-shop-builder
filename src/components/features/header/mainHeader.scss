@@ -64,7 +64,9 @@
         top: 90px;
         width: auto;
         height: auto;
-        border: 1px solid white;
+        width:200px;
+        border:1px solid white;
+        right:10px;
 
         .header-nav-item {
           padding: 10px 0px;
@@ -75,6 +77,11 @@
           font-weight: 600;
           font-size: 20px;
           border-bottom: 1px solid white;
+          cursor: pointer;
+
+          &:hover{
+            background-color: #333;
+          }
         }
       }
     }
@@ -105,6 +112,7 @@
           font-size: 20px;
         }
         .header-nav {
+         
           top: 70px;
           .header-nav-item {
             padding: 10px 0px;
