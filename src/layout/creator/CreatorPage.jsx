@@ -1,8 +1,9 @@
 import "./CreatorPage.scss"
 import ProfileTopSection from "../../components/features/top section/ProfileTopSection"
 import GalleryCarousel from "./gallery carousel/GalleryCarousel"
-import Collection from "./collection/Collection"
+//import Collection from "./collection/Collection"
 import axios from "axios"
+import Collection from "../../components/features/collection/Collection"
 
 
 function CreatorPage() {
@@ -17,12 +18,12 @@ function CreatorPage() {
 
         {/* gallery carusel */}
 
-        {/* collection  */}
-        {/* <Collection name="Public merch" data={false}/> */}
-        {/* collection  */}
 <div style={{height: '30px'}}></div>
+
+<Collection />
+
         {/* collection  */}
-        <Collection  name="Holder merch"  data={true}/>
+        {/* <Collection  name="Holder merch"  data={true}/> */}
         {/* collection  */}
 
     </div>)

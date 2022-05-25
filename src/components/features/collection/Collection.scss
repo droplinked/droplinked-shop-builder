@@ -1,0 +1,67 @@
+.collection-component-wrapper {
+  width: 100%;
+  width: 61%;
+  margin-top: 40px;
+  padding: 35px 25px;
+  border: 1px solid #b3b3b3;
+  border-radius: 16px;
+
+  & .title {
+    font-style: normal;
+    font-family: "AvenirNext";
+    font-weight: 600;
+    font-size: 24px;
+    //  text-align: center;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    height: 30px;
+    width: 70%;
+    margin: 0px;
+    vertical-align: top;
+    padding-bottom: 4px;
+  }
+
+  & .seemore-btn {
+    height: 30px;
+
+    background: #353536;
+    border-radius: 8px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    padding: 4px 20px;
+    font-family: "AvenirNext";
+    font-weight: 500;
+    font-size: 14px;
+    //  text-align: center;
+    color: #ffffff;
+  }
+
+  & .product-contant {
+    display: flex;
+    flex-wrap: wrap;
+    // gap: 5px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .collection-component-wrapper {
+    width: 100%;
+    margin: 40px 20px 0px 20px;
+    padding: 35px 15px;
+
+    & .title {
+
+      font-size: 18px;
+    }
+  
+    & .seemore-btn {
+      padding: 4px 20px 1px 20px;
+      font-size: 12px;
+      width:100px;
+    }
+  
+  }
+}
