@@ -44,8 +44,8 @@
     flex-direction: row;
     justify-content: space-between;
   }
-  & .product-item-content{
-    width:49%;
+  & .product-item-content {
+    width: 49%;
   }
 }
 
@@ -56,17 +56,16 @@
     padding: 35px 15px;
 
     & .title {
-
       font-size: 18px;
     }
-  
+
     & .seemore-btn {
       padding: 4px 20px 1px 20px;
       font-size: 12px;
-      width:100px;
+      width: 100px;
     }
-    & .product-item-content{
-   
+    & .product-item-content {
+      width: 100%;
     }
   }
 }
