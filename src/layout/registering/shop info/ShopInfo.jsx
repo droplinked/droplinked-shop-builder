@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom";
 import { useProfile } from "../../../sevices/hooks/useProfile"
+import { ReactComponent as IconMenu } from "../assest/icons8-delete.svg"
 
 
 export default function ShopInfo() {
@@ -41,9 +42,18 @@ export default function ShopInfo() {
 
     const submitForm = () => {
         setLoading(true);
+
         const address = JSON.parse(localStorage.getItem('address'));
+
+        if (!address) {
+            toast.error("Add address please")
+            setLoading(false);
+            return;
+        }
+
         if (addressData == undefined) {
             toast.error("Add address please")
+            setLoading(false);
             return;
         }
 
@@ -69,8 +79,9 @@ export default function ShopInfo() {
             )
             .catch(e => {
                 toast.error(e.response.data.message.message)
-                setLoading(true);
+                setLoading(false);
             })
+        setLoading(false);
     }
 
 
@@ -112,12 +123,20 @@ export default function ShopInfo() {
                 setUploadingImage(false);
                 return;
             })
+        setUploadingImage(false);
 
 
     }
     const closeAddres = () => {
         setShowAddress(false)
     }
+
+    const deleteImage = () => {
+        user = { ...user, shopLogo: "" }
+        localStorage.setItem('profile', JSON.stringify(user));
+        setProfileImg(undefined);
+    }
+
 
     const addAddressF = (e) => {
         setAddressdata(e)
@@ -126,11 +145,18 @@ export default function ShopInfo() {
     return (<RegisterStructure level={"shopinfo"}>
         <div className="register-shopinfo-wrapper">
             {(!showAddress) && <>
-                <div className="input-perosnal-image d-flex justify-content-center align-items-center" onClick={chooseFile} style={{ backgroundImage: `url(${(profileImg == undefined) ? img : profileImg})` }}>
+                <div className="input-perosnal-image d-flex justify-content-center align-items-center" style={{ backgroundImage: `url(${(profileImg == undefined) ? img : profileImg})` }}>
                     <input className="d-none" type="file" ref={inputFile} onChange={changeImage} />
                     {(uploadingImage) &&
                         <div className="spinner-border" role="status">
                             <span className="sr-only"></span>
+                        </div>
+                    }
+                    <div className="add-image-hov"
+                        onClick={chooseFile}>+</div>
+                    {(profileImg == undefined || profileImg == "") ? <></> :
+                        <div className="delet-image-icon" onClick={deleteImage}>
+                            <IconMenu style={{ width: "100%", height: "100%" }} />
                         </div>
                     }
                 </div>
@@ -142,8 +168,19 @@ export default function ShopInfo() {
 
                 <div className="register-label-input ">
                     <label>about your shop</label>
-                    <input type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""} />
+                    <textarea id="w3review" name="w3review" rows="4" cols="50"
+                        type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""}
+                    >
+
+
+                    </textarea>
+                    {/* <input type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""} /> */}
                 </div>
+
+                {/* <div className="register-label-input ">
+                    <label>about your shop</label>
+                    <input type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""} />
+                </div> */}
 
                 <div className="register-label-input ">
                     <label>website</label>
@@ -176,7 +213,7 @@ export default function ShopInfo() {
                         <span>{addressData.Zip || addressData.zip}</span>
                         <div className="m-2 d-flex justify-content-between">
                             <button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>edit</button>
-                            <button className="edit-address-detail" style={{color:"red"}} onClick={() => { setAddressdata(undefined) }}>delete</button></div>
+                            <button className="edit-address-detail" style={{ color: "red" }} onClick={() => { setAddressdata(undefined) }}>delete</button></div>
                     </div>
 
                 }

@@ -1,6 +1,6 @@
 import "./PersonalInfo.scss"
 import RegisterStructure from "../register structure/RegisterStructure"
-import { useRef, useState , useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -8,6 +8,7 @@ import img from "../../../assest/image/default profile/icons8-user-100.png"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useProfile } from "../../../sevices/hooks/useProfile"
+import { ReactComponent as IconMenu } from "../assest/icons8-delete.svg"
 
 export default function PersonalInfo() {
     const [profileImg, setProfileImg] = useState(undefined)
@@ -21,14 +22,14 @@ export default function PersonalInfo() {
 
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: {
-            firstName: (user.firstname)? user.firstname : "",
+            firstName: (user.firstname) ? user.firstname : "",
             lastName: (user.lastname) ? user.lastname : "",
             phoneNumber: (user.phone) ? user.phone : ""
         }
     });
 
-    useEffect(()=>{
-        if(user.avatar){
+    useEffect(() => {
+        if (user.avatar) {
             setProfileImg(user.avatar)
         }
     })
@@ -73,7 +74,14 @@ export default function PersonalInfo() {
                 setUploadingImage(false);
                 return;
             })
+        setUploadingImage(false);
 
+    }
+
+    const deleteImage = () => {
+        user = { ...user, avatar: "" }
+        localStorage.setItem('profile', JSON.stringify(user));
+        setProfileImg(undefined);
     }
 
 
@@ -83,7 +91,7 @@ export default function PersonalInfo() {
         let profileInfo = {
             firstname: data.firstName,
             lastname: data.lastName,
-            avatar: (profileImg == undefined)? "" : profileImg,
+            avatar: (profileImg == undefined) ? "" : profileImg,
             phone: data.phoneNumber,
         }
         axios.put('https://api.droplinked.com/dev/producer/profile', profileInfo,
@@ -93,7 +101,7 @@ export default function PersonalInfo() {
             navigate("/register/shopInfo");
         })
             .catch(err => {
-                setMessage(err.response.data.message.message);
+                toast(err.response.data.message.message);
                 setLoading(false);
             })
     }
@@ -103,15 +111,23 @@ export default function PersonalInfo() {
         <RegisterStructure level={"personalinfo"}>
 
             <div className="register-personalinfo-wrapper">
-                <div className="error-message">{(message != undefined) && message}</div>
-                <div className="input-perosnal-image" onClick={chooseFile}
-                    style={{ backgroundImage: `url(${(profileImg == undefined) ? img : profileImg})` }}>
+
+                <div className="input-perosnal-image"
+                    style={{ backgroundImage: `url(${(profileImg == undefined || profileImg == "") ? img : profileImg})` }}>
                     {(uploadingImage) &&
                         <div className="spinner-border" role="status">
                             <span className="sr-only"></span>
                         </div>
                     }
                     <input className="d-none" type="file" ref={inputFile} onChange={changeImage} />
+                    <div className="add-image-hov"
+                        onClick={chooseFile}>+</div>
+                    {(profileImg == undefined || profileImg == "") ?<></>:
+                        <div className="delet-image-icon" onClick={deleteImage}>
+                            <IconMenu style={{ width: "100%", height: "100%" }} />
+                        </div>
+                  
+                    }
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="d-flex justify-content-between w-100" style={{ maxWidth: "100%" }}>

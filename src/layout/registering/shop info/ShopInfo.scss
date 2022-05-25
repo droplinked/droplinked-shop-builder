@@ -39,9 +39,37 @@
     width: 100px;
     height: 100px;
     border-radius: 50px;
-    cursor: pointer;
+
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
+
+    &:hover {
+      & .delet-image-icon {
+        display: inline;
+      }
+    }
+
+    & .delet-image-icon {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      left: 90px;
+      display: none;
+      cursor: pointer;
+    }
+
+    & .add-image-hov {
+      position: absolute;
+      font-size: 20px;
+      color: black;
+      background-color: white;
+      cursor: pointer;
+      //  visibility: hidden;
+      right: 77px;
+      border-radius: 25px;
+      padding: 2px 10px;
+    }
   }
 
   .register-label-input {
@@ -67,6 +95,26 @@
       padding: 12px 16px;
       outline: none;
       background-color: transparent;
+      &:focus {
+        border: 2px solid #8053ff;
+      }
+    }
+    & textarea {
+      margin-top: 10px;
+      font-family: "AvenirNext";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      color: #fff;
+      width: 100%;
+      border: 2px solid #b3b3b3;
+      border-radius: 8px;
+      padding: 12px 16px;
+      outline: none;
+      background-color: transparent;
+      &:focus {
+        border: 2px solid #8053ff;
+      }
     }
   }
   form {

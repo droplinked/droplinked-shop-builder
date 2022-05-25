@@ -35,7 +35,7 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
         axios.post('https://api.droplinked.com/dev/producer/shop/address', addresInfo,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
-                toast.success("address added")
+                toast.success("Address added successfully")
                 localStorage.setItem('address', JSON.stringify(e.data.addressBook))
                 addAddressF(addresInfo);
                 close();
@@ -91,7 +91,11 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
                 </div>
             </div>
 
-            <input type="submit" className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`} value="save" />
+            <div className="d-flex justify-content-between w-100">
+            <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
+                    onClick={close}>cancel</button>
+                <input type="submit" className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`} value="save" />  
+            </div>
         </form>
         <ToastContainer
             position="bottom-right"
