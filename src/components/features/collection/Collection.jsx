@@ -27,7 +27,7 @@ function Collection() {
             <div className="collection-component-wrapper">
                 {/* head */}
                 <div className="d-flex justify-content-between h-auto" >
-                    <p className="title">collection name</p>
+                    <p className="title">Holder merch</p>
                     <Link to="/productList">
                         <button className="seemore-btn">see more</button>
                     </Link>
@@ -43,7 +43,7 @@ function Collection() {
                         :
                         <>
                             {product.map((item) => {
-                                return (<div style={{ width: "49%", height: "auto" }}>
+                                return (<div className="product-item-content">
                                     <ProductLarge title={item.title} price={item.variants[0].formatted_price} imageUrl={item.images[0].src} id={item.product_id} />
                                 </div>)
                             })}

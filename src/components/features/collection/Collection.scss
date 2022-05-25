@@ -44,6 +44,9 @@
     flex-direction: row;
     justify-content: space-between;
   }
+  & .product-item-content{
+    width:49%;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -62,6 +65,8 @@
       font-size: 12px;
       width:100px;
     }
-  
+    & .product-item-content{
+   
+    }
   }
 }
