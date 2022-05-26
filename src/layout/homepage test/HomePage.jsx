@@ -7,6 +7,7 @@ import LoginModal from "../../components/Modal/authen/login/LoginModal"
 
 import { useState } from "react"
 import EmailModal from "./modal/EmailModal"
+import axios from "axios"
 
 
 export default function HomePage() {
@@ -14,6 +15,8 @@ export default function HomePage() {
     const [showLogin, setLogin] = useState(false);
     const [userName, setUsername] = useState("");
     const [former, setForError] = useState(false)
+    const [checkshopname, setCheckshopname] = useState(false);
+    const [shopnameError, setShopnameError] = useState(undefined)
 
     const toggleSignUp = () => {
         setShowSignup(p => !p)
@@ -23,9 +26,22 @@ export default function HomePage() {
         setLogin(p => !p)
     }
 
-    const switchModal = ()=>{
+    const switchModal = () => {
         toggleSignUp();
         toggleLogin();
+    }
+
+    const landingSignin = () => {
+        setCheckshopname(true);
+        axios.get(`https://api.droplinked.com/dev/producer/shop-name/${userName}`)
+            .then(e => {
+                setCheckshopname(false);
+                toggleSignUp();
+            })
+            .catch(e => {
+                setCheckshopname(false);
+                setShopnameError(e.response.data.message.message)
+            })
     }
 
     return (<>
@@ -39,7 +55,7 @@ export default function HomePage() {
                         <div className="d-flex justify-content-start" style={{ width: "75%", maxWidth: "75%" }}>
                             <span className="item-span">droplinked.com/</span>
                             <input type="text" placeholder="username" className="item-input"
-                                onChange={(e) => { setUsername(e.target.value) }}
+                                onChange={(e) => { setUsername(e.target.value); setShopnameError(undefined); }}
                                 value={userName}
                             />
                         </div>
@@ -49,11 +65,18 @@ export default function HomePage() {
                                     if (userName.trim() == "") {
                                         setForError(true)
                                     } else {
-                                        toggleSignUp();
+                                        landingSignin()
                                     }
-                                }}
-
-                            >Sign up</button>
+                                }}>
+                                {(checkshopname)
+                                    ?
+                                    <div class="spinner-border" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                    :
+                                    <>Sign up</>
+                                }
+                            </button>
                         </div>
                     </div>
                     {former &&
@@ -61,6 +84,13 @@ export default function HomePage() {
                             <img className="ratio ratio-1x1" src={alertIcon} alt="" />
                             {/* <span>URL already in use. Please try another. If you are the owner login heresdf</span> */}
                             <span>Please enter a valid username.</span>
+                        </div>
+                    }
+                    {(shopnameError) &&
+                        <div className="alert-wrap">
+                            <img className="ratio ratio-1x1" src={alertIcon} alt="" />
+                            {/* <span>URL already in use. Please try another. If you are the owner login heresdf</span> */}
+                            <span>{shopnameError}</span>
                         </div>
                     }
 

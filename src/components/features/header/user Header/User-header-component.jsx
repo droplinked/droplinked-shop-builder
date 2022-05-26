@@ -17,10 +17,17 @@ export default function UserHeader() {
     let Profileimage = profile.avatar
     let navigate = useNavigate();
 
+    let userStatus;
+    if (profile.user) {
+        userStatus = profile.user.status
+    } else {
+        userStatus = profile.status
+    }
+    console.log(userStatus)
+
     const clickProfile = () => {
         setToggleHeader(false)
-        let userStatus;
-        if (profile.user) { userStatus = profile.user.status } else { userStatus = profile.status }
+
 
         switch (userStatus) {
             case "VERIFIED":
@@ -39,7 +46,7 @@ export default function UserHeader() {
                 navigate(`/shop/${profile.shopName}`);
                 return;
         }
-        
+
     }
 
     return (<>
@@ -55,7 +62,7 @@ export default function UserHeader() {
             {toggleHeader &&
                 <div className="header-nav">
                     <div className="header-nav-item" onClick={clickProfile}>Profile</div>
-                    {!url.includes("/registe") && <>
+                    {(userStatus == "ACTIVE") && <>
                         <div className="header-nav-item">Settings</div>
                         <div className="header-nav-item">Test</div>
                     </>
