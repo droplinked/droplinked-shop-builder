@@ -5,6 +5,7 @@ import headerWalletIcon from "../../../../assest/header/headerWalletIcon.svg";
 import profileimg from "../../../../assest/image/default profile/icons8-user-100.png"
 import { useProfile } from "../../../../sevices/hooks/useProfile"
 import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -14,6 +15,32 @@ export default function UserHeader() {
     const { profile, logout } = useProfile()
     let url = window.location.pathname;
     let Profileimage = profile.avatar
+    let navigate = useNavigate();
+
+    const clickProfile = () => {
+        setToggleHeader(false)
+        let userStatus;
+        if (profile.user) { userStatus = profile.user.status } else { userStatus = profile.status }
+
+        switch (userStatus) {
+            case "VERIFIED":
+                navigate("/register/personalInfo");
+                return;
+            case "PROFILE_COMPLETED":
+                navigate("/register/shopInfo");
+                return;
+            case "SHOP_INFO_COMPLETED":
+                navigate("/register/IMSSelect");
+                return;
+            case "IMS_TYPE_COMPLETED":
+                navigate(`/shop/${profile.shopName}`);
+                return;
+            case "ACTIVE":
+                navigate(`/shop/${profile.shopName}`);
+                return;
+        }
+        
+    }
 
     return (<>
         {(userData == undefined)
@@ -27,8 +54,8 @@ export default function UserHeader() {
                 className="header-profile" onClick={() => { setToggleHeader(p => !p) }} />
             {toggleHeader &&
                 <div className="header-nav">
+                    <div className="header-nav-item" onClick={clickProfile}>Profile</div>
                     {!url.includes("/registe") && <>
-                        <div className="header-nav-item">Profile</div>
                         <div className="header-nav-item">Settings</div>
                         <div className="header-nav-item">Test</div>
                     </>

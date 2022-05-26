@@ -8,7 +8,7 @@ export default function ThankPage() {
     let email = JSON.parse(localStorage.getItem('registerEmail'));
     const resendEmail = () => {
         axios.post('https://api.droplinked.com/dev/email/resend',
-         { email: "bedi.mns@gmail.com" })
+         { email: email })
             .then(res => { setMessage(res.data.message) })
             .catch(e => { setMessage("Not Found or Verified") })
     }

@@ -59,7 +59,8 @@ export default function HomePage() {
                     {former &&
                         <div className="alert-wrap">
                             <img className="ratio ratio-1x1" src={alertIcon} alt="" />
-                            <span>URL already in use. Please try another. If you are the owner login here</span>
+                            {/* <span>URL already in use. Please try another. If you are the owner login heresdf</span> */}
+                            <span>Please enter a valid username.</span>
                         </div>
                     }
 
