@@ -1,0 +1,28 @@
+.add-product-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin:0px auto;
+  
+    & .ims-title {
+      color: #fff;
+      font-weight: 600;
+      font-size: 30px;
+    }
+  
+    & .number-of-merchs {
+      margin-top: 20px;
+      color: #fff;
+      font-weight: 500;
+      font-size: 30px;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .IMS-page-wrapper {
+    }
+  }
+  

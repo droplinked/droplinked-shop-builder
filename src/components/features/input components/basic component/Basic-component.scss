@@ -1,0 +1,46 @@
+.basic-input-component-wrapper {
+  width: 100%;
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+  }
+  textarea {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
+    width: 100%;
+    border: 2px solid #b3b3b3;
+    border-radius: 8px;
+    padding: 12px 16px;
+    outline: none;
+    background-color: transparent;
+    transition: 0.5s;
+    &:focus {
+      border: 2px solid #8053ff;
+    }
+  }
+  input {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
+    width: 100%;
+    border: 2px solid #b3b3b3;
+    border-radius: 8px;
+    padding: 12px 16px;
+    outline: none;
+    background-color: transparent;
+    transition: 0.5s;
+    &:focus {
+      border: 2px solid #8053ff;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .basic-component-wrapper {
+  }
+}

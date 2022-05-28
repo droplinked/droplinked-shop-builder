@@ -39,6 +39,7 @@ import Test1 from "./layout/test/Test1";
 import ScrollTop from "./components/features/scrolltop/ScrollTop";
 import ShopPage from "./layout/Producer pages/Main page/shop page/Shop-page-component";
 import ImsMainPage from "./layout/Producer pages/IMS pages/ImsMainPage";
+import AddProductPage from "./layout/Producer pages/add product page/Add-product-page";
 
 function App() {
   return (
@@ -58,17 +59,13 @@ function App() {
                         element={<PersonalInfo />}
                       />
                       <Route path="/register/shopInfo" element={<ShopInfo />} />
-                      <Route
-                        path="/register/IMSSelect"
-                        element={<ImsSelect />}
-                      />
-                      <Route
-                        path="/register/payment"
-                        element={<RegisterPayment />}
-                      />
+                      <Route path="/register/IMSSelect" element={<ImsSelect />}/>
+                      <Route path="/register/payment" element={<RegisterPayment />}/>
                       <Route path="/producer">
                         <Route path="ims" element={<ImsMainPage />} />
+                        <Route path="addProduct" element={<AddProductPage />} />
                       </Route>
+
                       <Route path="/creatorpage" element={<CreatorPage />} />
                       <Route path="/postpage" element={<PostPage />} />
                       <Route
