@@ -1,0 +1,18 @@
+#basic-button-component {
+  padding: 12px 20px;
+  width: 200px;
+  height: auto;
+  background: #8053ff;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: #ffffff;
+  margin:0px 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  #basic-button-component {
+    width: 100%;
+  }
+}
