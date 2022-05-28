@@ -37,7 +37,8 @@ import ImsSelect from "./layout/registering/IMS select/ImsSelect";
 import RegisterPayment from "./layout/registering/register payment page/RegisterPayment";
 import Test1 from "./layout/test/Test1";
 import ScrollTop from "./components/features/scrolltop/ScrollTop";
-import ShopPage from "./layout/Producer pages/Main page/shop page/Shop-page-component"
+import ShopPage from "./layout/Producer pages/Main page/shop page/Shop-page-component";
+import ImsMainPage from "./layout/Producer pages/IMS pages/ImsMainPage";
 
 function App() {
   return (
@@ -65,6 +66,9 @@ function App() {
                         path="/register/payment"
                         element={<RegisterPayment />}
                       />
+                      <Route path="/producer">
+                        <Route path="ims" element={<ImsMainPage />} />
+                      </Route>
                       <Route path="/creatorpage" element={<CreatorPage />} />
                       <Route path="/postpage" element={<PostPage />} />
                       <Route
@@ -80,7 +84,7 @@ function App() {
                         path="/crashpunksdemo"
                         element={<CrashpunkDemo />}
                       />
-                       <Route path="/shop/:shopname" element={<ShopPage />} />
+                      <Route path="/shop/:shopname" element={<ShopPage />} />
                       <Route path="/addProduct" element={<NewProduct />} />
                       <Route path="/address" element={<Address />} />
                       <Route path="/shipping" element={<Shipping />} />
