@@ -1,0 +1,52 @@
+.variant-item-wrapper {
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 15px;
+  margin-top: 15px;
+  p {
+    color: #fff;
+    font-size: 16px;
+    overflow: hidden;
+  }
+
+  .edit-btn {
+    border: none;
+    outline: none;
+    color: #906afa;
+    font-size: 16px;
+    &:hover {
+      color: #7f52fa;
+    }
+  }
+
+  .delete-btn {
+    border: none;
+    outline: none;
+    color: #fd6060;
+    font-size: 16px;
+    &:hover {
+      color: #fa3030;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .variant-item-wrapper {
+    padding: 15px 10px;
+    margin-top: 15px;
+    p {
+      font-size: 8px;
+    }
+
+    .edit-btn {
+      font-size: 8px;
+    }
+
+    .delete-btn {
+      font-size: 8px;
+    }
+  }
+}
