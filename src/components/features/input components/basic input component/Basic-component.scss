@@ -41,6 +41,17 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .basic-component-wrapper {
+  .basic-input-component-wrapper {
+    label {
+      font-size: 16px;
+    }
+    textarea {
+      font-size: 16px;
+      padding: 12px 16px 9px 16px;
+    }
+    input {
+      font-size: 16px;
+      padding: 12px 16px 9px 16px;
+    }
   }
 }

@@ -61,10 +61,10 @@ function App() {
                       <Route path="/register/shopInfo" element={<ShopInfo />} />
                       <Route path="/register/IMSSelect" element={<ImsSelect />}/>
                       <Route path="/register/payment" element={<RegisterPayment />}/>
-                      <Route path="/producer">
-                        <Route path="ims" element={<ImsMainPage />} />
-                        <Route path="addProduct" element={<AddProductPage />} />
-                      </Route>
+                     
+                        <Route path="/producer/ims" element={<ImsMainPage />} />
+                        <Route path="/producer/addProduct" element={<AddProductPage />} />
+                   
 
                       <Route path="/creatorpage" element={<CreatorPage />} />
                       <Route path="/postpage" element={<PostPage />} />

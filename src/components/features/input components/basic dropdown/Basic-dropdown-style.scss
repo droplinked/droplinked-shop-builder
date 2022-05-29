@@ -1,6 +1,5 @@
 .basic-dropdown-component-wrapper {
   width: 100%;
-  
 
   & select {
     border: 2px solid #b3b3b3;
@@ -27,5 +26,14 @@
 
 @media only screen and (max-width: 768px) {
   .basic-dropdown-component-wrapper {
+    & select {
+      width: 100%;
+      padding: 12px 16px 9px 16px;
+      font-size: 16px;
+      & option {
+        font-size: 16px;
+        width: 100%;
+      }
+    }
   }
 }

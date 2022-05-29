@@ -28,7 +28,6 @@ export default function UserHeader() {
     const clickProfile = () => {
         setToggleHeader(false)
 
-
         switch (userStatus) {
             case "VERIFIED":
                 navigate("/register/personalInfo");
@@ -46,7 +45,10 @@ export default function UserHeader() {
                 navigate(`/shop/${profile.shopName}`);
                 return;
         }
+    }
 
+    const clickIms = () => {
+        navigate("/producer/ims");
     }
 
     return (<>
@@ -62,9 +64,11 @@ export default function UserHeader() {
             {toggleHeader &&
                 <div className="header-nav">
                     <div className="header-nav-item" onClick={clickProfile}>Profile</div>
-                    {(userStatus == "ACTIVE") && <>
+                    {(userStatus == "IMS_TYPE_COMPLETED") && <>
                         <div className="header-nav-item">Settings</div>
-                        <div className="header-nav-item">Test</div>
+                        <Link to="/producer/ims">
+                            <div className="header-nav-item" onClick={()=>{setToggleHeader(false)}}>IMS</div>
+                        </Link>
                     </>
                     }
                     <div className="header-nav-item" onClick={logout}>logout</div>
