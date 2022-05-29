@@ -74,15 +74,15 @@ function AddProductPage() {
                             <input type="number" placeholder="ID" />
                         </div>
                         <div className="rw-rp">
-                            <BasicButton text={"add"} click={toggleAddVariant} />
-                            <BasicButton text={"cancel"} click={toggleAddVariant} />
+                                <BasicButton text={"add"} click={toggleAddVariant} style={{width:"40%"}} />
+                                <BasicButton text={"cancel"} click={toggleAddVariant}style={{width:"40%"}}  />
                         </div>
                     </form>
                 }
             </div>
 
             <div className="d-flex justify-content-between align-items-center"
-            style={{marginTop:"80px" , width:"100%"}}>
+                style={{ marginTop: "80px", width: "100%" }}>
                 <BasicButton text={"submit"} />
                 <BasicButton text={"cancel"} />
             </div>
