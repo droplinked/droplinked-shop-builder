@@ -12,7 +12,7 @@ import { ReactComponent as IconMenu } from "../assest/icons8-delete.svg"
 
 
 export default function ShopInfo() {
-    const [profileImg, setProfileImg] = useState(undefined)
+    const [profileImg, setProfileImg] = useState("")
     const [showAddress, setShowAddress] = useState(false)
     const [addressData, setAddressdata] = useState(undefined)
     const [loading, setLoading] = useState(false)
@@ -30,6 +30,9 @@ export default function ShopInfo() {
     const discordInp = useRef(null);
     const twitterInp = useRef(null);
     const instaInp = useRef(null);
+
+    
+   
 
 
     useEffect(() => {
@@ -65,7 +68,7 @@ export default function ShopInfo() {
                 instagram: instaInp.current.value,
                 webUrl: siteInp.current.value
             },
-            shopLogo: (profileImg == undefined) ? profileImg : "",
+            shopLogo:  profileImg ,
             shopAddressID: address._id
         }
 
@@ -117,6 +120,7 @@ export default function ShopInfo() {
                 setUploadingImage(false);
                 toast.success(e.data.message);
                 setProfileImg(e.data.small)
+                return;
             })
             .catch(e => {
                 toast.error(e.response.data.message);
