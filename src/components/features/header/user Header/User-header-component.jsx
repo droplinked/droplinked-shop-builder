@@ -59,15 +59,18 @@ export default function UserHeader() {
             <HeaderItem click={onSignOut}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />wallet</HeaderItem>
         }
         <div className="login-wrapper">
-            <img src={(Profileimage) ? Profileimage : profileimg}
-                className="header-profile" onClick={() => { setToggleHeader(p => !p) }} />
+            <img
+                src={(Profileimage) ? Profileimage : profileimg}
+                className="header-profile rounded-circle"
+                onClick={() => { setToggleHeader(p => !p) }}
+            />
             {toggleHeader &&
                 <div className="header-nav">
                     <div className="header-nav-item" onClick={clickProfile}>Profile</div>
                     {(userStatus == "IMS_TYPE_COMPLETED") && <>
                         <div className="header-nav-item">Settings</div>
                         <Link to="/producer/ims">
-                            <div className="header-nav-item" onClick={()=>{setToggleHeader(false)}}>IMS</div>
+                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>IMS</div>
                         </Link>
                     </>
                     }
