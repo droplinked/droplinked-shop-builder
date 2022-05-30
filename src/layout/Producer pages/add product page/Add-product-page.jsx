@@ -24,12 +24,13 @@ function AddProductPage() {
             <BasicInput />
             <BasicInput type={"textarea"} />
             <dir className="drop-wrape">
-                <BasicDropDown vals={collections} />
+                <BasicDropDown vals={collections} place={"choose collection"}/>
             </dir>
             <div className="mt-5 mb-3 w-100 d-flex justify-content-center align-items-center">
                 <InputImageComponent />
             </div>
             <div className="select-variant-wrap mt-4">
+                <p>Choose options : </p>
                 <CheckBoxBasic>color</CheckBoxBasic>
                 <CheckBoxBasic>size</CheckBoxBasic>
             </div>
@@ -50,14 +51,14 @@ function AddProductPage() {
                         <div className="rw-rp">
                             <label>color</label>
                             <div style={{ width: '40%' }}>
-                                <BasicDropDown vals={colors} />
+                                <BasicDropDown vals={colors} place={"color"}/>
                             </div>
                         </div>
 
                         <div className="rw-rp">
                             <label>size</label>
                             <div style={{ width: '40%' }}>
-                                <BasicDropDown vals={sizes} />
+                                <BasicDropDown vals={sizes} place={"size"}/>
                             </div>
 
                         </div>
