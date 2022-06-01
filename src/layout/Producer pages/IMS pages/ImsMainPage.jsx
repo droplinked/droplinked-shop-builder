@@ -5,7 +5,7 @@ import ProductSmallWrapper from "../../../components/features/product components
 import ProductLarge from "../../../components/features/product components/product component large/ProductLarge"
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom";
+import { Link ,useNavigate  } from "react-router-dom";
 import Loading from "../../../components/features/loading/Loading"
 
 
@@ -13,9 +13,14 @@ function ImsMainPage() {
 
     const [products, setProdcuts] = useState(null)
     const [searchText, setSearchText] = useState("")
+    const navigate = useNavigate();
+
     const token = JSON.parse(localStorage.getItem('token'));
 
+   
+
     useEffect(() => {
+        if(token==null){navigate("/")}
         axios.get(`https://api.droplinked.com/dev/producer/product`,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => setProdcuts(e.data.products))

@@ -30,6 +30,8 @@ function AddProductPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if(token==null){navigate("/")}
+        
         let url1 = "https://api.droplinked.com/dev/producer/product/variant"
         let url2 = "https://api.droplinked.com/dev/producer/collection"
 
