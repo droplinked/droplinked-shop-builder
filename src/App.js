@@ -17,8 +17,6 @@ import BuyProduct from "./layout/buy product/BuyProduct";
 import Terms from "./layout/terms/Terms";
 import Privacy from "./layout/privacy/Privacy";
 import Crashpunks from "./layout/crashpunk/crashpunks";
-//import Product from "./layout/product/Product"
-import Main from "./layout/landing/Main";
 import ProctuPageTest from "./layout/product list test/ProctuPageTest";
 import Address from "./layout/address/Address";
 import Shipping from "./layout/shiping/Shipping";
@@ -30,7 +28,6 @@ import Settings from "./layout/Customer/settings/Setting";
 import NewProduct from "./layout/newProduct/NewProduct";
 import CrashpunkDemo from "./layout/crash punks demo/CrahspunkDemo";
 import ThankPage from "./layout/registering/thanks for register/ThankForRegister";
-import RegisterStructure from "./layout/registering/register structure/RegisterStructure";
 import PersonalInfo from "./layout/registering/personal info/PersonalInfo";
 import ShopInfo from "./layout/registering/shop info/ShopInfo";
 import ImsSelect from "./layout/registering/IMS select/ImsSelect";

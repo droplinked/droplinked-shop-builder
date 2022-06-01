@@ -1,8 +1,5 @@
 import "./Input-image-component.scss"
-import img1 from "./testimg1.jpg"
-import img2 from "./testimg2.jpg"
-import { useRef, useState } from "react"
-import Loading from "../../loading/Loading"
+import { useRef, useState, useEffect } from "react"
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -12,10 +9,10 @@ export default function InputImageComponent({ setState, state }) {
     const [loading, setLoading] = useState(false);
     const fileRef = useRef(null);
 
+
     const changeImage = (e) => {
         setLoading(true);
         const file = e.target.files[0];
-
         if (file.size > 200000) {
             toast.error("File size exceeded (Max: 200 kb)");
             setLoading(false);
@@ -51,9 +48,9 @@ export default function InputImageComponent({ setState, state }) {
                 setLoading(false);
                 return;
             })
-        setLoading(false);
-
     }
+
+  
 
     return (
         <div className="input-images-component-wrapper d-flex justify-content-start">
@@ -66,7 +63,11 @@ export default function InputImageComponent({ setState, state }) {
             <div className="img-item ratio ratio-1x1">
                 {(loading == true)
                     ?
-                    <Loading />
+                    <div className="w-100 h-100 d-flex justify-content-center align-items-center input-add-image">
+                        <div className="spinner-border text-light w-50 h-50" role="status" >
+                            <span className="sr-only"></span>
+                        </div>
+                    </div>
                     :
                     <div className="input-add-image"
                         onClick={() => { fileRef.current.click() }}>

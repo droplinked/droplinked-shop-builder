@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState } from "react"
 import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
 import { toast } from 'react-toastify';
 
@@ -23,6 +23,19 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
             toast.error("externalID is required");
             return;
         }
+        if (options.length != optionsArray.length) {
+            toast.error("variants value is required");
+            return;
+        }
+        optionsArray.forEach(option => {
+            let opname = (option == "628df708028da49d3f6a73eb") ? "size" : "color";
+            options.map(item => {
+                if ((item.variantID == option) && (item.value == "")) {
+                    toast.error(`${opname} is required`);
+                    return;
+                }
+            })
+        })
         const newVariant = {
             price: price,
             externalID: externalID,
@@ -37,6 +50,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
         setState(varArr);
         toggle();
     }
+
 
     const onChangeDropDown = (e) => {
         let optArray = []
