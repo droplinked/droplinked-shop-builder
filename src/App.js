@@ -51,33 +51,22 @@ function App() {
                   <ScrollTop>
                     <Routes>
                       <Route exact path="/" element={<HomePage />} />
-                      <Route
-                        path="/register/personalInfo"
-                        element={<PersonalInfo />}
-                      />
-                      <Route path="/register/shopInfo" element={<ShopInfo />} />
-                      <Route path="/register/IMSSelect" element={<ImsSelect />}/>
-                      <Route path="/register/payment" element={<RegisterPayment />}/>
+
+                      <Route path="/register/personalInfo" element={<PersonalInfo />} />
+                      <Route path="/register/shopInfo"     element={<ShopInfo />} />
+                      <Route path="/register/IMSSelect"    element={<ImsSelect />}/>
+                      <Route path="/register/payment"      element={<RegisterPayment />}/>
                      
-                        <Route path="/producer/ims" element={<ImsMainPage />} />
-                        <Route path="/producer/addProduct" element={<AddProductPage />} />
+                      <Route path="/producer/ims"          element={<ImsMainPage />} />
+                      <Route path="/producer/addProduct"   element={<AddProductPage />} />
                    
 
                       <Route path="/creatorpage" element={<CreatorPage />} />
                       <Route path="/postpage" element={<PostPage />} />
-                      <Route
-                        path="/collectionpage"
-                        element={<CollectionPage />}
-                      />
+                      <Route path="/collectionpage" element={<CollectionPage />}/>
                       <Route path="/cart" element={<Checkout />} />
-                      <Route
-                        path="/collectionmanagement"
-                        element={<CollectionManagement />}
-                      />
-                      <Route
-                        path="/crashpunksdemo"
-                        element={<CrashpunkDemo />}
-                      />
+                      <Route path="/collectionmanagement" element={<CollectionManagement />}  />
+                      <Route path="/crashpunksdemo"  element={<CrashpunkDemo />} />
                       <Route path="/shop/:shopname" element={<ShopPage />} />
                       <Route path="/addProduct" element={<NewProduct />} />
                       <Route path="/address" element={<Address />} />
@@ -90,10 +79,7 @@ function App() {
                       <Route path="/confirm" element={<Confirm />} />
                       <Route path="/crashpunks" element={<Crashpunks />} />
                       <Route path="/ruleset" element={<RoleSet />} />
-                      <Route
-                        path="/emailConfirmation"
-                        element={<ThankPage />}
-                      />
+                      <Route path="/emailConfirmation" element={<ThankPage />}  />
                       <Route path="/product/:id" element={<BuyProduct />} />
                       <Route path="test" element={<Test1 />} />
                       <Route path="/*" element={<NotFound />} />
