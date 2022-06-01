@@ -1,22 +1,32 @@
 import { useState, useRef } from "react"
 import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
-import BasicDropDown from "../../../../components/features/input components/basic dropdown/Basic-dropdown-component"
-export default function AddVariantForm({ state, setState, toggle,  optionsArray }) {
+import { toast } from 'react-toastify';
+
+export default function AddVariantForm({ state, setState, toggle, optionsArray }) {
 
     const [options, setOptions] = useState([]);
-    const colorVar = useRef("");
-    const sizeVar = useRef("");
-    const price = useRef(null);
-    const quantity = useRef(null);
-    const externalID = useRef(null);
-
+    const [price, setPrice] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [externalID, setExternalID] = useState("");
 
     const submitvariant = (e) => {
-
+        e.preventDefault();
+        if (price == "") {
+            toast.error("price is required");
+            return;
+        }
+        if (quantity == "") {
+            toast.error("quantity is required");
+            return;
+        }
+        if (externalID == "") {
+            toast.error("externalID is required");
+            return;
+        }
         const newVariant = {
-            price: price.current.value,
-            externalID: externalID.current.value,
-            quantity: quantity.current.value,
+            price: price,
+            externalID: externalID,
+            quantity: quantity,
             options: options
         }
         let varArr = [];
@@ -34,8 +44,9 @@ export default function AddVariantForm({ state, setState, toggle,  optionsArray 
             optArray.push(opt)
         }
         if (optArray.filter(it => it.variantID == e.target.id).length > 0) {
-            optArray.map(item => {
+            optArray.map((item, i) => {
                 if (item.variantID == e.target.id) { item.value = e.target.value }
+                if (item.value == "") optArray.splice(i, 1)
             })
         } else {
             optArray.push({
@@ -46,36 +57,47 @@ export default function AddVariantForm({ state, setState, toggle,  optionsArray 
         setOptions(optArray)
     }
 
-    return (<> <form className="add-new-variant-form">
+    const changePrice = (e) => {
+        setPrice(e.target.value)
+    }
 
-        {
-            optionsArray.map((opt) => {
-                let name = (opt.variantID == "628df708028da49d3f6a73eb") ? "size" : "color";
-                return (<div className="rw-rp">
-                    <label>{name}</label>
-                    <div style={{ width: '40%' }}>
-                        <BasicDropDown vals={opt.valus} id={opt.variantID} place={name} cnhg={onChangeDropDown} />
-                    </div>
-                </div>)
-            })
-        }
-        <div className="rw-rp">
-            <label>price</label>
-            <input type="number" placeholder="100 $" ref={price} />
-        </div>
-        <div className="rw-rp">
-            <label>quantity</label>
-            <input type="number" placeholder="12" ref={quantity} />
-        </div>
-        <div className="rw-rp">
-            <label>external ID</label>
-            <input type="number" placeholder="1794012584" ref={externalID} />
-        </div>
-        <div className="rw-rp">
-            <BasicButton text={"add"} click={submitvariant} style={{ width: "40%" }} />
-            <BasicButton text={"cancel"} click={toggle} style={{ width: "40%" }} />
-        </div>
-    </form>
+    const changeQuantity = (e) => {
+        setQuantity(e.target.value)
+    }
+    const changeexternal = (e) => {
+        setExternalID(e.target.value)
+    }
+
+    return (<>
+        <form className="add-new-variant-form">
+            {
+                optionsArray.map((opt, i) => {
+                    let name = (opt == "628df708028da49d3f6a73eb") ? "size" : "color";
+                    return (
+                        <div className="rw-rp" id={i}>
+                            <label>{name}</label>
+                            <input type="text" placeholder={name} id={opt} onChange={onChangeDropDown} />
+                        </div>
+                    )
+                })
+            }
+            <div className="rw-rp">
+                <label>price</label>
+                <input type="number" placeholder="100 $" onChange={changePrice} />
+            </div>
+            <div className="rw-rp">
+                <label>quantity</label>
+                <input type="number" placeholder="12" onChange={changeQuantity} />
+            </div>
+            <div className="rw-rp">
+                <label>external ID</label>
+                <input type="number" placeholder="1794012584" onChange={changeexternal} />
+            </div>
+            <div className="rw-rp">
+                <BasicButton text={"add"} click={submitvariant} style={{ width: "40%" }} />
+                <BasicButton text={"cancel"} click={toggle} style={{ width: "40%" }} />
+            </div>
+        </form>
     </>)
 
 }

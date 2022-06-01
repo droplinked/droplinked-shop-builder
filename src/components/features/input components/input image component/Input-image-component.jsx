@@ -36,7 +36,6 @@ export default function InputImageComponent({ setState, state }) {
         formData.append("image", file);
         axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
-                console.log(e.data.standard);
                 let imgArr = [];
                 for (let i = 0; i < state.length; i++) {
                     imgArr.push(state[i])
@@ -77,7 +76,7 @@ export default function InputImageComponent({ setState, state }) {
 
             </div>
             <input type="file" className="d-none" ref={fileRef} onChange={changeImage} />
-            <ToastContainer
+            {/* <ToastContainer
                 position="bottom-right"
                 autoClose={5000}
                 hideProgressBar={false}
@@ -86,7 +85,7 @@ export default function InputImageComponent({ setState, state }) {
                 rtl={false}
                 pauseOnFocusLoss
                 draggable
-                pauseOnHover />
+                pauseOnHover /> */}
         </div>
     )
 }

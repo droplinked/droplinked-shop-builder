@@ -1,11 +1,11 @@
 import "./CheckBox-component.scss"
 import { useRef } from "react"
 
-export default function CheckBoxBasic({ vari , id , children , onch}) {
+export default function CheckBoxBasic({ val ,  children , onch}) {
 
     return (<>
             <label class="checkbox">
-                <input type="checkbox" value={ vari._id } onChange={onch}/>
+                <input type="checkbox" value={val} onChange={onch}/>
                 <span>{children}</span>
             </label> 
     </>)
