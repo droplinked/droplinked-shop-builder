@@ -1,4 +1,17 @@
+@keyframes ani {
+  from {
+    margin-top: 200px ;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0px ;
+    opacity: 1;
+  }
+}
+
 .add-product-page-wrapper {
+  animation-name: ani;
+  animation-duration: 1s;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,7 +50,7 @@
       margin-left: 15px;
       text-align: center;
       height: auto;
-      margin:auto 0px;
+      margin: auto 0px;
     }
   }
 

@@ -1,17 +1,20 @@
 import "./Search-box-style.scss"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { BsSearch } from "react-icons/bs";
 
-export default function SeachBox() {
+export default function SeachBox({ onch }) {
     return (
         <div className="d-flex justify-content-center align-items-center mb-4"
-        style={{width:"100%" ,height:"100px"}}
+            style={{ width: "100%", height: "100px" }}
         >
-            <div style={{position:"relative"}}>
+            <div style={{ position: "relative" }}>
                 <div className="seach-box-component">
                     <form name="search">
-                        <input type="text" className="input" name="txt"
-                            onmouseout="document.search.txt.value = ''" />
+                        <input type="text"
+                            className="input"
+                            name="txt"
+                            onmouseout="document.search.txt.value = ''"
+                            onChange={onch}
+                        />
                     </form>
                     <div className="ic">
                         <BsSearch />
