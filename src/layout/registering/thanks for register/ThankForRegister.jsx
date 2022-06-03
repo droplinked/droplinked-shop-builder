@@ -9,14 +9,14 @@ export default function ThankPage() {
     const resendEmail = () => {
         axios.post('https://api.droplinked.com/dev/email/resend',
          { email: email })
-            .then(res => { setMessage(res.data.message) })
+            .then(res => { setMessage(res.data.status) })
             .catch(e => { setMessage("Not Found or Verified") })
     }
 
     return (
         <div className="thank-for-register-wrapper">
             <p className="thank-for-register-title">Thank You!</p>
-            <p className="thank-for-register-detail"><span>Please check your email inbox</span> {`and verify your email address.`}</p>
+            <p className="thank-for-register-detail">{`Please check your email inbox "`}<span>{email}</span>{`" and verify your email address.`}</p>
             <p className="resend-email-link"
             onClick={resendEmail}
             >{message}</p>

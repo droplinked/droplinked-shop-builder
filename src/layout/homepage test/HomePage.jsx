@@ -40,7 +40,7 @@ export default function HomePage() {
             })
             .catch(e => {
                 setCheckshopname(false);
-                setShopnameError(e.response.data.message.message)
+                setShopnameError(error.response.data.reason)
             })
     }
 

@@ -23,7 +23,6 @@ export default function UserHeader() {
     } else {
         userStatus = profile.status
     }
-    console.log(userStatus)
 
     const clickProfile = () => {
         setToggleHeader(false)

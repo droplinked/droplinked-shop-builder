@@ -8,7 +8,6 @@ export default function ShopPage() {
     const { profile } = useProfile();
     let { shopname } = useParams();
 
-    console.log(profile);
     return (<>
         <ProducerTopSection
             pic={profile.avatar}

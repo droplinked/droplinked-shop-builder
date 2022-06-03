@@ -97,11 +97,11 @@ export default function PersonalInfo() {
         axios.put('https://api.droplinked.com/dev/producer/profile', profileInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         ).then(res => {
-            updateProfile(res.data)
+            updateProfile(res.data.data)
             navigate("/register/shopInfo");
         })
             .catch(err => {
-                toast(err.response.data.message.message);
+                toast(err.response.data.reason);
                 setLoading(false);
             })
     }

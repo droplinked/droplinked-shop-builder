@@ -16,7 +16,6 @@ export default function ImsSelect() {
     let user = profile
     const token = JSON.parse(localStorage.getItem('token'));
 
-
     const submitType = () => {
         setLoading(true)
         if (ImsSystem == undefined) {
@@ -27,11 +26,18 @@ export default function ImsSelect() {
             axios.post('https://api.droplinked.com/dev/producer/profile/ims', ImsType,
                 { headers: { Authorization: 'Bearer ' + token } }
             ).then(res => {
-                updateProfile(res.data)
-                toast.success("account created")
-                navigate(`/shop/${user.shopName}`);
+                if (res.data.status == "success") {
+                    toast.success("account created")
+                    updateProfile({
+                        ...user,
+                        imsType: ImsSystem
+                    })
+                    navigate(`/shop/${user.shopName}`);
+                }
+
+
             }).catch(e => {
-                toast.error(e.response.data.message.message)
+                toast.error(e.response.data.reason)
                 setLoading(false);
             })
         }
