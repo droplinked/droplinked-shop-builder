@@ -27,6 +27,7 @@ function AddProductPage() {
     const [collectionList, setCollection] = useState([])
     const [disbtn, setdisbtn] = useState(false)
 
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -41,8 +42,8 @@ function AddProductPage() {
         axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
             const responseOne = responses[0]
             const responseTwo = responses[1]
-            setVariantType(responseOne.data.variants);
-            setCollection(responseTwo.data.collections);
+            setVariantType(responseOne.data.data.variants);
+            setCollection(responseTwo.data.data.collections);
         })).catch(errors => {
             console.log(errors);
         })
@@ -157,14 +158,14 @@ function AddProductPage() {
                 {(varintType != undefined) &&
                     <>
                         {varintType.map(item => {
-                            return <CheckBoxBasic val={item._id} id={item._id} onch={onChnageCheckBox}>{item.name}</CheckBoxBasic>
+                            return <CheckBoxBasic key={item._id} val={item._id} id={item._id} onch={onChnageCheckBox}>{item.name}</CheckBoxBasic>
                         })}
                     </>
                 }
             </div>
             <div className="mt-5 w-100">
                 {variants.map((variant, i) => {
-                    return <VariantItem vari={variant} id={i} dlt={deleteVariant} edit={editVariant} />
+                    return <VariantItem key={i} vari={variant} id={i} dlt={deleteVariant} edit={editVariant} />
                 })}
             </div>
 

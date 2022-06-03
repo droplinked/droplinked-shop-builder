@@ -30,6 +30,7 @@ export default function ImsSelect() {
                     toast.success("account created")
                     updateProfile({
                         ...user,
+                        status: "IMS_TYPE_COMPLETED" ,
                         imsType: ImsSystem
                     })
                     navigate(`/shop/${user.shopName}`);

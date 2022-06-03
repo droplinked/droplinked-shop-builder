@@ -10,7 +10,7 @@ export default function ShopPage() {
 
     return (<>
         <ProducerTopSection
-            pic={profile.avatar}
+            pic={profile.shopLogo}
             shopname={profile.shopName}
             insta={profile.instagram}
             twitter={profile.twitter}

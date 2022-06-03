@@ -17,7 +17,7 @@ export default function UserHeader() {
     let Profileimage = profile.avatar
     let navigate = useNavigate();
 
-    let userStatus;
+    let userStatus = profile.status;
     if (profile.user) {
         userStatus = profile.user.status
     } else {
