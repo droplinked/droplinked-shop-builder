@@ -3,8 +3,10 @@ import "./RuleSet-page-style.scss"
 import BasicButton from "../../../components/features/buttons components/basic button/BasicButton";
 import ContentWrapper from "../../../components/Structure/content-wrapper/Content-wrapper-component"
 import RuleItem from "./rule item component/Rule-item-component"
+import AddRule from "./add rule modal/Addrule.modal.component"
 
 function RuleSetPage() {
+	const [addRuleModal, setAddRuleModal] = useState(false)
 
 
 	const rules = [
@@ -22,20 +24,27 @@ function RuleSetPage() {
 		},
 	]
 
+	const modalToggle = () => {
+		setAddRuleModal(p => !p)
+	}
 
-	return (
+
+	return (<>
 		<ContentWrapper>
 			<div className="rule-set-page">
 				<div className="title">Rules</div>
 				<div className="rule-number">10 RuleSet</div>
 				<div className="mt-5 mb-5 w-100 d-flex justify-content-center align-items-center">
-					<BasicButton text={"Add Rule"} />
+					<BasicButton text={"Add Rule"} click={modalToggle} />
 				</div>
 				{rules.map((rule, i) => {
 					return <RuleItem key={i} name={rule.name} rules={rule.rules} />
 				})}
 			</div>
 		</ContentWrapper>
+		{addRuleModal && <AddRule toggle={modalToggle} />}
+
+	</>
 	);
 }
 

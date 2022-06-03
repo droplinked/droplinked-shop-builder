@@ -71,6 +71,9 @@ export default function UserHeader() {
                         <Link to="/producer/ims">
                             <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>IMS</div>
                         </Link>
+                        <Link to="/producer/ruleset">
+                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Ruleset</div>
+                        </Link>
                     </>
                     }
                     <div className="header-nav-item" onClick={logout}>logout</div>
