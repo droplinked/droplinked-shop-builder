@@ -76,12 +76,12 @@ export default function ShopInfo() {
             { headers: { Authorization: 'Bearer ' + token } }
         )
             .then(res => {
-                updateProfile(res.data)
+                updateProfile(res.data.data)
                 navigate("/register/IMSSelect");
             }
             )
             .catch(e => {
-                toast.error(e.response.data.message.message)
+                toast.error(e.response.data.reason)
                 setLoading(false);
             })
         setLoading(false);
@@ -242,7 +242,9 @@ export default function ShopInfo() {
                 rtl={false}
                 pauseOnFocusLoss
                 draggable
-                pauseOnHover />
+                pauseOnHover
+                theme="dark"
+                />
 
         </div>
     </RegisterStructure>)

@@ -8,10 +8,9 @@ export default function ShopPage() {
     const { profile } = useProfile();
     let { shopname } = useParams();
 
-    console.log(profile);
     return (<>
         <ProducerTopSection
-            pic={profile.avatar}
+            pic={profile.shopLogo}
             shopname={profile.shopName}
             insta={profile.instagram}
             twitter={profile.twitter}

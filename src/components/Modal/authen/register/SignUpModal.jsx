@@ -32,12 +32,13 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
 
         axios.post('https://api.droplinked.com/dev/producer/signup', info)
             .then((res) => {
+                toast.success(res.data.status);
                 close()
                 localStorage.setItem('registerEmail', JSON.stringify(info.email))
                 navigate("/emailConfirmation");
             })
             .catch(error => {
-                toast.error(error.response.data.message.message);
+                toast.error(error.response.data.reason);
                 setLoading(false)
             });
     };
@@ -125,7 +126,9 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
             rtl={false}
             pauseOnFocusLoss
             draggable
-            pauseOnHover />
+            pauseOnHover
+            theme="dark"
+            />
         </div>
     )
 }

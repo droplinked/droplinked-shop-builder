@@ -36,12 +36,12 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
                 toast.success("Address added successfully")
-                localStorage.setItem('address', JSON.stringify(e.data.addressBook))
+                localStorage.setItem('address', JSON.stringify(e.data.data.addressBook))
                 addAddressF(addresInfo);
                 close();
             })
             .catch(e => {
-                toast.error(e.response.data.message.message)
+                toast.error(e.response.data.reason)
                 setLoading(false);
             })
 

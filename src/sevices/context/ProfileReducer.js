@@ -18,6 +18,7 @@ export const ProflieReduser = (profile, action) => {
       localStorage.setItem("checkout-selectedAddress", null);
       localStorage.setItem("checkout-selectedCard", null);
       localStorage.setItem("token", null);
+      localStorage.setItem("registerEmail", null);
       return null;
 
     default:

@@ -9,14 +9,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginModal({ close, switchToggle }) {
+
     const [loading, setLoading] = useState(false)
-    const [message, setMessage] = useState(undefined)
     const { addProfile } = useProfile()
+
     const { register, formState: { errors }, handleSubmit } = useForm();
     let navigate = useNavigate();
 
     const onSubmit = data => {
-
         setLoading(true)
 
         let info = {
@@ -26,42 +26,47 @@ export default function LoginModal({ close, switchToggle }) {
 
         axios.post('https://api.droplinked.com/dev/producer/signin', info)
             .then((res) => {
-                close();
-                switch (res.data.user.status) {
-                    case "NEW":
-                        toast.error("you must virified your account")
-                        localStorage.setItem('registerEmail', JSON.stringify(info.email))
-                        setLoading(false)
-                        navigate("/emailConfirmation");
-                        return;
-                    case "VERIFIED":
-                        addProfile(res.data)
-                        navigate("/register/personalInfo");
-                        return;
-                    case "PROFILE_COMPLETED":
-                        addProfile(res.data)
-                        navigate("/register/shopInfo");
-                        return;
-                    case "SHOP_INFO_COMPLETED":
-                        addProfile(res.data)
-                        navigate("/register/IMSSelect");
-                        return;
-                        case  "IMS_TYPE_COMPLETED":
-                            addProfile(res.data)
-                            navigate(`/shop/${res.data.user.shopName}`);
+
+                if (res.data.status == "success") {
+                    toast.success(res.data.status)
+
+                    close();
+                    switch (res.data.data.user.status) {
+                        case "NEW":
+                            toast.error("you must virified your account")
+                            localStorage.setItem('registerEmail', JSON.stringify(info.email))
+                            setLoading(false)
+                            navigate("/emailConfirmation");
                             return;
-                    case "ACTIVE":
-                        addProfile(res.data)
-                        navigate(`/shop/${res.data.user.shopName}`);
-                        return;
-                    case "DELETED":
-                        toast.error("your account has been deleted")
-                        setLoading(false)
-                        return;
+                        case "VERIFIED":
+                            addProfile(res.data.data)
+                            navigate("/register/personalInfo");
+                            return;
+                        case "PROFILE_COMPLETED":
+                            addProfile(res.data.data)
+                            navigate("/register/shopInfo");
+                            return;
+                        case "SHOP_INFO_COMPLETED":
+                            addProfile(res.data.data)
+                            navigate("/register/IMSSelect");
+                            return;
+                        case "IMS_TYPE_COMPLETED":
+                            addProfile(res.data.data)
+                            navigate(`/shop/${res.data.data.user.shopName}`);
+                            return;
+                        case "ACTIVE":
+                            addProfile(res.data.data)
+                            navigate(`/shop/${res.data.data.user.shopName}`);
+                            return;
+                        case "DELETED":
+                            toast.error("your account has been deleted")
+                            setLoading(false)
+                            return;
+                    }
                 }
             })
-            .catch(error => {
-                toast.error(error.response.data.message.message)
+            .catch(res => {
+                toast.error(res.response.data.reason)
                 setLoading(false)
             });
     };
