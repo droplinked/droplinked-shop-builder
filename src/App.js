@@ -22,8 +22,6 @@ import Address from "./layout/address/Address";
 import Shipping from "./layout/shiping/Shipping";
 import Payments from "./layout/payment/Payments";
 import Confirm from "./layout/confirm/Confirm";
-// import RoleSet from "./layout/role set page/RoleSetPage";
-import RuleSet from "./layout/Producer pages/ruleset/RuleSet";
 import CollectionManagement from "./layout/Brand/management/CollectionManagement";
 import Settings from "./layout/Customer/settings/Setting";
 import NewProduct from "./layout/newProduct/NewProduct";
@@ -38,6 +36,7 @@ import ScrollTop from "./components/features/scrolltop/ScrollTop";
 import ShopPage from "./layout/Producer pages/Main page/shop page/Shop-page-component";
 import ImsMainPage from "./layout/Producer pages/IMS pages/ImsMainPage";
 import AddProductPage from "./layout/Producer pages/add product page/Add-product-page";
+import RuleSetPage from "./layout/Producer pages/ruleset page/RuleSet-page-component"
 
 function App() {
 	return (
@@ -52,41 +51,21 @@ function App() {
 									<ScrollTop>
 										<Routes>
 											<Route exact path="/" element={<HomePage />} />
-											<Route
-												path="/register/personalInfo"
-												element={<PersonalInfo />}
-											/>
+											<Route path="/register/personalInfo" element={<PersonalInfo />}/>
 											<Route path="/register/shopInfo" element={<ShopInfo />} />
-											<Route
-												path="/register/IMSSelect"
-												element={<ImsSelect />}
-											/>
-											<Route
-												path="/register/payment"
-												element={<RegisterPayment />}
-											/>
+											<Route path="/register/IMSSelect"element={<ImsSelect />}/>
+											<Route path="/register/payment"	element={<RegisterPayment />}	/>
 
 											<Route path="/producer/ims" element={<ImsMainPage />} />
-											<Route
-												path="/producer/addProduct"
-												element={<AddProductPage />}
-											/>
+											<Route path="/producer/addProduct"	element={<AddProductPage />}/>
+											<Route path="/producer/ruleset" element={<RuleSetPage />} />
 
 											<Route path="/creatorpage" element={<CreatorPage />} />
 											<Route path="/postpage" element={<PostPage />} />
-											<Route
-												path="/collectionpage"
-												element={<CollectionPage />}
-											/>
+											<Route path="/collectionpage"	element={<CollectionPage />}	/>
 											<Route path="/cart" element={<Checkout />} />
-											<Route
-												path="/collectionmanagement"
-												element={<CollectionManagement />}
-											/>
-											<Route
-												path="/crashpunksdemo"
-												element={<CrashpunkDemo />}
-											/>
+											<Route path="/collectionmanagement"	element={<CollectionManagement />}/>
+											<Route path="/crashpunksdemo" element={<CrashpunkDemo />}/>
 											<Route path="/shop/:shopname" element={<ShopPage />} />
 											<Route path="/addProduct" element={<NewProduct />} />
 											<Route path="/address" element={<Address />} />
@@ -98,7 +77,6 @@ function App() {
 											<Route path="/privacy" element={<Privacy />} />
 											<Route path="/confirm" element={<Confirm />} />
 											<Route path="/crashpunks" element={<Crashpunks />} />
-											<Route path="/ruleset" element={<RuleSet />} />
 											<Route
 												path="/emailConfirmation"
 												element={<ThankPage />}

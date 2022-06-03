@@ -1,0 +1,59 @@
+.rule-item-wrapper {
+  width: 100%;
+  border: 1px solid #b3b3b3;
+  border-radius: 16px;
+  padding: 30px 40px;
+  margin-bottom: 20px;
+
+  & .name {
+    width: 100%;
+    margin-bottom: 20px;
+    p {
+      color: white;
+      font-size: 20px;
+    }
+  }
+
+  & .address {
+    color: white;
+    font-size: 20px;
+    max-width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  & .nft {
+    color: white;
+    font-size: 20px;
+  }
+  & .btn-rule-item {
+    font-size: 16px;
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .rule-item-wrapper {
+    padding: 30px 20px;
+    & .name {
+      p {
+        font-size: 16px;
+      }
+    }
+
+    & .address {
+      font-size: 14px;
+      max-width: 70%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    & .nft {
+      font-size: 14px;
+    }
+    & .btn-rule-item {
+      width: auto;
+      font-size: 12px;
+    }
+  }
+}
