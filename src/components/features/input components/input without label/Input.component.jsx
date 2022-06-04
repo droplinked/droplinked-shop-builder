@@ -2,7 +2,7 @@
 import "../basic input component/Basic-component.scss"
 import { useRef } from "react"
 
-export default function InputNoLabel({ type, refs, text, error, change }) {
+export default function InputNoLabel({ type, refs, text, error, change , value }) {
 
     return (
         <>
@@ -14,7 +14,7 @@ export default function InputNoLabel({ type, refs, text, error, change }) {
                 </div>
                 :
                 <div className="basic-input-component-wrapper">
-                    <input type="text" placeholder={text} ref={refs} onChange={change} />
+                    <input type="text" placeholder={text} ref={refs} onChange={change} value={value} />
                     {error && <span className="register-error">{`${text} is required`}</span>}
                 </div>
             }

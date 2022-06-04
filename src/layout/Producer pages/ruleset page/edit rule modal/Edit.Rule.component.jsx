@@ -1,4 +1,4 @@
-import "./Addrule.modal.style.scss"
+
 import { useState } from "react"
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
@@ -8,9 +8,9 @@ import { toast } from 'react-toastify';
 import axios from "axios"
 
 
-export default function AddRule({ toggle }) {
-    const [ruleName, setRuleName] = useState("")
-    const [rules, setRules] = useState([{ address: "", type: "NFT" }])
+export default function EditRule({ toggle, RuleId, RuleName, Rule }) {
+    const [ruleName, setRuleName] = useState(RuleName)
+    const [rules, setRules] = useState(Rule)
     const [disableBtn, setDisableBtn] = useState(false)
 
     const token = JSON.parse(localStorage.getItem('token'));
@@ -37,7 +37,7 @@ export default function AddRule({ toggle }) {
             rules: rules
         }
         setDisableBtn(true)
-        axios.post('https://api.droplinked.com/dev/producer/ruleset', ruleInfo,
+        axios.put(`https://api.droplinked.com/dev/producer/ruleset/${RuleId}`, ruleInfo,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
                 setDisableBtn(false)
@@ -92,7 +92,7 @@ export default function AddRule({ toggle }) {
         <div className="add-rule-moda-wrapper">
             <div className="add-rule-moda-body">
                 <div className="input-wrap">
-                    <BasicInput text={"Rule name"} change={changeName} />
+                    <BasicInput text={"Rule name"} change={changeName} value={ruleName} />
                 </div>
                 <div className="w-100 d-flex justify-content-center align-items-center mt-4 mb-4">
                     <p className="text">The customer must meet at least one of the rules listed below (OR)</p>
@@ -101,10 +101,10 @@ export default function AddRule({ toggle }) {
                     return (
                         <div key={i} className="w-100 d-flex justify-content-between align-items-center mt-4 mb-4">
                             <div style={{ width: '40%' }}>
-                                <InputNoLabel text={"address"} change={(e) => changeRuleAddress(e, i)} />
+                                <InputNoLabel text={"address"} change={(e) => changeRuleAddress(e, i)} value={item.address} />
                             </div>
                             <div style={{ width: '40%' }} className="d-flex">
-                                <DropDownComp valArray={dropVal} change={(e) => changeNft(e, i)} />
+                                <DropDownComp valArray={dropVal} change={(e) => changeNft(e, i)} value={item.type}  />
                                 <p className="delete-btn" onClick={() => deletRule(i)}>delete</p>
                             </div>
                         </div>
@@ -117,12 +117,12 @@ export default function AddRule({ toggle }) {
                         <BasicButton text="+" />
                     </div>
                 </div>
-                <div className="w-100 d-flex justify-content-between align-items-center" style={{marginTop:"80px"}}>
+                <div className="w-100 d-flex justify-content-between align-items-center" style={{ marginTop: "80px" }}>
                     <div className="w-40">
                         <BasicButton text="submit" click={submitForm} disable={disableBtn} />
                     </div>
                     <div className="w-40">
-                        <BasicButton text="cancel" click={toggle} disable={disableBtn}/>
+                        <BasicButton text="cancel" click={toggle} disable={disableBtn} />
                     </div>
                 </div>
 

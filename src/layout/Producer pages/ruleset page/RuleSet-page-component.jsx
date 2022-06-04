@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 function RuleSetPage() {
 	const [addRuleModal, setAddRuleModal] = useState(false)
 	const [rules, setRules] = useState(null)
+	const [render, setRender] = useState(false)
 
 	const token = JSON.parse(localStorage.getItem('token'));
 
@@ -20,7 +21,7 @@ function RuleSetPage() {
 			{ headers: { Authorization: 'Bearer ' + token } })
 			.then(e => { setRules(e.data.data.ruleSets) })
 			.catch(e => console.log(e))
-	},[addRuleModal])
+	},[addRuleModal ,render])
 
 	const modalToggle = () => {
 		setAddRuleModal(p => !p)
@@ -37,7 +38,7 @@ function RuleSetPage() {
 				{(rules) ?
 					<>
 						{rules.map((rule, i) => {
-							return <RuleItem key={i} name={rule.name} rules={rule.rules} />
+							return <RuleItem key={i} name={rule.name} rules={rule.rules} ruleId={rule._id} ren={setRender} />
 						})}
 					</>
 					:
