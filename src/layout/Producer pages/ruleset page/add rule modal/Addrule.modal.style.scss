@@ -53,6 +53,15 @@ input:-webkit-autofill:focus {
     animation-duration: 0.4s;
     padding: 40px 40px 40px 40px;
   }
+
+  & .delete-btn{
+    color:#fd6060;
+    font-size: 12px;
+    width: auto;
+    height: 100%;
+    margin-left: 5px;
+    cursor: pointer;
+  }
   & .text{
     font-size: 18px;
     color: white;
@@ -71,9 +80,13 @@ input:-webkit-autofill:focus {
       width: 100%;
       padding: 30px 20px 60px 20px;
     }
+    & .delete-btn{
+      font-size: 8px;
+    }
     & .text{
       font-size: 8px;
       color: white;
+      margin-left: 5px;
     }
     & .input-wrap{
       width: 10 0%;
