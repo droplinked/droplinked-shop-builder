@@ -38,6 +38,7 @@ import ImsMainPage from "./layout/Producer pages/IMS pages/ImsMainPage";
 import AddProductPage from "./layout/Producer pages/add product page/Add-product-page";
 import RuleSetPage from "./layout/Producer pages/ruleset page/RuleSet-page-component"
 import CollectionMainPage from "./layout/Producer pages/collection pages/Collection main page/Collection-mainpage-component";
+import AddCollectionPage from "./layout/Producer pages/collection pages/add collection page/Add-collection-component"
 
 
 
@@ -63,6 +64,7 @@ function App() {
 											<Route path="/producer/addProduct"	element={<AddProductPage />}/>
 											<Route path="/producer/ruleset" element={<RuleSetPage />} />
 											<Route path="/producer/collection" element={<CollectionMainPage />} />
+											<Route path="/producer/collection/addCollection" element={<AddCollectionPage />} />
 
 											<Route path="/creatorpage" element={<CreatorPage />} />
 											<Route path="/postpage" element={<PostPage />} />
