@@ -1,0 +1,47 @@
+.Collection-wrapper-component {
+  width: 100%;
+  border: 1px solid #b3b3b3;
+  border-radius: 16px;
+  padding: 30px 24px;
+
+  & .name {
+    color: #fff;
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  & .collection-btn {
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #353536;
+    border-radius: 8px;
+    font-size: 14px;
+    padding:8px 15px;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  .Collection-wrapper-component {
+    width: 100%;
+    border: 1px solid #b3b3b3;
+    border-radius: 16px;
+    padding: 30px 12px 20px 12px;
+  
+    & .name {
+      font-size: 18px;
+      padding-top: 3px;
+    }
+  
+    & .collection-btn {
+      border: none;
+      outline: none;
+      color: #fff;
+      background: #353536;
+      border-radius: 8px;
+      font-size: 12px;
+      padding:8px 15px 5px 15px;
+    }
+  }
+}

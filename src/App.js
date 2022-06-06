@@ -16,7 +16,7 @@ import HomePage from "./layout/homepage test/HomePage";
 import BuyProduct from "./layout/buy product/BuyProduct";
 import Terms from "./layout/terms/Terms";
 import Privacy from "./layout/privacy/Privacy";
-import Crashpunks from "./layout/crashpunk/crashpunks";
+import Crashpunks from "./layout/crashpunk/crashpunks";   //crashpunks page
 import ProctuPageTest from "./layout/product list test/ProctuPageTest";
 import Address from "./layout/address/Address";
 import Shipping from "./layout/shiping/Shipping";
@@ -37,6 +37,9 @@ import ShopPage from "./layout/Producer pages/Main page/shop page/Shop-page-comp
 import ImsMainPage from "./layout/Producer pages/IMS pages/ImsMainPage";
 import AddProductPage from "./layout/Producer pages/add product page/Add-product-page";
 import RuleSetPage from "./layout/Producer pages/ruleset page/RuleSet-page-component"
+import CollectionMainPage from "./layout/Producer pages/collection pages/Collection main page/Collection-mainpage-component";
+
+
 
 function App() {
 	return (
@@ -59,6 +62,7 @@ function App() {
 											<Route path="/producer/ims" element={<ImsMainPage />} />
 											<Route path="/producer/addProduct"	element={<AddProductPage />}/>
 											<Route path="/producer/ruleset" element={<RuleSetPage />} />
+											<Route path="/producer/collection" element={<CollectionMainPage />} />
 
 											<Route path="/creatorpage" element={<CreatorPage />} />
 											<Route path="/postpage" element={<PostPage />} />
@@ -76,7 +80,7 @@ function App() {
 											<Route path="/terms" element={<Terms />} />
 											<Route path="/privacy" element={<Privacy />} />
 											<Route path="/confirm" element={<Confirm />} />
-											<Route path="/crashpunks" element={<Crashpunks />} />
+											<Route path="/crashpunks" element={<CreatorPage />} />
 											<Route
 												path="/emailConfirmation"
 												element={<ThankPage />}
