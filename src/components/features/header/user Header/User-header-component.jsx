@@ -55,7 +55,7 @@ export default function UserHeader() {
             ?
             <HeaderItem click={authenticate}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />Wallet</HeaderItem>
             :
-            <HeaderItem click={onSignOut}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />Wallet</HeaderItem>
+            <HeaderItem style={{color:"#8053ff"}} click={onSignOut}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />Wallet</HeaderItem>
         }
         <div className="login-wrapper">
             {(Profileimage)
