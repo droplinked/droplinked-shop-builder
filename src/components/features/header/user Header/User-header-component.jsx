@@ -53,9 +53,9 @@ export default function UserHeader() {
     return (<>
         {(userData == undefined)
             ?
-            <HeaderItem click={authenticate}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />wallet</HeaderItem>
+            <HeaderItem click={authenticate}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />Wallet</HeaderItem>
             :
-            <HeaderItem click={onSignOut}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />wallet</HeaderItem>
+            <HeaderItem click={onSignOut}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />Wallet</HeaderItem>
         }
         <div className="login-wrapper">
             {(Profileimage)
@@ -67,23 +67,22 @@ export default function UserHeader() {
                 />
                 :
                 <div
-                className="header-profile rounded-circle"
-                style={{backgroundColor:"#8053ff"}}
-                onClick={() => { setToggleHeader(p => !p) }}
-            ></div>
-        }
+                    className="header-profile rounded-circle"
+                    onClick={() => { setToggleHeader(p => !p) }}
+                ></div>
+            }
 
             {toggleHeader &&
                 <div className="header-nav">
                     <div className="header-nav-item" onClick={clickProfile}>Profile</div>
                     {(userStatus == "IMS_TYPE_COMPLETED") && <>
-                        <div className="header-nav-item">Settings</div>
                         <Link to="/producer/ims">
-                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>IMS</div>
+                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Inventory</div>
                         </Link>
                         <Link to="/producer/ruleset">
-                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Rules</div>
+                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Rulesets</div>
                         </Link>
+                        <div className="header-nav-item">Settings</div>
                     </>
                     }
                     <div className="header-nav-item" onClick={logout}>Logout</div>

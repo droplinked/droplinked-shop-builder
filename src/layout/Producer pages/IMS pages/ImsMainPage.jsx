@@ -37,8 +37,8 @@ function ImsMainPage() {
 
     return (<>
         <div className="IMS-page-wrapper">
-            <div className="ims-title">Merch</div>
-            <div className="number-of-merchs">{(products != undefined) ? products.length : '0'} Merchs</div>
+            <div className="ims-title">Merchandise</div>
+            <div className="number-of-merchs">{(products != undefined) ? products.length : '0'} Listed</div>
             <div className="w-100 d-flex justify-content-center align-items-center mt-5">
                 <Link to="/producer/addProduct" style={{ width: "100%", display: "flex" }}>
                     <BasicButton text={"Add merch"} />

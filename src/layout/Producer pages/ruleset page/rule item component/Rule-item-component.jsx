@@ -44,11 +44,11 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
                 </div>)
             })}
             <div className="w-100 d-flex justify-content-between mt-4">
-                <button className="btn-rule-item" style={{ color: "#fd6060" }} onClick={toggleDelete}>delete</button>
-                <button className="btn-rule-item" style={{ color: "#8053ff" }} onClick={Edit}>edit</button>
+                <button className="btn-rule-item" style={{ color: "#fd6060" }} onClick={toggleDelete}>Delete</button>
+                <button className="btn-rule-item" style={{ color: "#8053ff" }} onClick={Edit}>Edit</button>
             </div>
             {editModal && <EditRule toggle={toggleEdit} RuleId={ruleId} RuleName={name} Rule={rules} />}
-            <SmallModal header={"Delete Rule"} show={deleteModal} hide={() => { setDeleteModal(false) }} text={"Are you sure you want to delete this rule?"} click={ClickDelete} />
+            <SmallModal header={"Delete Rule"} show={deleteModal} hide={() => { setDeleteModal(false) }} text={`Are you sure you want to  delete this rule?`} click={ClickDelete} />
         </div>
     )
 }

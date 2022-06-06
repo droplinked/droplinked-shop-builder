@@ -101,11 +101,11 @@ export default function AddRule({ toggle }) {
                     return (
                         <div key={i} className="w-100 d-flex justify-content-between align-items-center mt-4 mb-4">
                             <div style={{ width: '40%' }}>
-                                <InputNoLabel text={"address"} change={(e) => changeRuleAddress(e, i)} />
+                                <InputNoLabel text={"Address"} change={(e) => changeRuleAddress(e, i)} />
                             </div>
                             <div style={{ width: '40%' }} className="d-flex">
                                 <DropDownComp valArray={dropVal} change={(e) => changeNft(e, i)} />
-                                <p className="delete-btn" onClick={() => deletRule(i)}>delete</p>
+                                <p className="delete-btn" onClick={() => deletRule(i)}>X</p>
                             </div>
                         </div>
                     )
@@ -114,15 +114,15 @@ export default function AddRule({ toggle }) {
 
                 <div className="w-100 d-flex justify-content-center align-items-center">
                     <div className="w-30 mt-4 " onClick={addRule}>
-                        <BasicButton text="+" />
+                        <BasicButton text="Add" />
                     </div>
                 </div>
-                <div className="w-100 d-flex justify-content-between align-items-center" style={{marginTop:"80px"}}>
+                <div className="w-100 d-flex justify-content-between align-items-center" style={{ marginTop: "80px" }}>
                     <div className="w-40">
-                        <BasicButton text="submit" click={submitForm} disable={disableBtn} />
+                        <BasicButton text="Cancel" click={toggle} disable={disableBtn} />
                     </div>
                     <div className="w-40">
-                        <BasicButton text="cancel" click={toggle} disable={disableBtn}/>
+                        <BasicButton text="Submit" click={submitForm} disable={disableBtn} />
                     </div>
                 </div>
 

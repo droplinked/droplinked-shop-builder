@@ -10,11 +10,11 @@ function ProducerTopSection({ pic, shopname, insta, twitter, discord, web }) {
     return (<>
         <div className="top-section-wrapper">
             <div className="d-flex justify-content-center align-content-center">
-                <a href="https://stxnft.com/collections/crashpunks">
+                
                     <div className='img-wrap' style={{border:"4px solid #8053ff"}}>
                         {pic && <img src={pic} alt='' />}
                     </div>
-                </a>
+               
             </div>
             <div className="d-flex justify-content-center align-content-center">
                 <div className="name-text">{shopname}</div>

@@ -86,7 +86,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
         <form className="add-new-variant-form">
             {
                 optionsArray.map((opt, i) => {
-                    let name = (opt == "628df708028da49d3f6a73eb") ? "size" : "color";
+                    let name = (opt == "628df708028da49d3f6a73eb") ? "Size" : "Color";
                     return (
                         <div className="rw-rp" id={i}>
                             <label>{name}</label>
@@ -96,20 +96,20 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
                 })
             }
             <div className="rw-rp">
-                <label>price</label>
+                <label>Price</label>
                 <input type="number" placeholder="100 $" onChange={changePrice} />
             </div>
             <div className="rw-rp">
-                <label>quantity</label>
+                <label>Quantity</label>
                 <input type="number" placeholder="12" onChange={changeQuantity} />
             </div>
             <div className="rw-rp">
-                <label>external ID</label>
+                <label>External ID</label>
                 <input type="number" placeholder="1794012584" onChange={changeexternal} />
             </div>
             <div className="rw-rp">
-                <BasicButton text={"add"} click={submitvariant} style={{ width: "40%" }} />
-                <BasicButton text={"cancel"} click={toggle} style={{ width: "40%" }} />
+            <BasicButton text={"Cancel"} click={toggle} style={{ width: "40%" }} />
+                <BasicButton text={"Add"} click={submitvariant} style={{ width: "40%" }} />       
             </div>
         </form>
     </>)

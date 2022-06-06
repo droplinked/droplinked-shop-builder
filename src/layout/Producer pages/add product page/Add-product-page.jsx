@@ -31,8 +31,8 @@ function AddProductPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(token==null){navigate("/")}
-        
+        if (token == null) { navigate("/") }
+
         let url1 = "https://api.droplinked.com/dev/producer/product/variant"
         let url2 = "https://api.droplinked.com/dev/producer/collection"
 
@@ -140,15 +140,15 @@ function AddProductPage() {
 
     return (
         <div className="add-product-page-wrapper"  >
-            <div className="ims-title mb-5">Add new merch</div>
+            <div className="ims-title mb-5">Add new item</div>
             <div className="mb-4 w-100 p-0">
-                <BasicInput text={"merch name"} change={changeTitle} />
+                <BasicInput text={"Title"} change={changeTitle} />
             </div>
             <div className="mb-4 w-100 p-0">
-                <BasicInput type={"textarea"} change={changeDescription} text={"merch description"} />
+                <BasicInput type={"textarea"} change={changeDescription} text={"Description "} />
             </div>
             <dir className="drop-wrape">
-                <BasicDropDown valArray={collectionList} place={"choose collection"} cnhg={changeCollection} />
+                <BasicDropDown valArray={collectionList} place={"Choose collection"} cnhg={changeCollection} />
             </dir>
             <div className="mt-5 mb-3 w-100 d-flex justify-content-center align-items-center">
                 <InputImageComponent setState={setImages} state={images} />
@@ -182,8 +182,8 @@ function AddProductPage() {
 
             <div className="d-flex justify-content-between align-items-center"
                 style={{ marginTop: "80px", width: "100%" }}>
-                <BasicButton text={"submit"} click={submitForm} disable={disbtn} />
-                <BasicButton text={"cancel"} click={submitForm} disable={disbtn} />
+                <BasicButton text={"Cancel"} click={submitForm} disable={disbtn} />
+                <BasicButton text={"Submit"} click={submitForm} disable={disbtn} />
             </div>
             <ToastContainer
                 position="bottom-right"

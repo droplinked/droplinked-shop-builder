@@ -48,20 +48,20 @@ export default function ImsSelect() {
         <RegisterStructure level={"imstype"}>
             <div className="ims-select-wrapper">
                 <div className="header">Select an inventory management system</div>
-                <div className="w-100 d-flex justify-content-between" style={{ marginTop: "60px" }}>
+                <div className="w-100 d-flex flex-column justify-content-center" style={{ marginTop: "60px" }}>
                     <button className={`ims-btn ${(ImsSystem == "DROPLINKED") ? "ims-checked-btn" : "ims-unchecked-btn"}`}
                         onClick={() => { setImsSystem("DROPLINKED") }}
-                    >IMS</button>
+                    >DIMST</button>
                     <button className={`ims-btn ${(ImsSystem == "SHOPIFY") ? "ims-checked-btn" : "ims-unchecked-btn"}`}
                         onClick={() => { setImsSystem("SHOPIFY") }}>Shopify</button>
                 </div>
                 <div className="d-flex justify-content-between w-100 mt-5">
                     <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
                         onClick={() => { navigate("/register/shopInfo") }}
-                    >back</button>
+                    >Back</button>
                     <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
                         onClick={submitType}
-                    >submit</button>
+                    >Submit</button>
                 </div>
             </div>
             <ToastContainer

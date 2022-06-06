@@ -71,7 +71,7 @@ export default function InputImageComponent({ setState, state }) {
                     :
                     <div className="input-add-image"
                         onClick={() => { fileRef.current.click() }}>
-                        <p>+ add image</p>
+                        <p>+ Add image</p>
                     </div>
                 }
 
