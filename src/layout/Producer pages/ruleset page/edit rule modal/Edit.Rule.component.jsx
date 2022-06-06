@@ -104,8 +104,8 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule }) {
                                 <InputNoLabel text={"address"} change={(e) => changeRuleAddress(e, i)} value={item.address} />
                             </div>
                             <div style={{ width: '40%' }} className="d-flex">
-                                <DropDownComp valArray={dropVal} change={(e) => changeNft(e, i)} value={item.type}  />
-                                <p className="delete-btn" onClick={() => deletRule(i)}>delete</p>
+                                <DropDownComp valArray={dropVal} change={(e) => changeNft(e, i)} value={item.type} />
+                                <p className="delete-btn" style={{fontSize:"20px" , margin:"auto"}} onClick={() => deletRule(i)}>X</p>
                             </div>
                         </div>
                     )
@@ -114,15 +114,15 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule }) {
 
                 <div className="w-100 d-flex justify-content-center align-items-center">
                     <div className="w-30 mt-4 " onClick={addRule}>
-                        <BasicButton text="+" />
+                        <BasicButton text="Add" />
                     </div>
                 </div>
                 <div className="w-100 d-flex justify-content-between align-items-center" style={{ marginTop: "80px" }}>
                     <div className="w-40">
-                        <BasicButton text="submit" click={submitForm} disable={disableBtn} />
+                        <BasicButton text="cancel" click={toggle} disable={disableBtn} />
                     </div>
                     <div className="w-40">
-                        <BasicButton text="cancel" click={toggle} disable={disableBtn} />
+                        <BasicButton text="submit" click={submitForm} disable={disableBtn} />
                     </div>
                 </div>
 

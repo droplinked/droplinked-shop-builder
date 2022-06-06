@@ -105,7 +105,7 @@ export default function AddRule({ toggle }) {
                             </div>
                             <div style={{ width: '40%' }} className="d-flex">
                                 <DropDownComp valArray={dropVal} change={(e) => changeNft(e, i)} />
-                                <p className="delete-btn" onClick={() => deletRule(i)}>X</p>
+                                <p className="delete-btn" style={{fontSize:"20px" , margin:"auto"}} onClick={() => deletRule(i)}>X</p>
                             </div>
                         </div>
                     )

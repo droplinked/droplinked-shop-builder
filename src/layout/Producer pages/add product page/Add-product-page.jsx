@@ -61,6 +61,9 @@ function AddProductPage() {
     const changeCollection = (e) => {
         setSelectCollection(e.target.value)
     }
+    const cancelForm = () => {
+        navigate("/producer/ims") 
+    }
 
 
 
@@ -182,7 +185,7 @@ function AddProductPage() {
 
             <div className="d-flex justify-content-between align-items-center"
                 style={{ marginTop: "80px", width: "100%" }}>
-                <BasicButton text={"Cancel"} click={submitForm} disable={disbtn} />
+                <BasicButton text={"Cancel"} click={cancelForm} disable={disbtn} />
                 <BasicButton text={"Submit"} click={submitForm} disable={disbtn} />
             </div>
             <ToastContainer
