@@ -31,7 +31,7 @@ function RuleSetPage() {
 		<ContentWrapper>
 			<div className="rule-set-page">
 				<div className="title">Rules</div>
-				{(rules) && <div className="rule-number">{rules.length} RuleSet</div>}
+				{(rules) && <div className="rule-number">{rules.length} Rule sets</div>}
 				<div className="mt-5 mb-5 w-100 d-flex justify-content-center align-items-center">
 					<BasicButton text={"Add Rule"} click={modalToggle} />
 				</div>

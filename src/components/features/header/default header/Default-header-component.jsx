@@ -22,7 +22,7 @@ export default function DefaulHeader() {
 
 
     return (<>
-    <HeaderItem click={toggleLogin} style={{backgroundColor:"#222"}}>login</HeaderItem>
+    <HeaderItem click={toggleLogin} style={{backgroundColor:"#222"}}>Login</HeaderItem>
         {(url == "/" || url=="/emailConfirmation") ?
             <HeaderItem click={togglesignup}>Join today</HeaderItem>
             :

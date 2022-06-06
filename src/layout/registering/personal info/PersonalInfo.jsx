@@ -113,7 +113,7 @@ export default function PersonalInfo() {
             <div className="register-personalinfo-wrapper">
 
                 <div className="input-perosnal-image"
-                    style={{ backgroundImage: `url(${(profileImg == undefined || profileImg == "") ? img : profileImg})` }}>
+                    style={{ backgroundImage: `url(${(profileImg == undefined || profileImg == "") ? "" : profileImg})` }}>
                     {(uploadingImage) &&
                         <div className="spinner-border" role="status">
                             <span className="sr-only"></span>
@@ -133,16 +133,16 @@ export default function PersonalInfo() {
                     <div className="d-flex justify-content-between w-100" style={{ maxWidth: "100%" }}>
                         <div className="register-label-input" style={{ width: "45%" }}>
                             <label>First name</label>
-                            <input type="text" placeholder="firstname"
+                            <input type="text" 
                                 {...register("firstName", { required: true })} />
-                            {errors.firstName?.type === 'required' && <span className="register-error">firstname is required</span>}
+                            {errors.firstName?.type === 'required' && <span className="register-error">required</span>}
                         </div>
 
                         <div className="register-label-input" style={{ width: "45%" }}>
                             <label>Last name</label>
-                            <input type="text" placeholder="lastname"
+                            <input type="text" 
                                 {...register("lastName", { required: true })} />
-                            {errors.lastName?.type === 'required' && <span className="register-error">lastname is required</span>}
+                            {errors.lastName?.type === 'required' && <span className="register-error">required</span>}
                         </div>
 
                     </div>
@@ -152,10 +152,10 @@ export default function PersonalInfo() {
                     </div>
                     <div className="register-label-input ">
                         <label>Phone number</label>
-                        <input type="number" placeholder="phonenumber"
+                        <input type="number" 
                             {...register("phoneNumber")} />
                     </div>
-                    {errors.phoneNumber?.type === 'required' && <span className="register-error">phone number is required</span>}
+                    {/* {errors.phoneNumber?.type === 'required' && <span className="register-error">phone number is required</span>} */}
                     <div className="d-flex justify-content-end w-100">
                         <input type="submit" value="next" className={`next-back-btn ${(loading) ? "loading-btn" : "non-loading-btn"}`} />
                     </div>

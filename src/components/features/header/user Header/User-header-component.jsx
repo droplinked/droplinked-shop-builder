@@ -58,11 +58,21 @@ export default function UserHeader() {
             <HeaderItem click={onSignOut}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />wallet</HeaderItem>
         }
         <div className="login-wrapper">
-            <img
-                src={(Profileimage) ? Profileimage : profileimg}
+            {(Profileimage)
+                ?
+                <img
+                    src={Profileimage}
+                    className="header-profile rounded-circle"
+                    onClick={() => { setToggleHeader(p => !p) }}
+                />
+                :
+                <div
                 className="header-profile rounded-circle"
+                style={{backgroundColor:"#8053ff"}}
                 onClick={() => { setToggleHeader(p => !p) }}
-            />
+            ></div>
+        }
+
             {toggleHeader &&
                 <div className="header-nav">
                     <div className="header-nav-item" onClick={clickProfile}>Profile</div>
@@ -72,11 +82,11 @@ export default function UserHeader() {
                             <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>IMS</div>
                         </Link>
                         <Link to="/producer/ruleset">
-                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Ruleset</div>
+                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Rules</div>
                         </Link>
                     </>
                     }
-                    <div className="header-nav-item" onClick={logout}>logout</div>
+                    <div className="header-nav-item" onClick={logout}>Logout</div>
                 </div>
             }
         </div>

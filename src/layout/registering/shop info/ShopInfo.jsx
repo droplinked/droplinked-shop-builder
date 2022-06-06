@@ -31,8 +31,8 @@ export default function ShopInfo() {
     const twitterInp = useRef(null);
     const instaInp = useRef(null);
 
-    
-   
+
+
 
 
     useEffect(() => {
@@ -68,7 +68,7 @@ export default function ShopInfo() {
                 instagram: instaInp.current.value,
                 webUrl: siteInp.current.value
             },
-            shopLogo:  profileImg ,
+            shopLogo: profileImg,
             shopAddressID: address._id
         }
 
@@ -166,14 +166,14 @@ export default function ShopInfo() {
                 </div>
 
                 <div className="register-label-input ">
-                    <label>shopname</label>
+                    <label>domain</label>
                     <input type="text" placeholder="" value={`droplinked.io/${shopname}`} readonly />
                 </div>
 
                 <div className="register-label-input ">
                     <label>about your shop</label>
                     <textarea id="w3review" name="w3review" rows="4" cols="50"
-                        type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""}
+                        type="text" ref={descriptionInp} defaultValue={user.description || ""}
                     >
 
 
@@ -188,12 +188,12 @@ export default function ShopInfo() {
 
                 <div className="register-label-input ">
                     <label>website</label>
-                    <input type="text" placeholder="www.droplinked.com" ref={siteInp} defaultValue={user.web || ""} />
+                    <input type="text"  ref={siteInp} defaultValue={user.web || ""} />
                 </div>
 
                 <div className="register-label-input ">
                     <label>discord</label>
-                    <input type="text" placeholder="droplinke#0810" ref={discordInp} defaultValue={user.discord || ""} />
+                    <input type="text" placeholder="username" ref={discordInp} defaultValue={user.discord || ""} />
                 </div>
 
                 <div className="register-label-input ">
@@ -208,7 +208,7 @@ export default function ShopInfo() {
 
                 {(addressData == undefined) ?
                     <div className="d-flex justify-content-center">
-                        <button className="next-back-btn" style={{ width: "250px", border: "1px solid white", fontSize: "18px" }} onClick={() => setShowAddress(true)}>Add shop address</button>
+                        <button className="next-back-btn" style={{ width: "250px", border: "1px solid white", fontSize: "18px" }} onClick={() => setShowAddress(true)}>Add address</button>
                     </div>
                     :
                     <div className="address-detail-shopinfo">
@@ -244,7 +244,7 @@ export default function ShopInfo() {
                 draggable
                 pauseOnHover
                 theme="dark"
-                />
+            />
 
         </div>
     </RegisterStructure>)

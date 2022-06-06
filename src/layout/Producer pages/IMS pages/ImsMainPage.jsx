@@ -37,11 +37,11 @@ function ImsMainPage() {
 
     return (<>
         <div className="IMS-page-wrapper">
-            <div className="ims-title">Merchs</div>
+            <div className="ims-title">Merch</div>
             <div className="number-of-merchs">{(products != undefined) ? products.length : '0'} Merchs</div>
             <div className="w-100 d-flex justify-content-center align-items-center mt-5">
                 <Link to="/producer/addProduct" style={{ width: "100%", display: "flex" }}>
-                    <BasicButton text={"Add merchs"} />
+                    <BasicButton text={"Add merch"} />
                 </Link>
             </div>
             <div style={{ margin: "15px 0xp" }}>
@@ -53,7 +53,7 @@ function ImsMainPage() {
                     <>{(products.length <= 0)
                         ?
                         <div className="w-100 d-flex justify-content-center align-items-center">
-                            <p className="no-product">no merch</p>
+                            <p className="no-product"></p>
                         </div>
                         :
                         <>
