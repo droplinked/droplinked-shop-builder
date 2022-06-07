@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./shipping.scss"
 import { useState, useEffect } from "react";
 import axios from 'axios';
-import { useProfile } from "../../sevices/hooks/useProfile"
+import { useProfile } from "../../../sevices/hooks/useProfile"
 
 export default function Shipping() {
     const [shipingRates, setShippingRates] = useState([])

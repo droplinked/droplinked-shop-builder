@@ -4,11 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import add from "./icons/add.png";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useAddress } from "../../sevices/hooks/useAddress";
-import { useProfile } from "../../sevices/hooks/useProfile"
+import { useAddress } from "../../../sevices/hooks/useAddress";
+import { useProfile } from "../../../sevices/hooks/useProfile"
 import axios from 'axios';
-import Loading from "../../components/features/loading/Loading"
-import NotEnough from "../../components/errors component/not_enough/NotEnough";
+import Loading from "../../../components/features/loading/Loading"
+import NotEnough from "../../../components/errors component/not_enough/NotEnough";
 
 
 function Address() {

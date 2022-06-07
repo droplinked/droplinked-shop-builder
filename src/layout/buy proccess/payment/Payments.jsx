@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Creadit from "./Creadit"
 import axios from 'axios';
-import { useProfile } from "../../sevices/hooks/useProfile"
+import { useProfile } from "../../../sevices/hooks/useProfile"
 import StripContainer from './StripContainer';
 import { Link } from "react-router-dom";
 
