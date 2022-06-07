@@ -1,6 +1,7 @@
 import "./Collection-wrapper-style.scss"
 import ProductLarge from "../product components/product component large/ProductLarge"
 import productImg from "./productIms.png"
+import { Link } from "react-router-dom"
 
 export default function CollectionWrapper({ name }) {
 
@@ -8,7 +9,9 @@ export default function CollectionWrapper({ name }) {
         <div className="Collection-wrapper-component">
             <div className="d-flex justify-content-between align-items-center h-auto">
                 <div className="name">{name}</div>
-                <button className="collection-btn">View Collection</button>
+                <Link to="/collection/1">
+                    <button className="collection-btn">View Collection</button>
+                </Link>
             </div>
             <div className=" mt-4 d-flex flex-wrap">
                 <div className="col-6 col-md-3 p-1">

@@ -39,6 +39,7 @@ import AddProductPage from "./layout/Producer pages/add product page/Add-product
 import RuleSetPage from "./layout/Producer pages/ruleset page/RuleSet-page-component"
 import CollectionMainPage from "./layout/Producer pages/collection pages/Collection main page/Collection-mainpage-component";
 import AddCollectionPage from "./layout/Producer pages/collection pages/add collection page/Add-collection-component"
+import ViewPageCollection from "./layout/Producer pages/collection pages/view collectiom page/View-collection-page-component"
 
 
 
@@ -65,6 +66,8 @@ function App() {
 											<Route path="/producer/ruleset" element={<RuleSetPage />} />
 											<Route path="/producer/collection" element={<CollectionMainPage />} />
 											<Route path="/producer/collection/addCollection" element={<AddCollectionPage />} />
+
+											<Route path="/collection/1" element={<ViewPageCollection />} />
 
 											<Route path="/creatorpage" element={<CreatorPage />} />
 											<Route path="/postpage" element={<PostPage />} />
