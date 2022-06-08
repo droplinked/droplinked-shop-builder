@@ -23,11 +23,23 @@
       font-weight: 600;
       font-size: 30px;
     }
+
+    & .no-collection-text{
+      margin-top: 20px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 30px;
+      text-align: center;
+    }
   }
   
   @media only screen and (max-width: 768px) {
     .Collection-page-wrapper {
       margin:0px 20px;
+
+      & .no-collection-text{
+        font-size: 20px;
+      }
     }
   }
   

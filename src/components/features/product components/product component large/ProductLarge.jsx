@@ -26,7 +26,7 @@ function ProductLarge({ price, title, imageUrl, id }) {
             </Link>
 
             <div className="brand-name">{title}</div>
-            <div className="priceS" dangerouslySetInnerHTML={{ __html: price }}></div>
+            {/* <div className="priceS" dangerouslySetInnerHTML={{ __html: price }}></div> */}
         </div>
     )
 }

@@ -3,7 +3,8 @@ import ProductLarge from "../product components/product component large/ProductL
 import productImg from "./productIms.png"
 import { Link } from "react-router-dom"
 
-export default function CollectionWrapper({ name }) {
+export default function CollectionWrapper({ name, productsArray }) {
+    console.log(productsArray);
 
     return (
         <div className="Collection-wrapper-component">
@@ -13,20 +14,26 @@ export default function CollectionWrapper({ name }) {
                     <button className="collection-btn">View Collection</button>
                 </Link>
             </div>
-            <div className=" mt-4 d-flex flex-wrap">
-                <div className="col-6 col-md-3 p-1">
-                    <ProductLarge title={"product"} price={"100$"} imageUrl={productImg} id={0} />
+            {(productsArray.length == 0)
+                ?
+                <div className="d-flex">
+                    <p className="text-align-center">No Product</p>
                 </div>
-                <div className="col-6 col-md-3 p-1">
-                    <ProductLarge title={"product"} price={"100$"} imageUrl={productImg} id={1} />
+                :
+                <div className=" mt-4 d-flex flex-wrap">
+                    {productsArray.filter((product, i) => {
+                        if (i < 4) { return product }
+                    }).map((product, i) => {
+                      return(  <div key={i} className="col-6 col-md-3 p-1">
+                            <ProductLarge title={product.title}  imageUrl={product.media[0].url} id={product._id} />
+                        </div>)
+                    })
+                    }
+
                 </div>
-                <div className="col-6 col-md-3 p-1">
-                    <ProductLarge title={"product"} price={"100$"} imageUrl={productImg} id={2} />
-                </div>
-                <div className="col-6 col-md-3 p-1">
-                    <ProductLarge title={"product"} price={"100$"} imageUrl={productImg} id={3} />
-                </div>
-            </div>
+
+            }
+
         </div>
     )
 }

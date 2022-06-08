@@ -3,10 +3,8 @@ import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios"
+import { PostApi, GetApiWithAuth } from "../../../../sevices/functoinal-service/CallApiService"
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
-import InputImageComponent from "../../../../components/features/input components/input image component/Input-image-component"
-import DropDownComp from "../../../../components/features/input components/dropdown with value/dropdown-val-component"
 import AutoWidthButton from "../../../../components/features/buttons components/autow basic button/B-button-component"
 import Loading from "../../../../components/features/loading/Loading"
 import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
@@ -14,7 +12,6 @@ import DropDownPairValId from "../../../../components/features/input components/
 
 export default function AddCollectionPage({ toggle, submitFunc }) {
 
-    const [Images, setImages] = useState([]);
     const [rules, setRules] = useState(null);
     const [selectedRule, setSelectedRule] = useState(null);
     const [collectionName, setCollectionName] = useState("");
@@ -25,16 +22,11 @@ export default function AddCollectionPage({ toggle, submitFunc }) {
     const token = JSON.parse(localStorage.getItem('token'));
 
 
-
     useEffect(() => {
         if (token == null) { navigate("/") }
-        axios.get(`https://api.droplinked.com/dev/producer/ruleset`,
-            { headers: { Authorization: 'Bearer ' + token } })
-            .then(e => {
-                changeToPairValId(e.data.data.ruleSets)
-            })
-            .catch(e => toast.error(e.response.data.reason))
+        GetApiWithAuth("/producer/ruleset", changeToPairValId, "ruleSets", toast.error)
     }, [])
+
 
     const changeToPairValId = (ruleArray) => {
         let newPair = ruleArray.map(rule => { return { id: rule._id, value: rule.name } })
@@ -61,7 +53,8 @@ export default function AddCollectionPage({ toggle, submitFunc }) {
                 title: collectionName,
                 image: "",
                 nftImages: [],
-                type: "PUBLIC"
+                type: "PUBLIC",
+                ruleSetID: ""
             }
         } else {
             RuleInfo = {
@@ -72,17 +65,9 @@ export default function AddCollectionPage({ toggle, submitFunc }) {
                 ruleSetID: selectedRule
             }
         }
-       
-        axios.post('https://api.droplinked.com/dev/producer/collection', RuleInfo,
-            { headers: { Authorization: 'Bearer ' + token } })
-            .then((res) => {
-                submitFunc(true)
-            })
-            .catch(error => {
-                submitFunc(false, error.response.data.reason)
-            });
 
-
+        PostApi("/producer/collection", RuleInfo, submitFunc)  
+        
     }
 
 
