@@ -23,13 +23,13 @@ export default function CollectionMainPage({ name }) {
 
     useEffect(() => {
         if (token == null) { navigate("/") }
-        GetApiWithAuth("/producer/collection?withProducts=true", setCollections, "collections", toast.error);
+        GetApiWithAuth("/producer/collection?withProducts=true", setCollections, "collections", errorHandle);
     }, [])
 
-    const ToggleModal = () => {
-        setModal(p => !p)
-    }
-
+    const ToggleModal = () => setModal(p => !p)
+        
+    const errorHandle = (e) => toast.error(e)     
+ 
     const PostCollection = (status, text) => {
         if (status) {
             toast.success("Collection was created successfully");
@@ -42,7 +42,7 @@ export default function CollectionMainPage({ name }) {
     return (<>
         <div className="Collection-page-wrapper">
             <div className="ims-title">Collections</div>
-            <div className="number-of-merchs">{collectins.length} Collection</div>
+            <div className="number-of-merchs">{collectins && collectins.length} Collection</div>
             <div className="mt-5 col-12 col-md-3 ">
                 {/* <Link to="/producer/collection/addCollection"> */}
                 <AutoWidthButton text={"Add Collection"} click={ToggleModal} />
@@ -62,7 +62,7 @@ export default function CollectionMainPage({ name }) {
                             {collectins.map((col, i) => {
                                 return (
                                     <div key={i} className="mt-5 col-lg-6 col-md-10 col-12 ">
-                                        <CollectionWrapper name={col.title} productsArray={col.products} />
+                                        <CollectionWrapper id={col._id} name={col.title} productsArray={col.products} />
                                     </div>
                                 )
                             })

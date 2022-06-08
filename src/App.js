@@ -64,7 +64,7 @@ function App() {
 
 											<Route path="/shop/:shopname" element={<ShopPage />} />
 
-											<Route path="/collection/1" element={<ViewPageCollection />} />
+											<Route path="/collection/:collectionId" element={<ViewPageCollection />} />
 
 											<Route path="/creatorpage" element={<CreatorPage />} />
 											<Route path="/postpage" element={<PostPage />} />

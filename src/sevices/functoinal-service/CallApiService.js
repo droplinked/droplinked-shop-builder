@@ -2,7 +2,7 @@ import axios from "axios";
 
 const token = JSON.parse(localStorage.getItem("token"));
 
-export function GetApiWithAuth(address, setstate, dataName, toastError) {
+export function GetApiWithAuth(address, setstate, dataName, errorhandler) {
   axios
     .get(`https://api.droplinked.com/dev${address}`, {
       headers: { Authorization: "Bearer " + token },
@@ -10,7 +10,7 @@ export function GetApiWithAuth(address, setstate, dataName, toastError) {
     .then((e) => {
       setstate(e.data.data[dataName]);
     })
-    .catch((e) => toastError(e.response.data.reason));
+    .catch((e) => errorhandler(e.response.data.reason));
 }
 
 
