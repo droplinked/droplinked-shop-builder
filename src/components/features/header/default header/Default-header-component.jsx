@@ -1,21 +1,31 @@
 import { useState } from "react"
 import { UseWalletInfo } from "../../../../sevices/context/context";
+
 import HeaderItem from "../header button component/Header-btn-component"
 import SignUpModal from "../../../Modal/authen/register/SignUpModal"
 import LoginModal from "../../../Modal/authen/login/LoginModal"
 import headerWalletIcon from "../../../../assest/header/headerWalletIcon.svg";
+import ResetPassModal from "../../../Modal/authen/reset pass/ResetPassModal-component";
 
 export default function DefaulHeader() {
     const [signUpmodal, setSignModal] = useState(false)
     const [loginmodal, setloginModal] = useState(false)
+    const [resetModal, setResetModal] = useState(false)
     const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
 
     const togglesignup = () => { setSignModal(p => !p) }
     const toggleLogin = () => { setloginModal(p => !p) }
+    const toggleReset = () => { setResetModal(p => !p) }
 
     const switchToggl = () => {
         togglesignup();
         toggleLogin();
+    }
+
+
+    const switchLogRes = () => {
+        toggleLogin();
+        toggleReset();
     }
 
     let url = window.location.pathname;
@@ -38,7 +48,8 @@ export default function DefaulHeader() {
         
 
         {signUpmodal && <SignUpModal close={togglesignup} switchToggle={switchToggl} />}
-        {loginmodal && <LoginModal close={toggleLogin} switchToggle={switchToggl} />}
+        {loginmodal && <LoginModal close={toggleLogin} switchToggle={switchToggl} switchReset={switchLogRes} />}
+        {resetModal && <ResetPassModal  backToLogin={switchLogRes} close={()=>{setResetModal(false)}}/>}
     </>
     )
 }

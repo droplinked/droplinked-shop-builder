@@ -8,10 +8,11 @@ import { useProfile } from "../../../../sevices/hooks/useProfile"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
-export default function LoginModal({ close, switchToggle }) {
+export default function LoginModal({ close, switchToggle , switchReset }) {
 
     const [loading, setLoading] = useState(false)
     const { addProfile } = useProfile()
+
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     let navigate = useNavigate();
@@ -103,8 +104,8 @@ export default function LoginModal({ close, switchToggle }) {
 
                 </form>
 
-                <div className="text mt-4">
-                    <p><a>Forgot password ?</a></p>
+                <div className="text mt-4" >
+                    <p><a onClick={switchReset}>Forgot password ?</a></p>
                 </div>
                 <div className="text mt-2">
                     <p>Don’t have an account ? <a onClick={switchToggle}>Register now</a></p>

@@ -1,18 +1,22 @@
 import "./HomePage.scss"
+
+import { useState } from "react"
+
 import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"
-//import HomeInput from "../homepage/input-homepage/HomeInput"
 import alertIcon from "../../assest/feature/home page images/alert.png"
 import SignUpModal from "../../components/Modal/authen/register/SignUpModal"
 import LoginModal from "../../components/Modal/authen/login/LoginModal"
-
-import { useState } from "react"
-import EmailModal from "./modal/EmailModal"
+import ResetPassModal from "../../components/Modal/authen/reset pass/ResetPassModal-component"
 import axios from "axios"
+
+
+
 
 
 export default function HomePage() {
     const [showSignup, setShowSignup] = useState(false);
     const [showLogin, setLogin] = useState(false);
+    const [showResetPass, setResetPass] = useState(false);
     const [userName, setUsername] = useState("");
     const [former, setForError] = useState(false)
     const [checkshopname, setCheckshopname] = useState(false);
@@ -26,10 +30,21 @@ export default function HomePage() {
         setLogin(p => !p)
     }
 
+    const toggleReset = () => {
+        setResetPass(p => !p)
+    }
+
     const switchModal = () => {
         toggleSignUp();
         toggleLogin();
     }
+
+    const switchResetAndLogin = () => {
+        console.log("x");
+        toggleReset();
+        toggleLogin();
+    }
+
 
     const landingSignin = () => {
         setCheckshopname(true);
@@ -105,6 +120,7 @@ export default function HomePage() {
             {/* image */}
         </div>
         {showSignup && <SignUpModal close={toggleSignUp} shopname={userName} switchToggle={switchModal} />}
-        {showLogin && <LoginModal close={toggleLogin} switchToggle={switchModal} />}
+        {showLogin && <LoginModal close={toggleLogin} switchToggle={switchModal} switchReset={switchResetAndLogin} />}
+        {showResetPass && <ResetPassModal backToLogin={switchResetAndLogin} close={()=>{setResetPass(false)}} />}
     </>)
 }

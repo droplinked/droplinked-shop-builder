@@ -1,0 +1,55 @@
+.ResetPadd-modal-wrapper {
+    position: relative;
+  & .title {
+    width: 100%;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  & .text {
+    margin-top: 20px;
+    color: #fff;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  & .sp-text {
+    margin-top: 30px;
+    color: #fff;
+    font-size: 16px;
+    width: auto;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration-line: underline;
+  }
+
+  & .cls-img{
+      position: absolute;
+      height: 40px;
+      width: 40px;
+      right: 0px;
+      top:2px;
+      cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .ResetPadd-modal-wrapper {
+    & .title {
+      font-size: 20px;
+    }
+    & .text {
+      font-size: 12px;
+    }
+    & .cls-img{
+        height: 30px;
+        width: 30px;
+        top:4px;
+    }
+  }
+}
