@@ -5,12 +5,23 @@ import CollectionWrapper from "../../../../components/features/collection wrappe
 import BadicModal from "../../../../components/Modal/basic modal component/Basic-modal-component"
 import AddCollectionPage from "../add collection page/Add-collection-component"
 import { Link } from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 export default function CollectionMainPage({ name }) {
 
     const [Modal, setModal] = useState(false)
 
-    const ToggleModal = () =>{
+    const ToggleModal = () => {
         setModal(p => !p)
+    }
+
+    const PostCollection = ( status , text ) => {
+        if(status){
+            toast.success("Collection was created successfully");
+        }else{
+            toast.error(text);
+        }       
+        ToggleModal()
     }
 
     return (<>
@@ -31,8 +42,20 @@ export default function CollectionMainPage({ name }) {
         </div>
         {Modal &&
             (<BadicModal>
-                <AddCollectionPage toggle={ToggleModal}/>
+                <AddCollectionPage toggle={ToggleModal} submitFunc={PostCollection} />
             </BadicModal>)
         }
+        <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme='dark'
+        />
     </>)
 }
