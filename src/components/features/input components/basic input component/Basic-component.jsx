@@ -15,7 +15,7 @@ export default function BasicInput({ type, refs, text, error, change ,value , pl
                 :
                 <div className="basic-input-component-wrapper">
                     <label>{text}</label>
-                    <input type="text" placeholder={place} ref={refs} onChange={change} value={value} />
+                    <input type={(type)?type:"text"} placeholder={place} ref={refs} onChange={change} value={value} />
                     {error && <span className="register-error">{`required`}</span>}
                 </div>
             }

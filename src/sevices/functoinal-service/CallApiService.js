@@ -13,15 +13,28 @@ export function GetApiWithAuth(address, setstate, dataName, errorhandler) {
     .catch((e) => errorhandler(e.response.data.reason));
 }
 
-
 //  if call api successfully call resFunc true id not call false and , error data
 export function PostApi(address, data, resFunc) {
-  axios.post(`https://api.droplinked.com/dev${address}`, data,
-      { headers: { Authorization: 'Bearer ' + token } })
-      .then((res) => {
-        resFunc(true)
-      })
-      .catch(error => {
-        resFunc(false, error.response.data.reason)
-      })
+  axios
+    .post(`https://api.droplinked.com/dev${address}`, data, {
+      headers: { Authorization: "Bearer " + token },
+    })
+    .then((res) => {
+      resFunc(true);
+    })
+    .catch((error) => {
+      resFunc(false, error.response.data.reason);
+    });
+}
+
+//  if call api successfully call resFunc true id not call false and , error data
+export function PostWithoutToken(address, data, resFunc) {
+  axios
+    .post(`https://api.droplinked.com/dev${address}`, data)
+    .then((res) => {
+      resFunc(true);
+    })
+    .catch((error) => {
+      resFunc(false, error.response.data.reason);
+    });
 }

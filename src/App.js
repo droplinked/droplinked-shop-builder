@@ -5,6 +5,7 @@ import { WalletProvider } from "./sevices/context/context";
 import ProfileContextProvider from "./sevices/context/ProfileContext";
 import CartContextProvider from "./sevices/context/CartContext";
 import { ChakraProvider } from "@chakra-ui/react";
+import { ToastContext } from "./sevices/context/Toast-context";
 import Footer from "./components/features/footer/Footer";
 import MainHeader from "./components/features/header/MainHeader";
 import HomeWrapper from "./components/Structure/new wrapper/HomeWrapper";
@@ -15,7 +16,7 @@ import HomePage from "./layout/landing page/HomePage";
 import BuyProduct from "./layout/buy product/BuyProduct";
 import Terms from "./layout/terms/Terms";
 import Privacy from "./layout/privacy/Privacy";
-import Crashpunks from "./layout/crashpunk/crashpunks";   //crashpunks page
+import Crashpunks from "./layout/crashpunk/crashpunks"; //crashpunks page
 import Address from "./layout/buy proccess/address/Address";
 import Shipping from "./layout/buy proccess/shiping/Shipping";
 import Payments from "./layout/buy proccess/payment/Payments";
@@ -30,67 +31,70 @@ import ScrollTop from "./components/features/scrolltop/ScrollTop";
 import ShopPage from "./layout/Producer pages/Main page/shop page/Shop-page-component";
 import ImsMainPage from "./layout/Producer pages/IMS pages/ImsMainPage";
 import AddProductPage from "./layout/Producer pages/add product page/Add-product-page";
-import RuleSetPage from "./layout/Producer pages/ruleset page/RuleSet-page-component"
+import RuleSetPage from "./layout/Producer pages/ruleset page/RuleSet-page-component";
 import CollectionMainPage from "./layout/Producer pages/collection pages/Collection main page/Collection-mainpage-component";
-import AddCollectionPage from "./layout/Producer pages/collection pages/add collection page/Add-collection-component"
-import ViewPageCollection from "./layout/Producer pages/collection pages/view collectiom page/View-collection-page-component"
-
+import AddCollectionPage from "./layout/Producer pages/collection pages/add collection page/Add-collection-component";
+import ViewPageCollection from "./layout/Producer pages/collection pages/view collectiom page/View-collection-page-component";
+import AccountRecoveryPage from "./layout/registering/account recovery page/Account-recovery-page"
 
 
 function App() {
-	return (
-		<div style={{ backgroundColor: "#222" }}>
-			<ProfileContextProvider>
-				<ChakraProvider>
-					<CartContextProvider>
-						<WalletProvider>
-							<BrowserRouter>
-								<MainHeader />
-								<HomeWrapper>
-									<ScrollTop>
-										<Routes>
-											<Route exact path="/" element={<HomePage />} />
-											<Route path="/register/personalInfo" element={<PersonalInfo />}/>
-											<Route path="/register/shopInfo" element={<ShopInfo />} />
-											<Route path="/register/IMSSelect"element={<ImsSelect />}/>
-											<Route path="/register/payment"	element={<RegisterPayment />}	/>
-											<Route path="/emailConfirmation" element={<ThankPage />} />
+  return (
+    <div style={{ backgroundColor: "#222" }}>
+      <ProfileContextProvider>
+        <ChakraProvider>
+          <CartContextProvider>
+            <WalletProvider>
+              <BrowserRouter>
+                <ToastContext>
+                  <MainHeader />
+                  <HomeWrapper>
+                    <ScrollTop>
+                      <Routes>
+                        <Route exact path="/" element={<HomePage />} />
+                        <Route path="/register/personalInfo"  element={<PersonalInfo />} />
+                        <Route path="/register/shopInfo" element={<ShopInfo />}  />
+                        <Route path="/register/IMSSelect"  element={<ImsSelect />} />
+                        <Route path="/register/payment" element={<RegisterPayment />} />
+                        <Route path="/emailConfirmation" element={<ThankPage />}  />
 
-											<Route path="/producer/ims" element={<ImsMainPage />} />
-											<Route path="/producer/addProduct"	element={<AddProductPage />}/>
-											<Route path="/producer/ruleset" element={<RuleSetPage />} />
-											<Route path="/producer/collection" element={<CollectionMainPage />} />
-											<Route path="/producer/collection/addCollection" element={<AddCollectionPage />} />
+                        <Route path="/producer/ims" element={<ImsMainPage />} />
+                        <Route path="/producer/addProduct"  element={<AddProductPage />} />
+                        <Route path="/producer/ruleset"  element={<RuleSetPage />}  />
+                        <Route path="/producer/collection"   element={<CollectionMainPage />}  />
+                        <Route path="/producer/collection/addCollection" element={<AddCollectionPage />} />
+                        <Route path="/producer/account-recovery/:token" element={<AccountRecoveryPage />} />
 
-											<Route path="/shop/:shopname" element={<ShopPage />} />
+                        <Route path="/shop/:shopname" element={<ShopPage />} />
 
-											<Route path="/collection/:collectionId" element={<ViewPageCollection />} />
+                        <Route path="/collection/:collectionId" element={<ViewPageCollection />} />
 
-											<Route path="/creatorpage" element={<CreatorPage />} />
-											<Route path="/postpage" element={<PostPage />} />
-												
-											<Route path="/cart" element={<Checkout />} />
-											<Route path="/address" element={<Address />} />
-											<Route path="/shipping" element={<Shipping />} />
-											<Route path="/payment" element={<Payments />} />
+                        <Route path="/creatorpage" element={<CreatorPage />} />
+                        <Route path="/postpage" element={<PostPage />} />
 
-											<Route path="/terms" element={<Terms />} />
-											<Route path="/privacy" element={<Privacy />} />
-											<Route path="/confirm" element={<Confirm />} />
-											<Route path="/crashpunks" element={<CreatorPage />} />											
-											<Route path="/product/:id" element={<BuyProduct />} />											
-											<Route path="/*" element={<NotFound />} />
-										</Routes>
-									</ScrollTop>
-								</HomeWrapper>
-								<Footer />
-							</BrowserRouter>
-						</WalletProvider>
-					</CartContextProvider>
-				</ChakraProvider>
-			</ProfileContextProvider>
-		</div>
-	);
+                        <Route path="/cart" element={<Checkout />} />
+                        <Route path="/address" element={<Address />} />
+                        <Route path="/shipping" element={<Shipping />} />
+                        <Route path="/payment" element={<Payments />} />
+
+                        <Route path="/terms" element={<Terms />} />
+                        <Route path="/privacy" element={<Privacy />} />
+                        <Route path="/confirm" element={<Confirm />} />
+                        <Route path="/crashpunks" element={<CreatorPage />} />
+                        <Route path="/product/:id" element={<BuyProduct />} />
+                        <Route path="/*" element={<NotFound />} />
+                      </Routes>
+                    </ScrollTop>
+                  </HomeWrapper>
+                  <Footer />
+                </ToastContext>
+              </BrowserRouter>
+            </WalletProvider>
+          </CartContextProvider>
+        </ChakraProvider>
+      </ProfileContextProvider>
+    </div>
+  );
 }
 
 export default App;
