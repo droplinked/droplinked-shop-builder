@@ -4,33 +4,36 @@ import ProductLarge from "../product components/product component large/ProductL
 import editIcon from '../../../assest/icon/icons8-edit.svg'
 import deleteIcon from '../../../assest/icon/icons8-delete.svg'
 import SmallModal from "../../Modal/little modal/Small-modal-component"
+import BadicModal from "../../Modal/basic modal component/Basic-modal-component"
+import EditCollectionModal from "../../../layout/Producer pages/collection pages/edit collection modal/edit-collection-modal-component"
+
 import { toastValue } from "../../../sevices/context/Toast-context"
 import { DeleteWithToken } from "../../../sevices/functoinal-service/CallApiService"
-
 import { Link } from "react-router-dom"
 import { useState, useContext } from "react"
 
-export default function CollectionWrapper({ id, name, productsArray, editClick, deleteClick , render }) {
+export default function CollectionWrapper({ id, name, productsArray,  render }) {
 
     const [deleteModal, setDeleteModal] = useState(false)
-
+    const [editModal, setEditModal] = useState(false)
     const { successToast, errorToast } = useContext(toastValue);
 
     const resHandler = (status, mess) => {
         if (status) {
             successToast("Collection deleted successfully")
             render()
-        } else {
-            errorToast(mess)
-        }
+        } else { errorToast(mess) }
+
         setDeleteModal(false)
     }
 
-    const DeleteCollection = () => {
-        DeleteWithToken(`/producer/collection/${id}`, resHandler)
+    const submitEdit = () =>{
+        console.log("x");
     }
 
+    const DeleteCollection = () => { DeleteWithToken(`/producer/collection/${id}`, resHandler) }
 
+    const toggleEdit = () => setEditModal(p =>!p)
 
     return (<>
         <div className="Collection-wrapper-component">
@@ -59,7 +62,7 @@ export default function CollectionWrapper({ id, name, productsArray, editClick, 
             }
 
             <div className="d-flex justify-content-between align-items-center h-auto">
-                <img src={editIcon} onClick={editClick} alt="icon" style={{ width: "28px", height: "28px", cursor: "pointer" }} />
+                <img src={editIcon} onClick={toggleEdit} alt="icon" style={{ width: "28px", height: "28px", cursor: "pointer" }} />
                 <img src={deleteIcon} onClick={() => setDeleteModal(true)} alt="icon" style={{ width: "32px", height: "32px", cursor: "pointer" }} />
             </div>
 
@@ -71,6 +74,11 @@ export default function CollectionWrapper({ id, name, productsArray, editClick, 
                 hide={() => setDeleteModal(false)}
                 click={DeleteCollection}
             />
+        }
+        {editModal &&
+            (<BadicModal>
+                <EditCollectionModal  toggle={toggleEdit} submitFunc={submitEdit} />
+            </BadicModal>)
         }
     </>
     )
