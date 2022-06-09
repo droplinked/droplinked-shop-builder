@@ -14,7 +14,7 @@ function CreatorPage() {
     return (<div className="">
         <ProfileTopSection />
         {/* gallery carusel */}
-        {/* <GalleryCarousel /> */}
+        <GalleryCarousel />
         {/* gallery carusel */}
 
         <div style={{ height: '30px' }}></div>
