@@ -53,8 +53,7 @@ export default function AddCollectionPage({ toggle, submitFunc }) {
                 title: collectionName,
                 image: "",
                 nftImages: [],
-                type: "PUBLIC",
-                ruleSetID: ""
+                type: "PUBLIC"
             }
         } else {
             RuleInfo = {

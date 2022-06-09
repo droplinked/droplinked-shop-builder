@@ -29,7 +29,7 @@ export default function LoginModal({ close, switchToggle , switchReset }) {
             .then((res) => {
 
                 if (res.data.status == "success") {
-                    toast.success(res.data.status)
+                  //  toast.success(res.data.status)
 
                     close();
                     switch (res.data.data.user.status) {
