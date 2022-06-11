@@ -13,6 +13,7 @@ export default function AccountRecoveryPage() {
 
     const [newPass, setNewpass] = useState("")
     const [confirmnewPass, setConfirmNewpass] = useState("")
+    const [confirmError, setConfirmError] = useState(false)
     const [btnActivd, setBtnActivd] = useState(false)
     const { successToast, errorToast } = useContext(toastValue)
 
@@ -21,11 +22,15 @@ export default function AccountRecoveryPage() {
 
 
 
+    const changeConfirmPass = e =>{
+        setConfirmNewpass(e.target.value)
+        setConfirmError(false)
+    }
+
 
     const changePassword = () => {
-
         if (newPass !== confirmnewPass) {
-            errorToast("Password and confirm password don't match.")
+            setConfirmError(true)
             return
         }
 
@@ -65,9 +70,10 @@ export default function AccountRecoveryPage() {
                 <BasicInput
                     type={"password"}
                     text={"Confirm New Password"}
-                    change={(e) => { setConfirmNewpass(e.target.value) }}
+                    change={changeConfirmPass}
                 />
             </div>
+            {confirmError && <p className="error">{`Password and confirm password don't match.`}</p>}
             <div className="mt-4">
                 <AutoWidthButton text={"Change my password"} click={changePassword} disable={btnActivd} />
             </div>

@@ -1,6 +1,7 @@
 import "./HomePage.scss"
 
 import { useState } from "react"
+import { useSearchParams } from "react-router-dom";
 
 import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"
 import alertIcon from "../../assest/feature/home page images/alert.png"
@@ -14,13 +15,23 @@ import axios from "axios"
 
 
 export default function HomePage() {
+    let [searchParams, setSearchParams] = useSearchParams();
+    let x = searchParams.get("modal")
+
     const [showSignup, setShowSignup] = useState(false);
-    const [showLogin, setLogin] = useState(false);
+
+    const [showLogin, setLogin] = useState(() => {
+        return (x == "login") ? true : false
+    });
     const [showResetPass, setResetPass] = useState(false);
     const [userName, setUsername] = useState("");
     const [former, setForError] = useState(false)
     const [checkshopname, setCheckshopname] = useState(false);
     const [shopnameError, setShopnameError] = useState(undefined)
+
+
+
+
 
     const toggleSignUp = () => {
         setShowSignup(p => !p)
@@ -121,6 +132,6 @@ export default function HomePage() {
         </div>
         {showSignup && <SignUpModal close={toggleSignUp} shopname={userName} switchToggle={switchModal} />}
         {showLogin && <LoginModal close={toggleLogin} switchToggle={switchModal} switchReset={switchResetAndLogin} />}
-        {showResetPass && <ResetPassModal backToLogin={switchResetAndLogin} close={()=>{setResetPass(false)}} />}
+        {showResetPass && <ResetPassModal backToLogin={switchResetAndLogin} close={() => { setResetPass(false) }} />}
     </>)
 }

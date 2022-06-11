@@ -14,6 +14,16 @@ export function GetApiWithAuth(address, setstate, dataName, errorhandler) {
     .catch((e) => errorhandler(e.response.data.reason));
 }
 
+export function GetWithbody(address, bodyData, resHandler, errorhandler) {
+  axios
+    .get(`https://dev-api.droplinked.com${address}`,
+    {body:{token:"12f19149-d6a4-44bb-ad1f-066c037ba86d"}})
+    .then((e) => {
+      resHandler(e.response);
+    })
+    .catch((e) => errorhandler(e.response.data.message));
+}
+
 //  if call api successfully call resFunc true id not call false and , error data
 export function PostApi(address, data, resFunc) {
   let token = JSON.parse(localStorage.getItem("token"));
@@ -33,7 +43,7 @@ export function PostApi(address, data, resFunc) {
 //  if call api successfully call resFunc true id not call false and , error data
 export function PostWithoutToken(address, data, resFunc) {
   axios
-    .post(`https://api.droplinked.com/dev${address}`, data)
+    .post(`https://dev-api.droplinked.com${address}`, data)
     .then((res) => {
       resFunc(true);
     })

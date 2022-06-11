@@ -36,6 +36,7 @@ import CollectionMainPage from "./layout/Producer pages/collection pages/Collect
 import AddCollectionPage from "./layout/Producer pages/collection pages/add collection page/Add-collection-component";
 import ViewPageCollection from "./layout/Producer pages/collection pages/view collectiom page/View-collection-page-component";
 import AccountRecoveryPage from "./layout/registering/account recovery page/Account-recovery-page"
+import VerificationEmailPage from "./layout/registering/verifi-email-page/Email-verification-component"
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
                         <Route path="/register/IMSSelect"  element={<ImsSelect />} />
                         <Route path="/register/payment" element={<RegisterPayment />} />
                         <Route path="/emailConfirmation" element={<ThankPage />}  />
+                        <Route path="/email-verification/:token" element={<VerificationEmailPage />}  />
 
                         <Route path="/producer/ims" element={<ImsMainPage />} />
                         <Route path="/producer/addProduct"  element={<AddProductPage />} />
