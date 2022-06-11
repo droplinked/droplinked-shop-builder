@@ -2,6 +2,7 @@ import "./HomePage.scss"
 
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom";
+import { GetApi } from "../../sevices/functoinal-service/CallApiService"
 
 import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"
 import alertIcon from "../../assest/feature/home page images/alert.png"
@@ -60,15 +61,17 @@ export default function HomePage() {
 
     const landingSignin = () => {
         setCheckshopname(true);
-        axios.get(`https://api.droplinked.com/dev/producer/shop-name/${userName}`)
-            .then(e => {
-                setCheckshopname(false);
-                toggleSignUp();
-            })
-            .catch(e => {
-                setCheckshopname(false);
-                setShopnameError(e.response.data.reason)
-            })
+        GetApi(`/producer/shop-name/${userName}`, responseHandler, ErrorHandler)
+    }
+
+    const responseHandler = () => {
+        setCheckshopname(false);
+        toggleSignUp();
+    }
+
+    const ErrorHandler = (value) => {
+        setCheckshopname(false);
+        setShopnameError(value.reason)
     }
 
     return (<>

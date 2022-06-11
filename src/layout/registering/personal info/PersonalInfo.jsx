@@ -1,22 +1,24 @@
 import "./PersonalInfo.scss"
+
 import RegisterStructure from "../register structure/RegisterStructure"
-import { useRef, useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import img from "../../../assest/image/default profile/icons8-user-100.png"
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+
+import { useRef, useState, useEffect, useContext } from "react";
+import { toastValue } from "../../../sevices/context/Toast-context"
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../sevices/hooks/useProfile"
 import { ReactComponent as IconMenu } from "../assest/icons8-delete.svg"
+import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 
 export default function PersonalInfo() {
+
     const [profileImg, setProfileImg] = useState(undefined)
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState(undefined);
     const [uploadingImage, setUploadingImage] = useState(false);
     const { updateProfile } = useProfile()
 
+    const { errorToast, successToast } = useContext(toastValue)
     let user = JSON.parse(localStorage.getItem('profile'));
     const token = JSON.parse(localStorage.getItem('token'));
 
@@ -46,7 +48,7 @@ export default function PersonalInfo() {
         const file = e.target.files[0];
 
         if (file.size > 200000) {
-            toast.error("File size exceeded (Max: 200 kb)");
+            errorToast("File size exceeded (Max: 200 kb)");
             setUploadingImage(false);
             return;
         }
@@ -56,7 +58,7 @@ export default function PersonalInfo() {
             file.type !== "image/gif" &&
             file.type !== "image/jpg"
         ) {
-            toast.error("File type not supported");
+            errorToast("File type not supported");
             setUploadingImage(false);
             return;
         }
@@ -66,11 +68,11 @@ export default function PersonalInfo() {
         axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
                 setUploadingImage(false);
-                toast.success(e.data.message);
+                successToast(e.data.message);
                 setProfileImg(e.data.small)
             })
             .catch(e => {
-                toast.error(e.response.data.message);
+                errorToast(e.response.data.message);
                 setUploadingImage(false);
                 return;
             })
@@ -94,14 +96,14 @@ export default function PersonalInfo() {
             avatar: (profileImg == undefined) ? "" : profileImg,
             phone: data.phoneNumber,
         }
-        axios.put('https://api.droplinked.com/dev/producer/profile', profileInfo,
+        axios.put(BasicURL+'/producer/profile', profileInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         ).then(res => {
             updateProfile(res.data.data)
             navigate("/register/shopInfo");
         })
             .catch(err => {
-                toast(err.response.data.reason);
+                errorToast(err.response.data.reason);
                 setLoading(false);
             })
     }
@@ -122,25 +124,25 @@ export default function PersonalInfo() {
                     <input className="d-none" type="file" ref={inputFile} onChange={changeImage} />
                     <div className="add-image-hov"
                         onClick={chooseFile}>+</div>
-                    {(profileImg == undefined || profileImg == "") ?<></>:
+                    {(profileImg == undefined || profileImg == "") ? <></> :
                         <div className="delet-image-icon" onClick={deleteImage}>
                             <IconMenu style={{ width: "100%", height: "100%" }} />
                         </div>
-                  
+
                     }
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="d-flex justify-content-between w-100" style={{ maxWidth: "100%" }}>
                         <div className="register-label-input" style={{ width: "45%" }}>
                             <label>First name</label>
-                            <input type="text" 
+                            <input type="text"
                                 {...register("firstName", { required: true })} />
                             {errors.firstName?.type === 'required' && <span className="register-error">required</span>}
                         </div>
 
                         <div className="register-label-input" style={{ width: "45%" }}>
                             <label>Last name</label>
-                            <input type="text" 
+                            <input type="text"
                                 {...register("lastName", { required: true })} />
                             {errors.lastName?.type === 'required' && <span className="register-error">required</span>}
                         </div>
@@ -152,7 +154,7 @@ export default function PersonalInfo() {
                     </div>
                     <div className="register-label-input ">
                         <label>Phone number</label>
-                        <input type="number" 
+                        <input type="number"
                             {...register("phoneNumber")} />
                     </div>
                     {/* {errors.phoneNumber?.type === 'required' && <span className="register-error">phone number is required</span>} */}
@@ -160,16 +162,6 @@ export default function PersonalInfo() {
                         <input type="submit" value="next" className={`next-back-btn ${(loading) ? "loading-btn" : "non-loading-btn"}`} />
                     </div>
                 </form>
-                <ToastContainer
-                    position="bottom-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover />
             </div>
         </RegisterStructure>
     )

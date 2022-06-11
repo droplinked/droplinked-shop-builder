@@ -1,14 +1,16 @@
 import "./ThankForRegister.scss"
-import { Link } from "react-router-dom";
+
 import axios from 'axios';
+import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { Link } from "react-router-dom";
 import { useState } from "react"
 
 export default function ThankPage() {
-    const [message , setMessage] = useState("Resend the link")
+    const [message, setMessage] = useState("Resend the link")
     let email = JSON.parse(localStorage.getItem('registerEmail'));
     const resendEmail = () => {
-        axios.post('https://api.droplinked.com/dev/email/resend',
-         { email: email })
+        axios.post(BasicURL + '/email/resend',
+            { email: email })
             .then(res => { setMessage(res.data.status) })
             .catch(e => { setMessage("Not Found or Verified") })
     }
@@ -18,7 +20,7 @@ export default function ThankPage() {
             <p className="thank-for-register-title">Thank You!</p>
             <p className="thank-for-register-detail">{`Please check your email inbox "`}<span>{email}</span>{`" and verify your email address.`}</p>
             <p className="resend-email-link"
-            onClick={resendEmail}
+                onClick={resendEmail}
             >{message}</p>
             <div className="d-flex justify-content-center">
                 <Link to="/">

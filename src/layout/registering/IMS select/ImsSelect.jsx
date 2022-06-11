@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useProfile } from "../../../sevices/hooks/useProfile"
+import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 
 export default function ImsSelect() {
     const [ImsSystem, setImsSystem] = useState(undefined);
@@ -23,7 +24,7 @@ export default function ImsSelect() {
             setLoading(false)
         } else {
             const ImsType = { type: ImsSystem }
-            axios.post('https://api.droplinked.com/dev/producer/profile/ims', ImsType,
+            axios.post(BasicURL+'/producer/profile/ims', ImsType,
                 { headers: { Authorization: 'Bearer ' + token } }
             ).then(res => {
                 if (res.data.status == "success") {

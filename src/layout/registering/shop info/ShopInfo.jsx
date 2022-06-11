@@ -1,14 +1,14 @@
 import "./ShopInfo.scss"
 import RegisterStructure from "../register structure/RegisterStructure"
 import ShopInfoAddress from "./address component/ShopInfo.address"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState , useContext } from "react";
 import img from "../../../assest/image/default profile/icons8-user-100.png"
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 import axios from "axios"
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useProfile } from "../../../sevices/hooks/useProfile"
 import { ReactComponent as IconMenu } from "../assest/icons8-delete.svg"
+import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { toastValue } from "../../../sevices/context/Toast-context"
 
 
 export default function ShopInfo() {
@@ -18,6 +18,8 @@ export default function ShopInfo() {
     const [loading, setLoading] = useState(false)
     const [uploadingImage, setUploadingImage] = useState(false);
     const { updateProfile, profile } = useProfile()
+    const { errorToast, successToast } = useContext(toastValue)
+
     let x = 1;
     let user = profile
     const shopname = user.shopName;
@@ -33,11 +35,9 @@ export default function ShopInfo() {
 
 
 
-
-
     useEffect(() => {
         if (user.shopAddressID) {
-            axios.get(`https://api.droplinked.com/dev/producer/shop/address/${user.shopAddressID}`,
+            axios.get(BasicURL+`/producer/shop/address/${user.shopAddressID}`,
                 { headers: { Authorization: 'Bearer ' + token } })
                 .then(e => setAddressdata(e.data.addressBook))
         }
@@ -49,13 +49,13 @@ export default function ShopInfo() {
         const address = JSON.parse(localStorage.getItem('address'));
 
         if (!address) {
-            toast.error("Add address please")
+            errorToast("Add address please")
             setLoading(false);
             return;
         }
 
         if (addressData == undefined) {
-            toast.error("Add address please")
+            errorToast("Add address please")
             setLoading(false);
             return;
         }
@@ -72,7 +72,7 @@ export default function ShopInfo() {
             shopAddressID: address._id
         }
 
-        axios.put('https://api.droplinked.com/dev/producer/shop/info', shopInfo,
+        axios.put(BasicURL+'/producer/shop/info', shopInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         )
             .then(res => {
@@ -81,7 +81,7 @@ export default function ShopInfo() {
             }
             )
             .catch(e => {
-                toast.error(e.response.data.reason)
+                errorToast(e.response.data.reason)
                 setLoading(false);
             })
         setLoading(false);
@@ -98,7 +98,7 @@ export default function ShopInfo() {
         const file = e.target.files[0];
 
         if (file.size > 200000) {
-            toast.error("File size exceeded (Max: 200 kb)");
+            errorToast("File size exceeded (Max: 200 kb)");
             setUploadingImage(false);
             return;
         }
@@ -108,7 +108,7 @@ export default function ShopInfo() {
             file.type !== "image/gif" &&
             file.type !== "image/jpg"
         ) {
-            toast.error("File type not supported");
+            errorToast("File type not supported");
             setUploadingImage(false);
             return;
         }
@@ -118,12 +118,12 @@ export default function ShopInfo() {
         axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
                 setUploadingImage(false);
-                toast.success(e.data.message);
+                successToast(e.data.message);
                 setProfileImg(e.data.small)
                 return;
             })
             .catch(e => {
-                toast.error(e.response.data.message);
+                errorToast(e.response.data.message);
                 setUploadingImage(false);
                 return;
             })
@@ -232,19 +232,6 @@ export default function ShopInfo() {
             </>
             }
             {showAddress && <ShopInfoAddress close={closeAddres} addAddressF={addAddressF} addressData={addressData} />}
-
-            <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="dark"
-            />
 
         </div>
     </RegisterStructure>)

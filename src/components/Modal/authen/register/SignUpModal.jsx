@@ -1,13 +1,12 @@
 import "./SignUpModal.scss"
+
 import closePng from "../../../../assest/feature/home page images/Close.png"
+
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react"
 import { useForm } from "react-hook-form";
-import axios from 'axios';
 import { PostWithoutToken } from "../../../../sevices/functoinal-service/CallApiService"
 import { toastValue } from "../../../../sevices/context/Toast-context"
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 
 export default function SignUpModal({ close, shopname, switchToggle }) {
 
@@ -16,8 +15,6 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
     const [error, setError] = useState(undefined)
     const { register, formState: { errors }, handleSubmit } = useForm();
     let navigate = useNavigate();
-
-
 
     const onSubmit = data => {
         setLoading(true)
@@ -47,17 +44,6 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
             }
         }
         )
-        // axios.post('https://api.droplinked.com/dev/producer/signup', info)
-        //     .then((res) => {
-        //         toast.success(res.data.status);
-        //         close()
-        //         localStorage.setItem('registerEmail', JSON.stringify(info.email))
-        //         navigate("/emailConfirmation");
-        //     })
-        //     .catch(error => {
-        //         toast.error(error.response.data.reason);
-        //         setLoading(false)
-        //     });
     };
 
 
@@ -136,18 +122,6 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
                     <p>Already have an account? <a onClick={switchToggle}>Login</a></p>
                 </div>
             </div>
-            <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="dark"
-            />
         </div>
     )
 }

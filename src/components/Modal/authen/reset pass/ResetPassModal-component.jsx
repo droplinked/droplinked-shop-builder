@@ -1,7 +1,7 @@
 import "./ResetPassModal-style.scss"
-import "react-toastify/dist/ReactToastify.css";
+
 import { useState, useRef, useContext } from "react"
-import { ToastContainer, toast } from 'react-toastify';
+
 import { PostWithoutToken } from "../../../../sevices/functoinal-service/CallApiService"
 import { toastValue } from "../../../../sevices/context/Toast-context"
 

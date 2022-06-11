@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useProfile } from "../hooks/useProfile";
 
+export const BasicURL= "https://dev-api.droplinked.com"
+
 export function GetApiWithAuth(address, setstate, dataName, errorhandler) {
   let token = JSON.parse(localStorage.getItem("token"));
 
@@ -14,14 +16,13 @@ export function GetApiWithAuth(address, setstate, dataName, errorhandler) {
     .catch((e) => errorhandler(e.response.data.reason));
 }
 
-export function GetWithbody(address, bodyData, resHandler, errorhandler) {
+export function GetApi(address, resHandler, errorhandler) {
   axios
-    .get(`https://dev-api.droplinked.com${address}`,
-    {body:{token:"12f19149-d6a4-44bb-ad1f-066c037ba86d"}})
+    .get(`https://dev-api.droplinked.com${address}`)
     .then((e) => {
       resHandler(e.response);
     })
-    .catch((e) => errorhandler(e.response.data.message));
+    .catch((e) => errorhandler(e.response.data));
 }
 
 //  if call api successfully call resFunc true id not call false and , error data

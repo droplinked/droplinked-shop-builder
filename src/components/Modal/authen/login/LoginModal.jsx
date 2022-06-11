@@ -1,17 +1,22 @@
 import "./LoginModal.style.scss"
+
 import axios from 'axios';
 import closePng from "../../../../assest/feature/home page images/Close.png"
+
+import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react"
+import { useState, useEffect , useContext} from "react"
+import { toastValue } from "../../../../sevices/context/Toast-context"
 import { Link, useNavigate } from "react-router-dom";
 import { useProfile } from "../../../../sevices/hooks/useProfile"
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+
 
 export default function LoginModal({ close, switchToggle , switchReset }) {
 
     const [loading, setLoading] = useState(false)
     const { addProfile } = useProfile()
+
+    const { successToast , errorToast} = useContext(toastValue)
 
 
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -25,16 +30,15 @@ export default function LoginModal({ close, switchToggle , switchReset }) {
             password: data.password
         }
 
-        axios.post('https://api.droplinked.com/dev/producer/signin', info)
+        axios.post(BasicURL+'/producer/signin', info)
             .then((res) => {
 
                 if (res.data.status == "success") {
                   //  toast.success(res.data.status)
-
                     close();
                     switch (res.data.data.user.status) {
                         case "NEW":
-                            toast.error("you must virified your account")
+                            errorToast("you must virified your account")
                             localStorage.setItem('registerEmail', JSON.stringify(info.email))
                             setLoading(false)
                             navigate("/emailConfirmation");
@@ -60,14 +64,14 @@ export default function LoginModal({ close, switchToggle , switchReset }) {
                             navigate(`/shop/${res.data.data.user.shopName}`);
                             return;
                         case "DELETED":
-                            toast.error("your account has been deleted")
+                            errorToast("your account has been deleted")
                             setLoading(false)
                             return;
                     }
                 }
             })
             .catch(res => {
-                toast.error(res.response.data.reason)
+                errorToast(res.response.data.reason)
                 setLoading(false)
             });
     };
@@ -78,7 +82,6 @@ export default function LoginModal({ close, switchToggle , switchReset }) {
                 <div className="title">Login
                     <img className="close-btn" src={closePng} alt="" onClick={close} />
                 </div>
-
                 <form onSubmit={handleSubmit(onSubmit)}
                     style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>
 
@@ -111,19 +114,6 @@ export default function LoginModal({ close, switchToggle , switchReset }) {
                     <p>Don’t have an account? <a onClick={switchToggle}>Register now</a>!</p>
                 </div>
             </div>
-
-
         </div>
-        <ToastContainer
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover />
-
     </>)
 }
