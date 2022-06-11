@@ -1,8 +1,15 @@
+import { useState } from "react"
 
+export default function NotFound() {
+    // const [int, setInp] = useState("")
 
-export default function NotFound(){
+ 
+    // const changeInp = (e) => {
+    //     console.log(/^[A-Za-z0-9_]*$/.test(e.target.value));
+    // }
 
-    return(<>
+    return (<>
+       
         <h1>not found</h1>
     </>)
 }

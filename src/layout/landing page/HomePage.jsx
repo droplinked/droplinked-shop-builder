@@ -22,9 +22,11 @@ export default function HomePage() {
     const [showLogin, setLogin] = useState(() => {
         return (x == "login") ? true : false
     });
+
     const [showResetPass, setResetPass] = useState(false);
     const [userName, setUsername] = useState("");
     const [former, setForError] = useState(false)
+    const [userNameValidation, setUserNameVaidation] = useState(false)
     const [checkshopname, setCheckshopname] = useState(false);
     const [shopnameError, setShopnameError] = useState(undefined)
 
@@ -56,10 +58,15 @@ export default function HomePage() {
         setUsername(e.target.value)
         setShopnameError(undefined)
         setForError(false)
+        setUserNameVaidation(false)
     }
 
 
     const landingSignin = () => {
+        if (!(/^[A-Za-z0-9_]*$/.test(userName))) {
+            setUserNameVaidation(true);
+            return;
+        }
         setCheckshopname(true);
         GetApi(`/producer/shop-name/${userName}`, responseHandler, ErrorHandler)
     }
@@ -114,6 +121,12 @@ export default function HomePage() {
                             <img className="ratio ratio-1x1" src={alertIcon} alt="" />
                             {/* <span>URL already in use. Please try another. If you are the owner login heresdf</span> */}
                             <span>Please enter a valid username.</span>
+                        </div>
+                    }
+                    {userNameValidation &&
+                        <div className="alert-wrap">
+                            <img className="ratio ratio-1x1" src={alertIcon} alt="" />
+                            <span>Username can contain letters (a-z), numbers (0-9) and underscores.</span>
                         </div>
                     }
                     {(shopnameError) &&

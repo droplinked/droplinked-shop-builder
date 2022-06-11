@@ -7,7 +7,7 @@ export function GetApiWithAuth(address, setstate, dataName, errorhandler) {
   let token = JSON.parse(localStorage.getItem("token"));
 
   axios
-    .get(`https://api.droplinked.com/dev${address}`, {
+    .get(BasicURL+`${address}`, {
       headers: { Authorization: "Bearer " + token },
     })
     .then((e) => {
@@ -18,7 +18,7 @@ export function GetApiWithAuth(address, setstate, dataName, errorhandler) {
 
 export function GetApi(address, resHandler, errorhandler) {
   axios
-    .get(`https://dev-api.droplinked.com${address}`)
+    .get(BasicURL+`${address}`)
     .then((e) => {
       resHandler(e.response);
     })
@@ -30,7 +30,7 @@ export function PostApi(address, data, resFunc) {
   let token = JSON.parse(localStorage.getItem("token"));
 
   axios
-    .post(`https://api.droplinked.com/dev${address}`, data, {
+    .post(BasicURL+`${address}`, data, {
       headers: { Authorization: "Bearer " + token },
     })
     .then((res) => {
@@ -44,7 +44,7 @@ export function PostApi(address, data, resFunc) {
 //  if call api successfully call resFunc true id not call false and , error data
 export function PostWithoutToken(address, data, resFunc) {
   axios
-    .post(`https://dev-api.droplinked.com${address}`, data)
+    .post(BasicURL+`${address}`, data)
     .then((res) => {
       resFunc(true);
     })
@@ -58,7 +58,7 @@ export function DeleteWithToken(address, resFunc) {
   let token = JSON.parse(localStorage.getItem("token"));
 
   axios
-    .delete(`https://api.droplinked.com/dev${address}`, {
+    .delete(BasicURL+`${address}`, {
       headers: { Authorization: "Bearer " + token },
     })
     .then((res) => {

@@ -12,13 +12,14 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
 
     const { successToast, errorToast } = useContext(toastValue)
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(undefined)
+    const [error, setError] = useState(null)
+    const [shopNameError, setShopNameError] = useState(false)
     const { register, formState: { errors }, handleSubmit } = useForm();
     let navigate = useNavigate();
 
+
     const onSubmit = data => {
 
-console.log("x");
         let info = {
             email: data.email,
             password: data.password,
@@ -31,12 +32,21 @@ console.log("x");
             return;
         }
 
+        if (validationEmail(info.email)) {
+            setError("Please enter a valid email address.")
+            return;
+        }
+        if (!(/^[A-Za-z0-9_]*$/.test(data.shopname))) {
+            setShopNameError(true);
+            return;
+        }
+
         setLoading(true)
 
         PostWithoutToken("/producer/signup", info,
             (status, value) => {
                 if (status) {
-                    successToast("success");
+                    successToast("Your account has been successfully created.");
                     close()
                     localStorage.setItem('registerEmail', JSON.stringify(info.email))
                     navigate("/emailConfirmation");
@@ -47,6 +57,15 @@ console.log("x");
             }
         )
     };
+
+    const validationEmail = (em) => {
+        let regx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        if (regx.test(em)) {
+            return false
+        } else {
+            return true
+        }
+    }
 
 
 
@@ -67,8 +86,12 @@ console.log("x");
                     <div className="input-label">
                         <label>Email</label>
                         <input type="email" placeholder="example@email.com"
-                            {...register("email", { required: true })} />
-                        {errors.email?.type === 'required' && <span className="signup-modal-error">email is required</span>}
+                            {...register("email", { required: true })}
+                            onChange={() => { setError(null) }}
+                        />
+                        {errors.email?.type === 'required' && <span className="signup-modal-error">Email is required.</span>}
+                        {(error != null || error != "") &&
+                            (<span className="signup-modal-error">{error}</span>)}
                     </div>
 
                     {/* input */}
@@ -76,8 +99,8 @@ console.log("x");
                         <label >Password</label>
                         <input type="password" placeholder="Password"
                             {...register("password", { required: true, minLength: 8 })} />
-                        {errors.password?.type === 'required' && <span className="signup-modal-error">password is required</span>}
-                        {errors.password?.type === 'minLength' && <span className="signup-modal-error">password must be at least 8 characters</span>}
+                        {errors.password?.type === 'required' && <span className="signup-modal-error">Password is required.</span>}
+                        {errors.password?.type === 'minLength' && <span className="signup-modal-error">Password must be at least 8 characters.</span>}
                     </div>
 
                     {/* input */}
@@ -85,8 +108,8 @@ console.log("x");
                         <label >Confirm Password</label>
                         <input type="password" placeholder="Confirm Password"
                             {...register("confirmPassword", { required: true, minLength: 8 })} />
-                        {errors.confirmPassword?.type === 'required' && <span className="signup-modal-error">password is required</span>}
-                        {errors.confirmPassword?.type === 'minLength' && <span className="signup-modal-error">password must be at least 8 characters</span>}
+                        {errors.confirmPassword?.type === 'required' && <span className="signup-modal-error">Password is required.</span>}
+                        {errors.confirmPassword?.type === 'minLength' && <span className="signup-modal-error">Password must be at least 8 characters.</span>}
                     </div>
 
                     {/* input */}
@@ -96,13 +119,18 @@ console.log("x");
                             <span>droplinked.com/</span>
                             {(shopname == undefined) ?
                                 <input type="text" className="modal-shopname-input-inpt" placeholder="shopname"
-                                    {...register("shopname", { required: true })} />
+                                    {...register("shopname", { required: true })}
+                                    onChange={() => { setShopNameError(false) }}
+                                />
                                 :
                                 <input type="text" value={shopname} className="modal-shopname-input-inpt" placeholder="shopname"
-                                    {...register("shopname", { required: true })} />
+                                    {...register("shopname", { required: true })}
+                                    onChange={() => { setShopNameError(false) }}
+                                />
                             }
                         </div>
-                        {errors.shopname?.type === 'required' && <span className="signup-modal-error">shopname is required</span>}
+                        {errors.shopname?.type === 'required' && <span className="signup-modal-error">Shopname is required.</span>}
+                         {shopNameError && (<span className="signup-modal-error">{"Username can contain letters (a-z), numbers (0-9) and underscores."}</span>)} 
                     </div>
 
                     {/* button */}

@@ -39,7 +39,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                     close();
                     switch (res.data.data.user.status) {
                         case "NEW":
-                            errorToast("you must virified your account")
+                          //  errorToast("you must virified your account")
                             localStorage.setItem('registerEmail', JSON.stringify(info.email))
                             setLoading(false)
                             navigate("/emailConfirmation");
