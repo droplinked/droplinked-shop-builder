@@ -49,10 +49,10 @@ export default function AccountRecoveryPage() {
     const resHandle = (status, message) => {
         if (status) {
             successToast("Your password has been changed successfully. Please login again.")
-            navigate("/")
+            navigate("/?modal=login")
         } else {
             errorToast(message)
-            setBtnActivd(false)
+            navigate("/")
         }
     }
 
