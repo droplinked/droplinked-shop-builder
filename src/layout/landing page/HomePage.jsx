@@ -100,8 +100,8 @@ export default function HomePage() {
                                 }}>
                                 {(checkshopname)
                                     ?
-                                    <div class="spinner-border" role="status">
-                                        <span class="sr-only"></span>
+                                    <div className="spinner-border" role="status">
+                                        <span className="sr-only"></span>
                                     </div>
                                     :
                                     <>Sign up</>

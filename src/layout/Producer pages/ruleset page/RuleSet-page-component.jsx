@@ -7,6 +7,7 @@ import RuleItem from "./rule item component/Rule-item-component"
 import AddRule from "./add rule modal/Addrule.modal.component"
 import Loading from "../../../components/features/loading/Loading"
 import { ToastContainer, toast } from 'react-toastify';
+import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import "react-toastify/dist/ReactToastify.css";
 
 function RuleSetPage() {
@@ -17,7 +18,7 @@ function RuleSetPage() {
 	const token = JSON.parse(localStorage.getItem('token'));
 
 	useEffect(() => {
-		axios.get("https://api.droplinked.com/dev/producer/ruleset",
+		axios.get(BasicURL+"/producer/ruleset",
 			{ headers: { Authorization: 'Bearer ' + token } })
 			.then(e => { setRules(e.data.data.ruleSets) })
 			.catch(e => console.log(e))

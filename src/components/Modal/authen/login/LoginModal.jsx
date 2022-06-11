@@ -5,18 +5,18 @@ import closePng from "../../../../assest/feature/home page images/Close.png"
 
 import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 import { useForm } from "react-hook-form";
-import { useState, useEffect , useContext} from "react"
+import { useState, useEffect, useContext } from "react"
 import { toastValue } from "../../../../sevices/context/Toast-context"
 import { Link, useNavigate } from "react-router-dom";
 import { useProfile } from "../../../../sevices/hooks/useProfile"
 
 
-export default function LoginModal({ close, switchToggle , switchReset }) {
+export default function LoginModal({ close, switchToggle, switchReset }) {
 
     const [loading, setLoading] = useState(false)
     const { addProfile } = useProfile()
 
-    const { successToast , errorToast} = useContext(toastValue)
+    const { successToast, errorToast } = useContext(toastValue)
 
 
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -25,16 +25,17 @@ export default function LoginModal({ close, switchToggle , switchReset }) {
     const onSubmit = data => {
         setLoading(true)
 
+
         let info = {
             email: data.email,
             password: data.password
         }
 
-        axios.post(BasicURL+'/producer/signin', info)
+        axios.post(BasicURL + '/producer/signin', info)
             .then((res) => {
 
                 if (res.data.status == "success") {
-                  //  toast.success(res.data.status)
+                    //  toast.success(res.data.status)
                     close();
                     switch (res.data.data.user.status) {
                         case "NEW":
@@ -98,12 +99,15 @@ export default function LoginModal({ close, switchToggle , switchReset }) {
                             {...register("password", { required: true })} />
                     </div>
                     {errors.password?.type === 'required' && <span className="signup-modal-error">password is required</span>}
-                    {(loading)
+                    <button className="submit-login-modal" type="submit" disabled={(loading) ? true : false}
+                        style={{ backgroundColor: `${(loading == true) ? "#4A4A4A" : ""}` }}
+                    >Login</button>
+                    {/* {(loading)
                         ?
                         <input className="submit-login-modal" value="Login" style={{ backgroundColor: "#b3b3b3", outline: "none" }} />
                         :
-                        <input className="submit-login-modal" value="Login" type="submit" />
-                    }
+                        <button className="submit-login-modal"  type="submit" >Login</button>
+                    } */}
 
                 </form>
 

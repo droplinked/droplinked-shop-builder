@@ -10,6 +10,7 @@ import AddVariantForm from "./add variant form/Add-variantForm-component"
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import "react-toastify/dist/ReactToastify.css";
 
 function AddProductPage() {
@@ -33,8 +34,8 @@ function AddProductPage() {
     useEffect(() => {
         if (token == null) { navigate("/") }
 
-        let url1 = "https://api.droplinked.com/dev/producer/product/variant"
-        let url2 = "https://api.droplinked.com/dev/producer/collection"
+        let url1 = BasicURL+"/producer/product/variant"
+        let url2 = BasicURL+"/producer/collection"
 
         const requestOne = axios.get(url1, { headers: { Authorization: 'Bearer ' + token } });
         const requestTwo = axios.get(url2, { headers: { Authorization: 'Bearer ' + token } });
@@ -102,7 +103,7 @@ function AddProductPage() {
             sku: variants
         }
 
-        axios.post('https://api.droplinked.com/dev/producer/product', proDetail,
+        axios.post(BasicURL+'/producer/product', proDetail,
             { headers: { Authorization: 'Bearer ' + token } })
             .then((res) => {
                 toast.success("merch added successfully");

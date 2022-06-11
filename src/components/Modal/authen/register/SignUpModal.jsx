@@ -17,8 +17,8 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
     let navigate = useNavigate();
 
     const onSubmit = data => {
-        setLoading(true)
 
+console.log("x");
         let info = {
             email: data.email,
             password: data.password,
@@ -27,22 +27,24 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
         }
 
         if (info.password !== info.confirmPass) {
-            errorToast("password not match")
+            errorToast("Password and confirm password don't match.")
             return;
         }
 
-        PostWithoutToken("/producer/signup", info, 
-        (status, value) => {
-            if (status) {
-                successToast("success");
-                close()
-                localStorage.setItem('registerEmail', JSON.stringify(info.email))
-                navigate("/emailConfirmation");
-            } else {
-                errorToast(value);
-                setLoading(false)
+        setLoading(true)
+
+        PostWithoutToken("/producer/signup", info,
+            (status, value) => {
+                if (status) {
+                    successToast("success");
+                    close()
+                    localStorage.setItem('registerEmail', JSON.stringify(info.email))
+                    navigate("/emailConfirmation");
+                } else {
+                    errorToast(value);
+                    setLoading(false)
+                }
             }
-        }
         )
     };
 
@@ -104,12 +106,14 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
                     </div>
 
                     {/* button */}
-                    {(loading)
+                    <button className="sign-up-btn" type="submit" disabled={loading}
+                        style={{ backgroundColor: `${(loading == true) ? "#4A4A4A" : ""}` }}>Sign up</button>
+                    {/* {(loading)
                         ?
-                        <button className="sign-up-btn" style={{ backgroundColor: "#b3b3b3" }} >Sign up</button>
+                        <button style={{ backgroundColor: "#b3b3b3" }} >Sign up</button>
                         :
-                        <button className="sign-up-btn" type="submit" >Sign up</button>
-                    }
+                        <button className="sign-up-btn"  ></button>
+                    } */}
 
                 </form>
 

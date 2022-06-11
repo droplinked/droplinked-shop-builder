@@ -3,6 +3,7 @@ import EditRule from "../edit rule modal/Edit.Rule.component"
 import { useState } from "react"
 import SmallModal from "../../../../components/Modal/little modal/Small-modal-component"
 import axios from "axios"
+import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 
 export default function RuleItem({ name, rules, ruleId, ren }) {
     const [editModal, setEditModal] = useState(false)
@@ -20,7 +21,7 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
     }
 
     const ClickDelete = () => {
-        axios.delete(`https://api.droplinked.com/dev/producer/ruleset/${ruleId}`,
+        axios.delete(BasicURL+`/producer/ruleset/${ruleId}`,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
                 console.log(e);

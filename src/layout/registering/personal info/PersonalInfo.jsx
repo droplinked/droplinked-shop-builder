@@ -13,7 +13,7 @@ import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 
 export default function PersonalInfo() {
 
-    const [profileImg, setProfileImg] = useState(undefined)
+    const [profileImg, setProfileImg] = useState(null)
     const [loading, setLoading] = useState(false);
     const [uploadingImage, setUploadingImage] = useState(false);
     const { updateProfile } = useProfile()
@@ -44,11 +44,13 @@ export default function PersonalInfo() {
 
 
     const changeImage = (e) => {
+
         setUploadingImage(true);
+
         const file = e.target.files[0];
 
-        if (file.size > 200000) {
-            errorToast("File size exceeded (Max: 200 kb)");
+        if (file.size > 500000) {
+            errorToast("File size exceeded (Max: 500 kb)");
             setUploadingImage(false);
             return;
         }
@@ -67,6 +69,7 @@ export default function PersonalInfo() {
         formData.append("image", file);
         axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
+                
                 setUploadingImage(false);
                 successToast(e.data.message);
                 setProfileImg(e.data.small)
@@ -76,14 +79,13 @@ export default function PersonalInfo() {
                 setUploadingImage(false);
                 return;
             })
-        setUploadingImage(false);
-
     }
 
     const deleteImage = () => {
         user = { ...user, avatar: "" }
         localStorage.setItem('profile', JSON.stringify(user));
-        setProfileImg(undefined);
+        setProfileImg(null);
+        inputFile.current.value = ""
     }
 
 
@@ -99,7 +101,7 @@ export default function PersonalInfo() {
         axios.put(BasicURL+'/producer/profile', profileInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         ).then(res => {
-            updateProfile(res.data.data)
+            updateProfile(res.data.data.user)
             navigate("/register/shopInfo");
         })
             .catch(err => {
@@ -115,7 +117,7 @@ export default function PersonalInfo() {
             <div className="register-personalinfo-wrapper">
 
                 <div className="input-perosnal-image"
-                    style={{ backgroundImage: `url(${(profileImg == undefined || profileImg == "") ? "" : profileImg})` }}>
+                    style={{ backgroundImage: `url(${(profileImg == null || profileImg == "") ? "" : profileImg})` }}>
                     {(uploadingImage) &&
                         <div className="spinner-border" role="status">
                             <span className="sr-only"></span>

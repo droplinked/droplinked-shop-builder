@@ -6,6 +6,7 @@ import ProductLarge from "../../../components/features/product components/produc
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import Loading from "../../../components/features/loading/Loading"
 
 
@@ -17,11 +18,9 @@ function ImsMainPage() {
 
     const token = JSON.parse(localStorage.getItem('token'));
 
-
-
     useEffect(() => {
         if (token == null) { navigate("/") }
-        axios.get(`https://api.droplinked.com/dev/producer/product`,
+        axios.get(BasicURL+`/producer/product`,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
                  setProdcuts(e.data.data.products)

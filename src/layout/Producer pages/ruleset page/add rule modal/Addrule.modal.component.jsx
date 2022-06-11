@@ -6,6 +6,7 @@ import InputNoLabel from "../../../../components/features/input components/input
 import DropDownComp from "../../../../components/features/input components/dropdown with value/dropdown-val-component"
 import { toast } from 'react-toastify';
 import axios from "axios"
+import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 
 
 export default function AddRule({ toggle }) {
@@ -37,7 +38,7 @@ export default function AddRule({ toggle }) {
             rules: rules
         }
         setDisableBtn(true)
-        axios.post('https://api.droplinked.com/dev/producer/ruleset', ruleInfo,
+        axios.post(BasicURL+'/producer/ruleset', ruleInfo,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
                 setDisableBtn(false)

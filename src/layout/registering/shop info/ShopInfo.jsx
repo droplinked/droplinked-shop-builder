@@ -1,10 +1,9 @@
 import "./ShopInfo.scss"
 import RegisterStructure from "../register structure/RegisterStructure"
 import ShopInfoAddress from "./address component/ShopInfo.address"
-import { useEffect, useRef, useState , useContext } from "react";
-import img from "../../../assest/image/default profile/icons8-user-100.png"
+import { useEffect, useRef, useState, useContext } from "react";
 import axios from "axios"
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../sevices/hooks/useProfile"
 import { ReactComponent as IconMenu } from "../assest/icons8-delete.svg"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
@@ -22,6 +21,7 @@ export default function ShopInfo() {
 
     let x = 1;
     let user = profile
+    console.log(user);
     const shopname = user.shopName;
     const token = JSON.parse(localStorage.getItem('token'));
     let navigate = useNavigate();
@@ -35,9 +35,10 @@ export default function ShopInfo() {
 
 
 
+
     useEffect(() => {
         if (user.shopAddressID) {
-            axios.get(BasicURL+`/producer/shop/address/${user.shopAddressID}`,
+            axios.get(BasicURL + `/producer/shop/address/${user.shopAddressID}`,
                 { headers: { Authorization: 'Bearer ' + token } })
                 .then(e => setAddressdata(e.data.addressBook))
         }
@@ -72,11 +73,12 @@ export default function ShopInfo() {
             shopAddressID: address._id
         }
 
-        axios.put(BasicURL+'/producer/shop/info', shopInfo,
+        axios.put(BasicURL + '/producer/shop/info', shopInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         )
             .then(res => {
-                updateProfile(res.data.data)
+                console.log(res.data.data.user);
+                updateProfile(res.data.data.user)
                 navigate("/register/IMSSelect");
             }
             )
@@ -84,7 +86,6 @@ export default function ShopInfo() {
                 errorToast(e.response.data.reason)
                 setLoading(false);
             })
-        setLoading(false);
     }
 
 
@@ -94,12 +95,11 @@ export default function ShopInfo() {
     };
 
     const changeImage = (e) => {
-        setUploadingImage(true);
+
         const file = e.target.files[0];
 
         if (file.size > 200000) {
             errorToast("File size exceeded (Max: 200 kb)");
-            setUploadingImage(false);
             return;
         }
         if (
@@ -109,12 +109,12 @@ export default function ShopInfo() {
             file.type !== "image/jpg"
         ) {
             errorToast("File type not supported");
-            setUploadingImage(false);
             return;
         }
 
         const formData = new FormData();
         formData.append("image", file);
+        setUploadingImage(true);
         axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
                 setUploadingImage(false);
@@ -127,10 +127,8 @@ export default function ShopInfo() {
                 setUploadingImage(false);
                 return;
             })
-        setUploadingImage(false);
-
-
     }
+
     const closeAddres = () => {
         setShowAddress(false)
     }
@@ -149,7 +147,7 @@ export default function ShopInfo() {
     return (<RegisterStructure level={"shopinfo"}>
         <div className="register-shopinfo-wrapper">
             {(!showAddress) && <>
-                <div className="input-perosnal-image d-flex justify-content-center align-items-center" style={{ backgroundImage: `url(${(profileImg == undefined) ? img : profileImg})` }}>
+                <div className="input-perosnal-image d-flex justify-content-center align-items-center" style={{ backgroundImage: `url(${(profileImg == undefined) ? "" : profileImg})` }}>
                     <input className="d-none" type="file" ref={inputFile} onChange={changeImage} />
                     {(uploadingImage) &&
                         <div className="spinner-border" role="status">
@@ -188,7 +186,7 @@ export default function ShopInfo() {
 
                 <div className="register-label-input ">
                     <label>website</label>
-                    <input type="text"  ref={siteInp} defaultValue={user.web || ""} />
+                    <input type="text" ref={siteInp} defaultValue={user.web || ""} />
                 </div>
 
                 <div className="register-label-input ">

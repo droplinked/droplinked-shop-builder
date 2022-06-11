@@ -3,6 +3,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom";
 import { useProfile } from "../../../../sevices/hooks/useProfile"
+import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 import ProducerTopSection from "../../../../components/producer component/producer top section/Producer-top-section"
 import ProductSmallWrapper from "../../../../components/features/product components/product small wrapper/Product-Small-wrapper";
 import ProductLarge from "../../../../components/features/product components/product component large/ProductLarge"
@@ -17,7 +18,7 @@ export default function ShopPage() {
     const token = JSON.parse(localStorage.getItem('token'));
 
     useEffect(() => {
-        axios.get(`https://api.droplinked.com/dev/producer/product`,
+        axios.get(BasicURL+`/producer/product`,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
                 setProdcuts(e.data.data.products)
