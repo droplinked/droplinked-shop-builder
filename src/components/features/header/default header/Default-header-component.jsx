@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { UseWalletInfo } from "../../../../sevices/context/context";
 
 import HeaderItem from "../header button component/Header-btn-component"
@@ -11,6 +11,7 @@ export default function DefaulHeader() {
     const [signUpmodal, setSignModal] = useState(false)
     const [loginmodal, setloginModal] = useState(false)
     const [resetModal, setResetModal] = useState(false)
+    
     const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
 
     const togglesignup = () => { setSignModal(p => !p) }
@@ -22,18 +23,22 @@ export default function DefaulHeader() {
         toggleLogin();
     }
 
+    // useEffect(()=>{
+    //     setUrl(window.location.pathname)
+    //     console.log(window.location.pathname)
+    // },[window.location.pathname])
 
+    let url = window.location.pathname
     const switchLogRes = () => {
         toggleLogin();
         toggleReset();
     }
 
-    let url = window.location.pathname;
 
 
     return (<>
-    <HeaderItem click={toggleLogin} style={{backgroundColor:"#222"}}>Login</HeaderItem>
-        {(url == "/" || url=="/emailConfirmation") ?
+        <HeaderItem click={toggleLogin} style={{ backgroundColor: "#222" }}>Login</HeaderItem>
+        {((url == "/") || (url == "/:") || (url == "/emailConfirmation") || (url == "/email-verification/:") || (url == "/producer/account-recovery/:token")) ?
             <HeaderItem click={togglesignup}>Join today</HeaderItem>
             :
             <>
@@ -45,11 +50,11 @@ export default function DefaulHeader() {
                 }
             </>
         }
-        
+
 
         {signUpmodal && <SignUpModal close={togglesignup} switchToggle={switchToggl} />}
         {loginmodal && <LoginModal close={toggleLogin} switchToggle={switchToggl} switchReset={switchLogRes} />}
-        {resetModal && <ResetPassModal  backToLogin={switchLogRes} close={()=>{setResetModal(false)}}/>}
+        {resetModal && <ResetPassModal backToLogin={switchLogRes} close={() => { setResetModal(false) }} />}
     </>
     )
 }
