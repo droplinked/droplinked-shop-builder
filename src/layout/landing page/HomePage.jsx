@@ -12,8 +12,6 @@ import axios from "axios"
 
 
 
-
-
 export default function HomePage() {
     let [searchParams, setSearchParams] = useSearchParams();
     let x = searchParams.get("modal")
@@ -28,9 +26,6 @@ export default function HomePage() {
     const [former, setForError] = useState(false)
     const [checkshopname, setCheckshopname] = useState(false);
     const [shopnameError, setShopnameError] = useState(undefined)
-
-
-
 
 
     const toggleSignUp = () => {
@@ -54,6 +49,12 @@ export default function HomePage() {
         console.log("x");
         toggleReset();
         toggleLogin();
+    }
+
+    const changeInputValue = e => {
+        setUsername(e.target.value)
+        setShopnameError(undefined)
+        setForError(false)
     }
 
 
@@ -81,7 +82,7 @@ export default function HomePage() {
                         <div className="d-flex justify-content-start" style={{ width: "75%", maxWidth: "75%" }}>
                             <span className="item-span">droplinked.com/</span>
                             <input type="text" placeholder="username" className="item-input"
-                                onChange={(e) => { setUsername(e.target.value); setShopnameError(undefined); }}
+                                onChange={changeInputValue}
                                 value={userName}
                             />
                         </div>
