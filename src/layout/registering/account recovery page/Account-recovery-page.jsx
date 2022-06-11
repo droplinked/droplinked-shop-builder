@@ -62,7 +62,6 @@ export default function AccountRecoveryPage() {
                 type={"password"}
                 text={"New Password"}
                 change={(e) => { setNewpass(e.target.value) }}
-                {...register("email", { required: true })}
             />
             <div className="mt-4">
                 <BasicInput
