@@ -7,6 +7,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toastValue } from "../../../sevices/context/Toast-context"
 import { useState, useContext } from "react"
 import { PostWithoutToken } from "../../../sevices/functoinal-service/CallApiService"
+import { useForm } from "react-hook-form";
 
 
 export default function AccountRecoveryPage() {
@@ -17,16 +18,15 @@ export default function AccountRecoveryPage() {
     const [btnActivd, setBtnActivd] = useState(false)
     const { successToast, errorToast } = useContext(toastValue)
 
+    const { register, formState: { errors }, handleSubmit } = useForm();
+
     let navigate = useNavigate();
     let token = useParams().token;
-
-
 
     const changeConfirmPass = e =>{
         setConfirmNewpass(e.target.value)
         setConfirmError(false)
     }
-
 
     const changePassword = () => {
         if (newPass !== confirmnewPass) {
@@ -44,8 +44,6 @@ export default function AccountRecoveryPage() {
         PostWithoutToken("/producer/account-recovery", postInfo, resHandle)
     }
 
-
-
     const resHandle = (status, message) => {
         if (status) {
             successToast("Your password has been changed successfully. Please login again.")
@@ -56,7 +54,6 @@ export default function AccountRecoveryPage() {
         }
     }
 
-
     return (<>
         <div className="recovery-page-wrapper">
             <div className="title">Change your password</div>
@@ -65,6 +62,7 @@ export default function AccountRecoveryPage() {
                 type={"password"}
                 text={"New Password"}
                 change={(e) => { setNewpass(e.target.value) }}
+                {...register("email", { required: true })}
             />
             <div className="mt-4">
                 <BasicInput
