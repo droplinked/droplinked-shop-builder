@@ -6,7 +6,7 @@
   & .img-item {
     padding: 10px;
     width: 30%;
-
+    position: relative;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -16,6 +16,21 @@
       width: 100%;
       height: 100%;
       border-radius: 12px;
+    }
+
+    & .delete-icon {
+      width: 34px;
+      height: 34px;
+      position: absolute;
+      left: -10px;
+      top: -10px;
+      display: none;
+    }
+
+    &:hover{
+      & .delete-icon {
+        display: inline;
+      }
     }
 
     & .input-add-image {

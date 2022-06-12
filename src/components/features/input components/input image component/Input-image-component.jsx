@@ -1,6 +1,7 @@
 import "./Input-image-component.scss"
 import { useRef, useState, useEffect } from "react"
 import axios from "axios"
+import dltImg from "../../../../assest/icon/icons8-multiply-100.png"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
@@ -50,12 +51,18 @@ export default function InputImageComponent({ setState, state }) {
             })
     }
 
-  
+
+    const deleteImg = (e)=>{
+        let newArr = state.filter(url => url!=e)
+        setState(newArr)
+    }
+
 
     return (
         <div className="input-images-component-wrapper d-flex justify-content-start">
             {state.map((items, i) => {
                 return (<div className="img-item " id={i}>
+                    <img className="delete-icon" src={dltImg} alt="delete" onClick={()=>deleteImg(items)} />
                     <img src={items} />
                 </div>)
             })}
@@ -74,19 +81,8 @@ export default function InputImageComponent({ setState, state }) {
                         <p>+ Add image</p>
                     </div>
                 }
-
             </div>
             <input type="file" className="d-none" ref={fileRef} onChange={changeImage} />
-            {/* <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover /> */}
         </div>
     )
 }
