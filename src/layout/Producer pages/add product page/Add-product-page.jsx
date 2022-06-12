@@ -190,8 +190,12 @@ function AddProductPage() {
 
             <div className="d-flex justify-content-between align-items-center"
                 style={{ marginTop: "80px", width: "100%" }}>
+                    <div className="col-5 col-md-4">
                 <BasicButton text={"Cancel"} click={cancelForm} disable={disbtn} />
+                </div>
+                <div className="col-5 col-md-4">
                 <BasicButton text={"Submit"} click={submitForm} disable={disbtn} />
+                </div>
             </div>
             <ToastContainer
                 position="bottom-right"
