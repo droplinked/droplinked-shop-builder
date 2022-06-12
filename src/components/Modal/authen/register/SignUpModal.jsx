@@ -114,22 +114,22 @@ export default function SignUpModal({ close, shopname, switchToggle }) {
 
                     {/* input */}
                     <div className="input-label">
-                        <label >Shop domain</label>
+                        <label >Username</label>
                         <div className="modal-shopname-input">
                             <span>droplinked.com/</span>
                             {(shopname == undefined) ?
-                                <input type="text" className="modal-shopname-input-inpt" placeholder="shopname"
+                                <input type="text" className="modal-shopname-input-inpt" placeholder="Username"
                                     {...register("shopname", { required: true })}
                                     onChange={() => { setShopNameError(false) }}
                                 />
                                 :
-                                <input type="text" value={shopname} className="modal-shopname-input-inpt" placeholder="shopname"
+                                <input type="text" value={shopname} className="modal-shopname-input-inpt" placeholder="Username"
                                     {...register("shopname", { required: true })}
                                     onChange={() => { setShopNameError(false) }}
                                 />
                             }
                         </div>
-                        {errors.shopname?.type === 'required' && <span className="signup-modal-error">Shopname is required.</span>}
+                        {errors.shopname?.type === 'required' && <span className="signup-modal-error">Username is required.</span>}
                          {shopNameError && (<span className="signup-modal-error">{"Username can contain letters (a-z), numbers (0-9) and underscores."}</span>)} 
                     </div>
 
