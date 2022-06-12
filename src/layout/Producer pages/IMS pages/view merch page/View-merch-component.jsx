@@ -7,8 +7,9 @@ import CheckBoxBasic from "../../../../components/features/input components/basi
 import VariantItem from "../../add product page/variant item component/Variant-item-component"
 import AddVariantForm from "../../add product page/add variant form/Add-variantForm-component"
 import Loading from "../../../../components/features/loading/Loading";
-import BasicDropDown from "../../../../components/features/input components/basic dropdown/Basic-dropdown-component"
 import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
+import AutoWidthButton from "../../../../components/features/buttons components/autow basic button/B-button-component"
+import SmallModal from "../../../../components/Modal/little modal/Small-modal-component"
 
 import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService";
 import { useEffect, useState } from "react";
@@ -31,8 +32,10 @@ export default function ViewMerchPage() {
     const [options, setOptions] = useState([])
     const [variants, setVariants] = useState([])
     const [addvariant, setAddvariant] = useState(false)
+    const [deleteMerchModal, setDeleteModal] = useState(false)
     const { successToast, errorToast } = useToasty();
     const [disbtn, setdisbtn] = useState(false)
+    const [modalDisBtn, setModalDisBtn] = useState(false)
 
 
     const merchId = useParams().id;
@@ -117,6 +120,21 @@ export default function ViewMerchPage() {
     const editVariant = (e) => {
     }
 
+    const DeleteMerch = () => {
+        setModalDisBtn(true)
+        axios.delete(`${BasicURL}/producer/product/${merchId}`,
+            { headers: { Authorization: 'Bearer ' + token } })
+            .then(e => {
+                successToast("Merch deleted successfully");
+                navigate("/producer/ims")
+            })
+            .catch(e => {
+                errorToast(e.response.data.message)
+                setModalDisBtn(false)
+                setDeleteModal(false)    
+            })
+
+    }
 
 
     const cancelForm = () => {
@@ -156,11 +174,11 @@ export default function ViewMerchPage() {
             sku: variants
         }
 
-    //   const sku = variants.map(vr => {if(!vr.ownerID){return vr}}).filter(pr => pr != undefined)
-    
-         setdisbtn(true)
-        axios.put(BasicURL + `/producer/product/${merchId}`,product,
-        { headers: { Authorization: 'Bearer ' + token } })
+        //   const sku = variants.map(vr => {if(!vr.ownerID){return vr}}).filter(pr => pr != undefined)
+
+        setdisbtn(true)
+        axios.put(BasicURL + `/producer/product/${merchId}`, product,
+            { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
                 successToast("Merch updated successfully");
                 navigate("/producer/ims")
@@ -180,6 +198,11 @@ export default function ViewMerchPage() {
 
             <div className="add-product-page-wrapper"  >
                 <div className="ims-title mb-5">Add new item</div>
+
+                <div className="col-12 col-md-6 mb-5">
+                    <AutoWidthButton text="Delete merch" click={() => setDeleteModal(true)} style={{ backgroundColor: "#fa6653" }} />
+                </div>
+
                 <div className="mb-4 w-100 p-0">
                     <BasicInput text={"Title"} value={title} change={(e) => setTitle(e.target.value)} />
                 </div>
@@ -224,6 +247,14 @@ export default function ViewMerchPage() {
                     <BasicButton text={"Cancel"} click={cancelForm} disable={disbtn} />
                     <BasicButton text={"Submit"} click={submitForm} disable={disbtn} />
                 </div>
+                {deleteMerchModal &&
+                    <SmallModal
+                        show={deleteMerchModal}
+                        hide={() => setDeleteModal(false)}
+                        text={"Do you want to delete this merch?"}
+                        click={DeleteMerch}
+                        disable={modalDisBtn}
+                    />}
             </div>
         }
     </>)
