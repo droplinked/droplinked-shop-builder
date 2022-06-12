@@ -2,7 +2,7 @@ import "./ImsMainPage.scss"
 import BasicButton from "../../../components/features/buttons components/basic button/BasicButton"
 import SeachBox from "../../../components/features/search box/Search-box-component"
 import ProductSmallWrapper from "../../../components/features/product components/product small wrapper/Product-Small-wrapper"
-import ProductLarge from "../../../components/features/product components/product component large/ProductLarge"
+import ProductLargeProducer from "../../../components/features/product components/Product Large component producer/ProductLarge-producer"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom";
@@ -59,7 +59,7 @@ function ImsMainPage() {
                             {(products).filter(pr => pr.title.toLowerCase().includes(searchText)).map((item) => {
                                 return (
                                     <div className="col-6 col-md-4 col-lg-3 p-1" id={item.id}>
-                                        <ProductLarge title={item.title} imageUrl={item.media[0].url} />
+                                        <ProductLargeProducer title={item.title} imageUrl={item.media[0].url} id={item._id} />
                                     </div>
                                 )
                             })}

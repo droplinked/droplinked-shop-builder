@@ -31,6 +31,8 @@ function AddProductPage() {
 
     const navigate = useNavigate();
 
+    console.log(variants);
+
     useEffect(() => {
         if (token == null) { navigate("/") }
 
@@ -71,17 +73,17 @@ function AddProductPage() {
     const submitForm = (e) => {
         e.preventDefault()
         if (title == "") {
-            toast.error("merch name is required");
+            toast.error("Merch name is required");
             return;
         } else if (description == "") {
-            toast.error("merch description is required");
+            toast.error("Merch description is required");
             return;
         }
         else if (selectedCollection == "") {
-            toast.error("select a collection");
+            toast.error("Select a collection");
             return;
         } else if (variants.length == 0) {
-            toast.error("add a variant");       
+            toast.error("Add a variant");       
             return;
         }
 
@@ -104,7 +106,7 @@ function AddProductPage() {
         axios.post(BasicURL+'/producer/product', proDetail,
             { headers: { Authorization: 'Bearer ' + token } })
             .then((res) => {
-                toast.success("merch added successfully");
+                toast.success("Merch added successfully");
                 navigate("/producer/ims")
             })
             .catch(e => {
@@ -141,6 +143,7 @@ function AddProductPage() {
 
     const editVariant = (e) => {
     }
+
 
 
     return (

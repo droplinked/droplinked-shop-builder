@@ -25,6 +25,22 @@ export function GetApi(address, resHandler, errorhandler) {
     .catch((e) => errorhandler(e.response.data));
 }
 
+
+export function GetAuth (address, stateHandler , errorhandler){
+
+  let token = JSON.parse(localStorage.getItem("token"));
+
+  axios
+    .get(BasicURL+`${address}`, {
+      headers: { Authorization: "Bearer " + token },
+    })
+    .then((e) => {
+      stateHandler(e);
+    })
+    .catch((e) => errorhandler(e));
+
+}
+
 //  if call api successfully call resFunc true id not call false and , error data
 export function PostApi(address, data, resFunc) {
   let token = JSON.parse(localStorage.getItem("token"));

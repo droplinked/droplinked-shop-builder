@@ -13,8 +13,8 @@ export default function InputImageComponent({ setState, state }) {
     const changeImage = (e) => {
         setLoading(true);
         const file = e.target.files[0];
-        if (file.size > 200000) {
-            toast.error("File size exceeded (Max: 200 kb)");
+        if (file.size > 500000) {
+            toast.error("File size exceeded (Max: 500 kb)");
             setLoading(false);
             return;
         }

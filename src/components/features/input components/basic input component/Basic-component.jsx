@@ -9,7 +9,7 @@ export default function BasicInput({ type, refs, text, error, change, value, pla
                 ?
                 <div className="basic-input-component-wrapper">
                     <label>{text}</label>
-                    <textarea placeholder={place} rows="3" ref={refs} onChange={change}
+                    <textarea placeholder={place} rows="3" ref={refs} onChange={change} value={value}
                         {...otherProps}
                     ></textarea>
                     {error && <span className="register-error">{`required`}</span>}

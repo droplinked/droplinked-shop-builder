@@ -37,6 +37,7 @@ import AddCollectionPage from "./layout/Producer pages/collection pages/add coll
 import ViewPageCollection from "./layout/Producer pages/collection pages/view collectiom page/View-collection-page-component";
 import AccountRecoveryPage from "./layout/registering/account recovery page/Account-recovery-page"
 import VerificationEmailPage from "./layout/registering/verifi-email-page/Email-verification-component"
+import ViewMerchPage from "./layout/Producer pages/IMS pages/view merch page/View-merch-component"
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
                         <Route path="/email-verification/:token" element={<VerificationEmailPage />}  />
 
                         <Route path="/producer/ims" element={<ImsMainPage />} />
+                        <Route path="/producer/Merch/:id" element={<ViewMerchPage />} />
                         <Route path="/producer/addProduct"  element={<AddProductPage />} />
                         <Route path="/producer/ruleset"  element={<RuleSetPage />}  />
                         <Route path="/producer/collection"   element={<CollectionMainPage />}  />
