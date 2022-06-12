@@ -71,7 +71,7 @@ export default function ResetPassModal({ backToLogin, close }) {
                     </div>
                 </div>
                 <div className="w-12 mt-3">
-                    <AutoWidthButton text="Reset" click={SubmitForm} disable={disableBtn} />
+                    <AutoWidthButton text="Reset password" click={SubmitForm} disable={disableBtn} />
                 </div>
                 <div className="sp-text" onClick={backToLogin}>Back to login</div>
             </div>
