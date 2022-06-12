@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 export default function AddVariantForm({ state, setState, toggle, optionsArray }) {
 
     const [options, setOptions] = useState([]);
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState(0);
     const [quantity, setQuantity] = useState("");
     const [externalID, setExternalID] = useState("");
 
@@ -72,11 +72,11 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
     }
 
     const changePrice = (e) => {
-        setPrice(e.target.value)
+        setPrice(parseFloat(e.target.value))
     }
 
     const changeQuantity = (e) => {
-        setQuantity(e.target.value)
+        setQuantity(parseInt(e.target.value))
     }
     const changeexternal = (e) => {
         setExternalID(e.target.value)

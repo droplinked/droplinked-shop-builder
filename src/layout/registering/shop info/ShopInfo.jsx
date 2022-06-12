@@ -98,8 +98,8 @@ export default function ShopInfo() {
 
         const file = e.target.files[0];
 
-        if (file.size > 200000) {
-            errorToast("File size exceeded (Max: 200 kb)");
+        if (file.size > 500000) {
+            errorToast("File size exceeded (Max: 500 kb)");
             return;
         }
         if (
@@ -171,10 +171,7 @@ export default function ShopInfo() {
                 <div className="register-label-input ">
                     <label>about your shop</label>
                     <textarea id="w3review" name="w3review" rows="4" cols="50"
-                        type="text" ref={descriptionInp} defaultValue={user.description || ""}
-                    >
-
-
+                        type="text" ref={descriptionInp} defaultValue={user.description || ""} >
                     </textarea>
                     {/* <input type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""} /> */}
                 </div>
@@ -217,8 +214,8 @@ export default function ShopInfo() {
                             <button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>edit</button>
                             <button className="edit-address-detail" style={{ color: "red" }} onClick={() => { setAddressdata(undefined) }}>delete</button></div>
                     </div>
-
                 }
+
                 <div className="d-flex justify-content-between w-100">
                     <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
                         onClick={() => { navigate("/register/personalInfo") }}

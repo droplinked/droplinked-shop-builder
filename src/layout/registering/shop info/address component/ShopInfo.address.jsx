@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -32,7 +33,7 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
             state: data.state,
             zip: data.Zip
         }
-        axios.post('https://api.droplinked.com/dev/producer/shop/address', addresInfo,
+        axios.post(BasicURL+'/producer/shop/address', addresInfo,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
                 toast.success("Address added successfully")
@@ -44,11 +45,7 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
                 toast.error(e.response.data.reason)
                 setLoading(false);
             })
-
-
-
     };
-
 
 
 
@@ -106,7 +103,9 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
             rtl={false}
             pauseOnFocusLoss
             draggable
-            pauseOnHover />
+            pauseOnHover
+            theme="dark"
+            />
     </>
     )
 }

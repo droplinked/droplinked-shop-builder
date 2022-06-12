@@ -30,7 +30,7 @@ function ImsMainPage() {
 
 
     const onChangeSearchBox = (e) => {
-        setSearchText(e.target.value)
+        setSearchText(e.target.value.toLowerCase())
     }
 
 
@@ -56,7 +56,7 @@ function ImsMainPage() {
                         </div>
                         :
                         <>
-                            {(products).filter(pr => pr.title.includes(searchText)).map((item) => {
+                            {(products).filter(pr => pr.title.toLowerCase().includes(searchText)).map((item) => {
                                 return (
                                     <div className="col-6 col-md-4 col-lg-3 p-1" id={item.id}>
                                         <ProductLarge title={item.title} imageUrl={item.media[0].url} />
@@ -65,7 +65,6 @@ function ImsMainPage() {
                             })}
                         </>
                     }
-
                     </>
                     :
                     <Loading />
