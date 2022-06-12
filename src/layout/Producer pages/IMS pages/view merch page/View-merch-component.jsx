@@ -43,7 +43,7 @@ export default function ViewMerchPage() {
 
     const token = JSON.parse(localStorage.getItem('token'));
 
-    let collectionArray = [] // for pass to dropDown
+
 
     useEffect(() => {
 
@@ -58,7 +58,7 @@ export default function ViewMerchPage() {
             const responseTwo = responses[1]
             setVariantType(responseOne.data.data.variants);
             setCollection(responseTwo.data.data.collections);
-            collectionArray = responseTwo.data.data.collections.map(coll => { return { id: coll._id, value: coll.title } })
+            let collectionArray = responseTwo.data.data.collections.map(coll => { return { id: coll._id, value: coll.title } })
             setCollection(collectionArray)
         })).catch(errors => {
             errorToast(errors.response.data.reason)
@@ -106,6 +106,7 @@ export default function ViewMerchPage() {
         }
     }
 
+    //delete variant
     const deleteVariant = (e) => {
         let arr = []
         for (const v of variants) {
@@ -117,9 +118,12 @@ export default function ViewMerchPage() {
         setVariants(arr)
     }
 
+    //delete edit variant
     const editVariant = (e) => {
     }
 
+
+    //delete merch
     const DeleteMerch = () => {
         setModalDisBtn(true)
         axios.delete(`${BasicURL}/producer/product/${merchId}`,
@@ -131,17 +135,14 @@ export default function ViewMerchPage() {
             .catch(e => {
                 errorToast(e.response.data.message)
                 setModalDisBtn(false)
-                setDeleteModal(false)    
+                setDeleteModal(false)
             })
-
     }
 
 
     const cancelForm = () => {
         navigate("/producer/ims")
     }
-
-
 
     const submitForm = (e) => {
         e.preventDefault()
@@ -174,7 +175,16 @@ export default function ViewMerchPage() {
             sku: variants
         }
 
-        //   const sku = variants.map(vr => {if(!vr.ownerID){return vr}}).filter(pr => pr != undefined)
+        const sku = variants.filter(vr => vr.ownerID == undefined)
+
+        if (sku.length > 0) {
+                axios.post(`${BasicURL}/producer/product/${merchId}/sku` ,
+                {skus:sku},
+                { headers: { Authorization: 'Bearer ' + token } })
+                .then(e =>{
+                })
+                .catch(e =>{errorToast(e.response.data.message)})
+        }
 
         setdisbtn(true)
         axios.put(BasicURL + `/producer/product/${merchId}`, product,
