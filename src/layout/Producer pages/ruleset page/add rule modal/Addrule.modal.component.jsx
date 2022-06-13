@@ -78,13 +78,9 @@ export default function AddRule({ toggle }) {
         setRules(arr)
     }
 
+
     const deletRule = (i) => {
-        console.log(i);
-        let arr = []
-        for (const x of rules) {
-            arr.push(x)
-        }
-        arr.splice(i, 1);
+        let arr = rules.filter((rule , index) => index != i)
         setRules(arr)
     }
 
@@ -102,11 +98,11 @@ export default function AddRule({ toggle }) {
                     return (
                         <div key={i} className="w-100 d-flex justify-content-between align-items-center mt-4 mb-4">
                             <div style={{ width: '40%' }}>
-                                <InputNoLabel text={"Address"} change={(e) => changeRuleAddress(e, i)} />
+                                <InputNoLabel text={"Address"} value={item.address} change={(e) => changeRuleAddress(e, i)} />
                             </div>
                             <div style={{ width: '40%' }} className="d-flex">
-                                <DropDownComp valArray={dropVal} change={(e) => changeNft(e, i)} />
-                                <p className="delete-btn" style={{fontSize:"20px" , margin:"auto"}} onClick={() => deletRule(i)}>X</p>
+                                <DropDownComp value={item.type} valArray={dropVal} change={(e) => changeNft(e, i)} />
+                                <p className="delete-btn" style={{fontSize:"20px" , margin:"auto 0px auto 10px"}} onClick={() => deletRule(i)}>X</p>
                             </div>
                         </div>
                     )

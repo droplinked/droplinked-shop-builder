@@ -4,10 +4,12 @@ import { useState } from "react"
 import SmallModal from "../../../../components/Modal/little modal/Small-modal-component"
 import axios from "axios"
 import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
+import { useToasty } from "../../../../sevices/hooks/useToastify"
 
 export default function RuleItem({ name, rules, ruleId, ren }) {
     const [editModal, setEditModal] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
+    const { successToast, errorToast } = useToasty();
 
     const token = JSON.parse(localStorage.getItem('token'));
 
@@ -17,22 +19,22 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
 
     const Edit = () => {
         toggleEdit();
-        ren(p => !p)
     }
 
     const ClickDelete = () => {
-        axios.delete(BasicURL+`/producer/ruleset/${ruleId}`,
+        axios.delete(BasicURL + `/producer/ruleset/${ruleId}`,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
-                console.log(e);
+                successToast("Rule deleted successfully");
                 toggleDelete()
+                ren(p => !p)
             })
             .catch(e => {
                 toggleDelete()
-                console.log(e)
+                errorToast(e.response.data.message)
             })
 
-        ren(p => !p)
+
     }
 
     return (
@@ -48,7 +50,7 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
                 <button className="btn-rule-item" style={{ color: "#fd6060" }} onClick={toggleDelete}>Delete</button>
                 <button className="btn-rule-item" style={{ color: "#8053ff" }} onClick={Edit}>Edit</button>
             </div>
-            {editModal && <EditRule toggle={toggleEdit} RuleId={ruleId} RuleName={name} Rule={rules} />}
+            {editModal && <EditRule toggle={toggleEdit} RuleId={ruleId} RuleName={name} Rule={rules} render={ren} />}
             <SmallModal header={"Delete Rule"} show={deleteModal} hide={() => { setDeleteModal(false) }} text={`Are you sure you want to  delete this rule?`} click={ClickDelete} />
         </div>
     )

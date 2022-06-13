@@ -9,7 +9,7 @@ import axios from "axios"
 import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 
 
-export default function EditRule({ toggle, RuleId, RuleName, Rule }) {
+export default function EditRule({ toggle, RuleId, RuleName, Rule , render }) {
     const [ruleName, setRuleName] = useState(RuleName)
     const [rules, setRules] = useState(Rule)
     const [disableBtn, setDisableBtn] = useState(false)
@@ -42,6 +42,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule }) {
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
                 setDisableBtn(false)
+                render(p => !p)
                 toggle();
             })
             .catch(e => {
@@ -79,12 +80,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule }) {
     }
 
     const deletRule = (i) => {
-        console.log(i);
-        let arr = []
-        for (const x of rules) {
-            arr.push(x)
-        }
-        arr.splice(i, 1);
+        let arr = rules.filter((rule , index) => index != i)
         setRules(arr)
     }
 
@@ -102,11 +98,11 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule }) {
                     return (
                         <div key={i} className="w-100 d-flex justify-content-between align-items-center mt-4 mb-4">
                             <div style={{ width: '40%' }}>
-                                <InputNoLabel text={"address"} change={(e) => changeRuleAddress(e, i)} value={item.address} />
+                                <InputNoLabel text={"address"} value={item.address} change={(e) => changeRuleAddress(e, i)} />
                             </div>
                             <div style={{ width: '40%' }} className="d-flex">
                                 <DropDownComp valArray={dropVal} change={(e) => changeNft(e, i)} value={item.type} />
-                                <p className="delete-btn" style={{fontSize:"20px" , margin:"auto"}} onClick={() => deletRule(i)}>X</p>
+                                <p className="delete-btn" style={{fontSize:"20px" , margin:"auto 0px auto 10px"}} onClick={() => deletRule(i)}>X</p>
                             </div>
                         </div>
                     )
