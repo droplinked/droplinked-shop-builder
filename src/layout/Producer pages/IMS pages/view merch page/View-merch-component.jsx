@@ -107,15 +107,14 @@ export default function ViewMerchPage() {
     }
 
     //delete variant
-    const deleteVariant = (e) => {
-        let arr = []
-        for (const v of variants) {
-            arr.push(v)
-        }
-        arr.forEach((item, i) => {
-            if (i == e.target.id) { arr.splice(i, 1) }
-        })
-        setVariants(arr)
+    const deleteVariant = (id, veri) => {
+        axios.delete(`${BasicURL}/producer/product/sku/${veri._id}`,
+            { headers: { Authorization: 'Bearer ' + token } })
+            .then(e => {
+                console.log(e.data.status)
+                GetAuth(`/producer/product/${merchId}?withSku=true`, resHandler, errorHandler)
+            })
+            .catch(e => errorToast(e.response.data.message))
     }
 
     //delete edit variant
@@ -178,12 +177,12 @@ export default function ViewMerchPage() {
         const sku = variants.filter(vr => vr.ownerID == undefined)
 
         if (sku.length > 0) {
-                axios.post(`${BasicURL}/producer/product/${merchId}/sku` ,
-                {skus:sku},
+            axios.post(`${BasicURL}/producer/product/${merchId}/sku`,
+                { skus: sku },
                 { headers: { Authorization: 'Bearer ' + token } })
-                .then(e =>{
+                .then(e => {
                 })
-                .catch(e =>{errorToast(e.response.data.message)})
+                .catch(e => { errorToast(e.response.data.message) })
         }
 
         setdisbtn(true)
@@ -254,11 +253,11 @@ export default function ViewMerchPage() {
 
                 <div className="d-flex justify-content-between align-items-center"
                     style={{ marginTop: "80px", width: "100%" }}>
-                         <div className="col-5 col-md-4">
-                    <BasicButton text={"Cancel"} click={cancelForm} disable={disbtn} />
+                    <div className="col-5 col-md-4">
+                        <BasicButton text={"Cancel"} click={cancelForm} disable={disbtn} />
                     </div>
                     <div className="col-5 col-md-4">
-                    <BasicButton text={"Submit"} click={submitForm} disable={disbtn} />
+                        <BasicButton text={"Submit"} click={submitForm} disable={disbtn} />
                     </div>
                 </div>
                 {deleteMerchModal &&

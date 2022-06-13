@@ -31,7 +31,7 @@ function AddProductPage() {
 
     const navigate = useNavigate();
 
-    console.log(variants);
+    
 
     useEffect(() => {
         if (token == null) { navigate("/") }
@@ -130,13 +130,13 @@ function AddProductPage() {
         }
     }
 
-    const deleteVariant = (e) => {
+    const deleteVariant = (id , vari) => {
         let arr = []
         for (const v of variants) {
             arr.push(v)
         }
         arr.forEach((item, i) => {
-            if (i == e.target.id) { arr.splice(i, 1) }
+            if (i == id) { arr.splice(i, 1) }
         })
         setVariants(arr)
     }
