@@ -12,7 +12,8 @@ import { DeleteWithToken } from "../../../sevices/functoinal-service/CallApiServ
 import { Link } from "react-router-dom"
 import { useState, useContext } from "react"
 
-export default function CollectionWrapper({ id, name, productsArray,  render }) {
+export default function CollectionWrapper({ id, name, productsArray,edit,  render }) {
+
 
     const [deleteModal, setDeleteModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
@@ -46,10 +47,10 @@ export default function CollectionWrapper({ id, name, productsArray,  render }) 
             {(productsArray.length == 0)
                 ?
                 <div className="d-flex">
-                    <p className="text-align-center">No Product</p>
+                    <p className="text-align-center no-pro-text">No Product</p>
                 </div>
                 :
-                <div className=" mt-4 d-flex flex-wrap">
+                <div className="mt-4 d-flex flex-wrap">
                     {productsArray.filter((product, i) => {
                         if (i < 4) { return product }
                     }).map((product, i) => {
@@ -62,8 +63,8 @@ export default function CollectionWrapper({ id, name, productsArray,  render }) 
             }
 
             <div className="d-flex justify-content-between align-items-center h-auto">
-                <img src={editIcon} onClick={toggleEdit} alt="icon" style={{ width: "28px", height: "28px", cursor: "pointer" }} />
-                <img src={deleteIcon} onClick={() => setDeleteModal(true)} alt="icon" style={{ width: "32px", height: "32px", cursor: "pointer" }} />
+                <img src={editIcon} onClick={edit} alt="icon" className="edit-img" style={{cursor: "pointer" }} />
+                <img src={deleteIcon} onClick={() => setDeleteModal(true)} alt="icon" className="delete-img" style={{ cursor: "pointer" }} />
             </div>
 
         </div>

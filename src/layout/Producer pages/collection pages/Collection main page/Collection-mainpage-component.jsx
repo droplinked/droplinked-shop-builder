@@ -6,9 +6,10 @@ import CollectionWrapper from "../../../../components/features/collection wrappe
 import BadicModal from "../../../../components/Modal/basic modal component/Basic-modal-component"
 import AddCollectionPage from "../add collection page/Add-collection-component"
 import Loading from "../../../../components/features/loading/Loading"
+import EditCollectionModal from "../edit collection modal/edit-collection-modal-component"
 
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect, useContext } from "react"
+import { useState, useEffect, useRef } from "react"
 import { toastValue } from "../../../../sevices/context/Toast-context"
 import { ToastContainer, toast } from 'react-toastify';
 import { GetApiWithAuth, DeleteWithToken } from "../../../../sevices/functoinal-service/CallApiService"
@@ -16,19 +17,22 @@ import { GetApiWithAuth, DeleteWithToken } from "../../../../sevices/functoinal-
 export default function CollectionMainPage({ name }) {
 
     const [Modal, setModal] = useState(false)
+    const [EditModal, setEditModal] = useState(false)
     const [collectins, setCollections] = useState(null);
     const [ren, setRen] = useState(false)
- 
+
+    const editRef = useRef(null)
+
 
     const navigate = useNavigate();
 
     const token = JSON.parse(localStorage.getItem('token'));
 
-  
+
     useEffect(() => {
         if (token == null) { navigate("/") }
         GetApiWithAuth("/producer/collection?withProducts=true", setCollections, "collections", errorHandle);
-    }, [Modal , ren])
+    }, [Modal, ren])
 
     const ToggleModal = () => setModal(p => !p)
     const errorHandle = (e) => toast.error(e)
@@ -45,8 +49,15 @@ export default function CollectionMainPage({ name }) {
 
 
     const renFunc = () => setRen(p => !p)
-   
 
+    const ToggleeditCollection = (coll) => {
+        editRef.current =  (coll)
+        setEditModal(true)
+    }
+
+    const updateCollection = () => {
+        
+    }
 
     return (<>
         <div className="Collection-page-wrapper">
@@ -71,7 +82,7 @@ export default function CollectionMainPage({ name }) {
                             {collectins.map((col, i) => {
                                 return (
                                     <div key={i} className="mt-5 col-lg-6 col-md-10 col-12 ">
-                                        <CollectionWrapper id={col._id} name={col.title} productsArray={col.products} render={renFunc} />
+                                        <CollectionWrapper id={col._id} name={col.title} productsArray={col.products} edit={() => { ToggleeditCollection(col) }} render={renFunc} />
                                     </div>
                                 )
                             })
@@ -88,7 +99,12 @@ export default function CollectionMainPage({ name }) {
                 <AddCollectionPage toggle={ToggleModal} submitFunc={PostCollection} />
             </BadicModal>)
         }
-      
+        {EditModal &&
+            (<BadicModal>
+                <EditCollectionModal toggle={()=> setEditModal(false)} submitFunc={updateCollection} defaultValue={editRef.current} />
+            </BadicModal>)
+        }
+
         <ToastContainer
             position="bottom-right"
             autoClose={5000}

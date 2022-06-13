@@ -1,34 +1,48 @@
 import "../add collection page/Add-collection-style.scss"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
-import { PostApi, GetApiWithAuth } from "../../../../sevices/functoinal-service/CallApiService"
+import { PostApi, GetApiWithAuth , BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import AutoWidthButton from "../../../../components/features/buttons components/autow basic button/B-button-component"
 import Loading from "../../../../components/features/loading/Loading"
 import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
+import axios from "axios"
+import { useToasty } from "../../../../sevices/hooks/useToastify"
 
-
-
-export default function EditCollectionModal({ toggle, submitFunc , defaultVal}){
+export default function EditCollectionModal({ toggle, submitFunc, defaultValue }) {
 
     const [rules, setRules] = useState(null);
-    const [selectedRule, setSelectedRule] = useState(null);
-    const [collectionName, setCollectionName] = useState("");
+    const [selectedRule, setSelectedRule] = useState(() => { return (defaultValue.ruleSetID) ? defaultValue.ruleSetID : "" });
+    const [collectionName, setCollectionName] = useState(defaultValue.title);
     const [disableBtn, setDisableBtn] = useState(false);
+    const [ruleValue, setRuleValue] = useState("")
 
+    const { errorToast , successToast} = useToasty()
     const navigate = useNavigate();
+
 
     const token = JSON.parse(localStorage.getItem('token'));
 
 
     useEffect(() => {
         if (token == null) { navigate("/") }
-        GetApiWithAuth("/producer/ruleset", changeToPairValId, "ruleSets", toast.error)
+        GetApiWithAuth("/producer/ruleset", changeToPairValId, "ruleSets", errorToast)
     }, [])
 
+    // set ruleset dropdown value
+    useEffect(() => {
+        if (rules) {
+            let x = rules.find(rl => rl.id == selectedRule)
+            if (x != undefined) {
+                setRuleValue(x.value)
+            } else {
+                setRuleValue("Public")
+            }
+        }
+    }, [rules])
 
+
+    // build paid valu id form drop down
     const changeToPairValId = (ruleArray) => {
         let newPair = ruleArray.map(rule => { return { id: rule._id, value: rule.name } })
         newPair.unshift({ id: "", value: "Public" })
@@ -37,39 +51,48 @@ export default function EditCollectionModal({ toggle, submitFunc , defaultVal}){
 
 
     const submitForm = () => {
-console.log("xx");
-        // if (collectionName == "") {
-        //     toast.error("Collection Name is required");
-        //     return
-        // }
-        // if (selectedRule == null) {
-        //     toast.error("Select a rule");
-        //     return
-        // }
 
+        if (collectionName == "") {
+           errorToast("Collection Name is required");
+            return
+        }
+        if (selectedRule == null) {
+            errorToast("Select a rule");
+            return
+        }
+
+     
+        let RuleInfo;
+        if (selectedRule == "") {
+            RuleInfo = {
+                title: collectionName,
+                image: "",
+                nftImages: [],
+                type: "PUBLIC"
+            }
+        } else {
+            RuleInfo = {
+                title: collectionName,
+                image: "",
+                nftImages: [],
+                type: "HOLDER",
+                ruleSetID: selectedRule
+            }
+        }
+
+        console.log(RuleInfo);
         // setDisableBtn(true)
-        // let RuleInfo;
-        // if (selectedRule == "") {
-        //     RuleInfo = {
-        //         title: collectionName,
-        //         image: "",
-        //         nftImages: [],
-        //         type: "PUBLIC"
-        //     }
-        // } else {
-        //     RuleInfo = {
-        //         title: collectionName,
-        //         image: "",
-        //         nftImages: [],
-        //         type: "HOLDER",
-        //         ruleSetID: selectedRule
-        //     }
-        // }
 
-        // PostApi("/producer/collection", RuleInfo, submitFunc)  
-        
+        // axios.put(`${BasicURL}/producer/collection/${defaultValue._id}`,
+        // {headers: { Authorization: "Bearer " + token }})
+        // .then(e =>{
+
+        // })
+        // .catch(e =>{
+
+        // })
+
     }
-
 
     const changeRule = (e) => {
         setSelectedRule(e.target.value);
@@ -87,14 +110,14 @@ console.log("xx");
                 ?
                 <>
                     <div className="mt-5">
-                        <BasicInput text="Collection Name" change={changeName} />
+                        <BasicInput text="Collection Name" value={collectionName} change={changeName} />
                     </div>
                     {/* <div className="mt-5">
                              <InputImageComponent state={Images} setState={setImages} />
                          </div> 
                     */}
                     <div className="mt-5">
-                        <DropDownPairValId pairArray={rules} change={changeRule} value={"Choose Rule"} />
+                        <DropDownPairValId pairArray={rules} change={changeRule} value={ruleValue} />
                     </div>
                 </>
                 :
