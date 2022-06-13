@@ -60,7 +60,6 @@ export default function EditCollectionModal({ toggle, submitFunc, defaultValue }
             errorToast("Select a rule");
             return
         }
-
      
         let RuleInfo;
         if (selectedRule == "") {
@@ -68,7 +67,7 @@ export default function EditCollectionModal({ toggle, submitFunc, defaultValue }
                 title: collectionName,
                 image: "",
                 nftImages: [],
-                type: "PUBLIC"
+                type: "PUBLIC",
             }
         } else {
             RuleInfo = {
@@ -80,17 +79,18 @@ export default function EditCollectionModal({ toggle, submitFunc, defaultValue }
             }
         }
 
-        console.log(RuleInfo);
-        // setDisableBtn(true)
+        setDisableBtn(true)
 
-        // axios.put(`${BasicURL}/producer/collection/${defaultValue._id}`,
-        // {headers: { Authorization: "Bearer " + token }})
-        // .then(e =>{
-
-        // })
-        // .catch(e =>{
-
-        // })
+        axios.put(`${BasicURL}/producer/collection/${defaultValue._id}`,RuleInfo,
+        {headers: { Authorization: "Bearer " + token }})
+        .then(e =>{
+            successToast("Collection updated successfully")
+            toggle()
+        })
+        .catch(e =>{
+            errorToast(e.response.data.reason)
+            toggle()
+        })
 
     }
 

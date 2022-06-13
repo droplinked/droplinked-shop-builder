@@ -101,7 +101,7 @@ export default function CollectionMainPage({ name }) {
         }
         {EditModal &&
             (<BadicModal>
-                <EditCollectionModal toggle={()=> setEditModal(false)} submitFunc={updateCollection} defaultValue={editRef.current} />
+                <EditCollectionModal toggle={()=> {setEditModal(false);renFunc()}} submitFunc={updateCollection} defaultValue={editRef.current} />
             </BadicModal>)
         }
 
