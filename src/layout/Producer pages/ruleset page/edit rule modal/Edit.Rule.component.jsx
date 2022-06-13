@@ -47,7 +47,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule , render }) {
             })
             .catch(e => {
                 setDisableBtn(false)
-                console.log(e)
+                console.log(e.response.data.message)
             })
 
     }

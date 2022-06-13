@@ -46,7 +46,7 @@ export default function AddRule({ toggle }) {
             })
             .catch(e => {
                 setDisableBtn(false)
-                console.log(e)
+                console.log(e.response.data.message)
             })
 
     }

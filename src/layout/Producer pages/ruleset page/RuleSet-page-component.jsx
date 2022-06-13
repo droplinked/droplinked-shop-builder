@@ -1,19 +1,23 @@
-import { useState, useEffect } from "react";
+
 import "./RuleSet-page-style.scss"
+
 import axios from "axios"
 import BasicButton from "../../../components/features/buttons components/basic button/BasicButton";
 import ContentWrapper from "../../../components/Structure/content-wrapper/Content-wrapper-component"
 import RuleItem from "./rule item component/Rule-item-component"
 import AddRule from "./add rule modal/Addrule.modal.component"
 import Loading from "../../../components/features/loading/Loading"
-import { ToastContainer, toast } from 'react-toastify';
+
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
-import "react-toastify/dist/ReactToastify.css";
+import { useToasty } from "../../../sevices/hooks/useToastify"
+import { useState, useEffect } from "react";
 
 function RuleSetPage() {
 	const [addRuleModal, setAddRuleModal] = useState(false)
 	const [rules, setRules] = useState(null)
 	const [render, setRender] = useState(false)
+
+	const { successToast, errorToast } = useToasty();
 
 	const token = JSON.parse(localStorage.getItem('token'));
 
@@ -21,7 +25,7 @@ function RuleSetPage() {
 		axios.get(BasicURL+"/producer/ruleset",
 			{ headers: { Authorization: 'Bearer ' + token } })
 			.then(e => { setRules(e.data.data.ruleSets) })
-			.catch(e => console.log(e))
+			.catch(e => errorToast(e.response.data.message))
 	},[addRuleModal ,render])
 
 	const modalToggle = () => {
@@ -49,19 +53,6 @@ function RuleSetPage() {
 			</div>
 		</ContentWrapper>
 		{addRuleModal && <AddRule toggle={modalToggle} />}
-		<ToastContainer
-			position="bottom-right"
-			autoClose={5000}
-			hideProgressBar={false}
-			newestOnTop={false}
-			closeOnClick
-			rtl={false}
-			pauseOnFocusLoss
-			draggable
-			pauseOnHover
-			theme='dark'
-		/>
-
 	</>
 	);
 }
