@@ -12,7 +12,7 @@ import { DeleteWithToken } from "../../../sevices/functoinal-service/CallApiServ
 import { Link } from "react-router-dom"
 import { useState, useContext } from "react"
 
-export default function CollectionWrapper({ id, name, productsArray,edit,  render }) {
+export default function CollectionWrapper({ id, name, productsArray, edit, render, editable }) {
 
 
     const [deleteModal, setDeleteModal] = useState(false)
@@ -28,13 +28,13 @@ export default function CollectionWrapper({ id, name, productsArray,edit,  rende
         setDeleteModal(false)
     }
 
-    const submitEdit = () =>{
+    const submitEdit = () => {
         console.log("x");
     }
 
     const DeleteCollection = () => { DeleteWithToken(`/producer/collection/${id}`, resHandler) }
 
-    const toggleEdit = () => setEditModal(p =>!p)
+    const toggleEdit = () => setEditModal(p => !p)
 
     return (<>
         <div className="Collection-wrapper-component">
@@ -62,10 +62,13 @@ export default function CollectionWrapper({ id, name, productsArray,edit,  rende
                 </div>
             }
 
-            <div className="d-flex justify-content-between align-items-center h-auto">
-                <img src={editIcon} onClick={edit} alt="icon" className="edit-img" style={{cursor: "pointer" }} />
-                <img src={deleteIcon} onClick={() => setDeleteModal(true)} alt="icon" className="delete-img" style={{ cursor: "pointer" }} />
-            </div>
+            {editable && <>
+                <div className="d-flex justify-content-between align-items-center h-auto">
+                    <img src={editIcon} onClick={edit} alt="icon" className="edit-img" style={{ cursor: "pointer" }} />
+                    <img src={deleteIcon} onClick={() => setDeleteModal(true)} alt="icon" className="delete-img" style={{ cursor: "pointer" }} />
+                </div>
+            </>}
+
 
         </div>
         {deleteModal &&
@@ -78,7 +81,7 @@ export default function CollectionWrapper({ id, name, productsArray,edit,  rende
         }
         {editModal &&
             (<BadicModal>
-                <EditCollectionModal  toggle={toggleEdit} submitFunc={submitEdit} />
+                <EditCollectionModal toggle={toggleEdit} submitFunc={submitEdit} />
             </BadicModal>)
         }
     </>

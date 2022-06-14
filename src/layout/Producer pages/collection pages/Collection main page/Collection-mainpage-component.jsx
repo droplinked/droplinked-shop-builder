@@ -51,12 +51,12 @@ export default function CollectionMainPage({ name }) {
     const renFunc = () => setRen(p => !p)
 
     const ToggleeditCollection = (coll) => {
-        editRef.current =  (coll)
+        editRef.current = (coll)
         setEditModal(true)
     }
 
     const updateCollection = () => {
-        
+
     }
 
     return (<>
@@ -82,7 +82,14 @@ export default function CollectionMainPage({ name }) {
                             {collectins.map((col, i) => {
                                 return (
                                     <div key={i} className="mt-5 col-lg-6 col-md-10 col-12 ">
-                                        <CollectionWrapper id={col._id} name={col.title} productsArray={col.products} edit={() => { ToggleeditCollection(col) }} render={renFunc} />
+                                        <CollectionWrapper
+                                            id={col._id}
+                                            name={col.title}
+                                            productsArray={col.products}
+                                            edit={() => { ToggleeditCollection(col) }}
+                                            render={renFunc}
+                                            editable={true}
+                                        />
                                     </div>
                                 )
                             })
@@ -101,7 +108,7 @@ export default function CollectionMainPage({ name }) {
         }
         {EditModal &&
             (<BadicModal>
-                <EditCollectionModal toggle={()=> {setEditModal(false);renFunc()}} submitFunc={updateCollection} defaultValue={editRef.current} />
+                <EditCollectionModal toggle={() => { setEditModal(false); renFunc() }} submitFunc={updateCollection} defaultValue={editRef.current} />
             </BadicModal>)
         }
 
