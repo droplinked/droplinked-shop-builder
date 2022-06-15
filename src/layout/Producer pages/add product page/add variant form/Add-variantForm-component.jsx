@@ -9,6 +9,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
     const [quantity, setQuantity] = useState("");
     const [externalID, setExternalID] = useState("");
 
+
     const submitvariant = (e) => {
         e.preventDefault();
         if (price == "") {
@@ -51,25 +52,22 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
         toggle();
     }
 
-
+    // change options value
     const onChangeDropDown = (e) => {
-        let optArray = []
-        for (const opt of options) {
-            optArray.push(opt)
-        }
+        let optArray = options.map(opt => opt)
+
         if (optArray.filter(it => it.variantID == e.target.id).length > 0) {
             optArray.map((item, i) => {
-                if (item.variantID == e.target.id) { item.value = e.target.value }
+                if (item.variantID == e.target.id) item.value = e.target.value
                 if (item.value == "") optArray.splice(i, 1)
             })
         } else {
-            optArray.push({
-                variantID: e.target.id,
-                value: e.target.value
-            })
+            optArray.push({ variantID: e.target.id, value: e.target.value })
         }
         setOptions(optArray)
     }
+
+
 
     const changePrice = (e) => {
         setPrice(e.target.value)
@@ -86,11 +84,10 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
         <form className="add-new-variant-form">
             {
                 optionsArray.map((opt, i) => {
-                    let name = (opt == "628df708028da49d3f6a73eb") ? "Size" : "Color";
                     return (
-                        <div className="rw-rp" id={i}>
-                            <label>{name}</label>
-                            <input type="text" placeholder={name} id={opt} onChange={onChangeDropDown} />
+                        <div className="rw-rp" key={i}>
+                            <label>{opt.optionName}</label>
+                            <input type="text" placeholder={opt.optionName} id={opt.optionID} onChange={onChangeDropDown} />
                         </div>
                     )
                 })
@@ -108,8 +105,8 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
                 <input type="number" placeholder="1794012584" onChange={changeexternal} />
             </div>
             <div className="rw-rp">
-            <BasicButton text={"Cancel"} click={toggle} style={{ width: "40%" }} />
-                <BasicButton text={"Add"} click={submitvariant} style={{ width: "40%" }} />       
+                <BasicButton text={"Cancel"} click={toggle} style={{ width: "40%" }} />
+                <BasicButton text={"Add"} click={submitvariant} style={{ width: "40%" }} />
             </div>
         </form>
     </>)

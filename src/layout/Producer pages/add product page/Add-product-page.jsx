@@ -31,13 +31,12 @@ function AddProductPage() {
 
     const navigate = useNavigate();
 
-    
 
     useEffect(() => {
         if (token == null) { navigate("/") }
 
-        let url1 = BasicURL+"/producer/product/variant"
-        let url2 = BasicURL+"/producer/collection"
+        let url1 = BasicURL + "/producer/product/variant"
+        let url2 = BasicURL + "/producer/collection"
 
         const requestOne = axios.get(url1, { headers: { Authorization: 'Bearer ' + token } });
         const requestTwo = axios.get(url2, { headers: { Authorization: 'Bearer ' + token } });
@@ -65,7 +64,7 @@ function AddProductPage() {
         setSelectCollection(e.target.value)
     }
     const cancelForm = () => {
-        navigate("/producer/ims") 
+        navigate("/producer/ims")
     }
 
 
@@ -83,7 +82,10 @@ function AddProductPage() {
             toast.error("Select a collection");
             return;
         } else if (variants.length == 0) {
-            toast.error("Add a variant");       
+            toast.error("Add a variant");
+            return;
+        } else if (images.length == 0) {
+            toast.error("Add a image for merch");
             return;
         }
 
@@ -103,7 +105,7 @@ function AddProductPage() {
 
         setdisbtn(true)
 
-        axios.post(BasicURL+'/producer/product', proDetail,
+        axios.post(BasicURL + '/producer/product', proDetail,
             { headers: { Authorization: 'Bearer ' + token } })
             .then((res) => {
                 toast.success("Merch added successfully");
@@ -113,24 +115,22 @@ function AddProductPage() {
                 toast.error(e.response.data.message)
                 setdisbtn(false)
             });
-       
+
     }
 
 
-    const onChnageCheckBox = (e) => {
-        let newOprions = []
+    const onChnageCheckBox = (e, val, name) => {
+        let newOptions = []
         if (e.target.checked) {
-            for (const opt of options) newOprions.push(opt)
-            newOprions.push(e.target.value)
-            setOptions(newOprions)
+            newOptions = options.map(opt => opt)
+            newOptions.push({ optionName: name, optionID: val })
         } else {
-            for (const opt of options) newOprions.push(opt)
-            newOprions.map((item, i) => { if (item == e.target.value) newOprions.splice(i, 1) })
-            setOptions(newOprions)
+            newOptions = options.filter(opt =>  opt.optionID != val)
         }
+        setOptions(newOptions)
     }
 
-    const deleteVariant = (id , vari) => {
+    const deleteVariant = (id, vari) => {
         let arr = []
         for (const v of variants) {
             arr.push(v)
@@ -190,11 +190,11 @@ function AddProductPage() {
 
             <div className="d-flex justify-content-between align-items-center"
                 style={{ marginTop: "80px", width: "100%" }}>
-                    <div className="col-5 col-md-4">
-                <BasicButton text={"Cancel"} click={cancelForm} disable={disbtn} />
+                <div className="col-5 col-md-4">
+                    <BasicButton text={"Cancel"} click={cancelForm} disable={disbtn} />
                 </div>
                 <div className="col-5 col-md-4">
-                <BasicButton text={"Submit"} click={submitForm} disable={disbtn} />
+                    <BasicButton text={"Submit"} click={submitForm} disable={disbtn} />
                 </div>
             </div>
             <ToastContainer

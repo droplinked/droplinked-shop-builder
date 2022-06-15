@@ -1,0 +1,147 @@
+.merch-page-container {
+  width: 100%;
+  padding: 0px 80px;
+  display: flex;
+  justify-content: center;
+
+  & .merch-page-wrapper {
+    max-width: 800px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+
+  & .detail-side {
+    padding-left: 20px;
+    padding-bottom: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    & .merch-title {
+      color: white;
+      font-weight: 600;
+      font-size: 24px;
+    }
+
+    & .merch-descroption {
+      font-weight: 500;
+      font-size: 18px;
+      color: #b3b3b3;
+    }
+    & .merch-price {
+      font-weight: 700;
+      font-size: 24px;
+      color: #ffffff;
+    }
+
+    & .merch-options-wrap {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      flex-wrap: wrap;
+
+      & .opt {
+        width: 48%;
+        margin-bottom: 8px;
+      }
+    }
+
+    & .calc-btn-wrap {
+      display: flex;
+
+      & .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        background: #353536;
+        border-radius: 8px;
+        color: #b3b3b3;
+        margin-right: 8px;
+        padding: 0px;
+
+        img{
+          width: 20px;
+          height: 20px;
+        }
+      }
+      & .show {
+        margin-right: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        border-radius: 8px;
+        color: white;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .merch-page-container {
+    width: 100%;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: center;
+  
+    & .merch-page-wrapper {
+      max-width: 500px;
+      width: 100%;
+    }
+    
+  
+    & .detail-side {
+      margin-top: 80px ;
+      height: 500px;
+  
+      & .merch-title {
+        font-size: 20px;
+      }
+  
+      & .merch-descroption {
+        font-size: 16px;
+      }
+      & .merch-price {
+        font-size: 22px;
+      }  
+  
+      & .calc-btn-wrap {
+        display: flex;
+  
+        & .btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 35px;
+          height: 35px;
+          background: #353536;
+          border-radius: 8px;
+          color: #b3b3b3;
+          margin-right: 8px;
+          padding: 0px;
+  
+          img{
+            width: 20px;
+            height: 20px;
+          }
+        }
+        & .show {
+          margin-right: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 35px;
+          height: 35px;
+          border-radius: 8px;
+          color: white;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
