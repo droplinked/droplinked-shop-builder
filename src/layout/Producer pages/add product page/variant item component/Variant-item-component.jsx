@@ -2,7 +2,6 @@ import "./Variant-item-component.scss"
 
 export default function VariantItem({ vari , id , dlt , edit}) {
 
-    console.log(vari._id);
 
     return (
         <div className="variant-item-wrapper">

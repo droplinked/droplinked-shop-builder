@@ -93,17 +93,15 @@ export default function ViewMerchPage() {
         errorToast(e.response.data.reason)
     }
 
-    const onChnageCheckBox = (e) => {
-        let newOprions = []
+    const onChnageCheckBox = (e, val, name) => {
+        let newOptions = []
         if (e.target.checked) {
-            for (const opt of options) newOprions.push(opt)
-            newOprions.push(e.target.value)
-            setOptions(newOprions)
+            newOptions = options.map(opt => opt)
+            newOptions.push({ optionName: name, optionID: val })
         } else {
-            for (const opt of options) newOprions.push(opt)
-            newOprions.map((item, i) => { if (item == e.target.value) newOprions.splice(i, 1) })
-            setOptions(newOprions)
+            newOptions = options.filter(opt => opt.optionID != val)
         }
+        setOptions(newOptions)
     }
 
     //delete variant
@@ -111,7 +109,7 @@ export default function ViewMerchPage() {
         axios.delete(`${BasicURL}/producer/product/sku/${veri._id}`,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
-                console.log(e.data.status)
+
                 GetAuth(`/producer/product/${merchId}?withSku=true`, resHandler, errorHandler)
             })
             .catch(e => errorToast(e.response.data.message))
