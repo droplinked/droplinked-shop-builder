@@ -100,7 +100,7 @@ export default function AddCollectionPage({ toggle, submitFunc }) {
             }
             <div className="d-flex justify-content-between mt-5">
                 <div className="col-5">
-                    <AutoWidthButton text={"Cansel"} click={toggle} disable={disableBtn} />
+                    <AutoWidthButton text={"Cancel"} click={toggle} disable={disableBtn} />
                 </div>
                 <div className="col-5">
                     <AutoWidthButton text={"Submit"} click={submitForm} disable={disableBtn} />
