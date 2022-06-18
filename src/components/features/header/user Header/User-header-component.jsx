@@ -3,6 +3,7 @@ import { UseWalletInfo } from "../../../../sevices/context/context";
 import HeaderItem from "../header button component/Header-btn-component"
 import headerWalletIcon from "../../../../assest/header/headerWalletIcon.svg";
 import profileimg from "../../../../assest/image/default profile/icons8-user-100.png"
+import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
 import { useProfile } from "../../../../sevices/hooks/useProfile"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
@@ -55,9 +56,16 @@ export default function UserHeader() {
             ?
             <HeaderItem click={authenticate}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />Wallet</HeaderItem>
             :
-            <HeaderItem style={{color:"#8053ff"}} click={onSignOut}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />Wallet</HeaderItem>
+            <HeaderItem style={{ color: "#8053ff" }} click={onSignOut}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />Wallet</HeaderItem>
         }
+
         <div className="login-wrapper">
+            <div className="item-cart-wraper">
+                <Cart className="item-cart" />
+                {/* <div className="item-cart-number"></div> */}
+            </div>
+
+
             {(Profileimage)
                 ?
                 <img
