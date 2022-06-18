@@ -3,17 +3,23 @@ import { UseWalletInfo } from "../../../../sevices/context/context";
 import HeaderItem from "../header button component/Header-btn-component"
 import headerWalletIcon from "../../../../assest/header/headerWalletIcon.svg";
 import profileimg from "../../../../assest/image/default profile/icons8-user-100.png"
+import BasketModal from "../basket modal/basket-modal-component"
 import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
 import { useProfile } from "../../../../sevices/hooks/useProfile"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "../../../../sevices/hooks/useCart"
 
 
 
 export default function UserHeader() {
     const [toggleHeader, setToggleHeader] = useState(false)
+    const [toggleBasket, setToggleBasket] = useState(true)
     const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
     const { profile, logout } = useProfile()
+    const { itemCounter } = useCart();
+
+
     let url = window.location.pathname;
     let Profileimage = profile.avatar
     let navigate = useNavigate();
@@ -51,6 +57,15 @@ export default function UserHeader() {
         navigate("/producer/ims");
     }
 
+    const openProfileModal = () => {
+        setToggleHeader(p => !p)
+        setToggleBasket(false)
+    }
+    const openBasketModal = () => {
+        setToggleBasket(p => !p)
+        setToggleHeader(false)
+    }
+
     return (<>
         {(userData == undefined)
             ?
@@ -61,22 +76,26 @@ export default function UserHeader() {
 
         <div className="login-wrapper">
             <div className="item-cart-wraper">
-                <Cart className="item-cart" />
-                {/* <div className="item-cart-number"></div> */}
-            </div>
+                <Cart className="item-cart" 
+                onClick={openBasketModal}
+                />
+                {(itemCounter() > 0) &&
+                    <div className="item-cart-number">{`${itemCounter()}`}</div>
+                }
 
+            </div>
 
             {(Profileimage)
                 ?
                 <img
                     src={Profileimage}
                     className="header-profile rounded-circle"
-                    onClick={() => { setToggleHeader(p => !p) }}
+                    onClick={openProfileModal}
                 />
                 :
                 <div
                     className="header-profile rounded-circle"
-                    onClick={() => { setToggleHeader(p => !p) }}
+                    onClick={openProfileModal}
                 ></div>
             }
 
@@ -99,6 +118,7 @@ export default function UserHeader() {
                     <div className="header-nav-item" onClick={logout}>Logout</div>
                 </div>
             }
+            {toggleBasket && <BasketModal />}
         </div>
     </>)
 }
