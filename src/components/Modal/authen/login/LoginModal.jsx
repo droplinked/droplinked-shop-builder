@@ -31,7 +31,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
             password: data.password
         }
 
-        axios.post(BasicURL + '/producer/signin', info)
+        axios.post(BasicURL + '/signin', info)
             .then((res) => {
 
                 if (res.data.status == "success") {
