@@ -1,9 +1,7 @@
 
-import { UseWalletInfo } from "../../../../sevices/context/context";
-import HeaderItem from "../header button component/Header-btn-component"
-import headerWalletIcon from "../../../../assest/header/headerWalletIcon.svg";
-import profileimg from "../../../../assest/image/default profile/icons8-user-100.png"
 import BasketModal from "../basket modal/basket-modal-component"
+import WalletButton from "../wallet button/wallet-button-component"
+
 import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
 import { useProfile } from "../../../../sevices/hooks/useProfile"
 import { useState } from "react"
@@ -12,10 +10,10 @@ import { useCart } from "../../../../sevices/hooks/useCart"
 
 
 
+
 export default function UserHeader() {
     const [toggleHeader, setToggleHeader] = useState(false)
-    const [toggleBasket, setToggleBasket] = useState(true)
-    const { onSignOut, checkTokens, userData, authenticate } = UseWalletInfo();
+    const [toggleBasket, setToggleBasket] = useState(false)
     const { profile, logout } = useProfile()
     const { itemCounter } = useCart();
 
@@ -67,17 +65,14 @@ export default function UserHeader() {
     }
 
     return (<>
-        {(userData == undefined)
-            ?
-            <HeaderItem click={authenticate}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />Wallet</HeaderItem>
-            :
-            <HeaderItem style={{ color: "#8053ff" }} click={onSignOut}><img src={headerWalletIcon} style={{ marginRight: "5px" }} />Wallet</HeaderItem>
-        }
+
+        <WalletButton />
 
         <div className="login-wrapper">
             <div className="item-cart-wraper">
-                <Cart className="item-cart" 
-                onClick={openBasketModal}
+                <Cart className="item-cart"
+                    onClick={openBasketModal}
+                    style={{}}
                 />
                 {(itemCounter() > 0) &&
                     <div className="item-cart-number">{`${itemCounter()}`}</div>
