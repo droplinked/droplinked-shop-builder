@@ -9,13 +9,15 @@ import axios from "axios";
 import AutoWidthButton from "../../../../features/buttons components/autow basic button/B-button-component"
 
 
-export default function SignupCustomer({ switchToggle ,close }) {
+export default function SignupCustomer({ switchToggle, close }) {
 
     const { errorToast, successToast } = useToasty()
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
+
+    let navigate = useNavigate();
 
     const onSubmit = data => {
         let info = {
@@ -34,11 +36,20 @@ export default function SignupCustomer({ switchToggle ,close }) {
             return;
         }
 
-        // setLoading(true)
-        // axios.post(`${BasicURL}/customer/signup`,
-        //     { email: info.email, password: data.password})
-        //     .then()
-        successToast("Your account has been successfully created.")
+        setLoading(true)
+        axios.post(`${BasicURL}/customer/signup`,
+            { email: info.email, password: data.password })
+            .then((e) => {
+                successToast("Your account has been successfully created.")
+                close()
+                localStorage.setItem('registerEmail', JSON.stringify(info.email))
+               // navigate("/emailConfirmation");
+            })
+            .catch(e => {
+                setLoading(false)
+                errorToast(e.response.data.reason)
+            })
+
     };
 
 
