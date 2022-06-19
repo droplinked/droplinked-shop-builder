@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import { CartReducer, ItemCounter } from './CartReducer';
+import { CartReducer, ItemCounter , totalPrice } from './CartReducer';
 
 export const CartContext = createContext()
 
@@ -18,6 +18,9 @@ const CartContextProvider = ({children}) => {
        return  ItemCounter(state)
     }
     
+    const getTotalPrice = () =>{
+        return  totalPrice(state)
+     }
     // const increase = payload => {
     //     dispatch({type: 'INCREASE', payload})
     // }
@@ -47,6 +50,7 @@ const CartContextProvider = ({children}) => {
     const contextValues = {
         addProduct,
         itemCounter,
+        getTotalPrice,
         state
     } 
 

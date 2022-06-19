@@ -11,7 +11,6 @@ import MainHeader from "./components/features/header/MainHeader";
 import HomeWrapper from "./components/Structure/new wrapper/HomeWrapper";
 import CreatorPage from "./layout/creator/CreatorPage";
 import PostPage from "./layout/postpage/PostPage";
-import Checkout from "./layout/checkout/Checkout";
 import HomePage from "./layout/landing page/HomePage";
 import BuyProduct from "./layout/buy product/BuyProduct";
 import Terms from "./layout/terms/Terms";
@@ -39,7 +38,7 @@ import AccountRecoveryPage from "./layout/registering/account recovery page/Acco
 import VerificationEmailPage from "./layout/registering/verifi-email-page/Email-verification-component"
 import ViewMerchPage from "./layout/Producer pages/IMS pages/view merch page/View-merch-component"
 import DimsMerchPage from "./layout/customer pages/merch page/dims-Merch-page-component";
-
+import CheckoutPage from "./layout/customer pages/checkout page/checkout-page"
 
 function App() {
   return (
@@ -79,7 +78,7 @@ function App() {
                         <Route path="/creatorpage" element={<CreatorPage />} />
                         <Route path="/postpage" element={<PostPage />} />
 
-                        <Route path="/cart" element={<Checkout />} />
+                        <Route path="/checkout" element={<CheckoutPage />} />
                         <Route path="/address" element={<Address />} />
                         <Route path="/shipping" element={<Shipping />} />
                         <Route path="/payment" element={<Payments />} />

@@ -4,9 +4,30 @@ export const ItemCounter = (state) => {
     state.marchs.forEach((item) => {
       itemTotal += item.quantity;
     }, 0);
-
   return itemTotal;
 };
+
+
+export const totalPrice = (state) => {
+  let total = 0;
+  if (Object.keys(state).length === 0 ) return 0;
+    state.marchs.forEach((item) => {
+      total += (item.quantity * item.price);
+    }, 0);
+
+  return total;
+};
+// add product structure
+// {
+//   shopName:"bedishop" ,
+//   merch : {
+//       skuID:skuID,
+//       quantity :quantity ,
+//       price : price ,
+//       title:product.title ,
+//       image:product.media[0].url
+//   }
+// }
 
 export const CartReducer = (state, action) => {
   switch (action.type) {
@@ -53,7 +74,6 @@ export const CartReducer = (state, action) => {
           lastArray = newCart;
         }
       }
-      console.log(lastArray);
       return { ...lastArray };
 
     // case "INCREASE":

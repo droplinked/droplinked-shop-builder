@@ -64,6 +64,10 @@ export default function UserHeader() {
         setToggleHeader(false)
     }
 
+    const closeBasket = () => {
+        setToggleBasket(false)
+    }
+
     return (<>
 
         <WalletButton />
@@ -72,7 +76,7 @@ export default function UserHeader() {
             <div className="item-cart-wraper">
                 <Cart className="item-cart"
                     onClick={openBasketModal}
-                    style={{}}
+
                 />
                 {(itemCounter() > 0) &&
                     <div className="item-cart-number">{`${itemCounter()}`}</div>
@@ -113,7 +117,7 @@ export default function UserHeader() {
                     <div className="header-nav-item" onClick={logout}>Logout</div>
                 </div>
             }
-            {toggleBasket && <BasketModal />}
+            {toggleBasket && <BasketModal close={closeBasket} />}
         </div>
     </>)
 }
