@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import Loading from "../loading/Loading"
-import ProductLarge from "../product components/product component large/ProductLarge"
+import ShopifyProductLarge from "../product components/shopify product component/shopify-product-component"
 
 
 function Collection() {
@@ -44,7 +44,7 @@ function Collection() {
                         <>
                             {product.map((item) => {
                                 return (<div className="product-item-content">
-                                    <ProductLarge title={item.title} price={item.variants[0].formatted_price} imageUrl={item.images[0].src} id={item.product_id} />
+                                    <ShopifyProductLarge title={item.title} price={item.variants[0].formatted_price} imageUrl={item.images[0].src} id={item.product_id} />
                                 </div>)
                             })}
                         </>

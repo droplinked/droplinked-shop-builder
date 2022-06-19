@@ -1,7 +1,7 @@
 import "./CreatorPage.scss"
 import ProfileTopSection from "../../components/features/top section/ProfileTopSection"
 import GalleryCarousel from "./gallery carousel/GalleryCarousel"
-//import Collection from "./collection/Collection"
+
 import axios from "axios"
 import Collection from "../../components/features/collection/Collection"
 
