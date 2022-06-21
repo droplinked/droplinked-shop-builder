@@ -87,7 +87,7 @@ export default function HomePage() {
             <div className="child d-flex rg">
                 <div className="input-form w-100">
                     <div className="discove">Discover, create <br />&amp; connect.</div>
-                    <div className="earn">Earn money for sharing collections.</div>
+                    <div className="earn">Earn cash or crypto for sharing collections.</div>
                     <div className="signup-wrapper d-flex justify-content-between">
                         <div className="d-flex justify-content-start" style={{ width: "75%", maxWidth: "75%" }}>
                             <span className="item-span">droplinked.com/</span>
