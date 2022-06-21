@@ -39,7 +39,7 @@ import VerificationEmailPage from "./layout/registering/verifi-email-page/Email-
 import ViewMerchPage from "./layout/Producer pages/IMS pages/view merch page/View-merch-component"
 import DimsMerchPage from "./layout/customer pages/merch page/dims-Merch-page-component";
 import CheckoutPage from "./layout/customer pages/checkout page/checkout-page"
-
+import AddShopifyComponent from "./layout/Producer pages/IMS pages/shopify-ims-page/add-shopify-domain/Add-shopify-domain-component"
 function App() {
   return (
     <div style={{ backgroundColor: "#222" }}>
@@ -88,6 +88,7 @@ function App() {
                         <Route path="/confirm" element={<Confirm />} />
                         <Route path="/crashpunks" element={<CreatorPage />} />
                         <Route path="/product/:id" element={<BuyProduct />} />
+                        <Route path="/test" element={<AddShopifyComponent />} />
                         <Route path="/*" element={<NotFound />} />
                       </Routes>
                     </ScrollTop>

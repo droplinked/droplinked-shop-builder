@@ -1,0 +1,41 @@
+.add-shopify-domain-page {
+    width: 100;
+    padding: 0px 80px;
+    display: flex;
+    flex-direction: column;
+
+    & .title{
+        text-align: center;
+        color: white;
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    & .input-wraper{
+        margin: 100px auto 0px auto;
+        width: 50%;
+    }
+
+    & .btn-wraper{
+        margin: 30px auto 0px auto;
+        width: 50%; 
+    }
+}
+
+@media only screen and (max-width: 768px) {
+  .add-shopify-domain-page {
+    padding: 0px 20px;
+
+    & .title{
+        font-size: 16px;
+    }
+
+    & .input-wraper{
+        margin: 80px auto 0px auto;
+        width: 100%;
+    }
+    & .btn-wraper{
+        width: 100%; 
+    }
+  }
+}
