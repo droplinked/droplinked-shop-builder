@@ -2,14 +2,15 @@
   width: 100%;
   padding: 0px 80px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  height: auto;
 
   & .merch-page-wrapper {
     max-width: 800px;
     width: 100%;
     flex-wrap: wrap;
+    margin: auto;
   }
-  
 
   & .detail-side {
     padding-left: 20px;
@@ -62,7 +63,7 @@
         margin-right: 8px;
         padding: 0px;
 
-        img{
+        img {
           width: 20px;
           height: 20px;
         }
@@ -80,6 +81,42 @@
       }
     }
   }
+
+  & .botom-wrapper {
+    max-width: 800px;
+    width: 100%;
+    margin: 40px auto 0px auto;
+    display: flex;
+   flex-direction: column;
+    & .readmore-limited {
+      color: white;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp:3; /* number of lines to show */
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    & .readmore-orginal {
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    & .readmore-btn{
+      color:white;
+      font-size: 14px;
+      margin : 20px auto 0px auto ;
+      border: 1px solid gray;
+      border-radius: 8px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -88,31 +125,30 @@
     padding: 0px 20px;
     display: flex;
     justify-content: center;
-  
+
     & .merch-page-wrapper {
       max-width: 500px;
       width: 100%;
     }
-    
-  
+
     & .detail-side {
-      margin-top: 80px ;
+      margin-top: 80px;
       height: 500px;
-  
+
       & .merch-title {
         font-size: 20px;
       }
-  
+
       & .merch-descroption {
         font-size: 16px;
       }
       & .merch-price {
         font-size: 22px;
-      }  
-  
+      }
+
       & .calc-btn-wrap {
         display: flex;
-  
+
         & .btn {
           display: flex;
           justify-content: center;
@@ -124,8 +160,8 @@
           color: #b3b3b3;
           margin-right: 8px;
           padding: 0px;
-  
-          img{
+
+          img {
             width: 20px;
             height: 20px;
           }

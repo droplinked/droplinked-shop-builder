@@ -45,6 +45,7 @@ export default function DimsMerchPage() {
     }, [])
 
 
+    console.log(images)
 
     // get all variants Id used in variants
     useEffect(() => {
