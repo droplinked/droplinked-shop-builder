@@ -127,7 +127,6 @@ function AddProductPage() {
         } else {
             newOptions = options.filter(opt =>  opt.optionID != val)
         }
-        console.log(newOptions);
         setOptions(newOptions)
     }
 

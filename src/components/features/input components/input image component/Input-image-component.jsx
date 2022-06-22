@@ -12,7 +12,7 @@ export default function InputImageComponent({ setState, state }) {
 
 
     const changeImage = (e) => {
-        setLoading(true);
+      
         const file = e.target.files[0];
         if (file.size > 500000) {
             toast.error("File size exceeded (Max: 500 kb)");
@@ -32,6 +32,7 @@ export default function InputImageComponent({ setState, state }) {
 
         const formData = new FormData();
         formData.append("image", file);
+        setLoading(true);
         axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
                 let imgArr = [];

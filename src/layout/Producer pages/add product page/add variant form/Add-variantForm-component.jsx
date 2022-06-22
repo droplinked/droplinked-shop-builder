@@ -21,8 +21,6 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
         if(state[0].options.length != options.length ){
             return true  
         }
-        console.log(state);
-        console.log(options);
         let cond = true ;  
         options.forEach((opt , i) => {            
             state[0].options.forEach((st ,i )=>{
