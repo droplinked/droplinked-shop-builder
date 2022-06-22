@@ -30,7 +30,7 @@ function AddProductPage() {
 
 
     const navigate = useNavigate();
-
+ 
 
     useEffect(() => {
         if (token == null) { navigate("/") }
@@ -127,6 +127,7 @@ function AddProductPage() {
         } else {
             newOptions = options.filter(opt =>  opt.optionID != val)
         }
+        console.log(newOptions);
         setOptions(newOptions)
     }
 
@@ -166,7 +167,7 @@ function AddProductPage() {
                 {(varintType != undefined) &&
                     <>
                         {varintType.map(item => {
-                            return <CheckBoxBasic key={item._id} val={item._id} id={item._id} onch={onChnageCheckBox}>{item.name}</CheckBoxBasic>
+                            return <CheckBoxBasic key={item._id} val={item._id}  onch={onChnageCheckBox}>{item.name}</CheckBoxBasic>
                         })}
                     </>
                 }

@@ -1,6 +1,8 @@
 import { useState } from "react"
-import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
 import { toast } from 'react-toastify';
+import { useToasty } from "../../../../sevices/hooks/useToastify"
+
+import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
 
 export default function AddVariantForm({ state, setState, toggle, optionsArray }) {
 
@@ -9,30 +11,52 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
     const [quantity, setQuantity] = useState("");
     const [externalID, setExternalID] = useState("");
 
+    const { successToast, errorToast } = useToasty();
+
+
+
+
+    const CheckOptions = () => {
+        if(state.length == 0 ) return false  
+        if(state[0].options.length != options.length ){
+            return true  
+        }
+        console.log(state);
+        console.log(options);
+        let cond = true ;  
+        options.forEach((opt , i) => {            
+            state[0].options.forEach((st ,i )=>{
+                if(st.variantID == opt.variantID){cond = false}
+            })   
+        })
+        if(cond)return true
+        return false
+    }
+
 
     const submitvariant = (e) => {
         e.preventDefault();
         if (price == "") {
-            toast.error("price is required");
+            errorToast("price is required");
             return;
         }
         if (quantity == "") {
-            toast.error("quantity is required");
+            errorToast("quantity is required");
             return;
         }
-        if (externalID == "") {
-            toast.error("externalID is required");
-            return;
+        if(CheckOptions()){
+            errorToast("Merchs must have same options");
+            return;  
         }
+
         if (options.length != optionsArray.length) {
-            toast.error("variants value is required");
+            errorToast("variants value is required");
             return;
         }
         optionsArray.forEach(option => {
-            let opname = (option == "628df708028da49d3f6a73eb") ? "size" : "color";
             options.map(item => {
-                if ((item.variantID == option) && (item.value == "")) {
-                    toast.error(`${opname} is required`);
+                if ((item.variantID == option.optionID) && (item.value == "")) {
+                    errorToast(`${option.optionName} is required`);
                     return;
                 }
             })
@@ -62,7 +86,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
                 if (item.value == "") optArray.splice(i, 1)
             })
         } else {
-            optArray.push({ variantID: e.target.id, value: e.target.value })
+            optArray.push({ variantID: e.target.id, variantName:e.target.name , value: e.target.value })
         }
         setOptions(optArray)
     }
@@ -87,7 +111,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
                     return (
                         <div className="rw-rp" key={i}>
                             <label>{opt.optionName}</label>
-                            <input type="text" placeholder={opt.optionName} id={opt.optionID} onChange={onChangeDropDown} />
+                            <input type="text" placeholder={opt.optionName} name={opt.optionName} id={opt.optionID} onChange={onChangeDropDown} />
                         </div>
                     )
                 })
