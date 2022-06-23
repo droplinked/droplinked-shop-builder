@@ -27,7 +27,7 @@ import ShopInfo from "./layout/registering/shop info/ShopInfo";
 import ImsSelect from "./layout/registering/IMS select/ImsSelect";
 import RegisterPayment from "./layout/registering/register payment page/RegisterPayment";
 import ScrollTop from "./components/features/scrolltop/ScrollTop";
-import ShopPage from "./layout/Producer pages/Main page/shop page/Shop-page-component";
+//import ShopPage from "./layout/Producer pages/Main page/shop page/Shop-page-component";
 import ImsMainPage from "./layout/Producer pages/IMS pages/ImsMainPage";
 import AddProductPage from "./layout/Producer pages/add product page/Add-product-page";
 import RuleSetPage from "./layout/Producer pages/ruleset page/RuleSet-page-component";
@@ -40,6 +40,9 @@ import ViewMerchPage from "./layout/Producer pages/IMS pages/view merch page/Vie
 import DimsMerchPage from "./layout/customer pages/merch page/dims-Merch-page-component";
 import CheckoutPage from "./layout/customer pages/checkout page/checkout-page"
 import ShopifyMerchViewPage from "./layout/Producer pages/IMS pages/shopify-merch-view/Shopify-merch-view-page"
+import ShopPage from "./layout/general pages/shop page/shop-page";
+
+
 function App() {
   return (
     <div style={{ backgroundColor: "#222" }}>
