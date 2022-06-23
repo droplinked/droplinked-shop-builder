@@ -33,7 +33,7 @@ import AddProductPage from "./layout/Producer pages/add product page/Add-product
 import RuleSetPage from "./layout/Producer pages/ruleset page/RuleSet-page-component";
 import CollectionMainPage from "./layout/Producer pages/collection pages/Collection main page/Collection-mainpage-component";
 import AddCollectionPage from "./layout/Producer pages/collection pages/add collection page/Add-collection-component";
-import ViewPageCollection from "./layout/Producer pages/collection pages/view collectiom page/View-collection-page-component";
+
 import AccountRecoveryPage from "./layout/registering/account recovery page/Account-recovery-page"
 import VerificationEmailPage from "./layout/registering/verifi-email-page/Email-verification-component"
 import ViewMerchPage from "./layout/Producer pages/IMS pages/view merch page/View-merch-component"
@@ -41,7 +41,7 @@ import DimsMerchPage from "./layout/customer pages/merch page/dims-Merch-page-co
 import CheckoutPage from "./layout/customer pages/checkout page/checkout-page"
 import ShopifyMerchViewPage from "./layout/Producer pages/IMS pages/shopify-merch-view/Shopify-merch-view-page"
 import ShopPage from "./layout/general pages/shop page/shop-page";
-
+import CollectionPage from "./layout/general pages/collectiom page/collection-page-component";
 
 function App() {
   return (
@@ -76,7 +76,7 @@ function App() {
 
                         <Route path="/shop/:shopname" element={<ShopPage />} />
 
-                        <Route path="/collection/:collectionId" element={<ViewPageCollection />} />
+                        <Route path="/collection/:collectionId" element={<CollectionPage />} />
 
                         <Route path="/creatorpage" element={<CreatorPage />} />
                         <Route path="/postpage" element={<PostPage />} />
