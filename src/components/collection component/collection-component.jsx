@@ -1,9 +1,8 @@
 
 import { Link } from "react-router-dom";
 
-import ProductLargeProducer from "../features/product components/Product Large component producer/ProductLarge-producer";
 
-
+import Product from "../product component/product-component"
 export default function Collection({ collection }) {
 
     console.log(collection);
@@ -25,7 +24,7 @@ export default function Collection({ collection }) {
                             if (i < 4) {
                                 return (
                                     <div className="col-6 col-md-3 p-1">
-                                        <ProductLargeProducer
+                                        <Product
                                             title={product.title}
                                             imageUrl={product.media[0].url}
                                             id={product._id}

@@ -52,7 +52,7 @@ export default function ShopPage() {
         }
 
         {(collection == null) ?
-            <Loading />
+            <></>
             :
            <>
            {collection.collections.map((coll , i) => {
