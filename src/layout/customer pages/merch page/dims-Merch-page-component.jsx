@@ -3,6 +3,9 @@ import "./dims-Merch-page-style.scss"
 import { useState, useEffect, useCallback } from "react"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useParams } from "react-router-dom";
+import { UseWalletInfo } from "../../../sevices/context/context"
+import { useProfile } from "../../../sevices/hooks/useProfile"
+import { useToasty } from "../../../sevices/hooks/useToastify"
 
 import axios from "axios"
 import Loading from "../../../components/features/loading/Loading";
@@ -20,6 +23,10 @@ export default function DimsMerchPage() {
     const [quantity, setQuantity] = useState(0)
     const [variants, setVariants] = useState(null)
     const [selectedSku, setselectedSku] = useState(null)
+
+    const { userData, authenticate } = UseWalletInfo();
+    const { profile } = useProfile();
+    const { errorToast , successToast } = useToasty();
 
 
     let merchId = useParams().merchId;
@@ -67,10 +74,32 @@ export default function DimsMerchPage() {
         setselectedSku(JSON.parse(e.target.value));
     }
 
-    console.log(selectedSku);
 
     const Addtobasket = () => {
-        console.log(selectedSku.id);
+        //  console.log(selectedSku.id);
+        if (userData == undefined) {
+            authenticate();
+            return
+        }
+        if (profile == null) {
+            errorToast("Please login")
+            return
+        }
+        if (quantity == 0) {
+            errorToast("Please add quantity")
+            return
+        }
+
+        const cart = {
+            skuID: selectedSku.id,
+            quantity: quantity
+        }
+        axios.post(BasicURL + '/cart/sku', cart,
+            { headers: { Authorization: 'Bearer ' + token } })
+            .then((e) => {
+                successToast("Merch added to cart")
+            })
+            .catch(e => errorToast(e.response.data.reason))
     }
 
 
