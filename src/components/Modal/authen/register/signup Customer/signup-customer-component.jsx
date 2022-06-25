@@ -4,12 +4,15 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useToasty } from "../../../../../sevices/hooks/useToastify"
 import { BasicURL } from "../../../../../sevices/functoinal-service/CallApiService";
+import { useProfile } from "../../../../../sevices/hooks/useProfile"
 
 import axios from "axios";
 import AutoWidthButton from "../../../../features/buttons components/autow basic button/B-button-component"
 
 
 export default function SignupCustomer({ switchToggle, close }) {
+
+    const { addProfile } = useProfile()
 
     const { errorToast, successToast } = useToasty()
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -42,8 +45,7 @@ export default function SignupCustomer({ switchToggle, close }) {
             .then((e) => {
                 successToast("Your account has been successfully created.")
                 close()
-                localStorage.setItem('registerEmail', JSON.stringify(info.email))
-               // navigate("/emailConfirmation");
+                addProfile(e.data.data)
             })
             .catch(e => {
                 setLoading(false)
