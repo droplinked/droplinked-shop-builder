@@ -43,6 +43,9 @@ import ShopifyMerchViewPage from "./layout/Producer pages/IMS pages/shopify-merc
 import ShopPage from "./layout/general pages/shop page/shop-page";
 import CollectionPage from "./layout/general pages/collectiom page/collection-page-component";
 
+// checkout
+import Checkout from "./layout/checkout/Checkout";
+
 function App() {
 	return (
 		<div style={{ backgroundColor: "#222" }}>
@@ -125,6 +128,13 @@ function App() {
 
 												{/* <Route path="/checkout" element={<CheckoutPage />} />
                         <Route path="/address" element={<Address />} /> */}
+
+												{/* checkout */}
+												<Route
+													path={"/checkout/:shopname"}
+													element={<Checkout />}
+												/>
+
 												<Route path="/shipping" element={<Shipping />} />
 												<Route path="/payment" element={<Payments />} />
 
