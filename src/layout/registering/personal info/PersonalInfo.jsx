@@ -98,10 +98,10 @@ export default function PersonalInfo() {
             avatar: (profileImg == undefined) ? "" : profileImg,
             phone: data.phoneNumber,
         }
-        axios.put(BasicURL+'/producer/profile', profileInfo,
+        axios.put(BasicURL+'/profile', profileInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         ).then(res => {
-            updateProfile(res.data.data.user)
+          //  updateProfile(res.data.data.user)
             navigate("/register/shopInfo");
         })
             .catch(err => {

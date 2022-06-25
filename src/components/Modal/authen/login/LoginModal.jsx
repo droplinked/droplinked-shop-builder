@@ -25,7 +25,6 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
     const onSubmit = data => {
         setLoading(true)
 
-        // "type": "PRODUCER"
         let info = {
             email: data.email,
             password: data.password
@@ -72,6 +71,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                         }
                     } else {
                         successToast("Login successfully")
+                        addProfile(res.data.data)
                     }
                 }
             })

@@ -77,8 +77,7 @@ export default function ShopInfo() {
             { headers: { Authorization: 'Bearer ' + token } }
         )
             .then(res => {
-                console.log(res.data.data.user);
-                updateProfile(res.data.data.user)
+                localStorage.setItem("shop", JSON.stringify(res.data.data.shop));
                 navigate("/register/IMSSelect");
             }
             )
