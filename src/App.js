@@ -72,7 +72,7 @@ function App() {
                         <Route path="/producer/collection/addCollection" element={<AddCollectionPage />} />
                         <Route path="/producer/account-recovery/:token" element={<AccountRecoveryPage />} />
 
-                        <Route path="/merch/:merchId" element={<DimsMerchPage />} />
+                        <Route path="/shop/:shopname/merch/:merchId" element={<DimsMerchPage />} />
 
                         <Route path="/shop/:shopname" element={<ShopPage />} />
 

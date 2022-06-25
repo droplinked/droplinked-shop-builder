@@ -16,8 +16,6 @@ export default function ShopPage() {
     const [profile, setProfile] = useState(null)
     const [collection, setCollections] = useState(null)
 
-    console.log(shopname);
-
     useEffect(() => {
 
         let url1 = BasicURL + `/shopinfo/${shopname}`
@@ -56,7 +54,7 @@ export default function ShopPage() {
             :
            <>
            {collection.collections.map((coll , i) => {
-                return <Collection collection={coll} />
+                return <Collection collection={coll} shopname={shopname} />
            })}
            </>
         }

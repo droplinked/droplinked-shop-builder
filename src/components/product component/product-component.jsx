@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 
-export default function Product({  title, imageUrl, id }){
+export default function Product({  title, imageUrl, id , shopname}){
 
     return (
         <div className="Lproduct-component-wrapper">
-            <Link to={`/merch/${id}`}>
+            <Link to={`merch/${id}`}>
                 <div className="product-image-st">
                     <div className="ratio ratio-1x1">
                         <img className={` main-image `} src={imageUrl} />

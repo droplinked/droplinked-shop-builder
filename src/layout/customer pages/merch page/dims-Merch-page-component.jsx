@@ -26,17 +26,21 @@ export default function DimsMerchPage() {
 
     const { userData, authenticate } = UseWalletInfo();
     const { profile } = useProfile();
-    const { errorToast , successToast } = useToasty();
+    const { errorToast, successToast } = useToasty();
 
+    let params = useParams();
+    let merchId = params.merchId;
 
-    let merchId = useParams().merchId;
-    let token = JSON.parse(localStorage.getItem("token"));
+    let shopName = params.shopname;
 
+      let token = JSON.parse(localStorage.getItem("token"));
+
+    let token2 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYjZlOWExZTM4ODkxMzdmNjk2MDhmNSIsImtleSI6IjA2ZDczYmIwLWZhZDMtNGIxYy04MWI4LTk0ZTYxNWJmNjM4YyIsImlhdCI6MTY1NjE2MjIzMSwiZXhwIjoxNjU2MzM1MDMxfQ.OQ3HSoZ5lpjhpQRwlqDPBr6e2SutHNRlWs64ZNnuRLY"
 
     useEffect(() => {
         axios
             .get(`${BasicURL}/producer/product/${merchId}?withSku=true`,
-                { headers: { Authorization: "Bearer " + token } })
+                { headers: { Authorization: "Bearer " + token2 } })
             .then(e => {
                 setProduct(e.data.data.product)
                 setImages(e.data.data.product.media)
@@ -94,7 +98,8 @@ export default function DimsMerchPage() {
             skuID: selectedSku.id,
             quantity: quantity
         }
-        axios.post(BasicURL + '/cart/sku', cart,
+
+        axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
             { headers: { Authorization: 'Bearer ' + token } })
             .then((e) => {
                 successToast("Merch added to cart")

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 import Product from "../product component/product-component"
-export default function Collection({ collection }) {
+export default function Collection({ collection , shopname}) {
 
     console.log(collection);
     return (
@@ -13,7 +13,7 @@ export default function Collection({ collection }) {
                     {/* head */}
                     <div className="d-flex justify-content-between h-auto" >
                         <p className="title">{collection.title}</p>
-                        <Link to={`/collection/${collection._id}`}>
+                        <Link to={`collection/${collection._id}`}>
                             <button className="seemore-btn">see more</button>
                         </Link>
                     </div>
@@ -28,6 +28,7 @@ export default function Collection({ collection }) {
                                             title={product.title}
                                             imageUrl={product.media[0].url}
                                             id={product._id}
+                                            shopname={shopname}
                                         />
                                     </div>
                                 )
