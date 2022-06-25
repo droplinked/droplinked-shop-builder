@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CheckoutItem from "./CheckoutItem";
 import { Flex } from "@chakra-ui/react";
 
@@ -50,15 +50,16 @@ function CheckoutItemsContainer({ priceCost }) {
 
 	const [cost, setCost] = useState(0);
 
-	setCost(
-		variant
-			.map((v) => v.cost)
-			.reduce((first, last) => {
-				return first + last;
-			}, 0)
-	);
-
-	priceCost(cost);
+	useEffect(() => {
+		setCost(
+			variant
+				.map((v) => v.cost)
+				.reduce((first, last) => {
+					return first + last;
+				}, 0)
+		);
+		priceCost(cost);
+	}, [variant]);
 
 	return (
 		<div>
