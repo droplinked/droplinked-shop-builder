@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import ContentWrapper from "../../components/Structure/content-wrapper/Content-wrapper-component";
 
@@ -7,7 +7,9 @@ import CheckoutTitle from "./CheckoutTitle";
 import CheckoutItem from "./checkout_item/CheckoutItem";
 import CheckoutItemsContainer from "./checkout_item/CheckoutItemsContainer";
 
-function checkout() {
+function Checkout() {
+	const [cost, setCost] = useState(0);
+
 	return (
 		<ContentWrapper>
 			<Flex
@@ -22,18 +24,30 @@ function checkout() {
 					<CheckoutTitle title={"Your rders"} />
 				</Box>
 
-				{/* items */}
-				<CheckoutItemsContainer />
+				<CheckoutItemsContainer
+					priceCost={(vItem) => {
+						setCost(vItem);
+						console.log(vItem);
+					}}
+				/>
 
-				<Box alignSelf={"end"} alignItems="end" justifyContent={"end"}>
+				<Flex
+					alignItems="center"
+					justifyContent={"space-between"}
+					padding="2"
+					width="100%"
+					marginTop={"7"}
+				>
 					{/* total price */}
-					<Text>Total Price : 30$</Text>
+					<Text justifySelf={"end"}>Total rice : ${cost}</Text>
 					{/* checkout button */}
-					<Button>Checkout</Button>
-				</Box>
+					<Button backgroundColor={"#8053FF"} justifySelf={"end"}>
+						Checkout
+					</Button>
+				</Flex>
 			</Flex>
 		</ContentWrapper>
 	);
 }
 
-export default checkout;
+export default Checkout;
