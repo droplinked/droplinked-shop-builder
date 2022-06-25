@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CheckoutItem from "./CheckoutItem";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 
 function CheckoutItemsContainer({ priceCost }) {
 	const [variant, setVariant] = useState([
@@ -64,15 +64,19 @@ function CheckoutItemsContainer({ priceCost }) {
 	return (
 		<div>
 			<Flex flexDirection={"column"}>
-				{variant.map((valItem) => (
-					<CheckoutItem
-						img={valItem.img}
-						title={valItem.title}
-						options={valItem.options}
-						amount={valItem.amount}
-						cost={valItem.cost}
-					/>
-				))}
+				{variant && variant.length ? (
+					variant.map((valItem) => (
+						<CheckoutItem
+							img={valItem.img}
+							title={valItem.title}
+							options={valItem.options}
+							amount={valItem.amount}
+							cost={valItem.cost}
+						/>
+					))
+				) : (
+					<Heading>Cart is empty</Heading>
+				)}
 			</Flex>
 		</div>
 	);

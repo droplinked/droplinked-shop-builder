@@ -21,7 +21,7 @@ function Checkout() {
 				color="white"
 			>
 				<Box paddingBottom={"5"}>
-					<CheckoutTitle title={"Your rders"} />
+					<CheckoutTitle title={"Your orders"} />
 				</Box>
 
 				<CheckoutItemsContainer
