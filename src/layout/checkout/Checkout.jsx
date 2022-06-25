@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+// chakra
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
-import ContentWrapper from "../../components/Structure/content-wrapper/Content-wrapper-component";
 
 // components
+import ContentWrapper from "../../components/Structure/content-wrapper/Content-wrapper-component";
 import CheckoutTitle from "./CheckoutTitle";
-import CheckoutItem from "./checkout_item/CheckoutItem";
 import CheckoutItemsContainer from "./checkout_item/CheckoutItemsContainer";
 
 function Checkout() {
@@ -17,17 +17,18 @@ function Checkout() {
 				alignItems="self-start"
 				margin={"auto"}
 				width={["100%", "50%", "100%", "100%", "100%"]}
-				// width=""
 				color="white"
 			>
+				{/* checkout header */}
 				<Box paddingBottom={"5"}>
 					<CheckoutTitle title={"Your orders"} />
 				</Box>
 
+				{/* checkout item container */}
 				<CheckoutItemsContainer
+					// get price count
 					priceCost={(vItem) => {
 						setCost(vItem);
-						console.log(vItem);
 					}}
 				/>
 

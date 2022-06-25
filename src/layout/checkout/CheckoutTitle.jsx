@@ -1,4 +1,5 @@
 import React from "react";
+// chakra
 import { Heading } from "@chakra-ui/react";
 
 function CheckoutTitle({ title }) {

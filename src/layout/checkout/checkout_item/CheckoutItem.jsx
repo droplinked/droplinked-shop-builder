@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+// chakra
 import {
 	Box,
 	Flex,
@@ -9,11 +12,12 @@ import {
 	Button,
 	Input,
 } from "@chakra-ui/react";
-import React from "react";
-import PropTypes from "prop-types";
+
+// icon
 import { AiFillCloseCircle } from "react-icons/ai";
 
 function CheckoutItem({ img, title, options, amount, cost }) {
+	// ---  amount button ----
 	const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
 		useNumberInput({
 			step: 1,
@@ -25,6 +29,8 @@ function CheckoutItem({ img, title, options, amount, cost }) {
 	const dec = getDecrementButtonProps();
 	const input = getInputProps();
 
+	// ---  amount button ----
+
 	return (
 		<Flex
 			flexDirection={["column", "column", "row", "row"]}
@@ -33,7 +39,6 @@ function CheckoutItem({ img, title, options, amount, cost }) {
 			borderRadius={"7px"}
 			padding="7"
 			marginY={"2"}
-			// width="rem"
 			alignItems="center"
 		>
 			<Box>
@@ -41,13 +46,7 @@ function CheckoutItem({ img, title, options, amount, cost }) {
 				<Image src={img} alt={title} paddingX="3" />
 			</Box>
 
-			<Flex
-				flexDirection={"column"}
-				justifyContent={"center"}
-				paddingX="5"
-				// height="50%"
-				// alignItems="center"
-			>
+			<Flex flexDirection={"column"} justifyContent={"center"} paddingX="5">
 				<Box>
 					{/* title */}
 					<Text fontSize={"xl"} marginY="3" fontWeight="bold">
@@ -58,21 +57,19 @@ function CheckoutItem({ img, title, options, amount, cost }) {
 				{/* show options */}
 				<Box>
 					{options && options.length ? (
-						options.map((varItem) => {
+						options.map((varItem, i) => {
 							// get key name and options value
 							const [keyItem, valueItem] = Object.entries(varItem)[0];
 							return (
-								<>
-									<Box paddingX={"0.5"}>
-										<Flex>
-											{/* key name */}
-											<Text fontWeight="light">{keyItem}</Text> :{/* value  */}
-											<Text color={"gray"} paddingX="0.5">
-												{valueItem}
-											</Text>
-										</Flex>
-									</Box>
-								</>
+								<Box key={i} paddingX={"0.5"}>
+									<Flex>
+										{/* key name */}
+										<Text fontWeight="light">{keyItem}</Text> :{/* value  */}
+										<Text color={"gray"} paddingX="0.5">
+											{valueItem}
+										</Text>
+									</Flex>
+								</Box>
 							);
 						})
 					) : (
@@ -84,12 +81,7 @@ function CheckoutItem({ img, title, options, amount, cost }) {
 
 			<Box paddingY={"5"}>
 				{/* amount */}
-				<HStack
-					// maxWidth={["75%", "75%", "30%", "30%", "25%", "25%"]}
-					marginX="5"
-					display="flex"
-					justifyContent="center"
-				>
+				<HStack marginX="5" display="flex" justifyContent="center">
 					{/* minus button */}
 					<Button backgroundColor={"#8053FF"} {...dec}>
 						-
@@ -102,8 +94,10 @@ function CheckoutItem({ img, title, options, amount, cost }) {
 				</HStack>
 			</Box>
 
+			{/* cost */}
 			<p>${cost}</p>
 
+			{/* close button */}
 			<Box>
 				<Box cursor={"pointer"} margin="5">
 					<AiFillCloseCircle size={"22"} />
@@ -113,6 +107,7 @@ function CheckoutItem({ img, title, options, amount, cost }) {
 	);
 }
 
+// default props values
 CheckoutItem.defaultProps = {
 	title: "Special Product",
 	img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOxUBsOivOjpqkB0iYoJXlAuPwBpKquHUoiA&usqp=CAU",
@@ -128,6 +123,7 @@ CheckoutItem.defaultProps = {
 	cost: 50,
 };
 
+// propty[es]
 CheckoutItem.propTypes = {
 	title: PropTypes.string,
 	img: PropTypes.string,
