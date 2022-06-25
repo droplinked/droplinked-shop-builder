@@ -25,7 +25,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
     const onSubmit = data => {
         setLoading(true)
 
-
+        // "type": "PRODUCER"
         let info = {
             email: data.email,
             password: data.password
@@ -35,39 +35,43 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
             .then((res) => {
 
                 if (res.data.status == "success") {
-                    //  toast.success(res.data.status)
                     close();
-                    switch (res.data.data.user.status) {
-                        case "NEW":
-                          //  errorToast("you must virified your account")
-                            localStorage.setItem('registerEmail', JSON.stringify(info.email))
-                            setLoading(false)
-                            navigate("/emailConfirmation");
-                            return;
-                        case "VERIFIED":
-                            addProfile(res.data.data)
-                            navigate("/register/personalInfo");
-                            return;
-                        case "PROFILE_COMPLETED":
-                            addProfile(res.data.data)
-                            navigate("/register/shopInfo");
-                            return;
-                        case "SHOP_INFO_COMPLETED":
-                            addProfile(res.data.data)
-                            navigate("/register/IMSSelect");
-                            return;
-                        case "IMS_TYPE_COMPLETED":
-                            addProfile(res.data.data)
-                            navigate(`/shop/${res.data.data.user.shopName}`);
-                            return;
-                        case "ACTIVE":
-                            addProfile(res.data.data)
-                            navigate(`/shop/${res.data.data.user.shopName}`);
-                            return;
-                        case "DELETED":
-                            errorToast("your account has been deleted")
-                            setLoading(false)
-                            return;
+
+                    if (res.data.data.user.type == "PRODUCER") {
+                        switch (res.data.data.user.status) {
+                            case "NEW":
+                                //  errorToast("you must virified your account")
+                                localStorage.setItem('registerEmail', JSON.stringify(info.email))
+                                setLoading(false)
+                                navigate("/emailConfirmation");
+                                return;
+                            case "VERIFIED":
+                                addProfile(res.data.data)
+                                navigate("/register/personalInfo");
+                                return;
+                            case "PROFILE_COMPLETED":
+                                addProfile(res.data.data)
+                                navigate("/register/shopInfo");
+                                return;
+                            case "SHOP_INFO_COMPLETED":
+                                addProfile(res.data.data)
+                                navigate("/register/IMSSelect");
+                                return;
+                            case "IMS_TYPE_COMPLETED":
+                                addProfile(res.data.data)
+                                navigate(`/shop/${res.data.data.user.shopName}`);
+                                return;
+                            case "ACTIVE":
+                                addProfile(res.data.data)
+                                navigate(`/shop/${res.data.data.user.shopName}`);
+                                return;
+                            case "DELETED":
+                                errorToast("your account has been deleted")
+                                setLoading(false)
+                                return;
+                        }
+                    } else {
+                        successToast("Login successfully")
                     }
                 }
             })
