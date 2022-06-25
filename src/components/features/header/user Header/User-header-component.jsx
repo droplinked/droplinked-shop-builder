@@ -5,20 +5,18 @@ import WalletButton from "../wallet button/wallet-button-component"
 import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
 import { useProfile } from "../../../../sevices/hooks/useProfile"
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate , useParams , useLocation} from "react-router-dom";
 import { useCart } from "../../../../sevices/hooks/useCart"
 
-
-
-
 export default function UserHeader() {
+
     const [toggleHeader, setToggleHeader] = useState(false)
     const [toggleBasket, setToggleBasket] = useState(false)
+
     const { profile, logout } = useProfile()
-    const { itemCounter } = useCart();
+    const { cart } = useCart();
 
 
-    let url = window.location.pathname;
     let Profileimage = profile.avatar
     let navigate = useNavigate();
 
@@ -78,9 +76,9 @@ export default function UserHeader() {
                     onClick={openBasketModal}
 
                 />
-                {(itemCounter() > 0) &&
-                    <div className="item-cart-number">{`${itemCounter()}`}</div>
-                }
+                 {cart &&
+                    <div className="item-cart-number">{cart.items.length}</div>
+                } 
 
             </div>
 

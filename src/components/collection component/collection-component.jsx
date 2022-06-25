@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Product from "../product component/product-component"
 export default function Collection({ collection , shopname}) {
 
-    console.log(collection);
     return (
         <>
             <div className="d-flex justify-content-center">

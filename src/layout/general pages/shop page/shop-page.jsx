@@ -3,6 +3,7 @@ import "./shop-page-style.scss"
 import { useState, useEffect } from "react"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useParams } from "react-router-dom"
+import { useCart } from "../../../sevices/hooks/useCart"
 
 import axios from "axios"
 import Loading from "../../../components/features/loading/Loading"
@@ -11,10 +12,12 @@ import Collection from "../../../components/collection component/collection-comp
 
 export default function ShopPage() {
 
-    let { shopname } = useParams();
-
     const [profile, setProfile] = useState(null)
     const [collection, setCollections] = useState(null)
+
+    let { shopname } = useParams();
+    const { updateCart } = useCart()
+
 
     useEffect(() => {
 
@@ -32,6 +35,8 @@ export default function ShopPage() {
         })).catch(errors => {
             console.log(errors.response);
         })
+        
+        updateCart(shopname)
     }, [])
 
 

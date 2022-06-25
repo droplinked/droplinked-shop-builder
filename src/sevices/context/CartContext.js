@@ -1,64 +1,40 @@
-import { createContext, useReducer } from 'react';
-import { CartReducer, ItemCounter , totalPrice } from './CartReducer';
+import { createContext, useState, useEffect } from "react";
+import { CartReducer, ItemCounter, totalPrice } from "./CartReducer";
+import { useParams, Link } from "react-router-dom";
+import { BasicURL } from "../functoinal-service/CallApiService";
+import { errorToast } from "./Toast-context"
+import axios from "axios";
 
-export const CartContext = createContext()
+export const CartContext = createContext();
 
-
-
-const CartContextProvider = ({children}) => {
-   
-
-    const [state, dispatch] = useReducer(CartReducer, {}  ) 
-
-    const addProduct = payload => {
-        dispatch({type: 'ADD_PRODUCT', payload})
-    }
-
-    const itemCounter = () =>{
-       return  ItemCounter(state)
-    }
+const CartContextProvider = ({ children }) => {
     
-    const getTotalPrice = () =>{
-        return  totalPrice(state)
-     }
-    // const increase = payload => {
-    //     dispatch({type: 'INCREASE', payload})
-    // }
+  const [cart, setCart] = useState(null);
 
-    // const decrease = payload => {
-    //     dispatch({type: 'DECREASE', payload})
-    // }
+  let token = JSON.parse(localStorage.getItem("token"));
 
-    // const addProduct = payload => {
-       
-    //     dispatch({type: 'ADD_ITEM', payload})
-    // }
+  const updateCart = (shopname) => {
+    axios
+      .get(`${BasicURL}/${shopname}/cart`,
+      {headers: { Authorization: "Bearer " + token }})
+      .then((e) => {
+        setCart(e.data.data.cart);
+      })
+      .catch((e) => {
+        console.log(e.response.data.reason)
+      });
+  };
 
-    // const removeProduct = payload => {
-    //     dispatch({type: 'REMOVE_ITEM', payload})
-    // }
+  const contextValues = {
+    updateCart,
+    cart,
+  };
 
-    // const clearCart = () => {
-    //     dispatch({type: 'CLEAR'})
-    // }
+  return (
+    <CartContext.Provider value={contextValues}>
+      {children}
+    </CartContext.Provider>
+  );
+};
 
-    // const handleCheckout = () => {
-    //     console.log('CHECKOUT', state);
-    //     dispatch({type: 'CHECKOUT'})
-    // }
-
-    const contextValues = {
-        addProduct,
-        itemCounter,
-        getTotalPrice,
-        state
-    } 
-
-    return ( 
-        <CartContext.Provider value={contextValues} >
-            { children }
-        </CartContext.Provider>
-     );
-}
- 
 export default CartContextProvider;
