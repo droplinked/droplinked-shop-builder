@@ -81,6 +81,7 @@ function CheckoutItem({ img, title, options, amount, cost }) {
 					)}
 				</Box>
 			</Flex>
+
 			<Box paddingY={"5"}>
 				{/* amount */}
 				<HStack
@@ -100,6 +101,9 @@ function CheckoutItem({ img, title, options, amount, cost }) {
 					</Button>
 				</HStack>
 			</Box>
+
+			<p>${cost}</p>
+
 			<Box>
 				<Box cursor={"pointer"} margin="5">
 					<AiFillCloseCircle size={"22"} />
