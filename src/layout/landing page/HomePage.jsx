@@ -2,7 +2,7 @@ import "./HomePage.scss"
 
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom";
-import { GetApi } from "../../sevices/functoinal-service/CallApiService"
+import { GetApi, BasicURL } from "../../sevices/functoinal-service/CallApiService"
 
 import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"
 import alertIcon from "../../assest/feature/home page images/alert.png"
@@ -68,18 +68,25 @@ export default function HomePage() {
             return;
         }
         setCheckshopname(true);
-        GetApi(`/producer/shop-name/${userName}`, responseHandler, ErrorHandler)
+
+        axios.get(`${BasicURL}/producer/${userName}`)
+            .then(e => {
+                setCheckshopname(false);
+                toggleSignUp();
+            })
+            .cathc(e => {
+                setCheckshopname(false);
+                setShopnameError(e.response.data.reason)
+            })
     }
 
-    const responseHandler = () => {
-        setCheckshopname(false);
-        toggleSignUp();
-    }
+    // const responseHandler = () => {
 
-    const ErrorHandler = (value) => {
-        setCheckshopname(false);
-        setShopnameError(value.reason)
-    }
+    // }
+
+    // const ErrorHandler = (value) => {
+        
+    // }
 
     return (<>
         <div className="bod">
