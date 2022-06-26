@@ -69,7 +69,7 @@ export default function HomePage() {
         }
         setCheckshopname(true);
 
-        axios.get(`${BasicURL}/producer/${userName}`)
+        axios.get(`${BasicURL}/shop-name/${userName}`)
             .then(e => {
                 setCheckshopname(false);
                 toggleSignUp();
