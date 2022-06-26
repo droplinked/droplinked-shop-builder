@@ -45,6 +45,8 @@ import CollectionPage from "./layout/general pages/collectiom page/collection-pa
 
 // checkout
 import Checkout from "./layout/checkout/Checkout";
+// address page
+import AddressPage from "./layout/address_page/AddressPage";
 
 function App() {
 	return (
@@ -134,6 +136,9 @@ function App() {
 													path={"/checkout/:shopname"}
 													element={<Checkout />}
 												/>
+
+												{/* address page */}
+												<Route path="/address" element={<AddressPage />} />
 
 												<Route path="/shipping" element={<Shipping />} />
 												<Route path="/payment" element={<Payments />} />
