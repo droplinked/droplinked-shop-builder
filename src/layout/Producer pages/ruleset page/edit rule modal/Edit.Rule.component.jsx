@@ -99,7 +99,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
             })
     }
 
-  
+
 
 
 
@@ -154,6 +154,14 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
         setRules(newAddressList)
     }
 
+    const deleteRule = (index) => {
+        if (rules.length == 1) return
+        let newAddressList = rules.filter((item, i) => { return (i != index) })
+        newAddressList = newAddressList.map((item, i) => { return { ...item, index: i } })
+        setRules(newAddressList)
+    }
+
+
 
     const x = [{ _id: "1", title: "NFT" }, { _id: "2", title: "Contract" }]
     return (
@@ -173,6 +181,8 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
                             <>
                                 <div className="ruleset-input-container">
                                     <div className="drop-container">
+                                        <p className="delete-btn" style={{ fontSize: "20px", margin: "auto 0px auto 10px" }}
+                                            onClick={(e) => { deleteRule(index) }}>X</p>
                                         <select name="" id=""
                                             value={type}
                                             onChange={(e) => { changeType({ index, e }) }}
@@ -180,6 +190,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
                                             <option value="NFT">NFT</option>
                                             <option value="CONTRACT">CONTRACT</option>
                                         </select>
+
                                     </div>
                                     <div className="input-container d-flex">
                                         <input type="text" placeholder="Contract address"

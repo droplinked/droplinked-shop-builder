@@ -131,15 +131,13 @@ export default function AddRule({ toggle }) {
     }
 
 
-    const deleteRule = (e, index) => {
+    const deleteRule = (index) => {
         if (addresslist.length == 1) return
         let newAddressList = addresslist.filter((item, i) => { return (i != index) })
-        newAddressList.forEach((item, i) => { item.index = i })
+        newAddressList = newAddressList.map((item, i) => { return { ...item, index: i } })
         setAddressList(newAddressList)
     }
 
-
-    console.log(addresslist)
 
 
     return (
@@ -156,23 +154,24 @@ export default function AddRule({ toggle }) {
                         <>
                             <div className="ruleset-input-container">
                                 <div className="drop-container">
+                                    <p className="delete-btn"
+                                        onClick={(e) => { deleteRule(index) }}>X</p>
                                     <select name="" id="" onChange={(e) => { changeType({ index, e }) }}
                                         value={type}
                                     >
                                         <option value="NFT">NFT</option>
                                         <option value="CONTRACT">CONTRACT</option>
                                     </select>
-                                    {/* <p className="delete-btn" style={{ fontSize: "20px", margin: "auto 0px auto 10px" }}
-                                        onClick={(e) => { deleteRule(e, index) }}>X</p> */}
+
                                 </div>
                                 <div className="input-container d-flex">
                                     <input type="text" placeholder="Contract address"
                                         onChange={(e) => { changeContractAddress(e, index) }}
-                                        value={address.contractAddress}
+                                        value={(address.contractAddress || "")}
                                     />
                                     <p>.</p>
                                     <input type="text" placeholder="Contract name"
-                                        value={address.contractName}
+                                        value={(address.contractName || "")}
                                         onChange={(e) => { changeContractName(e, index) }}
                                     />
 
@@ -180,7 +179,7 @@ export default function AddRule({ toggle }) {
                                         <>
                                             <p>::</p>
                                             <input type="text" placeholder="NFT name"
-                                                value={address.nftName}
+                                                value={(address.nftName || "")}
                                                 onChange={(e) => { changeNftName(e, index) }}
                                             />
                                         </>
