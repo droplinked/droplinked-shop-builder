@@ -11,6 +11,8 @@ export default function BasketModal({ close }) {
     const { cart } = useCart();
     let navigate = useNavigate();
 
+    console.log(window.location.pathname)
+
     const ClickCheckuot = () => {
         navigate("/checkout")
         close();

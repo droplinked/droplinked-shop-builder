@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { UseWalletInfo } from "../../../sevices/context/context"
 import { useProfile } from "../../../sevices/hooks/useProfile"
 import { useToasty } from "../../../sevices/hooks/useToastify"
+import { CheckRules } from "../../../sevices/functoinal-service/CheckRuleService"
 
 import axios from "axios"
 import Loading from "../../../components/features/loading/Loading";
@@ -30,21 +31,18 @@ export default function DimsMerchPage() {
 
     let params = useParams();
     let merchId = params.merchId;
-
     let shopName = params.shopname;
+    let token = JSON.parse(localStorage.getItem("token"));
 
-      let token = JSON.parse(localStorage.getItem("token"));
-
-    let token2 = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYjZlOWExZTM4ODkxMzdmNjk2MDhmNSIsImtleSI6IjA2ZDczYmIwLWZhZDMtNGIxYy04MWI4LTk0ZTYxNWJmNjM4YyIsImlhdCI6MTY1NjE2MjIzMSwiZXhwIjoxNjU2MzM1MDMxfQ.OQ3HSoZ5lpjhpQRwlqDPBr6e2SutHNRlWs64ZNnuRLY"
+   // console.log(userData.profile.stxAddress.mainnet);
 
     useEffect(() => {
         axios
-            .get(`${BasicURL}/producer/product/${merchId}?withSku=true`,
-                { headers: { Authorization: "Bearer " + token2 } })
+            .get(`${BasicURL}/product/${merchId}?withSku=true`,)
             .then(e => {
-                setProduct(e.data.data.product)
-                setImages(e.data.data.product.media)
-                initialskuArray(e.data.data.product.skus)
+                setProduct(e.data.data)
+                setImages(e.data.data.media)
+                initialskuArray(e.data.data.skus)
             })
             .catch(e => console.log(e.response.data.reason))
     }, [])
@@ -99,6 +97,9 @@ export default function DimsMerchPage() {
             quantity: quantity
         }
 
+      //  CheckRules(product.ruleset.rules , userData.profile.stxAddress.mainnet )
+        
+      //  console.log(cart);
         axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
             { headers: { Authorization: 'Bearer ' + token } })
             .then((e) => {
