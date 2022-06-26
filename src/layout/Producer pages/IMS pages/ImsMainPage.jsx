@@ -1,75 +1,61 @@
 import "./ImsMainPage.scss"
-import BasicButton from "../../../components/features/buttons components/basic button/BasicButton"
-import SeachBox from "../../../components/features/search box/Search-box-component"
-import ProductSmallWrapper from "../../../components/features/product components/product small wrapper/Product-Small-wrapper"
-import ProductLargeProducer from "../../../components/features/product components/Product Large component producer/ProductLarge-producer"
-import axios from "axios"
+
 import { useState, useEffect } from "react"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+
+import axios from "axios"
 import Loading from "../../../components/features/loading/Loading"
+import DroplinkedImsPage from "./droplinked ims page/droplink-ims-page"
 
 
 function ImsMainPage() {
 
     const [products, setProdcuts] = useState(null)
-    const [searchText, setSearchText] = useState("")
-    const navigate = useNavigate();
+    const [shop, setShop] = useState(null)
 
+    const navigate = useNavigate();
     const token = JSON.parse(localStorage.getItem('token'));
 
     useEffect(() => {
         if (token == null) { navigate("/") }
-        axios.get(BasicURL+`/producer/product`,
-            { headers: { Authorization: 'Bearer ' + token } })
-            .then(e => {
-                 setProdcuts(e.data.data.products)
-            })
-            .catch(e => console.log(e))
+
+        let url1 = BasicURL + "/producer/product"
+        let url2 = BasicURL + "/profile"
+
+        const requestOne = axios.get(url1, { headers: { Authorization: 'Bearer ' + token } });
+        const requestTwo = axios.get(url2, { headers: { Authorization: 'Bearer ' + token } });
+
+        axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
+            const responseOne = responses[0]
+            const responseTwo = responses[1]
+            setProdcuts(responseOne.data.data.products);
+            setShop(responseTwo.data.data.shop);
+        })).catch(errors => {
+            console.log(errors.response.data.reason);
+        })
+
     }, [])
-
-
-    const onChangeSearchBox = (e) => {
-        setSearchText(e.target.value.toLowerCase())
-    }
-
 
     return (<>
         <div className="IMS-page-wrapper">
             <div className="ims-title">Merchandise</div>
             <div className="number-of-merchs">{(products != undefined) ? products.length : '0'} Listed</div>
-            <div className="w-100 d-flex justify-content-center align-items-center mt-5">
-                <Link to="/producer/addProduct" style={{ width: "100%", display: "flex" }}>
-                    <BasicButton text={"Add merch"} />
-                </Link>
-            </div>
-            <div style={{ margin: "15px 0xp" }}>
-                <SeachBox onch={onChangeSearchBox} />
-            </div>
-            <ProductSmallWrapper>
-                {products
-                    ?
-                    <>{(products.length <= 0)
+
+            {(products) ?
+                <>
+                    {shop &&
+                        (shop.imsType == "DROPLINKED")
                         ?
-                        <div className="w-100 d-flex justify-content-center align-items-center">
-                            <p className="no-product"></p>
-                        </div>
+                        < DroplinkedImsPage products={products} />
                         :
-                        <>
-                            {(products).filter(pr => pr.title.toLowerCase().includes(searchText)).map((item) => {
-                                return (
-                                    <div className="col-6 col-md-4 col-lg-3 p-1" key={item.id}>
-                                        <ProductLargeProducer title={item.title} imageUrl={item.media[0].url} id={item._id} />
-                                    </div>
-                                )
-                            })}
-                        </>
+                        <></>
                     }
-                    </>
-                    :
-                    <Loading />
-                }
-            </ProductSmallWrapper>
+                </>
+                :
+                <Loading />
+            }
+
         </div>
     </>)
 }
