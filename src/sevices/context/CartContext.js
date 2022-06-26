@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { CartReducer, ItemCounter, totalPrice } from "./CartReducer";
-import { useParams, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { BasicURL } from "../functoinal-service/CallApiService";
 import { errorToast } from "./Toast-context"
 import axios from "axios";
@@ -12,6 +12,12 @@ const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState(null);
 
   let token = JSON.parse(localStorage.getItem("token"));
+  let location = useLocation();
+
+  useEffect(()=>{
+     let url = location.pathname.split("/")
+     if(url[1]!="" && url[1] == "shop") updateCart(url[2]);
+  },[location])
 
   const updateCart = (shopname) => {
     axios

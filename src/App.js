@@ -34,12 +34,12 @@ import RuleSetPage from "./layout/Producer pages/ruleset page/RuleSet-page-compo
 import CollectionMainPage from "./layout/Producer pages/collection pages/Collection main page/Collection-mainpage-component";
 import AddCollectionPage from "./layout/Producer pages/collection pages/add collection page/Add-collection-component";
 
-import AccountRecoveryPage from "./layout/registering/account recovery page/Account-recovery-page"
-import VerificationEmailPage from "./layout/registering/verifi-email-page/Email-verification-component"
-import ViewMerchPage from "./layout/Producer pages/IMS pages/view merch page/View-merch-component"
+import AccountRecoveryPage from "./layout/registering/account recovery page/Account-recovery-page";
+import VerificationEmailPage from "./layout/registering/verifi-email-page/Email-verification-component";
+import ViewMerchPage from "./layout/Producer pages/IMS pages/view merch page/View-merch-component";
 import DimsMerchPage from "./layout/customer pages/merch page/dims-Merch-page-component";
-import CheckoutPage from "./layout/customer pages/checkout page/checkout-page"
-import ShopifyMerchViewPage from "./layout/Producer pages/IMS pages/shopify-merch-view/Shopify-merch-view-page"
+import CheckoutPage from "./layout/customer pages/checkout page/checkout-page";
+import ShopifyMerchViewPage from "./layout/Producer pages/IMS pages/shopify-merch-view/Shopify-merch-view-page";
 import ShopPage from "./layout/general pages/shop page/shop-page";
 import CollectionPage from "./layout/general pages/collectiom page/collection-page-component";
 
@@ -48,35 +48,77 @@ function App() {
     <div style={{ backgroundColor: "#222" }}>
       <ProfileContextProvider>
         <ChakraProvider>
-          <CartContextProvider>
-            <WalletProvider>
-              <BrowserRouter>
+          <WalletProvider>
+            <BrowserRouter>
+              <CartContextProvider>
                 <ToastContext>
                   <MainHeader />
                   <HomeWrapper>
                     <ScrollTop>
                       <Routes>
                         <Route exact path="/" element={<HomePage />} />
-                        <Route path="/register/personalInfo"  element={<PersonalInfo />} />
-                        <Route path="/register/shopInfo" element={<ShopInfo />}  />
-                        <Route path="/register/IMSSelect"  element={<ImsSelect />} />
-                        <Route path="/register/payment" element={<RegisterPayment />} />
-                        <Route path="/emailConfirmation" element={<ThankPage />}  />
-                        <Route path="/email-verification/:token" element={<VerificationEmailPage />}  />
+                        <Route
+                          path="/register/personalInfo"
+                          element={<PersonalInfo />}
+                        />
+                        <Route
+                          path="/register/shopInfo"
+                          element={<ShopInfo />}
+                        />
+                        <Route
+                          path="/register/IMSSelect"
+                          element={<ImsSelect />}
+                        />
+                        <Route
+                          path="/register/payment"
+                          element={<RegisterPayment />}
+                        />
+                        <Route
+                          path="/emailConfirmation"
+                          element={<ThankPage />}
+                        />
+                        <Route
+                          path="/email-verification/:token"
+                          element={<VerificationEmailPage />}
+                        />
 
                         <Route path="/producer/ims" element={<ImsMainPage />} />
-                        <Route path="/producer/Merch/:id" element={<ViewMerchPage />} />
-                        <Route path="/producer/addProduct"  element={<AddProductPage />} />
-                        <Route path="/producer/ruleset"  element={<RuleSetPage />}  />
-                        <Route path="/producer/collection"   element={<CollectionMainPage />}  />
-                        <Route path="/producer/collection/addCollection" element={<AddCollectionPage />} />
-                        <Route path="/producer/account-recovery/:token" element={<AccountRecoveryPage />} />
+                        <Route
+                          path="/producer/Merch/:id"
+                          element={<ViewMerchPage />}
+                        />
+                        <Route
+                          path="/producer/addProduct"
+                          element={<AddProductPage />}
+                        />
+                        <Route
+                          path="/producer/ruleset"
+                          element={<RuleSetPage />}
+                        />
+                        <Route
+                          path="/producer/collection"
+                          element={<CollectionMainPage />}
+                        />
+                        <Route
+                          path="/producer/collection/addCollection"
+                          element={<AddCollectionPage />}
+                        />
+                        <Route
+                          path="/producer/account-recovery/:token"
+                          element={<AccountRecoveryPage />}
+                        />
 
-                        <Route path="/shop/:shopname/merch/:merchId" element={<DimsMerchPage />} />
+                        <Route
+                          path="/shop/:shopname/merch/:merchId"
+                          element={<DimsMerchPage />}
+                        />
 
                         <Route path="/shop/:shopname" element={<ShopPage />} />
 
-                        <Route path="/collection/:collectionId" element={<CollectionPage />} />
+                        <Route
+                          path="/collection/:collectionId"
+                          element={<CollectionPage />}
+                        />
 
                         <Route path="/creatorpage" element={<CreatorPage />} />
                         <Route path="/postpage" element={<PostPage />} />
@@ -91,16 +133,19 @@ function App() {
                         <Route path="/confirm" element={<Confirm />} />
                         <Route path="/crashpunks" element={<CreatorPage />} />
                         <Route path="/product/:id" element={<BuyProduct />} />
-                        <Route path="/test" element={<ShopifyMerchViewPage />} />
+                        <Route
+                          path="/test"
+                          element={<ShopifyMerchViewPage />}
+                        />
                         <Route path="/*" element={<NotFound />} />
                       </Routes>
                     </ScrollTop>
                   </HomeWrapper>
                   <Footer />
                 </ToastContext>
-              </BrowserRouter>
-            </WalletProvider>
-          </CartContextProvider>
+              </CartContextProvider>
+            </BrowserRouter>
+          </WalletProvider>
         </ChakraProvider>
       </ProfileContextProvider>
     </div>

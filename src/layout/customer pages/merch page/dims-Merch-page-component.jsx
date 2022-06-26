@@ -7,6 +7,7 @@ import { UseWalletInfo } from "../../../sevices/context/context"
 import { useProfile } from "../../../sevices/hooks/useProfile"
 import { useToasty } from "../../../sevices/hooks/useToastify"
 import { CheckRules } from "../../../sevices/functoinal-service/CheckRuleService"
+import { useCart } from "../../../sevices/hooks/useCart"
 
 import axios from "axios"
 import Loading from "../../../components/features/loading/Loading";
@@ -24,17 +25,19 @@ export default function DimsMerchPage() {
     const [quantity, setQuantity] = useState(0)
     const [variants, setVariants] = useState(null)
     const [selectedSku, setselectedSku] = useState(null)
+    const [disableBtn, setDisableBtn] = useState(false)
 
     const { userData, authenticate } = UseWalletInfo();
     const { profile } = useProfile();
     const { errorToast, successToast } = useToasty();
+    const { updateCart } = useCart();
 
     let params = useParams();
     let merchId = params.merchId;
     let shopName = params.shopname;
     let token = JSON.parse(localStorage.getItem("token"));
 
-   // console.log(userData.profile.stxAddress.mainnet);
+    // console.log(userData.profile.stxAddress.mainnet);
 
     useEffect(() => {
         axios
@@ -97,15 +100,21 @@ export default function DimsMerchPage() {
             quantity: quantity
         }
 
-      //  CheckRules(product.ruleset.rules , userData.profile.stxAddress.mainnet )
-        
-      //  console.log(cart);
+        //  CheckRules(product.ruleset.rules , userData.profile.stxAddress.mainnet )
+
+        setDisableBtn(true)
         axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
             { headers: { Authorization: 'Bearer ' + token } })
             .then((e) => {
+                setDisableBtn(false)
                 successToast("Merch added to cart")
+                setQuantity(0)
+                updateCart(shopName)
             })
-            .catch(e => errorToast(e.response.data.reason))
+            .catch(e => {
+                setDisableBtn(false)
+                errorToast(e.response.data.reason)
+            })
     }
 
 
@@ -147,7 +156,7 @@ export default function DimsMerchPage() {
                                 <img src={minus} alt="" />
                             </div>
                         </div>
-                        <AutoWidthButton text={"Add to basket"} click={Addtobasket} />
+                        <AutoWidthButton text={"Add to basket"} click={Addtobasket} disable={disableBtn} />
                     </div>
 
                 </div>

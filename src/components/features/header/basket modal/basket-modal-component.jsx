@@ -11,12 +11,12 @@ export default function BasketModal({ close }) {
     const { cart } = useCart();
     let navigate = useNavigate();
 
-    console.log(window.location.pathname)
-
     const ClickCheckuot = () => {
         navigate("/checkout")
         close();
     }
+
+    console.log(cart);
 
     return (<>
         <div className="basket-modal-wrapper">
