@@ -31,23 +31,24 @@ export default function ShopPage() {
             setProfile(responseOne.data.data);
             setCollections(responseTwo.data.data);
         })).catch(errors => {
-            console.log(errors.response);
+            console.log(errors.response.data);
         })
         
     }, [])
 
+    console.log(profile);
 
     return (<>
         {(profile == null) ?
             <Loading />
             :
             <ProducerTopSection
-                pic={profile.shopLogo}
+                pic={profile.logo}
                 shopname={profile.shopName}
                 insta={(profile.instagram) ? profile.instagram : ""}
-                twitter={(profile.twitter) ? profile.twitter : ""}
-                discord={(profile.discord) ? profile.discord : ""}
-                web={(profile.web) ? profile.web : ""}
+                twitter={(profile.twitterUrl) ? profile.twitterUrl : ""}
+                discord={(profile.discordUrl) ? profile.discordUrl : ""}
+                web={(profile.webUrl) ? profile.webUrl : ""}
             />
         }
 
