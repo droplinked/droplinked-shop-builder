@@ -4,7 +4,7 @@ export default function Product({  title, imageUrl, id , shopname}){
 
     return (
         <div className="Lproduct-component-wrapper">
-            <Link to={`merch/${id}`}>
+            <Link to={`/shop/${shopname}/merch/${id}`}>
                 <div className="product-image-st">
                     <div className="ratio ratio-1x1">
                         <img className={` main-image `} src={imageUrl} />
@@ -12,7 +12,6 @@ export default function Product({  title, imageUrl, id , shopname}){
                     {/* {viewBtn && <div className="product-view-button"><p>View</p></div>} */}
                 </div>
             </Link>
-
             <div className="brand-name">{title}</div>
         </div>
     )

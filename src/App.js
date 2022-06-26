@@ -112,13 +112,12 @@ function App() {
                           path="/shop/:shopname/merch/:merchId"
                           element={<DimsMerchPage />}
                         />
-
-                        <Route path="/shop/:shopname" element={<ShopPage />} />
-
                         <Route
-                          path="/collection/:collectionId"
+                          path="/shop/:shopname/collection/:collectionId"
                           element={<CollectionPage />}
                         />
+
+                        <Route path="/shop/:shopname" element={<ShopPage />} />
 
                         <Route path="/creatorpage" element={<CreatorPage />} />
                         <Route path="/postpage" element={<PostPage />} />

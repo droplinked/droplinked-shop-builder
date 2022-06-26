@@ -10,14 +10,15 @@ import { useEffect, useState } from "react";
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService";
 
 export default function CollectionPage() {
-
-    const { collectionId } = useParams()
+  
     const [Collection, setCollectin] = useState(null)
+
+    const {collectionId , shopname} = useParams()
 
     useEffect(() => {
         axios.get(`${BasicURL}/collection/${collectionId}`)
             .then(e => {
-                setCollectin(e.data.data[0]);
+                setCollectin(e.data.data);
             }).catch(e => console.log(e.response))
     }, [])
 
@@ -31,7 +32,7 @@ export default function CollectionPage() {
                         {Collection.products.map((product, i) => {
                             return (
                                 <div key={i} className="col-6 col-md-3 p-1">
-                                    <Product title={product.title} imageUrl={product.media[0].url} id={product._id} />
+                                    <Product shopname={shopname} title={product.title} imageUrl={product.media[0].url} id={product._id} />
                                 </div>
                             )
                         })}
