@@ -2,89 +2,146 @@ import "./Addrule.modal.style.scss"
 import { useState } from "react"
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
-import InputNoLabel from "../../../../components/features/input components/input without label/Input.component"
-import DropDownComp from "../../../../components/features/input components/dropdown with value/dropdown-val-component"
-import { toast } from 'react-toastify';
 import axios from "axios"
 import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
+import { useToasty } from "../../../../sevices/hooks/useToastify"
 
 
 export default function AddRule({ toggle }) {
     const [ruleName, setRuleName] = useState("")
-    const [rules, setRules] = useState([{ address: "", type: "NFT" }])
     const [disableBtn, setDisableBtn] = useState(false)
+    const [addresslist, setAddressList] = useState([{ index: 0, type: "NFT", address: { contractAddress: "", contractName: "", nftName: "" } }])
 
     const token = JSON.parse(localStorage.getItem('token'));
 
-    const dropVal = ["NFT", "CONTRACT"];
+    const { errorToast, successToast } = useToasty()
+
 
     const changeName = (e) => { setRuleName(e.target.value) }
 
+
+    const addRule = () => {
+        let newAddressList = addresslist.map(item => item)
+        newAddressList.push({ index: addresslist.length, type: "NFT", address: "" })
+        setAddressList(newAddressList)
+    }
+
+    const changeType = ({ index, e }) => {
+        let newAddressList = addresslist.map((item, i) => {
+            if (i === index) {
+                return { ...item, type: e.target.value }
+            } else {
+                return item
+            }
+        })
+        setAddressList(newAddressList)
+    }
+
+    const changeContractAddress = (e, index) => {
+        let newAddressList = addresslist.map((item, i) => {
+            if (i === index) {
+                return { ...item, address: { ...item.address, contractAddress: e.target.value } }
+            } else {
+                return item
+            }
+        })
+        setAddressList(newAddressList)
+    }
+
+    const changeContractName = (e, index) => {
+        let newAddressList = addresslist.map((item, i) => {
+            if (i === index) {
+                return { ...item, address: { ...item.address, contractName: e.target.value } }
+            } else {
+                return item
+            }
+        })
+        setAddressList(newAddressList)
+    }
+
+
+    const changeNftName = (e, index) => {
+        let newAddressList = addresslist.map((item, i) => {
+            if (i === index) {
+                return { ...item, address: { ...item.address, nftName: e.target.value } }
+            } else {
+                return item
+            }
+        })
+        setAddressList(newAddressList)
+    }
+
+
     const submitForm = () => {
+
+        //check rule name
         if (ruleName == "") {
-            toast.error("rule name is required")
-            return;
+            errorToast("Please enter name for rule.")
+            return
         }
-        rules.forEach((rule) => {
-            if (rule.address == "") {
-                toast.error("rule address is required")
-                return;
+
+        let flag = true
+        // all input be fill 
+        addresslist.forEach(({ index, type, address }) => {
+            if (address.contractAddress == "" || address.contractName == "") {
+                errorToast("Please add fill all input.")
+                flag = false
+            }
+            if (type == "NFT") {
+                if (address.nftName == "") {
+                    errorToast("Please add fill all input.")
+                    flag = false
+                }
+            }
+        })
+        if (!flag) return
+
+        let addressArray = []
+
+        addresslist.forEach(({ index, type, address }) => {
+            if (type == "CONTRACT") {
+                addressArray.push({ address: (address.contractAddress + "." + address.contractName), type: "CONTRACT" })
+            } else {
+                addressArray.push({
+                    address: (address.contractAddress + "." + address.contractName + "::" + address.nftName)
+                    , type: "NFT"
+                })
             }
         })
 
         const ruleInfo = {
             name: ruleName,
             type: "OR",
-            rules: rules
+            rules: addressArray
         }
+
         setDisableBtn(true)
-        axios.post(BasicURL+'/producer/ruleset', ruleInfo,
+
+        axios.post(BasicURL + `/producer/ruleset`, ruleInfo,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
+                successToast("RuleSet created successfully.")
                 setDisableBtn(false)
-                toggle();
+                toggle()
             })
             .catch(e => {
                 setDisableBtn(false)
-                console.log(e.response.data.message)
+                errorToast(e.response.data)
             })
-
-    }
-
-    const addRule = () => {
-        let arr = []
-        for (const i of rules) {
-            arr.push(i)
-        }
-        arr.push({ address: "", type: "NFT" })
-        setRules(arr)
-    }
-
-    const changeRuleAddress = (e, i) => {
-        let arr = []
-        for (const x of rules) {
-            arr.push(x)
-        }
-        arr[i] = { ...arr[i], address: e.target.value }
-        setRules(arr)
-    }
-
-    const changeNft = (e, i) => {
-        let arr = []
-        for (const x of rules) {
-            arr.push(x)
-        }
-        arr[i] = { ...arr[i], type: e.target.value }
-        setRules(arr)
     }
 
 
-    const deletRule = (i) => {
-        let arr = rules.filter((rule , index) => index != i)
-        setRules(arr)
+    const deleteRule = (e, index) => {
+        if (addresslist.length == 1) return
+        let newAddressList = addresslist.filter((item, i) => { return (i != index) })
+        newAddressList.forEach((item, i) => { item.index = i })
+        setAddressList(newAddressList)
     }
 
-    const x = [{ _id: "1", title: "NFT" }, { _id: "2", title: "Contract" }]
+
+    console.log(addresslist)
+
+
     return (
         <div className="add-rule-moda-wrapper">
             <div className="add-rule-moda-body">
@@ -94,24 +151,53 @@ export default function AddRule({ toggle }) {
                 <div className="w-100 d-flex justify-content-center align-items-center mt-4 mb-4">
                     <p className="text">The customer must meet at least one of the rules listed below (OR)</p>
                 </div>
-                {rules.map((item, i) => {
+                {addresslist.map(({ index, type, address }) => {
                     return (
-                        <div key={i} className="w-100 d-flex justify-content-between align-items-center mt-4 mb-4">
-                            <div style={{ width: '40%' }}>
-                                <InputNoLabel text={"Address"} value={item.address} change={(e) => changeRuleAddress(e, i)} />
+                        <>
+                            <div className="ruleset-input-container">
+                                <div className="drop-container">
+                                    <select name="" id="" onChange={(e) => { changeType({ index, e }) }}
+                                        value={type}
+                                    >
+                                        <option value="NFT">NFT</option>
+                                        <option value="CONTRACT">CONTRACT</option>
+                                    </select>
+                                    {/* <p className="delete-btn" style={{ fontSize: "20px", margin: "auto 0px auto 10px" }}
+                                        onClick={(e) => { deleteRule(e, index) }}>X</p> */}
+                                </div>
+                                <div className="input-container d-flex">
+                                    <input type="text" placeholder="Contract address"
+                                        onChange={(e) => { changeContractAddress(e, index) }}
+                                        value={address.contractAddress}
+                                    />
+                                    <p>.</p>
+                                    <input type="text" placeholder="Contract name"
+                                        value={address.contractName}
+                                        onChange={(e) => { changeContractName(e, index) }}
+                                    />
+
+                                    {(type == "NFT") &&
+                                        <>
+                                            <p>::</p>
+                                            <input type="text" placeholder="NFT name"
+                                                value={address.nftName}
+                                                onChange={(e) => { changeNftName(e, index) }}
+                                            />
+                                        </>
+                                    }
+                                </div>
+
                             </div>
-                            <div style={{ width: '40%' }} className="d-flex">
-                                <DropDownComp value={item.type} valArray={dropVal} change={(e) => changeNft(e, i)} />
-                                <p className="delete-btn" style={{fontSize:"20px" , margin:"auto 0px auto 10px"}} onClick={() => deletRule(i)}>X</p>
-                            </div>
-                        </div>
+                        </>
+
+
                     )
                 })}
 
 
                 <div className="w-100 d-flex justify-content-center align-items-center">
-                    <div className="w-30 mt-4 " onClick={addRule}>
-                        <BasicButton text="Add" />
+                    <div className="w-30 mt-4 " >
+                        <BasicButton text="Add" click={addRule} />
                     </div>
                 </div>
                 <div className="w-100 d-flex justify-content-between align-items-center" style={{ marginTop: "80px" }}>
@@ -122,9 +208,17 @@ export default function AddRule({ toggle }) {
                         <BasicButton text="Submit" click={submitForm} disable={disableBtn} />
                     </div>
                 </div>
-
-
             </div>
         </div>
     )
 }
+
+
+
+{/* <div style={{ width: '40%' }}>
+                                <InputNoLabel text={"Address"} value={item.address} change={(e) => changeRuleAddress(e, i)} />
+                            </div>
+                            <div style={{ width: '40%' }} className="d-flex">
+                                <DropDownComp value={item.type} valArray={dropVal} change={(e) => changeNft(e, i)} />
+                                <p className="delete-btn" style={{ fontSize: "20px", margin: "auto 0px auto 10px" }} onClick={() => deletRule(i)}>X</p>
+                            </div> */}

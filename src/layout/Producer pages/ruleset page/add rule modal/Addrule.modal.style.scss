@@ -43,7 +43,8 @@ input:-webkit-autofill:focus {
     box-sizing: border-box;
     height: auto;
     margin: auto;
-    width: 700px;
+    max-width: 800px;
+    width: 90%;
     background: #353536;
     box-shadow: 0px 2px 30px rgba(85, 88, 90, 0.1);
     border-radius: 24px;
@@ -52,21 +53,85 @@ input:-webkit-autofill:focus {
     animation-name: animatetop;
     animation-duration: 0.4s;
     padding: 40px 40px 40px 40px;
+
+    & .ruleset-input-container {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 25px 0px;
+
+      & .input-container {
+        width: 70%;
+
+        & input {
+          width: 100%;
+          font-weight: 500;
+          font-size: 16px;
+          color: #fff;
+          border: 2px solid #b3b3b3;
+          border-radius: 8px;
+          padding: 5px 16px;
+          outline: none;
+          background-color: transparent;
+          transition: 0.5s;
+          &:focus {
+            border: 2px solid #8053ff;
+          }
+        }
+
+        & p {
+          color: #fff;
+          font-size: 30px;
+        }
+      }
+
+      & .drop-container {
+        width: 20%;
+
+        & select {
+          width: 100%;
+          border: 2px solid #b3b3b3;
+          border-radius: 8px;
+          padding: 7px 16px;
+          outline: none;
+          background-color: transparent;
+          color: #fff;
+          font-weight: 500;
+          font-size: 16px;
+          transition: 0.5s;
+          height: 100%;
+
+          & option {
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            background-color: #333;
+            border: none;
+            outline: none;
+          }
+
+          &:focus {
+            border: 2px solid #8053ff;
+          }
+        }
+      }
+    }
   }
 
-  & .delete-btn{
-    color:#fd6060;
+  & .delete-btn {
+    color: #fd6060;
     font-size: 12px;
     width: auto;
     height: 100%;
     margin-left: 5px;
     cursor: pointer;
   }
-  & .text{
+  & .text {
     font-size: 18px;
     color: white;
   }
-  & .input-wrap{
+  & .input-wrap {
     width: 50%;
   }
 }
@@ -79,16 +144,52 @@ input:-webkit-autofill:focus {
       margin: auto;
       width: 100%;
       padding: 30px 20px 60px 20px;
+     
+
+      & .ruleset-input-container {
+        display: block;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 25px 0px;
+  
+        & .input-container {
+          width: 100%;
+          & input {
+            width: 30%;
+            font-weight: 500;
+            font-size: 10px;
+            padding: 12px 8px;
+          }
+        }
+  
+        & .drop-container {
+          margin-bottom: 10px;
+          width: 50%;
+  
+          & select {
+            width: 100%;
+            font-weight: 500;
+            font-size: 10px;
+            padding: 12px 8px;
+  
+            & option {
+              font-weight: 500;
+              font-size: 10px;
+            }
+
+          }
+        }
+      }
     }
-    & .delete-btn{
+    & .delete-btn {
       font-size: 8px;
     }
-    & .text{
+    & .text {
       font-size: 8px;
       color: white;
       margin-left: 5px;
     }
-    & .input-wrap{
+    & .input-wrap {
       width: 10 0%;
     }
   }
