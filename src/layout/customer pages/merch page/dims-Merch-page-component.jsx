@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { UseWalletInfo } from "../../../sevices/context/context"
 import { useProfile } from "../../../sevices/hooks/useProfile"
 import { useToasty } from "../../../sevices/hooks/useToastify"
-import { CheckRules } from "../../../sevices/functoinal-service/CheckRuleService"
+import { checkRules } from "../../../sevices/functoinal-service/NFTcheck"
 import { useCart } from "../../../sevices/hooks/useCart"
 
 import axios from "axios"
@@ -37,7 +37,7 @@ export default function DimsMerchPage() {
     let shopName = params.shopname;
     let token = JSON.parse(localStorage.getItem("token"));
 
-    // console.log(userData.profile.stxAddress.mainnet);
+
 
     useEffect(() => {
         axios
@@ -49,6 +49,8 @@ export default function DimsMerchPage() {
             })
             .catch(e => console.log(e.response.data.reason))
     }, [])
+
+
 
 
     const initialskuArray = (skuArray) => {
@@ -100,21 +102,51 @@ export default function DimsMerchPage() {
             quantity: quantity
         }
 
-        //  CheckRules(product.ruleset.rules , userData.profile.stxAddress.mainnet )
+        if (product.ruleset == undefined) {
+            setDisableBtn(true)
+            axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
+                { headers: { Authorization: 'Bearer ' + token } })
+                .then((e) => {
+                    setDisableBtn(false)
+                    successToast("Merch added to cart")
+                    setQuantity(0)
+                    updateCart(shopName)
+                })
+                .catch(e => {
+                    setDisableBtn(false)
+                    errorToast(e.response.data.reason)
+                })
+                return;
+        }
+
+        const Rules = product.ruleset.rules.map(rule => rule.address)
 
         setDisableBtn(true)
-        axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
-            { headers: { Authorization: 'Bearer ' + token } })
-            .then((e) => {
-                setDisableBtn(false)
-                successToast("Merch added to cart")
-                setQuantity(0)
-                updateCart(shopName)
+        checkRules(userData.profile.stxAddress.mainnet, Rules)
+            .then(e => {
+                if (e) {
+                    axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
+                        { headers: { Authorization: 'Bearer ' + token } })
+                        .then((e) => {
+                            setDisableBtn(false)
+                            successToast("Merch added to cart")
+                            setQuantity(0)
+                            updateCart(shopName)
+                        })
+                        .catch(e => {
+                            setDisableBtn(false)
+                            errorToast(e.response.data.reason)
+                        })
+                } else {
+                    setDisableBtn(false)
+                    errorToast("You have NFT for this merch")
+                }
             })
             .catch(e => {
                 setDisableBtn(false)
-                errorToast(e.response.data.reason)
+                errorToast(e.response.data)
             })
+        setDisableBtn(true)
     }
 
 

@@ -58,11 +58,11 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                                 return;
                             case "IMS_TYPE_COMPLETED":
                                 addProfile(res.data.data)
-                                navigate(`/shop/${res.data.data.user.shopName}`);
+                                navigate(`/${res.data.data.user.shopName}`);
                                 return;
                             case "ACTIVE":
                                 addProfile(res.data.data)
-                                navigate(`/shop/${res.data.data.user.shopName}`);
+                                navigate(`/${res.data.data.user.shopName}`);
                                 return;
                             case "DELETED":
                                 errorToast("your account has been deleted")

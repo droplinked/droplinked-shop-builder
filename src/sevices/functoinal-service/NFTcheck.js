@@ -21,18 +21,38 @@ const fetchPrincipalNFTs = (principal, asset_identifiers, limit, offset) => {
         return response.data.results
       })
   }
-  export { fetchPrincipalNFTs }
+ 
   
-//   fetchPrincipalNFTs(
-//     "SPNWZ5V2TPWGQGVDR6T7B6RQ4XMGZ4PXTEE0VQ0S.marketplace-v3",
-//     "SPQZF23W7SEYBFG5JQ496NMY0G7379SRYEDREMSV.Candy::candy",
-//     1,
-//     0
-//   )
-//     .then((results) => {
-//       console.log(results)
-//     })
-//     .catch((reason) => {
-//       console.log("could not fetch user nfts")
-//     })
-  
+  const getTokens = (principal, limit, offset) => {
+    return axios.get("/extended/v1/tokens/nft/holdings", {
+      baseURL: "https://stacks-node-api.mainnet.stacks.co/",
+      params: {
+        principal,
+        limit,
+        offset,
+      },
+    })
+  }
+
+  const checkRules = async (principal, rules) => {
+    const limit = 200
+    let offset = 0
+  //  console.log(rules);
+    const results = (await getTokens(principal, limit, offset)).data
+   // console.log(results)
+
+    const holdings = Array.from(
+      new Set([...results.results.map((result) => result.asset_identifier)])
+    )
+
+    for (let rIndex = 0; rIndex <= rules.length - 1; rIndex++) {
+      const rule = rules[rIndex]
+      for (let hIndex = 0; hIndex <= holdings.length - 1; hIndex++) {
+        const holding = holdings[hIndex]
+        if (holding.includes(rule)) return true
+      }
+    }
+    return false
+  }
+
+  export { fetchPrincipalNFTs ,  checkRules}
