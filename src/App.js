@@ -50,11 +50,11 @@ import ProducerWrapper from "./layout/Producer pages/Producer wrapper/Producer-w
 function App() {
   return (
     <div style={{ backgroundColor: "#222" }}>
-      <ProfileContextProvider>
-        <ChakraProvider>
-          <WalletProvider>
-            <BrowserRouter>
-              <CartContextProvider>
+         <CartContextProvider>
+          <ProfileContextProvider>
+           <ChakraProvider>
+             <WalletProvider>
+               <BrowserRouter>
                 <ToastContext>
                     <ScrollTop>
                       <Routes>
@@ -115,11 +115,11 @@ function App() {
                       </Routes>
                     </ScrollTop>
                 </ToastContext>
-              </CartContextProvider>
-            </BrowserRouter>
-          </WalletProvider>
-        </ChakraProvider>
-      </ProfileContextProvider>
+              </BrowserRouter>
+            </WalletProvider>
+          </ChakraProvider>
+        </ProfileContextProvider>
+      </CartContextProvider>
     </div>
   );
 }

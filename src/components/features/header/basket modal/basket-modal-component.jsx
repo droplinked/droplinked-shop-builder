@@ -20,30 +20,32 @@ export default function BasketModal({ close }) {
 
     return (<>
         <div className="basket-modal-wrapper">
-            {(cart.items.length === 0)
+            {(cart == null)
                 ?
                 <div className="empty-text">Empty basket</div>
                 :
-                <>
-                    {cart.items.map((item, i) => {
-                        return (
-                            <div className="basket-item">
-                                <p style={{color:"white"}}>{item.skuID}</p>
-                                {/* <img src={item.image} alt="" />
-                                <div className="right-side w-100">
-                                    <div className="title">{item.title}</div>
-                                    <div className="d-flex justify-content-between w-100">
-                                        <div className="quantity">{`quantity : ${item.quantity}`}</div>
-                                        <div className="quantity">{`price : ${item.price}`}</div>
-                                    </div>
-                                </div> */}
-                            </div>
-                        )
-                    })}
-                    <AutoWidthButton text="Checkout" click={ClickCheckuot} />
-                </>
+                <></>
+                // <>
+                //  {cart.items.map((item, i) => {
+                //         return (
+                //             <div className="basket-item">
+                //                <p style={{color:"white"}}>{item.skuID}</p> 
+                //                  <img src={item.image} alt="" />
+                //                 <div className="right-side w-100">
+                //                     <div className="title">{item.title}</div>
+                //                     <div className="d-flex justify-content-between w-100">
+                //                         <div className="quantity">{`quantity : ${item.quantity}`}</div>
+                //                         <div className="quantity">{`price : ${item.price}`}</div>
+                //                     </div>
+                //                 </div> 
+                //             </div>
+                //         )
+                //     })}
+                //     <AutoWidthButton text="Checkout" click={ClickCheckuot} />
+                // </>
             }
 
         </div>
+        
     </>)
 }

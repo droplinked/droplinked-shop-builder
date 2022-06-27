@@ -104,13 +104,13 @@ export default function DimsMerchPage() {
 
         if (product.ruleset == undefined) {
             setDisableBtn(true)
-            axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
+            axios.post(BasicURL +`/${shopName}/cart/sku`, cart,
                 { headers: { Authorization: 'Bearer ' + token } })
                 .then((e) => {
                     setDisableBtn(false)
                     successToast("Merch added to cart")
                     setQuantity(0)
-                    updateCart(shopName)
+                    updateCart()
                 })
                 .catch(e => {
                     setDisableBtn(false)
@@ -125,13 +125,13 @@ export default function DimsMerchPage() {
         checkRules(userData.profile.stxAddress.mainnet, Rules)
             .then(e => {
                 if (e) {
-                    axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
+                    axios.post(BasicURL +`/${shopName}/cart/sku`, cart,
                         { headers: { Authorization: 'Bearer ' + token } })
                         .then((e) => {
                             setDisableBtn(false)
                             successToast("Merch added to cart")
                             setQuantity(0)
-                            updateCart(shopName)
+                            updateCart()
                         })
                         .catch(e => {
                             setDisableBtn(false)
