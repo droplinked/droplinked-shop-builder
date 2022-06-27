@@ -42,7 +42,8 @@ import CheckoutPage from "./layout/customer pages/checkout page/checkout-page";
 import ShopifyMerchViewPage from "./layout/Producer pages/IMS pages/shopify-merch-view/Shopify-merch-view-page";
 import ShopPage from "./layout/general pages/shop page/shop-page";
 import CollectionPage from "./layout/general pages/collectiom page/collection-page-component";
-
+import Checkout from "./layout/checkout/Checkout"
+import AddressPage from "./layout/address_page/AddressPage"
 import RegisterStructure from "./layout/registering/register structure/RegisterStructure"
 import ProducerWrapper from "./layout/Producer pages/Producer wrapper/Producer-wrapper"
 
@@ -88,14 +89,16 @@ function App() {
 
                       {/* shop pages */}
                         <Route exact path=":shopname" element={<ProducerWrapper />}>
-                         <Route index element={<ShopPage />} />
-                         <Route path="merch/:merchId" element={<DimsMerchPage />} />
-                         <Route path="collection/:collectionId"  element={<CollectionPage />}  />
+                           <Route index element={<ShopPage />} />
+                          <Route path="merch/:merchId" element={<DimsMerchPage />} />
+                          <Route path="collection/:collectionId"  element={<CollectionPage />}  />
+						              <Route path="checkout" element={<Checkout />} />
                         </Route>
                        
                         <Route exact path="/creatorpage" element={<CreatorPage />} />
                         <Route exact path="/crashpunks" element={<CreatorPage />} />
                         <Route exact path="/product/:id" element={<BuyProduct />} />
+					            	<Route exact path="/address" element={<AddressPage />} />
 
                         {/* <Route path="/postpage" element={<PostPage />} /> */}
 
