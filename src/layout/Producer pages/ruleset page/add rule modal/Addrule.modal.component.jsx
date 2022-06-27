@@ -38,20 +38,38 @@ export default function AddRule({ toggle }) {
     }
 
     const changeContractAddress = (e, index) => {
+        let contractAddress = e.target.value.split(".")
         let newAddressList = addresslist.map((item, i) => {
             if (i === index) {
-                return { ...item, address: { ...item.address, contractAddress: e.target.value } }
+                if (contractAddress.length == 2) {
+                    let contractName = e.target.value.split("::")
+                    if(contractName.length ==2){
+                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0] ,contractName:contractName[0],nftName:contractName[1] } }
+                    }else{
+                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0] ,contractName:contractName[0] } }
+                    }           
+                } else {
+                    return { ...item, address: { ...item.address, contractAddress: contractAddress[0] } }
+                }
             } else {
                 return item
             }
         })
         setAddressList(newAddressList)
+
     }
 
     const changeContractName = (e, index) => {
+        let contractName = e.target.value.split("::")
+        console.log(contractName);
         let newAddressList = addresslist.map((item, i) => {
             if (i === index) {
-                return { ...item, address: { ...item.address, contractName: e.target.value } }
+                if(contractName.length == 2){
+                    return { ...item, address: { ...item.address, contractName: contractName[0] ,nftName:contractName[1] }}
+                }else{
+                    return { ...item, address: { ...item.address, contractName: contractName[0] } }
+                }
+               
             } else {
                 return item
             }
