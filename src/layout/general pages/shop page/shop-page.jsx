@@ -45,7 +45,7 @@ export default function ShopPage() {
             <ProducerTopSection
                 pic={profile.logo}
                 shopname={profile.shopName}
-                insta={(profile.instagram) ? profile.instagram : ""}
+                insta={(profile.instagramUrl) ? profile.instagramUrl : ""}
                 twitter={(profile.twitterUrl) ? profile.twitterUrl : ""}
                 discord={(profile.discordUrl) ? profile.discordUrl : ""}
                 web={(profile.webUrl) ? profile.webUrl : ""}
