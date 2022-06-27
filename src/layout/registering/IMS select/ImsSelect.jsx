@@ -46,7 +46,8 @@ export default function ImsSelect() {
     }
 
     return (
-        <RegisterStructure level={"imstype"}>
+       // <RegisterStructure level={"imstype"}>
+       <>
             <div className="ims-select-wrapper">
                 <div className="header">Select an inventory management system</div>
                 <div className="w-100 d-flex flex-column justify-content-center" style={{ marginTop: "60px" }}>
@@ -75,6 +76,7 @@ export default function ImsSelect() {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover />
-        </RegisterStructure>
+                </>
+      //  </RegisterStructure>
     )
 }

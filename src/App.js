@@ -43,6 +43,9 @@ import ShopifyMerchViewPage from "./layout/Producer pages/IMS pages/shopify-merc
 import ShopPage from "./layout/general pages/shop page/shop-page";
 import CollectionPage from "./layout/general pages/collectiom page/collection-page-component";
 
+import RegisterStructure from "./layout/registering/register structure/RegisterStructure"
+import ProducerWrapper from "./layout/Producer pages/Producer wrapper/Producer-wrapper"
+
 function App() {
   return (
     <div style={{ backgroundColor: "#222" }}>
@@ -52,95 +55,62 @@ function App() {
             <BrowserRouter>
               <CartContextProvider>
                 <ToastContext>
-                  <MainHeader />
-                  <HomeWrapper>
                     <ScrollTop>
                       <Routes>
-                        <Route exact path="/" element={<HomePage />} />
-                        <Route
-                          path="/register/personalInfo"
-                          element={<PersonalInfo />}
-                        />
-                        <Route
-                          path="/register/shopInfo"
-                          element={<ShopInfo />}
-                        />
-                        <Route
-                          path="/register/IMSSelect"
-                          element={<ImsSelect />}
-                        />
-                        <Route
-                          path="/register/payment"
-                          element={<RegisterPayment />}
-                        />
-                        <Route
-                          path="/emailConfirmation"
-                          element={<ThankPage />}
-                        />
-                        <Route
-                          path="/email-verification/:token"
-                          element={<VerificationEmailPage />}
-                        />
+                        <Route path="/" element={<HomeWrapper />}>
 
-                        <Route path="/producer/ims" element={<ImsMainPage />} />
-                        <Route
-                          path="/producer/Merch/:id"
-                          element={<ViewMerchPage />}
-                        />
-                        <Route
-                          path="/producer/addProduct"
-                          element={<AddProductPage />}
-                        />
-                        <Route
-                          path="/producer/ruleset"
-                          element={<RuleSetPage />}
-                        />
-                        <Route
-                          path="/producer/collection"
-                          element={<CollectionMainPage />}
-                        />
-                        <Route
-                          path="/producer/collection/addCollection"
-                          element={<AddCollectionPage />}
-                        />
-                        <Route
-                          path="/producer/account-recovery/:token"
-                          element={<AccountRecoveryPage />}
-                        />
+                        <Route index element={<HomePage />} />
+                        <Route exact path="terms" element={<Terms />} />
+                        <Route exact path="privacy" element={<Privacy />} />
 
-                        <Route
-                          path="/shop/:shopname/merch/:merchId"
-                          element={<DimsMerchPage />}
-                        />
-                        <Route
-                          path="/shop/:shopname/collection/:collectionId"
-                          element={<CollectionPage />}
-                        />
+                        {/* register pages */}
+                        <Route exact  path="register" element={<RegisterStructure />}>
+                          <Route  path="personalInfo" element={<PersonalInfo />} />
+                          <Route  path="shopInfo" element={<ShopInfo />} />
+                          <Route  path="IMSSelect" element={<ImsSelect />} />
+                          {/* <Route  path="/payment" element={<RegisterPayment />} /> */}
+                        </Route>
 
-                        <Route path="/shop/:shopname" element={<ShopPage />} />
+                      
+                        <Route exact path="emailConfirmation" element={<ThankPage />} />
+                        <Route exact path="email-verification/:token" element={<VerificationEmailPage />}   />
 
-                        <Route path="/creatorpage" element={<CreatorPage />} />
-                        <Route path="/postpage" element={<PostPage />} />
+                      {/* producer pages */}
+                        <Route exact path="producer" element={<ProducerWrapper />}>
+                          <Route  path="ims" element={<ImsMainPage />} />
+                          <Route  path="Merch/:id" element={<ViewMerchPage />} />
+                          <Route  path="addProduct" element={<AddProductPage />} />
+                          <Route  path="ruleset"  element={<RuleSetPage />}  />
+                          <Route  path="collection"   element={<CollectionMainPage />}  />
+                          <Route  path="collection/addCollection"  element={<AddCollectionPage />}  />
+                          <Route  path="account-recovery/:token"  element={<AccountRecoveryPage />} />
+                        </Route> 
 
-                        <Route path="/checkout" element={<CheckoutPage />} />
+                      {/* shop pages */}
+                        <Route exact path=":shopname" element={<ProducerWrapper />}>
+                         <Route index element={<ShopPage />} />
+                         <Route path="merch/:merchId" element={<DimsMerchPage />} />
+                         <Route path="collection/:collectionId"  element={<CollectionPage />}  />
+                        </Route>
+                       
+                        <Route exact path="/creatorpage" element={<CreatorPage />} />
+                        <Route exact path="/crashpunks" element={<CreatorPage />} />
+                        <Route exact path="/product/:id" element={<BuyProduct />} />
+
+                        {/* <Route path="/postpage" element={<PostPage />} /> */}
+
+                        {/* <Route path="/checkout" element={<CheckoutPage />} />
                         <Route path="/address" element={<Address />} />
                         <Route path="/shipping" element={<Shipping />} />
-                        <Route path="/payment" element={<Payments />} />
+                        <Route path="/payment" element={<Payments />} /> 
+                        <Route path="/confirm" element={<Confirm />} />*/}
 
-                        <Route path="/terms" element={<Terms />} />
-                        <Route path="/privacy" element={<Privacy />} />
-                        <Route path="/confirm" element={<Confirm />} />
-                        <Route path="/crashpunks" element={<CreatorPage />} />
-                        <Route path="/product/:id" element={<BuyProduct />} />
-                        <Route
-                          path="/test"
-                          element={<ShopifyMerchViewPage />}
-                        />
+                        <Route path="/test"  element={<ShopifyMerchViewPage />}  />
                         <Route path="/*" element={<NotFound />} />
+
+                        </Route>
                       </Routes>
                     </ScrollTop>
-                  </HomeWrapper>
-                  <Footer />
                 </ToastContext>
               </CartContextProvider>
             </BrowserRouter>

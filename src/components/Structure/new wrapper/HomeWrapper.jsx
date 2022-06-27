@@ -1,12 +1,18 @@
 import "./HomeWrapper.scss"
 
-function HomeWrapper ({ children }){
+import MainHeader from "../../features/header/MainHeader"
+import Footer from "../../features/footer/Footer"
 
-    return(<>
+import { Outlet  } from "react-router-dom";
 
-    <div className="main-wrapper">
-    { children }
-    </div>
+function HomeWrapper({ children }) {
+
+    return (<>
+        <MainHeader />
+        <div className="main-wrapper">
+            <Outlet />
+        </div>
+        <Footer />
     </>)
 }
 

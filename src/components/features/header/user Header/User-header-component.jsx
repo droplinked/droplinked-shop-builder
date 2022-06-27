@@ -41,10 +41,10 @@ export default function UserHeader() {
                 navigate("/register/IMSSelect");
                 return;
             case "IMS_TYPE_COMPLETED":
-                navigate(`/shop/${profile.shopName}`);
+                navigate(`/${profile.shopName}`);
                 return;
             case "ACTIVE":
-                navigate(`/shop/${profile.shopName}`);
+                navigate(`/${profile.shopName}`);
                 return;
         }
     }

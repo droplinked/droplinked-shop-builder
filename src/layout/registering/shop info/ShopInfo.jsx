@@ -143,7 +143,9 @@ export default function ShopInfo() {
         setAddressdata(e)
     }
 
-    return (<RegisterStructure level={"shopinfo"}>
+    return (
+   
+   <>
         <div className="register-shopinfo-wrapper">
             {(!showAddress) && <>
                 <div className="input-perosnal-image d-flex justify-content-center align-items-center" style={{ backgroundImage: `url(${(profileImg == undefined) ? "" : profileImg})` }}>
@@ -228,5 +230,7 @@ export default function ShopInfo() {
             {showAddress && <ShopInfoAddress close={closeAddres} addAddressF={addAddressF} addressData={addressData} />}
 
         </div>
-    </RegisterStructure>)
+        </>
+   // </RegisterStructure>
+   )
 }

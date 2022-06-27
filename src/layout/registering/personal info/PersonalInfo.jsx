@@ -110,9 +110,9 @@ export default function PersonalInfo() {
             })
     }
 
-
+console.log("x");
     return (
-        <RegisterStructure level={"personalinfo"}>
+        // <RegisterStructure level={"personalinfo"}>
 
             <div className="register-personalinfo-wrapper">
 
@@ -165,7 +165,7 @@ export default function PersonalInfo() {
                     </div>
                 </form>
             </div>
-        </RegisterStructure>
+        // </RegisterStructure>
     )
 }
 

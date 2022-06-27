@@ -5,12 +5,12 @@ import MediumModal from "../../medium modal component/medium-modal-component"
 import SignupProducer from "./signup producer/signup-producer-component"
 import SignupCustomer from "./signup Customer/signup-customer-component"
 
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
 export default function SignUpModal({ close, switchToggle, shopname }) {
 
-    let location = useLocation().pathname.substring(0, 5);
+    const params = useParams()
 
     return (
         <MediumModal>
@@ -18,7 +18,7 @@ export default function SignUpModal({ close, switchToggle, shopname }) {
                 <div className="title">Create a free account
                     <img className="close-btn" src={closePng} alt="" onClick={close} />
                 </div>
-                {(location == "/shop")
+                {(params.shopname != undefined)
                     ?
                     <SignupCustomer close={close} switchToggle={switchToggle} />
                     :
