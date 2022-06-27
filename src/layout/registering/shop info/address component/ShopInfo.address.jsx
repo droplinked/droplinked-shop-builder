@@ -31,9 +31,11 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
             country: data.country,
             city: data.city,
             state: data.state,
-            zip: data.Zip
+            zip: data.Zip,
+            addressType: "SHOP"
         }
-        axios.post(BasicURL+'/producer/shop/address', addresInfo,
+        
+        axios.post(BasicURL+'/address', addresInfo,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
                 toast.success("Address added successfully")
