@@ -82,7 +82,6 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
             type: "OR",
             rules: addressArray
         }
-
         setDisableBtn(true)
 
         axios.put(BasicURL + `/producer/ruleset/${RuleId}`, ruleInfo,
@@ -121,9 +120,19 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
     }
 
     const changeContractAddress = (e, index) => {
+        let contractAddress = e.target.value.split(".")
         let newAddressList = rules.map((item, i) => {
             if (i === index) {
-                return { ...item, address: { ...item.address, contractAddress: e.target.value } }
+                if (contractAddress.length == 2) {
+                    let contractName = e.target.value.split("::")
+                    if(contractName.length ==2){
+                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0] ,contractName:contractName[0],nftName:contractName[1] } }
+                    }else{
+                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0] ,contractName:contractName[0] } }
+                    }           
+                } else {
+                    return { ...item, address: { ...item.address, contractAddress: contractAddress[0] } }
+                }
             } else {
                 return item
             }
@@ -132,9 +141,15 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
     }
 
     const changeContractName = (e, index) => {
+        let contractName = e.target.value.split("::")
         let newAddressList = rules.map((item, i) => {
             if (i === index) {
-                return { ...item, address: { ...item.address, contractName: e.target.value } }
+                if(contractName.length == 2){
+                    return { ...item, address: { ...item.address, contractName: contractName[0] ,nftName:contractName[1] }}
+                }else{
+                    return { ...item, address: { ...item.address, contractName: contractName[0] } }
+                }
+               
             } else {
                 return item
             }
@@ -218,7 +233,6 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
                         )
                     })
                 }
-
                 <div className="w-100 d-flex justify-content-center align-items-center">
                     <div className="w-30 mt-4 " onClick={addRule}>
                         <BasicButton text="Add" />
@@ -232,8 +246,6 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
                         <BasicButton text="submit" click={submitForm} disable={disableBtn} />
                     </div>
                 </div>
-
-
             </div>
         </div>
     )
