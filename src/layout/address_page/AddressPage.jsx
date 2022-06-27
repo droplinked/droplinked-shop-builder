@@ -86,7 +86,15 @@ function AddressPage() {
 				)}
 
 				{/* address form section modal */}
-				<Flex>{openModal && <AddressForm />}</Flex>
+				<Flex>
+					{openModal && (
+						<AddressForm
+							cancelForm={(v) => {
+								setOpenModal(!v);
+							}}
+						/>
+					)}
+				</Flex>
 			</Flex>
 		</ContentWrapper>
 	);
