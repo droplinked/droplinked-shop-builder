@@ -86,7 +86,7 @@ export default function HomePage() {
             {/* inputs */}
             <div className="child d-flex rg">
                 <div className="input-form w-100">
-                    <div className="discove">Community <br />&amp; driven commerce.</div>
+                    <div className="discove">Community <br />driven commerce</div>
                     <div className="earn">Earn cash or crypto for sharing collections.</div>
                     <div className="signup-wrapper d-flex justify-content-between">
                         <div className="d-flex justify-content-start" style={{ width: "75%", maxWidth: "75%" }}>
