@@ -1,5 +1,7 @@
-import { Box, Text, Button } from "@chakra-ui/react"
+import { Box, Text, Button, Flex } from "@chakra-ui/react"
 import { useState } from "react"
+
+import ButtonComponent from "../../../components/button component/Button-component";
 
 
 export default function PaymentPage() {
@@ -55,6 +57,26 @@ export default function PaymentPage() {
                 </Box>
 
             </Box>
+            {/* <Flex
+                justifyContent="space-between"
+                alignItems="center"
+                mt="150px"
+                h="40px"
+            >
+                <Box
+                    h="100%"
+                    w="40%"
+                >
+                    <ButtonComponent>Back</ButtonComponent>
+                </Box>
+                <Box
+                     h="100%"
+                    w="40%"
+                >
+                    <ButtonComponent>Submit</ButtonComponent>
+                </Box>
+            </Flex> */}
+
         </Box>
     )
 }
