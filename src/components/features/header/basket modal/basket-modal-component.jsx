@@ -1,12 +1,18 @@
 import "./basket-modal-style.scss"
 
-import AutoWidthButton from "../../buttons components/autow basic button/B-button-component";
-
+import { Box, chakra, Text, Button } from '@chakra-ui/react'
+import { motion, isValidMotionProp } from 'framer-motion'
 import { useCart } from "../../../../sevices/hooks/useCart"
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import BasketItemComponent from "./basket item/basket-item-component"
 
 
 export default function BasketModal({ close }) {
+
+    const ChakraBox = chakra(motion.div, {
+        shouldForwardProp: isValidMotionProp,
+    })
 
     const { cart } = useCart();
     let navigate = useNavigate();
@@ -18,34 +24,45 @@ export default function BasketModal({ close }) {
 
     console.log(cart);
 
-    return (<>
+    return (
+        // <ChakraBox
+        //     border='1px'
+        //     borderColor='white'
+        //     borderRadius="10px"
+        //     w={{ base: "90%", md: "300px" }}
+        //     h="auto"
+        //     p="20px 10px"
+        //     pos="fixed"
+        //     mx={{ base: "20px", md: "0px" }}
+        //     right={{ base: "0px", md: "50px" }}
+        //     zIndex="50"
+        //     bgColor="#222"
+        //     animate={{ top: ["-80px", "80px"], opacity: ["0", "1"] }}
+        //     transition={{ duration: 0.3, }}
+        //     color="red"
+        // >
+        //    xxx
+        //         <BasketItemComponent />
+        //         <BasketItemComponent />
+
+        // </ChakraBox>
+
         <div className="basket-modal-wrapper">
-            {(cart == null)
-                ?
-                <div className="empty-text">Empty basket</div>
-                :
-                <></>
-                // <>
-                //  {cart.items.map((item, i) => {
-                //         return (
-                //             <div className="basket-item">
-                //                <p style={{color:"white"}}>{item.skuID}</p> 
-                //                  <img src={item.image} alt="" />
-                //                 <div className="right-side w-100">
-                //                     <div className="title">{item.title}</div>
-                //                     <div className="d-flex justify-content-between w-100">
-                //                         <div className="quantity">{`quantity : ${item.quantity}`}</div>
-                //                         <div className="quantity">{`price : ${item.price}`}</div>
-                //                     </div>
-                //                 </div> 
-                //             </div>
-                //         )
-                //     })}
-                //     <AutoWidthButton text="Checkout" click={ClickCheckuot} />
-                // </>
-            }
+            <BasketItemComponent />
+            <BasketItemComponent />
+            <Button
+                mt="20px"
+                color="white"
+                w="100%"
+                bgColor="#8053ff"
+                fontSize="20px"
+                fontWeight="600"
+                _hover={{ color: "#222" }}
+            >
+                Check out
+            </Button>
 
         </div>
-        
-    </>)
+
+    )
 }

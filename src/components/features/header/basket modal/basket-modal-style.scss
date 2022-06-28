@@ -10,61 +10,18 @@
 }
 
 .basket-modal-wrapper {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 300px;
-  height: auto;
-  padding: 30px 10px;
-  position: fixed;
-  top: 80px;
-  right: 80px;
+ border: 1px solid #ccc;
+ border-radius: 10px;
+ width: 300px;
+ height: auto;
+ padding: 20px 10px;
+ position: fixed;
+ top: 80px;
+ right: 80px;
   animation-name: basketModalAnimation;
   animation-duration: 0.2s;
-  z-index: 50;
+ z-index: 50;
   background-color: #222;
-
-  & .empty-text {
-    color: white;
-    font-size: 24px;
-    font-weight: 600;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-
-  & .basket-item {
-    width: 100%;
-    height: 60px;
-    margin-bottom: 20px;
-    display: flex;
-
-    & img {
-      height: 60px;
-      width: 60px;
-    }
-
-    & .right-side {
-      max-width: calc(100% - 70px);
-      margin-left: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      & .title {
-        width: 100%;
-        overflow: hidden;
-        color: white;
-        font-size: 18px;
-        font-weight: 600;
-      }
-      & .quantity {
-        color: white;
-        font-size: 14px;
-        font-weight: 600;
-      }
-    }
-  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -75,11 +32,5 @@
     right: 50%;
     transform: translateX(50%);
     padding: 40px 20px;
-
-    & .empty-text {
-      font-size: 20px;
-      font-weight: 600;
-    }
-
   }
 }
