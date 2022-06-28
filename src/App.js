@@ -46,6 +46,7 @@ import Checkout from "./layout/checkout/Checkout"
 import AddressPage from "./layout/address_page/AddressPage"
 import RegisterStructure from "./layout/registering/register structure/RegisterStructure"
 import ProducerWrapper from "./layout/Producer pages/Producer wrapper/Producer-wrapper"
+import PaymentPage from "./layout/buying/payment page/Payment-page"
 
 function App() {
   return (
@@ -99,6 +100,7 @@ function App() {
                         <Route exact path="/crashpunks" element={<CreatorPage />} />
                         <Route exact path="/product/:id" element={<BuyProduct />} />
 					            	<Route exact path="/address" element={<AddressPage />} />
+                        <Route exact path="/payment" element={<PaymentPage />} /> 
 
                         {/* <Route path="/postpage" element={<PostPage />} /> */}
 
