@@ -35,9 +35,9 @@ export default function PaymentPage() {
 
                 {/* bottom side */}
                 <Box w="100%" p="10px 5px">
-                    <Box w="100%" display="flex" height={{base:"100px" , md:"auto"}} flexDirection={{base:"column" , md:"row"}} alignItems="center" justifyContent="space-between">
+                    <Box w="100%" display="flex" height={{ base: "100px", md: "auto" }} flexDirection="row" alignItems="center" justifyContent="space-between">
                         <Button
-                            w={{base:"100%" , md:"40%"}}
+                            w="40%"
                             color="#fff"
                             bgColor={((paymentSelected == "Stripe")) ? '#8053ff' : "#4A4A4A"}
                             _hover={{ color: "#444" }}
@@ -45,7 +45,7 @@ export default function PaymentPage() {
                         >Stripe</Button>
 
                         <Button
-                            w={{base:"100%" , md:"40%"}}
+                            w="40%"
                             color="#fff"
                             bgColor={((paymentSelected == "Stx")) ? '#8053ff' : "#4A4A4A"}
                             _hover={{ color: "#444" }}
