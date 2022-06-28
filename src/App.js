@@ -93,9 +93,9 @@ function App() {
                            <Route index element={<ShopPage />} />
                           <Route path="merch/:merchId" element={<DimsMerchPage />} />
                           <Route path="collection/:collectionId"  element={<CollectionPage />}  />
-						              <Route path="checkout" element={<Checkout />} />
                         </Route>
-                       
+                        
+                        <Route exact path="checkout" element={<Checkout />} />
                         <Route exact path="/creatorpage" element={<CreatorPage />} />
                         <Route exact path="/crashpunks" element={<CreatorPage />} />
                         <Route exact path="/product/:id" element={<BuyProduct />} />

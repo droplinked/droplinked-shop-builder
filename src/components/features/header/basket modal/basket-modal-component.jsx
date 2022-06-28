@@ -15,15 +15,13 @@ export default function BasketModal({ close }) {
     })
 
     const { cart } = useCart();
+    
     let navigate = useNavigate();
 
     const ClickCheckuot = () => {
         navigate("/checkout")
         close();
     }
-
-    console.log(cart);
-
     return (
         // <ChakraBox
         //     border='1px'
@@ -58,6 +56,7 @@ export default function BasketModal({ close }) {
                 fontSize="20px"
                 fontWeight="600"
                 _hover={{ color: "#222" }}
+                onClick={ClickCheckuot}
             >
                 Check out
             </Button>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 // chakra
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 // components
 import ContentWrapper from "../../components/Structure/content-wrapper/Content-wrapper-component";
@@ -9,6 +10,8 @@ import CheckoutItemsContainer from "./checkout_item/CheckoutItemsContainer";
 
 function Checkout() {
 	const [cost, setCost] = useState(0);
+
+	let navigate = useNavigate();
 
 	return (
 		<ContentWrapper>
@@ -42,8 +45,8 @@ function Checkout() {
 					{/* total price */}
 					<Text justifySelf={"end"}>Total rice : ${cost}</Text>
 					{/* checkout button */}
-					<Button backgroundColor={"#8053FF"} justifySelf={"end"}>
-						Checkout
+					<Button backgroundColor={"#8053FF"} justifySelf={"end"} onClick={()=>{ navigate("/Address")}}>
+						Next
 					</Button>
 				</Flex>
 			</Flex>
