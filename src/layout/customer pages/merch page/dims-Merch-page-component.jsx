@@ -102,9 +102,11 @@ export default function DimsMerchPage() {
             quantity: quantity
         }
 
+       // console.log(cart)
+
         if (product.ruleset == undefined) {
             setDisableBtn(true)
-            axios.post(BasicURL +`/${shopName}/cart/sku`, cart,
+            axios.post(`${BasicURL}/${shopName}/cart/sku`, cart,
                 { headers: { Authorization: 'Bearer ' + token } })
                 .then((e) => {
                     setDisableBtn(false)
@@ -119,34 +121,34 @@ export default function DimsMerchPage() {
                 return;
         }
 
-        const Rules = product.ruleset.rules.map(rule => rule.address)
+        // const Rules = product.ruleset.rules.map(rule => rule.address)
 
-        setDisableBtn(true)
-        checkRules(userData.profile.stxAddress.mainnet, Rules)
-            .then(e => {
-                if (e) {
-                    axios.post(BasicURL +`/${shopName}/cart/sku`, cart,
-                        { headers: { Authorization: 'Bearer ' + token } })
-                        .then((e) => {
-                            setDisableBtn(false)
-                            successToast("Merch added to cart")
-                            setQuantity(0)
-                            updateCart()
-                        })
-                        .catch(e => {
-                            setDisableBtn(false)
-                            errorToast(e.response.data.reason)
-                        })
-                } else {
-                    setDisableBtn(false)
-                    errorToast("You have NFT for this merch")
-                }
-            })
-            .catch(e => {
-                setDisableBtn(false)
-                errorToast(e.response.data)
-            })
-        setDisableBtn(true)
+        // setDisableBtn(true)
+        // checkRules(userData.profile.stxAddress.mainnet, Rules)
+        //     .then(e => {
+        //         if (e) {
+        //             axios.post(BasicURL +`/${shopName}/cart/sku`, cart,
+        //                 { headers: { Authorization: 'Bearer ' + token } })
+        //                 .then((e) => {
+        //                     setDisableBtn(false)
+        //                     successToast("Merch added to cart")
+        //                     setQuantity(0)
+        //                     updateCart()
+        //                 })
+        //                 .catch(e => {
+        //                     setDisableBtn(false)
+        //                     errorToast(e.response.data.reason)
+        //                 })
+        //         } else {
+        //             setDisableBtn(false)
+        //             errorToast("Required NFT missing")
+        //         }
+        //     })
+        //     .catch(e => {
+        //         setDisableBtn(false)
+        //         errorToast(e.response.data)
+        //     })
+        // setDisableBtn(true)
     }
 
 
