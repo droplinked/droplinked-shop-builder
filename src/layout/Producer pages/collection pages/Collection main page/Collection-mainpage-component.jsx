@@ -2,7 +2,7 @@ import "./Collection-mainpage-style.scss"
 import "react-toastify/dist/ReactToastify.css";
 
 import AutoWidthButton from "../../../../components/features/buttons components/autow basic button/B-button-component"
-import CollectionWrapper from "../../../../components/features/collection wrapper/Collection-wrapper-component"
+import CollectionWrapper from "../../../../components/producer collection component/Collection-wrapper-component"
 import BadicModal from "../../../../components/Modal/basic modal component/Basic-modal-component"
 import AddCollectionPage from "../add collection page/Add-collection-component"
 import Loading from "../../../../components/features/loading/Loading"

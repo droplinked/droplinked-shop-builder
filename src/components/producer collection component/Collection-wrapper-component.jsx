@@ -1,14 +1,14 @@
 import "./Collection-wrapper-style.scss"
 
-import ProductLarge from "../product components/product component large/ProductLarge"
-import editIcon from '../../../assest/icon/icons8-edit.svg'
-import deleteIcon from '../../../assest/icon/icons8-delete.svg'
-import SmallModal from "../../Modal/little modal/Small-modal-component"
-import BadicModal from "../../Modal/basic modal component/Basic-modal-component"
-import EditCollectionModal from "../../../layout/Producer pages/collection pages/edit collection modal/edit-collection-modal-component"
+import ProductLarge from "../features/product components/product component large/ProductLarge"
+import editIcon from '../../assest/icon/icons8-edit.svg'
+import deleteIcon from '../../assest/icon/icons8-delete.svg'
+import SmallModal from "../Modal/little modal/Small-modal-component"
+import BadicModal from "../Modal/basic modal component/Basic-modal-component"
+import EditCollectionModal from "../../layout/Producer pages/collection pages/edit collection modal/edit-collection-modal-component"
 
-import { toastValue } from "../../../sevices/context/Toast-context"
-import { DeleteWithToken } from "../../../sevices/functoinal-service/CallApiService"
+import { toastValue } from "../../sevices/context/Toast-context"
+import { DeleteWithToken } from "../../sevices/functoinal-service/CallApiService"
 import { Link } from "react-router-dom"
 import { useState, useContext } from "react"
 
