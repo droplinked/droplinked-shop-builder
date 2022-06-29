@@ -1,5 +1,5 @@
 import "./CreatorPage.scss"
-import ProfileTopSection from "../../components/features/crashpunks top section/ProfileTopSectioneTopSection"
+import ProfileTopSection from "../../components/features/crashpunks top section/ProfileTopSection"
 import GalleryCarousel from "./gallery carousel/GalleryCarousel"
 
 import axios from "axios"

@@ -1,5 +1,5 @@
 import "./crashpunks.scss";
-import ProfileTopSection from "../../components/features/top section/ProfileTopSection";
+import ProfileTopSection from "../../components/features/crashpunks top section/ProfileTopSection";
 
 
 export default function Crashpunks() {
