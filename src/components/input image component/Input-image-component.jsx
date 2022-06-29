@@ -1,7 +1,9 @@
 import "./Input-image-component.scss"
-import { useRef, useState, useEffect } from "react"
+
 import axios from "axios"
-import dltImg from "../../../../assest/icon/icons8-multiply-100.png"
+import dltImg from "../../assest/icon/icons8-multiply-100.png"
+
+import { useRef, useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 

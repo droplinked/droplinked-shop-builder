@@ -2,7 +2,7 @@ import "./View-merch-style.scss"
 
 import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton";
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component";
-import InputImageComponent from "../../../../components/features/input components/input image component/Input-image-component";
+import InputImageComponent from "../../../../components/input image component/Input-image-component";
 import CheckBoxBasic from "../../../../components/features/input components/basic checkbox component/CheckBox-component";
 import VariantItem from "../../add product page/variant item component/Variant-item-component"
 import AddVariantForm from "../../add product page/add variant form/Add-variantForm-component"

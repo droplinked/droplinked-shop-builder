@@ -1,13 +1,15 @@
 import "./Add-product.page.scss"
-import { useState, useEffect } from "react"
+
 import BasicInput from "../../../components/features/input components/basic input component/Basic-component"
 import BasicDropDown from "../../../components/features/input components/basic dropdown/Basic-dropdown-component"
-import InputImageComponent from "../../../components/features/input components/input image component/Input-image-component"
+import InputImageComponent from "../../../components/input image component/Input-image-component"
 import CheckBoxBasic from "../../../components/features/input components/basic checkbox component/CheckBox-component"
 import VariantItem from "./variant item component/Variant-item-component"
 import BasicButton from "../../../components/features/buttons components/basic button/BasicButton"
 import AddVariantForm from "./add variant form/Add-variantForm-component"
 import axios from "axios"
+
+import { useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
