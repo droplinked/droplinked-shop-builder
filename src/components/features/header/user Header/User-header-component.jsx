@@ -16,8 +16,6 @@ export default function UserHeader() {
     const { profile, logout } = useProfile()
     const { cart } = useCart();
 
-    console.log(cart);
-
     let Profileimage = profile.avatar
     let navigate = useNavigate();
 

@@ -23,7 +23,7 @@ const CartContextProvider = ({ children }) => {
 
         items.forEach(element => {
           element.forEach(item =>{
-            cartArray.push({skuID : item.skuID , quantity:item.quantity})
+            cartArray.push({skuID : item.skuID , quantity:item.quantity , id:item.productID})
           })
         });
         console.log(cartArray);
@@ -45,7 +45,7 @@ const CartContextProvider = ({ children }) => {
 
         items.forEach(element => {
           element.forEach(item =>{
-            cartArray.push({skuID : item.skuID , quantity:item.quantity})
+            cartArray.push({skuID : item.skuID , quantity:item.quantity , id:item.productID})
           })
         });
         console.log(cartArray);
