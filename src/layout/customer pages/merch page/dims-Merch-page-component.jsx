@@ -37,8 +37,6 @@ export default function DimsMerchPage() {
     let shopName = params.shopname;
     let token = JSON.parse(localStorage.getItem("token"));
 
-
-
     useEffect(() => {
         axios
             .get(`${BasicURL}/product/${merchId}?withSku=true`,)
@@ -50,7 +48,6 @@ export default function DimsMerchPage() {
             .catch(e => console.log(e.response.data.reason))
     }, [])
 
-   // updateCart()
 
 
     const initialskuArray = (skuArray) => {
@@ -102,7 +99,7 @@ export default function DimsMerchPage() {
             quantity: quantity
         }
 
-       // console.log(cart)
+
 
         if (product.ruleset == undefined) {
             setDisableBtn(true)
@@ -118,7 +115,7 @@ export default function DimsMerchPage() {
                     setDisableBtn(false)
                     errorToast(e.response.data.reason)
                 })
-                return;
+            return;
         }
 
         const Rules = product.ruleset.rules.map(rule => rule.address)
@@ -127,7 +124,7 @@ export default function DimsMerchPage() {
         checkRules(userData.profile.stxAddress.mainnet, Rules)
             .then(e => {
                 if (e) {
-                    axios.post(BasicURL +`/${shopName}/cart/sku`, cart,
+                    axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
                         { headers: { Authorization: 'Bearer ' + token } })
                         .then((e) => {
                             setDisableBtn(false)

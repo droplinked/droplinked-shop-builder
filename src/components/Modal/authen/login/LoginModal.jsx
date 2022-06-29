@@ -9,6 +9,7 @@ import { useState, useEffect, useContext } from "react"
 import { toastValue } from "../../../../sevices/context/Toast-context"
 import { Link, useNavigate } from "react-router-dom";
 import { useProfile } from "../../../../sevices/hooks/useProfile"
+import { useCart } from "../../../../sevices/hooks/useCart"
 
 
 export default function LoginModal({ close, switchToggle, switchReset }) {
@@ -17,6 +18,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
     const { addProfile } = useProfile()
 
     const { successToast, errorToast } = useContext(toastValue)
+    const { firstUpdateCart } = useCart();
 
 
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -32,7 +34,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
 
         axios.post(BasicURL + '/signin', info)
             .then((res) => {
-
+                console.log(res.data.data.jwt)
                 if (res.data.status == "success") {
                     close();
 
@@ -58,10 +60,12 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                                 return;
                             case "IMS_TYPE_COMPLETED":
                                 addProfile(res.data.data)
+                                firstUpdateCart(res.data.data.jwt)
                                 navigate(`/${res.data.data.user.shopName}`);
                                 return;
                             case "ACTIVE":
                                 addProfile(res.data.data)
+                                firstUpdateCart(res.data.data.jwt)
                                 navigate(`/${res.data.data.user.shopName}`);
                                 return;
                             case "DELETED":
@@ -71,6 +75,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                         }
                     } else {
                         successToast("Login successfully")
+                        firstUpdateCart(res.data.data.jwt)
                         addProfile(res.data.data)
                     }
                 }

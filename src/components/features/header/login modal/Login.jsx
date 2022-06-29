@@ -4,6 +4,8 @@ import { useState } from "react"
 import { useForm } from "react-hook-form";
 import { useProfile } from "../../../../sevices/hooks/useProfile"
 import { useNavigate } from 'react-router-dom'
+import { useCart } from "../../../../sevices/hooks/useCart"
+
 import axios from 'axios';
 
 function Login({ close, showSign }) {
@@ -11,6 +13,8 @@ function Login({ close, showSign }) {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [type, setType] = useState("creator")
     const { profile, addProfile } = useProfile();
+    const { firstUpdateCart } = useCart();
+
 
     const submitForm = (data) => {
         axios.get('https://dev.flatlay.io/login', {
@@ -22,6 +26,7 @@ function Login({ close, showSign }) {
         ).then((response) => {
             localStorage.setItem("token", response.data.id);
             addProfile(response.data)
+            console.log(response.data.id)
             close();
             navigate('/creatorpage')
         });

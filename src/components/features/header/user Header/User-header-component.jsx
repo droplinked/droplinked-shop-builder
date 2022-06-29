@@ -16,6 +16,7 @@ export default function UserHeader() {
     const { profile, logout } = useProfile()
     const { cart } = useCart();
 
+    console.log(cart);
 
     let Profileimage = profile.avatar
     let navigate = useNavigate();
@@ -76,8 +77,8 @@ export default function UserHeader() {
                     onClick={openBasketModal}
 
                 />
-                 {cart &&
-                    <div className="item-cart-number">{cart.items.length}</div>
+                 {(cart != null) &&
+                    <div className="item-cart-number">{cart.length}</div>
                 } 
 
             </div>

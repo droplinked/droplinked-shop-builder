@@ -15,6 +15,9 @@ export default function BasketModal({ close }) {
     })
 
     const { cart } = useCart();
+
+    console.log(cart)
+
     
     let navigate = useNavigate();
 
