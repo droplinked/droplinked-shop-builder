@@ -6,21 +6,13 @@ import ProfileContextProvider from "./sevices/context/ProfileContext";
 import CartContextProvider from "./sevices/context/CartContext";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContext } from "./sevices/context/Toast-context";
-import Footer from "./components/features/footer/Footer";
-import MainHeader from "./components/features/header/MainHeader";
 import HomeWrapper from "./components/Structure/new wrapper/HomeWrapper";
 import CreatorPage from "./layout/creator/CreatorPage";
-import PostPage from "./layout/postpage/PostPage";
 import HomePage from "./layout/landing page/HomePage";
 import BuyProduct from "./layout/buy product/BuyProduct";
 import Terms from "./layout/terms/Terms";
 import Privacy from "./layout/privacy/Privacy";
 import Crashpunks from "./layout/crashpunk/crashpunks"; //crashpunks page
-import Address from "./layout/buy proccess/address/Address";
-import Shipping from "./layout/buy proccess/shiping/Shipping";
-import Payments from "./layout/buy proccess/payment/Payments";
-import Confirm from "./layout/confirm/Confirm";
-import Settings from "./layout/general pages/settings/Setting";
 import ThankPage from "./layout/registering/thanks for register/ThankForRegister";
 import PersonalInfo from "./layout/registering/personal info/PersonalInfo";
 import ShopInfo from "./layout/registering/shop info/ShopInfo";
@@ -38,7 +30,6 @@ import AccountRecoveryPage from "./layout/registering/account recovery page/Acco
 import VerificationEmailPage from "./layout/registering/verifi-email-page/Email-verification-component";
 import ViewMerchPage from "./layout/Producer pages/IMS pages/view merch page/View-merch-component";
 import DimsMerchPage from "./layout/customer pages/merch page/dims-Merch-page-component";
-import CheckoutPage from "./layout/customer pages/checkout page/checkout-page";
 import ShopifyMerchViewPage from "./layout/Producer pages/IMS pages/shopify-merch-view/Shopify-merch-view-page";
 import ShopPage from "./layout/general pages/shop page/shop-page";
 import CollectionPage from "./layout/general pages/collectiom page/collection-page-component";
@@ -96,19 +87,10 @@ function App() {
                         </Route>
                         
                         <Route exact path="checkout" element={<Checkout />} />
-                        <Route exact path="/creatorpage" element={<CreatorPage />} />
                         <Route exact path="/crashpunks" element={<CreatorPage />} />
                         <Route exact path="/product/:id" element={<BuyProduct />} />
 					            	<Route exact path="/address" element={<AddressPage />} />
                         <Route exact path="/payment" element={<PaymentPage />} /> 
-
-                        {/* <Route path="/postpage" element={<PostPage />} /> */}
-
-                        {/* <Route path="/checkout" element={<CheckoutPage />} />
-                        <Route path="/address" element={<Address />} />
-                        <Route path="/shipping" element={<Shipping />} />
-                        <Route path="/payment" element={<Payments />} /> 
-                        <Route path="/confirm" element={<Confirm />} />*/}
 
                         <Route path="/test"  element={<ShopifyMerchViewPage />}  />
                         <Route path="/*" element={<NotFound />} />
