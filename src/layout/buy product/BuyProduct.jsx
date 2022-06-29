@@ -1,31 +1,16 @@
 import "./BuyProduct.scss"
-import mainImg from "./assest/mainImg.jpg"
-import img1 from "./assest/img1.jpg"
-import img2 from "./assest/img2.jpg"
-import img3 from "./assest/img3.png"
-import img4 from "./assest/img4.jpg"
-import left from "../../assest/feature/buy product/leftflask.png"
-import right from "../../assest/feature/buy product/righIcon.png"
 import plus from "../../assest/feature/buy product/plusIcon.png"
 import minus from "../../assest/feature/buy product/minusIcon.png"
-import basket from "../../assest/feature/buy product/basketIcon.png"
-import readmoreIcon from "../../assest/feature/buy product/readmore.png"
-import icon1 from "../../assest/feature/buy product/saveIcon.png"
-import icon2 from "../../assest/feature/buy product/upIcon.png"
-import icon3 from "../../assest/feature/buy product/bigIcon.png"
-import icon4 from "../../assest/feature/buy product/big2Icon.png"
-import { useState, useEffect } from "react"
+import Loading from "../../components/features/loading/Loading"
 import axios from 'axios';
+
+import { useState, useEffect } from "react"
 import { useProfile } from "../../sevices/hooks/useProfile"
 import { useParams } from "react-router-dom";
-import Loading from "../../components/features/loading/Loading"
 import { useCart } from "../../sevices/hooks/useCart"
-import Side from "./cart-component/Side"
-import { log } from "react-modal/lib/helpers/ariaAppHider"
-import FullSizeImage from "../../components/features/full size image/FullSizeImage"
 import { UseWalletInfo } from "../../sevices/context/context"
 import { fetchPrincipalNFTs } from "../../sevices/functoinal-service/NFTcheck"
-import ErrorModal from "../../components/errors component/error modal/ErrorModal"
+
 
 
 
