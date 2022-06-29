@@ -1,8 +1,5 @@
 import profilePic from '../../../assest/profile/crashpunks.gif'
 import "./ProfileTopSection.scss"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTwitter, faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons'
-import { faEarthAmericas } from '@fortawesome/free-solid-svg-icons'
 import instaIcon from "../../../assest/feature/top section/insta.png"
 import discord from "../../../assest/feature/top section/discord.png"
 import twitter from "../../../assest/feature/top section/twitter.png"

@@ -1,11 +1,12 @@
-import instaIcon from "../../../assest/feature/top section/insta.png"
-import discordIcon from "../../../assest/feature/top section/discord.png"
-import twitterIcon from "../../../assest/feature/top section/twitter.png"
-import webIcon from "../../../assest/feature/top section/web.png"
+import "./top-section-component-style.scss"
+import instaIcon from "../../assest/feature/top section/insta.png"
+import discordIcon from "../../assest/feature/top section/discord.png"
+import twitterIcon from "../../assest/feature/top section/twitter.png"
+import webIcon from "../../assest/feature/top section/web.png"
+import profilePic from '../../assest/profile/crashpunks.gif'
 
 
-
-function ProducerTopSection({ pic, shopname, insta, twitter, discord, web }) {
+export default function TopSectionComponent({ pic, shopname, insta, twitter, discord, web }) {
 
     return (<>
         <div className="top-section-wrapper">
@@ -49,5 +50,3 @@ function ProducerTopSection({ pic, shopname, insta, twitter, discord, web }) {
 
         </div></>)
 }
-
-export default ProducerTopSection
