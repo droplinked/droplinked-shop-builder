@@ -17,7 +17,9 @@ const CartContextProvider = ({ children }) => {
       .get(`${BasicURL}/cart`,
       {headers: { Authorization: "Bearer " + token }})
       .then((e) => {
-        setCart(e.data.data.cart);
+        let items = e.data.data.carts.map(cart => cart.items)
+        console.log(items);
+       // setCart(e.data.data.cart);
       })
       .catch((e) => {
         console.log(e.response.data.reason)
@@ -30,7 +32,9 @@ const CartContextProvider = ({ children }) => {
       .get(`${BasicURL}/cart`,
       {headers: { Authorization: "Bearer " + tok }})
       .then((e) => {
-        setCart(e.data.data.cart);
+        let items = e.data.data.carts.map(cart => cart.items)
+        console.log(items);
+       // setCart(e.data.data.cart);
       })
       .catch((e) => {
         console.log(e.response.data.reason)
