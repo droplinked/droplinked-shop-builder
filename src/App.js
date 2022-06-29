@@ -10,8 +10,8 @@ import HomeWrapper from "./components/Structure/new wrapper/HomeWrapper";
 import CreatorPage from "./layout/creator/CreatorPage";
 import HomePage from "./layout/landing page/HomePage";
 import BuyProduct from "./layout/buy product/BuyProduct";
-import Terms from "./layout/terms/Terms";
-import Privacy from "./layout/privacy/Privacy";
+import Terms from "./layout/general pages/terms/Terms";
+import Privacy from "./layout/general pages/privacy/Privacy";
 import Crashpunks from "./layout/crashpunk/crashpunks"; //crashpunks page
 import ThankPage from "./layout/registering/thanks for register/ThankForRegister";
 import PersonalInfo from "./layout/registering/personal info/PersonalInfo";
@@ -31,13 +31,13 @@ import VerificationEmailPage from "./layout/registering/verifi-email-page/Email-
 import ViewMerchPage from "./layout/Producer pages/IMS pages/view merch page/View-merch-component";
 import DimsMerchPage from "./layout/customer pages/merch page/dims-Merch-page-component";
 import ShopifyMerchViewPage from "./layout/Producer pages/IMS pages/shopify-merch-view/Shopify-merch-view-page";
-import ShopPage from "./layout/general pages/shop page/shop-page";
-import CollectionPage from "./layout/general pages/collectiom page/collection-page-component";
-import Checkout from "./layout/checkout/Checkout"
-import AddressPage from "./layout/address_page/AddressPage"
+import ShopPage from "./layout/basic pages/shop page/shop-page";
+import CollectionPage from "./layout/basic pages/collectiom page/collection-page-component";
+import Checkout from "./layout/basic pages/checkout/Checkout"
+import AddressPage from "./layout/basic pages/address_page/AddressPage"
 import RegisterStructure from "./layout/registering/register structure/RegisterStructure"
 import ProducerWrapper from "./layout/Producer pages/Producer wrapper/Producer-wrapper"
-import PaymentPage from "./layout/buying/payment page/Payment-page"
+import PaymentPage from "./layout/basic pages/payment page/Payment-page"
 
 function App() {
   return (

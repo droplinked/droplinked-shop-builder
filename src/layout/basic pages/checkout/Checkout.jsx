@@ -4,7 +4,7 @@ import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 // components
-import ContentWrapper from "../../components/Structure/content-wrapper/Content-wrapper-component";
+import ContentWrapper from "../../../components/Structure/content-wrapper/Content-wrapper-component";
 import CheckoutTitle from "./CheckoutTitle";
 import CheckoutItemsContainer from "./checkout_item/CheckoutItemsContainer";
 

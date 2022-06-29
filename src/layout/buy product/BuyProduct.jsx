@@ -34,8 +34,6 @@ function BuyProduct() {
     // const personId = profile.id;
     const { userData, authenticate } = UseWalletInfo();
 
-
-
     //new states 
     const [product, setPrudoct] = useState(null);
     const [images, setImages] = useState([])

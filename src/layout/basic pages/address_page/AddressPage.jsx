@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Button, Heading, Box, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
+import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 
-import ContentWrapper from "../../components/Structure/content-wrapper/Content-wrapper-component";
+import ContentWrapper from "../../../components/Structure/content-wrapper/Content-wrapper-component";
 import AddressForm from "./AddressForm";
-import AddressComponent from "../../components/Address component/address-component"
+import AddressComponent from "../../../components/Address component/address-component"
 import axios from "axios";
 
 function AddressPage() {
-	// states
-	const [openModal, setOpenModal] = useState(false);
-	const [navigateDashboard, setNavigateDashboard] = useState(false);
-	const [selectedAddress, setSelectedAddress] = useState(null);
+
 	const [addressList, setAddressList] = useState([]);
+
 	let navigate = useNavigate();
 
-	// shop name - local storage
-	const { shopName } = JSON.parse(localStorage.getItem("profile"));
-	// userToken - local storage
+//	const { shopName } = JSON.parse(localStorage.getItem("profile"));
 	let token = JSON.parse(localStorage.getItem("token"));
 
 	if (!token) navigate("/")
 
-	// get address list request function
 	const getAddressList = async () => {
 		axios.get(`${BasicURL}/address`, {
 			headers: { Authorization: "Bearer " + token },
@@ -61,11 +56,7 @@ function AddressPage() {
 				+ Add new address
 			</Flex>
 
-			<Flex
-				w="100%"
-				mt="40px" justifyContent="space-between"
-				alignItems="center"
-			>
+			<Flex w="100%" mt="40px" justifyContent="space-between" alignItems="center" >
 				<Button w="30%" bgColor="#8053ff" color="#fff" fontSize="20px" fontWeight="600" _hover={{ borderColor: "#4d4d4d", color: "#222" }}>
 					Back
 				</Button>
