@@ -5,25 +5,9 @@ import { Box, Text, Image } from '@chakra-ui/react'
 import { BasicURL } from "../../../../../sevices/functoinal-service/CallApiService"
 import { useState, useEffect } from "react"
 
-export default function BasketItemComponent({ id, skuID, quantity }) {
-    console.log(id)
-    const [product, setProduct] = useState(null)
+export default function BasketItemComponent({ item }) {
 
-    useEffect(() => {
-
-        axios.get(`${BasicURL}/product/${id}`)
-            .then(e => {
-                setProduct(e.data.data)
-            })
-            .catch(e => {
-                console.log(e.response.data.reason)
-            })
-
-    }, [])
-
-
-
-    console.log(product);
+   let skuValue = item.product.skus.find(sku => sku._id == item.skuID) 
 
     return (
         <Box
@@ -33,12 +17,9 @@ export default function BasketItemComponent({ id, skuID, quantity }) {
             borderBottom='1px'
             borderColor='white'
             display="flex"
-        >
-            {product &&
-                <>
-                    <Image src={product.media[0].url} w="25%" h="100%" mr="10px" alt='Merch' />
-
-                    {/* right side */}
+        >     
+                    <Image src={item.product.media[0].url} w="25%" h="100%" mr="10px" alt='Merch' />
+                  
                     <Box
                         w="100%"
                         h="100%"
@@ -47,17 +28,16 @@ export default function BasketItemComponent({ id, skuID, quantity }) {
                         justifyContent="space-between"
                     >
                         <Box w="100%" display="flex" justifyContent="space-between">
-                            <Text textAlign="center" fontSize="20px" color="white" fontWeight="600" >{product.title}</Text>
-                            <Text textAlign="center" fontSize="20px" color="white" fontWeight="500" >$ 20</Text>
+                            <Text textAlign="center" fontSize="20px" color="white" fontWeight="600" >{item.product.title}</Text>
+                            <Text textAlign="center" fontSize="20px" color="white" fontWeight="500" >$ {skuValue.price}</Text>
                         </Box>
 
                         <Box w="100%" display="flex" justifyContent="space-between">
-                            <Text textAlign="center" fontSize="12px" color="#ccc" fontWeight="600" >Size : xl   Color : white</Text>
-                            <Text textAlign="center" fontSize="12px" color="#ccc" fontWeight="500" >quantity : {quantity}</Text>
-                        </Box>
-                    </Box>
-                </>
-            }
+                            {/* <Text textAlign="center" fontSize="12px" color="#ccc" fontWeight="600" >Size : xl   Color : white</Text> */}
+                            <Text textAlign="center" fontSize="12px" color="#ccc" fontWeight="500" >quantity : {item.quantity}</Text>
+                        </Box> 
+                    </Box> 
+               
         </Box>
     )
 }

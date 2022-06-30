@@ -4,14 +4,14 @@ import { Box, chakra, Text, Button } from '@chakra-ui/react'
 import { motion, isValidMotionProp } from 'framer-motion'
 import { useCart } from "../../../../sevices/hooks/useCart"
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 import BasketItemComponent from "./basket item/basket-item-component"
 
 
 export default function BasketModal({ close }) {
 
-    const { cart } = useCart();
-
+    const { cart , updateCart } = useCart();
 
     let navigate = useNavigate();
 
@@ -22,11 +22,11 @@ export default function BasketModal({ close }) {
     return (
 
         <div className="basket-modal-wrapper">
-            {(cart)
+             {(cart)
                 ?
                 <>
                     {cart.map(item => {
-                       return <BasketItemComponent id={item.id} skuID={item.skuID} quantity={item.quantity} />
+                       return <BasketItemComponent item={item} />
                     })}
                     <Button
                         mt="20px"
@@ -45,7 +45,7 @@ export default function BasketModal({ close }) {
                 :
                 <>
                 </>
-            }
+            } 
 
         </div>
 

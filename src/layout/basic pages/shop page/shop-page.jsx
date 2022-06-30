@@ -36,7 +36,6 @@ export default function ShopPage() {
         
     }, [])
 
-    console.log(profile);
 
     return (<>
         {(profile == null) ?
