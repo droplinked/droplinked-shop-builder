@@ -2,6 +2,7 @@ import { useState } from "react";
 // chakra
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../../sevices/hooks/useCart"
 
 // components
 import ContentWrapper from "../../../components/Structure/content-wrapper/Content-wrapper-component";
@@ -9,9 +10,14 @@ import CheckoutTitle from "./CheckoutTitle";
 import CheckoutItemsContainer from "./checkout_item/CheckoutItemsContainer";
 
 function Checkout() {
+
 	const [cost, setCost] = useState(0);
 
+	const { cart } = useCart();
+
 	let navigate = useNavigate();
+
+	console.log(cart);
 
 	return (
 		<ContentWrapper>

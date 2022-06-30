@@ -34,7 +34,6 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
 
         axios.post(BasicURL + '/signin', info)
             .then((res) => {
-                console.log(res.data.data.jwt)
                 if (res.data.status == "success") {
                     close();
 

@@ -11,7 +11,7 @@ import BasketItemComponent from "./basket item/basket-item-component"
 
 export default function BasketModal({ close }) {
 
-    const { cart , updateCart } = useCart();
+    const { cart } = useCart();
 
     let navigate = useNavigate();
 
