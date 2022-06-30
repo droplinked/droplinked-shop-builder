@@ -75,7 +75,7 @@ export default function UserHeader() {
                     onClick={openBasketModal}
 
                 />
-                 {(cart != null) &&
+                 {(cart != null || cart.length != 0) &&
                     <div className="item-cart-number">{cart.length}</div>
                 } 
 
