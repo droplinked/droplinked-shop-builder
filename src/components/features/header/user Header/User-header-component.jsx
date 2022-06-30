@@ -5,7 +5,7 @@ import WalletButton from "../wallet button/wallet-button-component"
 import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
 import { useProfile } from "../../../../sevices/hooks/useProfile"
 import { useState } from "react"
-import { Link, useNavigate , useParams , useLocation} from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import { useCart } from "../../../../sevices/hooks/useCart"
 
 export default function UserHeader() {
@@ -75,9 +75,14 @@ export default function UserHeader() {
                     onClick={openBasketModal}
 
                 />
-                 {(cart != null || cart.length != 0) &&
-                    <div className="item-cart-number">{cart.length}</div>
-                } 
+                {(cart != null) &&
+                    <>
+                        {(cart.length > 0) &&
+                            <div className="item-cart-number">{cart.length}</div>
+                        }
+
+                    </>
+                }
 
             </div>
 
