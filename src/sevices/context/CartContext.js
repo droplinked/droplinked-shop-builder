@@ -56,8 +56,11 @@ const CartContextProvider = ({ children }) => {
 // build new array by cart and products
   const getValueTOCart = (products, cart) => {
     let resultArray = cart.map(item => {
+
      let findProduct = products.find(product => product._id == item.productID)
-     return {...item , product:findProduct}
+     let price =  findProduct.skus.find(sku => sku._id == item.skuID).price
+
+     return {...item , product:findProduct , price:price}
     })
     setCart(resultArray);
   };
