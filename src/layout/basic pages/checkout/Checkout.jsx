@@ -54,6 +54,8 @@ function Checkout() {
 		}
 	}, [cart])
 
+	
+	
 	return (
 		<Flex
 			w="100%"
@@ -77,8 +79,8 @@ function Checkout() {
 					</Text>
 					{(cartBaseShop.length > 0) &&
 						<>
-							{cartBaseShop.map(item => {
-								return <CheckoutShopItem shopItem={item} />
+							{cartBaseShop.map((item , i) => {
+								return <CheckoutShopItem key={i} shopItem={item} />
 							})
 							}
 						</>
@@ -114,9 +116,10 @@ function Checkout() {
 							h={{ base: "40px", md: "40px" }}
 							borderRadius="15px"
 							overflow="hidden"
+							mt="33px"
 						>
 							<ButtonComponent
-							click={()=>{navigate('/address')}}
+								click={() => { navigate('/address') }}
 							>Checkout</ButtonComponent>
 						</Box>
 					</Flex>

@@ -23,8 +23,8 @@ export default function CheckoutShopItem({ shopItem }) {
                 </Text>
             </Box>
 
-            {shopItem.items.map(item => {
-                return <CheckoutItem product={item} />
+            {shopItem.items.map((item , i) => {
+                return <CheckoutItem key={i} product={item} />
             })}
 
             <Box

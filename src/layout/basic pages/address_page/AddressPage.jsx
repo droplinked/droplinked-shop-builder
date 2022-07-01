@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Flex, Button, Heading, Box, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
-import {useToasty} from "../../../sevices/hooks/useToastify"
+import { useToasty } from "../../../sevices/hooks/useToastify"
+import { useCart } from "../../../sevices/hooks/useCart"
 
 import ContentWrapper from "../../../components/Structure/content-wrapper/Content-wrapper-component";
 import AddressForm from "./AddressForm";
@@ -15,13 +16,16 @@ function AddressPage() {
 	const [addressList, setAddressList] = useState(null);
 	const [selectedAddress, setSelectedAddress] = useState(null);
 
+	const { cart } = useCart();
 	let navigate = useNavigate();
-	const {errorToast , successToast} = useToasty();
+	const { errorToast, successToast } = useToasty();
 
 	let token = JSON.parse(localStorage.getItem("token"));
 
 	if (!token) navigate("/")
 
+	console.log(cart)
+	console.log(selectedAddress);
 	const getAddressList = async () => {
 		axios.get(`${BasicURL}/address`, {
 			headers: { Authorization: "Bearer " + token },
@@ -30,15 +34,22 @@ function AddressPage() {
 			.catch(e => console.log(e.response.data))
 	};
 
+
 	useEffect(() => {
 		getAddressList();
 	}, []);
 
+
 	const ProccessToPayment = () => {
-		if(selectedAddress == null){
+		if (selectedAddress == null) {
 			errorToast("Please select an address")
 			return
 		}
+		const shoppingCart = {
+			merchs:cart ,
+			AddressId : selectedAddress
+		}
+		localStorage.setItem("shopping_cart", JSON.stringify(shoppingCart));
 		navigate('/payment')
 	}
 
