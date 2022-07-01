@@ -1,10 +1,11 @@
 import { Box, Text, Flex, Button } from "@chakra-ui/react"
 
-export default function AddressComponent({address}) {
+export default function AddressComponent({address , selected , setSelect }) {
 
-    console.log(address);
     return (
-        <Box h="auto" mb="4" border='1px' borderColor='#555' borderRadius="15px" p="24px 20px 16px 20px">
+        <Box h="auto" mb="4" border='1px'  borderRadius="15px" p="24px 20px 16px 20px"
+        borderColor={(address._id == selected)?"#8053ff":'#555'}
+        >
 
             <Text fontSize="18px" fontWeight="600" color="#fff" mb="10px">{address.country} - {address.city}</Text>
             <Text fontSize="16px" fontWeight="500" color="#ddd" mb="4px">{address.addressLine1}</Text>
@@ -19,6 +20,7 @@ export default function AddressComponent({address}) {
                     bgColor="#8053ff"
                     h="35px"
                     _hover={{ bgColor: "4d4d4d", color: "#222" }}
+                    onClick={()=>setSelect(address._id)}
                 >
                     Select address
                 </Button>

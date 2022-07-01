@@ -115,7 +115,9 @@ function Checkout() {
 							borderRadius="15px"
 							overflow="hidden"
 						>
-							<ButtonComponent>Checkout</ButtonComponent>
+							<ButtonComponent
+							click={()=>{navigate('/address')}}
+							>Checkout</ButtonComponent>
 						</Box>
 					</Flex>
 				</>
