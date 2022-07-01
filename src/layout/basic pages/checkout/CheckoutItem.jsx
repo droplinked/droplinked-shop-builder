@@ -1,29 +1,34 @@
-import { Box, Flex, Text, Image, ButtonGroup, HStack, Button ,Input } from "@chakra-ui/react"
+import { Box, Flex, Text, Image, ButtonGroup, IconButton, Button, Input, AspectRatio } from "@chakra-ui/react"
 // import {  AddIcon, MinusIcon } from '@chakra-ui/icons'
-import { AiFillCloseCircle } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 
 export default function CheckoutItem({ product }) {
 
 
 
-    console.log(product)
+   // console.log(product)
+
     return (
         <Flex
             w="100%"
             p='5px'
             bgColor="#333"
-            h="80px"
+            h="auto"
             mb="10px"
+            flexDirection={{ base: "column", md: "row" }}
             justifyContent="space-between"
         >
 
             <Flex
-                w="60%"
+                w="50%"
+                flexDirection="row"
             >
                 <Image
                     src={product.product.media[0].url}
                     alt='product image'
-                    mr="10px"
+                    w="80px"
+                    h="80px"
+                    mr="20px"
                 />
                 <Flex
                     flexDirection="column"
@@ -36,39 +41,65 @@ export default function CheckoutItem({ product }) {
                     >
                         {product.product.title}
                     </Text>
+
+                    <Text
+                        color="#ddd"
+                        fontWeight="500"
+                        fontSize={{ base: "14px", md: "13px" }}
+                    >
+                        {product.product.description}
+                    </Text>
                 </Flex>
+
             </Flex>
 
-            <Flex w="40%" justifyContent="space-between">
-                <Flex
-                    h="100%"
-                    alignItems="center"
+            <Flex
+                w={{base:'100%' , md:"45%"}}
+                mr="20px"
+                h={{ base: "60px", md: "80px" }}
+                alignItems="center"
+                justifyContent="space-between">
+
+                <Text
+                    color="#fff"
+                    fontWeight="600"
+                    fontSize="18"
                 >
-                    <ButtonGroup w="100" isAttached variant='outline'>
-                        <Button
-                            color="#fff"
-                            _hover={{ bgColor: "none", borderColor: "#8053ff", color: "#8053ff" }}
-                        >+</Button>
-                        <Button
-                            color="#fff"
-                            _hover={{ bgColor: "none", borderColor: "#fff" }}
-                        >{product.quantity}</Button>
-                        <Button
-                            color="#fff"
-                            _hover={{ bgColor: "none", borderColor: "#8053ff", color: "#8053ff" }}
-                        >+</Button>
-                    </ButtonGroup> 
-                </Flex>
-                <Flex
-                    h="100%"
-                    alignItems="center"
-                    cursor={"pointer"}
-                >
-                    <AiFillCloseCircle
-                        color="#ea5050"
-                        size="25px"
+                    $ {product.price}
+                </Text>
+
+                <ButtonGroup size="md" isAttached variant='outline'>
+                    <IconButton
+                        aria-label='delete'
+                        icon={<AiOutlineDelete color="#fd4545" size="sm" />}
+                        _hover={{ bgColor: "none", borderColor: "#8053ff" }}
+                        _focus={{ bgColor: "none", borderColor: "#8053ff" }}
+                    //   _active={{bgColor: "none", borderColor: "#8053ff"}}
                     />
-                </Flex>
+
+                    <Input
+                        value={product.quantity}
+                        borderRadius="0px"
+                        cursor="pointer"
+                        w="80px"
+                        textAlign="center"
+                        color="#fff"
+                        fontSize="20px"
+                        fontWeight="600"
+                        _hover={{ bgColor: "none", borderColor: "#8053ff" }}
+                        _focus={{ bgColor: "none", borderColor: "#8053ff" }}
+
+                    />
+                    <Button
+                        color="#fff"
+                        fontSize="20px"
+                        fontWeight="600"
+                        _hover={{ bgColor: "none", borderColor: "#8053ff" }}
+                        _focus={{ bgColor: "none", borderColor: "#8053ff" }}
+                    //  _active={{bgColor: "none", borderColor: "#8053ff"}}
+                    >Submit</Button>
+                </ButtonGroup>
+
             </Flex>
 
         </Flex>

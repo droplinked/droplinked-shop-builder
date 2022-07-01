@@ -4,9 +4,10 @@ import CheckoutItem from "./CheckoutItem"
 
 export default function CheckoutShopItem({ shopItem }) {
 
-    // console.log(shopItem)
+    console.log(shopItem)
+     
     return (<>
-        <Box>
+        <Box mb="50px">
             <Box
                 w="100%"
                 mb="10px"
@@ -33,14 +34,14 @@ export default function CheckoutShopItem({ shopItem }) {
                     color="#fff"
                     fontSize="16px"
                 >
-                    Total cost : $ 100
+                    Total cost : $ {shopItem.total}
                 </Text>
                 <Text
-                mt="10px"
+                    mt="10px"
                     color="#fff"
                     fontSize="16px"
                 >
-                   Shipping : $ 100
+                    Shipping : $ 5
                 </Text>
             </Box>
 
