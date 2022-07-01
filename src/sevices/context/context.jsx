@@ -23,8 +23,10 @@ const WalletProvider = ({ children }) => {
 		}
 	}, []);
 
+
+	// change path instead "/"
 	function onSignOut() {
-		userSession.signUserOut('/');
+		userSession.signUserOut(window.location.pathname);
 	}
 
 	function checkTokens(tokens) {
