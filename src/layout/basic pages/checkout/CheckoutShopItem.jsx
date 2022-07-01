@@ -4,7 +4,7 @@ import CheckoutItem from "./CheckoutItem"
 
 export default function CheckoutShopItem({ shopItem }) {
 
-    console.log(shopItem)
+    //console.log(shopItem)
      
     return (<>
         <Box mb="50px">

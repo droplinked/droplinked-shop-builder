@@ -34,7 +34,7 @@ export default function ImsSelect() {
                         status: "IMS_TYPE_COMPLETED" ,
                         imsType: ImsSystem
                     })
-                    navigate(`/shop/${user.shopName}`);
+                    navigate(`/${user.shopName}`);
                 }
 
 

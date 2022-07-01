@@ -7,7 +7,7 @@ export default function CheckoutItem({ product }) {
 
     let findSku = product.product.skus.find(sku => sku._id == product.skuID)
     let variantText = ""
-    findSku.options.forEach(option => {variantText += `${option.variantName} : ${option.value}  `})
+    findSku.options.forEach(option => {variantText += `${option.variantName}:${option.value}  \xa0\xa0\xa0`})
 
     return (
         <Flex
