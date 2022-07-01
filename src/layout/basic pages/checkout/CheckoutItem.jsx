@@ -5,8 +5,9 @@ import { AiOutlineDelete } from "react-icons/ai";
 export default function CheckoutItem({ product }) {
 
 
-
-   // console.log(product)
+    let findSku = product.product.skus.find(sku => sku._id == product.skuID)
+    let variantText = ""
+    findSku.options.forEach(option => {variantText += `${option.variantName} : ${option.value}  `})
 
     return (
         <Flex
@@ -20,7 +21,7 @@ export default function CheckoutItem({ product }) {
         >
 
             <Flex
-                w="50%"
+                w={{base:"100%" , md:"50%"}}
                 flexDirection="row"
             >
                 <Image
@@ -38,6 +39,7 @@ export default function CheckoutItem({ product }) {
                         color="#fff"
                         fontWeight="600"
                         fontSize={{ base: "16px", md: "18px" }}
+                        mb="5px"
                     >
                         {product.product.title}
                     </Text>
@@ -46,15 +48,25 @@ export default function CheckoutItem({ product }) {
                         color="#ddd"
                         fontWeight="500"
                         fontSize={{ base: "14px", md: "13px" }}
+                        mb="5px"
                     >
                         {product.product.description}
                     </Text>
+                    {(variantText != "") &&
+                    <Text
+                        color="#ddd"
+                        fontWeight="500"
+                        fontSize={{ base: "14px", md: "13px" }}
+                    >
+                        {variantText}
+                    </Text>
+                    }
                 </Flex>
 
             </Flex>
 
             <Flex
-                w={{base:'100%' , md:"45%"}}
+                w={{ base: '100%', md: "45%" }}
                 mr="20px"
                 h={{ base: "60px", md: "80px" }}
                 alignItems="center"

@@ -54,7 +54,6 @@ function Checkout() {
 		}
 	}, [cart])
 
-
 	return (
 		<Flex
 			w="100%"
@@ -68,7 +67,6 @@ function Checkout() {
 				<Loading />
 				:
 				<>
-
 					<Text
 						fontSize={{ base: "20px", md: "24px" }}
 						fontWeight="600"
@@ -93,8 +91,6 @@ function Checkout() {
 						pt="20px"
 					>
 
-
-
 						<Box>
 							<Text
 								color="#fff"
@@ -112,9 +108,6 @@ function Checkout() {
 								Shipping total : $ {getShipping()}
 							</Text>
 						</Box>
-
-
-
 
 						<Box
 							w={{ base: "150px", md: "200px" }}
