@@ -1,13 +1,61 @@
 import { Box, Flex, Text, Image, ButtonGroup, IconButton, Button, Input, AspectRatio } from "@chakra-ui/react"
-// import {  AddIcon, MinusIcon } from '@chakra-ui/icons'
 import { AiOutlineDelete } from "react-icons/ai";
+import { useCart } from "../../../sevices/hooks/useCart"
+import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { useToasty } from "../../../sevices/hooks/useToastify"
+import { useState } from "react";
+
+import axios from "axios";
 
 export default function CheckoutItem({ product }) {
 
+    const [quantity, setQuantity] = useState(product.quantity)
 
+    const { updateCart } = useCart()
+    const { successToast, errorToast } = useToasty()
+    let token = JSON.parse(localStorage.getItem("token"));
+
+    // text for show variants value
     let findSku = product.product.skus.find(sku => sku._id == product.skuID)
     let variantText = ""
-    findSku.options.forEach(option => {variantText += `${option.variantName}:${option.value}  \xa0\xa0\xa0`})
+    findSku.options.forEach(option => { variantText += `${option.variantName}:${option.value}  \xa0\xa0\xa0` })
+
+    console.log(product)
+
+    //delete merch
+    const deleteMerch = () => {
+
+        axios.delete(`${BasicURL}/${product.shopID.name}/cart/sku/${product.skuID}`, {
+            headers: { Authorization: "Bearer " + token },
+        })
+            .then((e) => {
+                successToast("Merch deleted successfully")
+                updateCart();
+            })
+            .catch(e => errorToast(e.response.data))
+    }
+
+
+    // update quantity
+    const updateQuantity = () => {
+
+        if (quantity < 1) {
+            errorToast("Merch quantity must be greater than zero")
+            return;
+        }
+
+        axios.post(`${BasicURL}/cart/sku/${product.skuID}`,
+            { quantity: quantity },
+            {
+                headers: { Authorization: "Bearer " + token },
+            })
+            .then((e) => {
+                successToast("Merch updated successfully")
+                updateCart();
+            })
+            .catch(e => errorToast(e.data.response))
+    }
+
 
     return (
         <Flex
@@ -21,7 +69,7 @@ export default function CheckoutItem({ product }) {
         >
 
             <Flex
-                w={{base:"100%" , md:"50%"}}
+                w={{ base: "100%", md: "50%" }}
                 flexDirection="row"
             >
                 <Image
@@ -53,13 +101,13 @@ export default function CheckoutItem({ product }) {
                         {product.product.description}
                     </Text>
                     {(variantText != "") &&
-                    <Text
-                        color="#ddd"
-                        fontWeight="500"
-                        fontSize={{ base: "14px", md: "13px" }}
-                    >
-                        {variantText}
-                    </Text>
+                        <Text
+                            color="#ddd"
+                            fontWeight="500"
+                            fontSize={{ base: "14px", md: "13px" }}
+                        >
+                            {variantText}
+                        </Text>
                     }
                 </Flex>
 
@@ -86,11 +134,12 @@ export default function CheckoutItem({ product }) {
                         icon={<AiOutlineDelete color="#fd4545" size="sm" />}
                         _hover={{ bgColor: "none", borderColor: "#8053ff" }}
                         _focus={{ bgColor: "none", borderColor: "#8053ff" }}
-                    //   _active={{bgColor: "none", borderColor: "#8053ff"}}
+                        //   _active={{bgColor: "none", borderColor: "#8053ff"}}
+                        onClick={deleteMerch}
                     />
 
                     <Input
-                        value={product.quantity}
+                        value={quantity}
                         borderRadius="0px"
                         cursor="pointer"
                         w="80px"
@@ -100,7 +149,7 @@ export default function CheckoutItem({ product }) {
                         fontWeight="600"
                         _hover={{ bgColor: "none", borderColor: "#8053ff" }}
                         _focus={{ bgColor: "none", borderColor: "#8053ff" }}
-
+                        onChange={e => setQuantity(e.target.value)}
                     />
                     <Button
                         color="#fff"
@@ -108,7 +157,7 @@ export default function CheckoutItem({ product }) {
                         fontWeight="600"
                         _hover={{ bgColor: "none", borderColor: "#8053ff" }}
                         _focus={{ bgColor: "none", borderColor: "#8053ff" }}
-                    //  _active={{bgColor: "none", borderColor: "#8053ff"}}
+                        onClick={updateQuantity}
                     >Submit</Button>
                 </ButtonGroup>
 
