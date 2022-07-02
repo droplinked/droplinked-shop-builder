@@ -1,4 +1,4 @@
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { CardElement, useElements, useStripe, PaymentElement } from '@stripe/react-stripe-js';
 
 import BadicModal from "../../../../components/Modal/basic modal component/Basic-modal-component"
 
@@ -8,34 +8,37 @@ const StripeComponent = () => {
     const stripe = useStripe();
 
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
 
-        // if (!stripe || !elements) {
-        //     return;
-        // }
+        if (!stripe || !elements) {
+            return;
+        }
 
-        // console.log('creating payment intent')
+        const result = await stripe.confirmPayment({
+            //`Elements` instance that was used to create the Payment Element
+            elements,
+            confirmParams: {
+                return_url: "https://ngsf.flatlay.io/",
+            },
+        });
 
-        // const { clientSecret } = await fetch('https://api.stripe.com/v1/payment_intents', {
-        //     method: 'POST',
-        //     headers: { 
-        //         "Authorization": `Bearer pk_test_51B3XzHDHP9PnFF5D7xWkc29H1NehLpfVEAWaycBBtoUXPyL4qq1dAZYVSBlWr5Kc0sGenWCJfuFEmXy5JCXxACLk00NXM3aQQh`,
-        //         "Content-Type": "application/json",
-        //      },
-        //     body: JSON.stringify({
-        //         paymentMethodType: 'card',
-        //         currency: 'USD',
-        //         amouy:2000
-        //     })
-        // }).then(r => r.json());
+        if (result.error) {
+            // Show error to your customer (for example, payment details incomplete)
+            console.log(result.error.message);
+        } else {
+            console.log(result.data);
+            // Your customer will be redirected to your `return_url`. For some payment
+            // methods like iDEAL, your customer will be redirected to an intermediate
+            // site first to authorize the payment, then redirected to the `return_url`.
+        }
 
-        // console.log('payment intent created')
+
     }
 
     return (
         <BadicModal>
             <form onSubmit={handleSubmit}>
-                <CardElement />
+                <PaymentElement />
                 <button >submit</button>
             </form>
         </BadicModal>

@@ -26,6 +26,20 @@ export default  function PaymentPage() {
 
     const [paymentSelected, setPaymentSelected] = useState(null)
     const cart = JSON.parse(localStorage.getItem("shopping_cart"));
+    
+    const appearance = {
+        theme: 'night',
+        labels: 'floating'
+      };
+      
+
+    const options = {
+        // passing the client secret obtained from the server
+        clientSecret: 'pi_3LHAgeDHP9PnFF5D1RYkZVLS_secret_pRphrGFCcOABG8JDhkXAUlEUA',
+        appearance
+      };
+
+    
 
 
 
@@ -90,7 +104,7 @@ export default  function PaymentPage() {
             </Box>
 
             {(paymentSelected == "Stripe") &&
-                <Elements stripe={stripePromise} >
+                <Elements stripe={stripePromise} options={options} >
                       <StripeComponent />
                 </Elements>
             }
