@@ -10,23 +10,24 @@ import {
     Box,
     Text,
     Button,
-    useDisclosure ,
+    useDisclosure,
     Flex
 } from '@chakra-ui/react'
 import { useState } from "react"
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 import ButtonComponent from "../../../components/button component/Button-component";
+import StripeComponent from "./stripe modal/stripe-modal-component"
 
+const stripePromise = loadStripe('pk_test_51B3XzHDHP9PnFF5D7xWkc29H1NehLpfVEAWaycBBtoUXPyL4qq1dAZYVSBlWr5Kc0sGenWCJfuFEmXy5JCXxACLk00NXM3aQQh');
 
-export default function PaymentPage() {
+export default  function PaymentPage() {
 
     const [paymentSelected, setPaymentSelected] = useState(null)
     const cart = JSON.parse(localStorage.getItem("shopping_cart"));
-    const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const changeWay = () => {
-        setPaymentSelected((paymentSelected == "Stripe") ? "Stx" : "Stripe")
-    }
+
 
     let merchsPrice = 0;
     let shippingPrice;
@@ -36,6 +37,8 @@ export default function PaymentPage() {
     let shops = cart.merchs.map((merch) => merch.shopID._id)
     shops = [...new Set(shops)];
     shippingPrice = (shops.length * 5)
+
+
 
     return (
         <Box w="100%" maxW="1000px" mx="auto" px={{ base: "20px", md: "80px" }}>
@@ -70,7 +73,6 @@ export default function PaymentPage() {
                             _hover={{ color: "#444" }}
                             onClick={() => {
                                 setPaymentSelected("Stripe")
-                                onOpen()
                             }}
                         >Stripe</Button>
 
@@ -81,31 +83,18 @@ export default function PaymentPage() {
                             _hover={{ color: "#444" }}
                             onClick={() => {
                                 setPaymentSelected("Stx")
-                                onOpen()
                             }}
                         >Hiro Wallet</Button>
                     </Box>
                 </Box>
-
             </Box>
 
-            <Modal isOpen={isOpen} onClose={onClose} bgColor="#222">
-                <ModalOverlay />
-                <ModalContent  bgColor="#222">
-                    <ModalHeader color="#fff">Payment</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
+            {(paymentSelected == "Stripe") &&
+                <Elements stripe={stripePromise} >
+                      <StripeComponent />
+                </Elements>
+            }
 
-                    </ModalBody>
-
-                    <ModalFooter>
-                        <Button colorScheme='red' mr={3} onClick={onClose} color="">
-                            Close
-                        </Button>
-                        <Button color="#fff" bgColor='#8053ff' variant='ghost'>submit</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
 
         </Box>
     )
