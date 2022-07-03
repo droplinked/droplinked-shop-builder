@@ -1,13 +1,10 @@
-import image from "../../../../../assest/tshirt.jpg"
-import axios from "axios"
 
 import { Box, Text, Image } from '@chakra-ui/react'
-import { BasicURL } from "../../../../../sevices/functoinal-service/CallApiService"
-import { useState, useEffect } from "react"
+
 
 export default function BasketItemComponent({ item }) {
 
-   let skuValue = item.product.skus.find(sku => sku._id == item.skuID) 
+   let skuValue = item.Product.skus.find(sku => sku._id == item.skuID) 
 
     return (
         <Box
@@ -18,8 +15,8 @@ export default function BasketItemComponent({ item }) {
             borderColor='white'
             display="flex"
         >     
-                    <Image src={item.product.media[0].url} w="25%" h="100%" mr="10px" alt='Merch' />
-                  
+                    <Image src={item.Product.media[0].url} w="25%" h="100%" mr="10px" alt='Merch' />
+                 
                     <Box
                         w="100%"
                         h="100%"
@@ -28,16 +25,17 @@ export default function BasketItemComponent({ item }) {
                         justifyContent="space-between"
                     >
                         <Box w="100%" display="flex" justifyContent="space-between">
-                            <Text textAlign="center" fontSize="20px" color="white" fontWeight="600" >{item.product.title}</Text>
+                            <Text textAlign="center" fontSize="20px" color="white" fontWeight="600" >{item.Product.title}</Text>
                             <Text textAlign="center" fontSize="20px" color="white" fontWeight="500" >$ {skuValue.price}</Text>
                         </Box>
 
                         <Box w="100%" display="flex" justifyContent="space-between">
-                            {/* <Text textAlign="center" fontSize="12px" color="#ccc" fontWeight="600" >Size : xl   Color : white</Text> */}
+                          
                             <Text textAlign="center" fontSize="12px" color="#ccc" fontWeight="500" >quantity : {item.quantity}</Text>
                         </Box> 
-                    </Box> 
+                    </Box>  
                
         </Box>
     )
-}
+}  
+{/* <Text textAlign="center" fontSize="12px" color="#ccc" fontWeight="600" >Size : xl   Color : white</Text> */}

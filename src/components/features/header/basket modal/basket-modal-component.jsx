@@ -1,10 +1,9 @@
 import "./basket-modal-style.scss"
 
-import { Box, chakra, Text, Button } from '@chakra-ui/react'
-import { motion, isValidMotionProp } from 'framer-motion'
+import {  Text, Button } from '@chakra-ui/react'
 import { useCart } from "../../../../sevices/hooks/useCart"
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+
 
 import BasketItemComponent from "./basket item/basket-item-component"
 
@@ -24,10 +23,10 @@ export default function BasketModal({ close }) {
         <div className="basket-modal-wrapper">
             {(cart) &&
                 <>
-                    {(cart.length > 0)
+                    {(cart.items.length > 0)
                         ?
                         <>
-                            {cart.map(item => {
+                            {cart.items.map(item => {
                                 return <BasketItemComponent item={item} />
                             })}
                             <Button
