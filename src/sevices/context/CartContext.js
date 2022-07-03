@@ -7,101 +7,94 @@ import axios from "axios";
 export const CartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
+
   const [cart, setCart] = useState(null);
 
   let token = JSON.parse(localStorage.getItem("token"));
 
-  //get Cart from back
+  //update cartstate
   const updateCart = () => {
+    //first get cart from back
     axios
       .get(`${BasicURL}/cart`, {
         headers: { Authorization: "Bearer " + token },
       })
-      .then((e) => {
-        let carts = e.data.data.carts;
-        let cartItems = [];
-        carts.forEach((cart) => {
-          if (cart.items.length > 0) {
-            cart.items.forEach((item) => {
-              cartItems.push({
-                productID: item.productID,
-                skuID: item.skuID,
-                quantity: item.quantity,
-                shopID: cart.shopID,
-              });
-            });
-          }
+      .then(async (e) => {
+        let cart = e.data.data.cart;
+
+        //build array of productIDs
+        let productsId = cart.items.map((item) => item.productID);
+        //send array of productIDs and get array of Products
+        let productsArray = await getProductData(productsId);
+
+        // build new cartitems with productsArray
+        let newCartItems = cart.items.map((item) => {
+          let Product = productsArray.find((p) => p._id == item.productID)
+          return {...item , Product}
         });
-        getProductData(cartItems);
+
+        setCart({
+          id:cart._id,
+          status:cart.status,
+          items:newCartItems
+        })
       })
       .catch((e) => {
         console.log(e.response.data.reason);
       });
   };
 
-  // get product of cart from back
-  const getProductData = (cartItems) => {
+  // return data of products in cart from backend
+  const getProductData = async (cartItems) => {
     let promises = [];
     for (let i = 0; i < cartItems.length; i++) {
-      promises.push(axios.get(`${BasicURL}/product/${cartItems[i].productID}`));
+      promises.push(axios.get(`${BasicURL}/product/${cartItems[i]}`));
     }
-    Promise.all(promises)
-      .then((e) => {
-        let products = e.map((p) => p.data.data);
-        getValueTOCart(products, cartItems);
-      })
-      .catch((e) => console.log(e.response));
+    let results = await Promise.all(promises);
+    results = results.map((e) => e.data.data);
+
+    return results;
   };
 
-// build new array by cart and products
-  const getValueTOCart = (products, cart) => {
-    let resultArray = cart.map(item => {
-
-     let findProduct = products.find(product => product._id == item.productID)
-     let price =  findProduct.skus.find(sku => sku._id == item.skuID).price
-
-     return {...item , product:findProduct , price:price}
-    })
-    setCart(resultArray);
-  };
-
-
+  
 
   // firts update when we havent token
   const firstUpdateCart = (tk) => {
     axios
-    .get(`${BasicURL}/cart`, {
-      headers: { Authorization: "Bearer " + tk },
-    })
-    .then((e) => {
-      let carts = e.data.data.carts;
-      let cartItems = [];
-      carts.forEach((cart) => {
-        if (cart.items.length > 0) {
-          cart.items.forEach((item) => {
-            cartItems.push({
-              productID: item.productID,
-              skuID: item.skuID,
-              quantity: item.quantity,
-              shopID: cart.shopID,
-            });
-          });
-        }
+      .get(`${BasicURL}/cart`, {
+        headers: { Authorization: "Bearer " + tk },
+      })
+      .then(async (e) => {
+        let cart = e.data.data.cart;
+
+        //get productsID for get product data from backend
+        let productsId = cart.items.map((item) => item.productID);
+        //get products by productsID
+        let productsArray = await getProductData(productsId);
+
+        // build new cartitems with productsArray
+        let newCartItems = cart.items.map((item) => {
+          let Product = productsArray.find((p) => p._id == item.productID)
+          return {...item , Product}
+        });
+
+        setCart({
+          id:cart._id,
+          status:cart.status,
+          items:newCartItems
+        })
+      })
+      .catch((e) => {
+        console.log(e.response.data.reason);
       });
-      getProductData(cartItems);
-    })
-    .catch((e) => {
-      console.log(e.response.data.reason);
-    });
   };
-
-
 
   const contextValues = {
     updateCart,
     firstUpdateCart,
     cart,
   };
+
 
   return (
     <CartContext.Provider value={contextValues}>
