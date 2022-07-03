@@ -73,7 +73,6 @@ export default function UserHeader() {
             <div className="item-cart-wraper">
                 <Cart className="item-cart"
                     onClick={openBasketModal}
-
                 />
                 {(cart != null) &&
                     <>
@@ -83,7 +82,6 @@ export default function UserHeader() {
 
                     </>
                 }
-
             </div>
 
             {(Profileimage)
@@ -102,8 +100,9 @@ export default function UserHeader() {
 
             {toggleHeader &&
                 <div className="header-nav">
-                    <div className="header-nav-item" onClick={clickProfile}>Profile</div>
+
                     {(userStatus == "IMS_TYPE_COMPLETED") && <>
+                        <div className="header-nav-item" onClick={clickProfile}>Profile</div>
                         <Link to="/producer/ims">
                             <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Inventory</div>
                         </Link>
@@ -113,9 +112,12 @@ export default function UserHeader() {
                         <Link to="/producer/collection">
                             <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Collection</div>
                         </Link>
-                        <div className="header-nav-item">Settings</div>
+
                     </>
                     }
+                    <Link to="/settings">
+                        <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Settings</div>
+                    </Link>
                     <div className="header-nav-item" onClick={logout}>Logout</div>
                 </div>
             }

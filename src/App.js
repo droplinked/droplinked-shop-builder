@@ -38,6 +38,8 @@ import AddressPage from "./layout/basic pages/address_page/AddressPage"
 import RegisterStructure from "./layout/registering/register structure/RegisterStructure"
 import ProducerWrapper from "./layout/Producer pages/Producer wrapper/Producer-wrapper"
 import PaymentPage from "./layout/basic pages/payment page/Payment-page"
+import SettingsPage from "./layout/basic pages/settings-page/Settings-page"
+
 
 function App() {
   return (
@@ -63,10 +65,11 @@ function App() {
                           <Route  path="IMSSelect" element={<ImsSelect />} />
                           {/* <Route  path="/payment" element={<RegisterPayment />} /> */}
                         </Route>
-
-                      
+  
                         <Route exact path="emailConfirmation" element={<ThankPage />} />
                         <Route exact path="email-verification/:token" element={<VerificationEmailPage />}   />
+                        <Route exact path="settings" element={<SettingsPage />} />
+
 
                       {/* producer pages */}
                         <Route exact path="producer" element={<ProducerWrapper />}>

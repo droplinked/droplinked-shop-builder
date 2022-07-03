@@ -20,7 +20,6 @@ export default function CheckoutItem({ product }) {
     let variantText = ""
     findSku.options.forEach(option => { variantText += `${option.variantName}:${option.value}  \xa0\xa0\xa0` })
 
-    console.log(product)
 
     //delete merch
     const deleteMerch = () => {
