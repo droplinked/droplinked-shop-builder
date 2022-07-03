@@ -1,6 +1,7 @@
 import { CardElement, useElements, useStripe, PaymentElement } from '@stripe/react-stripe-js';
 
 import BadicModal from "../../../../components/Modal/basic modal component/Basic-modal-component"
+import ButtonComponent from "../../../../components/button component/Button-component";
 
 const StripeComponent = () => {
 
@@ -39,7 +40,7 @@ const StripeComponent = () => {
         <BadicModal>
             <form onSubmit={handleSubmit}>
                 <PaymentElement />
-                <button >submit</button>
+                <ButtonComponent mt='40px' p="12px 0px" >submit</ButtonComponent>
             </form>
         </BadicModal>
     )
