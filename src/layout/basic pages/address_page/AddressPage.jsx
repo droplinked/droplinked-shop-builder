@@ -16,17 +16,14 @@ function AddressPage() {
 	const [addressList, setAddressList] = useState(null);
 	const [selectedAddress, setSelectedAddress] = useState(null);
 
-	const { cart } = useCart();
 	let navigate = useNavigate();
 	const { errorToast, successToast } = useToasty();
-
 	let token = JSON.parse(localStorage.getItem("token"));
+	
 
 	if (!token) navigate("/")
 
-	console.log(cart)
-	console.log(selectedAddress);
-	const getAddressList = async () => {
+	const getAddressList = () => {
 		axios.get(`${BasicURL}/address`, {
 			headers: { Authorization: "Bearer " + token },
 		})
@@ -40,18 +37,24 @@ function AddressPage() {
 	}, []);
 
 
+
 	const ProccessToPayment = () => {
 		if (selectedAddress == null) {
 			errorToast("Please select an address")
 			return
 		}
-		const shoppingCart = {
-			merchs:cart ,
-			AddressId : selectedAddress
-		}
-		localStorage.setItem("shopping_cart", JSON.stringify(shoppingCart));
-		navigate('/payment')
+
+		axios.post(`${BasicURL}/cart/checkout-address`, { addressBookID: selectedAddress },
+			{ headers: { Authorization: "Bearer " + token }, })
+			.then(e => {
+				successToast("Address added successfully")
+				navigate('/payment')
+			})
+			.catch(e => {
+				errorToast(e.response.data)
+			})
 	}
+
 
 	return (
 		<ContentWrapper>
