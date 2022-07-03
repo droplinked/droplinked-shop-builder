@@ -15,6 +15,8 @@ function Checkout() {
 	const { cart } = useCart();
 	let navigate = useNavigate();
 
+	console.log(cart);
+
 	const getCheckoutCart = () => {
 		let shopArray = cart.map(item => item.shopID.name)
 		let shops = [...new Set(shopArray)];
@@ -35,27 +37,27 @@ function Checkout() {
 		return total
 	}
 
-	useEffect(() => {
-		if (cart != null) {
-			let newCart = []
-			let shops = getCheckoutCart()
-			shops.map(shopname => {
-				let totalPrice = 0;
-				let items = []
-				cart.forEach(item => {
-					if (item.shopID.name == shopname) {
-						items.push(item)
-						totalPrice += (item.price * item.quantity)
-					}
-				})
-				newCart.push({ shopName: shopname, items: items, total: totalPrice, shipping: 5 })
-			})
-			setCart(newCart)
-		}
-	}, [cart])
+	// useEffect(() => {
+	// 	if (cart != null) {
+	// 		let newCart = []
+	// 		let shops = getCheckoutCart()
+	// 		shops.map(shopname => {
+	// 			let totalPrice = 0;
+	// 			let items = []
+	// 			cart.forEach(item => {
+	// 				if (item.shopID.name == shopname) {
+	// 					items.push(item)
+	// 					totalPrice += (item.price * item.quantity)
+	// 				}
+	// 			})
+	// 			newCart.push({ shopName: shopname, items: items, total: totalPrice, shipping: 5 })
+	// 		})
+	// 		setCart(newCart)
+	// 	}
+	// }, [cart])
 
-	
-	
+
+
 	return (
 		<Flex
 			w="100%"
@@ -66,7 +68,14 @@ function Checkout() {
 		>
 			{(cart == null)
 				?
-				<Loading />
+				<Text
+					fontSize={{ base: "20px", md: "24px" }}
+					fontWeight="600"
+					color="#fff"
+					m="0px auto 40px auto"
+				>
+					Empty
+				</Text>
 				:
 				<>
 					<Text
@@ -77,14 +86,15 @@ function Checkout() {
 					>
 						Check out
 					</Text>
-					{(cartBaseShop.length > 0) &&
+{/* 									
+					{(cart.items.length > 0) &&
 						<>
-							{cartBaseShop.map((item , i) => {
-								return <CheckoutShopItem key={i} shopItem={item} />
+							{cart.items.map((item , i) => {
+								return <CheckoutShopItem key={i} item={item} />
 							})
 							}
 						</>
-					}
+					}  */}
 
 					<Flex
 						w="100%"
@@ -99,7 +109,7 @@ function Checkout() {
 								fontSize={{ base: "18px", md: "22px" }}
 								fontWeight="600"
 							>
-								Merchs cost : $ {getTotalPrice()}
+								{/* Merchs cost : $ {getTotalPrice()} */}
 							</Text>
 							<Text
 								color="#fff"
@@ -107,7 +117,7 @@ function Checkout() {
 								fontWeight="600"
 								mt="5px"
 							>
-								Shipping total : $ {getShipping()}
+								{/* Shipping total : $ {getShipping()} */}
 							</Text>
 						</Box>
 
