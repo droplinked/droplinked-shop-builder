@@ -16,7 +16,7 @@ export default function CheckoutItem({ product }) {
     let token = JSON.parse(localStorage.getItem("token"));
 
     // text for show variants value
-    let findSku = product.product.skus.find(sku => sku._id == product.skuID)
+    let findSku = product.Product.skus.find(sku => sku._id == product.skuID)
     let variantText = ""
     findSku.options.forEach(option => { variantText += `${option.variantName}:${option.value}  \xa0\xa0\xa0` })
 
@@ -24,14 +24,14 @@ export default function CheckoutItem({ product }) {
     //delete merch
     const deleteMerch = () => {
 
-        axios.delete(`${BasicURL}/${product.shopID.name}/cart/sku/${product.skuID}`, {
-            headers: { Authorization: "Bearer " + token },
-        })
-            .then((e) => {
-                successToast("Merch deleted successfully")
-                updateCart();
-            })
-            .catch(e => errorToast(e.response.data))
+        // axios.delete(`${BasicURL}/${product.shopID.name}/cart/sku/${product.skuID}`, {
+        //     headers: { Authorization: "Bearer " + token },
+        // })
+        //     .then((e) => {
+        //         successToast("Merch deleted successfully")
+        //         updateCart();
+        //     })
+        //     .catch(e => errorToast(e.response.data))
     }
 
 
@@ -43,16 +43,16 @@ export default function CheckoutItem({ product }) {
             return;
         }
 
-        axios.post(`${BasicURL}/cart/sku/${product.skuID}`,
-            { quantity: quantity },
-            {
-                headers: { Authorization: "Bearer " + token },
-            })
-            .then((e) => {
-                successToast("Merch updated successfully")
-                updateCart();
-            })
-            .catch(e => errorToast(e.data.response))
+        // axios.post(`${BasicURL}/cart/sku/${product.skuID}`,
+        //     { quantity: quantity },
+        //     {
+        //         headers: { Authorization: "Bearer " + token },
+        //     })
+        //     .then((e) => {
+        //         successToast("Merch updated successfully")
+        //         updateCart();
+        //     })
+        //     .catch(e => errorToast(e.data.response))
     }
 
 
@@ -72,7 +72,7 @@ export default function CheckoutItem({ product }) {
                 flexDirection="row"
             >
                 <Image
-                    src={product.product.media[0].url}
+                    src={product.Product.media[0].url}
                     alt='product image'
                     w="80px"
                     h="80px"
@@ -88,7 +88,7 @@ export default function CheckoutItem({ product }) {
                         fontSize={{ base: "16px", md: "18px" }}
                         mb="5px"
                     >
-                        {product.product.title}
+                        {product.Product.title}
                     </Text>
 
                     <Text
@@ -97,7 +97,7 @@ export default function CheckoutItem({ product }) {
                         fontSize={{ base: "14px", md: "13px" }}
                         mb="5px"
                     >
-                        {product.product.description}
+                        {product.Product.description}
                     </Text>
                     {(variantText != "") &&
                         <Text

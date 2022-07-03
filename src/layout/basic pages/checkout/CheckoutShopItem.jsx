@@ -4,8 +4,9 @@ import CheckoutItem from "./CheckoutItem"
 
 export default function CheckoutShopItem({ shopItem }) {
 
-    //console.log(shopItem)
-     
+    let totalPrice = 0;
+    shopItem.items.forEach(item => totalPrice += (item.quantity * item.price))
+
     return (<>
         <Box mb="50px">
             <Box
@@ -23,7 +24,7 @@ export default function CheckoutShopItem({ shopItem }) {
                 </Text>
             </Box>
 
-            {shopItem.items.map((item , i) => {
+            {shopItem.items.map((item, i) => {
                 return <CheckoutItem key={i} product={item} />
             })}
 
@@ -34,7 +35,7 @@ export default function CheckoutShopItem({ shopItem }) {
                     color="#fff"
                     fontSize="16px"
                 >
-                    Total cost : $ {shopItem.total}
+                     Total cost : $ {totalPrice}
                 </Text>
                 <Text
                     mt="10px"

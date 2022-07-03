@@ -7,7 +7,6 @@ import axios from "axios";
 export const CartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
-
   const [cart, setCart] = useState(null);
 
   let token = JSON.parse(localStorage.getItem("token"));
@@ -21,23 +20,26 @@ const CartContextProvider = ({ children }) => {
       })
       .then(async (e) => {
         let cart = e.data.data.cart;
-
+        
         //build array of productIDs
         let productsId = cart.items.map((item) => item.productID);
         //send array of productIDs and get array of Products
         let productsArray = await getProductData(productsId);
 
-        // build new cartitems with productsArray
+        // build new cartitems with productsArray and price
         let newCartItems = cart.items.map((item) => {
-          let Product = productsArray.find((p) => p._id == item.productID)
-          return {...item , Product}
+          let Product = productsArray.find((p) => p._id == item.productID);
+          let price = Product.skus.find(sku => sku._id ==  item.skuID).price
+     
+          return { ...item, Product , price:price };
         });
 
         setCart({
-          id:cart._id,
-          status:cart.status,
-          items:newCartItems
-        })
+          id: cart._id,
+          status: cart.status,
+          items: newCartItems,
+        });
+
       })
       .catch((e) => {
         console.log(e.response.data.reason);
@@ -56,8 +58,6 @@ const CartContextProvider = ({ children }) => {
     return results;
   };
 
-  
-
   // firts update when we havent token
   const firstUpdateCart = (tk) => {
     axios
@@ -74,15 +74,15 @@ const CartContextProvider = ({ children }) => {
 
         // build new cartitems with productsArray
         let newCartItems = cart.items.map((item) => {
-          let Product = productsArray.find((p) => p._id == item.productID)
-          return {...item , Product}
+          let Product = productsArray.find((p) => p._id == item.productID);
+          return { ...item, Product };
         });
 
         setCart({
-          id:cart._id,
-          status:cart.status,
-          items:newCartItems
-        })
+          id: cart._id,
+          status: cart.status,
+          items: newCartItems,
+        });
       })
       .catch((e) => {
         console.log(e.response.data.reason);
@@ -94,7 +94,6 @@ const CartContextProvider = ({ children }) => {
     firstUpdateCart,
     cart,
   };
-
 
   return (
     <CartContext.Provider value={contextValues}>

@@ -15,46 +15,44 @@ function Checkout() {
 	const { cart } = useCart();
 	let navigate = useNavigate();
 
-	console.log(cart);
+//	console.log(cartBaseShop);
 
-	const getCheckoutCart = () => {
-		let shopArray = cart.map(item => item.shopID.name)
+
+	// get shops of items
+	const getshops = () => {
+		let shopArray = cart.items.map(item => item.shopName)
 		let shops = [...new Set(shopArray)];
 		return shops
 	}
 
-	const getShipping = () => {
-		let shipping;
-		let shopArray = cart.map(item => item.shopID.name)
-		let shops = [...new Set(shopArray)];
-		shipping = (shops.length * 5)
-		return shipping
-	}
-
+	//get total price of all items
 	const getTotalPrice = () => {
-		let total = cart.map(item => { return (item.price * item.quantity) })
+		let total = cartBaseShop.map( item => { return (item.total + 5) })
 		total = total.reduce((a, b) => a + b, 0)
 		return total
 	}
 
-	// useEffect(() => {
-	// 	if (cart != null) {
-	// 		let newCart = []
-	// 		let shops = getCheckoutCart()
-	// 		shops.map(shopname => {
-	// 			let totalPrice = 0;
-	// 			let items = []
-	// 			cart.forEach(item => {
-	// 				if (item.shopID.name == shopname) {
-	// 					items.push(item)
-	// 					totalPrice += (item.price * item.quantity)
-	// 				}
-	// 			})
-	// 			newCart.push({ shopName: shopname, items: items, total: totalPrice, shipping: 5 })
-	// 		})
-	// 		setCart(newCart)
-	// 	}
-	// }, [cart])
+
+	// build new cart based shop name 
+	useEffect(() => {
+		if (cart != null) {
+			let newCart = []
+			let shops = getshops()
+
+			shops.map(shopname => {
+				let totalPrice = 0;
+				let items = []
+				cart.items.forEach(item => {
+					if (item.shopName == shopname) {
+						items.push(item)
+						totalPrice += (item.price * item.quantity)
+					}
+				})
+				newCart.push({ shopName: shopname, items: items, total: totalPrice, shipping: 5 })
+			})
+			setCart(newCart)
+		}
+	}, [cart])
 
 
 
@@ -86,15 +84,15 @@ function Checkout() {
 					>
 						Check out
 					</Text>
-{/* 									
-					{(cart.items.length > 0) &&
+				 									
+					{(cartBaseShop.length > 0) &&
 						<>
-							{cart.items.map((item , i) => {
-								return <CheckoutShopItem key={i} item={item} />
+							{cartBaseShop.map((shop , i) => {
+								return <CheckoutShopItem key={i} shopItem={shop} />
 							})
 							}
 						</>
-					}  */}
+					}  
 
 					<Flex
 						w="100%"
@@ -109,7 +107,7 @@ function Checkout() {
 								fontSize={{ base: "18px", md: "22px" }}
 								fontWeight="600"
 							>
-								{/* Merchs cost : $ {getTotalPrice()} */}
+								 Merchs cost : $ {getTotalPrice()} 
 							</Text>
 							<Text
 								color="#fff"
@@ -126,7 +124,7 @@ function Checkout() {
 							h={{ base: "40px", md: "40px" }}
 							borderRadius="15px"
 							overflow="hidden"
-							mt="33px"
+							//mt="33px"
 						>
 							<ButtonComponent
 								click={() => { navigate('/address') }}
