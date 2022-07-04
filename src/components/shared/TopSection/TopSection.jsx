@@ -1,12 +1,11 @@
-import "./top-section-component-style.scss"
-import instaIcon from "../../assest/feature/top section/insta.png"
-import discordIcon from "../../assest/feature/top section/discord.png"
-import twitterIcon from "../../assest/feature/top section/twitter.png"
-import webIcon from "../../assest/feature/top section/web.png"
-import profilePic from '../../assest/profile/crashpunks.gif'
+import "./TopSection-style.scss"
+import instaIcon from "../../../assest/icon/insta.png"
+import discordIcon from "../../../assest/icon/discord.png"
+import twitterIcon from "../../../assest/icon/twitter.png"
+import webIcon from "../../../assest/icon/web.png"
 
 
-export default function TopSectionComponent({ pic, shopname, insta, twitter, discord, web }) {
+export default function TopSection({ pic, shopname, insta, twitter, discord, web }) {
 
     return (<>
         <div className="top-section-wrapper">

@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import Loading from "../../components/features/loading/Loading"
 import Collection from "../../components/collection component/collection-component"
-import TopSectionComponent from "../../components/top section component/top-section-component"
+import TopSection from "../../components/shared/TopSection/TopSection"
 
 
 export default function ShopPage() {
@@ -42,7 +42,7 @@ export default function ShopPage() {
         {(profile == null) ?
             <Loading />
             :
-            <TopSectionComponent
+            <TopSection
                 pic={profile.logo}
                 shopname={profile.shopName}
                 insta={(profile.instagramUrl) ? profile.instagramUrl : ""}

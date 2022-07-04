@@ -1,9 +1,9 @@
 import profilePic from '../../../assest/profile/crashpunks.gif'
 import "./ProfileTopSection.scss"
-import instaIcon from "../../../assest/feature/top section/insta.png"
-import discord from "../../../assest/feature/top section/discord.png"
-import twitter from "../../../assest/feature/top section/twitter.png"
-import web from "../../../assest/feature/top section/web.png"
+import instaIcon from "../../../assest/icon/insta.png"
+import discordIcon from "../../../assest/icon/discord.png"
+import twitterIcon from "../../../assest/icon/twitter.png"
+import webIcon from "../../../assest/icon/web.png"
 
 export default function ProfileTopic() {
 

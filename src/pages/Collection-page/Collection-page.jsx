@@ -2,7 +2,7 @@ import "./Collection-page-style.scss"
 import "react-toastify/dist/ReactToastify.css";
 
 import Loading from "../../components/features/loading/Loading";
-import Product from "../../components/product component/product-component";
+import Product from "../../components/shared/Product/Product";
 import axios from "axios";
 
 import { useParams } from "react-router-dom";

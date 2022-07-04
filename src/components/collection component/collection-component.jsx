@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 
-import Product from "../product component/product-component"
+import Product from "../shared/Product/Product"
 export default function Collection({ collection , shopname}) {
 
     return (
