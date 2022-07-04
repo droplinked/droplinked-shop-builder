@@ -21,20 +21,23 @@ export default function PageWrapper({ children }) {
 
     return (
      
+
        
         <Flex
          flexDirection='column'
          overflowX='hidden'
+         w='100%'
          >  
                 <MainHeader />
             <Box
-                w="100vw"
+                w="100%"
                 h="auto"
                 minH="100vh"
                 bgColor='#222'
                 pt='50px'
                 pb='100px'
                 m='0px'
+                 overflowX='hidden'
             >
                 <Outlet />
             </Box>      

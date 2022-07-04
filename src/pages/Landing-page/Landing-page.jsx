@@ -150,7 +150,7 @@ export default function LandingPage() {
 
             {/* image */}
             <div className="child">
-                <img className="ratio ratio-1x1 img-r" src={figmaImage1} alt="" />
+                <img className="ratio ratio-1x1 " src={figmaImage1} alt="" />
             </div>
             {/* image */}
         </div>
