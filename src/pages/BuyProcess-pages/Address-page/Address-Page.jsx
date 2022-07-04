@@ -5,7 +5,6 @@ import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../sevices/hooks/useToastify"
 import { useCart } from "../../../sevices/hooks/useCart"
 
-import ContentWrapper from "../../../components/Structure/content-wrapper/Content-wrapper-component";
 import AddressForm from "./AddressForm";
 import AddressComponent from "../../../components/shared/Address/address-component"
 import axios from "axios";
@@ -57,7 +56,17 @@ function AddressPage() {
 
 
 	return (
-		<ContentWrapper>
+		<Flex
+		justifyContent='center'
+		alignItems='center'
+		w='100%'
+		h='auto'
+		>
+			<Box 
+			w='100%'
+			maxW='960px'
+			m='auto'
+			>
 
 			{(addressList == null)
 				?
@@ -98,8 +107,8 @@ function AddressPage() {
 
 			}
 
-
-		</ContentWrapper>
+</Box>
+		</Flex>
 	);
 }
 

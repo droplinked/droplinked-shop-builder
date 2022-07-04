@@ -3,7 +3,6 @@ import "./RuleSet-page-style.scss"
 
 import axios from "axios"
 import BasicButton from "../../../components/features/buttons components/basic button/BasicButton";
-import ContentWrapper from "../../../components/Structure/content-wrapper/Content-wrapper-component"
 import RuleItem from "./rule item component/Rule-item-component"
 import AddRule from "./add rule modal/Addrule.modal.component"
 import Loading from "../../../components/shared/loading/Loading"
@@ -33,7 +32,7 @@ function RuleSetPage() {
 	}
 
 	return (<>
-		<ContentWrapper>
+		<div  className="d-flex justify-content-center align-items-center w-100 h-auto " style={{maxWidth:"980px" , margin:"auto"}}>
 			<div className="rule-set-page">
 				<div className="title">Rulesets</div>
 				{(rules) && <div className="rule-number">{rules.length} Rule sets</div>}
@@ -51,7 +50,7 @@ function RuleSetPage() {
 				}
 
 			</div>
-		</ContentWrapper>
+		</div>
 		{addRuleModal && <AddRule toggle={modalToggle} />}
 	</>
 	);
