@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import AutoWidthButton from "../../../components/features/buttons components/autow basic button/B-button-component"
 import CollectionComponent from "./Collection-component/Collection-component"
-import BadicModal from "../../../components/Modal/basic modal component/Basic-modal-component"
+import ModalContainer from "../../../components/Modal/modal-container/modal-container"
 import AddCollectionPage from "./add collection page/Add-collection-component"
 import Loading from "../../../components/shared/loading/Loading"
 import EditCollectionModal from "./edit collection modal/edit-collection-modal-component"
@@ -101,14 +101,14 @@ export default function CollectionMainPage({ name }) {
             }
         </div>
         {Modal &&
-            (<BadicModal>
+            (<ModalContainer>
                 <AddCollectionPage toggle={ToggleModal} submitFunc={PostCollection} />
-            </BadicModal>)
+            </ModalContainer>)
         }
         {EditModal &&
-            (<BadicModal>
+            (<ModalContainer>
                 <EditCollectionModal toggle={() => { setEditModal(false); renFunc() }} submitFunc={updateCollection} defaultValue={editRef.current} />
-            </BadicModal>)
+            </ModalContainer>)
         }
 
         <ToastContainer

@@ -4,7 +4,7 @@ import ProductLarge from "../../../../components/features/product components/pro
 import editIcon from '../../../../assest/icon/icons8-edit.svg'
 import deleteIcon from '../../../../assest/icon/icons8-delete.svg'
 import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component"
-import BadicModal from "../../../../components/Modal/basic modal component/Basic-modal-component"
+import ModalContainer from "../../../../components/Modal/modal-container/modal-container"
 import EditCollectionModal from "../edit collection modal/edit-collection-modal-component"
 
 import { toastValue } from "../../../../sevices/context/Toast-context"
@@ -80,9 +80,9 @@ export default function CollectionComponent({ id, name, productsArray, edit, ren
             />
         }
         {editModal &&
-            (<BadicModal>
+            (<ModalContainer>
                 <EditCollectionModal toggle={toggleEdit} submitFunc={submitEdit} />
-            </BadicModal>)
+            </ModalContainer>)
         }
     </>
     )

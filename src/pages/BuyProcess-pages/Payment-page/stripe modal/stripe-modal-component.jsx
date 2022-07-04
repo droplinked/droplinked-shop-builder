@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe, PaymentElement } from '@stripe/react-stripe-js';
 
-import BadicModal from "../../../../components/Modal/basic modal component/Basic-modal-component"
+import ModalContainer from "../../../../components/Modal/modal-container/modal-container"
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 
 const StripeComponent = () => {
@@ -37,12 +37,12 @@ const StripeComponent = () => {
     }
 
     return (
-        <BadicModal>
+        <ModalContainer>
             <form onSubmit={handleSubmit}>
                 <PaymentElement />
                 <BasicButton mt='40px' p="12px 0px" >submit</BasicButton>
             </form>
-        </BadicModal>
+        </ModalContainer>
     )
 }
 
