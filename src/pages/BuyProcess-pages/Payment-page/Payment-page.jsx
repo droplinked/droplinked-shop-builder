@@ -9,7 +9,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useCart } from "../../../sevices/hooks/useCart"
 
-import ButtonComponent from "../../../components/button component/Button-component";
+import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import StripeComponent from "./stripe modal/stripe-modal-component"
 import Loading from "../../../components/features/loading/Loading"
 

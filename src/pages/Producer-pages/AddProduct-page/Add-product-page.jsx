@@ -2,7 +2,7 @@ import "./Add-product-page-style.scss"
 
 import BasicInput from "../../../components/features/input components/basic input component/Basic-component"
 import BasicDropDown from "../../../components/features/input components/basic dropdown/Basic-dropdown-component"
-import InputImageComponent from "../../../components/input image component/Input-image-component"
+import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
 import CheckBoxBasic from "../../../components/features/input components/basic checkbox component/CheckBox-component"
 import VariantItem from "../components/variant item component/Variant-item-component"
 import BasicButton from "../../../components/features/buttons components/basic button/BasicButton"
@@ -161,7 +161,7 @@ function AddProductPage() {
                 <BasicDropDown valArray={collectionList} place={"Choose collection"} cnhg={changeCollection} />
             </dir>
             <div className="mt-5 mb-3 w-100 d-flex justify-content-center align-items-center">
-                <InputImageComponent setState={setImages} state={images} />
+                <InputImagesGroup setState={setImages} state={images} />
             </div>
             <div className="select-variant-wrap mt-4">
                 <p>Choose options : </p>

@@ -1,18 +1,18 @@
-import "./Collection-wrapper-style.scss"
+import "./Collection-component-style.scss"
 
-import ProductLarge from "../features/product components/product component large/ProductLarge"
-import editIcon from '../../assest/icon/icons8-edit.svg'
-import deleteIcon from '../../assest/icon/icons8-delete.svg'
-import SmallModal from "../Modal/little modal/Small-modal-component"
-import BadicModal from "../Modal/basic modal component/Basic-modal-component"
-import EditCollectionModal from "../../pages/Producer-pages/Collection-page/edit collection modal/edit-collection-modal-component"
+import ProductLarge from "../../../../components/features/product components/product component large/ProductLarge"
+import editIcon from '../../../../assest/icon/icons8-edit.svg'
+import deleteIcon from '../../../../assest/icon/icons8-delete.svg'
+import SmallModal from "../../../../components/Modal/little modal/Small-modal-component"
+import BadicModal from "../../../../components/Modal/basic modal component/Basic-modal-component"
+import EditCollectionModal from "../edit collection modal/edit-collection-modal-component"
 
-import { toastValue } from "../../sevices/context/Toast-context"
-import { DeleteWithToken } from "../../sevices/functoinal-service/CallApiService"
+import { toastValue } from "../../../../sevices/context/Toast-context"
+import { DeleteWithToken } from "../../../../sevices/functoinal-service/CallApiService"
 import { Link } from "react-router-dom"
 import { useState, useContext } from "react"
 
-export default function CollectionWrapper({ id, name, productsArray, edit, render, editable }) {
+export default function CollectionComponent({ id, name, productsArray, edit, render, editable }) {
 
 
     const [deleteModal, setDeleteModal] = useState(false)

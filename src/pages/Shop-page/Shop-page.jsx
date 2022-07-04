@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 
 import axios from "axios"
 import Loading from "../../components/features/loading/Loading"
-import Collection from "../../components/collection component/collection-component"
+import Collection from "../../components/shared/Collection/collection-component"
 import TopSection from "../../components/shared/TopSection/TopSection"
 
 

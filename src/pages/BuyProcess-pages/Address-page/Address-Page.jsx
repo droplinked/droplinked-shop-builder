@@ -7,7 +7,7 @@ import { useCart } from "../../../sevices/hooks/useCart"
 
 import ContentWrapper from "../../../components/Structure/content-wrapper/Content-wrapper-component";
 import AddressForm from "./AddressForm";
-import AddressComponent from "../../../components/Address component/address-component"
+import AddressComponent from "../../../components/shared/Address/address-component"
 import axios from "axios";
 import Loading from "../../../components/features/loading/Loading"
 

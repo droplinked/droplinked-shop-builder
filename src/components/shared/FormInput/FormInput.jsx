@@ -6,7 +6,7 @@ import {
     FormHelperText,
 } from '@chakra-ui/react'
 
-export default function FormInputComponent({value , changeValue , label, type , ...otherProps}) {
+export default function FormInput({value , changeValue , label, type , ...otherProps}) {
 
     // /isInvalid={isError}
     return (

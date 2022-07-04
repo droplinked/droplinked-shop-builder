@@ -2,7 +2,7 @@ import { Flex, Box, Text } from '@chakra-ui/react'
 import { useState } from 'react';
 
 import InputImageComponent from '../../../components/single-input-image-component/single-input-image-component'
-import FormInputComponent from '../../../components/form-input-component/Form-input-component'
+import FormInput from '../../../components/shared/FormInput/FormInput'
 
 export default function PersonalInfoComponent() {
     const profile = JSON.parse(localStorage.getItem("profile"));
@@ -38,14 +38,14 @@ export default function PersonalInfoComponent() {
                 alignItems='center'
             >
                 <Box w="45%">
-                    <FormInputComponent label={"First Name"} value={firstName} changeValue={changeFirstName} />
+                    <FormInput label={"First Name"} value={firstName} changeValue={changeFirstName} />
                 </Box>
                 <Box w="45%">
-                    <FormInputComponent label={"Last Name"} value={lastName} changeValue={changeLastName} />
+                    <FormInput label={"Last Name"} value={lastName} changeValue={changeLastName} />
                 </Box>
             </Flex>
-            <FormInputComponent mt='30px' label={"Email"} value={email} />
-            <FormInputComponent mt='30px' label={"Phone Number"} value={phoneNumber} changeValue={changePhonenumber}  type={'number'}/>
+            <FormInput mt='30px' label={"Email"} value={email} />
+            <FormInput mt='30px' label={"Phone Number"} value={phoneNumber} changeValue={changePhonenumber}  type={'number'}/>
         </Text>
     )
 } 

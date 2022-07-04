@@ -1,17 +1,16 @@
-import "./Input-image-component.scss"
+import "./Input-images-component.scss"
 
 import axios from "axios"
-import dltImg from "../../assest/icon/icons8-multiply-100.png"
+import dltImg from "../../../assest/icon/icons8-multiply-100.png"
 
 import { useRef, useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
-export default function InputImageComponent({ setState, state }) {
+export default function InputImagesGroup({ setState, state }) {
 
     const [loading, setLoading] = useState(false);
     const fileRef = useRef(null);
-
 
     const changeImage = (e) => {
       

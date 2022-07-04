@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react"
 
-export default function ButtonComponent({ children,click, ...otherprops }) {
+export default function BasicButton({ children,click, ...otherprops }) {
 
     return (
         <Button

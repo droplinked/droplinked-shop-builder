@@ -4,7 +4,7 @@ import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../sevices/hooks/useCart"
 
-import ButtonComponent from "../../../components/button component/Button-component"
+import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import CheckoutShopItem from "./CheckoutShopItem"
 import Loading from "../../../components/features/loading/Loading"
 
@@ -126,9 +126,9 @@ function CheckoutPage() {
 							overflow="hidden"
 							//mt="33px"
 						>
-							<ButtonComponent
+							<BasicButton
 								click={() => { navigate('/address') }}
-							>Checkout</ButtonComponent>
+							>Checkout</BasicButton>
 						</Box>
 					</Flex>
 				</>
