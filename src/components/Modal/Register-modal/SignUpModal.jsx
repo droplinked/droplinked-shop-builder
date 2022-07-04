@@ -1,7 +1,7 @@
 import "./SignUpModal.scss"
 
-import closePng from "../../../../assest/feature/home page images/Close.png"
-import MediumModal from "../../medium modal component/medium-modal-component"
+import closePng from "../../../assest/feature/home page images/Close.png"
+import ModalContainer from "../modal-container/modal-container"
 import SignupProducer from "./signup producer/signup-producer-component"
 import SignupCustomer from "./signup Customer/signup-customer-component"
 
@@ -13,7 +13,7 @@ export default function SignUpModal({ close, switchToggle, shopname }) {
     const params = useParams()
 
     return (
-        <MediumModal>
+        <ModalContainer close={close}>
             <div className="register-modal-container">
                 <div className="title">Create a free account
                     <img className="close-btn" src={closePng} alt="" onClick={close} />
@@ -25,6 +25,6 @@ export default function SignUpModal({ close, switchToggle, shopname }) {
                     <SignupProducer close={close} shopname={shopname} switchToggle={switchToggle} />
                 }
             </div>
-        </MediumModal>
+        </ModalContainer>
     )
 }

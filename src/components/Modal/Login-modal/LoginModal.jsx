@@ -1,15 +1,16 @@
 import "./LoginModal.style.scss"
 
 import axios from 'axios';
-import closePng from "../../../../assest/feature/home page images/Close.png"
+import closePng from "../../../assest/feature/home page images/Close.png"
+import ModalContainer from "../modal-container/modal-container"
 
-import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
+import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useForm } from "react-hook-form";
-import { useState, useEffect, useContext } from "react"
-import { toastValue } from "../../../../sevices/context/Toast-context"
-import { Link, useNavigate } from "react-router-dom";
-import { useProfile } from "../../../../sevices/hooks/useProfile"
-import { useCart } from "../../../../sevices/hooks/useCart"
+import { useState,  useContext } from "react"
+import { toastValue } from "../../../sevices/context/Toast-context"
+import {  useNavigate } from "react-router-dom";
+import { useProfile } from "../../../sevices/hooks/useProfile"
+import { useCart } from "../../../sevices/hooks/useCart"
 
 
 export default function LoginModal({ close, switchToggle, switchReset }) {
@@ -86,46 +87,46 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
     };
 
     return (<>
-        <div className="login-modal-wraper">
-            <div className="login-modal-body">
-                <div className="title">Login
-                    <img className="close-btn" src={closePng} alt="" onClick={close} />
+        <ModalContainer close={close}>
+            <div className="login-modal-component">
+            <div className="title">Login
+                <img className="close-btn" src={closePng} alt="" onClick={close} />
+            </div>
+            <form onSubmit={handleSubmit(onSubmit)}
+                style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>
+
+                <div className="input-label">
+                    <label>Email</label>
+                    <input type="email" placeholder="Example@email.com"
+                        {...register("email", { required: true })} />
                 </div>
-                <form onSubmit={handleSubmit(onSubmit)}
-                    style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>
+                {errors.email?.type === 'required' && <span className="signup-modal-error">email is required</span>}
 
-                    <div className="input-label">
-                        <label>Email</label>
-                        <input type="email" placeholder="Example@email.com"
-                            {...register("email", { required: true })} />
-                    </div>
-                    {errors.email?.type === 'required' && <span className="signup-modal-error">email is required</span>}
-
-                    <div className="input-label">
-                        <label >Password</label>
-                        <input type="password" placeholder="Password"
-                            {...register("password", { required: true })} />
-                    </div>
-                    {errors.password?.type === 'required' && <span className="signup-modal-error">password is required</span>}
-                    <button className="submit-login-modal" type="submit" disabled={(loading) ? true : false}
-                        style={{ backgroundColor: `${(loading == true) ? "#4A4A4A" : ""}` }}
-                    >Login</button>
-                    {/* {(loading)
+                <div className="input-label">
+                    <label >Password</label>
+                    <input type="password" placeholder="Password"
+                        {...register("password", { required: true })} />
+                </div>
+                {errors.password?.type === 'required' && <span className="signup-modal-error">password is required</span>}
+                <button className="submit-login-modal" type="submit" disabled={(loading) ? true : false}
+                    style={{ backgroundColor: `${(loading == true) ? "#4A4A4A" : ""}` }}
+                >Login</button>
+                {/* {(loading)
                         ?
                         <input className="submit-login-modal" value="Login" style={{ backgroundColor: "#b3b3b3", outline: "none" }} />
                         :
                         <button className="submit-login-modal"  type="submit" >Login</button>
                     } */}
 
-                </form>
+            </form>
 
-                <div className="text mt-4" >
-                    <p><a onClick={switchReset}>Forgot password</a>?</p>
-                </div>
-                <div className="text mt-2">
-                    <p>Don’t have an account? <a onClick={switchToggle}>Register now</a>!</p>
-                </div>
+            <div className="text mt-4" >
+                <p><a onClick={switchReset}>Forgot password</a>?</p>
             </div>
-        </div>
+            <div className="text mt-2">
+                <p>Don’t have an account? <a onClick={switchToggle}>Register now</a>!</p>
+            </div>
+            </div>
+        </ModalContainer>
     </>)
 }

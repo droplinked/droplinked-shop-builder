@@ -7,30 +7,8 @@ input:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-.login-modal-wraper {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.4);
-  padding-bottom: 50px;
-  .login-modal-body {
-    box-sizing: border-box;
-    height: auto;
-    margin: auto;
-    width: 500px;
-    background: #353536;
-    box-shadow: 0px 2px 30px rgba(85, 88, 90, 0.1);
-    border-radius: 24px;
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-    padding: 20px 40px 40px 40px;
+.login-modal-component {
+
 
     .title {
       height: auto;
@@ -159,7 +137,7 @@ input:-webkit-autofill:focus {
       color: red;
     }
   }
-}
+
 
 @-webkit-keyframes animatetop {
   from {
@@ -184,15 +162,9 @@ input:-webkit-autofill:focus {
 }
 
 @media only screen and (max-width: 768px) {
-  .login-modal-wraper {
-    // padding-top: 100px;
-    // padding-bottom: 50px;
-    width: 100vw;
-    padding: 30px 30px 30px 30px;
-    .login-modal-body {
-      margin: auto;
-      width: 100%;
-      padding: 20px 20px 60px 20px;
+  .login-modal-component {
+
+
       .title {
         font-size: 20px;
         .close-btn {
@@ -240,4 +212,4 @@ input:-webkit-autofill:focus {
       }
     }
   }
-}
+

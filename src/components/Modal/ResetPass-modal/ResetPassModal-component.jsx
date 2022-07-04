@@ -2,14 +2,14 @@ import "./ResetPassModal-style.scss"
 
 import { useState, useRef, useContext } from "react"
 
-import { PostWithoutToken } from "../../../../sevices/functoinal-service/CallApiService"
-import { toastValue } from "../../../../sevices/context/Toast-context"
+import { PostWithoutToken } from "../../../sevices/functoinal-service/CallApiService"
+import { toastValue } from "../../../sevices/context/Toast-context"
 
 
-import MediumModal from "../../medium modal component/medium-modal-component"
-import closePng from "../../../../assest/feature/home page images/Close.png"
-import BasicInput from "../../../features/input components/basic input component/Basic-component"
-import AutoWidthButton from "../../../features/buttons components/autow basic button/B-button-component"
+import ModalContainer from "../modal-container/modal-container"
+import closePng from "../../../assest/feature/home page images/Close.png"
+import BasicInput from "../../features/input components/basic input component/Basic-component"
+import AutoWidthButton from "../../features/buttons components/autow basic button/B-button-component"
 
 
 
@@ -59,7 +59,7 @@ export default function ResetPassModal({ backToLogin, close }) {
     }
 
     return (
-        <MediumModal>
+        <ModalContainer close={close}>
             <div className="ResetPadd-modal-wrapper">
                 <img className="cls-img" src={closePng} alt="" onClick={close} />
                 <div className="title">Reset your password</div>
@@ -75,6 +75,6 @@ export default function ResetPassModal({ backToLogin, close }) {
                 </div>
                 <div className="sp-text" onClick={backToLogin}>Back to login</div>
             </div>
-        </MediumModal>
+        </ModalContainer>
     )
 }

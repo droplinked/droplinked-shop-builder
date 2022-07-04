@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 
 import HeaderItem from "../header button component/Header-btn-component"
-import SignUpModal from "../../../Modal/authen/register/SignUpModal"
-import LoginModal from "../../../Modal/authen/login/LoginModal"
-import ResetPassModal from "../../../Modal/authen/reset pass/ResetPassModal-component";
+import SignUpModal from "../../../Modal/Register-modal/SignUpModal"
+import LoginModal from "../../../Modal/Login-modal/LoginModal"
+import ResetPassModal from "../../../Modal/ResetPass-modal/ResetPassModal-component";
 import WalletButton from "../wallet button/wallet-button-component"
 
 export default function DefaulHeader() {

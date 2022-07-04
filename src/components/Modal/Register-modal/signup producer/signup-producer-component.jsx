@@ -6,8 +6,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react"
 import { useForm } from "react-hook-form";
-import { PostWithoutToken } from "../../../../../sevices/functoinal-service/CallApiService"
-import { toastValue } from "../../../../../sevices/context/Toast-context"
+import { PostWithoutToken } from "../../../../sevices/functoinal-service/CallApiService"
+import { toastValue } from "../../../../sevices/context/Toast-context"
 
 export default function SignupProducer({ close, shopname, switchToggle }) {
 

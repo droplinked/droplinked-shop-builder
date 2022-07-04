@@ -2,12 +2,12 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useToasty } from "../../../../../sevices/hooks/useToastify"
-import { BasicURL } from "../../../../../sevices/functoinal-service/CallApiService";
-import { useProfile } from "../../../../../sevices/hooks/useProfile"
+import { useToasty } from "../../../../sevices/hooks/useToastify"
+import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService";
+import { useProfile } from "../../../../sevices/hooks/useProfile"
 
 import axios from "axios";
-import AutoWidthButton from "../../../../features/buttons components/autow basic button/B-button-component"
+import AutoWidthButton from "../../../features/buttons components/autow basic button/B-button-component"
 
 
 export default function SignupCustomer({ switchToggle, close }) {

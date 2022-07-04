@@ -6,9 +6,9 @@ import {  BasicURL } from "../../sevices/functoinal-service/CallApiService"
 
 import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"
 import alertIcon from "../../assest/feature/home page images/alert.png"
-import SignUpModal from "../../components/Modal/authen/register/SignUpModal"
-import LoginModal from "../../components/Modal/authen/login/LoginModal"
-import ResetPassModal from "../../components/Modal/authen/reset pass/ResetPassModal-component"
+import SignUpModal from "../../components/Modal/Register-modal/SignUpModal"
+import LoginModal from "../../components/Modal/Login-modal/LoginModal"
+import ResetPassModal from "../../components/Modal/ResetPass-modal/ResetPassModal-component"
 import axios from "axios"
 
 
