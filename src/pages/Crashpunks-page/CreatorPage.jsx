@@ -3,7 +3,7 @@ import ProfileTopSection from "./crashpunks top section/ProfileTopSection"
 import GalleryCarousel from "./gallery carousel/GalleryCarousel"
 
 import axios from "axios"
-import Collection from "../../components/features/collection/Collection"
+import Collection from "./collection/Collection"
 
 
 function CreatorPage() {
