@@ -26,7 +26,6 @@
 		"process": "^0.11.10",
 		"react": "^17.0.2",
 		"react-bootstrap": "^2.2.1",
-		"react-credit-cards": "^0.8.3",
 		"react-dom": "^17.0.2",
 		"react-elastic-carousel": "^0.11.5",
 		"react-hook-form": "^7.28.1",
@@ -41,7 +40,7 @@
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
-		"start": "react-app-rewired start",
+		"start": "react-scripts start",
 		"build": "react-app-rewired build",
 		"test": "react-app-rewired test",
 		"eject": "react-app-rewired eject"
