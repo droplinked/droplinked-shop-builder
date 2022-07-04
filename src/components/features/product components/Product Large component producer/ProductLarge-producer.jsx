@@ -1,5 +1,4 @@
 import "./ProductLarge-producer.scss"
-import savebtn from "../../../../assest/feature/product/savebtn.png"
 import { Link } from "react-router-dom";
 import { useState } from "react"
 import { useProfile } from "../../../../sevices/hooks/useProfile"

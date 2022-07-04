@@ -5,7 +5,7 @@ import editIcon from '../../assest/icon/icons8-edit.svg'
 import deleteIcon from '../../assest/icon/icons8-delete.svg'
 import SmallModal from "../Modal/little modal/Small-modal-component"
 import BadicModal from "../Modal/basic modal component/Basic-modal-component"
-import EditCollectionModal from "../../layout/Producer pages/collection pages/edit collection modal/edit-collection-modal-component"
+import EditCollectionModal from "../../pages/Producer-pages/Collection-page/edit collection modal/edit-collection-modal-component"
 
 import { toastValue } from "../../sevices/context/Toast-context"
 import { DeleteWithToken } from "../../sevices/functoinal-service/CallApiService"
