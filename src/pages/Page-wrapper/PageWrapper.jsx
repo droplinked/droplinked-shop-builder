@@ -24,15 +24,17 @@ export default function PageWrapper({ children }) {
             w="100vw"
             h="100vh"
             bgColor='#222'
+            overflowX='hidden'
         >
             <MainHeader />
             <Box
-            w='100%'
+            w='100vw'
+            minH='95%'
             h="auto"
             bgColor='#222'
-            px={{base:'20px' , md:"80px"}}
-            py='20px'
-            mt='50px'
+           
+         //   pt='50px'
+       //     pb='20px'
             >
                 <Outlet />
             </Box>
