@@ -1,0 +1,56 @@
+.ims-select-wrapper {
+    width: 100%;
+    height: 100%;
+  padding:0px 10px;
+    & .header {
+      width: 100%;
+      font-family: "AvenirNext";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 26px;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    & .ims-btn {
+      margin: 15px auto;
+      font-family: "AvenirNext";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      color: #fff;
+      border: 2px solid #b3b3b3;
+      padding: 13px 16px;
+      border-radius: 8px;
+      width: 200px;
+    }
+    & .ims-checked-btn {
+      background-color:  #8053FF;;
+      border:none;
+    }
+    & .ims-unchecked-btn {
+      background-color: transparent;
+      border: 2px solid #b3b3b3;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+      .ims-select-wrapper {
+          width: 100%;
+          height: 100%;
+          padding:30px 10px;
+          & .header {
+            width: 100%;
+            font-size: 16px;
+          }
+        
+          & .ims-btn {
+            font-size: 16px;
+            padding: 13px 16px 10px 16px;
+            width: 100px;
+          }
+        }
+  }
+  
+  

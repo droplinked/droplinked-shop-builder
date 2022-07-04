@@ -1,7 +1,5 @@
 import "./HomeWrapper.scss"
 
-import MainHeader from "../../features/header/MainHeader"
-import Footer from "../../features/footer/Footer"
 
 import { Outlet  } from "react-router-dom";
 import { useCart } from "../../../sevices/hooks/useCart"
@@ -20,11 +18,11 @@ function HomeWrapper({ children }) {
     },[])
 
     return (<>
-        <MainHeader />
+     
         <div className="main-wrapper">
             <Outlet />
         </div>
-        <Footer />
+      
     </>)
 }
 
