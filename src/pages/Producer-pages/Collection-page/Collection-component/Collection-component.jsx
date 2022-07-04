@@ -3,7 +3,7 @@ import "./Collection-component-style.scss"
 import ProductLarge from "../../../../components/features/product components/product component large/ProductLarge"
 import editIcon from '../../../../assest/icon/icons8-edit.svg'
 import deleteIcon from '../../../../assest/icon/icons8-delete.svg'
-import SmallModal from "../../../../components/Modal/little modal/Small-modal-component"
+import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component"
 import BadicModal from "../../../../components/Modal/basic modal component/Basic-modal-component"
 import EditCollectionModal from "../edit collection modal/edit-collection-modal-component"
 

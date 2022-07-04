@@ -1,7 +1,7 @@
 import "./Rule-item-style.scss"
 import EditRule from "../edit rule modal/Edit.Rule.component"
 import { useState } from "react"
-import SmallModal from "../../../../components/Modal/little modal/Small-modal-component"
+import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component"
 import axios from "axios"
 import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../../sevices/hooks/useToastify"

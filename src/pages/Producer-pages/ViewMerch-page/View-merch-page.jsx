@@ -9,7 +9,7 @@ import AddVariantForm from "../components/add variant form/Add-variantForm-compo
 import Loading from "../../../components/shared/loading/Loading";
 import DropDownPairValId from "../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
 import AutoWidthButton from "../../../components/features/buttons components/autow basic button/B-button-component"
-import SmallModal from "../../../components/Modal/little modal/Small-modal-component"
+import SmallModal from "../../../components/Modal/Small-modal/Small-modal-component"
 
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService";
 import { useEffect, useState } from "react";
