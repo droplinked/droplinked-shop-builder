@@ -1,12 +1,11 @@
 import "./droplink-ims-page.scss"
 
 import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
-import SeachBox from "../../../../components/features/search box/Search-box-component"
+import SeachBox from "../search box/Search-box-component"
 import ProductSmallWrapper from "../../../../components/features/product components/product small wrapper/Product-Small-wrapper"
 import ProductLargeProducer from "../../../../components/features/product components/Product Large component producer/ProductLarge-producer"
 import { useState } from "react"
 import { Link } from "react-router-dom";
-
 
 
 export default function DroplinkedImsPage({ products }) {
