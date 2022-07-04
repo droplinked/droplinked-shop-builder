@@ -1,7 +1,7 @@
 import "./Collection-page-style.scss"
 import "react-toastify/dist/ReactToastify.css";
 
-import Loading from "../../components/features/loading/Loading";
+import Loading from "../../components/shared/loading/Loading";
 import Product from "../../components/shared/Product/Product";
 import axios from "axios";
 

@@ -3,7 +3,7 @@ import { toastValue } from "../../sevices/context/Toast-context"
 import { useParams, useNavigate } from "react-router-dom";
 import { PostWithoutToken } from "../../sevices/functoinal-service/CallApiService"
 
-import Loading from "../../components/features/loading/Loading"
+import Loading from "../../components/shared/loading/Loading"
 
 export default function EmailVerifyPage() {
 

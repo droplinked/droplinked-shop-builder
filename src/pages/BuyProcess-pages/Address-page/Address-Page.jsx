@@ -9,7 +9,7 @@ import ContentWrapper from "../../../components/Structure/content-wrapper/Conten
 import AddressForm from "./AddressForm";
 import AddressComponent from "../../../components/shared/Address/address-component"
 import axios from "axios";
-import Loading from "../../../components/features/loading/Loading"
+import Loading from "../../../components/shared/loading/Loading"
 
 function AddressPage() {
 

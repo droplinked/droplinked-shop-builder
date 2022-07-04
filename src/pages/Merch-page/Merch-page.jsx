@@ -10,7 +10,7 @@ import { checkRules } from "../../sevices/functoinal-service/NFTcheck"
 import { useCart } from "../../sevices/hooks/useCart"
 
 import axios from "axios"
-import Loading from "../../components/features/loading/Loading";
+import Loading from "../../components/shared/loading/Loading";
 import AutoWidthButton from "../../components/features/buttons components/autow basic button/B-button-component";
 import plus from "../../assest/feature/buy product/plusIcon.png"
 import minus from "../../assest/feature/buy product/minusIcon.png"

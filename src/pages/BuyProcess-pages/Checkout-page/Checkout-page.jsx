@@ -6,7 +6,7 @@ import { useCart } from "../../../sevices/hooks/useCart"
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import CheckoutShopItem from "./CheckoutShopItem"
-import Loading from "../../../components/features/loading/Loading"
+import Loading from "../../../components/shared/loading/Loading"
 
 function CheckoutPage() {
 

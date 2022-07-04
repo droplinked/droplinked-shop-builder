@@ -6,7 +6,7 @@ import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-
 import CheckBoxBasic from "../../../components/features/input components/basic checkbox component/CheckBox-component";
 import VariantItem from "../components/variant item component/Variant-item-component"
 import AddVariantForm from "../components/add variant form/Add-variantForm-component"
-import Loading from "../../../components/features/loading/Loading";
+import Loading from "../../../components/shared/loading/Loading";
 import DropDownPairValId from "../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
 import AutoWidthButton from "../../../components/features/buttons components/autow basic button/B-button-component"
 import SmallModal from "../../../components/Modal/little modal/Small-modal-component"

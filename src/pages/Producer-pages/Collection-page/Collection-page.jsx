@@ -5,7 +5,7 @@ import AutoWidthButton from "../../../components/features/buttons components/aut
 import CollectionComponent from "./Collection-component/Collection-component"
 import BadicModal from "../../../components/Modal/basic modal component/Basic-modal-component"
 import AddCollectionPage from "./add collection page/Add-collection-component"
-import Loading from "../../../components/features/loading/Loading"
+import Loading from "../../../components/shared/loading/Loading"
 import EditCollectionModal from "./edit collection modal/edit-collection-modal-component"
 
 import {  useNavigate } from "react-router-dom";

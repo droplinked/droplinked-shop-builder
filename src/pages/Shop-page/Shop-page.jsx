@@ -5,7 +5,7 @@ import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
 import { useParams } from "react-router-dom"
 
 import axios from "axios"
-import Loading from "../../components/features/loading/Loading"
+import Loading from "../../components/shared/loading/Loading"
 import Collection from "../../components/shared/Collection/collection-component"
 import TopSection from "../../components/shared/TopSection/TopSection"
 

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { PostApi, GetApiWithAuth , BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import AutoWidthButton from "../../../../components/features/buttons components/autow basic button/B-button-component"
-import Loading from "../../../../components/features/loading/Loading"
+import Loading from "../../../../components/shared/loading/Loading"
 import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
 import axios from "axios"
 import { useToasty } from "../../../../sevices/hooks/useToastify"

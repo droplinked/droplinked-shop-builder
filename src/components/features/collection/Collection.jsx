@@ -2,7 +2,7 @@ import "./Collection.scss"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import Loading from "../loading/Loading"
+import Loading from "../../shared/loading/Loading"
 import ShopifyProductLarge from "../product components/shopify product component/shopify-product-component"
 
 

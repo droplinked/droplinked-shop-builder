@@ -4,7 +4,6 @@ import axios from 'axios';
 import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
 import { Link } from "react-router-dom";
 import { useState } from "react"
-import Loading from "../../components/features/loading/Loading"
 
 export default function ThankForRegisterPage() {
 

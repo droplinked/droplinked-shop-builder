@@ -1,7 +1,7 @@
 import { Flex, Box, Text } from '@chakra-ui/react'
 import { useState } from 'react';
 
-import InputImageComponent from '../../../components/single-input-image-component/single-input-image-component'
+import InputImage from '../../../components/shared/InputImage/InputImage'
 import FormInput from '../../../components/shared/FormInput/FormInput'
 
 export default function PersonalInfoComponent() {
@@ -32,7 +32,7 @@ export default function PersonalInfoComponent() {
             fontSize='22px'
             w="100%"
         >
-            <InputImageComponent image={profileImage} setImage={setProfileImage} />
+            <InputImage image={profileImage} setImage={setProfileImage} />
             <Flex
                 justifyContent='space-between'
                 alignItems='center'

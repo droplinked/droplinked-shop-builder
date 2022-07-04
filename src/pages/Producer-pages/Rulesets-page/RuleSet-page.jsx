@@ -6,7 +6,7 @@ import BasicButton from "../../../components/features/buttons components/basic b
 import ContentWrapper from "../../../components/Structure/content-wrapper/Content-wrapper-component"
 import RuleItem from "./rule item component/Rule-item-component"
 import AddRule from "./add rule modal/Addrule.modal.component"
-import Loading from "../../../components/features/loading/Loading"
+import Loading from "../../../components/shared/loading/Loading"
 
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../sevices/hooks/useToastify"

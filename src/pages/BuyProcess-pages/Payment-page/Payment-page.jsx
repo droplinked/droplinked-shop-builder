@@ -11,7 +11,7 @@ import { useCart } from "../../../sevices/hooks/useCart"
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import StripeComponent from "./stripe modal/stripe-modal-component"
-import Loading from "../../../components/features/loading/Loading"
+import Loading from "../../../components/shared/loading/Loading"
 
 
 const stripePromise = loadStripe('pk_test_51B3XzHDHP9PnFF5D7xWkc29H1NehLpfVEAWaycBBtoUXPyL4qq1dAZYVSBlWr5Kc0sGenWCJfuFEmXy5JCXxACLk00NXM3aQQh');

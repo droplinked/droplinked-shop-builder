@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { PostApi, GetApiWithAuth } from "../../../../sevices/functoinal-service/CallApiService"
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import AutoWidthButton from "../../../../components/features/buttons components/autow basic button/B-button-component"
-import Loading from "../../../../components/features/loading/Loading"
+import Loading from "../../../../components/shared/loading/Loading"
 import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
 
 

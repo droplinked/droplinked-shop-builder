@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 
 import axios from "axios"
-import Loading from "../../../components/features/loading/Loading"
+import Loading from "../../../components/shared/loading/Loading"
 import DroplinkedImsPage from "./droplinked ims page/droplink-ims-page"
 
 

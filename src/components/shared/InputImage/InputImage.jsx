@@ -1,12 +1,12 @@
 import { Flex, Button, Spinner, Box, Input, FormLabel } from '@chakra-ui/react'
 import { MdOutlineEdit } from "react-icons/md";
 import { useRef, useState } from 'react'
-import { useToasty } from "../../sevices/hooks/useToastify"
+import { useToasty } from "../../../sevices/hooks/useToastify"
 
-import profileImg from "../../assest/image/default profile/icons8-user-100.png"
+import profileImg from "../../../assest/image/default profile/icons8-user-100.png"
 import axios from 'axios';
 
-export default function InputImageComponent({ image, setImage }) {
+export default function InputImage({ image, setImage }) {
 
     const inputFile = useRef(null);
     const { successToast, errorToast } = useToasty()
