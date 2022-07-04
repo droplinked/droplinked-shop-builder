@@ -1,24 +1,28 @@
 import "./App.scss";
-import NotFound from "./layout/general pages/notfound/NotFound";
+
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WalletProvider } from "./sevices/context/context";
 import ProfileContextProvider from "./sevices/context/ProfileContext";
 import CartContextProvider from "./sevices/context/CartContext";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContext } from "./sevices/context/Toast-context";
+import ScrollTop from "./components/features/scrolltop/ScrollTop";
+
+
 //import HomeWrapper from "./components/Structure/new wrapper/HomeWrapper";
-import CreatorPage from "./layout/creator/CreatorPage";
+//import CreatorPage from "./layout/creator/CreatorPage";
 //import HomePage from "./layout/landing page/HomePage";
-import BuyProduct from "./layout/buy product/BuyProduct";
+//import BuyProduct from "./layout/buy product/BuyProduct";
 //import Terms from "./layout/general pages/terms/Terms";
 //import Privacy from "./layout/general pages/privacy/Privacy";
-import Crashpunks from "./layout/crashpunk/crashpunks"; //crashpunks page
+//import Crashpunks from "./layout/crashpunk/crashpunks"; //crashpunks page
 //import ThankPage from "./layout/registering/thanks for register/ThankForRegister";
 //import PersonalInfo from "./layout/registering/personal info/PersonalInfo";
 //import ShopInfo from "./layout/registering/shop info/ShopInfo";
 //import ImsSelect from "./layout/registering/IMS select/ImsSelect";
 //import RegisterPayment from "./layout/registering/register payment page/RegisterPayment";
-import ScrollTop from "./components/features/scrolltop/ScrollTop";
+
 //import ShopPage from "./layout/Producer pages/Main page/shop page/Shop-page-component";
 //import ImsMainPage from "./layout/Producer pages/IMS pages/ImsMainPage";
 //import AddProductPage from "./layout/Producer pages/add product page/Add-product-page";
@@ -38,7 +42,7 @@ import ScrollTop from "./components/features/scrolltop/ScrollTop";
 //import RegisterStructure from "./layout/registering/register structure/RegisterStructure"
 //import ProducerWrapper from "./layout/Producer pages/Producer wrapper/Producer-wrapper"
 //import PaymentPage from "./layout/basic pages/payment page/Payment-page"
-import SettingsPage from "./layout/basic pages/settings-page/Settings-page"
+//import SettingsPage from "./layout/basic pages/settings-page/Settings-page"
 
 
 import PageWrapper from "./pages/Page-wrapper/PageWrapper"
@@ -61,6 +65,11 @@ import ShopPage from "./pages/Shop-page/Shop-page"
 import MerchPage from "./pages/Merch-page/Merch-page"
 import CollectionPage from "./pages/Collection-page/Collection-page"
 import CheckoutPage from "./pages/BuyProcess-pages/Checkout-page/Checkout-page"
+import AddressPage from "./pages/BuyProcess-pages/Address-page/Address-Page"
+import PaymentPage from "./pages/BuyProcess-pages/Payment-page/Payment-page"
+import CreatorPage from "./pages/Crashpunks-page/CreatorPage"
+import BuyProduct from "./pages/BuyCrashpunks-page/BuyProduct"
+import SettingsPage from "./pages/Settings-page/Settings-page"
 
 
 function App() {
@@ -105,15 +114,12 @@ function App() {
                         <Route path=":shopname/collection/:collectionId"  element={<CollectionPage />}  />
    
                         <Route  path="checkout" element={<CheckoutPage />} />
-                        
-                        {/* 
+                        <Route  path="/address" element={<AddressPage />} />
+                        <Route  path="/payment" element={<PaymentPage />} />  
                         <Route  path="/crashpunks" element={<CreatorPage />} />
                         <Route  path="/product/:id" element={<BuyProduct />} />
-					            	<Route  path="/address" element={<AddressPage />} />
-                        <Route  path="/payment" element={<PaymentPage />} />  */}
-
                        
-                        <Route path="/*" element={<NotFound />} />
+                        {/* <Route path="/*" element={<NotFound />} /> */}
 
                         </Route>
                       </Routes>
