@@ -8,8 +8,10 @@ import PersonalInfoComponent from './personal-info-component/Personal-info-compo
 
 export default function SettingsPage() {
 
-    const [settingComponent, setSettingComponent] = useState("personal")
+    const profile = JSON.parse(localStorage.getItem("profile"));
 
+    const [settingComponent, setSettingComponent] = useState("personal")
+ 
     return (
         <Flex
             w="100%"
@@ -22,22 +24,24 @@ export default function SettingsPage() {
                 border='1px'
                 borderColor='#b3b3b3'
                 borderRadius="16px"
-                flexDirection={{base:"column" , md:'row'}}
+                flexDirection={{ base: "column", md: 'row' }}
             >
                 <Flex
                     p="40px 10px"
 
-                    borderBottom={{base:'1px' , md:'0px'}}
+                    borderBottom={{ base: '1px', md: '0px' }}
                     borderColor="white"
-                    minW={{base:'100%' , md:"25%"}}
+                    minW={{ base: '100%', md: "25%" }}
                     flexDirection='column'
                 >
                     <SettingButton
                         click={() => { setSettingComponent("personal") }}
                     > Personal info </SettingButton>
-                    <SettingButton
-                        click={() => { setSettingComponent("shop") }}
-                    > Shop info </SettingButton>
+                    {(profile.type == "PRODUCER") &&
+                        <SettingButton
+                            click={() => { setSettingComponent("shop") }}
+                        > Shop info </SettingButton>
+                    }
                     <SettingButton
                         click={() => { setSettingComponent("address") }}
                     >Address book</SettingButton>
