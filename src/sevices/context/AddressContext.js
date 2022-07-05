@@ -45,9 +45,24 @@ export default function AddressContextProvider({ children }) {
     return flag;
   };
 
+
+  const deleteAddress = async (addressId) => {
+
+    await axios.delete(`${BasicURL}/address/${addressId}`,{
+      headers: { Authorization: "Bearer " + token },
+    })
+    .then(e => successToast("Address deleted successfully"))
+    .catch(e => errorToast(e.response.data.reason))
+
+    updateAddressList();
+
+  };
+
+
   const contextValues = {
     addAddress,
     updateAddressList,
+    deleteAddress,
     addressList,
   };
 
