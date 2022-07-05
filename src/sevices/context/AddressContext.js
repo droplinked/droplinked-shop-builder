@@ -59,8 +59,30 @@ export default function AddressContextProvider({ children }) {
   };
 
 
+  const updateAddress = async (addressBook ,addressId) => {
+    let flag;
+    await axios
+      .put(`${BasicURL}/address/${addressId}`, addressBook, {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((e) => {
+        successToast("Address updated successfully");
+        flag = true;
+      })
+      .catch((e) => {
+        errorToast(e.response.data.reason);
+        flag = false;
+      });
+    updateAddressList();
+    return flag;
+  
+
+  };
+
+
   const contextValues = {
     addAddress,
+    updateAddress,
     updateAddressList,
     deleteAddress,
     addressList,

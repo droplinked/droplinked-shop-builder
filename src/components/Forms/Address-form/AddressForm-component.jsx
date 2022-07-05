@@ -9,15 +9,16 @@ import BasicButton from "../../shared/BasicButton/BasicButton"
 
 export default function AddressForm({ type, addressBook, close }) {
 
-    const { addAddress } = useAddress()
+    const { addAddress ,updateAddress  } = useAddress()
+
 
     // form values states
-    const [line1, setLine1] = useState('')
-    const [line2, setLine2] = useState('')
-    const [country, setCountry] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [zip, setZip] = useState('')
+    const [line1, setLine1] = useState((addressBook)?addressBook.addressLine1:'')
+    const [line2, setLine2] = useState((addressBook)?addressBook.addressLine2:'')
+    const [country, setCountry] = useState((addressBook)?addressBook.country:'')
+    const [city, setCity] = useState((addressBook)?addressBook.city:'')
+    const [state, setState] = useState((addressBook)?addressBook.state:'')
+    const [zip, setZip] = useState((addressBook)?addressBook.zip:'')
     // state for show wrror
     const [error, setError] = useState('')
 
@@ -70,10 +71,15 @@ export default function AddressForm({ type, addressBook, close }) {
             zip: zip,
             addressType: type
         }
-
         setLoading(true)
-        let result = await addAddress(formDate);
+        let result
+        if(addressBook){
+            result = await updateAddress(formDate , addressBook._id);
+        }else{
+            result = await addAddress(formDate);
+        }
         setLoading(false)
+       
         if(result == true) close()
     }
 
