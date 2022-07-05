@@ -1,15 +1,15 @@
 
 
-export const AddressReducer = (state , action) =>{
+// export const AddressReducer = (state , action) =>{
 
-    switch(action.type) {
+//     switch(action.type) {
 
-        case 'ADD_ADDRESS':
-            state.push(action.payload);
-            return state ;
+//         case 'ADD_ADDRESS':
+//             state.push(action.payload);
+//             return state ;
 
-        default:
-            return state;
-    }
+//         default:
+//             return state;
+//     }
 
-}
+// }

@@ -1,7 +1,8 @@
-import { Button } from "@chakra-ui/react"
+import { Button, Spinner } from "@chakra-ui/react"
 
-export default function BasicButton({ children,click, ...otherprops }) {
+export default function BasicButton({ children, click, loading, ...otherprops }) {
 
+ 
     return (
         <Button
             w="100%"
@@ -14,7 +15,23 @@ export default function BasicButton({ children,click, ...otherprops }) {
             onClick={click}
             {...otherprops}
         >
-            {children}
+             {(loading != undefined && loading == true)
+                ? <>
+                  
+                        <Spinner
+                            thickness='4px'
+                            speed='0.65s'
+                            emptyColor='#fff'
+                            color='#222'
+                            size='md'
+                        />
+                    
+                </>
+                :
+                <>
+                { children }
+                </>
+            } 
         </Button>
     )
 }
