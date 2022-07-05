@@ -7,8 +7,8 @@ import ProfileContextProvider from "./sevices/context/ProfileContext";
 import CartContextProvider from "./sevices/context/CartContext";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContext } from "./sevices/context/Toast-context";
+import  AddressContext  from "./sevices/context/AddressContext"
 import ScrollTop from "./services/ScrollTop/ScrollTop";
-
 
 import PageWrapper from "./pages/Page-wrapper/PageWrapper"
 import LandingPage from "./pages/Landing-page/Landing-page";
@@ -39,13 +39,14 @@ import SettingsPage from "./pages/Settings-page/Settings-page"
 
 function App() {
   return (
-    
+    <ToastContext>
          <CartContextProvider>
           <ProfileContextProvider>
            <ChakraProvider>
              <WalletProvider>
+              <AddressContext>
                <BrowserRouter>
-                <ToastContext>
+                
                     <ScrollTop>
                       <Routes>
                         <Route path="/" element={<PageWrapper />}>
@@ -89,12 +90,14 @@ function App() {
                         </Route>
                       </Routes>
                     </ScrollTop>
-                </ToastContext>
+            
               </BrowserRouter>
+              </AddressContext>
             </WalletProvider>
           </ChakraProvider>
         </ProfileContextProvider>
       </CartContextProvider>
+      </ToastContext>
     
   );
 }

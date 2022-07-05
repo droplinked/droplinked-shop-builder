@@ -1,15 +1,15 @@
 import { Box, Flex } from "@chakra-ui/react"
 import { useState } from "react"
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { useAddress } from "../../../sevices/hooks/useAddress"
 
 import FormInput from "../../shared/FormInput/FormInput"
 import BasicButton from "../../shared/BasicButton/BasicButton"
-import axios from "axios"
 
 
-export default function AddressForm({type , addressBook}) {
 
-    let token = JSON.parse(localStorage.getItem("token"));
+export default function AddressForm({ type, addressBook, close }) {
+
+    const { addAddress } = useAddress()
 
     // form values states
     const [line1, setLine1] = useState('')
@@ -22,7 +22,7 @@ export default function AddressForm({type , addressBook}) {
     const [error, setError] = useState('')
 
     // state for loading mode
-    const [loading, setLoading] = useState('')
+    const [loading, setLoading] = useState(false)
 
 
 
@@ -57,20 +57,24 @@ export default function AddressForm({type , addressBook}) {
     }
 
     // submit form
-    const submitForm = () => {
+    const submitForm = async () => {
         let validation = validationForm()
         if (!validation) return
 
-        axios.post(`${BasicURL}/address`,
-        {headers: { Authorization: "Bearer " + token }})
-        .then(e => {
+        const formDate = {
+            addressLine1: line1,
+            addressLine2: line2,
+            country: country,
+            city: city,
+            state: state,
+            zip: zip,
+            addressType: type
+        }
 
-        })
-        .catch(e => {
-            console.log();
-        })
-
-
+        setLoading(true)
+        let result = await addAddress(formDate);
+        setLoading(false)
+        if(result == ture) close()
     }
 
 
@@ -172,8 +176,8 @@ export default function AddressForm({type , addressBook}) {
                 justifyContent='space-between'
                 alignItems='center'
             >
-                <BasicButton w='45%' p='12px 16px' click={submitForm}>Submit</BasicButton>
-                <BasicButton w='45%' p='12px 16px'>Cansel</BasicButton>
+                <BasicButton w='45%' p='12px 16px' click={submitForm} loading={loading} disabled={loading}>Submit</BasicButton>
+                <BasicButton w='45%' p='12px 16px' click={close} loading={loading} disabled={loading} >Cansel</BasicButton>
             </Flex>
         </Box>
     )

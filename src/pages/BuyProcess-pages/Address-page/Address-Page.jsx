@@ -86,7 +86,10 @@ function AddressPage() {
 						<Box mt='40px'></Box>
 						{(addressModal)
 							?
-							<AddressForm />
+							<AddressForm
+							 close={toggleAddressForm}
+							 type={"CUSTOMER"}
+							  />
 							:
 							<Flex
 								w="100%"
