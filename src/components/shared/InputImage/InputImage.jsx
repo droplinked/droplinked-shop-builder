@@ -48,12 +48,13 @@ export default function InputImage({ image, setImage }) {
     return (
         <Box
             pos='relative'
-            maxW='200px'
+            maxW='150px'
+            w='150px'
             m="0px auto"
         >
             <Box
                 pos='absolute'
-                right='45px'
+                right='0px'
                 zIndex='1'
                 top='10px'
             >
@@ -85,7 +86,7 @@ export default function InputImage({ image, setImage }) {
             {(image) &&
                 <Box
                 pos='absolute'
-                left='10px'
+                left='0px'
                 zIndex='1'
                 top='10px'
             >
@@ -110,9 +111,8 @@ export default function InputImage({ image, setImage }) {
             </Box>
             }
             
-
             <Box
-                w='150px'
+                w='100%'
                 h='150px'
                 pos='relative'
                 borderRadius='100%'
@@ -144,9 +144,7 @@ export default function InputImage({ image, setImage }) {
                         />
                     }
                 </Box>
-
             </Box>
-
         </Box>
     )
 }

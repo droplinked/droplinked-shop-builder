@@ -22,12 +22,14 @@ export default function SettingsPage() {
                 border='1px'
                 borderColor='#b3b3b3'
                 borderRadius="16px"
+                flexDirection={{base:"column" , md:'row'}}
             >
                 <Flex
                     p="40px 10px"
-                    borderRight="1px"
+
+                    borderBottom={{base:'1px' , md:'0px'}}
                     borderColor="white"
-                    w="25%"
+                    minW={{base:'100%' , md:"25%"}}
                     flexDirection='column'
                 >
                     <SettingButton
@@ -73,9 +75,10 @@ const SettingButton = ({ children, click }) => {
             color="white"
             m='0px auto'
             w="90%"
+            minW="150px"
             borderRadius='8px'
             fontWeight='500'
-            fontSize='1rem'
+            fontSize='16px'
             textAlign='center'
             p='12px 0px'
             mb='15px'

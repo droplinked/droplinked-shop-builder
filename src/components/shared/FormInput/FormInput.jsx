@@ -14,7 +14,7 @@ export default function FormInput({ value, changeValue, label, type, placeholder
       <FormLabel
         htmlFor='input-com'
         fontWeight='600'
-        fontSize='20px'
+        fontSize={{base:'14px' , md:'20px'}}
         color='#fff'
       >{label}</FormLabel>
       <Input
@@ -23,13 +23,13 @@ export default function FormInput({ value, changeValue, label, type, placeholder
         value={value}
         onChange={changeValue}
         fontWeight='600'
-        fontSize='20px'
+        fontSize={{base:'14px' , md:'20px'}}
         color='#fff'
         border='2px'
         borderColor='#b3b3b3'
         borderRadius='8px'
         px="16px"
-        py="12px"
+        py={{base:"8px" , md:"12px"}}
         outline='none'
         _focus={{ borderColor: "#8053ff" }}
         h='auto'
