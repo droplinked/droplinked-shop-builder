@@ -1,12 +1,14 @@
 import { Flex, FormLabel, Textarea, Box } from '@chakra-ui/react'
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useEffect, useState } from 'react'
+import { useAddress } from "../../../sevices/hooks/useAddress"
 
 import axios from "axios"
 import InputImage from '../../../components/shared/InputImage/InputImage'
 import Loading from "../../../components/shared/loading/Loading"
 import FormInput from "../../../components/shared/FormInput/FormInput"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
+import AddressComponent from "../../../components/shared/Address/address-component"
 
 export default function ShopInfoComponent() {
 
@@ -15,10 +17,18 @@ export default function ShopInfoComponent() {
     const [shop, setShop] = useState(null)
     const [disableBtn, setDisableBtn] = useState(false)
 
+    const { addressList } = useAddress()
+
+    let shopAddressBook = addressList.find(address => address.addressType == "SHOP")
+
+    console.log(shopAddressBook)
+
     useEffect(() => {
         axios.get(`${BasicURL}/profile`,
             { headers: { Authorization: "Bearer " + token } })
-            .then(e => setShop(e.data.data.shop))
+            .then(e => {
+                setShop(e.data.data.shop)
+            })
             .catch(e => console.log(e.response.data.reason))
     }, [])
 
@@ -50,16 +60,16 @@ export default function ShopInfoComponent() {
         }
 
         setDisableBtn(true)
-        axios.put(`${BasicURL}/producer/shop/info`,shopInformation,
-        { headers: { Authorization: "Bearer " + token } })
-        .then(e => {
-            console.log(e.data.data);
-            setDisableBtn(false)
-        })
-        .catch(e => {
-            setDisableBtn(false)
-            console.log(e.response.reason)
-        })
+        axios.put(`${BasicURL}/producer/shop/info`, shopInformation,
+            { headers: { Authorization: "Bearer " + token } })
+            .then(e => {
+                console.log(e.data.data);
+                setDisableBtn(false)
+            })
+            .catch(e => {
+                setDisableBtn(false)
+                console.log(e.response.reason)
+            })
     }
 
 
@@ -125,7 +135,15 @@ export default function ShopInfoComponent() {
                         changeValue={(e) => chageShopInformation('instagramUrl', e)}
                         label={'Instagram'}
                         placeholder="Instagram username"
-                        mt='20px' />
+                        mt='20px'
+                        mb='20px'
+                    />
+                    <AddressComponent
+                        disableBTns={true}
+                        address={shopAddressBook}
+                        selected={shopAddressBook._id}
+                        setSelect={() => { }}
+                    />
 
                     <Flex justifyContent='end' mt='50px'>
                         <BasicButton w={{ base: '100%', md: '45%' }} p='12px 16px'

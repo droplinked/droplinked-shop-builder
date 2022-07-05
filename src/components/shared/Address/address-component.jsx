@@ -18,7 +18,7 @@ import { useState } from "react"
 import AddressForm from "../../Forms/Address-form/AddressForm-component"
 
 
-export default function AddressComponent({ address, selected, setSelect }) {
+export default function AddressComponent({ address, selected, setSelect, disableBTns }) {
 
     const [disableBtn, setDisableBtn] = useState(false)
     const [openAddressForm, setOpenAddressForm] = useState(false)
@@ -47,27 +47,31 @@ export default function AddressComponent({ address, selected, setSelect }) {
                     <Text fontSize="16px" fontWeight="500" color="#ddd" mb="20px">{address.state} {address.zip} </Text>
 
                     <Flex alignItems='center' justifyContent="space-between">
-                        <Button
-                            w={{ base: "45%", md: "30%" }}
-                            fontSize={{ base: "12px", md: "16px" }}
-                            color="#fff"
-                            fontWeight="600"
-                            bgColor="#8053ff"
-                            h="35px"
-                            _hover={{ bgColor: "4d4d4d", color: "#222" }}
-                            onClick={() => setSelect(address._id)}
-                        >
-                            Select address
-                        </Button>
+                        {(disableBTns != true) &&
+                            <Button
+                                w={{ base: "45%", md: "30%" }}
+                                fontSize={{ base: "12px", md: "16px" }}
+                                color="#fff"
+                                fontWeight="600"
+                                bgColor="#8053ff"
+                                h="35px"
+                                _hover={{ bgColor: "4d4d4d", color: "#222" }}
+                                onClick={() => setSelect(address._id)}
+                            >
+                                Select address
+                            </Button>
+                        }
 
                         <Flex alignItems='center' justifyContent="space-between" w={{ base: "45%", md: "40%" }}>
-                            <Button colorScheme='red' w="45%" h="35px"
-                                fontSize={{ base: "12px", md: "16px" }}
-                                onClick={onOpen}
-                            >Delete</Button>
+                            {(disableBTns != true) &&
+                                <Button colorScheme='red' w="45%" h="35px"
+                                    fontSize={{ base: "12px", md: "16px" }}
+                                    onClick={onOpen}
+                                >Delete</Button>
+                            }
                             <Button colorScheme='messenger' w="45%" h="35px"
                                 fontSize={{ base: "12px", md: "16px" }}
-                             onClick={()=>setOpenAddressForm(true)}
+                                onClick={() => setOpenAddressForm(true)}
                             >Edit</Button>
                         </Flex>
                     </Flex>
@@ -106,9 +110,9 @@ export default function AddressComponent({ address, selected, setSelect }) {
                 </Box>
                 :
                 <AddressForm
-                close={()=>setOpenAddressForm(false)}
-                addressBook={address}
-                type={address.addressType}
+                    close={() => setOpenAddressForm(false)}
+                    addressBook={address}
+                    type={address.addressType}
                 />
             }
 
