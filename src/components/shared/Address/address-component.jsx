@@ -18,7 +18,7 @@ import { useState } from "react"
 import AddressForm from "../../Forms/Address-form/AddressForm-component"
 
 
-export default function AddressComponent({ address, selected, setSelect, disableBTns }) {
+export default function AddressComponent({ address, selected, setSelect, onlyEdit }) {
 
     const [disableBtn, setDisableBtn] = useState(false)
     const [openAddressForm, setOpenAddressForm] = useState(false)
@@ -47,7 +47,7 @@ export default function AddressComponent({ address, selected, setSelect, disable
                     <Text fontSize="16px" fontWeight="500" color="#ddd" mb="20px">{address.state} {address.zip} </Text>
 
                     <Flex alignItems='center' justifyContent="space-between">
-                        {(disableBTns != true) &&
+                        {(onlyEdit != true) &&
                             <Button
                                 w={{ base: "45%", md: "30%" }}
                                 fontSize={{ base: "12px", md: "16px" }}
@@ -63,7 +63,7 @@ export default function AddressComponent({ address, selected, setSelect, disable
                         }
 
                         <Flex alignItems='center' justifyContent="space-between" w={{ base: "45%", md: "40%" }}>
-                            {(disableBTns != true) &&
+                            {(onlyEdit != true) &&
                                 <Button colorScheme='red' w="45%" h="35px"
                                     fontSize={{ base: "12px", md: "16px" }}
                                     onClick={onOpen}

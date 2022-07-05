@@ -139,7 +139,7 @@ export default function ShopInfoComponent() {
                         mb='20px'
                     />
                     <AddressComponent
-                        disableBTns={true}
+                        onlyEdit={true}
                         address={shopAddressBook}
                         selected={shopAddressBook._id}
                         setSelect={() => { }}
