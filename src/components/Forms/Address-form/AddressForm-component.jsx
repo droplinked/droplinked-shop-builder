@@ -74,7 +74,7 @@ export default function AddressForm({ type, addressBook, close }) {
         setLoading(true)
         let result = await addAddress(formDate);
         setLoading(false)
-        if(result == ture) close()
+        if(result == true) close()
     }
 
 

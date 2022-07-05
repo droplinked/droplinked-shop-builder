@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../sevices/hooks/useToastify"
 import { useCart } from "../../../sevices/hooks/useCart"
+import { useAddress } from "../../../sevices/hooks/useAddress"
 
 import AddressComponent from "../../../components/shared/Address/address-component"
 import axios from "axios";
@@ -13,29 +14,19 @@ import AddressForm from "../../../components/Forms/Address-form/AddressForm-comp
 
 function AddressPage() {
 
-	const [addressList, setAddressList] = useState(null);
+	// navigate if not user
+	let navigate = useNavigate();
+	let token = JSON.parse(localStorage.getItem("token"));
+	if (!token) navigate("/")
+
 	const [selectedAddress, setSelectedAddress] = useState(null);
 	const [addressModal, setAddressModal] = useState(false);
 
-	let navigate = useNavigate();
+
 	const { errorToast, successToast } = useToasty();
-	let token = JSON.parse(localStorage.getItem("token"));
+	const { addressList } = useAddress()
 
-
-	if (!token) navigate("/")
-
-	const getAddressList = () => {
-		axios.get(`${BasicURL}/address`, {
-			headers: { Authorization: "Bearer " + token },
-		})
-			.then(e => setAddressList(e.data.data.addressBooks))
-			.catch(e => console.log(e.response.data))
-	};
-
-
-	useEffect(() => {
-		getAddressList();
-	}, []);
+	
 
 
 	const toggleAddressForm = () => {
@@ -75,13 +66,13 @@ function AddressPage() {
 				m='auto'
 			>
 
-				{(addressList == null)
+				{(addressList == [])
 					?
 					<Loading />
 					:
 					<>
-						{addressList.map(address => {
-							return <AddressComponent address={address} selected={selectedAddress} setSelect={setSelectedAddress} />
+						{addressList.map((address , i) => {
+							return <AddressComponent key={i} address={address} selected={selectedAddress} setSelect={setSelectedAddress} />
 						})}
 						<Box mt='40px'></Box>
 						{(addressModal)

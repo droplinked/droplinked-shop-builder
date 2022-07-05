@@ -5,10 +5,12 @@ import { Box, Flex } from "@chakra-ui/react"
 import { Outlet } from "react-router-dom";
 import { useCart } from "../../sevices/hooks/useCart"
 import { useEffect } from "react"
+import { useAddress } from "../../sevices/hooks/useAddress"
 
 export default function PageWrapper({ children }) {
 
     const { updateCart } = useCart();
+    const { updateAddressList } = useAddress();
 
     let token = JSON.parse(localStorage.getItem("token"));
 
@@ -16,6 +18,7 @@ export default function PageWrapper({ children }) {
     useEffect(() => {
         if (token != null || token != undefined) {
             updateCart();
+            updateAddressList()
         }
     }, [])
 

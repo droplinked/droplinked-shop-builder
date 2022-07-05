@@ -13,6 +13,19 @@ export default function AddressContextProvider({ children }) {
 
   let token = JSON.parse(localStorage.getItem("token"));
 
+  const updateAddressList = () => {
+    axios
+      .get(`${BasicURL}/address`, {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((e) => {
+        setAddressList(e.data.data.addressBooks);
+      })
+      .catch((e) => {
+        console.log(e.response.data.reason);
+      });
+  };
+
   const addAddress = async (formDate) => {
     let flag;
     await axios
@@ -20,7 +33,7 @@ export default function AddressContextProvider({ children }) {
         headers: { Authorization: "Bearer " + token },
       })
       .then((e) => {
-       // console.log(e.data.data.addressBook);
+        // console.log(e.data.data.addressBook);
         successToast("Address added successfully");
         flag = true;
       })
@@ -28,12 +41,13 @@ export default function AddressContextProvider({ children }) {
         errorToast(e.response.data.reason);
         flag = false;
       });
-
+    updateAddressList();
     return flag;
   };
 
   const contextValues = {
     addAddress,
+    updateAddressList,
     addressList,
   };
 

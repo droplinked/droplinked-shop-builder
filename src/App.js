@@ -75,7 +75,7 @@ function App() {
                         <Route  path="producer/collection"   element={<CollectionMainPage />}  />
                 
 
-                        <Route  path=":shopname" element={<ShopPage /> }/>
+                        <Route path=":shopname" element={<ShopPage /> }/>
                         <Route path=":shopname/merch/:merchId" element={<MerchPage />} />
                         <Route path=":shopname/collection/:collectionId"  element={<CollectionPage />}  />
    
