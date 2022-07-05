@@ -1,5 +1,5 @@
 import { Flex, Button, Spinner, Box, Input, FormLabel } from '@chakra-ui/react'
-import { MdOutlineEdit } from "react-icons/md";
+import { MdOutlineEdit , MdDeleteOutline} from "react-icons/md";
 import { useRef, useState } from 'react'
 import { useToasty } from "../../../sevices/hooks/useToastify"
 
@@ -34,7 +34,6 @@ export default function InputImage({ image, setImage }) {
         setLoading(true)
         axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
-
                 setLoading(false);
                 successToast(e.data.message);
                 setImage(e.data.small)
@@ -54,9 +53,9 @@ export default function InputImage({ image, setImage }) {
         >
             <Box
                 pos='absolute'
-                right='4px'
+                right='45px'
                 zIndex='1'
-                top='5px'
+                top='10px'
             >
                 <Input
                     id="imageUpload"
@@ -83,6 +82,34 @@ export default function InputImage({ image, setImage }) {
                     <MdOutlineEdit />
                 </FormLabel>
             </Box>
+            {(image) &&
+                <Box
+                pos='absolute'
+                left='10px'
+                zIndex='1'
+                top='10px'
+            >
+                <FormLabel
+                    htmlFor='imageUpload'
+                    display='flex'
+                    w='30px'
+                    h='30px'
+                    mb='0'
+                    borderRadius='100%'
+                    bgColor='#222'
+                    border='2px'
+                    borderColor='#fa6653'
+                    cursor='pointer'
+                    justifyContent='center'
+                    alignItems='center'
+                    _hover={{ border: "4px", borderColor: '#fa6653' }}
+                    onClick={() => {setImage('')}}
+                >
+                    <MdDeleteOutline />
+                </FormLabel>
+            </Box>
+            }
+            
 
             <Box
                 w='150px'
