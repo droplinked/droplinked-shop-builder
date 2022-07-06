@@ -53,7 +53,7 @@ function BuyProduct() {
         axios.get(`https://dev.flatlay.io/product/${id}`, {
             headers: {
                 "Content-Type": "application/json",
-                authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJlZGkubW5zQGdtYWlsLmNvbSIsInVzZXJJZCI6IjEzMTMyMCIsImlhdCI6MTY1MTg0NDI0MSwiZXhwIjoxNjU3MDI4MjQxfQ.v--CI4iWCjvmS_34u1zRF-inryI6zTitk-IprJm0Zw8",
+                authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJlZGkubW5zQGdtYWlsLmNvbSIsInVzZXJJZCI6IjEzMTMyMCIsImlhdCI6MTY1NzA5NDU5NiwiZXhwIjoxNjYyMjc4NTk2fQ.Xh-1G0D54ginQvPr3VK5IHFZ4vg0tNWKf2aOu-g22ZI"
             }
         }).then((res) => {
             setPrudoct(res.data.product_listing);
