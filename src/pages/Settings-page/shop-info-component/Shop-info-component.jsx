@@ -139,10 +139,7 @@ export default function ShopInfoComponent() {
                         mb='20px'
                     />
                     <AddressComponent
-                        onlyEdit={true}
-                        address={shopAddressBook}
-                        selected={shopAddressBook._id}
-                        setSelect={() => { }}
+                        address={shopAddressBook} 
                     />
 
                     <Flex justifyContent='end' mt='50px'>

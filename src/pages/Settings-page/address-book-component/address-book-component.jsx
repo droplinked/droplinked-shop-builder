@@ -31,6 +31,7 @@ export default function AddressBookComponent() {
                             return <AddressComponent
                                 key={i}
                                 address={address}
+                                deleteable={true}
                             />
                     })}
 

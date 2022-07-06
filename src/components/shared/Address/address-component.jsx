@@ -18,7 +18,7 @@ import { useState } from "react"
 import AddressForm from "../../Forms/Address-form/AddressForm-component"
 
 
-export default function AddressComponent({ address, selected, setSelect, selecable }) {
+export default function AddressComponent({ address, selected, setSelect, selecable, deleteable }) {
 
     const [disableBtn, setDisableBtn] = useState(false)
     const [openAddressForm, setOpenAddressForm] = useState(false)
@@ -57,7 +57,7 @@ export default function AddressComponent({ address, selected, setSelect, selecab
                                     bgColor="#8053ff"
                                     h="35px"
                                     _hover={{ bgColor: "4d4d4d", color: "#222" }}
-                                    onClick={() =>{if(selecable) setSelect(address._id)}}
+                                    onClick={() => { if (selecable) setSelect(address._id) }}
                                 >
                                     Select address
                                 </Button>
@@ -72,10 +72,12 @@ export default function AddressComponent({ address, selected, setSelect, selecab
                                 fontSize={{ base: "12px", md: "16px" }}
                                 onClick={() => setOpenAddressForm(true)}
                             >Edit</Button>
-                            <Button colorScheme='red' w="45%" h="35px"
-                                fontSize={{ base: "12px", md: "16px" }}
-                                onClick={onOpen}
-                            >Delete</Button>
+                            {(deleteable == true) &&
+                                <Button colorScheme='red' w="45%" h="35px"
+                                    fontSize={{ base: "12px", md: "16px" }}
+                                    onClick={onOpen}
+                                >Delete</Button>
+                            }
 
                         </Flex>
                     </Flex>

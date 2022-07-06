@@ -77,7 +77,9 @@ function AddressPage() {
 								address={address}
 								selected={selectedAddress}
 								setSelect={setSelectedAddress}
-								selecable={true} />
+								selecable={true} 
+								deleteable={true}
+								/>
 						})}
 						<Box mt='40px'></Box>
 						{(addressModal)
