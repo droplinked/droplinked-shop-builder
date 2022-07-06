@@ -2,7 +2,8 @@ import "./Landing-page.style.scss"
 
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom";
-import {  BasicURL } from "../../sevices/functoinal-service/CallApiService"
+
+import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
 
 import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"
 import alertIcon from "../../assest/feature/home page images/alert.png"
