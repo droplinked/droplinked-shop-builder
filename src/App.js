@@ -36,7 +36,7 @@ import CreatorPage from "./pages/Crashpunks-page/CreatorPage"
 import BuyProduct from "./pages/BuyCrashpunks-page/BuyProduct"
 import SettingsPage from "./pages/Settings-page/Settings-page"
 import IncomingOrderPage from "./pages/Producer-pages/IncominOrder-page/IncomingOrder-page"
-
+import Creator from "./pages/Creator-page/CreatorPage"
 
 function App() {
   return (
@@ -86,8 +86,8 @@ function App() {
                         <Route  path="/payment" element={<PaymentPage />} />  
                         <Route  path="/crashpunks" element={<CreatorPage />} />
                         <Route  path="/product/:id" element={<BuyProduct />} />
+                        <Route  path="/creatorpage" element={<Creator />} />
                        
-                        {/* <Route path="/*" element={<NotFound />} /> */}
 
                         </Route>
                       </Routes>
