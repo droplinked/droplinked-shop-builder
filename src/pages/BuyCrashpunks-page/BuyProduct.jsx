@@ -46,7 +46,7 @@ function BuyProduct() {
         axios.get(`https://dev.flatlay.io/product/${id}`, {
             headers: {
                 "Content-Type": "application/json",
-                authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJlZGkubW5zQGdtYWlsLmNvbSIsInVzZXJJZCI6IjEzMTMyMCIsImlhdCI6MTY1MTg0NDI0MSwiZXhwIjoxNjU3MDI4MjQxfQ.v--CI4iWCjvmS_34u1zRF-inryI6zTitk-IprJm0Zw8",
+                authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJlZGkubW5zQGdtYWlsLmNvbSIsInVzZXJJZCI6IjEzMTMyMCIsImlhdCI6MTY1NzA5NDU5NiwiZXhwIjoxNjYyMjc4NTk2fQ.Xh-1G0D54ginQvPr3VK5IHFZ4vg0tNWKf2aOu-g22ZI"
             }
         }).then((res) => {
             setPrudoct(res.data.product_listing);
@@ -93,25 +93,6 @@ function BuyProduct() {
 
     }, [product])
 
-
-
-
-    const findVariant = () => {
-        let selectedVariant = {};
-        let con = true;
-        let find = product.variants.map((vari) => {
-            let f = true;
-            vari.option_values.map((vl) => {
-                if (!optionsVal.includes(vl.value)) { f = false }
-            })
-            if (f == true) {
-                selectedVariant = vari;
-                return;
-            }
-        })
-
-        return selectedVariant;
-    }
 
 
     return (<>
@@ -187,150 +168,5 @@ function BuyProduct() {
     </>)
 }
 
-
-
-
 export default BuyProduct
 
-
-
-// {/* <div className="product-page-wrap">
-// <div className="row">
-//     <div className="d-flex justify-content-between "  >
-//         <div className="col-md-8 col-12 product-whole-border" >
-//             {(product == null) ? <Loading />
-//                 : (<>
-//                     <div className="buy-product-wraper">
-
-//                         <div className="product-img-form-wr">
-//                             <div className="product-main-image" style={{ backgroundImage: `url(${mainImage})` }}>
-
-//                                 <div className="position-absolute d-flex justify-content-end " style={{ top: "12px", right: "12px", width: "130px" }}>
-//                                     <div className="product-main-img-icon"
-//                                         onClick={() => { setFullSizeImage(p => !p) }}>
-//                                         <img src={icon3} className="product-icon-img" alt="" />
-//                                     </div>
-//                                     {/*  <div className="product-main-img-icon">
-//                                         <img src={icon2} className="product-icon-img" alt="" />
-//                                     </div>
-//                                     <div className="product-main-img-icon">
-//                                         <img src={icon1} className="product-icon-img" alt="" />
-//                                     </div>*/}
-//                                 </div>
-
-//                                 <div className="product-main-img-downicon">
-//                                     <img src={icon4} alt="" />
-//                                     <p>Official website</p>
-//                                 </div>
-
-//                             </div>
-
-//                             <div className=" w-100 d-flex justify-content-between" style={{ height: "80px", paddingTop: "10px" }}>
-//                                 {(images.length > 1) && <>
-//                                     <div className="product-carusel-btn">
-//                                         <img src={left} className="w-100 h-100" alt="" />
-//                                     </div>
-//                                     {images.map((img, i) => {
-//                                         if (i >= 0 && i < 4) return (<img className="product-carosel-img" src={img} alt=""
-//                                             onClick={() => { setMainImage(images[i]) }} />)
-//                                     })}
-
-//                                     <div className="product-carusel-btn">
-//                                         <img src={right} className="w-100 h-100" alt="" />
-//                                     </div>
-//                                 </>}
-//                             </div>
-
-//                         </div>
-
-//                         <div className="product-img-form-wr product-left-side">
-//                             <div className="product-brand-name">{product.title}</div>
-//                             <div className="product-text-brand">{product.handle}</div>
-//                             <div className="product-price">{product.variants[0].formatted_price}</div>
-
-//                             <div className="w-100 d-flex justify-content-between flex-wrap">
-//                                 {product.options.map((option, i) => {
-
-//                                     return (<div className="product-select-wrap">
-//                                         <select className="product-select-text"
-//                                             onChange={(e) => {
-//                                                 let vl = optionsVal
-//                                                 vl[i] = e.target.value
-//                                                 setOptionsVal(vl)
-//                                                 console.log(optionsVal)
-//                                             }}>
-//                                             {option.values.map((val) => {
-//                                                 return <option value={val}>{val}</option>
-//                                             })}
-//                                         </select>
-//                                     </div>)
-//                                 })}
-//                             </div>
-
-//                             <div className="d-flex">
-//                                 <div className="product-counter-btn"
-//                                     onClick={() => { setNumber(p => p + 1) }}
-//                                 >
-//                                     <img src={plus} alt="" />
-//                                 </div>
-//                                 <div className="product-counter-btn" style={{ margin: "0px 10px", backgroundColor: "transparent" }}><p>{number}</p></div>
-//                                 <div className="product-counter-btn"
-//                                     onClick={() => { if (number > 0) { setNumber(p => p - 1) } }}
-//                                 >
-//                                     <img src={minus} alt="" />
-//                                 </div>
-//                             </div>
-
-//                             {(hasNFT.length > 0) ?
-//                                 <button className="product-addbasket-btn"
-//                                     onClick={addItem}
-//                                 >
-//                                     <div className="d-flex justify-content-center align-items-center" style={{ height: "18px" }}>
-//                                         <img src={basket} className="h-100" alt="" />
-//                                         <p className="product-add-basket-text">Add to basket</p>
-//                                     </div>
-//                                 </button>
-//                                 :
-//                                 <button className="product-addbasket-btn"
-//                                 onClick={clickOnProduct}
-//                                 >
-//                                     <div className="d-flex justify-content-center align-items-center" style={{ height: "18px" }}>
-//                                         <img src={basket} className="h-100" alt="" />
-//                                         <p className="product-add-basket-text">Add to basket</p>
-//                                     </div>
-//                                 </button>
-//                             }
-
-//                         </div>
-
-//                     </div>
-//                     <div className="product-down-wrp">
-//                         <div className="product-describe-text">Description</div>
-//                         <div id="s" className={`product-detail-text ${readmore ? "" : "showReadMore"}`} dangerouslySetInnerHTML={{ __html: product.body_html }}></div>
-//                         <button className="product-readmore-btn"
-//                             onClick={() => { setReadmore(p => !p) }}
-//                         >
-//                             <img src={readmoreIcon} alt="" />
-//                             <p>Read more</p>
-//                         </button>
-//                     </div>
-
-//                 </>)}
-//         </div>
-//         {(state.length > 0) &&
-//             <div className="col-4 d-none d-md-inline">
-//                 <Side />
-//             </div>
-//         }
-//     </div>
-
-// </div>
-
-
-// </div>
-// {fullsizeImage && <FullSizeImage image={mainImage} close={closeFullsize} />}
-// {error &&
-// <div style={{position:"fixed",maxWidth:"200px" , maxHeight:"100px"}}>
-// <ErrorModal>you haven't NFT</ErrorModal>
-// </div>
-// } */}
