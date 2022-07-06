@@ -35,6 +35,7 @@ import PaymentPage from "./pages/BuyProcess-pages/Payment-page/Payment-page"
 import CreatorPage from "./pages/Crashpunks-page/CreatorPage"
 import BuyProduct from "./pages/BuyCrashpunks-page/BuyProduct"
 import SettingsPage from "./pages/Settings-page/Settings-page"
+import IncomingOrderPage from "./pages/Producer-pages/IncominOrder-page/IncomingOrder-page"
 
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
                         <Route  path="producer/addProduct" element={<AddProductPage />} />
                         <Route  path="producer/ruleset"  element={<RuleSetPage />}  />
                         <Route  path="producer/collection"   element={<CollectionMainPage />}  />
+                        <Route  path="producer/orders"   element={<IncomingOrderPage />}  />
                 
 
                         <Route path=":shopname" element={<ShopPage /> }/>
