@@ -31,8 +31,6 @@ export default function AddressBookComponent() {
                             return <AddressComponent
                                 key={i}
                                 address={address}
-                                selected={'1'}
-                                setSelect={() => { }}
                             />
                     })}
 

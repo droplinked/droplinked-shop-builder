@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Button,  Box } from "@chakra-ui/react";
+import { Flex, Button, Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../sevices/hooks/useToastify"
@@ -26,7 +26,7 @@ function AddressPage() {
 	const { errorToast, successToast } = useToasty();
 	const { addressList } = useAddress()
 
-	
+
 
 
 	const toggleAddressForm = () => {
@@ -71,16 +71,21 @@ function AddressPage() {
 					<Loading />
 					:
 					<>
-						{addressList.map((address , i) => {
-							return <AddressComponent key={i} address={address} selected={selectedAddress} setSelect={setSelectedAddress} />
+						{addressList.map((address, i) => {
+							return <AddressComponent
+								key={i}
+								address={address}
+								selected={selectedAddress}
+								setSelect={setSelectedAddress}
+								selecable={true} />
 						})}
 						<Box mt='40px'></Box>
 						{(addressModal)
 							?
 							<AddressForm
-							 close={toggleAddressForm}
-							 type={"CUSTOMER"}
-							  />
+								close={toggleAddressForm}
+								type={"CUSTOMER"}
+							/>
 							:
 							<Flex
 								w="100%"

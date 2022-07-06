@@ -18,7 +18,7 @@ import { useState } from "react"
 import AddressForm from "../../Forms/Address-form/AddressForm-component"
 
 
-export default function AddressComponent({ address, selected, setSelect, onlyEdit }) {
+export default function AddressComponent({ address, selected, setSelect, selecable }) {
 
     const [disableBtn, setDisableBtn] = useState(false)
     const [openAddressForm, setOpenAddressForm] = useState(false)
@@ -39,40 +39,44 @@ export default function AddressComponent({ address, selected, setSelect, onlyEdi
             {(openAddressForm == false)
                 ?
                 <Box h="auto" mb="4" border='1px' borderRadius="15px" p="24px 20px 16px 20px"
-                    borderColor={(address._id == selected) ? "#8053ff" : '#555'}
+                    borderColor={(selecable == true && address._id == selected) ? "#8053ff" : '#555'}
                 >
 
                     <Text fontSize="18px" fontWeight="600" color="#fff" mb="10px">{address.country} - {address.city}</Text>
                     <Text fontSize="16px" fontWeight="500" color="#ddd" mb="4px">{address.addressLine1}</Text>
                     <Text fontSize="16px" fontWeight="500" color="#ddd" mb="20px">{address.state} {address.zip} </Text>
 
-                    <Flex alignItems='center' justifyContent="space-between">
-                        {(onlyEdit != true) &&
-                            <Button
-                                w={{ base: "45%", md: "30%" }}
-                                fontSize={{ base: "12px", md: "16px" }}
-                                color="#fff"
-                                fontWeight="600"
-                                bgColor="#8053ff"
-                                h="35px"
-                                _hover={{ bgColor: "4d4d4d", color: "#222" }}
-                                onClick={() => setSelect(address._id)}
-                            >
-                                Select address
-                            </Button>
-                        }
-
-                        <Flex alignItems='center' justifyContent="space-between" w={{ base: "45%", md: "40%" }}>
-                            {(onlyEdit != true) &&
-                                <Button colorScheme='red' w="45%" h="35px"
+                    <Flex alignItems='center' justifyContent="space-between"  >
+                        <Box w={{ base: "45%", md: "30%" }}>
+                            {(selecable == true) &&
+                                <Button
+                                    w='100%'
                                     fontSize={{ base: "12px", md: "16px" }}
-                                    onClick={onOpen}
-                                >Delete</Button>
+                                    color="#fff"
+                                    fontWeight="600"
+                                    bgColor="#8053ff"
+                                    h="35px"
+                                    _hover={{ bgColor: "4d4d4d", color: "#222" }}
+                                    onClick={() =>{if(selecable) setSelect(address._id)}}
+                                >
+                                    Select address
+                                </Button>
                             }
+
+                        </Box>
+
+
+                        <Flex alignItems='center' flexDirection='row-reverse' justifyContent="space-between" w={{ base: "45%", md: "40%" }}>
+
                             <Button colorScheme='messenger' w="45%" h="35px"
                                 fontSize={{ base: "12px", md: "16px" }}
                                 onClick={() => setOpenAddressForm(true)}
                             >Edit</Button>
+                            <Button colorScheme='red' w="45%" h="35px"
+                                fontSize={{ base: "12px", md: "16px" }}
+                                onClick={onOpen}
+                            >Delete</Button>
+
                         </Flex>
                     </Flex>
 
