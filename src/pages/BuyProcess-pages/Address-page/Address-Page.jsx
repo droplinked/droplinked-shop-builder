@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Flex, Button, Heading, Box, Text } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Flex, Button,  Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../sevices/hooks/useToastify"
