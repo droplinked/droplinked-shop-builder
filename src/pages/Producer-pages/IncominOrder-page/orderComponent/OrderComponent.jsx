@@ -10,6 +10,8 @@ import {
     Button
 } from "@chakra-ui/react"
 
+import { AiOutlineFieldTime } from "react-icons/ai";
+
 import OrderModal from "../OrderModal/OrderModal"
 
 export default function OrderComponent({ seen }) {
@@ -23,13 +25,12 @@ export default function OrderComponent({ seen }) {
             borderRadius='16px'
             p='15px 20px'
         >
-            <Flex
-                justifyContent='space-between'
-            >
+            <Flex justifyContent='space-between'  >
                 <Text
                     color='#fff'
-                    fontSize={{ base: "12px", md: '16px' }}
+                    fontSize={{ base: "12px", md: '14px' }}
                     fontWeight='600'
+
                     mb={{ base: "10px", md: '20px' }}
                 >
                     Order time : 4 hours ago
@@ -50,7 +51,7 @@ export default function OrderComponent({ seen }) {
 
             <Text
                 color='#fff'
-                fontSize={{ base: "12px", md: '16px' }}
+                fontSize={{ base: "12px", md: '14px' }}
                 fontWeight='600'
                 mb={{ base: "10px", md: '20px' }}
             >
@@ -62,7 +63,7 @@ export default function OrderComponent({ seen }) {
             >
                 <Text
                     color='#fff'
-                    fontSize={{ base: "18px", md: '24px' }}
+                    fontSize={{ base: "20px", md: '26px' }}
                     fontWeight='600'
                 >
                     Total price : $ 200
@@ -73,8 +74,10 @@ export default function OrderComponent({ seen }) {
                     fontWeight='600'
                     my="auto"
                     h="100%"
-                    px="20px"
+                    px={{ base: '10px', md: "20px" }}
                     cursor='pointer'
+                    borderBottom='1px'
+                    borderColor='#8053ff'
                     _hover={{
                         border: '1px',
                         borderColor: '#8053ff',
@@ -87,8 +90,8 @@ export default function OrderComponent({ seen }) {
                 </Text>
             </Flex>
 
-            <OrderModal isOpen={isOpen} onClose={onClose}/>
-            
+            <OrderModal isOpen={isOpen} onClose={onClose} />
+
         </Box>
     )
 }
