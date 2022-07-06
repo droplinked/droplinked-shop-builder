@@ -2,6 +2,7 @@ import { Flex, Box, Text } from '@chakra-ui/react'
 import { useState } from 'react';
 import { useProfile } from "../../../sevices/hooks/useProfile"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { useToasty } from "../../../sevices/hooks/useToastify"
 
 import InputImage from '../../../components/shared/InputImage/InputImage'
 import FormInput from '../../../components/shared/FormInput/FormInput'
@@ -14,6 +15,7 @@ export default function PersonalInfoComponent() {
     let token = JSON.parse(localStorage.getItem("token"));
 
     const { updateProfile } = useProfile();
+    const { errorToast, successToast } = useToasty()
 
     // console.log(profile);
 
@@ -40,7 +42,7 @@ export default function PersonalInfoComponent() {
     const submitForm = async () => {
 
         let profileData = {
-            firstname: profileImage,
+            firstname: firstName,
             lastname: lastName,
             avatar: profileImage,
             phone: phoneNumber
@@ -51,10 +53,11 @@ export default function PersonalInfoComponent() {
         await axios.put(`${BasicURL}/profile`, profileData,
             { headers: { Authorization: "Bearer " + token } })
             .then(e => {
-                console.log(e.data.data)
+                successToast('Profile updated successfully')
+                updateProfile(e.data.data.user)
             })
             .catch(e => {
-                console.log(e.response.reason)
+                errorToast(e.response.data.reason)
             })
             
         setDisableBtn(false)

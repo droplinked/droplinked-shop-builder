@@ -2,6 +2,7 @@ import { Flex, FormLabel, Textarea, Box } from '@chakra-ui/react'
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useEffect, useState } from 'react'
 import { useAddress } from "../../../sevices/hooks/useAddress"
+import { useToasty } from "../../../sevices/hooks/useToastify"
 
 import axios from "axios"
 import InputImage from '../../../components/shared/InputImage/InputImage'
@@ -18,7 +19,8 @@ export default function ShopInfoComponent() {
     const [disableBtn, setDisableBtn] = useState(false)
 
     const { addressList } = useAddress()
-
+    const { errorToast, successToast } = useToasty()
+    
     let shopAddressBook = addressList.find(address => address.addressType == "SHOP")
 
     console.log(shopAddressBook)
@@ -60,15 +62,15 @@ export default function ShopInfoComponent() {
         }
 
         setDisableBtn(true)
-        axios.put(`${BasicURL}/producer/shop/info`, shopInformation,
+        axios.put(`${BasicURL}/producer/shop/info`,shopInformation, 
             { headers: { Authorization: "Bearer " + token } })
             .then(e => {
-                console.log(e.data.data);
+                successToast("Shop info updated successfully")
                 setDisableBtn(false)
             })
             .catch(e => {
+                errorToast(e.response.data.reason)
                 setDisableBtn(false)
-                console.log(e.response.reason)
             })
     }
 
@@ -139,7 +141,7 @@ export default function ShopInfoComponent() {
                         mb='20px'
                     />
                     <AddressComponent
-                        address={shopAddressBook} 
+                        address={shopAddressBook}
                     />
 
                     <Flex justifyContent='end' mt='50px'>
