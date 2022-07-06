@@ -74,7 +74,8 @@ export default function LandingPage() {
                 setCheckshopname(false);
                 toggleSignUp();
             })
-            .cathc(e => {
+            .catch(e => {
+                console.log(e.response.data.reason);
                 setCheckshopname(false);
                 setShopnameError(e.response.data.reason)
             })
