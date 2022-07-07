@@ -82,10 +82,10 @@ export default function MerchPage() {
 
     const Addtobasket = () => {
         //  console.log(selectedSku.id);
-        if (userData == undefined) {
-            authenticate();
-            return
-        }
+        // if (userData == undefined) {
+        //     authenticate();
+        //     return
+        // }
         if (profile == null) {
             errorToast("Please login")
             return
@@ -102,9 +102,9 @@ export default function MerchPage() {
 
 
 
-        if (product.ruleset == undefined) {
+      //  if (product.ruleset == undefined) {
             setDisableBtn(true)
-            axios.post(`${BasicURL}/${shopName}/cart/sku`, cart,
+            axios.post(`${BasicURL}/cart/sku`, cart,
                 { headers: { Authorization: 'Bearer ' + token } })
                 .then((e) => {
                     setDisableBtn(false)
@@ -117,36 +117,36 @@ export default function MerchPage() {
                     errorToast(e.response.data.reason)
                 })
             return;
-        }
+       // }
 
-        const Rules = product.ruleset.rules.map(rule => rule.address)
+        // const Rules = product.ruleset.rules.map(rule => rule.address)
 
-        setDisableBtn(true)
-        checkRules(userData.profile.stxAddress.mainnet, Rules)
-            .then(e => {
-                if (e) {
-                    axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
-                        { headers: { Authorization: 'Bearer ' + token } })
-                        .then((e) => {
-                            setDisableBtn(false)
-                            successToast("Merch added to cart")
-                            setQuantity(0)
-                            updateCart()
-                        })
-                        .catch(e => {
-                            setDisableBtn(false)
-                            errorToast(e.response.data.reason)
-                        })
-                } else {
-                    setDisableBtn(false)
-                    errorToast("Required NFT missing")
-                }
-            })
-            .catch(e => {
-                setDisableBtn(false)
-                errorToast(e.response.data)
-            })
-        setDisableBtn(true)
+        // setDisableBtn(true)
+        // checkRules(userData.profile.stxAddress.mainnet, Rules)
+        //     .then(e => {
+        //         if (e) {
+        //             axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
+        //                 { headers: { Authorization: 'Bearer ' + token } })
+        //                 .then((e) => {
+        //                     setDisableBtn(false)
+        //                     successToast("Merch added to cart")
+        //                     setQuantity(0)
+        //                     updateCart()
+        //                 })
+        //                 .catch(e => {
+        //                     setDisableBtn(false)
+        //                     errorToast(e.response.data.reason)
+        //                 })
+        //         } else {
+        //             setDisableBtn(false)
+        //             errorToast("Required NFT missing")
+        //         }
+        //     })
+        //     .catch(e => {
+        //         setDisableBtn(false)
+        //         errorToast(e.response.data)
+        //     })
+        // setDisableBtn(true)
     }
 
 
