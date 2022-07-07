@@ -11,7 +11,6 @@
 		"@fortawesome/free-regular-svg-icons": "^6.1.1",
 		"@fortawesome/free-solid-svg-icons": "^6.1.1",
 		"@fortawesome/react-fontawesome": "^0.1.18",
-		"@stacks/connect": "^6.4.1",
 		"@stripe/react-stripe-js": "^1.9.0",
 		"@stripe/stripe-js": "^1.32.0",
 		"@testing-library/jest-dom": "^5.16.2",
@@ -22,7 +21,7 @@
 		"bootstrap-icons": "^1.8.1",
 		"buffer": "^6.0.3",
 		"crypto-browserify": "^3.12.0",
-		"framer-motion": "^6.2.8",
+		"framer-motion": "4.1.17",
 		"process": "^0.11.10",
 		"react": "^17.0.2",
 		"react-bootstrap": "^2.2.1",
@@ -32,7 +31,7 @@
 		"react-icons": "^4.3.1",
 		"react-modal": "^3.14.4",
 		"react-router-dom": "^6.2.2",
-		"react-scripts": "5.0.0",
+		"react-scripts": "^5.0.1",
 		"react-toastify": "^9.0.1",
 		"sass": "^1.49.9",
 		"stream": "npm:stream-browserify@^3.0.0",
@@ -42,8 +41,8 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"test": "react-app-rewired test",
+		"eject": "react-app-rewired eject"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -64,6 +63,7 @@
 		]
 	},
 	"devDependencies": {
-		"react-app-rewired": "^2.2.1"
+		"react-app-rewired": "^2.2.1",
+		"webpack": "^5.73.0"
 	}
 }
