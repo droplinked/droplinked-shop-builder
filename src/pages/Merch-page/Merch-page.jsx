@@ -102,9 +102,9 @@ export default function MerchPage() {
 
 
 
-        if (product.ruleset == undefined) {
+      //  if (product.ruleset == undefined) {
             setDisableBtn(true)
-            axios.post(`${BasicURL}/${shopName}/cart/sku`, cart,
+            axios.post(`${BasicURL}/cart/sku`, cart,
                 { headers: { Authorization: 'Bearer ' + token } })
                 .then((e) => {
                     setDisableBtn(false)
@@ -117,9 +117,9 @@ export default function MerchPage() {
                     errorToast(e.response.data.reason)
                 })
             return;
-        }
+       // }
 
-        const Rules = product.ruleset.rules.map(rule => rule.address)
+        // const Rules = product.ruleset.rules.map(rule => rule.address)
 
         setDisableBtn(true)
         // checkRules(userData.profile.stxAddress.mainnet, Rules)
