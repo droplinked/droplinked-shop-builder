@@ -1,0 +1,201 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0px 1000px #353536 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.add-rule-moda-wrapper {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-bottom: 50px;
+  & .add-rule-moda-body {
+    box-sizing: border-box;
+    height: auto;
+    margin: auto;
+    max-width: 800px;
+    width: 90%;
+    background: #353536;
+    box-shadow: 0px 2px 30px rgba(85, 88, 90, 0.1);
+    border-radius: 24px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    padding: 40px 40px 40px 40px;
+
+    & .ruleset-input-container {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 25px 0px;
+
+      & .input-container {
+        width: 70%;
+
+        & input {
+          width: 100%;
+          font-weight: 500;
+          font-size: 16px;
+          color: #fff;
+          border: 2px solid #b3b3b3;
+          border-radius: 8px;
+          padding: 5px 16px;
+          outline: none;
+          background-color: transparent;
+          transition: 0.5s;
+          &:focus {
+            border: 2px solid #8053ff;
+          }
+        }
+
+        & p {
+          color: #fff;
+          font-size: 30px;
+        }
+      }
+
+      & .drop-container {
+        width: 20%;
+        display: flex;
+
+        & .delete-btn {
+          color: #fd6060;
+          font-size: 20px;
+          width: auto;
+          height: auto;
+          // margin-right: 10px;
+          cursor: pointer;
+          margin: auto 10px auto 0px;
+        }
+
+        & select {
+          width: 100%;
+          border: 2px solid #b3b3b3;
+          border-radius: 8px;
+          padding: 7px 16px;
+          outline: none;
+          background-color: transparent;
+          color: #fff;
+          font-weight: 500;
+          font-size: 16px;
+          transition: 0.5s;
+          height: 100%;
+
+          & option {
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            background-color: #333;
+            border: none;
+            outline: none;
+          }
+
+          &:focus {
+            border: 2px solid #8053ff;
+          }
+        }
+      }
+    }
+  }
+
+  & .text {
+    font-size: 18px;
+    color: white;
+  }
+  & .input-wrap {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .add-rule-moda-wrapper {
+    width: 100vw;
+    padding: 30px 30px 30px 30px;
+    & .add-rule-moda-body {
+      margin: auto;
+      width: 100%;
+      padding: 30px 20px 60px 20px;
+
+      & .ruleset-input-container {
+        display: block;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 25px 0px;
+
+        & .input-container {
+          width: 100%;
+          & input {
+            width: 30%;
+            font-weight: 500;
+            font-size: 10px;
+            padding: 12px 8px;
+          }
+        }
+
+        & .drop-container {
+          margin-bottom: 10px;
+          width: 50%;
+
+          & .delete-btn {
+            font-size: 15px;
+          }
+
+          & select {
+            width: 100%;
+            font-weight: 500;
+            font-size: 10px;
+            padding: 12px 8px;
+
+            & option {
+              font-weight: 500;
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
+    & .delete-btn {
+      font-size: 8px;
+    }
+    & .text {
+      font-size: 8px;
+      color: white;
+      margin-left: 5px;
+    }
+    & .input-wrap {
+      width: 10 0%;
+    }
+  }
+}

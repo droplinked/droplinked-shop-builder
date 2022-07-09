@@ -1,25 +1,96 @@
-import { createContext, useReducer } from 'react';
-import { AddressReducer } from "./AddressReducer"
+import { createContext, useState } from "react";
+import { BasicURL } from "../functoinal-service/CallApiService";
+import { useToasty } from "../hooks/useToastify";
+
+import axios from "axios";
 
 export const AddressContext = createContext();
 
-export default function AddressContextProvider({children}){
+export default function AddressContextProvider({ children }) {
+  const [addressList, setAddressList] = useState([]);
 
-    const[addressList , dispatch] = useReducer(AddressReducer, []  ) 
+  const { successToast, errorToast } = useToasty();
 
-    const add = payload =>{
-        dispatch({type: 'ADD_ADDRESS', payload})
-    }
+  let token = JSON.parse(localStorage.getItem("token"));
 
-    const contextValues = {
-        add,
-        addressList,
-    } 
+  const updateAddressList = () => {
+    axios
+      .get(`${BasicURL}/address`, {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((e) => {
+        setAddressList(e.data.data.addressBooks);
+      })
+      .catch((e) => {
+        console.log(e.response.data.reason);
+      });
+  };
 
-    return(
-        <AddressContext.Provider value={contextValues}>
-            { children }
-        </AddressContext.Provider>
-    )
+  const addAddress = async (formDate) => {
+    let flag;
+    await axios
+      .post(`${BasicURL}/address`, formDate, {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((e) => {
+        // console.log(e.data.data.addressBook);
+        successToast("Address added successfully");
+        flag = true;
+      })
+      .catch((e) => {
+        errorToast(e.response.data.reason);
+        flag = false;
+      });
+    updateAddressList();
+    return flag;
+  };
 
+
+  const deleteAddress = async (addressId) => {
+
+    await axios.delete(`${BasicURL}/address/${addressId}`,{
+      headers: { Authorization: "Bearer " + token },
+    })
+    .then(e => successToast("Address deleted successfully"))
+    .catch(e => errorToast(e.response.data.reason))
+
+    updateAddressList();
+
+  };
+
+
+  const updateAddress = async (addressBook ,addressId) => {
+    let flag;
+    await axios
+      .put(`${BasicURL}/address/${addressId}`, addressBook, {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((e) => {
+        successToast("Address updated successfully");
+        flag = true;
+      })
+      .catch((e) => {
+        errorToast(e.response.data.reason);
+        flag = false;
+      });
+    updateAddressList();
+    return flag;
+  
+
+  };
+
+
+  const contextValues = {
+    addAddress,
+    updateAddress,
+    updateAddressList,
+    deleteAddress,
+    addressList,
+  };
+
+  return (
+    <AddressContext.Provider value={contextValues}>
+      {children}
+    </AddressContext.Provider>
+  );
 }

@@ -13,7 +13,7 @@ function ProductLarge({ price, title, imageUrl, id }) {
 
     return (
         <div className="Lproduct-component-wrapper">
-            <Link to={`/product/${id}`}>
+            <Link to={`/merch/${id}`}>
                 <div className="product-image-st"
                     onMouseLeave={() => setViewBtn(false)}
                     onMouseEnter={() => setViewBtn(true)}>

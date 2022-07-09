@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useProfile } from "../hooks/useProfile";
 
-export const BasicURL= "https://api.droplinked.com"
+export const BasicURL= "https://dev-api.droplinked.com"
 
 export function GetApiWithAuth(address, setstate, dataName, errorhandler) {
   let token = JSON.parse(localStorage.getItem("token"));

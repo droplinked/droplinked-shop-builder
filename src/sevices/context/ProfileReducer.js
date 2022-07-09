@@ -1,11 +1,16 @@
+import { useCart } from "../hooks/useCart";
+
 export const ProflieReduser = (profile, action) => {
+  const { updateCartWithToken } = useCart();
+
+
   switch (action.type) {
     case "ADD_PROFILE":
       localStorage.setItem("token", JSON.stringify(action.payload.jwt));
       localStorage.setItem("profile", JSON.stringify(action.payload.user));
       return { ...action.payload.user };
 
-      case "UPDATE_PROFILE":
+    case "UPDATE_PROFILE":
       localStorage.setItem("profile", JSON.stringify(action.payload));
       return { ...action.payload };
 

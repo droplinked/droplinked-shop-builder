@@ -1,6 +1,5 @@
 import { useState, createContext, useContext, useEffect } from 'react';
 import { authenticate, userSession } from '../../wallet-auth/auth';
-import { getAccountBalances, getUserAddress } from '../../wallet-auth/api';
 
 const UserWalletContext = createContext(undefined);
 
@@ -8,23 +7,25 @@ const WalletProvider = ({ children }) => {
 	const [userData, setUserData] = useState(undefined);
 
 	useEffect(() => {
-		if (userSession.isSignInPending()) {
-			userSession
-				.handlePendingSignIn()
-				.then((userData) => {
-					window.history.replaceState({}, document.title, '/');
-					setUserData(userData);
-				})
-				.catch((err) => {
-					setUserData(undefined);
-				});
-		} else if (userSession.isUserSignedIn()) {
-			setUserData(userSession.loadUserData());
-		}
+		// if (userSession.isSignInPending()) {
+		// 	userSession
+		// 		.handlePendingSignIn()
+		// 		.then((userData) => {
+		// 			window.history.replaceState({}, document.title, '/');
+		// 			setUserData(userData);
+		// 		})
+		// 		.catch((err) => {
+		// 			setUserData(undefined);
+		// 		});
+		// } else if (userSession.isUserSignedIn()) {
+		// 	setUserData(userSession.loadUserData());
+		// }
 	}, []);
 
+
+	// change path instead "/"
 	function onSignOut() {
-		userSession.signUserOut('/');
+		//userSession.signUserOut(window.location.pathname);
 	}
 
 	function checkTokens(tokens) {

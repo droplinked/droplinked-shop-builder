@@ -1,0 +1,36 @@
+@keyframes basketModalAnimation {
+  from {
+    top: -80px;
+    opacity: 0;
+  }
+  to {
+    top: 80px;
+    opacity: 1;
+  }
+}
+
+.basket-modal-wrapper {
+ border: 1px solid #ccc;
+ border-radius: 10px;
+ width: 300px;
+ height: auto;
+ padding: 20px 10px;
+ position: fixed;
+ top: 80px;
+ right: 80px;
+  animation-name: basketModalAnimation;
+  animation-duration: 0.2s;
+ z-index: 50;
+  background-color: #222;
+}
+
+@media only screen and (max-width: 768px) {
+  .basket-modal-wrapper {
+    width: 90%;
+    height: auto;
+    margin: 0px auto;
+    right: 50%;
+    transform: translateX(50%);
+    padding: 40px 20px;
+  }
+}
