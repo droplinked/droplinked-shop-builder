@@ -7,25 +7,25 @@ const WalletProvider = ({ children }) => {
 	const [userData, setUserData] = useState(undefined);
 
 	useEffect(() => {
-		// if (userSession.isSignInPending()) {
-		// 	userSession
-		// 		.handlePendingSignIn()
-		// 		.then((userData) => {
-		// 			window.history.replaceState({}, document.title, '/');
-		// 			setUserData(userData);
-		// 		})
-		// 		.catch((err) => {
-		// 			setUserData(undefined);
-		// 		});
-		// } else if (userSession.isUserSignedIn()) {
-		// 	setUserData(userSession.loadUserData());
-		// }
+		if (userSession.isSignInPending()) {
+			userSession
+				.handlePendingSignIn()
+				.then((userData) => {
+					window.history.replaceState({}, document.title, '/');
+					setUserData(userData);
+				})
+				.catch((err) => {
+					setUserData(undefined);
+				});
+		} else if (userSession.isUserSignedIn()) {
+			setUserData(userSession.loadUserData());
+		}
 	}, []);
 
 
 	// change path instead "/"
 	function onSignOut() {
-		//userSession.signUserOut(window.location.pathname);
+		userSession.signUserOut(window.location.pathname);
 	}
 
 	function checkTokens(tokens) {
