@@ -9,16 +9,18 @@ import BasicButton from "../../shared/BasicButton/BasicButton"
 
 export default function AddressForm({ type, addressBook, close }) {
 
-    const { addAddress ,updateAddress  } = useAddress()
+    const { addAddress, updateAddress } = useAddress()
 
 
     // form values states
-    const [line1, setLine1] = useState((addressBook)?addressBook.addressLine1:'')
-    const [line2, setLine2] = useState((addressBook)?addressBook.addressLine2:'')
-    const [country, setCountry] = useState((addressBook)?addressBook.country:'')
-    const [city, setCity] = useState((addressBook)?addressBook.city:'')
-    const [state, setState] = useState((addressBook)?addressBook.state:'')
-    const [zip, setZip] = useState((addressBook)?addressBook.zip:'')
+    const [line1, setLine1] = useState((addressBook) ? addressBook.addressLine1 : '')
+    const [line2, setLine2] = useState((addressBook) ? addressBook.addressLine2 : '')
+    const [country, setCountry] = useState((addressBook) ? addressBook.country : '')
+    const [city, setCity] = useState((addressBook) ? addressBook.city : '')
+    const [state, setState] = useState((addressBook) ? addressBook.state : '')
+    const [zip, setZip] = useState((addressBook) ? addressBook.zip : '')
+    const [firstname, setFirstname] = useState((addressBook) ? addressBook.firstname : '')
+    const [lastname, setLastname] = useState((addressBook) ? addressBook.lastname : '')
     // state for show wrror
     const [error, setError] = useState('')
 
@@ -57,30 +59,64 @@ export default function AddressForm({ type, addressBook, close }) {
         if (error == 'zip') setError('')
     }
 
+    const ChangeFirstname = e => {
+        setFirstname(e.target.value)
+        if (error == 'firstname') setError('')
+    }
+
+    const ChangeLastname = e => {
+        setLastname(e.target.value)
+        if (error == 'lastname') setError('')
+    }
+
     // submit form
     const submitForm = async () => {
+
+       
+
         let validation = validationForm()
+        console.log(validation);
         if (!validation) return
 
-        const formDate = {
-            addressLine1: line1,
-            addressLine2: line2,
-            country: country,
-            city: city,
-            state: state,
-            zip: zip,
-            addressType: type
+       
+        let formDate 
+
+        if(type == "CUSTOMER"){
+            formDate = {
+                firstname: firstname,
+                lastname: lastname,
+                addressLine1: line1,
+                addressLine2: line2,
+                country: country,
+                city: city,
+                state: state,
+                zip: zip,
+                addressType: type
+            }
+        }else{
+             formDate = {
+                addressLine1: line1,
+                addressLine2: line2,
+                country: country,
+                city: city,
+                state: state,
+                zip: zip,
+                addressType: type
+            }
         }
+
         setLoading(true)
         let result
-        if(addressBook){
-            result = await updateAddress(formDate , addressBook._id);
-        }else{
+        if (addressBook) {
+            result = await updateAddress(formDate, addressBook._id);
+        } else {
             result = await addAddress(formDate);
         }
         setLoading(false)
-       
-        if(result == true) close()
+
+        console.log(result);
+
+        if (result == true) close()
     }
 
 
@@ -105,6 +141,17 @@ export default function AddressForm({ type, addressBook, close }) {
         else if (zip == '') {
             setError('zip')
             return false
+        } else if (type == "CUSTOMER") {
+            let flag = true ;
+            if (firstname == '') {
+                setError('firstname')
+                flag =  false
+            }
+            if (lastname == '') {
+                setError('lastname')
+                flag =  false
+            }
+            return flag
         } else {
             return true
         }
@@ -155,8 +202,9 @@ export default function AddressForm({ type, addressBook, close }) {
                     isError={(error == "city") && "City is required"}
                 />
             </Flex>
+
             <Flex
-                mb='60px'
+                mb='30px'
                 justifyContent='space-between'
                 alignItems='center'
             >
@@ -177,6 +225,33 @@ export default function AddressForm({ type, addressBook, close }) {
                     isError={(error == "zip") && "Zip is required"}
                 />
             </Flex>
+
+            {(type == "CUSTOMER") ?
+                <Flex
+                    mb='60px'
+                    justifyContent='space-between'
+                    alignItems='center'
+                >
+                    <FormInput
+                        w='45%'
+                        label={"First Name"}
+                        placeholder={"firstnams"}
+                        value={firstname}
+                        changeValue={ChangeFirstname}
+                        isError={(error == "firstname") && "firstname is required"}
+                    />
+                    <FormInput
+                        w='45%'
+                        label={"Last Name"}
+                        placeholder={"lastname"}
+                        value={lastname}
+                        changeValue={ChangeLastname}
+                        isError={(error == "lastname") && "Lastname is required"}
+                    />
+                </Flex>
+                :
+                <Box mb='60px'></Box>
+            }
 
             <Flex
                 justifyContent='space-between'
