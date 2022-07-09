@@ -40,7 +40,7 @@ function BuyProduct() {
     const [quantity, setQuantity] = useState(0)
     const [readmore, setReadmore] = useState(false);
 
-
+console.log(product)
 
     useEffect(() => {
         axios.get(`https://dev.flatlay.io/product/${id}`, {
@@ -110,7 +110,7 @@ function BuyProduct() {
                         <div className="detail-side col-12 col-md-6">
                             <p className="merch-title">{product.title}</p>
                             <p className="merch-descroption">{product.handle}</p>
-                            <p className="merch-price">{`$ 0`}</p>
+                            <p className="merch-price">{product.variants[0].price}</p>
 
                             <div className="merch-options-wrap">
                          {/*    <div className="opt">
