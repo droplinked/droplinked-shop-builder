@@ -10,6 +10,8 @@ import { useParams } from "react-router-dom";
 import { useCart } from "../../sevices/hooks/useCart"
 import { UseWalletInfo } from "../../sevices/context/context"
 import { fetchPrincipalNFTs } from "../../sevices/functoinal-service/NFTcheck"
+import { useToasty } from "../../sevices/hooks/useToastify"
+
 
 
 
@@ -33,6 +35,7 @@ function BuyProduct() {
     const [fullsizeImage, setFullSizeImage] = useState(false);
     // const personId = profile.id;
     const { userData, authenticate } = UseWalletInfo();
+    const { errorToast, successToast } = useToasty();
 
     //new states 
     const [product, setPrudoct] = useState(null);
@@ -40,7 +43,6 @@ function BuyProduct() {
     const [quantity, setQuantity] = useState(0)
     const [readmore, setReadmore] = useState(false);
 
-console.log(product)
 
     useEffect(() => {
         axios.get(`https://dev.flatlay.io/product/${id}`, {
@@ -94,6 +96,17 @@ console.log(product)
     }, [product])
 
 
+    const submitButton = () => {
+        if (userData == undefined) {
+            authenticate();
+            return
+        }
+
+        errorToast("Required NFT missing")
+     
+    }
+
+
 
     return (<>
         <div className="merch-page-container">
@@ -145,7 +158,7 @@ console.log(product)
                                     <img src={minus} alt="" />
                                 </div>
                             </div>
-                            <AutoWidthButton text={"Add to basket"} />
+                            <AutoWidthButton onClick={submitButton} text={"Add to basket"} />
                         </div>
                     </div>
 
