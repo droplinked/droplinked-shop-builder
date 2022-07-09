@@ -4,14 +4,15 @@ import {
     Text,
     Button,
 } from '@chakra-ui/react'
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useCart } from "../../../sevices/hooks/useCart"
+import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 
-import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import StripeComponent from "./stripe modal/stripe-modal-component"
 import Loading from "../../../components/shared/loading/Loading"
+import axios from 'axios';
 
 
 const stripePromise = loadStripe('pk_test_51B3XzHDHP9PnFF5D7xWkc29H1NehLpfVEAWaycBBtoUXPyL4qq1dAZYVSBlWr5Kc0sGenWCJfuFEmXy5JCXxACLk00NXM3aQQh');
@@ -19,7 +20,10 @@ const stripePromise = loadStripe('pk_test_51B3XzHDHP9PnFF5D7xWkc29H1NehLpfVEAWay
 export default function PaymentPage() {
 
     const [paymentSelected, setPaymentSelected] = useState(null)
+    const [clientSecret, setClientSecret] = useState('')
     const { cart } = useCart();
+
+    let token = JSON.parse(localStorage.getItem("token"));
 
 
     const appearance = {
@@ -30,7 +34,7 @@ export default function PaymentPage() {
 
     const options = {
         // passing the client secret obtained from the server
-        clientSecret: 'pi_3LHAgeDHP9PnFF5D1RYkZVLS_secret_pRphrGFCcOABG8JDhkXAUlEUA',
+        clientSecret: clientSecret ,
         appearance
     };
 
@@ -47,6 +51,19 @@ export default function PaymentPage() {
         shops = [...new Set(shops)];
         let shippingPrice = (shops.length * 5)
         return shippingPrice
+    }
+
+    const stripePayment = async () => {
+        
+        await axios.post(`${BasicURL}/cart/checkout`, {}, {
+            headers: { Authorization: "Bearer " + token },
+        }).then(e => {
+            setClientSecret(e.data.data.client_secret) 
+            setPaymentSelected("Stripe")
+        })
+            .catch(e => {
+                console.log(e.response.data.reason)
+            })
     }
 
 
@@ -87,9 +104,7 @@ export default function PaymentPage() {
                                     color="#fff"
                                     bgColor={((paymentSelected == "Stripe")) ? '#8053ff' : "#4A4A4A"}
                                     _hover={{ color: "#444" }}
-                                    onClick={() => {
-                                        setPaymentSelected("Stripe")
-                                    }}
+                                    onClick={stripePayment}
                                 >Stripe</Button>
 
                                 <Button
@@ -109,8 +124,8 @@ export default function PaymentPage() {
             }
 
             {(paymentSelected == "Stripe") &&
-                <Elements stripe={stripePromise} options={options} >
-                    <StripeComponent />
+                <Elements stripe={stripePromise} options={options}  >
+                    <StripeComponent cartId={cart.id} />
                 </Elements>
             }
 
