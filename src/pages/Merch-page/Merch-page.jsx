@@ -125,7 +125,7 @@ export default function MerchPage() {
         checkRules(userData.profile.stxAddress.mainnet, Rules)
             .then(e => {
                 if (e) {
-                    axios.post(BasicURL + `/${shopName}/cart/sku`, cart,
+                    axios.post(`${BasicURL}/cart/sku`, cart,
                         { headers: { Authorization: 'Bearer ' + token } })
                         .then((e) => {
                             setDisableBtn(false)

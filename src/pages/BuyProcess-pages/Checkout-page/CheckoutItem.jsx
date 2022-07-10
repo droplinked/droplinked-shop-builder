@@ -10,6 +10,8 @@ import axios from "axios";
 export default function CheckoutItem({ product }) {
 
     const [quantity, setQuantity] = useState(product.quantity)
+    const [disableDeleteBtn, setDisableDeleteBtn] = useState(false)
+    const [disableEditBtn, setDisableEditBtn] = useState(false)
 
     const { updateCart } = useCart()
     const { successToast, errorToast } = useToasty()
@@ -24,14 +26,19 @@ export default function CheckoutItem({ product }) {
     //delete merch
     const deleteMerch = () => {
 
-        // axios.delete(`${BasicURL}/${product.shopID.name}/cart/sku/${product.skuID}`, {
-        //     headers: { Authorization: "Bearer " + token },
-        // })
-        //     .then((e) => {
-        //         successToast("Merch deleted successfully")
-        //         updateCart();
-        //     })
-        //     .catch(e => errorToast(e.response.data))
+        setDisableDeleteBtn(true)
+        axios.delete(`${BasicURL}/cart/sku/${product.skuID}`, {
+            headers: { Authorization: "Bearer " + token },
+        })
+            .then((e) => {
+                setDisableDeleteBtn(false)
+                successToast("Merch deleted successfully")
+                updateCart();
+            })
+            .catch(e => {
+                setDisableDeleteBtn(false)
+                errorToast(e.response.data)
+            })
     }
 
 
@@ -42,17 +49,21 @@ export default function CheckoutItem({ product }) {
             errorToast("Merch quantity must be greater than zero")
             return;
         }
-
-        // axios.post(`${BasicURL}/cart/sku/${product.skuID}`,
-        //     { quantity: quantity },
-        //     {
-        //         headers: { Authorization: "Bearer " + token },
-        //     })
-        //     .then((e) => {
-        //         successToast("Merch updated successfully")
-        //         updateCart();
-        //     })
-        //     .catch(e => errorToast(e.data.response))
+        setDisableEditBtn(true)
+        axios.put(`${BasicURL}/cart/sku/${product.skuID}`,
+            { quantity: parseInt(quantity) },
+            {
+                headers: { Authorization: "Bearer " + token },
+            })
+            .then((e) => {
+                setDisableEditBtn(false)
+                successToast("Merch updated successfully")
+                updateCart();
+            })
+            .catch(e => {
+                setDisableEditBtn(false)
+                errorToast(e.response.data.reason)
+            })
     }
 
 
@@ -135,6 +146,7 @@ export default function CheckoutItem({ product }) {
                         _focus={{ bgColor: "none", borderColor: "#8053ff" }}
                         //   _active={{bgColor: "none", borderColor: "#8053ff"}}
                         onClick={deleteMerch}
+                        disabled={disableDeleteBtn}
                     />
 
                     <Input
@@ -157,6 +169,7 @@ export default function CheckoutItem({ product }) {
                         _hover={{ bgColor: "none", borderColor: "#8053ff" }}
                         _focus={{ bgColor: "none", borderColor: "#8053ff" }}
                         onClick={updateQuantity}
+                        disabled={disableEditBtn}
                     >Submit</Button>
                 </ButtonGroup>
 
