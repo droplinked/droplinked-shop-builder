@@ -37,6 +37,7 @@ import BuyProduct from "./pages/BuyCrashpunks-page/BuyProduct";
 import SettingsPage from "./pages/Settings-page/Settings-page";
 import IncomingOrderPage from "./pages/Producer-pages/IncominOrder-page/IncomingOrder-page";
 import Creator from "./pages/Creator-page/CreatorPage";
+import PurchasHistoryPage from "./pages/PurchaseHistory-page/PurchaseHistory"
 
 function App() {
   return (
@@ -107,6 +108,7 @@ function App() {
                           path=":shopname/collection/:collectionId"
                           element={<CollectionPage />}
                         />
+                        <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
                         <Route path="checkout" element={<CheckoutPage />} />
                         <Route path="/address" element={<AddressPage />} />
                         <Route path="/payment" element={<PaymentPage />} />

@@ -26,8 +26,8 @@ export default function BasketModal({ close }) {
                     {(cart.items.length > 0)
                         ?
                         <>
-                            {cart.items.map(item => {
-                                return <BasketItemComponent item={item} />
+                            {cart.items.map((item , i) => {
+                                return <BasketItemComponent key={i} item={item} />
                             })}
                             <Button
                                 mt="20px"

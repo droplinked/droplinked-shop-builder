@@ -34,7 +34,7 @@ export default function PaymentPage() {
 
     const options = {
         // passing the client secret obtained from the server
-        clientSecret: clientSecret ,
+        clientSecret: clientSecret,
         appearance
     };
 
@@ -54,11 +54,11 @@ export default function PaymentPage() {
     }
 
     const stripePayment = async () => {
-        
+
         await axios.post(`${BasicURL}/cart/checkout`, {}, {
             headers: { Authorization: "Bearer " + token },
         }).then(e => {
-            setClientSecret(e.data.data.client_secret) 
+            setClientSecret(e.data.data.client_secret)
             setPaymentSelected("Stripe")
         })
             .catch(e => {
@@ -79,13 +79,13 @@ export default function PaymentPage() {
 
                         {/* top side */}
                         <Box p="10px 5px" mb="50px" w={{ base: '100%', md: '200px' }}>
-                            <Text color='#ddd' mb="20px" fontSize={{ base: '16px', md: '18px' }} fontWeight="500">
+                            <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
                                 Merchs : $ {getTotalofMerchs()}
                             </Text>
-                            <Text color='#ddd' mb="20px" fontSize={{ base: '16px', md: '18px' }} fontWeight="500">
+                            <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
                                 Shipping : $ {getTotalofShipping()}
                             </Text>
-                            <Text color='#ddd' mb="20px" fontSize={{ base: '16px', md: '18px' }} fontWeight="500">
+                            <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
                                 Total price : $ {(getTotalofMerchs() + getTotalofShipping())}
                             </Text>
                         </Box>
@@ -101,17 +101,32 @@ export default function PaymentPage() {
                             <Box w="100%" display="flex" height={{ base: "100px", md: "auto" }} flexDirection="row" alignItems="center" justifyContent="space-between">
                                 <Button
                                     w="40%"
-                                    color="#fff"
-                                    bgColor={((paymentSelected == "Stripe")) ? '#8053ff' : "#4A4A4A"}
-                                    _hover={{ color: "#444" }}
+                                    color="#8053ff"
+                                    border='1px'
+                                    borderColor='#8053ff'
+                                    bgColor='#222'
+                                    // bgColor={((paymentSelected == "Stripe")) ? '#8053ff' : "#4A4A4A"}
+                                    _hover={{
+                                        color: "#222",
+                                        borderColor: '#222',
+                                        bgColor: '#8053ff',
+                                    }}
                                     onClick={stripePayment}
                                 >Stripe</Button>
 
                                 <Button
                                     w="40%"
-                                    color="#fff"
-                                    bgColor={((paymentSelected == "Stx")) ? '#8053ff' : "#4A4A4A"}
-                                    _hover={{ color: "#444" }}
+                                    // bgColor={((paymentSelected == "Stx")) ? '#8053ff' : "#4A4A4A"}
+                                    color="#8053ff"
+                                    border='1px'
+                                    borderColor='#8053ff'
+                                    bgColor='#222'
+                                    // bgColor={((paymentSelected == "Stripe")) ? '#8053ff' : "#4A4A4A"}
+                                    _hover={{
+                                        color: "#222",
+                                        borderColor: '#222',
+                                        bgColor: '#8053ff',
+                                    }}
                                     onClick={() => {
                                         setPaymentSelected("Stx")
                                     }}
