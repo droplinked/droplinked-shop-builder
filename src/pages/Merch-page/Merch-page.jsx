@@ -80,12 +80,9 @@ export default function MerchPage() {
     }
 
 
-    const Addtobasket = () => {
+    const Addtobasket = async() => {
         //  console.log(selectedSku.id);
-        if (userData == undefined) {
-            authenticate();
-            return
-        }
+       
         if (profile == null) {
             errorToast("Please login")
             return
@@ -103,8 +100,9 @@ export default function MerchPage() {
 
 
         if (product.ruleset == undefined) {
+   
             setDisableBtn(true)
-            axios.post(`${BasicURL}/cart/sku`, cart,
+            await axios.post(`${BasicURL}/cart/sku`, cart,
                 { headers: { Authorization: 'Bearer ' + token } })
                 .then((e) => {
                     setDisableBtn(false)
@@ -116,7 +114,13 @@ export default function MerchPage() {
                     setDisableBtn(false)
                     errorToast(e.response.data.reason)
                 })
-            return;
+               return;
+            
+        }
+
+        if (userData == undefined) {
+            authenticate();
+            return
         }
 
         const Rules = product.ruleset.rules.map(rule => rule.address)
