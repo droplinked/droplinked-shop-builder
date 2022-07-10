@@ -21,6 +21,7 @@ export default function PaymentPage() {
 
     const [paymentSelected, setPaymentSelected] = useState(null)
     const [clientSecret, setClientSecret] = useState('')
+    const [disableBtns, setDisables] = useState(false)
     const { cart } = useCart();
 
     let token = JSON.parse(localStorage.getItem("token"));
@@ -55,6 +56,7 @@ export default function PaymentPage() {
 
     const stripePayment = async () => {
 
+        setDisables(true)
         await axios.post(`${BasicURL}/cart/checkout`, {}, {
             headers: { Authorization: "Bearer " + token },
         }).then(e => {
@@ -64,6 +66,7 @@ export default function PaymentPage() {
             .catch(e => {
                 console.log(e.response.data.reason)
             })
+        setDisables(false)
     }
 
 
@@ -111,6 +114,7 @@ export default function PaymentPage() {
                                         borderColor: '#222',
                                         bgColor: '#8053ff',
                                     }}
+                                    disabled={disableBtns}
                                     onClick={stripePayment}
                                 >Stripe</Button>
 
@@ -127,6 +131,7 @@ export default function PaymentPage() {
                                         borderColor: '#222',
                                         bgColor: '#8053ff',
                                     }}
+                                    disabled={disableBtns}
                                     onClick={() => {
                                         setPaymentSelected("Stx")
                                     }}
