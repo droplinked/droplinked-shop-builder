@@ -12,7 +12,35 @@ import {
 import MerchComponent from "../merchComponent/MerchComponent"
 
 
-export default function OrderModal({  isOpen, onClose }) {
+export default function OrderModal({ ProducList, order, isOpen, onClose }) {
+
+    // new orderList with product
+    let newOrderList = order;
+    newOrderList.items.forEach((item, i) => {
+        let product = ProducList.find(product => product._id == item.productID)
+        newOrderList.items[i] = { ...item, product: product }
+    })
+     console.log(newOrderList);
+
+    const getDate = () => {
+        let date = new Date(order.createdAt).toString().split(' ')
+        date = date[1] + '/' + date[2] + '/' + date[3]
+        return date
+    }
+
+    const getQuantity = () => {
+        let TotalQuantity = newOrderList.items.map(item => item.quantity)
+            .reduce((total, quan) => { return total + quan }, 0)
+        return TotalQuantity
+    }
+
+    const getMerchPrice = () => {
+        let totalPrice = 0
+        newOrderList.items.forEach(item => {
+            totalPrice += item.product.skus.find(sku => sku._id == item.skuID).price
+        })
+        return totalPrice
+    }
 
 
     return (
@@ -39,7 +67,7 @@ export default function OrderModal({  isOpen, onClose }) {
                             fontWeight='600'
                             mb={{ base: "5px", md: '10px' }}
                         >
-                            Merchs price : $ 140
+                            Merchs price : $ {getMerchPrice()}
                         </Text>
 
                         <Text
@@ -48,7 +76,7 @@ export default function OrderModal({  isOpen, onClose }) {
                             fontWeight='600'
                             mb={{ base: "5px", md: '10px' }}
                         >
-                            Date : 2022/06/21
+                            Date : {getDate()}
                         </Text>
                     </Flex>
                     <Flex w='100%' justifyContent='space-between'>
@@ -66,7 +94,7 @@ export default function OrderModal({  isOpen, onClose }) {
                             fontWeight='600'
                             mb={{ base: "5px", md: '10px' }}
                         >
-                            Merchs quantity : 10
+                            Merchs quantity : {getQuantity()}
                         </Text>
 
                     </Flex>
@@ -77,13 +105,13 @@ export default function OrderModal({  isOpen, onClose }) {
                         fontWeight='600'
                         mb='40px'
                     >
-                        Total pric : $ 145
+                        Total pric : $ {getMerchPrice() + 5}
                     </Text>
                     < MerchComponent />
                     <Box mb='20px'></Box>
                     < MerchComponent />
                     <Box mb='20px'></Box>
-                    < MerchComponent />
+                    <MerchComponent />
                     <Box mb='20px'></Box>
                     < MerchComponent />
 
@@ -94,7 +122,7 @@ export default function OrderModal({  isOpen, onClose }) {
                     >
                         <Text
                             color='white'
-                            fontSize={{ base:'14px' , md:'18px'}}
+                            fontSize={{ base: '14px', md: '18px' }}
                             mb='20px'
                             fontWeight='600'
                         >
