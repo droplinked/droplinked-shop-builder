@@ -1,21 +1,69 @@
 import { useToasty } from "../../sevices/hooks/useToastify"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
+import { Text, Box } from "@chakra-ui/react"
 
+import axios from "axios"
+import Loading from "../../components/shared/loading/Loading"
+import PurchaseHistory from "./PurchseComponent/PurchaseComponent"
 
+export default function PurchasHistoryPage() {
 
-export default function PurchasHistoryPage(){
+    const [purchase, setPurchase] = useState([])
+    const { successToast, errorToast } = useToasty();
 
-    const { successToast , errorToast } = useToasty();
+    let token = JSON.parse(localStorage.getItem("token"));
 
     //get payment status
     let params = (new URL(document.location)).searchParams;
     let status = params.get('redirect_status') // null or string
-    console.log(status); // succeeded
 
-    useEffect(()=>{
-        if(status == 'succeeded') successToast("payment successfull") 
-    },[])
 
-    return(<>
+    useEffect(() => {
+        // if its backurl from stripe show successToast
+        if (status == 'succeeded') successToast("payment successfull")
+        getPurchseList()
+    }, [])
+
+
+    const getPurchseList = async () => {
+
+        await axios.get(`${BasicURL}/order`, {
+            headers: { Authorization: "Bearer " + token },
+        })
+            .then(e => setPurchase(e.data.data.orders))
+            .catch(e => console.log(e.response.data.reason))
+    }
+
+    return (<>
+        {purchase.length == 0
+            ?
+            <Loading />
+            :
+                <Box
+                    w='100%'
+                    px={{ base: "20px", md: "80px" }}
+                >
+                    <Box
+                        w='100%'
+                        maxW='800px'
+                        m='auto'
+                    >
+                        <Text
+                    color='white'
+                    fontSize={{ base: "30px", md: '40px' }}
+                    fontWeight='600'
+                    textAlign='center'
+                    mb='40px'
+                >
+                    Purchase History
+                </Text>
+                {purchase.map((item , i) => {
+                    return <PurchaseHistory key={i} item={item} />
+                })}
+                    </Box>
+                </Box>
+        }
+
     </>)
 }
