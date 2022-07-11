@@ -12,7 +12,8 @@ import {
 import MerchComponent from "../merchComponent/MerchComponent"
 
 
-export default function OrderModal({ isOpen, onClose }) {
+export default function OrderModal({  isOpen, onClose }) {
+
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}  >

@@ -1,14 +1,29 @@
-import { Text, Box, Flex, useDisclosure, } from "@chakra-ui/react"
+import { Text, Box, Flex, useDisclosure, Stack, Skeleton } from "@chakra-ui/react"
+import { useState, useEffect } from "react"
 //import { AiOutlineFieldTime } from "react-icons/ai";
 import { useOrder } from "../../../../sevices/hooks/useOrders"
+import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 
+import axios from 'axios'
 import OrderModal from "../OrderModal/OrderModal"
 
 export default function OrderComponent({ order }) {
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [merchs, setMerchs] = useState([])
+    const [address, setAddress] = useState(null)
+    const [showComponent, setShowComponent] = useState(false)
 
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const { seenOrder } = useOrder()
+
+    // console.log(order);
+    useEffect(() => {
+        // let productsId = order.items.map(item => item._id)
+        // let p = getProductsArray(productsId)
+        // console.log(p);
+        // getAddress()
+        // console.log('end');
+    }, [])
 
     // calculaate date of order
     const getOrderTime = () => {
@@ -27,9 +42,29 @@ export default function OrderComponent({ order }) {
 
 
     const openOrder = () => {
-        if(!order.seenByProducer)seenOrder(order._id)
+        if (!order.seenByProducer) seenOrder(order._id)
         onOpen()
     }
+
+    // const getProductsArray = async(productsId) => {
+    //     console.log(productsId);
+    //     let promises = [];
+    //     for (let i = 0; i < productsId.length; i++) {
+    //       promises.push(axios.get(`${BasicURL}/product/${productsId[i]}`));
+    //     }
+    //     let results = await Promise.all(promises);
+    //     results = results.map((e) => e.data.data);
+    //     return results;
+    // }
+
+    // const getAddress = async() => {
+    //     let token = JSON.parse(localStorage.getItem("token"));
+    //     axios.get(`${BasicURL}/address/${order.customerAddressBookID}`,{
+    //         headers: { Authorization: "Bearer " + token },
+    //     })
+    //     .then(e => console.log(e.data.data))
+    //     .catch(e => console.log(e.response.data.reason))
+    // }
 
 
     return (
@@ -39,7 +74,12 @@ export default function OrderComponent({ order }) {
             borderRadius='16px'
             p='15px 20px'
         >
-            <Flex justifyContent='space-between'  >
+            {/* <Stack>
+            <Skeleton height='20px' />
+            <Skeleton height='20px' />
+            <Skeleton height='20px' />
+            </Stack> */}
+             <Flex justifyContent='space-between'  >
                 <Text
                     color='#fff'
                     fontSize={{ base: "12px", md: '14px' }}
@@ -102,7 +142,7 @@ export default function OrderComponent({ order }) {
                 >
                     View order
                 </Text>
-            </Flex>
+            </Flex> 
 
             <OrderModal isOpen={isOpen} onClose={onClose} />
 
