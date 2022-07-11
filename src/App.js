@@ -9,6 +9,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContext } from "./sevices/context/Toast-context";
 import AddressContext from "./sevices/context/AddressContext";
 import ScrollTop from "./services/ScrollTop/ScrollTop";
+import OrderContextProvider from "./sevices/context/OrdersContext"
 
 import PageWrapper from "./pages/Page-wrapper/PageWrapper";
 import LandingPage from "./pages/Landing-page/Landing-page";
@@ -47,78 +48,80 @@ function App() {
           <ChakraProvider>
             <WalletProvider>
               <AddressContext>
-                <BrowserRouter>
-                  <ScrollTop>
-                    <Routes>
-                      <Route path="/" element={<PageWrapper />}>
-                        <Route index element={<LandingPage />} />
-                        <Route path="terms" element={<TermsPage />} />
-                        <Route path="privacy" element={<PrivacyPage />} />
-                        <Route path="register" element={<RegisterPage />}>
+                <OrderContextProvider>
+                  <BrowserRouter>
+                    <ScrollTop>
+                      <Routes>
+                        <Route path="/" element={<PageWrapper />}>
+                          <Route index element={<LandingPage />} />
+                          <Route path="terms" element={<TermsPage />} />
+                          <Route path="privacy" element={<PrivacyPage />} />
+                          <Route path="register" element={<RegisterPage />}>
+                            <Route
+                              path="personalInfo"
+                              element={<PersonalPage />}
+                            />
+                            <Route path="shopInfo" element={<RegisterShop />} />
+                            <Route path="IMSSelect" element={<RegisterIms />} />
+                          </Route>
                           <Route
-                            path="personalInfo"
-                            element={<PersonalPage />}
+                            path="emailConfirmation"
+                            element={<ThankForRegisterPage />}
                           />
-                          <Route path="shopInfo" element={<RegisterShop />} />
-                          <Route path="IMSSelect" element={<RegisterIms />} />
+                          <Route
+                            path="email-verification/:token"
+                            element={<EmailVerifyPage />}
+                          />
+                          <Route path="settings" element={<SettingsPage />} />
+                          <Route
+                            path="producer/ims"
+                            element={<InventoryPage />}
+                          />
+                          <Route
+                            path="producer/Merch/:id"
+                            element={<ViewMerchPage />}
+                          />
+                          <Route
+                            path="producer/account-recovery/:token"
+                            element={<AccountRecoveryPage />}
+                          />
+                          <Route
+                            path="producer/addProduct"
+                            element={<AddProductPage />}
+                          />
+                          <Route
+                            path="producer/ruleset"
+                            element={<RuleSetPage />}
+                          />
+                          <Route
+                            path="producer/collection"
+                            element={<CollectionMainPage />}
+                          />
+                          <Route
+                            path="producer/orders"
+                            element={<IncomingOrderPage />}
+                          />
+                          <Route path=":shopname" element={<ShopPage />} />
+                          <Route
+                            path=":shopname/merch/:merchId"
+                            element={<MerchPage />}
+                          />
+                          <Route
+                            path=":shopname/collection/:collectionId"
+                            element={<CollectionPage />}
+                          />
+                          <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
+                          <Route path="checkout" element={<CheckoutPage />} />
+                          <Route path="/address" element={<AddressPage />} />
+                          <Route path="/payment" element={<PaymentPage />} />
+                          <Route path="/crashpunks" element={<CreatorPage />} />
+                          <Route path="/product/:id" element={<BuyProduct />} />
+                          <Route path="/creatorpage" element={<Creator />} />
                         </Route>
-                        <Route
-                          path="emailConfirmation"
-                          element={<ThankForRegisterPage />}
-                        />
-                        <Route
-                          path="email-verification/:token"
-                          element={<EmailVerifyPage />}
-                        />
-                        <Route path="settings" element={<SettingsPage />} />
-                        <Route
-                          path="producer/ims"
-                          element={<InventoryPage />}
-                        />
-                        <Route
-                          path="producer/Merch/:id"
-                          element={<ViewMerchPage />}
-                        />
-                        <Route
-                          path="producer/account-recovery/:token"
-                          element={<AccountRecoveryPage />}
-                        />
-                        <Route
-                          path="producer/addProduct"
-                          element={<AddProductPage />}
-                        />
-                        <Route
-                          path="producer/ruleset"
-                          element={<RuleSetPage />}
-                        />
-                        <Route
-                          path="producer/collection"
-                          element={<CollectionMainPage />}
-                        />
-                        <Route
-                          path="producer/orders"
-                          element={<IncomingOrderPage />}
-                        />
-                        <Route path=":shopname" element={<ShopPage />} />
-                        <Route
-                          path=":shopname/merch/:merchId"
-                          element={<MerchPage />}
-                        />
-                        <Route
-                          path=":shopname/collection/:collectionId"
-                          element={<CollectionPage />}
-                        />
-                        <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
-                        <Route path="checkout" element={<CheckoutPage />} />
-                        <Route path="/address" element={<AddressPage />} />
-                        <Route path="/payment" element={<PaymentPage />} />
-                        <Route path="/crashpunks" element={<CreatorPage />} />
-                        <Route path="/product/:id" element={<BuyProduct />} />
-                        <Route path="/creatorpage" element={<Creator />} />
-                      </Route>
-                    </Routes>
-                  </ScrollTop>
-                </BrowserRouter>
+                      </Routes>
+                    </ScrollTop>
+                  </BrowserRouter>
+                </OrderContextProvider>
               </AddressContext>
             </WalletProvider>
           </ChakraProvider>

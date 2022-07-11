@@ -1,8 +1,12 @@
-import { Text, Box, Flex } from "@chakra-ui/react"
+import { Text, Box } from "@chakra-ui/react"
+import { useOrder } from "../../../sevices/hooks/useOrders"
 
 import OrderComponent from "./orderComponent/OrderComponent"
 
 export default function IncomingOrderPage() {
+
+    const { orders } = useOrder()
+
     return (
         <Box
             w='100%'
@@ -15,20 +19,22 @@ export default function IncomingOrderPage() {
             >
                 <Text
                     color='white'
-                    fontSize={{base:"30px" , md:'40px'}}
+                    fontSize={{ base: "30px", md: '40px' }}
                     fontWeight='600'
-                   textAlign='center'
-                   mb='40px'
+                    textAlign='center'
+                    mb='40px'
                 >
                     Incoming Order
                 </Text>
 
-                
-                <OrderComponent seen={true}/>
-                <Box mb='30px'></Box>
-                <OrderComponent seen={false}/>
-                <Box mb='30px'></Box>
-                <OrderComponent seen={false}/>
+                {orders.map((ord, i) => {
+                    return (
+                        <Box mb='30px'>
+                            <OrderComponent key={i} order={ord} />
+                        </Box>
+                    )
+                })}
+
             </Box>
         </Box>
     )
