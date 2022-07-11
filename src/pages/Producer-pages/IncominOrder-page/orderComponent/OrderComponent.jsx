@@ -156,9 +156,9 @@ export default function OrderComponent({ order }) {
                     <Skeleton height='20px' />
                 </Stack>
             }
-
-            <OrderModal ProducList={orderProducts} order={order}  isOpen={isOpen} onClose={onClose} />
-
+            {(orderProducts.length > 0) &&
+                < OrderModal ProducList={orderProducts} order={order}  isOpen={isOpen} onClose={onClose} />
+}
         </Box>
     )
 }

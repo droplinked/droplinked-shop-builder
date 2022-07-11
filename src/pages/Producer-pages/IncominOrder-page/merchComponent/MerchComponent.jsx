@@ -1,27 +1,27 @@
-import { Text, Box, Flex, Button, Image, extendTheme } from "@chakra-ui/react"
+import { Text, Flex, Image, } from "@chakra-ui/react"
 
-import merchimage from "./merchImage.jpg"
 
-export default function MerchComponent() {
+export default function MerchComponent({ item }) {
 
     const textStyel = {
         color: "#ddd",
-       
         fontWeight: "500"
     }
+
+    let price = item.product.skus.find(sku => sku._id == item.skuID).price
 
     return (
         <Flex
             borderBottom='1px'
             borderColor='#fff'
             pb='5px'
-            h={{base:'50px',md:'70px'}}
+            h={{ base: '50px', md: '70px' }}
         >
             <Image
-                src={merchimage}
+                src={item.product.media[0].url}
                 objectFit='cover'
-                w={{base:"45px",md:'65px'}}
-                h={{base:"45px",md:'65px'}}
+                w={{ base: "45px", md: '65px' }}
+                h={{ base: "45px", md: '65px' }}
                 mr='15px'
             />
 
@@ -32,19 +32,19 @@ export default function MerchComponent() {
             >
                 <Text
                     color="#fff"
-                    fontSize={{base:"14px" , md:'18px'}}
+                    fontSize={{ base: "14px", md: '18px' }}
                     fontWeight='500'
                     overflow='hidden'
                 >
-                    Merch title xxxxxxxxxxxxxxxxx
+                    {item.product.title}
                 </Text>
                 <Flex
                     w='100%'
                     justifyContent='space-between'
                 >
-                    <Text style={textStyel}  fontSize= {{base:"10px" , md:"16px"}} > sku : 1234556</Text>
-                    <Text style={textStyel}  fontSize= {{base:"10px" , md:"16px"}} > quantity :  10</Text>
-                    <Text style={textStyel} fontSize= {{base:"10px" , md:"16px"}} > price : $ 18</Text>
+                    <Text style={textStyel} fontSize={{ base: "10px", md: "16px" }} > sku : 1234556</Text>
+                    <Text style={textStyel} fontSize={{ base: "10px", md: "16px" }} > quantity :  {item.quantity}</Text>
+                    <Text style={textStyel} fontSize={{ base: "10px", md: "16px" }} > price : $ {price}</Text>
                 </Flex>
             </Flex>
 

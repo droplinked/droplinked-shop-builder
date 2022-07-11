@@ -20,7 +20,6 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
         let product = ProducList.find(product => product._id == item.productID)
         newOrderList.items[i] = { ...item, product: product }
     })
-     console.log(newOrderList);
 
     const getDate = () => {
         let date = new Date(order.createdAt).toString().split(' ')
@@ -107,13 +106,17 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
                     >
                         Total pric : $ {getMerchPrice() + 5}
                     </Text>
-                    < MerchComponent />
-                    <Box mb='20px'></Box>
-                    < MerchComponent />
-                    <Box mb='20px'></Box>
-                    <MerchComponent />
-                    <Box mb='20px'></Box>
-                    < MerchComponent />
+
+                    {
+                    newOrderList.items.map((item, i) => {
+                        return (
+                            <Box key={i} mb='20px'>
+                                < MerchComponent item={item} />
+                            </Box>
+                        )
+                    })
+                    } 
+
 
                     <Box
                         mt='30px'
