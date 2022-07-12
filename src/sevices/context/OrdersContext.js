@@ -33,10 +33,7 @@ export default function OrderContextProvider({ children }) {
 
   const seenOrder = (orderId) => {
     axios
-      .post(`${BasicURL}/producer/order/seen`,
-      {orderIDs: [
-        orderId
-      ]}
+      .post(`${BasicURL}/producer/order/seen/${orderId}`,{}
       , {
         headers: { Authorization: "Bearer " + token },
       })
