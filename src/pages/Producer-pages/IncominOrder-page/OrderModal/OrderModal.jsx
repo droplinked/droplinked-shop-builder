@@ -8,11 +8,27 @@ import {
     ModalCloseButton,
     Button
 } from "@chakra-ui/react"
+import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
+import { useState, useEffect } from "react"
 
 import MerchComponent from "../merchComponent/MerchComponent"
+import axios from "axios"
 
 
 export default function OrderModal({ ProducList, order, isOpen, onClose }) {
+
+    const [address, setAddress] = useState(null)
+
+    useEffect(() => {
+        let token = JSON.parse(localStorage.getItem("token"));
+        axios.get(`${BasicURL}/producer/order/${order._id}`, {
+            headers: { Authorization: "Bearer " + token },
+        })
+            .then(e => setAddress(e.data.data.order.address))
+            .catch(e => console.log(e.response.data.reason))
+    }, [])
+
+    console.log(address);
 
     // new orderList with product
     let newOrderList = order;
@@ -21,22 +37,25 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
         newOrderList.items[i] = { ...item, product: product }
     })
 
+    //get date with format 
     const getDate = () => {
         let date = new Date(order.createdAt).toString().split(' ')
         date = date[1] + '/' + date[2] + '/' + date[3]
         return date
     }
 
+    // get quantity of merchs
     const getQuantity = () => {
         let TotalQuantity = newOrderList.items.map(item => item.quantity)
             .reduce((total, quan) => { return total + quan }, 0)
         return TotalQuantity
     }
 
+    // get price of merchs
     const getMerchPrice = () => {
         let totalPrice = 0
         newOrderList.items.forEach(item => {
-            totalPrice += item.product.skus.find(sku => sku._id == item.skuID).price
+            totalPrice += (item.product.skus.find(sku => sku._id == item.skuID).price * item.quantity)
         })
         return totalPrice
     }
@@ -108,44 +127,66 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
                     </Text>
 
                     {
-                    newOrderList.items.map((item, i) => {
-                        return (
-                            <Box key={i} mb='20px'>
-                                < MerchComponent item={item} />
-                            </Box>
-                        )
-                    })
-                    } 
+                        newOrderList.items.map((item, i) => {
+                            return (
+                                <Box key={i} mb='20px'>
+                                    < MerchComponent item={item} />
+                                </Box>
+                            )
+                        })
+                    }
 
-
-                    <Box
-                        mt='30px'
-                        w='100%'
-                        mb='10px'
-                    >
-                        <Text
-                            color='white'
-                            fontSize={{ base: '14px', md: '18px' }}
-                            mb='20px'
-                            fontWeight='600'
-                        >
-                            Customer Detail
-                        </Text>
-                        <Text
-                            color='white'
-                            fontSize='16px'
+                    {(address) &&
+                        <Box
+                            mt='30px'
+                            w='100%'
                             mb='10px'
                         >
-                            Customer Name : Behdad mansouri
-                        </Text>
-                        <Text
-                            color='white'
-                            fontSize='16px'
-                        >
-                            Customer Address : Iran ahwaz zeiton 5898
-                        </Text>
-
-                    </Box>
+                            <Text
+                                color='white'
+                                fontSize={{ base: '14px', md: '18px' }}
+                                mb='20px'
+                                fontWeight='600'
+                            >
+                                Customer Detail
+                            </Text>
+                            <Text
+                                color='white'
+                                fontSize='16px'
+                                mb='10px'
+                            >
+                                Customer Name : {`${address.firstname} \xa0 ${address.lastname} `}
+                            </Text>
+                            {/* <Text
+                                color='white'
+                                fontSize='18px'
+                                fontWeight='600'
+                            >
+                                Customer Address
+                            </Text> */}
+                            <Text
+                                color='white'
+                                fontSize='16px'
+                                fontWeight='500'
+                            >
+                                {`${address.country} \xa0 ${address.city} `}
+                            </Text>
+                            <Text
+                                color='white'
+                                fontSize='16px'
+                                fontWeight='500'
+                            >
+                                {`${address.addressLine1} \xa0 ${address.addressLine2} `}
+                            </Text>
+                            <Text
+                                color='white'
+                                fontSize='16px'n  
+                                fontWeight='500'
+                            >
+                                {`${address.state} \xa0 ${address.zip} `}
+                            </Text>
+                        </Box>
+                    }
                 </ModalBody>
                 <ModalFooter>
                     <Button colorScheme='red' w='40%' mr={3} onClick={onClose}>
