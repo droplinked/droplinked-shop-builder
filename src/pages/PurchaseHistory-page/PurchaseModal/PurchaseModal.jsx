@@ -1,18 +1,16 @@
 import {
-    Text, Box, Flex, Modal,Img ,
+    Text,  Flex, Modal, Img,
     ModalOverlay,
     ModalContent,
     ModalHeader,
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    Button
+    Button,
 } from "@chakra-ui/react"
 
 
 export default function PurchaseModal({ order, isOpen, onClose }) {
-
-
 
 
     const getTotalPrice = () => {
@@ -33,10 +31,6 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
     let totalPrice = getTotalPrice()
     let date = getDate()
     let addressId = order.customerAddressBookID
-
-    // console.log(order)
-    // console.log(date);
-    // console.log(totalPrice)
 
 
     return (<>
@@ -62,7 +56,7 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                         fontWeight='600'
                         mb='10px'
                     >
-                      Total price : $ {totalPrice}
+                        Total price : $ {totalPrice}
                     </Text>
                     <Text
                         color='#fff'
@@ -70,7 +64,7 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                         fontWeight='600'
                         mb='10px'
                     >
-                      Date :  {date}
+                        Date :  {date}
                     </Text>
                     <Text
                         color='#fff'
@@ -78,24 +72,23 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                         fontWeight='600'
                         mb='30px'
                     >
-                      AddressId :  {addressId}
+                        AddressId :  {addressId}
                     </Text>
 
-                    <Flex
-                    wrap='wrap'
-                    >
-                        {order.items.map((item , i) =>
-                        <Img
-                        key={i}
-                        src={item.product.media[0].url}
-                        borderRadius='8px'
-                        w='120px'
-                        h='120px'
-                        mr='20px'
-                        mb='20px'
-                        />
+                    <Flex>
+                        {order.items.map((item, i) => {
+                            return <Img
+                                src={item.product.media[0].url}
+                                borderRadius='8px'
+                                gridRow='1 / 4'
+                                w='120px'
+                                h='120px'
+                                mr='20px'
+                                display='inline'
+                            />
+                        }
                         )}
-                    </Flex>
+                    </Flex >
 
                 </ModalBody>
                 <ModalFooter>
