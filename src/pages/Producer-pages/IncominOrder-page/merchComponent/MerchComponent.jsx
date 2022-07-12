@@ -8,7 +8,15 @@ export default function MerchComponent({ item }) {
         fontWeight: "500"
     }
 
-    let price = item.product.skus.find(sku => sku._id == item.skuID).price
+    let sku = item.product.skus.find(sku => sku._id == item.skuID)
+
+    let price = sku.price
+
+    let variantText = ' '
+    sku.options.forEach((opt, i) => {
+        variantText += (opt.variantName + " : " + opt.value + '\xa0\xa0\xa0\xa0\xa0\xa0')
+    })
+
 
     return (
         <Flex
@@ -32,8 +40,8 @@ export default function MerchComponent({ item }) {
             >
                 <Text
                     color="#fff"
-                    fontSize={{ base: "14px", md: '18px' }}
-                    fontWeight='500'
+                    fontSize={{ base: "16px", md: '20px' }}
+                    fontWeight='600'
                     overflow='hidden'
                 >
                     {item.product.title}
@@ -42,7 +50,8 @@ export default function MerchComponent({ item }) {
                     w='100%'
                     justifyContent='space-between'
                 >
-                    <Text style={textStyel} fontSize={{ base: "10px", md: "16px" }} > sku : 1234556</Text>
+
+                    <Text style={textStyel} fontSize={{ base: "10px", md: "16px" }} >{variantText}</Text>
                     <Text style={textStyel} fontSize={{ base: "10px", md: "16px" }} > quantity :  {item.quantity}</Text>
                     <Text style={textStyel} fontSize={{ base: "10px", md: "16px" }} > price : $ {price}</Text>
                 </Flex>
