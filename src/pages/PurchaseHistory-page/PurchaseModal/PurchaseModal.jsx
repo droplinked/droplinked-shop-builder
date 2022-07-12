@@ -52,7 +52,7 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                 <ModalBody>
                     <Text
                         color='#fff'
-                        fontSize='18px'
+                        fontSize={{base:'14px' , md:'18px'}}
                         fontWeight='600'
                         mb='10px'
                     >
@@ -60,7 +60,7 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                     </Text>
                     <Text
                         color='#fff'
-                        fontSize='18px'
+                        fontSize={{base:'14px' , md:'18px'}}
                         fontWeight='600'
                         mb='10px'
                     >
@@ -68,22 +68,25 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                     </Text>
                     <Text
                         color='#fff'
-                        fontSize='18px'
+                        fontSize={{base:'14px' , md:'18px'}}
                         fontWeight='600'
                         mb='30px'
                     >
                         AddressId :  {addressId}
                     </Text>
 
-                    <Flex>
+                    <Flex
+                    wrap='wrap'
+                    >
                         {order.items.map((item, i) => {
                             return <Img
                                 src={item.product.media[0].url}
                                 borderRadius='8px'
                                 gridRow='1 / 4'
-                                w='120px'
-                                h='120px'
+                                w={{base:"80px" , md:'120px'}}
+                                h={{base:"80px" , md:'120px'}}
                                 mr='20px'
+                                mb='10px'
                                 display='inline'
                             />
                         }
