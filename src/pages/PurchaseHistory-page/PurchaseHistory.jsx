@@ -9,7 +9,7 @@ import PurchaseHistory from "./PurchseComponent/PurchaseComponent"
 
 export default function PurchasHistoryPage() {
 
-    const [purchase, setPurchase] = useState([])
+    const [orders, setorders] = useState([])
     const { successToast, errorToast } = useToasty();
 
     let token = JSON.parse(localStorage.getItem("token"));
@@ -27,16 +27,16 @@ export default function PurchasHistoryPage() {
 
 
     const getPurchseList = async () => {
-
         await axios.get(`${BasicURL}/order`, {
             headers: { Authorization: "Bearer " + token },
         })
-            .then(e => setPurchase(e.data.data.orders))
-            .catch(e => console.log(e.response.data.reason))
+            .then(e => setorders(e.data.data.orders))
+            .catch(e => errorToast(e.response.data.reason))      
     }
 
+
     return (<>
-        {purchase.length == 0
+        {orders.length == 0
             ?
             <Loading />
             :
@@ -58,8 +58,8 @@ export default function PurchasHistoryPage() {
                 >
                     Purchase History
                 </Text>
-                {purchase.map((item , i) => {
-                    return <PurchaseHistory key={i} item={item} />
+                {orders.map((order , i) => {
+                    return <PurchaseHistory key={i} order={order} />
                 })}
                     </Box>
                 </Box>

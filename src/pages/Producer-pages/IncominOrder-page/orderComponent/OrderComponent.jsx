@@ -9,24 +9,16 @@ import OrderModal from "../OrderModal/OrderModal"
 
 export default function OrderComponent({ order }) {
 
-
-
     const [orderProducts, setOrderProducts] = useState([])
-    const [address, setAddress] = useState(null)
-    const [showComponent, setShowComponent] = useState(false)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { seenOrder } = useOrder()
 
-    console.log(orderProducts);
 
-    // console.log(order.totalPrice);
     useEffect(async () => {
         let productsId = order.items.map(item => item.productID)
         let products = await getProductsArray(productsId)
         setOrderProducts(products)
-        // let address = getAddress()
-        // console.log('end');
     }, [])
 
     // calculaate date of order
@@ -60,20 +52,6 @@ export default function OrderComponent({ order }) {
 
         return results
     }
-
-
-    const setProductInOrder = (productsArray) => {
-
-    }
-
-    // const getAddress = async() => {
-    //     let token = JSON.parse(localStorage.getItem("token"));
-    //     axios.get(`${BasicURL}/address/${order.customerAddressBookID}`,{
-    //         headers: { Authorization: "Bearer " + token },
-    //     })
-    //     .then(e => console.log(e.data.data))
-    //     .catch(e => console.log(e.response.data.reason))
-    // }
 
 
     return (
