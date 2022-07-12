@@ -1,12 +1,14 @@
-import { Box, Flex, Text, Image } from "@chakra-ui/react"
+import { Box, Flex, Text, Image ,useDisclosure } from "@chakra-ui/react"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useState, useEffect } from 'react'
 
 import merchimage from "../../Producer-pages/IncominOrder-page/merchComponent/merchImage.jpg"
 import axios from "axios"
+import PurchaseModal from '../PurchaseModal/PurchaseModal'
 
 export default function PurchaseHistory({ order }) {
 
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const [orderData, setOrderData] = useState(null)
 
 
@@ -45,7 +47,6 @@ export default function PurchaseHistory({ order }) {
         setOrderData(newOrderList);
     }
 
-    console.log(orderData);
 
     return (
         <>
@@ -111,11 +112,15 @@ export default function PurchaseHistory({ order }) {
                         _hover={{
                             color: '#8053ff'
                         }}
+                        onClick={onOpen}
                     >
                         View
                     </Text>
+                    <PurchaseModal order={orderData}  isOpen={isOpen} onClose={onClose}/>
                 </Box>
             }
+             
         </>
+               
     )
 }

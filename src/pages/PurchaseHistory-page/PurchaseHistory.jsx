@@ -7,6 +7,7 @@ import axios from "axios"
 import Loading from "../../components/shared/loading/Loading"
 import PurchaseHistory from "./PurchseComponent/PurchaseComponent"
 
+
 export default function PurchasHistoryPage() {
 
     const [orders, setorders] = useState([])
@@ -31,7 +32,7 @@ export default function PurchasHistoryPage() {
             headers: { Authorization: "Bearer " + token },
         })
             .then(e => setorders(e.data.data.orders))
-            .catch(e => errorToast(e.response.data.reason))      
+            .catch(e => errorToast(e.response.data.reason))
     }
 
 
@@ -40,29 +41,29 @@ export default function PurchasHistoryPage() {
             ?
             <Loading />
             :
+            <Box
+                w='100%'
+                px={{ base: "20px", md: "80px" }}
+            >
                 <Box
                     w='100%'
-                    px={{ base: "20px", md: "80px" }}
+                    maxW='800px'
+                    m='auto'
                 >
-                    <Box
-                        w='100%'
-                        maxW='800px'
-                        m='auto'
+                    <Text
+                        color='white'
+                        fontSize={{ base: "30px", md: '40px' }}
+                        fontWeight='600'
+                        textAlign='center'
+                        mb='40px'
                     >
-                        <Text
-                    color='white'
-                    fontSize={{ base: "30px", md: '40px' }}
-                    fontWeight='600'
-                    textAlign='center'
-                    mb='40px'
-                >
-                    Purchase History
-                </Text>
-                {orders.map((order , i) => {
-                    return <PurchaseHistory key={i} order={order} />
-                })}
-                    </Box>
+                        Purchase History
+                    </Text>
+                    {orders.map((order, i) => {
+                        return <PurchaseHistory key={i} order={order} />
+                    })}
                 </Box>
+            </Box>
         }
 
     </>)
