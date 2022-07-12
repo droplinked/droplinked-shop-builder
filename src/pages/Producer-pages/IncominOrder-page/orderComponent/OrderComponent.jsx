@@ -1,4 +1,4 @@
-import { Text, Box, Flex, useDisclosure, Stack, Skeleton } from "@chakra-ui/react"
+import { Text, Box, Flex, useDisclosure, Stack, Skeleton, Image } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 //import { AiOutlineFieldTime } from "react-icons/ai";
 import { useOrder } from "../../../../sevices/hooks/useOrders"
@@ -9,6 +9,8 @@ import OrderModal from "../OrderModal/OrderModal"
 
 export default function OrderComponent({ order }) {
 
+
+
     const [orderProducts, setOrderProducts] = useState([])
     const [address, setAddress] = useState(null)
     const [showComponent, setShowComponent] = useState(false)
@@ -16,7 +18,7 @@ export default function OrderComponent({ order }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { seenOrder } = useOrder()
 
-    // console.log(merchs);
+    console.log(orderProducts);
 
     // console.log(order.totalPrice);
     useEffect(async () => {
@@ -89,8 +91,7 @@ export default function OrderComponent({ order }) {
                             color='#fff'
                             fontSize={{ base: "12px", md: '14px' }}
                             fontWeight='600'
-
-                            mb={{ base: "10px", md: '20px' }}
+                            mb={{ base: "10px", md: '10px' }}
                         >
                             Order time : {getOrderTime()} ago
                         </Text>
@@ -116,6 +117,20 @@ export default function OrderComponent({ order }) {
                     >
                         Merch quantity : {totalQuantity} Merch
                     </Text>
+
+                    <Flex
+                    mb='10px'
+                    >
+                        {orderProducts.map((product, i) => {
+                            return <Image
+                                w={{base:'60px' , md:"90px"}}
+                                h={{base:'60px' , md:"90px"}}
+                                borderRadius="8px"
+                                mr='20px'
+                                src={product.media[0].url} />
+                        })}
+                    </Flex>
+
                     <Flex
                         w='100%'
                         justifyContent='space-between'
@@ -135,12 +150,7 @@ export default function OrderComponent({ order }) {
                             h="100%"
                             px={{ base: '10px', md: "20px" }}
                             cursor='pointer'
-                            borderBottom='1px'
-                            borderColor={(order.seenByProducer) ? "#aaa" : "#8053ff"}
                             _hover={{
-                                border: '1px',
-                                borderColor: '#8053ff',
-                                borderRadius: '8px',
                                 color: '#8053ff'
                             }}
                             onClick={openOrder}
@@ -157,8 +167,8 @@ export default function OrderComponent({ order }) {
                 </Stack>
             }
             {(orderProducts.length > 0) &&
-                < OrderModal ProducList={orderProducts} order={order}  isOpen={isOpen} onClose={onClose} />
-}
+                < OrderModal ProducList={orderProducts} order={order} isOpen={isOpen} onClose={onClose} />
+            }
         </Box>
     )
 }

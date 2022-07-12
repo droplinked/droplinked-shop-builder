@@ -28,7 +28,6 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
             .catch(e => console.log(e.response.data.reason))
     }, [])
 
-    console.log(address);
 
     // new orderList with product
     let newOrderList = order;
