@@ -119,6 +119,9 @@ export default function UserHeader() {
 
                     </>
                     }
+                    <Link to="/purchseHistory">
+                        <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Purchase history</div>
+                    </Link>
                     <Link to="/settings">
                         <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Settings</div>
                     </Link>
