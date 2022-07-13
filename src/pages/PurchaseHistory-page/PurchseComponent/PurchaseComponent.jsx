@@ -2,7 +2,7 @@ import { Box, Flex, Text, Image ,useDisclosure } from "@chakra-ui/react"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useState, useEffect } from 'react'
 
-import merchimage from "../../Producer-pages/IncominOrder-page/merchComponent/merchImage.jpg"
+
 import axios from "axios"
 import PurchaseModal from '../PurchaseModal/PurchaseModal'
 
@@ -26,6 +26,7 @@ export default function PurchaseHistory({ order }) {
         return date
     }
 
+    // get data of products with productID
     const getProductsArray = async (productsId) => {
         let promises = [];
         for (let i = 0; i < productsId.length; i++) {
@@ -38,6 +39,7 @@ export default function PurchaseHistory({ order }) {
     }
 
 
+    // sync product to orders item
     const addProductToOrder = (ProductList) => {
         let newOrderList = order;
         newOrderList.items.forEach((item, i) => {

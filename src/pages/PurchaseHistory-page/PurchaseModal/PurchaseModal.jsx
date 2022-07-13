@@ -1,5 +1,5 @@
 import {
-    Text,  Flex, Modal, Img,
+    Text, Flex, Modal,
     ModalOverlay,
     ModalContent,
     ModalHeader,
@@ -9,6 +9,7 @@ import {
     Button,
 } from "@chakra-ui/react"
 
+import Item from "../ItemComponent/ItemComponent"
 
 export default function PurchaseModal({ order, isOpen, onClose }) {
 
@@ -32,7 +33,6 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
     let date = getDate()
     let addressId = order.customerAddressBookID
 
-
     return (<>
         <Modal isOpen={isOpen} onClose={onClose}  >
             <ModalOverlay />
@@ -51,46 +51,32 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                 <ModalCloseButton color='white' />
                 <ModalBody>
                     <Text
-                        color='#fff'
-                        fontSize={{base:'14px' , md:'18px'}}
+                        color='#ccc'
+                        fontSize={{ base: '14px', md: '16px' }}
                         fontWeight='600'
-                        mb='10px'
+                        mb='8px'
                     >
                         Total price : $ {totalPrice}
                     </Text>
                     <Text
-                        color='#fff'
-                        fontSize={{base:'14px' , md:'18px'}}
+                        color='#ccc'
+                        fontSize={{ base: '14px', md: '16px' }}
                         fontWeight='600'
-                        mb='10px'
+                        mb='8px'
                     >
                         Date :  {date}
                     </Text>
                     <Text
-                        color='#fff'
-                        fontSize={{base:'14px' , md:'18px'}}
+                        color='#ccc'
+                        fontSize={{ base: '14px', md: '16px' }}
                         fontWeight='600'
-                        mb='30px'
+                        mb='20px'
                     >
                         AddressId :  {addressId}
                     </Text>
 
-                    <Flex
-                    wrap='wrap'
-                    >
-                        {order.items.map((item, i) => {
-                            return <Img
-                                src={item.product.media[0].url}
-                                borderRadius='8px'
-                                gridRow='1 / 4'
-                                w={{base:"80px" , md:'120px'}}
-                                h={{base:"80px" , md:'120px'}}
-                                mr='20px'
-                                mb='10px'
-                                display='inline'
-                            />
-                        }
-                        )}
+                    <Flex wrap='wrap'>
+                        {order.items.map((item, i) => <Item key={i} item={item} />)}
                     </Flex >
 
                 </ModalBody>
