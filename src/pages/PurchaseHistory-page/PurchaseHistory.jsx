@@ -10,7 +10,7 @@ import PurchaseHistory from "./PurchseComponent/PurchaseComponent"
 
 export default function PurchasHistoryPage() {
 
-    const [orders, setorders] = useState([])
+    const [orders, setorders] = useState(null)
     const { successToast, errorToast } = useToasty();
 
     let token = JSON.parse(localStorage.getItem("token"));
@@ -34,36 +34,35 @@ export default function PurchasHistoryPage() {
             .then(e => setorders(e.data.data.orders))
             .catch(e => errorToast(e.response.data.reason))
     }
-
-
+    
     return (<>
-        {orders.length == 0
+        {orders == null
             ?
             <Loading />
             :
-            <Box
-                w='100%'
-                px={{ base: "20px", md: "80px" }}
-            >
-                <Box
-                    w='100%'
-                    maxW='800px'
-                    m='auto'
-                >
-                    <Text
-                        color='white'
-                        fontSize={{ base: "30px", md: '40px' }}
-                        fontWeight='600'
-                        textAlign='center'
-                        mb='40px'
-                    >
-                        Purchase History
-                    </Text>
-                    {orders.map((order, i) => {
-                        return <PurchaseHistory key={i} order={order} />
-                    })}
-                </Box>
-            </Box>
+            <>
+                {(orders.length == 0)
+                    ?
+                    <Text color='white'  w='100%'textAlign='center' fontSize='20px' fontWeight='600'>No Order</Text>
+                    :
+                    <Box w='100%' px={{ base: "20px", md: "80px" }}>
+                        <Box w='100%' maxW='800px' m='auto'>
+                            <Text
+                                color='white'
+                                fontSize={{ base: "30px", md: '40px' }}
+                                fontWeight='600'
+                                textAlign='center'
+                                mb='40px'
+                            >
+                                Purchase History
+                            </Text>
+                            {orders.map((order, i) => {
+                                return <PurchaseHistory key={i} order={order} />
+                            })}
+                        </Box>
+                    </Box>
+                }
+            </>
         }
 
     </>)
