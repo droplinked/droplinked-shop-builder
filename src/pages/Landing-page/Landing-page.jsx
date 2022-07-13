@@ -2,6 +2,7 @@ import "./Landing-page.style.scss"
 
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom";
+import { Flex, Box, Image, Text, Input, Button ,Spinner  } from '@chakra-ui/react'
 
 import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
 
@@ -82,53 +83,93 @@ export default function LandingPage() {
             })
     }
 
-    // const responseHandler = () => {
 
-    // }
-
-    // const ErrorHandler = (value) => {
-        
-    // }
 
     return (<>
-        <div className="bod">
+        <Box display="flex" h='auto' flexDirection={{ base: "column", md: "row" }} pl={{ base: "20px", md: "80px" }} w='100%'>
             {/* inputs */}
-            <div className="child d-flex rg">
-                <div className="input-form w-100">
-                    <div className="discove">Community <br />driven commerce</div>
-                    <div className="earn">Earn cash or crypto for sharing collections.</div>
-                    <div className="signup-wrapper d-flex justify-content-between">
-                        <div className="d-flex justify-content-start" style={{ width: "75%", maxWidth: "75%" }}>
-                            <span className="item-span">droplinked.com/</span>
-                            <input type="text" placeholder="username" className="item-input"
+            <Box display="flex" w={{ base: '100%', md: '50%' }} pr={{ base: "20px", md: "0px" }} mb={{ base: "70px", md: "0px" }}>
+                <Box w='100%' mt='4.5vw'>
+                    <Text
+                        fontWeight='600'
+                        color="#fff"
+                        fontSize={{ base: "40px", md: "4.7vw" }}
+                        lineHeight={{ base: "52px", md: "5.5vw" }}
+                    >Community <br />driven commerce</Text>
+
+                    <Text
+                        mt='25px'
+                        fontWeight='400'
+                        fontSize={{ base: "17px", md: '1.95vw' }}
+                        lineHeight={{ base: "22px", md: '33px' }}
+                        color='#f6f6f6'
+                    >
+                        Earn cash or crypto for sharing collections.
+                    </Text>
+                    <Flex
+                        justifyContent='space-between'
+                        w={{ base: "100%", md: "70%" }}
+                        h='68px'
+                        borderRadius='8px'
+                        p='8px'
+                        alignItems='center'
+                        border='2px'
+                        borderColor='#8053ff'
+                        mt='36px'
+                        maxH={{ base: "56px", md: "68px" }}
+                    >
+                        <Flex justifyContent='start' w='75%' maxW='75%'>
+                            <Text
+                                fontWeight='600'
+                                fontSize={{ base: "16px", md: '1.7vw' }}
+                                lineHeight='28px'
+                                color='#fff'
+                                m='auto 0px'
+                                pt={{ base: "2px", md: "0px" }}
+                            >droplinked.com/</Text>
+                            <Input
+                                type="text"
+                                fontWeight='600'
+                                fontSize={{ base: "26px", md: '1.7vw' }}
+                                lineHeight='28px'
+                                color='#fff'
+                                bg='transparent'
+                                m='auto 0px'
+                                border='none'
+                                pt={{ base: '2px', md: "0px" }}
+                                _focus={{
+                                    border: "none"
+                                }}
+                                placeholder="username"
+                                className="item-input"
                                 onChange={changeInputValue}
                                 value={userName}
                             />
-                        </div>
-                        <div className="d-flex" style={{ width: "25%" }}>
-                            <button className="item-button"
+                        </Flex>
+                        <Flex w='25%'>
+                            <Button w='100%'
+                                h={{ base: "40px", md: '100%' }}
+                                justifyContent='center' alignItems='center'
+                                p={{ base: "12px 20px 9px 20px", md: '12px 20px' }} bg='#8053ff' borderRadius='8px' fontWeight='600'
+                                fontSize={{ base: "16px", md: '1.4vw' }}
+                                textAlign='center' color='#fff' whiteSpace='nowrap' verticalAlign='middle'
+                                _hover={{bg:"#8053ff"}}
                                 onClick={() => {
-                                    if (userName.trim() == "") {
-                                        setForError(true)
-                                    } else {
-                                        landingSignin()
-                                    }
+                                    if (userName.trim() == "") { setForError(true) }
+                                    else { landingSignin() }
                                 }}>
                                 {(checkshopname)
                                     ?
-                                    <div className="spinner-border" role="status">
-                                        <span className="sr-only"></span>
-                                    </div>
+                                    <Spinner color='white'  thickness='4px' />
                                     :
                                     <>Sign up</>
                                 }
-                            </button>
-                        </div>
-                    </div>
+                            </Button>
+                        </Flex>
+                    </Flex>
                     {former &&
                         <div className="alert-wrap">
                             <img className="ratio ratio-1x1" src={alertIcon} alt="" />
-                            {/* <span>URL already in use. Please try another. If you are the owner login heresdf</span> */}
                             <span>Please enter a valid username.</span>
                         </div>
                     }
@@ -141,21 +182,20 @@ export default function LandingPage() {
                     {(shopnameError) &&
                         <div className="alert-wrap">
                             <img className="ratio ratio-1x1" src={alertIcon} alt="" />
-                            {/* <span>URL already in use. Please try another. If you are the owner login heresdf</span> */}
                             <span>{shopnameError}</span>
                         </div>
                     }
 
-                </div>
-            </div>
+                </Box>
+            </Box>
             {/* inputs */}
 
             {/* image */}
-            <div className="child">
+            <Box w={{ base: "100%", md: "50%" }}>
                 <img className="ratio ratio-1x1 " src={figmaImage1} alt="" />
-            </div>
+            </Box>
             {/* image */}
-        </div>
+        </Box>
         {showSignup && <SignUpModal close={toggleSignUp} shopname={userName} switchToggle={switchModal} />}
         {showLogin && <LoginModal close={toggleLogin} switchToggle={switchModal} switchReset={switchResetAndLogin} />}
         {showResetPass && <ResetPassModal backToLogin={switchResetAndLogin} close={() => { setResetPass(false) }} />}
