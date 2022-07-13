@@ -150,7 +150,7 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
                                 Customer Detail
                             </Text>
                             <Text
-                                color='white'
+                                color='#ccc'
                                 fontSize='16px'
                                 mb='10px'
                             >
@@ -164,21 +164,21 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
                                 Customer Address
                             </Text> */}
                             <Text
-                                color='white'
+                                color='#ccc'
                                 fontSize='16px'
                                 fontWeight='500'
                             >
                                 {`${address.country} \xa0 ${address.city} `}
                             </Text>
                             <Text
-                                color='white'
+                                color='#ccc'
                                 fontSize='16px'
                                 fontWeight='500'
                             >
                                 {`${address.addressLine1} \xa0 ${address.addressLine2} `}
                             </Text>
                             <Text
-                                color='white'
+                                color='#ccc'
                                 fontSize='16px'n  
                                 fontWeight='500'
                             >
