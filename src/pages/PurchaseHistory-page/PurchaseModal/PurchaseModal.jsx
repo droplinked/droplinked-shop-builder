@@ -50,31 +50,50 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                 >Order</ModalHeader>
                 <ModalCloseButton color='white' />
                 <ModalBody>
+                    <Flex w='100%' justifyContent='space-between'>
+                        <Text
+                            color='#ccc'
+                            fontSize={{ base: '10px', md: '16px' }}
+                            fontWeight='600'
+                            mb='8px'
+                        >
+                            Merchs price : $ {totalPrice}
+                        </Text>
+                        <Text
+                            color='#ccc'
+                            fontSize={{ base: '10px', md: '16px' }}
+                            fontWeight='600'
+                            mb='8px'
+                        >
+                            Date :  {date}
+                        </Text>
+                    </Flex>
+                    <Flex w='100%' justifyContent='space-between'>
+                        <Text
+                            color='#ccc'
+                            fontSize={{ base: '10px', md: '16px' }}
+                            fontWeight='600'
+                            mb='8px'
+                        >
+                            Shipping price : $ 5
+                        </Text>
+                        <Text
+                            color='#ccc'
+                            fontSize={{ base: '10px', md: '16px' }}
+                            fontWeight='600'
+                            mb='8px'
+                        >
+                            AddressId :  {addressId}
+                        </Text>
+                    </Flex>
                     <Text
-                        color='#ccc'
-                        fontSize={{ base: '14px', md: '16px' }}
-                        fontWeight='600'
-                        mb='8px'
-                    >
-                        Total price : $ {totalPrice}
-                    </Text>
-                    <Text
-                        color='#ccc'
-                        fontSize={{ base: '14px', md: '16px' }}
-                        fontWeight='600'
-                        mb='8px'
-                    >
-                        Date :  {date}
-                    </Text>
-                    <Text
-                        color='#ccc'
-                        fontSize={{ base: '14px', md: '16px' }}
-                        fontWeight='600'
-                        mb='20px'
-                    >
-                        AddressId :  {addressId}
-                    </Text>
-
+                            color='#fff'
+                            fontSize={{ base: '14px', md: '18px' }}
+                            fontWeight='600'
+                            mb='8px'
+                        >
+                            Merchs price : $ {(totalPrice + 5)}
+                        </Text>
                     <Flex wrap='wrap'>
                         {order.items.map((item, i) => <Item key={i} item={item} />)}
                     </Flex >

@@ -124,6 +124,7 @@ export default function PurchaseHistory({ order }) {
                             color: '#8053ff'
                         }}
                         onClick={onOpen}
+                        w={{base:"30px" , md:'40px'}}
                     >
                         View
                     </Text>
