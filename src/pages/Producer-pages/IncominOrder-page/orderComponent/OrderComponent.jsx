@@ -100,6 +100,7 @@ export default function OrderComponent({ order }) {
                     mb='10px'
                     >
                         {orderProducts.map((product, i) => {
+                            if(i < 4)
                             return <Image
                                 w={{base:'60px' , md:"90px"}}
                                 h={{base:'60px' , md:"90px"}}
@@ -108,14 +109,13 @@ export default function OrderComponent({ order }) {
                                 src={product.media[0].url} />
                         })}
                     </Flex>
-
                     <Flex
                         w='100%'
                         justifyContent='space-between'
                     >
                         <Text
-                            color='#fff'
-                            fontSize={{ base: "20px", md: '26px' }}
+                            color='#fff' 
+                            fontSize={{ base: "18px", md: '24px' }}
                             fontWeight='600'
                         >
                             Total price : $ {order.totalPrice}

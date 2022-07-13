@@ -144,42 +144,36 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
                             <Text
                                 color='white'
                                 fontSize={{ base: '14px', md: '18px' }}
-                                mb='20px'
+                                mb='10px'
                                 fontWeight='600'
                             >
                                 Customer Detail
                             </Text>
                             <Text
                                 color='#ccc'
-                                fontSize='16px'
-                                mb='10px'
+                                fontSize={{ base: '12px', md: '16px' }} 
+                              //  mb='5px'
                             >
-                                Customer Name : {`${address.firstname} \xa0 ${address.lastname} `}
+                                {`${address.firstname} \xa0 ${address.lastname} `}
                             </Text>
-                            {/* <Text
-                                color='white'
-                                fontSize='18px'
-                                fontWeight='600'
-                            >
-                                Customer Address
-                            </Text> */}
+
                             <Text
                                 color='#ccc'
-                                fontSize='16px'
+                                fontSize={{ base: '12px', md: '16px' }}
                                 fontWeight='500'
                             >
                                 {`${address.country} \xa0 ${address.city} `}
                             </Text>
                             <Text
                                 color='#ccc'
-                                fontSize='16px'
+                                fontSize={{ base: '12px', md: '16px' }}
                                 fontWeight='500'
                             >
                                 {`${address.addressLine1} \xa0 ${address.addressLine2} `}
                             </Text>
                             <Text
                                 color='#ccc'
-                                fontSize='16px'n  
+                                fontSize={{ base: '12px', md: '16px' }} 
                                 fontWeight='500'
                             >
                                 {`${address.state} \xa0 ${address.zip} `}
