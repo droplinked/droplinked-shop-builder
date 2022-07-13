@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Image ,useDisclosure } from "@chakra-ui/react"
+import { Box, Flex, Text, Image, useDisclosure } from "@chakra-ui/react"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useState, useEffect } from 'react'
 
@@ -49,6 +49,15 @@ export default function PurchaseHistory({ order }) {
         setOrderData(newOrderList);
     }
 
+   // console.log(orderData);
+   // get total price
+    const getTotalPrice = () => { 
+        let totalPrice = 0
+        orderData.items.forEach(item => {
+            totalPrice += item.product.skus.find(sku => sku._id == item.skuID).price
+        })
+        return totalPrice
+    }
 
     return (
         <>
@@ -90,7 +99,7 @@ export default function PurchaseHistory({ order }) {
                             fontWeight='500'
                             mr={{ base: '0px', md: '30px' }}
                         >
-                            Total Price : $ 150
+                            Total Price : $ {getTotalPrice()}
                         </Text>
                     </Flex>
                     <Flex mb='10px'>
@@ -118,11 +127,11 @@ export default function PurchaseHistory({ order }) {
                     >
                         View
                     </Text>
-                    <PurchaseModal order={orderData}  isOpen={isOpen} onClose={onClose}/>
+                    <PurchaseModal order={orderData} isOpen={isOpen} onClose={onClose} />
                 </Box>
             }
-             
+
         </>
-               
+
     )
 }
