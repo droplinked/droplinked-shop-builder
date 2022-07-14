@@ -1,10 +1,10 @@
 import "./Shop-page-style.scss"
 
 import { useState, useEffect } from "react"
-import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
 import { useParams } from "react-router-dom"
+import { getShopInfo } from "../../api/Public-apis/Shop-api"
+import { getCollections } from "../../api/Public-apis/Collection-api"
 
-import axios from "axios"
 import Loading from "../../components/shared/loading/Loading"
 import Collection from "../../components/shared/Collection/collection-component"
 import TopSection from "../../components/shared/TopSection/TopSection"
@@ -20,20 +20,14 @@ export default function ShopPage() {
 
     useEffect(() => {
 
-        let url1 = BasicURL + `/shopinfo/${shopname}`
-        let url2 = BasicURL + `/collections/${shopname}`
+        const getData = async(shop) => {
+         let shopinfo = await getShopInfo(shop)
+         let collections = await getCollections(shop)
+         setProfile(shopinfo)
+         setCollections(collections)
+        }
 
-        const requestOne = axios.get(url1);
-        const requestTwo = axios.get(url2);
-
-        axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
-            const responseOne = responses[0]
-            const responseTwo = responses[1]
-            setProfile(responseOne.data.data);
-            setCollections(responseTwo.data.data);
-        })).catch(errors => {
-            console.log(errors.response.data);
-        })
+        getData(shopname)
         
     }, [])
 
