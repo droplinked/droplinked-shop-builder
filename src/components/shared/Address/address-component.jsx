@@ -12,7 +12,7 @@ import {
     ModalCloseButton,
     useDisclosure
 } from "@chakra-ui/react"
-import { useAddress } from "../../../sevices/hooks/useAddress"
+import { useAddress } from "../../../context/address/AddressContext"
 import { useState } from "react"
 
 import AddressForm from "../../Forms/Address-form/AddressForm-component"

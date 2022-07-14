@@ -1,6 +1,7 @@
-import { createContext, useState } from "react";
-import { BasicURL } from "../functoinal-service/CallApiService";
-import { useToasty } from "../hooks/useToastify";
+import { createContext, useState ,useContext} from "react";
+import { BasicURL } from "../../sevices/functoinal-service/CallApiService";
+import { useToasty } from "../../sevices/hooks/useToastify";
+
 
 import axios from "axios";
 
@@ -93,4 +94,13 @@ export default function AddressContextProvider({ children }) {
       {children}
     </AddressContext.Provider>
   );
+}
+
+export const useAddress = () => {
+   
+  const atx = useContext(AddressContext)
+
+  return {
+      ...atx
+  }
 }

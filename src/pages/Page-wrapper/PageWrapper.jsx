@@ -5,7 +5,7 @@ import { Box, Flex } from "@chakra-ui/react"
 import { Outlet } from "react-router-dom";
 import { useCart } from "../../context/cart/CartContext"
 import { useEffect } from "react"
-import { useAddress } from "../../sevices/hooks/useAddress"
+import { useAddress } from "../../context/address/AddressContext"
 
 export default function PageWrapper({ children }) {
 

@@ -3,7 +3,7 @@ import { Flex, Button, Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../sevices/hooks/useToastify"
-import { useAddress } from "../../../sevices/hooks/useAddress"
+import { useAddress } from "../../../context/address/AddressContext"
 
 import AddressComponent from "../../../components/shared/Address/address-component"
 import axios from "axios";

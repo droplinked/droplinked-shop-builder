@@ -1,5 +1,5 @@
 import { Flex, Button, Box } from '@chakra-ui/react'
-import { useAddress } from "../../../sevices/hooks/useAddress"
+import { useAddress } from "../../../context/address/AddressContext"
 import { useState } from "react"
 
 import AddressComponent from "../../../components/shared/Address/address-component"
