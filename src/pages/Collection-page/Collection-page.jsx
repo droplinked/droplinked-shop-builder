@@ -3,11 +3,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Loading from "../../components/shared/loading/Loading";
 import Product from "../../components/shared/Product/Product";
-import axios from "axios";
 
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { BasicURL } from "../../sevices/functoinal-service/CallApiService";
+import { getCollectionById } from "../../api/Public-apis/Collection-api"
 
 export default function CollectionPage() {
   
@@ -16,10 +15,13 @@ export default function CollectionPage() {
     const {collectionId , shopname} = useParams()
 
     useEffect(() => {
-        axios.get(`${BasicURL}/collection/${collectionId}`)
-            .then(e => {
-                setCollectin(e.data.data);
-            }).catch(e => console.log(e.response))
+
+        const getCollection =  async(id) =>{
+            let coll = await getCollectionById(id)
+            setCollectin(coll)
+        }
+        getCollection(collectionId)
+
     }, [])
 
     return (<>

@@ -2,8 +2,8 @@ import "./Shop-page-style.scss"
 
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { getShopInfo } from "../../api/Public-apis/Shop-api"
-import { getCollections } from "../../api/Public-apis/Collection-api"
+import { getShopInfoByShopname } from "../../api/Public-apis/Shop-api"
+import { getCollectionsByShopname } from "../../api/Public-apis/Collection-api"
 
 import Loading from "../../components/shared/loading/Loading"
 import Collection from "../../components/shared/Collection/collection-component"
@@ -21,8 +21,8 @@ export default function ShopPage() {
     useEffect(() => {
 
         const getData = async(shop) => {
-         let shopinfo = await getShopInfo(shop)
-         let collections = await getCollections(shop)
+         let shopinfo = await getShopInfoByShopname(shop)
+         let collections = await getCollectionsByShopname(shop)
          setProfile(shopinfo)
          setCollections(collections)
         }

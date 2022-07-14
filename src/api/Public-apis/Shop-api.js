@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-export const getShopInfo = async (shopname) => {
+export const getShopInfoByShopname = async (shopname) => {
 
   try {
     const res = await axios.get(`${BASE_URL}/shopinfo/${shopname}`);
