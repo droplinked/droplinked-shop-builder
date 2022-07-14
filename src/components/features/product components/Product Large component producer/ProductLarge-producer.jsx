@@ -2,7 +2,7 @@ import "./ProductLarge-producer.scss"
 import { Link } from "react-router-dom";
 import { useState } from "react"
 import { useProfile } from "../../../../context/profile/ProfileContext"
-import { UseWalletInfo } from "../../../../sevices/context/context"
+import { UseWalletInfo } from "../../../../context/wallet/WalletContext"
 
 function ProductLargeProducer({ price, title, imageUrl, id }) {
 

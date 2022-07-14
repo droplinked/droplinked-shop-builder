@@ -1,8 +1,8 @@
 import "./App.scss";
 
-//
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { WalletProvider } from "./sevices/context/context";
+import { WalletProvider } from "./context/wallet/WalletContext";
 import ProfileContextProvider from "./context/profile/ProfileContext";
 import CartContextProvider from "./context/cart/CartContext";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -10,6 +10,7 @@ import  ToastContext  from "./context/toastify/ToastContext";
 import AddressContext from "./context/address/AddressContext";
 import ScrollTop from "./services/ScrollTop/ScrollTop";
 import OrderContextProvider from "./context/order/OrdersContext"
+
 
 import PageWrapper from "./pages/Page-wrapper/PageWrapper";
 import LandingPage from "./pages/Landing-page/Landing-page";

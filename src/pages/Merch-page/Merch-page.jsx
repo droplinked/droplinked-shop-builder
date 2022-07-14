@@ -3,7 +3,7 @@ import "./Merch-page-style.scss"
 import { useState, useEffect, useCallback } from "react"
 import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
 import { useParams } from "react-router-dom";
-import { UseWalletInfo } from "../../sevices/context/context"
+import { UseWalletInfo } from "../../context/wallet/WalletContext"
 import { useProfile } from "../../context/profile/ProfileContext"
 import { useToasty } from "../../context/toastify/ToastContext"
 import { checkRules } from "../../sevices/functoinal-service/NFTcheck"
