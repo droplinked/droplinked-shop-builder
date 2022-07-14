@@ -7,12 +7,14 @@ import CheckBoxBasic from "../../../components/features/input components/basic c
 import VariantItem from "../components/variant item component/Variant-item-component"
 import BasicButton from "../../../components/features/buttons components/basic button/BasicButton"
 import AddVariantForm from "../components/add variant form/Add-variantForm-component"
-import axios from "axios"
 
 import { useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { getVariants , postProduct } from "../../../api/Producer-apis/Product-api"
+import { getCollections } from "../../../api/Producer-apis/Collection-api"
+
+
 import "react-toastify/dist/ReactToastify.css";
 
 function AddProductPage() {
@@ -26,31 +28,27 @@ function AddProductPage() {
     const [addvariant, setAddvariant] = useState(false)
     const [variants, setVariants] = useState([])
     const [options, setOptions] = useState([])
-    const [varintType, setVariantType] = useState([])
+    const [varintType, setVariantType] = useState(null)
     const [collectionList, setCollection] = useState([])
     const [disbtn, setdisbtn] = useState(false)
 
 
     const navigate = useNavigate();
- 
+
+    console.log(varintType)
+
 
     useEffect(() => {
         if (token == null) { navigate("/") }
 
-        let url1 = BasicURL + "/producer/product/variant"
-        let url2 = BasicURL + "/producer/collection"
-
-        const requestOne = axios.get(url1, { headers: { Authorization: 'Bearer ' + token } });
-        const requestTwo = axios.get(url2, { headers: { Authorization: 'Bearer ' + token } });
-
-        axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
-            const responseOne = responses[0]
-            const responseTwo = responses[1]
-            setVariantType(responseOne.data.data.variants);
-            setCollection(responseTwo.data.data.collections);
-        })).catch(errors => {
-            console.log(errors);
-        })
+        const getDate = async () => {
+            let vrnt = await getVariants();
+            let coll = await getCollections()
+            setVariantType(vrnt)
+            setCollection(coll)
+        }
+        getDate()
+        
     }, [])
 
     const toggleAddVariant = () => {
@@ -71,7 +69,7 @@ function AddProductPage() {
 
 
 
-    const submitForm = (e) => {
+    const submitForm = async(e) => {
         e.preventDefault()
         if (title == "") {
             toast.error("Merch name is required");
@@ -107,17 +105,14 @@ function AddProductPage() {
 
         setdisbtn(true)
 
-        axios.post(BasicURL + '/producer/product', proDetail,
-            { headers: { Authorization: 'Bearer ' + token } })
-            .then((res) => {
-                toast.success("Merch added successfully");
-                navigate("/producer/ims")
-            })
-            .catch(e => {
-                toast.error(e.response.data.message)
-                setdisbtn(false)
-            });
-
+        let result = await postProduct(proDetail)
+        if(result == true){
+            toast.success("Merch added successfully");
+            navigate("/producer/ims")
+        }else{
+            toast.error(result)
+            setdisbtn(false)
+        }
     }
 
 
@@ -127,7 +122,7 @@ function AddProductPage() {
             newOptions = options.map(opt => opt)
             newOptions.push({ optionName: name, optionID: val })
         } else {
-            newOptions = options.filter(opt =>  opt.optionID != val)
+            newOptions = options.filter(opt => opt.optionID != val)
         }
         setOptions(newOptions)
     }
@@ -168,13 +163,13 @@ function AddProductPage() {
                 {(varintType != undefined) &&
                     <>
                         {varintType.map(item => {
-                            return <CheckBoxBasic key={item._id} val={item._id}  onch={onChnageCheckBox}>{item.name}</CheckBoxBasic>
+                            return <CheckBoxBasic key={item._id} val={item._id} onch={onChnageCheckBox}>{item.name}</CheckBoxBasic>
                         })}
                     </>
                 }
             </div>
             <div className="mt-5 w-100">
-                {variants.map((variant, i) => {
+                {variants && variants.map((variant, i) => {
                     return <VariantItem key={i} vari={variant} id={i} dlt={deleteVariant} edit={editVariant} />
                 })}
             </div>
