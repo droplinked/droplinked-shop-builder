@@ -2,7 +2,7 @@ import "./Landing-page.style.scss"
 
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom";
-import { Flex, Box, Image, Text, Input, Button ,Spinner  } from '@chakra-ui/react'
+import { Flex, Box, Image, Text, Input, Button, Spinner, AspectRatio } from '@chakra-ui/react'
 
 import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
 
@@ -136,7 +136,7 @@ export default function LandingPage() {
                                 bg='transparent'
                                 m='auto 0px'
                                 border='none'
-                                pt={{ base: '2px', md: "0px" }}
+                                p={{ base: "2px 0px 0px 0px", md: "0px" }}
                                 _focus={{
                                     border: "none"
                                 }}
@@ -153,14 +153,14 @@ export default function LandingPage() {
                                 p={{ base: "12px 20px 9px 20px", md: '12px 20px' }} bg='#8053ff' borderRadius='8px' fontWeight='600'
                                 fontSize={{ base: "16px", md: '1.4vw' }}
                                 textAlign='center' color='#fff' whiteSpace='nowrap' verticalAlign='middle'
-                                _hover={{bg:"#8053ff"}}
+                                _hover={{ bg: "#8053ff" }}
                                 onClick={() => {
                                     if (userName.trim() == "") { setForError(true) }
                                     else { landingSignin() }
                                 }}>
                                 {(checkshopname)
                                     ?
-                                    <Spinner color='white'  thickness='4px' />
+                                    <Spinner color='white' thickness='4px' />
                                     :
                                     <>Sign up</>
                                 }
@@ -168,22 +168,28 @@ export default function LandingPage() {
                         </Flex>
                     </Flex>
                     {former &&
-                        <div className="alert-wrap">
-                            <img className="ratio ratio-1x1" src={alertIcon} alt="" />
-                            <span>Please enter a valid username.</span>
-                        </div>
+                        <Flex h='30px' w='100%' mt='12px'>
+                            <Image w='20px' h='20px' m='auto 0px' src={alertIcon} alt="" />
+                            <Text m='auto 0px' pl='5px' fontWeight='500' fontSize={{ base: "12px", md: '14px' }} color='#b3b3b3' lineHeight='28px'>
+                                Please enter a valid username.
+                            </Text>
+                        </Flex>
                     }
                     {userNameValidation &&
-                        <div className="alert-wrap">
-                            <img className="ratio ratio-1x1" src={alertIcon} alt="" />
-                            <span>Username can contain letters (a-z), numbers (0-9) and underscores.</span>
-                        </div>
+                        <Flex h='30px' w='100%' mt='12px'>
+                            <Image w='20px' h='20px' m='auto 0px' src={alertIcon} alt="" />
+                            <Text m='auto 0px' pl='5px' fontWeight='500' fontSize={{ base: "12px", md: '14px' }} color='#b3b3b3' lineHeight='28px'>
+                                Username can contain letters (a-z), numbers (0-9) and underscores.
+                            </Text>
+                        </Flex>
                     }
                     {(shopnameError) &&
-                        <div className="alert-wrap">
-                            <img className="ratio ratio-1x1" src={alertIcon} alt="" />
-                            <span>{shopnameError}</span>
-                        </div>
+                        <Flex h='30px' w='100%' mt='12px'>
+                            <Image w='20px' h='20px' m='auto 0px' src={alertIcon} alt="" />
+                            <Text m='auto 0px' pl='5px' fontWeight='500' fontSize={{ base: "12px", md: '14px' }} color='#b3b3b3' lineHeight='28px'>
+                                {shopnameError}
+                            </Text>
+                        </Flex>
                     }
 
                 </Box>
@@ -192,7 +198,11 @@ export default function LandingPage() {
 
             {/* image */}
             <Box w={{ base: "100%", md: "50%" }}>
-                <img className="ratio ratio-1x1 " src={figmaImage1} alt="" />
+                <AspectRatio ratio={1 / 1}>
+                    <Box  w='100%' h='100%' pb={{base:"0px" , md:'80px'}}><Image maxW='100%' src={figmaImage1} alt="" /> </Box>
+                   {/* <Image maxW='100%' src={figmaImage1} alt="" /> */}
+                </AspectRatio>
+               
             </Box>
             {/* image */}
         </Box>
