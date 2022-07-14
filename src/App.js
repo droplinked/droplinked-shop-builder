@@ -7,7 +7,7 @@ import ProfileContextProvider from "./context/profile/ProfileContext";
 import CartContextProvider from "./context/cart/CartContext";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContext } from "./sevices/context/Toast-context";
-import AddressContext from "./sevices/context/AddressContext";
+import AddressContext from "./context/address/AddressContext";
 import ScrollTop from "./services/ScrollTop/ScrollTop";
 import OrderContextProvider from "./sevices/context/OrdersContext"
 
