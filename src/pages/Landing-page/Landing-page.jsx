@@ -1,4 +1,4 @@
-import "./Landing-page.style.scss"
+//import "./Landing-page.style.scss"
 
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom";
@@ -84,12 +84,11 @@ export default function LandingPage() {
     }
 
 
-
     return (<>
         <Box display="flex" h='auto' flexDirection={{ base: "column", md: "row" }} pl={{ base: "20px", md: "80px" }} w='100%'>
             {/* inputs */}
             <Box display="flex" w={{ base: '100%', md: '50%' }} pr={{ base: "20px", md: "0px" }} mb={{ base: "70px", md: "0px" }}>
-                <Box w='100%' mt='4.5vw'>
+                <Flex w='100%' flexDir='column'  mt='4.5vw'>
                     <Text
                         fontWeight='600'
                         color="#fff"
@@ -98,7 +97,7 @@ export default function LandingPage() {
                     >Community <br />driven commerce</Text>
 
                     <Text
-                        mt='25px'
+                        mt={{base:'25px' , md:'1.8vw'}}
                         fontWeight='400'
                         fontSize={{ base: "17px", md: '1.95vw' }}
                         lineHeight={{ base: "22px", md: '33px' }}
@@ -108,15 +107,15 @@ export default function LandingPage() {
                     </Text>
                     <Flex
                         justifyContent='space-between'
-                        w={{ base: "100%", md: "70%" }}
-                        h='68px'
+                        w={{ base: "100%", md: "80%" }}
+                        h='auto'
                         borderRadius='8px'
                         p='8px'
                         alignItems='center'
                         border='2px'
                         borderColor='#8053ff'
-                        mt='36px'
-                        maxH={{ base: "56px", md: "68px" }}
+                        mt={{base:"36px" ,md:'3vw'}}
+                       // maxH={{ base: "56px", md: "68px" }}
                     >
                         <Flex justifyContent='start' w='75%' maxW='75%'>
                             <Text
@@ -130,7 +129,7 @@ export default function LandingPage() {
                             <Input
                                 type="text"
                                 fontWeight='600'
-                                fontSize={{ base: "26px", md: '1.7vw' }}
+                                fontSize={{ base: "16px", md: '1.7vw' }}
                                 lineHeight='28px'
                                 color='#fff'
                                 bg='transparent'
@@ -168,7 +167,7 @@ export default function LandingPage() {
                         </Flex>
                     </Flex>
                     {former &&
-                        <Flex h='30px' w='100%' mt='12px'>
+                        <Flex h='30px' w='100%' mt={{base:'12px',md:'0.8vw'}}>
                             <Image w='20px' h='20px' m='auto 0px' src={alertIcon} alt="" />
                             <Text m='auto 0px' pl='5px' fontWeight='500' fontSize={{ base: "12px", md: '14px' }} color='#b3b3b3' lineHeight='28px'>
                                 Please enter a valid username.
@@ -176,7 +175,7 @@ export default function LandingPage() {
                         </Flex>
                     }
                     {userNameValidation &&
-                        <Flex h='30px' w='100%' mt='12px'>
+                        <Flex h='30px' w='100%' mt={{base:'12px',md:'0.8vw'}}>
                             <Image w='20px' h='20px' m='auto 0px' src={alertIcon} alt="" />
                             <Text m='auto 0px' pl='5px' fontWeight='500' fontSize={{ base: "12px", md: '14px' }} color='#b3b3b3' lineHeight='28px'>
                                 Username can contain letters (a-z), numbers (0-9) and underscores.
@@ -184,7 +183,7 @@ export default function LandingPage() {
                         </Flex>
                     }
                     {(shopnameError) &&
-                        <Flex h='30px' w='100%' mt='12px'>
+                        <Flex h='30px' w='100%' mt={{base:'12px',md:'0.8vw'}}>
                             <Image w='20px' h='20px' m='auto 0px' src={alertIcon} alt="" />
                             <Text m='auto 0px' pl='5px' fontWeight='500' fontSize={{ base: "12px", md: '14px' }} color='#b3b3b3' lineHeight='28px'>
                                 {shopnameError}
@@ -192,17 +191,21 @@ export default function LandingPage() {
                         </Flex>
                     }
 
-                </Box>
+                </Flex>
             </Box>
             {/* inputs */}
 
             {/* image */}
             <Box w={{ base: "100%", md: "50%" }}>
                 <AspectRatio ratio={1 / 1}>
-                    <Box  w='100%' h='100%' pb={{base:"0px" , md:'80px'}}><Image maxW='100%' src={figmaImage1} alt="" /> </Box>
-                   {/* <Image maxW='100%' src={figmaImage1} alt="" /> */}
-                </AspectRatio>
-               
+                    <Box  w='100%' h='100%' pos='relative'>
+                        <Image 
+                        pos='absolute'
+                        top='0px'
+                        maxW='100%'
+                         src={figmaImage1} alt="" /> 
+                        </Box>
+                </AspectRatio>    
             </Box>
             {/* image */}
         </Box>
