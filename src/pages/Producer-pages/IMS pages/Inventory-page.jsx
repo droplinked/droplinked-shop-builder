@@ -2,9 +2,10 @@ import "./Inventory-page-style.scss"
 
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { getProducts } from "../../../api/Producer-apis/Product-api"
+import { getShop } from "../../../api/BaseUser-apis/Profile-api"
 
-import axios from "axios"
+
 import Loading from "../../../components/shared/loading/Loading"
 import DroplinkedImsPage from "./droplinked ims page/droplink-ims-page"
 
@@ -20,21 +21,14 @@ function InventoryPage() {
     useEffect(() => {
         if (token == null) { navigate("/") }
 
-        let url1 = BasicURL + "/producer/product"
-        let url2 = BasicURL + "/profile"
+        const getData = async () => {
+            let pro = await getProducts()
+            let sh = await getShop()
+            setProdcuts(pro)
+            setShop(sh)
+        }
 
-        const requestOne = axios.get(url1, { headers: { Authorization: 'Bearer ' + token } });
-        const requestTwo = axios.get(url2, { headers: { Authorization: 'Bearer ' + token } });
-
-        axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
-            const responseOne = responses[0]
-            const responseTwo = responses[1]
-            setProdcuts(responseOne.data.data.products);
-            setShop(responseTwo.data.data.shop);
-        })).catch(errors => {
-            console.log(errors.response.data.reason);
-        })
-
+        getData()
     }, [])
 
     return (<>
