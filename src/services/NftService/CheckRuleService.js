@@ -1,5 +1,5 @@
 import { fetchPrincipalNFTs } from "./NFTcheck";
-import { hasToken } from "../../wallet-auth/api"
+import { hasToken } from "../WalletAuth/api"
 
 export const CheckRules = (rules, mainet) => {
     // let result = false ;

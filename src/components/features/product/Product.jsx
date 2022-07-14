@@ -4,7 +4,7 @@ import savebtn from "../../../assest/feature/product/savebtn.png"
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { useProfile } from "../../../context/profile/ProfileContext"
-import { UseWalletInfo } from "../../../sevices/context/context"
+import { UseWalletInfo } from "../../../context/wallet/WalletContext"
 import { fetchPrincipalNFTs } from "../../../services/NftService/NFTcheck"
 import ErrorModal from "../../errors component/error modal/ErrorModal"
 
