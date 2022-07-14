@@ -3,7 +3,7 @@ import nft1 from "../../../assest/image/nft/produc.jpg"
 import savebtn from "../../../assest/feature/product/savebtn.png"
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react"
-import { useProfile } from "../../../sevices/hooks/useProfile"
+import { useProfile } from "../../../context/profile/ProfileContext"
 import { UseWalletInfo } from "../../../sevices/context/context"
 import { fetchPrincipalNFTs } from "../../../sevices/functoinal-service/NFTcheck"
 import ErrorModal from "../../errors component/error modal/ErrorModal"

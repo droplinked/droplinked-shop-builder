@@ -6,7 +6,7 @@ import { useRef, useState, useEffect, useContext } from "react";
 import { toastValue } from "../../../sevices/context/Toast-context"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useProfile } from "../../../sevices/hooks/useProfile"
+import { useProfile } from "../../../context/profile/ProfileContext"
 import { ReactComponent as IconMenu } from "../../../assest/icon/icons8-delete.svg"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 

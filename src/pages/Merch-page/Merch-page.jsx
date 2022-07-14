@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react"
 import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
 import { useParams } from "react-router-dom";
 import { UseWalletInfo } from "../../sevices/context/context"
-import { useProfile } from "../../sevices/hooks/useProfile"
+import { useProfile } from "../../context/profile/ProfileContext"
 import { useToasty } from "../../sevices/hooks/useToastify"
 import { checkRules } from "../../sevices/functoinal-service/NFTcheck"
 import { useCart } from "../../sevices/hooks/useCart"

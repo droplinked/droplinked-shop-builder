@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { useProfile } from "../hooks/useProfile";
+import { useProfile } from "../../context/profile/ProfileContext";
 import { BasicURL } from "../functoinal-service/CallApiService";
 
 import axios from "axios";

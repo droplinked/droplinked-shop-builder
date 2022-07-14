@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { useState } from "react"
-import { useProfile } from "../../../../sevices/hooks/useProfile"
+import { useProfile } from "../../../../context/profile/ProfileContext"
 import { UseWalletInfo } from "../../../../sevices/context/context"
 
 function ShopifyProductLarge({ price, title, imageUrl, id }) {

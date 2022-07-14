@@ -3,7 +3,7 @@ import "./App.scss";
 //
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WalletProvider } from "./sevices/context/context";
-import ProfileContextProvider from "./sevices/context/ProfileContext";
+import ProfileContextProvider from "./context/profile/ProfileContext";
 import CartContextProvider from "./sevices/context/CartContext";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContext } from "./sevices/context/Toast-context";

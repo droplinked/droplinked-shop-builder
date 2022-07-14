@@ -1,6 +1,6 @@
 import { Flex, Box, Text } from '@chakra-ui/react'
 import { useState } from 'react';
-import { useProfile } from "../../../sevices/hooks/useProfile"
+import { useProfile } from "../../../context/profile/ProfileContext"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../sevices/hooks/useToastify"
 

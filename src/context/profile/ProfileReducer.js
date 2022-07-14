@@ -1,4 +1,4 @@
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../../sevices/hooks/useCart";
 
 export const ProflieReduser = (profile, action) => {
   const { updateCartWithToken } = useCart();

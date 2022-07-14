@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useProfile } from "../hooks/useProfile";
+import { useProfile } from "../../context/profile/ProfileContext";
 
 export const BasicURL = "https://dev-api.droplinked.com"
 

@@ -3,9 +3,9 @@ import BasketModal from "../basket modal/basket-modal-component"
 import WalletButton from "../wallet button/wallet-button-component"
 
 import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
-import { useProfile } from "../../../../sevices/hooks/useProfile"
+import { useProfile } from "../../../../context/profile/ProfileContext"
 import { useState } from "react"
-import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useCart } from "../../../../sevices/hooks/useCart"
 
 export default function UserHeader() {

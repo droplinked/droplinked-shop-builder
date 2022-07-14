@@ -5,7 +5,7 @@ import Loading from "../../components/shared/loading/Loading"
 import axios from 'axios';
 
 import { useState, useEffect } from "react"
-import { useProfile } from "../../sevices/hooks/useProfile"
+import { useProfile } from "../../context/profile/ProfileContext"
 import { useParams } from "react-router-dom";
 import { useCart } from "../../sevices/hooks/useCart"
 import { UseWalletInfo } from "../../sevices/context/context"

@@ -1,6 +1,6 @@
 import "./mainHeader.scss";
 import { Link } from "react-router-dom";
-import { useProfile } from "../../../sevices/hooks/useProfile"
+import { useProfile } from "../../../context/profile/ProfileContext"
 import DefaulHeader from "./default header/Default-header-component"
 import UserHeader from "./user Header/User-header-component"
 

@@ -5,7 +5,7 @@ import ShopInfoAddress from "./address component/ShopInfo.address"
 import { useEffect, useRef, useState, useContext } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
-import { useProfile } from "../../../sevices/hooks/useProfile"
+import { useProfile } from "../../../context/profile/ProfileContext"
 import { ReactComponent as IconMenu } from "../../../assest/icon/icons8-delete.svg"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { toastValue } from "../../../sevices/context/Toast-context"

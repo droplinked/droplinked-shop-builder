@@ -1,6 +1,5 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer ,useContext } from "react";
 import { ProflieReduser } from "./ProfileReducer";
-import { useState , useEffect } from "react";
 
 export const ProfileContext = createContext();
 
@@ -35,5 +34,14 @@ const ProfileContextProvider = ({ children }) => {
     </ProfileContext.Provider>
   );
 };
+
+export const useProfile = () => {
+   
+  const ctx = useContext(ProfileContext)
+
+  return {
+      ...ctx
+  }
+}
 
 export default ProfileContextProvider;

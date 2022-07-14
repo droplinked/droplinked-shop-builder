@@ -5,7 +5,7 @@ import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useProfile } from "../../../sevices/hooks/useProfile"
+import { useProfile } from "../../../context/profile/ProfileContext"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 
 export default function RegisterIms() {
@@ -24,14 +24,14 @@ export default function RegisterIms() {
             setLoading(false)
         } else {
             const ImsType = { type: ImsSystem }
-            axios.post(BasicURL+'/producer/profile/ims', ImsType,
+            axios.post(BasicURL + '/producer/profile/ims', ImsType,
                 { headers: { Authorization: 'Bearer ' + token } }
             ).then(res => {
                 if (res.data.status == "success") {
                     toast.success("account created")
                     updateProfile({
                         ...user,
-                        status: "IMS_TYPE_COMPLETED" ,
+                        status: "IMS_TYPE_COMPLETED",
                         imsType: ImsSystem
                     })
                     navigate(`/${user.shopName}`);
@@ -46,8 +46,8 @@ export default function RegisterIms() {
     }
 
     return (
-       // <RegisterStructure level={"imstype"}>
-       <>
+        // <RegisterStructure level={"imstype"}>
+        <>
             <div className="ims-select-wrapper">
                 <div className="header">Select an inventory management system</div>
                 <div className="w-100 d-flex flex-column justify-content-center" style={{ marginTop: "60px" }}>
@@ -76,7 +76,7 @@ export default function RegisterIms() {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover />
-                </>
-      //  </RegisterStructure>
+        </>
+        //  </RegisterStructure>
     )
 }
