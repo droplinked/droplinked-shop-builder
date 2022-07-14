@@ -1,6 +1,6 @@
 import "./Merch-page-style.scss"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
 import { useParams } from "react-router-dom";
 import { UseWalletInfo } from "../../context/wallet/WalletContext"
@@ -8,6 +8,7 @@ import { useProfile } from "../../context/profile/ProfileContext"
 import { useToasty } from "../../context/toastify/ToastContext"
 import { checkRules } from "../../services/NftService/NFTcheck"
 import { useCart } from "../../context/cart/CartContext"
+import { getProduct } from "../../api/Public-apis/Product-api"
 
 import axios from "axios"
 import Loading from "../../components/shared/loading/Loading";
@@ -35,18 +36,19 @@ export default function MerchPage() {
 
     let params = useParams();
     let merchId = params.merchId;
-    let shopName = params.shopname;
+
     let token = JSON.parse(localStorage.getItem("token"));
 
     useEffect(() => {
-        axios
-            .get(`${BasicURL}/product/${merchId}?withSku=true`,)
-            .then(e => {
-                setProduct(e.data.data)
-                setImages(e.data.data.media)
-                initialskuArray(e.data.data.skus)
-            })
-            .catch(e => console.log(e.response.data.reason))
+
+        const getdata = async (merchId) => {
+            let pr = await getProduct(merchId)
+            setProduct(pr)
+            setImages(pr.media)
+            initialskuArray(pr.skus)
+        }
+        getdata(merchId)
+
     }, [])
 
 
@@ -80,9 +82,9 @@ export default function MerchPage() {
     }
 
 
-    const Addtobasket = async() => {
+    const Addtobasket = async () => {
         //  console.log(selectedSku.id);
-       
+
         if (profile == null) {
             errorToast("Please login")
             return
@@ -100,7 +102,7 @@ export default function MerchPage() {
 
 
         if (product.ruleset == undefined) {
-   
+
             setDisableBtn(true)
             await axios.post(`${BasicURL}/cart/sku`, cart,
                 { headers: { Authorization: 'Bearer ' + token } })
@@ -114,8 +116,8 @@ export default function MerchPage() {
                     setDisableBtn(false)
                     errorToast(e.response.data.reason)
                 })
-               return;
-            
+            return;
+
         }
 
         if (userData == undefined) {
