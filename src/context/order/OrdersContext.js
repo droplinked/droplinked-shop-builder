@@ -1,6 +1,6 @@
-import { createContext, useState, useEffect } from "react";
-import { useProfile } from "../../context/profile/ProfileContext";
-import { BasicURL } from "../functoinal-service/CallApiService";
+import { createContext, useState, useEffect ,useContext} from "react";
+import { useProfile } from "../profile/ProfileContext";
+import { BasicURL } from "../../sevices/functoinal-service/CallApiService";
 
 import axios from "axios";
 
@@ -53,4 +53,13 @@ export default function OrderContextProvider({ children }) {
       {children}
     </OrderContext.Provider>
   );
+}
+
+export const useOrder = () => {
+   
+  const ctx = useContext(OrderContext)
+
+  return {
+      ...ctx
+  }
 }

@@ -9,7 +9,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { ToastContext } from "./sevices/context/Toast-context";
 import AddressContext from "./context/address/AddressContext";
 import ScrollTop from "./services/ScrollTop/ScrollTop";
-import OrderContextProvider from "./sevices/context/OrdersContext"
+import OrderContextProvider from "./context/order/OrdersContext"
 
 import PageWrapper from "./pages/Page-wrapper/PageWrapper";
 import LandingPage from "./pages/Landing-page/Landing-page";

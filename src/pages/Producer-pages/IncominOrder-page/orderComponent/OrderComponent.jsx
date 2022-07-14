@@ -1,7 +1,7 @@
 import { Text, Box, Flex, useDisclosure, Stack, Skeleton, Image } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 //import { AiOutlineFieldTime } from "react-icons/ai";
-import { useOrder } from "../../../../sevices/hooks/useOrders"
+import { useOrder } from "../../../../context/order/OrdersContext"
 import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 
 import axios from 'axios'
