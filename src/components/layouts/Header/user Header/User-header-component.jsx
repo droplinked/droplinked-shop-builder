@@ -6,7 +6,7 @@ import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
 import { useProfile } from "../../../../context/profile/ProfileContext"
 import { useState } from "react"
 import { Link, useNavigate} from "react-router-dom";
-import { useCart } from "../../../../sevices/hooks/useCart"
+import { useCart } from "../../../../context/cart/CartContext"
 
 export default function UserHeader() {
 

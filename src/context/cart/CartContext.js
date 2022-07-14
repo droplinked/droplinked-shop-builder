@@ -1,8 +1,8 @@
-import { createContext, useState, useEffect } from "react";
-import { CartReducer, ItemCounter, totalPrice } from "./CartReducer";
-import { BasicURL } from "../functoinal-service/CallApiService";
-import { errorToast } from "./Toast-context";
+import { createContext, useState ,useContext } from "react";
+import { BasicURL } from "../../sevices/functoinal-service/CallApiService";
+import { errorToast } from "../../sevices/context/Toast-context";
 import axios from "axios";
+
 
 export const CartContext = createContext();
 
@@ -102,46 +102,17 @@ const CartContextProvider = ({ children }) => {
   );
 };
 
+
+
+
+export const useCart = () => {
+   
+    const ctx = useContext(CartContext)
+
+    return {
+        ...ctx
+    }
+}
+
 export default CartContextProvider;
 
-// axios
-//   .get(`${BasicURL}/product/${productID}`)
-//   .then((e) => {
-//     let lastCart = [];
-
-//     if (cart == null) {
-//       lastCart.push({
-//         shop: shop,
-//         items: [{ product: e.data.data, skuID: skuID, quantity: quantity }],
-//       });
-//       console.log("true");
-//     } else {
-//       console.log("false");
-//       for (let c of cart) lastCart.push(c);
-
-//       lastCart.forEach((item, i) => {
-//         console.log(item.shop._id == shop._id);
-//         if (item.shop._id == shop._id) {
-//           let newItems = lastCart[i].items;
-//           newItems.push({
-//             product: e.data.data,
-//             skuID: skuID,
-//             quantity: quantity,
-//           });
-//           console.log(lastCart[i].items);
-//           lastCart[i].items = newItems;
-//         } else {
-//           lastCart.push({
-//             shop: shop,
-//             items: [
-//               { product: e.data.data, skuID: skuID, quantity: quantity },
-//             ],
-//           });
-//         }
-//       });
-//     }
-//     setCart(lastCart);
-//   })
-//   .catch((e) => {
-//     console.log(e.response.data.reason);
-//   });

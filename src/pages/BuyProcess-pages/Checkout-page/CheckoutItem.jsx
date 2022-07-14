@@ -1,6 +1,6 @@
 import { Box, Flex, Text, Image, ButtonGroup, IconButton, Button, Input, AspectRatio } from "@chakra-ui/react"
 import { AiOutlineDelete } from "react-icons/ai";
-import { useCart } from "../../../sevices/hooks/useCart"
+import { useCart } from "../../../context/cart/CartContext"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../sevices/hooks/useToastify"
 import { useState } from "react";

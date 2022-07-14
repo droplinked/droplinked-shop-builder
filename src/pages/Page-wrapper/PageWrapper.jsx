@@ -3,7 +3,7 @@ import Footer from "../../components/layouts/Footer/Footer"
 
 import { Box, Flex } from "@chakra-ui/react"
 import { Outlet } from "react-router-dom";
-import { useCart } from "../../sevices/hooks/useCart"
+import { useCart } from "../../context/cart/CartContext"
 import { useEffect } from "react"
 import { useAddress } from "../../sevices/hooks/useAddress"
 

@@ -7,7 +7,7 @@ import {
 import { useState } from "react"
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { useCart } from "../../../sevices/hooks/useCart"
+import { useCart } from "../../../context/cart/CartContext"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 
 import StripeComponent from "./stripe modal/stripe-modal-component"

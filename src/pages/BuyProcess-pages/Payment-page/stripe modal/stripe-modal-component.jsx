@@ -1,6 +1,6 @@
 import {  useElements, useStripe, PaymentElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
-import { useCart } from "../../../../sevices/hooks/useCart"
+import { useCart } from "../../../../context/cart/CartContext"
 
 import ModalContainer from "../../../../components/Modal/modal-container/modal-container"
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";

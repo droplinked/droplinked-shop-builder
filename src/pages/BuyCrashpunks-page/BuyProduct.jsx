@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useState, useEffect } from "react"
 import { useProfile } from "../../context/profile/ProfileContext"
 import { useParams } from "react-router-dom";
-import { useCart } from "../../sevices/hooks/useCart"
+import { useCart } from "../../context/cart/CartContext"
 import { UseWalletInfo } from "../../sevices/context/context"
 import { fetchPrincipalNFTs } from "../../sevices/functoinal-service/NFTcheck"
 import { useToasty } from "../../sevices/hooks/useToastify"

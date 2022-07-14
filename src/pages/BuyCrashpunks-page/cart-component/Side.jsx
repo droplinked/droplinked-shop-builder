@@ -1,6 +1,6 @@
 import "./Side.scss";
 import SideCardItem from "../../sideCard/SideCardItem"
-import { useCart } from "../../../sevices/hooks/useCart"
+import { useCart } from "../../../context/cart/CartContext"
 import { Link } from "react-router-dom";
 
 function Side() {

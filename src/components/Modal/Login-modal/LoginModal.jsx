@@ -10,7 +10,7 @@ import { useState,  useContext } from "react"
 import { toastValue } from "../../../sevices/context/Toast-context"
 import {  useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
-import { useCart } from "../../../sevices/hooks/useCart"
+import { useCart } from "../../../context/cart/CartContext"
 
 
 export default function LoginModal({ close, switchToggle, switchReset }) {

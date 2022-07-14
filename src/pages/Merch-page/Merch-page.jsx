@@ -7,7 +7,7 @@ import { UseWalletInfo } from "../../sevices/context/context"
 import { useProfile } from "../../context/profile/ProfileContext"
 import { useToasty } from "../../sevices/hooks/useToastify"
 import { checkRules } from "../../sevices/functoinal-service/NFTcheck"
-import { useCart } from "../../sevices/hooks/useCart"
+import { useCart } from "../../context/cart/CartContext"
 
 import axios from "axios"
 import Loading from "../../components/shared/loading/Loading";
