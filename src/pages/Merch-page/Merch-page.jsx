@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { UseWalletInfo } from "../../context/wallet/WalletContext"
 import { useProfile } from "../../context/profile/ProfileContext"
 import { useToasty } from "../../context/toastify/ToastContext"
-import { checkRules } from "../../sevices/functoinal-service/NFTcheck"
+import { checkRules } from "../../services/NftService/NFTcheck"
 import { useCart } from "../../context/cart/CartContext"
 
 import axios from "axios"

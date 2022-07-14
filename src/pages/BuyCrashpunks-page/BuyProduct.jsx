@@ -9,7 +9,7 @@ import { useProfile } from "../../context/profile/ProfileContext"
 import { useParams } from "react-router-dom";
 import { useCart } from "../../context/cart/CartContext"
 import { UseWalletInfo } from "../../context/wallet/WalletContext"
-import { fetchPrincipalNFTs } from "../../sevices/functoinal-service/NFTcheck"
+import { fetchPrincipalNFTs } from "../../services/NftService/NFTcheck"
 import { useToasty } from "../../context/toastify/ToastContext"
 
 
