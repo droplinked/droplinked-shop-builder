@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import { useCart } from "../../context/cart/CartContext"
 import { UseWalletInfo } from "../../sevices/context/context"
 import { fetchPrincipalNFTs } from "../../sevices/functoinal-service/NFTcheck"
-import { useToasty } from "../../sevices/hooks/useToastify"
+import { useToasty } from "../../context/toastify/ToastContext"
 
 
 

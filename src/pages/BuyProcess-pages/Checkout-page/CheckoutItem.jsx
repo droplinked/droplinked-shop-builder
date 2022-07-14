@@ -2,7 +2,7 @@ import { Box, Flex, Text, Image, ButtonGroup, IconButton, Button, Input, AspectR
 import { AiOutlineDelete } from "react-icons/ai";
 import { useCart } from "../../../context/cart/CartContext"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
-import { useToasty } from "../../../sevices/hooks/useToastify"
+import { useToasty } from "../../../context/toastify/ToastContext"
 import { useState } from "react";
 
 import axios from "axios";

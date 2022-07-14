@@ -4,7 +4,7 @@ import BasicInput from "../../../../components/features/input components/basic i
 import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
 import axios from "axios"
 import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
-import { useToasty } from "../../../../sevices/hooks/useToastify"
+import { useToasty } from "../../../../context/toastify/ToastContext"
 
 
 export default function AddRule({ toggle }) {

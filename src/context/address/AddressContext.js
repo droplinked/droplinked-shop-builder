@@ -1,6 +1,6 @@
 import { createContext, useState ,useContext} from "react";
 import { BasicURL } from "../../sevices/functoinal-service/CallApiService";
-import { useToasty } from "../../sevices/hooks/useToastify";
+import { useToasty } from "../../context/toastify/ToastContext";
 
 
 import axios from "axios";

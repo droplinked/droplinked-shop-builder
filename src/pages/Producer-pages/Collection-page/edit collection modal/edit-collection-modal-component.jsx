@@ -7,7 +7,7 @@ import AutoWidthButton from "../../../../components/features/buttons components/
 import Loading from "../../../../components/shared/loading/Loading"
 import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
 import axios from "axios"
-import { useToasty } from "../../../../sevices/hooks/useToastify"
+import { useToasty } from "../../../../context/toastify/ToastContext"
 
 export default function EditCollectionModal({ toggle, submitFunc, defaultValue }) {
 

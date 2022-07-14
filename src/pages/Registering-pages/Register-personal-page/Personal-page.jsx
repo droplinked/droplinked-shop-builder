@@ -3,7 +3,7 @@ import "./Personal-page-style.scss"
 import axios from 'axios';
 
 import { useRef, useState, useEffect, useContext } from "react";
-import { toastValue } from "../../../sevices/context/Toast-context"
+import { toastValue } from "../../../context/toastify/ToastContext"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"

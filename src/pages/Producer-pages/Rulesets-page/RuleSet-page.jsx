@@ -8,7 +8,7 @@ import AddRule from "./add rule modal/Addrule.modal.component"
 import Loading from "../../../components/shared/loading/Loading"
 
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
-import { useToasty } from "../../../sevices/hooks/useToastify"
+import { useToasty } from "../../../context/toastify/ToastContext"
 import { useState, useEffect } from "react";
 
 function RuleSetPage() {

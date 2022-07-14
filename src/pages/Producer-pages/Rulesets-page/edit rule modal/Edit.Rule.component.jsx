@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
-import { useToasty } from "../../../../sevices/hooks/useToastify"
+import { useToasty } from "../../../../context/toastify/ToastContext"
 import axios from "axios"
 import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 

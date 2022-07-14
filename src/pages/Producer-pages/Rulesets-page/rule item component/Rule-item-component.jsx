@@ -4,7 +4,7 @@ import { useState } from "react"
 import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component"
 import axios from "axios"
 import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
-import { useToasty } from "../../../../sevices/hooks/useToastify"
+import { useToasty } from "../../../../context/toastify/ToastContext"
 
 export default function RuleItem({ name, rules, ruleId, ren }) {
     const [editModal, setEditModal] = useState(false)

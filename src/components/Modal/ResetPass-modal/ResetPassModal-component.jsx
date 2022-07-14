@@ -3,7 +3,7 @@ import "./ResetPassModal-style.scss"
 import { useState, useRef, useContext } from "react"
 
 import { PostWithoutToken } from "../../../sevices/functoinal-service/CallApiService"
-import { toastValue } from "../../../sevices/context/Toast-context"
+import { toastValue } from "../../../context/toastify/ToastContext"
 
 
 import ModalContainer from "../modal-container/modal-container"

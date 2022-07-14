@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { toast } from 'react-toastify';
-import { useToasty } from "../../../../sevices/hooks/useToastify"
+import { useToasty } from "../../../../context/toastify/ToastContext"
 
 import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
 

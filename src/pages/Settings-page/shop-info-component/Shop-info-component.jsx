@@ -2,7 +2,7 @@ import { Flex, FormLabel, Textarea, Box } from '@chakra-ui/react'
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useEffect, useState } from 'react'
 import { useAddress } from "../../../context/address/AddressContext"
-import { useToasty } from "../../../sevices/hooks/useToastify"
+import { useToasty } from "../../../context/toastify/ToastContext"
 
 import axios from "axios"
 import InputImage from '../../../components/shared/InputImage/InputImage'

@@ -14,7 +14,7 @@ import SmallModal from "../../../components/Modal/Small-modal/Small-modal-compon
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService";
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { useToasty } from "../../../sevices/hooks/useToastify"
+import { useToasty } from "../../../context/toastify/ToastContext"
 import { GetAuth } from "../../../sevices/functoinal-service/CallApiService"
 import { useNavigate } from 'react-router-dom';
 

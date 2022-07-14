@@ -7,7 +7,7 @@ import ModalContainer from "../modal-container/modal-container"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useForm } from "react-hook-form";
 import { useState,  useContext } from "react"
-import { toastValue } from "../../../sevices/context/Toast-context"
+import { toastValue } from "../../../context/toastify/ToastContext"
 import {  useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { useCart } from "../../../context/cart/CartContext"

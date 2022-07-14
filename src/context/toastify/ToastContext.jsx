@@ -1,11 +1,11 @@
 import { ToastContainer, toast } from 'react-toastify';
-import { createContext } from 'react';
+import { createContext ,useContext } from 'react';
 
 import "react-toastify/dist/ReactToastify.css";
 
 export const toastValue = createContext(null)
 
-export  function ToastContext({ children }) {
+export  default function ToastContext({ children }) {
 
     const successToast = (text) =>{
         toast.success(text)
@@ -31,4 +31,12 @@ export  function ToastContext({ children }) {
                 pauseOnHover />
         </toastValue.Provider>
     )
+}
+
+export function useToasty(){
+
+    const toast = useContext(toastValue);
+
+    return { ...toast }
+
 }

@@ -7,7 +7,7 @@ import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-com
 import ModalContainer from "../../../../components/Modal/modal-container/modal-container"
 import EditCollectionModal from "../edit collection modal/edit-collection-modal-component"
 
-import { toastValue } from "../../../../sevices/context/Toast-context"
+import { toastValue } from "../../../../context/toastify/ToastContext"
 import { DeleteWithToken } from "../../../../sevices/functoinal-service/CallApiService"
 import { Link } from "react-router-dom"
 import { useState, useContext } from "react"

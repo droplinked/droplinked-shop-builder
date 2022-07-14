@@ -2,7 +2,7 @@ import { Flex, Box, Text } from '@chakra-ui/react'
 import { useState } from 'react';
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
-import { useToasty } from "../../../sevices/hooks/useToastify"
+import { useToasty } from "../../../context/toastify/ToastContext"
 
 import InputImage from '../../../components/shared/InputImage/InputImage'
 import FormInput from '../../../components/shared/FormInput/FormInput'
