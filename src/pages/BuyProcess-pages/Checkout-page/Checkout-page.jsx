@@ -15,7 +15,7 @@ function CheckoutPage() {
 	const { cart } = useCart();
 	let navigate = useNavigate();
 
-//	console.log(cartBaseShop);
+
 
 
 	// get shops of items

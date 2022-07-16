@@ -1,11 +1,11 @@
-import { Box, Flex, Text, Image, ButtonGroup, IconButton, Button, Input, AspectRatio } from "@chakra-ui/react"
+import { Flex, Text, Image, ButtonGroup, IconButton, Button, Input} from "@chakra-ui/react"
 import { AiOutlineDelete } from "react-icons/ai";
 import { useCart } from "../../../context/cart/CartContext"
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useState } from "react";
+import { deleteSkuFromCart ,updateQuantity } from "../../../api/BaseUser-apis/Cart-api"
 
-import axios from "axios";
+
 
 export default function CheckoutItem({ product }) {
 
@@ -15,7 +15,7 @@ export default function CheckoutItem({ product }) {
 
     const { updateCart } = useCart()
     const { successToast, errorToast } = useToasty()
-    let token = JSON.parse(localStorage.getItem("token"));
+
 
     // text for show variants value
     let findSku = product.Product.skus.find(sku => sku._id == product.skuID)
@@ -24,46 +24,35 @@ export default function CheckoutItem({ product }) {
 
 
     //delete merch
-    const deleteMerch = () => {
-
+    const deleteMerch = async () => {
         setDisableDeleteBtn(true)
-        axios.delete(`${BasicURL}/cart/sku/${product.skuID}`, {
-            headers: { Authorization: "Bearer " + token },
-        })
-            .then((e) => {
-                setDisableDeleteBtn(false)
-                successToast("Merch deleted successfully")
-                updateCart();
-            })
-            .catch(e => {
-                setDisableDeleteBtn(false)
-                errorToast(e.response.data)
-            })
+        let result = await deleteSkuFromCart(product.skuID)
+        if (result == true) {
+            successToast("Merch deleted successfully")
+            updateCart();
+        } else {
+            errorToast(result)
+        }
+        setDisableDeleteBtn(false)
     }
 
 
     // update quantity
-    const updateQuantity = () => {
+    const updateQ = async() => {
 
         if (quantity < 1) {
             errorToast("Merch quantity must be greater than zero")
             return;
         }
         setDisableEditBtn(true)
-        axios.put(`${BasicURL}/cart/sku/${product.skuID}`,
-            { quantity: parseInt(quantity) },
-            {
-                headers: { Authorization: "Bearer " + token },
-            })
-            .then((e) => {
-                setDisableEditBtn(false)
-                successToast("Merch updated successfully")
-                updateCart();
-            })
-            .catch(e => {
-                setDisableEditBtn(false)
-                errorToast(e.response.data.reason)
-            })
+        let result = await updateQuantity(product.skuID , quantity)
+        if(result == true){
+            successToast("Merch updated successfully")
+            updateCart();
+        }else{
+            errorToast(result)
+        }
+        setDisableEditBtn(false)
     }
 
 
@@ -168,7 +157,7 @@ export default function CheckoutItem({ product }) {
                         fontWeight="600"
                         _hover={{ bgColor: "none", borderColor: "#8053ff" }}
                         _focus={{ bgColor: "none", borderColor: "#8053ff" }}
-                        onClick={updateQuantity}
+                        onClick={updateQ}
                         disabled={disableEditBtn}
                     >Submit</Button>
                 </ButtonGroup>

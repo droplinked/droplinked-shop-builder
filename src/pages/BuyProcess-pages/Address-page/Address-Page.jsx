@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Flex, Button, Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useAddress } from "../../../context/address/AddressContext"
+import { addCheckoutAddress } from "../../../api/BaseUser-apis/Cart-api"
 
 import AddressComponent from "../../../components/shared/Address/address-component"
-import axios from "axios";
 import Loading from "../../../components/shared/loading/Loading"
 import AddressForm from "../../../components/Forms/Address-form/AddressForm-component"
 
@@ -33,21 +32,18 @@ function AddressPage() {
 	}
 
 
-	const ProccessToPayment = () => {
+	const ProccessToPayment = async () => {
 		if (selectedAddress == null) {
 			errorToast("Please select an address")
 			return
 		}
-
-		axios.post(`${BasicURL}/cart/checkout-address`, { addressBookID: selectedAddress },
-			{ headers: { Authorization: "Bearer " + token }, })
-			.then(e => {
-				successToast("Address added successfully")
-				navigate('/payment')
-			})
-			.catch(e => {
-				errorToast(e.response.data)
-			})
+		let result = await addCheckoutAddress(selectedAddress)
+		if (result == true) {
+			successToast("Address added successfully")
+			navigate('/payment')
+		}else{
+			errorToast(result)
+		}
 	}
 
 
@@ -76,9 +72,9 @@ function AddressPage() {
 								address={address}
 								selected={selectedAddress}
 								setSelect={setSelectedAddress}
-								selecable={true} 
+								selecable={true}
 								deleteable={true}
-								/>
+							/>
 						})}
 						<Box mt='40px'></Box>
 						{(addressModal)
