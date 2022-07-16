@@ -7,32 +7,33 @@ import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-com
 import ModalContainer from "../../../../components/Modal/modal-container/modal-container"
 import EditCollectionModal from "../edit collection modal/edit-collection-modal-component"
 
-import { toastValue } from "../../../../context/toastify/ToastContext"
-import { DeleteWithToken } from "../../../../sevices/functoinal-service/CallApiService"
+import { useToasty } from "../../../../context/toastify/ToastContext"
+import { deleteCollection } from "../../../../api/Producer-apis/Collection-api"
 import { Link } from "react-router-dom"
-import { useState, useContext } from "react"
+import { useState } from "react"
 
 export default function CollectionComponent({ id, name, productsArray, edit, render, editable }) {
 
 
     const [deleteModal, setDeleteModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
-    const { successToast, errorToast } = useContext(toastValue);
-
-    const resHandler = (status, mess) => {
-        if (status) {
-            successToast("Collection deleted successfully")
-            render()
-        } else { errorToast(mess) }
-
-        setDeleteModal(false)
-    }
+    const { errorToast, successToast } = useToasty();
 
     const submitEdit = () => {
-        console.log("x");
+        //  console.log("x");
     }
 
-    const DeleteCollection = () => { DeleteWithToken(`/producer/collection/${id}`, resHandler) }
+    const DeleteCollection = async () => {
+
+        let result = await deleteCollection(id)
+        if (result == true) {
+            successToast("Collection deleted successfully")
+            render()
+        } else {
+            errorToast(result)
+        }
+        setDeleteModal(false)
+    }
 
     const toggleEdit = () => setEditModal(p => !p)
 

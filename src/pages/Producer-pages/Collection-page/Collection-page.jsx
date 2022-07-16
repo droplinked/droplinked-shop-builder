@@ -1,5 +1,4 @@
 import "./Collection-page-style.scss"
-import "react-toastify/dist/ReactToastify.css";
 
 import AutoWidthButton from "../../../components/features/buttons components/autow basic button/B-button-component"
 import CollectionComponent from "./Collection-component/Collection-component"
@@ -8,40 +7,43 @@ import AddCollectionPage from "./add collection page/Add-collection-component"
 import Loading from "../../../components/shared/loading/Loading"
 import EditCollectionModal from "./edit collection modal/edit-collection-modal-component"
 
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react"
-import { ToastContainer, toast } from 'react-toastify';
-import { GetApiWithAuth  } from "../../../sevices/functoinal-service/CallApiService"
+import { getCollections } from "../../../api/Producer-apis/Collection-api"
+import { useToasty } from "../../../context/toastify/ToastContext"
 
-export default function CollectionMainPage({ name }) {
+export default function CollectionMainPage() {
+    const navigate = useNavigate();
+    const { successToast, errorToast } = useToasty()
 
     const [Modal, setModal] = useState(false)
     const [EditModal, setEditModal] = useState(false)
     const [collectins, setCollections] = useState(null);
     const [ren, setRen] = useState(false)
-
     const editRef = useRef(null)
-
-
-    const navigate = useNavigate();
 
     const token = JSON.parse(localStorage.getItem('token'));
 
+    if (token == null) { navigate("/") }
 
+
+    const updateCollections = async () => {
+        let collections = await getCollections()
+        if (collections != null) setCollections(collections)
+    }
+
+    //  GetApiWithAuth("/producer/collection?withProducts=true", setCollections, "collections", errorHandle);
     useEffect(() => {
-        if (token == null) { navigate("/") }
-        GetApiWithAuth("/producer/collection?withProducts=true", setCollections, "collections", errorHandle);
+        updateCollections()
     }, [Modal, ren])
 
     const ToggleModal = () => setModal(p => !p)
-    const errorHandle = (e) => toast.error(e)
 
     const PostCollection = (status, text) => {
         if (status) {
-            toast.success("Collection was created successfully");
-
+            successToast("Collection was created successfully");
         } else {
-            toast.error(text);
+            errorToast(text);
         }
         ToggleModal()
     }
@@ -52,10 +54,6 @@ export default function CollectionMainPage({ name }) {
     const ToggleeditCollection = (coll) => {
         editRef.current = (coll)
         setEditModal(true)
-    }
-
-    const updateCollection = () => {
-
     }
 
     return (<>
@@ -107,21 +105,8 @@ export default function CollectionMainPage({ name }) {
         }
         {EditModal &&
             (<ModalContainer>
-                <EditCollectionModal toggle={() => { setEditModal(false); renFunc() }} submitFunc={updateCollection} defaultValue={editRef.current} />
+                <EditCollectionModal toggle={() => { setEditModal(false); renFunc() }} submitFunc={updateCollections} defaultValue={editRef.current} />
             </ModalContainer>)
         }
-
-        <ToastContainer
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme='dark'
-        />
     </>)
 }
