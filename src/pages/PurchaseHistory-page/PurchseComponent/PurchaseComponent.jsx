@@ -49,7 +49,7 @@ export default function PurchaseHistory({ order }) {
         setOrderData(newOrderList);
     }
 
-   // console.log(orderData);
+
    // get total price
     const getTotalPrice = () => { 
         let totalPrice = 0

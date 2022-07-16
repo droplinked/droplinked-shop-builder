@@ -1,9 +1,8 @@
 import { useToasty } from "../../context/toastify/ToastContext"
 import { useEffect, useState } from "react";
-import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
 import { Text, Box } from "@chakra-ui/react"
+import { getOrdersList } from "../../api/Producer-apis/Orders-api"
 
-import axios from "axios"
 import Loading from "../../components/shared/loading/Loading"
 import PurchaseHistory from "./PurchseComponent/PurchaseComponent"
 
@@ -13,7 +12,6 @@ export default function PurchasHistoryPage() {
     const [orders, setorders] = useState(null)
     const { successToast, errorToast } = useToasty();
 
-    let token = JSON.parse(localStorage.getItem("token"));
 
     //get payment status
     let params = (new URL(document.location)).searchParams;
@@ -28,11 +26,10 @@ export default function PurchasHistoryPage() {
 
 
     const getPurchseList = async () => {
-        await axios.get(`${BasicURL}/order`, {
-            headers: { Authorization: "Bearer " + token },
-        })
-            .then(e => setorders(e.data.data.orders))
-            .catch(e => errorToast(e.response.data.reason))
+        let result = await getOrdersList()
+        if(result != null ){
+            setorders(result)
+        }
     }
     
     return (<>
