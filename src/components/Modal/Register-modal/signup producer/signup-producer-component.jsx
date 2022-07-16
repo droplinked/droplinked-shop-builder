@@ -1,13 +1,9 @@
 
-
-
-
-
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react"
 import { useForm } from "react-hook-form";
-import { PostWithoutToken } from "../../../../sevices/functoinal-service/CallApiService"
 import { toastValue } from "../../../../context/toastify/ToastContext"
+import { producerSignup } from "../../../../api/Producer-apis/Auth-api"
 
 export default function SignupProducer({ close, shopname, switchToggle }) {
 
@@ -19,7 +15,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
     let navigate = useNavigate();
 
 
-    const onSubmit = data => {
+    const onSubmit = async data => {
 
         let info = {
             email: data.email,
@@ -44,19 +40,16 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
 
         setLoading(true)
 
-        PostWithoutToken("/producer/signup", info,
-            (status, value) => {
-                if (status) {
-                    successToast("Your account has been successfully created.");
-                    close()
-                    localStorage.setItem('registerEmail', JSON.stringify(info.email))
-                    navigate("/emailConfirmation");
-                } else {
-                    errorToast(value);
-                    setLoading(false)
-                }
-            }
-        )
+        let result = await producerSignup(info)
+        if (result == true) {
+            successToast("Your account has been successfully created.");
+            localStorage.setItem('registerEmail', JSON.stringify(info.email))
+            close()
+            navigate("/emailConfirmation");
+        } else {
+            errorToast(result);
+        }
+        setLoading(false)
     };
 
     const validationEmail = (em) => {
@@ -74,84 +67,84 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
 
     return (
 
-            <div className="signup-body-wrapper">
-                {/* header */}
-               
-                <form onSubmit={handleSubmit(onSubmit)}
-                    onChange={() => { if (loading) { setLoading(false) } }}
-                    style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>
-                    {/* inout */}
-                    <div className="input-label">
-                        <label>Email</label>
-                        <input type="email" placeholder="example@email.com"
-                            {...register("email", { required: true })}
-                            onChange={() => { setError(null) }}
-                        />
-                        {errors.email?.type === 'required' && <span className="signup-modal-error">Email is required.</span>}
-                        {(error != null || error != "") &&
-                            (<span className="signup-modal-error">{error}</span>)}
-                    </div>
+        <div className="signup-body-wrapper">
+            {/* header */}
 
-                    {/* input */}
-                    <div className="input-label">
-                        <label >Password</label>
-                        <input type="password" placeholder="Password"
-                            {...register("password", { required: true, minLength: 8 })} />
-                        {errors.password?.type === 'required' && <span className="signup-modal-error">Password is required.</span>}
-                        {errors.password?.type === 'minLength' && <span className="signup-modal-error">Password must be at least 8 characters.</span>}
-                    </div>
+            <form onSubmit={handleSubmit(onSubmit)}
+                onChange={() => { if (loading) { setLoading(false) } }}
+                style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>
+                {/* inout */}
+                <div className="input-label">
+                    <label>Email</label>
+                    <input type="email" placeholder="example@email.com"
+                        {...register("email", { required: true })}
+                        onChange={() => { setError(null) }}
+                    />
+                    {errors.email?.type === 'required' && <span className="signup-modal-error">Email is required.</span>}
+                    {(error != null || error != "") &&
+                        (<span className="signup-modal-error">{error}</span>)}
+                </div>
 
-                    {/* input */}
-                    <div className="input-label">
-                        <label >Confirm Password</label>
-                        <input type="password" placeholder="Confirm Password"
-                            {...register("confirmPassword", { required: true, minLength: 8 })} />
-                        {errors.confirmPassword?.type === 'required' && <span className="signup-modal-error">Password is required.</span>}
-                        {errors.confirmPassword?.type === 'minLength' && <span className="signup-modal-error">Password must be at least 8 characters.</span>}
-                    </div>
+                {/* input */}
+                <div className="input-label">
+                    <label >Password</label>
+                    <input type="password" placeholder="Password"
+                        {...register("password", { required: true, minLength: 8 })} />
+                    {errors.password?.type === 'required' && <span className="signup-modal-error">Password is required.</span>}
+                    {errors.password?.type === 'minLength' && <span className="signup-modal-error">Password must be at least 8 characters.</span>}
+                </div>
 
-                    {/* input */}
-                    <div className="input-label">
-                        <label >Username</label>
-                        <div className="modal-shopname-input">
-                            <span>droplinked.com/</span>
-                            {(shopname == undefined) ?
-                                <input type="text" className="modal-shopname-input-inpt" placeholder="Username"
-                                    {...register("shopname", { required: true })}
-                                    onChange={() => { setShopNameError(false) }}
-                                />
-                                :
-                                <input type="text" value={shopname} className="modal-shopname-input-inpt" placeholder="Username"
-                                    {...register("shopname", { required: true })}
-                                    onChange={() => { setShopNameError(false) }}
-                                />
-                            }
-                        </div>
-                        {errors.shopname?.type === 'required' && <span className="signup-modal-error">Username is required.</span>}
-                        {shopNameError && (<span className="signup-modal-error">{"Username can contain letters (a-z), numbers (0-9) and underscores."}</span>)}
-                    </div>
+                {/* input */}
+                <div className="input-label">
+                    <label >Confirm Password</label>
+                    <input type="password" placeholder="Confirm Password"
+                        {...register("confirmPassword", { required: true, minLength: 8 })} />
+                    {errors.confirmPassword?.type === 'required' && <span className="signup-modal-error">Password is required.</span>}
+                    {errors.confirmPassword?.type === 'minLength' && <span className="signup-modal-error">Password must be at least 8 characters.</span>}
+                </div>
 
-                    {/* button */}
-                    <button className="sign-up-btn" type="submit" disabled={loading}
-                        style={{ backgroundColor: `${(loading == true) ? "#4A4A4A" : ""}` }}>Sign up</button>
-                    {/* {(loading)
+                {/* input */}
+                <div className="input-label">
+                    <label >Username</label>
+                    <div className="modal-shopname-input">
+                        <span>droplinked.com/</span>
+                        {(shopname == undefined) ?
+                            <input type="text" className="modal-shopname-input-inpt" placeholder="Username"
+                                {...register("shopname", { required: true })}
+                                onChange={() => { setShopNameError(false) }}
+                            />
+                            :
+                            <input type="text" value={shopname} className="modal-shopname-input-inpt" placeholder="Username"
+                                {...register("shopname", { required: true })}
+                                onChange={() => { setShopNameError(false) }}
+                            />
+                        }
+                    </div>
+                    {errors.shopname?.type === 'required' && <span className="signup-modal-error">Username is required.</span>}
+                    {shopNameError && (<span className="signup-modal-error">{"Username can contain letters (a-z), numbers (0-9) and underscores."}</span>)}
+                </div>
+
+                {/* button */}
+                <button className="sign-up-btn" type="submit" disabled={loading}
+                    style={{ backgroundColor: `${(loading == true) ? "#4A4A4A" : ""}` }}>Sign up</button>
+                {/* {(loading)
                         ?
                         <button style={{ backgroundColor: "#b3b3b3" }} >Sign up</button>
                         :
                         <button className="sign-up-btn"  ></button>
                     } */}
 
-                </form>
+            </form>
 
-                {/* text */}
-                <div className="text mt-4">
-                    <p>By Creating an account, you agree to the <Link onClick={close} to="/terms">Terms & Conditions</Link> and <Link onClick={close} to="/privacy">Privacy</Link>.</p>
-                </div>
-                {/* text */}
-                <div className="text mt-2">
-                    <p>Already have an account? <a onClick={switchToggle}>Login</a></p>
-                </div>
+            {/* text */}
+            <div className="text mt-4">
+                <p>By Creating an account, you agree to the <Link onClick={close} to="/terms">Terms & Conditions</Link> and <Link onClick={close} to="/privacy">Privacy</Link>.</p>
             </div>
+            {/* text */}
+            <div className="text mt-2">
+                <p>Already have an account? <a onClick={switchToggle}>Login</a></p>
+            </div>
+        </div>
 
     )
 }
