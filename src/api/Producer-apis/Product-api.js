@@ -30,13 +30,58 @@ export const getVariants = async () => {
 
 export const postProduct = async (product) => {
   try {
+    const res = await axios.post(`${BASE_URL}/producer/product`, product, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
+
+export const deleteSku = async (id) => {
+  try {
+    const res = await axios.delete(`${BASE_URL}/producer/product/sku/${id}`, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
+
+export const addSkuToProduct = async (id, sku) => {
+  try {
     const res = await axios.post(
-      `${BASE_URL}/producer/product`,
-      product,
+      `${BASE_URL}/producer/product/${id}/sku`,
+      { skus: sku },
       {
         headers: { Authorization: "Bearer " + token },
       }
     );
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
+
+export const updateMerch = async (id, merch) => {
+  try {
+    const res = await axios.put(`${BASE_URL}/producer/product/${id}`, merch, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
+
+
+export const deleteMerch = async (id) => {
+  try {
+    const res = await axios.delete(`${BASE_URL}/producer/product/${id}`, {
+      headers: { Authorization: "Bearer " + token },
+    });
     return true;
   } catch (err) {
     return err.response.data.reason;

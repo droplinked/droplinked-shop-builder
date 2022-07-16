@@ -10,15 +10,15 @@ import Loading from "../../../components/shared/loading/Loading";
 import DropDownPairValId from "../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
 import AutoWidthButton from "../../../components/features/buttons components/autow basic button/B-button-component"
 import SmallModal from "../../../components/Modal/Small-modal/Small-modal-component"
-
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService";
+;
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useToasty } from "../../../context/toastify/ToastContext"
-import { GetAuth } from "../../../sevices/functoinal-service/CallApiService"
 import { useNavigate } from 'react-router-dom';
-
-import axios from "axios";
+import { getVariants } from "../../../api/Producer-apis/Product-api"
+import { getCollections } from "../../../api/Producer-apis/Collection-api"
+import { getProduct } from "../../../api/Public-apis/Product-api"
+import { deleteSku, addSkuToProduct, updateMerch, deleteMerch } from "../../../api/Producer-apis/Product-api"
 
 export default function ViewMerchPage() {
 
@@ -41,30 +41,26 @@ export default function ViewMerchPage() {
     const merchId = useParams().id;
     const navigate = useNavigate();
 
-    const token = JSON.parse(localStorage.getItem('token'));
-
-
 
     useEffect(() => {
 
-        let url1 = BasicURL + "/producer/product/variant"
-        let url2 = BasicURL + "/producer/collection"
+        const initialData = async () => {
+            let variantresult = await getVariants()
+            let collectionResult = await getCollections()
+            await getMerch()
+            if (variantresult != null) setVariantType(variantresult)
+            if (collectionResult != null) {
+                let collectionArray = collectionResult.map(coll => { return { id: coll._id, value: coll.title } })
+                setCollection(collectionArray)
+            }
 
-        const requestOne = axios.get(url1, { headers: { Authorization: 'Bearer ' + token } });
-        const requestTwo = axios.get(url2, { headers: { Authorization: 'Bearer ' + token } });
+        }
 
-        axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
-            const responseOne = responses[0]
-            const responseTwo = responses[1]
-            setVariantType(responseOne.data.data.variants);
-            setCollection(responseTwo.data.data.collections);
-            let collectionArray = responseTwo.data.data.collections.map(coll => { return { id: coll._id, value: coll.title } })
-            setCollection(collectionArray)
-        })).catch(errors => {
-            errorToast(errors.response.data.reason)
-        })
-        GetAuth(`/producer/product/${merchId}?withSku=true`, resHandler, errorHandler)
+        initialData()
+
     }, [])
+
+    console.log(varintType);
 
     useEffect(() => {
         setTitle(merch.title)
@@ -85,14 +81,6 @@ export default function ViewMerchPage() {
     }
 
 
-    const resHandler = (e) => {
-        setMerch(e.data.data.product);
-    }
-
-    const errorHandler = (e) => {
-        errorToast(e.response.data.reason)
-    }
-
     const onChnageCheckBox = (e, val, name) => {
         let newOptions = []
         if (e.target.checked) {
@@ -105,35 +93,42 @@ export default function ViewMerchPage() {
     }
 
     //delete variant
-    const deleteVariant = (id, veri) => {
-        axios.delete(`${BasicURL}/producer/product/sku/${veri._id}`,
-            { headers: { Authorization: 'Bearer ' + token } })
-            .then(e => {
-
-                GetAuth(`/producer/product/${merchId}?withSku=true`, resHandler, errorHandler)
-            })
-            .catch(e => errorToast(e.response.data.message))
+    const deleteVariant = async (id, veri) => {
+        let result = deleteSku(veri._id)
+        if (result == true) {
+            await getMerch()
+        } else {
+            errorToast(result)
+        }
     }
 
     //delete edit variant
     const editVariant = (e) => {
     }
 
+    const getMerch = async () => {
+        let productResult = await getProduct(merchId)
+        if (productResult != null) {
+            setMerch(productResult)
+        } else {
+            errorToast(productResult)
+        }
+
+    }
+
 
     //delete merch
-    const DeleteMerch = () => {
+    const DeleteMerch = async () => {
         setModalDisBtn(true)
-        axios.delete(`${BasicURL}/producer/product/${merchId}`,
-            { headers: { Authorization: 'Bearer ' + token } })
-            .then(e => {
-                successToast("Merch deleted successfully");
-                navigate("/producer/ims")
-            })
-            .catch(e => {
-                errorToast(e.response.data.message)
-                setModalDisBtn(false)
-                setDeleteModal(false)
-            })
+        let result = await deleteMerch(merchId)
+        if (result == true) {
+            successToast("Merch deleted successfully");
+            navigate("/producer/ims")
+        } else {
+            errorToast(result)
+            setDeleteModal(false)
+        }
+        setModalDisBtn(false)
     }
 
 
@@ -141,7 +136,7 @@ export default function ViewMerchPage() {
         navigate("/producer/ims")
     }
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault()
         if (title == "") {
             errorToast("Merch name is required");
@@ -175,25 +170,19 @@ export default function ViewMerchPage() {
         const sku = variants.filter(vr => vr.ownerID == undefined)
 
         if (sku.length > 0) {
-            axios.post(`${BasicURL}/producer/product/${merchId}/sku`,
-                { skus: sku },
-                { headers: { Authorization: 'Bearer ' + token } })
-                .then(e => {
-                })
-                .catch(e => { errorToast(e.response.data.message) })
+            let skuResult = await addSkuToProduct(merchId, sku)
+            if (skuResult != true) errorToast(skuResult)
         }
 
         setdisbtn(true)
-        axios.put(BasicURL + `/producer/product/${merchId}`, product,
-            { headers: { Authorization: 'Bearer ' + token } })
-            .then(e => {
-                successToast("Merch updated successfully");
-                navigate("/producer/ims")
-            })
-            .catch(e => {
-                errorToast(e.response.data.message)
-                setdisbtn(false)
-            })
+        let productResutl = await updateMerch(merchId, product)
+        if (productResutl == true) {
+            successToast("Merch updated successfully");
+            navigate("/producer/ims")
+        } else {
+            errorToast(productResutl)
+        }
+        setdisbtn(false)
     }
 
     return (<>
