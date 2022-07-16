@@ -3,8 +3,6 @@ import { Text, Flex, Img, AspectRatio } from "@chakra-ui/react"
 
 export default function Item({ item }) {
 
-    console.log(item)
-
     let price = item.product.skus.find(sku => sku._id == item.skuID).price
 
     return (

@@ -1,9 +1,8 @@
 import { Box, Flex, Text, Image, useDisclosure } from "@chakra-ui/react"
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
 import { useState, useEffect } from 'react'
+import { getProduct } from "../../../api/Public-apis/Product-api"
 
 
-import axios from "axios"
 import PurchaseModal from '../PurchaseModal/PurchaseModal'
 
 export default function PurchaseHistory({ order }) {
@@ -30,12 +29,11 @@ export default function PurchaseHistory({ order }) {
     const getProductsArray = async (productsId) => {
         let promises = [];
         for (let i = 0; i < productsId.length; i++) {
-            promises.push(axios.get(`${BasicURL}/product/${productsId[i]}`));
+            let productResult = await getProduct(productsId[i])
+            promises.push(productResult)
         }
-        let results = await Promise.all(promises);
-        results = results.map((e) => e.data.data);
 
-        return results
+        return promises
     }
 
 
@@ -50,8 +48,8 @@ export default function PurchaseHistory({ order }) {
     }
 
 
-   // get total price
-    const getTotalPrice = () => { 
+    // get total price
+    const getTotalPrice = () => {
         let totalPrice = 0
         orderData.items.forEach(item => {
             totalPrice += item.product.skus.find(sku => sku._id == item.skuID).price
@@ -124,7 +122,7 @@ export default function PurchaseHistory({ order }) {
                             color: '#8053ff'
                         }}
                         onClick={onOpen}
-                        w={{base:"30px" , md:'40px'}}
+                        w={{ base: "30px", md: '40px' }}
                     >
                         View
                     </Text>
