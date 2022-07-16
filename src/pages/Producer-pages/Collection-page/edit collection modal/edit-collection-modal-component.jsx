@@ -2,14 +2,15 @@ import "../add collection page/Add-collection-style.scss"
 
 import { useState, useEffect } from "react"
 import {  useNavigate } from "react-router-dom";
-import {  GetApiWithAuth , BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
+import { updateCollection } from "../../../../api/Producer-apis/Collection-api"
 import { getRules } from "../../../../api/Producer-apis/Ruleset-api"
+import { useToasty } from "../../../../context/toastify/ToastContext"
+
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import AutoWidthButton from "../../../../components/features/buttons components/autow basic button/B-button-component"
 import Loading from "../../../../components/shared/loading/Loading"
 import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
-import axios from "axios"
-import { useToasty } from "../../../../context/toastify/ToastContext"
+
 
 export default function EditCollectionModal({ toggle, submitFunc, defaultValue }) {
 
@@ -56,7 +57,7 @@ export default function EditCollectionModal({ toggle, submitFunc, defaultValue }
     }
 
 
-    const submitForm = () => {
+    const submitForm = async() => {
 
         if (collectionName == "") {
            errorToast("Collection Name is required");
@@ -87,17 +88,15 @@ export default function EditCollectionModal({ toggle, submitFunc, defaultValue }
 
         setDisableBtn(true)
 
-        axios.put(`${BasicURL}/producer/collection/${defaultValue._id}`,RuleInfo,
-        {headers: { Authorization: "Bearer " + token }})
-        .then(e =>{
+        let result = await updateCollection(defaultValue._id , RuleInfo)
+        if(result == true){
             successToast("Collection updated successfully")
             toggle()
-        })
-        .catch(e =>{
-            errorToast(e.response.data.reason)
-            toggle()
-        })
-
+        }else{
+            errorToast(result)
+            toggle() 
+        }
+        setDisableBtn(false)
     }
 
     const changeRule = (e) => {
