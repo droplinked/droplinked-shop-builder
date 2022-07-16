@@ -1,7 +1,6 @@
 import "./ThankForRegister-page-style.scss"
 
-import axios from 'axios';
-import { BasicURL } from "../../sevices/functoinal-service/CallApiService"
+import { resendEmail } from "../../api/Public-apis/ResendEmail-api"
 import { Link } from "react-router-dom";
 import { useState } from "react"
 
@@ -10,21 +9,22 @@ export default function ThankForRegisterPage() {
     const [message, setMessage] = useState("Resend the link")
     let email = JSON.parse(localStorage.getItem('registerEmail'));
 
-    const resendEmail = () => {
+
+    const resend = async () => {
         setMessage("Wait")
-        axios.post(BasicURL + '/email/resend',
-            { email: email })
-            .then(res => { setMessage(res.data.status) })
-            .catch(e => { 
-                setMessage("Not Found or Verified") 
-            })
+        let result = await resendEmail(email)
+        if (result == false) {
+            setMessage("Not Found or Verified")
+        } else {
+            setMessage(result)
+        }
     }
 
     return (
         <div className="thank-for-register-wrapper">
             <p className="thank-for-register-title">Thank You!</p>
             <p className="thank-for-register-detail">{`Please check your email inbox "`}<span>{email}</span>{`" and verify your email address.`}</p>
-            <p className="resend-email-link" onClick={resendEmail}>{message} </p>
+            <p className="resend-email-link" onClick={resend}>{message} </p>
             <div className="d-flex justify-content-center">
                 <Link to="/">
                     <button className="con-to-homepage">Continue to homepage</button>
