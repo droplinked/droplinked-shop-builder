@@ -48,3 +48,20 @@ export const updateQuantity = async (skuId , q) => {
 
 
 
+export const checkoutCart = async () => {
+  try {
+      const res = await axios.post(`${BASE_URL}/cart/checkout`,{},
+      {headers: { Authorization: "Bearer " + token },
+      })
+      return res.data.data.client_secret
+    } catch (err) {
+    console.error(err.response.data.reason)
+    return null
+    }
+};
+
+
+
+
+
+

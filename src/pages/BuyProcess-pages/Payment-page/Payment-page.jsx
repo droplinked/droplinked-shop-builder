@@ -8,11 +8,10 @@ import { useState } from "react"
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useCart } from "../../../context/cart/CartContext"
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { checkoutCart } from "../../../api/BaseUser-apis/Cart-api"
 
 import StripeComponent from "./stripe modal/stripe-modal-component"
 import Loading from "../../../components/shared/loading/Loading"
-import axios from 'axios';
 
 
 const stripePromise = loadStripe('pk_test_51B3XzHDHP9PnFF5D7xWkc29H1NehLpfVEAWaycBBtoUXPyL4qq1dAZYVSBlWr5Kc0sGenWCJfuFEmXy5JCXxACLk00NXM3aQQh');
@@ -23,8 +22,6 @@ export default function PaymentPage() {
     const [clientSecret, setClientSecret] = useState('')
     const [disableBtns, setDisables] = useState(false)
     const { cart } = useCart();
-
-    let token = JSON.parse(localStorage.getItem("token"));
 
 
     const appearance = {
@@ -55,17 +52,12 @@ export default function PaymentPage() {
     }
 
     const stripePayment = async () => {
-
         setDisables(true)
-        await axios.post(`${BasicURL}/cart/checkout`, {}, {
-            headers: { Authorization: "Bearer " + token },
-        }).then(e => {
-            setClientSecret(e.data.data.client_secret)
+        let result = await checkoutCart()
+        if(result != null){
+            setClientSecret(result)
             setPaymentSelected("Stripe")
-        })
-            .catch(e => {
-                console.log(e.response.data.reason)
-            })
+        }
         setDisables(false)
     }
 
