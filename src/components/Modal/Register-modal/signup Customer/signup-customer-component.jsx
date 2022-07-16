@@ -1,12 +1,12 @@
 
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useToasty } from "../../../../context/toastify/ToastContext"
-import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService";
 import { useProfile } from "../../../../context/profile/ProfileContext"
+import { customerSignup } from "../../../../api/BaseUser-apis/Auth-api"
 
-import axios from "axios";
+
 import AutoWidthButton from "../../../features/buttons components/autow basic button/B-button-component"
 
 
@@ -20,9 +20,8 @@ export default function SignupCustomer({ switchToggle, close }) {
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
 
-    let navigate = useNavigate();
 
-    const onSubmit = data => {
+    const onSubmit = async data => {
         let info = {
             email: data.email,
             password: data.password,
@@ -39,19 +38,16 @@ export default function SignupCustomer({ switchToggle, close }) {
             return;
         }
 
+        let accountInfo = { email: info.email, password: data.password }
         setLoading(true)
-        axios.post(`${BasicURL}/customer/signup`,
-            { email: info.email, password: data.password })
-            .then((e) => {
-                successToast("Your account has been successfully created.")
-                close()
-                addProfile(e.data.data)
-            })
-            .catch(e => {
-                setLoading(false)
-                errorToast(e.response.data.reason)
-            })
 
+        let result = await customerSignup(accountInfo ,  errorToast)
+        if (result != null) {
+            successToast("Your account has been successfully created.")
+            close()
+            addProfile(result)
+        } 
+        setLoading(false)
     };
 
 
