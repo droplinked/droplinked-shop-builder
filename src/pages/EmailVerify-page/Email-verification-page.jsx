@@ -1,7 +1,7 @@
 import {  useEffect, useContext } from "react"
 import { toastValue } from "../../context/toastify/ToastContext"
 import { useParams, useNavigate } from "react-router-dom";
-import { PostWithoutToken } from "../../sevices/functoinal-service/CallApiService"
+import { emailVerify } from "../../api/BaseUser-apis/Auth-api"
 
 import Loading from "../../components/shared/loading/Loading"
 
@@ -12,18 +12,18 @@ export default function EmailVerifyPage() {
     const { successToast, errorToast } = useContext(toastValue);
 
     useEffect(() => {
-        PostWithoutToken("/email/verify", { token: token }, resHandler)
-    }, [])
-
-    const resHandler = (status, v) => {
-        if (status) {
+        const verify = async () => {
+           let result =  await emailVerify(token)
+           if(result == true ){
             nav("/?modal=login")
             successToast("Your account has been successfully verified. Please login again.")
-        } else {
+           }else{
             nav("/")
-            errorToast(v)
+            errorToast(result)
+           }
         }
-    }
+        verify()
+    }, [])
 
     return (<>
         <Loading />
