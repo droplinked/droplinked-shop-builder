@@ -2,9 +2,8 @@ import "./Addrule.modal.style.scss"
 import { useState } from "react"
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
-import axios from "axios"
-import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../../context/toastify/ToastContext"
+import { newRule } from "../../../../api/Producer-apis/Ruleset-api"
 
 
 export default function AddRule({ toggle }) {
@@ -43,11 +42,11 @@ export default function AddRule({ toggle }) {
             if (i === index) {
                 if (contractAddress.length == 2) {
                     let contractName = e.target.value.split("::")
-                    if(contractName.length ==2){
-                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0] ,contractName:contractName[0],nftName:contractName[1] } }
-                    }else{
-                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0] ,contractName:contractName[0] } }
-                    }           
+                    if (contractName.length == 2) {
+                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0], contractName: contractName[0], nftName: contractName[1] } }
+                    } else {
+                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0], contractName: contractName[0] } }
+                    }
                 } else {
                     return { ...item, address: { ...item.address, contractAddress: contractAddress[0] } }
                 }
@@ -64,12 +63,12 @@ export default function AddRule({ toggle }) {
         console.log(contractName);
         let newAddressList = addresslist.map((item, i) => {
             if (i === index) {
-                if(contractName.length == 2){
-                    return { ...item, address: { ...item.address, contractName: contractName[0] ,nftName:contractName[1] }}
-                }else{
+                if (contractName.length == 2) {
+                    return { ...item, address: { ...item.address, contractName: contractName[0], nftName: contractName[1] } }
+                } else {
                     return { ...item, address: { ...item.address, contractName: contractName[0] } }
                 }
-               
+
             } else {
                 return item
             }
@@ -90,7 +89,7 @@ export default function AddRule({ toggle }) {
     }
 
 
-    const submitForm = () => {
+    const submitForm = async () => {
 
         //check rule name
         if (ruleName == "") {
@@ -135,17 +134,14 @@ export default function AddRule({ toggle }) {
 
         setDisableBtn(true)
 
-        axios.post(BasicURL + `/producer/ruleset`, ruleInfo,
-            { headers: { Authorization: 'Bearer ' + token } })
-            .then(e => {
-                successToast("RuleSet created successfully.")
-                setDisableBtn(false)
-                toggle()
-            })
-            .catch(e => {
-                setDisableBtn(false)
-                errorToast(e.response.data)
-            })
+        let result = await newRule(ruleInfo)
+        if (result == true) {
+            successToast("RuleSet created successfully.")
+            toggle()
+        }else{
+            errorToast(result)
+        }
+        setDisableBtn(false)
     }
 
 

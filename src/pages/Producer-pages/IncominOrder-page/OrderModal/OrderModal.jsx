@@ -8,25 +8,15 @@ import {
     ModalCloseButton,
     Button
 } from "@chakra-ui/react"
-import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 import MerchComponent from "../merchComponent/MerchComponent"
-import axios from "axios"
+
 
 
 export default function OrderModal({ ProducList, order, isOpen, onClose }) {
 
     const [address, setAddress] = useState(null)
-
-    // useEffect(() => {
-    //     let token = JSON.parse(localStorage.getItem("token"));
-    //     axios.get(`${BasicURL}/producer/order/${order._id}`, {
-    //         headers: { Authorization: "Bearer " + token },
-    //     })
-    //         .then(e => setAddress(e.data.data.order.address))
-    //         .catch(e => console.log(e.response.data.reason))
-    // }, [])
 
 
     // new orderList with product
