@@ -1,10 +1,11 @@
 
 import { useState, useEffect } from "react"
+import { useToasty } from "../../../../context/toastify/ToastContext"
+import { updateRule } from "../../../../api/Producer-apis/Ruleset-api"
+
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
-import { useToasty } from "../../../../context/toastify/ToastContext"
-import axios from "axios"
-import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
+
 
 
 export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
@@ -40,7 +41,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
     const changeName = (e) => { setRuleName(e.target.value) }
 
 
-    const submitForm = () => {
+    const submitForm = async() => {
 
         //check rule name
         if (ruleName == "") {
@@ -84,18 +85,16 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
         }
         setDisableBtn(true)
 
-        axios.put(BasicURL + `/producer/ruleset/${RuleId}`, ruleInfo,
-            { headers: { Authorization: 'Bearer ' + token } })
-            .then(e => {
-                successToast("RuleSet created successfully.")
-                setDisableBtn(false)
-                render(p => !p)
-                toggle()
-            })
-            .catch(e => {
-                setDisableBtn(false)
-                errorToast(e.response.data)
-            })
+
+        let result = await updateRule(RuleId , ruleInfo)
+        if(result == true ){
+            successToast("RuleSet created successfully.")
+            render(p => !p)
+            toggle()
+        }else{
+            errorToast(result)
+        }
+        setDisableBtn(false)
     }
 
 

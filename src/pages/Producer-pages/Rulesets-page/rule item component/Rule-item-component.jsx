@@ -2,9 +2,8 @@ import "./Rule-item-style.scss"
 import EditRule from "../edit rule modal/Edit.Rule.component"
 import { useState } from "react"
 import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component"
-import axios from "axios"
-import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
 import { useToasty } from "../../../../context/toastify/ToastContext"
+import { deleteRule } from "../../../../api/Producer-apis/Ruleset-api"
 
 export default function RuleItem({ name, rules, ruleId, ren }) {
     const [editModal, setEditModal] = useState(false)
@@ -21,19 +20,16 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
         toggleEdit();
     }
 
-    const ClickDelete = () => {
-        axios.delete(BasicURL + `/producer/ruleset/${ruleId}`,
-            { headers: { Authorization: 'Bearer ' + token } })
-            .then(e => {
-                successToast("Rule deleted successfully");
-                toggleDelete()
-                ren(p => !p)
-            })
-            .catch(e => {
-                toggleDelete()
-                errorToast(e.response.data.message)
-            })
-
+    const ClickDelete = async() => {
+        let result = await deleteRule(ruleId)
+        if(result == true){
+            successToast("Rule deleted successfully");
+            toggleDelete()
+            ren(p => !p)
+        }else{
+            toggleDelete()
+            errorToast(result) 
+        }
 
     }
 
