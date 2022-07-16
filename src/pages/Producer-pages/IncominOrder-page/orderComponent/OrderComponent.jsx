@@ -1,10 +1,8 @@
 import { Text, Box, Flex, useDisclosure, Stack, Skeleton, Image } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
-//import { AiOutlineFieldTime } from "react-icons/ai";
 import { useOrder } from "../../../../context/order/OrdersContext"
-import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
+import { getProduct } from "../../../../api/Public-apis/Product-api"
 
-import axios from 'axios'
 import OrderModal from "../OrderModal/OrderModal"
 
 export default function OrderComponent({ order }) {
@@ -45,12 +43,10 @@ export default function OrderComponent({ order }) {
     const getProductsArray = async (productsId) => {
         let promises = [];
         for (let i = 0; i < productsId.length; i++) {
-            promises.push(axios.get(`${BasicURL}/product/${productsId[i]}`));
+            let res = await getProduct(productsId[i])
+            promises.push(res);
         }
-        let results = await Promise.all(promises);
-        results = results.map((e) => e.data.data);
-
-        return results
+        return promises
     }
 
 

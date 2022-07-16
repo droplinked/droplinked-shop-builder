@@ -1,8 +1,7 @@
 import { createContext, useState, useEffect ,useContext} from "react";
 import { useProfile } from "../profile/ProfileContext";
-import { BasicURL } from "../../sevices/functoinal-service/CallApiService";
+import { getOrdersList ,SeenOrder } from "../../api/Producer-apis/Orders-api"
 
-import axios from "axios";
 
 export const OrderContext = createContext();
 
@@ -21,27 +20,20 @@ export default function OrderContextProvider({ children }) {
   }, [profile]);
 
 
-  const updateOrder = () => {
-    axios
-      .get(`${BasicURL}/producer/order`, {
-        headers: { Authorization: "Bearer " + token },
-      })
-      .then((e) => setOrders(e.data.data.orders))
-      .catch((e) => console.log(e.response.data));
+  const updateOrder = async() => {
+    let result = await getOrdersList()
+    if(result != null) setOrders(result)
   };
 
 
-  const seenOrder = (orderId) => {
-    axios
-      .post(`${BasicURL}/producer/order/seen/${orderId}`,{}
-      , {
-        headers: { Authorization: "Bearer " + token },
-      })
-      .then((e) =>updateOrder())
-      .catch((e) => console.log(e.response.data));
+  const seenOrder = async(orderId) => {
+
+      let result = await SeenOrder(orderId)
+      if(result == true)updateOrder()
+      else console.log(result)
+
   }
 
-  //const cancelUpdater = () => {};
 
   const ContextValue = {
     seenOrder,
