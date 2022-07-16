@@ -1,7 +1,9 @@
 import "../add collection page/Add-collection-style.scss"
-import { useState, useEffect, useRef } from "react"
-import { Link, useNavigate } from "react-router-dom";
-import { PostApi, GetApiWithAuth , BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
+
+import { useState, useEffect } from "react"
+import {  useNavigate } from "react-router-dom";
+import {  GetApiWithAuth , BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
+import { getRules } from "../../../../api/Producer-apis/Ruleset-api"
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import AutoWidthButton from "../../../../components/features/buttons components/autow basic button/B-button-component"
 import Loading from "../../../../components/shared/loading/Loading"
@@ -23,10 +25,14 @@ export default function EditCollectionModal({ toggle, submitFunc, defaultValue }
 
     const token = JSON.parse(localStorage.getItem('token'));
 
+    if (token == null)  navigate("/") 
 
     useEffect(() => {
-        if (token == null) { navigate("/") }
-        GetApiWithAuth("/producer/ruleset", changeToPairValId, "ruleSets", errorToast)
+      const updateRules = async()=>{
+        let result = await getRules(errorToast)
+        if(result != null )changeToPairValId(result)
+      }
+      updateRules()
     }, [])
 
     // set ruleset dropdown value
