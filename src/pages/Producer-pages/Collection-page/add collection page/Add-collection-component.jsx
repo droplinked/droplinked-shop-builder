@@ -1,21 +1,25 @@
 import "./Add-collection-style.scss"
+
 import { useState, useEffect } from "react"
-import {  useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
-import { PostApi, GetApiWithAuth } from "../../../../sevices/functoinal-service/CallApiService"
+import { useNavigate } from "react-router-dom";
+import { useToasty } from "../../../../context/toastify/ToastContext"
+import { getRules } from "../../../../api/Producer-apis/Ruleset-api"
+import { newCollection } from "../../../../api/Producer-apis/Collection-api"
+
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import AutoWidthButton from "../../../../components/features/buttons components/autow basic button/B-button-component"
 import Loading from "../../../../components/shared/loading/Loading"
 import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
 
 
-export default function AddCollectionPage({ toggle, submitFunc }) {
+export default function AddCollectionPage({ toggle }) {
 
     const [rules, setRules] = useState(null);
     const [selectedRule, setSelectedRule] = useState(null);
     const [collectionName, setCollectionName] = useState("");
     const [disableBtn, setDisableBtn] = useState(false);
+
+    const { successToast, errorToast } = useToasty()
 
     const navigate = useNavigate();
 
@@ -24,7 +28,13 @@ export default function AddCollectionPage({ toggle, submitFunc }) {
 
     useEffect(() => {
         if (token == null) { navigate("/") }
-        GetApiWithAuth("/producer/ruleset", changeToPairValId, "ruleSets", toast.error)
+
+        const updateRules = async () => {
+            let result = await getRules(errorToast)
+            if (result != null) changeToPairValId(result)
+        }
+
+        updateRules()
     }, [])
 
 
@@ -35,18 +45,18 @@ export default function AddCollectionPage({ toggle, submitFunc }) {
     }
 
 
-    const submitForm = () => {
+    const submitForm = async () => {
 
         if (collectionName == "") {
-            toast.error("Collection Name is required");
+            errorToast("Collection Name is required");
             return
         }
         if (selectedRule == null) {
-            toast.error("Select a rule");
+            errorToast("Select a rule");
             return
         }
 
-        setDisableBtn(true)
+        
         let RuleInfo;
         if (selectedRule == "") {
             RuleInfo = {
@@ -64,9 +74,16 @@ export default function AddCollectionPage({ toggle, submitFunc }) {
                 ruleSetID: selectedRule
             }
         }
+        setDisableBtn(true)
+        let result = await newCollection(RuleInfo)
+        if (result == true) {
+            successToast("Collection was created successfully")
+            toggle()
+        } else {
+            errorToast(result)
+        }
+        setDisableBtn(false)
 
-        PostApi("/producer/collection", RuleInfo, submitFunc)  
-        
     }
 
 
@@ -106,18 +123,6 @@ export default function AddCollectionPage({ toggle, submitFunc }) {
                     <AutoWidthButton text={"Submit"} click={submitForm} disable={disableBtn} />
                 </div>
             </div>
-            <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme='dark'
-            />
         </div>
     )
 }

@@ -32,6 +32,19 @@ export const updateCollection = async(id , newObj) => {
         }
   }
 
+  // add new collection
+  export const newCollection = async(newCollection) => {
+  
+    try {
+        const res = await axios.post(`${BASE_URL}/producer/collection`,newCollection, {
+          headers: { Authorization: "Bearer " + token },
+        });
+        return true;
+      } catch (err) {
+        return err.response.data.reason
+      }
+}
+
 //delete collection
 export const deleteCollection = async(id) => {
 

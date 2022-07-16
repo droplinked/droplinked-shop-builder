@@ -10,11 +10,10 @@ import EditCollectionModal from "./edit collection modal/edit-collection-modal-c
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react"
 import { getCollections } from "../../../api/Producer-apis/Collection-api"
-import { useToasty } from "../../../context/toastify/ToastContext"
+
 
 export default function CollectionMainPage() {
     const navigate = useNavigate();
-    const { successToast, errorToast } = useToasty()
 
     const [Modal, setModal] = useState(false)
     const [EditModal, setEditModal] = useState(false)
@@ -32,21 +31,11 @@ export default function CollectionMainPage() {
         if (collections != null) setCollections(collections)
     }
 
-    //  GetApiWithAuth("/producer/collection?withProducts=true", setCollections, "collections", errorHandle);
     useEffect(() => {
         updateCollections()
     }, [Modal, ren])
 
     const ToggleModal = () => setModal(p => !p)
-
-    const PostCollection = (status, text) => {
-        if (status) {
-            successToast("Collection was created successfully");
-        } else {
-            errorToast(text);
-        }
-        ToggleModal()
-    }
 
 
     const renFunc = () => setRen(p => !p)
@@ -100,7 +89,7 @@ export default function CollectionMainPage() {
         </div>
         {Modal &&
             (<ModalContainer>
-                <AddCollectionPage toggle={ToggleModal} submitFunc={PostCollection} />
+                <AddCollectionPage toggle={ToggleModal}  />
             </ModalContainer>)
         }
         {EditModal &&
