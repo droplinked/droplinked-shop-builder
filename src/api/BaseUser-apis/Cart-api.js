@@ -20,6 +20,18 @@ export const addCheckoutAddress = async (addressId) => {
 };
 
 
+export const addSkuToCart = async (cart) => {
+  try {
+      const res = await axios.post(`${BASE_URL}/cart/sku`,cart,
+        {headers: { Authorization: "Bearer " + token },
+      })
+      return true
+    } catch (err) {
+      return err.response.data.reason
+    }
+};
+
+
 export const deleteSkuFromCart = async (skuId) => {
   try {
       const res = await axios.delete(`${BASE_URL}/cart/sku/${skuId}`,{
