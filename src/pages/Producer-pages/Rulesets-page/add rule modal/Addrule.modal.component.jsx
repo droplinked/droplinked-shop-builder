@@ -1,7 +1,8 @@
 import "./Addrule.modal.style.scss"
 import { useState } from "react"
-import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
+import FormInput from "../../../../components/shared/FormInput/FormInput"
+
 import { useToasty } from "../../../../context/toastify/ToastContext"
 import { newRule } from "../../../../api/Producer-apis/Ruleset-api"
 
@@ -157,8 +158,8 @@ export default function AddRule({ toggle }) {
     return (
         <div className="add-rule-moda-wrapper">
             <div className="add-rule-moda-body">
-                <div className="input-wrap">
-                    <BasicInput text={"Rule name"} change={changeName} />
+                <div className="col-md-4 col-12">
+                    <FormInput label={"Rule name"} value={ruleName} changeValue={changeName} />
                 </div>
                 <div className="w-100 d-flex justify-content-center align-items-center mt-4 mb-4">
                     <p className="text">The customer must meet at least one of the rules listed below (OR)</p>

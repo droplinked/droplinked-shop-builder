@@ -7,10 +7,9 @@ import { getRules } from "../../../../api/Producer-apis/Ruleset-api"
 import { newCollection } from "../../../../api/Producer-apis/Collection-api"
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
-import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import Loading from "../../../../components/shared/loading/Loading"
 import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
-
+import FormInput from "../../../../components/shared/FormInput/FormInput"
 
 export default function AddCollectionPage({ toggle }) {
 
@@ -102,7 +101,7 @@ export default function AddCollectionPage({ toggle }) {
                 ?
                 <>
                     <div className="mt-5">
-                        <BasicInput text="Collection Name" change={changeName} />
+                        <FormInput label={"Collection Name"} changeValue={changeName} value={collectionName} />
                     </div>
                     {/* <div className="mt-5">
                              <InputImageComponent state={Images} setState={setImages} />

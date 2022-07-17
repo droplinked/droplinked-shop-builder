@@ -3,9 +3,8 @@ import { useState, useEffect } from "react"
 import { useToasty } from "../../../../context/toastify/ToastContext"
 import { updateRule } from "../../../../api/Producer-apis/Ruleset-api"
 
-import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
-
+import FormInput from "../../../../components/shared/FormInput/FormInput"
 
 
 export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
@@ -41,7 +40,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
     const changeName = (e) => { setRuleName(e.target.value) }
 
 
-    const submitForm = async() => {
+    const submitForm = async () => {
 
         //check rule name
         if (ruleName == "") {
@@ -86,12 +85,12 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
         setDisableBtn(true)
 
 
-        let result = await updateRule(RuleId , ruleInfo)
-        if(result == true ){
+        let result = await updateRule(RuleId, ruleInfo)
+        if (result == true) {
             successToast("RuleSet created successfully.")
             render(p => !p)
             toggle()
-        }else{
+        } else {
             errorToast(result)
         }
         setDisableBtn(false)
@@ -124,11 +123,11 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
             if (i === index) {
                 if (contractAddress.length == 2) {
                     let contractName = e.target.value.split("::")
-                    if(contractName.length ==2){
-                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0] ,contractName:contractName[0],nftName:contractName[1] } }
-                    }else{
-                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0] ,contractName:contractName[0] } }
-                    }           
+                    if (contractName.length == 2) {
+                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0], contractName: contractName[0], nftName: contractName[1] } }
+                    } else {
+                        return { ...item, address: { ...item.address, contractAddress: contractAddress[0], contractName: contractName[0] } }
+                    }
                 } else {
                     return { ...item, address: { ...item.address, contractAddress: contractAddress[0] } }
                 }
@@ -143,12 +142,12 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
         let contractName = e.target.value.split("::")
         let newAddressList = rules.map((item, i) => {
             if (i === index) {
-                if(contractName.length == 2){
-                    return { ...item, address: { ...item.address, contractName: contractName[0] ,nftName:contractName[1] }}
-                }else{
+                if (contractName.length == 2) {
+                    return { ...item, address: { ...item.address, contractName: contractName[0], nftName: contractName[1] } }
+                } else {
                     return { ...item, address: { ...item.address, contractName: contractName[0] } }
                 }
-               
+
             } else {
                 return item
             }
@@ -181,8 +180,8 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
     return (
         <div className="add-rule-moda-wrapper">
             <div className="add-rule-moda-body">
-                <div className="input-wrap">
-                    <BasicInput text={"Rule name"} change={changeName} value={ruleName} />
+                <div className="col-md-4 col-12">
+                    <FormInput label={"Rule name"} value={ruleName} changeValue={changeName} />
                 </div>
                 <div className="w-100 d-flex justify-content-center align-items-center mt-4 mb-4">
                     <p className="text">The customer must meet at least one of the rules listed below (OR)</p>
@@ -233,16 +232,16 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
                     })
                 }
                 <div className="w-100 d-flex justify-content-center align-items-center">
-                    <div className="mt-4" style={{width: '30%'}}>
+                    <div className="mt-4" style={{ width: '30%' }}>
                         <BasicButton click={addRule}>Add</BasicButton>
                     </div>
                 </div>
                 <div className="w-100 d-flex justify-content-between align-items-center" style={{ marginTop: "80px" }}>
-                    <div style={{width: '40%'}}>
-                    <BasicButton click={toggle} disable={disableBtn}>cancel</BasicButton>
+                    <div style={{ width: '40%' }}>
+                        <BasicButton click={toggle} disable={disableBtn}>cancel</BasicButton>
                     </div>
-                    <div style={{width: '40%'}}>
-                    <BasicButton click={submitForm} disable={disableBtn}>submit</BasicButton>
+                    <div style={{ width: '40%' }}>
+                        <BasicButton click={submitForm} disable={disableBtn}>submit</BasicButton>
                     </div>
                 </div>
             </div>

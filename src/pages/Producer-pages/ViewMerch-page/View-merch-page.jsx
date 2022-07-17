@@ -1,7 +1,6 @@
 import "./View-merch-page-style.scss"
 
-
-import BasicInput from "../../../components/features/input components/basic input component/Basic-component";
+import FormInput from "../../../components/shared/FormInput/FormInput"
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
 import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"
 import VariantItem from "../components/variant item component/Variant-item-component"
@@ -200,10 +199,19 @@ export default function ViewMerchPage() {
                 </div>
 
                 <div className="mb-4 w-100 p-0">
-                    <BasicInput text={"Title"} value={title} change={(e) => setTitle(e.target.value)} />
+                    <FormInput
+                        label={"Title"}
+                        value={title}
+                        changeValue={(e) => setTitle(e.target.value)}
+                    />
                 </div>
                 <div className="mb-4 w-100 p-0">
-                    <BasicInput type={"textarea"} value={description} change={(e) => setDescription(e.target.value)} text={"Description "} />
+                    <FormInput
+                        type={"textarea"}
+                        label={"Description"}
+                        value={description}
+                        changeValue={(e) => setDescription(e.target.value)}
+                    />
                 </div>
                 <dir className="drop-wrape">
                     <DropDownPairValId pairArray={collectionList} change={e => setCollectionSelected(e.target.value)} value={collectionSelected} />

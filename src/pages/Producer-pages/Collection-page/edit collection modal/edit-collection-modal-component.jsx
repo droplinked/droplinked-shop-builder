@@ -7,10 +7,9 @@ import { getRules } from "../../../../api/Producer-apis/Ruleset-api"
 import { useToasty } from "../../../../context/toastify/ToastContext"
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
-import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
 import Loading from "../../../../components/shared/loading/Loading"
 import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
-
+import FormInput from "../../../../components/shared/FormInput/FormInput"
 
 export default function EditCollectionModal({ toggle, submitFunc, defaultValue }) {
 
@@ -115,7 +114,7 @@ export default function EditCollectionModal({ toggle, submitFunc, defaultValue }
                 ?
                 <>
                     <div className="mt-5">
-                        <BasicInput text="Collection Name" value={collectionName} change={changeName} />
+                        <FormInput label={"Collection Name"} value={collectionName} changeValue={changeName}/>
                     </div>
                     {/* <div className="mt-5">
                              <InputImageComponent state={Images} setState={setImages} />
