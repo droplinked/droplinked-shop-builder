@@ -1,6 +1,6 @@
 import { Button, Spinner } from "@chakra-ui/react"
 
-export default function BasicButton({ children, click, loading, ...otherprops }) {
+export default function BasicButton({ children, click , loading, ...otherprops }) {
 
  
     return (
@@ -11,7 +11,11 @@ export default function BasicButton({ children, click, loading, ...otherprops })
             color="#fff"
             fontSize="20px"
             fontWeight="600"
+            borderRadius='8px'
+            margin='0px auto'
+            p={{base:"12px 20px 9px 20px" , md:"12px 20px"}}
             _hover={{ borderColor: "#4d4d4d", color: "#222" }}
+            _disabled={{ bgColor:"#4A4A4A"}}
             onClick={click}
             {...otherprops}
         >

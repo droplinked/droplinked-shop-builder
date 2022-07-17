@@ -6,8 +6,7 @@ import { useToasty } from "../../../../context/toastify/ToastContext"
 import { useProfile } from "../../../../context/profile/ProfileContext"
 import { customerSignup } from "../../../../api/BaseUser-apis/Auth-api"
 
-
-import AutoWidthButton from "../../../features/buttons components/autow basic button/B-button-component"
+import BasicButton from "../../../shared/BasicButton/BasicButton"
 
 
 export default function SignupCustomer({ switchToggle, close }) {
@@ -98,7 +97,7 @@ export default function SignupCustomer({ switchToggle, close }) {
                     {errors.confirmPassword?.type === 'minLength' && <span className="signup-modal-error">Password must be at least 8 characters.</span>}
                 </div>
                 <div className="mt-3 mt-md-4">
-                    <AutoWidthButton text="Sign up" type="submit" disable={loading} />
+                     <BasicButton type="submit"  disabled={loading} >Sign up</BasicButton>
                 </div>
 
             </form>
