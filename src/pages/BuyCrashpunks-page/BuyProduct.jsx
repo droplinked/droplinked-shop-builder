@@ -14,7 +14,7 @@ import { useToasty } from "../../context/toastify/ToastContext"
 
 
 import Carousel from "../../components/shared/Carousel/Carousel-component"
-import AutoWidthButton from "../../components/features/buttons components/autow basic button/B-button-component"
+import BasicButton from "../../components/shared/BasicButton/BasicButton"
 
 
 function BuyProduct() {
@@ -155,7 +155,9 @@ function BuyProduct() {
                                     <img src={minus} alt="" />
                                 </div>
                             </div>
-                            <AutoWidthButton onClick={submitButton} text={"Add to basket"} />
+                            <div style={{height:"auto"}}>
+                            <BasicButton click={submitButton}>Add to basket</BasicButton>
+                            </div>
                         </div>
                     </div>
 
