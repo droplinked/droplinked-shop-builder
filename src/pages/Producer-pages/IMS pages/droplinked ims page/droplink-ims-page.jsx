@@ -2,7 +2,7 @@ import "./droplink-ims-page.scss"
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 import SeachBox from "../search box/Search-box-component"
-import Product from "../../../../components/shared/Product/Product"
+import ProducerProduct from "./ProducerProduct-component"
 
 import { useState } from "react"
 import { Link } from "react-router-dom";
@@ -37,7 +37,7 @@ export default function DroplinkedImsPage({ products }) {
                         {(products).filter(pr => pr.title.toLowerCase().includes(searchText)).map((item) => {
                             return (
                                 <div className="col-6 col-md-4 col-lg-3 p-1" key={item.id}>
-                                    <Product title={item.title} imageUrl={item.media[0].url} id={item._id} />
+                                    <ProducerProduct title={item.title} imageUrl={item.media[0].url} id={item._id} />
                                 </div>
                             )
                         })}
