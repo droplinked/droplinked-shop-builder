@@ -1,7 +1,7 @@
 
 import "./RuleSet-page-style.scss"
 
-import BasicButton from "../../../components/features/buttons components/basic button/BasicButton";
+import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import RuleItem from "./rule item component/Rule-item-component"
 import AddRule from "./add rule modal/Addrule.modal.component"
 import Loading from "../../../components/shared/loading/Loading"
@@ -34,7 +34,9 @@ function RuleSetPage() {
 				<div className="title">Rulesets</div>
 				{(rules) && <div className="rule-number">{rules.length} Rule sets</div>}
 				<div className="mt-5 mb-5 w-100 d-flex justify-content-center align-items-center">
-					<BasicButton text={"Add Rule"} click={modalToggle} />
+					<div className="col-12 col-md-4">
+					<BasicButton click={modalToggle}>Add Rule</BasicButton>
+					</div>s
 				</div>
 				{(rules) ?
 					<>

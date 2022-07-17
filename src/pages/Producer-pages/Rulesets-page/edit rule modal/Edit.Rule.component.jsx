@@ -4,7 +4,7 @@ import { useToasty } from "../../../../context/toastify/ToastContext"
 import { updateRule } from "../../../../api/Producer-apis/Ruleset-api"
 
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
-import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 
 
 
@@ -233,16 +233,16 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
                     })
                 }
                 <div className="w-100 d-flex justify-content-center align-items-center">
-                    <div className="w-30 mt-4 " onClick={addRule}>
-                        <BasicButton text="Add" />
+                    <div className="mt-4" style={{width: '30%'}}>
+                        <BasicButton click={addRule}>Add</BasicButton>
                     </div>
                 </div>
                 <div className="w-100 d-flex justify-content-between align-items-center" style={{ marginTop: "80px" }}>
-                    <div className="w-40">
-                        <BasicButton text="cancel" click={toggle} disable={disableBtn} />
+                    <div style={{width: '40%'}}>
+                    <BasicButton click={toggle} disable={disableBtn}>cancel</BasicButton>
                     </div>
-                    <div className="w-40">
-                        <BasicButton text="submit" click={submitForm} disable={disableBtn} />
+                    <div style={{width: '40%'}}>
+                    <BasicButton click={submitForm} disable={disableBtn}>submit</BasicButton>
                     </div>
                 </div>
             </div>

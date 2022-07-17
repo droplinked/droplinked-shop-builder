@@ -1,8 +1,7 @@
 import { useState } from "react"
-import { toast } from 'react-toastify';
 import { useToasty } from "../../../../context/toastify/ToastContext"
 
-import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 
 export default function AddVariantForm({ state, setState, toggle, optionsArray }) {
 
@@ -11,23 +10,23 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
     const [quantity, setQuantity] = useState("");
     const [externalID, setExternalID] = useState("");
 
-    const { successToast, errorToast } = useToasty();
+    const {  errorToast } = useToasty();
 
 
 
 
     const CheckOptions = () => {
-        if(state.length == 0 ) return false  
-        if(state[0].options.length != options.length ){
-            return true  
+        if (state.length == 0) return false
+        if (state[0].options.length != options.length) {
+            return true
         }
-        let cond = true ;  
-        options.forEach((opt , i) => {            
-            state[0].options.forEach((st ,i )=>{
-                if(st.variantID == opt.variantID){cond = false}
-            })   
+        let cond = true;
+        options.forEach((opt, i) => {
+            state[0].options.forEach((st, i) => {
+                if (st.variantID == opt.variantID) { cond = false }
+            })
         })
-        if(cond)return true
+        if (cond) return true
         return false
     }
 
@@ -42,9 +41,9 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
             errorToast("quantity is required");
             return;
         }
-        if(CheckOptions()){
+        if (CheckOptions()) {
             errorToast("Merchs must have same options");
-            return;  
+            return;
         }
 
         if (options.length != optionsArray.length) {
@@ -84,7 +83,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
                 if (item.value == "") optArray.splice(i, 1)
             })
         } else {
-            optArray.push({ variantID: e.target.id, variantName:e.target.name , value: e.target.value })
+            optArray.push({ variantID: e.target.id, variantName: e.target.name, value: e.target.value })
         }
         setOptions(optArray)
     }
@@ -127,8 +126,12 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
                 <input type="number" placeholder="1794012584" onChange={changeexternal} />
             </div>
             <div className="rw-rp">
-                <BasicButton text={"Cancel"} click={toggle} style={{ width: "40%" }} />
-                <BasicButton text={"Add"} click={submitvariant} style={{ width: "40%" }} />
+                <div style={{ width: "40%" }}>
+                    <BasicButton click={toggle}>Cancel</BasicButton>
+                </div>
+                <div style={{ width: "40%" }}>
+                    <BasicButton click={submitvariant}>Add</BasicButton>
+                </div>
             </div>
         </form>
     </>)

@@ -5,13 +5,13 @@ import BasicDropDown from "../../../components/features/input components/basic d
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
 import CheckBoxBasic from "../../../components/features/input components/basic checkbox component/CheckBox-component"
 import VariantItem from "../components/variant item component/Variant-item-component"
-import BasicButton from "../../../components/features/buttons components/basic button/BasicButton"
+import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import AddVariantForm from "../components/add variant form/Add-variantForm-component"
 
 import { useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { getVariants , postProduct } from "../../../api/Producer-apis/Product-api"
+import { getVariants, postProduct } from "../../../api/Producer-apis/Product-api"
 import { getCollections } from "../../../api/Producer-apis/Collection-api"
 
 
@@ -48,7 +48,7 @@ function AddProductPage() {
             setCollection(coll)
         }
         getDate()
-        
+
     }, [])
 
     const toggleAddVariant = () => {
@@ -69,7 +69,7 @@ function AddProductPage() {
 
 
 
-    const submitForm = async(e) => {
+    const submitForm = async (e) => {
         e.preventDefault()
         if (title == "") {
             toast.error("Merch name is required");
@@ -106,10 +106,10 @@ function AddProductPage() {
         setdisbtn(true)
 
         let result = await postProduct(proDetail)
-        if(result == true){
+        if (result == true) {
             toast.success("Merch added successfully");
             navigate("/producer/ims")
-        }else{
+        } else {
             toast.error(result)
             setdisbtn(false)
         }
@@ -177,8 +177,9 @@ function AddProductPage() {
             <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
                 {(addvariant == false)
                     ?
-
-                    <BasicButton text={"Add variant"} click={toggleAddVariant} />
+                    <div className="col-12 col-md-4">
+                    <BasicButton click={toggleAddVariant}>Add variant</BasicButton>
+                    </div>
                     :
 
                     <AddVariantForm state={variants} setState={setVariants} toggle={toggleAddVariant} optionsArray={options} />
@@ -188,10 +189,10 @@ function AddProductPage() {
             <div className="d-flex justify-content-between align-items-center"
                 style={{ marginTop: "80px", width: "100%" }}>
                 <div className="col-5 col-md-4">
-                    <BasicButton text={"Cancel"} click={cancelForm} disable={disbtn} />
+                    <BasicButton click={cancelForm} disabled={disbtn}>Cancel</BasicButton>
                 </div>
                 <div className="col-5 col-md-4">
-                    <BasicButton text={"Submit"} click={submitForm} disable={disbtn} />
+                <BasicButton click={submitForm} disabled={disbtn}>Submit</BasicButton>
                 </div>
             </div>
             <ToastContainer

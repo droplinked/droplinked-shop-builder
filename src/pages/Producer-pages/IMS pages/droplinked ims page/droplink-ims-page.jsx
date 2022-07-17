@@ -1,6 +1,6 @@
 import "./droplink-ims-page.scss"
 
-import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 import SeachBox from "../search box/Search-box-component"
 import ProductSmallWrapper from "../../../../components/features/product components/product small wrapper/Product-Small-wrapper"
 import ProductLargeProducer from "../../../../components/features/product components/Product Large component producer/ProductLarge-producer"
@@ -19,8 +19,8 @@ export default function DroplinkedImsPage({ products }) {
     return (
         <>
             <div className="w-100 d-flex justify-content-center align-items-center mt-5">
-                <Link to="/producer/addProduct" style={{ width: "100%", display: "flex" }}>
-                    <BasicButton text={"Add merch"} />
+                <Link to="/producer/addProduct" style={{ width: "200px", display: "flex" }}>
+                    <BasicButton>Add merch</BasicButton>
                 </Link>
             </div>
             <div style={{ margin: "15px 0xp" }}>

@@ -1,7 +1,7 @@
 import "./Addrule.modal.style.scss"
 import { useState } from "react"
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
-import BasicButton from "../../../../components/features/buttons components/basic button/BasicButton"
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 import { useToasty } from "../../../../context/toastify/ToastContext"
 import { newRule } from "../../../../api/Producer-apis/Ruleset-api"
 
@@ -138,7 +138,7 @@ export default function AddRule({ toggle }) {
         if (result == true) {
             successToast("RuleSet created successfully.")
             toggle()
-        }else{
+        } else {
             errorToast(result)
         }
         setDisableBtn(false)
@@ -209,16 +209,16 @@ export default function AddRule({ toggle }) {
 
 
                 <div className="w-100 d-flex justify-content-center align-items-center">
-                    <div className="w-30 mt-4 " >
-                        <BasicButton text="Add" click={addRule} />
+                    <div className="mt-4" style={{ width: "30%" }}>
+                        <BasicButton click={addRule}>Add</BasicButton>
                     </div>
                 </div>
                 <div className="w-100 d-flex justify-content-between align-items-center" style={{ marginTop: "80px" }}>
-                    <div className="w-40">
-                        <BasicButton text="Cancel" click={toggle} disable={disableBtn} />
+                    <div style={{ width: "40%" }}>
+                        <BasicButton click={toggle} disabled={disableBtn} >Cancel</BasicButton>
                     </div>
-                    <div className="w-40">
-                        <BasicButton text="Submit" click={submitForm} disable={disableBtn} />
+                    <div style={{ width: "40%" }}>
+                        <BasicButton click={submitForm} disabled={disableBtn} >Submit</BasicButton>
                     </div>
                 </div>
             </div>
