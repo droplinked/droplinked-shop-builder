@@ -1,7 +1,7 @@
 import "./Account-recovery-page-style.scss"
 
 import BasicInput from "../../components/features/input components/basic input component/Basic-component"
-import AutoWidthButton from "../../components/features/buttons components/autow basic button/B-button-component"
+import BasicButton from "../../components/shared/BasicButton/BasicButton"
 
 import { useParams, useNavigate } from "react-router-dom";
 import { toastValue } from "../../context/toastify/ToastContext"
@@ -71,8 +71,8 @@ export default function AccountRecoveryPage() {
                 />
             </div>
             {confirmError && <p className="error">{`Password and confirm password don't match.`}</p>}
-            <div className="mt-4">
-                <AutoWidthButton text={"Change my password"} click={changePassword} disable={btnActivd} />
+            <div className="mt-4" >
+                <BasicButton click={changePassword} disabled={btnActivd}>Change my password</BasicButton>
             </div>
         </div>
     </>)
