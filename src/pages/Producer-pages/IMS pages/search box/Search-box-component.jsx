@@ -12,7 +12,7 @@ export default function SeachBox({ onch }) {
                         <input type="text"
                             className="input"
                             name="txt"
-                            onmouseout="document.search.txt.value = ''"
+                            onMouseOut="document.search.txt.value = ''"
                             onChange={onch}
                         />
                     </form>

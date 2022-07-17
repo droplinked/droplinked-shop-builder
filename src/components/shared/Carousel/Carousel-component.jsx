@@ -38,7 +38,7 @@ export default function Carousel({ imagesArray }) {
                             images.map((number, i) => {
                                 if (i < 4) {
                                     return <Image
-                                        key={icon}
+                                        key={i}
                                         w='50px'
                                         h='50px'
                                         borderRadius='8px'

@@ -34,9 +34,9 @@ export default function DroplinkedImsPage({ products }) {
                     </div>
                     :
                     <>
-                        {(products).filter(pr => pr.title.toLowerCase().includes(searchText)).map((item) => {
+                        {(products).filter(pr => pr.title.toLowerCase().includes(searchText)).map((item , i) => {
                             return (
-                                <div className="col-6 col-md-4 col-lg-3 p-1" key={item.id}>
+                                <div className="col-6 col-md-4 col-lg-3 p-1" key={i}>
                                     <ProducerProduct title={item.title} imageUrl={item.media[0].url} id={item._id} />
                                 </div>
                             )
