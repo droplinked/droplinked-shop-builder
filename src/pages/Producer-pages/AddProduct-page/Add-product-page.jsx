@@ -3,10 +3,11 @@ import "./Add-product-page-style.scss"
 import BasicInput from "../../../components/features/input components/basic input component/Basic-component"
 import BasicDropDown from "../../../components/features/input components/basic dropdown/Basic-dropdown-component"
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
-import CheckBoxBasic from "../../../components/features/input components/basic checkbox component/CheckBox-component"
+
 import VariantItem from "../components/variant item component/Variant-item-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import AddVariantForm from "../components/add variant form/Add-variantForm-component"
+import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"
 
 import { useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
@@ -163,7 +164,7 @@ function AddProductPage() {
                 {(varintType != undefined) &&
                     <>
                         {varintType.map(item => {
-                            return <CheckBoxBasic key={item._id} val={item._id} onch={onChnageCheckBox}>{item.name}</CheckBoxBasic>
+                            return <CheckBox key={item._id} val={item._id} onch={onChnageCheckBox}>{item.name}</CheckBox>
                         })}
                     </>
                 }

@@ -3,7 +3,7 @@ import "./View-merch-page-style.scss"
 
 import BasicInput from "../../../components/features/input components/basic input component/Basic-component";
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
-import CheckBoxBasic from "../../../components/features/input components/basic checkbox component/CheckBox-component";
+import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"
 import VariantItem from "../components/variant item component/Variant-item-component"
 import AddVariantForm from "../components/add variant form/Add-variantForm-component"
 import Loading from "../../../components/shared/loading/Loading";
@@ -216,7 +216,7 @@ export default function ViewMerchPage() {
                     {(varintType != undefined) &&
                         <>
                             {varintType.map(item => {
-                                return <CheckBoxBasic key={item._id} val={item._id} id={item._id} onch={onChnageCheckBox}>{item.name}</CheckBoxBasic>
+                                return <CheckBox key={item._id} val={item._id} id={item._id} onch={onChnageCheckBox}>{item.name}</CheckBox>
                             })}
                         </>
                     }
