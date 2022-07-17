@@ -51,7 +51,7 @@ export default function ShopPage() {
             :
            <>
            {collection.collections.map((coll , i) => {
-                return <Collection collection={coll} shopname={shopname} />
+                return <Collection key={i} collection={coll} shopname={shopname} />
            })}
            </>
         }

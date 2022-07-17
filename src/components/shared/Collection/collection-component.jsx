@@ -22,7 +22,7 @@ export default function Collection({ collection , shopname}) {
                         {collection.products.map((product, i) => {
                             if (i < 4) {
                                 return (
-                                    <div className="col-6 col-md-3 p-1">
+                                    <div className="col-6 col-md-3 p-1" key={i}>
                                         <Product
                                             title={product.title}
                                             imageUrl={product.media[0].url}

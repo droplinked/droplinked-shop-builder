@@ -81,7 +81,7 @@ function GalleryCarousel() {
                     <img src={leftBtn} alt="" onClick={backImg} />
 
                     {imageArray.map((item, index) => {
-                        return <span className={`rounded-circle ${(index == num1 || index == num1 + 1) ? "active" : "nonactive"}`}></span>
+                        return <span key={index} className={`rounded-circle ${(index == num1 || index == num1 + 1) ? "active" : "nonactive"}`}></span>
                     })}
 
                     <img src={rightBtn} alt="" onClick={nextImg} />

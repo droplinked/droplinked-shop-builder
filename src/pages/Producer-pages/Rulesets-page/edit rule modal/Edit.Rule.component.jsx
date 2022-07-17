@@ -193,7 +193,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
                     rules.map(({ index, type, address }) => {
                         return (
                             <>
-                                <div className="ruleset-input-container">
+                                <div className="ruleset-input-container" key={index}>
                                     <div className="drop-container">
                                         <p className="delete-btn" style={{ fontSize: "20px", margin: "auto 0px auto 10px" }}
                                             onClick={(e) => { deleteRule(index) }}>X</p>

@@ -93,16 +93,17 @@ export default function OrderComponent({ order }) {
                     </Text>
 
                     <Flex
-                    mb='10px'
+                        mb='10px'
                     >
                         {orderProducts.map((product, i) => {
-                            if(i < 4)
-                            return <Image
-                                w={{base:'60px' , md:"90px"}}
-                                h={{base:'60px' , md:"90px"}}
-                                borderRadius="8px"
-                                mr='20px'
-                                src={product.media[0].url} />
+                            if (i < 4)
+                                return <Image
+                                    key={i}
+                                    w={{ base: '60px', md: "90px" }}
+                                    h={{ base: '60px', md: "90px" }}
+                                    borderRadius="8px"
+                                    mr='20px'
+                                    src={product.media[0].url} />
                         })}
                     </Flex>
                     <Flex
@@ -110,7 +111,7 @@ export default function OrderComponent({ order }) {
                         justifyContent='space-between'
                     >
                         <Text
-                            color='#fff' 
+                            color='#fff'
                             fontSize={{ base: "18px", md: '24px' }}
                             fontWeight='600'
                         >

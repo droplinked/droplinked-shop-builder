@@ -63,7 +63,7 @@ export default function InputImagesGroup({ setState, state }) {
     return (
         <div className="input-images-component-wrapper d-flex justify-content-start">
             {state.map((items, i) => {
-                return (<div className="img-item " id={i}>
+                return (<div className="img-item " id={i} key={i}>
                     <img className="delete-icon" src={dltImg} alt="delete" onClick={()=>deleteImg(items)} />
                     <img src={items} />
                 </div>)

@@ -166,7 +166,7 @@ export default function AddRule({ toggle }) {
                 {addresslist.map(({ index, type, address }) => {
                     return (
                         <>
-                            <div className="ruleset-input-container">
+                            <div className="ruleset-input-container" key={index}>
                                 <div className="drop-container">
                                     <p className="delete-btn"
                                         onClick={(e) => { deleteRule(index) }}>X</p>

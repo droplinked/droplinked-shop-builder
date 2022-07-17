@@ -5,8 +5,8 @@ export default function VariantItem({ vari , id , dlt , edit}) {
 
     return (
         <div className="variant-item-wrapper">
-            {vari.options.map(item => {
-                return (<p>{`${item.variantName} : ${item.value}`}</p>)
+            {vari.options.map((item , i) => {
+                return (<p key={i}>{`${item.variantName} : ${item.value}`}</p>)
             })
 
             }

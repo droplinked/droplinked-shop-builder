@@ -29,8 +29,8 @@ export default function IncomingOrderPage() {
 
                 {orders.map((ord, i) => {
                     return (
-                        <Box mb='30px'>
-                            <OrderComponent key={i} order={ord} />
+                        <Box key={i} mb='30px'>
+                            <OrderComponent order={ord} />
                         </Box>
                     )
                 })}
