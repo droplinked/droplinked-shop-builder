@@ -1,6 +1,6 @@
 import "./View-merch-page-style.scss"
 
-import BasicButton from "../../../components/features/buttons components/basic button/BasicButton";
+
 import BasicInput from "../../../components/features/input components/basic input component/Basic-component";
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
 import CheckBoxBasic from "../../../components/features/input components/basic checkbox component/CheckBox-component";
@@ -8,9 +8,9 @@ import VariantItem from "../components/variant item component/Variant-item-compo
 import AddVariantForm from "../components/add variant form/Add-variantForm-component"
 import Loading from "../../../components/shared/loading/Loading";
 import DropDownPairValId from "../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
-import AutoWidthButton from "../../../components/features/buttons components/autow basic button/B-button-component"
 import SmallModal from "../../../components/Modal/Small-modal/Small-modal-component"
-;
+import BasicButton from "../../../components/shared/BasicButton/BasicButton"
+
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useToasty } from "../../../context/toastify/ToastContext"
@@ -196,7 +196,7 @@ export default function ViewMerchPage() {
                 <div className="ims-title mb-5">Add new item</div>
 
                 <div className="col-12 col-md-6 mb-5">
-                    <AutoWidthButton text="Delete merch" click={() => setDeleteModal(true)} style={{ backgroundColor: "#fa6653" }} />
+                    <BasicButton click={() => setDeleteModal(true)} bgColor='#fa6653'>Delete merch</BasicButton>
                 </div>
 
                 <div className="mb-4 w-100 p-0">
@@ -230,8 +230,7 @@ export default function ViewMerchPage() {
                 <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
                     {(addvariant == false)
                         ?
-
-                        <BasicButton text={"Add variant"} click={toggleAddVariant} />
+                        <BasicButton click={toggleAddVariant}>Add variant</BasicButton>
                         :
 
                         <AddVariantForm state={variants} setState={setVariants} toggle={toggleAddVariant} optionsArray={options} />
@@ -241,10 +240,10 @@ export default function ViewMerchPage() {
                 <div className="d-flex justify-content-between align-items-center"
                     style={{ marginTop: "80px", width: "100%" }}>
                     <div className="col-5 col-md-4">
-                        <BasicButton text={"Cancel"} click={cancelForm} disable={disbtn} />
+                        <BasicButton click={cancelForm} disabled={disbtn}>Cancel</BasicButton>
                     </div>
                     <div className="col-5 col-md-4">
-                        <BasicButton text={"Submit"} click={submitForm} disable={disbtn} />
+                        <BasicButton click={submitForm} disabled={disbtn}>Submit</BasicButton>
                     </div>
                 </div>
                 {deleteMerchModal &&

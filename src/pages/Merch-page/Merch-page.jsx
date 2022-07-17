@@ -13,11 +13,10 @@ import { addSkuToCart } from "../../api/BaseUser-apis/Cart-api"
 
 import  Carousel  from "../../components/shared/Carousel/Carousel-component"
 import Loading from "../../components/shared/loading/Loading";
-import AutoWidthButton from "../../components/features/buttons components/autow basic button/B-button-component";
 import plus from "../../assest/feature/buy product/plusIcon.png"
 import minus from "../../assest/feature/buy product/minusIcon.png"
 import SpcialDropDownComp from "./specialDropDown/Special-dropdown-component";
-
+import BasicButton from "../../components/shared/BasicButton/BasicButton"
 
 
 export default function MerchPage() {
@@ -181,7 +180,9 @@ export default function MerchPage() {
                                 <img src={minus} alt="" />
                             </div>
                         </div>
-                        <AutoWidthButton text={"Add to basket"} click={Addtobasket} disable={disableBtn} />
+                        <div style={{height:"auto"}}> 
+                        <BasicButton click={Addtobasket} disabled={disableBtn}>Add to basket</BasicButton>
+                        </div>
                     </div>
 
                 </div>

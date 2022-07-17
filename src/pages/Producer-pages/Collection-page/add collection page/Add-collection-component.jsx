@@ -6,8 +6,8 @@ import { useToasty } from "../../../../context/toastify/ToastContext"
 import { getRules } from "../../../../api/Producer-apis/Ruleset-api"
 import { newCollection } from "../../../../api/Producer-apis/Collection-api"
 
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 import BasicInput from "../../../../components/features/input components/basic input component/Basic-component"
-import AutoWidthButton from "../../../../components/features/buttons components/autow basic button/B-button-component"
 import Loading from "../../../../components/shared/loading/Loading"
 import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
 
@@ -56,7 +56,7 @@ export default function AddCollectionPage({ toggle }) {
             return
         }
 
-        
+
         let RuleInfo;
         if (selectedRule == "") {
             RuleInfo = {
@@ -117,10 +117,10 @@ export default function AddCollectionPage({ toggle }) {
             }
             <div className="d-flex justify-content-between mt-5">
                 <div className="col-5">
-                    <AutoWidthButton text={"Cancel"} click={toggle} disable={disableBtn} />
+                    <BasicButton click={toggle} disabled={disableBtn}>Cancel</BasicButton>
                 </div>
                 <div className="col-5">
-                    <AutoWidthButton text={"Submit"} click={submitForm} disable={disableBtn} />
+                    <BasicButton click={submitForm} disabled={disableBtn}>Submit</BasicButton>
                 </div>
             </div>
         </div>

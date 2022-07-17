@@ -1,11 +1,12 @@
 import "./Collection-page-style.scss"
 
-import AutoWidthButton from "../../../components/features/buttons components/autow basic button/B-button-component"
+
 import CollectionComponent from "./Collection-component/Collection-component"
 import ModalContainer from "../../../components/Modal/modal-container/modal-container"
 import AddCollectionPage from "./add collection page/Add-collection-component"
 import Loading from "../../../components/shared/loading/Loading"
 import EditCollectionModal from "./edit collection modal/edit-collection-modal-component"
+import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react"
@@ -50,9 +51,7 @@ export default function CollectionMainPage() {
             <div className="ims-title">Collections</div>
             <div className="number-of-merchs">{collectins && collectins.length} Collection</div>
             <div className="mt-5 col-12 col-md-3 ">
-                {/* <Link to="/producer/collection/addCollection"> */}
-                <AutoWidthButton text={"Add Collection"} click={ToggleModal} />
-                {/* </Link> */}
+                <BasicButton click={ToggleModal}>Add Collection</BasicButton>
             </div>
 
             {(collectins)
