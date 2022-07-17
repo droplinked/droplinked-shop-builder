@@ -229,10 +229,3 @@ export default function AddRule({ toggle }) {
 
 
 
-{/* <div style={{ width: '40%' }}>
-                                <InputNoLabel text={"Address"} value={item.address} change={(e) => changeRuleAddress(e, i)} />
-                            </div>
-                            <div style={{ width: '40%' }} className="d-flex">
-                                <DropDownComp value={item.type} valArray={dropVal} change={(e) => changeNft(e, i)} />
-                                <p className="delete-btn" style={{ fontSize: "20px", margin: "auto 0px auto 10px" }} onClick={() => deletRule(i)}>X</p>
-                            </div> */}

@@ -251,16 +251,3 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
 
 
 
-{/* {rules.map((item, i) => {
-                    return (
-                        <div key={i} className="w-100 d-flex justify-content-between align-items-center mt-4 mb-4">
-                            <div style={{ width: '40%' }}>
-                                <InputNoLabel text={"address"} value={item.address} change={(e) => changeRuleAddress(e, i)} />
-                            </div>
-                            <div style={{ width: '40%' }} className="d-flex">
-                                <DropDownComp valArray={dropVal} change={(e) => changeNft(e, i)} value={item.type} />
-                                <p className="delete-btn" style={{fontSize:"20px" , margin:"auto 0px auto 10px"}} onClick={() => deletRule(i)}>X</p>
-                            </div>
-                        </div>
-                    )
-                })} */}
