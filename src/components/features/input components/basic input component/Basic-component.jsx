@@ -1,5 +1,5 @@
 import "./Basic-component.scss"
-import { useRef } from "react"
+
 
 export default function BasicInput({ type, refs, text, error, change, value, place, ...otherProps }) {
 

@@ -1,9 +1,8 @@
 import "./Add-product-page-style.scss"
 
-import BasicInput from "../../../components/features/input components/basic input component/Basic-component"
 import BasicDropDown from "../../../components/features/input components/basic dropdown/Basic-dropdown-component"
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
-
+import FormInput from "../../../components/shared/FormInput/FormInput"
 import VariantItem from "../components/variant item component/Variant-item-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import AddVariantForm from "../components/add variant form/Add-variantForm-component"
@@ -148,10 +147,10 @@ function AddProductPage() {
         <div className="add-product-page-wrapper"  >
             <div className="ims-title mb-5">Add new item</div>
             <div className="mb-4 w-100 p-0">
-                <BasicInput text={"Title"} change={changeTitle} />
+                <FormInput label={"Title"} changeValue={changeTitle} value={title} />
             </div>
-            <div className="mb-4 w-100 p-0">
-                <BasicInput type={"textarea"} change={changeDescription} text={"Description "} />
+            <div className="mb-4 w-100 p-0" >
+                <FormInput  type={"textarea"} label={"Description"} changeValue={changeDescription} value={description} />
             </div>
             <dir className="drop-wrape">
                 <BasicDropDown valArray={collectionList} place={"Choose collection"} cnhg={changeCollection} />
@@ -179,7 +178,7 @@ function AddProductPage() {
                 {(addvariant == false)
                     ?
                     <div className="col-12 col-md-4">
-                    <BasicButton click={toggleAddVariant}>Add variant</BasicButton>
+                        <BasicButton click={toggleAddVariant}>Add variant</BasicButton>
                     </div>
                     :
 
@@ -193,7 +192,7 @@ function AddProductPage() {
                     <BasicButton click={cancelForm} disabled={disbtn}>Cancel</BasicButton>
                 </div>
                 <div className="col-5 col-md-4">
-                <BasicButton click={submitForm} disabled={disbtn}>Submit</BasicButton>
+                    <BasicButton click={submitForm} disabled={disbtn}>Submit</BasicButton>
                 </div>
             </div>
             <ToastContainer

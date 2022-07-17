@@ -1,7 +1,8 @@
 import "./Account-recovery-page-style.scss"
 
-import BasicInput from "../../components/features/input components/basic input component/Basic-component"
+
 import BasicButton from "../../components/shared/BasicButton/BasicButton"
+import FormInput from "../../components/shared/FormInput/FormInput"
 
 import { useParams, useNavigate } from "react-router-dom";
 import { toastValue } from "../../context/toastify/ToastContext"
@@ -23,7 +24,7 @@ export default function AccountRecoveryPage() {
     let navigate = useNavigate();
     let token = useParams().token;
 
-    const changeConfirmPass = e =>{
+    const changeConfirmPass = e => {
         setConfirmNewpass(e.target.value)
         setConfirmError(false)
     }
@@ -57,18 +58,19 @@ export default function AccountRecoveryPage() {
     return (<>
         <div className="recovery-page-wrapper">
             <div className="title">Change your password</div>
-
-            <BasicInput
+            <FormInput
                 type={"password"}
-                text={"New Password"}
-                change={(e) => { setNewpass(e.target.value) }}
+                label={"New Password"}
+                value={newPass}
+                changeValue={(e) => { setNewpass(e.target.value) }}
             />
             <div className="mt-4">
-                <BasicInput
-                    type={"password"}
-                    text={"Confirm New Password"}
-                    change={changeConfirmPass}
-                />
+            <FormInput
+                type={"password"}
+                label={"Confirm New Password"}
+                value={confirmnewPass}
+                changeValue={changeConfirmPass}
+            />
             </div>
             {confirmError && <p className="error">{`Password and confirm password don't match.`}</p>}
             <div className="mt-4" >

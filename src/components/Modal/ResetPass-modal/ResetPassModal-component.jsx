@@ -8,9 +8,8 @@ import { toastValue } from "../../../context/toastify/ToastContext"
 
 import ModalContainer from "../modal-container/modal-container"
 import closePng from "../../../assest/feature/home page images/Close.png"
-import BasicInput from "../../features/input components/basic input component/Basic-component"
 import BasicButton from "../../shared/BasicButton/BasicButton"
-
+import FormInput from "../../shared/FormInput/FormInput"
 
 export default function ResetPassModal({ backToLogin, close }) {
 
@@ -64,7 +63,7 @@ export default function ResetPassModal({ backToLogin, close }) {
                 <div className="title">Reset your password</div>
                 <div className="text">Enter the email address associated with your account and we'll send you a link to reset your password.</div>
                 <div className="mt-3">
-                    <BasicInput text={"Email"} type={"email"} change={ChangeEmail} />
+                    <FormInput label={"Email"} type={"email"} changeValue={ChangeEmail}/>
                     <div style={{ height: "12px", width: "100%", margin: "0px 0px 0px 0px" }}>
                         {error && <p className="error">{`The email address is invalid.`}</p>}
                     </div>
