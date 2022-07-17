@@ -1,10 +1,8 @@
 import "./ResetPassModal-style.scss"
 
 import { useState,  useContext } from "react"
-
-import { PostWithoutToken } from "../../../sevices/functoinal-service/CallApiService"
 import { toastValue } from "../../../context/toastify/ToastContext"
-
+import { resetPassword } from "../../../api/BaseUser-apis/Auth-api"
 
 import ModalContainer from "../modal-container/modal-container"
 import closePng from "../../../assest/feature/home page images/Close.png"
@@ -18,16 +16,21 @@ export default function ResetPassModal({ backToLogin, close }) {
     const [error, setError] = useState("");
     const { successToast, errorToast } = useContext(toastValue)
 
-    const SubmitForm = () => {
+    const SubmitForm = async() => {
 
         if (validationEmail()) {
             setError(true)
         } else {
             setDisableBtn(true)
-            const postData = { email: email }
-            PostWithoutToken("/producer/reset-password", postData, handleRes)
+            let result = await resetPassword(email)
+            if(result == true){
+                successToast(`Send an email to : ${email}`)         
+                close()
+            }else{
+                errorToast(result)
+            }
+            setDisableBtn(false)
         }
-
     }
 
     const validationEmail = () => {
@@ -45,16 +48,6 @@ export default function ResetPassModal({ backToLogin, close }) {
         setError(false)
     }
 
-    const handleRes = (status, value) => {
-        if (status) {
-            successToast(`Send an email to : ${email}`)
-            setDisableBtn(false)
-            close()
-        } else {
-            errorToast(value)
-            setDisableBtn(false)
-        }
-    }
 
     return (
         <ModalContainer close={close}>

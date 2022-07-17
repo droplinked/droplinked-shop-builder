@@ -7,9 +7,8 @@ import FormInput from "../../components/shared/FormInput/FormInput"
 import { useParams, useNavigate } from "react-router-dom";
 import { toastValue } from "../../context/toastify/ToastContext"
 import { useState, useContext } from "react"
-import { PostWithoutToken } from "../../sevices/functoinal-service/CallApiService"
 import { useForm } from "react-hook-form";
-
+import { recoveryAccount } from "../../api/BaseUser-apis/Auth-api"
 
 export default function AccountRecoveryPage() {
 
@@ -29,7 +28,7 @@ export default function AccountRecoveryPage() {
         setConfirmError(false)
     }
 
-    const changePassword = () => {
+    const changePassword = async () => {
         if (newPass !== confirmnewPass) {
             setConfirmError(true)
             return
@@ -41,16 +40,12 @@ export default function AccountRecoveryPage() {
             accountRecoveryToken: token,
             newPassword: newPass
         }
-
-        PostWithoutToken("/producer/account-recovery", postInfo, resHandle)
-    }
-
-    const resHandle = (status, message) => {
-        if (status) {
+        let result = await recoveryAccount(token, newPass)
+        if (result == true) {
             successToast("Your password has been changed successfully. Please login again.")
             navigate("/?modal=login")
         } else {
-            errorToast(message)
+            errorToast(result)
             navigate("/")
         }
     }
@@ -65,12 +60,12 @@ export default function AccountRecoveryPage() {
                 changeValue={(e) => { setNewpass(e.target.value) }}
             />
             <div className="mt-4">
-            <FormInput
-                type={"password"}
-                label={"Confirm New Password"}
-                value={confirmnewPass}
-                changeValue={changeConfirmPass}
-            />
+                <FormInput
+                    type={"password"}
+                    label={"Confirm New Password"}
+                    value={confirmnewPass}
+                    changeValue={changeConfirmPass}
+                />
             </div>
             {confirmError && <p className="error">{`Password and confirm password don't match.`}</p>}
             <div className="mt-4" >
