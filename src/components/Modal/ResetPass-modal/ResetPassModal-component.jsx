@@ -1,6 +1,6 @@
 import "./ResetPassModal-style.scss"
 
-import { useState, useRef, useContext } from "react"
+import { useState,  useContext } from "react"
 
 import { PostWithoutToken } from "../../../sevices/functoinal-service/CallApiService"
 import { toastValue } from "../../../context/toastify/ToastContext"
@@ -9,8 +9,7 @@ import { toastValue } from "../../../context/toastify/ToastContext"
 import ModalContainer from "../modal-container/modal-container"
 import closePng from "../../../assest/feature/home page images/Close.png"
 import BasicInput from "../../features/input components/basic input component/Basic-component"
-import AutoWidthButton from "../../features/buttons components/autow basic button/B-button-component"
-
+import BasicButton from "../../shared/BasicButton/BasicButton"
 
 
 export default function ResetPassModal({ backToLogin, close }) {
@@ -71,7 +70,7 @@ export default function ResetPassModal({ backToLogin, close }) {
                     </div>
                 </div>
                 <div className="w-12 mt-3">
-                    <AutoWidthButton text="Reset password" click={SubmitForm} disable={disableBtn} />
+                    <BasicButton click={SubmitForm}  disabled={disableBtn}>Reset password</BasicButton>
                 </div>
                 <div className="sp-text" onClick={backToLogin}>Back to login</div>
             </div>
