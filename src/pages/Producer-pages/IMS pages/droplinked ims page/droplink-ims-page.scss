@@ -1,0 +1,18 @@
+.product-small-wrapper {
+    width: 100%;
+    margin: 20px 20px;
+    max-width: 800px;
+    display: flex;
+    border-radius: 16px;
+    padding:30px 20px;
+    flex-wrap: wrap;
+  
+}
+
+@media only screen and (max-width: 768px) {
+    .product-small-wrapper {
+     width:calc(100% - 40px);
+     padding:30px 10px;
+    }
+  }
+  

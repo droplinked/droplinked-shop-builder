@@ -1,11 +1,11 @@
 import "./Collection-component-style.scss"
 
-import ProductLarge from "../../../../components/features/product components/product component large/ProductLarge"
 import editIcon from '../../../../assest/icon/icons8-edit.svg'
 import deleteIcon from '../../../../assest/icon/icons8-delete.svg'
 import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component"
 import ModalContainer from "../../../../components/Modal/modal-container/modal-container"
 import EditCollectionModal from "../edit collection modal/edit-collection-modal-component"
+import Product from "../../../../components/shared/Product/Product"
 
 import { useToasty } from "../../../../context/toastify/ToastContext"
 import { deleteCollection } from "../../../../api/Producer-apis/Collection-api"
@@ -56,7 +56,7 @@ export default function CollectionComponent({ id, name, productsArray, edit, ren
                         if (i < 4) { return product }
                     }).map((product, i) => {
                         return (<div key={i} className="col-6 col-md-3 p-1">
-                            <ProductLarge title={product.title} imageUrl={product.media[0].url} id={product._id} />
+                            <Product title={product.title} imageUrl={product.media[0].url} id={product._id} />
                         </div>)
                     })
                     }
