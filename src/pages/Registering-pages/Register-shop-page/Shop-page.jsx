@@ -7,7 +7,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { ReactComponent as IconMenu } from "../../../assest/icon/icons8-delete.svg"
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { BASE_URL } from "../../../api/BaseUrl"
 import { toastValue } from "../../../context/toastify/ToastContext"
 
 
@@ -39,7 +39,7 @@ export default function RegisterShop() {
 
     useEffect(() => {
         if (user.shopAddressID) {
-            axios.get(BasicURL + `/producer/shop/address/${user.shopAddressID}`,
+            axios.get(BASE_URL + `/producer/shop/address/${user.shopAddressID}`,
                 { headers: { Authorization: 'Bearer ' + token } })
                 .then(e => setAddressdata(e.data.addressBook))
         }
@@ -74,7 +74,7 @@ export default function RegisterShop() {
             shopAddressID: address._id
         }
 
-        axios.put(BasicURL + '/producer/shop/info', shopInfo,
+        axios.put(BASE_URL + '/producer/shop/info', shopInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         )
             .then(res => {

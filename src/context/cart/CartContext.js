@@ -1,5 +1,5 @@
 import { createContext, useState ,useContext } from "react";
-import { BasicURL } from "../../sevices/functoinal-service/CallApiService";
+import { BASE_URL } from "../../api/BaseUrl"
 import { errorToast } from "../../context/toastify/ToastContext";
 import axios from "axios";
 
@@ -15,7 +15,7 @@ const CartContextProvider = ({ children }) => {
   const updateCart = () => {
     //first get cart from back
     axios
-      .get(`${BasicURL}/cart`, {
+      .get(`${BASE_URL}/cart`, {
         headers: { Authorization: "Bearer " + token },
       })
       .then(async (e) => {
@@ -50,7 +50,7 @@ const CartContextProvider = ({ children }) => {
   const getProductData = async (cartItems) => {
     let promises = [];
     for (let i = 0; i < cartItems.length; i++) {
-      promises.push(axios.get(`${BasicURL}/product/${cartItems[i]}`));
+      promises.push(axios.get(`${BASE_URL}/product/${cartItems[i]}`));
     }
     let results = await Promise.all(promises);
     results = results.map((e) => e.data.data);
@@ -61,7 +61,7 @@ const CartContextProvider = ({ children }) => {
   // firts update when we havent token
   const firstUpdateCart = (tk) => {
     axios
-      .get(`${BasicURL}/cart`, {
+      .get(`${BASE_URL}/cart`, {
         headers: { Authorization: "Bearer " + tk },
       })
       .then(async (e) => {

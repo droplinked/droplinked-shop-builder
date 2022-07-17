@@ -4,11 +4,11 @@ import axios from 'axios';
 import closePng from "../../../assest/feature/home page images/Close.png"
 import ModalContainer from "../modal-container/modal-container"
 
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { BASE_URL } from "../../../api/BaseUrl"
 import { useForm } from "react-hook-form";
 import { useState,  useContext } from "react"
 import { toastValue } from "../../../context/toastify/ToastContext"
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { useCart } from "../../../context/cart/CartContext"
 
@@ -33,7 +33,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
             password: data.password
         }
 
-        axios.post(BasicURL + '/signin', info)
+        axios.post(`${BASE_URL}/signin`, info)
             .then((res) => {
                 if (res.data.status == "success") {
                     close();

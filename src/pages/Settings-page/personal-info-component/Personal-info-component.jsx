@@ -1,7 +1,7 @@
 import { Flex, Box, Text } from '@chakra-ui/react'
 import { useState } from 'react';
 import { useProfile } from "../../../context/profile/ProfileContext"
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { BASE_URL } from "../../../api/BaseUrl"
 import { useToasty } from "../../../context/toastify/ToastContext"
 
 import InputImage from '../../../components/shared/InputImage/InputImage'
@@ -50,7 +50,7 @@ export default function PersonalInfoComponent() {
 
         setDisableBtn(true)
 
-        await axios.put(`${BasicURL}/profile`, profileData,
+        await axios.put(`${BASE_URL}/profile`, profileData,
             { headers: { Authorization: "Bearer " + token } })
             .then(e => {
                 successToast('Profile updated successfully')

@@ -1,5 +1,5 @@
 import { Flex, FormLabel, Textarea, Box } from '@chakra-ui/react'
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { BASE_URL } from "../../../api/BaseUrl"
 import { useEffect, useState } from 'react'
 import { useAddress } from "../../../context/address/AddressContext"
 import { useToasty } from "../../../context/toastify/ToastContext"
@@ -26,7 +26,7 @@ export default function ShopInfoComponent() {
     console.log(shopAddressBook)
 
     useEffect(() => {
-        axios.get(`${BasicURL}/profile`,
+        axios.get(`${BASE_URL }/profile`,
             { headers: { Authorization: "Bearer " + token } })
             .then(e => {
                 setShop(e.data.data.shop)
@@ -62,7 +62,7 @@ export default function ShopInfoComponent() {
         }
 
         setDisableBtn(true)
-        axios.put(`${BasicURL}/producer/shop/info`,shopInformation, 
+        axios.put(`${BASE_URL}/producer/shop/info`,shopInformation, 
             { headers: { Authorization: "Bearer " + token } })
             .then(e => {
                 successToast("Shop info updated successfully")

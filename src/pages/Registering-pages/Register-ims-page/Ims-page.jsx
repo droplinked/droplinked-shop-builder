@@ -4,9 +4,9 @@ import { useState } from "react"
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { BASE_URL } from "../../../api/BaseUrl"
 
 export default function RegisterIms() {
     const [ImsSystem, setImsSystem] = useState(undefined);
@@ -24,7 +24,7 @@ export default function RegisterIms() {
             setLoading(false)
         } else {
             const ImsType = { type: ImsSystem }
-            axios.post(BasicURL + '/producer/profile/ims', ImsType,
+            axios.post(`${BASE_URL}/producer/profile/ims`, ImsType,
                 { headers: { Authorization: 'Bearer ' + token } }
             ).then(res => {
                 if (res.data.status == "success") {

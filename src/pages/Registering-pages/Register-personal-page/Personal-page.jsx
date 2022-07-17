@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { ReactComponent as IconMenu } from "../../../assest/icon/icons8-delete.svg"
-import { BasicURL } from "../../../sevices/functoinal-service/CallApiService"
+import { BASE_URL } from "../../../api/BaseUrl"
 
 export default function PersonalPage() {
 
@@ -97,7 +97,7 @@ export default function PersonalPage() {
             avatar: (profileImg == undefined) ? "" : profileImg,
             phone: data.phoneNumber,
         }
-        axios.put(BasicURL+'/profile', profileInfo,
+        axios.put(BASE_URL+'/profile', profileInfo,
             { headers: { Authorization: 'Bearer ' + token } }
         ).then(res => {
           //  updateProfile(res.data.data.user)

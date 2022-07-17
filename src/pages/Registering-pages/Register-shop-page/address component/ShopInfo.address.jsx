@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { BasicURL } from "../../../../sevices/functoinal-service/CallApiService"
+import { BASE_URL } from "../../../../api/BaseUrl"
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -35,7 +35,7 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
             addressType: "SHOP"
         }
         
-        axios.post(BasicURL+'/address', addresInfo,
+        axios.post(BASE_URL+'/address', addresInfo,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
                 toast.success("Address added successfully")
