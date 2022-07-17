@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import Loading from "../../../components/shared/loading/Loading"
-import ShopifyProductLarge from "../../../components/features/product components/shopify product component/shopify-product-component"
+import ShopifyProductLarge from "./shopify product component/shopify-product-component"
 
 
 function Collection() {
