@@ -13,10 +13,7 @@ import { fetchPrincipalNFTs } from "../../services/NftService/NFTcheck"
 import { useToasty } from "../../context/toastify/ToastContext"
 
 
-
-
-
-import Carousel2 from "../../components/features/carousels components/carousel 2/Carousel2-component"
+import Carousel from "../../components/shared/Carousel/Carousel-component"
 import AutoWidthButton from "../../components/features/buttons components/autow basic button/B-button-component"
 
 
@@ -117,7 +114,7 @@ function BuyProduct() {
                 <>
                     <div className="merch-page-wrapper d-flex justify-content-between">
                         <div className="image-side col-12 col-md-6">
-                            <Carousel2 imagesArray={images} />
+                            <Carousel imagesArray={images} />
                         </div>
 
                         <div className="detail-side col-12 col-md-6">

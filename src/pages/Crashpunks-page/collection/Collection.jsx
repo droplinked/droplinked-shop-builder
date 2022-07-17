@@ -42,8 +42,8 @@ function Collection() {
                         </div>
                         :
                         <>
-                            {product.map((item) => {
-                                return (<div className="product-item-content">
+                            {product.map((item , i) => {
+                                return (<div className="product-item-content"  key={i}> 
                                     <ShopifyProductLarge title={item.title} price={item.variants[0].formatted_price} imageUrl={item.images[0].src} id={item.product_id} />
                                 </div>)
                             })}

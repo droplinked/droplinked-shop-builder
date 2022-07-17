@@ -11,11 +11,11 @@ import { getProduct } from "../../api/Public-apis/Product-api"
 import { addSkuToCart } from "../../api/BaseUser-apis/Cart-api"
 
 
+import  Carousel  from "../../components/shared/Carousel/Carousel-component"
 import Loading from "../../components/shared/loading/Loading";
 import AutoWidthButton from "../../components/features/buttons components/autow basic button/B-button-component";
 import plus from "../../assest/feature/buy product/plusIcon.png"
 import minus from "../../assest/feature/buy product/minusIcon.png"
-import Carousel2 from "../../components/features/carousels components/carousel 2/Carousel2-component";
 import SpcialDropDownComp from "./specialDropDown/Special-dropdown-component";
 
 
@@ -153,7 +153,7 @@ export default function MerchPage() {
 
                     {/* imgage side */}
                     <div className="image-side col-12 col-md-6">
-                        <Carousel2 imagesArray={images} />
+                        <Carousel imagesArray={images} />
 
                     </div>
                     {/* imgage side */}
