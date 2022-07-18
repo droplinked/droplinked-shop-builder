@@ -23,7 +23,7 @@ export default function MerchPage() {
 
     const [product, setProduct] = useState(null)
     const [images, setImages] = useState([])
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState(1)
     const [disableBtn, setDisableBtn] = useState(false)
 
     const [optionTypes, setOptionTypes] = useState(null)
