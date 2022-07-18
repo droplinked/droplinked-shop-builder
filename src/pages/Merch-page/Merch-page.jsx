@@ -11,7 +11,7 @@ import { getProduct } from "../../api/Public-apis/Product-api"
 import { addSkuToCart } from "../../api/BaseUser-apis/Cart-api"
 
 
-import  Carousel  from "../../components/shared/Carousel/Carousel-component"
+import Carousel from "../../components/shared/Carousel/Carousel-component"
 import Loading from "../../components/shared/loading/Loading";
 import plus from "../../assest/feature/buy product/plusIcon.png"
 import minus from "../../assest/feature/buy product/minusIcon.png"
@@ -24,9 +24,14 @@ export default function MerchPage() {
     const [product, setProduct] = useState(null)
     const [images, setImages] = useState([])
     const [quantity, setQuantity] = useState(0)
-    const [variants, setVariants] = useState(null)
-    const [selectedSku, setselectedSku] = useState(null)
     const [disableBtn, setDisableBtn] = useState(false)
+
+    const [optionTypes, setOptionTypes] = useState(null)
+    const [optionsValue, setOptionsValue] = useState(null)
+    const [options, setOptions] = useState(null)
+    const [sku, setSku] = useState(null)
+
+    console.log(sku);
 
     const { userData, authenticate } = UseWalletInfo();
     const { profile } = useProfile();
@@ -36,51 +41,101 @@ export default function MerchPage() {
     let params = useParams();
     let merchId = params.merchId;
 
-    let token = JSON.parse(localStorage.getItem("token"));
 
     useEffect(() => {
-
         const getdata = async (merchId) => {
             let pr = await getProduct(merchId)
             setProduct(pr)
             setImages(pr.media)
-            initialskuArray(pr.skus)
         }
         getdata(merchId)
 
     }, [])
 
 
-
-    const initialskuArray = (skuArray) => {
-        if (skuArray.length == 0) return
-
-        let variantsArray = []
-        variantsArray = skuArray.map(sku => {
-            let optionText = ""
-            sku.options.forEach((opt, i) => {
-                if (i > 0) {
-                    optionText += `| ${opt.variantName} : ${opt.value} `
-                } else {
-                    optionText += ` ${opt.variantName} : ${opt.value} `
-                }
-
+    // build array of option's type like : ["size" , "color"]
+    useEffect(() => {
+        if (product != null) {
+            let optionsTypeArray = []
+            optionsTypeArray = product.skus[0].options.map((option) => {
+                return option.variantName
             })
-            return {
-                id: sku._id,
-                price: sku.price,
-                option: optionText
+            setOptionTypes(optionsTypeArray)
+        }
+    }, [product])
+
+
+    // build array of product's options like : [ {size: 'xl', color: 'white'} , ...]
+    useEffect(() => {
+        if (optionTypes != null) {
+            if (optionTypes.length > 0) {
+                let optionsArray = []
+                product.skus.forEach((sku, i) => {
+                    let newOptionObject = {}
+                    sku.options.forEach(option => {
+                        newOptionObject[option.variantName] = option.value
+                    })
+                    optionsArray.push(newOptionObject)
+                })
+                setOptionsValue(optionsArray)
+            } else {
+                // set sku if havent options
+                setSku(product.skus[0])
             }
-        })
-        setVariants(variantsArray);
-        setselectedSku(variantsArray[0])
-    }
-
-    const ChangeSelected = (e) => {
-        setselectedSku(JSON.parse(e.target.value));
-    }
+        }
+    }, [optionTypes])
 
 
+    // build array of options name and values like :  [ {name: 'size', values: Array(2), selected: 'xl'} , ...]
+    useEffect(() => {
+        if (optionsValue != null) {
+            let optionsArray = []
+            optionTypes.forEach((optionType, i) => {
+                let optionObject = {}
+                optionObject['name'] = optionType
+                if (i == 0) {
+                    let valueArray = optionsValue.map(optionValue => optionValue[optionType])
+                    valueArray = [...new Set(valueArray)];
+                    optionObject['values'] = valueArray
+                    optionObject['selected'] = valueArray[0]
+                } else {
+                    let valueArray = optionsValue.map(optionValue => {
+                        if (optionValue[optionsArray[i - 1].name] == optionsArray[i - 1].selected)
+                            return optionValue[optionType]
+                    })
+                    valueArray = valueArray.filter(value => value != undefined)
+                    valueArray = [...new Set(valueArray)];
+                    optionObject['values'] = valueArray
+                    optionObject['selected'] = valueArray[0]
+                }
+                optionsArray.push(optionObject)
+            })
+            setOptions(optionsArray)
+        }
+    }, [optionsValue])
+
+
+    // set sku after change optionsArray
+    useEffect(() => {
+        if (options != null) {
+            let result = {};
+            product.skus.forEach(sku => {
+                let flag = true;
+                sku.options.forEach(option => {
+                    let find = options.find(opt => opt.name == option.variantName)
+                    if (find.selected != option.value) flag = false
+                })
+                if (flag) {
+                    result = sku
+                }
+            })
+            setSku(result);
+        }
+    }, [options])
+
+
+
+// add to baskset functionality
     const Addtobasket = async () => {
 
         if (profile == null) {
@@ -93,14 +148,14 @@ export default function MerchPage() {
         }
 
         const cart = {
-            skuID: selectedSku.id,
+            skuID: sku._id,
             quantity: quantity
         }
 
 
 
         if (product.ruleset == undefined) {
-           await addMerhcToCart(cart)
+            await addMerhcToCart(cart)
             return;
 
         }
@@ -141,6 +196,44 @@ export default function MerchPage() {
         setDisableBtn(false)
     }
 
+    // change option array selected element after select new option  value
+    const changeSelect = (e, optionName, index) => {
+        let optionsArray = options.map(option => {
+            if (option.name == optionName) {
+                return { ...option, selected: e.target.value }
+            } else {
+                return option
+            }
+        })
+        updateOptions(optionsArray, index);
+    }
+
+    // update options after change
+    const updateOptions = (newOptionArray, index) => {
+        let optionArray = newOptionArray.map((option, i) => {
+            if (i == 0) {
+                return option
+            } else {
+                let valueArray = optionsValue.map(optionValue => {
+                    if (optionValue[newOptionArray[i - 1].name] == newOptionArray[i - 1].selected)
+                        return optionValue[option.name]
+                })
+                valueArray = valueArray.filter(value => value != undefined)
+                valueArray = [...new Set(valueArray)];
+
+                let select = (index < i) ? valueArray[0] : option.selected
+                return {
+                    ...option,
+                    values: valueArray,
+                    selected: select
+                }
+            }
+        })
+        setOptions(optionArray);
+    }
+
+
+
 
     return (
         <div className="merch-page-container">
@@ -160,13 +253,17 @@ export default function MerchPage() {
                     <div className="detail-side col-12 col-md-6">
                         <p className="merch-title">{product.title}</p>
                         <p className="merch-descroption">{product.description}</p>
-                        <p className="merch-price">{`$${(selectedSku != null) ? (selectedSku.price) : ""}`}</p>
+                        <p className="merch-price">{`$${(sku != null) ? (sku.price) : ""}`}</p>
 
-                        {(variants && variants.length > 1) &&
+                        {(options && optionTypes.length > 0) &&
                             <div className="merch-options-wrap " >
-                                <div className="opt w-100">
-                                    <SpcialDropDownComp variant={variants} change={ChangeSelected} />
-                                </div>
+                                {options.map((option, i) => {
+                                    return (
+                                        <div style={{ width: "45%" }}>
+                                            <SpcialDropDownComp key={i} option={option} change={changeSelect} index={i} />
+                                        </div>
+                                    )
+                                })}
                             </div>
                         }
 
@@ -180,8 +277,8 @@ export default function MerchPage() {
                                 <img src={minus} alt="" />
                             </div>
                         </div>
-                        <div style={{height:"auto"}}> 
-                        <BasicButton click={Addtobasket} disabled={disableBtn}>Add to basket</BasicButton>
+                        <div style={{ height: "auto" }}>
+                            <BasicButton click={Addtobasket} disabled={disableBtn}>Add to basket</BasicButton>
                         </div>
                     </div>
 

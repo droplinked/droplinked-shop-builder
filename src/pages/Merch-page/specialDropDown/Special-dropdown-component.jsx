@@ -1,20 +1,20 @@
 
 
-import { useEffect , useState } from "react"
 
-export default function SpcialDropDownComp({ variant , change }) {
+export default function SpcialDropDownComp({ option, change, index }) {
 
 
     return (
         <div className="basic-dropdown-component-wrapper">
-      
-            <select  className="w-100" onChange={change} >
-          
-                {variant.map((item, i) => {
-                    return <option key={i}  value={JSON.stringify(item)}>{item.option}</option>
-               })}
+            <label className="select-lbl">{option.name}</label>
+            <select className="w-100"
+                value={option.selected}
+                onChange={(e) => { change(e, option.name, index) }} >
+                {option.values.map((value, i) => {
+                    return <option key={i} value={value}>{value}</option>
+                })}
             </select>
-            
+
         </div>
     )
 }
