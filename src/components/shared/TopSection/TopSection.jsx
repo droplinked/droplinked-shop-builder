@@ -3,6 +3,7 @@ import instaIcon from "../../../assest/icon/insta.png"
 import discordIcon from "../../../assest/icon/discord.png"
 import twitterIcon from "../../../assest/icon/twitter.png"
 import webIcon from "../../../assest/icon/web.png"
+import defaultProfile from "../../../assest/profile/defaultProfile.png"
 
 
 export default function TopSection({ pic, shopname, insta, twitter, discord, web }) {
@@ -10,11 +11,16 @@ export default function TopSection({ pic, shopname, insta, twitter, discord, web
     return (<>
         <div className="top-section-wrapper">
             <div className="d-flex justify-content-center align-content-center">
-                
-                    <div className='img-wrap' style={{border:"4px solid #8053ff"}}>
-                        {pic && <img src={pic} alt='' />}
-                    </div>
-               
+
+                <div className='img-wrap' style={{ border: "4px solid #8053ff" }}>
+                    {pic ?
+                        <img src={pic} alt='' />
+
+                        :
+                     <img src={defaultProfile} style={{height:"90%" , width:"90%" }} alt='' />
+                    }
+                </div>
+
             </div>
             <div className="d-flex justify-content-center align-content-center">
                 <div className="name-text">{shopname}</div>

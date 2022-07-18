@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import { useToasty } from "../../../context/toastify/ToastContext"
 
 import profileImg from "../../../assest/image/default profile/icons8-user-100.png"
+import defaultProfile from "../../../assest/profile/defaultProfile.png"
 import axios from 'axios';
 
 export default function InputImage({ image, setImage }) {
@@ -121,7 +122,7 @@ export default function InputImage({ image, setImage }) {
                 boxShadow='0px 2px 4px 0px rgba(0, 0, 0, 0.1)'
             >
                 <Box
-                    bgImage={(image == "") ? profileImg : image}
+                    bgImage={(image == "") ? defaultProfile : image}
                     w='100%'
                     h='100%'
                     border='6px'

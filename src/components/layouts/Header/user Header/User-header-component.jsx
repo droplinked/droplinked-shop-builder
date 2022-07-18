@@ -1,11 +1,12 @@
 
 import BasketModal from "../basket modal/basket-modal-component"
 import WalletButton from "../wallet button/wallet-button-component"
+import defaultProfile from "../../../../assest/profile/defaultProfile.png"
 
 import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
 import { useProfile } from "../../../../context/profile/ProfileContext"
 import { useState } from "react"
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../../../context/cart/CartContext"
 
 export default function UserHeader() {
@@ -94,6 +95,11 @@ export default function UserHeader() {
                 />
                 :
                 <div
+                    style={{
+                        backgroundImage: `url(${defaultProfile})`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "cover",
+                    }}
                     className="header-profile rounded-circle"
                     onClick={openProfileModal}
                 ></div>
