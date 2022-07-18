@@ -84,7 +84,7 @@ export default function ShopInfoComponent() {
                 <>
                     <InputImage image={shop.logo} setImage={changeShopLogo} />
 
-                    <FormInput value={`droplinked.io/${shop.name}`} label={'domain'} mt='20px' />
+                    <FormInput value={`droplinked.com/${shop.name}`} label={'domain'} mt='20px' />
 
                     <FormLabel
                         mt='20px'
