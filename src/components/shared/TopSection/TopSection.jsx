@@ -8,6 +8,8 @@ import defaultProfile from "../../../assest/profile/defaultProfile.png"
 
 export default function TopSection({ pic, shopname, insta, twitter, discord, web }) {
 
+
+    console.log(web);
     return (<>
         <div className="top-section-wrapper">
             <div className="d-flex justify-content-center align-content-center">
@@ -35,7 +37,7 @@ export default function TopSection({ pic, shopname, insta, twitter, discord, web
                         </a>
                     }
                     {(web != "") &&
-                        <a href={web} target='_blank' rel='noreferrer' className='social '>
+                        <a href={`https://${web}`} target='_blank' rel='noreferrer' className='social '>
                             <img src={webIcon} alt="" className='ratio ratio-1x1' />
                         </a>
                     }
