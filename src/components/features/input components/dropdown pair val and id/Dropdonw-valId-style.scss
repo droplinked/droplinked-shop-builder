@@ -1,0 +1,56 @@
+.basic-dropdown-component-wrapper {
+    width: 100%;
+  
+    & .select-lbl{
+      font-size: 18px;
+      color: white;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+  
+    & select {
+      border: 2px solid #b3b3b3;
+      border-radius: 8px;
+      padding: 12px 16px;
+      outline: none;
+      background-color: transparent;
+      color: #fff;
+      font-weight: 600;
+      font-size: 20px;
+      transition: 0.5s;
+  
+      & option {
+        color: #fff;
+        font-weight: 600;
+        font-size: 20px;
+        background-color: #333;
+        border:none;
+        outline: none;
+      }
+  
+      &:focus {
+        border: 2px solid #8053ff;
+      }
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .basic-dropdown-component-wrapper {
+      & .select-lbl{
+        font-size: 16px;
+        color: white;
+        margin-bottom: 5px;
+      }
+  
+      & select {
+        width: 100%;
+        padding: 12px 16px 9px 16px;
+        font-size: 16px;
+        & option {
+          font-size: 16px;
+          width: 100%;
+        }
+      }
+    }
+  }
+  

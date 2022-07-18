@@ -1,13 +1,13 @@
 import "./Add-product-page-style.scss"
 
-import BasicDropDown from "../../../components/features/input components/basic dropdown/Basic-dropdown-component"
+
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
 import FormInput from "../../../components/shared/FormInput/FormInput"
 import VariantItem from "../components/variant item component/Variant-item-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import AddVariantForm from "../components/add variant form/Add-variantForm-component"
 import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"
-
+import DropDownPairValId from "../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
 import { useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -35,8 +35,6 @@ function AddProductPage() {
 
     const navigate = useNavigate();
 
-    console.log(varintType)
-
 
     useEffect(() => {
         if (token == null) { navigate("/") }
@@ -45,11 +43,13 @@ function AddProductPage() {
             let vrnt = await getVariants();
             let coll = await getCollections()
             setVariantType(vrnt)
+            coll = coll.map(col =>{return  {id:col._id , value:col.title}})
             setCollection(coll)
         }
         getDate()
 
     }, [])
+
 
     const toggleAddVariant = () => {
         setAddvariant(p => !p)
@@ -149,11 +149,11 @@ function AddProductPage() {
             <div className="mb-4 w-100 p-0">
                 <FormInput label={"Title"} changeValue={changeTitle} value={title} />
             </div>
-            <div className="mb-4 w-100 p-0" >
-                <FormInput  type={"textarea"} label={"Description"} changeValue={changeDescription} value={description} />
+            <div className="mb-4 w-100 p-0" >            
+               <FormInput  type={"textarea"} label={"Description"} changeValue={changeDescription} value={description} /> 
             </div>
             <dir className="drop-wrape">
-                <BasicDropDown valArray={collectionList} place={"Choose collection"} cnhg={changeCollection} />
+            {collectionList &&  <DropDownPairValId pairArray={collectionList} change={changeCollection} placeholder={"Choose collection"}/>}
             </dir>
             <div className="mt-5 mb-3 w-100 d-flex justify-content-center align-items-center">
                 <InputImagesGroup setState={setImages} state={images} />
