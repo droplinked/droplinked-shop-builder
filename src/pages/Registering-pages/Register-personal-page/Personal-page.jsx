@@ -7,8 +7,8 @@ import { toastValue } from "../../../context/toastify/ToastContext"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
+import { updateProfileApi } from "../../../api/BaseUser-apis/Profile-api"
 import { ReactComponent as IconMenu } from "../../../assest/icon/icons8-delete.svg"
-import { BASE_URL } from "../../../api/BaseUrl"
 
 export default function PersonalPage() {
 
@@ -19,7 +19,7 @@ export default function PersonalPage() {
 
     const { errorToast, successToast } = useContext(toastValue)
     let user = JSON.parse(localStorage.getItem('profile'));
-    const token = JSON.parse(localStorage.getItem('token'));
+
 
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: {
@@ -68,7 +68,7 @@ export default function PersonalPage() {
         formData.append("image", file);
         axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
-                
+
                 setUploadingImage(false);
                 successToast(e.data.message);
                 setProfileImg(e.data.small)
@@ -89,7 +89,7 @@ export default function PersonalPage() {
 
 
 
-    const onSubmit = data => {
+    const onSubmit = async (data) => {
         setLoading(true)
         let profileInfo = {
             firstname: data.firstName,
@@ -97,73 +97,74 @@ export default function PersonalPage() {
             avatar: (profileImg == undefined) ? "" : profileImg,
             phone: data.phoneNumber,
         }
-        axios.put(BASE_URL+'/profile', profileInfo,
-            { headers: { Authorization: 'Bearer ' + token } }
-        ).then(res => {
-          //  updateProfile(res.data.data.user)
+
+        let result = await updateProfileApi(profileInfo)
+        console.log(result)
+        if (result.status == 'success') {
+            updateProfile(result.data.user)
             navigate("/register/shopInfo");
-        })
-            .catch(err => {
-                errorToast(err.response.data.reason);
-                setLoading(false);
-            })
+        } else {
+            errorToast(result.reason)
+        }
+
+        setLoading(false);
     }
 
-console.log("x");
+
     return (
         // <RegisterStructure level={"personalinfo"}>
 
-            <div className="register-personalinfo-wrapper">
+        <div className="register-personalinfo-wrapper">
 
-                <div className="input-perosnal-image"
-                    style={{ backgroundImage: `url(${(profileImg == null || profileImg == "") ? "" : profileImg})` }}>
-                    {(uploadingImage) &&
-                        <div className="spinner-border" role="status">
-                            <span className="sr-only"></span>
-                        </div>
-                    }
-                    <input className="d-none" type="file" ref={inputFile} onChange={changeImage} />
-                    <div className="add-image-hov"
-                        onClick={chooseFile}>+</div>
-                    {(profileImg == undefined || profileImg == "") ? <></> :
-                        <div className="delet-image-icon" onClick={deleteImage}>
-                            <IconMenu style={{ width: "100%", height: "100%" }} />
-                        </div>
-                    }
-                </div>
-                
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="d-flex justify-content-between w-100" style={{ maxWidth: "100%" }}>
-                        <div className="register-label-input" style={{ width: "45%" }}>
-                            <label>First name</label>
-                            <input type="text"
-                                {...register("firstName", { required: true })} />
-                            {errors.firstName?.type === 'required' && <span className="register-error">required</span>}
-                        </div>
-
-                        <div className="register-label-input" style={{ width: "45%" }}>
-                            <label>Last name</label>
-                            <input type="text"
-                                {...register("lastName", { required: true })} />
-                            {errors.lastName?.type === 'required' && <span className="register-error">required</span>}
-                        </div>
-
+            <div className="input-perosnal-image"
+                style={{ backgroundImage: `url(${(profileImg == null || profileImg == "") ? "" : profileImg})` }}>
+                {(uploadingImage) &&
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only"></span>
                     </div>
-                    <div className="register-label-input ">
-                        <label>Email</label>
-                        <input type="email" placeholder="email" readonly value={user.email} />
+                }
+                <input className="d-none" type="file" ref={inputFile} onChange={changeImage} />
+                <div className="add-image-hov"
+                    onClick={chooseFile}>+</div>
+                {(profileImg == undefined || profileImg == "") ? <></> :
+                    <div className="delet-image-icon" onClick={deleteImage}>
+                        <IconMenu style={{ width: "100%", height: "100%" }} />
                     </div>
-                    <div className="register-label-input ">
-                        <label>Phone number</label>
-                        <input type="number"
-                            {...register("phoneNumber")} />
-                    </div>
-                    {/* {errors.phoneNumber?.type === 'required' && <span className="register-error">phone number is required</span>} */}
-                    <div className="d-flex justify-content-end w-100">
-                        <input type="submit" value="next" className={`next-back-btn ${(loading) ? "loading-btn" : "non-loading-btn"}`} />
-                    </div>
-                </form>
+                }
             </div>
+
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="d-flex justify-content-between w-100" style={{ maxWidth: "100%" }}>
+                    <div className="register-label-input" style={{ width: "45%" }}>
+                        <label>First name</label>
+                        <input type="text"
+                            {...register("firstName", { required: true })} />
+                        {errors.firstName?.type === 'required' && <span className="register-error">required</span>}
+                    </div>
+
+                    <div className="register-label-input" style={{ width: "45%" }}>
+                        <label>Last name</label>
+                        <input type="text"
+                            {...register("lastName", { required: true })} />
+                        {errors.lastName?.type === 'required' && <span className="register-error">required</span>}
+                    </div>
+
+                </div>
+                <div className="register-label-input ">
+                    <label>Email</label>
+                    <input type="email" placeholder="email" readonly value={user.email} />
+                </div>
+                <div className="register-label-input ">
+                    <label>Phone number</label>
+                    <input type="number"
+                        {...register("phoneNumber")} />
+                </div>
+                {/* {errors.phoneNumber?.type === 'required' && <span className="register-error">phone number is required</span>} */}
+                <div className="d-flex justify-content-end w-100">
+                    <input type="submit" value="next" className={`next-back-btn ${(loading) ? "loading-btn" : "non-loading-btn"}`} />
+                </div>
+            </form>
+        </div>
         // </RegisterStructure>
     )
 }

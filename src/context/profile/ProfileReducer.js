@@ -11,8 +11,9 @@ export const ProflieReduser = (profile, action) => {
       return { ...action.payload.user };
 
     case "UPDATE_PROFILE":
-      localStorage.setItem("profile", JSON.stringify(action.payload));
-      return { ...action.payload };
+      let newProfile = {...profile , ...action.payload }
+      localStorage.setItem("profile", JSON.stringify(newProfile));
+      return newProfile;
 
     case "LOGOUT":
       localStorage.setItem("profile", null);
