@@ -1,9 +1,8 @@
-import { Flex, Button, Spinner, Box, Input, FormLabel } from '@chakra-ui/react'
+import {  Spinner, Box, Input, FormLabel } from '@chakra-ui/react'
 import { MdOutlineEdit , MdDeleteOutline} from "react-icons/md";
 import { useRef, useState } from 'react'
 import { useToasty } from "../../../context/toastify/ToastContext"
 
-import profileImg from "../../../assest/image/default profile/icons8-user-100.png"
 import defaultProfile from "../../../assest/profile/defaultProfile.png"
 import axios from 'axios';
 
