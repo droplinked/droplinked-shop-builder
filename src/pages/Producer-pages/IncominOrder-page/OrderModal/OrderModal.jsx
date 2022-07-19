@@ -9,6 +9,7 @@ import {
     Button
 } from "@chakra-ui/react"
 import { useState } from "react"
+import { convertToStandardFormat } from "../../../../utils/date.utils/convertDate"
 
 import MerchComponent from "../merchComponent/MerchComponent"
 
@@ -26,12 +27,6 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
         newOrderList.items[i] = { ...item, product: product }
     })
 
-    //get date with format 
-    const getDate = () => {
-        let date = new Date(order.createdAt).toString().split(' ')
-        date = date[1] + '/' + date[2] + '/' + date[3]
-        return date
-    }
 
     // get quantity of merchs
     const getQuantity = () => {
@@ -83,7 +78,7 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
                             fontWeight='600'
                             mb={{ base: "5px", md: '10px' }}
                         >
-                            Date : {getDate()}
+                            Date : {convertToStandardFormat(order.createdAt)}
                         </Text>
                     </Flex>
                     <Flex w='100%' justifyContent='space-between'>

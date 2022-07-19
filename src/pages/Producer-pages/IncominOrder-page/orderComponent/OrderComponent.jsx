@@ -2,6 +2,7 @@ import { Text, Box, Flex, useDisclosure, Stack, Skeleton, Image } from "@chakra-
 import { useState, useEffect } from "react"
 import { useOrder } from "../../../../context/order/OrdersContext"
 import { getProduct } from "../../../../api/Public-apis/Product-api"
+import { convetToCustomFormat } from "../../../../utils/date.utils/convertDate"
 
 import OrderModal from "../OrderModal/OrderModal"
 
@@ -20,17 +21,17 @@ export default function OrderComponent({ order }) {
     }, [])
 
     // calculaate date of order
-    const getOrderTime = () => {
-        let timeOfOrder = new Date(order.createdAt).getTime()
-        let now = new Date().getTime()
-        let time = (now - timeOfOrder) / (1000 * 3600 * 24);
+    // const getOrderTime = () => {
+    //     let timeOfOrder = new Date(order.createdAt).getTime()
+    //     let now = new Date().getTime()
+    //     let time = (now - timeOfOrder) / (1000 * 3600 * 24);
 
-        if (time > 1) {
-            return `${parseInt(time)} day`
-        } else {
-            return `${parseInt(time * 24)} hours`
-        }
-    }
+    //     if (time > 1) {
+    //         return `${parseInt(time)} day`
+    //     } else {
+    //         return `${parseInt(time * 24)} hours`
+    //     }
+    // }
 
     let totalQuantity = order.items.map(item => item.quantity).reduce((total, quan) => { return total + quan }, 0)
 
@@ -67,7 +68,7 @@ export default function OrderComponent({ order }) {
                             fontWeight='600'
                             mb={{ base: "10px", md: '10px' }}
                         >
-                            Order time : {getOrderTime()} ago
+                            Order time : {convetToCustomFormat(order.createdAt)}
                         </Text>
 
                         {(!order.seenByProducer) &&

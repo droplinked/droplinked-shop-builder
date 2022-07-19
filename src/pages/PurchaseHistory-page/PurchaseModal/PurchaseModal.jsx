@@ -9,6 +9,8 @@ import {
     Button,
 } from "@chakra-ui/react"
 
+import { convertToStandardFormat } from "../../../utils/date.utils/convertDate"
+
 import Item from "../ItemComponent/ItemComponent"
 
 export default function PurchaseModal({ order, isOpen, onClose }) {
@@ -23,14 +25,9 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
         return total
     }
 
-    const getDate = () => {
-        let date = new Date(order.createdAt).toString().split(' ')
-        date = date[1] + '/' + date[2] + '/' + date[3]
-        return date
-    }
+
 
     let totalPrice = getTotalPrice()
-    let date = getDate()
     let addressId = order.customerAddressBookID
 
     return (<>
@@ -65,7 +62,7 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                             fontWeight='600'
                             mb='8px'
                         >
-                            Date :  {date}
+                            Date :  {convertToStandardFormat(order.createdAt)}
                         </Text>
                     </Flex>
                     <Flex w='100%' justifyContent='space-between'>

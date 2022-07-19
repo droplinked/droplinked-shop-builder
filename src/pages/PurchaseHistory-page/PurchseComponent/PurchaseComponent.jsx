@@ -1,6 +1,7 @@
 import { Box, Flex, Text, Image, useDisclosure } from "@chakra-ui/react"
 import { useState, useEffect } from 'react'
 import { getProduct } from "../../../api/Public-apis/Product-api"
+import { convetToCustomFormat } from "../../../utils/date.utils/convertDate"
 
 
 import PurchaseModal from '../PurchaseModal/PurchaseModal'
@@ -18,12 +19,6 @@ export default function PurchaseHistory({ order }) {
         addProductToOrder(Products);
     }, [])
 
-    // get order date 
-    const getDate = () => {
-        let date = new Date(orderData.createdAt).toString().split(' ')
-        date = date[1] + '/' + date[2] + '/' + date[3]
-        return date
-    }
 
     // get data of products with productID
     const getProductsArray = async (productsId) => {
@@ -81,7 +76,7 @@ export default function PurchaseHistory({ order }) {
                             fontWeight='500'
                             mr={{ base: '0px', md: '30px' }}
                         >
-                            date : {getDate()}
+                            date : {convetToCustomFormat(orderData.createdAt)}
                         </Text>
                         <Text
                             color='#ddd'
