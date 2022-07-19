@@ -19,3 +19,18 @@ export const updateShopApi = async (shopinfo) => {
     return err.response.data;
   }
 };
+
+
+
+export const setImsType = async (imsType) => {
+  try {
+    const res = await axios.post(`${BASE_URL}/producer/profile/ims`, 
+    { type: imsType }
+    , {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return true;
+  } catch (err) {
+    return err.response;
+  }
+};

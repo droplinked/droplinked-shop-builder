@@ -4,9 +4,10 @@ import { useState } from "react"
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { BASE_URL } from "../../../api/BaseUrl"
+import { setImsType } from "../../../api/Producer-apis/Shop-api"
 
 export default function RegisterIms() {
     const [ImsSystem, setImsSystem] = useState(undefined);
@@ -18,31 +19,48 @@ export default function RegisterIms() {
     const token = JSON.parse(localStorage.getItem('token'));
 
     const submitType = () => {
-        setLoading(true)
+
         if (ImsSystem == undefined) {
             toast.error("please choose a plan")
-            setLoading(false)
-        } else {
-            const ImsType = { type: ImsSystem }
-            axios.post(`${BASE_URL}/producer/profile/ims`, ImsType,
-                { headers: { Authorization: 'Bearer ' + token } }
-            ).then(res => {
-                if (res.data.status == "success") {
-                    toast.success("account created")
-                    updateProfile({
-                        ...user,
-                        status: "IMS_TYPE_COMPLETED",
-                        imsType: ImsSystem
-                    })
-                    navigate(`/${user.shopName}`);
-                }
-
-
-            }).catch(e => {
-                toast.error(e.response.data.reason)
-                setLoading(false);
-            })
+            return;
         }
+        // const ImsType = { type: ImsSystem }
+
+        setLoading(true)
+
+        let result = setImsType(ImsSystem)
+        if (result == true) {
+            toast.success("account created")
+            updateProfile({
+                ...user,
+                status: "IMS_TYPE_COMPLETED",
+                imsType: ImsSystem
+            })
+        //    navigate(`/${user.shopName}`);
+        }else{
+            toast.error(result)
+        }
+
+        setLoading(false)
+        // axios.post(`${BASE_URL}/producer/profile/ims`, ImsType,
+        //     { headers: { Authorization: 'Bearer ' + token } }
+        // ).then(res => {
+        //     if (res.data.status == "success") {
+        //         toast.success("account created")
+        //         updateProfile({
+        //             ...user,
+        //             status: "IMS_TYPE_COMPLETED",
+        //             imsType: ImsSystem
+        //         })
+        //         navigate(`/${user.shopName}`);
+        //     }
+
+
+        // }).catch(e => {
+        //     toast.error(e.response.data.reason)
+        //     setLoading(false);
+        // })
+
     }
 
     return (
@@ -54,7 +72,7 @@ export default function RegisterIms() {
                     <button className={`ims-btn ${(ImsSystem == "DROPLINKED") ? "ims-checked-btn" : "ims-unchecked-btn"}`}
                         onClick={() => { setImsSystem("DROPLINKED") }}
                     >DIMST</button>
-                    <button className={`ims-btn ${(ImsSystem == "SHOPIFY") ? "ims-checked-btn" : "ims-unchecked-btn"}`}
+                    <button disabled={true} className={`ims-btn ${(ImsSystem == "SHOPIFY") ? "ims-checked-btn" : "ims-unchecked-btn"}`}
                         onClick={() => { setImsSystem("SHOPIFY") }}>Shopify</button>
                 </div>
                 <div className="d-flex justify-content-between w-100 mt-5">
