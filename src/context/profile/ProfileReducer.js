@@ -16,15 +16,7 @@ export const ProflieReduser = (profile, action) => {
       return newProfile;
 
     case "LOGOUT":
-      localStorage.setItem("profile", null);
-      localStorage.setItem("shopping_cart", null);
-      localStorage.setItem("checkout-createdCheckout", null);
-      localStorage.setItem("checkout-customerId", null);
-      localStorage.setItem("checkout-selectedShipping", null);
-      localStorage.setItem("checkout-selectedAddress", null);
-      localStorage.setItem("checkout-selectedCard", null);
-      localStorage.setItem("token", null);
-      localStorage.setItem("registerEmail", null);
+      localStorage.clear()
       return null;
 
     default:

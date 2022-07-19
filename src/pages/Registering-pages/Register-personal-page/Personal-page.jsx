@@ -99,7 +99,6 @@ export default function PersonalPage() {
         }
 
         let result = await updateProfileApi(profileInfo)
-        console.log(result)
         if (result.status == 'success') {
             updateProfile(result.data.user)
             navigate("/register/shopInfo");

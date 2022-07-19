@@ -1,12 +1,10 @@
 import "./Ims-page-style.scss"
 
 import { useState } from "react"
-import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
-import { BASE_URL } from "../../../api/BaseUrl"
 import { setImsType } from "../../../api/Producer-apis/Shop-api"
 
 export default function RegisterIms() {
@@ -16,50 +14,27 @@ export default function RegisterIms() {
     let navigate = useNavigate();
 
     let user = profile
-    const token = JSON.parse(localStorage.getItem('token'));
 
-    const submitType = () => {
+    const submitType = async () => {
 
         if (ImsSystem == undefined) {
             toast.error("please choose a plan")
             return;
         }
-        // const ImsType = { type: ImsSystem }
 
         setLoading(true)
 
-        let result = setImsType(ImsSystem)
+        let result = await setImsType(ImsSystem)
         if (result == true) {
             toast.success("account created")
-            updateProfile({
-                ...user,
-                status: "IMS_TYPE_COMPLETED",
-                imsType: ImsSystem
-            })
-        //    navigate(`/${user.shopName}`);
-        }else{
+            let newUser = { ...user, status: "IMS_TYPE_COMPLETED", imsType: ImsSystem }
+            updateProfile(newUser)
+            navigate(`/${user.shopName}`);
+        } else {
             toast.error(result)
         }
 
-        setLoading(false)
-        // axios.post(`${BASE_URL}/producer/profile/ims`, ImsType,
-        //     { headers: { Authorization: 'Bearer ' + token } }
-        // ).then(res => {
-        //     if (res.data.status == "success") {
-        //         toast.success("account created")
-        //         updateProfile({
-        //             ...user,
-        //             status: "IMS_TYPE_COMPLETED",
-        //             imsType: ImsSystem
-        //         })
-        //         navigate(`/${user.shopName}`);
-        //     }
-
-
-        // }).catch(e => {
-        //     toast.error(e.response.data.reason)
-        //     setLoading(false);
-        // })
+        setLoading(false)      
 
     }
 
