@@ -9,6 +9,8 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
     const [loading, setLoading] = useState(false)
     const token = JSON.parse(localStorage.getItem('token'));
 
+    const profile = JSON.parse(localStorage.getItem('profile'));
+
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: {
             line1: (addressData) && addressData.addressLine1,
@@ -26,6 +28,8 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
         setLoading(true);
 
         let addresInfo = {
+            firstname: profile.firstname,
+            lastname: profile.lastname,
             addressLine1: data.line1,
             addressLine2: data.line2,
             country: data.country,

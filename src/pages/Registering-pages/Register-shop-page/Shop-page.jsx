@@ -9,6 +9,7 @@ import { useProfile } from "../../../context/profile/ProfileContext"
 import { ReactComponent as IconMenu } from "../../../assest/icon/icons8-delete.svg"
 import { BASE_URL } from "../../../api/BaseUrl"
 import { toastValue } from "../../../context/toastify/ToastContext"
+import { updateShopApi } from "../../../api/Producer-apis/Shop-api"
 
 
 export default function RegisterShop() {
@@ -17,12 +18,12 @@ export default function RegisterShop() {
     const [addressData, setAddressdata] = useState(undefined)
     const [loading, setLoading] = useState(false)
     const [uploadingImage, setUploadingImage] = useState(false);
-    const { updateProfile, profile } = useProfile()
+    const {  profile } = useProfile()
     const { errorToast, successToast } = useContext(toastValue)
 
     let x = 1;
     let user = profile
-    console.log(user);
+
     const shopname = user.shopName;
     const token = JSON.parse(localStorage.getItem('token'));
     let navigate = useNavigate();
@@ -45,8 +46,8 @@ export default function RegisterShop() {
         }
     }, [x])
 
-    const submitForm = () => {
-        setLoading(true);
+    const submitForm = async () => {
+
 
         const address = JSON.parse(localStorage.getItem('address'));
 
@@ -73,19 +74,16 @@ export default function RegisterShop() {
             shopLogo: profileImg,
             shopAddressID: address._id
         }
+        setLoading(true);
+        let result = await updateShopApi(shopInfo)
 
-        axios.put(BASE_URL + '/producer/shop/info', shopInfo,
-            { headers: { Authorization: 'Bearer ' + token } }
-        )
-            .then(res => {
-                localStorage.setItem("shop", JSON.stringify(res.data.data.shop));
-                navigate("/register/IMSSelect");
-            }
-            )
-            .catch(e => {
-                errorToast(e.response.data.reason)
-                setLoading(false);
-            })
+        if (result.status == 'success') {
+            localStorage.setItem("shop", JSON.stringify(result.data.shop));
+            navigate("/register/IMSSelect");
+        } else {
+            errorToast(result.reason)
+        }
+        setLoading(false);
     }
 
 
@@ -145,93 +143,93 @@ export default function RegisterShop() {
     }
 
     return (
-   
-   <>
-        <div className="register-shopinfo-wrapper">
-            {(!showAddress) && <>
-                <div className="input-perosnal-image d-flex justify-content-center align-items-center" style={{ backgroundImage: `url(${(profileImg == undefined) ? "" : profileImg})` }}>
-                    <input className="d-none" type="file" ref={inputFile} onChange={changeImage} />
-                    {(uploadingImage) &&
-                        <div className="spinner-border" role="status">
-                            <span className="sr-only"></span>
-                        </div>
-                    }
-                    <div className="add-image-hov"
-                        onClick={chooseFile}>+</div>
-                    {(profileImg == undefined || profileImg == "") ? <></> :
-                        <div className="delet-image-icon" onClick={deleteImage}>
-                            <IconMenu style={{ width: "100%", height: "100%" }} />
-                        </div>
-                    }
-                </div>
 
-                <div className="register-label-input ">
-                    <label>domain</label>
-                    <input type="text" placeholder="" value={`droplinked.io/${shopname}`} readonly />
-                </div>
+        <>
+            <div className="register-shopinfo-wrapper">
+                {(!showAddress) && <>
+                    <div className="input-perosnal-image d-flex justify-content-center align-items-center" style={{ backgroundImage: `url(${(profileImg == undefined) ? "" : profileImg})` }}>
+                        <input className="d-none" type="file" ref={inputFile} onChange={changeImage} />
+                        {(uploadingImage) &&
+                            <div className="spinner-border" role="status">
+                                <span className="sr-only"></span>
+                            </div>
+                        }
+                        <div className="add-image-hov"
+                            onClick={chooseFile}>+</div>
+                        {(profileImg == undefined || profileImg == "") ? <></> :
+                            <div className="delet-image-icon" onClick={deleteImage}>
+                                <IconMenu style={{ width: "100%", height: "100%" }} />
+                            </div>
+                        }
+                    </div>
 
-                <div className="register-label-input ">
-                    <label>about your shop</label>
-                    <textarea id="w3review" name="w3review" rows="4" cols="50"
-                        type="text" ref={descriptionInp} defaultValue={user.description || ""} >
-                    </textarea>
-                    {/* <input type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""} /> */}
-                </div>
+                    <div className="register-label-input ">
+                        <label>domain</label>
+                        <input type="text" placeholder="" value={`droplinked.io/${shopname}`} readonly />
+                    </div>
 
-                {/* <div className="register-label-input ">
+                    <div className="register-label-input ">
+                        <label>about your shop</label>
+                        <textarea id="w3review" name="w3review" rows="4" cols="50"
+                            type="text" ref={descriptionInp} defaultValue={user.description || ""} >
+                        </textarea>
+                        {/* <input type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""} /> */}
+                    </div>
+
+                    {/* <div className="register-label-input ">
                     <label>about your shop</label>
                     <input type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""} />
                 </div> */}
 
-                <div className="register-label-input ">
-                    <label>website</label>
-                    <input type="text" ref={siteInp} defaultValue={user.web || ""} />
-                </div>
-
-                <div className="register-label-input ">
-                    <label>discord</label>
-                    <input type="text" placeholder="username" ref={discordInp} defaultValue={user.discord || ""} />
-                </div>
-
-                <div className="register-label-input ">
-                    <label>twitter</label>
-                    <input type="text" placeholder="username" ref={twitterInp} defaultValue={user.twitter || ""} />
-                </div>
-
-                <div className="register-label-input ">
-                    <label>instagram</label>
-                    <input type="text" placeholder="username" ref={instaInp} defaultValue={user.instagram || ""} />
-                </div>
-
-                {(addressData == undefined) ?
-                    <div className="d-flex justify-content-center">
-                        <button className="next-back-btn" style={{ width: "250px", border: "1px solid white", fontSize: "18px" }} onClick={() => setShowAddress(true)}>Add address</button>
+                    <div className="register-label-input ">
+                        <label>website</label>
+                        <input type="text" ref={siteInp} defaultValue={user.web || ""} />
                     </div>
-                    :
-                    <div className="address-detail-shopinfo">
-                        <span>{addressData.country} - {addressData.city}</span>
-                        <span>{addressData.line1 || addressData.addressLine1}</span>
-                        <span>{addressData.Zip || addressData.zip}</span>
-                        <div className="m-2 d-flex justify-content-between">
-                            <button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>edit</button>
-                            <button className="edit-address-detail" style={{ color: "red" }} onClick={() => { setAddressdata(undefined) }}>delete</button></div>
+
+                    <div className="register-label-input ">
+                        <label>discord</label>
+                        <input type="text" placeholder="username" ref={discordInp} defaultValue={user.discord || ""} />
                     </div>
+
+                    <div className="register-label-input ">
+                        <label>twitter</label>
+                        <input type="text" placeholder="username" ref={twitterInp} defaultValue={user.twitter || ""} />
+                    </div>
+
+                    <div className="register-label-input ">
+                        <label>instagram</label>
+                        <input type="text" placeholder="username" ref={instaInp} defaultValue={user.instagram || ""} />
+                    </div>
+
+                    {(addressData == undefined) ?
+                        <div className="d-flex justify-content-center">
+                            <button className="next-back-btn" style={{ width: "250px", border: "1px solid white", fontSize: "18px" }} onClick={() => setShowAddress(true)}>Add address</button>
+                        </div>
+                        :
+                        <div className="address-detail-shopinfo">
+                            <span>{addressData.country} - {addressData.city}</span>
+                            <span>{addressData.line1 || addressData.addressLine1}</span>
+                            <span>{addressData.Zip || addressData.zip}</span>
+                            <div className="m-2 d-flex justify-content-between">
+                                <button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>edit</button>
+                                <button className="edit-address-detail" style={{ color: "red" }} onClick={() => { setAddressdata(undefined) }}>delete</button></div>
+                        </div>
+                    }
+
+                    <div className="d-flex justify-content-between w-100">
+                        <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
+                            onClick={() => { navigate("/register/personalInfo") }}
+                        >back</button>
+                        <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
+                            onClick={submitForm}
+                        >next</button>
+                    </div>
+                </>
                 }
+                {showAddress && <ShopInfoAddress close={closeAddres} addAddressF={addAddressF} addressData={addressData} />}
 
-                <div className="d-flex justify-content-between w-100">
-                    <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
-                        onClick={() => { navigate("/register/personalInfo") }}
-                    >back</button>
-                    <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
-                        onClick={submitForm}
-                    >next</button>
-                </div>
-            </>
-            }
-            {showAddress && <ShopInfoAddress close={closeAddres} addAddressF={addAddressF} addressData={addressData} />}
-
-        </div>
+            </div>
         </>
-   // </RegisterStructure>
-   )
+        // </RegisterStructure>
+    )
 }
