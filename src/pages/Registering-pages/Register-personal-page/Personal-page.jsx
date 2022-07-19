@@ -1,23 +1,21 @@
 import "./Personal-page-style.scss"
 
-import axios from 'axios';
 
-import { useRef, useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { toastValue } from "../../../context/toastify/ToastContext"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { updateProfileApi } from "../../../api/BaseUser-apis/Profile-api"
-import { ReactComponent as IconMenu } from "../../../assest/icon/icons8-delete.svg"
+import  InputImage  from "../../../components/shared/InputImage/InputImage"
 
 export default function PersonalPage() {
 
-    const [profileImg, setProfileImg] = useState(null)
+    const [profileImg, setProfileImg] = useState("")
     const [loading, setLoading] = useState(false);
-    const [uploadingImage, setUploadingImage] = useState(false);
     const { updateProfile } = useProfile()
 
-    const { errorToast, successToast } = useContext(toastValue)
+    const { errorToast } = useContext(toastValue)
     let user = JSON.parse(localStorage.getItem('profile'));
 
 
@@ -35,58 +33,7 @@ export default function PersonalPage() {
         }
     })
 
-    const inputFile = useRef(null);
     let navigate = useNavigate();
-    const chooseFile = () => {
-        inputFile.current.click();
-    };
-
-
-    const changeImage = (e) => {
-
-        setUploadingImage(true);
-
-        const file = e.target.files[0];
-
-        if (file.size > 500000) {
-            errorToast("File size exceeded (Max: 500 kb)");
-            setUploadingImage(false);
-            return;
-        }
-        if (
-            file.type !== "image/jpeg" &&
-            file.type !== "image/png" &&
-            file.type !== "image/gif" &&
-            file.type !== "image/jpg"
-        ) {
-            errorToast("File type not supported");
-            setUploadingImage(false);
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("image", file);
-        axios.post('https://cdn.droplinked.com/upload', formData)
-            .then(e => {
-
-                setUploadingImage(false);
-                successToast(e.data.message);
-                setProfileImg(e.data.small)
-            })
-            .catch(e => {
-                errorToast(e.response.data.message);
-                setUploadingImage(false);
-                return;
-            })
-    }
-
-    const deleteImage = () => {
-        user = { ...user, avatar: "" }
-        localStorage.setItem('profile', JSON.stringify(user));
-        setProfileImg(null);
-        inputFile.current.value = ""
-    }
-
 
 
     const onSubmit = async (data) => {
@@ -115,22 +62,7 @@ export default function PersonalPage() {
 
         <div className="register-personalinfo-wrapper">
 
-            <div className="input-perosnal-image"
-                style={{ backgroundImage: `url(${(profileImg == null || profileImg == "") ? "" : profileImg})` }}>
-                {(uploadingImage) &&
-                    <div className="spinner-border" role="status">
-                        <span className="sr-only"></span>
-                    </div>
-                }
-                <input className="d-none" type="file" ref={inputFile} onChange={changeImage} />
-                <div className="add-image-hov"
-                    onClick={chooseFile}>+</div>
-                {(profileImg == undefined || profileImg == "") ? <></> :
-                    <div className="delet-image-icon" onClick={deleteImage}>
-                        <IconMenu style={{ width: "100%", height: "100%" }} />
-                    </div>
-                }
-            </div>
+            <InputImage image={profileImg} setImage={setProfileImg}/>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="d-flex justify-content-between w-100" style={{ maxWidth: "100%" }}>
