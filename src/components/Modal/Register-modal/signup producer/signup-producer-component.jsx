@@ -43,7 +43,6 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         let result = await producerSignup(info)
         if (result == true) {
             successToast("Your account has been successfully created.");
-            localStorage.setItem('registerEmail', JSON.stringify(info.email))
             close()
             navigate("/emailConfirmation");
         } else {
