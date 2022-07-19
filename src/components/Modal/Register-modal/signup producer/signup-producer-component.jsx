@@ -4,6 +4,7 @@ import { useState, useContext } from "react"
 import { useForm } from "react-hook-form";
 import { toastValue } from "../../../../context/toastify/ToastContext"
 import { producerSignup } from "../../../../api/Producer-apis/Auth-api"
+import { isValidEmail } from "../../../../utils/validations/emailValidation"
 
 export default function SignupProducer({ close, shopname, switchToggle }) {
 
@@ -29,7 +30,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
             return;
         }
 
-        if (validationEmail(info.email)) {
+        if (isValidEmail(info.email) == false) {
             setError("Please enter a valid email address.")
             return;
         }
@@ -50,16 +51,6 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         }
         setLoading(false)
     };
-
-    const validationEmail = (em) => {
-        let regx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-        if (regx.test(em)) {
-            return false
-        } else {
-            return true
-        }
-    }
-
 
 
 
