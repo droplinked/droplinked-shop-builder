@@ -65,6 +65,30 @@ export default function PaymentPage() {
         setDisables(false)
     }
 
+    const rootpaymentsPayment = async () => {
+        setDisables(true) //Don't know what that is, copied from stripe
+
+        const ROOTPAYMENTS_API = 'https://api.staging.rootpayments.com';
+        const ROOTPAYMENTS_INTEGRATION_ID = '87f9ac39-1945-409b-a50d-39be81b7ea02'; // Replace with your integration ID
+
+        //Create RootPayments order
+        await axios.post(`${ROOTPAYMENTS_API}/orders`, {
+            "amount": {
+                "amount": getTotalofMerchs() + getTotalofShipping(),
+                "currency": "USD"
+            },
+            "token": "mia", // or stx - depends on Integration configuration
+            "integration_id": ROOTPAYMENTS_INTEGRATION_ID,
+            "callback_url": `https://api.staging.rootpayments.com/orders/callback?order=${cart.id}` // Replace with your callback URL - this should point to your backend API that handles order statuses. Note the order=${cart.id} parameter in the callback URL (so that you can identify the order by its ID)
+        }, {}).then(e => {
+            console.log('Order created: ', e);
+            setRootpaymentsOrderID(e.data.data.id);
+        }).catch(e => {
+            console.log(e)
+        })
+
+        setDisables(false) //Don't know what that is, copied from stripe
+    }
 
     return (
         <Box w="100%" maxW="1000px" mx="auto" px={{ base: "20px", md: "80px" }}>
@@ -132,8 +156,29 @@ export default function PaymentPage() {
                                         setPaymentSelected("Stx")
                                     }}
                                 >Hiro Wallet</Button>
+
+                                <Button
+                                    w="40%"
+                                    color="#8053ff"
+                                    border='1px'
+                                    borderColor='#8053ff'
+                                    bgColor='#222'
+                                    _hover={{
+                                        color: "#222",
+                                        borderColor: '#222',
+                                        bgColor: '#8053ff',
+                                    }}
+                                    disabled={disableBtns}
+                                    onClick={rootpaymentsPayment}
+                                >Root Payments</Button>
                             </Box>
                         </Box>
+
+                        { rootpaymentsOrderID && (
+                            <Box w="100%" mb="40px" display="flex" alignItems="center" justifyContent="center">
+                                <stacks-checkout orderid={rootpaymentsOrderID}></stacks-checkout>
+                            </Box>
+                        )}
                     </Box>
 
                 </>
