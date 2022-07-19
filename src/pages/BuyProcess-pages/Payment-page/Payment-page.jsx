@@ -10,6 +10,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useCart } from "../../../context/cart/CartContext"
 import { checkoutCart } from "../../../api/BaseUser-apis/Cart-api"
 
+import axios from "axios"
 import StripeComponent from "./stripe modal/stripe-modal-component"
 import Loading from "../../../components/shared/loading/Loading"
 

@@ -9,7 +9,7 @@ const token = JSON.parse(localStorage.getItem("token"));
 
 export const addCheckoutAddress = async (addressId) => {
     try {
-        const res = await axios.get(`${BASE_URL}/cart/checkout-address`,
+        const res = await axios.post(`${BASE_URL}/cart/checkout-address`,
           { addressBookID: addressId } ,
           {headers: { Authorization: "Bearer " + token },
         })
