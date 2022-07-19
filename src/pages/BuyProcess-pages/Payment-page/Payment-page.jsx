@@ -23,7 +23,6 @@ export default function PaymentPage() {
     const [disableBtns, setDisables] = useState(false)
     const { cart } = useCart();
 
-    
     const [rootpaymentsOrderID, setRootpaymentsOrderID] = useState(null);
 
     let token = JSON.parse(localStorage.getItem("token"));
