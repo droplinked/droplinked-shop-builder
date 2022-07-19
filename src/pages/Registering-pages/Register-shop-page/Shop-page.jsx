@@ -6,10 +6,11 @@ import { useEffect, useRef, useState, useContext } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
-import { ReactComponent as IconMenu } from "../../../assest/icon/icons8-delete.svg"
 import { BASE_URL } from "../../../api/BaseUrl"
 import { toastValue } from "../../../context/toastify/ToastContext"
 import { updateShopApi } from "../../../api/Producer-apis/Shop-api"
+
+import InputImage from "../../../components/shared/InputImage/InputImage"
 
 
 export default function RegisterShop() {
@@ -17,9 +18,8 @@ export default function RegisterShop() {
     const [showAddress, setShowAddress] = useState(false)
     const [addressData, setAddressdata] = useState(undefined)
     const [loading, setLoading] = useState(false)
-    const [uploadingImage, setUploadingImage] = useState(false);
     const {  profile } = useProfile()
-    const { errorToast, successToast } = useContext(toastValue)
+    const { errorToast } = useContext(toastValue)
 
     let x = 1;
     let user = profile
@@ -28,7 +28,7 @@ export default function RegisterShop() {
     const token = JSON.parse(localStorage.getItem('token'));
     let navigate = useNavigate();
 
-    const inputFile = useRef(null);
+
     const descriptionInp = useRef(null);
     const siteInp = useRef(null);
     const discordInp = useRef(null);
@@ -88,53 +88,8 @@ export default function RegisterShop() {
 
 
 
-    const chooseFile = () => {
-        inputFile.current.click();
-    };
-
-    const changeImage = (e) => {
-
-        const file = e.target.files[0];
-
-        if (file.size > 500000) {
-            errorToast("File size exceeded (Max: 500 kb)");
-            return;
-        }
-        if (
-            file.type !== "image/jpeg" &&
-            file.type !== "image/png" &&
-            file.type !== "image/gif" &&
-            file.type !== "image/jpg"
-        ) {
-            errorToast("File type not supported");
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("image", file);
-        setUploadingImage(true);
-        axios.post('https://cdn.droplinked.com/upload', formData)
-            .then(e => {
-                setUploadingImage(false);
-                successToast(e.data.message);
-                setProfileImg(e.data.small)
-                return;
-            })
-            .catch(e => {
-                errorToast(e.response.data.message);
-                setUploadingImage(false);
-                return;
-            })
-    }
-
     const closeAddres = () => {
         setShowAddress(false)
-    }
-
-    const deleteImage = () => {
-        user = { ...user, shopLogo: "" }
-        localStorage.setItem('profile', JSON.stringify(user));
-        setProfileImg(undefined);
     }
 
 
@@ -147,21 +102,8 @@ export default function RegisterShop() {
         <>
             <div className="register-shopinfo-wrapper">
                 {(!showAddress) && <>
-                    <div className="input-perosnal-image d-flex justify-content-center align-items-center" style={{ backgroundImage: `url(${(profileImg == undefined) ? "" : profileImg})` }}>
-                        <input className="d-none" type="file" ref={inputFile} onChange={changeImage} />
-                        {(uploadingImage) &&
-                            <div className="spinner-border" role="status">
-                                <span className="sr-only"></span>
-                            </div>
-                        }
-                        <div className="add-image-hov"
-                            onClick={chooseFile}>+</div>
-                        {(profileImg == undefined || profileImg == "") ? <></> :
-                            <div className="delet-image-icon" onClick={deleteImage}>
-                                <IconMenu style={{ width: "100%", height: "100%" }} />
-                            </div>
-                        }
-                    </div>
+
+                    <InputImage  image={profileImg} setImage={setProfileImg} />
 
                     <div className="register-label-input ">
                         <label>domain</label>
