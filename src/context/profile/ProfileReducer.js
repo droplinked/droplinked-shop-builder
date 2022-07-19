@@ -8,6 +8,7 @@ export const ProflieReduser = (profile, action) => {
     case "ADD_PROFILE":
       localStorage.setItem("token", JSON.stringify(action.payload.jwt));
       localStorage.setItem("profile", JSON.stringify(action.payload.user));
+      setTimeout(()=>{ localStorage.clear()}, 1800000);
       return { ...action.payload.user };
 
     case "UPDATE_PROFILE":
