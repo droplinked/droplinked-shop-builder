@@ -121,7 +121,7 @@ export default function EditCollectionModal({ toggle, submitFunc, defaultValue }
                          </div> 
                     */}
                     <div className="mt-5">
-                        <DropDownPairValId pairArray={rules} change={changeRule} value={ruleValue} />
+                        <DropDownPairValId value={selectedRule} pairArray={rules} change={changeRule} placeholder={ruleValue} />
                     </div>
                 </>
                 :

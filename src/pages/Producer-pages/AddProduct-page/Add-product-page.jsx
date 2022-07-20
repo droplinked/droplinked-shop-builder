@@ -153,7 +153,7 @@ function AddProductPage() {
                <FormInput  type={"textarea"} label={"Description"} changeValue={changeDescription} value={description} /> 
             </div>
             <dir className="drop-wrape">
-            {collectionList &&  <DropDownPairValId pairArray={collectionList} change={changeCollection} placeholder={"Choose collection"}/>}
+            {collectionList &&  <DropDownPairValId value={selectedCollection} pairArray={collectionList} change={changeCollection} placeholder={"Choose collection"}/>}
             </dir>
             <div className="mt-5 mb-3 w-100 d-flex justify-content-center align-items-center">
                 <InputImagesGroup setState={setImages} state={images} />

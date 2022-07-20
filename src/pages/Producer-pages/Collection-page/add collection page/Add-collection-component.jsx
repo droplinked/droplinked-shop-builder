@@ -108,7 +108,7 @@ export default function AddCollectionPage({ toggle }) {
                          </div> 
                     */}
                     <div className="mt-5">
-                        <DropDownPairValId pairArray={rules} change={changeRule} value={"Choose Rule"} />
+                        <DropDownPairValId value={selectedRule} pairArray={rules} change={changeRule} placeholder={"Choose Rule"} />
                     </div>
                 </>
                 :
