@@ -141,25 +141,6 @@ export default function PaymentPage() {
 
                                 <Button
                                     w="40%"
-                                    // bgColor={((paymentSelected == "Stx")) ? '#8053ff' : "#4A4A4A"}
-                                    color="#8053ff"
-                                    border='1px'
-                                    borderColor='#8053ff'
-                                    bgColor='#222'
-                                    // bgColor={((paymentSelected == "Stripe")) ? '#8053ff' : "#4A4A4A"}
-                                    _hover={{
-                                        color: "#222",
-                                        borderColor: '#222',
-                                        bgColor: '#8053ff',
-                                    }}
-                                    disabled={disableBtns}
-                                    onClick={() => {
-                                        setPaymentSelected("Stx")
-                                    }}
-                                >Hiro Wallet</Button>
-
-                                <Button
-                                    w="40%"
                                     color="#8053ff"
                                     border='1px'
                                     borderColor='#8053ff'
@@ -171,7 +152,7 @@ export default function PaymentPage() {
                                     }}
                                     disabled={disableBtns}
                                     onClick={rootpaymentsPayment}
-                                >Root Payments</Button>
+                                >Crypto payment</Button>
                             </Box>
                         </Box>
 
