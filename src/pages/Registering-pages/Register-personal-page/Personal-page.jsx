@@ -83,7 +83,7 @@ export default function PersonalPage() {
                 </div>
                 <div className="register-label-input ">
                     <label>Email</label>
-                    <input type="email" placeholder="email" readonly value={user.email} />
+                    <input type="email" placeholder="email" readOnly  value={user.email} />
                 </div>
                 <div className="register-label-input ">
                     <label>Phone number</label>

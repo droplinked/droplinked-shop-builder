@@ -5,7 +5,7 @@ import { Outlet ,useLocation } from "react-router-dom";
 export default function RegisterPage() {
 
     let location = useLocation().pathname.split("/")[2];
-console.log(location);
+
     return (
         <div className="Register-structure-wrapper">
             <div className="Register-structure-body">

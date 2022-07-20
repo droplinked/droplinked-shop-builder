@@ -107,7 +107,7 @@ export default function RegisterShop() {
 
                     <div className="register-label-input ">
                         <label>domain</label>
-                        <input type="text" placeholder="" value={`droplinked.io/${shopname}`} readonly />
+                        <input type="text" placeholder="" value={`droplinked.io/${shopname}`} readOnly />
                     </div>
 
                     <div className="register-label-input ">
