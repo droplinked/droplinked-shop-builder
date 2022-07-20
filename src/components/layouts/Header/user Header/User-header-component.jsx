@@ -4,6 +4,7 @@ import WalletButton from "../wallet button/wallet-button-component"
 import defaultProfile from "../../../../assest/profile/defaultProfile.png"
 
 import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
+import { IoMdNotificationsOutline } from "react-icons/io";
 import { useProfile } from "../../../../context/profile/ProfileContext"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
@@ -72,6 +73,7 @@ export default function UserHeader() {
         <WalletButton />
 
         <div className="login-wrapper">
+            
             <div className="item-cart-wraper">
                 <Cart className="item-cart"
                     onClick={openBasketModal}
@@ -85,6 +87,11 @@ export default function UserHeader() {
                     </>
                 }
             </div>
+
+            <div className="notification-icon">
+                <IoMdNotificationsOutline />
+            </div>
+
 
             {(Profileimage)
                 ?
@@ -104,6 +111,7 @@ export default function UserHeader() {
                     onClick={openProfileModal}
                 ></div>
             }
+
 
             {toggleHeader &&
                 <div className="header-nav">

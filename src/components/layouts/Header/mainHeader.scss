@@ -66,23 +66,23 @@
           width: 40px;
           height: 40px;
           position: absolute;
-          top: 50%;  
-          left: 50%; 
+          top: 50%;
+          left: 50%;
           transform: translate(-50%, -50%);
           cursor: pointer;
           filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-          fill:red;
+          fill: red;
         }
         & .item-cart-number {
           width: 20px;
           height: 20px;
           border-radius: 25px;
-          background-color:  #F7C43B;
+          background-color: #f7c43b;
           position: absolute;
           top: 0px;
-          right:0px;
+          right: 0px;
           border: 3px solid #222;
-          color:#222;
+          color: #222;
           font-size: 10px;
           display: flex;
           justify-content: center;
@@ -135,6 +135,26 @@
           }
         }
       }
+
+      & .notification-icon {
+        width: 45px;
+        height: 45px;
+        margin-right: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        svg {
+          width: 100%;
+          height: 100%;
+          fill: white;
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
     }
   }
 }
@@ -154,8 +174,10 @@
         width: 70px;
         font-size: 12px;
         border-radius: 8px;
+        margin: auto 0px auto 6px;
       }
       & .login-wrapper {
+        margin-left: 0px;
         .header-profile {
           width: 40px;
           height: 40px;
@@ -171,11 +193,11 @@
         }
         & .item-cart-wraper {
           position: relative;
-          margin-right: 8px;
+          margin-right: 6px;
           width: 45px;
           padding-top: 3px;
           & .item-cart {
-            margin-right: 8px;
+            margin-right: 6px;
             width: 30px;
             height: 30px;
           }
@@ -185,6 +207,12 @@
             border: 2px solid #222;
             font-size: 6px;
           }
+        }
+
+        & .notification-icon {
+          width: 35px;
+          height: 35px;
+          margin-right: 6px;
         }
       }
     }
