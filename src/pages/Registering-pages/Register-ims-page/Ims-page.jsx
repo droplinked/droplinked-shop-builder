@@ -1,16 +1,18 @@
 import "./Ims-page-style.scss"
 
 import { useState } from "react"
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { setImsType } from "../../../api/Producer-apis/Shop-api"
+import { useToasty } from "../../../context/toastify/ToastContext"
 
 export default function RegisterIms() {
     const [ImsSystem, setImsSystem] = useState(undefined);
     const [loading, setLoading] = useState(false);
+
     const { updateProfile, profile } = useProfile()
+    const { successToast , errorToast } = useToasty()
+
     let navigate = useNavigate();
 
     let user = profile
@@ -18,7 +20,7 @@ export default function RegisterIms() {
     const submitType = async () => {
 
         if (ImsSystem == undefined) {
-            toast.error("please choose a plan")
+            errorToast("please choose a plan")
             return;
         }
 
@@ -26,12 +28,12 @@ export default function RegisterIms() {
 
         let result = await setImsType(ImsSystem)
         if (result == true) {
-            toast.success("account created")
+            successToast("account created")
             let newUser = { ...user, status: "IMS_TYPE_COMPLETED", imsType: ImsSystem }
             updateProfile(newUser)
             navigate(`/${user.shopName}`);
         } else {
-            toast.error(result)
+            errorToast(result)
         }
 
         setLoading(false)      
@@ -59,16 +61,6 @@ export default function RegisterIms() {
                     >Submit</button>
                 </div>
             </div>
-            <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover />
         </>
         //  </RegisterStructure>
     )

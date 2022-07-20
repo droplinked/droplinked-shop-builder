@@ -10,13 +10,11 @@ import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"
 import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
 
 import { useState, useEffect } from "react"
-import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { getVariants, postProduct } from "../../../api/Producer-apis/Product-api"
 import { getCollections } from "../../../api/Producer-apis/Collection-api"
+import { useToasty } from "../../../context/toastify/ToastContext"
 
-
-import "react-toastify/dist/ReactToastify.css";
 
 function AddProductPage() {
 
@@ -33,6 +31,7 @@ function AddProductPage() {
     const [collectionList, setCollection] = useState([])
     const [disbtn, setdisbtn] = useState(false)
 
+    const { successToast , errorToast } = useToasty()
 
     const navigate = useNavigate();
 
@@ -73,20 +72,20 @@ function AddProductPage() {
     const submitForm = async (e) => {
         e.preventDefault()
         if (title == "") {
-            toast.error("Merch name is required");
+            errorToast("Merch name is required");
             return;
         } else if (description == "") {
-            toast.error("Merch description is required");
+            errorToast("Merch description is required");
             return;
         }
         else if (selectedCollection == "") {
-            toast.error("Select a collection");
+            errorToast("Select a collection");
             return;
         } else if (variants.length == 0) {
-            toast.error("Add a variant");
+            errorToast("Add a variant");
             return;
         } else if (images.length == 0) {
-            toast.error("Add a image for merch");
+            errorToast("Add a image for merch");
             return;
         }
 
@@ -108,10 +107,10 @@ function AddProductPage() {
 
         let result = await postProduct(proDetail)
         if (result == true) {
-            toast.success("Merch added successfully");
+            successToast("Merch added successfully");
             navigate("/producer/ims")
         } else {
-            toast.error(result)
+            errorToast(result)
             setdisbtn(false)
         }
     }
@@ -196,18 +195,6 @@ function AddProductPage() {
                     <BasicButton click={submitForm} disabled={disbtn}>Submit</BasicButton>
                 </div>
             </div>
-            <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme='dark'
-            />
         </div>
     )
 }

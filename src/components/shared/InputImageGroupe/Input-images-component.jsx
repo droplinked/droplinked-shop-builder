@@ -3,20 +3,21 @@ import "./Input-images-component.scss"
 import axios from "axios"
 import dltImg from "../../../assest/icon/icons8-multiply-100.png"
 
-import { useRef, useState, useEffect } from "react"
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import { useRef, useState} from "react"
+import { useToasty } from "../../../context/toastify/ToastContext"
 
 export default function InputImagesGroup({ setState, state }) {
 
     const [loading, setLoading] = useState(false);
     const fileRef = useRef(null);
 
+    const { successToast , errorToast } = useToasty()
+
     const changeImage = (e) => {
       
         const file = e.target.files[0];
         if (file.size > 500000) {
-            toast.error("File size exceeded (Max: 500 kb)");
+            errorToast("File size exceeded (Max: 500 kb)");
             setLoading(false);
             return;
         }
@@ -26,7 +27,7 @@ export default function InputImagesGroup({ setState, state }) {
             file.type !== "image/gif" &&
             file.type !== "image/jpg"
         ) {
-            toast.error("File type not supported");
+            errorToast("File type not supported");
             setLoading(false);
             return;
         }
@@ -42,12 +43,12 @@ export default function InputImagesGroup({ setState, state }) {
                 }
                 imgArr.push(e.data.standard)
                 setState(imgArr)
-                toast.success(e.data.message);
+                successToast(e.data.message);
                 setLoading(false);
                 return;
             })
             .catch(e => {
-                toast.error(e.response.data.message);
+                errorToast(e.response.data.message);
                 setLoading(false);
                 return;
             })

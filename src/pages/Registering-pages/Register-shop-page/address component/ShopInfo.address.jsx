@@ -1,14 +1,16 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { BASE_URL } from "../../../../api/BaseUrl"
+import { useToasty } from "../../../../context/toastify/ToastContext"
+
 import axios from "axios"
-import { ToastContainer, toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 
 export default function ShopInfoAddress({ close, addAddressF, addressData }) {
     const [loading, setLoading] = useState(false)
-    const token = JSON.parse(localStorage.getItem('token'));
 
+    const { successToast , errorToast } = useToasty()
+
+    const token = JSON.parse(localStorage.getItem('token'));
     const profile = JSON.parse(localStorage.getItem('profile'));
 
     const { register, formState: { errors }, handleSubmit } = useForm({
@@ -42,13 +44,13 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
         axios.post(BASE_URL+'/address', addresInfo,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
-                toast.success("Address added successfully")
+                successToast("Address added successfully")
                 localStorage.setItem('address', JSON.stringify(e.data.data.addressBook))
                 addAddressF(addresInfo);
                 close();
             })
             .catch(e => {
-                toast.error(e.response.data.reason)
+                errorToast(e.response.data.reason)
                 setLoading(false);
             })
     };
@@ -100,18 +102,6 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
                 <input type="submit" className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`} value="save" />  
             </div>
         </form>
-        <ToastContainer
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark"
-            />
     </>
     )
 }
