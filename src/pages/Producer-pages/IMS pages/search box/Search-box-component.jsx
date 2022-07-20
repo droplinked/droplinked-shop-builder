@@ -12,7 +12,6 @@ export default function SeachBox({ onch }) {
                         <input type="text"
                             className="input"
                             name="txt"
-                            onMouseOut="document.search.txt.value = ''"
                             onChange={onch}
                         />
                     </form>
