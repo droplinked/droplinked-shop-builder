@@ -6,9 +6,10 @@ export const ProflieReduser = (profile, action) => {
 
   switch (action.type) {
     case "ADD_PROFILE":
+      let time = new Date().getTime();
+      localStorage.setItem("login-time", JSON.stringify(time));
       localStorage.setItem("token", JSON.stringify(action.payload.jwt));
       localStorage.setItem("profile", JSON.stringify(action.payload.user));
-      setTimeout(()=>{ localStorage.clear()}, 1800000);
       return { ...action.payload.user };
 
     case "UPDATE_PROFILE":

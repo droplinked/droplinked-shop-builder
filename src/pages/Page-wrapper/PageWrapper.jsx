@@ -17,10 +17,18 @@ export default function PageWrapper({ children }) {
 
     useEffect(() => {
         if (token != null || token != undefined) {
+            const loginTime = JSON.parse(localStorage.getItem("login-time"));
+            let currentTime = new Date().getTime()
+            let hour = (((currentTime - loginTime)/1000) / 60 /60)
+            if(hour > 8){
+                localStorage.clear()
+                return
+            }
             updateCart();
             updateAddressList()
         }
     }, [])
+
 
 
     return (
