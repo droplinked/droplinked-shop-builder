@@ -1,21 +1,31 @@
 import "./Variant-item-component.scss"
 
-export default function VariantItem({ vari , id , dlt , edit}) {
+export default function VariantItem({ variant, id, dlt, edit }) {
+
+    console.log(variant)
+
+
+    const decentrilize = () => {
+        console.log("id : ", variant._id)
+        console.log("quantity : ", variant.quantity)
+        console.log("price : ", variant.price)
+    }
+
 
 
     return (
         <div className="variant-item-wrapper">
-            {vari.options.map((item , i) => {
+            {variant.options.map((item, i) => {
                 return (<p key={i}>{`${item.variantName} : ${item.value}`}</p>)
             })
-
             }
-
-            <p>{`Quantity :  ${vari.quantity}`}</p>
-            <p>{`Price : ${vari.price}$`}</p>
-            <p>{`ExternalID : ${vari.externalID}`}</p>
-            {/* <button className="edit-btn"onClick={edit}>edit</button> */}
-            <button className="delete-btn" onClick={()=>{dlt(id , vari)}} id={id}>Delete</button>
+            <p>{`Quantity :  ${variant.quantity}`}</p>
+            <p>{`Price : ${variant.price}$`}</p>
+            <p>{`ExternalID : ${variant.externalID}`}</p>
+            <button className="edit-btn" onClick={decentrilize}>decentrilize</button>
+            {/* <button className="delete-btn" onClick={()=>{dlt(id , variant)}} id={id}>Delete</button> */}
         </div>
     )
+
+
 }
