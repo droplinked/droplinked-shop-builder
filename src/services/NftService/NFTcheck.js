@@ -37,9 +37,9 @@ const getTokens = (principal, limit, offset) => {
 const checkRules = async(principal, rules) => {
     const limit = 200
     let offset = 0
-        //  console.log(rules);
+
     const results = (await getTokens(principal, limit, offset)).data
-        // console.log(results)
+
 
     const holdings = Array.from(
         new Set([...results.results.map((result) => result.asset_identifier)])

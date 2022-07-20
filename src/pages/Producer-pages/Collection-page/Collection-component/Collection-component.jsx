@@ -20,7 +20,6 @@ export default function CollectionComponent({ id, name, productsArray, edit, ren
     const { errorToast, successToast } = useToasty();
 
     const submitEdit = () => {
-        //  console.log("x");
     }
 
     const DeleteCollection = async () => {

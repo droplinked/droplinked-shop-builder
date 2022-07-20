@@ -59,7 +59,6 @@ export default function ViewMerchPage() {
 
     }, [])
 
-    console.log(varintType);
 
     useEffect(() => {
         setTitle(merch.title)

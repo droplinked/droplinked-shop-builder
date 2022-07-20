@@ -9,7 +9,7 @@ import defaultProfile from "../../../assest/profile/defaultProfile.png"
 export default function TopSection({ pic, shopname, insta, twitter, discord, web }) {
 
 
-    console.log(web);
+
     return (<>
         <div className="top-section-wrapper">
             <div className="d-flex justify-content-center align-content-center">

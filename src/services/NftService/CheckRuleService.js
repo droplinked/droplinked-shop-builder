@@ -5,7 +5,5 @@ export const CheckRules = (rules, mainet) => {
     // let result = false ;
     rules.forEach((rule) => {
         let x = hasToken(mainet, rule.address)
-        console.log(x);
-
     });
 };

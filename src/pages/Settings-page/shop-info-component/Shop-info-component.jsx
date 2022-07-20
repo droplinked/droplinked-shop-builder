@@ -23,7 +23,6 @@ export default function ShopInfoComponent() {
     
     let shopAddressBook = addressList.find(address => address.addressType == "SHOP")
 
-    console.log(shopAddressBook)
 
     useEffect(() => {
         axios.get(`${BASE_URL }/profile`,

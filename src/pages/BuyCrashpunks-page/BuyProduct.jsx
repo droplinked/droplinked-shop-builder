@@ -67,12 +67,10 @@ function BuyProduct() {
                 0
             )
                 .then((results) => {
-                    console.log("result");
-                    console.log(results)
                     setHasNFT(results)
                 })
                 .catch((reason) => {
-                    console.log("could not fetch user nfts")
+                    errorToast("could not fetch user nfts")
                 })
         }
 

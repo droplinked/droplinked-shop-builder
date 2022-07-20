@@ -75,7 +75,7 @@ export default function AddressForm({ type, addressBook, close }) {
        
 
         let validation = validationForm()
-        console.log(validation);
+
         if (!validation) return
 
        
@@ -113,8 +113,6 @@ export default function AddressForm({ type, addressBook, close }) {
             result = await addAddress(formDate);
         }
         setLoading(false)
-
-        console.log(result);
 
         if (result == true) close()
     }

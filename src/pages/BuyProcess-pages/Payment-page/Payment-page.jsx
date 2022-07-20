@@ -82,7 +82,6 @@ export default function PaymentPage() {
             "integration_id": ROOTPAYMENTS_INTEGRATION_ID,
             "callback_url": `https://api.staging.rootpayments.com/orders/callback?order=${cart.id}` // Replace with your callback URL - this should point to your backend API that handles order statuses. Note the order=${cart.id} parameter in the callback URL (so that you can identify the order by its ID)
         }, {}).then(e => {
-            console.log('Order created: ', e);
             setRootpaymentsOrderID(e.data.data.id);
         }).catch(e => {
             console.log(e)

@@ -17,7 +17,6 @@ export default function PersonalInfoComponent() {
     const { updateProfile } = useProfile();
     const { errorToast, successToast } = useToasty()
 
-    // console.log(profile);
 
     const [profileImage, setProfileImage] = useState(profile.avatar)
     const [firstName, setFirstName] = useState(profile.firstname)

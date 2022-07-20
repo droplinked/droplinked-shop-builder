@@ -31,7 +31,6 @@ export default function MerchPage() {
     const [options, setOptions] = useState(null)
     const [sku, setSku] = useState(null)
 
-    console.log(sku);
 
     const { userData, authenticate } = UseWalletInfo();
     const { profile } = useProfile();
