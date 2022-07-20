@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 function Side() {
         const { state, increase } = useCart();
-        //console.log(state);
 
         return (
                 <div className="product-bakset-wraper d-flex flex-column">
