@@ -8,7 +8,7 @@ import { newCollection } from "../../../../api/Producer-apis/Collection-api"
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 import Loading from "../../../../components/shared/loading/Loading"
-import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
+import Dropdown from "../../../../components/shared/Dropdown/Dropdown-component"
 import FormInput from "../../../../components/shared/FormInput/FormInput"
 
 export default function AddCollectionPage({ toggle }) {
@@ -108,7 +108,7 @@ export default function AddCollectionPage({ toggle }) {
                          </div> 
                     */}
                     <div className="mt-5">
-                        <DropDownPairValId value={selectedRule} pairArray={rules} change={changeRule} placeholder={"Choose Rule"} />
+                        <Dropdown value={selectedRule} pairArray={rules} change={changeRule} placeholder={"Choose Rule"} />
                     </div>
                 </>
                 :

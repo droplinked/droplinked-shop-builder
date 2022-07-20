@@ -8,7 +8,7 @@ import { useToasty } from "../../../../context/toastify/ToastContext"
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 import Loading from "../../../../components/shared/loading/Loading"
-import DropDownPairValId from "../../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
+import Dropdown from "../../../../components/shared/Dropdown/Dropdown-component"
 import FormInput from "../../../../components/shared/FormInput/FormInput"
 
 export default function EditCollectionModal({ toggle, submitFunc, defaultValue }) {
@@ -121,7 +121,7 @@ export default function EditCollectionModal({ toggle, submitFunc, defaultValue }
                          </div> 
                     */}
                     <div className="mt-5">
-                        <DropDownPairValId value={selectedRule} pairArray={rules} change={changeRule} placeholder={ruleValue} />
+                        <Dropdown value={selectedRule} pairArray={rules} change={changeRule} placeholder={ruleValue} />
                     </div>
                 </>
                 :

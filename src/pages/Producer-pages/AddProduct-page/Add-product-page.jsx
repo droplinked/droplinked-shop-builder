@@ -7,7 +7,8 @@ import VariantItem from "../components/variant item component/Variant-item-compo
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import AddVariantForm from "../components/add variant form/Add-variantForm-component"
 import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"
-import DropDownPairValId from "../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
+import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
+
 import { useState, useEffect } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -153,7 +154,7 @@ function AddProductPage() {
                <FormInput  type={"textarea"} label={"Description"} changeValue={changeDescription} value={description} /> 
             </div>
             <dir className="drop-wrape">
-            {collectionList &&  <DropDownPairValId value={selectedCollection} pairArray={collectionList} change={changeCollection} placeholder={"Choose collection"}/>}
+            {collectionList &&  <Dropdown value={selectedCollection} pairArray={collectionList} change={changeCollection} placeholder={"Choose collection"}/>}
             </dir>
             <div className="mt-5 mb-3 w-100 d-flex justify-content-center align-items-center">
                 <InputImagesGroup setState={setImages} state={images} />

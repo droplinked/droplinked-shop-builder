@@ -1,9 +1,8 @@
-
 // this component get array like this = [ {id:"" , value:""} , {id:"" , value:""} ] 
 //  pair id and value in objects
-// and show value and set array 
-import "./Dropdonw-valId-style.scss"
-export default function DropDownPairValId({ change ,pairArray , value , placeholder   }) {
+
+import "./Dropdown-style.scss"
+export default function Dropdown({ change ,pairArray , value , placeholder   }) {
 
 
     return (

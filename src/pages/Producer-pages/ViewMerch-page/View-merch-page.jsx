@@ -6,7 +6,7 @@ import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"
 import VariantItem from "../components/variant item component/Variant-item-component"
 import AddVariantForm from "../components/add variant form/Add-variantForm-component"
 import Loading from "../../../components/shared/loading/Loading";
-import DropDownPairValId from "../../../components/features/input components/dropdown pair val and id/Dropdonw-valId-component"
+import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
 import SmallModal from "../../../components/Modal/Small-modal/Small-modal-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 
@@ -214,7 +214,7 @@ export default function ViewMerchPage() {
                     />
                 </div>
                 <dir className="drop-wrape">
-                    <DropDownPairValId pairArray={collectionList} change={e => setCollectionSelected(e.target.value)} value={collectionSelected} />
+                    <Dropdown pairArray={collectionList} change={e => setCollectionSelected(e.target.value)} value={collectionSelected} />
                 </dir>
                 <div className="mt-5 mb-3 w-100 d-flex justify-content-center align-items-center">
                     <InputImagesGroup setState={setImages} state={images} />
