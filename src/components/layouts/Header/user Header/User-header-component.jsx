@@ -10,7 +10,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { useProfile } from "../../../../context/profile/ProfileContext"
 import { useState } from "react"
 import { useCart } from "../../../../context/cart/CartContext"
-
+import { useNotifications } from "../../../../context/notifications/NotificationsContext"
 
 export default function UserHeader() {
 
@@ -20,6 +20,7 @@ export default function UserHeader() {
 
     const { profile } = useProfile()
     const { cart } = useCart();
+    const { notifications } = useNotifications()
 
 
 
@@ -57,8 +58,9 @@ export default function UserHeader() {
                 }
             </div>
 
-            <div className="notification-icon">
-                <IoMdNotificationsOutline onClick={() => { setToggleNot(p => !p) }} />
+            <div className="notification-icon" onClick={() => { setToggleNot(p => !p) }}>
+                <IoMdNotificationsOutline  />
+                {(notifications.length > 0) && <div className="new-notification">{notifications.length}</div>}
             </div>
 
 

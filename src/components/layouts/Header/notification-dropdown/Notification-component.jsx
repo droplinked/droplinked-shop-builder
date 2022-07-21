@@ -1,8 +1,11 @@
 
 import { Box, Flex, Text } from "@chakra-ui/react"
 import { MdOutlineMessage } from "react-icons/md";
+import { convertToStandardFormat } from "../../../../utils/date.utils/convertDate"
 
-const NotificationComponent = () => {
+const NotificationComponent = ({notif}) => {
+
+    console.log(notif);
 
     return (
         <Flex
@@ -25,14 +28,14 @@ const NotificationComponent = () => {
             fontWeight='600'
             color='#fff'
             >
-            You have just received a new order
+            {notif.text}
             </Text>
             <Text
             fontSize={{ base:"8px" , md:'10px'}}
             fontWeight='500'
             color='#666'
             >
-            jul/11/2022
+            {convertToStandardFormat(notif.createdAt)}
             </Text>
             </Box>
         </Flex>

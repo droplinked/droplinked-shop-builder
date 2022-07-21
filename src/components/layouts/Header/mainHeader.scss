@@ -154,6 +154,16 @@
           left: 50%;
           transform: translate(-50%, -50%);
         }
+        & .new-notification{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 12px;
+          font-weight: 600;
+          color: #8053ff;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -213,6 +223,10 @@
           width: 35px;
           height: 35px;
           margin-right: 6px;
+
+          & .new-notification{
+            font-size: 8px;
+          }
         }
       }
     }
