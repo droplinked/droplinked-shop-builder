@@ -3,6 +3,7 @@ import BasketModal from "../basket modal/basket-modal-component"
 import WalletButton from "../wallet button/wallet-button-component"
 import defaultProfile from "../../../../assest/profile/defaultProfile.png"
 import ProfileDropdown from "../profile-dropdown/ProfileDropdown"
+import NotificationDropdown from "../notification-dropdown/Notification-dropdown"
 
 import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -10,13 +11,16 @@ import { useProfile } from "../../../../context/profile/ProfileContext"
 import { useState } from "react"
 import { useCart } from "../../../../context/cart/CartContext"
 
+
 export default function UserHeader() {
 
     const [toggleHeader, setToggleHeader] = useState(false)
     const [toggleBasket, setToggleBasket] = useState(false)
+    const [toggleNot, setToggleNot] = useState(false)
 
     const { profile } = useProfile()
     const { cart } = useCart();
+
 
 
     let Profileimage = profile.avatar
@@ -54,7 +58,7 @@ export default function UserHeader() {
             </div>
 
             <div className="notification-icon">
-                <IoMdNotificationsOutline />
+                <IoMdNotificationsOutline onClick={() => { setToggleNot(p => !p) }} />
             </div>
 
 
@@ -77,8 +81,9 @@ export default function UserHeader() {
                 ></div>
             }
 
-            {toggleHeader && <ProfileDropdown headerToggle={setToggleHeader}/>}
+            {toggleHeader && <ProfileDropdown headerToggle={setToggleHeader} />}
             {toggleBasket && <BasketModal close={closeBasket} />}
+            {toggleNot && <NotificationDropdown />}
 
         </div>
     </>)
