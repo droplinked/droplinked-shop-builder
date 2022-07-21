@@ -18,6 +18,12 @@ const NotificationComponent = ({ notif, close }) => {
             case "PRODUCER_ORDER_NEW":
                 navigate("/producer/orders")
                 seenNotif(notif._id)
+            case "PRODUCER_SKU_QUANTITY":
+                navigate("/producer/ims")
+                seenNotif(notif._id)
+            case "CUSTOMER_ORDER_STATUS":
+                navigate("/producer/orders")
+                seenNotif(notif._id)
             default:
                 console.log("x");
         }
