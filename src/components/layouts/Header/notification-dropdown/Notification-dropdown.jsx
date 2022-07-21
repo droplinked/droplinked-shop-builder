@@ -7,7 +7,7 @@ import NotificationComponent from "./Notification-component"
 
 
 
-const NotificationDropdown = () => {
+const NotificationDropdown = ({close}) => {
 
     const { notifications } = useNotifications()
 
@@ -45,7 +45,7 @@ const NotificationDropdown = () => {
                 >{notifications.length}</Text>
             </Flex>
             {(notifications.length > 0) &&
-                 notifications.map((notif , i) =>  <NotificationComponent key={i} notif={notif} />) 
+                 notifications.map((notif , i) =>  <NotificationComponent key={i} notif={notif} close={close} />) 
             }
         </Box>
 

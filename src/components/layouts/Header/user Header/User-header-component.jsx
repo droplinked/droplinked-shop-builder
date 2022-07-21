@@ -40,6 +40,10 @@ export default function UserHeader() {
         setToggleBasket(false)
     }
 
+    const closeNotifications = () => {
+        setToggleNot(false)
+    }
+
     return (<>
 
         <WalletButton />
@@ -85,7 +89,7 @@ export default function UserHeader() {
 
             {toggleHeader && <ProfileDropdown headerToggle={setToggleHeader} />}
             {toggleBasket && <BasketModal close={closeBasket} />}
-            {toggleNot && <NotificationDropdown />}
+            {toggleNot && <NotificationDropdown close={closeNotifications}/>}
 
         </div>
     </>)
