@@ -1,13 +1,18 @@
 import "./Notification-dropdown-style.scss"
 
 import { Box, Flex, Text } from "@chakra-ui/react"
+import { useNotifications } from "../../../../context/notifications/NotificationsContext"
 
 import NotificationComponent from "./Notification-component"
 
 
+
 const NotificationDropdown = () => {
 
+    const { notifications } = useNotifications()
 
+    console.log(notifications);
+    
     return (
 
 

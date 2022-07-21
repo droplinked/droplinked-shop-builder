@@ -10,6 +10,7 @@ import  ToastContext  from "./context/toastify/ToastContext";
 import AddressContext from "./context/address/AddressContext";
 import ScrollTop from "./services/ScrollTop/ScrollTop";
 import OrderContextProvider from "./context/order/OrdersContext"
+import NotContextProvider from "./context/notifications/NotificationsContext"
 
 
 import PageWrapper from "./pages/Page-wrapper/PageWrapper";
@@ -50,6 +51,7 @@ function App() {
             <WalletProvider>
               <AddressContext>
                 <OrderContextProvider>
+                  <NotContextProvider>
                   <BrowserRouter>
                     <ScrollTop>
                       <Routes>
@@ -122,6 +124,7 @@ function App() {
                       </Routes>
                     </ScrollTop>
                   </BrowserRouter>
+                  </NotContextProvider>
                 </OrderContextProvider>
               </AddressContext>
             </WalletProvider>
