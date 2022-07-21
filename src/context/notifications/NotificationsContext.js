@@ -1,5 +1,5 @@
 import { createContext, useState, useContext} from "react";
-import { getNotifications } from "../../api/BaseUser-apis/Notification-api"
+import { getNotifications , seenNotification} from "../../api/BaseUser-apis/Notification-api"
 
 
 export const NotContext = createContext();
@@ -15,10 +15,16 @@ export default function NotContextProvider({ children }) {
   };
 
 
+const seenNotif = async(id) => {
+ await seenNotification(id)
+ await updateNotifications()
+} 
+
 
   const ContextValue = {
     notifications,
-    updateNotifications
+    updateNotifications ,
+    seenNotif
   };
 
   return (

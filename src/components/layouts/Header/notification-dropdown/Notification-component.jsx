@@ -3,20 +3,23 @@ import { Box, Flex, Text } from "@chakra-ui/react"
 import { MdOutlineMessage } from "react-icons/md";
 import { convertToStandardFormat } from "../../../../utils/date.utils/convertDate"
 import { useNavigate } from "react-router-dom";
+import { useNotifications } from "../../../../context/notifications/NotificationsContext"
 
-const NotificationComponent = ({ notif , close }) => {
 
-    console.log(notif);
- let navigate = useNavigate();   
+const NotificationComponent = ({ notif, close }) => {
+
+    const { seenNotif } = useNotifications()
+    let navigate = useNavigate();
+
 
     const clickNotification = () => {
-        console.log(notif.type)
         close()
-        switch(notif.type){
+        switch (notif.type) {
             case "PRODUCER_ORDER_NEW":
                 navigate("/producer/orders")
-                default:
-                    console.log("x");
+                seenNotif(notif._id)
+            default:
+                console.log("x");
         }
     }
 
