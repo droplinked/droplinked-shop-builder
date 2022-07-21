@@ -11,13 +11,7 @@ import "./Variant-item-component.scss"
 import { userSession } from "../../../../services/WalletAuth/auth"
 
 export default function VariantItem({ variant, id, dlt, edit }) {
-  console.log(variant)
-
   const decentrilize = () => {
-    console.log("id : ", variant._id)
-    console.log("quantity : ", variant.quantity)
-    console.log("price : ", variant.price)
-
     openContractCall({
       contractAddress: "ST3JDMA2CZV5H6YCGMGCR8A3JDZTFV5TVR43FR6F9",
       contractName: "droplinked-beta1",
@@ -29,7 +23,7 @@ export default function VariantItem({ variant, id, dlt, edit }) {
         uintCV(5),
         stringAsciiCV(
           createHash("sha256")
-            .update(variant._id + ",FLATLAY")
+            .update("FLATLAY," + variant._id)
             .digest("hex")
         ),
         standardPrincipalCV(
@@ -52,7 +46,7 @@ export default function VariantItem({ variant, id, dlt, edit }) {
       <p>{`Price : ${variant.price}$`}</p>
       <p>{`ExternalID : ${variant.externalID}`}</p>
       <button className="edit-btn" onClick={decentrilize}>
-        decentrilize
+        Decentralize
       </button>
       {/* <button className="delete-btn" onClick={()=>{dlt(id , variant)}} id={id}>Delete</button> */}
     </div>
