@@ -50,24 +50,20 @@ export default function UserHeader() {
 
         <div className="login-wrapper">
 
+            {/* cart icon */}
             <div className="item-cart-wraper">
                 <Cart className="item-cart" onClick={openBasketModal} />
-                {(cart != null) &&
-                    <>
-                        {(cart.items.length > 0) &&
-                            <div className="item-cart-number">{cart.items.length}</div>
-                        }
-
-                    </>
-                }
+                {(cart != null) && (cart.items.length > 0) &&
+                    <div className="item-cart-number">{cart.items.length}</div>}
             </div>
 
+            {/* notification icon */}
             <div className="notification-icon" onClick={() => { setToggleNot(p => !p) }}>
-                <IoMdNotificationsOutline  />
+                <IoMdNotificationsOutline />
                 {(notifications.length > 0) && <div className="new-notification">{notifications.length}</div>}
             </div>
 
-
+            {/* profile icon */}
             {(Profileimage)
                 ?
                 <img
@@ -89,7 +85,7 @@ export default function UserHeader() {
 
             {toggleHeader && <ProfileDropdown headerToggle={setToggleHeader} />}
             {toggleBasket && <BasketModal close={closeBasket} />}
-            {toggleNot && <NotificationDropdown close={closeNotifications}/>}
+            {toggleNot && <NotificationDropdown close={closeNotifications} />}
 
         </div>
     </>)
