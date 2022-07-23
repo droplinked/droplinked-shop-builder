@@ -30,9 +30,17 @@ export default function UserHeader() {
     const openProfileModal = () => {
         setToggleHeader(p => !p)
         setToggleBasket(false)
+        setToggleNot(false)
     }
     const openBasketModal = () => {
         setToggleBasket(p => !p)
+        setToggleHeader(false)
+        setToggleNot(false)
+    }
+
+    const openNotification = () => {
+        setToggleNot(p => !p)
+        setToggleBasket(false)
         setToggleHeader(false)
     }
 
@@ -58,7 +66,7 @@ export default function UserHeader() {
             </div>
 
             {/* notification icon */}
-            <div className="notification-icon" onClick={() => { setToggleNot(p => !p) }}>
+            <div className="notification-icon" onClick={openNotification}>
                 <IoMdNotificationsOutline />
                 {(notifications.length > 0) && <div className="new-notification">{notifications.length}</div>}
             </div>
