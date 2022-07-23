@@ -41,7 +41,7 @@ function AddressPage() {
 		if (result == true) {
 			successToast("Address added successfully")
 			navigate('/payment')
-		}else{
+		} else {
 			errorToast(result)
 		}
 	}
@@ -67,14 +67,16 @@ function AddressPage() {
 					:
 					<>
 						{addressList.map((address, i) => {
-							return <AddressComponent
-								key={i}
-								address={address}
-								selected={selectedAddress}
-								setSelect={setSelectedAddress}
-								selecable={true}
-								deleteable={true}
-							/>
+							if (address.addressType != "SHOP") {
+								return <AddressComponent
+									key={i}
+									address={address}
+									selected={selectedAddress}
+									setSelect={setSelectedAddress}
+									selecable={true}
+									deleteable={true}
+								/>
+							}
 						})}
 						<Box mt='40px'></Box>
 						{(addressModal)
