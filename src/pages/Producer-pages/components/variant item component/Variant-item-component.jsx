@@ -12,29 +12,28 @@ import { userSession } from "../../../../services/WalletAuth/auth"
 
 export default function VariantItem({ variant, id, dlt, edit }) {
   const decentrilize = () => {
-    openContractCall({
-      contractAddress: "ST3JDMA2CZV5H6YCGMGCR8A3JDZTFV5TVR43FR6F9",
-      contractName: "droplinked-beta1",
-      network: new StacksTestnet(),
-      functionName: "add-product",
-      functionArgs: [
-        uintCV(variant.price * 1e6),
-        uintCV(variant.quantity),
-        uintCV(5),
-        stringAsciiCV(
-          createHash("sha256")
-            .update("FLATLAY," + variant._id)
-            .digest("hex")
-        ),
-        standardPrincipalCV(
-          userSession.loadUserData().profile.stxAddress.testnet
-        ),
-      ],
-      onFinish: (data) => {
-        console.log(data)
-      },
-      stxAddress: userSession.loadUserData().profile.stxAddress.testnet,
-    })
+    if (userSession)
+      openContractCall({
+        contractAddress: "ST3JDMA2CZV5H6YCGMGCR8A3JDZTFV5TVR43FR6F9",
+        contractName: "droplinked-beta1",
+        network: new StacksTestnet(),
+        functionName: "add-product",
+        functionArgs: [
+          uintCV(variant.price * 1e6),
+          uintCV(variant.quantity),
+          uintCV(5),
+          stringAsciiCV(
+            createHash("sha256")
+              .update("FLATLAY," + variant._id)
+              .digest("hex")
+          ),
+          standardPrincipalCV(
+            userSession.loadUserData().profile.stxAddress.testnet
+          ),
+        ],
+        onFinish: (data) => {},
+        stxAddress: userSession.loadUserData().profile.stxAddress.testnet,
+      })
   }
 
   return (
@@ -46,7 +45,7 @@ export default function VariantItem({ variant, id, dlt, edit }) {
       <p>{`Price : ${variant.price}$`}</p>
       <p>{`ExternalID : ${variant.externalID}`}</p>
       <button className="edit-btn" onClick={decentrilize}>
-        Decentralize
+        Record
       </button>
       {/* <button className="delete-btn" onClick={()=>{dlt(id , variant)}} id={id}>Delete</button> */}
     </div>
