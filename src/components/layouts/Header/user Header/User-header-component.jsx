@@ -12,6 +12,7 @@ import { useState } from "react"
 import { useCart } from "../../../../context/cart/CartContext"
 import { useNotifications } from "../../../../context/notifications/NotificationsContext"
 
+
 export default function UserHeader() {
 
     const [toggleHeader, setToggleHeader] = useState(false)
