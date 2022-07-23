@@ -124,7 +124,7 @@ export default function CheckoutItem({ product }) {
                     fontWeight="600"
                     fontSize="18"
                 >
-                    $ {product.price}
+                    $ {findSku.price}
                 </Text>
 
                 <ButtonGroup size="md" isAttached variant='outline'>

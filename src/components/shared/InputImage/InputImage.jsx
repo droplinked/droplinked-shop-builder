@@ -80,7 +80,7 @@ export default function InputImage({ image, setImage }) {
                     alignItems='center'
                     _hover={{ border: "4px", borderColor: '#8053ff' }}
                 >
-                    <MdOutlineEdit />
+                    <MdOutlineEdit style={{ fill:"white"}} />
                 </FormLabel>
             </Box>
             {(image) &&
@@ -106,7 +106,7 @@ export default function InputImage({ image, setImage }) {
                     _hover={{ border: "4px", borderColor: '#fa6653' }}
                     onClick={() => {setImage('')}}
                 >
-                    <MdDeleteOutline />
+                    <MdDeleteOutline style={{ fill:"white"}} />
                 </FormLabel>
             </Box>
             }

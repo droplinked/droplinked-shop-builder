@@ -1,7 +1,7 @@
 import { useToasty } from "../../context/toastify/ToastContext"
 import { useEffect, useState } from "react";
 import { Text, Box } from "@chakra-ui/react"
-import { getOrdersList } from "../../api/Producer-apis/Orders-api"
+import { getOrdersHistory } from '../../api/BaseUser-apis/OrderHistory-api'
 
 import Loading from "../../components/shared/loading/Loading"
 import PurchaseHistory from "./PurchseComponent/PurchaseComponent"
@@ -26,7 +26,7 @@ export default function PurchasHistoryPage() {
 
 
     const getPurchseList = async () => {
-        let result = await getOrdersList()
+        let result = await getOrdersHistory()
         if(result != null ){
             setorders(result)
         }

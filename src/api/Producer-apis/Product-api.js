@@ -2,9 +2,10 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-const token = JSON.parse(localStorage.getItem("token"));
+
 
 export const getProducts = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.get(`${BASE_URL}/producer/product`, {
       headers: { Authorization: "Bearer " + token },
@@ -17,6 +18,7 @@ export const getProducts = async () => {
 };
 
 export const getVariants = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.get(`${BASE_URL}/producer/product/variant`, {
       headers: { Authorization: "Bearer " + token },
@@ -29,6 +31,7 @@ export const getVariants = async () => {
 };
 
 export const postProduct = async (product) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.post(`${BASE_URL}/producer/product`, product, {
       headers: { Authorization: "Bearer " + token },
@@ -40,6 +43,7 @@ export const postProduct = async (product) => {
 };
 
 export const deleteSku = async (id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.delete(`${BASE_URL}/producer/product/sku/${id}`, {
       headers: { Authorization: "Bearer " + token },
@@ -51,6 +55,7 @@ export const deleteSku = async (id) => {
 };
 
 export const addSkuToProduct = async (id, sku) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.post(
       `${BASE_URL}/producer/product/${id}/sku`,
@@ -66,6 +71,7 @@ export const addSkuToProduct = async (id, sku) => {
 };
 
 export const updateMerch = async (id, merch) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.put(`${BASE_URL}/producer/product/${id}`, merch, {
       headers: { Authorization: "Bearer " + token },
@@ -78,6 +84,7 @@ export const updateMerch = async (id, merch) => {
 
 
 export const deleteMerch = async (id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.delete(`${BASE_URL}/producer/product/${id}`, {
       headers: { Authorization: "Bearer " + token },

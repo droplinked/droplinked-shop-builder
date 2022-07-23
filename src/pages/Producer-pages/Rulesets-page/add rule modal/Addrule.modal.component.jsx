@@ -61,7 +61,7 @@ export default function AddRule({ toggle }) {
 
     const changeContractName = (e, index) => {
         let contractName = e.target.value.split("::")
-        console.log(contractName);
+
         let newAddressList = addresslist.map((item, i) => {
             if (i === index) {
                 if (contractName.length == 2) {

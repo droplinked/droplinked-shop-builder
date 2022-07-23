@@ -10,27 +10,27 @@
 }
 
 .basket-modal-wrapper {
- border: 1px solid #ccc;
- border-radius: 10px;
- width: 300px;
- height: auto;
- padding: 20px 10px;
- position: fixed;
- top: 80px;
- right: 80px;
+  border-radius: 8px;
+  width: 300px;
+  height: auto;
+  padding: 20px 10px;
+  position: fixed;
+  top: 80px;
+  right: 80px;
   animation-name: basketModalAnimation;
   animation-duration: 0.2s;
- z-index: 50;
+  z-index: 50;
   background-color: #222;
+  box-shadow: 0 0 10px 2px #111;
 }
 
 @media only screen and (max-width: 768px) {
   .basket-modal-wrapper {
-    width: 90%;
+    width: 250px;
     height: auto;
     margin: 0px auto;
-    right: 50%;
-    transform: translateX(50%);
-    padding: 40px 20px;
+    right: 20px;
+    top: 60px;
+    padding: 20px 20px;
   }
 }

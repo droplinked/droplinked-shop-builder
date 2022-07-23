@@ -2,65 +2,46 @@
 import BasketModal from "../basket modal/basket-modal-component"
 import WalletButton from "../wallet button/wallet-button-component"
 import defaultProfile from "../../../../assest/profile/defaultProfile.png"
+import ProfileDropdown from "../profile-dropdown/ProfileDropdown"
+import NotificationDropdown from "../notification-dropdown/Notification-dropdown"
 
 import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useProfile } from "../../../../context/profile/ProfileContext"
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../../../context/cart/CartContext"
+import { useNotifications } from "../../../../context/notifications/NotificationsContext"
+
 
 export default function UserHeader() {
 
     const [toggleHeader, setToggleHeader] = useState(false)
     const [toggleBasket, setToggleBasket] = useState(false)
+    const [toggleNot, setToggleNot] = useState(false)
 
-    const { profile, logout } = useProfile()
+    const { profile } = useProfile()
     const { cart } = useCart();
+    const { notifications } = useNotifications()
+
 
 
     let Profileimage = profile.avatar
-    let navigate = useNavigate();
 
-    let userStatus = profile.status;
-    if (profile.user) {
-        userStatus = profile.user.status
-    } else {
-        userStatus = profile.status
-    }
-
-    const clickProfile = () => {
-        setToggleHeader(false)
-
-        switch (userStatus) {
-            case "VERIFIED":
-                navigate("/register/personalInfo");
-                return;
-            case "PROFILE_COMPLETED":
-                navigate("/register/shopInfo");
-                return;
-            case "SHOP_INFO_COMPLETED":
-                navigate("/register/IMSSelect");
-                return;
-            case "IMS_TYPE_COMPLETED":
-                navigate(`/${profile.shopName}`);
-                return;
-            case "ACTIVE":
-                navigate(`/${profile.shopName}`);
-                return;
-        }
-    }
-
-    const clickIms = () => {
-        navigate("/producer/ims");
-    }
 
     const openProfileModal = () => {
         setToggleHeader(p => !p)
         setToggleBasket(false)
+        setToggleNot(false)
     }
     const openBasketModal = () => {
         setToggleBasket(p => !p)
+        setToggleHeader(false)
+        setToggleNot(false)
+    }
+
+    const openNotification = () => {
+        setToggleNot(p => !p)
+        setToggleBasket(false)
         setToggleHeader(false)
     }
 
@@ -68,31 +49,30 @@ export default function UserHeader() {
         setToggleBasket(false)
     }
 
+    const closeNotifications = () => {
+        setToggleNot(false)
+    }
+
     return (<>
 
         <WalletButton />
 
         <div className="login-wrapper">
-            
+
+            {/* cart icon */}
             <div className="item-cart-wraper">
-                <Cart className="item-cart"
-                    onClick={openBasketModal}
-                />
-                {(cart != null) &&
-                    <>
-                        {(cart.items.length > 0) &&
-                            <div className="item-cart-number">{cart.items.length}</div>
-                        }
-
-                    </>
-                }
+                <Cart className="item-cart" onClick={openBasketModal} />
+                {(cart != null) && (cart.items.length > 0) &&
+                    <div className="item-cart-number">{cart.items.length}</div>}
             </div>
 
-            <div className="notification-icon">
+            {/* notification icon */}
+            <div className="notification-icon" onClick={openNotification}>
                 <IoMdNotificationsOutline />
+                {(notifications.length > 0) && <div className="new-notification">{notifications.length}</div>}
             </div>
 
-
+            {/* profile icon */}
             {(Profileimage)
                 ?
                 <img
@@ -112,37 +92,10 @@ export default function UserHeader() {
                 ></div>
             }
 
-
-            {toggleHeader &&
-                <div className="header-nav">
-
-                    {(userStatus == "IMS_TYPE_COMPLETED") && <>
-                        <div className="header-nav-item" onClick={clickProfile}>Profile</div>
-                        <Link to="/producer/ims">
-                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Inventory</div>
-                        </Link>
-                        <Link to="/producer/ruleset">
-                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Rulesets</div>
-                        </Link>
-                        <Link to="/producer/collection">
-                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Collection</div>
-                        </Link>
-                        <Link to="/producer/orders">
-                            <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Incoming Orders</div>
-                        </Link>
-
-                    </>
-                    }
-                    <Link to="/purchseHistory">
-                        <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Purchase history</div>
-                    </Link>
-                    <Link to="/settings">
-                        <div className="header-nav-item" onClick={() => { setToggleHeader(false) }}>Settings</div>
-                    </Link>
-                    <div className="header-nav-item" onClick={logout}>Logout</div>
-                </div>
-            }
+            {toggleHeader && <ProfileDropdown headerToggle={setToggleHeader} />}
             {toggleBasket && <BasketModal close={closeBasket} />}
+            {toggleNot && <NotificationDropdown close={closeNotifications} />}
+
         </div>
     </>)
 }

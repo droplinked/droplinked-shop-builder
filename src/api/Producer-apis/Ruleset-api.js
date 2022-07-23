@@ -2,9 +2,10 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-const token = JSON.parse(localStorage.getItem("token"));
+
 
 export const getRules = async (errorFunc) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.get(`${BASE_URL}/producer/ruleset`, {
       headers: { Authorization: "Bearer " + token },
@@ -18,6 +19,7 @@ export const getRules = async (errorFunc) => {
 
 
 export const newRule = async (rule) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.post(`${BASE_URL}/producer/ruleset`,rule,
      {headers: { Authorization: "Bearer " + token },
@@ -31,6 +33,7 @@ export const newRule = async (rule) => {
 
 
 export const deleteRule = async (id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.delete(`${BASE_URL}/producer/ruleset/${id}`,
      {headers: { Authorization: "Bearer " + token },
@@ -44,6 +47,7 @@ export const deleteRule = async (id) => {
 
 
 export const updateRule = async (id , rule) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.put(`${BASE_URL}/producer/ruleset/${id}`,rule,
      {headers: { Authorization: "Bearer " + token },

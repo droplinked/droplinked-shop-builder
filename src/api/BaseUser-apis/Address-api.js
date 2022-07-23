@@ -2,10 +2,10 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-const token = JSON.parse(localStorage.getItem("token"));
 
 
 export const getAddressList = async (errorFunc) => {
+  const token = JSON.parse(localStorage.getItem("token"));
     try {
         const res = await axios.get(`${BASE_URL}/address`, {
           headers: { Authorization: "Bearer " + token },
@@ -20,6 +20,7 @@ export const getAddressList = async (errorFunc) => {
 
 
 export const newAddress = async (address) => {
+  const token = JSON.parse(localStorage.getItem("token"));
     try {
         const res = await axios.post(`${BASE_URL}/address`, address , {
           headers: { Authorization: "Bearer " + token },
@@ -32,6 +33,7 @@ export const newAddress = async (address) => {
 
 
 export const DeleteAddress = async (id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
     try {
         const res = await axios.delete(`${BASE_URL}/address/${id}` , {
           headers: { Authorization: "Bearer " + token },
@@ -44,6 +46,7 @@ export const DeleteAddress = async (id) => {
 
 
 export const UpdateAddress = async (address , id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
     try {
         const res = await axios.put(`${BASE_URL}/address/${id}` , address ,{
           headers: { Authorization: "Bearer " + token },

@@ -16,8 +16,6 @@ function CheckoutPage() {
 	let navigate = useNavigate();
 
 
-
-
 	// get shops of items
 	const getshops = () => {
 		let shopArray = cart.items.map(item => item.shopName)
@@ -25,13 +23,13 @@ function CheckoutPage() {
 		return shops
 	}
 
+
 	//get total price of all items
 	const getTotalPrice = () => {
 		let total = cartBaseShop.map( item => { return (item.total + 5) })
 		total = total.reduce((a, b) => a + b, 0)
 		return total
 	}
-
 
 	// build new cart based shop name 
 	useEffect(() => {

@@ -170,7 +170,7 @@ function AddProductPage() {
             </div>
             <div className="mt-5 w-100">
                 {variants && variants.map((variant, i) => {
-                    return <VariantItem key={i} vari={variant} id={i} dlt={deleteVariant} edit={editVariant} />
+                    return <VariantItem key={i} variant={variant} id={i} dlt={deleteVariant} edit={editVariant} />
                 })}
             </div>
 

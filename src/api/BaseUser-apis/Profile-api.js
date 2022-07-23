@@ -3,9 +3,9 @@ import axios from "axios";
 import { BASE_URL } from "../BaseUrl";
 
 
-const token = JSON.parse(localStorage.getItem("token"));
 
-export const getShop = async () => {
+export const getShop = async () => { 
+const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.get(`${BASE_URL}/profile`, {
       headers: { Authorization: "Bearer " + token },
@@ -17,7 +17,8 @@ export const getShop = async () => {
   }
 };
 
-export const updateProfileApi = async (profileInfo) => {
+export const updateProfileApi = async (profileInfo) => { 
+const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.put(`${BASE_URL}/profile`, profileInfo, {
       headers: { Authorization: "Bearer " + token },
