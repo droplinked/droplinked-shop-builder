@@ -2,9 +2,11 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-const token = JSON.parse(localStorage.getItem("token"));
 
 export const getOrdersList = async () => {
+
+  const token = JSON.parse(localStorage.getItem("token"));
+  console.log(token)
   try {
     const res = await axios.get(`${BASE_URL}/producer/order`, {
       headers: { Authorization: "Bearer " + token },
@@ -17,6 +19,7 @@ export const getOrdersList = async () => {
 };
 
 export const SeenOrder = async (id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
     try {
       const res = await axios.post(`${BASE_URL}/producer/order/seen/${id}`,{}, {
         headers: { Authorization: "Bearer " + token },

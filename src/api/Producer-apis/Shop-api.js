@@ -6,10 +6,11 @@ import axios from "axios";
 import { BASE_URL } from "../BaseUrl";
 
 
-const token = JSON.parse(localStorage.getItem("token"));
+
 
 
 export const updateShopApi = async (shopinfo) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.put(`${BASE_URL}/producer/shop/info`, shopinfo, {
       headers: { Authorization: "Bearer " + token },
@@ -23,6 +24,7 @@ export const updateShopApi = async (shopinfo) => {
 
 
 export const setImsType = async (imsType) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.post(`${BASE_URL}/producer/profile/ims`, 
     { type: imsType }

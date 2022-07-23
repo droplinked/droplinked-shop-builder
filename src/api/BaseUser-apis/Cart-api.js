@@ -2,12 +2,13 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-const token = JSON.parse(localStorage.getItem("token"));
+
 
 
 
 
 export const addCheckoutAddress = async (addressId) => {
+  const token = JSON.parse(localStorage.getItem("token"));
     try {
         const res = await axios.post(`${BASE_URL}/cart/checkout-address`,
           { addressBookID: addressId } ,
@@ -21,6 +22,7 @@ export const addCheckoutAddress = async (addressId) => {
 
 
 export const addSkuToCart = async (cart) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
       const res = await axios.post(`${BASE_URL}/cart/sku`,cart,
         {headers: { Authorization: "Bearer " + token },
@@ -33,6 +35,7 @@ export const addSkuToCart = async (cart) => {
 
 
 export const deleteSkuFromCart = async (skuId) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
       const res = await axios.delete(`${BASE_URL}/cart/sku/${skuId}`,{
         headers: { Authorization: "Bearer " + token },
@@ -46,6 +49,7 @@ export const deleteSkuFromCart = async (skuId) => {
 
 
 export const updateQuantity = async (skuId , q) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
       const res = await axios.put(`${BASE_URL}/cart/sku/${skuId}`,
       { quantity: parseInt(q) },
@@ -61,6 +65,7 @@ export const updateQuantity = async (skuId , q) => {
 
 
 export const checkoutCart = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
       const res = await axios.post(`${BASE_URL}/cart/checkout`,{},
       {headers: { Authorization: "Bearer " + token },

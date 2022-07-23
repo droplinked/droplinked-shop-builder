@@ -2,10 +2,11 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-const token = JSON.parse(localStorage.getItem("token"));
+
 
 
 export const producerSignup = async(info) => {
+  const token = JSON.parse(localStorage.getItem("token"));
 
     try {
         const res = await axios.post(`${BASE_URL}/producer/signup`,info)

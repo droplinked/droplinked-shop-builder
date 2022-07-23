@@ -2,11 +2,10 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-const token = JSON.parse(localStorage.getItem("token"));
-
 
 
 export const getNotifications = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
     try {
         const res = await axios.get(`${BASE_URL}/notification`,
         {headers: { Authorization: "Bearer " + token },
@@ -21,6 +20,7 @@ export const getNotifications = async () => {
 
 
 export const seenNotification = async (id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   try {
       const res = await axios.post(`${BASE_URL}/notification/seen/${id}`,{},
       {headers: { Authorization: "Bearer " + token },

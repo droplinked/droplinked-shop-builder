@@ -3,11 +3,11 @@ import axios from "axios";
 import { BASE_URL } from "../BaseUrl";
 //import { useToasty } from "../../context/toastify/ToastContext"
 
-const token = JSON.parse(localStorage.getItem("token"));
+
 
 export const getCollections = async() => {
 //  const { errorToast } = useToasty()
-
+const token = JSON.parse(localStorage.getItem("token"));
     try {
         const res = await axios.get(`${BASE_URL}/producer/collection?withProducts=true`, {
           headers: { Authorization: "Bearer " + token },
@@ -21,7 +21,7 @@ export const getCollections = async() => {
 
 //update collection
 export const updateCollection = async(id , newObj) => {
-  
+  const token = JSON.parse(localStorage.getItem("token"));
       try {
           const res = await axios.put(`${BASE_URL}/producer/collection/${id}`,newObj, {
             headers: { Authorization: "Bearer " + token },
@@ -34,7 +34,7 @@ export const updateCollection = async(id , newObj) => {
 
   // add new collection
   export const newCollection = async(newCollection) => {
-  
+    const token = JSON.parse(localStorage.getItem("token"));
     try {
         const res = await axios.post(`${BASE_URL}/producer/collection`,newCollection, {
           headers: { Authorization: "Bearer " + token },
@@ -47,7 +47,7 @@ export const updateCollection = async(id , newObj) => {
 
 //delete collection
 export const deleteCollection = async(id) => {
-
+  const token = JSON.parse(localStorage.getItem("token"));
       try {
           const res = await axios.delete(`${BASE_URL}/producer/collection/${id}`, {
             headers: { Authorization: "Bearer " + token },
