@@ -11,7 +11,6 @@ export const getOrdersList = async () => {
     const res = await axios.get(`${BASE_URL}/producer/order`, {
       headers: { Authorization: "Bearer " + token },
     });
-    console.log(res.data.data);
     return res.data.data.orders;
   } catch (err) {
     console.error(err.response.data.reason);

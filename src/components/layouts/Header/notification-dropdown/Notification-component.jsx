@@ -25,7 +25,6 @@ const NotificationComponent = ({ notif, close }) => {
                 navigate("/producer/orders")
                 seenNotif(notif._id)
             default:
-                console.log("x");
         }
     }
 

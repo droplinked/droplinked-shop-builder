@@ -22,7 +22,7 @@ function CheckoutPage() {
 		let shops = [...new Set(shopArray)];
 		return shops
 	}
-console.log(cartBaseShop)
+
 
 	//get total price of all items
 	const getTotalPrice = () => {

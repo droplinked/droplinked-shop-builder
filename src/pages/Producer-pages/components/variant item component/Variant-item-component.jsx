@@ -4,9 +4,9 @@ export default function VariantItem({ variant, id, dlt, edit }) {
 
 
     const decentrilize = () => {
-        console.log("id : ", variant._id)
-        console.log("quantity : ", variant.quantity)
-        console.log("price : ", variant.price)
+      //  console.log("id : ", variant._id)
+     //   console.log("quantity : ", variant.quantity)
+     //   console.log("price : ", variant.price)
     }
 
 

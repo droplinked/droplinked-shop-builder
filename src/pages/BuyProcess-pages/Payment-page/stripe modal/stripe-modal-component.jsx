@@ -37,7 +37,7 @@ const StripeComponent = ({cartId}) => {
             console.log(result.error.message);
         } else {
             setLoading(false)
-            console.log(result.data);
+           // console.log(result.data);
             updateCart()
             // Your customer will be redirected to your `return_url`. For some payment
             // methods like iDEAL, your customer will be redirected to an intermediate
