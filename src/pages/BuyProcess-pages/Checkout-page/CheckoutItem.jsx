@@ -22,7 +22,6 @@ export default function CheckoutItem({ product }) {
     let variantText = ""
     findSku.options.forEach(option => { variantText += `${option.variantName}:${option.value}  \xa0\xa0\xa0` })
 
-
     //delete merch
     const deleteMerch = async () => {
         setDisableDeleteBtn(true)

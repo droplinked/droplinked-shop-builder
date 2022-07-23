@@ -18,6 +18,8 @@ export default function BasketModal({ close }) {
         navigate("/checkout")
         close();
     }
+
+    console.log(cart)
     return (
 
         <div className="basket-modal-wrapper">
