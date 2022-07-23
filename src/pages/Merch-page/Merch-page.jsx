@@ -134,7 +134,7 @@ export default function MerchPage() {
 
 
 
-// add to baskset functionality
+    // add to baskset functionality
     const Addtobasket = async () => {
 
         if (profile == null) {
@@ -266,18 +266,25 @@ export default function MerchPage() {
                             </div>
                         }
 
-                        <div className="calc-btn-wrap">
-                            <div className="btn" onClick={() => { setQuantity(p => ++p) }}>
-                                <img src={plus} alt="" />
+                        {sku && (sku.quantity > 0) &&
+                            <div className="calc-btn-wrap">
+                                <div className="btn" onClick={() => { setQuantity(p => ++p) }}>
+                                    <img src={plus} alt="" />
+                                </div>
+                                <p className="show">{quantity}</p>
+                                <div className="btn"
+                                    onClick={() => { if (quantity != 0) setQuantity(p => --p) }}>
+                                    <img src={minus} alt="" />
+                                </div>
                             </div>
-                            <p className="show">{quantity}</p>
-                            <div className="btn"
-                                onClick={() => { if (quantity != 0) setQuantity(p => --p) }}>
-                                <img src={minus} alt="" />
-                            </div>
-                        </div>
+                        }
                         <div style={{ height: "auto" }}>
-                            <BasicButton click={Addtobasket} disabled={disableBtn}>Add to basket</BasicButton>
+                            {sku && (sku.quantity == 0) ?
+                                <BasicButton disabled={true}>Sold out</BasicButton>
+                                :
+                                <BasicButton click={Addtobasket} disabled={disableBtn}>Add to basket</BasicButton>
+                            }
+
                         </div>
                     </div>
 
