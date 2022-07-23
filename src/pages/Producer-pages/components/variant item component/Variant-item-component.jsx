@@ -2,8 +2,6 @@ import "./Variant-item-component.scss"
 
 export default function VariantItem({ variant, id, dlt, edit }) {
 
-    console.log(variant)
-
 
     const decentrilize = () => {
         console.log("id : ", variant._id)
@@ -15,10 +13,10 @@ export default function VariantItem({ variant, id, dlt, edit }) {
 
     return (
         <div className="variant-item-wrapper">
-            {variant.options.map((item, i) => {
+            {/* {variant.options && variant.options.map((item, i) => {
                 return (<p key={i}>{`${item.variantName} : ${item.value}`}</p>)
             })
-            }
+            } */}
             <p>{`Quantity :  ${variant.quantity}`}</p>
             <p>{`Price : ${variant.price}$`}</p>
             <p>{`ExternalID : ${variant.externalID}`}</p>
