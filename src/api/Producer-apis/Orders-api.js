@@ -6,11 +6,12 @@ import { BASE_URL } from "../BaseUrl";
 export const getOrdersList = async () => {
 
   const token = JSON.parse(localStorage.getItem("token"));
-  console.log(token)
+
   try {
     const res = await axios.get(`${BASE_URL}/producer/order`, {
       headers: { Authorization: "Bearer " + token },
     });
+    console.log(res.data.data);
     return res.data.data.orders;
   } catch (err) {
     console.error(err.response.data.reason);

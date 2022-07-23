@@ -22,6 +22,7 @@ export default function CheckoutItem({ product }) {
     let variantText = ""
     findSku.options.forEach(option => { variantText += `${option.variantName}:${option.value}  \xa0\xa0\xa0` })
 
+
     //delete merch
     const deleteMerch = async () => {
         setDisableDeleteBtn(true)
@@ -123,7 +124,7 @@ export default function CheckoutItem({ product }) {
                     fontWeight="600"
                     fontSize="18"
                 >
-                    $ {product.price}
+                    $ {findSku.price}
                 </Text>
 
                 <ButtonGroup size="md" isAttached variant='outline'>

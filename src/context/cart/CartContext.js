@@ -1,6 +1,6 @@
 import { createContext, useState ,useContext } from "react";
 import { BASE_URL } from "../../api/BaseUrl"
-import { errorToast } from "../../context/toastify/ToastContext";
+
 import axios from "axios";
 
 
@@ -20,7 +20,6 @@ const CartContextProvider = ({ children }) => {
       })
       .then(async (e) => {
         let cart = e.data.data.cart;
-        
         //build array of productIDs
         let productsId = cart.items.map((item) => item.productID);
         //send array of productIDs and get array of Products
@@ -38,6 +37,7 @@ const CartContextProvider = ({ children }) => {
           id: cart._id,
           status: cart.status,
           items: newCartItems,
+          totalPrice:cart.totalPrice,
         });
 
       })
