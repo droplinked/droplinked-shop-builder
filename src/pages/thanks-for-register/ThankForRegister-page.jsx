@@ -13,7 +13,7 @@ export default function ThankForRegisterPage() {
     const resend = async () => {
         setMessage("Wait")
         let result = await resendEmail(email)
-        if (result == false) {
+        if (result === false) {
             setMessage("Not Found or Verified")
         } else {
             setMessage(result)

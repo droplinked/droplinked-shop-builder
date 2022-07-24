@@ -29,7 +29,7 @@ export default function ShopPage() {
 
         getData(shopname)
         
-    }, [])
+    }, [shopname])
 
 
     return (<>

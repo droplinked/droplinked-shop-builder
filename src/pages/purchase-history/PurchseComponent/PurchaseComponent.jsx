@@ -12,11 +12,15 @@ export default function PurchaseHistory({ order }) {
     const [orderData, setOrderData] = useState(null)
 
 
-    useEffect(async () => {
-        //   console.log(order)
-        let ProductsId = order.items.map(item => item.productID)
-        let Products = await getProductsArray(ProductsId);
-        addProductToOrder(Products);
+    useEffect(() => {
+
+        const getProducts = async () => {
+            let ProductsId = order.items.map(item => item.productID)
+            let Products = await getProductsArray(ProductsId);
+            addProductToOrder(Products);
+        }
+        getProducts()
+
     }, [])
 
 
@@ -36,7 +40,7 @@ export default function PurchaseHistory({ order }) {
     const addProductToOrder = (ProductList) => {
         let newOrderList = order;
         newOrderList.items.forEach((item, i) => {
-            let product = ProductList.find(product => product._id == item.productID)
+            let product = ProductList.find(product => product._id === item.productID)
             newOrderList.items[i] = { ...item, product: product }
         })
         setOrderData(newOrderList);

@@ -21,7 +21,7 @@ export default function ShopInfoComponent() {
     const { addressList } = useAddress()
     const { errorToast, successToast } = useToasty()
     
-    let shopAddressBook = addressList.find(address => address.addressType == "SHOP")
+    let shopAddressBook = addressList.find(address => address.addressType === "SHOP")
 
 
     useEffect(() => {
@@ -31,7 +31,7 @@ export default function ShopInfoComponent() {
                 setShop(e.data.data.shop)
             })
             .catch(e => console.log(e.response.data.reason))
-    }, [])
+    }, [token])
 
     const changeShopLogo = (imageUrl) => {
         let newObject = {}

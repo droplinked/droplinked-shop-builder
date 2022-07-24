@@ -1,4 +1,4 @@
-import { Flex, Box, Text } from '@chakra-ui/react'
+import { Flex, Box } from '@chakra-ui/react'
 import { useState } from 'react';
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { BASE_URL } from "../../../api/BaseUrl"
