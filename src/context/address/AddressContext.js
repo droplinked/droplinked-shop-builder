@@ -5,7 +5,7 @@ import {
   newAddress,
   DeleteAddress,
   UpdateAddress,
-} from "../../api/BaseUser-apis/Address-api";
+} from "../../api/base-user/Address-api";
 
 
 export const AddressContext = createContext();

@@ -8,7 +8,7 @@ import { useToasty } from "../../context/toastify/ToastContext"
 import { checkRules } from "../../services/NftService/NFTcheck"
 import { useCart } from "../../context/cart/CartContext"
 import { getProduct } from "../../api/Public-apis/Product-api"
-import { addSkuToCart } from "../../api/BaseUser-apis/Cart-api"
+import { addSkuToCart } from "../../api/base-user/Cart-api"
 
 
 import Carousel from "../../components/shared/Carousel/Carousel-component"

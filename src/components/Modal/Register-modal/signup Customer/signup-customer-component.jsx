@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useToasty } from "../../../../context/toastify/ToastContext"
 import { useProfile } from "../../../../context/profile/ProfileContext"
-import { customerSignup } from "../../../../api/BaseUser-apis/Auth-api"
+import { customerSignup } from "../../../../api/base-user/Auth-api"
 
 import BasicButton from "../../../shared/BasicButton/BasicButton"
 

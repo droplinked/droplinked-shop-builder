@@ -8,7 +8,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toastValue } from "../../context/toastify/ToastContext"
 import { useState, useContext } from "react"
 import { useForm } from "react-hook-form";
-import { recoveryAccount } from "../../api/BaseUser-apis/Auth-api"
+import { recoveryAccount } from "../../api/base-user/Auth-api"
 
 export default function AccountRecoveryPage() {
 

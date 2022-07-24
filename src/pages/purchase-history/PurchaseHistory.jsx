@@ -1,7 +1,7 @@
 import { useToasty } from "../../context/toastify/ToastContext"
 import { useEffect, useState } from "react";
 import { Text, Box } from "@chakra-ui/react"
-import { getOrdersHistory } from '../../api/BaseUser-apis/OrderHistory-api'
+import { getOrdersHistory } from '../../api/base-user/OrderHistory-api'
 
 import Loading from "../../components/shared/loading/Loading"
 import PurchaseHistory from "./PurchseComponent/PurchaseComponent"

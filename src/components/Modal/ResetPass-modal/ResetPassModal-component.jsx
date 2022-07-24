@@ -2,7 +2,7 @@ import "./ResetPassModal-style.scss"
 
 import { useState,  useContext } from "react"
 import { toastValue } from "../../../context/toastify/ToastContext"
-import { resetPassword } from "../../../api/BaseUser-apis/Auth-api"
+import { resetPassword } from "../../../api/base-user/Auth-api"
 
 import ModalContainer from "../modal-container/modal-container"
 import closePng from "../../../assest/feature/home page images/Close.png"

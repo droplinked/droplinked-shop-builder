@@ -8,7 +8,7 @@ import { useState } from "react"
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useCart } from "../../../context/cart/CartContext"
-import { checkoutCart } from "../../../api/BaseUser-apis/Cart-api"
+import { checkoutCart } from "../../../api/base-user/Cart-api"
 
 import axios from "axios"
 import StripeComponent from "./stripe modal/stripe-modal-component"

@@ -3,7 +3,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useCart } from "../../../context/cart/CartContext"
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useState } from "react";
-import { deleteSkuFromCart ,updateQuantity } from "../../../api/BaseUser-apis/Cart-api"
+import { deleteSkuFromCart ,updateQuantity } from "../../../api/base-user/Cart-api"
 
 
 

@@ -1,5 +1,5 @@
 import { createContext, useState, useContext} from "react";
-import { getNotifications , seenNotification} from "../../api/BaseUser-apis/Notification-api"
+import { getNotifications , seenNotification} from "../../api/base-user/Notification-api"
 
 
 export const NotContext = createContext();

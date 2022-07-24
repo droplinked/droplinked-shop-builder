@@ -3,7 +3,7 @@ import "./Inventory-page-style.scss"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { getProducts } from "../../../api/Producer-apis/Product-api"
-import { getShop } from "../../../api/BaseUser-apis/Profile-api"
+import { getShop } from "../../../api/base-user/Profile-api"
 
 
 import Loading from "../../../components/shared/loading/Loading"

@@ -3,7 +3,7 @@ import { Flex, Button, Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useAddress } from "../../../context/address/AddressContext"
-import { addCheckoutAddress } from "../../../api/BaseUser-apis/Cart-api"
+import { addCheckoutAddress } from "../../../api/base-user/Cart-api"
 
 import AddressComponent from "../../../components/shared/Address/address-component"
 import Loading from "../../../components/shared/loading/Loading"

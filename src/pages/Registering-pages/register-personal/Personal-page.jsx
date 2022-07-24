@@ -6,7 +6,7 @@ import { toastValue } from "../../../context/toastify/ToastContext"
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
-import { updateProfileApi } from "../../../api/BaseUser-apis/Profile-api"
+import { updateProfileApi } from "../../../api/base-user/Profile-api"
 import  InputImage  from "../../../components/shared/InputImage/InputImage"
 
 export default function PersonalPage() {
