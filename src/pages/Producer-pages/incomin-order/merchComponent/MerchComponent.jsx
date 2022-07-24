@@ -8,12 +8,14 @@ export default function MerchComponent({ item }) {
         fontWeight: "500"
     }
 
-    let sku = item.product.skus.find(sku => sku._id == item.skuID)
+    let sku = item.sku
 
     let price = sku.price
 
+    let findSku = item.product.skus.find(sku => sku._id == item.sku._id)
+
     let variantText = ' '
-    sku.options.forEach((opt, i) => {
+    findSku.options.forEach((opt, i) => {
         variantText += (opt.variantName + " : " + opt.value + '\xa0\xa0\xa0\xa0\xa0\xa0')
     })
 

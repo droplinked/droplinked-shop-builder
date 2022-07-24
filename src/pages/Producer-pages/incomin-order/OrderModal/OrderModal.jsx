@@ -34,12 +34,12 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
             .reduce((total, quan) => { return total + quan }, 0)
         return TotalQuantity
     }
-
+//*
     // get price of merchs
     const getMerchPrice = () => {
         let totalPrice = 0
         newOrderList.items.forEach(item => {
-            totalPrice += (item.product.skus.find(sku => sku._id == item.skuID).price * item.quantity)
+            totalPrice += (item.sku.price * item.quantity)
         })
         return totalPrice
     }
