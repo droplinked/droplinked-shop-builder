@@ -1,4 +1,4 @@
-import "../add collection page/Add-collection-style.scss"
+import "../add-collection-page/Add-collection-style.scss"
 
 import { useState, useEffect } from "react"
 import {  useNavigate } from "react-router-dom";

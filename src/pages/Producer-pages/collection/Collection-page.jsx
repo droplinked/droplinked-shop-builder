@@ -3,9 +3,9 @@ import "./Collection-page-style.scss"
 
 import CollectionComponent from "./Collection-component/Collection-component"
 import ModalContainer from "../../../components/Modal/modal-container/modal-container"
-import AddCollectionPage from "./add collection page/Add-collection-component"
+import AddCollectionPage from "./add-collection-page/Add-collection-component"
 import Loading from "../../../components/shared/loading/Loading"
-import EditCollectionModal from "./edit collection modal/edit-collection-modal-component"
+import EditCollectionModal from "./edit-collection-modal/edit-collection-modal-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 
 import { useNavigate } from "react-router-dom";

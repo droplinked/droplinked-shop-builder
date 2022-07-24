@@ -13,34 +13,34 @@ import OrderContextProvider from "./context/order/OrdersContext"
 import NotContextProvider from "./context/notifications/NotificationsContext"
 
 
-import PageWrapper from "./pages/Page-wrapper/PageWrapper";
-import LandingPage from "./pages/Landing-page/Landing-page";
-import TermsPage from "./pages/Terms-page/Terms-page";
-import PrivacyPage from "./pages/Privacy-page/Privacy-page";
-import RegisterPage from "./pages/Registering-pages/Register-page/Register-page";
-import PersonalPage from "./pages/Registering-pages/Register-personal-page/Personal-page";
-import RegisterShop from "./pages/Registering-pages/Register-shop-page/Shop-page";
-import RegisterIms from "./pages/Registering-pages/Register-ims-page/Ims-page";
-import EmailVerifyPage from "./pages/EmailVerify-page/Email-verification-page";
-import AccountRecoveryPage from "./pages/AccountRecovery-page/Account-recovery-page";
-import ThankForRegisterPage from "./pages/ThanksForRegister-page/ThankForRegister-page";
-import InventoryPage from "./pages/Producer-pages/IMS pages/Inventory-page";
-import ViewMerchPage from "./pages/Producer-pages/ViewMerch-page/View-merch-page";
-import AddProductPage from "./pages/Producer-pages/AddProduct-page/Add-product-page";
-import RuleSetPage from "./pages/Producer-pages/Rulesets-page/RuleSet-page";
-import CollectionMainPage from "./pages/Producer-pages/Collection-page/Collection-page";
-import ShopPage from "./pages/Shop-page/Shop-page";
-import MerchPage from "./pages/Merch-page/Merch-page";
-import CollectionPage from "./pages/Collection-page/Collection-page";
-import CheckoutPage from "./pages/BuyProcess-pages/Checkout-page/Checkout-page";
-import AddressPage from "./pages/BuyProcess-pages/Address-page/Address-Page";
-import PaymentPage from "./pages/BuyProcess-pages/Payment-page/Payment-page";
+import PageWrapper from "./pages/page-wrapper/PageWrapper";
+import LandingPage from "./pages/landing/Landing-page";
+import TermsPage from "./pages/terms/Terms-page";
+import PrivacyPage from "./pages/privacy/Privacy-page";
+import RegisterPage from "./pages/Registering-pages/register/Register-page";
+import PersonalPage from "./pages/Registering-pages/register-personal/Personal-page";
+import RegisterShop from "./pages/Registering-pages/register-shop/Shop-page";
+import RegisterIms from "./pages/Registering-pages/register-ims/Ims-page";
+import EmailVerifyPage from "./pages/email-verify/Email-verification-page";
+import AccountRecoveryPage from "./pages/account-recovery/Account-recovery-page";
+import ThankForRegisterPage from "./pages/thanks-for-register/ThankForRegister-page";
+import InventoryPage from "./pages/Producer-pages/ims/Inventory-page";
+import ViewMerchPage from "./pages/Producer-pages/view-merch/View-merch-page";
+import AddProductPage from "./pages/Producer-pages/add-product/Add-product-page";
+import RuleSetPage from "./pages/Producer-pages/rulesets/RuleSet-page";
+import CollectionMainPage from "./pages/Producer-pages/collection/Collection-page";
+import ShopPage from "./pages/shop/Shop-page";
+import MerchPage from "./pages/merch/Merch-page";
+import CollectionPage from "./pages/collection/Collection-page";
+import CheckoutPage from "./pages/buy-process-pages/checkout/Checkout-page";
+import AddressPage from "./pages/buy-process-pages/address/Address-Page";
+import PaymentPage from "./pages/buy-process-pages/payment/Payment-page";
 import CreatorPage from "./pages/Crashpunks-page/CreatorPage";
-import BuyProduct from "./pages/BuyCrashpunks-page/BuyProduct";
-import SettingsPage from "./pages/Settings-page/Settings-page";
-import IncomingOrderPage from "./pages/Producer-pages/IncominOrder-page/IncomingOrder-page";
-import Creator from "./pages/Creator-page/CreatorPage";
-import PurchasHistoryPage from "./pages/PurchaseHistory-page/PurchaseHistory"
+import BuyProduct from "./pages/buy-crashpunks/BuyProduct";
+import SettingsPage from "./pages/settings/Settings-page";
+import IncomingOrderPage from "./pages/Producer-pages/incomin-order/IncomingOrder-page";
+import Creator from "./pages/creator/CreatorPage";
+import PurchasHistoryPage from "./pages/purchase-history/PurchaseHistory"
 
 function App() {
   return (

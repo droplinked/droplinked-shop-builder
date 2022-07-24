@@ -4,7 +4,7 @@ import editIcon from '../../../../assest/icon/icons8-edit.svg'
 import deleteIcon from '../../../../assest/icon/icons8-delete.svg'
 import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component"
 import ModalContainer from "../../../../components/Modal/modal-container/modal-container"
-import EditCollectionModal from "../edit collection modal/edit-collection-modal-component"
+import EditCollectionModal from "../edit-collection-modal/edit-collection-modal-component"
 import Product from "../../../../components/shared/Product/Product"
 
 import { useToasty } from "../../../../context/toastify/ToastContext"
