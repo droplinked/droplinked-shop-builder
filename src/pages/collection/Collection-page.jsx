@@ -6,7 +6,7 @@ import Product from "../../components/shared/Product/Product";
 
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getCollectionById } from "../../api/Public-apis/Collection-api"
+import { getCollectionById } from "../../api/public/Collection-api"
 
 export default function CollectionPage() {
   

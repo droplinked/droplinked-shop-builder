@@ -1,6 +1,6 @@
 import { Box, Flex, Text, Image, useDisclosure } from "@chakra-ui/react"
 import { useState, useEffect } from 'react'
-import { getProduct } from "../../../api/Public-apis/Product-api"
+import { getProduct } from "../../../api/public/Product-api"
 import { convetToCustomFormat } from "../../../utils/date.utils/convertDate"
 
 

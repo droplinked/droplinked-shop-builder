@@ -1,7 +1,7 @@
 import { Text, Box, Flex, useDisclosure, Stack, Skeleton, Image } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 import { useOrder } from "../../../../context/order/OrdersContext"
-import { getProduct } from "../../../../api/Public-apis/Product-api"
+import { getProduct } from "../../../../api/public/Product-api"
 import { convetToCustomFormat } from "../../../../utils/date.utils/convertDate"
 
 import OrderModal from "../OrderModal/OrderModal"

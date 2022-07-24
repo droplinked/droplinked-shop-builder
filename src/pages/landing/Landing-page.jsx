@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom";
 import { Flex, Box, Image, Text, Input, Button, Spinner, AspectRatio } from '@chakra-ui/react'
-import { checkShopname } from "../../api/Public-apis/CheckShopname-api"
+import { checkShopname } from "../../api/public/CheckShopname-api"
 
 
 import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"

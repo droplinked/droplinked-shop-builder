@@ -16,7 +16,7 @@ import { useToasty } from "../../../context/toastify/ToastContext"
 import { useNavigate } from 'react-router-dom';
 import { getVariants } from "../../../api/producer/Product-api"
 import { getCollections } from "../../../api/producer/Collection-api"
-import { getProduct } from "../../../api/Public-apis/Product-api"
+import { getProduct } from "../../../api/public/Product-api"
 import { deleteSku, addSkuToProduct, updateMerch, deleteMerch } from "../../../api/producer/Product-api"
 
 export default function ViewMerchPage() {

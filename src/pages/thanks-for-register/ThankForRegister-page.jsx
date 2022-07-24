@@ -1,6 +1,6 @@
 import "./ThankForRegister-page-style.scss"
 
-import { resendEmail } from "../../api/Public-apis/ResendEmail-api"
+import { resendEmail } from "../../api/public/ResendEmail-api"
 import { Link } from "react-router-dom";
 import { useState } from "react"
 

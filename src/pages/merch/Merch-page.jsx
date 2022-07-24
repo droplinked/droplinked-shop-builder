@@ -7,7 +7,7 @@ import { useProfile } from "../../context/profile/ProfileContext"
 import { useToasty } from "../../context/toastify/ToastContext"
 import { checkRules } from "../../services/NftService/NFTcheck"
 import { useCart } from "../../context/cart/CartContext"
-import { getProduct } from "../../api/Public-apis/Product-api"
+import { getProduct } from "../../api/public/Product-api"
 import { addSkuToCart } from "../../api/base-user/Cart-api"
 
 

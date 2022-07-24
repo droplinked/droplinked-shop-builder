@@ -2,8 +2,8 @@ import "./Shop-page-style.scss"
 
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { getShopInfoByShopname } from "../../api/Public-apis/Shop-api"
-import { getCollectionsByShopname } from "../../api/Public-apis/Collection-api"
+import { getShopInfoByShopname } from "../../api/public/Shop-api"
+import { getCollectionsByShopname } from "../../api/public/Collection-api"
 
 import Loading from "../../components/shared/loading/Loading"
 import Collection from "../../components/shared/Collection/collection-component"
