@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react"
 import { useToasty } from "../../../../context/toastify/ToastContext"
-import { updateRule } from "../../../../api/Producer-apis/Ruleset-api"
+import { updateRule } from "../../../../api/producer/Ruleset-api"
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 import FormInput from "../../../../components/shared/FormInput/FormInput"

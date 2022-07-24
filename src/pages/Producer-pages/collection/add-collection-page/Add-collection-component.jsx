@@ -3,8 +3,8 @@ import "./Add-collection-style.scss"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../../context/toastify/ToastContext"
-import { getRules } from "../../../../api/Producer-apis/Ruleset-api"
-import { newCollection } from "../../../../api/Producer-apis/Collection-api"
+import { getRules } from "../../../../api/producer/Ruleset-api"
+import { newCollection } from "../../../../api/producer/Collection-api"
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 import Loading from "../../../../components/shared/loading/Loading"

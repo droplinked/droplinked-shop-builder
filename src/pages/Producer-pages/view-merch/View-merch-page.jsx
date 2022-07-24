@@ -14,10 +14,10 @@ import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useNavigate } from 'react-router-dom';
-import { getVariants } from "../../../api/Producer-apis/Product-api"
-import { getCollections } from "../../../api/Producer-apis/Collection-api"
+import { getVariants } from "../../../api/producer/Product-api"
+import { getCollections } from "../../../api/producer/Collection-api"
 import { getProduct } from "../../../api/Public-apis/Product-api"
-import { deleteSku, addSkuToProduct, updateMerch, deleteMerch } from "../../../api/Producer-apis/Product-api"
+import { deleteSku, addSkuToProduct, updateMerch, deleteMerch } from "../../../api/producer/Product-api"
 
 export default function ViewMerchPage() {
 

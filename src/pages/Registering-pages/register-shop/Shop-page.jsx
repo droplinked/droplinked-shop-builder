@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { BASE_URL } from "../../../api/BaseUrl"
 import { toastValue } from "../../../context/toastify/ToastContext"
-import { updateShopApi } from "../../../api/Producer-apis/Shop-api"
+import { updateShopApi } from "../../../api/producer/Shop-api"
 
 import InputImage from "../../../components/shared/InputImage/InputImage"
 

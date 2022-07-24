@@ -8,7 +8,7 @@ import EditCollectionModal from "../edit-collection-modal/edit-collection-modal-
 import Product from "../../../../components/shared/Product/Product"
 
 import { useToasty } from "../../../../context/toastify/ToastContext"
-import { deleteCollection } from "../../../../api/Producer-apis/Collection-api"
+import { deleteCollection } from "../../../../api/producer/Collection-api"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 

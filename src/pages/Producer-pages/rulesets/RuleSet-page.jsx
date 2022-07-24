@@ -8,7 +8,7 @@ import Loading from "../../../components/shared/loading/Loading"
 
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useState, useEffect } from "react";
-import { getRules } from "../../../api/Producer-apis/Ruleset-api"
+import { getRules } from "../../../api/producer/Ruleset-api"
 
 function RuleSetPage() {
 	const [addRuleModal, setAddRuleModal] = useState(false)

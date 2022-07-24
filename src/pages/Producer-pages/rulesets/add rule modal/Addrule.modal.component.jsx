@@ -4,7 +4,7 @@ import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 import FormInput from "../../../../components/shared/FormInput/FormInput"
 
 import { useToasty } from "../../../../context/toastify/ToastContext"
-import { newRule } from "../../../../api/Producer-apis/Ruleset-api"
+import { newRule } from "../../../../api/producer/Ruleset-api"
 
 
 export default function AddRule({ toggle }) {

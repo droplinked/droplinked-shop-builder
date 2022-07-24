@@ -3,7 +3,7 @@ import EditRule from "../edit rule modal/Edit.Rule.component"
 import { useState } from "react"
 import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component"
 import { useToasty } from "../../../../context/toastify/ToastContext"
-import { deleteRule } from "../../../../api/Producer-apis/Ruleset-api"
+import { deleteRule } from "../../../../api/producer/Ruleset-api"
 
 export default function RuleItem({ name, rules, ruleId, ren }) {
     const [editModal, setEditModal] = useState(false)

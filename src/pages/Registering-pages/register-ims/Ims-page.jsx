@@ -3,7 +3,7 @@ import "./Ims-page-style.scss"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
-import { setImsType } from "../../../api/Producer-apis/Shop-api"
+import { setImsType } from "../../../api/producer/Shop-api"
 import { useToasty } from "../../../context/toastify/ToastContext"
 
 export default function RegisterIms() {

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react"
 import { useForm } from "react-hook-form";
 import { toastValue } from "../../../../context/toastify/ToastContext"
-import { producerSignup } from "../../../../api/Producer-apis/Auth-api"
+import { producerSignup } from "../../../../api/producer/Auth-api"
 import { isValidEmail } from "../../../../utils/validations/emailValidation"
 
 export default function SignupProducer({ close, shopname, switchToggle }) {

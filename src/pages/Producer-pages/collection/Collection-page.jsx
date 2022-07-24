@@ -10,7 +10,7 @@ import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react"
-import { getCollections } from "../../../api/Producer-apis/Collection-api"
+import { getCollections } from "../../../api/producer/Collection-api"
 
 
 export default function CollectionMainPage() {

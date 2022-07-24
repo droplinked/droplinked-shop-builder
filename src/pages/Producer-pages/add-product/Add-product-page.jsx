@@ -11,8 +11,8 @@ import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
 
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom';
-import { getVariants, postProduct } from "../../../api/Producer-apis/Product-api"
-import { getCollections } from "../../../api/Producer-apis/Collection-api"
+import { getVariants, postProduct } from "../../../api/producer/Product-api"
+import { getCollections } from "../../../api/producer/Collection-api"
 import { useToasty } from "../../../context/toastify/ToastContext"
 
 
