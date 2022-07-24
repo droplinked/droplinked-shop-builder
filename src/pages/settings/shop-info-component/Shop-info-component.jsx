@@ -20,12 +20,12 @@ export default function ShopInfoComponent() {
 
     const { addressList } = useAddress()
     const { errorToast, successToast } = useToasty()
-    
+
     let shopAddressBook = addressList.find(address => address.addressType == "SHOP")
 
 
     useEffect(() => {
-        axios.get(`${BASE_URL }/profile`,
+        axios.get(`${BASE_URL}/profile`,
             { headers: { Authorization: "Bearer " + token } })
             .then(e => {
                 setShop(e.data.data.shop)
@@ -61,7 +61,7 @@ export default function ShopInfoComponent() {
         }
 
         setDisableBtn(true)
-        axios.put(`${BASE_URL}/producer/shop/info`,shopInformation, 
+        axios.put(`${BASE_URL}/producer/shop/info`, shopInformation,
             { headers: { Authorization: "Bearer " + token } })
             .then(e => {
                 successToast("Shop info updated successfully")
@@ -139,10 +139,11 @@ export default function ShopInfoComponent() {
                         mt='20px'
                         mb='20px'
                     />
-                    <AddressComponent
-                        address={shopAddressBook}
-                    />
-
+                    {(shopAddressBook) &&
+                        <AddressComponent
+                            address={shopAddressBook}
+                        />
+                    }
                     <Flex justifyContent='end' mt='50px'>
                         <BasicButton w={{ base: '100%', md: '45%' }} p='12px 16px'
                             disabled={disableBtn}
