@@ -1,4 +1,4 @@
-import { Flex, Button, Text } from '@chakra-ui/react'
+import { Flex, Button } from '@chakra-ui/react'
 import { useState } from 'react'
 
 import AddressBookComponent from './address-book-component/address-book-component'
@@ -37,7 +37,7 @@ export default function SettingsPage() {
                     <SettingButton
                         click={() => { setSettingComponent("personal") }}
                     > Personal info </SettingButton>
-                    {(profile.type == "PRODUCER") &&
+                    {(profile.type === "PRODUCER") &&
                         <SettingButton
                             click={() => { setSettingComponent("shop") }}
                         > Shop info </SettingButton>
@@ -61,6 +61,8 @@ export default function SettingsPage() {
                                 return (<ShopInfoComponent />)
                             case "address":
                                 return (<AddressBookComponent />)
+                                default: 
+                                return <></>
                         }
                     })()}
                 </Flex>

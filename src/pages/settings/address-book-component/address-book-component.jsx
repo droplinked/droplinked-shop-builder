@@ -1,4 +1,4 @@
-import { Flex, Button, Box } from '@chakra-ui/react'
+import { Flex, Box } from '@chakra-ui/react'
 import { useAddress } from "../../../context/address/AddressContext"
 import { useState } from "react"
 
@@ -21,18 +21,19 @@ export default function AddressBookComponent() {
             p='0px'
             w='100%'
         >
-            {(addressList == [])
+            {(addressList === [])
                 ?
                 <Loading />
                 :
                 <>
                     {addressList.map((address, i) => {
-                        if (address.addressType != "SHOP")
+                        if (address.addressType !== "SHOP"){
                             return <AddressComponent
                                 key={i}
                                 address={address}
                                 deleteable={true}
                             />
+                        }else{return <></>}
                     })}
 
                     <Box mt='40px'></Box>
