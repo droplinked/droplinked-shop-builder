@@ -42,16 +42,6 @@ export default function PurchaseHistory({ order }) {
         setOrderData(newOrderList);
     }
 
-
-    // get total price
-    const getTotalPrice = () => {
-        let totalPrice = 0
-        orderData.items.forEach(item => {
-            totalPrice += item.product.skus.find(sku => sku._id == item.skuID).price
-        })
-        return totalPrice
-    }
-
     return (
         <>
             {(orderData) &&
@@ -92,7 +82,7 @@ export default function PurchaseHistory({ order }) {
                             fontWeight='500'
                             mr={{ base: '0px', md: '30px' }}
                         >
-                            Total Price : $ {getTotalPrice()}
+                            Total Price : $ {order.totalPrice}
                         </Text>
                     </Flex>
                     <Flex mb='10px'>

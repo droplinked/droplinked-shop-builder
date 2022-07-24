@@ -3,7 +3,7 @@ import { Text, Flex, Img, AspectRatio } from "@chakra-ui/react"
 
 export default function Item({ item }) {
 
-    let price = item.product.skus.find(sku => sku._id == item.skuID).price
+    let price = item.sku.price
 
     return (
         <Flex flexDirection='column' w={{ base: "50%", md: "25%" }} mb='15px'>

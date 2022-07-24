@@ -16,18 +16,9 @@ import Item from "../ItemComponent/ItemComponent"
 export default function PurchaseModal({ order, isOpen, onClose }) {
 
 
-    const getTotalPrice = () => {
-        let total = 0
-        order.items.forEach(item => {
-            let itemPrice = (item.product.skus.find(sku => sku._id == item.skuID).price * item.quantity)
-            total += itemPrice
-        })
-        return total
-    }
 
 
-
-    let totalPrice = getTotalPrice()
+    let totalPrice = order.totalPrice
     let addressId = order.customerAddressBookID
 
     return (<>
@@ -54,7 +45,7 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                             fontWeight='600'
                             mb='8px'
                         >
-                            Merchs price : $ {totalPrice}
+                            Merchs price : $ {totalPrice - 5}
                         </Text>
                         <Text
                             color='#ccc'
@@ -89,7 +80,7 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                             fontWeight='600'
                             mb='8px'
                         >
-                            Merchs price : $ {(totalPrice + 5)}
+                            Merchs price : $ {totalPrice}
                         </Text>
                     <Flex wrap='wrap'>
                         {order.items.map((item, i) => <Item key={i} item={item} />)}
