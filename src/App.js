@@ -8,7 +8,7 @@ import CartContextProvider from "./context/cart/CartContext";
 import { ChakraProvider } from "@chakra-ui/react";
 import  ToastContext  from "./context/toastify/ToastContext";
 import AddressContext from "./context/address/AddressContext";
-import ScrollTop from "./services/ScrollTop/ScrollTop";
+import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderContextProvider from "./context/order/OrdersContext"
 import NotContextProvider from "./context/notifications/NotificationsContext"
 

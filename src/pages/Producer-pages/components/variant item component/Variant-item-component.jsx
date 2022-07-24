@@ -8,7 +8,7 @@ import { StacksTestnet } from "@stacks/network"
 import { createHash } from "crypto-browserify"
 
 import "./Variant-item-component.scss"
-import { userSession } from "../../../../services/WalletAuth/auth"
+import { userSession } from "../../../../services/wallet-auth/auth"
 
 export default function VariantItem({ variant, id, dlt, edit }) {
   const decentrilize = () => {
