@@ -184,7 +184,7 @@ export default function ViewMerchPage() {
     }
 
     return (<>
-        {(merch == [])
+        {(merch.length == 0)
 
             ?
             <Loading />

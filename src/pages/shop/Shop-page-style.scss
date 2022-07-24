@@ -1,0 +1,16 @@
+@keyframes anim {
+  from {
+    margin-top: 200px;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0px;
+    opacity: 1;
+  }
+}
+
+.shop-page-container {
+  animation-name: anim;
+  animation-duration: 1s;
+  margin-top: 0px;
+}
