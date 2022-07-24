@@ -54,7 +54,7 @@ export default function MerchPage() {
 
     // build array of option's type like : ["size" , "color"]
     useEffect(() => {
-        if (product !== null) {
+        if (product != null) {
             let optionsTypeArray = []
             optionsTypeArray = product.skus[0].options.map((option) => {
                 return option.variantName
@@ -66,7 +66,7 @@ export default function MerchPage() {
 
     // build array of product's options like : [ {size: 'xl', color: 'white'} , ...]
     useEffect(() => {
-        if (optionTypes !== null) {
+        if (optionTypes != null) {
             if (optionTypes.length > 0) {
                 let optionsArray = []
                 product.skus.forEach((sku, i) => {
@@ -92,17 +92,17 @@ export default function MerchPage() {
             optionTypes.forEach((optionType, i) => {
                 let optionObject = {}
                 optionObject['name'] = optionType
-                if (i === 0) {
+                if (i == 0) {
                     let valueArray = optionsValue.map(optionValue => optionValue[optionType])
                     valueArray = [...new Set(valueArray)];
                     optionObject['values'] = valueArray
                     optionObject['selected'] = valueArray[0]
                 } else {
                     let valueArray = optionsValue.map(optionValue => {
-                        if (optionValue[optionsArray[i - 1].name] === optionsArray[i - 1].selected)
+                        if (optionValue[optionsArray[i - 1].name] == optionsArray[i - 1].selected)
                             return optionValue[optionType]
                     })
-                    valueArray = valueArray.filter(value => value !== undefined)
+                    valueArray = valueArray.filter(value => value != undefined)
                     valueArray = [...new Set(valueArray)];
                     optionObject['values'] = valueArray
                     optionObject['selected'] = valueArray[0]
@@ -121,8 +121,8 @@ export default function MerchPage() {
             product.skus.forEach(sku => {
                 let flag = true;
                 sku.options.forEach(option => {
-                    let find = options.find(opt => opt.name === option.variantName)
-                    if (find.selected !== option.value) flag = false
+                    let find = options.find(opt => opt.name == option.variantName)
+                    if (find.selected != option.value) flag = false
                 })
                 if (flag) {
                     result = sku
@@ -137,11 +137,11 @@ export default function MerchPage() {
     // add to baskset functionality
     const Addtobasket = async () => {
 
-        if (profile === null) {
+        if (profile == null) {
             errorToast("Please login")
             return
         }
-        if (quantity === 0) {
+        if (quantity == 0) {
             errorToast("Please add quantity")
             return
         }
@@ -153,13 +153,13 @@ export default function MerchPage() {
 
 
 
-        if (product.ruleset === undefined) {
+        if (product.ruleset == undefined) {
             await addMerhcToCart(cart)
             return;
 
         }
 
-        if (userData === undefined) {
+        if (userData == undefined) {
             authenticate();
             return
         }
@@ -185,7 +185,7 @@ export default function MerchPage() {
 
     const addMerhcToCart = async (cart) => {
         let result = await addSkuToCart(cart)
-        if (result === true) {
+        if (result == true) {
             successToast("Merch added to cart")
             setQuantity(0)
             updateCart()
@@ -198,7 +198,7 @@ export default function MerchPage() {
     // change option array selected element after select new option  value
     const changeSelect = (e, optionName, index) => {
         let optionsArray = options.map(option => {
-            if (option.name === optionName) {
+            if (option.name == optionName) {
                 return { ...option, selected: e.target.value }
             } else {
                 return option
@@ -210,14 +210,14 @@ export default function MerchPage() {
     // update options after change
     const updateOptions = (newOptionArray, index) => {
         let optionArray = newOptionArray.map((option, i) => {
-            if (i === 0) {
+            if (i == 0) {
                 return option
             } else {
                 let valueArray = optionsValue.map(optionValue => {
-                    if (optionValue[newOptionArray[i - 1].name] === newOptionArray[i - 1].selected)
+                    if (optionValue[newOptionArray[i - 1].name] == newOptionArray[i - 1].selected)
                         return optionValue[option.name]
                 })
-                valueArray = valueArray.filter(value => value !== undefined)
+                valueArray = valueArray.filter(value => value != undefined)
                 valueArray = [...new Set(valueArray)];
 
                 let select = (index < i) ? valueArray[0] : option.selected
@@ -252,7 +252,7 @@ export default function MerchPage() {
                     <div className="detail-side col-12 col-md-6">
                         <p className="merch-title">{product.title}</p>
                         <p className="merch-descroption">{product.description}</p>
-                        <p className="merch-price">{`$${(sku !== null) ? (sku.price) : ""}`}</p>
+                        <p className="merch-price">{`$${(sku != null) ? (sku.price) : ""}`}</p>
 
                         {(options && optionTypes.length > 0) &&
                             <div className="merch-options-wrap " >
@@ -273,13 +273,13 @@ export default function MerchPage() {
                                 </div>
                                 <p className="show">{quantity}</p>
                                 <div className="btn"
-                                    onClick={() => { if (quantity !== 0) setQuantity(p => --p) }}>
+                                    onClick={() => { if (quantity != 0) setQuantity(p => --p) }}>
                                     <img src={minus} alt="" />
                                 </div>
                             </div>
                         }
                         <div style={{ height: "auto" }}>
-                            {sku && (sku.quantity === 0) ?
+                            {sku && (sku.quantity == 0) ?
                                 <BasicButton disabled={true}>Sold out</BasicButton>
                                 :
                                 <BasicButton click={Addtobasket} disabled={disableBtn}>Add to basket</BasicButton>

@@ -71,7 +71,7 @@ export default function LandingPage() {
         }
         setCheckshopname(true);
         let result = await checkShopname(userName);
-        if (result === true) toggleSignUp();
+        if (result == true) toggleSignUp();
         else setShopnameError(result)
         setCheckshopname(false);
     }

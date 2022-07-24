@@ -40,7 +40,7 @@ export default function PurchaseHistory({ order }) {
     const addProductToOrder = (ProductList) => {
         let newOrderList = order;
         newOrderList.items.forEach((item, i) => {
-            let product = ProductList.find(product => product._id === item.productID)
+            let product = ProductList.find(product => product._id == item.productID)
             newOrderList.items[i] = { ...item, product: product }
         })
         setOrderData(newOrderList);

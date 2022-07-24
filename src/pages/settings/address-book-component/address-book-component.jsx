@@ -21,13 +21,13 @@ export default function AddressBookComponent() {
             p='0px'
             w='100%'
         >
-            {(addressList === [])
+            {(addressList == [])
                 ?
                 <Loading />
                 :
                 <>
                     {addressList.map((address, i) => {
-                        if (address.addressType !== "SHOP"){
+                        if (address.addressType != "SHOP"){
                             return <AddressComponent
                                 key={i}
                                 address={address}

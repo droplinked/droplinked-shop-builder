@@ -21,7 +21,7 @@ export default function ShopInfoComponent() {
     const { addressList } = useAddress()
     const { errorToast, successToast } = useToasty()
     
-    let shopAddressBook = addressList.find(address => address.addressType === "SHOP")
+    let shopAddressBook = addressList.find(address => address.addressType == "SHOP")
 
 
     useEffect(() => {
