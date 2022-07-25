@@ -11,6 +11,7 @@ const NotificationComponent = ({ notif, close }) => {
     const { seenNotif } = useNotifications()
     let navigate = useNavigate();
 
+    console.log(notif)
 
     const clickNotification = () => {
         close()
@@ -35,7 +36,8 @@ const NotificationComponent = ({ notif, close }) => {
             borderColor='#666'
         >
             <Box
-                w='40px'
+                w='35px'
+                minW='35px'
                 borderRight='2px'
                 borderColor='#666'
                 pr='10px'

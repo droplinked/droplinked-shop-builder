@@ -20,7 +20,7 @@ const NotificationDropdown = ({close}) => {
             bgColor='#222'
             w={{ base: '200px', md: '250px' }}
             h='auto'
-            minH='100px'
+            overflow='hidden'
             borderRadius='8px'
             p={{ base: "20px", md: "20px" }}
             zIndex='20'
@@ -45,7 +45,7 @@ const NotificationDropdown = ({close}) => {
                 >{notifications.length}</Text>
             </Flex>
             {(notifications.length > 0) &&
-                 notifications.map((notif , i) =>  <NotificationComponent key={i} notif={notif} close={close} />) 
+                 notifications.map((notif , i) => {if(i<6){return <NotificationComponent key={i} notif={notif} close={close} />}}) 
             }
         </Box>
 
