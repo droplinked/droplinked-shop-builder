@@ -2,8 +2,7 @@
 
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom";
-import { Flex, Box, Image, Text, Input, Button, Spinner, AspectRatio ,chakra } from '@chakra-ui/react'
-import { motion, isValidMotionProp } from 'framer-motion';
+import { Flex, Box, Image, Text, Input, Button, Spinner, AspectRatio, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 import { checkShopname } from "../../api/public/CheckShopname-api"
 
 
@@ -13,12 +12,36 @@ import SignUpModal from "../../components/Modal/Register-modal/SignUpModal"
 import LoginModal from "../../components/Modal/Login-modal/LoginModal"
 import ResetPassModal from "../../components/Modal/ResetPass-modal/ResetPassModal-component"
 
-const ChakraBox = chakra(motion.div, {
-    shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === 'children',
-  });
+
+const keyframe_leftanimation = keyframes`
+0% {
+    transform: translateX(-200px);
+    opacity: 0;
+}
+100% {
+  transform: translateX(0);
+  opacity: 1;
+}
+`;
+
+const keyframe_rightanimation = keyframes`
+0% {
+    transform: translateX(200px);
+    opacity: 0;
+}
+100% {
+  transform: translateX(0);
+  opacity: 1;
+}
+`;
+
+
 
 
 export default function LandingPage() {
+
+    const prefersReducedMotion = usePrefersReducedMotion();
+
     let [searchParams, setSearchParams] = useSearchParams();
     let x = searchParams.get("modal")
 
@@ -80,21 +103,23 @@ export default function LandingPage() {
     }
 
 
+    const leftsideAnimation = prefersReducedMotion
+    ? undefined
+    : `${keyframe_leftanimation}  1s linear`;
+    
+    const rightsideAnimation = prefersReducedMotion
+    ? undefined
+    : `${keyframe_rightanimation}  1s linear`;
+
+
     return (<>
         <Box display="flex" h='auto' flexDirection={{ base: "column", md: "row" }} pl={{ base: "20px", md: "80px" }} w='100%'>
             {/* inputs */}
             <Box display="flex" w={{ base: '100%', md: '50%' }} pr={{ base: "20px", md: "0px" }} mb={{ base: "70px", md: "0px" }}>
-                <ChakraBox w='100%' flexDir='column' mt='4.5vw'
-                 animate={{
-                    opacity: [0, 1],
-                  }}
-                  // @ts-ignore no problem in operation, although type error appears.
-                  transition={{
-                    duration: 0.8,
-                    ease: "linear",
-                  }}
-                >
+                <Flex w='100%' flexDir='column' mt='4.5vw'
+                    animation={leftsideAnimation}>
                     <Text
+                        
                         fontWeight='600'
                         color="#fff"
                         fontSize={{ base: "40px", md: "4.7vw" }}
@@ -196,30 +221,20 @@ export default function LandingPage() {
                         </Flex>
                     }
 
-                </ChakraBox>
+                </Flex>
             </Box>
             {/* inputs */}
 
             {/* image */}
-            <Box w={{ base: "100%", md: "50%" }}>
+            <Box w={{ base: "100%", md: "50%" }}  animation={rightsideAnimation}>
                 <AspectRatio ratio={1 / 1}>
-                    <ChakraBox w='100%' h='100%' pos='relative'
-                            animate={{
-                                marginLeft: [400, 0],
-                                opacity: [0, 1],
-                              }}
-                              // @ts-ignore no problem in operation, although type error appears.
-                              transition={{
-                                duration: 0.8,
-                                ease: "linear",
-                              }}
-                    >
+                    <Box w='100%' h='100%' pos='relative'>
                         <Image
                             pos='absolute'
                             top='0px'
                             maxW='100%'
                             src={figmaImage1} alt="" />
-                    </ChakraBox>
+                    </Box>
                 </AspectRatio>
             </Box>
             {/* image */}
