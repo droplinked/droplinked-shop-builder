@@ -8,7 +8,7 @@ import {
     ModalCloseButton,
     Button,
 } from "@chakra-ui/react"
-
+import { ORDER_TYPES } from "../../../constant/order.types"
 import { convertToStandardFormat } from "../../../utils/date.utils/convertDate"
 
 import Item from "../ItemComponent/ItemComponent"
@@ -17,9 +17,20 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
 
 
 
-
     let totalPrice = order.totalPrice
-    let addressId = order.customerAddressBookID
+
+    const orderStatus = () => {
+        switch (order.status) {
+            case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
+                return "Waiting for confirm"
+            case ORDER_TYPES.PROCESSING:
+                return "Proccessing"
+            case ORDER_TYPES.SENT:
+                return "Order sent"
+            case ORDER_TYPES.CANCELED:
+                return "Canceled"
+        }
+    }
 
     return (<>
         <Modal isOpen={isOpen} onClose={onClose}  >
@@ -71,17 +82,17 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                             fontWeight='600'
                             mb='8px'
                         >
-                            AddressId :  {addressId}
+                            Order status :  {orderStatus()}
                         </Text>
                     </Flex>
                     <Text
-                            color='#fff'
-                            fontSize={{ base: '14px', md: '18px' }}
-                            fontWeight='600'
-                            mb='8px'
-                        >
-                            Merchs price : $ {totalPrice}
-                        </Text>
+                        color='#fff'
+                        fontSize={{ base: '14px', md: '18px' }}
+                        fontWeight='600'
+                        mb='8px'
+                    >
+                        Merchs price : $ {totalPrice}
+                    </Text>
                     <Flex wrap='wrap'>
                         {order.items.map((item, i) => <Item key={i} item={item} />)}
                     </Flex >
