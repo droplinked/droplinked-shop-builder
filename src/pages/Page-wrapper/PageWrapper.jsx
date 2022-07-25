@@ -20,7 +20,7 @@ export default function PageWrapper({ children }) {
 
 
     useEffect(() => {
-        //
+
         // delete localstorage after 8 hour 
         if (token != null || token != undefined) {
             const loginTime = JSON.parse(localStorage.getItem("login-time"));
@@ -30,15 +30,14 @@ export default function PageWrapper({ children }) {
                 localStorage.clear()
                 return
             }
-            // update cart and address when open app
-            updateCart();
-            updateAddressList()
         }
     }, [])
 
 
     useEffect(() => {
         if(token != null || token != undefined){
+            updateAddressList()
+         //   updateCart();
             updateNotifications()
            setInterval(updateNotifications, 60000);
         }
