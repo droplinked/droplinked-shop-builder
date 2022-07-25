@@ -13,7 +13,7 @@ import OrderContextProvider from "./context/order/OrdersContext"
 import NotContextProvider from "./context/notifications/NotificationsContext"
 
 
-import PageWrapper from "./pages/Page-wrapper/PageWrapper";
+import PageWrapper from "./pages/page-wrapper/PageWrapper";
 import LandingPage from "./pages/landing/Landing-page";
 import TermsPage from "./pages/terms/Terms-page";
 import PrivacyPage from "./pages/privacy/Privacy-page";

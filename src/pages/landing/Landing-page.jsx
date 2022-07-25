@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom";
-import { Flex, Box, Image, Text, Input, Button, Spinner, AspectRatio } from '@chakra-ui/react'
+import { Flex, Box, Image, Text, Input, Button, Spinner, AspectRatio ,chakra } from '@chakra-ui/react'
+import { motion, isValidMotionProp } from 'framer-motion';
 import { checkShopname } from "../../api/public/CheckShopname-api"
 
 
@@ -12,7 +13,9 @@ import SignUpModal from "../../components/Modal/Register-modal/SignUpModal"
 import LoginModal from "../../components/Modal/Login-modal/LoginModal"
 import ResetPassModal from "../../components/Modal/ResetPass-modal/ResetPassModal-component"
 
-
+const ChakraBox = chakra(motion.div, {
+    shouldForwardProp: (prop) => isValidMotionProp(prop) || prop === 'children',
+  });
 
 
 export default function LandingPage() {
@@ -81,7 +84,16 @@ export default function LandingPage() {
         <Box display="flex" h='auto' flexDirection={{ base: "column", md: "row" }} pl={{ base: "20px", md: "80px" }} w='100%'>
             {/* inputs */}
             <Box display="flex" w={{ base: '100%', md: '50%' }} pr={{ base: "20px", md: "0px" }} mb={{ base: "70px", md: "0px" }}>
-                <Flex w='100%' flexDir='column' mt='4.5vw'>
+                <ChakraBox w='100%' flexDir='column' mt='4.5vw'
+                 animate={{
+                    opacity: [0, 1],
+                  }}
+                  // @ts-ignore no problem in operation, although type error appears.
+                  transition={{
+                    duration: 0.8,
+                    ease: "linear",
+                  }}
+                >
                     <Text
                         fontWeight='600'
                         color="#fff"
@@ -184,20 +196,30 @@ export default function LandingPage() {
                         </Flex>
                     }
 
-                </Flex>
+                </ChakraBox>
             </Box>
             {/* inputs */}
 
             {/* image */}
             <Box w={{ base: "100%", md: "50%" }}>
                 <AspectRatio ratio={1 / 1}>
-                    <Box w='100%' h='100%' pos='relative'>
+                    <ChakraBox w='100%' h='100%' pos='relative'
+                            animate={{
+                                marginLeft: [400, 0],
+                                opacity: [0, 1],
+                              }}
+                              // @ts-ignore no problem in operation, although type error appears.
+                              transition={{
+                                duration: 0.8,
+                                ease: "linear",
+                              }}
+                    >
                         <Image
                             pos='absolute'
                             top='0px'
                             maxW='100%'
                             src={figmaImage1} alt="" />
-                    </Box>
+                    </ChakraBox>
                 </AspectRatio>
             </Box>
             {/* image */}
