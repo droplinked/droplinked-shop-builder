@@ -9,7 +9,7 @@ export default function BasicButton({ children, click , loading, ...otherprops }
             h="100%"
             bgColor="#8053ff"
             color="#fff"
-            fontSize="20px"
+            fontSize={{base:'16px' , md:"20px"}}
             fontWeight="600"
             borderRadius='8px'
             margin='0px auto'
@@ -17,6 +17,7 @@ export default function BasicButton({ children, click , loading, ...otherprops }
             _hover={{ borderColor: "#4d4d4d", color: "#222" }}
             _disabled={{ bgColor:"#4A4A4A"}}
             onClick={click}
+            disabled={loading}
             {...otherprops}
         >
              {(loading != undefined && loading == true)

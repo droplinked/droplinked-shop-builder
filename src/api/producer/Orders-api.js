@@ -29,3 +29,17 @@ export const SeenOrder = async (id) => {
       return err.response.data.reason
     }
   };
+
+
+  export const updateOrderStatus = async (orderId , status) => {
+    const token = JSON.parse(localStorage.getItem("token"));
+      try {
+        const res = await axios.post(`${BASE_URL}/producer/order/${orderId}/status`,
+        {status: status}, 
+        { headers: { Authorization: "Bearer " + token }});
+        return true;
+      } catch (err) {
+        return err.response.data.reason
+      }
+    };
+  

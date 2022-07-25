@@ -37,6 +37,7 @@ export default function OrderContextProvider({ children }) {
 
   const ContextValue = {
     seenOrder,
+    updateOrder,
     orders
   };
 

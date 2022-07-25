@@ -6,18 +6,26 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    Button
 } from "@chakra-ui/react"
 import { useState } from "react"
 import { convertToStandardFormat } from "../../../../utils/date.utils/convertDate"
+import { updateOrderStatus } from "../../../../api/producer/Orders-api"
+import { ORDER_TYPES } from "../../../../constant/order.types"
+import { useToasty } from "../../../../context/toastify/ToastContext"
+import { useOrder } from "../../../../context/order/OrdersContext"
 
 import MerchComponent from "../merchComponent/MerchComponent"
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 
 
 
 export default function OrderModal({ ProducList, order, isOpen, onClose }) {
 
     const [address, setAddress] = useState(null)
+    const [loadingBtn, setLoadingBtn] = useState(false)
+
+    const { successToast, errorToast } = useToasty()
+    const { updateOrder } = useOrder()
 
 
     // new orderList with product
@@ -27,14 +35,14 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
         newOrderList.items[i] = { ...item, product: product }
     })
 
-
     // get quantity of merchs
     const getQuantity = () => {
         let TotalQuantity = newOrderList.items.map(item => item.quantity)
             .reduce((total, quan) => { return total + quan }, 0)
         return TotalQuantity
     }
-//*
+
+
     // get price of merchs
     const getMerchPrice = () => {
         let totalPrice = 0
@@ -44,6 +52,43 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
         return totalPrice
     }
 
+
+    const processButtonText = () => {
+        switch (order.status) {
+            case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
+                return "Proccessing"
+            case ORDER_TYPES.PROCESSING:
+                return "Send"
+                case ORDER_TYPES.SENT:
+                    return "Sent"
+        }
+    }
+
+    const progressClick = async () => {
+        let statusType = (order.status == "WAITING_FOR_CONFIRMATION") ? ORDER_TYPES.PROCESSING : ORDER_TYPES.SENT
+        setLoadingBtn(true)
+        let result = await updateOrderStatus(order._id, statusType)
+        setLoadingBtn(false)
+        if (result == true) {
+            successToast("Change status successfully")
+            updateOrder()
+        } else {
+            errorToast(result)
+        }
+    }
+
+    const cancelClick = async () => {
+        setLoadingBtn(true)
+        let result = await updateOrderStatus(order._id, ORDER_TYPES.CANCELED)
+        setLoadingBtn(false)
+        if (result == true) {
+            successToast("Order canceled successfully")
+            updateOrder()
+        } else {
+            errorToast(result)
+        }
+
+    }
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}  >
@@ -136,8 +181,8 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
                             </Text>
                             <Text
                                 color='#ccc'
-                                fontSize={{ base: '12px', md: '16px' }} 
-                              //  mb='5px'
+                                fontSize={{ base: '12px', md: '16px' }}
+                            //  mb='5px'
                             >
                                 {`${address.firstname} \xa0 ${address.lastname} `}
                             </Text>
@@ -158,7 +203,7 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
                             </Text>
                             <Text
                                 color='#ccc'
-                                fontSize={{ base: '12px', md: '16px' }} 
+                                fontSize={{ base: '12px', md: '16px' }}
                                 fontWeight='500'
                             >
                                 {`${address.state} \xa0 ${address.zip} `}
@@ -167,11 +212,24 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
                     }
                 </ModalBody>
                 <ModalFooter>
-                    <Button colorScheme='red' w='40%' mr={3} onClick={onClose}>
-                        Close
-                    </Button>
+                    {(order.status == ORDER_TYPES.CANCELED)
+                        ?
+                        <Box fontSize={{ base: "20px", md: '24px' }} fontWeight='600' color='#8053ff' textAlign='center' w='100%'>
+                            Order canceled
+                        </Box>
+                        :
+                        <Flex justifyContent="space-between" w='100%'>
+                            <Box w='40%'>
+                                <BasicButton click={progressClick} loading={loadingBtn} disabled={(order.status == ORDER_TYPES.SENT)}>{processButtonText()}</BasicButton>
+                            </Box>
+                            <Box w='40%'>
+                                <BasicButton bgColor='red' click={cancelClick} loading={loadingBtn}> Cancel Order</BasicButton>
+                            </Box>
+                        </Flex>
+                    }
+
                 </ModalFooter>
             </ModalContent>
-        </Modal>
+        </Modal >
     )
 }
