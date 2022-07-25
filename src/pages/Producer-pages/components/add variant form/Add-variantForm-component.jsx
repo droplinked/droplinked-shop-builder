@@ -123,7 +123,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
             </div>
             <div className="rw-rp">
                 <label>External ID</label>
-                <input type="number" placeholder="1794012584" onChange={changeexternal} />
+                <input type="text" placeholder="1794012584" onChange={changeexternal} />
             </div>
             <div className="rw-rp">
                 <div style={{ width: "40%" }}>
