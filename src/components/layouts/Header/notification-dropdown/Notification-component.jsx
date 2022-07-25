@@ -4,26 +4,25 @@ import { MdOutlineMessage } from "react-icons/md";
 import { convertToStandardFormat } from "../../../../utils/date.utils/convertDate"
 import { useNavigate } from "react-router-dom";
 import { useNotifications } from "../../../../context/notifications/NotificationsContext"
-
+import { NOTIFICATION_TYPE } from "./notification.type"
 
 const NotificationComponent = ({ notif, close }) => {
 
     const { seenNotif } = useNotifications()
     let navigate = useNavigate();
 
-    console.log(notif)
 
     const clickNotification = () => {
         close()
         switch (notif.type) {
-            case "PRODUCER_ORDER_NEW":
+            case NOTIFICATION_TYPE.PRODUCER_ORDER_NEW:
                 navigate("/producer/orders")
                 seenNotif(notif._id)
-            case "PRODUCER_SKU_QUANTITY":
+            case NOTIFICATION_TYPE.PRODUCER_SKU_QUANTITY:
                 navigate("/producer/ims")
                 seenNotif(notif._id)
-            case "CUSTOMER_ORDER_STATUS":
-                navigate("/producer/orders")
+            case NOTIFICATION_TYPE.CUSTOMER_ORDER_STATUS:
+                navigate("/purchseHistory")
                 seenNotif(notif._id)
             default:
         }

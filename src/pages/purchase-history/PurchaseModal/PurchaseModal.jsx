@@ -24,7 +24,7 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
             case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
                 return "Waiting for confirm"
             case ORDER_TYPES.PROCESSING:
-                return "Proccessing"
+                return "Order in progress"
             case ORDER_TYPES.SENT:
                 return "Order sent"
             case ORDER_TYPES.CANCELED:
