@@ -70,7 +70,7 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
         let result = await updateOrderStatus(order._id, statusType)
         setLoadingBtn(false)
         if (result == true) {
-            successToast("Change status successfully")
+            successToast("Status changed successfully.")
             updateOrder()
         } else {
             errorToast(result)
@@ -82,7 +82,7 @@ export default function OrderModal({ ProducList, order, isOpen, onClose }) {
         let result = await updateOrderStatus(order._id, ORDER_TYPES.CANCELED)
         setLoadingBtn(false)
         if (result == true) {
-            successToast("Order canceled successfully")
+            successToast("You canceled the order!")
             updateOrder()
         } else {
             errorToast(result)
