@@ -34,12 +34,20 @@ export default function AddressComponent({ address, selected, setSelect, selecab
         onClose()
     }
 
+    const selectAddress = () => {
+        if(selecable == true){
+            setSelect(address._id)
+        }
+    }
+
     return (
         <>
             {(openAddressForm == false)
                 ?
                 <Box h="auto" mb="4" border='1px' borderRadius="15px" p="24px 20px 16px 20px"
                     borderColor={(selecable == true && address._id == selected) ? "#8053ff" : '#555'}
+                    cursor={(selecable == true)?"pointer":"auto"}
+                    onClick={selectAddress}
                 >
 
                     <Text fontSize="18px" fontWeight="600" color="#fff" mb="10px">{address.country} - {address.city}</Text>
@@ -57,7 +65,7 @@ export default function AddressComponent({ address, selected, setSelect, selecab
                                     bgColor="#8053ff"
                                     h="35px"
                                     _hover={{ bgColor: "4d4d4d", color: "#222" }}
-                                    onClick={() => { if (selecable) setSelect(address._id) }}
+                                    onClick={selectAddress}
                                 >
                                     Select address
                                 </Button>
@@ -74,7 +82,7 @@ export default function AddressComponent({ address, selected, setSelect, selecab
                              w="45%" h="35px"
                                 fontSize={{ base: "12px", md: "16px" }}
                                 _hover={{ borderColor: "#4d4d4d", color: "#222" }}
-                                onClick={() => setOpenAddressForm(true)}
+                                onClick={() =>{ setOpenAddressForm(true)}}
                             >Edit</Button>
                             {(deleteable == true) &&
                                 <Button 
