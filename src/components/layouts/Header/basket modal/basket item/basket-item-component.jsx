@@ -26,7 +26,7 @@ export default function BasketItemComponent({ item }) {
                     >
                         <Box w="100%" display="flex" justifyContent="space-between">
                             <Text textAlign="center" fontSize="20px" color="white" fontWeight="600" >{item.Product.title}</Text>
-                            <Text textAlign="center" fontSize="20px" color="white" fontWeight="500" >$ {skuValue.price}</Text>
+                            <Text textAlign="center" fontSize="20px" color="white" fontWeight="500" >${skuValue.price}</Text>
                         </Box>
 
                         <Box w="100%" display="flex" justifyContent="space-between">

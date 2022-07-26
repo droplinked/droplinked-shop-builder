@@ -35,14 +35,14 @@ export default function CheckoutShopItem({ shopItem }) {
                     color="#fff"
                     fontSize="16px"
                 >
-                     Total cost : $ {totalPrice}
+                     Total cost : ${totalPrice}
                 </Text>
                 <Text
                     mt="10px"
                     color="#fff"
                     fontSize="16px"
                 >
-                    Shipping : $ 5
+                    Shipping : $5
                 </Text>
             </Box>
 

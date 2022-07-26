@@ -105,7 +105,7 @@ function CheckoutPage() {
 								fontSize={{ base: "18px", md: "22px" }}
 								fontWeight="600"
 							>
-								 Merchs cost : $ {getTotalPrice()} 
+								 Merchs cost : ${getTotalPrice()} 
 							</Text>
 							<Text
 								color="#fff"
@@ -113,7 +113,6 @@ function CheckoutPage() {
 								fontWeight="600"
 								mt="5px"
 							>
-								{/* Shipping total : $ {getShipping()} */}
 							</Text>
 						</Box>
 

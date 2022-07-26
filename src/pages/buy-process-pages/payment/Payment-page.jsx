@@ -103,13 +103,13 @@ export default function PaymentPage() {
                         {/* top side */}
                         <Box p="10px 5px" mb="50px" w={{ base: '100%', md: '200px' }}>
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
-                                Merchs : $ {getTotalofMerchs()}
+                                Merchs : ${getTotalofMerchs()}
                             </Text>
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
-                                Shipping : $ {getTotalofShipping()}
+                                Shipping : ${getTotalofShipping()}
                             </Text>
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
-                                Total price : $ {(getTotalofMerchs() + getTotalofShipping())}
+                                Total price : ${(getTotalofMerchs() + getTotalofShipping())}
                             </Text>
                         </Box>
 
