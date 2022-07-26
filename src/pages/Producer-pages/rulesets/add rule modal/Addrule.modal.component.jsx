@@ -12,7 +12,6 @@ export default function AddRule({ toggle }) {
     const [disableBtn, setDisableBtn] = useState(false)
     const [addresslist, setAddressList] = useState([{ index: 0, type: "NFT", address: { contractAddress: "", contractName: "", nftName: "" } }])
 
-    const token = JSON.parse(localStorage.getItem('token'));
 
     const { errorToast, successToast } = useToasty()
 
@@ -137,7 +136,7 @@ export default function AddRule({ toggle }) {
 
         let result = await newRule(ruleInfo)
         if (result == true) {
-            successToast("RuleSet created successfully.")
+            successToast("Ruleset successfully stored")
             toggle()
         } else {
             errorToast(result)
@@ -216,10 +215,10 @@ export default function AddRule({ toggle }) {
                 </div>
                 <div className="w-100 d-flex justify-content-between align-items-center" style={{ marginTop: "80px" }}>
                     <div style={{ width: "40%" }}>
-                        <BasicButton click={toggle} disabled={disableBtn} >Cancel</BasicButton>
+                        <BasicButton click={toggle} loading={disableBtn} >Cancel</BasicButton>
                     </div>
                     <div style={{ width: "40%" }}>
-                        <BasicButton click={submitForm} disabled={disableBtn} >Submit</BasicButton>
+                        <BasicButton click={submitForm} loading={disableBtn} >Submit</BasicButton>
                     </div>
                 </div>
             </div>

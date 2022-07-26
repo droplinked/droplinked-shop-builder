@@ -87,7 +87,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
 
         let result = await updateRule(RuleId, ruleInfo)
         if (result == true) {
-            successToast("RuleSet created successfully.")
+            successToast("RuleSet updated successfully.")
             render(p => !p)
             toggle()
         } else {
@@ -238,10 +238,10 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
                 </div>
                 <div className="w-100 d-flex justify-content-between align-items-center" style={{ marginTop: "80px" }}>
                     <div style={{ width: '40%' }}>
-                        <BasicButton click={toggle} disable={disableBtn}>cancel</BasicButton>
+                        <BasicButton click={toggle} loading={disableBtn}>cancel</BasicButton>
                     </div>
                     <div style={{ width: '40%' }}>
-                        <BasicButton click={submitForm} disable={disableBtn}>submit</BasicButton>
+                        <BasicButton click={submitForm} loading={disableBtn}>submit</BasicButton>
                     </div>
                 </div>
             </div>

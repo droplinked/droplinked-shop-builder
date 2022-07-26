@@ -24,9 +24,9 @@ export const newRule = async (rule) => {
     const res = await axios.post(`${BASE_URL}/producer/ruleset`,rule,
      {headers: { Authorization: "Bearer " + token },
     });
-    return res.data.data.ruleSets;
+    return true;
   } catch (err) {
-    return null;
+    return err.response.data.reason;
   }
 };
 
