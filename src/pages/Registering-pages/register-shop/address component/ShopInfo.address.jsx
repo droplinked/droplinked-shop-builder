@@ -44,7 +44,7 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
         axios.post(BASE_URL+'/address', addresInfo,
             { headers: { Authorization: 'Bearer ' + token } })
             .then(e => {
-                successToast("Address added successfully")
+                successToast("Address successfully added")
                 localStorage.setItem('address', JSON.stringify(e.data.data.addressBook))
                 addAddressF(addresInfo);
                 close();

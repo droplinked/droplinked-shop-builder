@@ -16,7 +16,7 @@ export default function InputImage({ image, setImage }) {
         const file = e.target.files[0];
 
         if (file.size > 500000) {
-            errorToast("File size exceeded (Max: 500 kb)");
+            errorToast("File size exceeded (max: 500 kb)");
             return;
         }
         if (

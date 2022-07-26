@@ -44,7 +44,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
 
         //check rule name
         if (ruleName == "") {
-            errorToast("Please enter name for rule.")
+            errorToast("Please name the rule")
             return
         }
 
@@ -52,12 +52,12 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
         // all input be fill 
         rules.forEach(({ index, type, address }) => {
             if (address.contractAddress == "" || address.contractName == "") {
-                errorToast("Please add fill all input.")
+                errorToast("Please complete all required fields")
                 flag = false
             }
             if (type == "NFT") {
                 if (address.nftName == "") {
-                    errorToast("Please add fill all input.")
+                    errorToast("Please complete all required fields")
                     flag = false
                 }
             }
@@ -87,7 +87,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
 
         let result = await updateRule(RuleId, ruleInfo)
         if (result == true) {
-            successToast("RuleSet updated successfully.")
+            successToast("Ruleset successfully updated")
             render(p => !p)
             toggle()
         } else {

@@ -25,15 +25,15 @@ export default function AddVariantForm({ productId, optionTypes, toggle ,updateM
         e.preventDefault();
         //validate form
         if (price == "") {
-            errorToast("price is required");
+            errorToast("Price required");
             return;
         }
         if (quantity == "") {
-            errorToast("quantity is required");
+            errorToast("Quantity required");
             return;
         }
         if (CheckOptions()) {
-            errorToast("Option value is required");
+            errorToast("A variant value is required");
             return;
         }
 

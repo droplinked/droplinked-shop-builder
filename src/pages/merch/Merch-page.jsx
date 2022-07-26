@@ -142,7 +142,7 @@ export default function MerchPage() {
             return
         }
         if (quantity == 0) {
-            errorToast("Please add quantity")
+            errorToast("Please add items")
             return
         }
 
@@ -173,7 +173,7 @@ export default function MerchPage() {
                     await addMerhcToCart(cart)
                 } else {
                     setDisableBtn(false)
-                    errorToast("Required NFT missing")
+                    errorToast("Required NFT not found, accessed denied")
                 }
             })
             .catch(e => {
@@ -186,7 +186,7 @@ export default function MerchPage() {
     const addMerhcToCart = async (cart) => {
         let result = await addSkuToCart(cart)
         if (result == true) {
-            successToast("Merch added to cart")
+            successToast("Item added to cart")
             setQuantity(1)
             updateCart()
         } else {

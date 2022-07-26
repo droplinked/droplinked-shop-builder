@@ -34,12 +34,12 @@ function AddressPage() {
 
 	const ProccessToPayment = async () => {
 		if (selectedAddress == null) {
-			errorToast("Please select an address")
+			errorToast("Please choose an address")
 			return
 		}
 		let result = await addCheckoutAddress(selectedAddress)
 		if (result == true) {
-			successToast("Address added successfully")
+			successToast("Address successfully added")
 			navigate('/payment')
 		} else {
 			errorToast(result)

@@ -28,7 +28,7 @@ export default function CheckoutItem({ product }) {
         setDisableDeleteBtn(true)
         let result = await deleteSkuFromCart(product.skuID)
         if (result == true) {
-            successToast("Merch deleted successfully")
+            successToast("Item removed")
             updateCart();
         } else {
             errorToast(result)
@@ -41,13 +41,13 @@ export default function CheckoutItem({ product }) {
     const updateQ = async() => {
 
         if (quantity < 1) {
-            errorToast("Merch quantity must be greater than zero")
+            errorToast("Quantity can not be zero")
             return;
         }
         setDisableEditBtn(true)
         let result = await updateQuantity(product.skuID , quantity)
         if(result == true){
-            successToast("Merch updated successfully")
+            successToast("Item added")
             updateCart();
         }else{
             errorToast(result)

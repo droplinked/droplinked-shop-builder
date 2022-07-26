@@ -64,7 +64,7 @@ export default function ShopInfoComponent() {
         axios.put(`${BASE_URL}/producer/shop/info`, shopInformation,
             { headers: { Authorization: "Bearer " + token } })
             .then(e => {
-                successToast("Shop info updated successfully")
+                successToast("Shop info successfully updated")
                 setDisableBtn(false)
             })
             .catch(e => {

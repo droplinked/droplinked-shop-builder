@@ -84,10 +84,10 @@ export default function ViewMerchPage() {
         e.preventDefault()
 
         if (title == "") {
-            errorToast("Merch name is required");
+            errorToast("Item name is required");
             return;
         } else if (description == "") {
-            errorToast("Merch description is required");
+            errorToast("Item description is required");
             return;
         }
 
@@ -108,7 +108,7 @@ export default function ViewMerchPage() {
         let productResutl = await updateMerch(merchId, product)
 
         if (productResutl == true) {
-            successToast("Merch updated successfully");
+            successToast("Item successfully updated");
             navigate("/producer/ims")
         } else {
             errorToast(productResutl)

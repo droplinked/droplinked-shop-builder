@@ -20,7 +20,7 @@ export default function PurchasHistoryPage() {
 
     useEffect(() => {
         // if its backurl from stripe show successToast
-        if (status == 'succeeded') successToast("payment successfull")
+        if (status == 'succeeded') successToast("Payment successful")
         getPurchseList()
     }, [])
 

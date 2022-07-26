@@ -52,13 +52,13 @@ export default function RegisterShop() {
         const address = JSON.parse(localStorage.getItem('address'));
 
         if (!address) {
-            errorToast("Add address please")
+            errorToast("Address is required")
             setLoading(false);
             return;
         }
 
         if (addressData == undefined) {
-            errorToast("Add address please")
+            errorToast("Address is required")
             setLoading(false);
             return;
         }

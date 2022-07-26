@@ -72,20 +72,20 @@ function AddProductPage() {
     const submitForm = async (e) => {
         e.preventDefault()
         if (title == "") {
-            errorToast("Merch name is required");
+            errorToast("Item name is required");
             return;
         } else if (description == "") {
-            errorToast("Merch description is required");
+            errorToast("Item description is required");
             return;
         }
         else if (selectedCollection == "") {
-            errorToast("Select a collection");
+            errorToast("Choose a collection");
             return;
         } else if (variants.length == 0) {
-            errorToast("Add a variant");
+            errorToast("Add a new variant");
             return;
         } else if (images.length == 0) {
-            errorToast("Add a image for merch");
+            errorToast("Add an image for this item");
             return;
         }
 
@@ -107,7 +107,7 @@ function AddProductPage() {
 
         let result = await postProduct(proDetail)
         if (result == true) {
-            successToast("Merch added successfully");
+            successToast("Item added successfully");
             navigate("/producer/ims")
         } else {
             errorToast(result)

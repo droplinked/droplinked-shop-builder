@@ -28,7 +28,7 @@ export default function SignupCustomer({ switchToggle, close }) {
         }
 
         if (info.password !== info.confirmPass) {
-            errorToast("Password and confirm password don't match.")
+            errorToast("Passwords do not match, please re-enter")
             return;
         }
 
@@ -42,7 +42,7 @@ export default function SignupCustomer({ switchToggle, close }) {
 
         let result = await customerSignup(accountInfo ,  errorToast)
         if (result != null) {
-            successToast("Your account has been successfully created.")
+            successToast("Account successfully created")
             close()
             addProfile(result)
         } 

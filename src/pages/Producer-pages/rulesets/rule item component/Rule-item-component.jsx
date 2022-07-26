@@ -25,7 +25,7 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
         setLoading(true)
         let result = await deleteRule(ruleId)
         if(result == true){
-            successToast("Rule deleted successfully");
+            successToast("Ruleset successfully deleted");
             toggleDelete()
             ren(p => !p)
         }else{

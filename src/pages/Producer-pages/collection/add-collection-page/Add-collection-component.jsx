@@ -47,11 +47,11 @@ export default function AddCollectionPage({ toggle }) {
     const submitForm = async () => {
 
         if (collectionName == "") {
-            errorToast("Collection Name is required");
+            errorToast("Collection name required");
             return
         }
         if (selectedRule == null) {
-            errorToast("Select a rule");
+            errorToast("Assign a ruleset to the collection");
             return
         }
 
@@ -76,7 +76,7 @@ export default function AddCollectionPage({ toggle }) {
         setDisableBtn(true)
         let result = await newCollection(RuleInfo)
         if (result == true) {
-            successToast("Collection was created successfully")
+            successToast("New collection added successfully")
             toggle()
         } else {
             errorToast(result)

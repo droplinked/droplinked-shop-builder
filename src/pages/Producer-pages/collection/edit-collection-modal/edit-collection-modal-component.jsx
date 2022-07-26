@@ -59,11 +59,11 @@ export default function EditCollectionModal({ toggle, submitFunc, defaultValue }
     const submitForm = async() => {
 
         if (collectionName == "") {
-           errorToast("Collection Name is required");
+           errorToast("Collection name required");
             return
         }
         if (selectedRule == null) {
-            errorToast("Select a rule");
+            errorToast("Assign a ruleset to the collection");
             return
         }
      

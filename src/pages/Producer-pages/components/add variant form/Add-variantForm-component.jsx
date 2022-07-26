@@ -34,20 +34,20 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray }
     const submitvariant = (e) => {
         e.preventDefault();
         if (price == "") {
-            errorToast("price is required");
+            errorToast("Price required");
             return;
         }
         if (quantity == "") {
-            errorToast("quantity is required");
+            errorToast("Quantity required");
             return;
         }
         if (CheckOptions()) {
-            errorToast("Merchs must have same options");
+            errorToast("A variants options must match those associated with the item");
             return;
         }
 
         if (options.length != optionsArray.length) {
-            errorToast("variants value is required");
+            errorToast("A variant value is required");
             return;
         }
         optionsArray.forEach(option => {

@@ -93,7 +93,7 @@ export default function AddRule({ toggle }) {
 
         //check rule name
         if (ruleName == "") {
-            errorToast("Please enter name for rule.")
+            errorToast("Please name the rule")
             return
         }
 
@@ -101,12 +101,12 @@ export default function AddRule({ toggle }) {
         // all input be fill 
         addresslist.forEach(({ index, type, address }) => {
             if (address.contractAddress == "" || address.contractName == "") {
-                errorToast("Please add fill all input.")
+                errorToast("Please complete all required fields")
                 flag = false
             }
             if (type == "NFT") {
                 if (address.nftName == "") {
-                    errorToast("Please add fill all input.")
+                    errorToast("Please complete all required fields")
                     flag = false
                 }
             }

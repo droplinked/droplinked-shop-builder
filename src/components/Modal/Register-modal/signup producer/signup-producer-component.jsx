@@ -26,7 +26,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         }
 
         if (info.password !== info.confirmPass) {
-            errorToast("Password and confirm password don't match.")
+            errorToast("Passwords do not match, please re-enter")
             return;
         }
 
@@ -43,7 +43,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
 
         let result = await producerSignup(info)
         if (result == true) {
-            successToast("Your account has been successfully created.");
+            successToast("Account successfully created");
             close()
             navigate("/emailConfirmation");
         } else {

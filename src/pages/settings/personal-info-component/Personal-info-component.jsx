@@ -52,7 +52,7 @@ export default function PersonalInfoComponent() {
         await axios.put(`${BASE_URL}/profile`, profileData,
             { headers: { Authorization: "Bearer " + token } })
             .then(e => {
-                successToast('Profile updated successfully')
+                successToast('Profile successfully updated')
                 updateProfile(e.data.data.user)
             })
             .catch(e => {

@@ -68,7 +68,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                                 navigate(`/${res.data.data.user.shopName}`);
                                 return;
                             case "DELETED":
-                                errorToast("your account has been deleted")
+                                errorToast("This account has been deleted")
                                 setLoading(false)
                                 return;
                         }

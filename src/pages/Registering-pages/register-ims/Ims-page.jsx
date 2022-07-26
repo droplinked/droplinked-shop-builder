@@ -20,7 +20,7 @@ export default function RegisterIms() {
     const submitType = async () => {
 
         if (ImsSystem == undefined) {
-            errorToast("please choose a plan")
+            errorToast("Please select a plan option")
             return;
         }
 
@@ -28,7 +28,7 @@ export default function RegisterIms() {
 
         let result = await setImsType(ImsSystem)
         if (result == true) {
-            successToast("account created")
+            successToast("New account created")
             let newUser = { ...user, status: "IMS_TYPE_COMPLETED", imsType: ImsSystem }
             updateProfile(newUser)
             navigate(`/${user.shopName}`);
