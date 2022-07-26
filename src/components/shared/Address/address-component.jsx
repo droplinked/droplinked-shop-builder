@@ -56,7 +56,7 @@ export default function AddressComponent({ address, selected, setSelect, selecab
 
                     <Flex alignItems='center' justifyContent="space-between"  >
                         <Box w={{ base: "45%", md: "30%" }}>
-                            {(selecable == true) &&
+                            {/* {(selecable == true) &&
                                 <Button
                                     w='100%'
                                     fontSize={{ base: "12px", md: "16px" }}
@@ -69,7 +69,7 @@ export default function AddressComponent({ address, selected, setSelect, selecab
                                 >
                                     Select address
                                 </Button>
-                            }
+                            } */}
 
                         </Box>
 
