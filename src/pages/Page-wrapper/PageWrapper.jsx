@@ -37,7 +37,7 @@ export default function PageWrapper({ children }) {
     useEffect(() => {
         if(token != null || token != undefined){
             updateAddressList()
-         //   updateCart();
+            updateCart();
             updateNotifications()
            setInterval(updateNotifications, 60000);
         }
