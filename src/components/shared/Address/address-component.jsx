@@ -68,13 +68,21 @@ export default function AddressComponent({ address, selected, setSelect, selecab
 
                         <Flex alignItems='center' flexDirection='row-reverse' justifyContent="space-between" w={{ base: "45%", md: "40%" }}>
 
-                            <Button colorScheme='messenger' w="45%" h="35px"
+                            <Button 
+                            bgColor="#4A4A4A"
+                            color='#fff'
+                             w="45%" h="35px"
                                 fontSize={{ base: "12px", md: "16px" }}
+                                _hover={{ borderColor: "#4d4d4d", color: "#222" }}
                                 onClick={() => setOpenAddressForm(true)}
                             >Edit</Button>
                             {(deleteable == true) &&
-                                <Button colorScheme='red' w="45%" h="35px"
+                                <Button 
+                                 bgColor="#8053ff"
+                                 color='#fff'
+                                  w="45%" h="35px"
                                     fontSize={{ base: "12px", md: "16px" }}
+                                    _hover={{ borderColor: "#4d4d4d", color: "#222" }}
                                     onClick={onOpen}
                                 >Delete</Button>
                             }
