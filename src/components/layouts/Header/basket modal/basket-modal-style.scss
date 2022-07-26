@@ -14,11 +14,9 @@
   width: 300px;
   height: auto;
   padding: 20px 10px;
-  position: fixed;
+  position: absolute;
   top: 80px;
   right: 80px;
-  animation-name: basketModalAnimation;
-  animation-duration: 0.2s;
   z-index: 50;
   background-color: #222;
   box-shadow: 0 0 10px 2px #111;

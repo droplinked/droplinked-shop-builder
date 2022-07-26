@@ -1,8 +1,9 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useProfile } from "../../../../context/profile/ProfileContext"
 import {  Flex } from "@chakra-ui/react"
-import ProfileItem from "./ProfileItem-component"
 
+import ProfileItem from "./ProfileItem-component"
+import DropdownContainer from "../dropdown-container/DropDown-container"
 
 const ProfileDropdown = ({ headerToggle }) => {
 
@@ -42,6 +43,7 @@ const ProfileDropdown = ({ headerToggle }) => {
 
     return (
 
+        <DropdownContainer close={()=>{headerToggle(false)}}>
         <Flex
             pos='absolute'
             top={{ base: "60px", md: '80px' }}
@@ -81,6 +83,7 @@ const ProfileDropdown = ({ headerToggle }) => {
             </Link>
             <ProfileItem click={logout}>Logout</ProfileItem>
         </Flex>
+        </DropdownContainer>
             )
         }
         
