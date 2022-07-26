@@ -10,7 +10,6 @@ import { useState,  useContext } from "react"
 import { toastValue } from "../../../context/toastify/ToastContext"
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
-import { useCart } from "../../../context/cart/CartContext"
 
 
 export default function LoginModal({ close, switchToggle, switchReset }) {
@@ -19,8 +18,6 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
     const { addProfile } = useProfile()
 
     const { successToast, errorToast } = useContext(toastValue)
-    const { firstUpdateCart } = useCart();
-
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     let navigate = useNavigate();
@@ -64,12 +61,10 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                             case "IMS_TYPE_COMPLETED":
                                 localStorage.setItem("token", JSON.stringify(res.data.data.jwt));
                                 addProfile(res.data.data)
-                                firstUpdateCart(res.data.data.jwt)
                                 navigate(`/${res.data.data.user.shopName}`);
                                 return;
                             case "ACTIVE":
                                 addProfile(res.data.data)
-                                firstUpdateCart(res.data.data.jwt)
                                 navigate(`/${res.data.data.user.shopName}`);
                                 return;
                             case "DELETED":
@@ -79,7 +74,6 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                         }
                     } else {
                         successToast("Login successfully")
-                        firstUpdateCart(res.data.data.jwt)
                         addProfile(res.data.data)
                     }
                 }

@@ -9,18 +9,18 @@ import { useAddress } from "../../context/address/AddressContext"
 import { useNotifications } from "../../context/notifications/NotificationsContext"
 import { useProfile } from "../../context/profile/ProfileContext"
 
-export default function PageWrapper({ children }) {
+export default function PageWrapper() {
 
     const { updateCart } = useCart();
     const { updateAddressList } = useAddress();
     const { profile } = useProfile()
     const { updateNotifications } = useNotifications()
 
-    let token = JSON.parse(localStorage.getItem("token"));
 
 
     useEffect(() => {
 
+        let token = JSON.parse(localStorage.getItem("token"));
         // delete localstorage after 8 hour 
         if (token != null || token != undefined) {
             const loginTime = JSON.parse(localStorage.getItem("login-time"));
@@ -35,11 +35,13 @@ export default function PageWrapper({ children }) {
 
 
     useEffect(() => {
-        if(token != null || token != undefined){
+
+        let token = JSON.parse(localStorage.getItem("token"));
+        if (token != null || token != undefined) {
             updateAddressList()
             updateCart();
             updateNotifications()
-           setInterval(updateNotifications, 60000);
+            setInterval(updateNotifications, 60000);
         }
     }, [profile])
 

@@ -9,10 +9,11 @@ export const CartContext = createContext();
 const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState(null);
 
-  let token = JSON.parse(localStorage.getItem("token"));
+
 
   //update cartstate
   const updateCart = () => {
+    let token = JSON.parse(localStorage.getItem("token"));
     //first get cart from back
     axios
       .get(`${BASE_URL}/cart`, {
@@ -58,40 +59,10 @@ const CartContextProvider = ({ children }) => {
     return results;
   };
 
-  // firts update when we havent token
-  const firstUpdateCart = (tk) => {
-    axios
-      .get(`${BASE_URL}/cart`, {
-        headers: { Authorization: "Bearer " + tk },
-      })
-      .then(async (e) => {
-        let cart = e.data.data.cart;
 
-        //get productsID for get product data from backend
-        let productsId = cart.items.map((item) => item.productID);
-        //get products by productsID
-        let productsArray = await getProductData(productsId);
-
-        // build new cartitems with productsArray
-        let newCartItems = cart.items.map((item) => {
-          let Product = productsArray.find((p) => p._id == item.productID);
-          return { ...item, Product };
-        });
-
-        setCart({
-          id: cart._id,
-          status: cart.status,
-          items: newCartItems,
-        });
-      })
-      .catch((e) => {
-        console.log(e.response.data.reason);
-      });
-  };
 
   const contextValues = {
     updateCart,
-    firstUpdateCart,
     cart,
   };
 
