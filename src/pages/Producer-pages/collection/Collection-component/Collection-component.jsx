@@ -17,13 +17,14 @@ export default function CollectionComponent({ id, name, productsArray, edit, ren
 
     const [deleteModal, setDeleteModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
+    const [loading, setLoading] = useState(false)
     const { errorToast, successToast } = useToasty();
 
     const submitEdit = () => {
     }
 
     const DeleteCollection = async () => {
-
+        setLoading(true)
         let result = await deleteCollection(id)
         if (result == true) {
             successToast("Collection deleted successfully")
@@ -31,6 +32,7 @@ export default function CollectionComponent({ id, name, productsArray, edit, ren
         } else {
             errorToast(result)
         }
+        setLoading(false)
         setDeleteModal(false)
     }
 
@@ -77,6 +79,7 @@ export default function CollectionComponent({ id, name, productsArray, edit, ren
                 show={deleteModal}
                 hide={() => setDeleteModal(false)}
                 click={DeleteCollection}
+                loading={loading}
             />
         }
         {editModal &&

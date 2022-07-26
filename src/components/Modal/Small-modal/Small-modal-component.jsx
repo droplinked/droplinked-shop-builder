@@ -1,40 +1,50 @@
 import "./Small-modal-style.scss"
 import { useState } from "react"
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
+import BasicButton from '../../shared/BasicButton/BasicButton'
 
-export default function SmallModal({ show, hide, text, click, header, disable }) {
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    Box,
+    Flex
+} from '@chakra-ui/react'
+
+export default function SmallModal({ show, hide, text, click, header, loading }) {
 
     return (
         <>
-            <Modal
-                size="sm"
-                aria-labelledby="example-modal-sizes-title-sm"
-                show={show}
-                onHide={hide}
-            >
-                {/* <Modal.Header closeButton
-                    style={{ backgroundColor: "#222" }}
-                >
-                    <Modal.Title id="example-modal-sizes-title-sm"
-                        style={{ color: "white" }}
-                    >
-                        {header}
-                    </Modal.Title>
-                </Modal.Header> */}
-                <Modal.Body style={{ backgroundColor: "#222", width: "100%", height: "100%", borderRadius: "0px" }} >
-                    <div style={{ width: "100%", height: "50px", color: "white" }} className="text-center">
+            <Modal isOpen={show} onClose={hide} >
+                <ModalOverlay />
+                <ModalContent bgColor="#222">
+                    <ModalHeader color="#fff">{header}</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody
+                        fontWeight='600'
+                        fontSize={{ base: "16px", md: '20px' }}
+                        textAlign='center' color='#fff'>
                         {text}
-                    </div>
-                    <div className="mt-3 w-100 p-2 d-flex justify-content-between">
-                        <Button variant="light" style={{color:"black" ,fontFamily: "AvenirNext",fontWeight:"600"}} disabled={disable} onClick={hide}>Cancel</Button>
-                        <Button variant="danger" style={{color:"black" ,fontFamily: "AvenirNext",fontWeight:"600"}} disabled={disable} onClick={click}>Delete</Button>
-                    </div>
-                </Modal.Body>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Flex justifyContent='space-between' w='100%'>
+                            <Box w='40%'>
+                                <BasicButton
+                                    bgColor="#4d4d4d"
+                                    onClick={hide}
+                                    loading={loading}
+                                > Cancel</BasicButton>
+                            </Box>
+                            <Box w='40%'>
+                                <BasicButton loading={loading} onClick={click}>Delete</BasicButton>
+                            </Box>
+                        </Flex>
+                    </ModalFooter>
+                </ModalContent>
             </Modal>
-
         </>
-
-
     )
 }

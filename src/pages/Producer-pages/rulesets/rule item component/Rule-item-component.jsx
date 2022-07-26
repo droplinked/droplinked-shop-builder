@@ -8,6 +8,7 @@ import { deleteRule } from "../../../../api/producer/Ruleset-api"
 export default function RuleItem({ name, rules, ruleId, ren }) {
     const [editModal, setEditModal] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
+    const [loading, setLoading] = useState(false)
     const { successToast, errorToast } = useToasty();
 
     const token = JSON.parse(localStorage.getItem('token'));
@@ -21,6 +22,7 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
     }
 
     const ClickDelete = async() => {
+        setLoading(true)
         let result = await deleteRule(ruleId)
         if(result == true){
             successToast("Rule deleted successfully");
@@ -30,7 +32,7 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
             toggleDelete()
             errorToast(result) 
         }
-
+        setLoading(false)
     }
 
     return (
@@ -47,7 +49,7 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
                 <button className="btn-rule-item" style={{ color: "#8053ff" }} onClick={Edit}>Edit</button>
             </div>
             {editModal && <EditRule toggle={toggleEdit} RuleId={ruleId} RuleName={name} Rule={rules} render={ren} />}
-            <SmallModal header={"Delete Rule"} show={deleteModal} hide={() => { setDeleteModal(false) }} text={`Are you sure you want to  delete this rule?`} click={ClickDelete} />
+            <SmallModal loading={loading} header={"Delete Rule"} show={deleteModal} hide={() => { setDeleteModal(false) }} text={`Are you sure you want to  delete this rule?`} click={ClickDelete} />
         </div>
     )
 }
