@@ -187,7 +187,7 @@ export default function MerchPage() {
         let result = await addSkuToCart(cart)
         if (result == true) {
             successToast("Merch added to cart")
-            setQuantity(0)
+            setQuantity(1)
             updateCart()
         } else {
             errorToast(result)
@@ -268,13 +268,13 @@ export default function MerchPage() {
 
                         {sku && (sku.quantity > 0) &&
                             <div className="calc-btn-wrap">
-                                <div className="btn" onClick={() => { setQuantity(p => ++p) }}>
-                                    <img src={plus} alt="" />
+                                <div className="btn"
+                                    onClick={() => { if (quantity != 1) setQuantity(p => --p) }}>
+                                    <img src={minus} alt="" />
                                 </div>
                                 <p className="show">{quantity}</p>
-                                <div className="btn"
-                                    onClick={() => { if (quantity != 0) setQuantity(p => --p) }}>
-                                    <img src={minus} alt="" />
+                                <div className="btn" onClick={() => { setQuantity(p => ++p) }}>
+                                    <img src={plus} alt="" />
                                 </div>
                             </div>
                         }
