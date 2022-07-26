@@ -6,7 +6,7 @@ import webIcon from "../../../assest/icon/web.png"
 import defaultProfile from "../../../assest/profile/defaultProfile.png"
 
 
-export default function TopSection({ pic, shopname, insta, twitter, discord, web }) {
+export default function TopSection({ pic, shopname, instagram, twitter, discord, web }) {
 
 
 
@@ -31,7 +31,7 @@ export default function TopSection({ pic, shopname, insta, twitter, discord, web
                 <div className='d-flex justify-content-between align-items-center'>
 
                     {(discord != "") &&
-                        <a href='https://discord.gg/crashpunks' target='_blank' rel='noreferrer' className='social' >
+                        <a href={`https://discord.gg/${discord}`} target='_blank' rel='noreferrer' className='social' >
                             <img src={discordIcon} alt="" className=' ratio ratio-1x1' />
                         </a>
                     }
@@ -45,8 +45,8 @@ export default function TopSection({ pic, shopname, insta, twitter, discord, web
                             <img src={twitterIcon} alt="" className='ratio ratio-1x1' />
                         </a>
                     }
-                    {(insta != "") &&
-                        <a href={`https://www.instagram.com/${insta}`} target='_blank' rel='noreferrer' className='social'>
+                    {(instagram != "") &&
+                        <a href={`https://www.instagram.com/${instagram}`} target='_blank' rel='noreferrer' className='social'>
                             <img src={instaIcon} alt="" className='ratio ratio-1x1' />
                         </a>
                     }

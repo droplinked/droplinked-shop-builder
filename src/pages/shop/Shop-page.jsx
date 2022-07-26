@@ -40,7 +40,7 @@ export default function ShopPage() {
                 <TopSection
                     pic={profile.logo}
                     shopname={profile.shopName}
-                    insta={(profile.instagramUrl) ? profile.instagramUrl : ""}
+                    instagram={(profile.instagramUrl) ? profile.instagramUrl : ""}
                     twitter={(profile.twitterUrl) ? profile.twitterUrl : ""}
                     discord={(profile.discordUrl) ? profile.discordUrl : ""}
                     web={(profile.webUrl) ? profile.webUrl : ""}
