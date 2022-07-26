@@ -13,13 +13,12 @@ export default function TopSection({ pic, shopname, insta, twitter, discord, web
     return (<>
         <div className="top-section-wrapper">
             <div className="d-flex justify-content-center align-content-center">
-
-                <div className='img-wrap' style={{ border: "4px solid #8053ff" }}>
-                    {pic ?
+                <div className='img-wrap' >
+                    {pic
+                        ?
                         <img src={pic} alt='' />
-
                         :
-                     <img src={defaultProfile} style={{height:"90%" , width:"90%" }} alt='' />
+                        <img src={defaultProfile} style={{ height: "90%", width: "90%" }} alt='' />
                     }
                 </div>
 
