@@ -3,7 +3,7 @@ import "./Add-product-page-style.scss"
 
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
 import FormInput from "../../../components/shared/FormInput/FormInput"
-import VariantItem from "./Variant-item-component"
+import VariantItem from "../components/variant-item-component/Variant-item-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import AddVariantForm from "./Add-variantForm-component"
 import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"

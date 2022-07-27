@@ -2,7 +2,7 @@ import "./View-merch-page-style.scss"
 
 import FormInput from "../../../components/shared/FormInput/FormInput"
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
-import Variant from "./Variant-component"
+import VariantItem from "../components/variant-item-component/Variant-item-component"
 import AddVariantForm from "./AddVariant-form"
 import Loading from "../../../components/shared/loading/Loading";
 import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
@@ -14,7 +14,7 @@ import { useToasty } from "../../../context/toastify/ToastContext"
 import { useNavigate } from 'react-router-dom';
 import { getCollections } from "../../../api/producer/Collection-api"
 import { getProduct } from "../../../api/public/Product-api"
-import { updateMerch  } from "../../../api/producer/Product-api"
+import { updateMerch, deleteSku } from "../../../api/producer/Product-api"
 
 export default function ViewMerchPage() {
 
@@ -25,8 +25,10 @@ export default function ViewMerchPage() {
     const [images, setImages] = useState([]) // images
     const [collectionList, setCollectionList] = useState([])
     const [showForm, setShowForm] = useState(false)
-    const { successToast, errorToast } = useToasty();
     const [loading, setLoading] = useState(false)
+
+    const { successToast, errorToast } = useToasty();
+
 
 
     const merchId = useParams().id;
@@ -49,7 +51,7 @@ export default function ViewMerchPage() {
     const initialize = async () => {
         let result = await getProduct(merchId)
         if (result != null) {
-            console.log(result)
+
             setMerch(result)
             setTitle(result.title)
             setDescription(result.description)
@@ -68,7 +70,7 @@ export default function ViewMerchPage() {
     }
 
     //update merch list
-    const getMerch = async() => {
+    const getMerch = async () => {
         let result = await getProduct(merchId)
         if (result != null) {
             setMerch(result)
@@ -116,6 +118,20 @@ export default function ViewMerchPage() {
         setLoading(false)
     }
 
+    const editSku = () => {
+       // console.log("edit")
+    }
+
+
+    const deleteVariant = async(id) => {
+            let result = await deleteSku(id)
+            if(result == true){
+                successToast("deleted");
+                getMerch()
+            }else{
+                errorToast(result)
+            }
+    }
 
 
     return (<>
@@ -158,7 +174,7 @@ export default function ViewMerchPage() {
                 </div>
 
                 <div className="mt-5 w-100">
-                    {merch.skus.map(sku => <Variant key={sku._id} sku={sku} />)}
+                    {merch.skus.map(sku => <VariantItem key={sku._id} id={sku._id} variant={sku} deleteVariant={deleteVariant} editVariant={editSku} />)}
                 </div>
 
                 <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
@@ -167,7 +183,7 @@ export default function ViewMerchPage() {
                         <BasicButton click={toggleAddVariant}>Add variant</BasicButton>
                         :
 
-                        <AddVariantForm updateMerch={getMerch} productId={merch._id} optionTypes={merch.skus[0].options} toggle={toggleAddVariant}  />
+                        <AddVariantForm updateMerch={getMerch} productId={merch._id} optionTypes={merch.skus[0].options} toggle={toggleAddVariant} />
                     }
                 </div>
 
