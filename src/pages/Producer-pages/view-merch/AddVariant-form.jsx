@@ -1,17 +1,44 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useToasty } from "../../../context/toastify/ToastContext"
-import { addSkuToProduct } from "../../../api/producer/Product-api"
+import { addSkuToProduct, updateSku } from "../../../api/producer/Product-api"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 
-export default function AddVariantForm({ productId, optionTypes, toggle ,updateMerch }) {
+export default function AddVariantForm({ productId, optionTypes, toggle, defaultSku, updateMerch }) {
 
     const [options, setOptions] = useState([]);
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState("");
     const [externalID, setExternalID] = useState("");
     const [loading, setLoading] = useState(false);
+
     const { errorToast } = useToasty();
 
+    useEffect(() => {
+        if (defaultSku) {
+            setPrice(defaultSku.price)
+            setQuantity(defaultSku.quantity)
+            setExternalID(defaultSku.externalID)
+            setOptions(defaultSku.options)
+        } else {
+            let optionList = optionTypes.map(opt => { return { ...opt, value: "" } })
+            setOptions(optionList)
+        }
+    }, [])
+
+    console.log(defaultSku);
+
+
+
+    const changePrice = (e) => {
+        setPrice(e.target.value)
+    }
+
+    const changeQuantity = (e) => {
+        setQuantity(e.target.value)
+    }
+    const changeExternal = (e) => {
+        setExternalID(e.target.value)
+    }
 
     //check all options input
     const CheckOptions = () => {
@@ -21,21 +48,28 @@ export default function AddVariantForm({ productId, optionTypes, toggle ,updateM
         return false
     }
 
-    const submitvariant = async (e) => {
-        e.preventDefault();
-        //validate form
+
+    //validation form
+    const validationForm = () => {
         if (price == "") {
             errorToast("Price required");
-            return;
+            return true
         }
         if (quantity == "") {
             errorToast("Quantity required");
-            return;
+            return true
         }
         if (CheckOptions()) {
             errorToast("A variant value is required");
-            return;
+            return true
         }
+        return false
+    }
+
+    const submitvariant = async (e) => {
+        e.preventDefault();
+
+        if (validationForm()) return
 
         let optionsArray = options.map(op => { return { value: op.value, variantID: op.variantID } })
         const newVariant = [{
@@ -46,11 +80,16 @@ export default function AddVariantForm({ productId, optionTypes, toggle ,updateM
         }]
 
         setLoading(true)
-        let result = await addSkuToProduct(productId, newVariant)
-        if(result == true){
+        let result
+        if (defaultSku) {
+            result = await updateSku(defaultSku._id , newVariant[0])
+        } else {
+             result = await addSkuToProduct(productId, newVariant)
+        }
+        if (result == true) {
             toggle()
             updateMerch()
-        }else{
+        } else {
             errorToast(result)
         }
         setLoading(false)
@@ -70,28 +109,18 @@ export default function AddVariantForm({ productId, optionTypes, toggle ,updateM
 
 
 
-    const changePrice = (e) => {
-        setPrice(e.target.value)
-    }
-
-    const changeQuantity = (e) => {
-        setQuantity(e.target.value)
-    }
-    const changeExternal = (e) => {
-        setExternalID(e.target.value)
-    }
-
     return (<>
         <form className="add-new-variant-form">
             {
-                optionTypes.map((type, i) => {
+                options.map((option, i) => {
                     return (
                         <div className="rw-rp" key={i}>
-                            <label>{type.variantName}</label>
+                            <label>{option.variantName}</label>
                             <input type="text"
-                                placeholder={type.variantName}
-                                name={type.variantName}
-                                id={type.variantID}
+                                value={option.value}
+                                placeholder={option.variantName}
+                                name={option.variantName}
+                                id={option.variantID}
                                 onChange={chnageOption}
                             />
                         </div>

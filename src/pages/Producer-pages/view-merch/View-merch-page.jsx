@@ -23,7 +23,9 @@ export default function ViewMerchPage() {
     const [description, setDescription] = useState("") // description
     const [collectionSelected, setCollectionSelected] = useState("") // collection
     const [images, setImages] = useState([]) // images
+
     const [collectionList, setCollectionList] = useState([])
+    const [selectedSku, setSelectedSku] = useState(null)
     const [showForm, setShowForm] = useState(false)
     const [loading, setLoading] = useState(false)
 
@@ -65,8 +67,9 @@ export default function ViewMerchPage() {
     }
 
     // toggle form
-    const toggleAddVariant = () => {
-        setShowForm(p => !p)
+    const closeForm = () => {
+        setShowForm(false)
+        setSelectedSku(null)
     }
 
     //update merch list
@@ -118,9 +121,10 @@ export default function ViewMerchPage() {
         setLoading(false)
     }
 
-    const editSku = () => {
-       // console.log("edit")
+    const editSku = (sku) => {
+      setSelectedSku(sku)
     }
+
 
 
     const deleteVariant = async(id) => {
@@ -178,12 +182,12 @@ export default function ViewMerchPage() {
                 </div>
 
                 <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
-                    {(showForm == false)
+                    {(showForm == false && selectedSku==null)
                         ?
-                        <BasicButton click={toggleAddVariant}>Add variant</BasicButton>
+                        <BasicButton click={()=>{setShowForm(true)}}>Add variant</BasicButton>
                         :
 
-                        <AddVariantForm updateMerch={getMerch} productId={merch._id} optionTypes={merch.skus[0].options} toggle={toggleAddVariant} />
+                        <AddVariantForm updateMerch={getMerch} productId={merch._id} optionTypes={merch.skus[0].options} defaultSku={selectedSku} toggle={closeForm} />
                     }
                 </div>
 

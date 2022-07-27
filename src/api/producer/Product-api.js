@@ -94,3 +94,16 @@ export const deleteMerch = async (id) => {
     return err.response.data.reason;
   }
 };
+
+
+export const updateSku = async (id, sku) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const res = await axios.put(`${BASE_URL}/producer/product/sku/${id}`, sku, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
