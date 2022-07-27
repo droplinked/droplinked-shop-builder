@@ -3,9 +3,9 @@ import "./Add-product-page-style.scss"
 
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
 import FormInput from "../../../components/shared/FormInput/FormInput"
-import VariantItem from "../components/variant item component/Variant-item-component"
+import VariantItem from "./Variant-item-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
-import AddVariantForm from "../components/add variant form/Add-variantForm-component"
+import AddVariantForm from "./Add-variantForm-component"
 import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"
 import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
 
@@ -24,70 +24,95 @@ function AddProductPage() {
     const [description, setDescription] = useState("")
     const [selectedCollection, setSelectCollection] = useState("")
     const [images, setImages] = useState([])
-    const [addvariant, setAddvariant] = useState(false)
-    const [variants, setVariants] = useState([])
     const [options, setOptions] = useState([])
-    const [varintType, setVariantType] = useState(null)
-    const [collectionList, setCollection] = useState([])
+    const [variants, setVariants] = useState([])
+
+    const [addvariant, setAddvariant] = useState(false)
+    const [variantSelected, setVariantSelected] = useState(null)
     const [disbtn, setdisbtn] = useState(false)
 
-    const { successToast , errorToast } = useToasty()
+    // state for vanriants type 
+    const [varintType, setVariantType] = useState(null)
+    // state for collection list 
+    const [collectionList, setCollection] = useState([])
 
+
+    const { successToast, errorToast } = useToasty()
     const navigate = useNavigate();
 
 
     useEffect(() => {
         if (token == null) { navigate("/") }
-
-        const getDate = async () => {
-            let vrnt = await getVariants();
-            let coll = await getCollections()
-            setVariantType(vrnt)
-            coll = coll.map(col =>{return  {id:col._id , value:col.title}})
-            setCollection(coll)
-        }
-        getDate()
-
+        initializ()
     }, [])
 
 
-    const toggleAddVariant = () => {
-        setAddvariant(p => !p)
+    // initialize variantType and collectin List
+    const initializ = () => {
+        getVariants()
+            .then(e => setVariantType(e))
+            .catch(e => console.log(e))
+        getCollections()
+            .then(e => {
+                // convert collection for pass to Dropdown
+                let collections = e.map(col => { return { id: col._id, value: col.title } })
+                setCollection(collections)
+            })
+            .catch(e => console.log(e))
     }
+
+
+
+    // close variant form
+    const closeForm = () => {
+        setAddvariant(false)
+        setVariantSelected(null)
+    }
+
     const changeTitle = (e) => {
         setTitle(e.target.value)
     }
+
     const changeDescription = (e) => {
         setDescription(e.target.value)
     }
+
     const changeCollection = (e) => {
         setSelectCollection(e.target.value)
     }
+
     const cancelForm = () => {
         navigate("/producer/ims")
+    }
+
+    const validationForm = () => {
+        if (title == "") {
+            errorToast("Item name is required");
+            return true
+        } else if (description == "") {
+            errorToast("Item description is required");
+            return true
+        }
+        else if (selectedCollection == "") {
+            errorToast("Choose a collection");
+            return true
+        } else if (variants.length == 0) {
+            errorToast("Add a new variant");
+            return true
+        } else if (images.length == 0) {
+            errorToast("Add an image for this item");
+            return true
+        }else{
+            return false
+        }
     }
 
 
 
     const submitForm = async (e) => {
         e.preventDefault()
-        if (title == "") {
-            errorToast("Item name is required");
-            return;
-        } else if (description == "") {
-            errorToast("Item description is required");
-            return;
-        }
-        else if (selectedCollection == "") {
-            errorToast("Choose a collection");
-            return;
-        } else if (variants.length == 0) {
-            errorToast("Add a new variant");
-            return;
-        } else if (images.length == 0) {
-            errorToast("Add an image for this item");
-            return;
-        }
+       
+        if(validationForm())return
 
         let media = [];
         images.map((img, i) => {
@@ -104,7 +129,6 @@ function AddProductPage() {
         }
 
         setdisbtn(true)
-
         let result = await postProduct(proDetail)
         if (result == true) {
             successToast("Item added successfully");
@@ -116,6 +140,7 @@ function AddProductPage() {
     }
 
 
+    // change selected options with change checkbox
     const onChnageCheckBox = (e, val, name) => {
         let newOptions = []
         if (e.target.checked) {
@@ -127,20 +152,17 @@ function AddProductPage() {
         setOptions(newOptions)
     }
 
-    const deleteVariant = (id, vari) => {
-        let arr = []
-        for (const v of variants) {
-            arr.push(v)
-        }
-        arr.forEach((item, i) => {
-            if (i == id) { arr.splice(i, 1) }
-        })
-        setVariants(arr)
+    //delete a variant 
+    const deleteVariant = (index) => {
+        let newVariantList = []
+        for (const v of variants) newVariantList.push(v)
+        newVariantList.forEach((item, i) => { if (i == index) newVariantList.splice(i, 1) })
+        setVariants(newVariantList)
     }
 
-    const editVariant = (e) => {
+    const editVariant = (e , index) => {
+        setVariantSelected({...e , index:index})
     }
-
 
 
     return (
@@ -149,18 +171,18 @@ function AddProductPage() {
             <div className="mb-4 w-100 p-0">
                 <FormInput label={"Title"} changeValue={changeTitle} value={title} />
             </div>
-            <div className="mb-4 w-100 p-0" >            
-               <FormInput  type={"textarea"} label={"Description"} changeValue={changeDescription} value={description} /> 
+            <div className="mb-4 w-100 p-0" >
+                <FormInput type={"textarea"} label={"Description"} changeValue={changeDescription} value={description} />
             </div>
             <dir className="drop-wrape">
-            {collectionList &&  <Dropdown value={selectedCollection} pairArray={collectionList} change={changeCollection} placeholder={"Choose collection"}/>}
+                {collectionList && <Dropdown value={selectedCollection} pairArray={collectionList} change={changeCollection} placeholder={"Choose collection"} />}
             </dir>
             <div className="mt-5 mb-3 w-100 d-flex justify-content-center align-items-center">
                 <InputImagesGroup setState={setImages} state={images} />
             </div>
             <div className="select-variant-wrap mt-4">
                 <p>Choose options : </p>
-                {(varintType != undefined) &&
+                {(varintType != null) &&
                     <>
                         {varintType.map(item => {
                             return <CheckBox key={item._id} val={item._id} onch={onChnageCheckBox}>{item.name}</CheckBox>
@@ -170,19 +192,32 @@ function AddProductPage() {
             </div>
             <div className="mt-5 w-100">
                 {variants && variants.map((variant, i) => {
-                    return <VariantItem key={i} variant={variant} id={i} dlt={deleteVariant} edit={editVariant} />
+                    return (
+                        <VariantItem
+                            key={i}
+                            variant={variant}
+                            id={i}
+                            deleteVariant={deleteVariant}
+                            editVariant={editVariant} />
+                    )
                 })}
             </div>
 
             <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
-                {(addvariant == false)
+                {(addvariant == false && variantSelected == null)
                     ?
                     <div className="col-12 col-md-4">
-                        <BasicButton click={toggleAddVariant}>Add variant</BasicButton>
+                        <BasicButton click={() => { setAddvariant(true) }}>Add variant</BasicButton>
                     </div>
                     :
 
-                    <AddVariantForm state={variants} setState={setVariants} toggle={toggleAddVariant} optionsArray={options} />
+                    <AddVariantForm
+                        state={variants}
+                        setState={setVariants}
+                        toggle={closeForm}
+                        defaultVariant={variantSelected}
+                        optionsArray={options}
+                    />
                 }
             </div>
 
