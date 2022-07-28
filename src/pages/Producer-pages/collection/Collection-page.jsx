@@ -64,16 +64,13 @@ export default function CollectionMainPage() {
                         </div>
                         :
                         <>
-                            {collectins.map((col, i) => {
+                            {collectins.map((collection, i) => {
                                 return (
                                     <div key={i} className="mt-5 col-lg-6 col-md-10 col-12 ">
                                         <CollectionComponent
-                                            id={col._id}
-                                            name={col.title}
-                                            productsArray={col.products}
-                                            edit={() => { ToggleeditCollection(col) }}
+                                            collection={collection}
+                                            edit={() => { ToggleeditCollection(collection) }}
                                             render={renFunc}
-                                            editable={true}
                                         />
                                     </div>
                                 )
@@ -88,7 +85,7 @@ export default function CollectionMainPage() {
         </div>
         {Modal &&
             (<ModalContainer>
-                <AddCollectionPage toggle={ToggleModal}  />
+                <AddCollectionPage toggle={ToggleModal} />
             </ModalContainer>)
         }
         {EditModal &&

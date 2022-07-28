@@ -12,7 +12,7 @@ import { deleteCollection } from "../../../../api/producer/Collection-api"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export default function CollectionComponent({ id, name, productsArray, edit, render, editable }) {
+export default function CollectionComponent({collection, edit, render }) {
 
 
     const [deleteModal, setDeleteModal] = useState(false)
@@ -25,7 +25,7 @@ export default function CollectionComponent({ id, name, productsArray, edit, ren
 
     const DeleteCollection = async () => {
         setLoading(true)
-        let result = await deleteCollection(id)
+        let result = await deleteCollection(collection._id)
         if (result == true) {
             successToast("Collection deleted successfully")
             render()
@@ -41,19 +41,19 @@ export default function CollectionComponent({ id, name, productsArray, edit, ren
     return (<>
         <div className="Collection-wrapper-component">
             <div className="d-flex justify-content-between align-items-center h-auto">
-                <div className="name">{name}</div>
-                <Link to={`/collection/${id}`}>
+                <div className="name">{collection.title}</div>
+                <Link to={`/collection/${collection._id}`}>
                     <button className="collection-btn">View Collection</button>
                 </Link>
             </div>
-            {(productsArray.length == 0)
+            {(collection.products.length == 0)
                 ?
                 <div className="d-flex">
                     <p className="text-align-center no-pro-text">No Product</p>
                 </div>
                 :
                 <div className="mt-4 d-flex flex-wrap">
-                    {productsArray.filter((product, i) => {
+                    {collection.products.filter((product, i) => {
                         if (i < 4) { return product }
                     }).map((product, i) => {
                         return (<div key={i} className="col-6 col-md-3 p-1">
@@ -64,7 +64,7 @@ export default function CollectionComponent({ id, name, productsArray, edit, ren
                 </div>
             }
 
-            {editable && <>
+            {(collection.type != "DEFAULT_PUBLIC") && <>
                 <div className="d-flex justify-content-between align-items-center h-auto">
                     <img src={editIcon} onClick={edit} alt="icon" className="edit-img" style={{ cursor: "pointer" }} />
                     <img src={deleteIcon} onClick={() => setDeleteModal(true)} alt="icon" className="delete-img" style={{ cursor: "pointer" }} />
