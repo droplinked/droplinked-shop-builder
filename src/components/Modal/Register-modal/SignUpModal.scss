@@ -38,7 +38,7 @@
   }
 
 
-& .select-rgType-wrapper{
+ & .select-rgType-wrapper{
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -200,6 +200,7 @@
   }
 }
 }
+
 @-webkit-keyframes animatetop {
   from {
     top: -300px;
@@ -223,7 +224,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .signup-body-wrapper {
+  .register-modal-container{
     .title {
       font-size: 20px;
       .close-btn {
@@ -232,47 +233,51 @@
         height: 24px;
       }
     }
-    & .handle-error {
-      font-size: 12px;
-    }
-    .modal-shopname-input {
-      span {
-        font-weight: 400;
-        font-size: 16px;
-      }
-      .modal-shopname-input-inpt {
-        font-weight: 400;
-        font-size: 16px;
-      }
-    }
 
-    .input-label {
-      margin-top: 12px;
-      label {
-        font-size: 16px;
-        margin-bottom: 8px;
-      }
-      input {
-        font-weight: 400;
-        font-size: 16px;
-        padding: 12px 16px;
-      }
-      .signup-modal-error {
-        font-size: 8px;
-      }
-    }
-
-    .sign-up-btn {
-      padding: 12px 0px 11px 0px;
-      margin-top: 12px;
-      font-size: 16px;
-    }
-
-    .text {
-      p {
-        text-align: center;
+    & .signup-body-wrapper {
+      & .handle-error {
         font-size: 12px;
       }
+
+      .modal-shopname-input {
+        span {
+          font-weight: 400;
+          font-size: 16px;
+        }
+        .modal-shopname-input-inpt {
+          font-weight: 400;
+          font-size: 16px;
+        }
+      }
+      .input-label {
+        margin-top: 12px;
+        label {
+          font-size: 16px;
+          margin-bottom: 8px;
+        }
+        input {
+          font-weight: 400;
+          font-size: 16px;
+          padding: 12px 16px;
+        }
+        .signup-modal-error {
+          font-size: 8px;
+        }
+      }
+
+      .sign-up-btn {
+        padding: 12px 0px 11px 0px;
+        margin-top: 12px;
+        font-size: 16px;
+      }
+  
+      .text {
+        p {
+          text-align: center;
+          font-size: 12px;
+        }
+      }
     }
+     
   }
 }
