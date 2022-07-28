@@ -74,11 +74,11 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray, 
 
     // validate form 
     const validateForm = () => {
-        if (price == "") {
+        if (price < 1) {
             errorToast("Price required");
             return true;
         }
-        if (quantity == "") {
+        if (quantity < 1) {
             errorToast("Quantity required");
             return true
         }
@@ -109,7 +109,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray, 
         const newVariant = {
             price: price,
             externalID: externalID||"",
-            quantity: quantity.toString(),
+            quantity: quantity,
             options: options
         }
 
@@ -136,7 +136,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray, 
 
 
     const changePrice = (e) => {
-        setPrice(e.target.value)
+        setPrice(parseFloat(e.target.value))
     }
 
     const changeQuantity = (e) => {

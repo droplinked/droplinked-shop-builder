@@ -30,7 +30,7 @@ export default function AddVariantForm({ productId, optionTypes, toggle, default
 
 
     const changePrice = (e) => {
-        setPrice(e.target.value)
+        setPrice(parseFloat(e.target.value))
     }
 
     const changeQuantity = (e) => {
@@ -51,11 +51,11 @@ export default function AddVariantForm({ productId, optionTypes, toggle, default
 
     //validation form
     const validationForm = () => {
-        if (price == "") {
+        if (price <1) {
             errorToast("Price required");
             return true
         }
-        if (quantity == "") {
+        if (quantity <1) {
             errorToast("Quantity required");
             return true
         }
