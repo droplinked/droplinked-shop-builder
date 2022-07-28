@@ -57,9 +57,9 @@ const ProfileDropdown = ({ close }) => {
             boxShadow='dark-lg'
             flexDirection='column'
         >
-            <ProfileItem click={clickProfile}>Profile</ProfileItem>
-
+            
             {(userStatus == "IMS_TYPE_COMPLETED") && <>
+            <ProfileItem click={clickProfile}>Profile</ProfileItem>
             <Link to="/producer/ims" >
                 <ProfileItem click={close}>Inventory</ProfileItem>
             </Link>
