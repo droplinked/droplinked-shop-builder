@@ -23,6 +23,10 @@
       background-color: #222;
       cursor: pointer;
     }
+    & > input:disabled {
+      border: 2px solid #666;
+      background-color: #222;
+    }
     & > input:checked {
       border: 2px solid #8053ff;
       background-color: #222;
@@ -39,9 +43,7 @@
     & > input:active {
       border: 2px solid #34495e;
     }
-    
   }
-  
   
   @media only screen and (max-width: 768px) {
     .checkbox {

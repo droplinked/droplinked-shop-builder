@@ -1,10 +1,10 @@
 import "./Checkbox-style.scss"
 
-export default function CheckBox({ val ,  children , onch}){
+export default function CheckBox({ value ,  children , change , disabled}){
     return (<>
         <label class="checkbox">
-            <input type="checkbox" value={val} onChange={(e)=>{onch(e , val , children)}}/>
-            <span>{children}</span>
+            <input type="checkbox" value={value} onChange={(e)=>{change(e , value , children)}} disabled={disabled} />
+            <span disabled={disabled}>{children}</span>
         </label> 
 </>)
 }

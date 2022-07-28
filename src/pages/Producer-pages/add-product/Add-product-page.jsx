@@ -185,7 +185,7 @@ function AddProductPage() {
                 {(varintType != null) &&
                     <>
                         {varintType.map(item => {
-                            return <CheckBox key={item._id} val={item._id} onch={onChnageCheckBox}>{item.name}</CheckBox>
+                            return <CheckBox key={item._id} value={item._id} change={onChnageCheckBox} disabled={(variants.length > 0)}>{item.name}</CheckBox>
                         })}
                     </>
                 }
