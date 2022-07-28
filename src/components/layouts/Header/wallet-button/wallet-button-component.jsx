@@ -2,7 +2,7 @@ import "./wallet-button-style.scss"
 
 import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
 
-import HeaderItem from "../header button component/Header-btn-component"
+import HeaderItem from "../header-button/Header-btn-component"
 import headerWalletIcon from "../../../../assest/header/headerWalletIcon.svg";
 import activeWalletIcon from "../../../../assest/icon/pink-wallet.png"
 

@@ -1,9 +1,9 @@
 
 import { Box, Flex, Text } from "@chakra-ui/react"
 import { MdOutlineMessage } from "react-icons/md";
-import { convertToStandardFormat } from "../../../../utils/date.utils/convertDate"
+import { convertToStandardFormat } from "../../../../../utils/date.utils/convertDate"
 import { useNavigate } from "react-router-dom";
-import { useNotifications } from "../../../../context/notifications/NotificationsContext"
+import { useNotifications } from "../../../../../context/notifications/NotificationsContext"
 import { NOTIFICATION_TYPE } from "./notification.type"
 
 const NotificationComponent = ({ notif, close }) => {

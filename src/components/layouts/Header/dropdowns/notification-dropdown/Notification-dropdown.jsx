@@ -1,10 +1,9 @@
 import "./Notification-dropdown-style.scss"
 
 import { Box, Flex, Text } from "@chakra-ui/react"
-import { useNotifications } from "../../../../context/notifications/NotificationsContext"
+import { useNotifications } from "../../../../../context/notifications/NotificationsContext"
 
 import NotificationComponent from "./Notification-component"
-import DropdownContainer from "../dropdown-container/DropDown-container"
 
 
 const NotificationDropdown = ({ close }) => {
@@ -13,7 +12,6 @@ const NotificationDropdown = ({ close }) => {
 
 
     return (
-        <DropdownContainer close={close}>
             <Box
                 pos='absolute'
                 top={{ base: "60px", md: '80px' }}
@@ -49,7 +47,7 @@ const NotificationDropdown = ({ close }) => {
                     notifications.map((notif, i) => { if (i < 6) { return <NotificationComponent key={i} notif={notif} close={close} /> } })
                 }
             </Box>
-        </DropdownContainer>
+
     )
 }
 

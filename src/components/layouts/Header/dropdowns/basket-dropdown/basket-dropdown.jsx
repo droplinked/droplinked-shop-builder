@@ -1,11 +1,10 @@
 import "./basket-modal-style.scss"
 
 import { Text, Button } from '@chakra-ui/react'
-import { useCart } from "../../../../context/cart/CartContext"
+import { useCart } from "../../../../../context/cart/CartContext"
 import { useNavigate } from "react-router-dom";
 
-import DropdownContainer from "../dropdown-container/DropDown-container"
-import BasketItemComponent from "./basket item/basket-item-component"
+import BasketItemComponent from "./basket-item/basket-item-component"
 
 
 export default function BasketModal({ close }) {
@@ -21,7 +20,6 @@ export default function BasketModal({ close }) {
 
 
     return (
-        <DropdownContainer close={close}>
             <div className="basket-modal-wrapper">
                 {(cart) &&
                     <>
@@ -61,6 +59,5 @@ export default function BasketModal({ close }) {
                     </>
                 }
             </div>
-        </DropdownContainer>
     )
 }

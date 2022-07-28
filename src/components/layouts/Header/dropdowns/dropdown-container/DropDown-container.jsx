@@ -1,4 +1,10 @@
 import { Box, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
+import { DROPDOWN_TYPE } from "../dropdown.type"
+
+import ProfileDropdown from "../profile-dropdown/ProfileDropdown"
+import NotificationDropdown from "../notification-dropdown/Notification-dropdown"
+import BasketModal from "../basket-dropdown/basket-dropdown"
+
 
 const keyframe_dropdowncontainer = keyframes`
 0% {
@@ -11,7 +17,7 @@ const keyframe_dropdowncontainer = keyframes`
 }
 `;
 
-const DropdownContainer = ({ children, close }) => {
+const DropdownContainer = ({ close , dropdown }) => {
 
     const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -23,6 +29,17 @@ const DropdownContainer = ({ children, close }) => {
       const handleChildClick = event => {
         event.stopPropagation();
       };
+
+      const dropdownType = () => {
+        switch(dropdown){
+          case DROPDOWN_TYPE.PROFILE:
+            return <ProfileDropdown close={close} />
+            case DROPDOWN_TYPE.BASKET:
+            return <BasketModal close={close} />
+            case DROPDOWN_TYPE.NOTIFICATION:
+            return <NotificationDropdown close={close} />
+        }
+      }
 
     return (
         <Box
@@ -39,7 +56,7 @@ const DropdownContainer = ({ children, close }) => {
             <Box
             onClick={handleChildClick}
             >
-                {children}
+                 {dropdownType()} 
             </Box>
         </Box>
     )

@@ -1,10 +1,9 @@
 
-import BasketModal from "../basket modal/basket-modal-component"
-import WalletButton from "../wallet button/wallet-button-component"
+import WalletButton from "../wallet-button/wallet-button-component"
 import defaultProfile from "../../../../assest/profile/defaultProfile.png"
-import ProfileDropdown from "../profile-dropdown/ProfileDropdown"
-import NotificationDropdown from "../notification-dropdown/Notification-dropdown"
+import DropdownContainer from "../dropdowns/dropdown-container/DropDown-container"
 
+import { DROPDOWN_TYPE } from "../dropdowns/dropdown.type"
 import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useProfile } from "../../../../context/profile/ProfileContext"
@@ -15,43 +14,30 @@ import { useNotifications } from "../../../../context/notifications/Notification
 
 export default function UserHeader() {
 
-    const [toggleHeader, setToggleHeader] = useState(false)
-    const [toggleBasket, setToggleBasket] = useState(false)
-    const [toggleNot, setToggleNot] = useState(false)
+    const [dropdown, setDropdown] = useState(null)
 
     const { profile } = useProfile()
     const { cart } = useCart();
     const { notifications } = useNotifications()
 
-
-
     let Profileimage = profile.avatar
 
-
-    const openProfileModal = () => {
-        setToggleHeader(p => !p)
-        setToggleBasket(false)
-        setToggleNot(false)
+  
+    const openProfileDropdown= () => {
+        setDropdown(DROPDOWN_TYPE.PROFILE)
     }
-    const openBasketModal = () => {
-        setToggleBasket(p => !p)
-        setToggleHeader(false)
-        setToggleNot(false)
+    const openBasket = () => {
+        setDropdown(DROPDOWN_TYPE.BASKET)
     }
 
     const openNotification = () => {
-        setToggleNot(p => !p)
-        setToggleBasket(false)
-        setToggleHeader(false)
+        setDropdown(DROPDOWN_TYPE.NOTIFICATION)
     }
 
-    const closeBasket = () => {
-        setToggleBasket(false)
+    const close = () => {
+        setDropdown(null)
     }
 
-    const closeNotifications = () => {
-        setToggleNot(false)
-    }
 
     return (<>
 
@@ -61,7 +47,7 @@ export default function UserHeader() {
 
             {/* cart icon */}
             <div className="item-cart-wraper">
-                <Cart className="item-cart" onClick={openBasketModal} />
+                <Cart className="item-cart" onClick={openBasket} />
                 {(cart != null) && (cart.items.length > 0) &&
                     <div className="item-cart-number">{cart.items.length}</div>}
             </div>
@@ -78,7 +64,7 @@ export default function UserHeader() {
                 <img
                     src={Profileimage}
                     className="header-profile rounded-circle"
-                    onClick={openProfileModal}
+                    onClick={openProfileDropdown}
                 />
                 :
                 <div
@@ -88,14 +74,10 @@ export default function UserHeader() {
                         backgroundSize: "cover",
                     }}
                     className="header-profile rounded-circle"
-                    onClick={openProfileModal}
+                    onClick={openProfileDropdown}
                 ></div>
             }
-
-            {toggleHeader && <ProfileDropdown headerToggle={setToggleHeader} />}
-            {toggleBasket && <BasketModal close={closeBasket} />}
-            {toggleNot && <NotificationDropdown close={closeNotifications} />}
-
+            {dropdown && <DropdownContainer close={close} dropdown={dropdown} />}
         </div>
     </>)
 }
