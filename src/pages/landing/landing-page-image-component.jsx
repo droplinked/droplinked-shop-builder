@@ -1,4 +1,4 @@
-import figmaImage1 from "../../assest/feature/home page images/figmaImage1.png"
+import mainImage from "../../assest/image/landingPageImage.png"
 import { Box, Image, AspectRatio, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 
 
@@ -31,7 +31,7 @@ export default function LandingpageImage() {
                             pos='absolute'
                             top='0px'
                             maxW='100%'
-                            src={figmaImage1} alt="" />
+                            src={mainImage} alt="" />
                     </Box>
                 </AspectRatio>
             </Box>
