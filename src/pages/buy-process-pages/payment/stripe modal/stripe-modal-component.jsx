@@ -27,7 +27,7 @@ const StripeComponent = ({cartId}) => {
             //`Elements` instance that was used to create the Payment Element
             elements,
             confirmParams: {
-                return_url: `https://ngsf.flatlay.io/purchseHistory`,
+                return_url: `https://droplinked.com/purchseHistory`,
             },
         });
 

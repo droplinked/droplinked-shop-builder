@@ -9,13 +9,14 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useCart } from "../../../context/cart/CartContext"
 import { checkoutCart } from "../../../api/base-user/Cart-api"
+import {  STRIPE_KEY } from "./stripe.key"
 
 import axios from "axios"
 import StripeComponent from "./stripe modal/stripe-modal-component"
 import Loading from "../../../components/shared/loading/Loading"
 
 
-const stripePromise = loadStripe('pk_test_51B3XzHDHP9PnFF5D7xWkc29H1NehLpfVEAWaycBBtoUXPyL4qq1dAZYVSBlWr5Kc0sGenWCJfuFEmXy5JCXxACLk00NXM3aQQh');
+const stripePromise = loadStripe(STRIPE_KEY.LIVE);
 
 export default function PaymentPage() {
 
@@ -25,8 +26,6 @@ export default function PaymentPage() {
     const { cart } = useCart();
 
     const [rootpaymentsOrderID, setRootpaymentsOrderID] = useState(null);
-
-    let token = JSON.parse(localStorage.getItem("token"));
 
 
     const appearance = {
@@ -80,7 +79,7 @@ export default function PaymentPage() {
             },
             "token": "mia", // or stx - depends on Integration configuration
             "integration_id": ROOTPAYMENTS_INTEGRATION_ID,
-            "callback_url": `http://localhost:3000/purchseHistory?order=${cart._id}` // Replace with your callback URL - this should point to your backend API that handles order statuses. Note the order=${cart.id} parameter in the callback URL (so that you can identify the order by its ID)
+            "callback_url": `https://droplinked.com/purchseHistory?order=${cart._id}` // Replace with your callback URL - this should point to your backend API that handles order statuses. Note the order=${cart.id} parameter in the callback URL (so that you can identify the order by its ID)
         }, {}).then(e => {
             setRootpaymentsOrderID(e.data.data.id);
         }).catch(e => {
