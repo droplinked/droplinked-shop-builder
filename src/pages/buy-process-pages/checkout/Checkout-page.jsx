@@ -26,7 +26,7 @@ function CheckoutPage() {
 
 	//get total price of all items
 	const getTotalPrice = () => {
-		let total = cartBaseShop.map( item => { return (item.total + 5) })
+		let total = cartBaseShop.map(item => { return (item.total + 5) })
 		total = total.reduce((a, b) => a + b, 0)
 		return total
 	}
@@ -64,71 +64,81 @@ function CheckoutPage() {
 		>
 			{(cart == null)
 				?
-				<Text
-					fontSize={{ base: "20px", md: "24px" }}
-					fontWeight="600"
-					color="#fff"
-					m="0px auto 40px auto"
-				>
-					Empty
-				</Text>
+				<Loading />
+
 				:
 				<>
-					<Text
-						fontSize={{ base: "20px", md: "24px" }}
-						fontWeight="600"
-						color="#fff"
-						m="0px auto 40px auto"
-					>
-						Check out
-					</Text>
-				 									
-					{(cartBaseShop.length > 0) &&
-						<>
-							{cartBaseShop.map((shop , i) => {
-								return <CheckoutShopItem key={i} shopItem={shop} />
-							})
-							}
-						</>
-					}  
-
-					<Flex
-						w="100%"
-						justifyContent="space-between"
-						borderTop='1px' borderColor='white'
-						pt="20px"
-					>
-
-						<Box>
-							<Text
-								color="#fff"
-								fontSize={{ base: "18px", md: "22px" }}
-								fontWeight="600"
-							>
-								 Merchs cost : ${getTotalPrice()} 
-							</Text>
-							<Text
-								color="#fff"
-								fontSize={{ base: "18px", md: "22px" }}
-								fontWeight="600"
-								mt="5px"
-							>
-							</Text>
-						</Box>
-
-						<Box
-							w={{ base: "150px", md: "200px" }}
-							h={{ base: "40px", md: "40px" }}
-							borderRadius="15px"
-							overflow="hidden"
-							//mt="33px"
+					{(cart.items.length == 0)
+						?
+						<Text
+							fontSize={{ base: "20px", md: "24px" }}
+							fontWeight="600"
+							color="#fff"
+							m="0px auto 40px auto"
 						>
-							<BasicButton
-								click={() => { navigate('/address') }}
-							>Checkout</BasicButton>
-						</Box>
-					</Flex>
+							Empty
+						</Text>
+						:
+						<>
+							<Text
+								fontSize={{ base: "20px", md: "24px" }}
+								fontWeight="600"
+								color="#fff"
+								m="0px auto 40px auto"
+							>
+								Check out
+							</Text>
+
+							{(cartBaseShop.length > 0) &&
+								<>
+									{cartBaseShop.map((shop, i) => {
+										return <CheckoutShopItem key={i} shopItem={shop} />
+									})
+									}
+								</>
+							}
+
+							<Flex
+								w="100%"
+								justifyContent="space-between"
+								borderTop='1px' borderColor='white'
+								pt="20px"
+							>
+
+								<Box>
+									<Text
+										color="#fff"
+										fontSize={{ base: "18px", md: "22px" }}
+										fontWeight="600"
+									>
+										Merchs cost : ${getTotalPrice()}
+									</Text>
+									<Text
+										color="#fff"
+										fontSize={{ base: "18px", md: "22px" }}
+										fontWeight="600"
+										mt="5px"
+									>
+									</Text>
+								</Box>
+
+								<Box
+									w={{ base: "150px", md: "200px" }}
+									h={{ base: "40px", md: "40px" }}
+									borderRadius="15px"
+									overflow="hidden"
+								//mt="33px"
+								>
+									<BasicButton
+										click={() => { navigate('/address') }}
+									>Checkout</BasicButton>
+								</Box>
+							</Flex>
+						</>
+					}
 				</>
+
+
 			}
 		</Flex>
 	);
