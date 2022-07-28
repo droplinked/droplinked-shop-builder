@@ -1,9 +1,9 @@
-import { Flex, Text, Image, ButtonGroup, IconButton, Button, Input} from "@chakra-ui/react"
+import { Flex, Text, Image, ButtonGroup, IconButton, Button, Input } from "@chakra-ui/react"
 import { AiOutlineDelete } from "react-icons/ai";
 import { useCart } from "../../../context/cart/CartContext"
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useState } from "react";
-import { deleteSkuFromCart ,updateQuantity } from "../../../api/base-user/Cart-api"
+import { deleteSkuFromCart, updateQuantity } from "../../../api/base-user/Cart-api"
 
 
 
@@ -38,18 +38,18 @@ export default function CheckoutItem({ product }) {
 
 
     // update quantity
-    const updateQ = async() => {
+    const updateQ = async () => {
 
         if (quantity < 1) {
             errorToast("Quantity can not be zero")
             return;
         }
         setDisableEditBtn(true)
-        let result = await updateQuantity(product.skuID , quantity)
-        if(result == true){
+        let result = await updateQuantity(product.skuID, quantity)
+        if (result == true) {
             successToast("Item added")
             updateCart();
-        }else{
+        } else {
             errorToast(result)
         }
         setDisableEditBtn(false)
@@ -128,16 +128,15 @@ export default function CheckoutItem({ product }) {
                 </Text>
 
                 <ButtonGroup size="md" isAttached variant='outline'>
-                    <IconButton
+                   <IconButton
                         aria-label='delete'
-                        icon={<AiOutlineDelete color="#fd4545" size="sm" />}
+                        icon={<AiOutlineDelete color="#fd4545" size="sm" style={{maxHeight:"100%"}} />}
                         _hover={{ bgColor: "none", borderColor: "#8053ff" }}
                         _focus={{ bgColor: "none", borderColor: "#8053ff" }}
-                        //   _active={{bgColor: "none", borderColor: "#8053ff"}}
+                        _active={{bgColor: "none", borderColor: "#8053ff"}}
                         onClick={deleteMerch}
                         disabled={disableDeleteBtn}
-                    />
-
+                    /> 
                     <Input
                         value={quantity}
                         borderRadius="0px"
