@@ -109,7 +109,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray, 
         const newVariant = {
             price: price,
             externalID: externalID||"",
-            quantity: quantity,
+            quantity: quantity.toString(),
             options: options
         }
 
@@ -140,7 +140,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray, 
     }
 
     const changeQuantity = (e) => {
-        setQuantity(e.target.value)
+        setQuantity(parseInt(e.target.value))
     }
     const changeexternal = (e) => {
         setExternalID(e.target.value)

@@ -34,7 +34,7 @@ export default function AddVariantForm({ productId, optionTypes, toggle, default
     }
 
     const changeQuantity = (e) => {
-        setQuantity(e.target.value)
+        setQuantity(parseInt(e.target.value))
     }
     const changeExternal = (e) => {
         setExternalID(e.target.value)

@@ -7,6 +7,7 @@ import AddVariantForm from "./AddVariant-form"
 import Loading from "../../../components/shared/loading/Loading";
 import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
+import SmallModal from "../../../components/Modal/Small-modal/Small-modal-component"
 
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
@@ -14,7 +15,7 @@ import { useToasty } from "../../../context/toastify/ToastContext"
 import { useNavigate } from 'react-router-dom';
 import { getCollections } from "../../../api/producer/Collection-api"
 import { getProduct } from "../../../api/public/Product-api"
-import { updateMerch, deleteSku } from "../../../api/producer/Product-api"
+import { updateMerch, deleteSku, deleteMerch } from "../../../api/producer/Product-api"
 
 export default function ViewMerchPage() {
 
@@ -28,10 +29,10 @@ export default function ViewMerchPage() {
     const [selectedSku, setSelectedSku] = useState(null)
     const [showForm, setShowForm] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [deleteModal, setDeleteModal] = useState(false)
+    const [modalDisBtn, setModalDisBtn] = useState(false)
 
     const { successToast, errorToast } = useToasty();
-
-
 
     const merchId = useParams().id;
     const navigate = useNavigate();
@@ -121,21 +122,36 @@ export default function ViewMerchPage() {
         setLoading(false)
     }
 
+
     const editSku = (sku) => {
-      setSelectedSku(sku)
+        setSelectedSku(sku)
     }
 
 
-
-    const deleteVariant = async(id) => {
-            let result = await deleteSku(id)
-            if(result == true){
-                successToast("deleted");
-                getMerch()
-            }else{
-                errorToast(result)
-            }
+    const deleteVariant = async (id) => {
+        let result = await deleteSku(id)
+        if (result == true) {
+            successToast("deleted");
+            getMerch()
+        } else {
+            errorToast(result)
+        }
     }
+
+
+    const DeleteMerch = async () => {
+        setModalDisBtn(true)
+        let result = await deleteMerch(merchId)
+        if (result == true) {
+            successToast("Merch deleted successfully");
+            navigate("/producer/ims")
+        } else {
+            errorToast(result)
+            setDeleteModal(false)
+        }
+        setModalDisBtn(false)
+    }
+
 
 
     return (<>
@@ -147,6 +163,12 @@ export default function ViewMerchPage() {
 
             <div className="add-product-page-wrapper"  >
                 <div className="ims-title mb-5">Add new item</div>
+
+                <div className="col-12 col-md-6 mb-5">
+                    <BasicButton bgColor='#fa6653'
+                        onClick={() => { setDeleteModal(true) }}
+                    >Delete merch</BasicButton>
+                </div>
 
                 <div className="mb-4 w-100 p-0">
                     <FormInput
@@ -182,9 +204,9 @@ export default function ViewMerchPage() {
                 </div>
 
                 <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
-                    {(showForm == false && selectedSku==null)
+                    {(showForm == false && selectedSku == null)
                         ?
-                        <BasicButton click={()=>{setShowForm(true)}}>Add variant</BasicButton>
+                        <BasicButton click={() => { setShowForm(true) }}>Add variant</BasicButton>
                         :
 
                         <AddVariantForm updateMerch={getMerch} productId={merch._id} optionTypes={merch.skus[0].options} defaultSku={selectedSku} toggle={closeForm} />
@@ -200,6 +222,16 @@ export default function ViewMerchPage() {
                         <BasicButton click={submitForm} loading={loading}>Submit</BasicButton>
                     </div>
                 </div>
+
+                {deleteModal &&
+                    <SmallModal
+                        show={deleteModal}
+                        hide={() => setDeleteModal(false)}
+                        text={"Do you want to delete this merch?"}
+                        click={DeleteMerch}
+                        loading={modalDisBtn}
+                    />}
+
             </div>
         }
     </>)
