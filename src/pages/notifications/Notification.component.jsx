@@ -1,4 +1,4 @@
-import { Flex, Text, Box } from "@chakra-ui/react"
+import { Flex, Text, Box , keyframes, usePrefersReducedMotion  } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom";
 import { MdOutlineMessage } from "react-icons/md";
 
@@ -6,11 +6,27 @@ import { useNotifications } from "../../context/notifications/NotificationsConte
 import { convetToCustomFormat } from "../../utils/date.utils/convertDate"
 import { NOTIFICATION_TYPE } from "../../constant/notification.type"
 
+const keyframe_notifcation = keyframes`
+0% {
+    transform: translateX(200px);
+    opacity: 0;
+}
+100% {
+  transform: translateX(0);
+  opacity: 1;
+}
+`;
+
 const NotificationComponent = ({ notification }) => {
+    const prefersReducedMotion = usePrefersReducedMotion();
+
+    const notificationAnimation = prefersReducedMotion
+        ? undefined
+        : `${keyframe_notifcation}  0.3s linear`;
 
     const { seenNotif } = useNotifications()
     let navigate = useNavigate();
-    console.log(notification.type)
+
 
     const clickNotification = () => {
         switch (notification.type) {
@@ -45,6 +61,7 @@ const NotificationComponent = ({ notification }) => {
             }}
             onClick={clickNotification}
             mb='20px'
+            animation={notificationAnimation}
         >
             <Flex m="auto 0px"  alignItems='center'>
                 <Box
