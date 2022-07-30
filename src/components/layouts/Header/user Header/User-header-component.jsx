@@ -1,29 +1,20 @@
-
-import WalletButton from "../wallet-button/wallet-button-component"
-import defaultProfile from "../../../../assest/profile/defaultProfile.png"
+import WalletButton from "../components/wallet-button/wallet-button-component"
 import DropdownContainer from "../dropdowns/dropdown-container/DropDown-container"
+import Notification from "../icons/notification/notification-icon-component"
+import ProfileIcon from "../icons/profile/profile-icon-component"
+import Cart from "../icons/cart/cart-icon-component"
 
 import { DROPDOWN_TYPE } from "../dropdowns/dropdown.type"
-import { ReactComponent as Cart } from "../../../../assest/icon/shopCart.svg"
-import { IoMdNotificationsOutline } from "react-icons/io";
-import { useProfile } from "../../../../context/profile/ProfileContext"
 import { useState } from "react"
-import { useCart } from "../../../../context/cart/CartContext"
-import { useNotifications } from "../../../../context/notifications/NotificationsContext"
+import { Flex } from "@chakra-ui/react"
 
 
 export default function UserHeader() {
 
     const [dropdown, setDropdown] = useState(null)
 
-    const { profile } = useProfile()
-    const { cart } = useCart();
-    const { unseenNofitCount } = useNotifications()
 
-    let Profileimage = profile.avatar
-
-  
-    const openProfileDropdown= () => {
+    const openProfileDropdown = () => {
         setDropdown(DROPDOWN_TYPE.PROFILE)
     }
     const openBasket = () => {
@@ -43,41 +34,18 @@ export default function UserHeader() {
 
         <WalletButton />
 
-        <div className="login-wrapper">
+        <Flex alignItems='center' ml={{ base: "10px", md: '15px' }}>
 
             {/* cart icon */}
-            <div className="item-cart-wraper">
-                <Cart className="item-cart" onClick={openBasket} />
-                {(cart != null) && (cart.items.length > 0) &&
-                    <div className="item-cart-number">{cart.items.length}</div>}
-            </div>
+            <Cart click={openBasket} />
 
             {/* notification icon */}
-            <div className="notification-icon" onClick={openNotification}>
-                <IoMdNotificationsOutline />
-                {(unseenNofitCount() > 0) && <div className="new-notification">{unseenNofitCount()}</div>}
-            </div>
+            <Notification click={openNotification} />
 
             {/* profile icon */}
-            {(Profileimage)
-                ?
-                <img
-                    src={Profileimage}
-                    className="header-profile rounded-circle"
-                    onClick={openProfileDropdown}
-                />
-                :
-                <div
-                    style={{
-                        backgroundImage: `url(${defaultProfile})`,
-                        backgroundRepeat: "no-repeat",
-                        backgroundSize: "cover",
-                    }}
-                    className="header-profile rounded-circle"
-                    onClick={openProfileDropdown}
-                ></div>
-            }
+            <ProfileIcon click={openProfileDropdown} />
+
             {dropdown && <DropdownContainer close={close} dropdown={dropdown} />}
-        </div>
+        </Flex>
     </>)
 }
