@@ -255,8 +255,8 @@ export default function AddressForm({ type, addressBook, close }) {
                 justifyContent='space-between'
                 alignItems='center'
             >
-                <BasicButton w='45%' p='12px 16px' click={submitForm} loading={loading} disabled={loading}>Submit</BasicButton>
                 <BasicButton w='45%' p='12px 16px' click={close} loading={loading} disabled={loading} >Cansel</BasicButton>
+                <BasicButton w='45%' p='12px 16px' click={submitForm} loading={loading} disabled={loading}>Submit</BasicButton>
             </Flex>
         </Box>
     )
