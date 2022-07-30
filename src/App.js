@@ -41,6 +41,7 @@ import SettingsPage from "./pages/settings/Settings-page";
 import IncomingOrderPage from "./pages/Producer-pages/incomin-order/IncomingOrder-page";
 import Creator from "./pages/creator/CreatorPage";
 import PurchasHistoryPage from "./pages/purchase-history/PurchaseHistory"
+import Notifications from "./pages/notifications/Notifications-page"
 
 function App() {
   return (
@@ -120,6 +121,7 @@ function App() {
                           <Route path="/crashpunks" element={<CreatorPage />} />
                           <Route path="/product/:id" element={<BuyProduct />} />
                           <Route path="/creatorpage" element={<Creator />} />
+                          <Route path="/notifications" element={<Notifications />} />
                         </Route>
                       </Routes>
                     </ScrollTop>

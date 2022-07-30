@@ -1,44 +1,49 @@
-import { createContext, useState, useContext} from "react";
-import { getNotifications , seenNotification} from "../../api/base-user/Notification-api"
-
+import { createContext, useState, useContext } from "react";
+import {
+  getNotifications,
+  seenNotification,
+} from "../../api/base-user/Notification-api";
 
 export const NotContext = createContext();
 
 export default function NotContextProvider({ children }) {
-   const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState([]);
 
-
-
-  const updateNotifications = async() => {
-    let result = await getNotifications()
-    if(result != null) setNotifications(result)
+  const updateNotifications = async () => {
+    let result = await getNotifications();
+    if (result != null) setNotifications(result);
   };
 
+  const seenNotif = async (id) => {
+    await seenNotification(id);
+    await updateNotifications();
+  };
 
-const seenNotif = async(id) => {
- await seenNotification(id)
- await updateNotifications()
-} 
-
+  const unseenNofitCount = () => {
+    if (notifications.length > 0) {
+      let n =  notifications.filter((notification) => notification.seen == false);
+      return n.length
+    } else {
+      return 0;
+    }
+  };
 
   const ContextValue = {
     notifications,
-    updateNotifications ,
-    seenNotif
+    updateNotifications,
+    unseenNofitCount,
+    seenNotif,
   };
 
   return (
-    <NotContext.Provider value={ContextValue}>
-      {children}
-    </NotContext.Provider>
+    <NotContext.Provider value={ContextValue}>{children}</NotContext.Provider>
   );
 }
 
 export const useNotifications = () => {
-   
-  const ctx = useContext(NotContext)
+  const ctx = useContext(NotContext);
 
   return {
-      ...ctx
-  }
-}
+    ...ctx,
+  };
+};

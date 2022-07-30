@@ -18,7 +18,7 @@ export default function UserHeader() {
 
     const { profile } = useProfile()
     const { cart } = useCart();
-    const { notifications } = useNotifications()
+    const { unseenNofitCount } = useNotifications()
 
     let Profileimage = profile.avatar
 
@@ -55,7 +55,7 @@ export default function UserHeader() {
             {/* notification icon */}
             <div className="notification-icon" onClick={openNotification}>
                 <IoMdNotificationsOutline />
-                {(notifications.length > 0) && <div className="new-notification">{notifications.length}</div>}
+                {(unseenNofitCount() > 0) && <div className="new-notification">{unseenNofitCount()}</div>}
             </div>
 
             {/* profile icon */}

@@ -10,7 +10,7 @@ export const getNotifications = async () => {
         const res = await axios.get(`${BASE_URL}/notification`,
         {headers: { Authorization: "Bearer " + token },
         })
-        return res.data.data.notifications.filter(notification => notification.seen == false)
+        return res.data.data.notifications
       } catch (err) {
         console.error(err.response.data.reason)
         return null

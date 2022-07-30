@@ -4,7 +4,7 @@ import { MdOutlineMessage } from "react-icons/md";
 import { convertToStandardFormat } from "../../../../../utils/date.utils/convertDate"
 import { useNavigate } from "react-router-dom";
 import { useNotifications } from "../../../../../context/notifications/NotificationsContext"
-import { NOTIFICATION_TYPE } from "./notification.type"
+import { NOTIFICATION_TYPE } from "../../../../../constant/notification.type"
 
 const NotificationComponent = ({ notif, close }) => {
 

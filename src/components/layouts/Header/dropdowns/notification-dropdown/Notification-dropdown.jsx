@@ -2,15 +2,20 @@ import "./Notification-dropdown-style.scss"
 
 import { Box, Flex, Text } from "@chakra-ui/react"
 import { useNotifications } from "../../../../../context/notifications/NotificationsContext"
+import { useNavigate } from "react-router-dom";
 
 import NotificationComponent from "./Notification-component"
-
+import BasicButton from "../../../../shared/BasicButton/BasicButton"
 
 const NotificationDropdown = ({ close }) => {
 
-    const { notifications } = useNotifications()
-
-
+    const { notifications , unseenNofitCount } = useNotifications()
+    let navigate = useNavigate();
+        
+const notificationClick = () => {
+    close()
+    navigate("/notifications")
+}
     return (
             <Box
                 pos='absolute'
@@ -19,7 +24,6 @@ const NotificationDropdown = ({ close }) => {
                 bgColor='#222'
                 w={{ base: '200px', md: '250px' }}
                 h='auto'
-                overflow='hidden'
                 borderRadius='8px'
                 p={{ base: "20px", md: "20px" }}
                 zIndex='20'
@@ -36,16 +40,22 @@ const NotificationDropdown = ({ close }) => {
                         color='#eee'
                         fontSize={{ base: "14px", md: "16px" }}
                         fontWeight='600'
-                    >Notifications</Text>
+                    >New notifications</Text>
                     <Text
                         color='#8053ff'
                         fontSize={{ base: "14px", md: "16px" }}
                         fontWeight='600'
-                    >{notifications.length}</Text>
+                    >{unseenNofitCount()}</Text>
                 </Flex>
                 {(notifications.length > 0) &&
-                    notifications.map((notif, i) => { if (i < 6) { return <NotificationComponent key={i} notif={notif} close={close} /> } })
+                    notifications.map((notif, i) => { if (notif.seen == false) { return <NotificationComponent key={i} notif={notif} close={close} /> } })
                 }
+                <Box h={{base:'40px' , md:'50px'}} pt='10px'>
+                <BasicButton
+                click={notificationClick}
+                >Notifications</BasicButton>
+                </Box>
+                
             </Box>
 
     )
