@@ -1,12 +1,9 @@
-import { useState , useEffect } from "react"
-import { Flex,Box, AspectRatio,  Image, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { Flex, Box, Spinner } from '@chakra-ui/react'
 
 import { getCollectionById } from "../../api/public/Collection-api"
 
-import right from "../../assest/icon/righIcon.png"
-import left from "../../assest/icon/leftflask.png"
-import Product from "../../components/shared/Product/Product"
+import FrameProduct from "./iframe-product-component"
 
 
 const Iframe = () => {
@@ -15,14 +12,14 @@ const Iframe = () => {
 
     useEffect(() => {
 
-        const getCollection =  async(id) =>{
+        const getCollection = async (id) => {
             let coll = await getCollectionById(id)
             setCollectin(coll)
         }
         getCollection("62d6aa6fd9e50e107b6089fd")
 
     }, [])
-    
+
     console.log(Collection)
 
     return (
@@ -39,65 +36,52 @@ const Iframe = () => {
             overflowY="auto"
             css={{
                 '&::-webkit-scrollbar': {
-                  width: '4px',
+                    width: '4px',
                 },
                 '&::-webkit-scrollbar-track': {
-                  width: '6px',
+                    width: '6px',
                 },
                 '&::-webkit-scrollbar-thumb': {
-                  background: '#8053ff',
-                  borderRadius: '24px',
+                    background: '#8053ff',
+                    borderRadius: '24px',
                 },
-              }}
+            }}
         >
-            <Flex 
-            wrap='wrap'
-            w='100%'
-            justifyContent='center'
-            alignItems='start'
-            
+            <Flex
+                wrap='wrap'
+                w='100%'
+                justifyContent='start'
+                alignItems='start'
             >
-                        {Collection && Collection.products.map((product, i) => {
+                {Collection
+                    ?
+                    <>
+                    {Collection.products.map((product, i) => {
                             return (
-                                <Box
-                                width={{ base: '100%', sm: '50%', md: '25%' }} 
-                                p='2px'
-                                >
-                                    <Product shopname={"bedishop"} title={product.title} imageUrl={product.media[0].url} id={product._id} />
+                                <Box width={{ base: '100%', sm: '50%', md: '25%' }} >
+                                    <FrameProduct price={product.skus[0].price} imageUrl={product.media[0].url} id={product._id} />
                                 </Box>
                             )
                         })}
-                        {Collection && Collection.products.map((product, i) => {
+                        {Collection.products.map((product, i) => {
                             return (
-                                <Box
-                                width={{ base: '100%', sm: '50%', md: '25%' }} 
-                                p='2px'
-                                >
-                                    <Product shopname={"bedishop"} title={product.title} imageUrl={product.media[0].url} id={product._id} />
+                                <Box width={{ base: '100%', sm: '50%', md: '25%' }} >
+                                    <FrameProduct price={product.skus[0].price} imageUrl={product.media[0].url} id={product._id} />
                                 </Box>
                             )
                         })}
-                        {Collection && Collection.products.map((product, i) => {
+                        {Collection.products.map((product, i) => {
                             return (
-                                <Box
-                                width={{ base: '100%', sm: '50%', md: '25%' }} 
-                                p='2px'
-                                >
-                                    <Product shopname={"bedishop"} title={product.title} imageUrl={product.media[0].url} id={product._id} />
+                                <Box width={{ base: '100%', sm: '50%', md: '25%' }} >
+                                    <FrameProduct price={product.skus[0].price} imageUrl={product.media[0].url} id={product._id} />
                                 </Box>
                             )
                         })}
-                        {Collection && Collection.products.map((product, i) => {
-                            return (
-                                <Box
-                                width={{ base: '100%', sm: '50%', md: '25%' }} 
-                                p='2px'
-                                >
-                                    <Product shopname={"bedishop"} title={product.title} imageUrl={product.media[0].url} id={product._id} />
-                                </Box>
-                            )
-                        })}
-                    </Flex>
+                    </>
+                    :
+                    <Spinner />
+                }
+            </Flex>
 
         </Flex>
     )
