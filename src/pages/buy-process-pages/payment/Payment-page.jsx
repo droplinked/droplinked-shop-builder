@@ -79,7 +79,7 @@ export default function PaymentPage() {
             },
             "token": "stx", //mia or stx - depends on Integration configuration
             "integration_id": ROOTPAYMENTS_INTEGRATION_ID,
-            "callback_url": `https://droplinked.com/purchseHistory?order=${cart._id}` // Replace with your callback URL - this should point to your backend API that handles order statuses. Note the order=${cart.id} parameter in the callback URL (so that you can identify the order by its ID)
+            "callback_url": `https://api.droplinked.com/dev/test` // Replace with your callback URL - this should point to your backend API that handles order statuses. Note the order=${cart.id} parameter in the callback URL (so that you can identify the order by its ID)
         }, {}).then(e => {
             setRootpaymentsOrderID(e.data.data.id);
         }).catch(e => {
