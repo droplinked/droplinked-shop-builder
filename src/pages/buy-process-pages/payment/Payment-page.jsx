@@ -69,7 +69,7 @@ export default function PaymentPage() {
         setDisables(true) //Don't know what that is, copied from stripe
 
         const ROOTPAYMENTS_API = 'https://api.staging.rootpayments.com';
-        const ROOTPAYMENTS_INTEGRATION_ID = '87f9ac39-1945-409b-a50d-39be81b7ea02'; // Replace with your integration ID
+        const ROOTPAYMENTS_INTEGRATION_ID = '10dd8d77-8b03-4e54-be57-9e61a03dc1f3'; // Replace with your integration ID
 
         //Create RootPayments order
         await axios.post(`${ROOTPAYMENTS_API}/orders`, {
@@ -77,7 +77,7 @@ export default function PaymentPage() {
                 "amount": getTotalofMerchs() + getTotalofShipping(),
                 "currency": "USD"
             },
-            "token": "mia", // or stx - depends on Integration configuration
+            "token": "stx", //mia or stx - depends on Integration configuration
             "integration_id": ROOTPAYMENTS_INTEGRATION_ID,
             "callback_url": `https://droplinked.com/purchseHistory?order=${cart._id}` // Replace with your callback URL - this should point to your backend API that handles order statuses. Note the order=${cart.id} parameter in the callback URL (so that you can identify the order by its ID)
         }, {}).then(e => {
@@ -158,6 +158,7 @@ export default function PaymentPage() {
                                 <stacks-checkout orderid={rootpaymentsOrderID}></stacks-checkout>
                             </Box>
                         )}
+                        
                     </Box>
 
                 </>
