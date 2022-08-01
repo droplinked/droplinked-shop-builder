@@ -1,59 +1,29 @@
-import { useState } from "react"
-import { Flex, AspectRatio,  Image, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
+import { useState , useEffect } from "react"
+import { Flex,Box, AspectRatio,  Image, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom";
+
+import { getCollectionById } from "../../api/public/Collection-api"
+
 import right from "../../assest/icon/righIcon.png"
 import left from "../../assest/icon/leftflask.png"
+import Product from "../../components/shared/Product/Product"
 
-const imagesUrl = [
-    "https://cdn.shopify.com/s/files/1/0610/2155/2803/products/CP-TShirt-Samurai-Front-500.jpg?v=1651769331",
-    "https://cdn.shopify.com/s/files/1/0610/2155/2803/products/CP-TShirt-Samurai-Back-500.jpg?v=1651769331",
-    "https://cdn.shopify.com/s/files/1/0610/2155/2803/products/CP-TShirt-1_1.jpg?v=1651767629",
-    "https://cdn.shopify.com/s/files/1/0610/2155/2803/products/CP-TShirt-Geisha-Front-500.jpg?v=1651779259"
-]
-
-const keyframe_imageAnimation = keyframes`
-0% {
-    transform: scale(0.1,0.1);
-    opacity: 0;
-}
-100% {
-    transform: scale(1,1);
-  opacity: 1;
-}
-`;
 
 const Iframe = () => {
-    const [currentImage, setCurrentImage] = useState(0)
 
-    const prefersReducedMotion = usePrefersReducedMotion();
-    let navigate = useNavigate();
+    const [Collection, setCollectin] = useState(null)
 
+    useEffect(() => {
 
-    const imageAnimation = prefersReducedMotion
-        ? undefined
-        : `${keyframe_imageAnimation}  0.3s linear`;
-    //
-
-
-    const previous = () => {
-        if (currentImage == 0){
-            setCurrentImage(3)
-        }else{
-            setCurrentImage(p => p-1)
+        const getCollection =  async(id) =>{
+            let coll = await getCollectionById(id)
+            setCollectin(coll)
         }
-    }
+        getCollection("62d6aa6fd9e50e107b6089fd")
 
-    const next = () => {
-        if (currentImage == 3){
-            setCurrentImage(0)
-        }else{
-            setCurrentImage(p => p+1)
-        }
-    }
-
-    const clickOnImage = () => {
-        navigate("/bedishop/merch/62d7b7aa4bb67e1c91d3ce59")
-    }
+    }, [])
+    
+    console.log(Collection)
 
     return (
         <Flex
@@ -65,43 +35,69 @@ const Iframe = () => {
             zIndex='50'
             bgColor='#222'
             justifyContent='center'
-            alignItems='center'
+            alignItems='start'
+            overflowY="auto"
+            css={{
+                '&::-webkit-scrollbar': {
+                  width: '4px',
+                },
+                '&::-webkit-scrollbar-track': {
+                  width: '6px',
+                },
+                '&::-webkit-scrollbar-thumb': {
+                  background: '#8053ff',
+                  borderRadius: '24px',
+                },
+              }}
         >
-            <Flex
-                h='85%'
-                w='7%'
-                border='1px'
-                cursor='pointer'
+            <Flex 
+            wrap='wrap'
+            w='100%'
+            justifyContent='center'
+            alignItems='start'
+            
             >
-                <Image m='auto' src={left} onClick={previous} />
-            </Flex>
-
-            {imagesUrl.map((image, i) => {
-                if (i == currentImage) {
-                    return (
-                        <AspectRatio
-                            ratio={1}
-                            w={{ base: '85%', md: '600px' }}
-                            h='auto'
-                        >
-                            <Image
-                                src={image}
-                                animation={imageAnimation}
-                                borderRadius='8px'
-                                onClick={clickOnImage}
-                            />
-                        </AspectRatio>
-                    )
-                }
-            })}
-
-            <Flex
-                h='85%'
-                w='7%'
-                cursor='pointer'
-            >
-                <Image src={right} m='auto' onClick={next} />
-            </Flex>
+                        {Collection && Collection.products.map((product, i) => {
+                            return (
+                                <Box
+                                width={{ base: '100%', sm: '50%', md: '25%' }} 
+                                p='2px'
+                                >
+                                    <Product shopname={"bedishop"} title={product.title} imageUrl={product.media[0].url} id={product._id} />
+                                </Box>
+                            )
+                        })}
+                        {Collection && Collection.products.map((product, i) => {
+                            return (
+                                <Box
+                                width={{ base: '100%', sm: '50%', md: '25%' }} 
+                                p='2px'
+                                >
+                                    <Product shopname={"bedishop"} title={product.title} imageUrl={product.media[0].url} id={product._id} />
+                                </Box>
+                            )
+                        })}
+                        {Collection && Collection.products.map((product, i) => {
+                            return (
+                                <Box
+                                width={{ base: '100%', sm: '50%', md: '25%' }} 
+                                p='2px'
+                                >
+                                    <Product shopname={"bedishop"} title={product.title} imageUrl={product.media[0].url} id={product._id} />
+                                </Box>
+                            )
+                        })}
+                        {Collection && Collection.products.map((product, i) => {
+                            return (
+                                <Box
+                                width={{ base: '100%', sm: '50%', md: '25%' }} 
+                                p='2px'
+                                >
+                                    <Product shopname={"bedishop"} title={product.title} imageUrl={product.media[0].url} id={product._id} />
+                                </Box>
+                            )
+                        })}
+                    </Flex>
 
         </Flex>
     )
