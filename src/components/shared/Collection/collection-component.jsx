@@ -1,9 +1,26 @@
 
 import { Link } from "react-router-dom";
-
+import { useToasty } from "../../../context/toastify/ToastContext"
 import Product from "../Product/Product"
 
-export default function Collection({ collection , shopname}) {
+export default function Collection({ collection, shopname }) {
+
+    const { successToast } = useToasty()
+
+   let text = `<iframe
+            style={{width:'100%' , height:"100%"  , overflow:'hidden' }}
+            scrolling="no"
+                title='product'
+                src='https://ngsf.flatlay.io/iframe'
+                allowFullScreen
+            />`
+
+    const embed = () => {
+        navigator.clipboard.writeText(text).then(function () {
+            successToast('Copying to clipboard was successful!');
+        }, function (err) {
+        });
+    }
 
     return (
         <>
@@ -12,6 +29,10 @@ export default function Collection({ collection , shopname}) {
                     {/* head */}
                     <div className="d-flex justify-content-between h-auto" >
                         <p className="title">{collection.title}</p>
+                        <button
+                            className="seemore-btn"
+                            onClick={embed}
+                        >embed</button>
                         <Link to={`collection/${collection._id}`}>
                             <button className="seemore-btn">see more</button>
                         </Link>
