@@ -45,6 +45,15 @@ export default function ShopPage() {
                     discord={(profile.discordUrl) ? profile.discordUrl : ""}
                     web={(profile.webUrl) ? profile.webUrl : ""}
                 />
+                <div 
+                style={{
+                    display:"flex",
+                    flexDirection:'column',
+                    alignItems:'center',
+                    margin:'40px 20px 0px 20px',
+                }}
+                >
+                
                 {(collection == null) ?
                     <></>
                     :
@@ -54,7 +63,7 @@ export default function ShopPage() {
                         })}
                     </>
                 }
-
+</div>
             </div>
         }
 
