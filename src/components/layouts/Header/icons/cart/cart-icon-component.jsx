@@ -2,7 +2,7 @@ import { Flex, Box, Image } from "@chakra-ui/react"
 import { useCart } from "../../../../../context/cart/CartContext"
 import cartIcon from "../../../../../assest/icon/shopCart.svg"
 
-export default function Cart({ click }) {
+export default function Cart({ clickBasket }) {
     const { cart } = useCart();
 
     return (
@@ -12,13 +12,14 @@ export default function Cart({ click }) {
             h={{ base: "25px", md: '40px' }}
             cursor='pointer'
             mr={{base:"8px" , md:'12px'}}
+            onClick={clickBasket}
         >
             <Image
                 h='100%'
                 w='100%'
                 pos='absolute'
                 src={cartIcon}
-                onClick={click}
+                
             />
             {(cart != null) && (cart.items.length > 0) &&
                 <Flex

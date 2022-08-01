@@ -37,7 +37,7 @@ export default function UserHeader() {
         <Flex alignItems='center' ml={{ base: "10px", md: '15px' }}>
 
             {/* cart icon */}
-            <Cart click={openBasket} />
+            <Cart clickBasket={openBasket} />
 
             {/* notification icon */}
             <Notification click={openNotification} />
