@@ -118,7 +118,7 @@ function BuyProduct() {
                         <div className="detail-side col-12 col-md-6">
                             <p className="merch-title">{product.title}</p>
                             <p className="merch-descroption">{product.handle}</p>
-                            <p className="merch-price">{product.variants[0].price}</p>
+                            <p className="merch-price">${product.variants[0].price}</p>
 
                             <div className="merch-options-wrap">
                          {/*    <div className="opt">
