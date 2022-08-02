@@ -1,26 +1,27 @@
 import { useState, useEffect } from "react"
-import { Flex, Box, Spinner } from '@chakra-ui/react'
-
+import { Flex, Box } from '@chakra-ui/react'
 import { getCollectionById } from "../../api/public/Collection-api"
+import { useParams } from "react-router-dom";
 
 import FrameProduct from "./iframe-product-component"
+import Loading from "../../components/shared/loading/Loading"
 
 
-const Iframe = () => {
+const CollectionIframe = () => {
 
     const [Collection, setCollectin] = useState(null)
+    const collectionId = useParams().collectionId
+
 
     useEffect(() => {
-
         const getCollection = async (id) => {
             let coll = await getCollectionById(id)
             setCollectin(coll)
         }
-        getCollection("62d6aa6fd9e50e107b6089fd")
+        getCollection(collectionId)
 
     }, [])
 
-    console.log(Collection)
 
     return (
         <Flex
@@ -47,44 +48,50 @@ const Iframe = () => {
                 },
             }}
         >
-            <Flex
-                wrap='wrap'
-                w='100%'
-                justifyContent='start'
-                alignItems='start'
-            >
+            <>
+
                 {Collection
                     ?
-                    <>
-                    {Collection.products.map((product, i) => {
+                    <Flex
+                        wrap='wrap'
+                        w='100%'
+                        justifyContent='start'
+                        alignItems='start'
+                    >
+                        {Collection.products.map((product, i) => {
                             return (
-                                <Box width={{ base: '100%', sm: '50%', md: '25%' }} >
+                                <Box key={i} width={{ base: '100%', sm: '50%', md: '25%' }} >
                                     <FrameProduct price={product.skus[0].price} imageUrl={product.media[0].url} id={product._id} />
                                 </Box>
                             )
                         })}
                         {Collection.products.map((product, i) => {
                             return (
-                                <Box width={{ base: '100%', sm: '50%', md: '25%' }} >
+                                <Box key={i} width={{ base: '100%', sm: '50%', md: '25%' }} >
                                     <FrameProduct price={product.skus[0].price} imageUrl={product.media[0].url} id={product._id} />
                                 </Box>
                             )
                         })}
                         {Collection.products.map((product, i) => {
                             return (
-                                <Box width={{ base: '100%', sm: '50%', md: '25%' }} >
+                                <Box key={i} width={{ base: '100%', sm: '50%', md: '25%' }} >
                                     <FrameProduct price={product.skus[0].price} imageUrl={product.media[0].url} id={product._id} />
                                 </Box>
                             )
                         })}
-                    </>
+                    </Flex>
                     :
-                    <Spinner />
+                    <Flex
+                        w='100%'
+                        justifyContent='center'
+                        alignItems='center'
+                    >
+                    <Loading />
+                    </Flex>
                 }
-            </Flex>
-
+            </>
         </Flex>
     )
 }
 
-export default Iframe
+export default CollectionIframe

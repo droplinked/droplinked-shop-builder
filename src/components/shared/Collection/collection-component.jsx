@@ -11,16 +11,16 @@ export default function Collection({ collection, shopname }) {
     const { successToast } = useToasty()
     const navigate = useNavigate()
 
-    let text = `<iframe
+    let iframe = `<iframe
             style={{width:'100%' , height:"100%"  , overflow:'hidden' }}
             scrolling="no"
                 title='product'
-                src='https://ngsf.flatlay.io/iframe'
-                allowFullScreen
+                src='https://ngsf.flatlay.io/collection-iframe/${collection._id}'
+                allowFullScreeng
             />`
 
     const embed = () => {
-        navigator.clipboard.writeText(text).then(function () {
+        navigator.clipboard.writeText(iframe).then(function () {
             successToast('Copying to clipboard was successful!');
         });
     }
@@ -93,30 +93,30 @@ export default function Collection({ collection, shopname }) {
 
                 </Flex>
                 {/* head */}
-                {(collection.products.length == 0)&&
-                <Text
-                color='#fff'
-                fontSize={{base:"18px" , md:'24px'}}
-                fontWeight='600'
-                w='100%'
-                textAlign='center'
-                mt='30px'
-                >
-                    Empty
-                </Text>
+                {(collection.products.length == 0) &&
+                    <Text
+                        color='#fff'
+                        fontSize={{ base: "18px", md: '24px' }}
+                        fontWeight='600'
+                        w='100%'
+                        textAlign='center'
+                        mt='30px'
+                    >
+                        Empty
+                    </Text>
                 }
 
-                <Flex 
-                w='100%'
-                wrap='wrap'
+                <Flex
+                    w='100%'
+                    wrap='wrap'
                 >
                     {collection.products.map((product, i) => {
                         if (i < 4) {
                             return (
-                                <Box 
-                                key={i}
-                                w={{base:'50%' , md:'25%'}}
-                                p='3px'
+                                <Box
+                                    key={i}
+                                    w={{ base: '50%', md: '25%' }}
+                                    p='3px'
                                 >
                                     <Product
                                         title={product.title}

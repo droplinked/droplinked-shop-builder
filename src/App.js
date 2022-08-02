@@ -42,7 +42,7 @@ import IncomingOrderPage from "./pages/Producer-pages/incomin-order/IncomingOrde
 import Creator from "./pages/creator/CreatorPage";
 import PurchasHistoryPage from "./pages/purchase-history/PurchaseHistory"
 import Notifications from "./pages/notifications/Notifications-page"
-import Iframe from "./pages/iframe/Iframe-page"
+import CollectionIframe from "./pages/collection-iframe/CollectionIfram-page"
 import Test from "./pages/test/Test-page"
 
 function App() {
@@ -124,7 +124,7 @@ function App() {
                           <Route path="/product/:id" element={<BuyProduct />} />
                           <Route path="/creatorpage" element={<Creator />} />
                           <Route path="/notifications" element={<Notifications />} />
-                          <Route path="/iframe" element={<Iframe />} />
+                          <Route path="/collection-iframe/:collectionId" element={<CollectionIframe />} />
                           <Route path="/test" element={<Test />} />
                           
                         </Route>

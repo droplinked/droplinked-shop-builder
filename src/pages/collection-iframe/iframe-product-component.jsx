@@ -2,6 +2,7 @@ import { Box, Image, AspectRatio, Text } from '@chakra-ui/react'
 import { Link } from "react-router-dom"
 
 const FrameProduct = ({ price, imageUrl, id }) => {
+    
     return (
         <Box
             w='100%'
