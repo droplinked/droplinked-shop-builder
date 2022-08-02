@@ -65,20 +65,6 @@ const CollectionIframe = () => {
                                 </Box>
                             )
                         })}
-                        {Collection.products.map((product, i) => {
-                            return (
-                                <Box key={i} width={{ base: '100%', sm: '50%', md: '25%' }} >
-                                    <FrameProduct price={product.skus[0].price} imageUrl={product.media[0].url} id={product._id} />
-                                </Box>
-                            )
-                        })}
-                        {Collection.products.map((product, i) => {
-                            return (
-                                <Box key={i} width={{ base: '100%', sm: '50%', md: '25%' }} >
-                                    <FrameProduct price={product.skus[0].price} imageUrl={product.media[0].url} id={product._id} />
-                                </Box>
-                            )
-                        })}
                     </Flex>
                     :
                     <Flex
