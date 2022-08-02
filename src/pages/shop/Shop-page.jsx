@@ -39,7 +39,7 @@ export default function ShopPage() {
             <div className='shop-page-container'>
                 <TopSection
                     pic={profile.logo}
-                    shopname={profile.shopName}
+                    shopname={profile.name}
                     instagram={(profile.instagramUrl) ? profile.instagramUrl : ""}
                     twitter={(profile.twitterUrl) ? profile.twitterUrl : ""}
                     discord={(profile.discordUrl) ? profile.discordUrl : ""}

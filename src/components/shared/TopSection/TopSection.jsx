@@ -9,7 +9,6 @@ import defaultProfile from "../../../assest/profile/defaultProfile.png"
 export default function TopSection({ pic, shopname, instagram, twitter, discord, web }) {
 
 
-
     return (<>
         <div className="top-section-wrapper">
             <div className="d-flex justify-content-center align-content-center">
@@ -24,7 +23,7 @@ export default function TopSection({ pic, shopname, instagram, twitter, discord,
 
             </div>
             <div className="d-flex justify-content-center align-content-center">
-                <div className="name-text">{shopname}</div>
+                <div className="name-text" style={{color:"white"}}>{shopname}</div>
             </div>
 
             <div className='user-data'>
