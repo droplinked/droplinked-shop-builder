@@ -7,12 +7,13 @@ import Cart from "../icons/cart/cart-icon-component"
 import { DROPDOWN_TYPE } from "../dropdowns/dropdown.type"
 import { useState } from "react"
 import { Flex } from "@chakra-ui/react"
-
+import { useProfile } from "../../../../context/profile/ProfileContext"
 
 export default function UserHeader() {
 
     const [dropdown, setDropdown] = useState(null)
 
+    const { profile } = useProfile()
 
     const openProfileDropdown = () => {
         setDropdown(DROPDOWN_TYPE.PROFILE)
@@ -30,6 +31,16 @@ export default function UserHeader() {
     }
 
 
+    const registeredProducer = () => {
+        if (profile.type=="PRODUCER" && profile.status != "IMS_TYPE_COMPLETED") {
+            return false
+        } else {
+            return true
+        }
+    }
+
+
+
     return (<>
 
         <WalletButton />
@@ -37,10 +48,10 @@ export default function UserHeader() {
         <Flex alignItems='center' ml={{ base: "10px", md: '15px' }}>
 
             {/* cart icon */}
-            <Cart clickBasket={openBasket} />
+            {registeredProducer() && <Cart clickBasket={openBasket} />}
 
             {/* notification icon */}
-            <Notification click={openNotification} />
+            {registeredProducer() && <Notification click={openNotification} />}
 
             {/* profile icon */}
             <ProfileIcon click={openProfileDropdown} />

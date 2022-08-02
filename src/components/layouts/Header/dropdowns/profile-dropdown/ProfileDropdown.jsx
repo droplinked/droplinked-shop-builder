@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useProfile } from "../../../../../context/profile/ProfileContext"
-import {  Flex } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 
 import ProfileItem from "./ProfileItem-component"
 
@@ -14,6 +14,15 @@ const ProfileDropdown = ({ close }) => {
         userStatus = profile.user.status
     } else {
         userStatus = profile.status
+    }
+
+
+    const registeredProducer = () => {
+        if (profile.type=="PRODUCER" && profile.status != "IMS_TYPE_COMPLETED") {
+            return false
+        } else {
+            return true
+        }
     }
 
 
@@ -42,7 +51,7 @@ const ProfileDropdown = ({ close }) => {
 
     return (
 
-    
+
         <Flex
             pos='absolute'
             top={{ base: "60px", md: '80px' }}
@@ -57,35 +66,36 @@ const ProfileDropdown = ({ close }) => {
             boxShadow='dark-lg'
             flexDirection='column'
         >
-            
-            {(userStatus == "IMS_TYPE_COMPLETED") && <>
             <ProfileItem click={clickProfile}>Profile</ProfileItem>
-            <Link to="/producer/ims" >
-                <ProfileItem click={close}>Inventory</ProfileItem>
-            </Link>
-            <Link to="/producer/ruleset" >
-                <ProfileItem click={close}>Rulesets</ProfileItem>
-            </Link>
-            <Link to="/producer/collection" >
-                <ProfileItem click={close}>Collection</ProfileItem>
-            </Link>
-            <Link to="/producer/orders" >
-                <ProfileItem click={close}>Incoming Orders</ProfileItem>
-            </Link>
+
+            {(userStatus == "IMS_TYPE_COMPLETED") && <>
+                <Link to="/producer/ims" >
+                    <ProfileItem click={close}>Inventory</ProfileItem>
+                </Link>
+                <Link to="/producer/ruleset" >
+                    <ProfileItem click={close}>Rulesets</ProfileItem>
+                </Link>
+                <Link to="/producer/collection" >
+                    <ProfileItem click={close}>Collection</ProfileItem>
+                </Link>
+                <Link to="/producer/orders" >
+                    <ProfileItem click={close}>Incoming Orders</ProfileItem>
+                </Link>
 
             </>}
-            <Link to="/purchseHistory" >
+            {registeredProducer() && <Link to="/purchseHistory" >
                 <ProfileItem click={close}>Purchase history</ProfileItem>
-            </Link>
-            <Link to="/settings" >
+            </Link>}
+
+            {registeredProducer() && <Link to="/settings" >
                 <ProfileItem click={close}>Settings</ProfileItem>
-            </Link>
+            </Link>}
             <ProfileItem click={logout}>Logout</ProfileItem>
         </Flex>
-            )
-        }
-        
-        
+    )
+}
+
+
 
 export default ProfileDropdown
 
