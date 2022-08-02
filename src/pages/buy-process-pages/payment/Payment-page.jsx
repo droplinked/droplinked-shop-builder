@@ -9,7 +9,9 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useCart } from "../../../context/cart/CartContext"
 import { checkoutCart } from "../../../api/base-user/Cart-api"
-import {  STRIPE_KEY } from "./stripe.key"
+import { STRIPE_KEY } from "./stripe.key"
+import { addRootpaymentOrder } from "../../../api/base-user/Cart-api"
+import {  useNavigate } from "react-router-dom";
 
 import axios from "axios"
 import StripeComponent from "./stripe modal/stripe-modal-component"
@@ -20,12 +22,13 @@ const stripePromise = loadStripe(STRIPE_KEY.TEST);
 
 export default function PaymentPage() {
 
+    const [rootpaymentsOrderID, setRootpaymentsOrderID] = useState(null);
     const [paymentSelected, setPaymentSelected] = useState(null)
     const [clientSecret, setClientSecret] = useState('')
     const [disableBtns, setDisables] = useState(false)
-    const { cart } = useCart();
 
-    const [rootpaymentsOrderID, setRootpaymentsOrderID] = useState(null);
+    const { cart } = useCart();
+    let navigate = useNavigate();
 
 
     const appearance = {
@@ -58,36 +61,53 @@ export default function PaymentPage() {
     const stripePayment = async () => {
         setDisables(true)
         let result = await checkoutCart()
-        if(result != null){
+        if (result != null) {
             setClientSecret(result)
             setPaymentSelected("Stripe")
         }
         setDisables(false)
     }
 
+    const rootpaymentListener = (orderId) => {
+        setInterval(function () {
+            axios.get(`https://api.staging.rootpayments.com/orders/${orderId}`)
+            .then(e => {
+                if(e.data.data.status == 'paid'){
+                    navigate("/purchseHistory?redirect_status=succeeded")
+                }
+                console.log(e.data.data.status)
+            })
+        }, 10000);
+    }
+
+
     const rootpaymentsPayment = async () => {
         setDisables(true) //Don't know what that is, copied from stripe
 
         const ROOTPAYMENTS_API = 'https://api.staging.rootpayments.com';
-        const ROOTPAYMENTS_INTEGRATION_ID = '10dd8d77-8b03-4e54-be57-9e61a03dc1f3'; // Replace with your integration ID
+        const ROOTPAYMENTS_INTEGRATION_ID = '87f9faf7-816f-44e9-bfa5-a2b7d5d78ee2'; // Replace with your integration ID
 
         //Create RootPayments order
         await axios.post(`${ROOTPAYMENTS_API}/orders`, {
             "amount": {
-                "amount": getTotalofMerchs() + getTotalofShipping(),
+                "amount":(getTotalofMerchs() + getTotalofShipping()),
                 "currency": "USD"
             },
             "token": "stx", //mia or stx - depends on Integration configuration
             "integration_id": ROOTPAYMENTS_INTEGRATION_ID,
-            "callback_url": `https://api.droplinked.com/dev/test` // Replace with your callback URL - this should point to your backend API that handles order statuses. Note the order=${cart.id} parameter in the callback URL (so that you can identify the order by its ID)
+            "callback_url": `https://dev-api.droplinked.com/webhook/root-payments/order` // Replace with your callback URL - this should point to your backend API that handles order statuses. Note the order=${cart.id} parameter in the callback URL (so that you can identify the order by its ID)
         }, {}).then(e => {
+            addRootpaymentOrder(e.data.data.id)
             setRootpaymentsOrderID(e.data.data.id);
+            rootpaymentListener(e.data.data.id)
         }).catch(e => {
             console.log(e)
         })
-
-        setDisables(false) //Don't know what that is, copied from stripe
+        setDisables(false)//Don't know what that is, copied from stripe
     }
+
+
+
 
     return (
         <Box w="100%" maxW="1000px" mx="auto" px={{ base: "20px", md: "80px" }}>
@@ -153,16 +173,17 @@ export default function PaymentPage() {
                             </Box>
                         </Box>
 
-                        { rootpaymentsOrderID && (
-                            <Box w="100%" mb="40px" display="flex" alignItems="center" justifyContent="center">
-                                <stacks-checkout orderid={rootpaymentsOrderID}></stacks-checkout>
-                            </Box>
-                        )}
-                        
+
+
                     </Box>
 
                 </>
             }
+            {rootpaymentsOrderID && (
+                <Box w="100%" mb="40px" display="flex" alignItems="center" justifyContent="center">
+                    <stacks-checkout orderid={rootpaymentsOrderID}></stacks-checkout>
+                </Box>
+            )}
 
             {(paymentSelected == "Stripe") &&
                 <Elements stripe={stripePromise} options={options}  >
