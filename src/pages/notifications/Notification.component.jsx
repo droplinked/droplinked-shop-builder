@@ -33,12 +33,15 @@ const NotificationComponent = ({ notification }) => {
             case NOTIFICATION_TYPE.PRODUCER_ORDER_NEW:
                 navigate("/producer/orders")
                 seenNotif(notification._id)
+                return
             case NOTIFICATION_TYPE.PRODUCER_SKU_QUANTITY:
                 navigate("/producer/ims")
                 seenNotif(notification._id)
+                return
             case NOTIFICATION_TYPE.CUSTOMER_ORDER_STATUS:
                 navigate("/purchseHistory")
                 seenNotif(notification._id)
+                return
             default:
         }
     }
