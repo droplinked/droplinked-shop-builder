@@ -22,8 +22,6 @@ export default function Notification({ click }) {
                     pos='absolute'
                     w='100%'
                     h='100%'
-                    pb='7px'
-                    pl='4px'
                     fontWeight='600'
                     justifyContent='center'
                     alignItems='center'
