@@ -3,6 +3,8 @@ import { useState, useEffect } from "react"
 
 import leftIcon from "../../../assest/icon/leftflask.png"
 import rightIcon from "../../../assest/icon/righIcon.png"
+import fullsizeIcon from "../../../assest/icon/fillsize.svg"
+import FullsizeImage from "./FullsizeImage-component"
 
 const keyframe_imageAnimation = keyframes`
 0% {
@@ -24,6 +26,8 @@ export default function Carousel({ imagesArray }) {
     const [mainImage, setMainImage] = useState(0)
     // start point of images in botom side
     const [startpoint, setStartpoint] = useState(0)
+    //fullsize image 
+    const [fullsizeImage, setFullsizeImage] = useState(null)
 
     const imageAnimation = prefersReducedMotion
         ? undefined
@@ -50,13 +54,45 @@ export default function Carousel({ imagesArray }) {
         }
     }
 
+    const closeFullsize = () => {
+        setFullsizeImage(null)
+    }
+
+    const openFullsize = () => {
+        setFullsizeImage(images[mainImage])
+    }
 
     return (
         <Box w="100%" h="100%">
             {(imagesArray.length > 0) &&
                 <>
-                    {/* main image */}
-                    <Box h='calc(100% - 60px)'>
+                    {/* main image wrapper */}
+                    <Box
+                        h='calc(100% - 60px)'
+                        pos='relative'
+                    >
+                        {/* full size icon */}
+                        <Flex
+                            justifyContent='center'
+                            alignItems='center'
+                            w={{ base: '25px', md: '36px' }}
+                            h={{ base: '25px', md: '36px' }}
+                            borderRadius='50%'
+                            bgColor='#222'
+                            pos='absolute'
+                            top='10px'
+                            right='10px'
+                            cursor='pointer'
+                            onClick={openFullsize}
+                        >
+                            <Image
+                                w={{ base: '15px', md: '20px' }}
+                                h={{ base: '15px', md: '20px' }}
+                                src={fullsizeIcon}
+                            />
+                        </Flex>
+                        {/* full size icon */}
+
                         {images && images.map((image, i) => {
                             //select image with same index with mainImage
                             if (i == mainImage) {
@@ -70,7 +106,7 @@ export default function Carousel({ imagesArray }) {
                             }
                         })}
                     </Box>
-                    {/* main image */}
+                    {/* main image wrapper */}
                     {/* bottom side */}
                     <Flex h='60px' justifyContent='space-between' alignItems='center'>
                         <CarouselBtn icon={leftIcon} click={previous} />
@@ -95,6 +131,7 @@ export default function Carousel({ imagesArray }) {
                     {/* bottom side */}
                 </>
             }
+            {fullsizeImage && <FullsizeImage image={fullsizeImage} close={closeFullsize} />}
         </Box>
     )
 }
