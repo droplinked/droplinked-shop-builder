@@ -1,40 +1,41 @@
-import { Box, Image, Flex } from "@chakra-ui/react"
+import { Box, Image, Flex, keyframes, usePrefersReducedMotion } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 
 import leftIcon from "../../../assest/icon/leftflask.png"
 import rightIcon from "../../../assest/icon/righIcon.png"
 
+const keyframe_imageAnimation = keyframes`
+0% {
+    opacity: 0;
+}
+100% {
+  opacity: 1;
+}
+`;
+
+
 export default function Carousel({ imagesArray }) {
+
+    const prefersReducedMotion = usePrefersReducedMotion();
 
     // array of all images 
     const [images, setImages] = useState(null)
     // main image
-    const [mainImage, setMainImage] = useState(null)
+    const [mainImage, setMainImage] = useState(0)
     // start point of images in botom side
     const [startpoint, setStartpoint] = useState(0)
 
-    // init main image in firts render
-    useEffect(() => {
-        if (imagesArray.length > 0) {
-            setMainImage(imagesArray[0].url)
-        }
-    }, [imagesArray])
+    const imageAnimation = prefersReducedMotion
+        ? undefined
+        : `${keyframe_imageAnimation}  0.5s linear`;
 
     useEffect(() => {
-        // recalculate images after changing start point or imageArray props
         if (imagesArray.length > 0) {
-            // get 4 first images
-            let imagesGallery = imagesArray.filter((image, i) => {
-                if (i >= startpoint && i < startpoint + 4) {
-                    return image
-                }
-            });
-            // map images to array
-            imagesGallery = imagesGallery.map(image => image.url)
+            // initial images state
+            let imagesGallery = imagesArray.map(image => image.url)
             setImages(imagesGallery);
         }
-    }, [startpoint, imagesArray])
-
+    }, [imagesArray])
 
 
     const next = () => {
@@ -49,33 +50,41 @@ export default function Carousel({ imagesArray }) {
         }
     }
 
+
     return (
         <Box w="100%" h="100%">
             {(imagesArray.length > 0) &&
                 <>
                     {/* main image */}
                     <Box h='calc(100% - 60px)'>
-                        <Image
-                            src={mainImage}
-                            borderRadius='16px'
-                            overflow='hidden'
-                            mb='15px'
-                        />
+                        {images && images.map((image, i) => {
+                            //select image with same index with mainImage
+                            if (i == mainImage) {
+                                return (<Image
+                                    src={image}
+                                    animation={imageAnimation}
+                                    borderRadius='16px'
+                                    overflow='hidden'
+                                    mb='15px'
+                                />)
+                            }
+                        })}
                     </Box>
                     {/* main image */}
                     {/* bottom side */}
                     <Flex h='60px' justifyContent='space-between' alignItems='center'>
                         <CarouselBtn icon={leftIcon} click={previous} />
                         {(images) &&
+                            // show images from start point until 4 maximum
                             images.map((image, i) => {
-                                if (i < 4) {
+                                if (i >= startpoint && i < startpoint + 4) {
                                     return <Image
                                         key={i}
                                         w='50px'
                                         h='50px'
                                         borderRadius='8px'
                                         cursor='pointer'
-                                        onClick={() => { setMainImage(image) }}
+                                        onClick={() => { setMainImage(i) }}
                                         src={image}
                                         alt=""
                                     />
