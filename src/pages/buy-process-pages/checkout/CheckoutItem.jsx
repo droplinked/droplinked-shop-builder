@@ -81,12 +81,14 @@ export default function CheckoutItem({ product }) {
                 <Flex
                     flexDirection="column"
                     align="start"
+                    maxW='100%'
                 >
                     <Text
                         color="#fff"
                         fontWeight="600"
                         fontSize={{ base: "16px", md: "18px" }}
                         mb="5px"
+                        overflow='hidden'
                     >
                         {product.Product.title}
                     </Text>
@@ -94,6 +96,8 @@ export default function CheckoutItem({ product }) {
                     <Text
                         color="#ddd"
                         fontWeight="500"
+                        maxW={{ base: '100%', sm: "80%", md: '60%' }}
+                        overflow='hidden'
                         fontSize={{ base: "14px", md: "13px" }}
                         mb="5px"
                     >
@@ -117,7 +121,8 @@ export default function CheckoutItem({ product }) {
                 mr="20px"
                 h={{ base: "60px", md: "80px" }}
                 alignItems="center"
-                justifyContent="space-between">
+                justifyContent="space-between"
+            >
 
                 <Text
                     color="#fff"
@@ -128,15 +133,15 @@ export default function CheckoutItem({ product }) {
                 </Text>
 
                 <ButtonGroup size="md" isAttached variant='outline'>
-                   <IconButton
+                    <IconButton
                         aria-label='delete'
-                        icon={<AiOutlineDelete color="#fd4545" size="sm" style={{maxHeight:"100%"}} />}
+                        icon={<AiOutlineDelete color="#fd4545" size="sm" style={{ maxHeight: "100%" }} />}
                         _hover={{ bgColor: "none", borderColor: "#8053ff" }}
                         _focus={{ bgColor: "none", borderColor: "#8053ff" }}
-                        _active={{bgColor: "none", borderColor: "#8053ff"}}
+                        _active={{ bgColor: "none", borderColor: "#8053ff" }}
                         onClick={deleteMerch}
                         disabled={disableDeleteBtn}
-                    /> 
+                    />
                     <Input
                         value={quantity}
                         borderRadius="0px"
