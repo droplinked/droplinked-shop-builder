@@ -1,4 +1,4 @@
-import { Flex, FormLabel, Textarea, Box } from '@chakra-ui/react'
+import { Flex, FormLabel, Textarea, Box, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 import { BASE_URL } from "../../../api/BaseUrl"
 import { useEffect, useState } from 'react'
 import { useAddress } from "../../../context/address/AddressContext"
@@ -11,7 +11,19 @@ import FormInput from "../../../components/shared/FormInput/FormInput"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import AddressComponent from "../../../components/shared/Address/address-component"
 
-export default function ShopInfoComponent() {
+const keyframe_startanimation = keyframes`
+0% {
+    transform: translateX(-400px);
+    opacity: 0;
+}
+100% {
+  transform: translateX(0);
+  opacity: 1;
+}
+`;
+
+
+export default function ShopInfoComponent({active}) {
 
     const token = JSON.parse(localStorage.getItem("token"));
 
@@ -20,6 +32,11 @@ export default function ShopInfoComponent() {
 
     const { addressList } = useAddress()
     const { errorToast, successToast } = useToasty()
+    const prefersReducedMotion = usePrefersReducedMotion();
+
+    const startAnimation = prefersReducedMotion
+    ? undefined
+    : `${keyframe_startanimation}  0.2s linear`;
 
     let shopAddressBook = addressList.find(address => address.addressType == "SHOP")
 
@@ -75,7 +92,7 @@ export default function ShopInfoComponent() {
 
 
     return (
-        <Box w='100%'>
+        <Box w='100%' animation={(active=='shop'?startAnimation:'')}>
             {(shop == null)
                 ?
                 <Loading />

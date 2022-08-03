@@ -1,4 +1,4 @@
-import { Flex, Box } from '@chakra-ui/react'
+import { Flex, Box,  keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 import { useState } from 'react';
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { BASE_URL } from "../../../api/BaseUrl"
@@ -9,13 +9,26 @@ import FormInput from '../../../components/shared/FormInput/FormInput'
 import BasicButton from '../../../components/shared/BasicButton/BasicButton'
 import axios from "axios"
 
-export default function PersonalInfoComponent() {
+
+const keyframe_startanimation = keyframes`
+0% {
+    transform: translateX(-400px);
+    opacity: 0;
+}
+100% {
+  transform: translateX(0);
+  opacity: 1;
+}
+`;
+
+export default function PersonalInfoComponent({active}) {
 
     const profile = JSON.parse(localStorage.getItem("profile"));
     let token = JSON.parse(localStorage.getItem("token"));
 
     const { updateProfile } = useProfile();
     const { errorToast, successToast } = useToasty()
+    const prefersReducedMotion = usePrefersReducedMotion();
 
 
     const [profileImage, setProfileImage] = useState(profile.avatar)
@@ -24,6 +37,10 @@ export default function PersonalInfoComponent() {
     const email = profile.email;
     const [phoneNumber, setPhoneNumber] = useState(profile.phone)
     const [disableBtn, setDisableBtn] = useState(false)
+
+    const startAnimation = prefersReducedMotion
+    ? undefined
+    : `${keyframe_startanimation}  0.2s linear`;
 
 
     const changeFirstName = e => {
@@ -68,6 +85,7 @@ export default function PersonalInfoComponent() {
             color='white'
             fontSize='22px'
             w="100%"
+            animation={(active=='personal'?startAnimation:'')}
         >
             <InputImage image={profileImage} setImage={setProfileImage} />
             <Flex

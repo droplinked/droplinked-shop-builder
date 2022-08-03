@@ -6,14 +6,13 @@ import ShopInfoComponent from './shop-info-component/Shop-info-component'
 import PersonalInfoComponent from './personal-info-component/Personal-info-component'
 import SettingButton from "./setting-button-component"
 
-export default function SettingsPage() {
 
-    const profile = JSON.parse(localStorage.getItem("profile"));
+export default function SettingsPage() {
 
     // this state use for selected setting 
     const [settingComponent, setSettingComponent] = useState("personal")
 
-
+    const profile = JSON.parse(localStorage.getItem("profile"));
 
     // change state by click on buttons for change setting component used  
     const personalSetting = () => {
@@ -66,15 +65,16 @@ export default function SettingsPage() {
                     p='40px 30px'
                     justifyContent='center'
                     alignItems='center'
+                    overflow='hidden'
                 >
                     {(() => {
                         switch (settingComponent) {
                             case "personal":
-                                return (<PersonalInfoComponent />)
+                                return (<PersonalInfoComponent active={settingComponent} />)
                             case "shop":
-                                return (<ShopInfoComponent />)
+                                return (<ShopInfoComponent active={settingComponent}/>)
                             case "address":
-                                return (<AddressBookComponent />)
+                                return (<AddressBookComponent active={settingComponent}/>)
                         }
                     })()}
                 </Flex>

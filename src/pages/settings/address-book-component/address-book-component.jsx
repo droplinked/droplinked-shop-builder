@@ -1,4 +1,4 @@
-import { Flex, Box } from '@chakra-ui/react'
+import { Flex, Box , keyframes, usePrefersReducedMotion} from '@chakra-ui/react'
 import { useAddress } from "../../../context/address/AddressContext"
 import { useState } from "react"
 
@@ -6,11 +6,30 @@ import AddressComponent from "../../../components/shared/Address/address-compone
 import AddressForm from "../../../components/Forms/Address-form/AddressForm-component"
 import Loading from "../../../components/shared/loading/Loading"
 
-export default function AddressBookComponent() {
+const keyframe_startanimation = keyframes`
+0% {
+    transform: translateX(-400px);
+    opacity: 0;
+}
+100% {
+  transform: translateX(0);
+  opacity: 1;
+}
+`;
+
+
+export default function AddressBookComponent({active}) {
 
     const [addressModal, setAddressModal] = useState(false);
 
     const { addressList } = useAddress()
+    const prefersReducedMotion = usePrefersReducedMotion();
+
+
+    const startAnimation = prefersReducedMotion
+    ? undefined
+    : `${keyframe_startanimation}  0.2s linear`;
+
 
     const toggleAddressForm = () => {
         setAddressModal(p => !p)
@@ -20,6 +39,7 @@ export default function AddressBookComponent() {
         <Box
             p='0px'
             w='100%'
+            animation={(active=='address'?startAnimation:'')}
         >
             {(addressList == [])
                 ?
