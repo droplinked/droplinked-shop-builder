@@ -1,5 +1,4 @@
 import { Box, Image, Flex } from "@chakra-ui/react"
-import { icon } from "@fortawesome/fontawesome-svg-core"
 import { useState, useEffect } from "react"
 
 import leftIcon from "../../../assest/icon/leftflask.png"
@@ -7,23 +6,54 @@ import rightIcon from "../../../assest/icon/righIcon.png"
 
 export default function Carousel({ imagesArray }) {
 
+    // array of all images 
     const [images, setImages] = useState(null)
+    // main image
     const [mainImage, setMainImage] = useState(null)
+    // start point of images in botom side
+    const [startpoint, setStartpoint] = useState(0)
 
+    // init main image in firts render
     useEffect(() => {
         if (imagesArray.length > 0) {
             setMainImage(imagesArray[0].url)
-            let imagesGallery = imagesArray.map((img, i) => {
-                if (i < 4) return i
-            })
-            setImages(imagesGallery);
         }
     }, [imagesArray])
+
+    useEffect(() => {
+        // recalculate images after changing start point or imageArray props
+        if (imagesArray.length > 0) {
+            // get 4 first images
+            let imagesGallery = imagesArray.filter((image, i) => {
+                if (i >= startpoint && i < startpoint + 4) {
+                    return image
+                }
+            });
+            // map images to array
+            imagesGallery = imagesGallery.map(image => image.url)
+            setImages(imagesGallery);
+        }
+    }, [startpoint, imagesArray])
+
+
+
+    const next = () => {
+        if (startpoint + 4 < imagesArray.length) {
+            setStartpoint(p => p + 1)
+        }
+    }
+
+    const previous = () => {
+        if (startpoint > 0) {
+            setStartpoint(p => p - 1)
+        }
+    }
 
     return (
         <Box w="100%" h="100%">
             {(imagesArray.length > 0) &&
                 <>
+                    {/* main image */}
                     <Box h='calc(100% - 60px)'>
                         <Image
                             src={mainImage}
@@ -32,10 +62,12 @@ export default function Carousel({ imagesArray }) {
                             mb='15px'
                         />
                     </Box>
+                    {/* main image */}
+                    {/* bottom side */}
                     <Flex h='60px' justifyContent='space-between' alignItems='center'>
-                        <CarouselBtn icon={leftIcon} click={() => { }} />
+                        <CarouselBtn icon={leftIcon} click={previous} />
                         {(images) &&
-                            images.map((number, i) => {
+                            images.map((image, i) => {
                                 if (i < 4) {
                                     return <Image
                                         key={i}
@@ -43,14 +75,15 @@ export default function Carousel({ imagesArray }) {
                                         h='50px'
                                         borderRadius='8px'
                                         cursor='pointer'
-                                        onClick={() => { setMainImage(imagesArray[number].url) }}
-                                        src={imagesArray[number].url}
+                                        onClick={() => { setMainImage(image) }}
+                                        src={image}
                                         alt=""
                                     />
                                 }
                             })}
-                        <CarouselBtn icon={rightIcon} click={() => { }} />
+                        <CarouselBtn icon={rightIcon} click={next} />
                     </Flex>
+                    {/* bottom side */}
                 </>
             }
         </Box>
