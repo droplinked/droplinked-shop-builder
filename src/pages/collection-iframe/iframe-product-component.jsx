@@ -1,7 +1,7 @@
 import { Box, Image, AspectRatio, Text } from '@chakra-ui/react'
 import { Link } from "react-router-dom"
 
-const FrameProduct = ({ price, imageUrl, id }) => {
+const FrameProduct = ({title, price, imageUrl, id }) => {
     
     return (
         <Box
@@ -24,8 +24,16 @@ const FrameProduct = ({ price, imageUrl, id }) => {
             <Text
                 
                 fontWeight='600'
-                fontSize={{ base: "14px", md: '18px' }}
+                fontSize={{ base: "18px", md: '14px' }}
                 color='#fff'
+            >
+                {title}
+            </Text>
+            <Text
+                
+                fontWeight='600'
+                fontSize={{ base: "14px", md: '12px' }}
+                color='#ccc'
             >
                 ${price}
             </Text>

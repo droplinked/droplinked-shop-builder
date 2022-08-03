@@ -10,12 +10,12 @@ const [size, setSize] = useState(400)
     style={{width:'100%' , height:'100%' , display:'flex' , justifyContent:'center' , alignItems:'center'}}
     >
         <div style={{width:`${size}px` , height:`${size}px` , border:'1px solid #666' , overflow:'hidden' }}>
-            <iframe
+        <iframe
             style={{width:'100%' , height:"100%"  , overflow:'hidden' }}
             scrolling="no"
                 title='product'
-                src='https://ngsf.flatlay.io/iframe'
-                allowFullScreen
+                src={`${window.location.origin}/collection-iframe/62e94a104e3168da4d956a69`}
+                allowFullScreeng
             />
         </div>
         </div>

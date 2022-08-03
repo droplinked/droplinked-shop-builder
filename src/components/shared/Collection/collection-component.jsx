@@ -15,7 +15,7 @@ export default function Collection({ collection, shopname }) {
             style={{width:'100%' , height:"100%"  , overflow:'hidden' }}
             scrolling="no"
                 title='product'
-                src='https://ngsf.flatlay.io/collection-iframe/${collection._id}'
+                src='${window.location.origin}/collection-iframe/${collection._id}'
                 allowFullScreeng
             />`
 
