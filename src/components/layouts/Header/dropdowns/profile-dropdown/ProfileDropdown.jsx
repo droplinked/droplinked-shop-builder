@@ -26,26 +26,29 @@ const ProfileDropdown = ({ close }) => {
     }
 
 
-
     const clickProfile = () => {
         close()
-
-        switch (userStatus) {
-            case "VERIFIED":
-                navigate("/register/personalInfo");
-                return;
-            case "PROFILE_COMPLETED":
-                navigate("/register/shopInfo");
-                return;
-            case "SHOP_INFO_COMPLETED":
-                navigate("/register/IMSSelect");
-                return;
-            case "IMS_TYPE_COMPLETED":
-                navigate(`/${profile.shopName}`);
-                return;
-            case "ACTIVE":
-                navigate(`/${profile.shopName}`);
-                return;
+        if(profile.type == "PRODUCER"){
+            switch (userStatus) {
+                case "VERIFIED":
+                    navigate("/register/personalInfo");
+                    return;
+                case "PROFILE_COMPLETED":
+                    navigate("/register/shopInfo");
+                    return;
+                case "SHOP_INFO_COMPLETED":
+                    navigate("/register/IMSSelect");
+                    return;
+                case "IMS_TYPE_COMPLETED":
+                    navigate(`/${profile.shopName}`);
+                    return;
+                case "ACTIVE":
+                    navigate(`/${profile.shopName}`);
+                    return;
+            }
+        }else{
+            navigate("/");
+            return;
         }
     }
 
