@@ -13,17 +13,21 @@ const NotificationComponent = ({ notif, close }) => {
 
 
     const clickNotification = () => {
+
         close()
         switch (notif.type) {
             case NOTIFICATION_TYPE.PRODUCER_ORDER_NEW:
                 navigate("/producer/orders")
                 seenNotif(notif._id)
+               return;
             case NOTIFICATION_TYPE.PRODUCER_SKU_QUANTITY:
                 navigate("/producer/ims")
                 seenNotif(notif._id)
+               return;
             case NOTIFICATION_TYPE.CUSTOMER_ORDER_STATUS:
                 navigate("/purchseHistory")
                 seenNotif(notif._id)
+               return;
             default:
         }
     }
