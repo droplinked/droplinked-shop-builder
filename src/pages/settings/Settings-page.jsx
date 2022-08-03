@@ -1,17 +1,33 @@
-import { Flex, Button } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { useState } from 'react'
 
 import AddressBookComponent from './address-book-component/address-book-component'
 import ShopInfoComponent from './shop-info-component/Shop-info-component'
 import PersonalInfoComponent from './personal-info-component/Personal-info-component'
-
+import SettingButton from "./setting-button-component"
 
 export default function SettingsPage() {
 
     const profile = JSON.parse(localStorage.getItem("profile"));
 
+    // this state use for selected setting 
     const [settingComponent, setSettingComponent] = useState("personal")
- 
+
+
+
+    // change state by click on buttons for change setting component used  
+    const personalSetting = () => {
+        setSettingComponent("personal")
+    }
+
+    const shopSetting = () => {
+        setSettingComponent("shop")
+    }
+
+    const addressSetting = () => {
+        setSettingComponent("address")
+    }
+
     return (
         <Flex
             w="100%"
@@ -28,25 +44,23 @@ export default function SettingsPage() {
             >
                 <Flex
                     p="40px 10px"
-
                     borderBottom={{ base: '1px', md: '0px' }}
                     borderColor="white"
                     minW={{ base: '100%', md: "25%" }}
                     flexDirection='column'
                 >
-                    <SettingButton
-                        click={() => { setSettingComponent("personal") }}
-                    > Personal info </SettingButton>
+                    {/* select setting buttons  */}
+                    <SettingButton click={personalSetting} active={settingComponent == "personal"}> Personal info </SettingButton>
+
                     {(profile.type == "PRODUCER") &&
-                        <SettingButton
-                            click={() => { setSettingComponent("shop") }}
-                        > Shop info </SettingButton>
+                        <SettingButton click={shopSetting} active={settingComponent == "shop"} > Shop info </SettingButton>
                     }
-                    <SettingButton
-                        click={() => { setSettingComponent("address") }}
-                    >Address book</SettingButton>
+
+                    <SettingButton click={addressSetting} active={settingComponent == "address"}>Address book</SettingButton>
+                    {/* select setting buttons  */}
                 </Flex>
 
+                {/* setting component  */}
                 <Flex
                     w='100%'
                     p='40px 30px'
@@ -61,40 +75,13 @@ export default function SettingsPage() {
                                 return (<ShopInfoComponent />)
                             case "address":
                                 return (<AddressBookComponent />)
-                                default: 
-                                return <></>
                         }
                     })()}
                 </Flex>
+                {/* setting component  */}
 
             </Flex>
 
         </Flex>
     )
-}
-
-
-const SettingButton = ({ children, click }) => {
-
-    return (<>
-        <Button
-            color="white"
-            m='0px auto'
-            w="90%"
-            minW="150px"
-            borderRadius='8px'
-            fontWeight='500'
-            fontSize='16px'
-            textAlign='center'
-            p='12px 0px'
-            mb='15px'
-            bgColor='transparent'
-            border='1px'
-            borderColor="#8053ff"
-            _hover={{ bgColor: '#8053ff' }}
-            onClick={click}
-        >
-            {children}
-        </Button>
-    </>)
 }
