@@ -50,7 +50,7 @@ export default function Collection({ collection, shopname }) {
                 >
                     <Text
                         color='#fff'
-                        fontSize={{ base: '16px', md: '22px' }}
+                        fontSize={{ base: '10px', sm:'16px', md: '22px' }}
                         fontWeight='600'
                     >{collection.title}</Text>
                     <Flex >
@@ -58,7 +58,7 @@ export default function Collection({ collection, shopname }) {
                             p={{ base: "4px 10px 1px 10px", md: '4px 20px' }}
                             color='#fff'
                             bgColor="#353536"
-                            fontSize={{ base: "8px", md: '14px' }}
+                            fontSize={{ base: "6px" , sm:'8px', md: '14px' }}
                             fontWeight="500"
                             borderRadius='8px'
                             justifyContent='center'
@@ -69,13 +69,13 @@ export default function Collection({ collection, shopname }) {
                             }}
                             onClick={embed}
                         >
-                            embed
+                            Embed collection
                         </Flex>
                         <Flex
                             p={{ base: "4px 10px 1px 10px", md: '4px 20px' }}
                             color='#fff'
                             bgColor="#353536"
-                            fontSize={{ base: "8px", md: '14px' }}
+                            fontSize={{ base: "6px" , sm:'8px', md: '14px' }}
                             fontWeight="500"
                             borderRadius='8px'
                             justifyContent='center'
