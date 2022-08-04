@@ -1,7 +1,7 @@
 import "./Merch-page-style.scss"
 
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom";
+import { useParams , useNavigate } from "react-router-dom";
 import { UseWalletInfo } from "../../context/wallet/WalletContext"
 import { useProfile } from "../../context/profile/ProfileContext"
 import { useToasty } from "../../context/toastify/ToastContext"
@@ -38,6 +38,7 @@ export default function MerchPage() {
     const { profile } = useProfile();
     const { errorToast, successToast } = useToasty();
     const { updateCart } = useCart();
+    const navigate = useNavigate()
 
     let params = useParams();
     let merchId = params.merchId;
@@ -235,6 +236,10 @@ export default function MerchPage() {
     }
 
 
+    const navigateToShoppage = () => {
+        navigate(`/${shopname}`)
+    }
+
 
 
     return (
@@ -254,7 +259,7 @@ export default function MerchPage() {
 
                     {/* detail side */}
                     <div className="detail-side col-12 col-md-6">
-                        <p className="merch-brandname">{shopname}</p>
+                        <p className="merch-brandname" onClick={navigateToShoppage}>{shopname}</p>
                         <p className="merch-title">{product.title}</p>
 
                         <p className="merch-price">{`$${(sku != null) ? (sku.price) : ""}`}</p>
