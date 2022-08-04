@@ -252,6 +252,7 @@ export default function MerchPage() {
                     </div>
                     {/* imgage side */}
 
+                    {/* detail side */}
                     <div className="detail-side col-12 col-md-6">
                         <p className="merch-brandname">{shopname}</p>
                         <p className="merch-title">{product.title}</p>
@@ -291,11 +292,14 @@ export default function MerchPage() {
 
                         </div>
                     </div>
+                    {/* detail side */}
+                    {/* description */}
                     <div className="merch-description-wrapper">
-                    <p className={`merch-description ${(readmore)?"":'merch-limite-description'}`}>{product.description}</p>
-                    <button className="merch-readmore-button" onClick={()=>{setReadmore(p => !p)}}>Readmore</button>
+                        <p className={`merch-description ${(readmore) ? "" : 'merch-limite-description'}`}>{product.description}</p>
+                        <button className="merch-readmore-button" onClick={() => { setReadmore(p => !p) }}>Readmore</button>
                     </div>
-                    
+                    {/* description */}
+
                 </div>
             }
 
