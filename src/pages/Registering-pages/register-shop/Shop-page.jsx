@@ -14,40 +14,43 @@ import InputImage from "../../../components/shared/InputImage/InputImage"
 
 
 export default function RegisterShop() {
+    // profile image state
     const [profileImg, setProfileImg] = useState("")
+    // shop description state
+    const [description, setDescription] = useState("")
+    // website address state
+    const [website, setWebsite] = useState("")
+    // discord state
+    const [discord, setDiscord] = useState("")
+    // twitter state
+    const [twitter, setTwitter] = useState("")
+    // insta state
+    const [instagram, setInstagram] = useState("")
+
     const [showAddress, setShowAddress] = useState(false)
     const [addressData, setAddressdata] = useState(undefined)
     const [loading, setLoading] = useState(false)
-    const {  profile } = useProfile()
+    const { profile } = useProfile()
     const { errorToast } = useContext(toastValue)
-
-    let x = 1;
-    let user = profile
-
-    const shopname = user.shopName;
-    const token = JSON.parse(localStorage.getItem('token'));
     let navigate = useNavigate();
 
-
-    const descriptionInp = useRef(null);
-    const siteInp = useRef(null);
-    const discordInp = useRef(null);
-    const twitterInp = useRef(null);
-    const instaInp = useRef(null);
-
+   // let x = 1;
+    let user = profile
+    const shopname = user.shopName;
+   // const token = JSON.parse(localStorage.getItem('token'));
+    
 
 
+    // useEffect(() => {
+    //     if (user.shopAddressID) {
+    //         axios.get(BASE_URL + `/producer/shop/address/${user.shopAddressID}`,
+    //             { headers: { Authorization: 'Bearer ' + token } })
+    //             .then(e => setAddressdata(e.data.addressBook))
+    //     }
+    // }, [])
 
-    useEffect(() => {
-        if (user.shopAddressID) {
-            axios.get(BASE_URL + `/producer/shop/address/${user.shopAddressID}`,
-                { headers: { Authorization: 'Bearer ' + token } })
-                .then(e => setAddressdata(e.data.addressBook))
-        }
-    }, [x])
 
     const submitForm = async () => {
-
 
         const address = JSON.parse(localStorage.getItem('address'));
 
@@ -64,12 +67,12 @@ export default function RegisterShop() {
         }
 
         let shopInfo = {
-            description: descriptionInp.current.value,
+            description: description,
             social: {
-                discordUrl: discordInp.current.value,
-                twitter: twitterInp.current.value,
-                instagram: instaInp.current.value,
-                webUrl: siteInp.current.value
+                discordUrl: discord,
+                twitter: twitter,
+                instagram: instagram,
+                webUrl: website
             },
             shopLogo: profileImg,
             shopAddressID: address._id
@@ -97,13 +100,36 @@ export default function RegisterShop() {
         setAddressdata(e)
     }
 
+
+    // changes inputs 
+
+    const changeDescription = (e) => {
+        setDescription(e.target.value)
+    }
+
+    const changeWebsite = (e) => {
+        setWebsite(e.target.value)
+    }
+
+    const changeDiscord = (e) => {
+        setDiscord(e.target.value)
+    }
+
+    const changeTwitter = (e) => {
+        setTwitter(e.target.value)
+    }
+
+    const changeInstagram = (e) => {
+        setInstagram(e.target.value)
+    }
+
     return (
 
         <>
             <div className="register-shopinfo-wrapper">
                 {(!showAddress) && <>
 
-                    <InputImage  image={profileImg} setImage={setProfileImg} />
+                    <InputImage image={profileImg} setImage={setProfileImg} />
 
                     <div className="register-label-input ">
                         <label>domain</label>
@@ -112,35 +138,55 @@ export default function RegisterShop() {
 
                     <div className="register-label-input ">
                         <label>about your shop</label>
-                        <textarea id="w3review" name="w3review" rows="4" cols="50"
-                            type="text" ref={descriptionInp} defaultValue={user.description || ""} >
+                        <textarea
+                            rows="4"
+                            cols="50"
+                            type="text"
+                            value={description}
+                            onChange={changeDescription}
+                            placeholder='About your shop'
+                        >
                         </textarea>
-                        {/* <input type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""} /> */}
                     </div>
-
-                    {/* <div className="register-label-input ">
-                    <label>about your shop</label>
-                    <input type="text" placeholder="describe your store" ref={descriptionInp} defaultValue={user.description || ""} />
-                </div> */}
 
                     <div className="register-label-input ">
                         <label>website</label>
-                        <input type="text" ref={siteInp} defaultValue={user.web || ""} />
+                        <input
+                            type="text"
+                            placeholder="www.example.com"
+                            value={website}
+                            onChange={changeWebsite}
+                        />
                     </div>
 
                     <div className="register-label-input ">
                         <label>discord</label>
-                        <input type="text" placeholder="username" ref={discordInp} defaultValue={user.discord || ""} />
+                        <input
+                            type="text"
+                            placeholder="username"
+                            value={discord}
+                            onChange={changeDiscord}
+                        />
                     </div>
 
                     <div className="register-label-input ">
                         <label>twitter</label>
-                        <input type="text" placeholder="username" ref={twitterInp} defaultValue={user.twitter || ""} />
+                        <input
+                            type="text"
+                            placeholder="username"
+                            value={twitter}
+                            onChange={changeTwitter}
+                        />
                     </div>
 
                     <div className="register-label-input ">
                         <label>instagram</label>
-                        <input type="text" placeholder="username" ref={instaInp} defaultValue={user.instagram || ""} />
+                        <input
+                            type="text"
+                            placeholder="username"
+                            value={instagram}
+                            onChange={changeInstagram}
+                        />
                     </div>
 
                     {(addressData == undefined) ?
