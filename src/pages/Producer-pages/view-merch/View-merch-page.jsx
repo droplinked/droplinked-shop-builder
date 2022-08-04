@@ -37,7 +37,6 @@ export default function ViewMerchPage() {
     const merchId = useParams().id;
     const navigate = useNavigate();
 
-
     useEffect(() => {
         //get collections 
         getCollections()
@@ -92,8 +91,8 @@ export default function ViewMerchPage() {
         if (title == "") {
             errorToast("Item name is required");
             return;
-        } else if (description == "") {
-            errorToast("Item description is required");
+        } else if (images.length == 0) {
+            errorToast("Add an image for this item");
             return;
         }
 

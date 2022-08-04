@@ -89,20 +89,21 @@ function AddProductPage() {
         if (title == "") {
             errorToast("Item name is required");
             return true
-        } else if (description == "") {
-            errorToast("Item description is required");
-            return true
         }
+        //  else if (description == "") {
+        //     errorToast("Item description is required");
+        //     return true
+        // }
         else if (selectedCollection == "") {
             errorToast("Choose a collection");
-            return true
-        } else if (variants.length == 0) {
-            errorToast("Add a new variant");
             return true
         } else if (images.length == 0) {
             errorToast("Add an image for this item");
             return true
-        }else{
+        } else if (variants.length == 0) {
+            errorToast("Add a new variant");
+            return true
+        } else {
             return false
         }
     }
@@ -111,8 +112,8 @@ function AddProductPage() {
 
     const submitForm = async (e) => {
         e.preventDefault()
-       
-        if(validationForm())return
+
+        if (validationForm()) return
 
         let media = [];
         images.map((img, i) => {
@@ -160,8 +161,8 @@ function AddProductPage() {
         setVariants(newVariantList)
     }
 
-    const editVariant = (e , index) => {
-        setVariantSelected({...e , index:index})
+    const editVariant = (e, index) => {
+        setVariantSelected({ ...e, index: index })
     }
 
 
