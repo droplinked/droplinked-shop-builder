@@ -13,9 +13,10 @@ export default function PersonalPage() {
 
     const [profileImg, setProfileImg] = useState("")
     const [loading, setLoading] = useState(false);
-    const { updateProfile } = useProfile()
 
+    const { updateProfile } = useProfile()
     const { errorToast } = useContext(toastValue)
+    
     let user = JSON.parse(localStorage.getItem('profile'));
 
 

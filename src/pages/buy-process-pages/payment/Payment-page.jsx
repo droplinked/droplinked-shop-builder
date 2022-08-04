@@ -168,6 +168,7 @@ export default function PaymentPage() {
                                         borderColor: '#222',
                                         bgColor: '#8053ff',
                                     }}
+                                    disabled={true}
                                     onClick={rootpaymentsPayment}
                                 >Crypto payment</Button>
                             </Box>
