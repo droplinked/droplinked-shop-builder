@@ -18,7 +18,7 @@ import StripeComponent from "./stripe modal/stripe-modal-component"
 import Loading from "../../../components/shared/loading/Loading"
 
 
-const stripePromise = loadStripe(STRIPE_KEY.LIVE);
+const stripePromise = loadStripe(STRIPE_KEY.TEST);
 
 export default function PaymentPage() {
 
