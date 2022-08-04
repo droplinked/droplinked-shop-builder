@@ -10,6 +10,30 @@
     width: 100%;
     flex-wrap: wrap;
     margin: auto;
+
+    & .merch-description-wrapper{
+      margin-top: 20px;
+
+      & .merch-description{
+        font-weight: 500;
+        font-size: 18px;
+        color: #b3b3b3;
+      }
+      & .merch-limite-description{
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      & .merch-readmore-button{
+        color:#fff;
+        font-size: 16px;
+        width:100%;
+        text-align: center;
+        margin-top: 5px;
+      }
+    }
   }
 
   & .detail-side {
@@ -19,17 +43,18 @@
     flex-direction: column;
     justify-content: space-between;
 
+    & .merch-brandname{
+      color:#ddd;
+      font-size: 26px;
+      font-weight: 600;
+    }
+
     & .merch-title {
       color: white;
       font-weight: 600;
-      font-size: 24px;
+      font-size: 22px;
     }
 
-    & .merch-descroption {
-      font-weight: 500;
-      font-size: 18px;
-      color: #b3b3b3;
-    }
     & .merch-price {
       font-weight: 700;
       font-size: 24px;
@@ -81,42 +106,6 @@
       }
     }
   }
-
-  & .botom-wrapper {
-    max-width: 800px;
-    width: 100%;
-    margin: 40px auto 0px auto;
-    display: flex;
-   flex-direction: column;
-    & .readmore-limited {
-      color: white;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp:3; /* number of lines to show */
-      line-clamp: 3;
-      -webkit-box-orient: vertical;
-      font-size: 18px;
-      font-weight: 500;
-    }
-    & .readmore-orginal {
-      color: white;
-      font-size: 18px;
-      font-weight: 500;
-    }
-
-    & .readmore-btn{
-      color:white;
-      font-size: 14px;
-      margin : 20px auto 0px auto ;
-      border: 1px solid gray;
-      border-radius: 8px;
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-
-    
-  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -127,21 +116,33 @@
     justify-content: center;
 
     & .merch-page-wrapper {
-      max-width: 500px;
+      max-width: 400px;
       width: 100%;
+      
+    & .merch-description-wrapper{
+      margin-top: 20px;
+      padding-right: 20px;
+      overflow: hidden;
+      & .merch-description{
+        font-weight: 500;
+        font-size: 18px;
+        color: #b3b3b3;
+       
+      }
+      & .merch-limite-description{
+        -webkit-line-clamp: 4;
+      }
+    }
     }
 
     & .detail-side {
-      margin-top: 80px;
-      height: 500px;
+      margin-top: 40px;
+      height: 320px;
       padding-left: 0px;
+      padding-bottom: 0px;
 
       & .merch-title {
         font-size: 20px;
-      }
-
-      & .merch-descroption {
-        font-size: 16px;
       }
       & .merch-price {
         font-size: 22px;

@@ -25,6 +25,8 @@ export default function MerchPage() {
     const [images, setImages] = useState([])
     const [quantity, setQuantity] = useState(1)
     const [disableBtn, setDisableBtn] = useState(false)
+    // state for change description limited
+    const [readmore, setReadmore] = useState(false)
 
     const [optionTypes, setOptionTypes] = useState(null)
     const [optionsValue, setOptionsValue] = useState(null)
@@ -39,6 +41,7 @@ export default function MerchPage() {
 
     let params = useParams();
     let merchId = params.merchId;
+    let shopname = params.shopname;
 
 
     useEffect(() => {
@@ -250,8 +253,9 @@ export default function MerchPage() {
                     {/* imgage side */}
 
                     <div className="detail-side col-12 col-md-6">
+                        <p className="merch-brandname">{shopname}</p>
                         <p className="merch-title">{product.title}</p>
-                        <p className="merch-descroption">{product.description}</p>
+
                         <p className="merch-price">{`$${(sku != null) ? (sku.price) : ""}`}</p>
 
                         {(options && optionTypes.length > 0) &&
@@ -287,7 +291,11 @@ export default function MerchPage() {
 
                         </div>
                     </div>
-
+                    <div className="merch-description-wrapper">
+                    <p className={`merch-description ${(readmore)?"":'merch-limite-description'}`}>{product.description}</p>
+                    <button className="merch-readmore-button" onClick={()=>{setReadmore(p => !p)}}>Readmore</button>
+                    </div>
+                    
                 </div>
             }
 
