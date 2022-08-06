@@ -21,10 +21,15 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+  
   }
   & .nft {
     color: white;
     font-size: 20px;
+    & code {
+      color:#8053ff;
+    }
   }
   & .btn-rule-item {
     font-size: 16px;

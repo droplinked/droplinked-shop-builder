@@ -32,10 +32,10 @@ function RuleSetPage() {
 		<div  className="d-flex justify-content-center align-items-center w-100 h-auto " style={{maxWidth:"980px" , margin:"auto"}}>
 			<div className="rule-set-page">
 				<div className="title">Rulesets</div>
-				{(rules) && <div className="rule-number">{rules.length} Rule sets</div>}
+				{(rules) && <div className="rule-number">{rules.length} Listed</div>}
 				<div className="mt-5 mb-5 w-100 d-flex justify-content-center align-items-center">
 					<div className="col-12 col-md-4">
-					<BasicButton click={modalToggle}>Add Rule</BasicButton>
+					<BasicButton click={modalToggle}>Add ruleset</BasicButton>
 					</div>s
 				</div>
 				{(rules) ?

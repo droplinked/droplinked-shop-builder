@@ -37,11 +37,11 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
 
     return (
         <div className="rule-item-wrapper">
-            <div className="name"><p>{name}</p></div>
+            <div className="name"><p>Ruleset name: {name}</p></div>
             {rules.map((rule, i) => {
                 return (<div className="w-100 d-flex justify-content-between mt-1 mb-1" key={i}>
+                    <p className="nft"><code>-</code> {rule.type}</p>
                     <p className="address">{rule.address}</p>
-                    <p className="nft">{rule.type}</p>
                 </div>)
             })}
             <div className="w-100 d-flex justify-content-between mt-4">
