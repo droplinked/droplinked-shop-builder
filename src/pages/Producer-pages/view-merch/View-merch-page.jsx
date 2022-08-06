@@ -161,7 +161,6 @@ export default function ViewMerchPage() {
             :
 
             <div className="add-product-page-wrapper"  >
-                <div className="ims-title mb-5">Add new item</div>
 
                 <div className="col-12 col-md-6 mb-5">
                     <BasicButton bgColor='#fa6653'
