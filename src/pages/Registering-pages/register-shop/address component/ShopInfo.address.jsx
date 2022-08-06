@@ -98,8 +98,8 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
 
             <div className="d-flex justify-content-between w-100">
             <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
-                    onClick={close}>cancel</button>
-                <input type="submit" className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`} value="save" />  
+                    onClick={close}>Cancel</button>
+                <input type="submit" className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`} value="Save" />  
             </div>
         </form>
     </>

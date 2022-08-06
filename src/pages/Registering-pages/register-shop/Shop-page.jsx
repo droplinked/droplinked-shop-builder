@@ -197,8 +197,8 @@ export default function RegisterShop() {
                             <span>{addressData.line1 || addressData.addressLine1}</span>
                             <span>{addressData.Zip || addressData.zip}</span>
                             <div className="m-2 d-flex justify-content-between">
-                                <button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>edit</button>
-                                <button className="edit-address-detail" style={{ color: "red" }} onClick={() => { setAddressdata(undefined) }}>delete</button></div>
+                                <button className="edit-address-detail" onClick={() => { setShowAddress(true) }}>Edit</button>
+                                <button className="edit-address-detail" style={{ color: "red" }} onClick={() => { setAddressdata(undefined) }}>Delete</button></div>
                         </div>
                     }
 
