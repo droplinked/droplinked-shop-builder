@@ -8,6 +8,7 @@ import EditCollectionModal from "../edit-collection-modal/edit-collection-modal-
 import Product from "../../../../components/shared/Product/Product"
 
 import { useToasty } from "../../../../context/toastify/ToastContext"
+import { useProfile } from "../../../../context/profile/ProfileContext"
 import { deleteCollection } from "../../../../api/producer/Collection-api"
 import { Link } from "react-router-dom"
 import { useState } from "react"
@@ -19,9 +20,11 @@ export default function CollectionComponent({collection, edit, render }) {
     const [editModal, setEditModal] = useState(false)
     const [loading, setLoading] = useState(false)
     const { errorToast, successToast } = useToasty();
+    const { profile } = useProfile()
 
     const submitEdit = () => {
     }
+    
 
     const DeleteCollection = async () => {
         setLoading(true)
@@ -42,7 +45,7 @@ export default function CollectionComponent({collection, edit, render }) {
         <div className="Collection-wrapper-component">
             <div className="d-flex justify-content-between align-items-center h-auto">
                 <div className="name">{collection.title}</div>
-                <Link to={`/collection/${collection._id}`}>
+                <Link to={`/${profile.shopName}/collection/${collection._id}`}>
                     <button className="collection-btn">View collection</button>
                 </Link>
             </div>
