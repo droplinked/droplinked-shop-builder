@@ -22,7 +22,7 @@ export default function SmallModal({ show, hide, text, click, header, loading })
                 <ModalOverlay />
                 <ModalContent bgColor="#222">
                     <ModalHeader color="#fff">{header}</ModalHeader>
-                    <ModalCloseButton />
+                   
                     <ModalBody
                         fontWeight='600'
                         fontSize={{ base: "16px", md: '20px' }}
