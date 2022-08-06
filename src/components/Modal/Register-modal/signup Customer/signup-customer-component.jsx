@@ -103,7 +103,7 @@ export default function SignupCustomer({ switchToggle, close }) {
             </form>
 
             <div className="text mt-4">
-                <p>By Creating an account, you agree to the <Link onClick={close} to="/terms">Terms & Conditions</Link> and <Link onClick={close} to="/privacy">Privacy</Link>.</p>
+                <p>By creating an account, you agree to the <Link onClick={close} to="/terms">Terms & Conditions</Link> and <Link onClick={close} to="/privacy">Privacy</Link>.</p>
             </div>
             {/* text */}
             <div className="text mt-2">
