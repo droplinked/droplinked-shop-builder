@@ -20,7 +20,7 @@ export default function DroplinkedImsPage({ products }) {
         <>
             <div className="w-100 d-flex justify-content-center align-items-center mt-5">
                 <Link to="/producer/addProduct" style={{ width: "200px", display: "flex" }}>
-                    <BasicButton>Add merch</BasicButton>
+                    <BasicButton>Add item</BasicButton>
                 </Link>
             </div>
             <div style={{ margin: "15px 0xp" }}>
