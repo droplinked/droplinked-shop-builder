@@ -34,11 +34,11 @@ export default function RegisterShop() {
     const { errorToast } = useContext(toastValue)
     let navigate = useNavigate();
 
-   // let x = 1;
+    // let x = 1;
     let user = profile
     const shopname = user.shopName;
-   // const token = JSON.parse(localStorage.getItem('token'));
-    
+    // const token = JSON.parse(localStorage.getItem('token'));
+
 
 
     // useEffect(() => {
@@ -132,25 +132,23 @@ export default function RegisterShop() {
                     <InputImage image={profileImg} setImage={setProfileImg} />
 
                     <div className="register-label-input ">
-                        <label>domain</label>
+                        <label>Shop name</label>
+                        <input
+                            type="text"
+                            placeholder="Shop name"
+                            value={description}
+                            onChange={changeDescription}
+                        />
+                    </div>
+
+                    <div className="register-label-input ">
+                        <label>Domain</label>
                         <input type="text" placeholder="" value={`droplinked.io/${shopname}`} readOnly />
                     </div>
 
-                    <div className="register-label-input ">
-                        <label>about your shop</label>
-                        <textarea
-                            rows="4"
-                            cols="50"
-                            type="text"
-                            value={description}
-                            onChange={changeDescription}
-                            placeholder='About your shop'
-                        >
-                        </textarea>
-                    </div>
 
                     <div className="register-label-input ">
-                        <label>website</label>
+                        <label>Website</label>
                         <input
                             type="text"
                             placeholder="www.example.com"
@@ -160,30 +158,30 @@ export default function RegisterShop() {
                     </div>
 
                     <div className="register-label-input ">
-                        <label>discord</label>
+                        <label>Discord</label>
                         <input
                             type="text"
-                            placeholder="username"
+                            placeholder="Username"
                             value={discord}
                             onChange={changeDiscord}
                         />
                     </div>
 
                     <div className="register-label-input ">
-                        <label>twitter</label>
+                        <label>Twitter</label>
                         <input
                             type="text"
-                            placeholder="username"
+                            placeholder="Username"
                             value={twitter}
                             onChange={changeTwitter}
                         />
                     </div>
 
                     <div className="register-label-input ">
-                        <label>instagram</label>
+                        <label>Instagram</label>
                         <input
                             type="text"
-                            placeholder="username"
+                            placeholder="Username"
                             value={instagram}
                             onChange={changeInstagram}
                         />
@@ -207,10 +205,10 @@ export default function RegisterShop() {
                     <div className="d-flex justify-content-between w-100">
                         <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
                             onClick={() => { navigate("/register/personalInfo") }}
-                        >back</button>
+                        >Back</button>
                         <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
                             onClick={submitForm}
-                        >next</button>
+                        >Next</button>
                     </div>
                 </>
                 }
