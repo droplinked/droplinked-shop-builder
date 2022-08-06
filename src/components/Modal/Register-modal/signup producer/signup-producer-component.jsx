@@ -86,8 +86,8 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
 
                 {/* input */}
                 <div className="input-label">
-                    <label >Confirm Password</label>
-                    <input type="password" placeholder="Confirm Password"
+                    <label >Confirm password</label>
+                    <input type="password" placeholder="Confirm password"
                         {...register("confirmPassword", { required: true, minLength: 8 })} />
                     {errors.confirmPassword?.type === 'required' && <span className="signup-modal-error">Password is required.</span>}
                     {errors.confirmPassword?.type === 'minLength' && <span className="signup-modal-error">Password must be at least 8 characters.</span>}
