@@ -96,19 +96,19 @@ export default function AddCollectionPage({ toggle }) {
 
     return (
         <div className="add-collection-page-wrapper">
-            <div className="title">New Collection</div>
+            <div className="title">New collection</div>
             {(rules)
                 ?
                 <>
                     <div className="mt-5">
-                        <FormInput label={"Collection Name"} changeValue={changeName} value={collectionName} />
+                        <FormInput label={"Collection name"} changeValue={changeName} value={collectionName} />
                     </div>
                     {/* <div className="mt-5">
                              <InputImageComponent state={Images} setState={setImages} />
                          </div> 
                     */}
                     <div className="mt-5">
-                        <Dropdown value={selectedRule} pairArray={rules} change={changeRule} placeholder={"Choose Rule"} />
+                        <Dropdown value={selectedRule} pairArray={rules} change={changeRule} placeholder={"Choose ruleset"} />
                     </div>
                 </>
                 :
