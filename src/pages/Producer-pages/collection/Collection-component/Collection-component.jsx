@@ -43,7 +43,7 @@ export default function CollectionComponent({collection, edit, render }) {
             <div className="d-flex justify-content-between align-items-center h-auto">
                 <div className="name">{collection.title}</div>
                 <Link to={`/collection/${collection._id}`}>
-                    <button className="collection-btn">View Collection</button>
+                    <button className="collection-btn">View collection</button>
                 </Link>
             </div>
             {(collection.products.length == 0)

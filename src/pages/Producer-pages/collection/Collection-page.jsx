@@ -49,9 +49,9 @@ export default function CollectionMainPage() {
     return (<>
         <div className="Collection-page-wrapper">
             <div className="ims-title">Collections</div>
-            <div className="number-of-merchs">{collectins && collectins.length} Collection</div>
+            <div className="number-of-merchs">{collectins && collectins.length} Listed</div>
             <div className="mt-5 col-12 col-md-3 ">
-                <BasicButton click={ToggleModal}>Add Collection</BasicButton>
+                <BasicButton click={ToggleModal}>Add collection</BasicButton>
             </div>
 
             {(collectins)
