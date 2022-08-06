@@ -1,70 +1,70 @@
-.thank-for-register-wrapper {
-    margin:auto;
-  width: 100%;
-  height: auto;
-  padding: 0px 80px;
+// .thank-for-register-wrapper {
+//     margin:auto;
+//   width: 100%;
+//   height: auto;
+//   padding: 0px 80px;
 
-  p {
-    font-family: "AvenirNext";
-    font-style: normal;
-  }
-  .thank-for-register-title {
-    font-weight: 500;
-    font-size: 60px;
-    text-align: center;
-    color: #ffffff;
-  }
+//   p {
+//     font-family: "AvenirNext";
+//     font-style: normal;
+//   }
+//   .thank-for-register-title {
+//     font-weight: 500;
+//     font-size: 60px;
+//     text-align: center;
+//     color: #ffffff;
+//   }
 
-  .thank-for-register-detail {
-      margin-top:10px;
-    font-weight: 400;
-    font-size: 24px;
-    text-align: center;
-    color: #ffffff;
-    span {
-      font-weight: 600;
-    }
-  }
-  .resend-email-link {
-    margin-top:100px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 18px;
-    text-align: center;
-    color: #ffffff;
-  }
-  .con-to-homepage {
-    margin-top:20px;
-     align-items: center;
-    color: #ffffff;
-    background: #8053ff;
-    border-radius: 8px;
-    padding: 13px 16px;
-    font-weight: 600;
-    font-size: 20px;
-  }
-}
+//   .thank-for-register-detail {
+//       margin-top:10px;
+//     font-weight: 400;
+//     font-size: 24px;
+//     text-align: center;
+//     color: #ffffff;
+//     span {
+//       font-weight: 600;
+//     }
+//   }
+//   .resend-email-link {
+//     margin-top:100px;
+//     cursor: pointer;
+//     font-weight: 500;
+//     font-size: 18px;
+//     text-align: center;
+//     color: #ffffff;
+//   }
+//   .con-to-homepage {
+//     margin-top:20px;
+//      align-items: center;
+//     color: #ffffff;
+//     background: #8053ff;
+//     border-radius: 8px;
+//     padding: 13px 16px;
+//     font-weight: 600;
+//     font-size: 20px;
+//   }
+// }
 
-@media only screen and (max-width: 768px) {
-  .thank-for-register-wrapper {
-    padding: 0px 20px;
+// @media only screen and (max-width: 768px) {
+//   .thank-for-register-wrapper {
+//     padding: 0px 20px;
 
-      .thank-for-register-title {
-        font-size: 50px;
-      }
+//       .thank-for-register-title {
+//         font-size: 50px;
+//       }
     
-      .thank-for-register-detail {
-          margin-top:10px;
-        font-size: 16px;
+//       .thank-for-register-detail {
+//           margin-top:10px;
+//         font-size: 16px;
 
-      }
-      .resend-email-link {
-        font-size: 14px;
-      }
-      .con-to-homepage {
-        margin-top:10px;
-        padding: 13px 16px 11px 16px;
-        font-size: 16px;
-      }
-  }
-}
+//       }
+//       .resend-email-link {
+//         font-size: 14px;
+//       }
+//       .con-to-homepage {
+//         margin-top:10px;
+//         padding: 13px 16px 11px 16px;
+//         font-size: 16px;
+//       }
+//   }
+// }
