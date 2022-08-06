@@ -45,7 +45,7 @@ import {
         })}
         <p>{`Quantity:  ${variant.quantity}`}</p>
         <p>{`Price: $${variant.price}`}</p>
-        {variant.externalID && <p>{`ExternalID: ${variant.externalID}`}</p>}
+        {variant.externalID && <p>{`External id: ${variant.externalID}`}</p>}
         {/* <button className="edit-btn" onClick={decentrilize}>
           Record
         </button> */}
