@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Flex, Box, Text, Button } from "@chakra-ui/react";
+import { Flex, Box, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../context/cart/CartContext"
 
@@ -43,7 +43,7 @@ function CheckoutPage() {
 				cart.items.forEach(item => {
 					if (item.shopName == shopname) {
 						items.push(item)
-						totalPrice += (item.price * item.quantity)
+						totalPrice = item.totalPrice
 					}
 				})
 				newCart.push({ shopName: shopname, items: items, total: totalPrice, shipping: 5 })

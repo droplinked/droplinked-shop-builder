@@ -1,11 +1,9 @@
-import { Box, Flex, Text } from "@chakra-ui/react"
+import { Box, Text } from "@chakra-ui/react"
 
 import CheckoutItem from "./CheckoutItem"
 
 export default function CheckoutShopItem({ shopItem }) {
 
-    let totalPrice = 0;
-    shopItem.items.forEach(item => totalPrice += (item.quantity * item.price))
 
     return (<>
         <Box mb="50px">
@@ -35,7 +33,7 @@ export default function CheckoutShopItem({ shopItem }) {
                     color="#fff"
                     fontSize="16px"
                 >
-                     Total cost : ${totalPrice}
+                     Total cost : ${shopItem.total}
                 </Text>
                 <Text
                     mt="10px"

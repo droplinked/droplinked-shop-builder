@@ -30,6 +30,8 @@ export default function PaymentPage() {
     const { cart } = useCart();
     let navigate = useNavigate();
 
+    console.log(cart);
+
 
     const appearance = {
         theme: 'night',
@@ -46,7 +48,7 @@ export default function PaymentPage() {
     const getTotalofMerchs = () => {
         let merchsPrice = 0;
         cart.items.forEach((item) => {
-            merchsPrice += (item.price * item.quantity)
+            merchsPrice += item.totalPrice 
         })
         return merchsPrice
     }

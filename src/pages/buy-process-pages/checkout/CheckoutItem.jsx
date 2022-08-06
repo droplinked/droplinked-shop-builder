@@ -17,14 +17,15 @@ export default function CheckoutItem({ product }) {
     const { successToast, errorToast } = useToasty()
 
 
-    // text for show variants value
-    let findSku = product.Product.skus.find(sku => sku._id == product.skuID)
-    let variantText = ""
-    findSku.options.forEach(option => { variantText += `${option.variantName}:${option.value}  \xa0\xa0\xa0` })
 
+    // text for show variants value
+    //  let findSku = product.Product.skus.find(sku => sku._id == product.skuID)
+    // let variantText = ""
+    // findSku.options.forEach(option => { variantText += `${option.variantName}:${option.value}  \xa0\xa0\xa0` })
 
     //delete merch
     const deleteMerch = async () => {
+
         setDisableDeleteBtn(true)
         let result = await deleteSkuFromCart(product.skuID)
         if (result == true) {
@@ -72,7 +73,7 @@ export default function CheckoutItem({ product }) {
                 flexDirection="row"
             >
                 <Image
-                    src={product.Product.media[0].url}
+                    src={product.product.media[0].url}
                     alt='product image'
                     w="80px"
                     h="80px"
@@ -90,7 +91,7 @@ export default function CheckoutItem({ product }) {
                         mb="5px"
                         overflow='hidden'
                     >
-                        {product.Product.title}
+                        {product.product.title}
                     </Text>
 
                     <Text
@@ -101,9 +102,9 @@ export default function CheckoutItem({ product }) {
                         fontSize={{ base: "14px", md: "13px" }}
                         mb="5px"
                     >
-                        {product.Product.description}
+                        {product.product.description}
                     </Text>
-                    {(variantText != "") &&
+                    {/* {(variantText != "") &&
                         <Text
                             color="#ddd"
                             fontWeight="500"
@@ -111,7 +112,7 @@ export default function CheckoutItem({ product }) {
                         >
                             {variantText}
                         </Text>
-                    }
+                    } */}
                 </Flex>
 
             </Flex>
@@ -123,14 +124,14 @@ export default function CheckoutItem({ product }) {
                 alignItems="center"
                 justifyContent="space-between"
             >
-
+                {/* 
                 <Text
                     color="#fff"
                     fontWeight="600"
                     fontSize="18"
                 >
                     ${findSku.price}
-                </Text>
+                </Text> */}
 
                 <ButtonGroup size="md" isAttached variant='outline'>
                     <IconButton
