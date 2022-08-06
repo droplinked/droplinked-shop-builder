@@ -13,8 +13,8 @@ export default function Product({  title, imageUrl, id , shopname}){
                     </div>
                     {/* {viewBtn && <div className="product-view-button"><p>View</p></div>} */}
                 </div>
-            </Link>
-            <div className="brand-name">{title}</div>
+                <div className="brand-name">{title}</div>
+            </Link>        
         </div>
     )
 
