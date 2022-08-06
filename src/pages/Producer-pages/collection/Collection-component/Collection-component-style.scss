@@ -19,16 +19,19 @@
     font-size: 14px;
     padding: 8px 15px;
   }
-
-  & .edit-img {
-    height: 28px;
-    width: 28px;
+  & .collection-edit-btn {
+    color:#8053ff;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  & .collection-delete-img {
+    color:#ff5353;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
   }
 
-  & .delete-img {
-    width: 34px;
-    height: 34px;
-  }
 
   & .no-pro-text {
     color: white;
@@ -61,6 +64,12 @@
       border-radius: 8px;
       font-size: 14px;
       padding: 8px 15px 5px 15px;
+    }
+    & .collection-edit-btn {
+      font-size: 14px;
+    }
+    & .collection-delete-img {
+      font-size: 14px;
     }
 
     & .no-pro-text {

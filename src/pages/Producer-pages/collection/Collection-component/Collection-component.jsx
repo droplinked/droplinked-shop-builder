@@ -13,7 +13,7 @@ import { deleteCollection } from "../../../../api/producer/Collection-api"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export default function CollectionComponent({collection, edit, render }) {
+export default function CollectionComponent({ collection, edit, render }) {
 
 
     const [deleteModal, setDeleteModal] = useState(false)
@@ -24,7 +24,7 @@ export default function CollectionComponent({collection, edit, render }) {
 
     const submitEdit = () => {
     }
-    
+
 
     const DeleteCollection = async () => {
         setLoading(true)
@@ -52,7 +52,7 @@ export default function CollectionComponent({collection, edit, render }) {
             {(collection.products.length == 0)
                 ?
                 <div className="d-flex">
-                    <p className="text-align-center no-pro-text">No Product</p>
+                    <p className="text-align-center no-pro-text">Empty</p>
                 </div>
                 :
                 <div className="mt-4 d-flex flex-wrap">
@@ -69,8 +69,8 @@ export default function CollectionComponent({collection, edit, render }) {
 
             {(collection.type != "DEFAULT_PUBLIC") && <>
                 <div className="d-flex justify-content-between align-items-center h-auto">
-                    <img src={editIcon} onClick={edit} alt="icon" className="edit-img" style={{ cursor: "pointer" }} />
-                    <img src={deleteIcon} onClick={() => setDeleteModal(true)} alt="icon" className="delete-img" style={{ cursor: "pointer" }} />
+                    <p className="collection-delete-img" onClick={() => setDeleteModal(true)}>Delete</p>
+                    <p className="collection-edit-btn" onClick={edit} >Edit</p>
                 </div>
             </>}
 
