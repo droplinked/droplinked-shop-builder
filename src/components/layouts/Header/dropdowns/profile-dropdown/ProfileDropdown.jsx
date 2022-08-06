@@ -79,10 +79,10 @@ const ProfileDropdown = ({ close }) => {
                     <ProfileItem click={close}>Rulesets</ProfileItem>
                 </Link>
                 <Link to="/producer/collection" >
-                    <ProfileItem click={close}>Collection</ProfileItem>
+                    <ProfileItem click={close}>Collections</ProfileItem>
                 </Link>
                 <Link to="/producer/orders" >
-                    <ProfileItem click={close}>Incoming Orders</ProfileItem>
+                    <ProfileItem click={close}>Incoming orders</ProfileItem>
                 </Link>
 
             </>}
