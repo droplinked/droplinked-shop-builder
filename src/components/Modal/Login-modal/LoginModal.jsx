@@ -98,14 +98,14 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                     <input type="email" placeholder="Example@email.com"
                         {...register("email", { required: true })} />
                 </div>
-                {errors.email?.type == 'required' && <span className="signup-modal-error">email is required</span>}
+                {errors.email?.type == 'required' && <span className="signup-modal-error">Email is required</span>}
 
                 <div className="input-label">
                     <label >Password</label>
                     <input type="password" placeholder="Password"
                         {...register("password", { required: true })} />
                 </div>
-                {errors.password?.type == 'required' && <span className="signup-modal-error">password is required</span>}
+                {errors.password?.type == 'required' && <span className="signup-modal-error">Password is required</span>}
                 <button className="submit-login-modal" type="submit" disabled={(loading) ? true : false}
                     style={{ backgroundColor: `${(loading == true) ? "#4A4A4A" : ""}` }}
                 >Login</button>
