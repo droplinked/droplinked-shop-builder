@@ -11,6 +11,8 @@ export default function InputImage({ image, setImage }) {
     const inputFile = useRef(null);
     const { successToast, errorToast } = useToasty()
     const [loading, setLoading] = useState(false)
+
+
     const changeImage = (e) => {
 
         const file = e.target.files[0];
@@ -127,7 +129,7 @@ export default function InputImage({ image, setImage }) {
                     border='6px'
                     borderColor='#8053ff'
                     borderRadius='100%'
-                    backgroundSize='cover'
+                    backgroundSize={(image == "")?"50%":'cover'}
                     bgRepeat='no-repeat'
                     bgPosition='center'
                     display='flex'
