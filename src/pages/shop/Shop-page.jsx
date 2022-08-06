@@ -12,7 +12,9 @@ import TopSection from "../../components/shared/TopSection/TopSection"
 
 export default function ShopPage() {
 
-    const [profile, setProfile] = useState(null)
+    // state for shop information
+    const [shopData, setShop] = useState(null)
+    // state for collections date
     const [collection, setCollections] = useState(null)
 
     let { shopname } = useParams();
@@ -21,9 +23,11 @@ export default function ShopPage() {
     useEffect(() => {
 
         const getData = async (shop) => {
+            // get shop data for top section
             let shopinfo = await getShopInfoByShopname(shop)
+            // get shop's collections data
             let collections = await getCollectionsByShopname(shop)
-            setProfile(shopinfo)
+            setShop(shopinfo)
             setCollections(collections)
         }
 
@@ -32,38 +36,57 @@ export default function ShopPage() {
     }, [shopname])
 
 
+    // check if doesnt exist any product in all collections dont show any collection
+    const checkCollectionState = () => {
+
+        if (collection == null) return false
+
+        let flag = false;
+        collection.collections.forEach(collection => {
+            if (collection.products.length > 0) flag = true
+        })
+        return flag
+
+    }
+
+
+
     return (<>
-        {(profile == null) ?
+        {(shopData == null) ?
             <Loading />
             :
             <div className='shop-page-container'>
                 <TopSection
-                    pic={profile.logo}
-                    shopname={profile.name}
-                    instagram={(profile.instagramUrl) ? profile.instagramUrl : ""}
-                    twitter={(profile.twitterUrl) ? profile.twitterUrl : ""}
-                    discord={(profile.discordUrl) ? profile.discordUrl : ""}
-                    web={(profile.webUrl) ? profile.webUrl : ""}
+                    pic={shopData.logo}
+                    shopname={shopData.name}
+                    instagram={(shopData.instagramUrl) ? shopData.instagramUrl : ""}
+                    twitter={(shopData.twitterUrl) ? shopData.twitterUrl : ""}
+                    discord={(shopData.discordUrl) ? shopData.discordUrl : ""}
+                    web={(shopData.webUrl) ? shopData.webUrl : ""}
                 />
-                <div 
-                style={{
-                    display:"flex",
-                    flexDirection:'column',
-                    alignItems:'center',
-                    margin:'40px 20px 0px 20px',
-                }}
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        margin: '40px 20px 0px 20px',
+                    }}
                 >
-                
-                {(collection == null) ?
-                    <></>
-                    :
-                    <>
-                        {collection.collections.map((coll, i) => {
-                            return <Collection key={i} collection={coll} shopname={shopname} />
-                        })}
-                    </>
-                }
-</div>
+
+                    {(checkCollectionState()) ?
+                        // if exist any product show collections that have product
+                        <>
+                            {collection.collections.map((coll, i) => {
+                                // show collection if it have any product
+                                if (coll.products.length > 0) return <Collection key={i} collection={coll} shopname={shopname} />
+                            })}
+                        </>
+                        :
+                        <p className="no-collection-text">
+                            No collections listed yet!
+                        </p>
+                    }
+                </div>
             </div>
         }
 
