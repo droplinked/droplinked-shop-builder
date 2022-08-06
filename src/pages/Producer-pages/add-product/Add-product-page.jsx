@@ -182,7 +182,7 @@ function AddProductPage() {
                 <InputImagesGroup setState={setImages} state={images} />
             </div>
             <div className="select-variant-wrap mt-4">
-                <p>Choose options : </p>
+                <p>Choose options: </p>
                 {(varintType != null) &&
                     <>
                         {varintType.map(item => {
