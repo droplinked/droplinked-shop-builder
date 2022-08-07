@@ -3,6 +3,7 @@ import { Flex, Code, Box } from "@chakra-ui/react"
 import { useToasty } from "../../../context/toastify/ToastContext"
 
 import BasicButton from "../../shared/BasicButton/BasicButton"
+import ModalContainer from "../modal-container/modal-container"
 
 const IframeSnipped = ({ code, close }) => {
 
@@ -16,50 +17,29 @@ const IframeSnipped = ({ code, close }) => {
 
 
     return (
-        <Flex
-            pos='fixed'
-            zIndex='10'
-            top='0'
-            left='0'
-            overflow='auto'
-            h='100%'
-            w='100%'
-            bgColor='rgba(0, 0, 0, 0.4)'
-            justifyContent='center'
-            alignItems='center'
-        >
-            <Flex
-                bgColor='black'
-                w='90%'
+        <ModalContainer close={close}>
+            <Code
+                whiteSpace='pre-line'
+                children={code}
+                bgColor='#141414'
+                fontSize={{ base: "12px", md: '16px' }}
+                color='#8059ff'
+                w='100%'
                 h='auto'
-                py='30px'
-                px='15px'
-                maxW='600px'
-                borderRadius='12px'
-                flexDir='column'
-                alignItems='flex-end'
+                borderRadius='8px'
+                p='5px'
+            />
+            <Flex
+                mt='20px'
+                mb={{base:'-40px' ,md:'-20px'}}
+                w='100%'
+                h='35px'
+                justifyContent='space-between'
             >
-                <Code
-                    whiteSpace='pre-line'
-                    children={code}
-                    bgColor='black'
-                    fontSize={{ base: "12px", md: '16px' }}
-                    color='#8059ff'
-                    w='100%'
-                    h='auto'
-                />
-                <Flex
-                    mt='20px'
-                    w={{ base: '100%', md: '350px' }}
-                    h='35px'
-                    justifyContent='space-between'
-                >
-                    <Box w={{ base: '100px', md: '150px' }}><BasicButton fontSize={{base:'14px' , md:"16px"}} click={embed} >Click to copy</BasicButton></Box>
-                    <Box w={{ base: '100px', md: '150px' }}><BasicButton bgColor='red' fontSize={{base:'14px' , md:"16px"}} click={close}>Cancel</BasicButton></Box>
-                </Flex>
+                <Box w={{ base: '100px', md: '150px' }}><BasicButton bgColor='#4A4A4A' fontSize={{ base: '14px', md: "16px" }} click={close}>Cancel</BasicButton></Box>
+                <Box w={{ base: '100px', md: '150px' }}><BasicButton fontSize={{ base: '14px', md: "16px" }} click={embed} >Click to copy</BasicButton></Box>
             </Flex>
-
-        </Flex>
+        </ModalContainer>
     )
 }
 
