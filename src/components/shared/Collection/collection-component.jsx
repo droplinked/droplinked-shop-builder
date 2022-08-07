@@ -1,29 +1,26 @@
 
 import { useNavigate } from "react-router-dom";
-import { useToasty } from "../../../context/toastify/ToastContext"
 import { Flex, Text, Box } from "@chakra-ui/react"
+import { useState } from "react";
 
 import Product from "../Product/Product"
+import IframeSnipped from "../../Modal/Iframe-snipped-modal/Iframe-snipped-modal"
 
 export default function Collection({ collection, shopname }) {
 
+    // state for show snipped modal
+    const [snippedModal, setSnippedModal] = useState(false)
 
-    const { successToast } = useToasty()
     const navigate = useNavigate()
 
-    let iframe = `<iframe
-            style={{width:'100%' , height:"100%"  , overflow:'hidden' }}
+    let iframeCode = `<iframe  
+    style={{width:'100%' , height:"100%"  , overflow:'hidden' }}
             scrolling="no"
                 title='product'
                 src='${window.location.origin}/collection-iframe/${collection._id}'
                 allowFullScreeng
             />`
 
-    const embed = () => {
-        navigator.clipboard.writeText(iframe).then(function () {
-            successToast('Copying to clipboard was successful!');
-        });
-    }
 
     const seeMore = () => {
         navigate(`/${shopname}/collection/${collection._id}`)
@@ -50,7 +47,7 @@ export default function Collection({ collection, shopname }) {
                 >
                     <Text
                         color='#fff'
-                        fontSize={{ base: '10px', sm:'16px', md: '22px' }}
+                        fontSize={{ base: '10px', sm: '16px', md: '22px' }}
                         fontWeight='600'
                     >{collection.title}</Text>
                     <Flex >
@@ -58,7 +55,7 @@ export default function Collection({ collection, shopname }) {
                             p={{ base: "4px 10px 1px 10px", md: '4px 20px' }}
                             color='#fff'
                             bgColor="#353536"
-                            fontSize={{ base: "6px" , sm:'8px', md: '14px' }}
+                            fontSize={{ base: "6px", sm: '8px', md: '14px' }}
                             fontWeight="500"
                             borderRadius='8px'
                             justifyContent='center'
@@ -67,7 +64,7 @@ export default function Collection({ collection, shopname }) {
                             _hover={{
                                 bgColor: "#555558"
                             }}
-                            onClick={embed}
+                            onClick={() => { setSnippedModal(true) }}
                         >
                             Embed collection
                         </Flex>
@@ -75,7 +72,7 @@ export default function Collection({ collection, shopname }) {
                             p={{ base: "4px 10px 1px 10px", md: '4px 20px' }}
                             color='#fff'
                             bgColor="#353536"
-                            fontSize={{ base: "6px" , sm:'8px', md: '14px' }}
+                            fontSize={{ base: "6px", sm: '8px', md: '14px' }}
                             fontWeight="500"
                             borderRadius='8px'
                             justifyContent='center'
@@ -131,6 +128,7 @@ export default function Collection({ collection, shopname }) {
                 </Flex>
 
             </Flex>
+            {snippedModal && <IframeSnipped code={iframeCode} close={() => { setSnippedModal(false) }} />}
         </>
     )
 }
