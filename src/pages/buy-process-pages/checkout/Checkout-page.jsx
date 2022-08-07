@@ -18,7 +18,9 @@ function CheckoutPage() {
 
 	// get shops of items
 	const getshops = () => {
+		// get all shops in cart
 		let shopArray = cart.items.map(item => item.shopName)
+		// make unique array for shops
 		let shops = [...new Set(shopArray)];
 		return shops
 	}
@@ -26,7 +28,8 @@ function CheckoutPage() {
 
 	//get total price of all items
 	const getTotalPrice = () => {
-		let total = cartBaseShop.map(item => { return (item.total + 5) })
+		// get total of each shop + 5 (shipping)
+		let total = cartBaseShop.map(shop => { return (shop.total + 5) })
 		total = total.reduce((a, b) => a + b, 0)
 		return total
 	}
@@ -35,17 +38,20 @@ function CheckoutPage() {
 	useEffect(() => {
 		if (cart != null) {
 			let newCart = []
+			// get array of shop names  without  repeat
 			let shops = getshops()
-
+			//map over shop name
 			shops.map(shopname => {
 				let totalPrice = 0;
 				let items = []
+				// get items and totalprice of each shop
 				cart.items.forEach(item => {
 					if (item.shopName == shopname) {
 						items.push(item)
 						totalPrice = item.totalPrice
 					}
 				})
+				// new cart base on shop: {shopname:'' , items:[] , totalprice:number , shipping:5}
 				newCart.push({ shopName: shopname, items: items, total: totalPrice, shipping: 5 })
 			})
 			setCart(newCart)
@@ -65,7 +71,6 @@ function CheckoutPage() {
 			{(cart == null)
 				?
 				<Loading />
-
 				:
 				<>
 					{(cart.items.length == 0)

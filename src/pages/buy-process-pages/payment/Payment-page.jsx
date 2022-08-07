@@ -30,8 +30,6 @@ export default function PaymentPage() {
     const { cart } = useCart();
     let navigate = useNavigate();
 
-    console.log(cart);
-
 
     const appearance = {
         theme: 'night',
@@ -45,14 +43,17 @@ export default function PaymentPage() {
         appearance
     };
 
+    // get total cost of merchs 
     const getTotalofMerchs = () => {
         let merchsPrice = 0;
+        // map on all cart items and get total price of each item
         cart.items.forEach((item) => {
             merchsPrice += item.totalPrice 
         })
         return merchsPrice
     }
 
+    // find all shop's name and build unique array and set $5 for each shop
     const getTotalofShipping = () => {
         let shops = cart.items.map((merch) => merch.shopName)
         shops = [...new Set(shops)];
