@@ -28,3 +28,15 @@ const token = JSON.parse(localStorage.getItem("token"));
     return err.response.data;
   }
 };
+
+export const isJwtValid = async () => { 
+  const token = JSON.parse(localStorage.getItem("token"));
+    try {
+      const res = await axios.get(`${BASE_URL}/profile`, {
+        headers: { Authorization: "Bearer " + token },
+      });
+      return true
+    } catch (err) {
+      return false
+    }
+  };
