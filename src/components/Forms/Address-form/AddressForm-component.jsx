@@ -9,10 +9,11 @@ import BasicButton from "../../shared/BasicButton/BasicButton"
 
 export default function AddressForm({ type, addressBook, close }) {
 
+    // address context functions for add new address or update address
     const { addAddress, updateAddress } = useAddress()
 
-
     // form values states
+    // if get address book on props set addressbook value for default or not set '' for default value
     const [line1, setLine1] = useState((addressBook) ? addressBook.addressLine1 : '')
     const [line2, setLine2] = useState((addressBook) ? addressBook.addressLine2 : '')
     const [country, setCountry] = useState((addressBook) ? addressBook.country : '')
@@ -23,7 +24,6 @@ export default function AddressForm({ type, addressBook, close }) {
     const [lastname, setLastname] = useState((addressBook) ? addressBook.lastname : '')
     // state for show wrror
     const [error, setError] = useState('')
-
     // state for loading mode
     const [loading, setLoading] = useState(false)
 
@@ -69,20 +69,19 @@ export default function AddressForm({ type, addressBook, close }) {
         if (error == 'lastname') setError('')
     }
 
+
     // submit form
     const submitForm = async () => {
 
-       
-
+        // validate form if has invalid data stop function
         let validation = validationForm()
-
         if (!validation) return
-
        
-        let formDate 
+        let formData 
 
+        // object for customer or producer
         if(type == "CUSTOMER"){
-            formDate = {
+            formData = {
                 firstname: firstname,
                 lastname: lastname,
                 addressLine1: line1,
@@ -94,7 +93,7 @@ export default function AddressForm({ type, addressBook, close }) {
                 addressType: type
             }
         }else{
-             formDate = {
+             formData = {
                 addressLine1: line1,
                 addressLine2: line2,
                 country: country,
@@ -106,11 +105,13 @@ export default function AddressForm({ type, addressBook, close }) {
         }
 
         setLoading(true)
+
         let result
+        
         if (addressBook) {
-            result = await updateAddress(formDate, addressBook._id);
+            result = await updateAddress(formData, addressBook._id);
         } else {
-            result = await addAddress(formDate);
+            result = await addAddress(formData);
         }
         setLoading(false)
 
@@ -232,16 +233,16 @@ export default function AddressForm({ type, addressBook, close }) {
                 >
                     <FormInput
                         w='45%'
-                        label={"First Name"}
-                        placeholder={"firstnams"}
+                        label={"First name"}
+                        placeholder={"First name"}
                         value={firstname}
                         changeValue={ChangeFirstname}
                         isError={(error == "firstname") && "firstname is required"}
                     />
                     <FormInput
                         w='45%'
-                        label={"Last Name"}
-                        placeholder={"lastname"}
+                        label={"Last name"}
+                        placeholder={"Last name"}
                         value={lastname}
                         changeValue={ChangeLastname}
                         isError={(error == "lastname") && "Lastname is required"}
@@ -255,7 +256,7 @@ export default function AddressForm({ type, addressBook, close }) {
                 justifyContent='space-between'
                 alignItems='center'
             >
-                <BasicButton w='45%' p='12px 16px' click={close} loading={loading} disabled={loading} >Cansel</BasicButton>
+                <BasicButton w='45%' p='12px 16px' click={close} loading={loading} disabled={loading} >Cancel</BasicButton>
                 <BasicButton w='45%' p='12px 16px' click={submitForm} loading={loading} disabled={loading}>Submit</BasicButton>
             </Flex>
         </Box>
