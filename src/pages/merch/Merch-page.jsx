@@ -301,7 +301,7 @@ export default function MerchPage() {
                     {/* description */}
                     <div className="merch-description-wrapper">
                         <p className={`merch-description ${(readmore) ? "" : 'merch-limite-description'}`}>{product.description}</p>
-                        <button className="merch-readmore-button" onClick={() => { setReadmore(p => !p) }}>Readmore</button>
+                        <button className="merch-readmore-button" onClick={() => { setReadmore(p => !p) }}>Read more</button>
                     </div>
                     {/* description */}
 

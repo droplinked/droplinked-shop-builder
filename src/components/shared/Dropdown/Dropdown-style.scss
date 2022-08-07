@@ -1,15 +1,16 @@
 .basic-dropdown-component-wrapper {
     width: 100%;
     & select {
-      border: 2px solid #b3b3b3;
+      border: 2px solid #353536;
       border-radius: 8px;
-      padding: 12px 16px;
+      padding: 6px 12px;
       outline: none;
       background-color: transparent;
       color: #fff;
       font-weight: 600;
       font-size: 20px;
       transition: 0.5s;
+      background-color: #353536;
   
       & option {
         color: #fff;
