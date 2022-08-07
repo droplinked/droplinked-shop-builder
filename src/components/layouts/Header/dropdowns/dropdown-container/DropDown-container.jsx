@@ -30,6 +30,7 @@ const DropdownContainer = ({ close , dropdown }) => {
         event.stopPropagation();
       };
 
+      // return dropdown component match with props
       const dropdownType = () => {
         switch(dropdown){
           case DROPDOWN_TYPE.PROFILE:
