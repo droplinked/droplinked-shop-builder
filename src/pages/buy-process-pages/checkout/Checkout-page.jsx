@@ -116,7 +116,7 @@ function CheckoutPage() {
 										fontSize={{ base: "18px", md: "22px" }}
 										fontWeight="600"
 									>
-										Merchs cost : ${getTotalPrice()}
+										Total price: ${getTotalPrice()}
 									</Text>
 									<Text
 										color="#fff"
@@ -136,7 +136,7 @@ function CheckoutPage() {
 								>
 									<BasicButton
 										click={() => { navigate('/address') }}
-									>Checkout</BasicButton>
+									>Check out</BasicButton>
 								</Box>
 							</Flex>
 						</>
