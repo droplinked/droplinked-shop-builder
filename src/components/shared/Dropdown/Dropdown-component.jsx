@@ -1,9 +1,9 @@
+import "./Dropdown-style.scss"
+
 // this component get array like this = [ {id:"" , value:""} , {id:"" , value:""} ] 
 //  pair id and value in objects
 
-import "./Dropdown-style.scss"
 export default function Dropdown({ change ,pairArray , value , placeholder   }) {
-
 
     return (
         <div className="basic-dropdown-component-wrapper">

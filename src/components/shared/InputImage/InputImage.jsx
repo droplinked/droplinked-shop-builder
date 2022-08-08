@@ -8,9 +8,11 @@ import axios from 'axios';
 
 export default function InputImage({ image, setImage }) {
 
+    const [loading, setLoading] = useState(false)
+    
     const inputFile = useRef(null);
     const { successToast, errorToast } = useToasty()
-    const [loading, setLoading] = useState(false)
+  
 
 
     const changeImage = (e) => {
