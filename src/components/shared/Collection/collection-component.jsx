@@ -6,13 +6,20 @@ import { useState } from "react";
 import Product from "../Product/Product"
 import IframeSnipped from "../../Modal/Iframe-snipped-modal/Iframe-snipped-modal"
 
+// collection format : {
+//     ._id: id 
+//     products:[]
+//     title : string 
+// }
+
 export default function Collection({ collection, shopname }) {
 
-    // state for show snipped modal
+    // state for open and close snipped modal
     const [snippedModal, setSnippedModal] = useState(false)
 
     const navigate = useNavigate()
 
+    // collection iframe code
     let iframeCode = `<iframe  
     style={{width:'100%' , height:"100%"  , overflow:'hidden' }}
             scrolling="no"
@@ -22,6 +29,7 @@ export default function Collection({ collection, shopname }) {
             />`
 
 
+    // opent collection page
     const seeMore = () => {
         navigate(`/${shopname}/collection/${collection._id}`)
     }
