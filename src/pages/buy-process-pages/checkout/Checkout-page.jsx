@@ -91,7 +91,7 @@ function CheckoutPage() {
 								color="#fff"
 								m="0px auto 40px auto"
 							>
-								Check out
+								Checkout
 							</Text>
 
 							{(cartBaseShop.length > 0) &&

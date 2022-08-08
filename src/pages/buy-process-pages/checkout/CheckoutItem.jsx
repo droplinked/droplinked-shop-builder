@@ -4,7 +4,7 @@ import { useCart } from "../../../context/cart/CartContext"
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useState } from "react";
 import { deleteSkuFromCart, updateQuantity } from "../../../api/base-user/Cart-api"
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function CheckoutItem({ product }) {
@@ -15,7 +15,7 @@ export default function CheckoutItem({ product }) {
 
     const { updateCart } = useCart()
     const { successToast, errorToast } = useToasty()
-
+    const navigate = useNavigate()
 
 
     // text for show variants value
@@ -56,6 +56,10 @@ export default function CheckoutItem({ product }) {
         setDisableEditBtn(false)
     }
 
+    //navigate to product page after click on product name on image
+    const clickOnProduct = () => {
+        navigate(`/${product.shopName}/merch/${product.product._id}`)
+    }
 
     return (
         <Flex
@@ -78,6 +82,8 @@ export default function CheckoutItem({ product }) {
                     w="80px"
                     h="80px"
                     mr="20px"
+                    cursor='pointer'
+                    onClick={clickOnProduct}
                 />
                 <Flex
                     flexDirection="column"
@@ -90,11 +96,13 @@ export default function CheckoutItem({ product }) {
                         fontSize={{ base: "16px", md: "18px" }}
                         mb="5px"
                         overflow='hidden'
+                        cursor='pointer'
+                        onClick={clickOnProduct}
                     >
                         {product.product.title}
                     </Text>
 
-                    <Text
+                    {/* <Text
                         color="#ddd"
                         fontWeight="500"
                         maxW={{ base: '100%', sm: "80%", md: '60%' }}
@@ -103,7 +111,7 @@ export default function CheckoutItem({ product }) {
                         mb="5px"
                     >
                         {product.product.description}
-                    </Text>
+                    </Text> */}
                     {/* {(variantText != "") &&
                         <Text
                             color="#ddd"
