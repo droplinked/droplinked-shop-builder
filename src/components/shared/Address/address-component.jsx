@@ -100,7 +100,7 @@ export default function AddressComponent({ address, selected, setSelect, selectA
                     {/* delete address modal */}
                     {deleteModal &&
                         <SmallModal
-                            text={`Are you sure want to delete this address ?`}
+                            text={`Are you sure you want to delete this address?`}
                             show={deleteModal}
                             hide={() => setDeleteModal(false)}
                             click={deleteAddressFunc}
