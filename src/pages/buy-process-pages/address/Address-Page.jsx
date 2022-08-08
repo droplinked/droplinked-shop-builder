@@ -73,7 +73,7 @@ function AddressPage() {
 									address={address}
 									selected={selectedAddress}
 									setSelect={setSelectedAddress}
-									selecable={true}
+									selectAble={true}
 									deleteable={true}
 								/>
 							}
