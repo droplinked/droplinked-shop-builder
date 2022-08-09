@@ -15,12 +15,14 @@ export default function ProfileIcon({ click }) {
             {(Profileimage)
                 ?
                 <Image
-                    w={{ base: "25px", md: '40px' }}
-                    h={{ base: "25px", md: '40px' }}
+                    w={{ base: "34px", md: '52px' }}
+                    h={{ base: "34px", md: '52px' }}
                     borderRadius="50%"
                     cursor='pointer'
                     src={Profileimage}
                     onClick={click}
+                    border='2px'
+                    borderColor='#8053ff'
                 />
                 :
                 <Flex
@@ -28,10 +30,10 @@ export default function ProfileIcon({ click }) {
                     alignItems='center'
                     cursor='pointer'
                     borderRadius='50%'
-                    border='1px'
-                    borderColor='#666'
-                    w={{ base: "25px", md: '40px' }}
-                    h={{ base: "25px", md: '40px' }}
+                    border='2px'
+                    borderColor='#8053ff'
+                    w={{ base: "34px", md: '52px' }}
+                    h={{ base: "34px", md: '52px' }}
                     style={{
                         backgroundImage: `url(${defaultProfile})`,
                         backgroundRepeat: "no-repeat",
