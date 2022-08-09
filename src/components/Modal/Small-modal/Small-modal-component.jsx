@@ -1,5 +1,5 @@
 import "./Small-modal-style.scss"
-import { useState } from "react"
+
 import BasicButton from '../../shared/BasicButton/BasicButton'
 
 import {
@@ -9,7 +9,6 @@ import {
     ModalHeader,
     ModalFooter,
     ModalBody,
-    ModalCloseButton,
     Box,
     Flex
 } from '@chakra-ui/react'
