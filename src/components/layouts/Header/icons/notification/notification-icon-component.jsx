@@ -1,6 +1,15 @@
-import { Flex } from "@chakra-ui/react"
+import { Flex, keyframes, Box } from "@chakra-ui/react"
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useNotifications } from "../../../../../context/notifications/NotificationsContext"
+
+const animationKeyframes = keyframes`
+0% { opacity:0.2; }
+50% { opacity:1; }
+100% { opacity:0.2; }
+`;
+
+const animation = `${animationKeyframes} 1s linear infinite`;
+
 
 export default function Notification({ click }) {
 
@@ -13,7 +22,7 @@ export default function Notification({ click }) {
             pos='relative'
             w={{ base: "25px", md: '40px' }}
             h={{ base: "25px", md: '40px' }}
-            mr={{base:'8px' ,md:'12px'}}
+            mr={{ base: '8px', md: '12px' }}
             cursor='pointer'
             onClick={click}>
             <IoMdNotificationsOutline style={{ width: "100%", height: "100%", color: "#fff" }} />
@@ -22,12 +31,20 @@ export default function Notification({ click }) {
                     pos='absolute'
                     w='100%'
                     h='100%'
-                    fontWeight='600'
                     justifyContent='center'
                     alignItems='center'
-                    fontSize={{ base: '6px', md: '10px' }}
-                    color='#8053ff'
-                >{unseenNofitCount()}</Flex>
+
+                >
+                    <Box
+                        bgColor='#8053ff'
+                        borderRadius='50%'
+                        w='10px'
+                        h='10px'
+                        animation={animation}
+                    >
+
+                    </Box>
+                </Flex>
             }
         </Flex >
     )
