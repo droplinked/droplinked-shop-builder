@@ -19,7 +19,7 @@ function AddressPage() {
 
 	const [selectedAddress, setSelectedAddress] = useState(null);
 	const [addressModal, setAddressModal] = useState(false);
-
+	const [loading, setLoading] = useState(false);
 
 	const { errorToast, successToast } = useToasty();
 	const { addressList } = useAddress()
@@ -37,7 +37,9 @@ function AddressPage() {
 			errorToast("Please choose an address")
 			return
 		}
+		setLoading(true)
 		let result = await addCheckoutAddress(selectedAddress)
+		setLoading(false)
 		if (result == true) {
 			successToast("Address successfully added")
 			navigate('/payment')
@@ -106,11 +108,11 @@ function AddressPage() {
 						}
 
 						<Flex w="100%" mt="40px" justifyContent="space-between" alignItems="center" >
-							<Button w="30%" bgColor="#8053ff" color="#fff" fontSize="20px" fontWeight="600" _hover={{ borderColor: "#4d4d4d", color: "#222" }}
-							onClick={()=>{navigate('/checkout')}}>
+							<Button w="30%" bgColor="#8053ff" color="#fff" fontSize="20px" fontWeight="600" _hover={{ borderColor: "#4d4d4d", color: "#222" }} disabled={loading}
+								onClick={() => { navigate('/checkout') }}>
 								Back
 							</Button>
-							<Button w="30%" bgColor="#8053ff" color="#fff" fontSize="20px" fontWeight="600" _hover={{ borderColor: "#4d4d4d", color: "#222" }} onClick={ProccessToPayment}	>
+							<Button w="30%" bgColor="#8053ff" color="#fff" fontSize="20px" fontWeight="600" _hover={{ borderColor: "#4d4d4d", color: "#222" }} disabled={loading} onClick={ProccessToPayment}>
 								Payment
 							</Button>
 						</Flex>
