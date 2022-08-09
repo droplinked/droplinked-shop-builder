@@ -23,7 +23,7 @@ export default function OrderModal({ order, isOpen, onClose }) {
 
 
     const [loadingBtn, setLoadingBtn] = useState(false)
-   // const [proccessModal, setProccessModal] = useState(false)
+    const [proccessModal, setProccessModal] = useState(false)
     const [cancelOrderModal, setCancelOrderModal] = useState(false)
 
     const { successToast, errorToast } = useToasty()
@@ -68,20 +68,20 @@ export default function OrderModal({ order, isOpen, onClose }) {
     }
 
     const closeSmallModal = () => {
-      //  setProccessModal(false)
+        setProccessModal(false)
         setCancelOrderModal(false)
     }
 
-    // const proccessModalText = () => {
-    //     switch (order.status) {
-    //         case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
-    //             return "Are you sure you want to start proccessing?"
-    //         case ORDER_TYPES.PROCESSING:
-    //             return "Are you sure you want to send order?"
-    //         case ORDER_TYPES.SENT:
-    //             return "Are you sure you want to set status on Sent?"
-    //     }
-    // }
+    const proccessModalText = () => {
+        switch (order.status) {
+            case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
+                return "Are you sure you want to start proccessing?"
+            case ORDER_TYPES.PROCESSING:
+                return "Are you sure you want to send order?"
+            case ORDER_TYPES.SENT:
+                return "Are you sure you want to set status on Sent?"
+        }
+    }
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}  >
@@ -129,21 +129,22 @@ export default function OrderModal({ order, isOpen, onClose }) {
                                 <BasicButton bgColor='#fa6653' click={()=>{setCancelOrderModal(true)}} loading={loadingBtn}> Cancel Order</BasicButton>
                             </Box>
                             <Box w='40%'>
-                                <BasicButton click={progressClick} loading={loadingBtn} disabled={(order.status == ORDER_TYPES.SENT)}>{processButtonText()}</BasicButton>
+                                <BasicButton click={()=>{setProccessModal(true)}} loading={loadingBtn} disabled={(order.status == ORDER_TYPES.SENT)}>{processButtonText()}</BasicButton>
                             </Box>
                         </Flex>
                     }
                 </ModalFooter>
             </ModalContent>
             {/* process modal */}
-            {/* {proccessModal &&
+           {proccessModal &&
                 <SmallModal
                     show={proccessModal}
                     hide={closeSmallModal}
                     text={proccessModalText()}
                     click={progressClick}
                     loading={loadingBtn}
-                />} */}
+                    buttonText={processButtonText()}
+                />} 
             {/* cancel order modal */}
             {cancelOrderModal &&
                 <SmallModal
@@ -152,7 +153,7 @@ export default function OrderModal({ order, isOpen, onClose }) {
                     text={'Are you sure you want to cancel this order?'}
                     click={cancelClick}
                     loading={loadingBtn}
-                    buttonText={'Cancel'}
+                    buttonText={'Cancel order'}
                 />}
 
         </Modal >
