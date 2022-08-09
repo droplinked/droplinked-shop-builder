@@ -188,6 +188,7 @@ export default function MerchPage() {
 
 
     const addMerhcToCart = async (cart) => {
+        setDisableBtn(true)
         let result = await addSkuToCart(cart)
         if (result == true) {
             successToast("Item added to cart")
@@ -292,7 +293,7 @@ export default function MerchPage() {
                             {sku && (sku.quantity == 0) ?
                                 <BasicButton disabled={true}>Sold out</BasicButton>
                                 :
-                                <BasicButton click={Addtobasket} disabled={disableBtn}>Add to basket</BasicButton>
+                                <BasicButton click={Addtobasket} loading={disableBtn}>Add to basket</BasicButton>
                             }
 
                         </div>
