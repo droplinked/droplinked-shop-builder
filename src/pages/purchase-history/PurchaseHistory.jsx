@@ -32,8 +32,9 @@ export default function PurchasHistoryPage() {
         }
     }
     
+
     return (<>
-        {orders == null
+        {(orders == null)
             ?
             <Loading />
             :
