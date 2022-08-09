@@ -1,6 +1,6 @@
-import { Flex, Box, Image, keyframes, Icon } from "@chakra-ui/react"
+import {  Box, Image, keyframes } from "@chakra-ui/react"
 import { useCart } from "../../../../../context/cart/CartContext"
-import { motion } from 'framer-motion'
+
 
 import cartIcon from "../../../../../assest/icon/shopCart.svg"
 import activeCartIcon from '../../../../../assest/icon/activeShopCart.svg';
