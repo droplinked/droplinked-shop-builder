@@ -3,7 +3,6 @@ import {  Button } from '@chakra-ui/react'
 
 export default function SettingButton({ children, click ,active }) {
 
-    console.log(active)
 
     return (
         <Button

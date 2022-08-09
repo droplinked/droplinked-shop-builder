@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import { useState } from 'react'
+import { useProfile } from "../../context/profile/ProfileContext"
 
 import AddressBookComponent from './address-book-component/address-book-component'
 import ShopInfoComponent from './shop-info-component/Shop-info-component'
@@ -9,10 +10,12 @@ import SettingButton from "./setting-button-component"
 
 export default function SettingsPage() {
 
-    // this state use for selected setting 
-    const [settingComponent, setSettingComponent] = useState("personal")
+    const { isRegisteredProducer, isCustomer } = useProfile()
 
-    const profile = JSON.parse(localStorage.getItem("profile"));
+    // this state use for selected setting 
+    const [settingComponent, setSettingComponent] = useState(isRegisteredProducer()?"shop":"personal")
+
+   
 
     // change state by click on buttons for change setting component used  
     const personalSetting = () => {
@@ -49,13 +52,14 @@ export default function SettingsPage() {
                     flexDirection='column'
                 >
                     {/* select setting buttons  */}
-                    <SettingButton click={personalSetting} active={settingComponent == "personal"}> Personal info </SettingButton>
+                    {isCustomer() &&
+                        <SettingButton click={personalSetting} active={settingComponent == "personal"}> Personal info </SettingButton>}
 
-                    {(profile.type == "PRODUCER") &&
+                    {isRegisteredProducer() &&
                         <SettingButton click={shopSetting} active={settingComponent == "shop"} > Shop info </SettingButton>
                     }
-
-                    <SettingButton click={addressSetting} active={settingComponent == "address"}>Address book</SettingButton>
+                    {isCustomer() &&
+                        <SettingButton click={addressSetting} active={settingComponent == "address"}>Address book</SettingButton>}
                     {/* select setting buttons  */}
                 </Flex>
 
@@ -72,9 +76,9 @@ export default function SettingsPage() {
                             case "personal":
                                 return (<PersonalInfoComponent active={settingComponent} />)
                             case "shop":
-                                return (<ShopInfoComponent active={settingComponent}/>)
+                                return (<ShopInfoComponent active={settingComponent} />)
                             case "address":
-                                return (<AddressBookComponent active={settingComponent}/>)
+                                return (<AddressBookComponent active={settingComponent} />)
                         }
                     })()}
                 </Flex>
