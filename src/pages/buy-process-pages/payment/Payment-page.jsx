@@ -48,7 +48,7 @@ export default function PaymentPage() {
         let merchsPrice = 0;
         // map on all cart items and get total price of each item
         cart.items.forEach((item) => {
-            merchsPrice += item.totalPrice 
+            merchsPrice += parseFloat(item.totalPrice) 
         })
         return merchsPrice
     }
@@ -110,6 +110,7 @@ export default function PaymentPage() {
     }
 
 
+    console.log((getTotalofMerchs() + getTotalofShipping()));
 
 
     return (
@@ -123,15 +124,15 @@ export default function PaymentPage() {
                     <Box display="flex" wrap="wrap" row-gap="10px" w="100%" flexDirection="column">
 
                         {/* top side */}
-                        <Box p="10px 5px" mb="50px" w={{ base: '100%', md: '200px' }}>
+                        <Box p="10px 5px" mb="50px" w={{ base: '100%', md: '100%' }}>
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
-                                Merchs : ${getTotalofMerchs()}
+                                Merchs: ${getTotalofMerchs()}
                             </Text>
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
-                                Shipping : ${getTotalofShipping()}
+                                Shipping: ${getTotalofShipping()}
                             </Text>
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
-                                Total price : ${(getTotalofMerchs() + getTotalofShipping())}
+                                Total price: ${(getTotalofMerchs() + getTotalofShipping())}
                             </Text>
                         </Box>
 

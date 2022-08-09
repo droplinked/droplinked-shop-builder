@@ -48,7 +48,7 @@ function CheckoutPage() {
 				cart.items.forEach(item => {
 					if (item.shopName == shopname) {
 						items.push(item)
-						totalPrice = item.totalPrice
+						totalPrice += item.totalPrice
 					}
 				})
 				// new cart base on shop: {shopname:'' , items:[] , totalprice:number , shipping:5}

@@ -19,9 +19,10 @@ export default function CheckoutItem({ product }) {
 
 
     // text for show variants value
-    //  let findSku = product.Product.skus.find(sku => sku._id == product.skuID)
-    // let variantText = ""
-    // findSku.options.forEach(option => { variantText += `${option.variantName}:${option.value}  \xa0\xa0\xa0` })
+    let variantText = ""
+    product.sku.options.forEach(itemSkuk => {
+        variantText += `${(itemSkuk.variantID == "62a989ab1f2c2bbc5b1e7153") ? "Color" : "Size"}: ${itemSkuk.value}  \xa0\xa0\xa0`
+    })
 
     //delete merch
     const deleteMerch = async () => {
@@ -102,17 +103,7 @@ export default function CheckoutItem({ product }) {
                         {product.product.title}
                     </Text>
 
-                    {/* <Text
-                        color="#ddd"
-                        fontWeight="500"
-                        maxW={{ base: '100%', sm: "80%", md: '60%' }}
-                        overflow='hidden'
-                        fontSize={{ base: "14px", md: "13px" }}
-                        mb="5px"
-                    >
-                        {product.product.description}
-                    </Text> */}
-                    {/* {(variantText != "") &&
+                    {(variantText != "") &&
                         <Text
                             color="#ddd"
                             fontWeight="500"
@@ -120,7 +111,8 @@ export default function CheckoutItem({ product }) {
                         >
                             {variantText}
                         </Text>
-                    } */}
+                    }
+
                 </Flex>
 
             </Flex>
@@ -132,14 +124,7 @@ export default function CheckoutItem({ product }) {
                 alignItems="center"
                 justifyContent="space-between"
             >
-                {/* 
-                <Text
-                    color="#fff"
-                    fontWeight="600"
-                    fontSize="18"
-                >
-                    ${findSku.price}
-                </Text> */}
+
 
                 <ButtonGroup size="md" isAttached variant='outline'>
                     <IconButton
@@ -174,6 +159,14 @@ export default function CheckoutItem({ product }) {
                         disabled={disableEditBtn}
                     >Submit</Button>
                 </ButtonGroup>
+
+                <Text
+                    color="#fff"
+                    fontWeight="600"
+                    fontSize="18"
+                >
+                    ${product.totalPrice}
+                </Text>
 
             </Flex>
 

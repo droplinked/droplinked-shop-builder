@@ -7,7 +7,6 @@ export default function Producer() {
 
     const { profile } = useProfile()
     const navigate = useNavigate();
-    console.log(profile)
 
     useEffect(() => {
         if (profile.type == "PRODUCER" && profile.status != "IMS_TYPE_COMPLETED") {
