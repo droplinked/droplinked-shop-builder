@@ -6,7 +6,7 @@ import ProfileItem from "./ProfileItem-component"
 
 const ProfileDropdown = ({ close }) => {
 
-    const { profile, logout } = useProfile()
+    const { profile, logout ,isCustomer ,isRegisteredProducer } = useProfile()
     let navigate = useNavigate();
 
     let userStatus = profile.status;
@@ -16,14 +16,6 @@ const ProfileDropdown = ({ close }) => {
         userStatus = profile.status
     }
 
-
-    const registeredProducer = () => {
-        if (profile.type=="PRODUCER" && profile.status != "IMS_TYPE_COMPLETED") {
-            return false
-        } else {
-            return true
-        }
-    }
 
 
     const clickProfile = () => {
@@ -86,11 +78,12 @@ const ProfileDropdown = ({ close }) => {
                 </Link>
 
             </>}
-            {registeredProducer() && <Link to="/purchseHistory" >
+
+            {isCustomer() && <Link to="/purchseHistory" >
                 <ProfileItem click={close}>Purchase history</ProfileItem>
             </Link>}
 
-            {registeredProducer() && <Link to="/settings" >
+            {isRegisteredProducer() && <Link to="/settings" >
                 <ProfileItem click={close}>Settings</ProfileItem>
             </Link>}
             <ProfileItem click={logout}>Logout</ProfileItem>

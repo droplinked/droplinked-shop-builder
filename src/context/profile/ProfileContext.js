@@ -1,13 +1,15 @@
-import { createContext, useReducer ,useContext } from "react";
+import { createContext, useReducer, useContext } from "react";
 import { ProflieReduser } from "./ProfileReducer";
 
 export const ProfileContext = createContext();
 
 const ProfileContextProvider = ({ children }) => {
   //const [profile , setProfile] = useState({})
-  const [profile, dispatch] = useReducer(ProflieReduser, ( JSON.parse(localStorage.getItem("profile"))) || null);
+  const [profile, dispatch] = useReducer(
+    ProflieReduser,
+    JSON.parse(localStorage.getItem("profile")) || null
+  );
 
-  
   const addProfile = (payload) => {
     localStorage.setItem("token", JSON.stringify(payload.jwt));
     dispatch({ type: "ADD_PROFILE", payload });
@@ -18,14 +20,36 @@ const ProfileContextProvider = ({ children }) => {
   };
 
   const logout = () => {
-    dispatch({type:"LOGOUT"});
-    window.location.replace('/');
+    dispatch({ type: "LOGOUT" });
+    window.location.replace("/");
+  };
+
+  const isCustomer = () => {
+    if (profile) {
+      if (profile.type == "CUSTOMER") return true;
+      else return false;
+    }
+  };
+
+  const isRegisteredProducer = () => {
+    if (profile) {
+      if (
+        profile.type == "PRODUCER" &&
+        profile.status != "IMS_TYPE_COMPLETED"
+      ) {
+        return false;
+      } else {
+        return true;
+      }
+    }
   };
 
   const contextValues = {
     addProfile,
     logout,
     updateProfile,
+    isCustomer,
+    isRegisteredProducer,
     profile,
   };
 
@@ -37,12 +61,11 @@ const ProfileContextProvider = ({ children }) => {
 };
 
 export const useProfile = () => {
-   
-  const ctx = useContext(ProfileContext)
+  const ctx = useContext(ProfileContext);
 
   return {
-      ...ctx
-  }
-}
+    ...ctx,
+  };
+};
 
 export default ProfileContextProvider;

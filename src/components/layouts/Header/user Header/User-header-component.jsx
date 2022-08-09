@@ -14,7 +14,7 @@ export default function UserHeader() {
     // state for manage dropdowns
     const [dropdown, setDropdown] = useState(null)
 
-    const { profile } = useProfile()
+    const {  isCustomer ,isRegisteredProducer } = useProfile()
 
     const openProfileDropdown = () => {
         setDropdown(DROPDOWN_TYPE.PROFILE)
@@ -32,28 +32,18 @@ export default function UserHeader() {
     }
 
 
-    // check is user  producer or not 
-    const isProducer = () => {
-        if (profile.type == "PRODUCER" && profile.status != "IMS_TYPE_COMPLETED") {
-            return false
-        } else {
-            return true
-        }
-    }
-
-
-
     return (<>
 
-        <WalletButton />
+        {isCustomer() && <WalletButton />}
+
 
         <Flex alignItems='center' ml={{ base: "10px", md: '15px' }}>
 
             {/* cart icon (show if type == producer) */}
-            {isProducer() && <Cart clickBasket={openBasket} />}
+            {isCustomer() && <Cart clickBasket={openBasket} />}
 
             {/* notification icon (show if type == producer)*/}
-            {isProducer() && <Notification click={openNotification} />}
+            {isRegisteredProducer() && <Notification click={openNotification} />}
 
             {/* profile icon */}
             <ProfileIcon click={openProfileDropdown} />
