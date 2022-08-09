@@ -68,9 +68,10 @@ export default function AddressComponent({ address, selected, setSelect, selectA
                     onClick={selectAddress}
                 >
 
-                    <Text fontSize="18px" fontWeight="600" color="#fff" mb="10px">{address.country} - {address.city}</Text>
-                    <Text fontSize="16px" fontWeight="500" color="#ddd" mb="4px">{address.addressLine1}</Text>
-                    <Text fontSize="16px" fontWeight="500" color="#ddd" mb="20px">{address.state} {address.zip} </Text>
+                    <Text fontSize={{base:'16px' , md:"18px"}} fontWeight="600" color="#fff" mb="5px">{address.country} - {address.city}</Text>
+                    <Text fontSize={{base:'14px' , md:"16px"}} fontWeight="500" color="#ddd" mb="0px">{address.addressLine1}</Text>
+                    <Text fontSize={{base:'14px' , md:"16px"}} fontWeight="500" color="#ddd" mb="0px">{address.state} {address.zip} </Text>
+                    <Text fontSize={{base:'14px' , md:"16px"}} fontWeight="500" color="#ddd" mb="20px">{address.firstname} {address.lastname} </Text>
 
                     <Flex alignItems='center' justifyContent='flex-end' >
                         <Flex alignItems='center' flexDirection='row-reverse' justifyContent="space-between" w={{ base: "45%", md: "40%" }}>
