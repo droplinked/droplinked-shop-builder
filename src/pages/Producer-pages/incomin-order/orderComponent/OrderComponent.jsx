@@ -1,24 +1,38 @@
-import { Text, Box, Flex, useDisclosure, Stack, Skeleton, Image } from "@chakra-ui/react"
+import { Text, Box, Flex, useDisclosure, Stack, Skeleton, Image, keyframes } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 import { useOrder } from "../../../../context/order/OrdersContext"
 import { getProduct } from "../../../../api/public/Product-api"
 import { convetToCustomFormat } from "../../../../utils/date.utils/convertDate"
+import { ORDER_TYPES } from "../../../../constant/order.types"
 
 import OrderModal from "../OrderModal/OrderModal"
 
+const animationKeyframes = keyframes`
+0% { border:2px solid #8053ff; }
+50% { border:2px solid #aaa; }
+100% { border:2px solid #8053ff; }
+`;
+
+const animation = `${animationKeyframes} 1.5s linear infinite`;
+
+// borderColor={(order.seenByProducer) ? "#aaa" : "#8053ff"}
+
 export default function OrderComponent({ order }) {
 
-    const [orderProducts, setOrderProducts] = useState([])
+
+
+   // const [orderProducts, setOrderProducts] = useState([])
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { seenOrder } = useOrder()
 
 
-    useEffect(async () => {
-        let productsId = order.items.map(item => item.productID)
-        let products = await getProductsArray(productsId)
-        setOrderProducts(products)
-    }, [])
+    // useEffect(async () => {
+    //     let productsId = order.items.map(item => item.productID)
+    //     let products = await getProductsArray(productsId)
+    //     setOrderProducts(products)
+    // }, [])
+
 
     // calculaate date of order
     // const getOrderTime = () => {
@@ -41,26 +55,47 @@ export default function OrderComponent({ order }) {
         onOpen()
     }
 
-    const getProductsArray = async (productsId) => {
-        let promises = [];
-        for (let i = 0; i < productsId.length; i++) {
-            let res = await getProduct(productsId[i])
-            promises.push(res);
-        }
-        return promises
-    }
+    // const getProductsArray = async (productsId) => {
+    //     let promises = [];
+    //     for (let i = 0; i < productsId.length; i++) {
+    //         let res = await getProduct(productsId[i])
+    //         promises.push(res);
+    //     }
+    //     return promises
+    // }
 
+    const statusText = () => {
+        switch (order.status) {
+            case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
+                return "Waiting for confirmation"
+            case ORDER_TYPES.CANCELED:
+                return 'Canceled'
+            case ORDER_TYPES.SENT:
+                return "Sent"
+            case ORDER_TYPES.PROCESSING:
+                return 'Processing'
+            default:
+                return ""
+        }
+    }
 
     return (
         <Box
-            border='1px'
-            borderColor={(order.seenByProducer) ? "#aaa" : "#8053ff"}
+            border='2px'
+            borderColor='#aaa'
             borderRadius='16px'
             p='15px 20px'
+            cursor='pointer'
+            animation={(order.status == ORDER_TYPES.WAITING_FOR_CONFIRMATION) && animation}
+            _hover={{
+                borderColor: '#8053ff'
+            }}
+            onClick={openOrder}
         >
-            {(orderProducts.length > 0)
+            {(order.items.length > 0)
                 ?
                 <>
+                    {/* date and total price */}
                     <Flex justifyContent='space-between'  >
                         <Text
                             color='#fff'
@@ -68,21 +103,17 @@ export default function OrderComponent({ order }) {
                             fontWeight='600'
                             mb={{ base: "10px", md: '10px' }}
                         >
-                            Order time : {convetToCustomFormat(order.createdAt)}
+                            Order date: {convetToCustomFormat(order.createdAt)}
                         </Text>
-
-                        {(!order.seenByProducer) &&
-                            <Text
-                                color='#8053ff'
-                                fontSize={{ base: "12px", md: '16px' }}
-                                fontWeight='600'
-                                mb={{ base: "10px", md: '20px' }}
-                            >
-                                Unseen
-                            </Text>
-                        }
-
+                        <Text
+                            color='#fff'
+                            fontSize={{ base: "14px", md: '16px' }}
+                            fontWeight='600'
+                        >
+                            Total price: ${order.totalPrice}
+                        </Text>
                     </Flex>
+                    {/* date and total price */}
 
                     <Text
                         color='#fff'
@@ -90,13 +121,14 @@ export default function OrderComponent({ order }) {
                         fontWeight='600'
                         mb={{ base: "10px", md: '20px' }}
                     >
-                        Merch quantity : {totalQuantity} Merch
+                        Quantity: {totalQuantity} Item
                     </Text>
 
+                    {/* images */}
                     <Flex
                         mb='10px'
                     >
-                        {orderProducts.map((product, i) => {
+                        {order.items.map((item, i) => {
                             if (i < 4)
                                 return <Image
                                     key={i}
@@ -104,36 +136,29 @@ export default function OrderComponent({ order }) {
                                     h={{ base: '60px', md: "90px" }}
                                     borderRadius="8px"
                                     mr='20px'
-                                    src={product.media[0].url} />
+                                    src={item.product.media[0].url} />
                         })}
                     </Flex>
+                    {/* images */}
+
+                    {/* status */}
                     <Flex
                         w='100%'
                         justifyContent='space-between'
                     >
                         <Text
                             color='#fff'
-                            fontSize={{ base: "18px", md: '24px' }}
-                            fontWeight='600'
-                        >
-                            Total price : $ {order.totalPrice}
-                        </Text>
-                        <Text
-                            color='#fff'
-                            fontSize={{ base: "16px", md: '20px' }}
+                            fontSize={{ base: "12px", md: '18px' }}
                             fontWeight='600'
                             my="auto"
                             h="100%"
-                            px={{ base: '10px', md: "20px" }}
                             cursor='pointer'
-                            _hover={{
-                                color: '#8053ff'
-                            }}
                             onClick={openOrder}
                         >
-                            View order
+                            Status: {statusText()}
                         </Text>
                     </Flex>
+                    {/* status */}
                 </>
                 :
                 <Stack>
@@ -142,9 +167,9 @@ export default function OrderComponent({ order }) {
                     <Skeleton height='20px' />
                 </Stack>
             }
-            {(orderProducts.length > 0) &&
-                < OrderModal ProducList={orderProducts} order={order} isOpen={isOpen} onClose={onClose} />
-            }
+             {(order.items.length > 0) &&
+                < OrderModal order={order} isOpen={isOpen} onClose={onClose} />
+            } 
         </Box>
     )
 }

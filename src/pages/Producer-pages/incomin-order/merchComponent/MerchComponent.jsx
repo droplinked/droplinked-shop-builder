@@ -3,21 +3,21 @@ import { Text, Flex, Image, } from "@chakra-ui/react"
 
 export default function MerchComponent({ item }) {
 
+    // style for variant and quantity and price text
     const textStyel = {
         color: "#ddd",
         fontWeight: "500"
     }
 
-    let sku = item.sku
 
-    let price = sku.price
-
-    let findSku = item.product.skus.find(sku => sku._id == item.sku._id)
-
+    // get variant name and value in set in string
     let variantText = ' '
-    findSku.options.forEach((opt, i) => {
-        variantText += (opt.variantName + " : " + opt.value + '\xa0\xa0\xa0\xa0\xa0\xa0')
+    item.sku.options.forEach(option => {
+        let variantName = (option.variantID == "62a989ab1f2c2bbc5b1e7153" ? "Size" : "Color")
+        variantText += `${variantName}: ${option.value}\xa0\xa0\xa0\xa0\xa0\xa0`
     })
+
+    const Totalprice = parseFloat(item.quantity * item.sku.price)
 
 
     return (
@@ -53,12 +53,11 @@ export default function MerchComponent({ item }) {
                     justifyContent='space-between'
                 >
 
-                    <Text style={textStyel} fontSize={{ base: "10px", md: "16px" }} >{variantText}</Text>
-                    <Text style={textStyel} fontSize={{ base: "10px", md: "16px" }} > quantity :  {item.quantity}</Text>
-                    <Text style={textStyel} fontSize={{ base: "10px", md: "16px" }} > price : $ {price}</Text>
+                    <Text style={textStyel} w='55%' fontSize={{base:'8px' , sm: "10px", md: "14px" }} >{variantText}</Text>
+                    <Text style={textStyel} w='30%' fontSize={{base:'8px' , sm: "10px", md: "14px" }} > Quantity: {item.quantity}</Text>
+                    <Text style={textStyel} textAlign='end' w='15%' fontSize={{base:'8px' , sm: "10px", md: "14px" }} >${Totalprice}</Text>
                 </Flex>
             </Flex>
-
 
         </Flex>
     )

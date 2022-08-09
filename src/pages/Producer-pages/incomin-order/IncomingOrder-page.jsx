@@ -24,7 +24,7 @@ export default function IncomingOrderPage() {
                     textAlign='center'
                     mb='40px'
                 >
-                    Incoming Order
+                    Incoming orders
                 </Text>
 
                 {orders.map((ord, i) => {
