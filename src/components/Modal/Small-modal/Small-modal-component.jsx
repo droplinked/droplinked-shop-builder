@@ -13,7 +13,7 @@ import {
     Flex
 } from '@chakra-ui/react'
 
-export default function SmallModal({ show, hide, text, click, header, loading }) {
+export default function SmallModal({ show, hide, text, click, header, loading ,buttonText }) {
 
     return (
         <>
@@ -38,7 +38,7 @@ export default function SmallModal({ show, hide, text, click, header, loading })
                                 > Cancel</BasicButton>
                             </Box>
                             <Box w='40%'>
-                                <BasicButton loading={loading} onClick={click}>Delete</BasicButton>
+                                <BasicButton loading={loading} onClick={click}>{buttonText}</BasicButton>
                             </Box>
                         </Flex>
                     </ModalFooter>

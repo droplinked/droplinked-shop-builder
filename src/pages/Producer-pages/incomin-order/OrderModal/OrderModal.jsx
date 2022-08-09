@@ -152,6 +152,7 @@ export default function OrderModal({ order, isOpen, onClose }) {
                     text={'Are you sure you want to cancel this order?'}
                     click={cancelClick}
                     loading={loadingBtn}
+                    buttonText={'Cancel'}
                 />}
 
         </Modal >

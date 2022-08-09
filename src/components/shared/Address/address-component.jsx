@@ -106,6 +106,7 @@ export default function AddressComponent({ address, selected, setSelect, selectA
                             hide={() => setDeleteModal(false)}
                             click={deleteAddressFunc}
                             loading={disableBtn}
+                            buttonText={'Delete'}
                         />
                     }
                     {/* delete address modal */}

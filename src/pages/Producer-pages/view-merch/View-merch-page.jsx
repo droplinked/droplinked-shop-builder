@@ -228,6 +228,7 @@ export default function ViewMerchPage() {
                         text={"Do you want to delete this item?"}
                         click={DeleteMerch}
                         loading={modalDisBtn}
+                        buttonText={'Delete'}
                     />}
 
             </div>

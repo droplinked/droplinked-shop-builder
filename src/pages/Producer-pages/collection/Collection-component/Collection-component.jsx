@@ -83,6 +83,7 @@ export default function CollectionComponent({ collection, edit, render }) {
                 hide={() => setDeleteModal(false)}
                 click={DeleteCollection}
                 loading={loading}
+                buttonText={'Delete'}
             />
         }
         {editModal &&
