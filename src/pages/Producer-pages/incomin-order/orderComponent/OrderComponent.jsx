@@ -56,7 +56,7 @@ export default function OrderComponent({ order }) {
         <Box
         
             border='3px solid #d4d4d486'
-            borderRadius='16px'
+            borderRadius='30px'
             p='15px 20px'
             cursor='pointer'
             _hover={{

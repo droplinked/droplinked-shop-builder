@@ -16,7 +16,7 @@ import { useOrder } from "../../../../context/order/OrdersContext"
 import MerchComponent from "../merchComponent/MerchComponent"
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 import OrderAddress from "./order-address-component"
-import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component"
+import YesNoModal from "../../../../components/Modal/yes-or-no-modal/YesOrNo-modal-component"
 
 
 export default function OrderModal({ order, isOpen, onClose }) {
@@ -47,11 +47,13 @@ export default function OrderModal({ order, isOpen, onClose }) {
         let result = await updateOrderStatus(order._id, statusType)
         setLoadingBtn(false)
         if (result == true) {
-            successToast("Status changed successfully.")
+            successToast("Status changed successfully")
             updateOrder()
         } else {
             errorToast(result)
         }
+        closeSmallModal()
+
     }
 
     const cancelClick = async () => {
@@ -59,11 +61,12 @@ export default function OrderModal({ order, isOpen, onClose }) {
         let result = await updateOrderStatus(order._id, ORDER_TYPES.CANCELED)
         setLoadingBtn(false)
         if (result == true) {
-            successToast("You canceled the order!")
+            successToast("You canceled the order")
             updateOrder()
         } else {
             errorToast(result)
         }
+        closeSmallModal()
 
     }
 
@@ -77,9 +80,9 @@ export default function OrderModal({ order, isOpen, onClose }) {
             case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
                 return "Are you sure you want to start proccessing?"
             case ORDER_TYPES.PROCESSING:
-                return "Are you sure you want to send order?"
-            case ORDER_TYPES.SENT:
-                return "Are you sure you want to set status on Sent?"
+                return "Are you sure you want to send this order?"
+            // case ORDER_TYPES.SENT:
+            //     return "Are you sure you want to set status on Sent?"
         }
     }
 
@@ -118,42 +121,49 @@ export default function OrderModal({ order, isOpen, onClose }) {
 
                 </ModalBody>
                 <ModalFooter>
-                    {(order.status == ORDER_TYPES.CANCELED)
+                    {(order.status == ORDER_TYPES.WAITING_FOR_CONFIRMATION || order.status == ORDER_TYPES.PROCESSING)
                         ?
-                        <Box fontSize={{ base: "20px", md: '24px' }} fontWeight='600' color='#8053ff' textAlign='center' w='100%'>
-                            Order canceled
-                        </Box>
-                        :
+
                         <Flex justifyContent="space-between" w='100%'>
                             <Box w='40%'>
-                                <BasicButton bgColor='#fa6653' click={()=>{setCancelOrderModal(true)}} loading={loadingBtn}> Cancel Order</BasicButton>
+                                <BasicButton bgColor='#fa6653' click={() => { setCancelOrderModal(true) }} disabled={loadingBtn}> Cancel order</BasicButton>
                             </Box>
                             <Box w='40%'>
-                                <BasicButton click={()=>{setProccessModal(true)}} loading={loadingBtn} disabled={(order.status == ORDER_TYPES.SENT)}>{processButtonText()}</BasicButton>
+                                <BasicButton click={() => { setProccessModal(true) }} disabled={loadingBtn} >{processButtonText()}</BasicButton>
                             </Box>
                         </Flex>
+                        :
+                        <>
+                            {(order.status == ORDER_TYPES.CANCELED || order.status == ORDER_TYPES.REFUNDED) &&
+                                <Box fontSize={{ base: "20px", md: '24px' }} fontWeight='600' color='#8053ff' textAlign='center' w='100%'>
+                                    Order canceled
+                                </Box>
+                            }
+                            {(order.status == ORDER_TYPES.SENT) &&
+                                <Box fontSize={{ base: "20px", md: '24px' }} fontWeight='600' color='#8053ff' textAlign='center' w='100%'>
+                                    This order has been sent
+                                </Box>
+                            }
+                        </>
                     }
                 </ModalFooter>
             </ModalContent>
             {/* process modal */}
-           {proccessModal &&
-                <SmallModal
+            {proccessModal &&
+                <YesNoModal
                     show={proccessModal}
                     hide={closeSmallModal}
                     text={proccessModalText()}
                     click={progressClick}
                     loading={loadingBtn}
-                    buttonText={processButtonText()}
-                />} 
+                />}
             {/* cancel order modal */}
             {cancelOrderModal &&
-                <SmallModal
+                <YesNoModal
                     show={cancelOrderModal}
                     hide={closeSmallModal}
                     text={'Are you sure you want to cancel this order?'}
                     click={cancelClick}
-                    loading={loadingBtn}
-                    buttonText={'Cancel order'}
                 />}
 
         </Modal >

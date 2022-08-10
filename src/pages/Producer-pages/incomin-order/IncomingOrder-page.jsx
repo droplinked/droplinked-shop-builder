@@ -38,7 +38,7 @@ export default function IncomingOrderPage() {
                     )
                 })}
                 {orders.map((order, i) => {
-                    if(order.status != ORDER_TYPES.WAITING_FOR_CONFIRMATION)
+                    if((order.status != (ORDER_TYPES.WAITING_FOR_CONFIRMATION) && order.status != (ORDER_TYPES.WAITING_FOR_PAYMENT)))
                     return (
                         <Box key={i} mb='30px'>
                             <OrderComponent order={order} />
