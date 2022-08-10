@@ -100,16 +100,14 @@ export default function ShopInfoComponent({active}) {
                 <>
                     <InputImage image={shop.logo} setImage={changeShopLogo} />
 
-                    <FormInput value={`droplinked.com/${shop.name}`} label={'domain'} mt='20px' />
+                    <FormInput 
+                    value={shop.description}
+                     onChange={(e) => chageShopInformation('description', e)} 
+                     label={'Shop name'}
+                     placeholder="Shop name"
+                      mt='20px' />
 
-                    <FormLabel
-                        mt='20px'
-                        htmlFor='description-shop'
-                        fontWeight='600'
-                        fontSize={{ base: '14px', md: '20px' }}
-                        color='#fff'
-                    >about you shop</FormLabel>
-                    <Textarea
+                    {/* <Textarea
                         id='description-shop'
                         value={shop.description}
                         onChange={(e) => chageShopInformation('description', e)}
@@ -126,33 +124,38 @@ export default function ShopInfoComponent({active}) {
                         h='auto'
                         placeholder='about your shop'
                     >
-                    </Textarea>
+                    </Textarea> */}
+
+                    <FormInput value={`droplinked.com/${shop.name}`} label={'Domain'} mt='20px' />
+
+                    
+                    
 
                     <FormInput
                         value={shop.webUrl}
                         changeValue={(e) => chageShopInformation('webUrl', e)}
                         label={'Website'}
-                        placeholder="www.website.com"
+                        placeholder="www.example.com"
                         mt='20px' />
 
                     <FormInput
                         value={shop.discordUrl}
                         changeValue={(e) => chageShopInformation('discordUrl', e)}
                         label={'Discord'}
-                        placeholder="discoreId"
+                        placeholder="Username"
                         mt='20px' />
 
                     <FormInput
                         value={shop.twitterUrl}
                         changeValue={(e) => chageShopInformation('twitterUrl', e)}
                         label={'Twitter'}
-                        placeholder="Twitter username"
+                        placeholder="Username"
                         mt='20px' />
                     <FormInput
                         value={shop.instagramUrl}
                         changeValue={(e) => chageShopInformation('instagramUrl', e)}
                         label={'Instagram'}
-                        placeholder="Instagram username"
+                        placeholder="Username"
                         mt='20px'
                         mb='20px'
                     />
