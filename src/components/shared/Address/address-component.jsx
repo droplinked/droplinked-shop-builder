@@ -39,7 +39,7 @@ export default function AddressComponent({ address, selected, setSelect, selectA
     // state for open and close delete modal
     const [deleteModal, setDeleteModal] = useState(false)
 
-
+    console.log(address.addressType);
     const { deleteAddress } = useAddress()
 
 
@@ -62,16 +62,19 @@ export default function AddressComponent({ address, selected, setSelect, selectA
         <>
             {(openAddressForm == false)
                 ?
-                <Box h="auto" mb="4" border='1px' borderRadius="15px" p="24px 20px 16px 20px"
-                    borderColor={(selectAble == true && address._id == selected) ? "#8053ff" : '#555'}
+                <Box h="auto" mb="4" border='3px solid' borderRadius="15px" p="24px 20px 16px 20px"
+                    borderColor={(selectAble == true && address._id == selected) ? "#8053ff" : '#4d4d4d'}
                     cursor={(selectAble == true) ? "pointer" : "auto"}
                     onClick={selectAddress}
                 >
-
-                    <Text fontSize={{base:'16px' , md:"18px"}} fontWeight="600" color="#fff" mb="5px">{address.country} - {address.city}</Text>
-                    <Text fontSize={{base:'14px' , md:"16px"}} fontWeight="500" color="#ddd" mb="0px">{address.addressLine1}</Text>
-                    <Text fontSize={{base:'14px' , md:"16px"}} fontWeight="500" color="#ddd" mb="0px">{address.state} {address.zip} </Text>
-                    <Text fontSize={{base:'14px' , md:"16px"}} fontWeight="500" color="#ddd" mb="20px">{address.firstname} {address.lastname} </Text>
+                    {(address.addressType != 'SHOP')
+                        ?
+                        <Text fontSize={{ base: '16px', md: "18px" }} fontWeight="600" color="#fff" mb="5px">{address.country} - {address.city}, {address.firstname} {address.lastname}</Text>
+                        :
+                        <Text fontSize={{ base: '16px', md: "18px" }} fontWeight="600" color="#fff" mb="5px">{address.country} - {address.city}</Text>
+                    }
+                    <Text fontSize={{ base: '14px', md: "16px" }} fontWeight="500" color="#ddd" mb="0px">{address.addressLine1}</Text>
+                    <Text fontSize={{ base: '14px', md: "16px" }} fontWeight="500" color="#ddd" mb="0px">{address.state} {address.zip} </Text>
 
                     <Flex alignItems='center' justifyContent='flex-end' >
                         <Flex alignItems='center' flexDirection='row-reverse' justifyContent="space-between" w={{ base: "45%", md: "40%" }}>
