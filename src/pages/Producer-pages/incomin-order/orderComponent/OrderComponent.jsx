@@ -6,12 +6,15 @@ import { ORDER_TYPES } from "../../../../constant/order.types"
 import OrderModal from "../OrderModal/OrderModal"
 
 const animationKeyframes = keyframes`
-0% { border:3px solid #8053ff; }
-50% { border:3px solid #aaa; }
-100% { border:3px solid #8053ff; }
+0% { color: #8053ff; }
+40% { color: #fff; }
+80% { color: #8053ff; }
+100% { color: #8053ff; }
 `;
 
-const animation = `${animationKeyframes} 1.5s linear infinite`;
+//const animation = `${animationKeyframes} 1.5s linear infinite`;
+const animation = `${animationKeyframes} 2s ease infinite`;
+
 
 export default function OrderComponent({ order }) {
 
@@ -28,7 +31,6 @@ export default function OrderComponent({ order }) {
         if (!order.seenByProducer) seenOrder(order._id)
         onOpen()
     }
-
    
 
     const statusText = () => {
@@ -124,6 +126,7 @@ export default function OrderComponent({ order }) {
                             h="100%"
                             cursor='pointer'
                             onClick={openOrder}
+                            animation={(order.status == ORDER_TYPES.WAITING_FOR_CONFIRMATION) && animation}
                         >
                             {statusText()}
                         </Text>

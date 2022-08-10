@@ -1,6 +1,6 @@
 import { Text, Box } from "@chakra-ui/react"
 import { useOrder } from "../../../context/order/OrdersContext"
-
+import { ORDER_TYPES } from "../../../constant/order.types"
 
 import OrderComponent from "./orderComponent/OrderComponent"
 
@@ -29,10 +29,19 @@ export default function IncomingOrderPage() {
                     Incoming orders
                 </Text>
 
-                {orders.map((ord, i) => {
+                {orders.map((order, i) => {
+                    if(order.status == ORDER_TYPES.WAITING_FOR_CONFIRMATION)
                     return (
                         <Box key={i} mb='30px'>
-                            <OrderComponent order={ord} />
+                            <OrderComponent order={order} />
+                        </Box>
+                    )
+                })}
+                {orders.map((order, i) => {
+                    if(order.status != ORDER_TYPES.WAITING_FOR_CONFIRMATION)
+                    return (
+                        <Box key={i} mb='30px'>
+                            <OrderComponent order={order} />
                         </Box>
                     )
                 })}
