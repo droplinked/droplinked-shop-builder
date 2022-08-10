@@ -4,7 +4,7 @@ import { useAddress } from "../../../context/address/AddressContext"
 
 import FormInput from "../../shared/FormInput/FormInput"
 import BasicButton from "../../shared/BasicButton/BasicButton"
-
+import ModalContainer from "../../Modal/modal-container/modal-container"
 
 
 export default function AddressForm({ type, addressBook, close }) {
@@ -76,11 +76,11 @@ export default function AddressForm({ type, addressBook, close }) {
         // validate form if has invalid data stop function
         let validation = validationForm()
         if (!validation) return
-       
-        let formData 
+
+        let formData
 
         // object for customer or producer
-        if(type == "CUSTOMER"){
+        if (type == "CUSTOMER") {
             formData = {
                 firstname: firstname,
                 lastname: lastname,
@@ -92,8 +92,8 @@ export default function AddressForm({ type, addressBook, close }) {
                 zip: zip,
                 addressType: type
             }
-        }else{
-             formData = {
+        } else {
+            formData = {
                 addressLine1: line1,
                 addressLine2: line2,
                 country: country,
@@ -107,7 +107,7 @@ export default function AddressForm({ type, addressBook, close }) {
         setLoading(true)
 
         let result
-        
+
         if (addressBook) {
             result = await updateAddress(formData, addressBook._id);
         } else {
@@ -141,14 +141,14 @@ export default function AddressForm({ type, addressBook, close }) {
             setError('zip')
             return false
         } else if (type == "CUSTOMER") {
-            let flag = true ;
+            let flag = true;
             if (firstname == '') {
                 setError('firstname')
-                flag =  false
+                flag = false
             }
             if (lastname == '') {
                 setError('lastname')
-                flag =  false
+                flag = false
             }
             return flag
         } else {
@@ -157,108 +157,106 @@ export default function AddressForm({ type, addressBook, close }) {
     }
 
     return (
-        <Box
-            border='1px'
-            borderColor='#fff'
-            borderRadius="15px"
-            py="40px"
-            px={{ base: "10px", md: "30px" }}
-        >
-            <FormInput
-                mb='30px'
-                label={"Address line 1"}
-                placeholder={"Address line 1"}
-                value={line1}
-                changeValue={ChangeLine1}
-                isError={(error == "line1") && "Address line1 is required"}
-            />
-            <FormInput
-                mb='30px'
-                label={"Address line 2 ( building of unit #)"}
-                placeholder={"Address line 2 ( building of unit #)"}
-                value={line2}
-                changeValue={ChangeLine2}
-            />
-            <Flex
-                mb='30px'
-                justifyContent='space-between'
-                alignItems='center'
-            >
+        <ModalContainer close={close}>
+            <Box>
                 <FormInput
-                    w='45%'
-                    label={"Country"}
-                    placeholder={"Country"}
-                    value={country}
-                    changeValue={ChangeCountry}
-                    isError={(error == "country") && "Country is required"}
+                    mb='30px'
+                    label={"Address line 1"}
+                    placeholder={"Address line 1"}
+                    value={line1}
+                    changeValue={ChangeLine1}
+                    isError={(error == "line1") && "Address line1 is required"}
                 />
                 <FormInput
-                    w='45%'
-                    label={"City"}
-                    placeholder={"City"}
-                    value={city}
-                    changeValue={ChangeCity}
-                    isError={(error == "city") && "City is required"}
+                    mb='30px'
+                    label={"Address line 2 ( building of unit #)"}
+                    placeholder={"Address line 2 ( building of unit #)"}
+                    value={line2}
+                    changeValue={ChangeLine2}
                 />
-            </Flex>
-
-            <Flex
-                mb='30px'
-                justifyContent='space-between'
-                alignItems='center'
-            >
-                <FormInput
-                    w='45%'
-                    label={"State"}
-                    placeholder={"State"}
-                    value={state}
-                    changeValue={ChangeState}
-                    isError={(error == "state") && "State is required"}
-                />
-                <FormInput
-                    w='45%'
-                    label={"Zip"}
-                    placeholder={"Zip"}
-                    value={zip}
-                    changeValue={ChangeZip}
-                    isError={(error == "zip") && "Zip is required"}
-                />
-            </Flex>
-
-            {(type == "CUSTOMER") ?
                 <Flex
-                    mb='60px'
+                    mb='30px'
                     justifyContent='space-between'
                     alignItems='center'
                 >
                     <FormInput
                         w='45%'
-                        label={"First name"}
-                        placeholder={"First name"}
-                        value={firstname}
-                        changeValue={ChangeFirstname}
-                        isError={(error == "firstname") && "firstname is required"}
+                        label={"Country"}
+                        placeholder={"Country"}
+                        value={country}
+                        changeValue={ChangeCountry}
+                        isError={(error == "country") && "Country is required"}
                     />
                     <FormInput
                         w='45%'
-                        label={"Last name"}
-                        placeholder={"Last name"}
-                        value={lastname}
-                        changeValue={ChangeLastname}
-                        isError={(error == "lastname") && "Lastname is required"}
+                        label={"City"}
+                        placeholder={"City"}
+                        value={city}
+                        changeValue={ChangeCity}
+                        isError={(error == "city") && "City is required"}
                     />
                 </Flex>
-                :
-                <Box mb='60px'></Box>
-            }
 
-            <Flex
-                justifyContent='space-between'
-                alignItems='center'
-            >
-                <BasicButton w='45%' p='12px 16px' click={close} loading={loading} disabled={loading} >Cancel</BasicButton>
-                <BasicButton w='45%' p='12px 16px' click={submitForm} loading={loading} disabled={loading}>Submit</BasicButton>
-            </Flex>
-        </Box>
+                <Flex
+                    mb='30px'
+                    justifyContent='space-between'
+                    alignItems='center'
+                >
+                    <FormInput
+                        w='45%'
+                        label={"State"}
+                        placeholder={"State"}
+                        value={state}
+                        changeValue={ChangeState}
+                        isError={(error == "state") && "State is required"}
+                    />
+                    <FormInput
+                        w='45%'
+                        label={"Zip"}
+                        placeholder={"Zip"}
+                        value={zip}
+                        changeValue={ChangeZip}
+                        isError={(error == "zip") && "Zip is required"}
+                    />
+                </Flex>
+
+                {(type == "CUSTOMER") ?
+                    <Flex
+                        mb='60px'
+                        justifyContent='space-between'
+                        alignItems='center'
+                    >
+                        <FormInput
+                            w='45%'
+                            label={"First name"}
+                            placeholder={"First name"}
+                            value={firstname}
+                            changeValue={ChangeFirstname}
+                            isError={(error == "firstname") && "firstname is required"}
+                        />
+                        <FormInput
+                            w='45%'
+                            label={"Last name"}
+                            placeholder={"Last name"}
+                            value={lastname}
+                            changeValue={ChangeLastname}
+                            isError={(error == "lastname") && "Lastname is required"}
+                        />
+                    </Flex>
+                    :
+                    <Box mb='20px'></Box>
+                }
+
+                <Flex
+                    justifyContent='space-between'
+                    alignItems='center'
+                    p='0px'
+                    w='100%'
+                >
+                    <BasicButton w='45%' p='12px 16px' click={close} loading={loading} disabled={loading} >Cancel</BasicButton>
+                    <BasicButton w='45%' p='12px 16px' click={submitForm} loading={loading} disabled={loading}>Submit</BasicButton>
+                </Flex>
+            </Box>
+        </ModalContainer>
     )
 }
