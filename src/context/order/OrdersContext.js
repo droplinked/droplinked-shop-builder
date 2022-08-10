@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { useProfile } from "../profile/ProfileContext";
 import { getOrdersList, SeenOrder } from "../../api/producer/Orders-api";
+import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils";
 
 export const OrderContext = createContext();
 
@@ -10,7 +11,6 @@ export default function OrderContextProvider({ children }) {
   const { profile, isRegisteredProducer } = useProfile();
   let token = JSON.parse(localStorage.getItem("token"));
 
-
   useEffect(() => {
     if (profile == null || token == null) return;
 
@@ -18,12 +18,15 @@ export default function OrderContextProvider({ children }) {
       updateOrder();
       setInterval(updateOrder, 60000);
     }
-
   }, [profile]);
 
   const updateOrder = async () => {
     let result = await getOrdersList();
-    if (result != null) setOrders(result);
+
+    if (result != null) {
+      result = sortArrayBaseCreateTime(result);
+      setOrders(result);
+    }
   };
 
   const seenOrder = async (orderId) => {

@@ -1,51 +1,25 @@
 import { Text, Box, Flex, useDisclosure, Stack, Skeleton, Image, keyframes } from "@chakra-ui/react"
-import { useState, useEffect } from "react"
 import { useOrder } from "../../../../context/order/OrdersContext"
-import { getProduct } from "../../../../api/public/Product-api"
 import { convetToCustomFormat } from "../../../../utils/date.utils/convertDate"
 import { ORDER_TYPES } from "../../../../constant/order.types"
 
 import OrderModal from "../OrderModal/OrderModal"
 
 const animationKeyframes = keyframes`
-0% { border:2px solid #8053ff; }
-50% { border:2px solid #aaa; }
-100% { border:2px solid #8053ff; }
+0% { border:3px solid #8053ff; }
+50% { border:3px solid #aaa; }
+100% { border:3px solid #8053ff; }
 `;
 
 const animation = `${animationKeyframes} 1.5s linear infinite`;
 
-// borderColor={(order.seenByProducer) ? "#aaa" : "#8053ff"}
-
 export default function OrderComponent({ order }) {
 
-
-
-   // const [orderProducts, setOrderProducts] = useState([])
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { seenOrder } = useOrder()
 
 
-    // useEffect(async () => {
-    //     let productsId = order.items.map(item => item.productID)
-    //     let products = await getProductsArray(productsId)
-    //     setOrderProducts(products)
-    // }, [])
-
-
-    // calculaate date of order
-    // const getOrderTime = () => {
-    //     let timeOfOrder = new Date(order.createdAt).getTime()
-    //     let now = new Date().getTime()
-    //     let time = (now - timeOfOrder) / (1000 * 3600 * 24);
-
-    //     if (time > 1) {
-    //         return `${parseInt(time)} day`
-    //     } else {
-    //         return `${parseInt(time * 24)} hours`
-    //     }
-    // }
 
     let totalQuantity = order.items.map(item => item.quantity).reduce((total, quan) => { return total + quan }, 0)
 
@@ -55,14 +29,7 @@ export default function OrderComponent({ order }) {
         onOpen()
     }
 
-    // const getProductsArray = async (productsId) => {
-    //     let promises = [];
-    //     for (let i = 0; i < productsId.length; i++) {
-    //         let res = await getProduct(productsId[i])
-    //         promises.push(res);
-    //     }
-    //     return promises
-    // }
+   
 
     const statusText = () => {
         switch (order.status) {
@@ -74,6 +41,10 @@ export default function OrderComponent({ order }) {
                 return "Sent"
             case ORDER_TYPES.PROCESSING:
                 return 'Processing'
+            case ORDER_TYPES.REFUNDED:
+                return "Canceled"
+            case ORDER_TYPES.WAITING_FOR_PAYMENT:
+                return "Waiting for payment"
             default:
                 return ""
         }
@@ -81,14 +52,13 @@ export default function OrderComponent({ order }) {
 
     return (
         <Box
-            border='2px'
-            borderColor='#aaa'
+        
+            border='3px solid #d4d4d486'
             borderRadius='16px'
             p='15px 20px'
             cursor='pointer'
-            animation={(order.status == ORDER_TYPES.WAITING_FOR_CONFIRMATION) && animation}
             _hover={{
-                borderColor: '#8053ff'
+                border:'3px solid #8053ff'
             }}
             onClick={openOrder}
         >
@@ -103,7 +73,7 @@ export default function OrderComponent({ order }) {
                             fontWeight='600'
                             mb={{ base: "10px", md: '10px' }}
                         >
-                            Order date: {convetToCustomFormat(order.createdAt)}
+                            Date: {convetToCustomFormat(order.createdAt)}
                         </Text>
                         <Text
                             color='#fff'
@@ -121,7 +91,7 @@ export default function OrderComponent({ order }) {
                         fontWeight='600'
                         mb={{ base: "10px", md: '20px' }}
                     >
-                        Quantity: {totalQuantity} Item
+                        Quantity: {totalQuantity} item
                     </Text>
 
                     {/* images */}
@@ -155,7 +125,7 @@ export default function OrderComponent({ order }) {
                             cursor='pointer'
                             onClick={openOrder}
                         >
-                            Status: {statusText()}
+                            {statusText()}
                         </Text>
                     </Flex>
                     {/* status */}
@@ -167,9 +137,9 @@ export default function OrderComponent({ order }) {
                     <Skeleton height='20px' />
                 </Stack>
             }
-             {(order.items.length > 0) &&
+            {(order.items.length > 0) &&
                 < OrderModal order={order} isOpen={isOpen} onClose={onClose} />
-            } 
+            }
         </Box>
     )
 }

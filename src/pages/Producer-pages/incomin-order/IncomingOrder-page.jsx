@@ -1,11 +1,13 @@
 import { Text, Box } from "@chakra-ui/react"
 import { useOrder } from "../../../context/order/OrdersContext"
 
+
 import OrderComponent from "./orderComponent/OrderComponent"
 
 export default function IncomingOrderPage() {
 
     const { orders } = useOrder()
+
 
     return (
         <Box
