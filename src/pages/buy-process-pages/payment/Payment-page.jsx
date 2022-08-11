@@ -11,7 +11,7 @@ import { useCart } from "../../../context/cart/CartContext"
 import { checkoutCart } from "../../../api/base-user/Cart-api"
 import { STRIPE_KEY } from "./stripe.key"
 import { addRootpaymentOrder } from "../../../api/base-user/Cart-api"
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios"
 import StripeComponent from "./stripe modal/stripe-modal-component"
@@ -28,7 +28,7 @@ export default function PaymentPage() {
     const [disableBtns, setDisables] = useState(false)
 
 
-    const { cart } = useCart();
+    const { cart, updateCart } = useCart();
     let navigate = useNavigate();
 
 
@@ -44,16 +44,14 @@ export default function PaymentPage() {
         appearance
     };
 
-    const myTimeout = setTimeout(()=>{
-        navigate("/purchseHistory?redirect_status=failed")
-    }, 30000);
+
 
     // get total cost of merchs 
     const getTotalofMerchs = () => {
         let merchsPrice = 0;
         // map on all cart items and get total price of each item
         cart.items.forEach((item) => {
-            merchsPrice += parseFloat(item.totalPrice) 
+            merchsPrice += parseFloat(item.totalPrice)
         })
         return merchsPrice.toFixed(2)
     }
@@ -66,14 +64,25 @@ export default function PaymentPage() {
         return parseFloat(shippingPrice)
     }
 
+    const getTotalCost = () => {
+        return (parseFloat(getTotalofShipping()) + parseFloat(getTotalofMerchs()))
+    }
+
+
+    const cancelPayment = async () => {
+        await checkoutCart()
+        updateCart()
+        navigate("/purchseHistory?redirect_status=failed")
+    }
+
+
     const stripePayment = async () => {
         setDisables(true)
-       
         let result = await checkoutCart()
         if (result != null) {
             setClientSecret(result)
             setPaymentSelected("Stripe")
-            myTimeout()
+            setTimeout(cancelPayment, 300000)
         }
         setDisables(false)
     }
@@ -81,16 +90,15 @@ export default function PaymentPage() {
     const rootpaymentListener = (orderId) => {
         setInterval(function () {
             axios.get(`https://api.staging.rootpayments.com/orders/${orderId}`)
-            .then(e => {
-                if(e.data.data.status == 'paid'){
-                    navigate("/purchseHistory?redirect_status=succeeded")
-                }
-                console.log(e.data.data.status)
-            })
+                .then(e => {
+                    if (e.data.data.status == 'paid') {
+                        navigate("/purchseHistory?redirect_status=succeeded")
+                    }
+                    console.log(e.data.data.status)
+                })
         }, 10000);
     }
 
-  
 
 
     const rootpaymentsPayment = async () => {
@@ -98,11 +106,11 @@ export default function PaymentPage() {
 
         const ROOTPAYMENTS_API = 'https://api.staging.rootpayments.com';
         const ROOTPAYMENTS_INTEGRATION_ID = '87f9faf7-816f-44e9-bfa5-a2b7d5d78ee2'; // Replace with your integration ID
-      
+
         //Create RootPayments order
         await axios.post(`${ROOTPAYMENTS_API}/orders`, {
             "amount": {
-                "amount":(getTotalofMerchs() + getTotalofShipping()),
+                "amount": (getTotalCost()),
                 "currency": "USD"
             },
             "token": "stx", //mia or stx - depends on Integration configuration
@@ -117,10 +125,6 @@ export default function PaymentPage() {
         })
         setDisables(false)//Don't know what that is, copied from stripe
     }
-
-
-    console.log((getTotalofMerchs() + getTotalofShipping()));
-
 
     return (
         <Box w="100%" maxW="1000px" mx="auto" px={{ base: "20px", md: "80px" }}>
@@ -141,7 +145,7 @@ export default function PaymentPage() {
                                 Shipping: ${getTotalofShipping()}
                             </Text>
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
-                                Total price: ${parseFloat(getTotalofMerchs() + getTotalofShipping()).toFixed(2)}
+                                Total price: ${getTotalCost()}
                             </Text>
                         </Box>
 
@@ -201,7 +205,7 @@ export default function PaymentPage() {
 
             {(paymentSelected == "Stripe") &&
                 <Elements stripe={stripePromise} options={options}  >
-                    <StripeComponent cartId={cart.id} />
+                    <StripeComponent cancel={() => { cancelPayment() }} />
                 </Elements>
             }
 
