@@ -29,7 +29,7 @@ function CheckoutPage() {
 	//get total price of all items
 	const getTotalPrice = () => {
 		// get total of each shop + 5 (shipping)
-		let total = cartBaseShop.map(shop => { return (shop.total + 5) })
+		let total = cartBaseShop.map(shop => { return (parseFloat(shop.total) + 5) })
 		total = total.reduce((a, b) => a + b, 0)
 		return total
 	}
