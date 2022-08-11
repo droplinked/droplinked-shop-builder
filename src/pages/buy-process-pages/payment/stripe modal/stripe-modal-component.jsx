@@ -50,7 +50,7 @@ const StripeComponent = ({cartId}) => {
             {(elements != null) &&
             <form onSubmit={handleSubmit}>
                 <PaymentElement />
-                <BasicButton mt='40px' p="12px 0px" type="submit"  loading={loading}>submit</BasicButton>
+                <BasicButton mt='40px' p="12px 0px" type="submit"  loading={loading}>Submit</BasicButton>
             </form>
             }
         </ModalContainer>

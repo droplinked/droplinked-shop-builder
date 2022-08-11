@@ -116,7 +116,7 @@ function CheckoutPage() {
 										fontSize={{ base: "18px", md: "22px" }}
 										fontWeight="600"
 									>
-										Total price: ${getTotalPrice()}
+										Total price: ${getTotalPrice().toFixed(2)}
 									</Text>
 									<Text
 										color="#fff"

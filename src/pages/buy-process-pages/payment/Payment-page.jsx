@@ -27,6 +27,7 @@ export default function PaymentPage() {
     const [clientSecret, setClientSecret] = useState('')
     const [disableBtns, setDisables] = useState(false)
 
+
     const { cart } = useCart();
     let navigate = useNavigate();
 
@@ -43,6 +44,10 @@ export default function PaymentPage() {
         appearance
     };
 
+    const myTimeout = setTimeout(()=>{
+        navigate("/purchseHistory?redirect_status=failed")
+    }, 30000);
+
     // get total cost of merchs 
     const getTotalofMerchs = () => {
         let merchsPrice = 0;
@@ -50,7 +55,7 @@ export default function PaymentPage() {
         cart.items.forEach((item) => {
             merchsPrice += parseFloat(item.totalPrice) 
         })
-        return merchsPrice
+        return merchsPrice.toFixed(2)
     }
 
     // find all shop's name and build unique array and set $5 for each shop
@@ -58,15 +63,17 @@ export default function PaymentPage() {
         let shops = cart.items.map((merch) => merch.shopName)
         shops = [...new Set(shops)];
         let shippingPrice = (shops.length * 5)
-        return shippingPrice
+        return parseFloat(shippingPrice)
     }
 
     const stripePayment = async () => {
         setDisables(true)
+       
         let result = await checkoutCart()
         if (result != null) {
             setClientSecret(result)
             setPaymentSelected("Stripe")
+            myTimeout()
         }
         setDisables(false)
     }
@@ -83,13 +90,15 @@ export default function PaymentPage() {
         }, 10000);
     }
 
+  
+
 
     const rootpaymentsPayment = async () => {
         setDisables(true) //Don't know what that is, copied from stripe
 
         const ROOTPAYMENTS_API = 'https://api.staging.rootpayments.com';
         const ROOTPAYMENTS_INTEGRATION_ID = '87f9faf7-816f-44e9-bfa5-a2b7d5d78ee2'; // Replace with your integration ID
-
+      
         //Create RootPayments order
         await axios.post(`${ROOTPAYMENTS_API}/orders`, {
             "amount": {
@@ -126,13 +135,13 @@ export default function PaymentPage() {
                         {/* top side */}
                         <Box p="10px 5px" mb="50px" w={{ base: '100%', md: '100%' }}>
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
-                                Merchs: ${getTotalofMerchs()}
+                                Items: ${getTotalofMerchs()}
                             </Text>
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
                                 Shipping: ${getTotalofShipping()}
                             </Text>
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
-                                Total price: ${(getTotalofMerchs() + getTotalofShipping())}
+                                Total price: ${parseFloat(getTotalofMerchs() + getTotalofShipping()).toFixed(2)}
                             </Text>
                         </Box>
 

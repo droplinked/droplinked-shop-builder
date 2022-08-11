@@ -10,7 +10,7 @@ import PurchaseHistory from "./PurchseComponent/PurchaseComponent"
 export default function PurchasHistoryPage() {
 
     const [orders, setorders] = useState(null)
-    const { successToast } = useToasty();
+    const { successToast, errorToast } = useToasty();
 
 
     //get payment status
@@ -21,17 +21,18 @@ export default function PurchasHistoryPage() {
     useEffect(() => {
         // if its backurl from stripe show successToast
         if (status == 'succeeded') successToast("Payment successful")
+        if (status == 'failed') errorToast("Payment canceled")
         getPurchseList()
     }, [])
 
 
     const getPurchseList = async () => {
         let result = await getOrdersHistory()
-        if(result != null ){
+        if (result != null) {
             setorders(result)
         }
     }
-    
+
 
     return (<>
         {(orders == null)
@@ -41,7 +42,7 @@ export default function PurchasHistoryPage() {
             <>
                 {(orders.length == 0)
                     ?
-                    <Text color='white'  w='100%'textAlign='center' fontSize='20px' fontWeight='600'>No Order</Text>
+                    <Text color='white' w='100%' textAlign='center' fontSize='20px' fontWeight='600'>No Order</Text>
                     :
                     <Box w='100%' px={{ base: "20px", md: "80px" }}>
                         <Box w='100%' maxW='800px' m='auto'>
