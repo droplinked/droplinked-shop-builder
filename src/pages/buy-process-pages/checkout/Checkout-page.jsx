@@ -130,9 +130,8 @@ function CheckoutPage() {
 								<Box
 									w={{ base: "150px", md: "200px" }}
 									h={{ base: "40px", md: "40px" }}
-									borderRadius="15px"
+									//borderRadius="15px"
 									overflow="hidden"
-								//mt="33px"
 								>
 									<BasicButton
 										click={() => { navigate('/address') }}
