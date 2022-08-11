@@ -6,7 +6,7 @@ import ProfileItem from "./ProfileItem-component"
 
 const ProfileDropdown = ({ close }) => {
 
-    const { profile, logout ,isCustomer ,isRegisteredProducer } = useProfile()
+    const { profile, logout, isCustomer, isRegisteredProducer } = useProfile()
     let navigate = useNavigate();
 
     let userStatus = profile.status;
@@ -20,7 +20,7 @@ const ProfileDropdown = ({ close }) => {
 
     const clickProfile = () => {
         close()
-        if(profile.type == "PRODUCER"){
+        if (profile.type == "PRODUCER") {
             switch (userStatus) {
                 case "VERIFIED":
                     navigate("/register/personalInfo");
@@ -38,11 +38,13 @@ const ProfileDropdown = ({ close }) => {
                     navigate(`/${profile.shopName}`);
                     return;
             }
-        }else{
+        } else {
             navigate("/");
             return;
         }
     }
+
+    console.log(isRegisteredProducer());
 
     return (
 
@@ -61,9 +63,9 @@ const ProfileDropdown = ({ close }) => {
             boxShadow='dark-lg'
             flexDirection='column'
         >
-            <ProfileItem click={clickProfile}>Profile</ProfileItem>
+            {isRegisteredProducer() && <ProfileItem click={clickProfile}>Profile</ProfileItem>}
 
-            {(userStatus == "IMS_TYPE_COMPLETED") && <>
+            {isRegisteredProducer() && <>
                 <Link to="/producer/ims" >
                     <ProfileItem click={close}>Inventory</ProfileItem>
                 </Link>
@@ -76,16 +78,16 @@ const ProfileDropdown = ({ close }) => {
                 <Link to="/producer/orders" >
                     <ProfileItem click={close}>Incoming orders</ProfileItem>
                 </Link>
-
             </>}
 
             {isCustomer() && <Link to="/purchseHistory" >
                 <ProfileItem click={close}>Purchase history</ProfileItem>
             </Link>}
 
-            {isRegisteredProducer() && <Link to="/settings" >
+            <Link to="/settings" >
                 <ProfileItem click={close}>Settings</ProfileItem>
-            </Link>}
+            </Link>
+
             <ProfileItem click={logout}>Logout</ProfileItem>
         </Flex>
     )

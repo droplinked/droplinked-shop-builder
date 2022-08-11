@@ -35,11 +35,11 @@ const ProfileContextProvider = ({ children }) => {
     if (profile) {
       if (
         profile.type == "PRODUCER" &&
-        profile.status != "IMS_TYPE_COMPLETED"
+        profile.status == "IMS_TYPE_COMPLETED"
       ) {
-        return false;
-      } else {
         return true;
+      } else {
+        return false;
       }
     }
   };
