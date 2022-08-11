@@ -1,24 +1,37 @@
 import { useToasty } from "../../context/toastify/ToastContext"
-import { useEffect, useState } from "react";
-import { Text, Box } from "@chakra-ui/react"
+import { useEffect, useState, useMemo } from "react";
+import { Text, Box, Flex } from "@chakra-ui/react"
 import { getOrdersHistory } from '../../api/base-user/OrderHistory-api'
 import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils"
 import { ORDER_TYPES } from "../../constant/order.types"
 
+import Dropdown from "../../components/shared/Dropdown/Dropdown-component"
 import Loading from "../../components/shared/loading/Loading"
-import PurchaseHistory from "./PurchseComponent/PurchaseComponent"
 import Order from "../../components/shared/Order/Order-component"
 
 export default function PurchasHistoryPage() {
 
     const [orders, setorders] = useState(null)
+    const [filter, setFilter] = useState("All")
+
     const { successToast, errorToast } = useToasty();
+
 
 
     //get payment status
     let params = (new URL(document.location)).searchParams;
     let status = params.get('redirect_status') // null or string
 
+    const setTypesArray = () => {
+        let arr = []
+        for (const type in ORDER_TYPES)
+            arr.push({ id: ORDER_TYPES[type], value: ORDER_TYPES[type] })
+        arr.push({ id: "All", value: "All" })
+        return arr
+    }
+
+    let typesArray =useMemo(() => setTypesArray(), []);
+    // setTypesArray();
 
     useEffect(() => {
         // if its backurl from stripe show successToast
@@ -57,14 +70,36 @@ export default function PurchasHistoryPage() {
                             >
                                 Purchase history
                             </Text>
-                            {orders.map((order, i) => {
-                                if(order.status == ORDER_TYPES.WAITING_FOR_PAYMENT)
-                                return <Order key={i} order={order} />
-                            })}
-                            {orders.map((order, i) => {
-                                 if(order.status != ORDER_TYPES.WAITING_FOR_PAYMENT)
-                                return <Order key={i} order={order} />
-                            })}
+
+                            <Box w='40%' mb='40px'>
+                                <Dropdown
+                                    value={filter}
+                                    pairArray={typesArray}
+                                    placeholder={'Filter'}
+                                    change={(e) => { setFilter(e.target.value) }}
+                                />
+                            </Box>
+                            {(filter == "All")
+                                ?
+                                <>
+                                    {orders.map((order, i) => {
+                                        if (order.status == ORDER_TYPES.WAITING_FOR_PAYMENT)
+                                            return <Order key={i} order={order} />
+                                    })}
+                                    {orders.map((order, i) => {
+                                        if (order.status != ORDER_TYPES.WAITING_FOR_PAYMENT)
+                                            return <Order key={i} order={order} />
+                                    })}
+                                </>
+                                :
+                                <>
+                                    {orders.map((order, i) => {
+                                        if (order.status == filter)
+                                            return <Order key={i} order={order} />
+                                    })}
+                                </>
+                            }
+
                         </Box>
                     </Box>
                 }

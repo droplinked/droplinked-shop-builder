@@ -23,7 +23,6 @@ export default function Order({ order }) {
 
 
     let totalQuantity = order.items.map(item => item.quantity).reduce((total, quan) => { return total + quan }, 0)
-console.log(order._id);
 
     const statusText = () => {
         switch (order.status) {
