@@ -1,8 +1,12 @@
 .Collection-wrapper-component {
   width: 100%;
-  border: 1px solid #b3b3b3;
-  border-radius: 16px;
-  padding: 30px 24px;
+  border: 3px solid #d4d4d486;
+  border-radius: 30px;
+  padding: 25px 20px 15px 20px;
+
+  &:hover {
+    border: 3px solid #8053ff;
+  }
 
   & .name {
     color: #fff;
@@ -20,18 +24,17 @@
     padding: 8px 15px;
   }
   & .collection-edit-btn {
-    color:#8053ff;
+    color: #8053ff;
     cursor: pointer;
     font-weight: 600;
     font-size: 18px;
   }
   & .collection-delete-img {
-    color:#ff5353;
+    color: #ff5353;
     cursor: pointer;
     font-weight: 600;
     font-size: 18px;
   }
-
 
   & .no-pro-text {
     color: white;
@@ -45,9 +48,7 @@
 @media only screen and (max-width: 768px) {
   .Collection-wrapper-component {
     width: 100%;
-    border: 1px solid #b3b3b3;
-    border-radius: 16px;
-    padding: 30px 12px 20px 12px;
+    padding: 15px 10px 10px 10px;
 
     & .name {
       font-size: 18px;
@@ -82,9 +83,7 @@
 @media only screen and (max-width: 568px) {
   .Collection-wrapper-component {
     width: 100%;
-    border: 1px solid #b3b3b3;
-    border-radius: 16px;
-    padding: 30px 12px 20px 12px;
+    padding: 15px 10px 10px 10px;
 
     & .name {
       font-size: 14px;

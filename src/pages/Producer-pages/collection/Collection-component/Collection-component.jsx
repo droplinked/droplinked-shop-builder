@@ -55,7 +55,7 @@ export default function CollectionComponent({ collection, edit, render }) {
                     <p className="text-align-center no-pro-text">Empty</p>
                 </div>
                 :
-                <div className="mt-4 d-flex flex-wrap">
+                <div className="mt-2 d-flex flex-wrap">
                     {collection.products.filter((product, i) => {
                         if (i < 4) { return product }
                     }).map((product, i) => {
