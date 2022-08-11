@@ -106,7 +106,7 @@ function CheckoutPage() {
 							<Flex
 								w="100%"
 								justifyContent="space-between"
-								borderTop='1px' borderColor='white'
+								borderTop='2px' borderColor='#8053ff'
 								pt="20px"
 							>
 
