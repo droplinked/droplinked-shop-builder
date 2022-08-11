@@ -89,7 +89,7 @@ export default function AddressComponent({ address, selected, setSelect, selectA
                             >Edit</Button>
                             {(deleteable == true) &&
                                 <Button
-                                    bgColor="#4d4d4d"
+                                    bgColor="#e74c3c"
                                     color='#fff'
                                     w="45%" h="35px"
                                     fontSize={{ base: "12px", md: "16px" }}
