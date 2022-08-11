@@ -2,10 +2,12 @@ import { useToasty } from "../../context/toastify/ToastContext"
 import { useEffect, useState } from "react";
 import { Text, Box } from "@chakra-ui/react"
 import { getOrdersHistory } from '../../api/base-user/OrderHistory-api'
+import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils"
+import { ORDER_TYPES } from "../../constant/order.types"
 
 import Loading from "../../components/shared/loading/Loading"
 import PurchaseHistory from "./PurchseComponent/PurchaseComponent"
-
+import Order from "../../components/shared/Order/Order-component"
 
 export default function PurchasHistoryPage() {
 
@@ -28,11 +30,11 @@ export default function PurchasHistoryPage() {
 
     const getPurchseList = async () => {
         let result = await getOrdersHistory()
+        result = sortArrayBaseCreateTime(result)
         if (result != null) {
             setorders(result)
         }
     }
-
 
     return (<>
         {(orders == null)
@@ -53,10 +55,15 @@ export default function PurchasHistoryPage() {
                                 textAlign='center'
                                 mb='40px'
                             >
-                                Purchase History
+                                Purchase history
                             </Text>
                             {orders.map((order, i) => {
-                                return <PurchaseHistory key={i} order={order} />
+                                if(order.status == ORDER_TYPES.WAITING_FOR_PAYMENT)
+                                return <Order key={i} order={order} />
+                            })}
+                            {orders.map((order, i) => {
+                                 if(order.status != ORDER_TYPES.WAITING_FOR_PAYMENT)
+                                return <Order key={i} order={order} />
                             })}
                         </Box>
                     </Box>
