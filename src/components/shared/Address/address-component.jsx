@@ -62,7 +62,7 @@ export default function AddressComponent({ address, selected, setSelect, selectA
         <>
             {(openAddressForm == false)
                 ?
-                <Box h="auto" mb="4" border='3px solid' borderRadius="15px" p="24px 20px 16px 20px"
+                <Box h="auto" mb="4" border='3px solid' borderRadius="30px" p="24px 20px 16px 20px"
                     borderColor={(selectAble == true && address._id == selected) ? "#8053ff" : '#4d4d4d'}
                     cursor={(selectAble == true) ? "pointer" : "auto"}
                     onClick={selectAddress}
@@ -80,7 +80,7 @@ export default function AddressComponent({ address, selected, setSelect, selectA
                         <Flex alignItems='center' flexDirection='row-reverse' justifyContent="space-between" w={{ base: "45%", md: "40%" }}>
 
                             <Button
-                                bgColor="#4A4A4A"
+                                bgColor="#8053ff"
                                 color='#fff'
                                 w="45%" h="35px"
                                 fontSize={{ base: "12px", md: "16px" }}
@@ -89,7 +89,7 @@ export default function AddressComponent({ address, selected, setSelect, selectA
                             >Edit</Button>
                             {(deleteable == true) &&
                                 <Button
-                                    bgColor="#8053ff"
+                                    bgColor="#4d4d4d"
                                     color='#fff'
                                     w="45%" h="35px"
                                     fontSize={{ base: "12px", md: "16px" }}
