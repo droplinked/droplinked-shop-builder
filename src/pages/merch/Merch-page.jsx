@@ -1,7 +1,7 @@
 import "./Merch-page-style.scss"
 
 import { useState, useEffect } from "react"
-import { useParams , useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { UseWalletInfo } from "../../context/wallet/WalletContext"
 import { useProfile } from "../../context/profile/ProfileContext"
 import { useToasty } from "../../context/toastify/ToastContext"
@@ -260,8 +260,9 @@ export default function MerchPage() {
 
                     {/* detail side */}
                     <div className="detail-side col-12 col-md-6">
-                        <p className="merch-brandname" onClick={navigateToShoppage}>{shopname}</p>
                         <p className="merch-title">{product.title}</p>
+                        
+                        <p className="merch-brandname" onClick={navigateToShoppage}>{shopname}</p>
 
                         <p className="merch-price">{`$${(sku != null) ? (sku.price) : ""}`}</p>
 

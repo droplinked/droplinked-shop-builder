@@ -56,17 +56,21 @@
     flex-direction: column;
     justify-content: space-between;
 
-    & .merch-brandname{
+    & .merch-title{
       color:#fff;
       font-size: 26px;
       font-weight: 600;
-      cursor: pointer;
     }
 
-    & .merch-title {
+    & .merch-brandname{
       color: #B3B3B3;
       font-weight: 600;
       font-size: 22px;
+      cursor: pointer;
+      display: inline-block;
+      &:hover{
+        color:#fff;
+      }
     }
 
     & .merch-price {
@@ -159,7 +163,7 @@
       padding-left: 0px;
       padding-bottom: 0px;
 
-      & .merch-title {
+      & .merch-brandname {
         font-size: 20px;
       }
       & .merch-price {
