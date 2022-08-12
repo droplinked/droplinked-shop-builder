@@ -44,6 +44,14 @@
     flex-direction: column;
     justify-content: space-between;
 
+    & .merch-descroption{
+      color: #b3b3b3;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
     & .merch-brandname{
       color:#ddd;
       font-size: 26px;
@@ -142,6 +150,10 @@
       height: 320px;
       padding-left: 0px;
       padding-bottom: 0px;
+
+      & .merch-descroption{
+        font-size: 18px;
+      }
 
       & .merch-title {
         font-size: 20px;
