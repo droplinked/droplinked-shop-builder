@@ -1,5 +1,6 @@
 import {
-    Box, Flex, Modal,
+    Box,
+    Modal,
     ModalOverlay,
     ModalContent,
     ModalHeader,
@@ -23,69 +24,66 @@ import YesNoModal from "../yes-or-no-modal/YesOrNo-modal-component"
 export default function OrderModal({ order, isOpen, onClose }) {
 
 
-    // const [loadingBtn, setLoadingBtn] = useState(false)
-    // const [proccessModal, setProccessModal] = useState(false)
-    // const [cancelOrderModal, setCancelOrderModal] = useState(false)
+    const [loadingBtn, setLoadingBtn] = useState(false)
+    const [proccessModal, setProccessModal] = useState(false)
+    const [cancelOrderModal, setCancelOrderModal] = useState(false)
 
-    // const { successToast, errorToast } = useToasty()
-    // const { updateOrder } = useOrder()
+    const { successToast, errorToast } = useToasty()
+    const { updateOrder } = useOrder()
 
 
-    // const processButtonText = () => {
-    //     switch (order.status) {
-    //         case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
-    //             return "Start proccessing"
-    //         case ORDER_TYPES.PROCESSING:
-    //             return "Send order"
-    //         case ORDER_TYPES.SENT:
-    //             return "Sent"
-    //     }
-    // }
+    const progressClick = async () => {
+        let statusType = (order.status == "WAITING_FOR_CONFIRMATION") ? ORDER_TYPES.PROCESSING : ORDER_TYPES.SENT
+        setLoadingBtn(true)
+        let result = await updateOrderStatus(order._id, statusType)
+        setLoadingBtn(false)
+        if (result == true) {
+            successToast("Status changed successfully")
+            updateOrder()
+        } else {
+            errorToast(result)
+        }
+        closeSmallModal()
 
-    // const progressClick = async () => {
-    //     let statusType = (order.status == "WAITING_FOR_CONFIRMATION") ? ORDER_TYPES.PROCESSING : ORDER_TYPES.SENT
-    //     setLoadingBtn(true)
-    //     let result = await updateOrderStatus(order._id, statusType)
-    //     setLoadingBtn(false)
-    //     if (result == true) {
-    //         successToast("Status changed successfully")
-    //         updateOrder()
-    //     } else {
-    //         errorToast(result)
-    //     }
-    //     closeSmallModal()
+    }
 
-    // }
+    const cancelOrder = async () => {
+        setLoadingBtn(true)
+        let result = await updateOrderStatus(order._id, ORDER_TYPES.CANCELED)
+        setLoadingBtn(false)
+        if (result == true) {
+            successToast("You canceled the order")
+            updateOrder()
+        } else {
+            errorToast(result)
+        }
+        closeSmallModal()
 
-    // const cancelClick = async () => {
-    //     setLoadingBtn(true)
-    //     let result = await updateOrderStatus(order._id, ORDER_TYPES.CANCELED)
-    //     setLoadingBtn(false)
-    //     if (result == true) {
-    //         successToast("You canceled the order")
-    //         updateOrder()
-    //     } else {
-    //         errorToast(result)
-    //     }
-    //     closeSmallModal()
+    }
 
-    // }
+    const closeSmallModal = () => {
+        setProccessModal(false)
+        setCancelOrderModal(false)
+    }
 
-    // const closeSmallModal = () => {
-    //     setProccessModal(false)
-    //     setCancelOrderModal(false)
-    // }
+    const cancelOnClick = () => {
+        setCancelOrderModal(true)
+    }
 
-    // const proccessModalText = () => {
-    //     switch (order.status) {
-    //         case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
-    //             return "Are you sure you want to start proccessing?"
-    //         case ORDER_TYPES.PROCESSING:
-    //             return "Are you sure you want to send this order?"
-    //         // case ORDER_TYPES.SENT:
-    //         //     return "Are you sure you want to set status on Sent?"
-    //     }
-    // }
+    const openProccessModal = () => {
+        setProccessModal(true)
+    }
+
+    const proccessModalText = () => {
+        switch (order.status) {
+            case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
+                return "Are you sure you want to start proccessing?"
+            case ORDER_TYPES.PROCESSING:
+                return "Are you sure you want to send this order?"
+            // case ORDER_TYPES.SENT:
+            //     return "Are you sure you want to set status on Sent?"
+        }
+    }
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}  >
@@ -123,30 +121,35 @@ export default function OrderModal({ order, isOpen, onClose }) {
                 </ModalBody>
 
                 <ModalFooter>
-                    <OrderStatus orderStatus={order.status} />
+                    <OrderStatus
+                        orderStatus={order.status}
+                        loading={loadingBtn}
+                        cancelOnClick={cancelOnClick}
+                        openProccessModal={openProccessModal}
+                    />
                 </ModalFooter>
-                
+
             </ModalContent>
             {/* process modal */}
 
-            {/* {proccessModal &&
+            {proccessModal &&
                 <YesNoModal
                     show={proccessModal}
                     hide={closeSmallModal}
                     text={proccessModalText()}
                     click={progressClick}
                     loading={loadingBtn}
-                />} */}
+                />}
 
             {/* cancel order modal */}
 
-            {/* {cancelOrderModal &&
+            {cancelOrderModal &&
                 <YesNoModal
                     show={cancelOrderModal}
                     hide={closeSmallModal}
                     text={'Are you sure you want to cancel this order?'}
-                    click={cancelClick}
-                />} */}
+                    click={cancelOrder}
+                />}
 
         </Modal >
     )

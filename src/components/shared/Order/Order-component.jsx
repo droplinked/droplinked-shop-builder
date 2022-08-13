@@ -55,6 +55,8 @@ export default function Order({ order }) {
         }
     }
 
+    console.log(animationCondition());
+
     const paynow = (event) => {
         event.stopPropagation();
     }
@@ -147,7 +149,7 @@ export default function Order({ order }) {
                             my="auto"
                             h="100%"
                             cursor='pointer'
-                            animation={(animationCondition) && animation}
+                            animation={(animationCondition()) && animation}
                         >
                             {statusText()}
                         </Text>
