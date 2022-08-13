@@ -45,14 +45,18 @@ export default function Order({ order }) {
 
     const animationCondition = () => {
         const status = order.status;
-        
+
         if (isCustomer()) {
-            if(status == ORDER_TYPES.WAITING_FOR_PAYMENT)return true
+            if (status == ORDER_TYPES.WAITING_FOR_PAYMENT) return true
             else return false
         } else {
-            if(status == ORDER_TYPES.WAITING_FOR_CONFIRMATION)return true
+            if (status == ORDER_TYPES.WAITING_FOR_CONFIRMATION) return true
             else return false
         }
+    }
+
+    const paynow = (event) => {
+        event.stopPropagation();
     }
 
     return (
@@ -149,6 +153,16 @@ export default function Order({ order }) {
                         </Text>
                     </Flex>
                     {/* status */}
+                    {(order.status == ORDER_TYPES.WAITING_FOR_PAYMENT) &&
+                        <Box
+                            pos='absolute'
+                            w={{ base: "120px", md: "160px" }}
+                            h={{ base: '25px', md: '40px' }}
+                            right='0px'
+                            bottom='0px'
+                        >
+                            <BasicButton onClick={paynow}>Pay now</BasicButton>
+                        </Box>}
                 </Box>
                 :
                 <Stack>
