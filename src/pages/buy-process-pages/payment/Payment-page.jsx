@@ -4,7 +4,7 @@ import {
     Text,
     Button,
 } from '@chakra-ui/react'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useCart } from "../../../context/cart/CartContext"
@@ -31,6 +31,9 @@ export default function PaymentPage() {
     const { cart, updateCart } = useCart();
     let navigate = useNavigate();
 
+    if (cart && (cart.items.length == 0)) {
+        navigate("/purchseHistory?redirect_status=failed")
+    }
 
     const appearance = {
         theme: 'night',
@@ -56,7 +59,7 @@ export default function PaymentPage() {
         return merchsPrice
     }
 
-  
+
 
     // find all shop's name and build unique array and set $5 for each shop
     const getTotalofShipping = () => {
