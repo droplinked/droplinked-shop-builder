@@ -77,7 +77,7 @@ export default function OrderModal({ order, isOpen, onClose }) {
     const proccessModalText = () => {
         switch (order.status) {
             case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
-                return "Are you sure you want to start proccessing?"
+                return "Are you sure you want to start processing?"
             case ORDER_TYPES.PROCESSING:
                 return "Are you sure you want to send this order?"
             // case ORDER_TYPES.SENT:

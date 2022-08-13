@@ -31,7 +31,7 @@ const OrderStatus = ({ orderStatus, loading, cancelOnClick, openProccessModal })
     const processButtonText = () => {
         switch (orderStatus) {
             case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
-                return "Start proccessing"
+                return "Start processing"
             case ORDER_TYPES.PROCESSING:
                 return "Send order"
             case ORDER_TYPES.SENT:
