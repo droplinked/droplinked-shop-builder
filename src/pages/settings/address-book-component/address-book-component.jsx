@@ -3,7 +3,7 @@ import { useAddress } from "../../../context/address/AddressContext"
 import { useState } from "react"
 
 import AddressComponent from "../../../components/shared/Address/address-component"
-import AddressForm from "../../../components/Forms/Address-form/AddressForm-component"
+import AddressForm from "../../../components/Modal/Address/Address-modal"
 import Loading from "../../../components/shared/loading/Loading"
 
 const keyframe_startanimation = keyframes`

@@ -7,7 +7,7 @@ import { addCheckoutAddress } from "../../../api/base-user/Cart-api"
 
 import AddressComponent from "../../../components/shared/Address/address-component"
 import Loading from "../../../components/shared/loading/Loading"
-import AddressForm from "../../../components/Forms/Address-form/AddressForm-component"
+import AddressForm from "../../../components/Modal/Address/Address-modal"
 
 
 function AddressPage() {

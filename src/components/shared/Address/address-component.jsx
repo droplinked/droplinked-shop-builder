@@ -8,7 +8,7 @@ import { useAddress } from "../../../context/address/AddressContext"
 import { useState } from "react"
 
 import SmallModal from "../../Modal/Small-modal/Small-modal-component"
-import AddressForm from "../../Forms/Address-form/AddressForm-component"
+import AddressForm from "../../Modal/Address/Address-modal"
 
 // (address) formta in props {
 //      addressLine1: string

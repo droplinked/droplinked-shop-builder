@@ -4,7 +4,7 @@ import { useAddress } from "../../../context/address/AddressContext"
 
 import FormInput from "../../shared/FormInput/FormInput"
 import BasicButton from "../../shared/BasicButton/BasicButton"
-import ModalContainer from "../../Modal/modal-container/modal-container"
+import ModalContainer from "../modal-container/modal-container"
 
 
 export default function AddressForm({ type, addressBook, close }) {
