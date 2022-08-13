@@ -1,5 +1,4 @@
 import { Text, Box, Flex, useDisclosure, Stack, Skeleton, Image, keyframes } from "@chakra-ui/react"
-import { useOrder } from "../../../context/order/OrdersContext"
 import { convetToCustomFormat } from "../../../utils/date.utils/convertDate"
 import { ORDER_TYPES } from "../../../constant/order.types"
 
@@ -12,7 +11,6 @@ const animationKeyframes = keyframes`
 100% { color: #8053ff; }
 `;
 
-//const animation = `${animationKeyframes} 1.5s linear infinite`;
 const animation = `${animationKeyframes} 2s ease infinite`;
 
 
@@ -51,6 +49,7 @@ export default function Order({ order }) {
             p='15px 20px'
             cursor='pointer'
             mb='40px'
+            transition='0.5s'
             _hover={{
                 border: '3px solid #8053ff'
             }}
@@ -80,19 +79,19 @@ export default function Order({ order }) {
                         >
                             Order id: {order._id}
                         </Text>
-                        
+
                     </Flex>
                     {/* date and total price */}
                     <Flex justifyContent='space-between'>
-                    <Text
-                        color='#fff'
-                        fontSize={{ base: "12px", md: '14px' }}
-                        fontWeight='600'
-                        mb={{ base: "10px", md: '20px' }}
-                    >
-                        Quantity: {totalQuantity} item
-                    </Text>
-                    <Text
+                        <Text
+                            color='#fff'
+                            fontSize={{ base: "12px", md: '14px' }}
+                            fontWeight='600'
+                            mb={{ base: "10px", md: '20px' }}
+                        >
+                            Quantity: {totalQuantity} item
+                        </Text>
+                        <Text
                             color='#fff'
                             fontSize={{ base: "12px", md: '14px' }}
                             fontWeight='600'
