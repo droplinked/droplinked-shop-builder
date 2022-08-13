@@ -12,10 +12,14 @@ export default function IncomingOrderPage() {
     const { orders } = useOrder()
 
     const setTypesArray = () => {
-        let arr = []
-        for (const type in ORDER_TYPES)
-            arr.push({ id: ORDER_TYPES[type], value: ORDER_TYPES[type] })
-        arr.push({ id: "All", value: "All" })
+        const arr = [
+            { id: "All", value: "All" },
+            { id: ORDER_TYPES.WAITING_FOR_CONFIRMATION, value: "Waiting for confirmation" },
+            { id: ORDER_TYPES.WAITING_FOR_PAYMENT, value: "Waiting for payment" },
+            { id: ORDER_TYPES.PROCESSING, value: "Processing" },
+            { id: ORDER_TYPES.SENT, value: "Sent" },
+            { id: ORDER_TYPES.CANCELED, value: "Canceled" },
+        ]
         return arr
     }
 
@@ -45,7 +49,7 @@ export default function IncomingOrderPage() {
                     <Dropdown
                         value={filter}
                         pairArray={typesArray}
-                        placeholder={'Filter'}
+                        placeholder={filter}
                         change={(e) => { setFilter(e.target.value) }}
                     />
                 </Box>
@@ -73,8 +77,13 @@ export default function IncomingOrderPage() {
                     :
                     <>
                         {orders.map((order, i) => {
-                            if (order.status == filter)
-                                return <Order key={i} order={order} />
+                            if (order.status == ORDER_TYPES.REFUNDED) {
+                                if (filter == ORDER_TYPES.CANCELED)
+                                    return <Order key={i} order={order} />
+                            } else {
+                                if (order.status == filter)
+                                    return <Order key={i} order={order} />
+                            }
                         })}
                     </>
                 }

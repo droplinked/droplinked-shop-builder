@@ -1,6 +1,6 @@
 import { useToasty } from "../../context/toastify/ToastContext"
 import { useEffect, useState, useMemo } from "react";
-import { Text, Box, Flex } from "@chakra-ui/react"
+import { Text, Box } from "@chakra-ui/react"
 import { getOrdersHistory } from '../../api/base-user/OrderHistory-api'
 import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils"
 import { ORDER_TYPES } from "../../constant/order.types"
@@ -23,14 +23,19 @@ export default function PurchasHistoryPage() {
     let status = params.get('redirect_status') // null or string
 
     const setTypesArray = () => {
-        let arr = []
-        for (const type in ORDER_TYPES)
-            arr.push({ id: ORDER_TYPES[type], value: ORDER_TYPES[type] })
-        arr.push({ id: "All", value: "All" })
+      const  arr = [
+            { id: "All", value: "All" },
+            { id: ORDER_TYPES.WAITING_FOR_CONFIRMATION, value: "Waiting for confirmation" },
+            { id: ORDER_TYPES.WAITING_FOR_PAYMENT, value: "Waiting for payment" },
+            { id: ORDER_TYPES.PROCESSING, value: "Processing" },
+            { id: ORDER_TYPES.SENT, value: "Sent" },
+            { id: ORDER_TYPES.CANCELED, value: "Canceled" },
+            { id: ORDER_TYPES.REFUNDED, value: "Refunded" },
+        ]
         return arr
     }
 
-    let typesArray =useMemo(() => setTypesArray(), []);
+    let typesArray = useMemo(() => setTypesArray(), []);
     // setTypesArray();
 
     useEffect(() => {
@@ -75,7 +80,7 @@ export default function PurchasHistoryPage() {
                                 <Dropdown
                                     value={filter}
                                     pairArray={typesArray}
-                                    placeholder={'Filter'}
+                                    placeholder={filter}
                                     change={(e) => { setFilter(e.target.value) }}
                                 />
                             </Box>
