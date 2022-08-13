@@ -68,7 +68,7 @@ export default function Order({ order }) {
             p='15px 20px'
             cursor='pointer'
             mb='40px'
-            transition='0.5s'
+            transition='0.8s'
             _hover={{
                 border: '3px solid #8053ff'
             }}
