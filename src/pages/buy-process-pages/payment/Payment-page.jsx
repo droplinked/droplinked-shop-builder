@@ -53,20 +53,23 @@ export default function PaymentPage() {
         cart.items.forEach((item) => {
             merchsPrice += parseFloat(item.totalPrice)
         })
-        return merchsPrice.toFixed(2)
+        return merchsPrice
     }
+
+  
 
     // find all shop's name and build unique array and set $5 for each shop
     const getTotalofShipping = () => {
         let shops = cart.items.map((merch) => merch.shopName)
         shops = [...new Set(shops)];
-        let shippingPrice = (shops.length * 5)
+        let shippingPrice = (shops.length * 5.0)
         return parseFloat(shippingPrice)
     }
 
     const getTotalCost = () => {
-        return (parseFloat(getTotalofShipping()) + parseFloat(getTotalofMerchs()))
+        return parseFloat((getTotalofShipping()) + (getTotalofMerchs())).toFixed(2)
     }
+
 
 
     const cancelPayment = async () => {

@@ -5,6 +5,7 @@ import { Flex } from '@chakra-ui/react';
 
 import ModalContainer from "../../../../components/Modal/modal-container/modal-container"
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
+import Timer from "./time-component"
 
 const StripeComponent = ({cancel}) => {
 
@@ -50,6 +51,8 @@ const StripeComponent = ({cancel}) => {
 
     return (
         <ModalContainer>
+            <Timer timerSecond={300} />
+            <Flex mb='30px'></Flex>
             {(elements != null) &&
             <form onSubmit={handleSubmit}>
                 <PaymentElement />
