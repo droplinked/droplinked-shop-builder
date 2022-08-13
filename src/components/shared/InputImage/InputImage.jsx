@@ -39,7 +39,7 @@ export default function InputImage({ image, setImage }) {
         axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
                 setLoading(false);
-                successToast(e.data.message);
+                successToast('The image uploaded');
                 setImage(e.data.small)
             })
             .catch(e => {
