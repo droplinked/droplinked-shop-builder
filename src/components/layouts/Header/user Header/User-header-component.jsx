@@ -43,7 +43,7 @@ export default function UserHeader() {
             {isCustomer() && <Cart clickBasket={openBasket} />}
 
             {/* notification icon (show if type == producer)*/}
-            {isRegisteredProducer() && <Notification click={openNotification} />}
+             <Notification click={openNotification} />
 
             {/* profile icon */}
             <ProfileIcon click={openProfileDropdown} />
