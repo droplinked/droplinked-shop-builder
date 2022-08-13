@@ -65,7 +65,7 @@ export default function PurchasHistoryPage() {
                     <Text color='white' w='100%' textAlign='center' fontSize='20px' fontWeight='600'>No Order</Text>
                     :
                     <Box w='100%' px={{ base: "20px", md: "80px" }}>
-                        <Box w='100%' maxW='800px' m='auto'>
+                        <Box w='100%' maxW='700px' m='auto'>
                             <Text
                                 color='white'
                                 fontSize={{ base: "30px", md: '40px' }}
