@@ -3,6 +3,8 @@ import { useOrder } from "../../../context/order/OrdersContext"
 import { ORDER_TYPES } from "../../../constant/order.types"
 
 import OrderComponent from "./orderComponent/OrderComponent"
+import Order from "../../../components/shared/Order/Order-component"
+
 
 export default function IncomingOrderPage() {
 
@@ -33,7 +35,7 @@ export default function IncomingOrderPage() {
                     if(order.status == ORDER_TYPES.WAITING_FOR_CONFIRMATION)
                     return (
                         <Box key={i} mb='30px'>
-                            <OrderComponent order={order} />
+                            <Order order={order} />
                         </Box>
                     )
                 })}
@@ -41,7 +43,7 @@ export default function IncomingOrderPage() {
                     if((order.status != (ORDER_TYPES.WAITING_FOR_CONFIRMATION) && order.status != (ORDER_TYPES.WAITING_FOR_PAYMENT)))
                     return (
                         <Box key={i} mb='30px'>
-                            <OrderComponent order={order} />
+                            <Order order={order} />
                         </Box>
                     )
                 })}

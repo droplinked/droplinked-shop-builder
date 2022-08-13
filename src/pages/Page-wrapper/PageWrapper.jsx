@@ -14,7 +14,7 @@ export default function PageWrapper() {
 
     const { updateCart } = useCart();
     const { updateAddressList } = useAddress();
-    const { profile } = useProfile()
+    const { profile, isCustomer } = useProfile()
     const { updateNotifications } = useNotifications()
 
 
@@ -43,11 +43,10 @@ export default function PageWrapper() {
 
         let token = JSON.parse(localStorage.getItem("token"));
         if (token != null || token != undefined) {
+            if (isCustomer()) updateCart();
             updateAddressList()
-            updateCart();
             updateNotifications()
             setInterval(updateNotifications, 60000);
-
         }
     }, [profile])
 
