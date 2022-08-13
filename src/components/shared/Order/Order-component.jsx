@@ -1,8 +1,10 @@
 import { Text, Box, Flex, useDisclosure, Stack, Skeleton, Image, keyframes } from "@chakra-ui/react"
 import { convetToCustomFormat } from "../../../utils/date.utils/convertDate"
 import { ORDER_TYPES } from "../../../constant/order.types"
+import { useProfile } from "../../../context/profile/ProfileContext"
 
 import OrderModal from "../../Modal/Order/Order-modal"
+import BasicButton from "../BasicButton/BasicButton"
 
 const animationKeyframes = keyframes`
 0% { color: #8053ff; }
@@ -18,7 +20,7 @@ export default function Order({ order }) {
 
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-
+    const { isCustomer } = useProfile();
 
     let totalQuantity = order.items.map(item => item.quantity).reduce((total, quan) => { return total + quan }, 0)
 
@@ -41,6 +43,18 @@ export default function Order({ order }) {
         }
     }
 
+    const animationCondition = () => {
+        const status = order.status;
+        
+        if (isCustomer()) {
+            if(status == ORDER_TYPES.WAITING_FOR_PAYMENT)return true
+            else return false
+        } else {
+            if(status == ORDER_TYPES.WAITING_FOR_CONFIRMATION)return true
+            else return false
+        }
+    }
+
     return (
         <Box
 
@@ -57,7 +71,7 @@ export default function Order({ order }) {
         >
             {(order.items.length > 0)
                 ?
-                <>
+                <Box pos='relative'>
                     {/* date and total price */}
                     <Flex justifyContent='space-between'  >
                         <Text
@@ -129,13 +143,13 @@ export default function Order({ order }) {
                             my="auto"
                             h="100%"
                             cursor='pointer'
-                            animation={(order.status == ORDER_TYPES.WAITING_FOR_PAYMENT) && animation}
+                            animation={(animationCondition) && animation}
                         >
                             {statusText()}
                         </Text>
                     </Flex>
                     {/* status */}
-                </>
+                </Box>
                 :
                 <Stack>
                     <Skeleton height='20px' />
