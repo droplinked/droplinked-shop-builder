@@ -55,7 +55,6 @@ export default function Order({ order }) {
         }
     }
 
-    console.log(animationCondition());
 
     const paynow = (event) => {
         event.stopPropagation();
