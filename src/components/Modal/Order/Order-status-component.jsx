@@ -6,7 +6,7 @@ import BasicButton from "../../shared/BasicButton/BasicButton"
 
 
 
-const OrderStatus = ({ orderStatus , loading ,cancelOnClick ,openProccessModal }) => {
+const OrderStatus = ({ orderStatus, loading, cancelOnClick, openProccessModal }) => {
 
     const { isCustomer } = useProfile();
 
@@ -17,12 +17,14 @@ const OrderStatus = ({ orderStatus , loading ,cancelOnClick ,openProccessModal }
                 return "Waiting for payment"
             case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
                 return "Waiting for confirmation"
+            case ORDER_TYPES.PROCESSING:
+                return "Order is processing"
             case ORDER_TYPES.CANCELED:
                 return "Order canceled"
             case ORDER_TYPES.REFUNDED:
                 return "Order canceled"
             case ORDER_TYPES.SENT:
-                return "Order sent"
+                return "This order has been sent"
         }
     }
 
@@ -61,16 +63,9 @@ const OrderStatus = ({ orderStatus , loading ,cancelOnClick ,openProccessModal }
                         </Flex>
                         :
                         <>
-                            {(orderStatus == ORDER_TYPES.CANCELED || orderStatus == ORDER_TYPES.REFUNDED) &&
-                                <Box fontSize={{ base: "20px", md: '24px' }} fontWeight='600' color='#8053ff' textAlign='center' w='100%'>
-                                    Order canceled
-                                </Box>
-                            }
-                            {(orderStatus == ORDER_TYPES.SENT) &&
-                                <Box fontSize={{ base: "20px", md: '24px' }} fontWeight='600' color='#8053ff' textAlign='center' w='100%'>
-                                    This order has been sent
-                                </Box>
-                            }
+                            <Box fontSize={{ base: "20px", md: '24px' }} fontWeight='600' color='#8053ff' textAlign='center' w='100%'>
+                                {orderText()}
+                            </Box>
                         </>
                     }
                 </>
