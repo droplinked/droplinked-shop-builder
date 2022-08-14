@@ -28,6 +28,8 @@ export default function Collection({ collection, shopname }) {
                 allowFullScreeng
             />`
 
+            const link = `${window.location.origin}/bedishop/collection/62f8ebe95ec723984024c245`
+
 
     // opent collection page
     const seeMore = () => {
@@ -136,7 +138,9 @@ export default function Collection({ collection, shopname }) {
                 </Flex>
 
             </Flex>
-            {snippedModal && <IframeSnipped code={iframeCode} close={() => { setSnippedModal(false) }} />}
+            {snippedModal && <IframeSnipped
+            link={link}
+            code={iframeCode} close={() => { setSnippedModal(false) }} />}
         </>
     )
 }
