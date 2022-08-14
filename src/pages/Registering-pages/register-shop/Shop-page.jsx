@@ -2,11 +2,9 @@ import "./Shop-page-style.scss"
 
 import ShopInfoAddress from "./address component/ShopInfo.address"
 
-import { useEffect, useRef, useState, useContext } from "react";
-import axios from "axios"
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
-import { BASE_URL } from "../../../api/BaseUrl"
 import { toastValue } from "../../../context/toastify/ToastContext"
 import { updateShopApi } from "../../../api/producer/Shop-api"
 
@@ -34,21 +32,8 @@ export default function RegisterShop() {
     const { errorToast } = useContext(toastValue)
     let navigate = useNavigate();
 
-    // let x = 1;
     let user = profile
     const shopname = user.shopName;
-    // const token = JSON.parse(localStorage.getItem('token'));
-
-
-
-    // useEffect(() => {
-    //     if (user.shopAddressID) {
-    //         axios.get(BASE_URL + `/producer/shop/address/${user.shopAddressID}`,
-    //             { headers: { Authorization: 'Bearer ' + token } })
-    //             .then(e => setAddressdata(e.data.addressBook))
-    //     }
-    // }, [])
-
 
     const submitForm = async () => {
 

@@ -9,6 +9,7 @@ import { BASE_URL } from "../../../api/BaseUrl"
 import { useEffect, useState } from 'react'
 import { useAddress } from "../../../context/address/AddressContext"
 import { useToasty } from "../../../context/toastify/ToastContext"
+import { updateShopApi } from "../../../api/producer/Shop-api"
 
 import axios from "axios"
 import InputImage from '../../../components/shared/InputImage/InputImage'
@@ -69,7 +70,7 @@ export default function ShopInfoComponent({ active }) {
     }
 
 
-    const submitForm = () => {
+    const submitForm = async() => {
 
         let shopInformation = {
             social: {
@@ -84,16 +85,18 @@ export default function ShopInfoComponent({ active }) {
         }
 
         setDisableBtn(true)
-        axios.put(`${BASE_URL}/producer/shop/info`, shopInformation,
-            { headers: { Authorization: "Bearer " + token } })
-            .then(e => {
-                successToast("Shop info successfully updated")
-                setDisableBtn(false)
-            })
-            .catch(e => {
-                errorToast(e.response.data.reason)
-                setDisableBtn(false)
-            })
+
+        let result = await updateShopApi(shopInformation)
+
+        if (result.status == 'success') {
+            localStorage.setItem("shop", JSON.stringify(result.data.shop));
+            successToast("Shop info successfully updated")
+        } else {
+            errorToast(result.reason)
+        }
+
+        setDisableBtn(false)
+
     }
 
 
