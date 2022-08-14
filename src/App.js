@@ -16,7 +16,7 @@ import LandingPage from "./pages/landing/Landing-page";
 import TermsPage from "./pages/terms/Terms-page";
 import PrivacyPage from "./pages/privacy/Privacy-page";
 import RegisterPage from "./pages/Registering-pages/register/Register-page";
-import RegisterShop from "./pages/Registering-pages/register-shop/Shop-page";
+//import RegisterShop from "./pages/Registering-pages/register-shop/Shop-page";
 import RegisterIms from "./pages/Registering-pages/register-ims/Ims-page";
 import EmailVerifyPage from "./pages/email-verify/Email-verification-page";
 import AccountRecoveryPage from "./pages/account-recovery/Account-recovery-page";
@@ -42,6 +42,7 @@ import Producer from "./pages/producer-wrapper/Producer-wrapper-page";
 import Notifications from "./pages/notifications/Notifications-page";
 import CollectionIframe from "./pages/collection-iframe/CollectionIfram-page";
 import Test from "./pages/test/Test-page";
+import ShopInfoComponent from "./pages/settings/shop-info-component/Shop-info-component"
 
 function App() {
   return (
@@ -64,7 +65,7 @@ function App() {
 
                               <Route
                                 path="shopInfo"
-                                element={<RegisterShop />}
+                                element={<ShopInfoComponent />}
                               />
                               <Route
                                 path="IMSSelect"

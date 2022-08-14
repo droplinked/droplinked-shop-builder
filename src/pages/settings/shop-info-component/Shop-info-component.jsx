@@ -1,8 +1,13 @@
 import {
-    Flex, FormControl,
+    Flex,
+    FormControl,
     FormLabel,
     Text,
-    Input, Box, keyframes, usePrefersReducedMotion
+    Input,
+    Box,
+    keyframes,
+    usePrefersReducedMotion,
+    Button
 } from '@chakra-ui/react'
 
 import { BASE_URL } from "../../../api/BaseUrl"
@@ -10,6 +15,7 @@ import { useEffect, useState } from 'react'
 import { useAddress } from "../../../context/address/AddressContext"
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { updateShopApi } from "../../../api/producer/Shop-api"
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios"
 import InputImage from '../../../components/shared/InputImage/InputImage'
@@ -17,6 +23,7 @@ import Loading from "../../../components/shared/loading/Loading"
 import FormInput from "../../../components/shared/FormInput/FormInput"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import AddressComponent from "../../../components/shared/Address/address-component"
+import AddressForm from "../../../components/Modal/Address/Address-modal"
 
 const keyframe_startanimation = keyframes`
 0% {
@@ -33,12 +40,18 @@ const keyframe_startanimation = keyframes`
 export default function ShopInfoComponent({ active }) {
 
     const token = JSON.parse(localStorage.getItem("token"));
+    const profile = JSON.parse(localStorage.getItem("profile"));
 
     const [shop, setShop] = useState(null)
     const [disableBtn, setDisableBtn] = useState(false)
+    const [addressModal, setAddressModal] = useState(false)
 
     const { addressList } = useAddress()
     const { errorToast, successToast } = useToasty()
+
+    let navigate = useNavigate();
+
+
     const prefersReducedMotion = usePrefersReducedMotion();
 
     const startAnimation = prefersReducedMotion
@@ -52,7 +65,9 @@ export default function ShopInfoComponent({ active }) {
         axios.get(`${BASE_URL}/profile`,
             { headers: { Authorization: "Bearer " + token } })
             .then(e => {
-                setShop(e.data.data.shop)
+                if (e.data.data.shop.description)
+                    setShop(e.data.data.shop)
+                else setShop({ ...e.data.data.shop, description: "" })
             })
             .catch(e => console.log(e.response.data.reason))
     }, [token])
@@ -70,7 +85,7 @@ export default function ShopInfoComponent({ active }) {
     }
 
 
-    const submitForm = async() => {
+    const submitForm = async () => {
 
         let shopInformation = {
             social: {
@@ -91,6 +106,8 @@ export default function ShopInfoComponent({ active }) {
         if (result.status == 'success') {
             localStorage.setItem("shop", JSON.stringify(result.data.shop));
             successToast("Shop info successfully updated")
+            if(profile.status != "IMS_TYPE_COMPLETED")
+            navigate("/register/IMSSelect");
         } else {
             errorToast(result.reason)
         }
@@ -133,15 +150,15 @@ export default function ShopInfoComponent({ active }) {
                                 fontSize={{ base: '14px', md: '20px' }}
                                 color='#fff'
                                 p='0px'
-                               // h='100%'
+                                // h='100%'
                                 outline='none'
                                 border='none'
                                 _focus={{
                                     borderColor: "none",
                                     outline: 'none'
                                 }}
-                             //   w='100%'
-                                 h='auto'
+                                //   w='100%'
+                                h='auto'
                                 placeholder="Shop name"
                             />
                             <Text
@@ -186,10 +203,29 @@ export default function ShopInfoComponent({ active }) {
                         mt='20px'
                         mb='20px'
                     />
-                    {(shopAddressBook) &&
+                    {(shopAddressBook) ?
                         <AddressComponent
                             address={shopAddressBook}
                         />
+                        :
+                        <Flex w='100%' justifyContent='center'>
+                            <Button
+                                mt='40px'
+                                text-align="center"
+                                color="#ffffff"
+                                fontSize={{ base: "16px", md: '20px' }}
+                                fontWeight='600'
+                                padding="13px 50px"
+                                borderRadius='10px'
+                                bgColor='transparent'
+                                onClick={() => { setAddressModal(true) }}
+                                border='2px solid gray'
+                                _hover={{
+                                    bgColor:'transparent',
+                                    borderColor:"#fff"
+                                }}
+                            >Add address</Button>
+                        </Flex>
                     }
                     <Flex justifyContent='end' mt='50px'>
                         <BasicButton w={{ base: '100%', md: '45%' }} p='12px 16px'
@@ -197,6 +233,7 @@ export default function ShopInfoComponent({ active }) {
                             onClick={submitForm}
                         >Submit</BasicButton>
                     </Flex>
+                    {addressModal && <AddressForm type={"SHOP"} close={() => { setAddressModal(false) }} />}
                 </>
             }
 
