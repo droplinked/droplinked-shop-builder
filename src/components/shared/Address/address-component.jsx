@@ -39,7 +39,6 @@ export default function AddressComponent({ address, selected, setSelect, selectA
     // state for open and close delete modal
     const [deleteModal, setDeleteModal] = useState(false)
 
-    console.log(address.addressType);
     const { deleteAddress } = useAddress()
 
 

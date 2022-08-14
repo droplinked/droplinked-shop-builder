@@ -32,7 +32,8 @@ export default function BasketItemComponent({ item, close }) {
         }
         setLoading(false)
     }
-    console.log(item.skuID);
+
+    
     return (
         <Box
             w="100%"

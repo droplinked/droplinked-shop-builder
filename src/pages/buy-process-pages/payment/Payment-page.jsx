@@ -12,6 +12,7 @@ import { checkoutCart } from "../../../api/base-user/Cart-api"
 import { STRIPE_KEY } from "./stripe.key"
 import { addRootpaymentOrder } from "../../../api/base-user/Cart-api"
 import { useNavigate } from "react-router-dom";
+import { getClientSecret } from "../../../api/base-user/OrderHistory-api"
 
 import axios from "axios"
 import StripeComponent from "./stripe modal/stripe-modal-component"
@@ -31,7 +32,12 @@ export default function PaymentPage() {
     const { cart, updateCart } = useCart();
     let navigate = useNavigate();
 
-    if (cart && (cart.items.length == 0)) {
+    let params = (new URL(document.location)).searchParams;
+
+    let CurrentOrderId = params.get('CurrentOrderId')
+    let orderPrice = params.get('price')
+
+    if (cart && (cart.items.length == 0) && (CurrentOrderId == null)) {
         navigate("/purchseHistory?redirect_status=failed")
     }
 
@@ -70,7 +76,7 @@ export default function PaymentPage() {
     }
 
     const getTotalCost = () => {
-        return parseFloat((getTotalofShipping()) + (getTotalofMerchs())).toFixed(2)
+        return (CurrentOrderId) ? orderPrice : parseFloat((getTotalofShipping()) + (getTotalofMerchs())).toFixed(2)
     }
 
 
@@ -84,7 +90,13 @@ export default function PaymentPage() {
 
     const stripePayment = async () => {
         setDisables(true)
-        let result = await checkoutCart()
+        let result 
+        if(CurrentOrderId) {
+            result = await getClientSecret(CurrentOrderId)
+        } else {
+            result = await checkoutCart()
+        }
+
         if (result != null) {
             setClientSecret(result)
             setPaymentSelected("Stripe")
@@ -144,12 +156,12 @@ export default function PaymentPage() {
 
                         {/* top side */}
                         <Box p="10px 5px" mb="50px" w={{ base: '100%', md: '100%' }}>
-                            <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
+                            {(!CurrentOrderId) && <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
                                 Items: ${getTotalofMerchs()}
-                            </Text>
-                            <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
+                            </Text>}
+                            {(!CurrentOrderId) && <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
                                 Shipping: ${getTotalofShipping()}
-                            </Text>
+                            </Text>}
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
                                 Total price: ${getTotalCost()}
                             </Text>

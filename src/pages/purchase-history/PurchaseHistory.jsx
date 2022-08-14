@@ -4,6 +4,8 @@ import { Text, Box } from "@chakra-ui/react"
 import { getOrdersHistory } from '../../api/base-user/OrderHistory-api'
 import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils"
 import { ORDER_TYPES } from "../../constant/order.types"
+import { mergeWaitingOrders } from "./purchase-order-utils"
+
 
 import Dropdown from "../../components/shared/Dropdown/Dropdown-component"
 import Loading from "../../components/shared/loading/Loading"
@@ -48,6 +50,7 @@ export default function PurchasHistoryPage() {
 
     const getPurchseList = async () => {
         let result = await getOrdersHistory()
+        result = mergeWaitingOrders(result)
         result = sortArrayBaseCreateTime(result)
         if (result != null) {
             setorders(result)
