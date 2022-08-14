@@ -30,8 +30,8 @@ export default function ShopInfoAddress({ close, addAddressF, addressData }) {
         setLoading(true);
 
         let addresInfo = {
-            firstname: profile.firstname,
-            lastname: profile.lastname,
+            firstname: "xxx",
+            lastname: "sss",
             addressLine1: data.line1,
             addressLine2: data.line2,
             country: data.country,

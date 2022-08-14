@@ -16,7 +16,6 @@ import LandingPage from "./pages/landing/Landing-page";
 import TermsPage from "./pages/terms/Terms-page";
 import PrivacyPage from "./pages/privacy/Privacy-page";
 import RegisterPage from "./pages/Registering-pages/register/Register-page";
-import PersonalPage from "./pages/Registering-pages/register-personal/Personal-page";
 import RegisterShop from "./pages/Registering-pages/register-shop/Shop-page";
 import RegisterIms from "./pages/Registering-pages/register-ims/Ims-page";
 import EmailVerifyPage from "./pages/email-verify/Email-verification-page";
@@ -62,10 +61,7 @@ function App() {
                             <Route path="terms" element={<TermsPage />} />
                             <Route path="privacy" element={<PrivacyPage />} />
                             <Route path="register" element={<RegisterPage />}>
-                              <Route
-                                path="personalInfo"
-                                element={<PersonalPage />}
-                              />
+
                               <Route
                                 path="shopInfo"
                                 element={<RegisterShop />}

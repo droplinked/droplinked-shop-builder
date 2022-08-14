@@ -202,10 +202,7 @@ export default function RegisterShop() {
                         </div>
                     }
 
-                    <div className="d-flex justify-content-between w-100">
-                        <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
-                            onClick={() => { navigate("/register/personalInfo") }}
-                        >Back</button>
+                    <div className="d-flex justify-content-end w-100">
                         <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
                             onClick={submitForm}
                         >Next</button>
