@@ -1,4 +1,10 @@
-import { Flex, FormLabel, Textarea, Box, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
+import {
+    Flex, FormControl,
+    FormLabel,
+    Text,
+    Input, Box, keyframes, usePrefersReducedMotion
+} from '@chakra-ui/react'
+
 import { BASE_URL } from "../../../api/BaseUrl"
 import { useEffect, useState } from 'react'
 import { useAddress } from "../../../context/address/AddressContext"
@@ -23,7 +29,7 @@ const keyframe_startanimation = keyframes`
 `;
 
 
-export default function ShopInfoComponent({active}) {
+export default function ShopInfoComponent({ active }) {
 
     const token = JSON.parse(localStorage.getItem("token"));
 
@@ -35,8 +41,8 @@ export default function ShopInfoComponent({active}) {
     const prefersReducedMotion = usePrefersReducedMotion();
 
     const startAnimation = prefersReducedMotion
-    ? undefined
-    : `${keyframe_startanimation}  0.2s linear`;
+        ? undefined
+        : `${keyframe_startanimation}  0.2s linear`;
 
     let shopAddressBook = addressList.find(address => address.addressType == "SHOP")
 
@@ -92,7 +98,7 @@ export default function ShopInfoComponent({active}) {
 
 
     return (
-        <Box w='100%' animation={(active=='shop'?startAnimation:'')}>
+        <Box w='100%' animation={(active == 'shop' ? startAnimation : '')}>
             {(shop == null)
                 ?
                 <Loading />
@@ -100,36 +106,54 @@ export default function ShopInfoComponent({active}) {
                 <>
                     <InputImage image={shop.logo} setImage={changeShopLogo} />
 
-                    <FormInput 
-                    value={shop.description}
-                     onChange={(e) => chageShopInformation('description', e)} 
-                     label={'Shop name'}
-                     placeholder="Shop name"
-                      mt='20px' />
-
-                    {/* <Textarea
-                        id='description-shop'
-                        value={shop.description}
-                        onChange={(e) => chageShopInformation('description', e)}
-                        fontWeight='600'
-                        fontSize={{ base: '14px', md: '20px' }}
-                        color='#fff'
-                        border='2px'
-                        borderColor='#b3b3b3'
-                        borderRadius='8px'
-                        px="16px"
-                        py={{ base: "8px", md: "12px" }}
-                        outline='none'
-                        _focus={{ borderColor: "#8053ff" }}
-                        h='auto'
-                        placeholder='about your shop'
-                    >
-                    </Textarea> */}
+                    {/* shop name input */}
+                    <FormControl>
+                        <FormLabel
+                            htmlFor='input-com'
+                            fontWeight='600'
+                            fontSize={{ base: '14px', md: '20px' }}
+                            color='#fff'
+                        >Shop name</FormLabel>
+                        <Flex
+                            border='2px'
+                            borderColor='#b3b3b3'
+                            borderRadius='8px'
+                            _focus={{ borderColor: "#8053ff" }}
+                            px="16px"
+                            py={{ base: "8px", md: "12px" }}
+                        >
+                            <Input
+                                id='input-com'
+                                value={shop.description}
+                                onChange={(e) => chageShopInformation('description', e)}
+                                fontWeight='600'
+                                fontSize={{ base: '14px', md: '20px' }}
+                                color='#fff'
+                                p='0px'
+                               // h='100%'
+                                outline='none'
+                                border='none'
+                                _focus={{
+                                    borderColor: "none",
+                                    outline: 'none'
+                                }}
+                             //   w='100%'
+                                 h='auto'
+                                placeholder="Shop name"
+                            />
+                            <Text
+                                fontSize={{ base: '14px', md: '20px' }}
+                                fontWeight='600'
+                                color={(shop.description.length <= 30) ? "#fff" : "red"}
+                            >
+                                {shop.description.length}/30
+                            </Text>
+                        </Flex>
+                    </FormControl>
+                    {/* shop name input */}
 
                     <FormInput value={`droplinked.com/${shop.name}`} label={'Domain'} mt='20px' />
 
-                    
-                    
 
                     <FormInput
                         value={shop.webUrl}
@@ -166,7 +190,7 @@ export default function ShopInfoComponent({active}) {
                     }
                     <Flex justifyContent='end' mt='50px'>
                         <BasicButton w={{ base: '100%', md: '45%' }} p='12px 16px'
-                            disabled={disableBtn}
+                            disabled={(disableBtn || (shop.description.length > 30))}
                             onClick={submitForm}
                         >Submit</BasicButton>
                     </Flex>
