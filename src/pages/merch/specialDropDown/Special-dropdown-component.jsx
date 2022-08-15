@@ -1,4 +1,4 @@
-
+import "./special-dropdown-style.scss"
 
 
 export default function SpcialDropDownComp({ option, change, index }) {
