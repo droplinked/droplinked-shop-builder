@@ -21,19 +21,21 @@ export default function ShopPage() {
 
 
     useEffect(() => {
-
-        const getData = async (shop) => {
-            // get shop data for top section
-            let shopinfo = await getShopInfoByShopname(shop)
-            // get shop's collections data
-            let collections = await getCollectionsByShopname(shop)
-            setShop(shopinfo)
-            setCollections(collections)
-        }
-
-        getData(shopname)
+        getShopData(shopname)
+        getCollectionData(shopname)
 
     }, [shopname])
+
+    const getShopData = async (shop) => {
+        let shopinfo = await getShopInfoByShopname(shop)
+        setShop(shopinfo)
+    }
+
+
+    const getCollectionData = async(shop) => {
+        let collections = await getCollectionsByShopname(shop)
+        setCollections(collections)
+    }
 
 
     // check if doesnt exist any product in all collections dont show any collection
