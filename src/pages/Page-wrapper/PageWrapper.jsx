@@ -49,6 +49,7 @@ export default function PageWrapper() {
             setInterval(updateNotifications, 60000);
         }
     }, [profile])
+    
 
     const checkJWT = async () => {
         let result = await isJwtValid()
