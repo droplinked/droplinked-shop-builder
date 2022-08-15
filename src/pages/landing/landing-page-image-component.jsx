@@ -1,4 +1,4 @@
-import mainImage from "../../assest/image/landingPageImage copy.WebP"
+import mainImage from "../../assest/image/landingPageImage.png"
 import { Box, Image, AspectRatio, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 
 
