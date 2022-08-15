@@ -1,4 +1,5 @@
-import mainImage from "../../assest/image/landingPageImage.png"
+//import mainImage from "../../assest/image/landingPageImage.png"
+import mainImage from "../../assest/image/lsp2.png"
 import { Box, Image, AspectRatio, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 
 
