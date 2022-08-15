@@ -87,6 +87,11 @@ export default function ShopInfoComponent({ active }) {
 
     const submitForm = async () => {
 
+        if(shop.description.length < 1){
+            errorToast("Shop name is required")
+            return 
+        }
+
         let shopInformation = {
             social: {
                 discordUrl: shop.discordUrl,
