@@ -4,7 +4,9 @@ import Loading from "../../components/shared/loading/Loading"
 
 const LoadingPage = () => {
     return (
-        <Flex bgColor="#222" w='100vw' h="100vh" justifyContent='center' alignItems='center'>
+        <Flex bgColor="#222" maxW='99vw' h="100vh" justifyContent='center' alignItems='center'
+        overflow='hidden'
+        >
             <Loading />
         </Flex>
         )

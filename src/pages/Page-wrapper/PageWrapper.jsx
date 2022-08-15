@@ -1,5 +1,5 @@
-import MainHeader from "../../components/layouts/Header/MainHeader"
-import Footer from "../../components/layouts/Footer/Footer"
+//import MainHeader from "../../components/layouts/Header/MainHeader"
+//import Footer from "../../components/layouts/Footer/Footer"
 
 import { Box, Flex } from "@chakra-ui/react"
 import { Outlet } from "react-router-dom";
@@ -70,7 +70,7 @@ export default function PageWrapper() {
             overflowX='hidden'
             w='100%'
         >
-            <MainHeader />
+            {/* <MainHeader /> */}
             <Box
                 w="100%"
                 h="auto"
@@ -83,8 +83,7 @@ export default function PageWrapper() {
             >
                 <Outlet />
             </Box>
-            <Footer />
-
+            {/* <Footer /> */}
         </Flex>
     )
 }

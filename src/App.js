@@ -12,6 +12,8 @@ import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderContextProvider from "./context/order/OrdersContext";
 import NotContextProvider from "./context/notifications/NotificationsContext";
 import LoadingPage from "./pages/loading/Loading-page"
+import MainHeader from "./components/layouts/Header/MainHeader";
+import Footer from "./components/layouts/Footer/Footer";
 //const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const PageWrapper = lazy(() => import ("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import ("./pages/landing/Landing-page"));
@@ -76,6 +78,7 @@ const Test = lazy(() => import ("./pages/test/Test-page"))
 const ShopInfoComponent = lazy(() => import ("./pages/settings/shop-info-component/Shop-info-component"))
 //import ShopInfoComponent from "./pages/settings/shop-info-component/Shop-info-component"
 
+
 function App() {
   return (
     <ToastContext>
@@ -88,6 +91,7 @@ function App() {
                   <NotContextProvider>
                     <BrowserRouter>
                       <ScrollTop>
+                        <MainHeader />
                         <Suspense fallback={<LoadingPage />}>
                         <Routes>
                           <Route path="/" element={<PageWrapper />}>
@@ -178,6 +182,7 @@ function App() {
                           </Route>
                         </Routes>
                         </Suspense>
+                        <Footer />
                       </ScrollTop>
                     </BrowserRouter>
                   </NotContextProvider>
