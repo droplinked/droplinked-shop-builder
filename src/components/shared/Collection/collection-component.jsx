@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import { Flex, Text, Box } from "@chakra-ui/react"
 import { useState } from "react";
+import { BASE_URL } from "../../../api/BaseUrl"
 
 import Product from "../Product/Product"
 import IframeSnipped from "../../Modal/Iframe-snipped-modal/Iframe-snipped-modal"
@@ -28,8 +29,7 @@ export default function Collection({ collection, shopname }) {
                 allowFullScreeng
             />`
 
-            const link = `${window.location.origin}/bedishop/collection/62f8ebe95ec723984024c245`
-
+    const link = ` ${BASE_URL}/public/collection/${collection._id}`
 
     // opent collection page
     const seeMore = () => {
@@ -139,8 +139,8 @@ export default function Collection({ collection, shopname }) {
 
             </Flex>
             {snippedModal && <IframeSnipped
-            link={link}
-            code={iframeCode} close={() => { setSnippedModal(false) }} />}
+                link={link}
+                code={iframeCode} close={() => { setSnippedModal(false) }} />}
         </>
     )
 }
