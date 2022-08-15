@@ -58,7 +58,7 @@ export default function ShopPage() {
             <div className='shop-page-container'>
                 <TopSection
                     pic={shopData.logo}
-                    shopname={shopData.name}
+                    shopname={shopData.description}
                     instagram={(shopData.instagramUrl) ? shopData.instagramUrl : ""}
                     twitter={(shopData.twitterUrl) ? shopData.twitterUrl : ""}
                     discord={(shopData.discordUrl) ? shopData.discordUrl : ""}
