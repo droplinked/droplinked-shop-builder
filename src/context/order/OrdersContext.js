@@ -9,14 +9,14 @@ export default function OrderContextProvider({ children }) {
   const [orders, setOrders] = useState([]);
 
   const { profile, isRegisteredProducer } = useProfile();
+  
   let token = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
     if (profile == null || token == null) return;
 
-    if (isRegisteredProducer) {
+    if (isRegisteredProducer()) {
       updateOrder();
-      setInterval(updateOrder, 60000);
     }
   }, [profile]);
 

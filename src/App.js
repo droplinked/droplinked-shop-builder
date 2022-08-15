@@ -87,7 +87,6 @@ function App() {
           <ChakraProvider>
             <WalletProvider>
               <AddressContext>
-                <OrderContextProvider>
                   <NotContextProvider>
                     <BrowserRouter>
                       <ScrollTop>
@@ -141,7 +140,7 @@ function App() {
                               />
                               <Route
                                 path="orders"
-                                element={<IncomingOrderPage />}
+                                element={<OrderContextProvider><IncomingOrderPage /></OrderContextProvider>}
                               />
                             </Route>
 
@@ -186,7 +185,6 @@ function App() {
                       </ScrollTop>
                     </BrowserRouter>
                   </NotContextProvider>
-                </OrderContextProvider>
               </AddressContext>
             </WalletProvider>
           </ChakraProvider>
