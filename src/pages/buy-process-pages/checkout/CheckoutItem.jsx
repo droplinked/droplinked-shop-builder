@@ -4,7 +4,7 @@ import { useCart } from "../../../context/cart/CartContext"
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useState } from "react";
 import { deleteSkuFromCart, updateQuantity } from "../../../api/base-user/Cart-api"
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function CheckoutItem({ product }) {
@@ -15,16 +15,18 @@ export default function CheckoutItem({ product }) {
 
     const { updateCart } = useCart()
     const { successToast, errorToast } = useToasty()
+    const navigate = useNavigate()
 
 
     // text for show variants value
-    let findSku = product.Product.skus.find(sku => sku._id == product.skuID)
     let variantText = ""
-    findSku.options.forEach(option => { variantText += `${option.variantName}:${option.value}  \xa0\xa0\xa0` })
-
+    product.sku.options.forEach(itemSkuk => {
+        variantText += `${(itemSkuk.variantID == "62a989ab1f2c2bbc5b1e7153") ? "Color" : "Size"}: ${itemSkuk.value}  \xa0\xa0\xa0`
+    })
 
     //delete merch
     const deleteMerch = async () => {
+
         setDisableDeleteBtn(true)
         let result = await deleteSkuFromCart(product.skuID)
         if (result == true) {
@@ -55,6 +57,10 @@ export default function CheckoutItem({ product }) {
         setDisableEditBtn(false)
     }
 
+    //navigate to product page after click on product name on image
+    const clickOnProduct = () => {
+        navigate(`/${product.shopName}/merch/${product.product._id}`)
+    }
 
     return (
         <Flex
@@ -72,11 +78,13 @@ export default function CheckoutItem({ product }) {
                 flexDirection="row"
             >
                 <Image
-                    src={product.Product.media[0].url}
+                    src={product.product.media[0].url}
                     alt='product image'
                     w="80px"
                     h="80px"
                     mr="20px"
+                    cursor='pointer'
+                    onClick={clickOnProduct}
                 />
                 <Flex
                     flexDirection="column"
@@ -89,20 +97,12 @@ export default function CheckoutItem({ product }) {
                         fontSize={{ base: "16px", md: "18px" }}
                         mb="5px"
                         overflow='hidden'
+                        cursor='pointer'
+                        onClick={clickOnProduct}
                     >
-                        {product.Product.title}
+                        {product.product.title}
                     </Text>
 
-                    <Text
-                        color="#ddd"
-                        fontWeight="500"
-                        maxW={{ base: '100%', sm: "80%", md: '60%' }}
-                        overflow='hidden'
-                        fontSize={{ base: "14px", md: "13px" }}
-                        mb="5px"
-                    >
-                        {product.Product.description}
-                    </Text>
                     {(variantText != "") &&
                         <Text
                             color="#ddd"
@@ -112,6 +112,7 @@ export default function CheckoutItem({ product }) {
                             {variantText}
                         </Text>
                     }
+
                 </Flex>
 
             </Flex>
@@ -124,13 +125,6 @@ export default function CheckoutItem({ product }) {
                 justifyContent="space-between"
             >
 
-                <Text
-                    color="#fff"
-                    fontWeight="600"
-                    fontSize="18"
-                >
-                    ${findSku.price}
-                </Text>
 
                 <ButtonGroup size="md" isAttached variant='outline'>
                     <IconButton
@@ -165,6 +159,14 @@ export default function CheckoutItem({ product }) {
                         disabled={disableEditBtn}
                     >Submit</Button>
                 </ButtonGroup>
+
+                <Text
+                    color="#fff"
+                    fontWeight="600"
+                    fontSize="18"
+                >
+                    ${product.totalPrice}
+                </Text>
 
             </Flex>
 

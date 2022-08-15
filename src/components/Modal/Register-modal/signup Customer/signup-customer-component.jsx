@@ -90,8 +90,8 @@ export default function SignupCustomer({ switchToggle, close }) {
 
                 {/* input */}
                 <div className="input-label">
-                    <label >Confirm Password</label>
-                    <input type="password" placeholder="Confirm Password"
+                    <label >Confirm password</label>
+                    <input type="password" placeholder="Confirm password"
                         {...register("confirmPassword", { required: true, minLength: 8 })} />
                     {errors.confirmPassword?.type === 'required' && <span className="signup-modal-error">Password is required.</span>}
                     {errors.confirmPassword?.type === 'minLength' && <span className="signup-modal-error">Password must be at least 8 characters.</span>}
@@ -103,7 +103,7 @@ export default function SignupCustomer({ switchToggle, close }) {
             </form>
 
             <div className="text mt-4">
-                <p>By Creating an account, you agree to the <Link onClick={close} to="/terms">Terms & Conditions</Link> and <Link onClick={close} to="/privacy">Privacy</Link>.</p>
+                <p>By creating an account, you agree to the <Link onClick={close} to="/terms">Terms & Conditions</Link> and <Link onClick={close} to="/privacy">Privacy</Link>.</p>
             </div>
             {/* text */}
             <div className="text mt-2">

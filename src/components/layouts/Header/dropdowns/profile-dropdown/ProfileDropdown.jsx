@@ -6,7 +6,7 @@ import ProfileItem from "./ProfileItem-component"
 
 const ProfileDropdown = ({ close }) => {
 
-    const { profile, logout } = useProfile()
+    const { profile, logout, isCustomer, isRegisteredProducer } = useProfile()
     let navigate = useNavigate();
 
     let userStatus = profile.status;
@@ -17,18 +17,10 @@ const ProfileDropdown = ({ close }) => {
     }
 
 
-    const registeredProducer = () => {
-        if (profile.type=="PRODUCER" && profile.status != "IMS_TYPE_COMPLETED") {
-            return false
-        } else {
-            return true
-        }
-    }
-
 
     const clickProfile = () => {
         close()
-        if(profile.type == "PRODUCER"){
+        if (profile.type == "PRODUCER") {
             switch (userStatus) {
                 case "VERIFIED":
                     navigate("/register/personalInfo");
@@ -46,11 +38,13 @@ const ProfileDropdown = ({ close }) => {
                     navigate(`/${profile.shopName}`);
                     return;
             }
-        }else{
+        } else {
             navigate("/");
             return;
         }
     }
+
+    console.log(isRegisteredProducer());
 
     return (
 
@@ -69,9 +63,9 @@ const ProfileDropdown = ({ close }) => {
             boxShadow='dark-lg'
             flexDirection='column'
         >
-            <ProfileItem click={clickProfile}>Profile</ProfileItem>
+            {isRegisteredProducer() && <ProfileItem click={clickProfile}>Profile</ProfileItem>}
 
-            {(userStatus == "IMS_TYPE_COMPLETED") && <>
+            {isRegisteredProducer() && <>
                 <Link to="/producer/ims" >
                     <ProfileItem click={close}>Inventory</ProfileItem>
                 </Link>
@@ -79,20 +73,21 @@ const ProfileDropdown = ({ close }) => {
                     <ProfileItem click={close}>Rulesets</ProfileItem>
                 </Link>
                 <Link to="/producer/collection" >
-                    <ProfileItem click={close}>Collection</ProfileItem>
+                    <ProfileItem click={close}>Collections</ProfileItem>
                 </Link>
                 <Link to="/producer/orders" >
-                    <ProfileItem click={close}>Incoming Orders</ProfileItem>
+                    <ProfileItem click={close}>Incoming orders</ProfileItem>
                 </Link>
-
             </>}
-            {registeredProducer() && <Link to="/purchseHistory" >
+
+            {isCustomer() && <Link to="/purchseHistory" >
                 <ProfileItem click={close}>Purchase history</ProfileItem>
             </Link>}
 
-            {registeredProducer() && <Link to="/settings" >
+            <Link to="/settings" >
                 <ProfileItem click={close}>Settings</ProfileItem>
-            </Link>}
+            </Link>
+
             <ProfileItem click={logout}>Logout</ProfileItem>
         </Flex>
     )

@@ -181,7 +181,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
         <div className="add-rule-moda-wrapper">
             <div className="add-rule-moda-body">
                 <div className="col-md-4 col-12">
-                    <FormInput label={"Rule name"} value={ruleName} changeValue={changeName} />
+                    <FormInput label={"Ruleset name"} value={ruleName} changeValue={changeName} />
                 </div>
                 <div className="w-100 d-flex justify-content-center align-items-center mt-4 mb-4">
                     <p className="text">The customer must meet at least one of the rules listed below (OR)</p>
@@ -194,7 +194,7 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
                             <>
                                 <div className="ruleset-input-container" key={index}>
                                     <div className="drop-container">
-                                        <p className="delete-btn" style={{ fontSize: "20px", margin: "auto 0px auto 10px" }}
+                                        <p className="delete-btn" 
                                             onClick={(e) => { deleteRule(index) }}>X</p>
                                         <select name="" id=""
                                             value={type}
@@ -233,15 +233,15 @@ export default function EditRule({ toggle, RuleId, RuleName, Rule, render }) {
                 }
                 <div className="w-100 d-flex justify-content-center align-items-center">
                     <div className="mt-4" style={{ width: '30%' }}>
-                        <BasicButton click={addRule}>Add</BasicButton>
+                        <BasicButton click={addRule}>Add ruleset</BasicButton>
                     </div>
                 </div>
                 <div className="w-100 d-flex justify-content-between align-items-center" style={{ marginTop: "80px" }}>
                     <div style={{ width: '40%' }}>
-                        <BasicButton click={toggle} loading={disableBtn}>cancel</BasicButton>
+                        <BasicButton click={toggle} loading={disableBtn}>Cancel</BasicButton>
                     </div>
                     <div style={{ width: '40%' }}>
-                        <BasicButton click={submitForm} loading={disableBtn}>submit</BasicButton>
+                        <BasicButton click={submitForm} loading={disableBtn}>Submit</BasicButton>
                     </div>
                 </div>
             </div>

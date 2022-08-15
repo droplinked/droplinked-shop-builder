@@ -16,7 +16,7 @@ export default function EmailVerifyPage() {
            let result =  await emailVerify(token)
            if(result == true ){
             nav("/?modal=login")
-            successToast("Your account has been successfully verified. Please login again.")
+            successToast("Your email has been verified, please login")
            }else{
             nav("/")
             errorToast(result)

@@ -17,6 +17,13 @@
       object-fit: cover;
       border-radius: 50%;
     }
+
+    div{
+      width: 60%;
+      height: 60%;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   }
   & .name-text {
     margin-top: 20px;

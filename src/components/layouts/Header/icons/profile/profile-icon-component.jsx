@@ -2,25 +2,44 @@ import defaultProfile from "../../../../../assest/profile/defaultProfile.png"
 
 import { Flex, Image } from "@chakra-ui/react"
 import { useProfile } from "../../../../../context/profile/ProfileContext"
+import { useState, useEffect } from "react"
+import { getShop } from "../../../../../api/base-user/Profile-api"
+import { useShop } from "../../../../../context/shop/ShopContext"
 
 export default function ProfileIcon({ click }) {
 
-
+    const [profileImage, setProfileImage] = useState(null)
     const { profile } = useProfile()
+    const { shop } = useShop()
 
-    let Profileimage = profile.avatar
+    useEffect(() => {
+        if (profile.type == "PRODUCER") {
+            if(shop)setProfileImage(shop.logo)
+            
+        } else {
+            setProfileImage(profile.avatar)
+        }
+    }, [profile , shop])
+
+    // const setShopImage = async () => {
+    //     let result = await getShop()
+    //     if (result) setProfileImage(result.logo);
+    // }
+
 
     return (
         <>
-            {(Profileimage)
+            {(profileImage)
                 ?
                 <Image
-                    w={{ base: "25px", md: '40px' }}
-                    h={{ base: "25px", md: '40px' }}
+                    w={{ base: "34px", md: '52px' }}
+                    h={{ base: "34px", md: '52px' }}
                     borderRadius="50%"
                     cursor='pointer'
-                    src={Profileimage}
+                    src={profileImage}
                     onClick={click}
+                    border='2px'
+                    borderColor='#8053ff'
                 />
                 :
                 <Flex
@@ -28,10 +47,10 @@ export default function ProfileIcon({ click }) {
                     alignItems='center'
                     cursor='pointer'
                     borderRadius='50%'
-                    border='1px'
-                    borderColor='#666'
-                    w={{ base: "25px", md: '40px' }}
-                    h={{ base: "25px", md: '40px' }}
+                    border='2px'
+                    borderColor='#8053ff'
+                    w={{ base: "34px", md: '52px' }}
+                    h={{ base: "34px", md: '52px' }}
                     style={{
                         backgroundImage: `url(${defaultProfile})`,
                         backgroundRepeat: "no-repeat",

@@ -3,6 +3,7 @@ import {
   getNotifications,
   seenNotification,
 } from "../../api/base-user/Notification-api";
+import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils";
 
 export const NotContext = createContext();
 
@@ -11,6 +12,7 @@ export default function NotContextProvider({ children }) {
 
   const updateNotifications = async () => {
     let result = await getNotifications();
+    result = sortArrayBaseCreateTime(result);
     if (result != null) setNotifications(result);
   };
 
@@ -21,8 +23,10 @@ export default function NotContextProvider({ children }) {
 
   const unseenNofitCount = () => {
     if (notifications.length > 0) {
-      let n =  notifications.filter((notification) => notification.seen == false);
-      return n.length
+      let n = notifications.filter(
+        (notification) => notification.seen == false
+      );
+      return n.length;
     } else {
       return 0;
     }

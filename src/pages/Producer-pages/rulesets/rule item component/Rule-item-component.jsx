@@ -37,11 +37,11 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
 
     return (
         <div className="rule-item-wrapper">
-            <div className="name"><p>{name}</p></div>
+            <div className="name"><p>Ruleset name: {name}</p></div>
             {rules.map((rule, i) => {
                 return (<div className="w-100 d-flex justify-content-between mt-1 mb-1" key={i}>
-                    <p className="address">{rule.address}</p>
-                    <p className="nft">{rule.type}</p>
+                    <p className="nft"><code>-</code> {rule.type}</p>
+                    <p className="address">{rule.address} <code>-</code></p>
                 </div>)
             })}
             <div className="w-100 d-flex justify-content-between mt-4">
@@ -49,7 +49,7 @@ export default function RuleItem({ name, rules, ruleId, ren }) {
                 <button className="btn-rule-item" style={{ color: "#8053ff" }} onClick={Edit}>Edit</button>
             </div>
             {editModal && <EditRule toggle={toggleEdit} RuleId={ruleId} RuleName={name} Rule={rules} render={ren} />}
-            <SmallModal loading={loading} header={"Delete Rule"} show={deleteModal} hide={() => { setDeleteModal(false) }} text={`Are you sure you want to  delete this rule?`} click={ClickDelete} />
+            <SmallModal loading={loading} show={deleteModal} hide={() => { setDeleteModal(false) }} text={`Are you sure you want to  delete this ruleset?`} click={ClickDelete}  buttonText={'Delete'} />
         </div>
     )
 }

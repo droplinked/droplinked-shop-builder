@@ -14,11 +14,16 @@
     & .merch-description-wrapper{
       margin-top: 40px;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       & .merch-description{
         font-weight: 500;
         font-size: 18px;
+        width: 100%;
         color: #b3b3b3;
+        white-space: pre-line;
       }
       & .merch-limite-description{
         display: -webkit-box;
@@ -30,9 +35,17 @@
       & .merch-readmore-button{
         color:#fff;
         font-size: 16px;
-        width:100%;
+        width:auto;
         text-align: center;
-        margin-top: 5px;
+        margin-top: 20px;
+        border : 1px solid #aaa;
+        padding: 5px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+      &:hover{
+        border : 1px solid #fff;
+      }
+
       }
     }
   }
@@ -44,25 +57,21 @@
     flex-direction: column;
     justify-content: space-between;
 
-    & .merch-descroption{
-      color: #b3b3b3;
-      cursor: pointer;
-      display: inline-block;
-      font-size: 22px;
+    & .merch-title{
+      color:#fff;
+      font-size: 26px;
       font-weight: 600;
     }
 
     & .merch-brandname{
-      color:#ddd;
-      font-size: 26px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    & .merch-title {
-      color: white;
+      color: #B3B3B3;
       font-weight: 600;
       font-size: 22px;
+      cursor: pointer;
+      display: inline-block;
+      &:hover{
+        color:#fff;
+      }
     }
 
     & .merch-price {
@@ -142,6 +151,10 @@
       & .merch-limite-description{
         -webkit-line-clamp: 4;
       }
+
+      & .merch-readmore-button{
+        font-size: 14px;
+      }
     }
     }
 
@@ -151,11 +164,7 @@
       padding-left: 0px;
       padding-bottom: 0px;
 
-      & .merch-descroption{
-        font-size: 18px;
-      }
-
-      & .merch-title {
+      & .merch-brandname {
         font-size: 20px;
       }
       & .merch-price {

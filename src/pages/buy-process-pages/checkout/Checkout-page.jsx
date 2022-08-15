@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Flex, Box, Text, Button } from "@chakra-ui/react";
+import { Flex, Box, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../context/cart/CartContext"
 
@@ -18,7 +18,9 @@ function CheckoutPage() {
 
 	// get shops of items
 	const getshops = () => {
+		// get all shops in cart
 		let shopArray = cart.items.map(item => item.shopName)
+		// make unique array for shops
 		let shops = [...new Set(shopArray)];
 		return shops
 	}
@@ -26,7 +28,8 @@ function CheckoutPage() {
 
 	//get total price of all items
 	const getTotalPrice = () => {
-		let total = cartBaseShop.map(item => { return (item.total + 5) })
+		// get total of each shop + 5 (shipping)
+		let total = cartBaseShop.map(shop => { return (parseFloat(shop.total) + 5) })
 		total = total.reduce((a, b) => a + b, 0)
 		return total
 	}
@@ -35,17 +38,20 @@ function CheckoutPage() {
 	useEffect(() => {
 		if (cart != null) {
 			let newCart = []
+			// get array of shop names  without  repeat
 			let shops = getshops()
-
+			//map over shop name
 			shops.map(shopname => {
 				let totalPrice = 0;
 				let items = []
+				// get items and totalprice of each shop
 				cart.items.forEach(item => {
 					if (item.shopName == shopname) {
 						items.push(item)
-						totalPrice += (item.price * item.quantity)
+						totalPrice += item.totalPrice
 					}
 				})
+				// new cart base on shop: {shopname:'' , items:[] , totalprice:number , shipping:5}
 				newCart.push({ shopName: shopname, items: items, total: totalPrice, shipping: 5 })
 			})
 			setCart(newCart)
@@ -65,7 +71,6 @@ function CheckoutPage() {
 			{(cart == null)
 				?
 				<Loading />
-
 				:
 				<>
 					{(cart.items.length == 0)
@@ -86,7 +91,7 @@ function CheckoutPage() {
 								color="#fff"
 								m="0px auto 40px auto"
 							>
-								Check out
+								Checkout
 							</Text>
 
 							{(cartBaseShop.length > 0) &&
@@ -101,7 +106,7 @@ function CheckoutPage() {
 							<Flex
 								w="100%"
 								justifyContent="space-between"
-								borderTop='1px' borderColor='white'
+								borderTop='2px' borderColor='#8053ff'
 								pt="20px"
 							>
 
@@ -111,7 +116,7 @@ function CheckoutPage() {
 										fontSize={{ base: "18px", md: "22px" }}
 										fontWeight="600"
 									>
-										Merchs cost : ${getTotalPrice()}
+										Total price: ${getTotalPrice().toFixed(2)}
 									</Text>
 									<Text
 										color="#fff"
@@ -125,13 +130,12 @@ function CheckoutPage() {
 								<Box
 									w={{ base: "150px", md: "200px" }}
 									h={{ base: "40px", md: "40px" }}
-									borderRadius="15px"
+									//borderRadius="15px"
 									overflow="hidden"
-								//mt="33px"
 								>
 									<BasicButton
 										click={() => { navigate('/address') }}
-									>Checkout</BasicButton>
+									>Check out</BasicButton>
 								</Box>
 							</Flex>
 						</>

@@ -1,8 +1,22 @@
-import { Flex, FormLabel, Textarea, Box, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
+import {
+    Flex,
+    FormControl,
+    FormLabel,
+    Text,
+    Input,
+    Box,
+    keyframes,
+    usePrefersReducedMotion,
+    Button
+} from '@chakra-ui/react'
+
 import { BASE_URL } from "../../../api/BaseUrl"
 import { useEffect, useState } from 'react'
 import { useAddress } from "../../../context/address/AddressContext"
 import { useToasty } from "../../../context/toastify/ToastContext"
+import { updateShopApi } from "../../../api/producer/Shop-api"
+import { useNavigate } from "react-router-dom";
+import { useShop } from "../../../context/shop/ShopContext"
 
 import axios from "axios"
 import InputImage from '../../../components/shared/InputImage/InputImage'
@@ -10,6 +24,7 @@ import Loading from "../../../components/shared/loading/Loading"
 import FormInput from "../../../components/shared/FormInput/FormInput"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import AddressComponent from "../../../components/shared/Address/address-component"
+import AddressForm from "../../../components/Modal/Address/Address-modal"
 
 const keyframe_startanimation = keyframes`
 0% {
@@ -23,20 +38,27 @@ const keyframe_startanimation = keyframes`
 `;
 
 
-export default function ShopInfoComponent({active}) {
+export default function ShopInfoComponent({ active }) {
 
     const token = JSON.parse(localStorage.getItem("token"));
+    const profile = JSON.parse(localStorage.getItem("profile"));
 
     const [shop, setShop] = useState(null)
     const [disableBtn, setDisableBtn] = useState(false)
+    const [addressModal, setAddressModal] = useState(false)
 
     const { addressList } = useAddress()
     const { errorToast, successToast } = useToasty()
+    const { updateShop } = useShop()
+
+    let navigate = useNavigate();
+
+
     const prefersReducedMotion = usePrefersReducedMotion();
 
     const startAnimation = prefersReducedMotion
-    ? undefined
-    : `${keyframe_startanimation}  0.2s linear`;
+        ? undefined
+        : `${keyframe_startanimation}  0.2s linear`;
 
     let shopAddressBook = addressList.find(address => address.addressType == "SHOP")
 
@@ -45,7 +67,9 @@ export default function ShopInfoComponent({active}) {
         axios.get(`${BASE_URL}/profile`,
             { headers: { Authorization: "Bearer " + token } })
             .then(e => {
-                setShop(e.data.data.shop)
+                if (e.data.data.shop.description)
+                    setShop(e.data.data.shop)
+                else setShop({ ...e.data.data.shop, description: "" })
             })
             .catch(e => console.log(e.response.data.reason))
     }, [token])
@@ -63,7 +87,12 @@ export default function ShopInfoComponent({active}) {
     }
 
 
-    const submitForm = () => {
+    const submitForm = async () => {
+
+        if(shop.description.length < 1){
+            errorToast("Shop name is required")
+            return 
+        }
 
         let shopInformation = {
             social: {
@@ -78,21 +107,30 @@ export default function ShopInfoComponent({active}) {
         }
 
         setDisableBtn(true)
-        axios.put(`${BASE_URL}/producer/shop/info`, shopInformation,
-            { headers: { Authorization: "Bearer " + token } })
-            .then(e => {
-                successToast("Shop info successfully updated")
-                setDisableBtn(false)
-            })
-            .catch(e => {
-                errorToast(e.response.data.reason)
-                setDisableBtn(false)
-            })
+
+        let result = await updateShopApi(shopInformation)
+
+        if (result.status == 'success') {
+            localStorage.setItem("shop", JSON.stringify(result.data.shop));
+            successToast("Shop info successfully updated")
+            updateShop()
+            if (profile.status != "IMS_TYPE_COMPLETED")
+                navigate("/register/IMSSelect");
+        } else {
+            errorToast(result.reason)
+        }
+
+        setDisableBtn(false)
+
     }
 
+    const changeShopname = (e) => {
+        if(e.target.value.length<31)
+        chageShopInformation('description', e)
+    }
 
     return (
-        <Box w='100%' animation={(active=='shop'?startAnimation:'')}>
+        <Box w='100%' animation={(active == 'shop' ? startAnimation : '')}>
             {(shop == null)
                 ?
                 <Loading />
@@ -100,73 +138,114 @@ export default function ShopInfoComponent({active}) {
                 <>
                     <InputImage image={shop.logo} setImage={changeShopLogo} />
 
-                    <FormInput value={`droplinked.com/${shop.name}`} label={'domain'} mt='20px' />
+                    {/* shop name input */}
+                    <FormControl>
+                        <FormLabel
+                            htmlFor='input-com'
+                            fontWeight='600'
+                            fontSize={{ base: '14px', md: '20px' }}
+                            color='#fff'
+                        >Shop name</FormLabel>
+                        <Flex
+                            border='2px'
+                            borderColor='#b3b3b3'
+                            borderRadius='8px'
+                            _focus={{ borderColor: "#8053ff" }}
+                            px="16px"
+                            py={{ base: "8px", md: "12px" }}
+                        >
+                            <Input
+                                id='input-com'
+                                value={shop.description}
+                                onChange={changeShopname}
+                                fontWeight='600'
+                                fontSize={{ base: '14px', md: '20px' }}
+                                color='#fff'
+                                p='0px'
+                                // h='100%'
+                                outline='none'
+                                border='none'
+                                _focus={{
+                                    borderColor: "none",
+                                    outline: 'none'
+                                }}
+                                //   w='100%'
+                                h='auto'
+                                placeholder="Shop name"
+                            />
+                            <Text
+                                fontSize={{ base: '14px', md: '20px' }}
+                                fontWeight='600'
+                                color={(shop.description.length < 30) ? "#fff" : "red"}
+                            >
+                                {shop.description.length}/30
+                            </Text>
+                        </Flex>
+                    </FormControl>
+                    {/* shop name input */}
 
-                    <FormLabel
-                        mt='20px'
-                        htmlFor='description-shop'
-                        fontWeight='600'
-                        fontSize={{ base: '14px', md: '20px' }}
-                        color='#fff'
-                    >about you shop</FormLabel>
-                    <Textarea
-                        id='description-shop'
-                        value={shop.description}
-                        onChange={(e) => chageShopInformation('description', e)}
-                        fontWeight='600'
-                        fontSize={{ base: '14px', md: '20px' }}
-                        color='#fff'
-                        border='2px'
-                        borderColor='#b3b3b3'
-                        borderRadius='8px'
-                        px="16px"
-                        py={{ base: "8px", md: "12px" }}
-                        outline='none'
-                        _focus={{ borderColor: "#8053ff" }}
-                        h='auto'
-                        placeholder='about your shop'
-                    >
-                    </Textarea>
+                    <FormInput value={`droplinked.com/${shop.name}`} label={'Domain'} mt='20px' />
+
 
                     <FormInput
                         value={shop.webUrl}
                         changeValue={(e) => chageShopInformation('webUrl', e)}
                         label={'Website'}
-                        placeholder="www.website.com"
+                        placeholder="www.example.com"
                         mt='20px' />
 
                     <FormInput
                         value={shop.discordUrl}
                         changeValue={(e) => chageShopInformation('discordUrl', e)}
                         label={'Discord'}
-                        placeholder="discoreId"
+                        placeholder="Username"
                         mt='20px' />
 
                     <FormInput
                         value={shop.twitterUrl}
                         changeValue={(e) => chageShopInformation('twitterUrl', e)}
                         label={'Twitter'}
-                        placeholder="Twitter username"
+                        placeholder="Username"
                         mt='20px' />
                     <FormInput
                         value={shop.instagramUrl}
                         changeValue={(e) => chageShopInformation('instagramUrl', e)}
                         label={'Instagram'}
-                        placeholder="Instagram username"
+                        placeholder="Username"
                         mt='20px'
                         mb='20px'
                     />
-                    {(shopAddressBook) &&
+                    {(shopAddressBook) ?
                         <AddressComponent
                             address={shopAddressBook}
                         />
+                        :
+                        <Flex w='100%' justifyContent='center'>
+                            <Button
+                                mt='40px'
+                                text-align="center"
+                                color="#ffffff"
+                                fontSize={{ base: "16px", md: '20px' }}
+                                fontWeight='600'
+                                padding="13px 50px"
+                                borderRadius='10px'
+                                bgColor='transparent'
+                                onClick={() => { setAddressModal(true) }}
+                                border='2px solid gray'
+                                _hover={{
+                                    bgColor: 'transparent',
+                                    borderColor: "#fff"
+                                }}
+                            >Add address</Button>
+                        </Flex>
                     }
                     <Flex justifyContent='end' mt='50px'>
                         <BasicButton w={{ base: '100%', md: '45%' }} p='12px 16px'
-                            disabled={disableBtn}
+                            disabled={(disableBtn || (shop.description.length > 30))}
                             onClick={submitForm}
                         >Submit</BasicButton>
                     </Flex>
+                    {addressModal && <AddressForm type={"SHOP"} close={() => { setAddressModal(false) }} />}
                 </>
             }
 

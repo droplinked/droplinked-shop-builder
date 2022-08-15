@@ -109,17 +109,13 @@ export default function EditCollectionModal({ toggle, submitFunc, defaultValue }
 
     return (
         <div className="add-collection-page-wrapper">
-            <div className="title">New Collection</div>
+            <div className="title">New collection</div>
             {(rules)
                 ?
                 <>
                     <div className="mt-5">
-                        <FormInput label={"Collection Name"} value={collectionName} changeValue={changeName}/>
+                        <FormInput label={"Collection name"} value={collectionName} changeValue={changeName}/>
                     </div>
-                    {/* <div className="mt-5">
-                             <InputImageComponent state={Images} setState={setImages} />
-                         </div> 
-                    */}
                     <div className="mt-5">
                         <Dropdown value={selectedRule} pairArray={rules} change={changeRule} placeholder={ruleValue} />
                     </div>

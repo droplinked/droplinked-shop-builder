@@ -1,7 +1,7 @@
 import "./Merch-page-style.scss"
 
 import { useState, useEffect } from "react"
-import { useParams , useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { UseWalletInfo } from "../../context/wallet/WalletContext"
 import { useProfile } from "../../context/profile/ProfileContext"
 import { useToasty } from "../../context/toastify/ToastContext"
@@ -188,6 +188,7 @@ export default function MerchPage() {
 
 
     const addMerhcToCart = async (cart) => {
+        setDisableBtn(true)
         let result = await addSkuToCart(cart)
         if (result == true) {
             successToast("Item added to cart")
@@ -259,8 +260,9 @@ export default function MerchPage() {
 
                     {/* detail side */}
                     <div className="detail-side col-12 col-md-6">
-                        <p className="merch-brandname" onClick={navigateToShoppage}>{shopname}</p>
                         <p className="merch-title">{product.title}</p>
+                        
+                        <p className="merch-brandname" onClick={navigateToShoppage}>{shopname}</p>
 
                         <p className="merch-price">{`$${(sku != null) ? (sku.price) : ""}`}</p>
 
@@ -292,7 +294,7 @@ export default function MerchPage() {
                             {sku && (sku.quantity == 0) ?
                                 <BasicButton disabled={true}>Sold out</BasicButton>
                                 :
-                                <BasicButton click={Addtobasket} disabled={disableBtn}>Add to basket</BasicButton>
+                                <BasicButton click={Addtobasket} loading={disableBtn}>Add to basket</BasicButton>
                             }
 
                         </div>
@@ -301,7 +303,7 @@ export default function MerchPage() {
                     {/* description */}
                     <div className="merch-description-wrapper">
                         <p className={`merch-description ${(readmore) ? "" : 'merch-limite-description'}`}>{product.description}</p>
-                        <button className="merch-readmore-button" onClick={() => { setReadmore(p => !p) }}>Readmore</button>
+                        <button className="merch-readmore-button" onClick={() => { setReadmore(p => !p) }}>Read more</button>
                     </div>
                     {/* description */}
 

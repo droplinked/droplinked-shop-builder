@@ -1,4 +1,4 @@
-
+import "./shopify-style.scss"
 import { Link } from "react-router-dom";
 import { useState } from "react"
 import { useProfile } from "../../../../context/profile/ProfileContext"

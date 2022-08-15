@@ -1,9 +1,14 @@
 .rule-item-wrapper {
   width: 100%;
-  border: 1px solid #b3b3b3;
-  border-radius: 16px;
-  padding: 30px 40px;
+  border-radius: 30px;
+  padding: 15px 20px;
   margin-bottom: 20px;
+  border: 3px solid #d4d4d486;
+  transition: 0.8s;
+  max-width: 900px;
+  &:hover {
+    border: 3px solid #8053ff;
+  }
 
   & .name {
     width: 100%;
@@ -21,10 +26,17 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+   
+  }
+  & code {
+    color: #8053ff;
   }
   & .nft {
     color: white;
     font-size: 20px;
+    & code {
+      color: #8053ff;
+    }
   }
   & .btn-rule-item {
     font-size: 16px;
@@ -34,7 +46,7 @@
 
 @media only screen and (max-width: 768px) {
   .rule-item-wrapper {
-    padding: 30px 20px;
+    padding: 15px 20px;
     & .name {
       p {
         font-size: 16px;

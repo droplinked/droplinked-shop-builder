@@ -1,5 +1,5 @@
 import "./Small-modal-style.scss"
-import { useState } from "react"
+
 import BasicButton from '../../shared/BasicButton/BasicButton'
 
 import {
@@ -9,12 +9,11 @@ import {
     ModalHeader,
     ModalFooter,
     ModalBody,
-    ModalCloseButton,
     Box,
     Flex
 } from '@chakra-ui/react'
 
-export default function SmallModal({ show, hide, text, click, header, loading }) {
+export default function SmallModal({ show, hide, text, click, header, loading ,buttonText }) {
 
     return (
         <>
@@ -22,7 +21,7 @@ export default function SmallModal({ show, hide, text, click, header, loading })
                 <ModalOverlay />
                 <ModalContent bgColor="#222">
                     <ModalHeader color="#fff">{header}</ModalHeader>
-                    <ModalCloseButton />
+                   
                     <ModalBody
                         fontWeight='600'
                         fontSize={{ base: "16px", md: '20px' }}
@@ -39,7 +38,7 @@ export default function SmallModal({ show, hide, text, click, header, loading })
                                 > Cancel</BasicButton>
                             </Box>
                             <Box w='40%'>
-                                <BasicButton loading={loading} onClick={click}>Delete</BasicButton>
+                                <BasicButton loading={loading} onClick={click}>{buttonText}</BasicButton>
                             </Box>
                         </Flex>
                     </ModalFooter>

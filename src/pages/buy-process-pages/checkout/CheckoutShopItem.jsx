@@ -1,11 +1,14 @@
-import { Box, Flex, Text } from "@chakra-ui/react"
+import { Box, Text } from "@chakra-ui/react"
+import { useNavigate } from "react-router-dom"
 
 import CheckoutItem from "./CheckoutItem"
 
 export default function CheckoutShopItem({ shopItem }) {
+    const navigate = useNavigate()
 
-    let totalPrice = 0;
-    shopItem.items.forEach(item => totalPrice += (item.quantity * item.price))
+    const clickOnShopname = () => {
+        navigate(`/${shopItem.shopName}`)
+    }
 
     return (<>
         <Box mb="50px">
@@ -19,8 +22,10 @@ export default function CheckoutShopItem({ shopItem }) {
                     fontSize={{ base: "14px", md: "18px" }}
                     fontWeight="600"
                     color="white"
+                    cursor='pointer'
+                    onClick={clickOnShopname}
                 >
-                    {shopItem.shopName}
+                    Shop: {shopItem.shopName}
                 </Text>
             </Box>
 
@@ -35,14 +40,14 @@ export default function CheckoutShopItem({ shopItem }) {
                     color="#fff"
                     fontSize="16px"
                 >
-                     Total cost : ${totalPrice}
+                    Items: ${shopItem.total}
                 </Text>
                 <Text
-                    mt="10px"
+                    mt="5px"
                     color="#fff"
                     fontSize="16px"
                 >
-                    Shipping : $5
+                    Shipping: $5
                 </Text>
             </Box>
 

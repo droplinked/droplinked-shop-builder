@@ -129,7 +129,7 @@ export default function AddVariantForm({ productId, optionTypes, toggle, default
 
             <div className="rw-rp">
                 <label>Price</label>
-                <input type="number" placeholder="100 $" value={price} onChange={changePrice} />
+                <input type="number" placeholder="$100" value={price} onChange={changePrice} />
             </div>
             <div className="rw-rp">
                 <label>Quantity</label>

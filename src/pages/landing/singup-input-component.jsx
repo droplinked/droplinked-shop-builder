@@ -13,8 +13,8 @@ const SignupInput = ({ setUsername, userName, toggleSignUp }) => {
     const [error, setError] = useState(null);
 
     const ERRORS_TYPE = {
-        EMPTY_ERROR: "Please enter a valid username.",
-        VALIDATION_ERROR: "Username can contain letters (a-z), numbers (0-9) and underscores."
+        EMPTY_ERROR: "Please enter a name to proceed",
+        VALIDATION_ERROR: "Usernames may contain letters (a-z), numbers (0-9) and special characters"
     }
 
     // onchange signup input

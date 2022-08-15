@@ -1,11 +1,13 @@
 import {  useElements, useStripe, PaymentElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useCart } from "../../../../context/cart/CartContext"
+import { Flex } from '@chakra-ui/react';
 
 import ModalContainer from "../../../../components/Modal/modal-container/modal-container"
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
+import Timer from "./time-component"
 
-const StripeComponent = ({cartId}) => {
+const StripeComponent = ({cancel}) => {
 
     const [loading , setLoading] = useState(false)
 
@@ -13,6 +15,8 @@ const StripeComponent = ({cartId}) => {
 
     const elements = useElements();
     const stripe = useStripe();
+
+
 
 
     const handleSubmit = async (e) => {
@@ -47,10 +51,16 @@ const StripeComponent = ({cartId}) => {
 
     return (
         <ModalContainer>
+            <Timer timerSecond={300} />
+            <Flex mb='30px'></Flex>
             {(elements != null) &&
             <form onSubmit={handleSubmit}>
                 <PaymentElement />
-                <BasicButton mt='40px' p="12px 0px" type="submit"  loading={loading}>submit</BasicButton>
+                <Flex justifyContent='space-between'>
+                <BasicButton w='45%' mt='40px' p="12px 0px" bgColor='#e74c3c' click={cancel}>Cancel</BasicButton>
+                <BasicButton w='45%' mt='40px' p="12px 0px" type="submit"  loading={loading}>Submit</BasicButton>
+                </Flex>
+                
             </form>
             }
         </ModalContainer>

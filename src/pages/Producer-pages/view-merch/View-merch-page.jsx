@@ -161,12 +161,11 @@ export default function ViewMerchPage() {
             :
 
             <div className="add-product-page-wrapper"  >
-                <div className="ims-title mb-5">Add new item</div>
 
                 <div className="col-12 col-md-6 mb-5">
                     <BasicButton bgColor='#fa6653'
                         onClick={() => { setDeleteModal(true) }}
-                    >Delete merch</BasicButton>
+                    >Delete item</BasicButton>
                 </div>
 
                 <div className="mb-4 w-100 p-0">
@@ -226,9 +225,10 @@ export default function ViewMerchPage() {
                     <SmallModal
                         show={deleteModal}
                         hide={() => setDeleteModal(false)}
-                        text={"Do you want to delete this merch?"}
+                        text={"Do you want to delete this item?"}
                         click={DeleteMerch}
                         loading={modalDisBtn}
+                        buttonText={'Delete'}
                     />}
 
             </div>

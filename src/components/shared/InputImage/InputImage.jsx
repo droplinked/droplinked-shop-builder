@@ -8,9 +8,13 @@ import axios from 'axios';
 
 export default function InputImage({ image, setImage }) {
 
+    const [loading, setLoading] = useState(false)
+    
     const inputFile = useRef(null);
     const { successToast, errorToast } = useToasty()
-    const [loading, setLoading] = useState(false)
+  
+
+
     const changeImage = (e) => {
 
         const file = e.target.files[0];
@@ -35,7 +39,7 @@ export default function InputImage({ image, setImage }) {
         axios.post('https://cdn.droplinked.com/upload', formData)
             .then(e => {
                 setLoading(false);
-                successToast(e.data.message);
+                successToast('The image uploaded');
                 setImage(e.data.small)
             })
             .catch(e => {
@@ -127,7 +131,7 @@ export default function InputImage({ image, setImage }) {
                     border='6px'
                     borderColor='#8053ff'
                     borderRadius='100%'
-                    backgroundSize='cover'
+                    backgroundSize={(image == "")?"50%":'cover'}
                     bgRepeat='no-repeat'
                     bgPosition='center'
                     display='flex'

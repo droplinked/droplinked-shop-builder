@@ -167,7 +167,7 @@ export default function AddVariantForm({ state, setState, toggle, optionsArray, 
             }
             <div className="rw-rp">
                 <label>Price</label>
-                <input value={(price) && price} type="number" placeholder="100 $" onChange={changePrice} />
+                <input value={(price) && price} type="number" placeholder="$100" onChange={changePrice} />
             </div>
             <div className="rw-rp">
                 <label>Quantity</label>

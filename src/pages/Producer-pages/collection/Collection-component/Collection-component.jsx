@@ -8,20 +8,23 @@ import EditCollectionModal from "../edit-collection-modal/edit-collection-modal-
 import Product from "../../../../components/shared/Product/Product"
 
 import { useToasty } from "../../../../context/toastify/ToastContext"
+import { useProfile } from "../../../../context/profile/ProfileContext"
 import { deleteCollection } from "../../../../api/producer/Collection-api"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export default function CollectionComponent({collection, edit, render }) {
+export default function CollectionComponent({ collection, edit, render }) {
 
 
     const [deleteModal, setDeleteModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
     const [loading, setLoading] = useState(false)
     const { errorToast, successToast } = useToasty();
+    const { profile } = useProfile()
 
     const submitEdit = () => {
     }
+
 
     const DeleteCollection = async () => {
         setLoading(true)
@@ -42,22 +45,22 @@ export default function CollectionComponent({collection, edit, render }) {
         <div className="Collection-wrapper-component">
             <div className="d-flex justify-content-between align-items-center h-auto">
                 <div className="name">{collection.title}</div>
-                <Link to={`/collection/${collection._id}`}>
-                    <button className="collection-btn">View Collection</button>
+                <Link to={`/${profile.shopName}/collection/${collection._id}`}>
+                    <button className="collection-btn">View collection</button>
                 </Link>
             </div>
             {(collection.products.length == 0)
                 ?
                 <div className="d-flex">
-                    <p className="text-align-center no-pro-text">No Product</p>
+                    <p className="text-align-center no-pro-text">Empty</p>
                 </div>
                 :
-                <div className="mt-4 d-flex flex-wrap">
+                <div className="mt-2 d-flex flex-wrap">
                     {collection.products.filter((product, i) => {
                         if (i < 4) { return product }
                     }).map((product, i) => {
                         return (<div key={i} className="col-6 col-md-3 p-1">
-                            <Product title={product.title} imageUrl={product.media[0].url} id={product._id} />
+                            <Product shopname={profile.shopName}  title={product.title} imageUrl={product.media[0].url} id={product._id} />
                         </div>)
                     })
                     }
@@ -66,8 +69,8 @@ export default function CollectionComponent({collection, edit, render }) {
 
             {(collection.type != "DEFAULT_PUBLIC") && <>
                 <div className="d-flex justify-content-between align-items-center h-auto">
-                    <img src={editIcon} onClick={edit} alt="icon" className="edit-img" style={{ cursor: "pointer" }} />
-                    <img src={deleteIcon} onClick={() => setDeleteModal(true)} alt="icon" className="delete-img" style={{ cursor: "pointer" }} />
+                    <p className="collection-delete-img" onClick={() => setDeleteModal(true)}>Delete</p>
+                    <p className="collection-edit-btn" onClick={edit} >Edit</p>
                 </div>
             </>}
 
@@ -80,6 +83,7 @@ export default function CollectionComponent({collection, edit, render }) {
                 hide={() => setDeleteModal(false)}
                 click={DeleteCollection}
                 loading={loading}
+                buttonText={'Delete'}
             />
         }
         {editModal &&

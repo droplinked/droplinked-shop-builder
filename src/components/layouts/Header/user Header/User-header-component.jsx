@@ -11,9 +11,10 @@ import { useProfile } from "../../../../context/profile/ProfileContext"
 
 export default function UserHeader() {
 
+    // state for manage dropdowns
     const [dropdown, setDropdown] = useState(null)
 
-    const { profile } = useProfile()
+    const {  isCustomer ,isRegisteredProducer } = useProfile()
 
     const openProfileDropdown = () => {
         setDropdown(DROPDOWN_TYPE.PROFILE)
@@ -31,31 +32,23 @@ export default function UserHeader() {
     }
 
 
-    const registeredProducer = () => {
-        if (profile.type=="PRODUCER" && profile.status != "IMS_TYPE_COMPLETED") {
-            return false
-        } else {
-            return true
-        }
-    }
-
-
-
     return (<>
 
-        <WalletButton />
+        {isCustomer() && <WalletButton />}
+
 
         <Flex alignItems='center' ml={{ base: "10px", md: '15px' }}>
 
-            {/* cart icon */}
-            {registeredProducer() && <Cart clickBasket={openBasket} />}
+            {/* cart icon (show if type == producer) */}
+            {isCustomer() && <Cart clickBasket={openBasket} />}
 
-            {/* notification icon */}
-            {registeredProducer() && <Notification click={openNotification} />}
+            {/* notification icon (show if type == producer)*/}
+             <Notification click={openNotification} />
 
             {/* profile icon */}
             <ProfileIcon click={openProfileDropdown} />
 
+            {/* get dropdown state and show dropdown match with state value */}
             {dropdown && <DropdownContainer close={close} dropdown={dropdown} />}
         </Flex>
     </>)

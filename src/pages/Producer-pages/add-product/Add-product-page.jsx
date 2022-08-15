@@ -142,13 +142,13 @@ function AddProductPage() {
 
 
     // change selected options with change checkbox
-    const onChnageCheckBox = (e, val, name) => {
+    const onChnageCheckBox = (e) => {
         let newOptions = []
         if (e.target.checked) {
             newOptions = options.map(opt => opt)
-            newOptions.push({ optionName: name, optionID: val })
+            newOptions.push({ optionName: e.target.value , optionID: e.target.id })
         } else {
-            newOptions = options.filter(opt => opt.optionID != val)
+            newOptions = options.filter(opt => opt.optionID != e.target.id)
         }
         setOptions(newOptions)
     }
@@ -182,11 +182,11 @@ function AddProductPage() {
                 <InputImagesGroup setState={setImages} state={images} />
             </div>
             <div className="select-variant-wrap mt-4">
-                <p>Choose options : </p>
+                <p>Choose options: </p>
                 {(varintType != null) &&
                     <>
                         {varintType.map(item => {
-                            return <CheckBox key={item._id} value={item._id} change={onChnageCheckBox} disabled={(variants.length > 0)}>{item.name}</CheckBox>
+                            return <CheckBox key={item._id} id={item._id} change={onChnageCheckBox} disabled={(variants.length > 0)}>{item.name}</CheckBox>
                         })}
                     </>
                 }

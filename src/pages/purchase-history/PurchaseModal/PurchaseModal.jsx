@@ -16,9 +16,6 @@ import Item from "../ItemComponent/ItemComponent"
 export default function PurchaseModal({ order, isOpen, onClose }) {
 
 
-
-    let totalPrice = order.totalPrice
-
     const orderStatus = () => {
         switch (order.status) {
             case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
@@ -46,8 +43,9 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                     color='#fff'
                     fontSize='22px'
                     fontWeight='600'
+                    textAlign='center'
                 >Order</ModalHeader>
-                <ModalCloseButton color='white' />
+                <ModalCloseButton color='white' mt='10px' />
                 <ModalBody>
                     <Flex w='100%' justifyContent='space-between'>
                         <Text
@@ -56,7 +54,7 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                             fontWeight='600'
                             mb='8px'
                         >
-                            Merchs price : $ {totalPrice - 5}
+                            Items price: ${parseFloat(order.totalPrice) - 5}
                         </Text>
                         <Text
                             color='#ccc'
@@ -91,8 +89,9 @@ export default function PurchaseModal({ order, isOpen, onClose }) {
                         fontWeight='600'
                         mb='8px'
                     >
-                        Merchs price : $ {totalPrice}
+                        Price: ${order.totalPrice}
                     </Text>
+
                     <Flex wrap='wrap'>
                         {order.items.map((item, i) => <Item key={i} item={item} />)}
                     </Flex >

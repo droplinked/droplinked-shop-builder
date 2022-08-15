@@ -15,6 +15,8 @@ const keyframe_imageAnimation = keyframes`
 }
 `;
 
+// Carousel component get array of object that contain url and build a image carousel of these images
+// imagesArray format = [{...,url:"imageUrl"} , { } ,....]
 
 export default function Carousel({ imagesArray }) {
 
@@ -33,26 +35,30 @@ export default function Carousel({ imagesArray }) {
         ? undefined
         : `${keyframe_imageAnimation}  0.5s linear`;
 
+
     useEffect(() => {
         if (imagesArray.length > 0) {
-            // initial images state
+            //initial image state with array of urls : [" " , " " ,...]
             let imagesGallery = imagesArray.map(image => image.url)
             setImages(imagesGallery);
         }
     }, [imagesArray])
 
 
+    // Increase start point
     const next = () => {
         if (startpoint + 4 < imagesArray.length) {
             setStartpoint(p => p + 1)
         }
     }
 
+    // decrease start point
     const previous = () => {
         if (startpoint > 0) {
             setStartpoint(p => p - 1)
         }
     }
+
 
     const closeFullsize = () => {
         setFullsizeImage(null)

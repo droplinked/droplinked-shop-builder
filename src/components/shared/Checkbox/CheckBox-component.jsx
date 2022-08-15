@@ -1,10 +1,16 @@
 import "./Checkbox-style.scss"
 
-export default function CheckBox({ value ,  children , change , disabled}){
+// this component get id and children for show check Box
+// in disable with (disabled) props
+
+
+export default function CheckBox({ id, children, change, disabled }) {
+
     return (<>
         <label class="checkbox">
-            <input type="checkbox" value={value} onChange={(e)=>{change(e , value , children)}} disabled={disabled} />
+            <input type="checkbox" id={id} value={children} onChange={change} disabled={disabled} />
             <span disabled={disabled}>{children}</span>
-        </label> 
-</>)
+        </label>
+    </>)
+
 }
