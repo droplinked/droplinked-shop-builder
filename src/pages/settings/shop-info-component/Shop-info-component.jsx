@@ -106,8 +106,8 @@ export default function ShopInfoComponent({ active }) {
         if (result.status == 'success') {
             localStorage.setItem("shop", JSON.stringify(result.data.shop));
             successToast("Shop info successfully updated")
-            if(profile.status != "IMS_TYPE_COMPLETED")
-            navigate("/register/IMSSelect");
+            if (profile.status != "IMS_TYPE_COMPLETED")
+                navigate("/register/IMSSelect");
         } else {
             errorToast(result.reason)
         }
@@ -116,6 +116,10 @@ export default function ShopInfoComponent({ active }) {
 
     }
 
+    const changeShopname = (e) => {
+        if(e.target.value.length<31)
+        chageShopInformation('description', e)
+    }
 
     return (
         <Box w='100%' animation={(active == 'shop' ? startAnimation : '')}>
@@ -145,7 +149,7 @@ export default function ShopInfoComponent({ active }) {
                             <Input
                                 id='input-com'
                                 value={shop.description}
-                                onChange={(e) => chageShopInformation('description', e)}
+                                onChange={changeShopname}
                                 fontWeight='600'
                                 fontSize={{ base: '14px', md: '20px' }}
                                 color='#fff'
@@ -164,7 +168,7 @@ export default function ShopInfoComponent({ active }) {
                             <Text
                                 fontSize={{ base: '14px', md: '20px' }}
                                 fontWeight='600'
-                                color={(shop.description.length <= 30) ? "#fff" : "red"}
+                                color={(shop.description.length < 30) ? "#fff" : "red"}
                             >
                                 {shop.description.length}/30
                             </Text>
@@ -221,8 +225,8 @@ export default function ShopInfoComponent({ active }) {
                                 onClick={() => { setAddressModal(true) }}
                                 border='2px solid gray'
                                 _hover={{
-                                    bgColor:'transparent',
-                                    borderColor:"#fff"
+                                    bgColor: 'transparent',
+                                    borderColor: "#fff"
                                 }}
                             >Add address</Button>
                         </Flex>
