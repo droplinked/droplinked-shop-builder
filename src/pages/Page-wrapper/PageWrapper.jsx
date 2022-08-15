@@ -23,20 +23,8 @@ export default function PageWrapper() {
     useEffect(() => {
 
         let token = JSON.parse(localStorage.getItem("token"));
-
-        if (token != null || token != undefined) {
-            // delete localstorage after 8 hour 
-            const loginTime = JSON.parse(localStorage.getItem("login-time"));
-            let currentTime = new Date().getTime()
-            let hour = (((currentTime - loginTime) / 1000) / 60 / 60)
-            if (hour > 8) {
-                localStorage.clear()
-                return
-            } else {
-                // check jwt validation
-                checkJWT()
-            }
-        }
+        if (token != null || token != undefined)  firtsCheck()
+    
     }, [])
 
 
@@ -53,15 +41,36 @@ export default function PageWrapper() {
     }, [profile])
 
 
+
+    const firtsCheck = async() => {
+       await checkJWT()
+       lastSeen()
+    }
+
+
     const checkJWT = async () => {
         let result = await isJwtValid()
         if (!result) {
-            localStorage.clear()
-            window.location.replace('/');
+            cleanStorage()
             return
         }
     }
 
+    const lastSeen = () => {
+        // delete localstorage after 8 hour 
+        const loginTime = JSON.parse(localStorage.getItem("login-time"));
+        let currentTime = new Date().getTime()
+        let hour = (((currentTime - loginTime) / 1000) / 60 / 60)
+        if (hour > 8) {
+            cleanStorage()
+            return
+        }
+    }
+
+    const cleanStorage = () => {
+        localStorage.clear()
+        window.location.replace('/');
+    }
 
 
 
