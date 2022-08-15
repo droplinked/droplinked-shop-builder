@@ -21,7 +21,6 @@
 //   align-items: center;
 // }
 
-
 // .product-img-form-wr {
 //   width: 50%;
 //   height: 480px;
@@ -121,7 +120,7 @@
 //   font-size: 14px;
 //   line-height: 21px;
 //   color: #b3b3b3;
-  
+
 // }
 // .product-price {
 //   font-family: "AvenirNext";
@@ -194,7 +193,6 @@
 //     color: #ffffff;
 //   }
 // }
-
 
 // .product-addbasket-btn {
 //   background-color: #8053ff;
@@ -325,7 +323,6 @@
 //   }
 // }
 
-
 .merch-page-container {
   width: 100%;
   padding: 0px 80px;
@@ -339,41 +336,40 @@
     flex-wrap: wrap;
     margin: auto;
 
-    & .merch-description-wrapper{
+    & .merch-description-wrapper {
       margin-top: 40px;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
 
-      & .merch-description{
+      & .merch-description {
         font-weight: 500;
         font-size: 18px;
         width: 100%;
         color: #b3b3b3;
         white-space: pre-line;
       }
-      & .merch-limite-description{
+      & .merch-limite-description {
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      & .merch-readmore-button{
-        color:#fff;
+      & .merch-readmore-button {
+        color: #fff;
         font-size: 16px;
-        width:auto;
+        width: auto;
         text-align: center;
         margin-top: 20px;
-        border : 1px solid #aaa;
+        border: 1px solid #aaa;
         padding: 5px 10px;
         border-radius: 8px;
         cursor: pointer;
-      &:hover{
-        border : 1px solid #fff;
-      }
-
+        &:hover {
+          border: 1px solid #fff;
+        }
       }
     }
   }
@@ -385,20 +381,20 @@
     flex-direction: column;
     justify-content: space-between;
 
-    & .merch-title{
-      color:#fff;
+    & .merch-title {
+      color: #fff;
       font-size: 26px;
       font-weight: 600;
     }
 
-    & .merch-brandname{
-      color: #B3B3B3;
+    & .merch-brandname {
+      color: #b3b3b3;
       font-weight: 600;
       font-size: 22px;
       cursor: pointer;
       display: inline-block;
-      &:hover{
-        color:#fff;
+      &:hover {
+        color: #fff;
       }
     }
 
@@ -454,18 +450,18 @@
     }
   }
 
-    & .merch-options-wrap {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      flex-wrap: wrap;
+  & .merch-options-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
 
-      & .opt {
-        width: 48%;
-        margin-bottom: 8px;
-      }
+    & .opt {
+      width: 48%;
+      margin-bottom: 8px;
     }
-
+  }
+}
 @media only screen and (max-width: 768px) {
   .merch-page-container {
     width: 100%;
@@ -476,25 +472,24 @@
     & .merch-page-wrapper {
       max-width: 400px;
       width: 100%;
-      
-    & .merch-description-wrapper{
-      margin-top: 20px;
-      padding-right: 20px;
-      overflow: hidden;
-      & .merch-description{
-        font-weight: 500;
-        font-size: 18px;
-        color: #b3b3b3;
-       
-      }
-      & .merch-limite-description{
-        -webkit-line-clamp: 4;
-      }
 
-      & .merch-readmore-button{
-        font-size: 14px;
+      & .merch-description-wrapper {
+        margin-top: 20px;
+        padding-right: 20px;
+        overflow: hidden;
+        & .merch-description {
+          font-weight: 500;
+          font-size: 18px;
+          color: #b3b3b3;
+        }
+        & .merch-limite-description {
+          -webkit-line-clamp: 4;
+        }
+
+        & .merch-readmore-button {
+          font-size: 14px;
+        }
       }
-    }
     }
 
     & .detail-side {
