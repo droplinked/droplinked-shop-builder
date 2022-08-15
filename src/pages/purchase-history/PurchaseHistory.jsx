@@ -1,6 +1,6 @@
 import { useToasty } from "../../context/toastify/ToastContext"
 import { useEffect, useState, useMemo } from "react";
-import { Text, Box } from "@chakra-ui/react"
+import { Text, Box , Flex } from "@chakra-ui/react"
 import { getOrdersHistory } from '../../api/base-user/OrderHistory-api'
 import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils"
 import { ORDER_TYPES } from "../../constant/order.types"
@@ -25,7 +25,7 @@ export default function PurchasHistoryPage() {
     let status = params.get('redirect_status') // null or string
 
     const setTypesArray = () => {
-      const  arr = [
+        const arr = [
             { id: "All", value: "All" },
             { id: ORDER_TYPES.WAITING_FOR_CONFIRMATION, value: "Waiting for confirmation" },
             { id: ORDER_TYPES.WAITING_FOR_PAYMENT, value: "Waiting for payment" },
@@ -79,14 +79,16 @@ export default function PurchasHistoryPage() {
                                 Purchase history
                             </Text>
 
-                            <Box w='40%' mb='40px'>
-                                <Dropdown
-                                    value={filter}
-                                    pairArray={typesArray}
-                                    placeholder={filter}
-                                    change={(e) => { setFilter(e.target.value) }}
-                                />
-                            </Box>
+                            <Flex w='100%' justifyContent='center'>
+                                <Box w={{ base: '100%', md: '40%' }} mb='40px'>
+                                    <Dropdown
+                                        value={filter}
+                                        pairArray={typesArray}
+                                        placeholder={filter}
+                                        change={(e) => { setFilter(e.target.value) }}
+                                    />
+                                </Box>
+                            </Flex>
                             {(filter == "All")
                                 ?
                                 <>

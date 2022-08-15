@@ -1,4 +1,4 @@
-import { Text, Box } from "@chakra-ui/react"
+import { Text, Box , Flex } from "@chakra-ui/react"
 import { useOrder } from "../../../context/order/OrdersContext"
 import { ORDER_TYPES } from "../../../constant/order.types"
 import { useMemo, useState } from "react"
@@ -14,8 +14,7 @@ export default function IncomingOrderPage() {
     const setTypesArray = () => {
         const arr = [
             { id: "All", value: "All" },
-            { id: ORDER_TYPES.WAITING_FOR_CONFIRMATION, value: "Waiting for confirmation" },
-            { id: ORDER_TYPES.WAITING_FOR_PAYMENT, value: "Waiting for payment" },
+            { id: ORDER_TYPES.WAITING_FOR_CONFIRMATION, value: "Waiting for confirmation" },,
             { id: ORDER_TYPES.PROCESSING, value: "Processing" },
             { id: ORDER_TYPES.SENT, value: "Sent" },
             { id: ORDER_TYPES.CANCELED, value: "Canceled" },
@@ -45,7 +44,8 @@ export default function IncomingOrderPage() {
                 >
                     Incoming orders
                 </Text>
-                <Box w='40%' mb='40px'>
+                <Flex w='100%' justifyContent='center'>
+                <Box w={{base:'100%' , md:'40%'}} mb='40px'>
                     <Dropdown
                         value={filter}
                         pairArray={typesArray}
@@ -53,6 +53,7 @@ export default function IncomingOrderPage() {
                         change={(e) => { setFilter(e.target.value) }}
                     />
                 </Box>
+                </Flex>
 
                 {(filter == "All")
                     ?
