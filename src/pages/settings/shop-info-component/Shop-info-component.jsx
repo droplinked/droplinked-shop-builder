@@ -16,6 +16,7 @@ import { useAddress } from "../../../context/address/AddressContext"
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { updateShopApi } from "../../../api/producer/Shop-api"
 import { useNavigate } from "react-router-dom";
+import { useShop } from "../../../context/shop/ShopContext"
 
 import axios from "axios"
 import InputImage from '../../../components/shared/InputImage/InputImage'
@@ -48,6 +49,7 @@ export default function ShopInfoComponent({ active }) {
 
     const { addressList } = useAddress()
     const { errorToast, successToast } = useToasty()
+    const { updateShop } = useShop()
 
     let navigate = useNavigate();
 
@@ -111,6 +113,7 @@ export default function ShopInfoComponent({ active }) {
         if (result.status == 'success') {
             localStorage.setItem("shop", JSON.stringify(result.data.shop));
             successToast("Shop info successfully updated")
+            updateShop()
             if (profile.status != "IMS_TYPE_COMPLETED")
                 navigate("/register/IMSSelect");
         } else {

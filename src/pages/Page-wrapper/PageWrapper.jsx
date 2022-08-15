@@ -9,6 +9,7 @@ import { useAddress } from "../../context/address/AddressContext"
 import { useNotifications } from "../../context/notifications/NotificationsContext"
 import { useProfile } from "../../context/profile/ProfileContext"
 import { isJwtValid } from "../../api/base-user/Profile-api"
+import { useShop } from "../../context/shop/ShopContext"
 
 export default function PageWrapper() {
 
@@ -16,7 +17,7 @@ export default function PageWrapper() {
     const { updateAddressList } = useAddress();
     const { profile, isCustomer } = useProfile()
     const { updateNotifications } = useNotifications()
-
+    const { updateShop } = useShop()
 
 
     useEffect(() => {
@@ -44,12 +45,13 @@ export default function PageWrapper() {
         let token = JSON.parse(localStorage.getItem("token"));
         if (token != null || token != undefined) {
             if (isCustomer()) updateCart();
+            if (!isCustomer()) updateShop();
             updateAddressList()
             updateNotifications()
             setInterval(updateNotifications, 60000);
         }
     }, [profile])
-    
+
 
     const checkJWT = async () => {
         let result = await isJwtValid()

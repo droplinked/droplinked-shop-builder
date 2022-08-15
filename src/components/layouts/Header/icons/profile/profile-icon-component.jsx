@@ -4,24 +4,27 @@ import { Flex, Image } from "@chakra-ui/react"
 import { useProfile } from "../../../../../context/profile/ProfileContext"
 import { useState, useEffect } from "react"
 import { getShop } from "../../../../../api/base-user/Profile-api"
+import { useShop } from "../../../../../context/shop/ShopContext"
 
 export default function ProfileIcon({ click }) {
 
     const [profileImage, setProfileImage] = useState(null)
     const { profile } = useProfile()
+    const { shop } = useShop()
 
     useEffect(() => {
         if (profile.type == "PRODUCER") {
-            setShopImage()
+            if(shop)setProfileImage(shop.logo)
+            
         } else {
             setProfileImage(profile.avatar)
         }
-    }, [profile])
+    }, [profile , shop])
 
-    const setShopImage = async () => {
-        let result = await getShop()
-        if(result) setProfileImage(result.logo);
-    }
+    // const setShopImage = async () => {
+    //     let result = await getShop()
+    //     if (result) setProfileImage(result.logo);
+    // }
 
 
     return (
