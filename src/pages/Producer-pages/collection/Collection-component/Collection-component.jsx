@@ -60,7 +60,7 @@ export default function CollectionComponent({ collection, edit, render }) {
                         if (i < 4) { return product }
                     }).map((product, i) => {
                         return (<div key={i} className="col-6 col-md-3 p-1">
-                            <Product title={product.title} imageUrl={product.media[0].url} id={product._id} />
+                            <Product shopname={profile.shopName}  title={product.title} imageUrl={product.media[0].url} id={product._id} />
                         </div>)
                     })
                     }
