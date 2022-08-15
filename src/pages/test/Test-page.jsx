@@ -1,23 +1,31 @@
 import { useState } from "react"
 
 const Test = () => {
-const [size, setSize] = useState(400)
+
+    const [width, setWidth] = useState(400)
+    const [height, setHeight] = useState(400)
 
 
     return (<>
-    <input type="number" value={size} onChange={e =>setSize(e.target.value) } />
-    <div
-    style={{width:'100%' , height:'100%' , display:'flex' , justifyContent:'center' , alignItems:'center'}}
-    >
-        <div style={{width:`${size}px` , height:`${size}px` , border:'1px solid #666' , overflow:'hidden' }}>
-        <iframe
-            style={{width:'100%' , height:"100%"  , overflow:'hidden' }}
-            scrolling="no"
-                title='product'
-                src={`${window.location.origin}/collection-iframe/62e94a104e3168da4d956a69`}
-                allowFullScreeng
-            />
-        </div>
+        <input type="number" value={width} onChange={e => setWidth(e.target.value)} />
+        <input type="number" value={height} onChange={e => setHeight(e.target.value)} />
+        <div
+            style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        >
+            <div style={{ width: `${width}px`, height: `${height}px`, border: '1px solid #666', display: 'flex', justifyContent: 'center' }}>
+
+                <div style={{aspectRatio:"1/1" , maxWidth:"100%" , maxHeight:"100%", border: '1px solid red' }}>
+                    <iframe
+                        style={{ height: "100%", width: "100%", overflow: 'hidden' }}
+                        scrolling="no"
+                        title='product'
+                        src={`${window.location.origin}/collection-iframe/62f8ebe95ec723984024c245`}
+                        allowFullScreeng
+                    />
+                </div>
+
+
+            </div>
         </div>
     </>)
 }
