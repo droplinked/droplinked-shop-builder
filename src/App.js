@@ -14,8 +14,7 @@ import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderContextProvider from "./context/order/OrdersContext";
 import NotContextProvider from "./context/notifications/NotificationsContext";
 import LoadingPage from "./pages/loading/Loading-page";
-import MainHeader from "./components/layouts/Header/MainHeader";
-import Footer from "./components/layouts/Footer/Footer";
+
 //const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/landing/Landing-page"));
@@ -130,7 +129,7 @@ function App() {
                   <ShopContextProvider>
                     <BrowserRouter>
                       <ScrollTop>
-                        <MainHeader />
+
                         <Suspense fallback={<LoadingPage />}>
                           <Routes>
                             <Route path="/" element={<PageWrapper />}>
@@ -241,7 +240,6 @@ function App() {
                             </Route>
                           </Routes>
                         </Suspense>
-                        <Footer />
                       </ScrollTop>
                     </BrowserRouter>
                   </ShopContextProvider>

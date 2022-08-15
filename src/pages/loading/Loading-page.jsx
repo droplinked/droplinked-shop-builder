@@ -1,15 +1,21 @@
-import { Flex } from "@chakra-ui/react"
+import { Flex, Box } from "@chakra-ui/react"
 
 import Loading from "../../components/shared/loading/Loading"
+import MainHeader from "../../components/layouts/Header/MainHeader";
+import Footer from "../../components/layouts/Footer/Footer";
 
 const LoadingPage = () => {
     return (
-        <Flex bgColor="#222" maxW='99vw' h="100vh" justifyContent='center' alignItems='center'
-        overflow='hidden'
-        >
-            <Loading />
-        </Flex>
-        )
+        <Box w='100%'  bgColor="#222" >
+            <MainHeader />
+            <Flex bgColor="#222" w='100%' h='100vh' justifyContent='center' alignItems='center'
+                overflow='hidden'
+            >
+                <Loading />
+            </Flex>
+            <Footer />
+        </Box>
+    )
 }
 
 export default LoadingPage

@@ -11,6 +11,9 @@ import { useProfile } from "../../context/profile/ProfileContext"
 import { isJwtValid } from "../../api/base-user/Profile-api"
 import { useShop } from "../../context/shop/ShopContext"
 
+import MainHeader from "../../components/layouts/Header/MainHeader";
+import Footer from "../../components/layouts/Footer/Footer";
+
 export default function PageWrapper() {
 
     const { updateCart } = useCart();
@@ -81,7 +84,7 @@ export default function PageWrapper() {
             overflowX='hidden'
             w='100%'
         >
-            {/* <MainHeader /> */}
+            <MainHeader />
             <Box
                 w="100%"
                 h="auto"
@@ -94,7 +97,7 @@ export default function PageWrapper() {
             >
                 <Outlet />
             </Box>
-            {/* <Footer /> */}
+            <Footer />
         </Flex>
     )
 }
