@@ -233,7 +233,7 @@ function App() {
                                 element={<Notifications />}
                               />
                               <Route
-                                path="/collection-iframe/:collectionId"
+                                path="/collection-iframe/:shopname/:collectionId"
                                 element={<CollectionIframe />}
                               />
                               <Route path="/test" element={<Test />} />
