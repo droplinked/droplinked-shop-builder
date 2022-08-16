@@ -1,3 +1,4 @@
+import "./producer-product-style.scss"
 import { Link } from "react-router-dom"
 
 export default function ProducerProduct({  title, imageUrl, id , shopname}){
