@@ -11,6 +11,7 @@ const CollectionIframe = () => {
 
     const [Collection, setCollectin] = useState(null)
     const collectionId = useParams().collectionId
+    const shopname = useParams().shopname
 
     useEffect(() => {
         const getCollection = async (id) => {
@@ -60,7 +61,13 @@ const CollectionIframe = () => {
                         {Collection.products.map((product, i) => {
                             return (
                                 <Box key={i} width={{ base: '100%', sm: '50%', md: '25%' }} >
-                                    <FrameProduct title={product.title} price={product.skus[0].price} imageUrl={product.media[0].url} id={product._id} />
+                                    <FrameProduct
+                                        title={product.title}
+                                        price={product.skus[0].price}
+                                        imageUrl={product.media[0].url}
+                                        id={product._id}
+                                        shopName={shopname}
+                                    />
                                 </Box>
                             )
                         })}
@@ -71,7 +78,7 @@ const CollectionIframe = () => {
                         justifyContent='center'
                         alignItems='center'
                     >
-                    <Loading />
+                        <Loading />
                     </Flex>
                 }
             </>

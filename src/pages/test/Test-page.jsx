@@ -14,12 +14,12 @@ const Test = () => {
         >
             <div style={{ width: `${width}px`, height: `${height}px`, border: '1px solid #666', display: 'flex', justifyContent: 'center' }}>
 
-                <div style={{aspectRatio:"1/1" , maxWidth:"100%" , maxHeight:"100%", border: '1px solid red' }}>
+                <div style={{ aspectRatio: "1/1", maxWidth: "100%", maxHeight: "100%", border: '1px solid red' }}>
                     <iframe
-                        style={{ height: "100%", width: "100%", overflow: 'hidden' }}
+                        style={{ width: '100%', height: "100%", overflow: 'hidden' }}
                         scrolling="no"
                         title='product'
-                        src={`${window.location.origin}/collection-iframe/62f8ebe95ec723984024c245`}
+                        src='http://localhost:3000/collection-iframe/mamrez/62a5ed9c6e3cca39a1e79ba2'
                         allowFullScreeng
                     />
                 </div>
