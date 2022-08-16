@@ -1,5 +1,5 @@
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Flex, Text, Box } from "@chakra-ui/react"
 import { useState } from "react";
 import { BASE_URL } from "../../../api/BaseUrl"
@@ -17,7 +17,7 @@ export default function Collection({ collection, shopname }) {
 
     // state for open and close snipped modal
     const [snippedModal, setSnippedModal] = useState(false)
-
+    const param = useParams()
     const navigate = useNavigate()
 
     // collection iframe code
@@ -25,7 +25,7 @@ export default function Collection({ collection, shopname }) {
     style={{width:'100%' , height:"100%"  , overflow:'hidden' }}
             scrolling="no"
                 title='product'
-                src='${window.location.origin}/collection-iframe/${collection._id}'
+                src='${window.location.origin}/collection-iframe/${param.shopname}/${collection._id}'
                 allowFullScreeng
             />`
 
