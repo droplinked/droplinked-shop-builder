@@ -3,6 +3,19 @@ import axios from "axios";
 import { BASE_URL } from "../BaseUrl";
 
 
+export const SignIn = async (info) => {
+
+  try {
+    const res = await axios.post(`${BASE_URL}/signin`, info);
+    return res.data;
+  } catch (err) {
+    return err.response.data;
+    // errorFunc(err.response.data.reason);
+    // return null;
+  }
+};
+
+
 export const customerSignup = async (info, errorFunc) => {
 
   try {
