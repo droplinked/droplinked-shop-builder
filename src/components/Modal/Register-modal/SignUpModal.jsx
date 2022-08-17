@@ -7,9 +7,9 @@ import SignupCustomer from "./signup Customer/signup-customer-component"
 
 import { useParams } from "react-router-dom";
 
-
 export default function SignUpModal({ close, switchToggle, shopname }) {
 
+    // use SignupCustomer if user be in shop page show else SignupProducer
     const params = useParams()
 
     return (
