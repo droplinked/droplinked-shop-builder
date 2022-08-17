@@ -11,7 +11,7 @@ import CartProvider from "./context/cart/CartContext";
 import ToastifyProvider from "./context/toastify/ToastContext";
 import AddressProvider from "./context/address/AddressContext";
 import ScrollTop from "./services/scroll-top/ScrollTop";
-import OrderContextProvider from "./context/order/OrdersContext";
+import OrderProvider from "./context/order/OrdersContext";
 import NotificationProvider from "./context/notifications/NotificationsContext";
 import LoadingPage from "./pages/loading/Loading-page";
 
@@ -158,9 +158,9 @@ function App() {
                                 <Route
                                   path="orders"
                                   element={
-                                    <OrderContextProvider>
+                                    <OrderProvider>
                                       <IncomingOrderPage />
-                                    </OrderContextProvider>
+                                    </OrderProvider>
                                   }
                                 />
                               </Route>
