@@ -114,7 +114,7 @@ function App() {
                                   element={<ShopInfoComponent />}
                                 />
                                 <Route
-                                  path="IMSSelect"
+                                  path="ims-type"
                                   element={<RegisterIms />}
                                 />
                               </Route>

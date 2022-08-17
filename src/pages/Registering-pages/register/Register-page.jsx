@@ -12,7 +12,7 @@ export default function RegisterPage() {
                 <div className="Register-structure-sidebar">
                     {/* <div className={`item ${(location == "personalInfo") ? "selecteditem" : "unselecteditem"}`}>Personal info</div> */}
                     <div className={`item ${(location == "shop-info") ? "selecteditem" : "unselecteditem"}`}>Shop info</div>
-                    <div className={`item ${(location == "IMSSelect") ? "selecteditem" : "unselecteditem"}`}>Inventory</div>
+                    <div className={`item ${(location == "ims-type") ? "selecteditem" : "unselecteditem"}`}>Inventory</div>
                 </div>
                  <div className="Register-structure-content"><Outlet /></div>
             </div>

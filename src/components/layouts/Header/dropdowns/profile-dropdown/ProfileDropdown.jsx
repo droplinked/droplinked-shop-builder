@@ -29,7 +29,7 @@ const ProfileDropdown = ({ close }) => {
                     navigate("/register/shop-info");
                     return;
                 case "SHOP_INFO_COMPLETED":
-                    navigate("/register/IMSSelect");
+                    navigate("/register/ims-type");
                     return;
                 case "IMS_TYPE_COMPLETED":
                     navigate(`/${profile.shopName}`);

@@ -115,7 +115,7 @@ export default function ShopInfoComponent({ active }) {
             successToast("Shop info successfully updated")
             updateShop()
             if (profile.status != "IMS_TYPE_COMPLETED")
-                navigate("/register/IMSSelect");
+                navigate("/register/ims-type");
         } else {
             errorToast(result.reason)
         }

@@ -67,7 +67,7 @@
 
 //         if (result.status == 'success') {
 //             localStorage.setItem("shop", JSON.stringify(result.data.shop));
-//             navigate("/register/IMSSelect");
+//             navigate("/register/ims-type");
 //         } else {
 //             errorToast(result.reason)
 //         }

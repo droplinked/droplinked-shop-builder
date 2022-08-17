@@ -56,7 +56,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                             case "SHOP_INFO_COMPLETED":
                                 localStorage.setItem("token", JSON.stringify(res.data.data.jwt));
                                 addProfile(res.data.data)
-                                navigate("/register/IMSSelect");
+                                navigate("/register/ims-type");
                                 return;
                             case "IMS_TYPE_COMPLETED":
                                 localStorage.setItem("token", JSON.stringify(res.data.data.jwt));
