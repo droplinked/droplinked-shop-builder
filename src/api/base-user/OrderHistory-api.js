@@ -29,3 +29,17 @@ export const getClientSecret = async (orderId) => {
     return null;
   }
 };
+
+export const CanselOrder = async (orderId) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  try {
+    const res = await axios.post(`${BASE_URL}/order/${orderId}/cancel-payment`, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
+
