@@ -9,7 +9,7 @@ import ShopContextProvider from "./context/shop/ShopContext";
 import ProfileContextProvider from "./context/profile/ProfileContext";
 import CartProvider from "./context/cart/CartContext";
 import ToastifyProvider from "./context/toastify/ToastContext";
-import AddressContext from "./context/address/AddressContext";
+import AddressProvider from "./context/address/AddressContext";
 import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderContextProvider from "./context/order/OrdersContext";
 import NotificationProvider from "./context/notifications/NotificationsContext";
@@ -95,7 +95,7 @@ function App() {
         <ProfileContextProvider>
           <ChakraProvider>
             <WalletProvider>
-              <AddressContext>
+              <AddressProvider>
                 <NotificationProvider>
                   <ShopContextProvider>
                     <BrowserRouter>
@@ -219,7 +219,7 @@ function App() {
                     </BrowserRouter>
                   </ShopContextProvider>
                 </NotificationProvider>
-              </AddressContext>
+              </AddressProvider>
             </WalletProvider>
           </ChakraProvider>
         </ProfileContextProvider>
