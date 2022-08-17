@@ -7,7 +7,7 @@ import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils";
 
 export const NotContext = createContext();
 
-export default function NotContextProvider({ children }) {
+export default function NotificationProvider({ children }) {
   const [notifications, setNotifications] = useState([]);
 
   const updateNotifications = async () => {

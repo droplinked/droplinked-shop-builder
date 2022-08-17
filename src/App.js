@@ -12,7 +12,7 @@ import ToastContext from "./context/toastify/ToastContext";
 import AddressContext from "./context/address/AddressContext";
 import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderContextProvider from "./context/order/OrdersContext";
-import NotContextProvider from "./context/notifications/NotificationsContext";
+import NotificationProvider from "./context/notifications/NotificationsContext";
 import LoadingPage from "./pages/loading/Loading-page";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
@@ -96,7 +96,7 @@ function App() {
           <ChakraProvider>
             <WalletProvider>
               <AddressContext>
-                <NotContextProvider>
+                <NotificationProvider>
                   <ShopContextProvider>
                     <BrowserRouter>
                       <ScrollTop>
@@ -218,7 +218,7 @@ function App() {
                       </ScrollTop>
                     </BrowserRouter>
                   </ShopContextProvider>
-                </NotContextProvider>
+                </NotificationProvider>
               </AddressContext>
             </WalletProvider>
           </ChakraProvider>
