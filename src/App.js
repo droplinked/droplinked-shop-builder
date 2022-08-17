@@ -29,8 +29,8 @@ const RegisterIms = lazy(() =>
 const EmailVerifyPage = lazy(() =>
   import("./pages/email-verify/Email-verification-page")
 );
-const AccountRecoveryPage = lazy(() =>
-  import("./pages/account-recovery/Account-recovery-page")
+const AccountRecovery = lazy(() =>
+  import("./pages/account-recovery/Account-recovery")
 );
 const ThankForRegisterPage = lazy(() =>
   import("./pages/thanks-for-register/ThankForRegister-page")
@@ -137,7 +137,7 @@ function App() {
                                 />
                                 <Route
                                   path="account-recovery/:token"
-                                  element={<AccountRecoveryPage />}
+                                  element={<AccountRecovery />}
                                 />
                                 <Route
                                   path="addProduct"
