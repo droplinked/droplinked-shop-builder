@@ -1,18 +1,14 @@
 import "./Add-product-page-style.scss"
 
-
-import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
-import FormInput from "../../../components/shared/FormInput/FormInput"
 import VariantItem from "../components/variant-item-component/Variant-item-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import AddVariantForm from "./Add-variantForm-component"
 import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"
-import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
+import ProductInformation from "./product-information-component"
 
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom';
 import { getVariants, postProduct } from "../../../api/producer/Product-api"
-import { getCollections } from "../../../api/producer/Collection-api"
 import { useToasty } from "../../../context/toastify/ToastContext"
 
 
@@ -20,44 +16,32 @@ function AddProductPage() {
 
     const token = JSON.parse(localStorage.getItem('token'));
 
-    const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
-    const [selectedCollection, setSelectCollection] = useState("")
-    const [images, setImages] = useState([])
+    // state for pass to ProductInformation component 
+    // and  management (title , description , images , collectionId)
+    const [productInfo, setProductInfo] = useState(null)
+
     const [options, setOptions] = useState([])
     const [variants, setVariants] = useState([])
 
     const [addvariant, setAddvariant] = useState(false)
     const [variantSelected, setVariantSelected] = useState(null)
     const [disbtn, setdisbtn] = useState(false)
-
     // state for vanriants type 
     const [varintType, setVariantType] = useState(null)
-    // state for collection list 
-    const [collectionList, setCollection] = useState([])
 
 
     const { successToast, errorToast } = useToasty()
     const navigate = useNavigate();
-
 
     useEffect(() => {
         if (token == null) { navigate("/") }
         initializ()
     }, [])
 
-
     // initialize variantType and collectin List
     const initializ = () => {
         getVariants()
             .then(e => setVariantType(e))
-            .catch(e => console.log(e))
-        getCollections()
-            .then(e => {
-                // convert collection for pass to Dropdown
-                let collections = e.map(col => { return { id: col._id, value: col.title } })
-                setCollection(collections)
-            })
             .catch(e => console.log(e))
     }
 
@@ -69,35 +53,21 @@ function AddProductPage() {
         setVariantSelected(null)
     }
 
-    const changeTitle = (e) => {
-        setTitle(e.target.value)
-    }
-
-    const changeDescription = (e) => {
-        setDescription(e.target.value)
-    }
-
-    const changeCollection = (e) => {
-        setSelectCollection(e.target.value)
-    }
 
     const cancelForm = () => {
         navigate("/producer/ims")
     }
 
     const validationForm = () => {
-        if (title == "") {
+        if (productInfo.title == "") {
             errorToast("Item name is required");
             return true
         }
-        //  else if (description == "") {
-        //     errorToast("Item description is required");
-        //     return true
-        // }
-        else if (selectedCollection == "") {
+
+        else if (productInfo.productCollectionID == "") {
             errorToast("Choose a collection");
             return true
-        } else if (images.length == 0) {
+        } else if (productInfo.images.length == 0) {
             errorToast("Add an image for this item");
             return true
         } else if (variants.length == 0) {
@@ -116,15 +86,15 @@ function AddProductPage() {
         if (validationForm()) return
 
         let media = [];
-        images.map((img, i) => {
+        productInfo.images.map((img, i) => {
             media.push({ url: img, isMain: (i == 0) })
         })
 
         const proDetail = {
-            title: title,
-            description: description,
+            title: productInfo.title,
+            description: productInfo.description,
             priceUnit: "USD",
-            productCollectionID: selectedCollection,
+            productCollectionID: productInfo.productCollectionID,
             media: media,
             sku: variants
         }
@@ -146,7 +116,7 @@ function AddProductPage() {
         let newOptions = []
         if (e.target.checked) {
             newOptions = options.map(opt => opt)
-            newOptions.push({ optionName: e.target.value , optionID: e.target.id })
+            newOptions.push({ optionName: e.target.value, optionID: e.target.id })
         } else {
             newOptions = options.filter(opt => opt.optionID != e.target.id)
         }
@@ -169,18 +139,9 @@ function AddProductPage() {
     return (
         <div className="add-product-page-wrapper"  >
             <div className="ims-title mb-5">Add new item</div>
-            <div className="mb-4 w-100 p-0">
-                <FormInput label={"Title"} changeValue={changeTitle} value={title} />
-            </div>
-            <div className="mb-4 w-100 p-0" >
-                <FormInput type={"textarea"} label={"Description"} changeValue={changeDescription} value={description} />
-            </div>
-            <dir className="drop-wrape">
-                {collectionList && <Dropdown value={selectedCollection} pairArray={collectionList} change={changeCollection} placeholder={"Choose collection"} />}
-            </dir>
-            <div className="mt-5 mb-3 w-100 d-flex justify-content-center align-items-center">
-                <InputImagesGroup setState={setImages} state={images} />
-            </div>
+
+            <ProductInformation productInfo={productInfo} setProductInfo={setProductInfo} />
+
             <div className="select-variant-wrap mt-4">
                 <p>Choose options: </p>
                 {(varintType != null) &&
