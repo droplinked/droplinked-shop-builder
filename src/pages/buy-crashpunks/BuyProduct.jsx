@@ -1,6 +1,6 @@
 import "./BuyProduct.scss"
-import plus from "../../assest/feature/buy product/plusIcon.png"
-import minus from "../../assest/feature/buy product/minusIcon.png"
+import plus from "../../assest/icon/plusIcon.png"
+import minus from "../../assest/icon/minusIcon.png"
 import Loading from "../../components/shared/loading/Loading"
 import axios from 'axios';
 

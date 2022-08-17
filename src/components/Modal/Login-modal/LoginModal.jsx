@@ -1,7 +1,7 @@
 import "./LoginModal.style.scss"
 
 import axios from 'axios';
-import closePng from "../../../assest/feature/home page images/Close.png"
+import closePng from "../../../assest/icon/Close.png"
 import ModalContainer from "../modal-container/modal-container"
 
 import { BASE_URL } from "../../../api/BaseUrl"

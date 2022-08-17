@@ -1,7 +1,7 @@
 import "./footer.scss";
-import footerLogo from "../../../assest/feature/footer/Flatlay-Logo.png"
-import telegram from "../../../assest/feature/footer/telegram.png"
-import twiter from "../../../assest/feature/footer/brand.png"
+import footerLogo from "../../../assest/icon/Flatlay-Logo.png"
+import telegram from "../../../assest/icon/telegram.png"
+import twiter from "../../../assest/icon/brand.png"
 import { Link } from "react-router-dom";
 
 export default function Footer() {

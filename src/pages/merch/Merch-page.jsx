@@ -13,8 +13,8 @@ import { addSkuToCart } from "../../api/base-user/Cart-api"
 
 import Carousel from "../../components/shared/Carousel/Carousel-component"
 import Loading from "../../components/shared/loading/Loading";
-import plus from "../../assest/feature/buy product/plusIcon.png"
-import minus from "../../assest/feature/buy product/minusIcon.png"
+import plus from "../../assest/icon/plusIcon.png"
+import minus from "../../assest/icon/minusIcon.png"
 import SpcialDropDownComp from "./specialDropDown/Special-dropdown-component";
 import BasicButton from "../../components/shared/BasicButton/BasicButton"
 

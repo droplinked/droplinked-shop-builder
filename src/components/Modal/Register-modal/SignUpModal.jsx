@@ -1,6 +1,6 @@
 import "./SignUpModal.scss"
 
-import closePng from "../../../assest/feature/home page images/Close.png"
+import closePng from "../../../assest/icon/Close.png"
 import ModalContainer from "../modal-container/modal-container"
 import SignupProducer from "./signup producer/signup-producer-component"
 import SignupCustomer from "./signup Customer/signup-customer-component"
