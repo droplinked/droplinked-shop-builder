@@ -6,7 +6,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { lazy, Suspense } from "react";
 
 import ShopProvider from "./context/shop/ShopContext";
-import ProfileContextProvider from "./context/profile/ProfileContext";
+import ProfileProvider from "./context/profile/ProfileContext";
 import CartProvider from "./context/cart/CartContext";
 import ToastifyProvider from "./context/toastify/ToastContext";
 import AddressProvider from "./context/address/AddressContext";
@@ -92,7 +92,7 @@ function App() {
   return (
     <ToastifyProvider>
       <CartProvider>
-        <ProfileContextProvider>
+        <ProfileProvider>
           <ChakraProvider>
             <WalletProvider>
               <AddressProvider>
@@ -222,7 +222,7 @@ function App() {
               </AddressProvider>
             </WalletProvider>
           </ChakraProvider>
-        </ProfileContextProvider>
+        </ProfileProvider>
       </CartProvider>
     </ToastifyProvider>
   );

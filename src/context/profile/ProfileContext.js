@@ -3,7 +3,7 @@ import { ProflieReduser } from "./ProfileReducer";
 
 export const ProfileContext = createContext();
 
-const ProfileContextProvider = ({ children }) => {
+const ProfileProvider = ({ children }) => {
   //const [profile , setProfile] = useState({})
   const [profile, dispatch] = useReducer(
     ProflieReduser,
@@ -68,4 +68,4 @@ export const useProfile = () => {
   };
 };
 
-export default ProfileContextProvider;
+export default ProfileProvider;
