@@ -5,7 +5,7 @@ import { WalletProvider } from "./context/wallet/WalletContext";
 import { ChakraProvider } from "@chakra-ui/react";
 import { lazy, Suspense } from "react";
 
-import ShopContextProvider from "./context/shop/ShopContext";
+import ShopProvider from "./context/shop/ShopContext";
 import ProfileContextProvider from "./context/profile/ProfileContext";
 import CartProvider from "./context/cart/CartContext";
 import ToastifyProvider from "./context/toastify/ToastContext";
@@ -97,7 +97,7 @@ function App() {
             <WalletProvider>
               <AddressProvider>
                 <NotificationProvider>
-                  <ShopContextProvider>
+                  <ShopProvider>
                     <BrowserRouter>
                       <ScrollTop>
                         <Suspense fallback={<LoadingPage />}>
@@ -217,7 +217,7 @@ function App() {
                         </Suspense>
                       </ScrollTop>
                     </BrowserRouter>
-                  </ShopContextProvider>
+                  </ShopProvider>
                 </NotificationProvider>
               </AddressProvider>
             </WalletProvider>
