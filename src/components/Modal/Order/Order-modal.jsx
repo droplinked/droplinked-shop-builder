@@ -23,9 +23,11 @@ import YesNoModal from "../yes-or-no-modal/YesOrNo-modal-component"
 
 export default function OrderModal({ order, isOpen, onClose }) {
 
-
+    // this state use for loading stauts
     const [loadingBtn, setLoadingBtn] = useState(false)
+    // this state use for show proccessModal
     const [proccessModal, setProccessModal] = useState(false)
+    // this state use for show cancelOrderModal
     const [cancelOrderModal, setCancelOrderModal] = useState(false)
 
     const { successToast, errorToast } = useToasty()
@@ -33,6 +35,7 @@ export default function OrderModal({ order, isOpen, onClose }) {
 
 
     const progressClick = async () => {
+
         let statusType = (order.status == "WAITING_FOR_CONFIRMATION") ? ORDER_TYPES.PROCESSING : ORDER_TYPES.SENT
         setLoadingBtn(true)
         let result = await updateOrderStatus(order._id, statusType)
@@ -80,8 +83,6 @@ export default function OrderModal({ order, isOpen, onClose }) {
                 return "Are you sure you want to start processing?"
             case ORDER_TYPES.PROCESSING:
                 return "Are you sure you want to send this order?"
-            // case ORDER_TYPES.SENT:
-            //     return "Are you sure you want to set status on Sent?"
         }
     }
 
