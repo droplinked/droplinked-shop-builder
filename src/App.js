@@ -144,7 +144,7 @@ function App() {
                                   element={<AccountRecovery />}
                                 />
                                 <Route
-                                  path="addProduct"
+                                  path="add-product"
                                   element={<AddProductPage />}
                                 />
                                 <Route
