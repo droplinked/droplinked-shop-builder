@@ -17,8 +17,8 @@ import ShopProvider from "./context/shop/ShopContext";
 ReactDOM.render(
   <React.StrictMode>
     <ToastifyProvider>
-      <CartProvider>
-        <ProfileProvider>
+      <ProfileProvider>
+        <CartProvider>
           <ChakraProvider>
             <WalletProvider>
               <AddressProvider>
@@ -30,8 +30,8 @@ ReactDOM.render(
               </AddressProvider>
             </WalletProvider>
           </ChakraProvider>
-        </ProfileProvider>
-      </CartProvider>
+        </CartProvider>
+      </ProfileProvider>
     </ToastifyProvider>
   </React.StrictMode>,
   document.getElementById("root")

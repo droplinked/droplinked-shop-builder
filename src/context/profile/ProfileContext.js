@@ -11,6 +11,7 @@ const ProfileProvider = ({ children }) => {
   );
 
   const addProfile = (payload) => {
+
     localStorage.setItem("token", JSON.stringify(payload.jwt));
     dispatch({ type: "ADD_PROFILE", payload });
   };

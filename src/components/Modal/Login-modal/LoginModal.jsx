@@ -61,7 +61,6 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                 errorToast("This account has been deleted")
                 return;
             } else {
-                localStorage.setItem("token", JSON.stringify(data.jwt));
                 addProfile(data)
                 navigateUser(status, data.user.shopName)
                 return
