@@ -26,7 +26,7 @@ const ProfileDropdown = ({ close }) => {
                     navigate("/register/personalInfo");
                     return;
                 case "PROFILE_COMPLETED":
-                    navigate("/register/shopInfo");
+                    navigate("/register/shop-info");
                     return;
                 case "SHOP_INFO_COMPLETED":
                     navigate("/register/IMSSelect");

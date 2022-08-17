@@ -54,7 +54,7 @@ export default function RegisterIms() {
                 </div>
                 <div className="d-flex justify-content-between w-100 mt-5">
                     <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
-                        onClick={() => { navigate("/register/shopInfo") }}
+                        onClick={() => { navigate("/register/shop-info") }}
                     >Back</button>
                     <button className={`next-back-btn ${(loading ? "loading-btn" : "non-loading-btn")}`}
                         onClick={submitType}

@@ -106,9 +106,11 @@ function App() {
                               <Route index element={<LandingPage />} />
                               <Route path="terms" element={<TermsPage />} />
                               <Route path="privacy" element={<PrivacyPage />} />
+
+                              {/* register */}
                               <Route path="register" element={<RegisterPage />}>
                                 <Route
-                                  path="shopInfo"
+                                  path="shop-info"
                                   element={<ShopInfoComponent />}
                                 />
                                 <Route
@@ -116,6 +118,7 @@ function App() {
                                   element={<RegisterIms />}
                                 />
                               </Route>
+                              {/* register */}
                               <Route
                                 path="emailConfirmation"
                                 element={<ThankForRegisterPage />}

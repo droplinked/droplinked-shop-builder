@@ -46,12 +46,12 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                             case "VERIFIED":
                                 localStorage.setItem("token", JSON.stringify(res.data.data.jwt));
                                 addProfile(res.data.data)
-                                navigate("/register/shopInfo");
+                                navigate("/register/shop-info");
                                 return;
                             case "PROFILE_COMPLETED":
                                 localStorage.setItem("token", JSON.stringify(res.data.data.jwt));
                                 addProfile(res.data.data)
-                                navigate("/register/shopInfo");
+                                navigate("/register/shop-info");
                                 return;
                             case "SHOP_INFO_COMPLETED":
                                 localStorage.setItem("token", JSON.stringify(res.data.data.jwt));

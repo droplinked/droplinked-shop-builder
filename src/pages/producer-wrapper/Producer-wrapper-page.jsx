@@ -10,7 +10,7 @@ export default function Producer() {
 
     useEffect(() => {
         if (profile.type == "PRODUCER" && profile.status != "IMS_TYPE_COMPLETED") {
-                navigate('/register/shopInfo')
+                navigate('/register/shop-info')
         }
         if (profile.type == "CUSTOMER") {
             navigate('/')
