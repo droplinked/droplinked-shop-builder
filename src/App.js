@@ -7,7 +7,7 @@ import { lazy, Suspense } from "react";
 
 import ShopContextProvider from "./context/shop/ShopContext";
 import ProfileContextProvider from "./context/profile/ProfileContext";
-import CartContextProvider from "./context/cart/CartContext";
+import CartProvider from "./context/cart/CartContext";
 import ToastContext from "./context/toastify/ToastContext";
 import AddressContext from "./context/address/AddressContext";
 import ScrollTop from "./services/scroll-top/ScrollTop";
@@ -91,7 +91,7 @@ const ShopInfoComponent = lazy(() =>
 function App() {
   return (
     <ToastContext>
-      <CartContextProvider>
+      <CartProvider>
         <ProfileContextProvider>
           <ChakraProvider>
             <WalletProvider>
@@ -223,7 +223,7 @@ function App() {
             </WalletProvider>
           </ChakraProvider>
         </ProfileContextProvider>
-      </CartContextProvider>
+      </CartProvider>
     </ToastContext>
   );
 }

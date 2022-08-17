@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const CartContext = createContext();
 
-const CartContextProvider = ({ children }) => {
+const CartProvider = ({ children }) => {
   // state for cart 
   const [cart, setCart] = useState(null);
 
@@ -47,4 +47,4 @@ export const useCart = () => {
   };
 };
 
-export default CartContextProvider;
+export default CartProvider;
