@@ -132,10 +132,11 @@ function App() {
                                 element={<SettingsPage />}
                               />
 
+                              {/* producer pages */}
                               <Route path="producer" element={<Producer />}>
                                 <Route path="ims" element={<InventoryPage />} />
                                 <Route
-                                  path="Merch/:id"
+                                  path="merch/:id"
                                   element={<ViewMerchPage />}
                                 />
                                 <Route
@@ -163,6 +164,7 @@ function App() {
                                   }
                                 />
                               </Route>
+                              {/* producer pages */}
 
                               <Route path=":shopname" element={<ShopPage />} />
                               <Route
