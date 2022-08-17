@@ -120,7 +120,7 @@ function App() {
                               </Route>
                               {/* register */}
                               <Route
-                                path="emailConfirmation"
+                                path="email-confirmation"
                                 element={<ThankForRegisterPage />}
                               />
                               <Route

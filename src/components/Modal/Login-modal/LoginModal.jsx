@@ -41,7 +41,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                                 //  errorToast("you must virified your account")
                                 localStorage.setItem('registerEmail', JSON.stringify(info.email))
                                 setLoading(false)
-                                navigate("/emailConfirmation");
+                                navigate("/email-confirmation");
                                 return;
                             case "VERIFIED":
                                 localStorage.setItem("token", JSON.stringify(res.data.data.jwt));
