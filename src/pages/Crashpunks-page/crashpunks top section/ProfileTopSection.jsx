@@ -1,4 +1,4 @@
-import profilePic from '../../../assest/profile/crashpunks.gif'
+import profilePic from '../../../assest/image/crashpunks.gif'
 import "./ProfileTopSection.scss"
 import instaIcon from "../../../assest/icon/insta.png"
 import discordIcon from "../../../assest/icon/discord.png"

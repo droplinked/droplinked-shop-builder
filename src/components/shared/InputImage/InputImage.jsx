@@ -3,7 +3,7 @@ import { MdOutlineEdit , MdDeleteOutline} from "react-icons/md";
 import { useRef, useState } from 'react'
 import { useToasty } from "../../../context/toastify/ToastContext"
 
-import defaultProfile from "../../../assest/profile/defaultProfile.png"
+import defaultProfile from "../../../assest/image/defaultProfile.png"
 import axios from 'axios';
 
 export default function InputImage({ image, setImage }) {

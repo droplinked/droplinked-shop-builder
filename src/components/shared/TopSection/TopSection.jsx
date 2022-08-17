@@ -3,7 +3,7 @@ import instaIcon from "../../../assest/icon/insta.png"
 import discordIcon from "../../../assest/icon/discord.png"
 import twitterIcon from "../../../assest/icon/twitter.png"
 import webIcon from "../../../assest/icon/web.png"
-import defaultProfile from "../../../assest/profile/defaultProfile.png"
+import defaultProfile from "../../../assest/image/defaultProfile.png"
 
 
 export default function TopSection({ pic, shopname, instagram, twitter, discord, web }) {
