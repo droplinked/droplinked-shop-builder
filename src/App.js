@@ -1,18 +1,10 @@
 import "./App.scss";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { WalletProvider } from "./context/wallet/WalletContext";
-import { ChakraProvider } from "@chakra-ui/react";
 import { lazy, Suspense } from "react";
 
-import ShopProvider from "./context/shop/ShopContext";
-import ProfileProvider from "./context/profile/ProfileContext";
-import CartProvider from "./context/cart/CartContext";
-import ToastifyProvider from "./context/toastify/ToastContext";
-import AddressProvider from "./context/address/AddressContext";
 import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderProvider from "./context/order/OrdersContext";
-import NotificationProvider from "./context/notifications/NotificationsContext";
 import LoadingPage from "./pages/loading/Loading-page";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
@@ -90,14 +82,12 @@ const ShopInfoComponent = lazy(() =>
 
 function App() {
   return (
-    <ToastifyProvider>
-      <CartProvider>
-        <ProfileProvider>
-          <ChakraProvider>
-            <WalletProvider>
-              <AddressProvider>
-                <NotificationProvider>
-                  <ShopProvider>
+       
+         
+           
+              
+              
+               
                     <BrowserRouter>
                       <ScrollTop>
                         <Suspense fallback={<LoadingPage />}>
@@ -217,14 +207,7 @@ function App() {
                         </Suspense>
                       </ScrollTop>
                     </BrowserRouter>
-                  </ShopProvider>
-                </NotificationProvider>
-              </AddressProvider>
-            </WalletProvider>
-          </ChakraProvider>
-        </ProfileProvider>
-      </CartProvider>
-    </ToastifyProvider>
+    
   );
 }
 
