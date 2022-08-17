@@ -1,15 +1,16 @@
 .product-small-wrapper{
   display: flex;
   flex-wrap: wrap;
-  max-width: 800px;
-  margin-right: 80px;
-  margin-left: 80px;
+  width: 100%;
+  max-width: 900px;
+  padding-right: 80px;
+  padding-left: 80px;
 }
 
 @media only screen and (max-width: 768px) {
   .product-small-wrapper{
-    margin-right: 0px;
-    margin-left: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
   }
 }
 
