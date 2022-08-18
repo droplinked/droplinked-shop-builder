@@ -1,31 +1,26 @@
 import "./View-merch-page-style.scss"
 
-import FormInput from "../../../components/shared/FormInput/FormInput"
-import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
 import VariantItem from "../components/variant-item-component/Variant-item-component"
 import AddVariantForm from "./AddVariant-form"
 import Loading from "../../../components/shared/loading/Loading";
-import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import SmallModal from "../../../components/Modal/Small-modal/Small-modal-component"
+import ProductInformation from "../add-product/product-information-component"
 
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useNavigate } from 'react-router-dom';
-import { getCollections } from "../../../api/producer/Collection-api"
 import { getProduct } from "../../../api/public/Product-api"
 import { updateMerch, deleteSku, deleteMerch } from "../../../api/producer/Product-api"
 
 export default function ViewMerchPage() {
 
+    // state for pass to ProductInformation component 
+    // and  management (title , description , images , collectionId)
+    const [productInfo, setProductInfo] = useState(null)
     const [merch, setMerch] = useState(null)
-    const [title, setTitle] = useState("") // title
-    const [description, setDescription] = useState("") // description
-    const [collectionSelected, setCollectionSelected] = useState("") // collection
-    const [images, setImages] = useState([]) // images
 
-    const [collectionList, setCollectionList] = useState([])
     const [selectedSku, setSelectedSku] = useState(null)
     const [showForm, setShowForm] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -37,15 +32,8 @@ export default function ViewMerchPage() {
     const merchId = useParams().id;
     const navigate = useNavigate();
 
-    useEffect(() => {
-        //get collections 
-        getCollections()
-            .then(e => {
-                let pairCollection = e.map(coll => { return { id: coll._id, value: coll.title } })
-                setCollectionList(pairCollection)
-            })
-            .catch(e => console.log(e))
 
+    useEffect(() => {
         initialize()
     }, [])
 
@@ -53,16 +41,8 @@ export default function ViewMerchPage() {
     const initialize = async () => {
         let result = await getProduct(merchId)
         if (result != null) {
-
-            setMerch(result)
-            setTitle(result.title)
-            setDescription(result.description)
-            setCollectionSelected(result.productCollectionID)
-            // get images url for InputImagesGroup component
             let images = result.media.map(image => image.url)
-            setImages(images)
-        } else {
-            errorToast(result)
+            setMerch({ ...result, images: images })
         }
     }
 
@@ -88,24 +68,24 @@ export default function ViewMerchPage() {
     const submitForm = async (e) => {
         e.preventDefault()
 
-        if (title == "") {
+        if (productInfo.title == "") {
             errorToast("Item name is required");
             return;
-        } else if (images.length == 0) {
+        } else if (productInfo.images.length == 0) {
             errorToast("Add an image for this item");
             return;
         }
 
         let media = [];
-        images.map((img, i) => {
+        productInfo.images.map((img, i) => {
             media.push({ url: img, isMain: (i == 0) })
         })
 
         const product = {
-            title: title,
-            description: description,
+            title: productInfo.title,
+            description: productInfo.description,
             priceUnit: "USD",
-            collectionID: collectionSelected,
+            collectionID: productInfo.productCollectionID,
             media: media,
         }
         setLoading(true)
@@ -165,37 +145,15 @@ export default function ViewMerchPage() {
                 <div className="col-12 col-md-6 mb-5">
                     <BasicButton bgColor='#fa6653'
                         onClick={() => { setDeleteModal(true) }}
+                        loading={loading}
                     >Delete item</BasicButton>
                 </div>
 
-                <div className="mb-4 w-100 p-0">
-                    <FormInput
-                        label={"Title"}
-                        value={title}
-                        changeValue={(e) => setTitle(e.target.value)}
-                    />
-                </div>
-                <div className="mb-4 w-100 p-0">
-                    <FormInput
-                        type={"textarea"}
-                        label={"Description"}
-                        value={description}
-                        changeValue={(e) => setDescription(e.target.value)}
-                    />
-                </div>
-
-                <dir className="drop-wrape">
-                    <Dropdown
-                        pairArray={collectionList}
-                        change={e => setCollectionSelected(e.target.value)}
-                        value={collectionSelected}
-                        placeholder={(collectionList.length > 0 && collectionSelected != '') && collectionList.find(coll => coll.id == collectionSelected).value}
-                    />
-                </dir>
-
-                <div className="mt-5 mb-3 w-100 d-flex justify-content-center align-items-center">
-                    <InputImagesGroup setState={setImages} state={images} />
-                </div>
+                <ProductInformation
+                    productInfo={productInfo}
+                    setProductInfo={setProductInfo}
+                    defaultValue={merch}
+                />
 
                 <div className="mt-5 w-100">
                     {merch.skus.map(sku => <VariantItem key={sku._id} id={sku._id} variant={sku} deleteVariant={deleteVariant} editVariant={editSku} />)}

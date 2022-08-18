@@ -6,11 +6,12 @@ import FormInput from "../../../components/shared/FormInput/FormInput"
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
 import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
 
-const ProductInformation = ({ productInfo, setProductInfo }) => {
+const ProductInformation = ({ productInfo, setProductInfo, defaultValue }) => {
 
-    const [images, setImages] = useState([])
+    const [images, setImages] = useState(defaultValue ? defaultValue.images : [])
     const [collectionList, setCollection] = useState([])
-
+    // console.log(defaultValue);
+    // console.log(collectionList)
     // change productInfo.images with images state changing 
     useEffect(() => {
         onchnageValues(images, "IMAGE")
@@ -20,6 +21,13 @@ const ProductInformation = ({ productInfo, setProductInfo }) => {
         initialState()
         initialCollection()
     }, [])
+
+
+    // if (collectionList) {
+    //     let x = collectionList.find(collection => collection.id == defaultValue.productCollectionID)
+    //     console.log(x);
+    // }
+  
 
 
     const initialCollection = async () => {
@@ -32,7 +40,18 @@ const ProductInformation = ({ productInfo, setProductInfo }) => {
 
 
     const initialState = () => {
-        setProductInfo({ title: '', description: '', productCollectionID: '', images: [] })
+        if (defaultValue) {
+            setProductInfo({
+                title: defaultValue.title,
+                description: defaultValue.description,
+                productCollectionID: defaultValue.productCollectionID,
+                images: defaultValue.images
+            })
+
+        }
+        else {
+            setProductInfo({ title: '', description: '', productCollectionID: '', images: [] })
+        }
     }
 
     const onchnageValues = (e, valueType) => {
@@ -78,11 +97,15 @@ const ProductInformation = ({ productInfo, setProductInfo }) => {
                             w={{ base: "100%", md: '50%' }}
                             mb={{ base: '20px', md: '30px' }}
                         >
-                            {collectionList && <Dropdown
+                            {(collectionList.length>0) && <Dropdown
                                 value={productInfo.productCollectionID}
                                 pairArray={collectionList}
                                 change={(e) => { onchnageValues(e, "COLLECTIONID") }}
-                                placeholder={"Choose collection"} />}
+                            placeholder={(defaultValue)
+                                ?collectionList.find(collection=>collection.id==defaultValue.productCollectionID).value
+                                :"Choose collection"
+                                } 
+                            />}
                         </Box>
                     </Flex>
                     <Box w='100%' mb={{ base: '10px', md: '20px' }}>
