@@ -10,8 +10,7 @@ const ProductInformation = ({ productInfo, setProductInfo, defaultValue }) => {
 
     const [images, setImages] = useState(defaultValue ? defaultValue.images : [])
     const [collectionList, setCollection] = useState([])
-    // console.log(defaultValue);
-    // console.log(collectionList)
+
     // change productInfo.images with images state changing 
     useEffect(() => {
         onchnageValues(images, "IMAGE")
@@ -21,13 +20,6 @@ const ProductInformation = ({ productInfo, setProductInfo, defaultValue }) => {
         initialState()
         initialCollection()
     }, [])
-
-
-    // if (collectionList) {
-    //     let x = collectionList.find(collection => collection.id == defaultValue.productCollectionID)
-    //     console.log(x);
-    // }
-  
 
 
     const initialCollection = async () => {

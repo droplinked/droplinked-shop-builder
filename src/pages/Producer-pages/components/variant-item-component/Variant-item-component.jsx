@@ -6,13 +6,13 @@ import {
   import { openContractCall } from "@stacks/connect"
   import { StacksTestnet } from "@stacks/network"
   import { createHash } from "crypto-browserify"
-  
+  import { getOptionNameById } from "../../utils/optionName"
   import { userSession } from "../../../../services/wallet-auth/auth"
   import "./Variant-item-component.scss"
   
   export default function VariantItem({ variant, id, deleteVariant, editVariant }) {
   
-  
+
     const decentrilize = () => {
       if (userSession)
         openContractCall({
@@ -41,8 +41,8 @@ import {
     return (
       <div className="variant-item-wrapper">
         {variant.options.map((item, i) => {
-          return <p key={i}>{`${item.variantName}: ${item.value}`}</p>
-        })}
+          return <p key={i}>{`${getOptionNameById(item.variantID)}: ${item.value}`}</p>
+        })} 
         <p>{`Quantity:  ${variant.quantity}`}</p>
         <p>{`Price: $${variant.price}`}</p>
         {variant.externalID && <p>{`External id: ${variant.externalID}`}</p>}

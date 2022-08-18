@@ -2,9 +2,10 @@ import "./Add-product-page-style.scss"
 
 import VariantItem from "../components/variant-item-component/Variant-item-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
-import AddVariantForm from "./Add-variantForm-component"
+//import AddVariantForm from "./Add-variantForm-component"
 import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"
 import ProductInformation from "./product-information-component"
+import SkuForm from "./sku-form-component"
 
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom';
@@ -19,9 +20,10 @@ function AddProductPage() {
     // state for pass to ProductInformation component 
     // and  management (title , description , images , collectionId)
     const [productInfo, setProductInfo] = useState(null)
-
+    const [skuData, setSkuData] = useState(null)
+    const [skus, setSkus] = useState([])
     const [options, setOptions] = useState([])
-    const [variants, setVariants] = useState([])
+   // const [variants, setVariants] = useState([])
 
     const [addvariant, setAddvariant] = useState(false)
     const [variantSelected, setVariantSelected] = useState(null)
@@ -46,14 +48,6 @@ function AddProductPage() {
     }
 
 
-
-    // close variant form
-    const closeForm = () => {
-        setAddvariant(false)
-        setVariantSelected(null)
-    }
-
-
     const cancelForm = () => {
         navigate("/producer/ims")
     }
@@ -70,7 +64,7 @@ function AddProductPage() {
         } else if (productInfo.images.length == 0) {
             errorToast("Add an image for this item");
             return true
-        } else if (variants.length == 0) {
+        } else if (skus.length == 0) {
             errorToast("Add a new variant");
             return true
         } else {
@@ -96,7 +90,7 @@ function AddProductPage() {
             priceUnit: "USD",
             productCollectionID: productInfo.productCollectionID,
             media: media,
-            sku: variants
+            sku: skus
         }
 
         setdisbtn(true)
@@ -126,13 +120,26 @@ function AddProductPage() {
     //delete a variant 
     const deleteVariant = (index) => {
         let newVariantList = []
-        for (const v of variants) newVariantList.push(v)
+        for (const v of skus) newVariantList.push(v)
         newVariantList.forEach((item, i) => { if (i == index) newVariantList.splice(i, 1) })
-        setVariants(newVariantList)
+        setSkus(newVariantList)
     }
 
     const editVariant = (e, index) => {
         setVariantSelected({ ...e, index: index })
+    }
+
+    
+    const submitSkuForm = () => {
+        let skusArray = Array.from(skus)
+        skusArray.push(skuData)
+        setSkus(skusArray)
+        cancelSkuForm()
+    }
+
+    const cancelSkuForm = () => {
+        setAddvariant(false)
+        setVariantSelected(null)
     }
 
 
@@ -147,17 +154,17 @@ function AddProductPage() {
                 {(varintType != null) &&
                     <>
                         {varintType.map(item => {
-                            return <CheckBox key={item._id} id={item._id} change={onChnageCheckBox} disabled={(variants.length > 0)}>{item.name}</CheckBox>
+                            return <CheckBox key={item._id} id={item._id} change={onChnageCheckBox} disabled={(skus.length > 0)}>{item.name}</CheckBox>
                         })}
                     </>
                 }
             </div>
             <div className="mt-5 w-100">
-                {variants && variants.map((variant, i) => {
+                {skus && skus.map((sku, i) => {
                     return (
                         <VariantItem
                             key={i}
-                            variant={variant}
+                            variant={sku}
                             id={i}
                             deleteVariant={deleteVariant}
                             editVariant={editVariant} />
@@ -172,14 +179,15 @@ function AddProductPage() {
                         <BasicButton click={() => { setAddvariant(true) }}>Add variant</BasicButton>
                     </div>
                     :
-
-                    <AddVariantForm
-                        state={variants}
-                        setState={setVariants}
-                        toggle={closeForm}
-                        defaultVariant={variantSelected}
-                        optionsArray={options}
-                    />
+                    <div style={{ maxWidth: "600px", width: "100%" }}>
+                        <SkuForm
+                            skuData={skuData}
+                            setSkuData={setSkuData}
+                            optionsType={options}
+                            onSubmit={submitSkuForm}
+                            onCancel={cancelSkuForm}
+                        />
+                    </div>
                 }
             </div>
 
