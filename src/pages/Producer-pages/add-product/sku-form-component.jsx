@@ -71,7 +71,7 @@ const SkuForm = ({ skuData, setSkuData, optionsType, onSubmit, onCancel }) => {
     const onChnageValues = (e, Type) => {
         switch (Type) {
             case "PRICE":
-                setSkuData({ ...skuData, price: parseFloat(e.target.value)})
+                setSkuData({ ...skuData, price: parseFloat(e.target.value) })
                 return
             case "QUANITY":
                 setSkuData({ ...skuData, quantity: parseInt(e.target.value) })
@@ -98,16 +98,17 @@ const SkuForm = ({ skuData, setSkuData, optionsType, onSubmit, onCancel }) => {
         })
         onChnageValues(options, "OPTIONS")
     }
- 
 
+    const clear = () => { setSkuData({ externalID: '', price: '', quantity: '', options: [] }) }
+    
     const closeForm = () => {
-        setSkuData({ externalID: '', price: '', quantity: '', options: [] })
+        clear()
         onCancel()
     }
 
     const SubmitForm = () => {
         onSubmit()
-        setSkuData({ externalID: '', price: '', quantity: '', options: [] })
+        clear()
     }
 
     return (

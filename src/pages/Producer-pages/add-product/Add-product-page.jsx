@@ -2,7 +2,6 @@ import "./Add-product-page-style.scss"
 
 import VariantItem from "../components/variant-item-component/Variant-item-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
-//import AddVariantForm from "./Add-variantForm-component"
 import CheckBox from "../../../components/shared/Checkbox/CheckBox-component"
 import ProductInformation from "./product-information-component"
 import SkuForm from "./sku-form-component"
@@ -20,10 +19,12 @@ function AddProductPage() {
     // state for pass to ProductInformation component 
     // and  management (title , description , images , collectionId)
     const [productInfo, setProductInfo] = useState(null)
+    // state for each of sku data for pass to SkuForm
     const [skuData, setSkuData] = useState(null)
+    // state for sku list
     const [skus, setSkus] = useState([])
+    
     const [options, setOptions] = useState([])
-   // const [variants, setVariants] = useState([])
 
     const [addvariant, setAddvariant] = useState(false)
     const [variantSelected, setVariantSelected] = useState(null)
