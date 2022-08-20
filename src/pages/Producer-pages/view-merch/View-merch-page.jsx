@@ -3,8 +3,8 @@ import "./View-merch-page-style.scss";
 import Loading from "../../../components/shared/loading/Loading";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import SmallModal from "../../../components/Modal/Small-modal/Small-modal-component";
-import ProductInformation from "../add-product/product-information-component";
-import SkuInformation from "./sku-information-component";
+import ProductInformation from "../components/product-information-component";
+import SkuInformation from "../components/sku-information-component";
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

@@ -7,10 +7,13 @@ import {
 } from "../../../api/producer/Product-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
 
-import VariantItem from "../components/variant-item-component/Variant-item-component";
+import VariantItem from "./variant-item-component/Variant-item-component";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import SkuForm from "../add-product/sku-form-component";
+import SkuForm from "./sku-form-component";
 
+
+// this component for manage skus of product (add and edit and delete sku)
+// this component get skus and merch id , a fuction for update merch 
 const SkuInformation = ({ skus, merchId, updateMerch }) => {
   // state for show and hide sku form
   const [showSkuForm, setShowSkuForm] = useState(false);

@@ -3,8 +3,8 @@ import "./Add-product-page-style.scss";
 import VariantItem from "../components/variant-item-component/Variant-item-component";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import CheckBox from "../../../components/shared/Checkbox/CheckBox-component";
-import ProductInformation from "./product-information-component";
-import SkuForm from "./sku-form-component";
+import ProductInformation from "../components/product-information-component";
+import SkuForm from "../components/sku-form-component";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
