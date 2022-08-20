@@ -31,7 +31,7 @@ const SkuInformation = ({ skus, merchId, updateMerch }) => {
   const submitAddNewSku = async () => {
     let result = await addSkuToProduct(merchId, [skuData]);
     if (result == true) {
-      //   successToast("Item successfully updated")
+         successToast("New SKU added")
     } else {
       errorToast(result);
     }
@@ -60,7 +60,7 @@ const SkuInformation = ({ skus, merchId, updateMerch }) => {
   const submitEditSku = async () => {
     let result = await updateSku(editSku.id, editSku);
     if (result == true) {
-      //  console.log("x");
+      successToast("SKU update confirmed");
     } else {
       errorToast(result);
     }
@@ -72,7 +72,7 @@ const SkuInformation = ({ skus, merchId, updateMerch }) => {
   const deleteSkuFunction = async (id) => {
     let result = await deleteSku(id);
     if (result == true) {
-      //  console.log("x");
+      successToast("SKU successfully deleted ");
     } else {
       errorToast(result);
     }
