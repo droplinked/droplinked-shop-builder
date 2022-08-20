@@ -99,7 +99,7 @@ const SkuForm = ({ skuData, setSkuData, optionsType, onSubmit, onCancel }) => {
         onChnageValues(options, "OPTIONS")
     }
 
-    const clear = () => { setSkuData({ externalID: '', price: '', quantity: '', options: [] }) }
+    const clear = () => { setSkuData(null) }
     
     const closeForm = () => {
         clear()
