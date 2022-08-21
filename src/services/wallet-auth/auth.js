@@ -31,7 +31,6 @@ export const authenticateByWallet = (setState) => {
     },
     redirectTo: "/",
     onFinish: () => {
-      //  const message = "xx"
       const message = userSession.loadUserData().profile.stxAddress.mainnet;
       openSignatureRequestPopup({
         message,
@@ -41,7 +40,6 @@ export const authenticateByWallet = (setState) => {
           icon: "https://flatlay.io/assets/images/shared/Flatlay-Logo.svg",
         },
         onFinish(data) {
-          console.log(userSession.loadUserData().profile.stxAddress);
           setState({
             stacksAddress:
               userSession.loadUserData().profile.stxAddress.mainnet,

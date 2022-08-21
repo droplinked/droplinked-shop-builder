@@ -4,7 +4,7 @@ import { authenticateByWallet } from "../../../../../services/wallet-auth/auth";
 import { useState, useEffect } from "react";
 import { signInViaWallet } from "../../../../../api/base-user/Auth-api";
 import { useProfile } from "../../../../../context/profile/ProfileContext";
-import { useToasty } from "../../../../../context/toastify/ToastContext"
+import { useToasty } from "../../../../../context/toastify/ToastContext";
 
 import HeaderItem from "../header-button/Header-btn-component";
 import headerWalletIcon from "../../../../../assest/icon/headerWalletIcon.svg";
@@ -12,23 +12,23 @@ import headerWalletIcon from "../../../../../assest/icon/headerWalletIcon.svg";
 
 export default function WalletButton() {
   // const { onSignOut, userData, authenticate } = UseWalletInfo();
-  const { addProfile } = useProfile()
-  const { successToast , errorToast } = useToasty()
+  const { addProfile } = useProfile();
+  const { successToast, errorToast } = useToasty();
   const [state, setState] = useState(null);
 
   useEffect(() => {
     if (state) {
-        syncWithWallet();
+      syncWithWallet();
     }
   }, [state]);
 
-  
   const syncWithWallet = async () => {
     let result = await signInViaWallet(state);
     if (result.status == "success") {
-        addProfile(result.data);
+      addProfile(result.data);
+      successToast("Login successfully");
     } else {
-        errorToast(result.reason);
+      errorToast(result.reason);
     }
   };
 
