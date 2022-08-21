@@ -13,7 +13,6 @@ export default function InputImage({ image, setImage }) {
     const inputFile = useRef(null);
     const { successToast, errorToast } = useToasty()
   
-console.log("image" ,image);
 
     const changeImage = (e) => {
 
