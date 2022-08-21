@@ -13,7 +13,7 @@ export default function InputImage({ image, setImage }) {
     const inputFile = useRef(null);
     const { successToast, errorToast } = useToasty()
   
-
+console.log("image" ,image);
 
     const changeImage = (e) => {
 
@@ -125,13 +125,13 @@ export default function InputImage({ image, setImage }) {
                 boxShadow='0px 2px 4px 0px rgba(0, 0, 0, 0.1)'
             >
                 <Box
-                    bgImage={(image == "") ? defaultProfile : image}
+                    bgImage={(!image || image == "") ? defaultProfile : image}
                     w='100%'
                     h='100%'
                     border='6px'
                     borderColor='#8053ff'
                     borderRadius='100%'
-                    backgroundSize={(image == "")?"50%":'cover'}
+                    backgroundSize={(!image ||image == "")?"50%":'cover'}
                     bgRepeat='no-repeat'
                     bgPosition='center'
                     display='flex'
