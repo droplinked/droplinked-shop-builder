@@ -36,10 +36,13 @@ export default function DefaulHeader() {
     // and if we are in landing page or email-confirmation or recoveri show join today
     // else show wallet icon
     return (<>
-        <HeaderItem click={toggleLogin} mr={{ base: "10px", md: '20px' }} style={{ backgroundColor: "#222" }}>Login</HeaderItem>
+        
 
         {((url == "/") || (url == "/:") || (url == "/email-confirmation") || (url == "/email-verification/:") || (url == "/producer/account-recovery/:token")) ?
+        <>
+            <HeaderItem click={toggleLogin} mr={{ base: "10px", md: '20px' }} style={{ backgroundColor: "#222" }}>Login</HeaderItem>
             <HeaderItem click={togglesignup}>Join today</HeaderItem>
+            </>
             :
             <WalletButton />
         }
