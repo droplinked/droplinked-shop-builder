@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import { ChakraProvider } from "@chakra-ui/react";
 import { WalletProvider } from "./context/wallet/WalletContext";
@@ -36,3 +37,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+serviceWorkerRegistration.register();
