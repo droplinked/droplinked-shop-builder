@@ -19,6 +19,7 @@ export default function ShopPage() {
 
     let { shopname } = useParams();
 
+    localStorage.setItem("currentShop", JSON.stringify(shopname));
 
     useEffect(() => {
         getShopData(shopname)

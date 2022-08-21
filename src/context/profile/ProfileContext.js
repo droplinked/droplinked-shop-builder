@@ -21,8 +21,9 @@ const ProfileProvider = ({ children }) => {
   };
 
   const logout = () => {
+    let currentShop = JSON.parse(localStorage.getItem("currentShop"))
     dispatch({ type: "LOGOUT" });
-    window.location.replace("/");
+    window.location.replace((profile.type == "CUSTOMER") ? `/${currentShop}` :"/");
   };
 
   const isCustomer = () => {
