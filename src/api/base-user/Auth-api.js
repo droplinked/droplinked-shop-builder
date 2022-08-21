@@ -2,9 +2,7 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-
 export const SignIn = async (info) => {
-
   try {
     const res = await axios.post(`${BASE_URL}/signin`, info);
     return res.data;
@@ -15,9 +13,7 @@ export const SignIn = async (info) => {
   }
 };
 
-
 export const customerSignup = async (info, errorFunc) => {
-
   try {
     const res = await axios.post(`${BASE_URL}/customer/signup`, info);
     return res.data.data;
@@ -37,7 +33,6 @@ export const emailVerify = async (token) => {
 };
 
 export const resetPassword = async (email) => {
-
   try {
     const res = await axios.post(`${BASE_URL}/producer/reset-password`, {
       email: email,
@@ -57,5 +52,21 @@ export const recoveryAccount = async (token, newPass) => {
     return true;
   } catch (err) {
     return err.response.data.reason;
+  }
+};
+
+export const signInViaWallet = async (data) => {
+  try {
+    const res = await axios.post(`${BASE_URL}/signin/wallet`, {
+      stacksAddress: data.stacksAddress,
+      publicKey: data.publicKey,
+      signature: data.signature,
+    });
+    //  console.log(res.data);
+    return res.data;
+  } catch (err) {
+    //  console.log(err.response.data);
+    return err.response.data;
+    // return err.response.data.reason;
   }
 };
