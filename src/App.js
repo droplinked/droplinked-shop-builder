@@ -82,132 +82,77 @@ const ShopInfoComponent = lazy(() =>
 
 function App() {
   return (
-       
-         
-           
-              
-              
-               
-                    <BrowserRouter>
-                      <ScrollTop>
-                        <Suspense fallback={<LoadingPage />}>
-                          <Routes>
-                            <Route path="/" element={<PageWrapper />}>
-                              <Route index element={<LandingPage />} />
-                              <Route path="terms" element={<TermsPage />} />
-                              <Route path="privacy" element={<PrivacyPage />} />
+    <BrowserRouter>
+      <ScrollTop>
+        <Suspense fallback={<LoadingPage />}>
+          <Routes>
+            <Route path="/" element={<PageWrapper />}>
+              <Route index element={<LandingPage />} />
+              <Route path="terms" element={<TermsPage />} />
+              <Route path="privacy" element={<PrivacyPage />} />
 
-                              {/* register */}
-                              <Route path="register" element={<RegisterPage />}>
-                                <Route
-                                  path="shop-info"
-                                  element={<ShopInfoComponent />}
-                                />
-                                <Route
-                                  path="ims-type"
-                                  element={<RegisterIms />}
-                                />
-                              </Route>
-                              {/* register */}
-                              <Route
-                                path="email-confirmation"
-                                element={<ThankForRegisterPage />}
-                              />
-                              <Route
-                                path="email-verification/:token"
-                                element={<EmailVerifyPage />}
-                              />
-                              <Route
-                                path="settings"
-                                element={<SettingsPage />}
-                              />
+              {/* register */}
+              <Route path="register" element={<RegisterPage />}>
+                <Route path="shop-info" element={<ShopInfoComponent />} />
+                <Route path="ims-type" element={<RegisterIms />} />
+              </Route>
+              {/* register */}
+              <Route
+                path="email-confirmation"
+                element={<ThankForRegisterPage />}
+              />
+              <Route
+                path="email-verification/:token"
+                element={<EmailVerifyPage />}
+              />
+              <Route path="settings" element={<SettingsPage />} />
 
-                              {/* producer pages */}
-                              <Route path="producer" element={<Producer />}>
-                                <Route path="ims" element={<InventoryPage />} />
-                                <Route
-                                  path="merch/:id"
-                                  element={<ViewMerchPage />}
-                                />
-                                <Route
-                                  path="account-recovery/:token"
-                                  element={<AccountRecovery />}
-                                />
-                                <Route
-                                  path="add-product"
-                                  element={<AddProductPage />}
-                                />
-                                <Route
-                                  path="ruleset"
-                                  element={<RuleSetPage />}
-                                />
-                                <Route
-                                  path="collection"
-                                  element={<CollectionMainPage />}
-                                />
-                                <Route
-                                  path="orders"
-                                  element={
-                                    <OrderProvider>
-                                      <IncomingOrderPage />
-                                    </OrderProvider>
-                                  }
-                                />
-                              </Route>
-                              {/* producer pages */}
+              {/* producer pages */}
+              <Route path="producer" element={<Producer />}>
+                <Route path="ims" element={<InventoryPage />} />
+                <Route path="merch/:id" element={<ViewMerchPage />} />
+                <Route
+                  path="account-recovery/:token"
+                  element={<AccountRecovery />}
+                />
+                <Route path="add-product" element={<AddProductPage />} />
+                <Route path="ruleset" element={<RuleSetPage />} />
+                <Route path="collection" element={<CollectionMainPage />} />
+                <Route
+                  path="orders"
+                  element={
+                    <OrderProvider>
+                      <IncomingOrderPage />
+                    </OrderProvider>
+                  }
+                />
+              </Route>
+              {/* producer pages */}
 
-                              <Route path=":shopname" element={<ShopPage />} />
-                              <Route
-                                path=":shopname/merch/:merchId"
-                                element={<MerchPage />}
-                              />
-                              <Route
-                                path=":shopname/collection/:collectionId"
-                                element={<CollectionPage />}
-                              />
-                              <Route
-                                path="/purchseHistory"
-                                element={<PurchasHistoryPage />}
-                              />
-                              <Route
-                                path="checkout"
-                                element={<CheckoutPage />}
-                              />
-                              <Route
-                                path="/address"
-                                element={<AddressPage />}
-                              />
-                              <Route
-                                path="/payment"
-                                element={<PaymentPage />}
-                              />
-                              <Route
-                                path="/crashpunks"
-                                element={<CreatorPage />}
-                              />
-                              <Route
-                                path="/product/:id"
-                                element={<BuyProduct />}
-                              />
-                              <Route
-                                path="/creatorpage"
-                                element={<Creator />}
-                              />
-                              <Route
-                                path="/notifications"
-                                element={<Notifications />}
-                              />
-                              <Route
-                                path="/collection-iframe/:shopname/:collectionId"
-                                element={<CollectionIframe />}
-                              />
-                              <Route path="/test" element={<Test />} />
-                            </Route>
-                          </Routes>
-                        </Suspense>
-                      </ScrollTop>
-                    </BrowserRouter>
-    
+              <Route path=":shopname" element={<ShopPage />} />
+              <Route path=":shopname/merch/:merchId" element={<MerchPage />} />
+              <Route
+                path=":shopname/collection/:collectionId"
+                element={<CollectionPage />}
+              />
+              <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
+              <Route path="checkout" element={<CheckoutPage />} />
+              <Route path="/address" element={<AddressPage />} />
+              <Route path="/payment" element={<PaymentPage />} />
+              <Route path="/crashpunks" element={<CreatorPage />} />
+              <Route path="/product/:id" element={<BuyProduct />} />
+              <Route path="/creatorpage" element={<Creator />} />
+              <Route path="/notifications" element={<Notifications />} />
+              <Route
+                path="/collection-iframe/:shopname/:collectionId"
+                element={<CollectionIframe />}
+              />
+              <Route path="/test" element={<Test />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </ScrollTop>
+    </BrowserRouter>
   );
 }
 
