@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="leftside">
           <div className="text"><p>droplinked by</p></div>
           <a href='https://flatlay.io/'>
-            <img src={footerLogo} className="logo" />
+            <img src={footerLogo} className="logo" alt={'logo'}/>
           </a>
         </div>
         <div className="righside">
@@ -20,10 +20,10 @@ export default function Footer() {
           <span className="right-text">Terms of service</span>
           </Link>
           <a href='https://twitter.com/flatlay'>
-            <img src={twiter} className="icon-img be-i"/>
+            <img src={twiter} className="icon-img be-i" alt={'twitter'}/>
           </a>
           <a href='https://t.me/droplinked'>
-            <img src={telegram} className="icon-img" />
+            <img src={telegram} className="icon-img" alt={'telegram'} />
           </a>
         </div>
       </div>
