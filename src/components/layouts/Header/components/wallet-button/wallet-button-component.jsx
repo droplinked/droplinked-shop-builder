@@ -50,7 +50,7 @@ export default function WalletButton() {
         src={headerWalletIcon}
         // src={userData == undefined ? headerWalletIcon : activeWalletIcon}
       />
-      Wallet
+      Connect wallet
     </HeaderItem>
   );
 }
