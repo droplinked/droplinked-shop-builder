@@ -27,6 +27,7 @@ export default function WalletButton() {
     if (result.status == "success") {
       addProfile(result.data);
       successToast("Login successfully");
+      window.location.reload();
     } else {
       errorToast(result.reason);
     }
