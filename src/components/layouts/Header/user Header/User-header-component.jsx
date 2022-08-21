@@ -34,7 +34,7 @@ export default function UserHeader() {
 
     return (<>
 
-        {isCustomer() && <WalletButton />}
+        {/* {isCustomer() && <WalletButton />} */}
 
 
         <Flex alignItems='center' ml={{ base: "10px", md: '15px' }}>
