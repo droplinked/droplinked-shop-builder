@@ -16,14 +16,15 @@ export default function WalletButton() {
   const { addProfile } = useProfile();
   const { successToast, errorToast } = useToasty();
   const [state, setState] = useState(null);
+  const [walletModal, setWalletModal] = useState(false);
 
   useEffect(() => {
     if (state) {
-      syncWithWallet();
+      syncHiroWallet();
     }
   }, [state]);
 
-  const syncWithWallet = async () => {
+  const syncHiroWallet = async () => {
     let result = await signInViaWallet(state);
     if (result.status == "success") {
       addProfile(result.data);
@@ -35,7 +36,15 @@ export default function WalletButton() {
   };
 
   const signIn = () => {
-    authenticateByWallet(setState);
+    if (
+      navigator.userAgent.match(/Android/i) ||
+      navigator.userAgent.match(/iPhone/i)
+    ) {
+      setWalletModal(true)
+    }else{
+      authenticateByWallet(setState);
+    }
+    
   };
 
   return (
@@ -55,6 +64,7 @@ export default function WalletButton() {
         />
         Connect wallet
       </HeaderItem>
+      {walletModal && <WalletModal close={()=>setWalletModal(false)} /> }
       {/* <WalletModal /> */}
     </>
   );

@@ -5,17 +5,15 @@ import { ReactComponent as RightIcon } from "../../../../../assest/icon/fillsize
 import { ReactComponent as XverseIcon } from "../../../../../assest/icon/xverseIcon.svg";
 import { ReactComponent as HiroWalletIcon } from "../../../../../assest/icon/hiroWalletIcon.svg";
 import { ItemContainer, IconWrapper } from "./wallet-modal-style";
-import { useNavigate } from "react-router-dom";
 
 import ModalContainer from "../../../../Modal/modal-container/modal-container";
 
 
-const WalletModal = () => { 
+const WalletModal = ({close}) => { 
 
-const navigate = useNavigate()
 
   return (
-    <ModalContainer>
+    <ModalContainer close={close}>
       <Box>
         <Text
           color="#ccc"
