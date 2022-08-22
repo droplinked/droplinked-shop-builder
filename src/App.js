@@ -139,7 +139,7 @@ function App() {
               <Route path="checkout" element={<CheckoutPage />} />
               <Route path="/address" element={<AddressPage />} />
               <Route path="/payment" element={<PaymentPage />} />
-              <Route path="/crashpunks" element={<CreatorPage />} />
+              {/* <Route path="/crashpunks" element={<CreatorPage />} /> */}
               <Route path="/product/:id" element={<BuyProduct />} />
               <Route path="/creatorpage" element={<Creator />} />
               <Route path="/notifications" element={<Notifications />} />
