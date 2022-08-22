@@ -28,8 +28,8 @@ const WalletModal = ({ close }) => {
               <IconWrapper >
                 <HiroWalletIcon fill="red" color="red" />
               </IconWrapper>
-              <Box h="100%" ml="10px">
-                <Text color="white" fontSize="14px">
+              <Box h="100%" ml="10px" pt='5px'>
+                <Text color="white" fontSize="14px" >
                   Hiro wallet
                 </Text>
                 <Text color="white" fontSize="10px">
@@ -51,7 +51,7 @@ const WalletModal = ({ close }) => {
               <IconWrapper pt="15px">
                 <XverseIcon />
               </IconWrapper>
-              <Box h="100%" ml="10px">
+              <Box h="100%" ml="10px" pt='5px'>
                 <Text color="white" fontSize="14px">
                   Xverse wallet
                 </Text>
