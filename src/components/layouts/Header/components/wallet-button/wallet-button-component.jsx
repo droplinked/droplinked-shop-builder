@@ -36,14 +36,11 @@ export default function WalletButton() {
   };
 
   const signIn = () => {
-    if (
-      navigator.userAgent.match(/Android/i) ||
-      navigator.userAgent.match(/iPhone/i)
-    ) {
-      setWalletModal(true)
-    }else{
-      authenticateByWallet(setState);
-    }
+   if( navigator.userAgent.match(/Android/i) != null || navigator.userAgent.match(/iPhone/i)!=null){
+    setWalletModal(true)
+   }else{
+    authenticateByWallet(setState);
+   }
     
   };
 
