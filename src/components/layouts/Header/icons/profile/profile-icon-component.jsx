@@ -1,4 +1,4 @@
-import defaultProfile from "../../../../../assest/profile/defaultProfile.png"
+import defaultProfile from "../../../../../assest/image/defaultProfile.png"
 
 import { Flex, Image } from "@chakra-ui/react"
 import { useProfile } from "../../../../../context/profile/ProfileContext"

@@ -10,7 +10,7 @@ import {
 
 export const AddressContext = createContext();
 
-export default function AddressContextProvider({ children }) {
+export default function AddressProvider({ children }) {
   const [addressList, setAddressList] = useState([]);
 
   const { successToast, errorToast } = useToasty();

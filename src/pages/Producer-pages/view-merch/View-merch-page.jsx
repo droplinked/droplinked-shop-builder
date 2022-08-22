@@ -1,237 +1,165 @@
-import "./View-merch-page-style.scss"
+import "./View-merch-page-style.scss";
 
-import FormInput from "../../../components/shared/FormInput/FormInput"
-import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component"
-import VariantItem from "../components/variant-item-component/Variant-item-component"
-import AddVariantForm from "./AddVariant-form"
 import Loading from "../../../components/shared/loading/Loading";
-import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
-import BasicButton from "../../../components/shared/BasicButton/BasicButton"
-import SmallModal from "../../../components/Modal/Small-modal/Small-modal-component"
+import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import SmallModal from "../../../components/Modal/Small-modal/Small-modal-component";
+import ProductInformation from "../components/product-information-component";
+import SkuInformation from "../components/sku-information-component";
 
 import { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
-import { useToasty } from "../../../context/toastify/ToastContext"
-import { useNavigate } from 'react-router-dom';
-import { getCollections } from "../../../api/producer/Collection-api"
-import { getProduct } from "../../../api/public/Product-api"
-import { updateMerch, deleteSku, deleteMerch } from "../../../api/producer/Product-api"
+import { useParams } from "react-router-dom";
+import { useToasty } from "../../../context/toastify/ToastContext";
+import { useNavigate } from "react-router-dom";
+import { getProduct } from "../../../api/public/Product-api";
+import { updateMerch, deleteMerch } from "../../../api/producer/Product-api";
 
 export default function ViewMerchPage() {
+  // state for pass to ProductInformation component
+  // and  management (title , description , images , collectionId)
+  const [productInfo, setProductInfo] = useState(null);
+  const [merch, setMerch] = useState(null);
 
-    const [merch, setMerch] = useState(null)
-    const [title, setTitle] = useState("") // title
-    const [description, setDescription] = useState("") // description
-    const [collectionSelected, setCollectionSelected] = useState("") // collection
-    const [images, setImages] = useState([]) // images
+  const [loading, setLoading] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [modalDisBtn, setModalDisBtn] = useState(false);
 
-    const [collectionList, setCollectionList] = useState([])
-    const [selectedSku, setSelectedSku] = useState(null)
-    const [showForm, setShowForm] = useState(false)
-    const [loading, setLoading] = useState(false)
-    const [deleteModal, setDeleteModal] = useState(false)
-    const [modalDisBtn, setModalDisBtn] = useState(false)
+  const { successToast, errorToast } = useToasty();
 
-    const { successToast, errorToast } = useToasty();
+  const merchId = useParams().id;
+  const navigate = useNavigate();
 
-    const merchId = useParams().id;
-    const navigate = useNavigate();
+  useEffect(() => {
+    initialize();
+  }, []);
 
-    useEffect(() => {
-        //get collections 
-        getCollections()
-            .then(e => {
-                let pairCollection = e.map(coll => { return { id: coll._id, value: coll.title } })
-                setCollectionList(pairCollection)
-            })
-            .catch(e => console.log(e))
+  // initialize all form data
+  const initialize = async () => {
+    let result = await getProduct(merchId);
+    if (result != null) {
+      let images = result.media.map((image) => image.url);
+      setMerch({ ...result, images: images });
+    }
+  };
 
-        initialize()
-    }, [])
+  //update merch list
+  const getMerch = async () => {
+    let result = await getProduct(merchId);
+    if (result != null) {
+      setMerch(result);
+    }
+  };
 
-    // initialize all form data
-    const initialize = async () => {
-        let result = await getProduct(merchId)
-        if (result != null) {
+  const cancelForm = () => {
+    navigate("/producer/ims");
+  };
 
-            setMerch(result)
-            setTitle(result.title)
-            setDescription(result.description)
-            setCollectionSelected(result.productCollectionID)
-            // get images url for InputImagesGroup component
-            let images = result.media.map(image => image.url)
-            setImages(images)
-        } else {
-            errorToast(result)
-        }
+  const submitForm = async (e) => {
+    e.preventDefault();
+
+    if (productInfo.title == "") {
+      errorToast("Item name is required");
+      return;
+    } else if (productInfo.images.length == 0) {
+      errorToast("Add an image for this item");
+      return;
     }
 
-    // toggle form
-    const closeForm = () => {
-        setShowForm(false)
-        setSelectedSku(null)
+    let media = [];
+    productInfo.images.map((img, i) => {
+      media.push({ url: img, isMain: i == 0 });
+    });
+
+    const product = {
+      title: productInfo.title,
+      description: productInfo.description,
+      priceUnit: "USD",
+      collectionID: productInfo.productCollectionID,
+      media: media,
+    };
+    setLoading(true);
+
+    let productResutl = await updateMerch(merchId, product);
+
+    if (productResutl == true) {
+      successToast("Item successfully updated");
+      navigate("/producer/ims");
+    } else {
+      errorToast(productResutl);
     }
+    setLoading(false);
+  };
 
-    //update merch list
-    const getMerch = async () => {
-        let result = await getProduct(merchId)
-        if (result != null) {
-            setMerch(result)
-        }
+  const DeleteMerch = async () => {
+    setModalDisBtn(true);
+    let result = await deleteMerch(merchId);
+    if (result == true) {
+      successToast("Merch deleted successfully");
+      navigate("/producer/ims");
+    } else {
+      errorToast(result);
+      setDeleteModal(false);
     }
+    setModalDisBtn(false);
+  };
 
+  return (
+    <>
+      {!merch ? (
+        <Loading />
+      ) : (
+        <div className="add-product-page-wrapper">
+          <div className="col-12 col-md-6 mb-5">
+            <BasicButton
+              bgColor="#fa6653"
+              onClick={() => {
+                setDeleteModal(true);
+              }}
+              loading={loading}
+            >
+              Delete item
+            </BasicButton>
+          </div>
 
-    const cancelForm = () => {
-        navigate("/producer/ims")
-    }
+          <ProductInformation
+            productInfo={productInfo}
+            setProductInfo={setProductInfo}
+            defaultValue={merch}
+          />
 
-    const submitForm = async (e) => {
-        e.preventDefault()
+          <SkuInformation
+            skus={merch.skus}
+            merchId={merchId}
+            updateMerch={getMerch}
+          />
 
-        if (title == "") {
-            errorToast("Item name is required");
-            return;
-        } else if (images.length == 0) {
-            errorToast("Add an image for this item");
-            return;
-        }
-
-        let media = [];
-        images.map((img, i) => {
-            media.push({ url: img, isMain: (i == 0) })
-        })
-
-        const product = {
-            title: title,
-            description: description,
-            priceUnit: "USD",
-            collectionID: collectionSelected,
-            media: media,
-        }
-        setLoading(true)
-
-        let productResutl = await updateMerch(merchId, product)
-
-        if (productResutl == true) {
-            successToast("Item successfully updated");
-            navigate("/producer/ims")
-        } else {
-            errorToast(productResutl)
-        }
-        setLoading(false)
-    }
-
-
-    const editSku = (sku) => {
-        setSelectedSku(sku)
-    }
-
-
-    const deleteVariant = async (id) => {
-        let result = await deleteSku(id)
-        if (result == true) {
-            successToast("deleted");
-            getMerch()
-        } else {
-            errorToast(result)
-        }
-    }
-
-
-    const DeleteMerch = async () => {
-        setModalDisBtn(true)
-        let result = await deleteMerch(merchId)
-        if (result == true) {
-            successToast("Merch deleted successfully");
-            navigate("/producer/ims")
-        } else {
-            errorToast(result)
-            setDeleteModal(false)
-        }
-        setModalDisBtn(false)
-    }
-
-
-
-    return (<>
-
-        {(!merch)
-            ?
-            <Loading />
-            :
-
-            <div className="add-product-page-wrapper"  >
-
-                <div className="col-12 col-md-6 mb-5">
-                    <BasicButton bgColor='#fa6653'
-                        onClick={() => { setDeleteModal(true) }}
-                    >Delete item</BasicButton>
-                </div>
-
-                <div className="mb-4 w-100 p-0">
-                    <FormInput
-                        label={"Title"}
-                        value={title}
-                        changeValue={(e) => setTitle(e.target.value)}
-                    />
-                </div>
-                <div className="mb-4 w-100 p-0">
-                    <FormInput
-                        type={"textarea"}
-                        label={"Description"}
-                        value={description}
-                        changeValue={(e) => setDescription(e.target.value)}
-                    />
-                </div>
-
-                <dir className="drop-wrape">
-                    <Dropdown
-                        pairArray={collectionList}
-                        change={e => setCollectionSelected(e.target.value)}
-                        value={collectionSelected}
-                        placeholder={(collectionList.length > 0 && collectionSelected != '') && collectionList.find(coll => coll.id == collectionSelected).value}
-                    />
-                </dir>
-
-                <div className="mt-5 mb-3 w-100 d-flex justify-content-center align-items-center">
-                    <InputImagesGroup setState={setImages} state={images} />
-                </div>
-
-                <div className="mt-5 w-100">
-                    {merch.skus.map(sku => <VariantItem key={sku._id} id={sku._id} variant={sku} deleteVariant={deleteVariant} editVariant={editSku} />)}
-                </div>
-
-                <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
-                    {(showForm == false && selectedSku == null)
-                        ?
-                        <BasicButton click={() => { setShowForm(true) }}>Add variant</BasicButton>
-                        :
-
-                        <AddVariantForm updateMerch={getMerch} productId={merch._id} optionTypes={merch.skus[0].options} defaultSku={selectedSku} toggle={closeForm} />
-                    }
-                </div>
-
-                <div className="d-flex justify-content-between align-items-center"
-                    style={{ marginTop: "80px", width: "100%" }}>
-                    <div className="col-5 col-md-4">
-                        <BasicButton click={cancelForm} loading={loading}>Cancel</BasicButton>
-                    </div>
-                    <div className="col-5 col-md-4">
-                        <BasicButton click={submitForm} loading={loading}>Submit</BasicButton>
-                    </div>
-                </div>
-
-                {deleteModal &&
-                    <SmallModal
-                        show={deleteModal}
-                        hide={() => setDeleteModal(false)}
-                        text={"Do you want to delete this item?"}
-                        click={DeleteMerch}
-                        loading={modalDisBtn}
-                        buttonText={'Delete'}
-                    />}
-
+          <div
+            className="d-flex justify-content-between align-items-center"
+            style={{ marginTop: "80px", width: "100%" }}
+          >
+            <div className="col-5 col-md-4">
+              <BasicButton click={cancelForm} loading={loading}>
+                Cancel
+              </BasicButton>
             </div>
-        }
-    </>)
+            <div className="col-5 col-md-4">
+              <BasicButton click={submitForm} loading={loading}>
+                Submit
+              </BasicButton>
+            </div>
+          </div>
+
+          {deleteModal && (
+            <SmallModal
+              show={deleteModal}
+              hide={() => setDeleteModal(false)}
+              text={"Do you want to delete this item?"}
+              click={DeleteMerch}
+              loading={modalDisBtn}
+              buttonText={"Delete"}
+            />
+          )}
+        </div>
+      )}
+    </>
+  );
 }

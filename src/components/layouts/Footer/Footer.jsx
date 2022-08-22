@@ -1,7 +1,7 @@
 import "./footer.scss";
-import footerLogo from "../../../assest/feature/footer/Flatlay-Logo.png"
-import telegram from "../../../assest/feature/footer/telegram.png"
-import twiter from "../../../assest/feature/footer/brand.png"
+import footerLogo from "../../../assest/icon/Flatlay-Logo.png"
+import telegram from "../../../assest/icon/telegram.png"
+import twiter from "../../../assest/icon/brand.png"
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="leftside">
           <div className="text"><p>droplinked by</p></div>
           <a href='https://flatlay.io/'>
-            <img src={footerLogo} className="logo" />
+            <img src={footerLogo} className="logo" alt={'logo'}/>
           </a>
         </div>
         <div className="righside">
@@ -20,10 +20,10 @@ export default function Footer() {
           <span className="right-text">Terms of service</span>
           </Link>
           <a href='https://twitter.com/flatlay'>
-            <img src={twiter} className="icon-img be-i"/>
+            <img src={twiter} className="icon-img be-i" alt={'twitter'}/>
           </a>
           <a href='https://t.me/droplinked'>
-            <img src={telegram} className="icon-img" />
+            <img src={telegram} className="icon-img" alt={'telegram'} />
           </a>
         </div>
       </div>

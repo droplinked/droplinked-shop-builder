@@ -1,5 +1,4 @@
-import "./Account-recovery-page-style.scss"
-
+import "./Account-recovery-style.scss"
 
 import BasicButton from "../../components/shared/BasicButton/BasicButton"
 import FormInput from "../../components/shared/FormInput/FormInput"
@@ -10,7 +9,7 @@ import { useState, useContext } from "react"
 import { useForm } from "react-hook-form";
 import { recoveryAccount } from "../../api/base-user/Auth-api"
 
-export default function AccountRecoveryPage() {
+export default function AccountRecovery() {
 
     const [newPass, setNewpass] = useState("")
     const [confirmnewPass, setConfirmNewpass] = useState("")

@@ -1,14 +1,18 @@
 
-import { useState } from "react"
+import { useState ,lazy, Suspense  } from "react"
 import { useSearchParams } from "react-router-dom";
 import { Flex, Box, Text,  keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 
 
 import LandingpageImage from "./landing-page-image-component"
 import SignupInput from "./singup-input-component"
-import SignUpModal from "../../components/Modal/Register-modal/SignUpModal"
-import LoginModal from "../../components/Modal/Login-modal/LoginModal"
-import ResetPassModal from "../../components/Modal/ResetPass-modal/ResetPassModal-component"
+
+const SignUpModal = lazy(() => import("../../components/Modal/Register-modal/SignUpModal"));
+//import SignUpModal from "../../components/Modal/Register-modal/SignUpModal"
+const LoginModal = lazy(() => import("../../components/Modal/Login-modal/LoginModal"));
+//import LoginModal from "../../components/Modal/Login-modal/LoginModal"
+const ResetPassModal = lazy(() => import("../../components/Modal/ResetPass-modal/ResetPassModal-component"));
+//import ResetPassModal from "../../components/Modal/ResetPass-modal/ResetPassModal-component"
 
 const keyframe_leftanimation = keyframes`
 0% {
@@ -109,8 +113,10 @@ export default function LandingPage() {
             <LandingpageImage />
             {/* image */}
         </Box>
+        <Suspense fallback={<></>}>
         {showSignup && <SignUpModal close={toggleSignUp} shopname={userName} switchToggle={switchModal} />}
         {showLogin && <LoginModal close={toggleLogin} switchToggle={switchModal} switchReset={switchResetAndLogin} />}
         {showResetPass && <ResetPassModal backToLogin={switchResetAndLogin} close={() => { setResetPass(false) }} />}
+        </Suspense>
     </>)
 }

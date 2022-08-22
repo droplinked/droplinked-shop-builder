@@ -4,7 +4,7 @@ import {
     Text,
     Button,
 } from '@chakra-ui/react'
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useCart } from "../../../context/cart/CartContext"
@@ -12,7 +12,7 @@ import { checkoutCart } from "../../../api/base-user/Cart-api"
 import { STRIPE_KEY } from "./stripe.key"
 //import { addRootpaymentOrder } from "../../../api/base-user/Cart-api"
 import { useNavigate } from "react-router-dom";
-import { getClientSecret } from "../../../api/base-user/OrderHistory-api"
+import { getClientSecret, CanselOrder } from "../../../api/base-user/OrderHistory-api"
 
 import axios from "axios"
 import StripeComponent from "./stripe modal/stripe-modal-component"
@@ -23,39 +23,34 @@ const stripePromise = loadStripe(STRIPE_KEY.LIVE);
 
 export default function PaymentPage() {
 
-   // const [rootpaymentsOrderID, setRootpaymentsOrderID] = useState(null);
+    // const [rootpaymentsOrderID, setRootpaymentsOrderID] = useState(null);
     const [paymentSelected, setPaymentSelected] = useState(null)
     const [clientSecret, setClientSecret] = useState('')
     const [disableBtns, setDisables] = useState(false)
 
-
     const { cart, updateCart } = useCart();
     let navigate = useNavigate();
+    var lastOrder = JSON.parse(sessionStorage.getItem('payOrder'));
 
-    let params = (new URL(document.location)).searchParams;
-
-    let CurrentOrderId = params.get('CurrentOrderId')
-    let orderPrice = params.get('price')
-
-    if (cart && (cart.items.length == 0) && (CurrentOrderId == null)) {
+    // redirect from this page if cart and lastOrder be empty
+    if (cart && (cart.items.length == 0) && (lastOrder == null)) {
         navigate("/purchseHistory?redirect_status=failed")
     }
 
+    // stripe component style
     const appearance = {
         theme: 'night',
         labels: 'floating'
     };
-
-
     const options = {
         // passing the client secret obtained from the server
         clientSecret: clientSecret,
         appearance
     };
+    // stripe component style
 
 
-
-    // get total cost of merchs 
+    // get total cost of merchs
     const getTotalofMerchs = () => {
         let merchsPrice = 0;
         // map on all cart items and get total price of each item
@@ -64,8 +59,6 @@ export default function PaymentPage() {
         })
         return merchsPrice
     }
-
-
 
     // find all shop's name and build unique array and set $5 for each shop
     const getTotalofShipping = () => {
@@ -76,23 +69,27 @@ export default function PaymentPage() {
     }
 
     const getTotalCost = () => {
-        return (CurrentOrderId) ? orderPrice : parseFloat((getTotalofShipping()) + (getTotalofMerchs())).toFixed(2)
+        return (lastOrder) ? lastOrder.totalPrice : parseFloat((getTotalofShipping()) + (getTotalofMerchs())).toFixed(2)
     }
 
 
-
     const cancelPayment = async () => {
-        await checkoutCart()
-        updateCart()
+        if (lastOrder) {
+            await CanselOrder(lastOrder._id)
+            sessionStorage.removeItem("payOrder");
+        } else {
+            await checkoutCart()
+            updateCart()
+        }
         navigate("/purchseHistory?redirect_status=failed")
     }
 
 
     const stripePayment = async () => {
         setDisables(true)
-        let result 
-        if(CurrentOrderId) {
-            result = await getClientSecret(CurrentOrderId)
+        let result
+        if (lastOrder) {
+            result = await getClientSecret(lastOrder._id)
         } else {
             result = await checkoutCart()
         }
@@ -156,10 +153,10 @@ export default function PaymentPage() {
 
                         {/* top side */}
                         <Box p="10px 5px" mb="50px" w={{ base: '100%', md: '100%' }}>
-                            {(!CurrentOrderId) && <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
+                            {(!lastOrder) && <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
                                 Items: ${getTotalofMerchs()}
                             </Text>}
-                            {(!CurrentOrderId) && <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
+                            {(!lastOrder) && <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
                                 Shipping: ${getTotalofShipping()}
                             </Text>}
                             <Text color='#ddd' mb="20px" fontSize={{ base: '18px', md: '22px' }} fontWeight="600">
@@ -204,7 +201,7 @@ export default function PaymentPage() {
                                         bgColor: '#8053ff',
                                     }}
                                     disabled={true}
-                                  //  onClick={rootpaymentsPayment}
+                                //  onClick={rootpaymentsPayment}
                                 >Crypto payment</Button>
                             </Box>
                         </Box>

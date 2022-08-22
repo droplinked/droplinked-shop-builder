@@ -3,7 +3,7 @@ import { getShop } from "../../api/base-user/Profile-api";
 
 export const ShopContext = createContext();
 
-const ShopContextProvider = ({ children }) => {
+const ShopProvider = ({ children }) => {
     
   let localShop = JSON.parse(localStorage.getItem("shop"));
 
@@ -37,4 +37,4 @@ export const useShop = () => {
   };
 };
 
-export default ShopContextProvider;
+export default ShopProvider;

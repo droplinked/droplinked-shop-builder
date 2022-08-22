@@ -1,96 +1,91 @@
-import "./GalleryCarousel.scss"
-import nft1 from "../../../assest/image/nft/nft1.jpg"
-import nft2 from "../../../assest/image/nft/nft2.jpg"
-import rightBtn from "../../../assest/image/component assest/gallery btn/right.png"
-import leftBtn from "../../../assest/image/component assest/gallery btn/left.png"
-import img1 from "./hardcode image/1504.png"
-import img2 from "./hardcode image/1724.png"
-import img3 from "./hardcode image/1724.png"
-import img4 from "./hardcode image/4307.png"
-import img5 from "./hardcode image/5002.png"
-import img6 from "./hardcode image/5627.png"
-import { useState, useEffect } from "react"
-import axios from "axios"
+import "./GalleryCarousel.scss";
+import rightBtn from "../../../assest/image/component assest/gallery btn/right.png";
+import leftBtn from "../../../assest/image/component assest/gallery btn/left.png";
+import img1 from "./hardcode-image/1.png";
+import img2 from "./hardcode-image/2.png";
+import img3 from "./hardcode-image/3.png";
+import img4 from "./hardcode-image/4.png";
+import img5 from "./hardcode-image/5.png";
+import img6 from "./hardcode-image/6.png";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function GalleryCarousel() {
-    const [num1, setNum] = useState(0)
-    const [onetime, setOne] = useState(false)
+  const [imageNumber, setImageNumber] = useState(0);
 
+  const NftId = ["1501", "1724", "1724", "4307", "5002", "5627"];
+  const imageArray = [img1, img2, img3, img4, img5, img6];
 
-    const NftId = ["1501", "1724", "1724", "4307", "5002", "5627"];
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+        if (imageNumber >= 4) setImageNumber(0);
+        else setImageNumber((p) => p + 1);
+      }, 5000);
+  
+     return () => clearTimeout(timeout);
+  },);
 
-    const imageArray = [img1, img2, img3, img4, img5, img6];
+  const nextImg = () => {
+    if (imageNumber >= 4) setImageNumber(0);
+    else setImageNumber((p) => p + 1);
+  };
 
+  const backImg = () => {
+    if (imageNumber == 0) setImageNumber(4);
+    else setImageNumber((p) => p - 1);
+  };
 
-    const nextImg = () => {
-        (num1 >= 3) ? setNum(0) : setNum(p => p + 2)
-        clearTimeout(timer);
-    }
-
-    const backImg = () => {
-        (num1 == 0) ? setNum(4) : setNum(p => p - 1)
-        clearTimeout(timer);
-    }
-
-    const timer = () => setTimeout(nextImg, 5000);
-    timer();
-
-    useEffect(() => {
-        NftId.forEach((item) => {
-            axios.get(`https://gamma.io/api/v1/collections/SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ.free-punks-v0/${item}`)
-                .then(e => { })
-                .catch(e => console.log(e))
-        })
-    }, [onetime])
-
-
-
-    return (<>
-        {/* gallery wrap */}
-        <div className="row d-flex justify-content-center gr">
-            <div className="col-12 col-sm-8  d-flex justify-content-center" >
-
-                <div className="gallery-wrapper ">
-
-                    <div className="image-wrap">
-                        <a href={`https://gamma.io/collections/crashpunks/${NftId[num1]}`}>
-                            <img className="ratio ratio-1x1" src={`https://ipfs.io/ipfs/Qmb84UcaMr1MUwNbYBnXWHM3kEaDcYrKuPWwyRLVTNKELC/${NftId[num1]}.png`} />
-                        </a>
-                    </div>
-
-
-                    <div className="image-wrap">
-                        <a href={`https://gamma.io/collections/crashpunks/${NftId[num1 + 1]}`}>
-                            <img className="ratio ratio-1x1" src={`https://ipfs.io/ipfs/Qmb84UcaMr1MUwNbYBnXWHM3kEaDcYrKuPWwyRLVTNKELC/${NftId[num1 + 1]}.png`} />
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
+  return (
+    <>
+      {/* gallery wrap */}
+      <div className="row d-flex justify-content-center gr">
+        <div className="col-12 col-sm-8  d-flex justify-content-center">
+          <div className="gallery-wrapper ">
+            {imageArray.map((image, i) => {
+              if (i == imageNumber || i == imageNumber + 1) {
+                return (
+                  <div className="image-wrap">
+                    <a
+                      href={`https://gamma.io/collections/crashpunks/${NftId[i]}`}
+                    >
+                      <img className="ratio ratio-1x1" src={image} />
+                    </a>
+                  </div>
+                );
+              }
+            })}
+          </div>
         </div>
-        {/* gallery wrap */}
+      </div>
+      {/* gallery wrap */}
 
+      {/* bottom line for circle */}
+      <div className="row d-flex justify-content-center gr">
+        <div
+          className=" col-4 d-flex justify-content-center align-item-center"
+          style={{ height: "50px" }}
+        >
+          <div className="carousel-circle">
+            <img src={leftBtn} alt="" onClick={backImg} />
 
-        {/* bottom line for circle */}
-        <div className="row d-flex justify-content-center gr">
-            <div className=" col-4 d-flex justify-content-center align-item-center"
-                style={{ height: "50px", }}>
+            {imageArray.map((item, index) => {
+              return (
+                <span
+                  key={index}
+                  className={`rounded-circle ${
+                    index == imageNumber || index == imageNumber + 1 ? "active" : "nonactive"
+                  }`}
+                ></span>
+              );
+            })}
 
-                <div className="carousel-circle">
-                    <img src={leftBtn} alt="" onClick={backImg} />
-
-                    {imageArray.map((item, index) => {
-                        return <span key={index} className={`rounded-circle ${(index == num1 || index == num1 + 1) ? "active" : "nonactive"}`}></span>
-                    })}
-
-                    <img src={rightBtn} alt="" onClick={nextImg} />
-                </div>
-
-            </div>
+            <img src={rightBtn} alt="" onClick={nextImg} />
+          </div>
         </div>
-        {/* bottom line for circle */}
-    </>)
+      </div>
+      {/* bottom line for circle */}
+    </>
+  );
 }
 
-export default GalleryCarousel
+export default GalleryCarousel;

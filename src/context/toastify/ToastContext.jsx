@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const toastValue = createContext(null)
 
-export  default function ToastContext({ children }) {
+export  default function ToastifyProvider({ children }) {
 
     const successToast = (text) =>{
         toast.success(text)

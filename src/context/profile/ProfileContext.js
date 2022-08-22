@@ -3,7 +3,7 @@ import { ProflieReduser } from "./ProfileReducer";
 
 export const ProfileContext = createContext();
 
-const ProfileContextProvider = ({ children }) => {
+const ProfileProvider = ({ children }) => {
   //const [profile , setProfile] = useState({})
   const [profile, dispatch] = useReducer(
     ProflieReduser,
@@ -11,6 +11,7 @@ const ProfileContextProvider = ({ children }) => {
   );
 
   const addProfile = (payload) => {
+
     localStorage.setItem("token", JSON.stringify(payload.jwt));
     dispatch({ type: "ADD_PROFILE", payload });
   };
@@ -20,8 +21,9 @@ const ProfileContextProvider = ({ children }) => {
   };
 
   const logout = () => {
+    let currentShop = JSON.parse(localStorage.getItem("currentShop"))
     dispatch({ type: "LOGOUT" });
-    window.location.replace("/");
+    window.location.replace((profile.type == "CUSTOMER") ? `/${currentShop}` :"/");
   };
 
   const isCustomer = () => {
@@ -68,4 +70,4 @@ export const useProfile = () => {
   };
 };
 
-export default ProfileContextProvider;
+export default ProfileProvider;

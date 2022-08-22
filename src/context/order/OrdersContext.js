@@ -5,7 +5,7 @@ import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils";
 
 export const OrderContext = createContext();
 
-export default function OrderContextProvider({ children }) {
+export default function OrderProvider({ children }) {
   const [orders, setOrders] = useState([]);
 
   const { profile, isRegisteredProducer } = useProfile();

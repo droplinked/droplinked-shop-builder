@@ -23,7 +23,7 @@ export default function Order({ order }) {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { isCustomer } = useProfile();
-    const  navigate  = useNavigate()
+    const navigate = useNavigate()
 
     let totalQuantity = order.items.map(item => item.quantity).reduce((total, quan) => { return total + quan }, 0)
 
@@ -61,7 +61,11 @@ export default function Order({ order }) {
 
     const paynow = (event) => {
         event.stopPropagation();
-        navigate(`/payment?CurrentOrderId=${order._id}&price=${parseFloat(order.totalPrice).toFixed(2)}`)
+        //    navigate(`/payment?CurrentOrderId=${order._id}&price=${parseFloat(order.totalPrice).toFixed(2)}`)
+        let payOrder = {_id:order._id ,totalPrice:parseFloat(order.totalPrice).toFixed(2)}
+      //  console.log(payOrder);
+        sessionStorage.setItem('payOrder', JSON.stringify(payOrder));
+        navigate(`/payment`)
     }
 
     return (
@@ -159,15 +163,15 @@ export default function Order({ order }) {
                     </Flex>
                     {/* status */}
                     {(order.status == ORDER_TYPES.WAITING_FOR_PAYMENT) &&
-                            <Box
-                                pos='absolute'
-                                w={{ base: "120px", md: "160px" }}
-                                h={{ base: '25px', md: '40px' }}
-                                right='0px'
-                                bottom='0px'
-                            >
-                                <BasicButton onClick={paynow}>Pay now</BasicButton>
-                            </Box>
+                        <Box
+                            pos='absolute'
+                            w={{ base: "120px", md: "160px" }}
+                            h={{ base: '25px', md: '40px' }}
+                            right='0px'
+                            bottom='0px'
+                        >
+                            <BasicButton onClick={paynow}>Pay now</BasicButton>
+                        </Box>
 
                     }
                 </Box>

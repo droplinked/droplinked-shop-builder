@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Flex, Image, Text, Input, Button, Spinner, } from '@chakra-ui/react'
 import { checkShopname } from "../../api/public/CheckShopname-api"
 
-import alertIcon from "../../assest/feature/home page images/alert.png"
+import alertIcon from "../../assest/icon/alert.png"
 
 
 

@@ -45,7 +45,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         if (result == true) {
             successToast("Account successfully created");
             close()
-            navigate("/emailConfirmation");
+            navigate("/email-confirmation");
         } else {
             errorToast(result);
         }

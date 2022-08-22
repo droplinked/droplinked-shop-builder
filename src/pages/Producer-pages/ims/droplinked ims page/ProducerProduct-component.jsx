@@ -5,7 +5,7 @@ export default function ProducerProduct({  title, imageUrl, id , shopname}){
 
     return (
         <div className="Lproduct-component-wrapper">
-            <Link to={`/producer/Merch/${id}`}>
+            <Link to={`/producer/merch/${id}`}>
                 <div className="product-image-st">
                     <div className="ratio ratio-1x1">
                         <img className='main-image' src={imageUrl} />

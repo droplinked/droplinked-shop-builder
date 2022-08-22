@@ -5,7 +5,7 @@ import { toastValue } from "../../../context/toastify/ToastContext"
 import { resetPassword } from "../../../api/base-user/Auth-api"
 
 import ModalContainer from "../modal-container/modal-container"
-import closePng from "../../../assest/feature/home page images/Close.png"
+import closePng from "../../../assest/icon/Close.png"
 import BasicButton from "../../shared/BasicButton/BasicButton"
 import FormInput from "../../shared/FormInput/FormInput"
 

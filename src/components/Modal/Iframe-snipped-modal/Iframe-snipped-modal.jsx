@@ -1,4 +1,5 @@
 //  use this component for show collection iframe code  in snipped modal 
+//  or collection Api url 
 import { Flex, Code, Box } from "@chakra-ui/react"
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useState } from "react"
@@ -8,16 +9,18 @@ import ModalContainer from "../modal-container/modal-container"
 
 const IframeSnipped = ({ link, code, close }) => {
 
+    // use this state for switch between api and iframe component
     const [showType, setShowType] = useState("IFRAME")
 
     const { successToast } = useToasty()
 
+    // this function set code to clipboard
     const embed = () => {
-        if(showType == "IFRAME"){
+        if (showType == "IFRAME") {
             navigator.clipboard.writeText(code).then(function () {
                 successToast('Copying to clipboard was successful!');
             });
-        }else{
+        } else {
             navigator.clipboard.writeText(link).then(function () {
                 successToast('Copying to clipboard was successful!');
             });
@@ -27,6 +30,7 @@ const IframeSnipped = ({ link, code, close }) => {
 
     return (
         <ModalContainer close={close}>
+            {/* top buttons */}
             <Flex
                 justifyContent='space-between'
                 w='100%'
@@ -59,6 +63,8 @@ const IframeSnipped = ({ link, code, close }) => {
                 >Via iframe</Box>
 
             </Flex>
+            {/* top buttons */}
+            {/* component for show content (ifrmae of url) */}
             {(showType == "IFRAME")
                 ?
                 <Code
@@ -84,7 +90,9 @@ const IframeSnipped = ({ link, code, close }) => {
                     p='5px'
                 >{link}</Box>
             }
+            {/* component for show content (ifrmae of url) */}
 
+            {/* botom buttons */}
             <Flex
                 mt='20px'
                 mb={{ base: '-40px', md: '-20px' }}
@@ -95,6 +103,7 @@ const IframeSnipped = ({ link, code, close }) => {
                 <Box w={{ base: '100px', md: '150px' }}><BasicButton bgColor='#4A4A4A' fontSize={{ base: '14px', md: "16px" }} click={close}>Cancel</BasicButton></Box>
                 <Box w={{ base: '100px', md: '150px' }}><BasicButton fontSize={{ base: '14px', md: "16px" }} click={embed} >Click to copy</BasicButton></Box>
             </Flex>
+            {/* botom buttons */}
         </ModalContainer>
     )
 }
