@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+@keyframes nftGalleryImageAnimation {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+
 .gallery-wrapper {
   margin-top: 60px;
   width: 100%;
@@ -20,6 +26,8 @@
   max-height: 410px;
   border-radius: 16px;
   overflow: hidden;
+  animation-name: nftGalleryImageAnimation;
+  animation-duration: 1s;
 }
 
 .gallery-btn {
