@@ -18,6 +18,8 @@ export const IconWrapper = chakra("div", {
     display: "flex",
     w: "50px",
     h: "50px",
+    minW:'50px',
+    minH:'50px',
     bgColor: "black",
     borderRadius: "10px",
     justifyContent: "space-between",

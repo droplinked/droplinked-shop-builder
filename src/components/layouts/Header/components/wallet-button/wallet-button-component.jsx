@@ -1,5 +1,5 @@
 //import { UseWalletInfo } from "../../../../../context/wallet/WalletContext";
-import { Image } from "@chakra-ui/react";
+import { Image , Box } from "@chakra-ui/react";
 import { authenticateByWallet } from "../../../../../services/wallet-auth/auth";
 import { useState, useEffect } from "react";
 import { signInViaWallet } from "../../../../../api/base-user/Auth-api";
@@ -61,7 +61,7 @@ export default function WalletButton() {
         />
         Connect wallet
       </HeaderItem>
-      {walletModal && <WalletModal close={()=>setWalletModal(false)} /> }
+      {walletModal &&<WalletModal close={()=>setWalletModal(false)} /> }
       {/* <WalletModal /> */}
     </>
   );
