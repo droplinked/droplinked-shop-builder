@@ -8,6 +8,7 @@ import { useToasty } from "../../../../../context/toastify/ToastContext";
 
 import HeaderItem from "../header-button/Header-btn-component";
 import headerWalletIcon from "../../../../../assest/icon/headerWalletIcon.svg";
+import WalletModal from "./wallet-modal";
 //import activeWalletIcon from "../../../../../assest/icon/pink-wallet.png";
 
 export default function WalletButton() {
@@ -38,20 +39,23 @@ export default function WalletButton() {
   };
 
   return (
-    <HeaderItem
-      //  click={(userData == undefined) ? authenticate : onSignOut}
-      //color={userData == undefined ? "#fff" : "#8053ff"}
-      color="#fff"
-      click={signIn}
-    >
-      <Image
-        w={{ base: "15px", md: "25px" }}
-        h={{ base: "15px", md: "25px" }}
-        mr="5px"
-        src={headerWalletIcon}
-        // src={userData == undefined ? headerWalletIcon : activeWalletIcon}
-      />
-      Connect wallet
-    </HeaderItem>
+    <>
+      <HeaderItem
+        //  click={(userData == undefined) ? authenticate : onSignOut}
+        //color={userData == undefined ? "#fff" : "#8053ff"}
+        color="#fff"
+        click={signIn}
+      >
+        <Image
+          w={{ base: "15px", md: "25px" }}
+          h={{ base: "15px", md: "25px" }}
+          mr="5px"
+          src={headerWalletIcon}
+          // src={userData == undefined ? headerWalletIcon : activeWalletIcon}
+        />
+        Connect wallet
+      </HeaderItem>
+      {/* <WalletModal /> */}
+    </>
   );
 }
