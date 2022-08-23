@@ -54,14 +54,14 @@ export default function DroplinkedImsPage({ products }) {
         ref={fileRef}
         onChange={uploadFile}
       />
-      <div style={{ margin: "20px 0px" }}>
+      <div style={{ margin: "10px 0px 20px 0px" }}>
         <div
           className="Import-item-button"
           onClick={() => {
             fileRef.current.click();
           }}
         >
-          Import item
+          Import via JSON
         </div>
       </div>
       <div style={{ margin: "25px 0xp" }}>
