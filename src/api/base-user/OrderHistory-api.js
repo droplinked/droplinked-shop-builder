@@ -34,7 +34,7 @@ export const CanselOrder = async (orderId) => {
   const token = JSON.parse(localStorage.getItem("token"));
 
   try {
-    const res = await axios.post(`${BASE_URL}/order/${orderId}/cancel-payment`, {
+    const res = await axios.post(`${BASE_URL}/order/${orderId}/cancel-payment`,{}, {
       headers: { Authorization: "Bearer " + token },
     });
     return true;
