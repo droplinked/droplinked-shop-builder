@@ -2,7 +2,7 @@ import {  useElements, useStripe, PaymentElement } from '@stripe/react-stripe-js
 import { useState } from 'react';
 import { useCart } from "../../../../context/cart/CartContext"
 import { Flex } from '@chakra-ui/react';
-
+import { useToasty } from "../../../../context/toastify/ToastContext"
 import ModalContainer from "../../../../components/Modal/modal-container/modal-container"
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import Timer from "./time-component"
@@ -10,6 +10,7 @@ import Timer from "./time-component"
 const StripeComponent = ({cancel}) => {
 
     const [loading , setLoading] = useState(false)
+    const { errorToast } = useToasty()
 
     const { updateCart } = useCart()
 
@@ -38,7 +39,7 @@ const StripeComponent = ({cancel}) => {
         if (result.error) {
             setLoading(false)
             // Show error to your customer (for example, payment details incomplete)
-            console.log(result.error.message);
+            errorToast(result.error.message);
         } else {
             setLoading(false)
            // console.log(result.data);
