@@ -59,8 +59,14 @@ function GalleryCarousel() {
       </div>
       {/* gallery wrap */}
 
+      {/* description */}
+      <div className="row d-flex justify-content-center w-100">
+        <div className='col-12 col-sm-8 nft-gallery-description'>9216 NFTs on Bitcoin with Stacks, made by Grace.btc, inspired by sci-fi, anime, and crypto culture.</div>
+      </div>
+      {/* description */}
+
       {/* bottom line for circle */}
-      <div className="row d-flex justify-content-center gr">
+      {/* <div className="row d-flex justify-content-center gr">
         <div
           className=" col-4 d-flex justify-content-center align-item-center"
           style={{ height: "50px" }}
@@ -82,7 +88,7 @@ function GalleryCarousel() {
             <img src={rightBtn} alt="" onClick={nextImg} />
           </div>
         </div>
-      </div>
+      </div> */}
       {/* bottom line for circle */}
     </>
   );
