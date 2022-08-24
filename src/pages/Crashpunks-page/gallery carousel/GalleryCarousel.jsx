@@ -1,6 +1,6 @@
 import "./GalleryCarousel.scss";
-import rightBtn from "../../../assest/image/component assest/gallery btn/right.png";
-import leftBtn from "../../../assest/image/component assest/gallery btn/left.png";
+// import rightBtn from "../../../assest/image/component assest/gallery btn/right.png";
+// import leftBtn from "../../../assest/image/component assest/gallery btn/left.png";
 import img1 from "./hardcode-image/1.png";
 import img2 from "./hardcode-image/2.png";
 import img3 from "./hardcode-image/3.png";
@@ -8,7 +8,7 @@ import img4 from "./hardcode-image/4.png";
 import img5 from "./hardcode-image/5.png";
 import img6 from "./hardcode-image/6.png";
 import { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 function GalleryCarousel() {
   const [imageNumber, setImageNumber] = useState(0);
@@ -25,15 +25,15 @@ function GalleryCarousel() {
      return () => clearTimeout(timeout);
   },);
 
-  const nextImg = () => {
-    if (imageNumber >= 4) setImageNumber(0);
-    else setImageNumber((p) => p + 1);
-  };
+  // const nextImg = () => {
+  //   if (imageNumber >= 4) setImageNumber(0);
+  //   else setImageNumber((p) => p + 1);
+  // };
 
-  const backImg = () => {
-    if (imageNumber == 0) setImageNumber(4);
-    else setImageNumber((p) => p - 1);
-  };
+  // const backImg = () => {
+  //   if (imageNumber == 0) setImageNumber(4);
+  //   else setImageNumber((p) => p - 1);
+  // };
 
   return (
     <>
@@ -59,8 +59,14 @@ function GalleryCarousel() {
       </div>
       {/* gallery wrap */}
 
+      {/* description */}
+      <div className="row d-flex justify-content-center w-100">
+        <div className='col-12 col-sm-8 nft-gallery-description'>9216 NFTs on Bitcoin with Stacks, made by Grace.btc, inspired by sci-fi, anime, and crypto culture.</div>
+      </div>
+      {/* description */}
+
       {/* bottom line for circle */}
-      <div className="row d-flex justify-content-center gr">
+      {/* <div className="row d-flex justify-content-center gr">
         <div
           className=" col-4 d-flex justify-content-center align-item-center"
           style={{ height: "50px" }}
@@ -82,7 +88,7 @@ function GalleryCarousel() {
             <img src={rightBtn} alt="" onClick={nextImg} />
           </div>
         </div>
-      </div>
+      </div> */}
       {/* bottom line for circle */}
     </>
   );
