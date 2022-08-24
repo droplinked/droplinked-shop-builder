@@ -169,8 +169,8 @@ export default function AddressForm({ type, addressBook, close }) {
                 />
                 <FormInput
                     mb='30px'
-                    label={"Address line 2 ( building of unit #)"}
-                    placeholder={"Address line 2 ( building of unit #)"}
+                    label={"Address line 2 ( building or unit #)"}
+                    placeholder={"Address line 2 ( building or unit #)"}
                     value={line2}
                     changeValue={ChangeLine2}
                 />
