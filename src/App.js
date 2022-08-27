@@ -3,6 +3,7 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
+import Crashpunks2 from  "./pages/test/crashpunks2"
 import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderProvider from "./context/order/OrdersContext";
 import LoadingPage from "./pages/loading/Loading-page";
@@ -139,6 +140,7 @@ function App() {
               <Route path="checkout" element={<CheckoutPage />} />
               <Route path="/address" element={<AddressPage />} />
               <Route path="/payment" element={<PaymentPage />} />
+              <Route path="/crashpunks2" element={<Crashpunks2 />} />
               {/* <Route path="/crashpunks" element={<CreatorPage />} /> */}
               <Route path="/product/:id" element={<BuyProduct />} />
               <Route path="/creatorpage" element={<Creator />} />
