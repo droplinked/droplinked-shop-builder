@@ -7,7 +7,7 @@ import Crashpunks2 from  "./pages/test/crashpunks2"
 import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderProvider from "./context/order/OrdersContext";
 import LoadingPage from "./pages/loading/Loading-page";
-
+import TestProduct from "./pages/test/test-product"
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/landing/Landing-page"));
 const TermsPage = lazy(() => import("./pages/terms/Terms-page"));
@@ -141,6 +141,7 @@ function App() {
               <Route path="/address" element={<AddressPage />} />
               <Route path="/payment" element={<PaymentPage />} />
               <Route path="/crashpunks2" element={<Crashpunks2 />} />
+              <Route path="/TestProduct" element={<TestProduct />} />
               {/* <Route path="/crashpunks" element={<CreatorPage />} /> */}
               <Route path="/product/:id" element={<BuyProduct />} />
               <Route path="/creatorpage" element={<Creator />} />
