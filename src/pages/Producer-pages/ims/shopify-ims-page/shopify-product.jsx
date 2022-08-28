@@ -8,7 +8,7 @@ const ShopifyProduct = ({product_listing}) => {
     console.log(product_listing);
 
     return ( <Box w="100%" m="0px 0px 10px 0px" p="5px">
-    <Link to={`/bedishop/merch/62fa03a08d68b7240b2c5a94`}>
+    <Link to={`/testshopifymerchview`}>
       <Box
         w="100%"
         h="auto"
