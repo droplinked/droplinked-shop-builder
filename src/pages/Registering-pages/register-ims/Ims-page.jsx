@@ -49,7 +49,7 @@ export default function RegisterIms() {
                     <button className={`ims-btn ${(ImsSystem == "DROPLINKED") ? "ims-checked-btn" : "ims-unchecked-btn"}`}
                         onClick={() => { setImsSystem("DROPLINKED") }}
                     >DIMST</button>
-                    <button disabled={true} className={`ims-btn ${(ImsSystem == "SHOPIFY") ? "ims-checked-btn" : "ims-unchecked-btn"}`}
+                    <button  className={`ims-btn ${(ImsSystem == "SHOPIFY") ? "ims-checked-btn" : "ims-unchecked-btn"}`}
                         onClick={() => { setImsSystem("SHOPIFY") }}>Shopify</button>
                 </div>
                 <div className="d-flex justify-content-between w-100 mt-5">

@@ -8,7 +8,7 @@ import { getShop } from "../../../api/base-user/Profile-api"
 
 import Loading from "../../../components/shared/loading/Loading"
 import DroplinkedImsPage from "./droplinked ims page/droplink-ims-page"
-
+import ShopImsPage from "./shopify-ims-page/shopify-ims-page"
 
 function InventoryPage() {
 
@@ -43,7 +43,7 @@ function InventoryPage() {
                         ?
                         < DroplinkedImsPage products={products} />
                         :
-                        <></>
+                        <ShopImsPage />
                     }
                 </>
                 :
