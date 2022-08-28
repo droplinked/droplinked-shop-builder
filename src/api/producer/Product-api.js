@@ -2,8 +2,6 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-
-
 export const getProducts = async () => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
@@ -82,7 +80,6 @@ export const updateMerch = async (id, merch) => {
   }
 };
 
-
 export const deleteMerch = async (id) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
@@ -95,13 +92,28 @@ export const deleteMerch = async (id) => {
   }
 };
 
-
 export const updateSku = async (id, sku) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.put(`${BASE_URL}/producer/product/sku/${id}`, sku, {
       headers: { Authorization: "Bearer " + token },
     });
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
+
+export const importShopifyProducts = async (shopDomain) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/producer/product/import`,
+      { shop_domain: shopDomain },
+      {
+        headers: { Authorization: "Bearer " + token },
+      }
+    );
     return true;
   } catch (err) {
     return err.response.data.reason;

@@ -8,9 +8,10 @@ import {
   Box
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { importShopifyProducts ,getProducts } from "../../../../api/producer/Product-api"
+import { useToasty } from "../../../../context/toastify/ToastContext"
 
 import ShopifyProduct from "./shopify-product"
-import axios from "axios";
 
 const ShopImsPage = () => {
   const [products, setProducts] = useState(null);
@@ -18,23 +19,30 @@ const ShopImsPage = () => {
   const [loading, setLoadig] = useState(false);
   // shop_domain: "crashpunks-gear.myshopify.com",
 
-  const importDomain = () => {
-    setLoadig(true);
-    axios
-      .post(
-        "https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search",
-        {
-          page: 1,
-          shop_domain: domain,
-          keyword: "",
-        }
-      )
-      .then((response) => {
-        let x = response.data.shopify.map((item) => item);
-        setProducts(x);
-        setLoadig(false);
-      });
+  const { successToast, errorToast } = useToasty()
+
+  const importDomain = async() => {
+    setLoadig(true)
+    let result = await importShopifyProducts(domain)
+    if(result == true){
+      successToast("Products added into the IMS")
+      updateProducts()
+    }else{
+      errorToast(result)
+    }
+    setLoadig(false)
   };
+
+  console.log(products);
+
+ const updateProducts = async() => {
+  let result = await getProducts()
+  if(result){
+    setProducts(result)
+  }else{
+    errorToast("error")
+  }
+ }
 
 
   return (
@@ -77,11 +85,11 @@ const ShopImsPage = () => {
       )
     :
     <Flex w='100%' flexWrap='wrap'>
-    {products.map(product => 
+     {products.map(product => 
      <Box w={{base:"100%" , sm:'50%' , md:'33%' ,lg:'25%'}}>
-    <ShopifyProduct product_listing={product.product_listing}/>
+    <ShopifyProduct product_listing={product.shopifyData}/>
     </Box>
-    )} 
+    )}  
     </Flex>
     }
       {/* xxxx */}
