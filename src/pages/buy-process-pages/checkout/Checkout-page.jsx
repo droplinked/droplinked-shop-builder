@@ -7,6 +7,7 @@ import { useCart } from "../../../context/cart/CartContext"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import CheckoutShopItem from "./CheckoutShopItem"
 import Loading from "../../../components/shared/loading/Loading"
+import ShopifyCheckoutItem from "./Shopify-checkout-item"
 
 function CheckoutPage() {
 
@@ -15,48 +16,55 @@ function CheckoutPage() {
 	const { cart } = useCart();
 	let navigate = useNavigate();
 
-
+console.log(cart);
 	// get shops of items
-	const getshops = () => {
-		// get all shops in cart
-		let shopArray = cart.items.map(item => item.shopName)
-		// make unique array for shops
-		let shops = [...new Set(shopArray)];
-		return shops
-	}
+	// const getshops = () => {
+	// 	// get all shops in cart
+	// 	let shopArray = cart.items.map(item => item.shopName)
+	// 	// make unique array for shops
+	// 	let shops = [...new Set(shopArray)];
+	// 	return shops
+	// }
 
 
-	//get total price of all items
 	const getTotalPrice = () => {
-		// get total of each shop + 5 (shipping)
-		let total = cartBaseShop.map(shop => { return (parseFloat(shop.total) + 5) })
-		total = total.reduce((a, b) => a + b, 0)
+		let total = 0;
+		cart.forEach(item => total+= (parseFloat(item.variant.price) * item.amount))
 		return total
 	}
 
+	//get total price of all items
+	// const getTotalPrice = () => {
+	// 	// get total of each shop + 5 (shipping)
+	// 	let total = cartBaseShop.map(shop => { return (parseFloat(shop.total) + 5) })
+	// 	total = total.reduce((a, b) => a + b, 0)
+	// 	return total
+	// }
+
 	// build new cart based shop name 
-	useEffect(() => {
-		if (cart != null) {
-			let newCart = []
-			// get array of shop names  without  repeat
-			let shops = getshops()
-			//map over shop name
-			shops.map(shopname => {
-				let totalPrice = 0;
-				let items = []
-				// get items and totalprice of each shop
-				cart.items.forEach(item => {
-					if (item.shopName == shopname) {
-						items.push(item)
-						totalPrice += item.totalPrice
-					}
-				})
-				// new cart base on shop: {shopname:'' , items:[] , totalprice:number , shipping:5}
-				newCart.push({ shopName: shopname, items: items, total: totalPrice, shipping: 5 })
-			})
-			setCart(newCart)
-		}
-	}, [cart])
+	// useEffect(() => {
+	// 	if (cart != null) {
+	// 		let newCart = []
+	// 		// get array of shop names  without  repeat
+	// 		let shops = getshops()
+	// 		//map over shop name
+	// 		shops.map(shopname => {
+	// 			let totalPrice = 0;
+	// 			let items = []
+	// 			// get items and totalprice of each shop
+	// 			cart.items.forEach(item => {
+	// 				if (item.shopName == shopname) {
+	// 					items.push(item)
+	// 					totalPrice += item.totalPrice
+	// 				}
+	// 			})
+	// 			// new cart base on shop: {shopname:'' , items:[] , totalprice:number , shipping:5}
+	// 			newCart.push({ shopName: shopname, items: items, total: totalPrice, shipping: 5 })
+	// 		})
+	// 		setCart(newCart)
+	// 	}
+	// }, [cart])
+
 
 
 
@@ -73,7 +81,7 @@ function CheckoutPage() {
 				<Loading />
 				:
 				<>
-					{(cart.items.length == 0)
+					{(cart.length == 0)
 						?
 						<Text
 							fontSize={{ base: "20px", md: "24px" }}
@@ -94,14 +102,15 @@ function CheckoutPage() {
 								Checkout
 							</Text>
 
-							{(cartBaseShop.length > 0) &&
+							{/* {(cartBaseShop.length > 0) &&
 								<>
 									{cartBaseShop.map((shop, i) => {
 										return <CheckoutShopItem key={i} shopItem={shop} />
 									})
 									}
 								</>
-							}
+							} */}
+							 {cart.map((item , i) => <ShopifyCheckoutItem product={item.product} variant={item.variant} amount={item.amount} />)} 
 
 							<Flex
 								w="100%"
@@ -116,7 +125,8 @@ function CheckoutPage() {
 										fontSize={{ base: "18px", md: "22px" }}
 										fontWeight="600"
 									>
-										Total price: ${getTotalPrice().toFixed(2)}
+										{/* Total price: ${getTotalPrice().toFixed(2)} */}
+										 Total price: ${getTotalPrice().toFixed(2)} 
 									</Text>
 									<Text
 										color="#fff"
