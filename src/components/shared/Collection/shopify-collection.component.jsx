@@ -1,11 +1,12 @@
 import { Flex, Text, Box, AspectRatio, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-const ShopifyCollection = ({ product }) => {
+import Product from "../Product/Product";
+const ShopifyCollection = ({ product,id , shopname }) => {
   console.log(product);
 
   return (
     <Box w="100%" m="0px 0px 10px 0px" p="5px">
-      <Link to={`/bedishop/merch/62fa03a08d68b7240b2c5a94`}>
+      <Link to={`/${shopname}/merch/${id}`}>
         <Box
           w="100%"
           h="auto"
@@ -20,7 +21,7 @@ const ShopifyCollection = ({ product }) => {
             <Image
               w="100%"
               h="100%"
-              src={product.product_listing.images[0].src}
+              src={product.images[0].src}
               _hover={{
                 opacity: "0.6",
                 transform: "scale(1.2)",
@@ -37,7 +38,7 @@ const ShopifyCollection = ({ product }) => {
           overflow="hidden"
           textOverflow="ellipsis"
         >
-          {product.product_listing.title}
+          {product.title}
         </Text>
       </Link>
     </Box>

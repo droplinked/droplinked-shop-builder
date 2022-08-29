@@ -101,7 +101,7 @@ export default function Collection({ collection, shopname, type }) {
               {collection.products.map((product, i) => {
                 return (
                   <Box key={i} w={{ base: "50%", md: "25%" }} p="3px">
-                    <ShopifyCollection key={i} product={product} />
+                    <ShopifyCollection key={i} product={product.shopifyData} id={product._id} shopname={shopname} />
                   </Box>
                 );
               })}

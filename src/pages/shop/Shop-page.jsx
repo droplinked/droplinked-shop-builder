@@ -6,10 +6,12 @@ import { getShopInfoByShopname } from "../../api/public/Shop-api";
 import { getCollectionsByShopname } from "../../api/public/Collection-api";
 
 import Loading from "../../components/shared/loading/Loading";
-import Collection from "../../components/shared/Collection/collection-component";
+
 import TopSection from "../../components/shared/TopSection/TopSection";
 import ProfileTopSection from "../Crashpunks-page/crashpunks top section/ProfileTopSection";
 import GalleryCarousel from "../Crashpunks-page/gallery carousel/GalleryCarousel";
+import ShopifyCollection from "./Shopify-collection";
+import DroplinkedCollectin from "./Droplinked-collection";
 
 export default function ShopPage() {
   // state for shop information
@@ -82,17 +84,12 @@ export default function ShopPage() {
             {checkCollectionState() ? (
               // if exist any product show collections that have product
               <>
-                {collection.collections.map((coll, i) => {
-                  // show collection if it have any product
-                  if (coll.products.length > 0)
-                    return (
-                      <Collection
-                        key={i}
-                        collection={coll}
-                        shopname={shopname}
-                      />
-                    );
-                })}
+                {shopData.imsType == "SHOPIFY" ? (
+                  <ShopifyCollection collection={collection} shopname={shopname}/>
+                ) : (
+                  <DroplinkedCollectin collection={collection} shopname={shopname}/>
+                )}
+                
               </>
             ) : (
               <p className="no-collection-text">No collections listed yet!</p>
