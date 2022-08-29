@@ -5,14 +5,17 @@ import {
   updateCheckout,
 } from "../../../api/base-user/Shopify-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../../components/shared/loading/Loading";
 import ShippingComponent from "./Shipping-component";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 const ShippingPage = () => {
+
   const [shippings, setShippings] = useState(null);
   const [selectedShipping, setSelectedShipping] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  let navigate = useNavigate();
   const { successToast, errorToast } = useToasty();
   const checkoutObj = JSON.parse(localStorage.getItem("checkout_id"));
   useEffect(() => {
@@ -37,15 +40,15 @@ const ShippingPage = () => {
     setLoading(true)
     let result = await updateCheckout(checkoutObj.shopName , checkoutObj.checkoutId,selectedShipping.handle) 
     if(result.status == 'success'){
-        console.log(result);
+      navigate("/card")
+     // successToast("");
     }else{
-        console.log(result);
+     //   console.log(result);
     }
 
     setLoading(false)
   };
 
-  console.log(selectedShipping);
 
   return (
     <Flex
