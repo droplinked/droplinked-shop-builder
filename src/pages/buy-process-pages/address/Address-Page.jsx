@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../context/toastify/ToastContext"
 import { useAddress } from "../../../context/address/AddressContext"
 import { addCheckoutAddress } from "../../../api/base-user/Cart-api"
+import { createCheckout } from "../../../api/producer/Shopify-api"
+import { useCart } from "../../../context/cart/CartContext"
 
 import AddressComponent from "../../../components/shared/Address/address-component"
 import Loading from "../../../components/shared/loading/Loading"
@@ -23,8 +25,7 @@ function AddressPage() {
 
 	const { errorToast, successToast } = useToasty();
 	const { addressList } = useAddress()
-
-
+	const { cart } = useCart();
 
 
 	const toggleAddressForm = () => {
@@ -32,20 +33,65 @@ function AddressPage() {
 	}
 
 
+	// const ProccessToPayment = async () => {
+	// 	if (selectedAddress == null) {
+	// 		errorToast("Please choose an address")
+	// 		return
+	// 	}
+	// 	setLoading(true)
+	// 	let result = await addCheckoutAddress(selectedAddress)
+	// 	setLoading(false)
+	// 	if (result == true) {
+	// 		successToast("Address successfully added")
+	// 		navigate('/payment')
+	// 	} else {
+	// 		errorToast(result)
+	// 	}
+	// }
+
+
 	const ProccessToPayment = async () => {
 		if (selectedAddress == null) {
 			errorToast("Please choose an address")
 			return
 		}
-		setLoading(true)
-		let result = await addCheckoutAddress(selectedAddress)
-		setLoading(false)
-		if (result == true) {
-			successToast("Address successfully added")
-			navigate('/payment')
-		} else {
-			errorToast(result)
+		
+
+		let addressObj = {
+			first_name: selectedAddress.firstname,
+			last_name: selectedAddress.lastname,
+			country: selectedAddress.country,
+			province: "3",
+			city: selectedAddress.city,
+			address1: selectedAddress.addressLine1,
+			address2: selectedAddress.addressLine2,
+			zip: selectedAddress.zip,
+			phone: ""
 		}
+		let itemsArray = cart.map(item => {return {variant_id: item.variant.id , quantity:item.amount}})
+		let data = {
+				checkout:{
+					billing_address:addressObj,
+					shipping_address:addressObj,
+					line_items:itemsArray,
+					email:"bedi.mns@gmail.com"
+				}
+		}
+		setLoading(true)
+		let result = await createCheckout(cart[0].shopName , data)
+		setLoading(false)
+		if(result.status == "success"){
+			let checkoutId = {
+				checkoutId: result.data.checkout.token,
+				shopName:cart[0].shopName
+			}
+			localStorage.setItem('checkout_id', JSON.stringify(checkoutId))
+			successToast("Address successfully added")
+			navigate('/shipping')
+		}else{
+			errorToast(result.reason);
+		}
+		setLoading(false)
 	}
 
 
