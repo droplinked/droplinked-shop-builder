@@ -1,0 +1,51 @@
+import axios from "axios";
+
+import { BASE_URL } from "../BaseUrl";
+
+export const getShippingRate = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const checkoutObj = JSON.parse(localStorage.getItem("checkout_id"));
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/producer/shopify/checkout/getshippingrates`,
+      {
+        shopName: checkoutObj.shopName,
+        checkoutId: checkoutObj.checkoutId,
+      },
+      {
+        headers: { Authorization: "Bearer " + token },
+      }
+    );
+    return res.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};
+
+export const updateCheckout = async (shopname, checkoutId, handle) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  // const checkoutObj = JSON.parse(localStorage.getItem("checkout_id"));
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/producer/shopify/checkout/update`,
+      {
+        shopName: shopname,
+        checkoutId: checkoutId,
+        checkoutItem: {
+          checkout: {
+            token: checkoutId,
+            shipping_line: {
+              handle: handle,
+            },
+          },
+        },
+      },
+      {
+        headers: { Authorization: "Bearer " + token },
+      }
+    );
+    return res.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};
