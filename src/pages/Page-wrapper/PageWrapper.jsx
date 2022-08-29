@@ -35,7 +35,7 @@ export default function PageWrapper() {
 
         let token = JSON.parse(localStorage.getItem("token"));
         if (token != null || token != undefined) {
-            if (isCustomer()) updateCart();
+           // if (isCustomer()) updateCart();
             if (!isCustomer()) updateShop();
             updateAddressList()
             updateNotifications()
