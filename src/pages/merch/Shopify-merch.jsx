@@ -2,6 +2,7 @@ import { Flex, Box, Text, Image } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useCart } from "../../context/cart/CartContext";
 import { useToasty } from "../../context/toastify/ToastContext"
+import { useProfile } from "../../context/profile/ProfileContext"
 import axios from "axios";
 import Loading from "../../components/shared/loading/Loading";
 import Carousel from "../../components/shared/Carousel/Carousel-component";
@@ -19,8 +20,8 @@ const ShopifyMech = ({ product , shopdomain }) => {
   const [quantity, setQuantity] = useState(1);
 
   const { addShopifyItemToCart } = useCart();
-  const { successToast } = useToasty();
-  console.log(product);
+  const { successToast , errorToast} = useToasty();
+  const { profile } = useProfile();
 
   let images = product.images.map((img) => {
     return { url: img.src };
@@ -35,6 +36,11 @@ const ShopifyMech = ({ product , shopdomain }) => {
   }, []);
 
   const addItemToBasket = () => {
+    if (profile == null) {
+      errorToast("Please login")
+      return
+  }
+
     let selectedVar =  product.variants.find(variant => variant.id == selectedOption)
     let itemObject = {
       amount: quantity,
