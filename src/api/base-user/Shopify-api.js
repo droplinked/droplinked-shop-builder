@@ -49,3 +49,24 @@ export const updateCheckout = async (shopname, checkoutId, handle) => {
     return err.response.data;
   }
 };
+
+export const confirmPayment = async (shopname ,checkoutId , customerId , cartId) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/producer/shopify/payment`,
+      {
+        shopName: shopname,
+        checkoutId: checkoutId,
+        customerId: customerId,
+        cardId: cartId,
+      },
+      {
+        headers: { Authorization: "Bearer " + token },
+      }
+    );
+    return true;
+  } catch (err) {
+    return err.response.reason;
+  }
+};

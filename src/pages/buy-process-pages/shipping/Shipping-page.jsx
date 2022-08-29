@@ -40,10 +40,15 @@ const ShippingPage = () => {
     setLoading(true)
     let result = await updateCheckout(checkoutObj.shopName , checkoutObj.checkoutId,selectedShipping.handle) 
     if(result.status == 'success'){
+
+      localStorage.setItem('customer-id', JSON.stringify({customerId : result.data.checkout.customer_id}))
+      localStorage.setItem('shippingPrice', JSON.stringify({shippingPrice : result.data.checkout.shipping_rate.price}))
       navigate("/card")
+      setLoading(false)
+    
      // successToast("");
     }else{
-     //   console.log(result);
+        console.log(result);
     }
 
     setLoading(false)
