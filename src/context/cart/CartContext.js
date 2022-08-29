@@ -26,8 +26,24 @@ const CartProvider = ({ children }) => {
       });
   };
 
+
+  const addShopifyItemToCart = (item) => {
+    if(cart== null || cart.length == 0){
+      let currentItems = []
+      currentItems.push(item)
+      setCart(currentItems)
+      localStorage.setItem('cart', JSON.stringify(currentItems))
+    }else{
+      let currentItems = new Array(cart);
+      currentItems.push(item)
+      setCart(currentItems)
+      localStorage.setItem('cart', JSON.stringify(currentItems))
+    }
+  }
+
   const contextValues = {
     updateCart,
+    addShopifyItemToCart,
     cart,
   };
 
