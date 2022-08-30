@@ -7,7 +7,7 @@ export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   // state for cart 
-  const [cart, setCart] = useState(null);
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || null);
 
   //update cartstate
   const updateCart = () => {
@@ -34,8 +34,24 @@ const CartProvider = ({ children }) => {
       setCart(currentItems)
       localStorage.setItem('cart', JSON.stringify(currentItems))
     }else{
-      let currentItems = new Array(cart);
-      currentItems.push(item)
+      let currentItems =[]
+      if(item.shopName != cart[0].shopName){
+        currentItems.push(item)
+      }else{
+        for(let it of cart) currentItems.push(it)
+        let find = currentItems.find(current => current.variant.id == item.variant.id)
+        if(find == undefined){
+          currentItems.push(item)
+        }else{
+          currentItems =  currentItems.map(current => {
+            if(current.variant.id == item.variant.id){
+             return {...current , amount:(current.amount+item.amount)}
+            }else{
+              return {...current}
+            }
+          })
+        }
+      }
       setCart(currentItems)
       localStorage.setItem('cart', JSON.stringify(currentItems))
     }
