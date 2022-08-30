@@ -1,7 +1,7 @@
 import { Flex, Text, Box, AspectRatio, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Product from "../Product/Product";
-const ShopifyCollection = ({ product,id , shopname }) => {
+const ShopifyCollection = ({ product, id, shopname }) => {
   console.log(product);
 
   return (
@@ -32,11 +32,12 @@ const ShopifyCollection = ({ product,id , shopname }) => {
         </Box>
         <Text
           fontWeight="500"
-          fontSize={{base:"12px",sm:'14px',md:'16px'}}
+          fontSize={{ base: "12px", sm: "14px", md: "16px" }}
           color="#fff"
           mt="12px"
           overflow="hidden"
           textOverflow="ellipsis"
+          whiteSpace="nowrap"
         >
           {product.title}
         </Text>
