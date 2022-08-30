@@ -8,11 +8,13 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { AiOutlineDelete } from "react-icons/ai";
+import { useCart } from "../../../context/cart/CartContext"
+
 
 const ShopifyCheckoutItem = ({ product, variant, amount }) => {
-  console.log(product);
-  console.log(variant);
-  console.log(amount);
+
+  const { deleteItemFromCart } = useCart()
+
   return (
     <Flex
       w="100%"
@@ -78,7 +80,7 @@ const ShopifyCheckoutItem = ({ product, variant, amount }) => {
             _hover={{ bgColor: "none", borderColor: "#8053ff" }}
             _focus={{ bgColor: "none", borderColor: "#8053ff" }}
             _active={{ bgColor: "none", borderColor: "#8053ff" }}
-           // onClick={deleteMerch}
+           onClick={()=>{deleteItemFromCart(variant.id)}}
            // disabled={disableDeleteBtn}
           />
           <Input

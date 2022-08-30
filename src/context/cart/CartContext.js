@@ -57,9 +57,20 @@ const CartProvider = ({ children }) => {
     }
   }
 
+
+  const deleteItemFromCart = (variantId) => {
+    let currentItems = []
+    currentItems = cart.filter(currentItem => {
+      if(currentItem.variant.id !=variantId) return currentItem
+    })
+    setCart(currentItems)
+    localStorage.setItem('cart', JSON.stringify(currentItems))
+  }
+
   const contextValues = {
     updateCart,
     addShopifyItemToCart,
+    deleteItemFromCart,
     cart,
   };
 

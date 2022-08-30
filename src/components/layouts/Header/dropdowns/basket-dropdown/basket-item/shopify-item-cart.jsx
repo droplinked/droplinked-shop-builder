@@ -1,12 +1,12 @@
 import { Box, Text, Image, Spinner } from "@chakra-ui/react";
 import { useState } from "react"
 import { ReactComponent as CloseIcon } from '../../../../../../assest/icon/xmark.svg';
+import { useCart } from "../../../../../../context/cart/CartContext"
 
 const ShopifyCartItem = ({ product, amount, variant }) => {
     const [loading, setLoading] = useState(false)
-  console.log(product);
-  console.log(amount);
-  console.log(variant);
+    const { deleteItemFromCart } = useCart()
+
   return (
     <Box
       w="100%"
@@ -76,7 +76,7 @@ const ShopifyCartItem = ({ product, amount, variant }) => {
           <Spinner color="#e74c3c" w="100%" h="100%" />
         ) : (
           <CloseIcon
-           // onClick={deleteItem}
+            onClick={()=>{deleteItemFromCart(variant.id)}}
             style={{
               fill: "#e74c3c",
               cursor: "pointer",
