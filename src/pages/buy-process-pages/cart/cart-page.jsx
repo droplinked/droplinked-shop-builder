@@ -1,10 +1,10 @@
 import { Flex, Box, Text } from "@chakra-ui/react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-
+import {STRIPE_KEY } from "../payment/stripe.key"
 import CheckoutForm from "./CheckoutForm";
 
-const stripePromise = loadStripe("pk_live_t7ZN7UCX5c796aGxu65SznV1");
+const stripePromise = loadStripe(STRIPE_KEY.LIVE);
 
 const CartPage = () => {
   return (
