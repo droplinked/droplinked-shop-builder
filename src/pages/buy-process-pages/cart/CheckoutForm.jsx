@@ -1,5 +1,6 @@
-import {useStripe, useElements, CardElement ,Elements} from '@stripe/react-stripe-js';
+import {useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useNavigate } from "react-router-dom";
+import {useToasty} from "../../../context/toastify/ToastContext"
 import CardSection from './CardSection';
 
 
@@ -7,6 +8,7 @@ export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
   let navigate = useNavigate();
+  const { errorToast }  = useToasty()
 
   const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
@@ -24,7 +26,7 @@ export default function CheckoutForm() {
       
     if (result.error) {
       // Show error to your customer.
-      console.log(result.error.message);
+      errorToast(result.error.message);
     } else {
       // Send the token to your server.
       // This function does not exist yet; we will define it in the next step.

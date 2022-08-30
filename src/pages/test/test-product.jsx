@@ -25,7 +25,7 @@ const TestProduct = () => {
         "https://r4qwnd5837.execute-api.us-west-2.amazonaws.com/v1/search",
         {
           page: 1,
-          shop_domain: "crashpunks-gear.myshopify.com",
+          shop_domain: "home-prime.myshopify.com",
           keyword: "",
         }
       )
