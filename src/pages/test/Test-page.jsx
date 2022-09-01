@@ -9,13 +9,16 @@ const Test = () => {
   const [text3, setText3] = useState("");
 
   const click = () => {
-    let x = navigator.userAgent.match(/Android/i);
-    let y = navigator.userAgent.match(/iPhone/i);
-    let n = navigator.userAgent;
-    let txt = x + "<br/>" + y + "<br/>" + n;
-    setText1(x);
-    setText2(y);
-    setText3(n);
+    var userAgent = navigator.userAgent;
+  
+    setText1(userAgent)
+    // let x = navigator.userAgent.match(/Android/i);
+    // let y = navigator.userAgent.match(/iPhone/i);
+    // let n = navigator.userAgent;
+    // let txt = x + "<br/>" + y + "<br/>" + n;
+    // setText1(x);
+    // setText2(y);
+    // setText3(n);
   };
 
   return (
@@ -34,7 +37,7 @@ const Test = () => {
         }}
       >
         <div style={{ color: "white", fontSize: "20px" }}>{text1}</div>
-        <div style={{ color: "white", fontSize: "20px" }}>{text2}</div>
+        {/* <div style={{ color: "white", fontSize: "20px" }}>{text2}</div> */}
         {/* <div style={{ color: "white", fontSize: "20px" }}>{text3}</div> */}
         {/* <div style={{ width: `${width}px`, height: `${height}px`, border: '1px solid #666', display: 'flex', justifyContent: 'center' }}>
 
