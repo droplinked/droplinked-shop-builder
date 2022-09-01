@@ -24,23 +24,7 @@ const Test = () => {
   //   if(browser.userAgentData.mobile)setText1("mobile");
   //   else setText1("Pc");
      
-  //   // setText2(browser.appVersion)
-  //  // setText3(browser.userAgentData.brands[2].brand)
-  //  console.log(browser);
-  //  let brandText = ""
-  //  browser.userAgentData.brands.forEach(br => {
-  //   brandText += br.brand
-  //   brandText += "---"
-  //  })
-  //  setText2(brandText)
-  //  setText3(browser.userAgent)
-    // let x = navigator.userAgent.match(/Android/i);
-    // let y = navigator.userAgent.match(/iPhone/i);
-    // let n = navigator.userAgent;
-    // let txt = x + "<br/>" + y + "<br/>" + n;
-    // setText1(x);
-    // setText2(y);
-    // setText3(n);
+
   };
 
   return (
