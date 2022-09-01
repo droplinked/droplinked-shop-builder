@@ -13,6 +13,8 @@ const Test = () => {
     setText1(browser.appCodeName);
     setText2(browser.appVersion)
     setText3(browser.userAgentData.brands[2].brand)
+    let sdf = "sdf"
+    //
     // let x = navigator.userAgent.match(/Android/i);
     // let y = navigator.userAgent.match(/iPhone/i);
     // let n = navigator.userAgent;
