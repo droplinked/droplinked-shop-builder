@@ -9,34 +9,29 @@ const Test = () => {
   const [text3, setText3] = useState("");
 
   const click = () => {
-    if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
-    {
-        setText1('Opera');
-    }
-    else if(navigator.userAgent.indexOf("Edg") != -1 )
-    {
-        setText1('Edge');
-    }
-    else if(navigator.userAgent.indexOf("Chrome") != -1 )
-    {
-        setText1('Chrome');
-    }
-    else if(navigator.userAgent.indexOf("Safari") != -1)
-    {
-        setText1('Safari');
-    }
-    else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
-    {
-         setText1('Firefox');
-    }
-    else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
-    {
-      setText1('IE'); 
-    }  
-    else 
-    {
-       setText1('unknown');
-    }
+    console.log(appConfig);
+    setText1(appConfig.authenticatorURL)
+  //   var browser = navigator;
+  //   if(browser.userAgentData.mobile)setText1("mobile");
+  //   else setText1("Pc");
+     
+  //   // setText2(browser.appVersion)
+  //  // setText3(browser.userAgentData.brands[2].brand)
+  //  console.log(browser);
+  //  let brandText = ""
+  //  browser.userAgentData.brands.forEach(br => {
+  //   brandText += br.brand
+  //   brandText += "---"
+  //  })
+  //  setText2(brandText)
+  //  setText3(browser.userAgent)
+    // let x = navigator.userAgent.match(/Android/i);
+    // let y = navigator.userAgent.match(/iPhone/i);
+    // let n = navigator.userAgent;
+    // let txt = x + "<br/>" + y + "<br/>" + n;
+    // setText1(x);
+    // setText2(y);
+    // setText3(n);
   };
 
   return (
@@ -54,9 +49,9 @@ const Test = () => {
           flexDirection: "column",
         }}
       >
-         <div style={{ color: "white", fontSize: "20px" }}>browser: {text1}</div>
-        {/* <div style={{ color: "white", fontSize: "20px" }}>brand : {text2}</div> 
-         <div style={{ color: "white", fontSize: "20px" }}>userAgent : {text3}</div>  */}
+         <div style={{ color: "white", fontSize: "20px" }}>device: {text1}</div>
+        <div style={{ color: "white", fontSize: "20px" }}>brand : {text2}</div> 
+         <div style={{ color: "white", fontSize: "20px" }}>userAgent : {text3}</div> 
 
       </div>
     </>
