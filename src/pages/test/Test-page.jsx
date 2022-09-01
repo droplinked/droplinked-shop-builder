@@ -9,9 +9,10 @@ const Test = () => {
   const [text3, setText3] = useState("");
 
   const click = () => {
-    var userAgent = navigator.userAgent;
-  
-    setText1(userAgent)
+    var browser = navigator;
+    setText1(browser.appCodeName);
+    setText2(browser.appVersion)
+    setText3(browser.userAgentData.brands[2].brand)
     // let x = navigator.userAgent.match(/Android/i);
     // let y = navigator.userAgent.match(/iPhone/i);
     // let n = navigator.userAgent;
@@ -37,22 +38,9 @@ const Test = () => {
         }}
       >
         <div style={{ color: "white", fontSize: "20px" }}>{text1}</div>
-        {/* <div style={{ color: "white", fontSize: "20px" }}>{text2}</div> */}
-        {/* <div style={{ color: "white", fontSize: "20px" }}>{text3}</div> */}
-        {/* <div style={{ width: `${width}px`, height: `${height}px`, border: '1px solid #666', display: 'flex', justifyContent: 'center' }}>
+        <div style={{ color: "white", fontSize: "20px" }}>{text2}</div>
+        <div style={{ color: "white", fontSize: "20px" }}>{text3}</div>
 
-                <div style={{ aspectRatio: "1/1", maxWidth: "100%", maxHeight: "100%", border: '1px solid red' }}>
-                    <iframe
-                        style={{ width: '100%', height: "100%", overflow: 'hidden' }}
-                        scrolling="no"
-                        title='product'
-                        src='http://localhost:3000/collection-iframe/mamrez/62a5ed9c6e3cca39a1e79ba2'
-                        allowFullScreeng
-                    />
-                </div>
-
-
-            </div> */}
       </div>
     </>
   );
