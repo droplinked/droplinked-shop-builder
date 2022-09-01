@@ -41,7 +41,7 @@ const ShippingPage = () => {
     let result = await updateCheckout(checkoutObj.shopName , checkoutObj.checkoutId,selectedShipping.handle) 
     if(result.status == 'success'){
 
-      localStorage.setItem('customer-id', JSON.stringify({customerId : result.data.checkout.customer_id}))
+      localStorage.setItem('customer-id', JSON.stringify({customerId : 'cus_LImymG9KktMZdb'}))
       localStorage.setItem('shippingPrice', JSON.stringify({shippingPrice : result.data.checkout.shipping_rate.price}))
       navigate("/card")
       setLoading(false)

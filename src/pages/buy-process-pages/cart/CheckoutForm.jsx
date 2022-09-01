@@ -31,7 +31,10 @@ export default function CheckoutForm() {
       // Send the token to your server.
       // This function does not exist yet; we will define it in the next step.
      // stripeTokenHandler(result.token);
-     localStorage.setItem('cart-id', JSON.stringify({cartId : result.token.id}))
+    //  console.log(card);
+    //  console.log(result);
+    localStorage.setItem('selected-cart', JSON.stringify({selectedCart : result.token.card}))
+      localStorage.setItem('cart-id', JSON.stringify({cartId : result.token.id}))
      navigate('/confirm')
     }
   };
