@@ -10,11 +10,19 @@ const Test = () => {
 
   const click = () => {
     var browser = navigator;
-    setText1(browser.appCodeName);
-    setText2(browser.appVersion)
-    setText3(browser.userAgentData.brands[2].brand)
-    let sdf = "sdf"
-    //
+    if(browser.userAgentData.mobile)setText1("mobile");
+    else setText1("Pc");
+     
+    // setText2(browser.appVersion)
+   // setText3(browser.userAgentData.brands[2].brand)
+   console.log(browser);
+   let brandText = ""
+   browser.userAgentData.brands.forEach(br => {
+    brandText += br.brand
+    brandText += "---"
+   })
+   setText2(brandText)
+   setText3(browser.userAgent)
     // let x = navigator.userAgent.match(/Android/i);
     // let y = navigator.userAgent.match(/iPhone/i);
     // let n = navigator.userAgent;
@@ -39,9 +47,9 @@ const Test = () => {
           flexDirection: "column",
         }}
       >
-        <div style={{ color: "white", fontSize: "20px" }}>{text1}</div>
-        <div style={{ color: "white", fontSize: "20px" }}>{text2}</div>
-        <div style={{ color: "white", fontSize: "20px" }}>{text3}</div>
+         <div style={{ color: "white", fontSize: "20px" }}>device: {text1}</div>
+        <div style={{ color: "white", fontSize: "20px" }}>brand : {text2}</div> 
+         <div style={{ color: "white", fontSize: "20px" }}>userAgent : {text3}</div> 
 
       </div>
     </>
