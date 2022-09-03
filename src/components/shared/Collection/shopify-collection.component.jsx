@@ -21,7 +21,7 @@ const ShopifyCollection = ({ product, id, shopname }) => {
             <Image
               w="100%"
               h="100%"
-              src={product.images[0].src}
+              src={product.images.length > 0  && product.images[0].src}
               _hover={{
                 opacity: "0.6",
                 transform: "scale(1.2)",
