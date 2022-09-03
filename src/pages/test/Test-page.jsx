@@ -1,60 +1,70 @@
-import { useState } from "react";
-
-
-import {
-  showConnect,
-  UserSession,
-  AppConfig,
-  openSignatureRequestPopup,
-} from "@stacks/connect";
-
-
-
-
+import "./test.scss"
+import { AppConfig, showConnect, UserSession } from "@stacks/connect";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
+
 export const userSession = new UserSession({ appConfig });
 
+function authenticate() {
+  showConnect({
+    appDetails: {
+      name: "Stacks React Starter",
+      icon: window.location.origin + "/logo512.png",
+    },
+    redirectTo: "/",
+    onFinish: () => {
+      window.location.reload();
+    },
+    userSession,
+  });
+}
+
+function disconnect() {
+  userSession.signUserOut("/");
+}
+
 const Test = () => {
-  // const [width, setWidth] = useState(400)
-  // const [height, setHeight] = useState(400)
-
-  const [text1, setText1] = useState("");
-  const [text2, setText2] = useState("");
-  const [text3, setText3] = useState("");
-
-  const click = () => {
-    console.log(appConfig);
-    setText1(appConfig.authenticatorURL)
-  //   var browser = navigator;
-  //   if(browser.userAgentData.mobile)setText1("mobile");
-  //   else setText1("Pc");
-     
-
-  };
-
   return (
-    <>
-      {/* <input type="number" value={width} onChange={e => setWidth(e.target.value)} />
-        <input type="number" value={height} onChange={e => setHeight(e.target.value)} /> */}
-      <button onClick={click} style={{ backgroundColor: "white" }}>
-        get
-      </button>
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-         <div style={{ color: "white", fontSize: "20px" }}>device: {text1}</div>
-        {/* <div style={{ color: "white", fontSize: "20px" }}>brand : {text2}</div> 
-         <div style={{ color: "white", fontSize: "20px" }}>userAgent : {text3}</div>  */}
-
+    <div className="test-wrapper">
+      <div className="test-container">
+      {userSession.isUserSignedIn() ? (
+        <div>
+          <button className='test-button' onClick={disconnect}>
+            Disconnect Wallet
+          </button>
+          <p className="test-text">
+            mainnet: {userSession.loadUserData().profile.stxAddress.mainnet}
+          </p>
+          <p className="test-text">
+            testnet: {userSession.loadUserData().profile.stxAddress.testnet}
+          </p>
+        </div>
+      ) : (
+        <button className='test-button' onClick={authenticate}>
+          Connect Wallet
+        </button>
+      )}
       </div>
-    </>
+    </div>
   );
+
+  // if (userSession.isUserSignedIn()) {
+  //   return (
+  //     <div>
+  //       <button className="Connect" onClick={disconnect}>
+  //         Disconnect Wallet
+  //       </button>
+  //       <p>mainnet: {userSession.loadUserData().profile.stxAddress.mainnet}</p>
+  //       <p>testnet: {userSession.loadUserData().profile.stxAddress.testnet}</p>
+  //     </div>
+  //   );
+  // }
+
+  // return (
+  //   <button className="Connect" onClick={authenticate}>
+  //     Connect Wallet
+  //   </button>
+  // );
 };
 
 export default Test;
