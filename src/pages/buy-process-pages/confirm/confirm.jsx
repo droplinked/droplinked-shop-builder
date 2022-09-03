@@ -17,10 +17,8 @@ const ConfirmPage = () => {
 
     const cart =  JSON.parse(localStorage.getItem("cart"));
     const checkoutId =  JSON.parse(localStorage.getItem("checkout_id"));
-    const customerId =  JSON.parse(localStorage.getItem("customer-id"));
-    const cartId =  JSON.parse(localStorage.getItem("cart-id"));
+    const sessionId =  JSON.parse(localStorage.getItem("session_id"));
     const shippingPrice =  JSON.parse(localStorage.getItem("shippingPrice"));
-    const selectedCard = JSON.parse(localStorage.getItem("selected-cart"))
 
 
     const getItemsPrice = () => {
@@ -33,7 +31,7 @@ const ConfirmPage = () => {
     const confirm = async() => {
 
         setLoading(true)
-        let result = await confirmPayment(cart[0].shopName ,checkoutId.checkoutId,customerId.customerId,selectedCard.selectedCart.id)
+        let result = await confirmPayment(cart[0].shopName ,checkoutId.checkoutId,sessionId.sessionId)
         if(result == true){
             successToast("Payment successful")
             navigate('/')

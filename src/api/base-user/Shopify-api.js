@@ -53,8 +53,7 @@ export const updateCheckout = async (shopname, checkoutId, handle) => {
 export const confirmPayment = async (
   shopname,
   checkoutId,
-  customerId,
-  cartId
+  sessionId,
 ) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
@@ -63,8 +62,7 @@ export const confirmPayment = async (
       {
         shopName: shopname,
         checkoutId: checkoutId,
-        customerId: customerId,
-        cardId: cartId,
+        session_id: sessionId,
       },
       {
         headers: { Authorization: "Bearer " + token },
@@ -91,8 +89,9 @@ export const creatShopifySession = async (card) => {
         },
       },
     );
-    return res;
+    return {status: 'success' , data : res.data.id};
   } catch (err) {
-    return err;
+    console.log(err);
+    return {status: 'error' , data : err.response.message};
   }
 };

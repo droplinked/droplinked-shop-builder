@@ -43,7 +43,7 @@ export default function CheckoutForm() {
     
     <form onSubmit={handleSubmit} style={{width:'100%'}}>
       <CardSection />
-      <button disabled={!stripe} className="stripe-cart-component" >Enter card</button>
+      <button className="stripe-cart-component" >Enter card</button>
     </form>
    
   );
