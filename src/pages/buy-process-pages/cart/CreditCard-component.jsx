@@ -68,7 +68,7 @@ export default class CreditCard extends React.Component {
       }
 
       console.log(cardData);
-      let result = creatShopifySession(cardData)
+      let result = await  creatShopifySession(cardData)
       console.log(result);
 
 
