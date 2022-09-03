@@ -50,7 +50,12 @@ export const updateCheckout = async (shopname, checkoutId, handle) => {
   }
 };
 
-export const confirmPayment = async (shopname ,checkoutId , customerId , cartId) => {
+export const confirmPayment = async (
+  shopname,
+  checkoutId,
+  customerId,
+  cartId
+) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.post(
@@ -68,5 +73,26 @@ export const confirmPayment = async (shopname ,checkoutId , customerId , cartId)
     return true;
   } catch (err) {
     return err.response.reason;
+  }
+};
+
+export const creatShopifySession = async (card) => {
+  try {
+    const res = await axios.post(
+      `https://elb.deposit.shopifycs.com/sessions`,
+      {
+        credit_card: {
+          number: card.number,
+          first_name: card.first_name,
+          last_name: card.last_name,
+          month: card.month,
+          year: card.year,
+          verification_value: card.verification_value,
+        },
+      },
+    );
+    return res;
+  } catch (err) {
+    return err;
   }
 };
