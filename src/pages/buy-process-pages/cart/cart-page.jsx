@@ -3,7 +3,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import {STRIPE_KEY } from "../payment/stripe.key"
 import CheckoutForm from "./CheckoutForm";
-
+import CreditCard from "./CreditCard-component"
 const stripePromise = loadStripe(STRIPE_KEY.LIVE);
 
 const CartPage = () => {
@@ -27,9 +27,10 @@ const CartPage = () => {
 
       <Flex w="100%" justifyContent="center" alignContent="center">
         <Box w='100%' maxW='450px' p='10px 20px' border='3px solid #4d4d4d' borderRadius='8px'>
-          <Elements stripe={stripePromise}>
+          {/* <Elements stripe={stripePromise}>
             <CheckoutForm />
-          </Elements>
+          </Elements> */}
+          <CreditCard />
         </Box>
       </Flex>
     </Flex>
