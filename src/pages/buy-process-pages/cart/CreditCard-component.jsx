@@ -8,6 +8,7 @@ import {
   formatFormData,
 } from './creditcard-utils';
 import { creatShopifySession } from "../../../api/base-user/Shopify-api"
+import { useNavigate } from "react-router-dom";
 
 export default class CreditCard extends React.Component {
   state = {
@@ -19,6 +20,7 @@ export default class CreditCard extends React.Component {
     focused: '',
     formData: null,
   };
+  
 
   handleCallback = ({ issuer }, isValid) => {
     if (isValid) {
@@ -45,6 +47,7 @@ export default class CreditCard extends React.Component {
   };
 
   handleSubmit =async  e => {
+   
     e.preventDefault();
     const formData = [...e.target.elements]
       .filter(d => d.name)
@@ -66,13 +69,16 @@ export default class CreditCard extends React.Component {
         year:year,
         verification_value:formData.cvc
       }
-
+     
       console.log(cardData);
       let result = await  creatShopifySession(cardData)
-      console.log(result);
-
-
-
+      if(result.status == 'success'){
+        console.log(result.data);
+        localStorage.setItem('session_id', JSON.stringify({sessionId : result.data}))
+        window.location.href = "/confirm"
+      }else{
+        console.log(result.data);
+      }
     this.setState({ formData });
     this.form.reset();
   };
@@ -149,3 +155,4 @@ export default class CreditCard extends React.Component {
     );
   }
 }
+
