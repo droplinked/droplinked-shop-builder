@@ -55,8 +55,8 @@ export default class CreditCard extends React.Component {
         acc[d.name] = d.value;
         return acc;
       }, {});
-      let firstName = formData.name.substring(0, formData.name.indexOf('/'))
-      let lastName = formData.name.substring(formData.name.indexOf('/') + 1)
+      let firstName = formData.name.substring(0, formData.name.indexOf(' '))
+      let lastName = formData.name.substring(formData.name.indexOf(' ') + 1)
 
       let month = formData.expiry.substring(0,  formData.expiry.indexOf('/'))
       let year = formData.expiry.substring(formData.expiry.indexOf('/') + 1)
@@ -75,7 +75,7 @@ export default class CreditCard extends React.Component {
       if(result.status == 'success'){
         console.log(result.data);
         localStorage.setItem('session_id', JSON.stringify({sessionId : result.data}))
-        window.location.href = "/confirm"
+       window.location.href = "/confirm"
       }else{
         console.log(result.data);
       }
