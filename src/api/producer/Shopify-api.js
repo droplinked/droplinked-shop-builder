@@ -7,7 +7,7 @@ export const createCheckout = async(shopdomain , checkout) => {
     try {
             const res = await axios.post(`${BASE_URL}/producer/shopify/checkout`, 
             {
-              shopName:shopdomain,
+              shopDomain:shopdomain,
               checkoutItem:checkout
             },
              {
