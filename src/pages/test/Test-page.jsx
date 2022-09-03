@@ -1,10 +1,10 @@
 import "./test.scss"
-import { AppConfig, showConnect, UserSession } from "@stacks/connect";
+import { AppConfig, showConnect, UserSession } from "@stacks/connect-react";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 
 export const userSession = new UserSession({ appConfig });
-
+console.log(userSession);
 function authenticate() {
   showConnect({
     appDetails: {
