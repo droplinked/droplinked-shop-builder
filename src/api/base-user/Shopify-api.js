@@ -60,7 +60,7 @@ export const confirmPayment = async (
     const res = await axios.post(
       `${BASE_URL}/producer/shopify/payment`,
       {
-        shopName: shopname,
+        shopDomain: shopname,
         checkoutId: checkoutId,
         session_id: sessionId,
       },
