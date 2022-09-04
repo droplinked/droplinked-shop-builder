@@ -99,11 +99,12 @@ export default function Collection({ collection, shopname, type }) {
           <>
             <Flex w="100%" wrap="wrap">
               {collection.products.map((product, i) => {
+                if (i < 4) {
                 return (
                   <Box key={i} w={{ base: "50%", md: "25%" }} p="3px">
                     <ShopifyCollection key={i} product={product.shopifyData} id={product._id} shopname={shopname} />
                   </Box>
-                );
+                )}
               })}
             </Flex>
           </>
