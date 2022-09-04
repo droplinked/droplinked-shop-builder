@@ -8,6 +8,7 @@ import CreditCard from "./CreditCard-component";
 
 const CartPage = () => {
   const [cardData, setCardData] = useState(null);
+  const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const CartPage = () => {
 
   const submitForm = async() => {
     console.log(cardData);
+    setLoading(true)
     let result = await creatShopifySession(cardData);
     if (result.status == "success") {
       console.log(result.data);
@@ -27,9 +29,10 @@ const CartPage = () => {
       );
       navigate('/confirm')
     } else {
+      setLoading(false)
       console.log(result.data);
     }
-    
+    setLoading(false)
   }
 
 
@@ -59,7 +62,7 @@ const CartPage = () => {
           border="3px solid #4d4d4d"
           borderRadius="8px"
         >
-          <CreditCard setCard={(e) => setCardData(e)} />
+          <CreditCard setCard={(e) => setCardData(e)} loading={loading} />
         </Box>
       </Flex>
     </Flex>

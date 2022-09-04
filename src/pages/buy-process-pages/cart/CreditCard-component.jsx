@@ -7,13 +7,8 @@ import {
   formatCreditCardNumber,
   formatCVC,
   formatExpirationDate,
-  formatFormData,
 } from './creditcard-utils';
 import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Box
 } from '@chakra-ui/react'
 
@@ -47,7 +42,6 @@ export default class CreditCard extends React.Component {
   handleInputChange = ({ target }) => {
     if (target.name === 'number') {
       target.value = formatCreditCardNumber(target.value);
-      console.log(target.value);
     } else if (target.name === 'expiry') {
       target.value = formatExpirationDate(target.value);
     } else if (target.name === 'cvc') {
@@ -152,7 +146,7 @@ export default class CreditCard extends React.Component {
               </div>
             </div>
             <div className="form-actions">
-              <BasicButton>PAY</BasicButton>
+              <BasicButton type='submit' loading={this.props.loading}>PAY</BasicButton>
             </div>
           </form>
       </div>
