@@ -67,10 +67,16 @@ const CartProvider = ({ children }) => {
     localStorage.setItem('cart', JSON.stringify(currentItems))
   }
 
+  const clearCart = () => {
+    localStorage.setItem('cart', JSON.stringify([]))
+    setCart([])
+  }
+
   const contextValues = {
     updateCart,
     addShopifyItemToCart,
     deleteItemFromCart,
+    clearCart,
     cart,
   };
 
