@@ -19,7 +19,7 @@ const ShopifyProduct = ({ id, product_listing }) => {
             <Image
               w="100%"
               h="100%"
-              src={product_listing.images[0].src}
+              src={product_listing.images[0] && product_listing.images[0].src}
               _hover={{
                 opacity: "0.6",
                 transform: "scale(1.2)",
