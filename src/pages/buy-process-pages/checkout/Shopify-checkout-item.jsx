@@ -9,11 +9,14 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useCart } from "../../../context/cart/CartContext"
+import { useState } from "react"
 
 
 const ShopifyCheckoutItem = ({ product, variant, amount }) => {
 
-  const { deleteItemFromCart } = useCart()
+  const [quantity , setQuantity] = useState(amount)
+  const { deleteItemFromCart ,changeQuantity } = useCart()
+  
 
   return (
     <Flex
@@ -84,7 +87,8 @@ const ShopifyCheckoutItem = ({ product, variant, amount }) => {
            // disabled={disableDeleteBtn}
           />
           <Input
-            value={amount}
+            value={quantity}
+            type="number"
             borderRadius="0px"
             cursor="pointer"
             w="80px"
@@ -94,7 +98,7 @@ const ShopifyCheckoutItem = ({ product, variant, amount }) => {
             fontWeight="600"
             _hover={{ bgColor: "none", borderColor: "#8053ff" }}
             _focus={{ bgColor: "none", borderColor: "#8053ff" }}
-          //  onChange={(e) => setQuantity(e.target.value)}
+            onChange={(e) => setQuantity(parseInt(e.target.value))}
           />
           <Button
             color="#fff"
@@ -102,7 +106,7 @@ const ShopifyCheckoutItem = ({ product, variant, amount }) => {
             fontWeight="600"
             _hover={{ bgColor: "none", borderColor: "#8053ff" }}
             _focus={{ bgColor: "none", borderColor: "#8053ff" }}
-          //  onClick={updateQ}
+            onClick={()=>{changeQuantity(quantity , variant.id)}}
           //  disabled={disableEditBtn}
           >
             Submit
