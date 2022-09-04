@@ -1,12 +1,10 @@
 import { Flex, Box, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import { STRIPE_KEY } from "../payment/stripe.key";
-import CheckoutForm from "./CheckoutForm";
-import CreditCard from "./CreditCard-component";
 import { creatShopifySession } from "../../../api/base-user/Shopify-api";
 import { useNavigate } from "react-router-dom";
+
+import CreditCard from "./CreditCard-component";
+
 
 const stripePromise = loadStripe(STRIPE_KEY.LIVE);
 

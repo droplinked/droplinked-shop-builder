@@ -73,8 +73,8 @@ export default class CreditCard extends React.Component {
      
       this.props.setCard(cardData)
       
-    this.setState({ formData });
-    this.form.reset();
+   // this.setState({ formData });
+    //this.form.reset();
   };
 
   render() {
