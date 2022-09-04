@@ -54,12 +54,6 @@ const ShopifyMech = ({ product , shopdomain }) => {
 
   return (
     <>
-      <Flex
-        w="100%"
-        p={{ base: "0px 20px", md: "0px 80px" }}
-        flexDir="column"
-        h="auto"
-      >
         <Flex
           justifyContent="space-between"
           maxW="800px"
@@ -68,7 +62,7 @@ const ShopifyMech = ({ product , shopdomain }) => {
           m="auto"
         >
           {/* images */}
-          <Box w={{ base: "100%", md: "50%" }}>
+          <Box w={{ base: "100%", md: "50%" }} minh='500px'>
             <Carousel imagesArray={images} />
           </Box>
           {/* images */}
@@ -221,7 +215,6 @@ const ShopifyMech = ({ product , shopdomain }) => {
           </Flex>
           {/* description */}
         </Flex>
-      </Flex>
     </>
   );
 };
