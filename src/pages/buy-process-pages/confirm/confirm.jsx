@@ -16,7 +16,7 @@ const ConfirmPage = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
   const checkoutId = JSON.parse(localStorage.getItem("checkout_id"));
   const sessionId = JSON.parse(localStorage.getItem("session_id"));
- // const shippingPrice = JSON.parse(localStorage.getItem("shippingPrice"));
+  const shippingPrice = JSON.parse(localStorage.getItem("shippingPrice"));
 
   const getItemsPrice = () => {
     let total = 0;
@@ -34,11 +34,11 @@ const ConfirmPage = () => {
       sessionId.sessionId
     );
     if (result == true) {
+      navigate("/purchseHistory?redirect_status=succeeded");
       localStorage.removeItem('session_id');
       localStorage.removeItem('checkout_id');
       localStorage.removeItem('shippingPrice');
       clearCart();
-      navigate("/purchseHistory?redirect_status=succeeded");
     } else {
       errorToast(result);
     }
@@ -64,14 +64,14 @@ const ConfirmPage = () => {
           >
             Items: ${getItemsPrice()}
           </Text>
-          {/* <Text
+          <Text
             color="#ddd"
             mb="20px"
             fontSize={{ base: "18px", md: "22px" }}
             fontWeight="600"
           >
             Shipping: ${shippingPrice.shippingPrice}
-          </Text> */}
+          </Text>
           <Text
             color="#ddd"
             mb="20px"
@@ -79,7 +79,7 @@ const ConfirmPage = () => {
             fontWeight="600"
           >
             Total price: $
-            {parseFloat(shippingPrice.shippingPrice) + getItemsPrice()}
+            {shippingPrice.shippingPrice + getItemsPrice()}
           </Text>
         </Box>
 
