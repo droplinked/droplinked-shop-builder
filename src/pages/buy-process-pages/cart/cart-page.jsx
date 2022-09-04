@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 import CreditCard from "./CreditCard-component";
 
 
-const stripePromise = loadStripe(STRIPE_KEY.LIVE);
-
 const CartPage = () => {
   const [cardData, setCardData] = useState(null);
   let navigate = useNavigate();
@@ -61,9 +59,6 @@ const CartPage = () => {
           border="3px solid #4d4d4d"
           borderRadius="8px"
         >
-          {/* <Elements stripe={stripePromise}>
-            <CheckoutForm />
-          </Elements> */}
           <CreditCard setCard={(e) => setCardData(e)} />
         </Box>
       </Flex>
