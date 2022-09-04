@@ -6,6 +6,7 @@ import { BASE_URL } from "../../../api/BaseUrl";
 import Product from "../Product/Product";
 import IframeSnipped from "../../Modal/Iframe-snipped-modal/Iframe-snipped-modal";
 import ShopifyCollection from "./shopify-collection.component";
+import CollectionHeader from "./collection-header-component"
 // collection format : {
 //     ._id: id
 //     products:[]
@@ -34,6 +35,10 @@ export default function Collection({ collection, shopname, type }) {
     navigate(`/${shopname}/collection/${collection._id}`);
   };
 
+  const openSnipedModal = () => {
+    setSnippedModal(true);
+  }
+
   return (
     <>
       <Flex
@@ -46,54 +51,7 @@ export default function Collection({ collection, shopname, type }) {
         p="10px 10px 0px 10px"
       >
         {/* head */}
-        <Flex w="100%" justifyContent="space-between" h="auto" mb="10px">
-          <Text
-            color="#fff"
-            fontSize={{ base: "10px", sm: "16px", md: "22px" }}
-            fontWeight="600"
-          >
-            {collection.title}
-          </Text>
-          <Flex>
-            <Flex
-              p={{ base: "4px 10px 1px 10px", md: "4px 20px" }}
-              color="#fff"
-              bgColor="#353536"
-              fontSize={{ base: "6px", sm: "8px", md: "14px" }}
-              fontWeight="500"
-              borderRadius="8px"
-              justifyContent="center"
-              alignItems="center"
-              cursor="pointer"
-              _hover={{
-                bgColor: "#555558",
-              }}
-              onClick={() => {
-                setSnippedModal(true);
-              }}
-            >
-              Embed collection
-            </Flex>
-            <Flex
-              p={{ base: "4px 10px 1px 10px", md: "4px 20px" }}
-              color="#fff"
-              bgColor="#353536"
-              fontSize={{ base: "6px", sm: "8px", md: "14px" }}
-              fontWeight="500"
-              borderRadius="8px"
-              justifyContent="center"
-              alignItems="center"
-              ml="10px"
-              cursor="pointer"
-              _hover={{
-                bgColor: "#555558",
-              }}
-              onClick={seeMore}
-            >
-              See more
-            </Flex>
-          </Flex>
-        </Flex>
+        <CollectionHeader title={collection.title} openSnipedModal={openSnipedModal} seeMore={seeMore}/>
         {/* head */}
         {type == "SHOPIFY" ? (
           <>
