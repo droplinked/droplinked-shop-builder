@@ -7,10 +7,10 @@ import {
   formatExpirationDate,
   formatFormData,
 } from './creditcard-utils';
-import { creatShopifySession } from "../../../api/base-user/Shopify-api"
-import { useNavigate } from "react-router-dom";
+
 
 export default class CreditCard extends React.Component {
+
   state = {
     number: '',
     name: '',
@@ -21,6 +21,7 @@ export default class CreditCard extends React.Component {
     formData: null,
   };
   
+
 
   handleCallback = ({ issuer }, isValid) => {
     if (isValid) {
@@ -70,15 +71,8 @@ export default class CreditCard extends React.Component {
         verification_value:formData.cvc
       }
      
-      console.log(cardData);
-      let result = await  creatShopifySession(cardData)
-      if(result.status == 'success'){
-        console.log(result.data);
-        localStorage.setItem('session_id', JSON.stringify({sessionId : result.data}))
-       window.location.href = "/confirm"
-      }else{
-        console.log(result.data);
-      }
+      this.props.setCard(cardData)
+      
     this.setState({ formData });
     this.form.reset();
   };
