@@ -1,14 +1,10 @@
 import { Flex, Box, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import { STRIPE_KEY } from "../payment/stripe.key";
-import CheckoutForm from "./CheckoutForm";
-import CreditCard from "./CreditCard-component";
 import { creatShopifySession } from "../../../api/base-user/Shopify-api";
 import { useNavigate } from "react-router-dom";
 
-const stripePromise = loadStripe(STRIPE_KEY.LIVE);
+import CreditCard from "./CreditCard-component";
+
 
 const CartPage = () => {
   const [cardData, setCardData] = useState(null);
@@ -63,9 +59,6 @@ const CartPage = () => {
           border="3px solid #4d4d4d"
           borderRadius="8px"
         >
-          {/* <Elements stripe={stripePromise}>
-            <CheckoutForm />
-          </Elements> */}
           <CreditCard setCard={(e) => setCardData(e)} />
         </Box>
       </Flex>

@@ -9,6 +9,10 @@ export function formatCreditCardNumber(value) {
     return value;
   }
 
+  if(value.length > 19){
+    return value.slice(0, -1);
+  }
+
   const issuer = Payment.fns.cardType(value);
   const clearValue = clearNumber(value);
   let nextValue;

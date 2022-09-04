@@ -1,5 +1,7 @@
 import React from 'react';
 import Card from 'react-credit-cards';
+import BasicButton from "../../../components/shared/BasicButton/BasicButton"
+import {CardInput} from "./CreditCard-style"
 import 'react-credit-cards/es/styles-compiled.css';
 import {
   formatCreditCardNumber,
@@ -7,6 +9,13 @@ import {
   formatExpirationDate,
   formatFormData,
 } from './creditcard-utils';
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Box
+} from '@chakra-ui/react'
 
 
 export default class CreditCard extends React.Component {
@@ -38,6 +47,7 @@ export default class CreditCard extends React.Component {
   handleInputChange = ({ target }) => {
     if (target.name === 'number') {
       target.value = formatCreditCardNumber(target.value);
+      console.log(target.value);
     } else if (target.name === 'expiry') {
       target.value = formatExpirationDate(target.value);
     } else if (target.name === 'cvc') {
@@ -72,9 +82,6 @@ export default class CreditCard extends React.Component {
       }
      
       this.props.setCard(cardData)
-      
-    this.setState({ formData });
-    this.form.reset();
   };
 
   render() {
@@ -89,9 +96,10 @@ export default class CreditCard extends React.Component {
             focused={focused}
             callback={this.handleCallback}
           />
+          <Box mb='30px'></Box>
         <form ref={c => (this.form = c)} onSubmit={this.handleSubmit}>
-            <div className="form-group">
-              <input
+         
+              <CardInput
                 type="tel"
                 name="number"
                 className="form-control"
@@ -101,11 +109,13 @@ export default class CreditCard extends React.Component {
                 onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />
-              <small>E.g.: 49..., 51..., 36..., 37...</small>
-            </div>
+              <small style={{color:"#aaa"}}>E.g.: 49..., 51..., 36..., 37...</small>
+            
             
             <div className="form-group">
-              <input
+              <CardInput
+              mt='20px'
+              mb='20px'
                 type="text"
                 name="name"
                 className="form-control"
@@ -115,9 +125,9 @@ export default class CreditCard extends React.Component {
                 onFocus={this.handleInputFocus}
               />
             </div>
-            <div className="row">
+            <div className="row" style={{marginBottom:'20px'}}>
               <div className="col-6">
-                <input
+                <CardInput
                   type="tel"
                   name="expiry"
                   className="form-control"
@@ -129,7 +139,7 @@ export default class CreditCard extends React.Component {
                 />
               </div>
               <div className="col-6">
-                <input
+                <CardInput
                   type="tel"
                   name="cvc"
                   className="form-control"
@@ -142,7 +152,7 @@ export default class CreditCard extends React.Component {
               </div>
             </div>
             <div className="form-actions">
-              <button className="btn btn-primary btn-block">PAY</button>
+              <BasicButton>PAY</BasicButton>
             </div>
           </form>
       </div>
