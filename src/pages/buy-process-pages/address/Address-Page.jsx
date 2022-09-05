@@ -32,7 +32,6 @@ function AddressPage() {
 		setAddressModal(p => !p)
 	}
 
-
 	// const ProccessToPayment = async () => {
 	// 	if (selectedAddress == null) {
 	// 		errorToast("Please choose an address")
@@ -61,7 +60,7 @@ function AddressPage() {
 			first_name: selectedAddress.firstname,
 			last_name: selectedAddress.lastname,
 			country: selectedAddress.country,
-			province: "3",
+			province: selectedAddress.state,
 			city: selectedAddress.city,
 			address1: selectedAddress.addressLine1,
 			address2: selectedAddress.addressLine2,
