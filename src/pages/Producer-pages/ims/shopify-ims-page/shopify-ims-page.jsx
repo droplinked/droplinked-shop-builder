@@ -36,7 +36,6 @@ const ShopImsPage = () => {
     setLoadig(false);
   };
 
-  console.log(products);
 
   const updateProducts = async () => {
     let result = await getProducts();

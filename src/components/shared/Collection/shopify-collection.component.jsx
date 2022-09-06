@@ -2,7 +2,6 @@ import { Flex, Text, Box, AspectRatio, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Product from "../Product/Product";
 const ShopifyCollection = ({ product, id, shopname }) => {
-  console.log(product);
 
   return (
     <Box w="100%" m="0px 0px 10px 0px" p="5px">

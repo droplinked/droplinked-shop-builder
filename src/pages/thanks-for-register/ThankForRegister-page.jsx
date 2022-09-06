@@ -22,7 +22,7 @@ export default function ThankForRegisterPage() {
         setLoading(true)
         // call resent email api
         let result = await resendEmail(email)
-        console.log(result);
+       // console.log(result);
         // if get error from api
         if (result == false) {
             errorToast("Not Found or Verified")

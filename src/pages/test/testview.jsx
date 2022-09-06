@@ -50,7 +50,6 @@ const TextView = () => {
     }
   };
 
-  console.log(product);
 
   return (
     <Flex

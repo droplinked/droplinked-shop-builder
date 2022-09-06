@@ -5,7 +5,7 @@ import { AppConfig, showConnect, UserSession } from "@stacks/connect";
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 
 export const userSession = new UserSession({ appConfig });
-console.log(userSession);
+
 function authenticate() {
   showConnect({
     appDetails: {

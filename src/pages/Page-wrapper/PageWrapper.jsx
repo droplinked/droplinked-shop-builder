@@ -51,9 +51,9 @@ export default function PageWrapper() {
        let res = await getProfileData()
        if(res.status ==  "success"){
         if(res.data.user.email == null)setEmailModal(true)
-        console.log(res.data.user);
+       // console.log(res.data.user);
        }else{
-        console.log(res.response.data.reason);
+       // console.log(res.response.data.reason);
        }
        
        lastSeen()

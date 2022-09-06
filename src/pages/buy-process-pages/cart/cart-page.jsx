@@ -18,11 +18,11 @@ const CartPage = () => {
   }, [cardData]);
 
   const submitForm = async() => {
-    console.log(cardData);
+   
     setLoading(true)
     let result = await creatShopifySession(cardData);
     if (result.status == "success") {
-      console.log(result.data);
+     
       localStorage.setItem(
         "session_id",
         JSON.stringify({ sessionId: result.data })
@@ -30,7 +30,7 @@ const CartPage = () => {
       navigate('/confirm')
     } else {
       setLoading(false)
-      console.log(result.data);
+     
     }
     setLoading(false)
   }

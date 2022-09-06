@@ -81,7 +81,7 @@ const CartProvider = ({ children }) => {
     }
 
     currentCart = currentCart.map((item) => {
-      console.log(item);
+    
       if (item.variant.id == variantId) {
         return { ...item, amount: quantity };
       } else {

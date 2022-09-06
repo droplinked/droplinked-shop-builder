@@ -17,7 +17,6 @@ const TestProduct = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [testLimit, setTextLimit] = useState(false);
 
-  console.log(product);
 
   useEffect(() => {
     axios
