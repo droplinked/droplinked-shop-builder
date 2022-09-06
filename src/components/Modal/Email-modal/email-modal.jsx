@@ -3,6 +3,7 @@ import { useState } from "react";
 import { setProfileEmail } from "../../../api/base-user/Profile-api";
 import { isValidEmail } from "../../../utils/validations/emailValidation";
 import { useToasty } from "../../../context/toastify/ToastContext";
+import { useProfile } from "../../../context/profile/ProfileContext"
 
 import FormInput from "../../shared/FormInput/FormInput";
 import BasicButton from "../../shared/BasicButton/BasicButton";
@@ -13,6 +14,7 @@ export default function EmailModal({ close }) {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
 
+  const { updateProfile } = useProfile();
   const { errorToast, successToast } = useToasty();
 
   // submit form function
@@ -26,6 +28,7 @@ export default function EmailModal({ close }) {
     setLoading(true);
     let result = await setProfileEmail(email);
     if (result == true) {
+      updateProfile({email:email})
       successToast("Your email address updated");
       close()
     } else {
