@@ -61,7 +61,7 @@ export default function MerchPage() {
           {product.type == "DROPLINKED" ? (
             <DroplinkedMerch product={product} />
           ) : (
-            <ShopifyMech product={product.shopifyData} shopdomain={product.shopifyShopDomain} />
+            <ShopifyMech ruleset={product.ruleset} product={product.shopifyData} shopdomain={product.shopifyShopDomain} />
           )}
         </>
       )}
