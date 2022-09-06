@@ -10,12 +10,10 @@ import { useNotifications } from "../../context/notifications/NotificationsConte
 import { useProfile } from "../../context/profile/ProfileContext";
 import { isJwtValid, getProfileData } from "../../api/base-user/Profile-api";
 import { useShop } from "../../context/shop/ShopContext";
-import EmailModal from "../../components/Modal/Email-modal/email-modal";
 import MainHeader from "../../components/layouts/Header/MainHeader";
 import Footer from "../../components/layouts/Footer/Footer";
 
 export default function PageWrapper() {
-  const [showEmailModal, setEmailModal] = useState(false);
   const { updateCart } = useCart();
   const { updateAddressList } = useAddress();
   const { profile, isCustomer } = useProfile();
@@ -41,11 +39,6 @@ export default function PageWrapper() {
   const firtsCheck = async () => {
     lastSeen();
     checkJWT();
-    let res = await getProfileData();
-    if (res.status == "success") {
-      if (res.data.user.email == null) setEmailModal(true);
-    }
-
   };
 
   const checkJWT = async () => {
@@ -87,7 +80,6 @@ export default function PageWrapper() {
       >
         <Outlet />
       </Box>
-      {showEmailModal && <EmailModal close={()=>{setEmailModal(false)}} loading={false} />}
       <Footer />
     </Flex>
   );

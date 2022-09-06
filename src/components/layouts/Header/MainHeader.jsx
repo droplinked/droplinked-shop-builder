@@ -3,17 +3,21 @@ import "./mainHeader.scss";
 import { Link } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext"
 import { Flex, Text } from "@chakra-ui/react"
+import { useState } from "react";
 
 import DefaulHeader from "./default header/Default-header-component"
 import UserHeader from "./user Header/User-header-component"
-
-
+import EmailModal from "../../Modal/Email-modal/email-modal"
 
 
 function MainHeader() {
 
+  const [showEmailModal, setEmailModal] = useState(false);
   const { profile } = useProfile();
 
+  const closeEmailModal = () => setEmailModal(false)
+
+  const customerHaventEmail = () => setEmailModal(true)
   // show droplinked logo in leftside and condition for right side 
   // if have any profile show(UserHeader component)
   // if havent any profile show default component
@@ -41,8 +45,9 @@ function MainHeader() {
           ?
           <UserHeader />
           :
-          <DefaulHeader />
+          <DefaulHeader haventEmail={customerHaventEmail} />
         }
+        {showEmailModal && <EmailModal close={closeEmailModal} />}
       </Flex>
     </Flex>
   )

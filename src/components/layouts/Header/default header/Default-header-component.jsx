@@ -6,7 +6,7 @@ import LoginModal from "../../../Modal/Login-modal/LoginModal"
 import ResetPassModal from "../../../Modal/ResetPass-modal/ResetPassModal-component";
 import WalletButton from "../components/wallet-button/wallet-button-component"
 
-export default function DefaulHeader() {
+export default function DefaulHeader({haventEmail}) {
 
     // state for show (login , singup , resetpass)modals 
     const [signUpmodal, setSignModal] = useState(false)
@@ -44,7 +44,7 @@ export default function DefaulHeader() {
             <HeaderItem click={togglesignup}>Join today</HeaderItem>
             </>
             :
-            <WalletButton />
+            <WalletButton haventEmail={haventEmail}/>
         }
 
         {/* show modals base on state */}
