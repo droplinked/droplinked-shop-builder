@@ -16,7 +16,7 @@ const ConfirmPage = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
   const checkoutId = JSON.parse(localStorage.getItem("checkout_id"));
   const sessionId = JSON.parse(localStorage.getItem("session_id"));
-  const shippingPrice = JSON.parse(localStorage.getItem("shippingPrice"));
+  const shippingPrice = parseFloat(JSON.parse(localStorage.getItem("shippingPrice")).shippingPrice)
 
   const getItemsPrice = () => {
     let total = 0;
@@ -70,7 +70,7 @@ const ConfirmPage = () => {
             fontSize={{ base: "18px", md: "22px" }}
             fontWeight="600"
           >
-            Shipping: ${shippingPrice.shippingPrice}
+            Shipping: ${shippingPrice}
           </Text>
           <Text
             color="#ddd"
@@ -79,7 +79,7 @@ const ConfirmPage = () => {
             fontWeight="600"
           >
             Total price: $
-            {shippingPrice.shippingPrice + getItemsPrice()}
+            {(shippingPrice) + getItemsPrice()}
           </Text>
         </Box>
 
