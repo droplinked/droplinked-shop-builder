@@ -5,6 +5,7 @@ import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import SmallModal from "../../../components/Modal/Small-modal/Small-modal-component";
 import ProductInformation from "../components/product-information-component";
 import SkuInformation from "../components/sku-information-component";
+import ViewShopifyMerch from "./View-shopify-merch";
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -36,8 +37,12 @@ export default function ViewMerchPage() {
   const initialize = async () => {
     let result = await getProduct(merchId);
     if (result != null) {
-      let images = result.media.map((image) => image.url);
-      setMerch({ ...result, images: images });
+      if (result.shopifyData) {
+        setMerch(result);
+      } else {
+        let images = result.media.map((image) => image.url);
+        setMerch({ ...result, images: images });
+      }
     }
   };
 
@@ -107,58 +112,64 @@ export default function ViewMerchPage() {
       {!merch ? (
         <Loading />
       ) : (
-        <div className="add-product-page-wrapper">
-          <div className="col-12 col-md-6 mb-5">
-            <BasicButton
-              bgColor="#fa6653"
-              onClick={() => {
-                setDeleteModal(true);
-              }}
-              loading={loading}
-            >
-              Delete item
-            </BasicButton>
-          </div>
+        <>
+          {merch.shopifyData ? (
+            <ViewShopifyMerch product={merch} shopifyData={merch.shopifyData} />
+          ) : (
+            <div className="add-product-page-wrapper">
+              <div className="col-12 col-md-6 mb-5">
+                <BasicButton
+                  bgColor="#fa6653"
+                  onClick={() => {
+                    setDeleteModal(true);
+                  }}
+                  loading={loading}
+                >
+                  Delete item
+                </BasicButton>
+              </div>
 
-          <ProductInformation
-            productInfo={productInfo}
-            setProductInfo={setProductInfo}
-            defaultValue={merch}
-          />
+              <ProductInformation
+                productInfo={productInfo}
+                setProductInfo={setProductInfo}
+                defaultValue={merch}
+              />
 
-          <SkuInformation
-            skus={merch.skus}
-            merchId={merchId}
-            updateMerch={getMerch}
-          />
+              <SkuInformation
+                skus={merch.skus}
+                merchId={merchId}
+                updateMerch={getMerch}
+              />
 
-          <div
-            className="d-flex justify-content-between align-items-center"
-            style={{ marginTop: "80px", width: "100%" }}
-          >
-            <div className="col-5 col-md-4">
-              <BasicButton click={cancelForm} loading={loading}>
-                Cancel
-              </BasicButton>
+              <div
+                className="d-flex justify-content-between align-items-center"
+                style={{ marginTop: "80px", width: "100%" }}
+              >
+                <div className="col-5 col-md-4">
+                  <BasicButton click={cancelForm} loading={loading}>
+                    Cancel
+                  </BasicButton>
+                </div>
+                <div className="col-5 col-md-4">
+                  <BasicButton click={submitForm} loading={loading}>
+                    Submit
+                  </BasicButton>
+                </div>
+              </div>
+
+              {deleteModal && (
+                <SmallModal
+                  show={deleteModal}
+                  hide={() => setDeleteModal(false)}
+                  text={"Do you want to delete this item?"}
+                  click={DeleteMerch}
+                  loading={modalDisBtn}
+                  buttonText={"Delete"}
+                />
+              )}
             </div>
-            <div className="col-5 col-md-4">
-              <BasicButton click={submitForm} loading={loading}>
-                Submit
-              </BasicButton>
-            </div>
-          </div>
-
-          {deleteModal && (
-            <SmallModal
-              show={deleteModal}
-              hide={() => setDeleteModal(false)}
-              text={"Do you want to delete this item?"}
-              click={DeleteMerch}
-              loading={modalDisBtn}
-              buttonText={"Delete"}
-            />
           )}
-        </div>
+        </>
       )}
     </>
   );

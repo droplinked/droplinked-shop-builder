@@ -53,7 +53,7 @@ export default function AddressComponent({ address, selected, setSelect, selectA
     // if selectAble be true set address id to selected 
     const selectAddress = () => {
         if (selectAble == true) {
-            setSelect(address._id)
+            setSelect(address)
         }
     }
 
@@ -62,7 +62,7 @@ export default function AddressComponent({ address, selected, setSelect, selectA
             {(openAddressForm == false)
                 ?
                 <Box h="auto" mb="4" border='3px solid' borderRadius="30px" p="24px 20px 16px 20px"
-                    borderColor={(selectAble == true && address._id == selected) ? "#8053ff" : '#4d4d4d'}
+                    borderColor={(selectAble == true && address._id == (selected && selected._id )) ? "#8053ff" : '#4d4d4d'}
                     cursor={(selectAble == true) ? "pointer" : "auto"}
                     onClick={selectAddress}
                 >

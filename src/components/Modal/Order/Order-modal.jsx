@@ -23,6 +23,9 @@ import YesNoModal from "../yes-or-no-modal/YesOrNo-modal-component"
 
 export default function OrderModal({ order, isOpen, onClose }) {
 
+
+console.log(order);
+
     // this state use for loading stauts
     const [loadingBtn, setLoadingBtn] = useState(false)
     // this state use for show proccessModal
@@ -106,7 +109,7 @@ export default function OrderModal({ order, isOpen, onClose }) {
                 <ModalBody>
 
                     {/* address component */}
-                    <OrderAddress address={order.customerAddressBook} />
+                    {/* <OrderAddress address={order.customerAddressBook} /> */}
 
                     {/* product list */}
                     {

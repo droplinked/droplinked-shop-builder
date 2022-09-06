@@ -27,7 +27,6 @@ export default function DroplinkedImsPage({ products }) {
 
   const uploadFile = (e) => {
     const file = e.target.files[0];
-    console.log(file.type);
     if (file.type != "application/json") {
         errorToast("dadash eshtebe");
       return;

@@ -21,7 +21,7 @@ export default function Cart({ clickBasket }) {
             onClick={clickBasket}
         >
 
-            {((cart != null) && (cart.items.length > 0)) ?
+            {((cart != null) && (cart.length > 0)) ?
                 <Image
                     h='100%'
                     w='100%'

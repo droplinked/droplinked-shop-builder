@@ -11,13 +11,15 @@ export default function OrderMerch({ item }) {
 
 
     // get variant name and value in set in string
-    let variantText = ' '
-    item.sku.options.forEach(option => {
-        let variantName = (option.variantID == "62a989ab1f2c2bbc5b1e7153" ? "Size" : "Color")
-        variantText += `${variantName}: ${option.value}\xa0\xa0\xa0\xa0\xa0\xa0`
-    })
+    // let variantText = ' '
+    // item.sku.options.forEach(option => {
+    //     let variantName = (option.variantID == "62a989ab1f2c2bbc5b1e7153" ? "Size" : "Color")
+    //     variantText += `${variantName}: ${option.value}\xa0\xa0\xa0\xa0\xa0\xa0`
+    // })
 
-    const Totalprice = parseFloat(item.quantity * item.sku.price)
+  //  const Totalprice = parseFloat(item.quantity * item.sku.price)
+
+    const Totalprice = (parseInt(item.quantity) * parseFloat(item.price))
 
 
     return (
@@ -28,7 +30,8 @@ export default function OrderMerch({ item }) {
             h={{ base: '50px', md: '70px' }}
         >
             <Image
-                src={item.product.media[0].url}
+               // src={item.product.media[0].url}
+               src={item.image_url}
                 objectFit='cover'
                 w={{ base: "45px", md: '65px' }}
                 h={{ base: "45px", md: '65px' }}
@@ -46,14 +49,15 @@ export default function OrderMerch({ item }) {
                     fontWeight='600'
                     overflow='hidden'
                 >
-                    {item.product.title}
+                     {item.title}
+                    {/* {item.product.title} */}
                 </Text>
                 <Flex
                     w='100%'
                     justifyContent='space-between'
                 >
 
-                    <Text style={textStyel} w='55%' fontSize={{base:'8px' , sm: "10px", md: "14px" }} >{variantText}</Text>
+                    {/* <Text style={textStyel} w='55%' fontSize={{base:'8px' , sm: "10px", md: "14px" }} >{variantText}</Text> */}
                     <Text style={textStyel} w='30%' fontSize={{base:'8px' , sm: "10px", md: "14px" }} > Quantity: {item.quantity}</Text>
                     <Text style={textStyel} textAlign='end' w='15%' fontSize={{base:'8px' , sm: "10px", md: "14px" }} >${Totalprice}</Text>
                 </Flex>

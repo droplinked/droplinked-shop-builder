@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Loading from "../../components/shared/loading/Loading";
 import Product from "../../components/shared/Product/Product";
-
+import ShopifyCollection from "../../components/shared/Collection/shopify-collection.component"
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCollectionById } from "../../api/public/Collection-api"
@@ -31,6 +31,16 @@ export default function CollectionPage() {
                 <>
                     <div className="title">{Collection.title}</div>
                     <div className=" mt-5 d-flex flex-wrap">
+                    {Collection.products.map((product, i) => {
+                            return (
+                                <div key={i} className="col-6 col-md-3 p-1">
+                                    <ShopifyCollection shopname={shopname} product={product.shopifyData} id={product._id} />
+                                </div>
+                            )
+                        })}
+                    </div>
+
+                    {/* <div className=" mt-5 d-flex flex-wrap">
                         {Collection.products.map((product, i) => {
                             return (
                                 <div key={i} className="col-6 col-md-3 p-1">
@@ -38,7 +48,7 @@ export default function CollectionPage() {
                                 </div>
                             )
                         })}
-                    </div>
+                    </div> */}
                 </>
                 :
                 <Loading />

@@ -139,7 +139,9 @@ export default function Order({ order }) {
                                     h={{ base: '60px', md: "90px" }}
                                     borderRadius="8px"
                                     mr='20px'
-                                    src={item.product.media[0].url} />
+                                    //src={item.product.media[0].url} 
+                                    src={item.image_url} 
+                                    />
                         })}
                     </Flex>
                     {/* images */}

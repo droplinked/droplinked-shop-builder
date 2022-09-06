@@ -3,10 +3,15 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
+import Crashpunks2 from  "./pages/test/crashpunks2"
 import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderProvider from "./context/order/OrdersContext";
 import LoadingPage from "./pages/loading/Loading-page";
-
+import TestProduct from "./pages/test/test-product"
+import TextView from "./pages/test/testview"
+import ShippingPage from "./pages/buy-process-pages/shipping/Shipping-page"
+import CartPage from "./pages/buy-process-pages/cart/cart-page"
+import ConfirmPage from "./pages/buy-process-pages/confirm/confirm"
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/landing/Landing-page"));
 const TermsPage = lazy(() => import("./pages/terms/Terms-page"));
@@ -139,6 +144,13 @@ function App() {
               <Route path="checkout" element={<CheckoutPage />} />
               <Route path="/address" element={<AddressPage />} />
               <Route path="/payment" element={<PaymentPage />} />
+              <Route path="/shipping" element={<ShippingPage />} />
+              <Route path="/card" element={<CartPage />} />
+              <Route path="/confirm" element={<ConfirmPage />} />
+              <Route path="/crashpunks2" element={<Crashpunks2 />} />
+              <Route path="/TestProduct" element={<TestProduct />} />
+              <Route path="/testshopifymerchview" element={<TextView />} />
+            
               {/* <Route path="/crashpunks" element={<CreatorPage />} /> */}
               <Route path="/product/:id" element={<BuyProduct />} />
               <Route path="/creatorpage" element={<Creator />} />

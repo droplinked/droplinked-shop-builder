@@ -5,11 +5,12 @@ import { useCart } from "../../../../../context/cart/CartContext"
 import { useNavigate } from "react-router-dom";
 
 import BasketItemComponent from "./basket-item/basket-item-component"
-
+import ShopifyCartItem from "./basket-item/shopify-item-cart"
 
 export default function BasketModal({ close }) {
 
     const { cart } = useCart();
+
     let navigate = useNavigate();
 
     const ClickCheckuot = () => {
@@ -21,11 +22,12 @@ export default function BasketModal({ close }) {
         <div className="basket-modal-wrapper">
             {(cart) &&
                 <>
-                    {(cart.items.length > 0)
+                    {(cart.length > 0)
                         ?
                         <>
-                            {cart.items.map((item, i) => {
-                                return <BasketItemComponent key={i} item={item} close={close} />
+                            {cart.map((item, i) => {
+                                return <ShopifyCartItem key={i} product={item.product} amount={item.amount} variant={item.variant}/>
+                                // return <BasketItemComponent key={i} item={item} close={close} />
                             })}
                             <Button
                                 mt="20px"
