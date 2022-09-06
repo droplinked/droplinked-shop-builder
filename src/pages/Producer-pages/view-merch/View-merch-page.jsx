@@ -114,7 +114,7 @@ export default function ViewMerchPage() {
       ) : (
         <>
           {merch.shopifyData ? (
-            <ViewShopifyMerch product={merch.shopifyData} />
+            <ViewShopifyMerch product={merch} shopifyData={merch.shopifyData} />
           ) : (
             <div className="add-product-page-wrapper">
               <div className="col-12 col-md-6 mb-5">
