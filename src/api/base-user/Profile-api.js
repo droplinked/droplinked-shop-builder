@@ -40,3 +40,17 @@ export const isJwtValid = async () => {
       return false
     }
   };
+
+
+
+  export const getProfileData = async () => { 
+    const token = JSON.parse(localStorage.getItem("token"));
+      try {
+        const res = await axios.get(`${BASE_URL}/profile`, {
+          headers: { Authorization: "Bearer " + token },
+        });
+        return res.data
+      } catch (err) {
+        return err
+      }
+    };
