@@ -4,17 +4,17 @@ import { useCart } from "../../context/cart/CartContext";
 import { useToasty } from "../../context/toastify/ToastContext";
 import { useProfile } from "../../context/profile/ProfileContext";
 import { checkRules } from "../../services/nft-service/NFTcheck";
-import { UseWalletInfo } from "../../context/wallet/WalletContext"
-import axios from "axios";
-import Loading from "../../components/shared/loading/Loading";
+import { UseWalletInfo } from "../../context/wallet/WalletContext";
+import { useNavigate } from "react-router-dom";
+
+
 import Carousel from "../../components/shared/Carousel/Carousel-component";
-//import DropdownTest from "./test-drop-component"
 import Dropdown from "../../components/shared/Dropdown/Dropdown-component";
 import plus from "../../assest/icon/plusIcon.png";
 import minus from "../../assest/icon/minusIcon.png";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
-const ShopifyMech = ({ ruleset, product, shopdomain }) => {
+const ShopifyMech = ({ shopName, ruleset, product, shopdomain }) => {
   const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -25,6 +25,8 @@ const ShopifyMech = ({ ruleset, product, shopdomain }) => {
   const { addShopifyItemToCart } = useCart();
   const { successToast, errorToast } = useToasty();
   const { profile } = useProfile();
+  const navigate = useNavigate();
+
 
   let images = product.images.map((img) => {
     return { url: img.src };
@@ -38,24 +40,26 @@ const ShopifyMech = ({ ruleset, product, shopdomain }) => {
     setSelectedOption(opt[0].id);
   }, []);
 
+  const navigateToShoppage = () => navigate(`/${shopName}`);
+
   const checkGated = async () => {
     if (ruleset == undefined) return true;
 
     const Rules = ruleset.rules.map((rule) => rule.address);
-    setLoading(true)
+    setLoading(true);
     checkRules(userData.profile.stxAddress.mainnet, Rules)
       .then((e) => {
         if (e) {
-          setLoading(false)
+          setLoading(false);
           return true;
         } else {
-          setLoading(false)
+          setLoading(false);
           errorToast("Required NFT not found, accessed denied");
           return false;
         }
       })
       .catch((e) => {
-        setLoading(false)
+        setLoading(false);
         errorToast(e.response.data);
         return false;
       });
@@ -67,10 +71,9 @@ const ShopifyMech = ({ ruleset, product, shopdomain }) => {
       return;
     }
 
-   
     let checkNftGated = await checkGated();
 
-    if(!checkNftGated) return
+    if (!checkNftGated) return;
 
     let selectedVar = product.variants.find(
       (variant) => variant.id == selectedOption
@@ -121,12 +124,13 @@ const ShopifyMech = ({ ruleset, product, shopdomain }) => {
             cursor="pointer"
             display="inline-block"
             _hover={{ color: "#fff" }}
+            onClick={navigateToShoppage}
           >
-            Crashpunks
+            {shopName}
           </Text>
 
           <Text fontWeight="600" fontSize="24px" color="#fff">
-            {product.variants[0].price}
+            ${product.variants[0].price}
           </Text>
 
           {selectedOption && (
@@ -154,7 +158,8 @@ const ShopifyMech = ({ ruleset, product, shopdomain }) => {
               borderRadius="8px"
               color="#b3b3b3"
               mr="8px"
-              p="0px"
+              p="5px"
+              cursor='pointer'
               onClick={() => {
                 if (quantity > 1) {
                   setQuantity((p) => p - 1);
@@ -187,7 +192,8 @@ const ShopifyMech = ({ ruleset, product, shopdomain }) => {
               borderRadius="8px"
               color="#b3b3b3"
               mr="8px"
-              p="0px"
+              p="5px"
+              cursor='pointer'
               onClick={() => {
                 setQuantity((p) => p + 1);
               }}
@@ -197,7 +203,9 @@ const ShopifyMech = ({ ruleset, product, shopdomain }) => {
           </Flex>
 
           <Box h="auto">
-            <BasicButton click={addItemToBasket} loading={loading}>Add to basket</BasicButton>
+            <BasicButton click={addItemToBasket} loading={loading}>
+              Add to basket
+            </BasicButton>
           </Box>
         </Flex>
         {/* detail */}

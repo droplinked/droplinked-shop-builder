@@ -4,7 +4,7 @@ import { Flex, Text, Box } from "@chakra-ui/react";
 
 
 const ShippingComponent = ({shippingItem ,selected ,setSelected}) => {
-//console.log(shippingItem);
+console.log(shippingItem);
     return (
     <Flex
      p='10px 15px'
@@ -18,7 +18,7 @@ const ShippingComponent = ({shippingItem ,selected ,setSelected}) => {
         onClick={()=>{setSelected(shippingItem)}}
         >
         <Text color='#fff'>{shippingItem.title}</Text>
-        <Text color='#fff'>{shippingItem.price}</Text>
+        <Text color='#fff'>${shippingItem.price}</Text>
     </Flex>
     )
 }
