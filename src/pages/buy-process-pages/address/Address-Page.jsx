@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { Flex, Button, Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../context/toastify/ToastContext"
@@ -33,6 +33,13 @@ function AddressPage() {
 	const toggleAddressForm = () => {
 		setAddressModal(p => !p)
 	}
+
+
+	useEffect(()=>{
+		setSelectedAddress(null)
+	},[addressList])
+
+	
 
 	// const ProccessToPayment = async () => {
 	// 	if (selectedAddress == null) {
