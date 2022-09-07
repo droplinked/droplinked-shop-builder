@@ -145,8 +145,9 @@ export default class CreditCard extends React.Component {
                 />
               </div>
             </div>
-            <div className="form-actions">
-              <BasicButton type='submit' loading={this.props.loading}>PAY</BasicButton>
+            <div className="form-actions d-flex w-100 justify-content-between" style={{padding:'0px'}}>
+            <BasicButton click={this.props.backToShipping}  loading={this.props.loading} w='45%'>Back</BasicButton>
+              <BasicButton type='submit' loading={this.props.loading}w='45%'>PAY</BasicButton>
             </div>
           </form>
       </div>

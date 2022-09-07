@@ -35,6 +35,8 @@ const CartPage = () => {
     setLoading(false)
   }
 
+  const backButton = () => navigate('/shipping')
+
 
   return (
     <Flex
@@ -62,7 +64,7 @@ const CartPage = () => {
           border="3px solid #4d4d4d"
           borderRadius="8px"
         >
-          <CreditCard setCard={(e) => setCardData(e)} loading={loading} />
+          <CreditCard backToShipping={backButton} setCard={(e) => setCardData(e)} loading={loading} />
         </Box>
       </Flex>
     </Flex>

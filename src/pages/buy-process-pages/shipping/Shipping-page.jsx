@@ -54,6 +54,8 @@ const ShippingPage = () => {
     setLoading(false)
   };
 
+  const backButton = () => navigate("/address")
+
 
   return (
     <Flex
@@ -127,7 +129,7 @@ const ShippingPage = () => {
 
           <Flex w="100%" justifyContent="space-between" h="40px">
             <Box w={{ base: "150px", md: "200px" }} h="100%">
-              <BasicButton loading={loading}> Back</BasicButton>
+              <BasicButton loading={loading} click={backButton}>Back</BasicButton>
             </Box>
             <Box w={{ base: "150px", md: "200px" }} h="100%">
               <BasicButton click={submitForm} loading={loading}>

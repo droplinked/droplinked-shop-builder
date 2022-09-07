@@ -45,6 +45,8 @@ const ConfirmPage = () => {
     setLoading(false);
   };
 
+  const backButton = () => navigate('/card')
+
   return (
     <Box w="100%" maxW="1000px" mx="auto" px={{ base: "20px", md: "80px" }}>
       <Box
@@ -83,8 +85,11 @@ const ConfirmPage = () => {
           </Text>
         </Box>
 
-        <Flex w="100%" maxW="400px" mx="auto">
-          <BasicButton click={confirm} loading={loading}>
+        <Flex w="100%" justifyContent='space-between'>
+        <BasicButton w='30%' click={backButton} loading={loading}>
+            Back
+          </BasicButton>
+          <BasicButton w='50%' click={confirm} loading={loading}>
             Confirm order
           </BasicButton>
         </Flex>

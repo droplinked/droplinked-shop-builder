@@ -17,7 +17,7 @@ function CheckoutPage() {
   const { profile } = useProfile();
   const { cart } = useCart();
   let navigate = useNavigate();
-  
+
   // get shops of items
   // const getshops = () => {
   // 	// get all shops in cart
@@ -76,6 +76,9 @@ function CheckoutPage() {
     }
     navigate("/address");
   };
+
+  const currentShop = JSON.parse(localStorage.getItem("currentShop"));
+  const backToShop = () => navigate(`/${currentShop}`);
 
   return (
     <Flex
@@ -141,20 +144,26 @@ function CheckoutPage() {
                     {/* Total price: ${getTotalPrice().toFixed(2)} */}
                     Total price: ${getTotalPrice().toFixed(2)}
                   </Text>
-                  <Text
+                  {/* <Text
                     color="#fff"
                     fontSize={{ base: "18px", md: "22px" }}
                     fontWeight="600"
                     mt="5px"
-                  ></Text>
+                  ></Text> */}
+                </Box>
+              </Flex>
+
+              <Flex
+                w="100%"
+                justifyContent="space-between"
+                h={{ base: "40px", md: "40px" }}
+                mt="40px"
+              >
+                <Box w={{ base: "150px", md: "200px" }} overflow="hidden">
+                  <BasicButton click={backToShop}>Back to shop</BasicButton>
                 </Box>
 
-                <Box
-                  w={{ base: "150px", md: "200px" }}
-                  h={{ base: "40px", md: "40px" }}
-                  //borderRadius="15px"
-                  overflow="hidden"
-                >
+                <Box w={{ base: "150px", md: "200px" }} overflow="hidden">
                   <BasicButton click={checkoutSubmit}>Check out</BasicButton>
                 </Box>
               </Flex>
