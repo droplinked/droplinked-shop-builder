@@ -1,91 +1,101 @@
-import { Flex } from '@chakra-ui/react'
-import { useState } from 'react'
-import { useProfile } from "../../context/profile/ProfileContext"
+import { Flex } from "@chakra-ui/react";
+import { useState } from "react";
+import { useProfile } from "../../context/profile/ProfileContext";
+import { useNavigate } from "react-router-dom";
 
-import AddressBookComponent from './address-book-component/address-book-component'
-import ShopInfoComponent from './shop-info-component/Shop-info-component'
-import PersonalInfoComponent from './personal-info-component/Personal-info-component'
-import SettingButton from "./setting-button-component"
-
+import AddressBookComponent from "./address-book-component/address-book-component";
+import ShopInfoComponent from "./shop-info-component/Shop-info-component";
+import PersonalInfoComponent from "./personal-info-component/Personal-info-component";
+import SettingButton from "./setting-button-component";
 
 export default function SettingsPage() {
+  const { isRegisteredProducer, isCustomer } = useProfile();
+  const navigate = useNavigate()
+  // this state use for selected setting
+  const [settingComponent, setSettingComponent] = useState(
+    isRegisteredProducer() ? "shop" : "personal"
+  );
 
-    const { isRegisteredProducer, isCustomer } = useProfile()
+  // change state by click on buttons for change setting component used
+  const personalSetting = () => setSettingComponent("personal");
 
-    // this state use for selected setting 
-    const [settingComponent, setSettingComponent] = useState(isRegisteredProducer()?"shop":"personal")
+  const shopSetting = () => setSettingComponent("shop");
 
-   
+  const addressSetting = () => setSettingComponent("address");
 
-    // change state by click on buttons for change setting component used  
-    const personalSetting = () => {
-        setSettingComponent("personal")
-    }
+  const currentShop = JSON.parse(localStorage.getItem("currentShop"));
+  const backToShop = () => navigate(`/${currentShop}`);
 
-    const shopSetting = () => {
-        setSettingComponent("shop")
-    }
-
-    const addressSetting = () => {
-        setSettingComponent("address")
-    }
-
-    return (
+  return (
+    <Flex w="100%" px={{ base: "20px", md: "80px" }} justifyContent="center">
+      <Flex
+        w="100%"
+        maxW="900px"
+        border="1px"
+        borderColor="#b3b3b3"
+        borderRadius="16px"
+        flexDirection={{ base: "column", md: "row" }}
+      >
         <Flex
-            w="100%"
-            px={{ base: "20px", md: "80px" }}
-            justifyContent="center"
+          p="40px 10px"
+          borderBottom={{ base: "1px", md: "0px" }}
+          borderColor="white"
+          minW={{ base: "100%", md: "25%" }}
+          flexDirection="column"
         >
-            <Flex
-                w="100%"
-                maxW="900px"
-                border='1px'
-                borderColor='#b3b3b3'
-                borderRadius="16px"
-                flexDirection={{ base: "column", md: 'row' }}
+          <SettingButton click={backToShop}> Back to shop </SettingButton>
+          {/* select setting buttons  */}
+          {isCustomer() && (
+            <SettingButton
+              click={personalSetting}
+              active={settingComponent == "personal"}
             >
-                <Flex
-                    p="40px 10px"
-                    borderBottom={{ base: '1px', md: '0px' }}
-                    borderColor="white"
-                    minW={{ base: '100%', md: "25%" }}
-                    flexDirection='column'
-                >
-                    {/* select setting buttons  */}
-                    {isCustomer() &&
-                        <SettingButton click={personalSetting} active={settingComponent == "personal"}> Personal info </SettingButton>}
+              {" "}
+              Personal info{" "}
+            </SettingButton>
+          )}
 
-                    {isRegisteredProducer() &&
-                        <SettingButton click={shopSetting} active={settingComponent == "shop"} > Shop info </SettingButton>
-                    }
-                    {isCustomer() &&
-                        <SettingButton click={addressSetting} active={settingComponent == "address"}>Address book</SettingButton>}
-                    {/* select setting buttons  */}
-                </Flex>
-
-                {/* setting component  */}
-                <Flex
-                    w='100%'
-                    p='40px 30px'
-                    justifyContent='center'
-                    alignItems='center'
-                    overflow='hidden'
-                >
-                    {(() => {
-                        switch (settingComponent) {
-                            case "personal":
-                                return (<PersonalInfoComponent active={settingComponent} />)
-                            case "shop":
-                                return (<ShopInfoComponent active={settingComponent} />)
-                            case "address":
-                                return (<AddressBookComponent active={settingComponent} />)
-                        }
-                    })()}
-                </Flex>
-                {/* setting component  */}
-
-            </Flex>
-
+          {isRegisteredProducer() && (
+            <SettingButton
+              click={shopSetting}
+              active={settingComponent == "shop"}
+            >
+              {" "}
+              Shop info{" "}
+            </SettingButton>
+          )}
+          {isCustomer() && (
+            <SettingButton
+              click={addressSetting}
+              active={settingComponent == "address"}
+            >
+              Address book
+            </SettingButton>
+          )}
+          {/* select setting buttons  */}
         </Flex>
-    )
+
+        {/* setting component  */}
+        <Flex
+          w="100%"
+          p="40px 30px"
+          justifyContent="center"
+          alignItems="center"
+          overflow="hidden"
+        >
+          {(() => {
+            switch (settingComponent) {
+              case "personal":
+                return <PersonalInfoComponent active={settingComponent} />;
+              case "shop":
+                return <ShopInfoComponent active={settingComponent} />;
+              case "address":
+                return <AddressBookComponent active={settingComponent} />;
+            }
+          })()}
+        </Flex>
+        {/* setting component  */}
+      </Flex>
+    </Flex>
+  );
 }
