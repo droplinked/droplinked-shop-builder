@@ -204,11 +204,11 @@ export default function AddressForm({ type, addressBook, close }) {
                 >
                     <FormInput
                         w='45%'
-                        label={"State"}
-                        placeholder={"State"}
+                        label={"State/province"}
+                        placeholder={"State/province"}
                         value={state}
                         changeValue={ChangeState}
-                        isError={(error == "state") && "State is required"}
+                        isError={(error == "state") && "State/province is required"}
                     />
                     <FormInput
                         w='45%'
