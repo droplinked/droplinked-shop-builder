@@ -5,8 +5,9 @@ import { getOrdersHistory } from '../../api/base-user/OrderHistory-api'
 import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils"
 import { ORDER_TYPES } from "../../constant/order.types"
 import { mergeWaitingOrders } from "./purchase-order-utils"
+import { useNavigate } from "react-router-dom";
 
-
+import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import Dropdown from "../../components/shared/Dropdown/Dropdown-component"
 import Loading from "../../components/shared/loading/Loading"
 import Order from "../../components/shared/Order/Order-component"
@@ -17,7 +18,7 @@ export default function PurchasHistoryPage() {
     const [filter, setFilter] = useState("All")
 
     const { successToast, errorToast } = useToasty();
-
+    const navigate = useNavigate()
 
     //get payment status
     let params = (new URL(document.location)).searchParams;
@@ -56,7 +57,10 @@ export default function PurchasHistoryPage() {
         }
     }
 
-    return (<>
+    const currentShop = JSON.parse(localStorage.getItem("currentShop"))
+    const backToShop = () => navigate(`/${currentShop}`)
+
+    return (<Box mx={{base:'20px' , md:'80px'}}>
         {(orders == null)
             ?
             <Loading />
@@ -64,9 +68,9 @@ export default function PurchasHistoryPage() {
             <>
                 {(orders.length == 0)
                     ?
-                    <Text color='white' w='100%' textAlign='center' fontSize='20px' fontWeight='600'>No Order</Text>
+                    <Text color='white' w='100%' textAlign='center' fontSize='20px' fontWeight='600' mb='300px'>No Order</Text>
                     :
-                    <Box w='100%' px={{ base: "20px", md: "80px" }}>
+                    <Box w='100%'  mb='100px'>
                         <Box w='100%' maxW='700px' m='auto'>
                             <Text
                                 color='white'
@@ -112,8 +116,9 @@ export default function PurchasHistoryPage() {
                         </Box>
                     </Box>
                 }
+                 <Box><BasicButton w={{base:"100%" , md:'200px'}} click={backToShop}>Back</BasicButton></Box>
             </>
         }
 
-    </>)
+    </Box>)
 }
