@@ -14,7 +14,8 @@ import plus from "../../assest/icon/plusIcon.png";
 import minus from "../../assest/icon/minusIcon.png";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
-const ShopifyMech = ({ shopName, ruleset, product, shopdomain }) => {
+const ShopifyMech = ({ shopName, product }) => {
+
   const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -28,12 +29,12 @@ const ShopifyMech = ({ shopName, ruleset, product, shopdomain }) => {
   const navigate = useNavigate();
 
 
-  let images = product.images.map((img) => {
+  let images = product.shopifyData.images.map((img) => {
     return { url: img.src };
   });
 
   useEffect(() => {
-    let opt = product.variants.map((vari) => {
+    let opt = product.shopifyData.variants.map((vari) => {
       return { id: vari.id, value: vari.title };
     });
     setOptions(opt);
@@ -43,9 +44,9 @@ const ShopifyMech = ({ shopName, ruleset, product, shopdomain }) => {
   const navigateToShoppage = () => navigate(`/${shopName}`);
 
   const checkGated = async () => {
-    if (ruleset == undefined) return true;
+    if (product.ruleset == undefined) return true;
 
-    const Rules = ruleset.rules.map((rule) => rule.address);
+    const Rules = product.ruleset.rules.map((rule) => rule.address);
     setLoading(true);
     checkRules(userData.profile.stxAddress.mainnet, Rules)
       .then((e) => {
@@ -75,14 +76,15 @@ const ShopifyMech = ({ shopName, ruleset, product, shopdomain }) => {
 
     if (!checkNftGated) return;
 
-    let selectedVar = product.variants.find(
+    let selectedVar = product.shopifyData.variants.find(
       (variant) => variant.id == selectedOption
     );
     let itemObject = {
       amount: quantity,
-      product: product,
-      shopName: shopdomain,
+      product: product.shopifyData,
+      shopName: product.shopifyShopDomain,
       variant: selectedVar,
+      productId:product._id
     };
     successToast("Item added to cart");
     addShopifyItemToCart(itemObject);
@@ -114,7 +116,7 @@ const ShopifyMech = ({ shopName, ruleset, product, shopdomain }) => {
           justifyContent="space-between"
         >
           <Text color="#fff" fontSize="20px" fontWeight="600">
-            {product.title}
+            {product.shopifyData.title}
           </Text>
 
           <Text
@@ -130,7 +132,7 @@ const ShopifyMech = ({ shopName, ruleset, product, shopdomain }) => {
           </Text>
 
           <Text fontWeight="600" fontSize="24px" color="#fff">
-            ${product.variants[0].price}
+            ${product.shopifyData.variants[0].price}
           </Text>
 
           {selectedOption && (
@@ -225,7 +227,7 @@ const ShopifyMech = ({ shopName, ruleset, product, shopdomain }) => {
             w="100%"
             color="#b3b3b3"
             whiteSpace="pre-line"
-            dangerouslySetInnerHTML={{ __html: product.body_html }}
+            dangerouslySetInnerHTML={{ __html: product.shopifyData.body_html }}
             display={testLimit == true ? "inline-block " : "-webkit-box"}
             overflow="hidden"
             text-overflow="ellipsis"
