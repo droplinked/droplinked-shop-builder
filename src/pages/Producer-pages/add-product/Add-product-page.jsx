@@ -5,6 +5,7 @@ import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import CheckBox from "../../../components/shared/Checkbox/CheckBox-component";
 import ProductInformation from "../components/product-information-component";
 import SkuForm from "../components/sku-form-component";
+import SkuModal from "../../../components/Modal/Sku/Sku-modal"
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -252,6 +253,7 @@ function AddProductPage() {
           </BasicButton>
         </div>
       </div>
+      <SkuModal />
     </div>
   );
 }
