@@ -10,8 +10,9 @@ import Loading from "../../components/shared/loading/Loading";
 import TopSection from "../../components/shared/TopSection/TopSection";
 import ProfileTopSection from "../Crashpunks-page/crashpunks top section/ProfileTopSection";
 import GalleryCarousel from "../Crashpunks-page/gallery carousel/GalleryCarousel";
-import ShopifyCollection from "./Shopify-collection";
-import DroplinkedCollectin from "./Droplinked-collection";
+// import ShopifyCollection from "./Shopify-collection";
+// import DroplinkedCollectin from "./Droplinked-collection";
+import CollectionsSection from "./Collection-section";
 
 export default function ShopPage() {
   // state for shop information
@@ -39,7 +40,7 @@ export default function ShopPage() {
   };
 
   // check if doesnt exist any product in all collections dont show any collection
-  const checkCollectionState = () => {
+  const collectionHasProduct = () => {
     if (collection == null) return false;
 
     let flag = false;
@@ -48,7 +49,7 @@ export default function ShopPage() {
     });
     return flag;
   };
-  //console.log(shopname) crashpunks
+
 
   return (
     <>
@@ -57,6 +58,7 @@ export default function ShopPage() {
       ) : (
         <div className="shop-page-container">
           {shopname == "crashpunks" ? (
+            // specific design for crahspunk shop and (TopSection) component for another shops
             <>
               <ProfileTopSection />
               <GalleryCarousel />
@@ -81,15 +83,14 @@ export default function ShopPage() {
               margin: "40px 20px 0px 20px",
             }}
           >
-            {checkCollectionState() ? (
-              // if exist any product show collections that have product
+            {collectionHasProduct() ? (
+              //  if doesnt exist any product in all collections show (No collections listed yet!) message
               <>
-                {shopData.imsType == "SHOPIFY" ? (
-                  <ShopifyCollection collection={collection} shopname={shopname}/>
-                ) : (
-                  <DroplinkedCollectin collection={collection} shopname={shopname}/>
-                )}
-                
+                <CollectionsSection
+                  collection={collection}
+                  shopname={shopname}
+                  type={shopData.imsType}
+                />
               </>
             ) : (
               <p className="no-collection-text">No collections listed yet!</p>
