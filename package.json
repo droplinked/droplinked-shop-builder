@@ -35,9 +35,9 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "react-toastify": "^9.0.1",
-    "sass": "^1.49.9",
     "stream": "npm:stream-browserify@^3.0.0",
     "stream-browserify": "^3.0.0",
+    "util": "^0.12.4",
     "web-vitals": "^2.1.4",
     "workbox-background-sync": "^6.5.4",
     "workbox-broadcast-update": "^6.5.4",
@@ -79,6 +79,9 @@
     ]
   },
   "devDependencies": {
-    "react-app-rewired": "^2.2.1"
+    "react-app-rewired": "^2.2.1",
+    "sass": "^1.54.9",
+    "sass-loader": "^13.0.2",
+    "webpack": "^5.74.0"
   }
 }
