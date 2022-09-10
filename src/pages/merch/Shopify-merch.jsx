@@ -1,21 +1,26 @@
-import { Flex, Box, Text, Image } from "@chakra-ui/react";
+import { Box} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useCart } from "../../context/cart/CartContext";
 import { useToasty } from "../../context/toastify/ToastContext";
 import { useProfile } from "../../context/profile/ProfileContext";
 import { checkRules } from "../../services/nft-service/NFTcheck";
 import { UseWalletInfo } from "../../context/wallet/WalletContext";
-import { useNavigate } from "react-router-dom";
-
+//import { useNavigate } from "react-router-dom";
+import {
+  MerchPageWrapper,
+  DescriptionWrapper,
+  DescriptionText,
+  ReadmoreButton,
+} from "./Shopify-merch-style";
 
 import Carousel from "../../components/shared/Carousel/Carousel-component";
-import Dropdown from "../../components/shared/Dropdown/Dropdown-component";
-import plus from "../../assest/icon/plusIcon.png";
-import minus from "../../assest/icon/minusIcon.png";
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
+// import Dropdown from "../../components/shared/Dropdown/Dropdown-component";
+// import plus from "../../assest/icon/plusIcon.png";
+// import minus from "../../assest/icon/minusIcon.png";
+// import BasicButton from "../../components/shared/BasicButton/BasicButton";
+import DetailComponent from "./Merch-detail-component";
 
 const ShopifyMech = ({ shopName, product }) => {
-
   const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -26,22 +31,23 @@ const ShopifyMech = ({ shopName, product }) => {
   const { addShopifyItemToCart } = useCart();
   const { successToast, errorToast } = useToasty();
   const { profile } = useProfile();
-  const navigate = useNavigate();
-
+ // const navigate = useNavigate();
 
   let images = product.shopifyData.images.map((img) => {
     return { url: img.src };
   });
 
-  useEffect(() => {
-    let opt = product.shopifyData.variants.map((vari) => {
-      return { id: vari.id, value: vari.title };
-    });
-    setOptions(opt);
-    setSelectedOption(opt[0].id);
-  }, []);
+  //console.log(product.shopifyData);
 
-  const navigateToShoppage = () => navigate(`/${shopName}`);
+  // useEffect(() => {
+  //   let opt = product.shopifyData.variants.map((vari) => {
+  //     return { id: vari.id, value: vari.title };
+  //   });
+  //   setOptions(opt);
+  //   setSelectedOption(opt[0].id);
+  // }, []);
+
+ 
 
   const checkGated = async () => {
     if (product.ruleset == undefined) return true;
@@ -84,21 +90,19 @@ const ShopifyMech = ({ shopName, product }) => {
       product: product.shopifyData,
       shopName: product.shopifyShopDomain,
       variant: selectedVar,
-      productId:product._id
+      productId: product._id,
     };
     successToast("Item added to cart");
     addShopifyItemToCart(itemObject);
   };
 
+
+
+  const changeTextLimit = () => setTextLimit((p) => !p);
+
   return (
     <>
-      <Flex
-        justifyContent="space-between"
-        maxW="800px"
-        w="100%"
-        flexWrap="wrap"
-        m="auto"
-      >
+      <MerchPageWrapper>
         {/* images */}
         <Box w={{ base: "100%", md: "50%" }} minh="500px">
           <Carousel imagesArray={images} />
@@ -106,30 +110,53 @@ const ShopifyMech = ({ shopName, product }) => {
         {/* images */}
 
         {/* detail */}
-        <Flex
-          w={{ base: "100%", md: "50%" }}
-          pl={{ base: "0px", md: "20px" }}
-          pb={{ base: "0px", md: "80px" }}
-          mt={{ base: "40px", md: "0px" }}
-          h={{ base: "320px", md: "auto" }}
-          flexDir="column"
-          justifyContent="space-between"
-        >
-          <Text color="#fff" fontSize="20px" fontWeight="600">
-            {product.shopifyData.title}
-          </Text>
+        <DetailComponent
+          title={product.shopifyData.title}
+          shopName={shopName}
+          price={product.shopifyData.variants[0].price}
+          variants={product.shopifyData.variants}
+          optionsList={product.shopifyData.options}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          quantity={quantity}
+          setQuantity={setQuantity}
+          submit={addItemToBasket}
+          loading={loading}
+        />
+        {/* detail */}
 
-          <Text
-            color="#B3B3B3"
-            fontSize={{ base: "20px", md: "22px" }}
-            fontWeight="600"
-            cursor="pointer"
-            display="inline-block"
-            _hover={{ color: "#fff" }}
-            onClick={navigateToShoppage}
-          >
+        {/* description */}
+        <DescriptionWrapper>
+          <DescriptionText
+            dangerouslySetInnerHTML={{ __html: product.shopifyData.body_html }}
+            display={testLimit == true ? "inline-block " : "-webkit-box"}
+          />
+
+          <ReadmoreButton onClick={changeTextLimit}>Read more</ReadmoreButton>
+        </DescriptionWrapper>
+        {/* description */}
+      </MerchPageWrapper>
+    </>
+  );
+};
+
+export default ShopifyMech;
+
+  // const decreaseQuantity = () => {
+  //   if (quantity > 1) setQuantity((p) => p - 1);
+  // };
+
+  // const increaseQuantity = () => setQuantity((p) => p + 1);
+
+   //const navigateToShoppage = () => navigate(`/${shopName}`);
+
+{
+  /* <DetailWrapper>
+          <ProductTitle>{product.shopifyData.title}</ProductTitle>
+
+          <ProductShopname onClick={navigateToShoppage}>
             {shopName}
-          </Text>
+          </ProductShopname>
 
           <Text fontWeight="600" fontSize="24px" color="#fff">
             ${product.shopifyData.variants[0].price}
@@ -151,57 +178,27 @@ const ShopifyMech = ({ shopName, product }) => {
           )}
 
           <Flex>
-            <Flex
-              justifyContent="center"
-              alignItems="center"
-              w="35px"
-              h="35px"
+            <QuantityButton
               bgColor="#353536"
-              borderRadius="8px"
               color="#b3b3b3"
-              mr="8px"
-              p="5px"
-              cursor='pointer'
-              onClick={() => {
-                if (quantity > 1) {
-                  setQuantity((p) => p - 1);
-                }
-              }}
+              cursor="pointer"
+              onClick={decreaseQuantity}
             >
               <Image src={minus} alt="minus" />
-            </Flex>
+            </QuantityButton>
 
-            <Text
-              mr="8px"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              w="35px"
-              h="35px"
-              borderRadius="8px"
-              color="white"
-              fontSize="20px"
-            >
+            <QuantityButton color="white" fontSize="20px">
               {quantity}
-            </Text>
+            </QuantityButton>
 
-            <Flex
-              justifyContent="center"
-              alignItems="center"
-              w="35px"
-              h="35px"
+            <QuantityButton
               bgColor="#353536"
-              borderRadius="8px"
               color="#b3b3b3"
-              mr="8px"
-              p="5px"
-              cursor='pointer'
-              onClick={() => {
-                setQuantity((p) => p + 1);
-              }}
+              cursor="pointer"
+              onClick={increaseQuantity}
             >
               <Image src={plus} alt="minus" />
-            </Flex>
+            </QuantityButton>
           </Flex>
 
           <Box h="auto">
@@ -209,57 +206,5 @@ const ShopifyMech = ({ shopName, product }) => {
               Add to basket
             </BasicButton>
           </Box>
-        </Flex>
-        {/* detail */}
-        {/* description */}
-
-        <Flex
-          mt={{ base: "20px", md: "40px" }}
-          w="100%"
-          flexDir="column"
-          alignItems="center"
-          pr={{ base: "20px", md: "0px" }}
-          overflow="hidden"
-        >
-          <Text
-            fontWeight="500"
-            fontSize="18px"
-            w="100%"
-            color="#b3b3b3"
-            whiteSpace="pre-line"
-            dangerouslySetInnerHTML={{ __html: product.shopifyData.body_html }}
-            display={testLimit == true ? "inline-block " : "-webkit-box"}
-            overflow="hidden"
-            text-overflow="ellipsis"
-            __css={{
-              "&::-webkit-line-clamp": {
-                w: "2",
-              },
-              "&::-webkit-box-orient": {
-                w: "vertical",
-              },
-            }}
-          ></Text>
-          <Box
-            color="#fff"
-            fontSize="16px"
-            w="auto"
-            textAlign="center"
-            mt="20px"
-            border="1px solid #aaa"
-            p="5px 10px"
-            borderRadius="8px"
-            cursor="pointer"
-            _hover={{ border: "1px solid #fff" }}
-            onClick={() => setTextLimit((p) => !p)}
-          >
-            Read more
-          </Box>
-        </Flex>
-        {/* description */}
-      </Flex>
-    </>
-  );
-};
-
-export default ShopifyMech;
+        </DetailWrapper> */
+}
