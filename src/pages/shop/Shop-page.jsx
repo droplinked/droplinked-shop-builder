@@ -10,8 +10,6 @@ import Loading from "../../components/shared/loading/Loading";
 import TopSection from "../../components/shared/TopSection/TopSection";
 import ProfileTopSection from "../Crashpunks-page/crashpunks top section/ProfileTopSection";
 import GalleryCarousel from "../Crashpunks-page/gallery carousel/GalleryCarousel";
-// import ShopifyCollection from "./Shopify-collection";
-// import DroplinkedCollectin from "./Droplinked-collection";
 import CollectionsSection from "./Collection-section";
 
 export default function ShopPage() {
