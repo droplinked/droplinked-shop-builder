@@ -85,6 +85,7 @@ const DroplinkedMerch = ({ product }) => {
     setDisableBtn(true);
     let result = await addSkuToCart(cart);
     if (result == true) {
+      localStorage.setItem("cart", JSON.stringify(null));
       successToast("Item added to cart");
       setQuantity(1);
       updateCart();
