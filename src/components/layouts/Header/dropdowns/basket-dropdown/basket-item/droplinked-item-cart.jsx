@@ -7,7 +7,7 @@ import { useCart } from "../../../../../../context/cart/CartContext"
 import { ReactComponent as CloseIcon } from '../../../../../../assest/icon/xmark.svg';
 import { useToasty } from "../../../../../../context/toastify/ToastContext"
 
-export default function BasketItemComponent({ item, close }) {
+export default function DroplinkedItem({ item, close }) {
 
     const [loading, setLoading] = useState(false)
 
@@ -33,7 +33,7 @@ export default function BasketItemComponent({ item, close }) {
         setLoading(false)
     }
 
-    
+
     return (
         <Box
             w="100%"
