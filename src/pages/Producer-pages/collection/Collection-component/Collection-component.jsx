@@ -4,7 +4,6 @@ import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-com
 import ModalContainer from "../../../../components/Modal/modal-container/modal-container";
 import EditCollectionModal from "../edit-collection-modal/edit-collection-modal-component";
 import Product from "../../../../components/shared/Product/Product";
-import ShopifyCollection from "../../../../components/shared/Collection/shopify-collection.component";
 
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useProfile } from "../../../../context/profile/ProfileContext";
@@ -59,9 +58,19 @@ export default function CollectionComponent({ collection, edit, render }) {
               })
               .map((product, i) => {
                 if (product.type == "SHOPIFY") {
-                  return <div key={i} className="col-6 col-md-3 p-1">
-                    <ShopifyCollection product={product.shopifyData} id={product._id} shopname={profile.shopName}  />
-                  </div>;
+                  return (
+                    <div key={i} className="col-6 col-md-3 p-1">
+                      <Product
+                        shopname={profile.shopName}
+                        title={product.shopifyData.title}
+                        id={product._id}
+                        imageUrl={
+                          product.shopifyData.images.length > 0 &&
+                          product.shopifyData.images[0].src
+                        }
+                      />
+                    </div>
+                  );
                 } else {
                   return (
                     <div key={i} className="col-6 col-md-3 p-1">
@@ -69,6 +78,7 @@ export default function CollectionComponent({ collection, edit, render }) {
                         shopname={profile.shopName}
                         title={product.title}
                         id={product._id}
+                        imageUrl={product.media[0].url}
                       />
                     </div>
                   );
