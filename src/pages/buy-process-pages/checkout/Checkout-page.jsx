@@ -3,7 +3,15 @@ import { Flex, Box, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../context/cart/CartContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
-
+import {
+  CheckoutPageWrapper,
+  EmptyText,
+  HeadText,
+  PriceWrapper,
+  PriceText,
+  ButtonWrapper,
+} from "./Checkout-page-style";
+import { SHOP_TYPES } from "../../../constant/shop-types";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import CheckoutShopItem from "./CheckoutShopItem";
 import Loading from "../../../components/shared/loading/Loading";
@@ -31,7 +39,7 @@ function CheckoutPage() {
 
   const getTotalPrice = () => {
     let total = 0;
-    cart.forEach(
+    cart.items.forEach(
       (item) => (total += parseFloat(item.variant.price) * item.amount)
     );
     return total;
@@ -81,98 +89,45 @@ function CheckoutPage() {
   const backToShop = () => navigate(`/${currentShop}`);
 
   return (
-    <Flex
-      w="100%"
-      maxW="980px"
-      m="0px auto"
-      px={{ base: "20px", md: "80px" }}
-      flexDirection="column"
-    >
+    <CheckoutPageWrapper>
       {cart == null ? (
-        <Loading />
+        <EmptyText>Empty</EmptyText>
       ) : (
         <>
-          {cart.length == 0 ? (
-            <Text
-              fontSize={{ base: "20px", md: "24px" }}
-              fontWeight="600"
-              color="#fff"
-              m="0px auto 40px auto"
-            >
-              Empty
-            </Text>
-          ) : (
+          <HeadText>Checkout</HeadText>
+          {cart.items.map((item, i) => (
             <>
-              <Text
-                fontSize={{ base: "20px", md: "24px" }}
-                fontWeight="600"
-                color="#fff"
-                m="0px auto 40px auto"
-              >
-                Checkout
-              </Text>
-
-              {/* {(cartBaseShop.length > 0) &&
-								<>
-									{cartBaseShop.map((shop, i) => {
-										return <CheckoutShopItem key={i} shopItem={shop} />
-									})
-									}
-								</>
-							} */}
-              {cart.map((item, i) => (
+              {cart.type == SHOP_TYPES.SHOPIFY ? (
                 <ShopifyCheckoutItem
                   product={item.product}
                   variant={item.variant}
                   amount={item.amount}
                 />
-              ))}
-
-              <Flex
-                w="100%"
-                justifyContent="space-between"
-                borderTop="2px"
-                borderColor="#8053ff"
-                pt="20px"
-              >
-                <Box>
-                  <Text
-                    color="#fff"
-                    fontSize={{ base: "18px", md: "22px" }}
-                    fontWeight="600"
-                  >
-                    {/* Total price: ${getTotalPrice().toFixed(2)} */}
-                    Total price: ${getTotalPrice().toFixed(2)}
-                  </Text>
-                  {/* <Text
-                    color="#fff"
-                    fontSize={{ base: "18px", md: "22px" }}
-                    fontWeight="600"
-                    mt="5px"
-                  ></Text> */}
-                </Box>
-              </Flex>
-
-              <Flex
-                w="100%"
-                justifyContent="space-between"
-                h={{ base: "40px", md: "40px" }}
-                mt="40px"
-              >
-                <Box w={{ base: "150px", md: "200px" }} overflow="hidden">
-                  <BasicButton click={backToShop}>Back to shop</BasicButton>
-                </Box>
-
-                <Box w={{ base: "150px", md: "200px" }} overflow="hidden">
-                  <BasicButton click={checkoutSubmit}>Check out</BasicButton>
-                </Box>
-              </Flex>
+              ) : (
+                <></>
+              )}
             </>
-          )}
+          ))}
+
+          <PriceWrapper>
+            <Box>
+              <PriceText>Total price: ${getTotalPrice().toFixed(2)}</PriceText>
+            </Box>
+          </PriceWrapper>
+
+          <ButtonWrapper>
+            <Box w={{ base: "150px", md: "200px" }} overflow="hidden">
+              <BasicButton click={backToShop}>Back to shop</BasicButton>
+            </Box>
+
+            <Box w={{ base: "150px", md: "200px" }} overflow="hidden">
+              <BasicButton click={checkoutSubmit}>Check out</BasicButton>
+            </Box>
+          </ButtonWrapper>
         </>
       )}
       {showEmailModal && <EmailModal close={closeEmailModal} />}
-    </Flex>
+    </CheckoutPageWrapper>
   );
 }
 
