@@ -2,6 +2,20 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
+export const getCart = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  try {
+    const res = await axios.get(`${BASE_URL}/cart`, {
+      headers: { Authorization: "Bearer " + token },
+    });
+   // return res.data.data.cart;
+   return res.data;
+  } catch (err) {
+    return err.response
+  }
+};
+
 export const addCheckoutAddress = async (addressId) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
@@ -81,5 +95,17 @@ export const addRootpaymentOrder = (orderId) => {
     console.log();
   } catch (err) {
     console.log();
+  }
+};
+
+export const removeCart = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const res = await axios.delete(`${BASE_URL}/cart`, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
   }
 };

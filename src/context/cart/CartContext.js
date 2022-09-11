@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from "react";
-import { BASE_URL } from "../../api/BaseUrl";
+import { removeCart, getCart } from "../../api/base-user/Cart-api";
+import { SHOP_TYPES } from "../../constant/shop-types";
 
-import axios from "axios";
 
 export const CartContext = createContext();
 
@@ -12,20 +12,15 @@ const CartProvider = ({ children }) => {
   );
 
   //update cartstate
-  const updateCart = () => {
-    let token = JSON.parse(localStorage.getItem("token"));
-    //get cart from backend and set in cart state
-    axios
-      .get(`${BASE_URL}/cart`, {
-        headers: { Authorization: "Bearer " + token },
-      })
-      .then((e) => {
-        let cart = e.data.data.cart;
-        setCart(cart);
-      })
-      .catch((e) => {
-        console.log(e.response.data.reason);
-      });
+  const updateCart = async () => {
+    let result = await getCart();
+    if (result.status === "success") {
+      let newCart = { ...result.data.cart, type: SHOP_TYPES.DROPLINKED };
+      console.log(newCart);
+      setCart(newCart);
+    } else {
+      console.log(result.data.reason);
+    }
   };
 
   const addShopifyItemToCart = (item) => {
@@ -75,13 +70,12 @@ const CartProvider = ({ children }) => {
   };
 
   const changeQuantity = (quantity, variantId) => {
-    let currentCart = []
-    for(let item of cart){
-      currentCart.push(item)
+    let currentCart = [];
+    for (let item of cart) {
+      currentCart.push(item);
     }
 
     currentCart = currentCart.map((item) => {
-    
       if (item.variant.id == variantId) {
         return { ...item, amount: quantity };
       } else {
