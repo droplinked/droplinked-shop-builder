@@ -7,7 +7,7 @@ import {
 } from "./Shopify-merch-style";
 import { Flex, Box, Text, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import plus from "../../assest/icon/plusIcon.png";
@@ -22,8 +22,11 @@ const DetailComponent = ({
   setQuantity,
   submit,
   loading,
+  selectedVariant,
+  setSelectedVariant
 }) => {
-  const [selectedVariant, setSelectedVariant] = useState(null);
+  
+  console.log(selectedVariant)
 
   const navigate = useNavigate();
 
