@@ -1,10 +1,10 @@
 import { Box} from "@chakra-ui/react";
 import { useState } from "react";
-import { useCart } from "../../context/cart/CartContext";
-import { useToasty } from "../../context/toastify/ToastContext";
-import { useProfile } from "../../context/profile/ProfileContext";
-import { checkRules } from "../../services/nft-service/NFTcheck";
-import { UseWalletInfo } from "../../context/wallet/WalletContext";
+import { useCart } from "../../../context/cart/CartContext";
+import { useToasty } from "../../../context/toastify/ToastContext";
+import { useProfile } from "../../../context/profile/ProfileContext";
+import { checkRules } from "../../../services/nft-service/NFTcheck";
+import { UseWalletInfo } from "../../../context/wallet/WalletContext";
 import {
   MerchPageWrapper,
   DescriptionWrapper,
@@ -12,8 +12,8 @@ import {
   ReadmoreButton,
 } from "./Shopify-merch-style";
 
-import Carousel from "../../components/shared/Carousel/Carousel-component";
-import DetailComponent from "./Merch-detail-component";
+import Carousel from "../../../components/shared/Carousel/Carousel-component";
+import ShopifyDetail from "./Shopify-merch-detail-component";
 
 const ShopifyMech = ({ shopName, product }) => {
 
@@ -93,7 +93,7 @@ const ShopifyMech = ({ shopName, product }) => {
         {/* images */}
 
         {/* detail */}
-        <DetailComponent
+        <ShopifyDetail
           title={product.shopifyData.title}
           shopName={shopName}
           variants={product.shopifyData.variants}

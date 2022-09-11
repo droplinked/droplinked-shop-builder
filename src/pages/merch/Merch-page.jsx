@@ -6,7 +6,7 @@ import { getProduct } from "../../api/public/Product-api";
 
 import Loading from "../../components/shared/loading/Loading";
 import DroplinkedMerch from "./Droplinked-merch";
-import ShopifyMech from "./Shopify-merch";
+import ShopifyMech from "./shopify-merch/Shopify-merch";
 
 export default function MerchPage() {
 

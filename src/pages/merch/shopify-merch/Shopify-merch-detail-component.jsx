@@ -4,16 +4,16 @@ import {
   ProductShopname,
   QuantityButton,
   VariantSelect,
-} from "./Shopify-merch-style";
+} from "./Shopify-merch-detail-style";
 import { Flex, Box, Text, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
-import plus from "../../assest/icon/plusIcon.png";
-import minus from "../../assest/icon/minusIcon.png";
+import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import plus from "../../../assest/icon/plusIcon.png";
+import minus from "../../../assest/icon/minusIcon.png";
 
-const DetailComponent = ({
+const ShopifyDetail = ({
   title,
   shopName,
   variants,
@@ -25,8 +25,6 @@ const DetailComponent = ({
   selectedVariant,
   setSelectedVariant
 }) => {
-  
-  console.log(selectedVariant)
 
   const navigate = useNavigate();
 
@@ -179,4 +177,4 @@ const DetailComponent = ({
     </DetailWrapper>
   );
 };
-export default DetailComponent;
+export default ShopifyDetail;
