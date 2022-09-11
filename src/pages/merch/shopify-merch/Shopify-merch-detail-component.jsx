@@ -4,7 +4,7 @@ import {
   ProductShopname,
   QuantityButton,
   VariantSelect,
-} from "./Shopify-merch-detail-style";
+} from "../styles/Merch-style";
 import { Flex, Box, Text, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -14,10 +14,8 @@ import plus from "../../../assest/icon/plusIcon.png";
 import minus from "../../../assest/icon/minusIcon.png";
 
 const ShopifyDetail = ({
-  title,
+  product,
   shopName,
-  variants,
-  optionsList,
   quantity,
   setQuantity,
   submit,
@@ -26,6 +24,9 @@ const ShopifyDetail = ({
   setSelectedVariant
 }) => {
 
+  const variants = product.variants
+  const optionsList =product.options
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -108,7 +109,7 @@ const ShopifyDetail = ({
     <DetailWrapper>
       {selectedVariant && (
         <>
-          <ProductTitle>{title}</ProductTitle>
+          <ProductTitle>{product.title}</ProductTitle>
           <ProductShopname onClick={navigateToShoppage}>
             {shopName}
           </ProductShopname>

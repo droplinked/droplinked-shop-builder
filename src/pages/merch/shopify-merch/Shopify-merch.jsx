@@ -1,4 +1,4 @@
-import { Box} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { useCart } from "../../../context/cart/CartContext";
 import { useToasty } from "../../../context/toastify/ToastContext";
@@ -10,13 +10,12 @@ import {
   DescriptionWrapper,
   DescriptionText,
   ReadmoreButton,
-} from "./Shopify-merch-style";
+} from "../styles/Merch-style";
 
 import Carousel from "../../../components/shared/Carousel/Carousel-component";
 import ShopifyDetail from "./Shopify-merch-detail-component";
 
 const ShopifyMech = ({ shopName, product }) => {
-
   const [loading, setLoading] = useState(false);
   const [testLimit, setTextLimit] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -27,13 +26,10 @@ const ShopifyMech = ({ shopName, product }) => {
   const { successToast, errorToast } = useToasty();
   const { profile } = useProfile();
 
-
   let images = product.shopifyData.images.map((img) => {
     return { url: img.src };
   });
 
-
- 
   const checkGated = async () => {
     if (product.ruleset == undefined) return true;
 
@@ -67,7 +63,6 @@ const ShopifyMech = ({ shopName, product }) => {
 
     if (!checkNftGated) return;
 
-  
     let itemObject = {
       amount: quantity,
       product: product.shopifyData,
@@ -78,8 +73,6 @@ const ShopifyMech = ({ shopName, product }) => {
     successToast("Item added to cart");
     addShopifyItemToCart(itemObject);
   };
-
-
 
   const changeTextLimit = () => setTextLimit((p) => !p);
 
@@ -94,10 +87,8 @@ const ShopifyMech = ({ shopName, product }) => {
 
         {/* detail */}
         <ShopifyDetail
-          title={product.shopifyData.title}
+          product={product.shopifyData}
           shopName={shopName}
-          variants={product.shopifyData.variants}
-          optionsList={product.shopifyData.options}
           quantity={quantity}
           setQuantity={setQuantity}
           submit={addItemToBasket}
