@@ -112,7 +112,6 @@ const DroplinkedDetail = ({
     });
   };
 
-  console.log(selectedSku);
   return (
     <DetailWrapper>
       <ProductTitle>{product.title}</ProductTitle>
