@@ -1,11 +1,19 @@
 
-import { Box, Text, Image, Spinner } from '@chakra-ui/react'
+import { Box, Spinner } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react"
 import { deleteSkuFromCart } from "../../../../../../api/base-user/Cart-api"
 import { useCart } from "../../../../../../context/cart/CartContext"
 import { ReactComponent as CloseIcon } from '../../../../../../assest/icon/xmark.svg';
 import { useToasty } from "../../../../../../context/toastify/ToastContext"
+import {
+    CartItemWrapper,
+    ItemImage,
+    ItemDetail,
+    ItemTitle,
+    ItemPrice,
+    ItemQuantity,
+  } from "./cart-item-style";
 
 export default function DroplinkedItem({ item, close }) {
 
@@ -35,39 +43,22 @@ export default function DroplinkedItem({ item, close }) {
 
 
     return (
-        <Box
-            w="100%"
-            h="80px"
-            py="10px"
-            borderBottom='1px'
-            borderColor='white'
-            display="flex"
-            pos='relative'
-        >
-            <Image
+        <CartItemWrapper>
+            <ItemImage
                 src={item.product.media[0].url}
-                w="25%" h="100%" mr="10px" alt='Merch'
-                cursor='pointer'
-                onClick={navigateToProductPage}
             />
 
-            <Box
-                w="100%"
-                h="100%"
-                display="flex"
-                flexDirection="column"
-                justifyContent="space-between"
-            >
+            <ItemDetail>
                 <Box w="100%" display="flex" justifyContent="space-between">
-                    <Text textAlign="center" fontSize="18px" color="white" fontWeight="600" cursor='pointer'
-                        onClick={navigateToProductPage} >{item.product.title}</Text>
-                    <Text textAlign="center" fontSize="18px" color="white" fontWeight="500" >${item.totalPrice}</Text>
+                    <ItemTitle
+                        onClick={navigateToProductPage} >{item.product.title}</ItemTitle>
+                    <ItemPrice>${item.totalPrice}</ItemPrice>
                 </Box>
 
                 <Box w="100%" display="flex" justifyContent="space-between">
-                    <Text textAlign="center" fontSize="12px" color="#ccc" fontWeight="500" >Quantity: {item.quantity}</Text>
+                    <ItemQuantity>Quantity: {item.quantity}</ItemQuantity>
                 </Box>
-            </Box>
+            </ItemDetail>
             <Box
                 pos='absolute'
                 w='20px'
@@ -85,6 +76,6 @@ export default function DroplinkedItem({ item, close }) {
                 }
             </Box>
 
-        </Box>
+        </CartItemWrapper>
     )
 }  
