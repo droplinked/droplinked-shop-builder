@@ -16,6 +16,7 @@ const CartProvider = ({ children }) => {
     if (result.status === "success") {
       let newCart = { ...result.data.cart, type: SHOP_TYPES.DROPLINKED };
       if (newCart.items.length > 0) setCart(newCart);
+      else setCart(JSON.parse(localStorage.getItem("cart")) || null)
     } else {
       console.log(result.data.reason);
     }
@@ -71,11 +72,14 @@ const CartProvider = ({ children }) => {
 
   const deleteItemFromCart = (variantId) => {
     let currentItems = [];
-    currentItems = cart.filter((currentItem) => {
+    currentItems = cart.items.filter((currentItem) => {
       if (currentItem.variant.id != variantId) return currentItem;
     });
-    setCart(currentItems);
-    localStorage.setItem("cart", JSON.stringify(currentItems));
+    let newCart 
+    if(currentItems.length == 0 )newCart=null
+    else newCart = {...cart ,items:currentItems}
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   const clearCart = () => {

@@ -1,7 +1,7 @@
 import "./basket-modal-style.scss";
 
 import { Text, Button } from "@chakra-ui/react";
-import { useCart } from "../../../../../context/cart/CartContext";
+import CartProvider, { useCart } from "../../../../../context/cart/CartContext";
 import { useNavigate } from "react-router-dom";
 import { SHOP_TYPES } from "../../../../../constant/shop-types";
 
@@ -10,7 +10,7 @@ import ShopifyCartItem from "./basket-item/shopify-item-cart";
 
 export default function BasketModal({ close }) {
   const { cart } = useCart();
-
+  console.log(cart);
   let navigate = useNavigate();
 
   const ClickCheckuot = () => {
@@ -35,19 +35,20 @@ export default function BasketModal({ close }) {
       ) : (
         <>
           {cart.items.map((item, i) => {
-            return(
-            <>
-              {cart.type == SHOP_TYPES.DROPLINKED ? (
-                <DroplinkedItem key={i} item={item} close={close} />
-              ) : (
-                <ShopifyCartItem
-                  key={i}
-                  product={item.product}
-                  amount={item.amount}
-                  variant={item.variant}
-                />
-              )}
-            </>)
+            return (
+              <>
+                {cart.type == SHOP_TYPES.DROPLINKED ? (
+                  <DroplinkedItem key={i} item={item} close={close} />
+                ) : (
+                  <ShopifyCartItem
+                    key={i}
+                    product={item.product}
+                    amount={item.amount}
+                    variant={item.variant}
+                  />
+                )}
+              </>
+            );
           })}
           <Button
             mt="20px"
