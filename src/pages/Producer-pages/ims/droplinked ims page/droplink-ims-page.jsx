@@ -3,6 +3,7 @@ import "./droplink-ims-page.scss";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import SeachBox from "../search box/Search-box-component";
 import ProducerProduct from "./ProducerProduct-component";
+
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
@@ -53,6 +54,7 @@ export default function DroplinkedImsPage({ products }) {
         ref={fileRef}
         onChange={uploadFile}
       />
+
       {/* <div style={{ margin: "10px 0px 20px 0px" }}>
         <div
           className="Import-item-button"
@@ -63,6 +65,7 @@ export default function DroplinkedImsPage({ products }) {
           Import via JSON
         </div>
       </div> */}
+
       <div style={{ margin: "25px 0xp" }}>
         <SeachBox onch={onChangeSearchBox} />
       </div>
