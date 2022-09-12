@@ -89,7 +89,7 @@ const CartProvider = ({ children }) => {
 
   const changeQuantity = (quantity, variantId) => {
     let currentCart = [];
-    for (let item of cart) {
+    for (let item of cart.items) {
       currentCart.push(item);
     }
 
@@ -100,9 +100,9 @@ const CartProvider = ({ children }) => {
         return item;
       }
     });
-
-    setCart(currentCart);
-    localStorage.setItem("cart", JSON.stringify(currentCart));
+    let newCart = {...cart , items:currentCart}
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   const contextValues = {
