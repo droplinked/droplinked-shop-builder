@@ -15,8 +15,11 @@ import { SHOP_TYPES } from "../../../constant/shop-types";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import CheckoutShopItem from "./CheckoutShopItem";
 import Loading from "../../../components/shared/loading/Loading";
-import ShopifyCheckoutItem from "./Shopify-checkout-item";
+//import ShopifyCheckoutItem from "./Shopify-checkout-item";
 import EmailModal from "../../../components/Modal/Email-modal/email-modal";
+import DroplinkedItem from "./chekout-item/Droplinked-item"
+import ShopifytItem from "./chekout-item/Shopify-item"
+import { log } from "util";
 
 function CheckoutPage() {
   const [cartBaseShop, setCart] = useState([]);
@@ -37,13 +40,13 @@ function CheckoutPage() {
 
   const closeEmailModal = () => setShowEmailModal(false);
 
-  const getTotalPrice = () => {
-    let total = 0;
-    cart.items.forEach(
-      (item) => (total += parseFloat(item.variant.price) * item.amount)
-    );
-    return total;
-  };
+  // const getTotalPrice = () => {
+  //   let total = 0;
+  //   cart.items.forEach(
+  //     (item) => (total += parseFloat(item.variant.price) * item.amount)
+  //   );
+  //   return total;
+  // };
 
   //get total price of all items
   // const getTotalPrice = () => {
@@ -87,7 +90,7 @@ function CheckoutPage() {
 
   const currentShop = JSON.parse(localStorage.getItem("currentShop"));
   const backToShop = () => navigate(`/${currentShop}`);
-
+console.log(cart)
   return (
     <CheckoutPageWrapper>
       {cart == null ? (
@@ -98,20 +101,25 @@ function CheckoutPage() {
           {cart.items.map((item, i) => (
             <>
               {cart.type == SHOP_TYPES.SHOPIFY ? (
-                <ShopifyCheckoutItem
+                <ShopifytItem
                   product={item.product}
                   variant={item.variant}
                   amount={item.amount}
                 />
               ) : (
-                <></>
+                <DroplinkedItem
+                product={item.product}
+                sku={item.sku}
+                quantity={item.quantity}
+                shopName={item.shopName}
+                />
               )}
             </>
           ))}
 
           <PriceWrapper>
             <Box>
-              <PriceText>Total price: ${getTotalPrice().toFixed(2)}</PriceText>
+              {/* <PriceText>Total price: ${getTotalPrice().toFixed(2)}</PriceText> */}
             </Box>
           </PriceWrapper>
 
