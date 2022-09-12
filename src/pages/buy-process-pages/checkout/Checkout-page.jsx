@@ -54,7 +54,7 @@ function CheckoutPage() {
 
   const currentShop = JSON.parse(localStorage.getItem("currentShop"));
   const backToShop = () => navigate(`/${currentShop}`);
-  console.log(cart);
+
   return (
     <CheckoutPageWrapper>
       {cart == null ? (

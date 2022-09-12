@@ -1,17 +1,28 @@
-
-import { useState ,lazy, Suspense  } from "react"
+import { useState, lazy, Suspense } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Flex, Box, Text,  keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
+import { keyframes, usePrefersReducedMotion } from "@chakra-ui/react";
+import {
+  LandingPageWrapper,
+  InputContainrt,
+  TextUp,
+  Text2,
+  TextContainer,
+} from "./Landing-page-style";
 
+import LandingpageImage from "./landing-page-image-component";
+import SignupInput from "./singup-input-component";
 
-import LandingpageImage from "./landing-page-image-component"
-import SignupInput from "./singup-input-component"
-
-const SignUpModal = lazy(() => import("../../components/Modal/Register-modal/SignUpModal"));
+const SignUpModal = lazy(() =>
+  import("../../components/Modal/Register-modal/SignUpModal")
+);
 //import SignUpModal from "../../components/Modal/Register-modal/SignUpModal"
-const LoginModal = lazy(() => import("../../components/Modal/Login-modal/LoginModal"));
+const LoginModal = lazy(() =>
+  import("../../components/Modal/Login-modal/LoginModal")
+);
 //import LoginModal from "../../components/Modal/Login-modal/LoginModal"
-const ResetPassModal = lazy(() => import("../../components/Modal/ResetPass-modal/ResetPassModal-component"));
+const ResetPassModal = lazy(() =>
+  import("../../components/Modal/ResetPass-modal/ResetPassModal-component")
+);
 //import ResetPassModal from "../../components/Modal/ResetPass-modal/ResetPassModal-component"
 
 const keyframe_leftanimation = keyframes`
@@ -25,98 +36,98 @@ const keyframe_leftanimation = keyframes`
 }
 `;
 
-
 export default function LandingPage() {
+  const prefersReducedMotion = usePrefersReducedMotion();
 
-    const prefersReducedMotion = usePrefersReducedMotion();
+  let [searchParams, setSearchParams] = useSearchParams();
+  let urlParam = searchParams.get("modal");
 
-    let [searchParams, setSearchParams] = useSearchParams();
-    let urlParam = searchParams.get("modal")
+  // show login modal
+  const [showLogin, setLogin] = useState(() => {
+    return urlParam == "login" ? true : false;
+  });
+  // show signup modal
+  const [showSignup, setShowSignup] = useState(false);
+  // show reset pass modal
+  const [showResetPass, setResetPass] = useState(false);
 
+  const [userName, setUsername] = useState("");
+  // loading button
 
-    // show login modal
-    const [showLogin, setLogin] = useState(() => {
-        return (urlParam == "login") ? true : false
-    });
-    // show signup modal
-    const [showSignup, setShowSignup] = useState(false);
-    // show reset pass modal
-    const [showResetPass, setResetPass] = useState(false);
+  const leftsideAnimation = prefersReducedMotion
+    ? undefined
+    : `${keyframe_leftanimation}  1s linear`;
 
-    const [userName, setUsername] = useState("");
-    // loading button
+  const toggleSignUp = () => {
+    setShowSignup((p) => !p);
+  };
 
+  const toggleLogin = () => {
+    setLogin((p) => !p);
+  };
 
+  const toggleReset = () => {
+    setResetPass((p) => !p);
+  };
 
-    const leftsideAnimation = prefersReducedMotion
-        ? undefined
-        : `${keyframe_leftanimation}  1s linear`;
+  const switchModal = () => {
+    toggleSignUp();
+    toggleLogin();
+  };
 
+  const switchResetAndLogin = () => {
+    toggleReset();
+    toggleLogin();
+  };
 
-    const toggleSignUp = () => {
-        setShowSignup(p => !p)
-    }
+  return (
+    <>
+      <LandingPageWrapper>
+        {/* inputs */}
+        <InputContainrt>
+          <TextContainer animation={leftsideAnimation}>
+            <TextUp>
+              Community <br />
+              driven commerce
+            </TextUp>
 
-    const toggleLogin = () => {
-        setLogin(p => !p)
-    }
-
-    const toggleReset = () => {
-        setResetPass(p => !p)
-    }
-
-    const switchModal = () => {
-        toggleSignUp();
-        toggleLogin();
-    }
-
-    const switchResetAndLogin = () => {
-        toggleReset();
-        toggleLogin();
-    }
-
- 
-
-
-    return (<>
-        <Box display="flex" h='auto' flexDirection={{ base: "column", md: "row" }} pl={{ base: "20px", md: "80px" }} w='100%'>
-            {/* inputs */}
-            <Box display="flex" w={{ base: '100%', md: '50%' }} pr={{ base: "20px", md: "0px" }} mb={{ base: "70px", md: "0px" }}>
-                <Flex w='100%' flexDir='column' mt='4.5vw'
-                    animation={leftsideAnimation}>
-                    <Text
-
-                        fontWeight='600'
-                        color="#fff"
-                        fontSize={{ base: "40px", md: "4.7vw" }}
-                        lineHeight={{ base: "52px", md: "5.5vw" }}
-                    >Community <br />driven commerce</Text>
-
-                    <Text
-                        mt={{ base: '25px', md: '1.8vw' }}
-                        fontWeight='400'
-                        fontSize={{ base: "17px", md: '1.95vw' }}
-                        lineHeight={{ base: "22px", md: '33px' }}
-                        color='#f6f6f6'
-                    >
-                        Earn cash or crypto for sharing collections.
-                    </Text>
-                    <SignupInput
-                            setUsername={setUsername}
-                            userName={userName}
-                            toggleSignUp={toggleSignUp}
-                        />
-                </Flex>
-            </Box>
-            {/* inputs */}
-            {/* image */}
-            <LandingpageImage />
-            {/* image */}
-        </Box>
-        <Suspense fallback={<></>}>
-        {showSignup && <SignUpModal close={toggleSignUp} shopname={userName} switchToggle={switchModal} />}
-        {showLogin && <LoginModal close={toggleLogin} switchToggle={switchModal} switchReset={switchResetAndLogin} />}
-        {showResetPass && <ResetPassModal backToLogin={switchResetAndLogin} close={() => { setResetPass(false) }} />}
-        </Suspense>
-    </>)
+            <Text2>Earn cash or crypto for sharing collections.</Text2>
+            <SignupInput
+              setUsername={setUsername}
+              userName={userName}
+              toggleSignUp={toggleSignUp}
+            />
+          </TextContainer>
+        </InputContainrt>
+        {/* inputs */}
+        {/* image */}
+        <LandingpageImage />
+        {/* image */}
+      </LandingPageWrapper>
+      <Suspense fallback={<></>}>
+        {showSignup && (
+          <SignUpModal
+            close={toggleSignUp}
+            shopname={userName}
+            switchToggle={switchModal}
+          />
+        )}
+        {showLogin && (
+          <LoginModal
+            close={toggleLogin}
+            switchToggle={switchModal}
+            switchReset={switchResetAndLogin}
+          />
+        )}
+        {showResetPass && (
+          <ResetPassModal
+            backToLogin={switchResetAndLogin}
+            close={() => {
+              setResetPass(false);
+            }}
+          />
+        )}
+      </Suspense>
+    </>
+  );
 }
