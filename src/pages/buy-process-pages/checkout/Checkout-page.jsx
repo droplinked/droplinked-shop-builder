@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Flex, Box, Text } from "@chakra-ui/react";
+import { useState } from "react";
+import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../../context/cart/CartContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
@@ -12,73 +12,37 @@ import {
   ButtonWrapper,
 } from "./Checkout-page-style";
 import { SHOP_TYPES } from "../../../constant/shop-types";
+
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import CheckoutShopItem from "./CheckoutShopItem";
-import Loading from "../../../components/shared/loading/Loading";
-//import ShopifyCheckoutItem from "./Shopify-checkout-item";
 import EmailModal from "../../../components/Modal/Email-modal/email-modal";
-import DroplinkedItem from "./chekout-item/Droplinked-item"
-import ShopifytItem from "./chekout-item/Shopify-item"
-import { log } from "util";
+import DroplinkedItem from "./chekout-item/Droplinked-item";
+import ShopifytItem from "./chekout-item/Shopify-item";
 
 function CheckoutPage() {
-  const [cartBaseShop, setCart] = useState([]);
   const [showEmailModal, setShowEmailModal] = useState(false);
 
   const { profile } = useProfile();
   const { cart } = useCart();
   let navigate = useNavigate();
 
-  // get shops of items
-  // const getshops = () => {
-  // 	// get all shops in cart
-  // 	let shopArray = cart.items.map(item => item.shopName)
-  // 	// make unique array for shops
-  // 	let shops = [...new Set(shopArray)];
-  // 	return shops
-  // }
-
   const closeEmailModal = () => setShowEmailModal(false);
 
-  // const getTotalPrice = () => {
-  //   let total = 0;
-  //   cart.items.forEach(
-  //     (item) => (total += parseFloat(item.variant.price) * item.amount)
-  //   );
-  //   return total;
-  // };
-
-  //get total price of all items
-  // const getTotalPrice = () => {
-  // 	// get total of each shop + 5 (shipping)
-  // 	let total = cartBaseShop.map(shop => { return (parseFloat(shop.total) + 5) })
-  // 	total = total.reduce((a, b) => a + b, 0)
-  // 	return total
-  // }
-
-  // build new cart based shop name
-  // useEffect(() => {
-  // 	if (cart != null) {
-  // 		let newCart = []
-  // 		// get array of shop names  without  repeat
-  // 		let shops = getshops()
-  // 		//map over shop name
-  // 		shops.map(shopname => {
-  // 			let totalPrice = 0;
-  // 			let items = []
-  // 			// get items and totalprice of each shop
-  // 			cart.items.forEach(item => {
-  // 				if (item.shopName == shopname) {
-  // 					items.push(item)
-  // 					totalPrice += item.totalPrice
-  // 				}
-  // 			})
-  // 			// new cart base on shop: {shopname:'' , items:[] , totalprice:number , shipping:5}
-  // 			newCart.push({ shopName: shopname, items: items, total: totalPrice, shipping: 5 })
-  // 		})
-  // 		setCart(newCart)
-  // 	}
-  // }, [cart])
+  const getTotalPrice = () => {
+    if (cart == null) return 0;
+    let total = 0;
+    // calculate for shopify products
+    if (cart.type == SHOP_TYPES.SHOPIFY) {
+      cart.items.forEach(
+        (item) => (total += parseFloat(item.variant.price) * item.amount)
+      );
+    }else{
+      // calculate for ims products
+      cart.items.forEach(
+        (item) => (total += parseFloat(item.sku.price) * item.quantity)
+      );
+    }
+    return total.toFixed(2);
+  };
 
   const checkoutSubmit = () => {
     if (!profile.email) {
@@ -90,7 +54,7 @@ function CheckoutPage() {
 
   const currentShop = JSON.parse(localStorage.getItem("currentShop"));
   const backToShop = () => navigate(`/${currentShop}`);
-console.log(cart)
+  console.log(cart);
   return (
     <CheckoutPageWrapper>
       {cart == null ? (
@@ -108,10 +72,10 @@ console.log(cart)
                 />
               ) : (
                 <DroplinkedItem
-                product={item.product}
-                sku={item.sku}
-                quantity={item.quantity}
-                shopName={item.shopName}
+                  product={item.product}
+                  sku={item.sku}
+                  quantity={item.quantity}
+                  shopName={item.shopName}
                 />
               )}
             </>
@@ -119,7 +83,7 @@ console.log(cart)
 
           <PriceWrapper>
             <Box>
-              {/* <PriceText>Total price: ${getTotalPrice().toFixed(2)}</PriceText> */}
+              <PriceText>Total price: ${getTotalPrice()}</PriceText>
             </Box>
           </PriceWrapper>
 
