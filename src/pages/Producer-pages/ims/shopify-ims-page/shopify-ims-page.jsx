@@ -10,9 +10,12 @@ import {
 import { useState } from "react";
 import { importShopifyProducts } from "../../../../api/producer/Product-api";
 import { useToasty } from "../../../../context/toastify/ToastContext";
-import ShopifyProduct from "./shopify-product";
+import { USER_TYPE } from "../../../../constant/user-types";
+
+import Product from "../../../../components/shared/Product/Product";
 
 const ShopImsPage = ({ products, update }) => {
+  console.log(products);
   const [domain, setDomain] = useState("");
   const [loading, setLoadig] = useState(false);
 
@@ -74,9 +77,11 @@ const ShopImsPage = ({ products, update }) => {
               mt="40px"
               w={{ base: "100%", sm: "50%", md: "33%", lg: "25%" }}
             >
-              <ShopifyProduct
+              <Product
+                title={product.shopifyData.title}
+                imageUrl={product.shopifyData.images[0].src}
                 id={product._id}
-                product_listing={product.shopifyData}
+                type={USER_TYPE.PRODUCER}
               />
             </Box>
           ))}
