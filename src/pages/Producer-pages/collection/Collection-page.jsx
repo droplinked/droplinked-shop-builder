@@ -1,12 +1,13 @@
 import "./Collection-page-style.scss"
 
 
-import CollectionComponent from "./Collection-component/Collection-component"
+//import CollectionComponent from "./Collection-component/Collection-component"
 import ModalContainer from "../../../components/Modal/modal-container/modal-container"
 import AddCollectionPage from "./add-collection-page/Add-collection-component"
 import Loading from "../../../components/shared/loading/Loading"
 import EditCollectionModal from "./edit-collection-modal/edit-collection-modal-component"
 import BasicButton from "../../../components/shared/BasicButton/BasicButton"
+import ProducerCollection from "../../../components/shared/ProducerCollection/Producre-collection"
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react"
@@ -67,11 +68,19 @@ export default function CollectionMainPage() {
                             {collectins.map((collection, i) => {
                                 return (
                                     <div key={i} className="mt-5 col-lg-6 col-md-10 col-12 ">
-                                        <CollectionComponent
+                                        <ProducerCollection
+                                        title={collection.title}
+                                         id={collection._id}
+                                          products={collection.products}
+                                          update={updateCollections}
+                                          type={collection.type}
+                                          edit={() => { ToggleeditCollection(collection) }}
+                                        />
+                                        {/* <CollectionComponent
                                             collection={collection}
                                             edit={() => { ToggleeditCollection(collection) }}
                                             render={renFunc}
-                                        />
+                                        /> */}
                                     </div>
                                 )
                             })
