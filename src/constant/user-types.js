@@ -1,4 +1,4 @@
-const USER_TYPE = {
+export const USER_TYPE = {
     PRODUCER : 'PRODUCER' ,
     CUSTOMER : 'CUSTOMER' 
 }

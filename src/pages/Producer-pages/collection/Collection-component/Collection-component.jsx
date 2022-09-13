@@ -8,6 +8,7 @@ import Product from "../../../../components/shared/Product/Product";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useProfile } from "../../../../context/profile/ProfileContext";
 import { deleteCollection } from "../../../../api/producer/Collection-api";
+import { USER_TYPE } from "../../../../constant/user-types"
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -68,6 +69,7 @@ export default function CollectionComponent({ collection, edit, render }) {
                           product.shopifyData.images.length > 0 &&
                           product.shopifyData.images[0].src
                         }
+                        type={USER_TYPE.CUSTOMER}
                       />
                     </div>
                   );
@@ -79,6 +81,7 @@ export default function CollectionComponent({ collection, edit, render }) {
                         title={product.title}
                         id={product._id}
                         imageUrl={product.media[0].url}
+                        type={USER_TYPE.CUSTOMER}
                       />
                     </div>
                   );

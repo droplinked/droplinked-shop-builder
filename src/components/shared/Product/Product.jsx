@@ -8,6 +8,7 @@ import { USER_TYPE } from "../../../constant/user-types"
 export default function Product({ title, imageUrl, id, shopname , type }) {
 
   let linkAddress  = (type == USER_TYPE.PRODUCER)? `/producer/merch/${id}` :`/${shopname}/merch/${id}`
+  
   return (
     <Box w="100%" m="0px 0px 10px 0px" p="5px" >
       <Link to={linkAddress}>

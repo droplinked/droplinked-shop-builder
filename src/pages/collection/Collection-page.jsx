@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCollectionById } from "../../api/public/Collection-api";
 import { SHOP_TYPES } from "../../constant/shop-types";
+import { USER_TYPE } from "../../constant/user-types"
 
 export default function CollectionPage() {
 
@@ -48,6 +49,7 @@ export default function CollectionPage() {
                           product.shopifyData.images.length > 0 &&
                           product.shopifyData.images[0].src
                         }
+                        type={USER_TYPE.CUSTOMER}
                       />
                     ) : (
                       <Product
@@ -55,6 +57,7 @@ export default function CollectionPage() {
                         id={product._id}
                         title={product.title}
                         imageUrl={product.media[0].url}
+                        type={USER_TYPE.CUSTOMER}
                       />
                     )}
                   </div>

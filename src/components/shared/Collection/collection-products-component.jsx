@@ -1,5 +1,6 @@
 import { Flex, Text, Box } from "@chakra-ui/react";
 import { SHOP_TYPES } from "../../../constant/shop-types";
+import { USER_TYPE } from "../../../constant/user-types"
 
 import Product from "../Product/Product";
 
@@ -21,6 +22,7 @@ const CollectionProducts = ({ products ,shopname , type }) => {
                         product.shopifyData.images.length > 0 &&
                         product.shopifyData.images[0].src
                       }
+                      type={USER_TYPE.CUSTOMER}
                     />
                   ) : (
                     <Product
@@ -28,6 +30,7 @@ const CollectionProducts = ({ products ,shopname , type }) => {
                       imageUrl={product.media[0].url}
                       id={product._id}
                       shopname={shopname}
+                      type={USER_TYPE.CUSTOMER}
                     />
                   )}
                 </Box>
