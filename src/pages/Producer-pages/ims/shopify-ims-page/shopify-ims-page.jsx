@@ -14,7 +14,7 @@ import { USER_TYPE } from "../../../../constant/user-types";
 
 import Product from "../../../../components/shared/Product/Product";
 
-const ShopImsPage = ({ products, update }) => {
+const ShopImsPage = ({ products, update ,filter}) => {
 
   const [domain, setDomain] = useState("");
   const [loading, setLoadig] = useState(false);
@@ -73,7 +73,8 @@ const ShopImsPage = ({ products, update }) => {
         </InputGroup>
       ) : (
         <Flex w="100%" flexWrap="wrap">
-          {products.map((product) => (
+          {products.filter((pr) => pr.shopifyData.title.toLowerCase().includes(filter))
+          .map((product) => (
             <Box
               key={product._id}
               mt="40px"
