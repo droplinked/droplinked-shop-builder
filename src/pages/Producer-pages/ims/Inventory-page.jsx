@@ -9,10 +9,12 @@ import { SHOP_TYPES } from "../../../constant/shop-types";
 import Loading from "../../../components/shared/loading/Loading";
 import DroplinkedImsPage from "./droplinked ims page/droplink-ims-page";
 import ShopImsPage from "./shopify-ims-page/shopify-ims-page";
+import SeachBox from "./search-box/Search-box-component";
 
 function InventoryPage() {
   const [products, setProdcuts] = useState(null);
   const [shop, setShop] = useState(null);
+  const [filter, setFilter] = useState("");
 
   const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem("token"));
@@ -32,6 +34,8 @@ function InventoryPage() {
     setShop(sh);
   };
 
+  const changeFilter = (e) => setFilter(e.target.value.toLowerCase())
+
   return (
     <>
       <div className="IMS-page-wrapper">
@@ -39,15 +43,15 @@ function InventoryPage() {
         <div className="number-of-merchs">
           {products != undefined ? products.length : "0"} Listed
         </div>
-
+        <SeachBox change={changeFilter}/>
         {products ? (
           <>
             {shop != null && (
               <>
                 {shop.imsType == SHOP_TYPES.DROPLINKED ? (
-                  <DroplinkedImsPage products={products} />
+                  <DroplinkedImsPage products={products} filter={filter}  />
                 ) : (
-                  <ShopImsPage products={products} update={getData} />
+                  <ShopImsPage products={products} update={getData} filter={filter} />
                 )}
               </>
             )}

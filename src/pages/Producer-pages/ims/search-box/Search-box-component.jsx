@@ -1,7 +1,7 @@
 import "./Search-box-style.scss"
 import { BsSearch } from "react-icons/bs";
 
-export default function SeachBox({ onch }) {
+export default function SeachBox({ change }) {
     return (
         <div className="d-flex justify-content-center align-items-center mb-4"
             style={{ width: "100%", height: "100px" }}
@@ -12,7 +12,7 @@ export default function SeachBox({ onch }) {
                         <input type="text"
                             className="input"
                             name="txt"
-                            onChange={onch}
+                            onChange={change}
                         />
                     </form>
                     <div className="ic">

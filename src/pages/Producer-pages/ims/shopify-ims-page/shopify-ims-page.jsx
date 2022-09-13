@@ -33,6 +33,8 @@ const ShopImsPage = ({ products, update }) => {
     setLoadig(false);
   };
 
+  const changeDomain = (e) => setDomain(e.target.value)
+
   return (
     <Flex
       w="100%"
@@ -53,7 +55,7 @@ const ShopImsPage = ({ products, update }) => {
             placeholder="Shopify domain"
             border="2px solid"
             _focus={{ borderColor: "#8053ff" }}
-            onChange={(e) => setDomain(e.target.value)}
+            onChange={changeDomain}
             value={domain}
             color="#fff"
           />

@@ -1,23 +1,17 @@
 import "./droplink-ims-page.scss";
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
-import SeachBox from "../search box/Search-box-component";
 import Product from "../../../../components/shared/Product/Product";
 
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { USER_TYPE } from "../../../../constant/user-types";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 
-export default function DroplinkedImsPage({ products }) {
-  const [searchText, setSearchText] = useState("");
+export default function DroplinkedImsPage({ products,filter }) {
   const fileRef = useRef(null);
 
   const { errorToast } = useToasty();
-
-  const onChangeSearchBox = (e) => {
-    setSearchText(e.target.value.toLowerCase());
-  };
 
   function onReaderLoad(event) {
     var obj = JSON.parse(event.target.result);
@@ -41,7 +35,7 @@ export default function DroplinkedImsPage({ products }) {
 
   return (
     <>
-      <div className="w-100 d-flex justify-content-center align-items-center mt-5">
+      <div className="w-100 d-flex justify-content-center align-items-center mb-5">
         <Link
           to="/producer/add-product"
           style={{ width: "200px", display: "flex" }}
@@ -49,12 +43,12 @@ export default function DroplinkedImsPage({ products }) {
           <BasicButton>Add item</BasicButton>
         </Link>
       </div>
-      <input
+      {/* <input
         type="file"
         className="d-none"
         ref={fileRef}
         onChange={uploadFile}
-      />
+      /> */}
 
       {/* <div style={{ margin: "10px 0px 20px 0px" }}>
         <div
@@ -67,9 +61,9 @@ export default function DroplinkedImsPage({ products }) {
         </div>
       </div> */}
 
-      <div style={{ margin: "25px 0xp" }}>
-        <SeachBox onch={onChangeSearchBox} />
-      </div>
+      {/* <div style={{ margin: "25px 0xp" }}>
+        <SeachBox change={onChangeSearchBox} />
+      </div> */}
       <div className="product-small-wrapper">
         {products.length <= 0 ? (
           <div className="w-100 d-flex justify-content-center align-items-center">
@@ -78,7 +72,7 @@ export default function DroplinkedImsPage({ products }) {
         ) : (
           <>
             {products
-              .filter((pr) => pr.title.toLowerCase().includes(searchText))
+              .filter((pr) => pr.title.toLowerCase().includes(filter))
               .map((item, i) => {
                 return (
                   <div className="col-6 col-md-4 col-lg-3 p-1" key={i}>
