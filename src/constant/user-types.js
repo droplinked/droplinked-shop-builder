@@ -1,0 +1,4 @@
+const USER_TYPE = {
+    PRODUCER : 'PRODUCER' ,
+    CUSTOMER : 'CUSTOMER' 
+}
