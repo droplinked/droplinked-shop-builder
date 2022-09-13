@@ -15,12 +15,14 @@ import { getCollections } from "../../../api/producer/Collection-api"
 
 
 export default function CollectionMainPage() {
-    const navigate = useNavigate();
+   
 
     const [Modal, setModal] = useState(false)
     const [EditModal, setEditModal] = useState(false)
     const [collectins, setCollections] = useState(null);
     const [ren, setRen] = useState(false)
+
+    const navigate = useNavigate();
     const editRef = useRef(null)
 
     const token = JSON.parse(localStorage.getItem('token'));
@@ -38,7 +40,6 @@ export default function CollectionMainPage() {
     }, [Modal, ren])
 
     const ToggleModal = () => setModal(p => !p)
-
 
     const renFunc = () => setRen(p => !p)
 
