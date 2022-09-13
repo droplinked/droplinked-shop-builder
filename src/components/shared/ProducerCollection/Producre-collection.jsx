@@ -1,9 +1,6 @@
 import "./Producre-collection-style.scss";
 
 import SmallModal from "../../Modal/Small-modal/Small-modal-component";
-import ModalContainer from "../../Modal/modal-container/modal-container";
-
-import EditCollectionModal from "../../../pages/Producer-pages/collection/edit-collection-modal/edit-collection-modal-component";
 import Product from "../Product/Product";
 
 import { useToasty } from "../../../context/toastify/ToastContext";
@@ -16,13 +13,10 @@ import { useState } from "react";
 const ProducerCollection = ({title , id , products ,update ,type ,edit}) => {
 
     const [deleteModal, setDeleteModal] = useState(false);
-    //const [editModal, setEditModal] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const { errorToast, successToast } = useToasty();
     const { profile } = useProfile();
-  
-   // const submitEdit = () => {};
   
     const DeleteCollection = async () => {
       setLoading(true);
@@ -37,7 +31,6 @@ const ProducerCollection = ({title , id , products ,update ,type ,edit}) => {
       setDeleteModal(false);
     };
   
-   // const toggleEdit = () => setEditModal((p) => !p);
   
     return (
       <>
@@ -115,11 +108,6 @@ const ProducerCollection = ({title , id , products ,update ,type ,edit}) => {
             buttonText={"Delete"}
           />
         )}
-      {/*  {editModal && (
-          <ModalContainer>
-            <EditCollectionModal toggle={toggleEdit} submitFunc={submitEdit} />
-          </ModalContainer>
-        )} */}
       </>
     );
 }

@@ -1,7 +1,6 @@
 import "./Collection-page-style.scss"
 
 
-//import CollectionComponent from "./Collection-component/Collection-component"
 import ModalContainer from "../../../components/Modal/modal-container/modal-container"
 import AddCollectionPage from "./add-collection-page/Add-collection-component"
 import Loading from "../../../components/shared/loading/Loading"
@@ -16,7 +15,6 @@ import { getCollections } from "../../../api/producer/Collection-api"
 
 export default function CollectionMainPage() {
    
-
     const [Modal, setModal] = useState(false)
     const [EditModal, setEditModal] = useState(false)
     const [collectins, setCollections] = useState(null);
@@ -77,11 +75,6 @@ export default function CollectionMainPage() {
                                           type={collection.type}
                                           edit={() => { ToggleeditCollection(collection) }}
                                         />
-                                        {/* <CollectionComponent
-                                            collection={collection}
-                                            edit={() => { ToggleeditCollection(collection) }}
-                                            render={renFunc}
-                                        /> */}
                                     </div>
                                 )
                             })
