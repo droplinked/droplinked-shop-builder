@@ -2,9 +2,10 @@ import "./droplink-ims-page.scss";
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import SeachBox from "../search box/Search-box-component";
-import ProducerProduct from "./ProducerProduct-component";
+import Product from "../../../../components/shared/Product/Product";
 
 import { useToasty } from "../../../../context/toastify/ToastContext";
+import { USER_TYPE } from "../../../../constant/user-types";
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,7 +13,7 @@ export default function DroplinkedImsPage({ products }) {
   const [searchText, setSearchText] = useState("");
   const fileRef = useRef(null);
 
-  const { errorToast } = useToasty()
+  const { errorToast } = useToasty();
 
   const onChangeSearchBox = (e) => {
     setSearchText(e.target.value.toLowerCase());
@@ -29,7 +30,7 @@ export default function DroplinkedImsPage({ products }) {
   const uploadFile = (e) => {
     const file = e.target.files[0];
     if (file.type != "application/json") {
-        errorToast("dadash eshtebe");
+      errorToast("dadash eshtebe");
       return;
     } else {
       var reader = new FileReader();
@@ -81,10 +82,11 @@ export default function DroplinkedImsPage({ products }) {
               .map((item, i) => {
                 return (
                   <div className="col-6 col-md-4 col-lg-3 p-1" key={i}>
-                    <ProducerProduct
+                    <Product
                       title={item.title}
                       imageUrl={item.media[0].url}
                       id={item._id}
+                      type={USER_TYPE.PRODUCER}
                     />
                   </div>
                 );

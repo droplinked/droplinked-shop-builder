@@ -1,20 +1,20 @@
 
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 
-export default function ProducerProduct({  title, imageUrl, id , shopname}){
+// export default function ProducerProduct({  title, imageUrl, id , shopname}){
 
-    return (
-        <div className="Lproduct-component-wrapper">
-            <Link to={`/producer/merch/${id}`}>
-                <div className="product-image-st">
-                    <div className="ratio ratio-1x1">
-                        <img className='main-image' src={imageUrl} />
-                    </div>
-                    {/* {viewBtn && <div className="product-view-button"><p>View</p></div>} */}
-                </div>
-                <div className="brand-name">{title}</div>
-            </Link>     
-        </div>
-    )
+//     return (
+//         <div className="Lproduct-component-wrapper">
+//             <Link to={`/producer/merch/${id}`}>
+//                 <div className="product-image-st">
+//                     <div className="ratio ratio-1x1">
+//                         <img className='main-image' src={imageUrl} />
+//                     </div>
+//                     {/* {viewBtn && <div className="product-view-button"><p>View</p></div>} */}
+//                 </div>
+//                 <div className="brand-name">{title}</div>
+//             </Link>     
+//         </div>
+//     )
 
-}
+// }
