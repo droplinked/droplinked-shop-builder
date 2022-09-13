@@ -1,16 +1,16 @@
 import "./Collection-page-style.scss";
 
-import ModalContainer from "../../../components/Modal/modal-container/modal-container";
 import AddCollectionPage from "./add-collection-page/Add-collection-component";
 import Loading from "../../../components/shared/loading/Loading";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import ProducerCollection from "../../../components/shared/ProducerCollection/Producre-collection";
 
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { getCollections } from "../../../api/producer/Collection-api";
 
 export default function CollectionMainPage() {
+  
   const [Modal, setModal] = useState(false);
   const [collectins, setCollections] = useState(null);
 
@@ -33,6 +33,7 @@ export default function CollectionMainPage() {
 
   const ToggleModal = () => setModal((p) => !p);
 
+const closeNewCollectionModal = () => setModal(false)
 
   return (
     <>
@@ -70,11 +71,7 @@ export default function CollectionMainPage() {
           <Loading />
         )}
       </div>
-      {Modal && (
-        <ModalContainer>
-          <AddCollectionPage toggle={ToggleModal} />
-        </ModalContainer>
-      )}
+      {Modal && <AddCollectionPage toggle={ToggleModal} close={closeNewCollectionModal}/>}
     </>
   );
 }
