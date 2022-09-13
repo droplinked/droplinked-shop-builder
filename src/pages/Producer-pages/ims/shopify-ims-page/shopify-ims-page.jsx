@@ -15,7 +15,7 @@ import { USER_TYPE } from "../../../../constant/user-types";
 import Product from "../../../../components/shared/Product/Product";
 
 const ShopImsPage = ({ products, update }) => {
-  console.log(products);
+
   const [domain, setDomain] = useState("");
   const [loading, setLoadig] = useState(false);
 
