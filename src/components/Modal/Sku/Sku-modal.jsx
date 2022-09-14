@@ -144,9 +144,9 @@ const SkuModal = ({ open, close, optionTypes, skuArray, setSkuArray }) => {
               <SkuInput type="text" value={""} placeholder={"0.5 kg"} />
             </SkuContent>
             <Box mb="60px"></Box>
-            <Text fontSize="18px" color="#fff" fontWeight="600" mb="20px">
+            {/* <Text fontSize="18px" color="#fff" fontWeight="600" mb="20px">
               Orgin address
-            </Text>
+            </Text> */}
             {/* <AddressComponent
               address={exAddress}
               selectAble={false}
