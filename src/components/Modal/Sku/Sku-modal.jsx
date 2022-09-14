@@ -16,6 +16,7 @@ import { useState } from "react";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 
 const SkuModal = ({ open, close, optionTypes, skuArray, setSkuArray }) => {
+
   const [price, setPrice] = useState(0);
   const [externalID, setExternalID] = useState("");
   const [quantity, setQuantity] = useState(0);
@@ -39,22 +40,26 @@ const SkuModal = ({ open, close, optionTypes, skuArray, setSkuArray }) => {
     }
     setOptions(newOptionArray);
   };
-
+ /// change inputs
   const changePrice = (e) => setPrice(parseFloat(e.target.value));
   const changeQuantity = (e) => setQuantity(parseInt(e.target.value));
   const changeExternallId = (e) => setExternalID(e.target.value);
 
+  // submit add sku function 
   const submitForm = () => {
+
      var newArray =  Array.from(skuArray);
+
     let obj = {
       price: price,
       externalID: externalID,
       quantity: quantity,
       options: options,
     };
+
      newArray.push(obj)
     setSkuArray(newArray)
-   // console.log(obj);
+    close()
   };
 
   return (
@@ -156,7 +161,7 @@ const SkuModal = ({ open, close, optionTypes, skuArray, setSkuArray }) => {
           <ModalFooter>
             <Flex w="100%" justifyContent="space-between">
               <Box w="40%">
-                <BasicButton>Cancel</BasicButton>
+                <BasicButton click={close}>Cancel</BasicButton>
               </Box>
               <Box w="40%">
                 <BasicButton click={submitForm}>Add</BasicButton>
@@ -169,12 +174,5 @@ const SkuModal = ({ open, close, optionTypes, skuArray, setSkuArray }) => {
   );
 };
 
-// const SkuModal = () => {
-//   return (
-//     <ModalWrapper>
-//       <ModalContent></ModalContent>
-//     </ModalWrapper>
-//   );
-// };
 
 export default SkuModal;
