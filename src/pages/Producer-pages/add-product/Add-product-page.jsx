@@ -6,6 +6,7 @@ import CheckBox from "../../../components/shared/Checkbox/CheckBox-component";
 import ProductInformation from "../components/product-information-component";
 //import SkuForm from "../components/sku-form-component";
 import SkuModal from "../../../components/Modal/Sku/Sku-modal";
+import OptionCheckboxes from "./option-checkbox-component/option-checkbox";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,14 +20,13 @@ function AddProductPage() {
   // and  management (title , description , images , collectionId)
   const [productInfo, setProductInfo] = useState(null);
   // state for selected options type
-  const [options, setOptions] = useState([]);
-  // loading state
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  // use for disable button and loading mode
   const [disbtn, setdisbtn] = useState(false);
   // state for vanriants type
   const [varintType, setVariantType] = useState(null);
-
+  // this state for show and hide sku modal
   const [skuModalShow, setSkuModalShow] = useState(false);
-
   const [skuArray, setSkuArray] = useState([]);
 
   const { successToast, errorToast } = useToasty();
@@ -36,11 +36,11 @@ function AddProductPage() {
     if (token == null) {
       navigate("/");
     }
-    initializ();
+    initialVariant();
   }, []);
 
   // initialize variantType and collectin List
-  const initializ = () => {
+  const initialVariant = () => {
     getVariants()
       .then((e) => setVariantType(e))
       .catch((e) => console.log(e));
@@ -100,18 +100,6 @@ function AddProductPage() {
     }
   };
 
-  // change selected options with change checkbox for options type
-  const onChnageCheckBox = (e) => {
-    let newOptions = [];
-    if (e.target.checked) {
-      newOptions = options.map((opt) => opt);
-      newOptions.push({ optionName: e.target.value, optionID: e.target.id });
-    } else {
-      newOptions = options.filter((opt) => opt.optionID != e.target.id);
-    }
-    setOptions(newOptions);
-  };
-
   // edit and delete exsiting skus
   const deleteVariant = (index) => {
     let newVariantList = [];
@@ -125,35 +113,24 @@ function AddProductPage() {
   const closeSkuModal = () => setSkuModalShow(false);
   const openSkuModal = () => setSkuModalShow(true);
 
-
   return (
     <div className="add-product-page-wrapper">
       <div className="ims-title mb-5">Add new item</div>
-
+      {/* this component for (title , description , collection , images) */}
       <ProductInformation
         productInfo={productInfo}
         setProductInfo={setProductInfo}
       />
+      {/* this component for selected options */}
+      {varintType && (
+        <OptionCheckboxes
+          variants={varintType}
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
+          disable={skuArray.length > 0}
+        />
+      )}
 
-      <div className="select-variant-wrap mt-4">
-        <p>Choose options: </p>
-        {varintType != null && (
-          <>
-            {varintType.map((item) => {
-              return (
-                <CheckBox
-                  key={item._id}
-                  id={item._id}
-                  change={onChnageCheckBox}
-                  disabled={skuArray.length > 0}
-                >
-                  {item.name}
-                </CheckBox>
-              );
-            })}
-          </>
-        )}
-      </div>
       <div className="mt-5 w-100">
         {skuArray &&
           skuArray.map((sku, i) => {
@@ -163,7 +140,7 @@ function AddProductPage() {
                 variant={sku}
                 id={i}
                 deleteVariant={deleteVariant}
-                editVariant={()=>{}}
+                editVariant={() => {}}
               />
             );
           })}
@@ -191,8 +168,14 @@ function AddProductPage() {
           </BasicButton>
         </div>
       </div>
-
-      <SkuModal open={skuModalShow} close={closeSkuModal} optionTypes={options} skuArray={skuArray} setSkuArray={setSkuArray} />
+      {/* modal for add new sku  */}
+      <SkuModal
+        open={skuModalShow}
+        close={closeSkuModal}
+        optionTypes={selectedOptions}
+        skuArray={skuArray}
+        setSkuArray={setSkuArray}
+      />
     </div>
   );
 }
