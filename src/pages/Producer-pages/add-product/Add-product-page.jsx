@@ -7,6 +7,7 @@ import ProductInformation from "../components/product-information-component";
 //import SkuForm from "../components/sku-form-component";
 import SkuModal from "../../../components/Modal/Sku/Sku-modal";
 import OptionCheckboxes from "./option-checkbox-component/option-checkbox";
+import SkusComponent from "./skus-component/Skus-component";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -100,15 +101,7 @@ function AddProductPage() {
     }
   };
 
-  // edit and delete exsiting skus
-  const deleteVariant = (index) => {
-    let newVariantList = [];
-    for (const v of skuArray) newVariantList.push(v);
-    newVariantList.forEach((item, i) => {
-      if (i == index) newVariantList.splice(i, 1);
-    });
-    setSkuArray(newVariantList);
-  };
+
 
   const closeSkuModal = () => setSkuModalShow(false);
   const openSkuModal = () => setSkuModalShow(true);
@@ -131,20 +124,7 @@ function AddProductPage() {
         />
       )}
 
-      <div className="mt-5 w-100">
-        {skuArray &&
-          skuArray.map((sku, i) => {
-            return (
-              <VariantItem
-                key={i}
-                variant={sku}
-                id={i}
-                deleteVariant={deleteVariant}
-                editVariant={() => {}}
-              />
-            );
-          })}
-      </div>
+      {skuArray.length > 0 && <SkusComponent skusArray={skuArray} setSkuArray={setSkuArray} />}
 
       <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
         <div className="col-12 col-md-4">
