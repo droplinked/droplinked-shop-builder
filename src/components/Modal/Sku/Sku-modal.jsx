@@ -7,36 +7,59 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
-  useDisclosure,
   Text,
   Box,
-  Flex
+  Flex,
 } from "@chakra-ui/react";
-import AddressComponent from "../../shared/Address/address-component";
+import { useState } from "react";
+//import AddressComponent from "../../shared/Address/address-component";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 
-const exAddress = {
-  addressLine1: "string",
-  addressLine2: "string",
-  addressType: "SHOP",
-  city: "string",
-  country: "string",
-  firstname: "string",
-  lastname: "string",
-  state: "string",
-  zip: "string",
-  _id: "id",
-};
+const SkuModal = ({ open, close, optionTypes, skuArray, setSkuArray }) => {
+  const [price, setPrice] = useState(0);
+  const [externalID, setExternalID] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const [options, setOptions] = useState([]);
 
-const SkuModal = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // chnage options input function
+  const changeOption = (id, value) => {
+    let newOptionArray = [];
+    for (let item of options) newOptionArray.push(item);
+
+    let find = options.find((op) => op.variantID == id);
+
+    if (find) {
+      newOptionArray = newOptionArray.map((opt) => {
+        if (opt.variantID == id) return { ...opt, value: value };
+        else return opt;
+      });
+    } else {
+      let newObj = { variantID: id, value: value };
+      newOptionArray.push(newObj);
+    }
+    setOptions(newOptionArray);
+  };
+
+  const changePrice = (e) => setPrice(parseFloat(e.target.value));
+  const changeQuantity = (e) => setQuantity(parseInt(e.target.value));
+  const changeExternallId = (e) => setExternalID(e.target.value);
+
+  const submitForm = () => {
+     var newArray =  Array.from(skuArray);
+    let obj = {
+      price: price,
+      externalID: externalID,
+      quantity: quantity,
+      options: options,
+    };
+     newArray.push(obj)
+    setSkuArray(newArray)
+   // console.log(obj);
+  };
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={open} onClose={close}>
         <ModalOverlay />
         <ModalContent
           bgColor="#202020"
@@ -49,25 +72,50 @@ const SkuModal = () => {
           <ModalCloseButton />
 
           <ModalBody w="100%">
-            <SkuContent>
-              <SkuLable>Size</SkuLable>
-              <SkuInput type="text" value={"Xlarge"} placeholder={"Size"} />
-            </SkuContent>
-            <SkuContent>
-              <SkuLable>Color</SkuLable>
-              <SkuInput type="text" value={"red"} placeholder={"Color"} />
-            </SkuContent>
+            {optionTypes.map((option) => {
+              let find = options.find((op) => op.variantID == option.optionID);
+              let value = find ? find.value : "";
+              return (
+                <SkuContent>
+                  <SkuLable>{option.optionName}</SkuLable>
+                  <SkuInput
+                    type="text"
+                    onChange={(e) =>
+                      changeOption(option.optionID, e.target.value)
+                    }
+                    value={value}
+                    placeholder={option.optionName}
+                  />
+                </SkuContent>
+              );
+            })}
+
             <SkuContent>
               <SkuLable>Price</SkuLable>
-              <SkuInput type="text" value={"$100"} placeholder={"$100"} />
+              <SkuInput
+                type="number"
+                value={price}
+                placeholder={"$100"}
+                onChange={changePrice}
+              />
             </SkuContent>
             <SkuContent>
               <SkuLable>Quantity</SkuLable>
-              <SkuInput type="text" value={"15"} placeholder={"15"} />
+              <SkuInput
+                type="number"
+                value={quantity}
+                placeholder={"15"}
+                onChange={changeQuantity}
+              />
             </SkuContent>
             <SkuContent>
               <SkuLable>External ID</SkuLable>
-              <SkuInput type="text" value={"123456"} placeholder={"123467"} />
+              <SkuInput
+                type="text"
+                value={externalID}
+                placeholder={"123467"}
+                onChange={changeExternallId}
+              />
             </SkuContent>
 
             <Text fontSize="18px" color="#fff" fontWeight="600" mb="20px">
@@ -94,7 +142,7 @@ const SkuModal = () => {
             <Text fontSize="18px" color="#fff" fontWeight="600" mb="20px">
               Orgin address
             </Text>
-            <AddressComponent
+            {/* <AddressComponent
               address={exAddress}
               selectAble={false}
               deleteable={false}
@@ -103,16 +151,15 @@ const SkuModal = () => {
               address={exAddress}
               selectAble={false}
               deleteable={false}
-            />
+            /> */}
           </ModalBody>
-
           <ModalFooter>
             <Flex w="100%" justifyContent="space-between">
               <Box w="40%">
-                <BasicButton >Cancel</BasicButton>
+                <BasicButton>Cancel</BasicButton>
               </Box>
               <Box w="40%">
-                <BasicButton >Add</BasicButton>
+                <BasicButton click={submitForm}>Add</BasicButton>
               </Box>
             </Flex>
           </ModalFooter>
