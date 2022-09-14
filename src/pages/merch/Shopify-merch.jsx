@@ -126,7 +126,7 @@ const ShopifyMech = ({ ruleset, product, shopdomain }) => {
           </Text>
 
           <Text fontWeight="600" fontSize="24px" color="#fff">
-            {product.variants[0].price}
+            ${product.variants[0].price}
           </Text>
 
           {selectedOption && (
