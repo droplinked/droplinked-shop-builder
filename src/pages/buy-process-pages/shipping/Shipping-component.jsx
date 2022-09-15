@@ -18,7 +18,7 @@ const ShippingComponent = ({shippingItem ,selected ,setSelected}) => {
         onClick={()=>{setSelected(shippingItem)}}
         >
         <Text color='#fff'>{shippingItem.title}</Text>
-        <Text color='#fff'>{shippingItem.price}</Text>
+        <Text color='#fff'>${shippingItem.price}</Text>
     </Flex>
     )
 }
