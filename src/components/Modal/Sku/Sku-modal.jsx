@@ -12,7 +12,8 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useState } from "react";
-//import AddressComponent from "../../shared/Address/address-component";
+import { useToasty } from "../../../context/toastify/ToastContext";
+
 import BasicButton from "../../shared/BasicButton/BasicButton";
 
 const SkuModal = ({
@@ -23,8 +24,6 @@ const SkuModal = ({
   setSkuArray,
   defaultValue,
 }) => {
-
-
   const [price, setPrice] = useState(() => {
     return defaultValue != undefined ? defaultValue.price : "";
   });
@@ -49,6 +48,8 @@ const SkuModal = ({
   const [weight, setWeight] = useState(() => {
     return defaultValue != undefined ? defaultValue.weight : "";
   });
+
+  const { errorToast } = useToasty();
 
   // chnage options input function
   const changeOption = (id, value) => {
@@ -76,6 +77,56 @@ const SkuModal = ({
   const changeWidth = (e) => setWidth(parseFloat(e.target.value));
   const changeHeight = (e) => setHeight(parseFloat(e.target.value));
   const changesetWeight = (e) => setWeight(parseFloat(e.target.value));
+
+  // function validate each value
+  const checkValidation = (value, lowerText, UpperText) => {
+    let validate = true;
+    if (!value) {
+      errorToast(`Sku ${lowerText} is required`);
+      validate = false;
+    }
+    if (value <= 0) {
+      errorToast(`${UpperText} should be greater than zero`);
+      validate = false;
+    }
+    return validate;
+  };
+
+  // validation form's values
+  const validateForm = () => {
+
+    if (options.length != optionTypes.length) {
+      errorToast("Sku options is required");
+      return false;
+    }
+
+    let validateOption = true;
+    options.forEach((opt) => {
+      if (opt.value.length == 0) {
+        validateOption = false;
+      }
+    });
+    if (!validateOption) {
+      errorToast("Sku options is required");
+      return false;
+    }
+
+    if (!checkValidation(price, "price", "Price")) return false;
+
+    if (!checkValidation(quantity, "quantity", "Quantity")) return false;
+
+    if (!checkValidation(length, "length", "Length")) return false;
+
+    if (!checkValidation(width, "width", "Width")) return false;
+
+    if (!checkValidation(height, "height", "Height")) return false;
+
+    if (!checkValidation(weight, "weight", "Weight")) return false;
+
+    return true;
+  };
+
+
   // submit add sku function
   const submitForm = () => {
     let dimensions = {
@@ -83,6 +134,8 @@ const SkuModal = ({
       width: width,
       height: height,
     };
+
+    if (!validateForm()) return;
 
     let obj = {
       price: price,
