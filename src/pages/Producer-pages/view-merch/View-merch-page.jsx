@@ -6,6 +6,7 @@ import SmallModal from "../../../components/Modal/Small-modal/Small-modal-compon
 import ProductInformation from "../components/product-information-component";
 import SkuInformation from "../components/sku-information-component";
 import ViewShopifyMerch from "./View-shopify-merch";
+import ImsViewMerch from "./ims-merch-page/ims-viewmerch-page"
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -13,6 +14,19 @@ import { useToasty } from "../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
 import { getProduct } from "../../../api/public/Product-api";
 import { updateMerch, deleteMerch } from "../../../api/producer/Product-api";
+import { keyframes, usePrefersReducedMotion } from "@chakra-ui/react";
+import { ViewMerchWrapper } from "./VIew-merch-page-style"
+
+const keyframe_Animation = keyframes`
+0% {
+    transform: translatey(-200px);
+    opacity: 0;
+}
+100% {
+  transform: translatey(0);
+  opacity: 1;
+}
+`;
 
 export default function ViewMerchPage() {
   // state for pass to ProductInformation component
@@ -28,6 +42,11 @@ export default function ViewMerchPage() {
 
   const merchId = useParams().id;
   const navigate = useNavigate();
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  const pageAnimation = prefersReducedMotion
+    ? undefined
+    : `${keyframe_Animation}  1s linear`;
 
   useEffect(() => {
     initialize();
@@ -54,122 +73,71 @@ export default function ViewMerchPage() {
     }
   };
 
-  const cancelForm = () => {
-    navigate("/producer/ims");
-  };
+  // const cancelForm = () => {
+  //   navigate("/producer/ims");
+  // };
 
-  const submitForm = async (e) => {
-    e.preventDefault();
+  // const submitForm = async (e) => {
+  //   e.preventDefault();
 
-    if (productInfo.title == "") {
-      errorToast("Item name is required");
-      return;
-    } else if (productInfo.images.length == 0) {
-      errorToast("Add an image for this item");
-      return;
-    }
+  //   if (productInfo.title == "") {
+  //     errorToast("Item name is required");
+  //     return;
+  //   } else if (productInfo.images.length == 0) {
+  //     errorToast("Add an image for this item");
+  //     return;
+  //   }
 
-    let media = [];
-    productInfo.images.map((img, i) => {
-      media.push({ url: img, isMain: i == 0 });
-    });
+  //   let media = [];
+  //   productInfo.images.map((img, i) => {
+  //     media.push({ url: img, isMain: i == 0 });
+  //   });
 
-    const product = {
-      title: productInfo.title,
-      description: productInfo.description,
-      priceUnit: "USD",
-      collectionID: productInfo.productCollectionID,
-      media: media,
-    };
-    setLoading(true);
+  //   const product = {
+  //     title: productInfo.title,
+  //     description: productInfo.description,
+  //     priceUnit: "USD",
+  //     collectionID: productInfo.productCollectionID,
+  //     media: media,
+  //   };
+  //   setLoading(true);
 
-    let productResutl = await updateMerch(merchId, product);
+  //   let productResutl = await updateMerch(merchId, product);
 
-    if (productResutl == true) {
-      successToast("Item successfully updated");
-      navigate("/producer/ims");
-    } else {
-      errorToast(productResutl);
-    }
-    setLoading(false);
-  };
+  //   if (productResutl == true) {
+  //     successToast("Item successfully updated");
+  //     navigate("/producer/ims");
+  //   } else {
+  //     errorToast(productResutl);
+  //   }
+  //   setLoading(false);
+  // };
 
-  const DeleteMerch = async () => {
-    setModalDisBtn(true);
-    let result = await deleteMerch(merchId);
-    if (result == true) {
-      successToast("Merch deleted successfully");
-      navigate("/producer/ims");
-    } else {
-      errorToast(result);
-      setDeleteModal(false);
-    }
-    setModalDisBtn(false);
-  };
+  // const DeleteMerch = async () => {
+  //   setModalDisBtn(true);
+  //   let result = await deleteMerch(merchId);
+  //   if (result == true) {
+  //     successToast("Merch deleted successfully");
+  //     navigate("/producer/ims");
+  //   } else {
+  //     errorToast(result);
+  //     setDeleteModal(false);
+  //   }
+  //   setModalDisBtn(false);
+  // };
 
   return (
     <>
       {!merch ? (
         <Loading />
       ) : (
-        <>
+        <ViewMerchWrapper animation={pageAnimation} >
           {merch.shopifyData ? (
             <ViewShopifyMerch product={merch} shopifyData={merch.shopifyData} />
           ) : (
-            <div className="add-product-page-wrapper">
-              <div className="col-12 col-md-6 mb-5">
-                <BasicButton
-                  bgColor="#fa6653"
-                  onClick={() => {
-                    setDeleteModal(true);
-                  }}
-                  loading={loading}
-                >
-                  Delete item
-                </BasicButton>
-              </div>
-
-              <ProductInformation
-                productInfo={productInfo}
-                setProductInfo={setProductInfo}
-                defaultValue={merch}
-              />
-
-              <SkuInformation
-                skus={merch.skus}
-                merchId={merchId}
-                updateMerch={getMerch}
-              />
-
-              <div
-                className="d-flex justify-content-between align-items-center"
-                style={{ marginTop: "80px", width: "100%" }}
-              >
-                <div className="col-5 col-md-4">
-                  <BasicButton click={cancelForm} loading={loading}>
-                    Cancel
-                  </BasicButton>
-                </div>
-                <div className="col-5 col-md-4">
-                  <BasicButton click={submitForm} loading={loading}>
-                    Submit
-                  </BasicButton>
-                </div>
-              </div>
-
-              {deleteModal && (
-                <SmallModal
-                  show={deleteModal}
-                  hide={() => setDeleteModal(false)}
-                  text={"Do you want to delete this item?"}
-                  click={DeleteMerch}
-                  loading={modalDisBtn}
-                  buttonText={"Delete"}
-                />
-              )}
-            </div>
+            <ImsViewMerch merch={merch} />
           )}
-        </>
+        </ViewMerchWrapper>
       )}
     </>
   );

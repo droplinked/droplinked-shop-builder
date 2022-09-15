@@ -57,7 +57,7 @@ export const addSkuToProduct = async (id, sku) => {
   try {
     const res = await axios.post(
       `${BASE_URL}/producer/product/${id}/sku`,
-      { skus: sku },
+      { skus: [sku] },
       {
         headers: { Authorization: "Bearer " + token },
       }
