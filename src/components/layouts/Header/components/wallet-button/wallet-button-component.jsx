@@ -37,7 +37,7 @@ export default function WalletButton({ haventEmail }) {
       // }
       addProfile(result.data);
       successToast("Login successfully");
-      window.location.reload();
+      
       // window.location.reload();
     } else {
       errorToast(result.reason);
