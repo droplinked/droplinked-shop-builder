@@ -40,25 +40,37 @@ const ShopifyMech = ({ ruleset, product, shopdomain }) => {
 
   const checkGated = async () => {
     if (ruleset == undefined) return true;
-
+  
     const Rules = ruleset.rules.map((rule) => rule.address);
+
     setLoading(true)
-    checkRules(userData.profile.stxAddress.mainnet, Rules)
-      .then((e) => {
-        if (e) {
-          setLoading(false)
-          return true;
-        } else {
-          setLoading(false)
-          errorToast("Required NFT not found, accessed denied");
-          return false;
-        }
-      })
-      .catch((e) => {
-        setLoading(false)
-        errorToast(e.response.data);
-        return false;
-      });
+
+    let result = await  checkRules(userData.profile.stxAddress.mainnet, Rules)
+    if(result == false){
+      errorToast("Required NFT not found, accessed denied");
+    }
+    setLoading(false)
+    return result
+
+    // checkRules(userData.profile.stxAddress.mainnet, Rules)
+    //   .then((e) => {
+    //     let condition 
+    //     if (e) {
+    //       setLoading(false)
+    //       condition = true;
+    //     } else {
+    //       setLoading(false)
+    //       errorToast("Required NFT not found, accessed denied");
+    //       condition = false
+    //     }
+    //     return condition
+    //   })
+    //   .catch((e) => {
+    //     setLoading(false)
+    //     errorToast(e.response.data);
+    //   });
+
+
   };
 
   const addItemToBasket = async () => {
@@ -70,6 +82,7 @@ const ShopifyMech = ({ ruleset, product, shopdomain }) => {
    
     let checkNftGated = await checkGated();
 
+    console.log(checkNftGated)
     if(!checkNftGated) return
 
     let selectedVar = product.variants.find(
