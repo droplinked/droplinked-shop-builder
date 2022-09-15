@@ -1,10 +1,7 @@
 import "./Add-product-page-style.scss";
 
-import VariantItem from "../components/variant-item-component/Variant-item-component";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import CheckBox from "../../../components/shared/Checkbox/CheckBox-component";
 import ProductInformation from "../components/product-information-component";
-//import SkuForm from "../components/sku-form-component";
 import SkuModal from "../../../components/Modal/Sku/Sku-modal";
 import OptionCheckboxes from "./option-checkbox-component/option-checkbox";
 import SkusComponent from "./skus-component/Skus-component";
@@ -20,14 +17,15 @@ function AddProductPage() {
   // state for pass to ProductInformation component
   // and  management (title , description , images , collectionId)
   const [productInfo, setProductInfo] = useState(null);
-  // state for selected options type
+  // state for determine selected options type
   const [selectedOptions, setSelectedOptions] = useState([]);
   // use for disable button and loading mode
-  const [disbtn, setdisbtn] = useState(false);
-  // state for vanriants type
+  const [loading, setLoading] = useState(false);
+  // state  maintain vanriants type
   const [varintType, setVariantType] = useState(null);
   // this state for show and hide sku modal
   const [skuModalShow, setSkuModalShow] = useState(false);
+  // state for maintaing array of product skus
   const [skuArray, setSkuArray] = useState([]);
 
   const { successToast, errorToast } = useToasty();
@@ -40,7 +38,7 @@ function AddProductPage() {
     initialVariant();
   }, []);
 
-  // initialize variantType and collectin List
+  // get variants type from  back and pass to (varintType state)
   const initialVariant = () => {
     getVariants()
       .then((e) => setVariantType(e))
@@ -48,10 +46,9 @@ function AddProductPage() {
   };
 
   // close page
-  const cancelForm = () => {
-    navigate("/producer/ims");
-  };
+  const cancelForm = () =>navigate("/producer/ims");
 
+ // validation product fields before submit form
   const validationForm = () => {
     if (productInfo.title == "") {
       errorToast("Item name is required");
@@ -73,15 +70,16 @@ function AddProductPage() {
   // submit all product form
   const submitForm = async (e) => {
     e.preventDefault();
-
+    // validate all fields
     if (validationForm()) return;
 
+    // conver media format
     let media = [];
     productInfo.images.map((img, i) => {
       media.push({ url: img, isMain: i == 0 });
     });
 
-    const proDetail = {
+    const productData = {
       title: productInfo.title,
       description: productInfo.description,
       priceUnit: "USD",
@@ -90,14 +88,14 @@ function AddProductPage() {
       sku: skuArray,
     };
 
-    setdisbtn(true);
-    let result = await postProduct(proDetail);
+    setLoading(true);
+    let result = await postProduct(productData);
     if (result == true) {
       successToast("Item added successfully");
       navigate("/producer/ims");
     } else {
       errorToast(result);
-      setdisbtn(false);
+      setLoading(false);
     }
   };
 
@@ -114,7 +112,7 @@ function AddProductPage() {
         productInfo={productInfo}
         setProductInfo={setProductInfo}
       />
-      {/* this component for selected options */}
+      {/* this component for show options and  select them */}
       {varintType && (
         <OptionCheckboxes
           variants={varintType}
@@ -124,6 +122,7 @@ function AddProductPage() {
         />
       )}
 
+        {/* show available skus  */}
       {skuArray.length > 0 && <SkusComponent skusArray={skuArray} setSkuArray={setSkuArray} optionTypes={selectedOptions} />}
 
       <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
@@ -131,19 +130,18 @@ function AddProductPage() {
           <BasicButton click={openSkuModal}>Add variant</BasicButton>
         </div>
       </div>
-      {/* show edit sku form or anothen component */}
 
       <div
         className="d-flex justify-content-between align-items-center"
         style={{ marginTop: "80px", width: "100%" }}
       >
         <div className="col-5 col-md-4">
-          <BasicButton click={cancelForm} disabled={disbtn}>
+          <BasicButton click={cancelForm} loading={loading}>
             Cancel
           </BasicButton>
         </div>
         <div className="col-5 col-md-4">
-          <BasicButton click={submitForm} disabled={disbtn}>
+          <BasicButton click={submitForm} loading={loading}>
             Submit
           </BasicButton>
         </div>

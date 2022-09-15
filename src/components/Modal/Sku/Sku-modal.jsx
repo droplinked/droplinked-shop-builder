@@ -23,7 +23,7 @@ const SkuModal = ({
   setSkuArray,
   defaultValue,
 }) => {
-  console.log(defaultValue);
+
 
   const [price, setPrice] = useState(() => {
     return defaultValue != undefined ? defaultValue.price : "";
