@@ -9,6 +9,7 @@ export const ViewMerchWrapper = chakra("div", {
     w:'100%',
     maxW:'800px',
     margin:'0px auto',
+    p:'0px 20px'
   },
 });
 
