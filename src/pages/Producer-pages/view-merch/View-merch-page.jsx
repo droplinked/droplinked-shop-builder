@@ -19,7 +19,7 @@ import { ViewMerchWrapper } from "./VIew-merch-page-style"
 
 const keyframe_Animation = keyframes`
 0% {
-    transform: translatey(-200px);
+    transform: translatey(200px);
     opacity: 0;
 }
 100% {

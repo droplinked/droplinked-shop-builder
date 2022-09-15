@@ -1,6 +1,9 @@
 import { DeleteButtonWrapper } from "./ims-viewmerch-style";
-import { Flex ,Box} from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import { useState } from "react";
+import { updateMerch, deleteMerch } from "../../../../api/producer/Product-api";
+import { useToasty } from "../../../../context/toastify/ToastContext";
+import { useNavigate } from "react-router-dom";
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../../components/product-information-component";
@@ -12,17 +15,47 @@ const ImsViewMerch = ({ merch, update }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const { successToast, errorToast } = useToasty();
+  const navigate = useNavigate();
+
   const optionTypes = merch.skus[0].options.map((opt) => {
     return { variantID: opt.variantID, variantName: opt.variantName };
   });
 
-  const submitForm = () => {};
-
   const cancelForm = () => {};
 
-  const openSkuModal = () => {}
+  const openSkuModal = () => {};
 
   const openDeleteModal = () => setShowDeleteModal(true);
+
+
+  // update prodcut
+  const submitForm = async () => {
+
+    let media = [];
+    productInfo.images.map((img, i) => {
+      media.push({ url: img, isMain: i == 0 });
+    });
+
+    const product = {
+      title: productInfo.title,
+      description: productInfo.description,
+      priceUnit: "USD",
+      collectionID: productInfo.productCollectionID,
+      media: media,
+    };
+
+    setLoading(true);
+    let result = await updateMerch(merch._id, product);
+    if (result == true) {
+      successToast("Item successfully updated");
+      navigate("/producer/ims");
+    } else {
+      errorToast(result);
+    }
+    setLoading(false);
+  };
+
   return (
     <>
       <DeleteButtonWrapper>
@@ -49,17 +82,17 @@ const ImsViewMerch = ({ merch, update }) => {
       </div>
 
       <Flex
-      justifyContent='space-between'
-      alignItems='center'
-      w='100%'
-      mt='80px'
+        justifyContent="space-between"
+        alignItems="center"
+        w="100%"
+        mt="80px"
       >
-        <Box w={{base:'40%' , md:'35%'}}>
+        <Box w={{ base: "40%", md: "35%" }}>
           <BasicButton click={cancelForm} loading={loading}>
             Cancel
           </BasicButton>
         </Box>
-        <Box w={{base:'40%' , md:'35%'}}>
+        <Box w={{ base: "40%", md: "35%" }}>
           <BasicButton click={submitForm} loading={loading}>
             Submit
           </BasicButton>
