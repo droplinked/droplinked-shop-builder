@@ -37,6 +37,18 @@ const SkuModal = ({
   const [options, setOptions] = useState(() => {
     return defaultValue != undefined ? defaultValue.options : [];
   });
+  const [length, setLength] = useState(() => {
+    return defaultValue != undefined ? defaultValue.dimensions.length : "";
+  });
+  const [width, setWidth] = useState(() => {
+    return defaultValue != undefined ? defaultValue.dimensions.width : "";
+  });
+  const [height, setHeight] = useState(() => {
+    return defaultValue != undefined ? defaultValue.dimensions.height : "";
+  });
+  const [weight, setWeight] = useState(() => {
+    return defaultValue != undefined ? defaultValue.weight : "";
+  });
 
   // chnage options input function
   const changeOption = (id, value) => {
@@ -60,15 +72,25 @@ const SkuModal = ({
   const changePrice = (e) => setPrice(parseFloat(e.target.value));
   const changeQuantity = (e) => setQuantity(parseInt(e.target.value));
   const changeExternallId = (e) => setExternalID(e.target.value);
-
+  const changeLength = (e) => setLength(parseFloat(e.target.value));
+  const changeWidth = (e) => setWidth(parseFloat(e.target.value));
+  const changeHeight = (e) => setHeight(parseFloat(e.target.value));
+  const changesetWeight = (e) => setWeight(parseFloat(e.target.value));
   // submit add sku function
   const submitForm = () => {
-    
+    let dimensions = {
+      length: length,
+      width: width,
+      height: height,
+    };
+
     let obj = {
       price: price,
       externalID: externalID,
       quantity: quantity,
       options: options,
+      dimensions: dimensions,
+      weight: weight,
     };
     let newArray;
 
@@ -153,19 +175,39 @@ const SkuModal = ({
 
             <SkuContent>
               <SkuLable>Length</SkuLable>
-              <SkuInput type="text" value={""} placeholder={"10 cm"} />
+              <SkuInput
+                type="number"
+                value={length}
+                onChange={changeLength}
+                placeholder={"inch"}
+              />
             </SkuContent>
             <SkuContent>
               <SkuLable>Width</SkuLable>
-              <SkuInput type="text" value={""} placeholder={"5 cm"} />
+              <SkuInput
+                type="number"
+                value={width}
+                onChange={changeWidth}
+                placeholder={"inch"}
+              />
             </SkuContent>
             <SkuContent>
               <SkuLable>Height</SkuLable>
-              <SkuInput type="text" value={""} placeholder={"15 cm"} />
+              <SkuInput
+                type="number"
+                value={height}
+                onChange={changeHeight}
+                placeholder={"inch"}
+              />
             </SkuContent>
             <SkuContent>
               <SkuLable>Weight</SkuLable>
-              <SkuInput type="text" value={""} placeholder={"0.5 kg"} />
+              <SkuInput
+                type="number"
+                value={weight}
+                onChange={changesetWeight}
+                placeholder={"oz"}
+              />
             </SkuContent>
             <Box mb="60px"></Box>
             {/* <Text fontSize="18px" color="#fff" fontWeight="600" mb="20px">
