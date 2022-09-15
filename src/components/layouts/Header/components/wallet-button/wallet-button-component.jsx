@@ -29,18 +29,19 @@ export default function WalletButton({ haventEmail }) {
 
   const syncHiroWallet = async () => {
     let result = await signInViaWallet(state);
-    console.log(result);
+   // console.log(result);
     if (result.status == "success") {
       //      console.log(result.data);
-      if (!result.data.user.email) {
-        haventEmail();
-      }
+      // if (!result.data.user.email) {
+      //   haventEmail();
+      // }
       addProfile(result.data);
       successToast("Login successfully");
       // window.location.reload();
     } else {
       errorToast(result.reason);
     }
+    window.location.reload();
   };
 
   const signIn = () => {
