@@ -7,12 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../../components/product-information-component";
+import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component";
 import SkusComponent from "./skus-component/skus-component";
 
 const ImsViewMerch = ({ merch, update }) => {
   const [productInfo, setProductInfo] = useState(null);
 
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const { successToast, errorToast } = useToasty();
@@ -26,7 +27,8 @@ const ImsViewMerch = ({ merch, update }) => {
 
   const openSkuModal = () => {};
 
-  const openDeleteModal = () => setShowDeleteModal(true);
+  const openDeleteModal = () => setDeleteModal(true);
+  const closeDeleteModal = () => setDeleteModal(false);
 
 
   // update prodcut
@@ -55,6 +57,22 @@ const ImsViewMerch = ({ merch, update }) => {
     }
     setLoading(false);
   };
+
+    const DeleteMerch = async () => {
+      setLoading(true);
+      
+    let result = await deleteMerch(merch._id)
+
+    if (result == true) {
+      successToast("Merch deleted successfully");
+      navigate("/producer/ims");
+    } else {
+      errorToast(result);
+      setDeleteModal(false);
+    }
+    setLoading(false);
+  };
+
 
   return (
     <>
@@ -98,19 +116,20 @@ const ImsViewMerch = ({ merch, update }) => {
           </BasicButton>
         </Box>
       </Flex>
+         {deleteModal && (
+    <SmallModal
+      show={deleteModal}
+      hide={closeDeleteModal}
+      text={"Do you want to delete this item?"}
+      click={DeleteMerch}
+      loading={loading}
+      buttonText={"Delete"}
+    />
+  )}
     </>
   );
 };
 
 export default ImsViewMerch;
 
-//   {deleteModal && (
-//     <SmallModal
-//       show={deleteModal}
-//       hide={() => setDeleteModal(false)}
-//       text={"Do you want to delete this item?"}
-//       click={DeleteMerch}
-//       loading={modalDisBtn}
-//       buttonText={"Delete"}
-//     />
-//   )}
+
