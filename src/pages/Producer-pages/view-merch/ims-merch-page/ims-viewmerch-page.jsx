@@ -1,18 +1,26 @@
 import { DeleteButtonWrapper } from "./ims-viewmerch-style";
+import { Flex ,Box} from "@chakra-ui/react";
 import { useState } from "react";
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../../components/product-information-component";
-import SkusComponent from "./skus-component/skus-component"
+import SkusComponent from "./skus-component/skus-component";
 
-const ImsViewMerch = ({ merch ,update}) => {
+const ImsViewMerch = ({ merch, update }) => {
   const [productInfo, setProductInfo] = useState(null);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const optionTypes = merch.skus[0].options.map((opt) => {
+    return { variantID: opt.variantID, variantName: opt.variantName };
+  });
 
- const optionTypes = merch.skus[0].options.map(opt =>{ return {variantID:opt.variantID , variantName:opt.variantName }})
+  const submitForm = () => {};
+
+  const cancelForm = () => {};
+
+  const openSkuModal = () => {}
 
   const openDeleteModal = () => setShowDeleteModal(true);
   return (
@@ -32,34 +40,36 @@ const ImsViewMerch = ({ merch ,update}) => {
         setProductInfo={setProductInfo}
         defaultValue={merch}
       />
-      <SkusComponent  skusArray={merch.skus} update={update} />
+      <SkusComponent skusArray={merch.skus} update={update} />
+
+      <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
+        <div className="col-12 col-md-4">
+          <BasicButton click={openSkuModal}>Add variant</BasicButton>
+        </div>
+      </div>
+
+      <Flex
+      justifyContent='space-between'
+      alignItems='center'
+      w='100%'
+      mt='80px'
+      >
+        <Box w={{base:'40%' , md:'35%'}}>
+          <BasicButton click={cancelForm} loading={loading}>
+            Cancel
+          </BasicButton>
+        </Box>
+        <Box w={{base:'40%' , md:'35%'}}>
+          <BasicButton click={submitForm} loading={loading}>
+            Submit
+          </BasicButton>
+        </Box>
+      </Flex>
     </>
   );
 };
 
 export default ImsViewMerch;
-
-//   <SkuInformation
-//     skus={merch.skus}
-//     merchId={merchId}
-//     updateMerch={getMerch}
-//   />
-
-//   <div
-//     className="d-flex justify-content-between align-items-center"
-//     style={{ marginTop: "80px", width: "100%" }}
-//   >
-//     <div className="col-5 col-md-4">
-//       <BasicButton click={cancelForm} loading={loading}>
-//         Cancel
-//       </BasicButton>
-//     </div>
-//     <div className="col-5 col-md-4">
-//       <BasicButton click={submitForm} loading={loading}>
-//         Submit
-//       </BasicButton>
-//     </div>
-//   </div>
 
 //   {deleteModal && (
 //     <SmallModal
