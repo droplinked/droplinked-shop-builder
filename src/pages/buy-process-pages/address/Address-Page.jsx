@@ -90,6 +90,7 @@ function AddressPage() {
 			successToast("Address successfully added")
 			navigate('/shipping')
 		}else{
+			errorToast(result.reason)
 			errorToast(result.reason);
 		}
 		setLoading(false)
