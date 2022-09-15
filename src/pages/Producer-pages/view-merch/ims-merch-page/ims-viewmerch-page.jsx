@@ -5,7 +5,7 @@ import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../../components/product-information-component";
 import SkusComponent from "./skus-component/skus-component"
 
-const ImsViewMerch = ({ merch }) => {
+const ImsViewMerch = ({ merch ,update}) => {
   const [productInfo, setProductInfo] = useState(null);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -32,7 +32,7 @@ const ImsViewMerch = ({ merch }) => {
         setProductInfo={setProductInfo}
         defaultValue={merch}
       />
-      <SkusComponent  skusArray={merch.skus} merchId={merch._id} />
+      <SkusComponent  skusArray={merch.skus} update={update} />
     </>
   );
 };

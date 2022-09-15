@@ -13,11 +13,11 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
-import { addSkuToProduct } from "../../../../../api/producer/Product-api";
+import { updateSku } from "../../../../../api/producer/Product-api";
 
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
-const SkuModal = ({ open, close, sku, merchId }) => {
+const SkuModal = ({ open, close, sku, update }) => {
 
   const [price, setPrice] = useState(sku.price);
   const [externalID, setExternalID] = useState(sku.externalID);
@@ -30,7 +30,7 @@ const SkuModal = ({ open, close, sku, merchId }) => {
   const [loading, setLoading] = useState(false);
 
   const {successToast , errorToast } = useToasty();
-
+console.log(sku)
 
   // chnage options input function
   const changeOption = (id, value) => {
@@ -114,11 +114,12 @@ const SkuModal = ({ open, close, sku, merchId }) => {
       weight: weight,
     };
 
-    console.log(obj);
+   
     setLoading(true);
-    let result = await addSkuToProduct(merchId, obj);
+    let result = await updateSku(sku._id, obj);
     if (result) {
       successToast("New SKU added")
+      update()
       close()
     } else {
       errorToast(result);

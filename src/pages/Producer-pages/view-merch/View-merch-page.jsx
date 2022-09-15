@@ -135,7 +135,7 @@ export default function ViewMerchPage() {
           {merch.shopifyData ? (
             <ViewShopifyMerch product={merch} shopifyData={merch.shopifyData} />
           ) : (
-            <ImsViewMerch merch={merch} />
+            <ImsViewMerch merch={merch} update={getMerch}/>
           )}
         </ViewMerchWrapper>
       )}

@@ -5,7 +5,7 @@ import VariantItem from "../../../components/variant-item-component/Variant-item
 import SkuModal from "../sku-modal/Sku-modal";
 //import SkuModal from "../../../../components/Modal/Sku/Sku-modal";
 
-const SkusComponent = ({ skusArray, merchId }) => {
+const SkusComponent = ({ skusArray  ,update}) => {
   const [editingSku, setEditingSku] = useState(null);
 
   const editVariant = (sku) => setEditingSku(sku);
@@ -28,7 +28,7 @@ const SkusComponent = ({ skusArray, merchId }) => {
           />
         );
       })}
-      {editingSku && <SkuModal open={editingSku != null} close={closeModal} merchId={merchId} sku={editingSku}/>}
+      {editingSku && <SkuModal open={editingSku != null} close={closeModal} update={update} sku={editingSku}/>}
     </Box>
   );
 };
