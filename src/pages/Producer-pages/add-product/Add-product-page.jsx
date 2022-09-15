@@ -124,7 +124,7 @@ function AddProductPage() {
         />
       )}
 
-      {skuArray.length > 0 && <SkusComponent skusArray={skuArray} setSkuArray={setSkuArray} />}
+      {skuArray.length > 0 && <SkusComponent skusArray={skuArray} setSkuArray={setSkuArray} optionTypes={selectedOptions} />}
 
       <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
         <div className="col-12 col-md-4">

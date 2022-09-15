@@ -1,9 +1,10 @@
-
+import { useState } from "react";
 
 import VariantItem from "../../components/variant-item-component/Variant-item-component";
+import SkuModal from "../../../../components/Modal/Sku/Sku-modal";
 
-const SkusComponent = ({ skusArray, setSkuArray }) => {
-
+const SkusComponent = ({ skusArray, setSkuArray, optionTypes }) => {
+  const [editingVariant, setEditingVariant] = useState(null);
 
   // edit and delete exsiting skus
   const deleteVariant = (index) => {
@@ -13,6 +14,11 @@ const SkusComponent = ({ skusArray, setSkuArray }) => {
     setSkuArray(newVariantList);
   };
 
+  const editVariant = (variant, index) => {
+    setEditingVariant({ ...variant, index: index });
+  };
+
+  const closeModal = () => setEditingVariant(null);
 
   return (
     <div className="mt-5 w-100">
@@ -24,10 +30,20 @@ const SkusComponent = ({ skusArray, setSkuArray }) => {
               variant={sku}
               id={i}
               deleteVariant={() => deleteVariant(i)}
-              editVariant={()=>{}}
+              editVariant={() => editVariant(sku, i)}
             />
           );
         })}
+      {editingVariant && (
+        <SkuModal
+          open={editingVariant != null}
+          close={closeModal}
+          optionTypes={optionTypes}
+          skuArray={skusArray}
+          setSkuArray={setSkuArray}
+          defaultValue={editingVariant}
+        />
+      )}
     </div>
   );
 };

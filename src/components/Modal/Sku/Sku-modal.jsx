@@ -15,12 +15,28 @@ import { useState } from "react";
 //import AddressComponent from "../../shared/Address/address-component";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 
-const SkuModal = ({ open, close, optionTypes, skuArray, setSkuArray }) => {
+const SkuModal = ({
+  open,
+  close,
+  optionTypes,
+  skuArray,
+  setSkuArray,
+  defaultValue,
+}) => {
+  console.log(defaultValue);
 
-  const [price, setPrice] = useState(0);
-  const [externalID, setExternalID] = useState("");
-  const [quantity, setQuantity] = useState(0);
-  const [options, setOptions] = useState([]);
+  const [price, setPrice] = useState(() => {
+    return defaultValue != undefined ? defaultValue.price : "";
+  });
+  const [externalID, setExternalID] = useState(() => {
+    return defaultValue != undefined ? defaultValue.externalID : "";
+  });
+  const [quantity, setQuantity] = useState(() => {
+    return defaultValue != undefined ? defaultValue.quantity : "";
+  });
+  const [options, setOptions] = useState(() => {
+    return defaultValue != undefined ? defaultValue.options : [];
+  });
 
   // chnage options input function
   const changeOption = (id, value) => {
@@ -40,26 +56,34 @@ const SkuModal = ({ open, close, optionTypes, skuArray, setSkuArray }) => {
     }
     setOptions(newOptionArray);
   };
- /// change inputs
+  /// change inputs
   const changePrice = (e) => setPrice(parseFloat(e.target.value));
   const changeQuantity = (e) => setQuantity(parseInt(e.target.value));
   const changeExternallId = (e) => setExternalID(e.target.value);
 
-  // submit add sku function 
+  // submit add sku function
   const submitForm = () => {
-
-     var newArray =  Array.from(skuArray);
-
+    
     let obj = {
       price: price,
       externalID: externalID,
       quantity: quantity,
       options: options,
     };
+    let newArray;
 
-     newArray.push(obj)
-    setSkuArray(newArray)
-    close()
+    if (defaultValue == undefined) {
+      newArray = Array.from(skuArray);
+      newArray.push(obj);
+    } else {
+      newArray = skuArray.map((sku, i) => {
+        if (i == defaultValue.index) return obj;
+        else return sku;
+      });
+    }
+
+    setSkuArray(newArray);
+    close();
   };
 
   return (
@@ -173,6 +197,5 @@ const SkuModal = ({ open, close, optionTypes, skuArray, setSkuArray }) => {
     </>
   );
 };
-
 
 export default SkuModal;
