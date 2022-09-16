@@ -12,36 +12,40 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { useToasty } from "../../../../../context/toastify/ToastContext";
-import { updateSku } from "../../../../../api/producer/Product-api";
+import { useToasty } from "../../../../context/toastify/ToastContext";
+import { addSkuToProduct } from "../../../../api/producer/Product-api";
 
-import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 
-const SkuModal = ({ open, close, sku, update }) => {
-
-  const [price, setPrice] = useState(sku.price);
-  const [externalID, setExternalID] = useState(sku.externalID);
-  const [quantity, setQuantity] = useState(sku.quantity);
-  const [options, setOptions] = useState(sku.options);
-  const [length, setLength] = useState(sku.dimensions.length);
-  const [width, setWidth] = useState(sku.dimensions.width);
-  const [height, setHeight] = useState(sku.dimensions.height);
-  const [weight, setWeight] = useState(sku.weight);
+const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
+  const [price, setPrice] = useState(null);
+  const [externalID, setExternalID] = useState(null);
+  const [quantity, setQuantity] = useState(null);
+  const [options, setOptions] = useState([]);
+  const [length, setLength] = useState(null);
+  const [width, setWidth] = useState(null);
+  const [height, setHeight] = useState(null);
+  const [weight, setWeight] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const {successToast , errorToast } = useToasty();
-console.log(sku)
+  const { successToast, errorToast } = useToasty();
 
   // chnage options input function
   const changeOption = (id, value) => {
     let newOptionArray = [];
     for (let item of options) newOptionArray.push(item);
 
-    newOptionArray = newOptionArray.map((opt) => {
-      if (opt.variantID == id) return { ...opt, value: value };
-      else return opt;
-    });
+    let find = options.find((op) => op.variantID == id);
 
+    if (find) {
+      newOptionArray = newOptionArray.map((opt) => {
+        if (opt.variantID == id) return { ...opt, value: value };
+        else return opt;
+      });
+    } else {
+      let newObj = { variantID: id, value: value };
+      newOptionArray.push(newObj);
+    }
     setOptions(newOptionArray);
   };
   /// change inputs
@@ -59,6 +63,7 @@ console.log(sku)
     if (!value) {
       errorToast(`Sku ${lowerText} is required`);
       validate = false;
+      return;
     }
     if (value <= 0) {
       errorToast(`${UpperText} should be greater than zero`);
@@ -69,12 +74,19 @@ console.log(sku)
 
   // validation form's values
   const validateForm = () => {
+    if (options.length != optionType.length) {
+      errorToast("Sku options is required");
+      return false;
+    }
+
     let validateOption = true;
+
     options.forEach((opt) => {
       if (opt.value.length == 0) {
         validateOption = false;
       }
     });
+
     if (!validateOption) {
       errorToast("Sku options is required");
       return false;
@@ -114,19 +126,23 @@ console.log(sku)
       weight: weight,
     };
 
-   
-    setLoading(true);
-    let result = await updateSku(sku._id, obj);
-  
-    if (result) {
-      successToast("New SKU added")
-      update()
+    if (merchId == undefined) {
+      update(obj)
       close()
     } else {
-      errorToast(result);
-      setLoading(false);
+      setLoading(true);
+      let result = await addSkuToProduct(merchId, obj);
+
+      if (result) {
+        successToast("Sku update");
+        update();
+        close();
+      } else {
+        errorToast(result);
+        setLoading(false);
+      }
     }
-   
+
   };
 
   return (
@@ -144,7 +160,7 @@ console.log(sku)
           <ModalCloseButton />
 
           <ModalBody w="100%">
-            {options.map((option) => {
+            {optionType.map((option) => {
               return (
                 <SkuContent>
                   <SkuLable>{option.variantName}</SkuLable>
@@ -250,4 +266,4 @@ console.log(sku)
   );
 };
 
-export default SkuModal;
+export default AddSkuModal;

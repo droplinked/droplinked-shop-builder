@@ -13,9 +13,9 @@ const OptionCheckboxes = ({
     let newOptions = [];
     if (e.target.checked) {
       newOptions = selectedOptions.map((opt) => opt);
-      newOptions.push({ optionName: e.target.value, optionID: e.target.id });
+      newOptions.push({ variantName: e.target.value, variantID: e.target.id });
     } else {
-      newOptions = selectedOptions.filter((opt) => opt.optionID != e.target.id);
+      newOptions = selectedOptions.filter((opt) => opt.variantID != e.target.id);
     }
     setSelectedOptions(newOptions);
   };

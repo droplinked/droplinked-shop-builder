@@ -2,9 +2,9 @@ import "./Add-product-page-style.scss";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../components/product-information-component";
-import SkuModal from "../../../components/Modal/Sku/Sku-modal";
 import OptionCheckboxes from "./option-checkbox-component/option-checkbox";
 import SkusComponent from "./skus-component/Skus-component";
+import AddSkuModal from "../components/add-sku-modal/Sku-modal";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -46,9 +46,9 @@ function AddProductPage() {
   };
 
   // close page
-  const cancelForm = () =>navigate("/producer/ims");
+  const cancelForm = () => navigate("/producer/ims");
 
- // validation product fields before submit form
+  // validation product fields before submit form
   const validationForm = () => {
     if (productInfo.title == "") {
       errorToast("Item name is required");
@@ -99,7 +99,11 @@ function AddProductPage() {
     }
   };
 
-
+  const updateSku = (newSku) => {
+    let newArray = Array.from(skuArray);
+    newArray.push(newSku);
+    setSkuArray(newArray);
+  };
 
   const closeSkuModal = () => setSkuModalShow(false);
   const openSkuModal = () => setSkuModalShow(true);
@@ -122,8 +126,14 @@ function AddProductPage() {
         />
       )}
 
-        {/* show available skus  */}
-      {skuArray.length > 0 && <SkusComponent skusArray={skuArray} setSkuArray={setSkuArray} optionTypes={selectedOptions} />}
+      {/* show available skus  */}
+      {skuArray.length > 0 && (
+        <SkusComponent
+          skusArray={skuArray}
+          setSkuArray={setSkuArray}
+          optionTypes={selectedOptions}
+        />
+      )}
 
       <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
         <div className="col-12 col-md-4">
@@ -147,12 +157,11 @@ function AddProductPage() {
         </div>
       </div>
       {/* modal for add new sku  */}
-      <SkuModal
+      <AddSkuModal
         open={skuModalShow}
         close={closeSkuModal}
-        optionTypes={selectedOptions}
-        skuArray={skuArray}
-        setSkuArray={setSkuArray}
+        optionType={selectedOptions}
+        update={updateSku}
       />
     </div>
   );

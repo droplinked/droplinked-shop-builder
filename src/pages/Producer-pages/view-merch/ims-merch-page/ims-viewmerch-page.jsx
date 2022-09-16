@@ -9,11 +9,13 @@ import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../../components/product-information-component";
 import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component";
 import SkusComponent from "./skus-component/skus-component";
+import AddSkuModal from "../../components/add-sku-modal/Sku-modal";
 
 const ImsViewMerch = ({ merch, update }) => {
   const [productInfo, setProductInfo] = useState(null);
 
   const [deleteModal, setDeleteModal] = useState(false);
+  const [addSkuModal, setAddSkuModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const { successToast, errorToast } = useToasty();
@@ -23,17 +25,16 @@ const ImsViewMerch = ({ merch, update }) => {
     return { variantID: opt.variantID, variantName: opt.variantName };
   });
 
-  const cancelForm = () => {};
-
-  const openSkuModal = () => {};
+  const cancelForm = () =>  navigate("/producer/ims");
 
   const openDeleteModal = () => setDeleteModal(true);
   const closeDeleteModal = () => setDeleteModal(false);
 
+  const openAddSkuModal = () => setAddSkuModal(true);
+  const closeAddSkuModal = () => setAddSkuModal(false);
 
   // update prodcut
   const submitForm = async () => {
-
     let media = [];
     productInfo.images.map((img, i) => {
       media.push({ url: img, isMain: i == 0 });
@@ -58,10 +59,10 @@ const ImsViewMerch = ({ merch, update }) => {
     setLoading(false);
   };
 
-    const DeleteMerch = async () => {
-      setLoading(true);
-      
-    let result = await deleteMerch(merch._id)
+  const DeleteMerch = async () => {
+    setLoading(true);
+
+    let result = await deleteMerch(merch._id);
 
     if (result == true) {
       successToast("Merch deleted successfully");
@@ -72,7 +73,6 @@ const ImsViewMerch = ({ merch, update }) => {
     }
     setLoading(false);
   };
-
 
   return (
     <>
@@ -95,7 +95,7 @@ const ImsViewMerch = ({ merch, update }) => {
 
       <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
         <div className="col-12 col-md-4">
-          <BasicButton click={openSkuModal}>Add variant</BasicButton>
+          <BasicButton click={openAddSkuModal}>Add variant</BasicButton>
         </div>
       </div>
 
@@ -116,20 +116,27 @@ const ImsViewMerch = ({ merch, update }) => {
           </BasicButton>
         </Box>
       </Flex>
-         {deleteModal && (
-    <SmallModal
-      show={deleteModal}
-      hide={closeDeleteModal}
-      text={"Do you want to delete this item?"}
-      click={DeleteMerch}
-      loading={loading}
-      buttonText={"Delete"}
-    />
-  )}
+      {deleteModal && (
+        <SmallModal
+          show={deleteModal}
+          hide={closeDeleteModal}
+          text={"Do you want to delete this item?"}
+          click={DeleteMerch}
+          loading={loading}
+          buttonText={"Delete"}
+        />
+      )}
+      {addSkuModal && (
+        <AddSkuModal
+          open={addSkuModal}
+          close={closeAddSkuModal}
+          sku={optionTypes}
+          update={update}
+          merchId={merch._id}
+        />
+      )}
     </>
   );
 };
 
 export default ImsViewMerch;
-
-
