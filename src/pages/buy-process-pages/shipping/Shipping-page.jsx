@@ -23,12 +23,12 @@ const ShippingPage = () => {
   }, []);
 
   const getShippings = async () => {
-    let result = await getShippingRate();
-    if (result.status == "success") {
-      setShippings(result.data.shipping_rates);
-    } else {
-      console.log(result.reason);
-    }
+    // let result = await getShippingRate();
+    // if (result.status == "success") {
+    //   setShippings(result.data.shipping_rates);
+    // } else {
+    //   console.log(result.reason);
+    // }
   };
 
   const submitForm = async () => {

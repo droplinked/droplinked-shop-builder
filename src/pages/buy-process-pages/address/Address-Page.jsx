@@ -7,7 +7,7 @@ import { addCheckoutAddress } from "../../../api/base-user/Cart-api";
 import { createCheckout } from "../../../api/producer/Shopify-api";
 import { useCart } from "../../../context/cart/CartContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
-
+import { SHOP_TYPES } from "../../../constant/shop-types";
 import AddressComponent from "../../../components/shared/Address/address-component";
 import Loading from "../../../components/shared/loading/Loading";
 import AddressForm from "../../../components/Modal/Address/Address-modal";
@@ -35,69 +35,67 @@ function AddressPage() {
     setSelectedAddress(null);
   }, [addressList]);
 
-  // const ProccessToPayment = async () => {
-  // 	if (selectedAddress == null) {
-  // 		errorToast("Please choose an address")
-  // 		return
-  // 	}
-  // 	setLoading(true)
-  // 	let result = await addCheckoutAddress(selectedAddress)
-  // 	setLoading(false)
-  // 	if (result == true) {
-  // 		successToast("Address successfully added")
-  // 		navigate('/payment')
-  // 	} else {
-  // 		errorToast(result)
-  // 	}
-  // }
 
   const ProccessToPayment = async () => {
     if (selectedAddress == null) {
       errorToast("Please choose an address");
       return;
     }
-
-    let addressObj = {
-      first_name: selectedAddress.firstname,
-      last_name: selectedAddress.lastname,
-      country: selectedAddress.country,
-      province: selectedAddress.state,
-      city: selectedAddress.city,
-      address1: selectedAddress.addressLine1,
-      address2: selectedAddress.addressLine2,
-      zip: selectedAddress.zip,
-      phone: "",
-    };
-    let itemsArray = cart.map((item) => {
-      return {
-        variant_id: item.variant.id,
-        quantity: item.amount,
-        product_id: item.productId,
-      };
-    });
-    let data = {
-      checkout: {
-        billing_address: addressObj,
-        shipping_address: addressObj,
-        line_items: itemsArray,
-        email: profile.email,
-      },
-    };
-    setLoading(true);
-    let result = await createCheckout(cart[0].shopName, data);
-    setLoading(false);
-    if (result.status == "success") {
-      let checkoutId = {
-        checkoutId: result.data.checkout.token,
-        shopName: cart[0].shopName,
-      };
-      localStorage.setItem("checkout_id", JSON.stringify(checkoutId));
-      successToast("Address successfully added");
-      navigate("/shipping");
+    // add address for droplinked cart
+    if (cart.type == SHOP_TYPES.DROPLINKED) {
+      setLoading(true)
+      let result = await addCheckoutAddress(selectedAddress._id)
+      setLoading(false)
+      if (result == true) {
+        successToast("Address successfully added")
+        navigate('/shipping')
+      } else {
+        errorToast(result)
+      }
     } else {
-      errorToast(result.reason);
+       // add address for shopify cart
+      let addressObj = {
+        first_name: selectedAddress.firstname,
+        last_name: selectedAddress.lastname,
+        country: selectedAddress.country,
+        province: selectedAddress.state,
+        city: selectedAddress.city,
+        address1: selectedAddress.addressLine1,
+        address2: selectedAddress.addressLine2,
+        zip: selectedAddress.zip,
+        phone: "",
+      };
+      let itemsArray = cart.map((item) => {
+        return {
+          variant_id: item.variant.id,
+          quantity: item.amount,
+          product_id: item.productId,
+        };
+      });
+      let data = {
+        checkout: {
+          billing_address: addressObj,
+          shipping_address: addressObj,
+          line_items: itemsArray,
+          email: profile.email,
+        },
+      };
+      setLoading(true);
+      let result = await createCheckout(cart[0].shopName, data);
+      setLoading(false);
+      if (result.status == "success") {
+        let checkoutId = {
+          checkoutId: result.data.checkout.token,
+          shopName: cart[0].shopName,
+        };
+        localStorage.setItem("checkout_id", JSON.stringify(checkoutId));
+        successToast("Address successfully added");
+        navigate("/shipping");
+      } else {
+        errorToast(result.reason);
+      }
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
