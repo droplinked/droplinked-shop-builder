@@ -4,8 +4,12 @@ import {
   getShippingRate,
   updateCheckout,
 } from "../../../api/base-user/Shopify-api";
+import { getEasypostShipping  ,setEasypostShpping} from "../../../api/base-user/Cart-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../../context/cart/CartContext";
+import { SHOP_TYPES } from "../../../constant/shop-types";
+
 import Loading from "../../../components/shared/loading/Loading";
 import ShippingComponent from "./Shipping-component";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
@@ -17,45 +21,80 @@ const ShippingPage = () => {
 
   let navigate = useNavigate();
   const { successToast, errorToast } = useToasty();
+  const { cart } = useCart();
+
   const checkoutObj = JSON.parse(localStorage.getItem("checkout_id"));
   useEffect(() => {
     getShippings();
-  }, []);
+  }, [cart]);
 
   const getShippings = async () => {
-    // let result = await getShippingRate();
-    // if (result.status == "success") {
-    //   setShippings(result.data.shipping_rates);
-    // } else {
-    //   console.log(result.reason);
-    // }
+    // get easypost shipping
+    if (cart.type == SHOP_TYPES.DROPLINKED) {
+      let result = await getEasypostShipping()
+      console.log(result)
+      if(result.status == "fail"){
+        errorToast(result.reason)
+        return
+      }else{
+        console.log(result)
+      }
+    } else {
+       // get shopify shipping
+      let result = await getShippingRate();
+      if (result.status == "success") {
+        setShippings(result.data.shipping_rates);
+      } else {
+        errorToast(result.reason);
+      }
+    }
   };
 
   const submitForm = async () => {
+
     if (selectedShipping == null) {
       errorToast("Select a shipping please");
       return;
     }
 
-    setLoading(true)
-    let result = await updateCheckout(checkoutObj.shopName , checkoutObj.checkoutId,selectedShipping.handle) 
-    if(result.status == 'success'){
+    if (cart.type == SHOP_TYPES.DROPLINKED) {
 
-      localStorage.setItem('customer-id', JSON.stringify({customerId : 'cus_LImymG9KktMZdb'}))
-      localStorage.setItem('shippingPrice', JSON.stringify({shippingPrice : result.data.checkout.shipping_rate.price}))
-      navigate("/card")
-      setLoading(false)
-    
-     // successToast("");
+
     }else{
-        console.log(result);
+      // add shipping for shopify cart
+
+      setLoading(true);
+    let result = await updateCheckout(
+      checkoutObj.shopName,
+      checkoutObj.checkoutId,
+      selectedShipping.handle
+    );
+    if (result.status == "success") {
+      localStorage.setItem(
+        "customer-id",
+        JSON.stringify({ customerId: "cus_LImymG9KktMZdb" })
+      );
+      localStorage.setItem(
+        "shippingPrice",
+        JSON.stringify({
+          shippingPrice: result.data.checkout.shipping_rate.price,
+        })
+      );
+      navigate("/card");
+      setLoading(false);
+
+      // successToast("");
+    } else {
+      console.log(result);
     }
 
-    setLoading(false)
+    setLoading(false);
+    }
+
+    
   };
 
-  const backButton = () => navigate("/address")
-
+  const backButton = () => navigate("/address");
 
   return (
     <Flex
@@ -129,7 +168,9 @@ const ShippingPage = () => {
 
           <Flex w="100%" justifyContent="space-between" h="40px">
             <Box w={{ base: "150px", md: "200px" }} h="100%">
-              <BasicButton loading={loading} click={backButton}>Back</BasicButton>
+              <BasicButton loading={loading} click={backButton}>
+                Back
+              </BasicButton>
             </Box>
             <Box w={{ base: "150px", md: "200px" }} h="100%">
               <BasicButton click={submitForm} loading={loading}>

@@ -109,3 +109,32 @@ export const removeCart = async () => {
     return err.response.data.reason;
   }
 };
+
+
+export const getEasypostShipping = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  try {
+    const res = await axios.get(`${BASE_URL}/cart/shipping-rate`, {
+      headers: { Authorization: "Bearer " + token },
+    });
+   return res.data;
+  } catch (err) {
+    return err.response.data
+  }
+};
+
+export const setEasypostShpping = (shippingRate) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    axios.post(
+      `${BASE_URL}/cart/shipping-rate`,
+      { rateID: shippingRate },
+      { headers: { Authorization: "Bearer " + token } }
+    );
+    return true
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
+
