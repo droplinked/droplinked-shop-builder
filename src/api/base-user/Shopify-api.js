@@ -29,7 +29,7 @@ export const updateCheckout = async (shopname, checkoutId, handle) => {
     const res = await axios.post(
       `${BASE_URL}/producer/shopify/checkout/update`,
       {
-        shopName: shopname,
+        shopDomain: shopname,
         checkoutId: checkoutId,
         checkoutItem: {
           checkout: {
