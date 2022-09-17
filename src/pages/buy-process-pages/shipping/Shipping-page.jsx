@@ -31,13 +31,15 @@ const ShippingPage = () => {
   const getShippings = async () => {
     // get easypost shipping
     if (cart.type == SHOP_TYPES.DROPLINKED) {
+      
       let result = await getEasypostShipping()
-      console.log(result)
-      if(result.status == "fail"){
+
+      if(result.status == "success"){
+        console.log(result.data.shippingRates)
+      }
+      else{
         errorToast(result.reason)
         return
-      }else{
-        console.log(result)
       }
     } else {
        // get shopify shipping
