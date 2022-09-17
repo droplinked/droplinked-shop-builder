@@ -31,7 +31,7 @@ export default function PaymentPage() {
     const { cart, updateCart } = useCart();
     let navigate = useNavigate();
     var lastOrder = JSON.parse(sessionStorage.getItem('payOrder'));
-
+console.log(cart);
     // redirect from this page if cart and lastOrder be empty
     if (cart && (cart.items.length == 0) && (lastOrder == null)) {
         navigate("/purchseHistory?redirect_status=failed")
@@ -62,10 +62,8 @@ export default function PaymentPage() {
 
     // find all shop's name and build unique array and set $5 for each shop
     const getTotalofShipping = () => {
-        let shops = cart.items.map((merch) => merch.shopName)
-        shops = [...new Set(shops)];
-        let shippingPrice = (shops.length * 5.0)
-        return parseFloat(shippingPrice)
+       // let price =  cart.easyPostShipment.
+       return 5
     }
 
     const getTotalCost = () => {
