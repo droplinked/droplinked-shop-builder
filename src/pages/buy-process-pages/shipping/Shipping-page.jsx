@@ -75,7 +75,7 @@ const ShippingPage = () => {
 
       setLoading(false);
       if (result == true) {
-        navigate("/card");
+        navigate("/payment");
       } else {
         console.log(result);
       }
@@ -111,7 +111,7 @@ const ShippingPage = () => {
     }
   };
 
-  console.log(shippings);
+
   const backButton = () => navigate("/address");
 
   return (
