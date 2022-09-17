@@ -65,7 +65,7 @@ function AddressPage() {
         zip: selectedAddress.zip,
         phone: "",
       };
-      let itemsArray = cart.map((item) => {
+      let itemsArray = cart.items.map((item) => {
         return {
           variant_id: item.variant.id,
           quantity: item.amount,
