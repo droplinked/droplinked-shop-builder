@@ -81,12 +81,12 @@ function AddressPage() {
         },
       };
       setLoading(true);
-      let result = await createCheckout(cart[0].shopName, data);
+      let result = await createCheckout(cart.items[0].shopName, data);
       setLoading(false);
       if (result.status == "success") {
         let checkoutId = {
           checkoutId: result.data.checkout.token,
-          shopName: cart[0].shopName,
+          shopName: cart.items[0].shopName,
         };
         localStorage.setItem("checkout_id", JSON.stringify(checkoutId));
         successToast("Address successfully added");
