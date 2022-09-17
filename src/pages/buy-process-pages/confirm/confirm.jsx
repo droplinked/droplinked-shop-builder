@@ -20,7 +20,7 @@ const ConfirmPage = () => {
 
   const getItemsPrice = () => {
     let total = 0;
-    cart.forEach((item) => {
+    cart.items.forEach((item) => {
       total += item.amount * parseFloat(item.variant.price);
     });
     return total;
@@ -29,7 +29,7 @@ const ConfirmPage = () => {
   const confirm = async () => {
     setLoading(true);
     let result = await confirmPayment(
-      cart[0].shopName,
+      cart.items[0].shopName,
       checkoutId.checkoutId,
       sessionId.sessionId
     );
