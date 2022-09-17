@@ -3,17 +3,18 @@ import { useState } from "react";
 
 import VariantItem from "../../../components/variant-item-component/Variant-item-component";
 import SkuModal from "../sku-modal/Sku-modal";
+import EditSkuModal from "../../../components/edit-sku-modal/edit-sku-modal";
+
 //import SkuModal from "../../../../components/Modal/Sku/Sku-modal";
 
-const SkusComponent = ({ skusArray  ,update}) => {
+const SkusComponent = ({ skusArray, update }) => {
   const [editingSku, setEditingSku] = useState(null);
 
   const editVariant = (sku) => setEditingSku(sku);
 
   const closeModal = () => setEditingSku(null);
 
- // console.log(skusArray);
- // console.log(optionTypes);
+  const optionTypes = skusArray[0].options;
 
   return (
     <Box w="100%" mt="40px">
@@ -28,36 +29,19 @@ const SkusComponent = ({ skusArray  ,update}) => {
           />
         );
       })}
-      {editingSku && <SkuModal open={editingSku != null} close={closeModal} update={update} sku={editingSku}/>}
+      {/* {editingSku && <SkuModal open={editingSku != null} close={closeModal} update={update} sku={editingSku}/>} */}
+      {editingSku && (
+        <EditSkuModal
+          open={editingSku != null}
+          close={closeModal}
+          optionTypes={optionTypes}
+          defaultValue={editingSku}
+          update={update}
+        />
+      )}
     </Box>
   );
 };
 
 export default SkusComponent;
 
-{
-  /* <div className="mt-5 w-100">
-      {skusArray &&
-        skusArray.map((sku, i) => {
-          return (
-            <VariantItem
-              key={i}
-              variant={sku}
-              id={i}
-              deleteVariant={() => deleteVariant(i)}
-              editVariant={() => editVariant(sku, i)}
-            />
-          );
-        })}
-      {editingVariant && (
-        <SkuModal
-          open={editingVariant != null}
-          close={closeModal}
-          optionTypes={optionTypes}
-          skuArray={skusArray}
-          setSkuArray={setSkuArray}
-          defaultValue={editingVariant}
-        />
-      )}
-    </div> */
-}

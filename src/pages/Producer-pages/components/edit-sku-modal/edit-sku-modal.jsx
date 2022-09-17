@@ -1,4 +1,4 @@
-import { SkuContent, SkuLable, SkuInput } from "./Sku-modal-style";
+import { SkuContent, SkuLable, SkuInput } from "./edit-sku-modal-style";
 import {
   Modal,
   ModalOverlay,
@@ -12,35 +12,40 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { useToasty } from "../../../../../context/toastify/ToastContext";
-import { updateSku } from "../../../../../api/producer/Product-api";
+import { useToasty } from "../../../../context/toastify/ToastContext";
+import { updateSku } from "../../../../api/producer/Product-api";
 
-import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 
-const SkuModal = ({ open, close, sku, update }) => {
-
-  const [price, setPrice] = useState(sku.price);
-  const [externalID, setExternalID] = useState(sku.externalID);
-  const [quantity, setQuantity] = useState(sku.quantity);
-  const [options, setOptions] = useState(sku.options);
-  const [length, setLength] = useState(sku.dimensions.length);
-  const [width, setWidth] = useState(sku.dimensions.width);
-  const [height, setHeight] = useState(sku.dimensions.height);
-  const [weight, setWeight] = useState(sku.weight);
+const EditSkuModal = ({ open, close, optionTypes, defaultValue, update }) => {
+  const [price, setPrice] = useState(defaultValue.price);
+  const [externalID, setExternalID] = useState(defaultValue.externalID);
+  const [quantity, setQuantity] = useState(defaultValue.quantity);
+  const [options, setOptions] = useState(defaultValue.options);
+  const [length, setLength] = useState(defaultValue.dimensions.length);
+  const [width, setWidth] = useState(defaultValue.dimensions.width);
+  const [height, setHeight] = useState(defaultValue.dimensions.height);
+  const [weight, setWeight] = useState(defaultValue.weight);
   const [loading, setLoading] = useState(false);
 
-  const {successToast , errorToast } = useToasty();
+  const { errorToast, successToast } = useToasty();
 
   // chnage options input function
   const changeOption = (id, value) => {
     let newOptionArray = [];
     for (let item of options) newOptionArray.push(item);
 
-    newOptionArray = newOptionArray.map((opt) => {
-      if (opt.variantID == id) return { ...opt, value: value };
-      else return opt;
-    });
+    let find = options.find((op) => op.variantID == id);
 
+    if (find) {
+      newOptionArray = newOptionArray.map((opt) => {
+        if (opt.variantID == id) return { ...opt, value: value };
+        else return opt;
+      });
+    } else {
+      let newObj = { variantID: id, value: value };
+      newOptionArray.push(newObj);
+    }
     setOptions(newOptionArray);
   };
   /// change inputs
@@ -65,9 +70,13 @@ const SkuModal = ({ open, close, sku, update }) => {
     }
     return validate;
   };
-
   // validation form's values
   const validateForm = () => {
+    if (options.length != optionTypes.length) {
+      errorToast("Sku options is required");
+      return false;
+    }
+
     let validateOption = true;
     options.forEach((opt) => {
       if (opt.value.length == 0) {
@@ -96,6 +105,7 @@ const SkuModal = ({ open, close, sku, update }) => {
 
   // submit add sku function
   const submitForm = async () => {
+    console.log("xx");
     let dimensions = {
       length: length,
       width: width,
@@ -113,19 +123,22 @@ const SkuModal = ({ open, close, sku, update }) => {
       weight: weight,
     };
 
-   
-    setLoading(true);
-    let result = await updateSku(sku._id, obj);
-  
-    if (result) {
-      successToast("New SKU added")
-      update()
-      close()
-    } else {
-      errorToast(result);
+    console.log(obj);
+    if (defaultValue._id) {
+      setLoading(true);
+      let result = await updateSku(defaultValue._id, obj);
       setLoading(false);
+      if (result) {
+        successToast("New SKU added");
+        update();
+        close();
+      } else {
+        errorToast(result);
+      }
+    } else {
+      update(obj, defaultValue.index);
+      close();
     }
-   
   };
 
   return (
@@ -143,7 +156,9 @@ const SkuModal = ({ open, close, sku, update }) => {
           <ModalCloseButton />
 
           <ModalBody w="100%">
-            {options.map((option) => {
+            {optionTypes.map((option) => {
+              let find = options.find((op) => op.variantID == option.variantID);
+              let value = find ? find.value : "";
               return (
                 <SkuContent>
                   <SkuLable>{option.variantName}</SkuLable>
@@ -152,7 +167,7 @@ const SkuModal = ({ open, close, sku, update }) => {
                     onChange={(e) =>
                       changeOption(option.variantID, e.target.value)
                     }
-                    value={option.value}
+                    value={value}
                     placeholder={option.variantName}
                   />
                 </SkuContent>
@@ -232,14 +247,10 @@ const SkuModal = ({ open, close, sku, update }) => {
           <ModalFooter>
             <Flex w="100%" justifyContent="space-between">
               <Box w="40%">
-                <BasicButton click={close} loading={loading}>
-                  Cancel
-                </BasicButton>
+                <BasicButton click={close} loading={loading} >Cancel</BasicButton>
               </Box>
               <Box w="40%">
-                <BasicButton click={submitForm} loading={loading}>
-                  Add
-                </BasicButton>
+                <BasicButton click={submitForm} loading={loading} >Add</BasicButton>
               </Box>
             </Flex>
           </ModalFooter>
@@ -249,4 +260,4 @@ const SkuModal = ({ open, close, sku, update }) => {
   );
 };
 
-export default SkuModal;
+export default EditSkuModal;

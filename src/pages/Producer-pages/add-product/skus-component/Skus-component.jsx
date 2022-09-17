@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import VariantItem from "../../components/variant-item-component/Variant-item-component";
-import SkuModal from "../../../../components/Modal/Sku/Sku-modal";
+import EditSkuModal from "../../components/edit-sku-modal/edit-sku-modal"
 
 const SkusComponent = ({ skusArray, setSkuArray, optionTypes }) => {
   const [editingVariant, setEditingVariant] = useState(null);
@@ -20,6 +20,16 @@ const SkusComponent = ({ skusArray, setSkuArray, optionTypes }) => {
 
   const closeModal = () => setEditingVariant(null);
 
+  const updateSku = (skuObject , index) => {
+
+    let  newArray = skusArray.map((sku, i) => {
+        if (i == index) return skuObject;
+        else return sku;
+      });
+
+    setSkuArray(newArray);
+  }
+
   return (
     <div className="mt-5 w-100">
       {skusArray &&
@@ -35,13 +45,12 @@ const SkusComponent = ({ skusArray, setSkuArray, optionTypes }) => {
           );
         })}
       {editingVariant && (
-        <SkuModal
+        <EditSkuModal
           open={editingVariant != null}
           close={closeModal}
           optionTypes={optionTypes}
-          skuArray={skusArray}
-          setSkuArray={setSkuArray}
           defaultValue={editingVariant}
+          update={updateSku}
         />
       )}
     </div>
