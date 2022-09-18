@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-export const getOrdersHistory = async () => {
+export const getImsOrdersHistory = async () => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.get(`${BASE_URL}/order`, {
@@ -14,10 +14,19 @@ export const getOrdersHistory = async () => {
     return null;
   }
 };
+export const getShopifyOrdersHistory = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const res = await axios.get(`${BASE_URL}/order?shopify=true`, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return res.data.data.orders;
+  } catch (err) {
+    console.log(err.response.data.reason);
+    return null;
+  }
+};
 
-
-
- //  const res = await axios.get(`${BASE_URL}/order?shopify=true`
 
 export const getClientSecret = async (orderId) => {
   const token = JSON.parse(localStorage.getItem("token"));
