@@ -3,8 +3,6 @@ import { SHOP_TYPES } from "../../../constant/shop-types";
 
 export default function OrderMerch({ item ,type}) {
 
-    console.log(item)
-
     // style for variant and quantity and price text
     const textStyel = {
         color: "#ddd",
