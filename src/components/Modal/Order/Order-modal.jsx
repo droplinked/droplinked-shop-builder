@@ -24,7 +24,6 @@ import YesNoModal from "../yes-or-no-modal/YesOrNo-modal-component"
 export default function OrderModal({ order, isOpen, onClose }) {
 
 
-console.log(order);
 
     // this state use for loading stauts
     const [loadingBtn, setLoadingBtn] = useState(false)

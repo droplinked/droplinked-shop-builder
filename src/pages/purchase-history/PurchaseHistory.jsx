@@ -1,11 +1,12 @@
 import { useToasty } from "../../context/toastify/ToastContext"
 import { useEffect, useState, useMemo } from "react";
 import { Text, Box , Flex } from "@chakra-ui/react"
-import { getImsOrdersHistory } from '../../api/base-user/OrderHistory-api'
+import { getImsOrdersHistory ,getShopifyOrdersHistory} from '../../api/base-user/OrderHistory-api'
 import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils"
 import { ORDER_TYPES } from "../../constant/order.types"
 import { mergeWaitingOrders } from "./purchase-order-utils"
 import { useNavigate } from "react-router-dom";
+import { SHOP_TYPES } from "../../constant/shop-types"
 
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import Dropdown from "../../components/shared/Dropdown/Dropdown-component"
@@ -20,7 +21,6 @@ export default function PurchasHistoryPage() {
     const { successToast, errorToast } = useToasty();
     const navigate = useNavigate()
 
-   // console.log(orders);
 
     //get payment status
     let params = (new URL(document.location)).searchParams;
@@ -51,8 +51,15 @@ export default function PurchasHistoryPage() {
 
 
     const getPurchseList = async () => {
-        let result = await getImsOrdersHistory()
-        result = mergeWaitingOrders(result)
+
+        let shopifyOrders = await getShopifyOrdersHistory()
+        let imsORders = await getImsOrdersHistory()
+
+        let combinedOrders = []
+         shopifyOrders.forEach(order => combinedOrders.push({...order , type:SHOP_TYPES.SHOPIFY }))
+         imsORders.forEach(order => combinedOrders.push({...order , type:SHOP_TYPES.DROPLINKED }))
+      
+       let result = mergeWaitingOrders(combinedOrders)
         result = sortArrayBaseCreateTime(result)
         if (result != null) {
             setorders(result)
