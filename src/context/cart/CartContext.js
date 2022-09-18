@@ -25,7 +25,7 @@ const CartProvider = ({ children }) => {
   const addShopifyItemToCart = (item) => {
     let newCart;
     // build new cart if doesnt exist any p
-    if (cart == null) {
+    if (cart == null || (cart.items.length == 0)) {
       newCart = { type: SHOP_TYPES.SHOPIFY, items: [item] };
     } else {
       // remove last cart if has item of droplinked type
