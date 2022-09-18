@@ -83,10 +83,10 @@ export const checkoutCart = async () => {
   }
 };
 
-export const addRootpaymentOrder = (orderId) => {
+export const addRootpaymentOrder = async(orderId) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
-    axios.post(
+    const res = axios.post(
       `${BASE_URL}/cart/root-payments-order-id`,
       { orderID: orderId },
       { headers: { Authorization: "Bearer " + token } }
