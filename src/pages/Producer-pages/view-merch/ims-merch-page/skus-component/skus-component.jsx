@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 
 import VariantItem from "../../../components/variant-item-component/Variant-item-component";
-import SkuModal from "../sku-modal/Sku-modal";
+//import SkuModal from "../sku-modal/Sku-modal";
 import EditSkuModal from "../../../components/edit-sku-modal/edit-sku-modal";
 
 //import SkuModal from "../../../../components/Modal/Sku/Sku-modal";

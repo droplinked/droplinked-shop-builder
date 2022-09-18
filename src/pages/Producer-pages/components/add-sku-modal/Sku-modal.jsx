@@ -29,7 +29,7 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
   const [loading, setLoading] = useState(false);
 
   const { successToast, errorToast } = useToasty();
-
+console.log(optionType)
   // chnage options input function
   const changeOption = (id, value) => {
     let newOptionArray = [];

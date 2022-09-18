@@ -24,7 +24,8 @@ const ImsViewMerch = ({ merch, update }) => {
   const optionTypes = merch.skus[0].options.map((opt) => {
     return { variantID: opt.variantID, variantName: opt.variantName };
   });
-
+console.log(merch)
+console.log(optionTypes)
   const cancelForm = () =>  navigate("/producer/ims");
 
   const openDeleteModal = () => setDeleteModal(true);
@@ -130,7 +131,7 @@ const ImsViewMerch = ({ merch, update }) => {
         <AddSkuModal
           open={addSkuModal}
           close={closeAddSkuModal}
-          sku={optionTypes}
+          optionType={optionTypes}
           update={update}
           merchId={merch._id}
         />
