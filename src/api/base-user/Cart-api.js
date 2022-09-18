@@ -9,10 +9,10 @@ export const getCart = async () => {
     const res = await axios.get(`${BASE_URL}/cart`, {
       headers: { Authorization: "Bearer " + token },
     });
-   // return res.data.data.cart;
-   return res.data;
+    // return res.data.data.cart;
+    return res.data;
   } catch (err) {
-    return err.response
+    return err.response;
   }
 };
 
@@ -83,7 +83,6 @@ export const checkoutCart = async () => {
   }
 };
 
-
 export const addRootpaymentOrder = (orderId) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
@@ -110,7 +109,6 @@ export const removeCart = async () => {
   }
 };
 
-
 export const getEasypostShipping = async () => {
   const token = JSON.parse(localStorage.getItem("token"));
 
@@ -118,23 +116,22 @@ export const getEasypostShipping = async () => {
     const res = await axios.get(`${BASE_URL}/cart/shipping-rate`, {
       headers: { Authorization: "Bearer " + token },
     });
-   return res.data;
+    return res.data;
   } catch (err) {
-    return err.response.data
+    return err.response.data;
   }
 };
 
-export const setEasypostShpping = (shippingRate) => {
+export const setEasypostShpping = async (shippingRate) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
-    axios.post(
+    const res = await axios.post(
       `${BASE_URL}/cart/shipping-rate`,
       { rateID: shippingRate },
       { headers: { Authorization: "Bearer " + token } }
     );
-    return true
+    return true;
   } catch (err) {
     return err.response.data.reason;
   }
 };
-

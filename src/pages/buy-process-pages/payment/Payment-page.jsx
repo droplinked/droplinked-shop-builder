@@ -31,7 +31,7 @@ export default function PaymentPage() {
     const { cart, updateCart } = useCart();
     let navigate = useNavigate();
     var lastOrder = JSON.parse(sessionStorage.getItem('payOrder'));
-console.log(cart);
+    // console.log(lastOrder);
     // redirect from this page if cart and lastOrder be empty
     if (cart && (cart.items.length == 0) && (lastOrder == null)) {
         navigate("/purchseHistory?redirect_status=failed")
@@ -62,12 +62,12 @@ console.log(cart);
 
     // find all shop's name and build unique array and set $5 for each shop
     const getTotalofShipping = () => {
-       // let price =  cart.easyPostShipment.
-       return 5
+        let price =  parseFloat(cart.selectedEasyPostShipmentRate)
+       return price
     }
 
     const getTotalCost = () => {
-        return (lastOrder) ? lastOrder.totalPrice : parseFloat((getTotalofShipping()) + (getTotalofMerchs())).toFixed(2)
+        return  ((getTotalofShipping()) + (getTotalofMerchs()))
     }
 
 
@@ -86,7 +86,7 @@ console.log(cart);
     const stripePayment = async () => {
         setDisables(true)
         let result
-        if (lastOrder) {
+        if (lastOrder != null) {
             result = await getClientSecret(lastOrder._id)
         } else {
             result = await checkoutCart()

@@ -39,7 +39,7 @@ const ShippingPage = () => {
     getShippings();
   }, [cart]);
 
-  console.log(selectedShipping);
+ // console.log(selectedShipping);
 
   const getShippings = async () => {
     // get easypost shipping
@@ -60,10 +60,12 @@ const ShippingPage = () => {
       } else {
         errorToast(result.reason);
       }
+
     }
   };
 
   const submitForm = async () => {
+
     if (selectedShipping == null) {
       errorToast("Select a shipping please");
       return;
@@ -72,7 +74,6 @@ const ShippingPage = () => {
     if (cart.type == SHOP_TYPES.DROPLINKED) {
       setLoading(true);
       let result = await setEasypostShpping(selectedShipping.id);
-
       setLoading(false);
       if (result == true) {
         navigate("/payment");
@@ -81,7 +82,6 @@ const ShippingPage = () => {
       }
     } else {
       // add shipping for shopify cart
-
       setLoading(true);
       let result = await updateCheckout(
         checkoutObj.shopName,
