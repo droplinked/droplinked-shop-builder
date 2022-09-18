@@ -67,7 +67,7 @@ export default function PaymentPage() {
     }
 
     const getTotalCost = () => {
-        return  ((getTotalofShipping()) + (getTotalofMerchs()))
+        return  ((getTotalofShipping()) + (getTotalofMerchs())).toFixed(2)
     }
 
 
