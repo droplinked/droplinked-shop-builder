@@ -41,40 +41,40 @@ function BuyProduct() {
     const [readmore, setReadmore] = useState(false);
 
 
-    useEffect(() => {
-        axios.get(`https://dev.flatlay.io/product/${id}`, {
-            headers: {
-                "Content-Type": "application/json",
-                authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJlZGkubW5zQGdtYWlsLmNvbSIsInVzZXJJZCI6IjEzMTMyMCIsImlhdCI6MTY1NzA5NDU5NiwiZXhwIjoxNjYyMjc4NTk2fQ.Xh-1G0D54ginQvPr3VK5IHFZ4vg0tNWKf2aOu-g22ZI"
-            }
-        }).then((res) => {
-            setPrudoct(res.data.product_listing);
-            setShopName(res.data.headers['X-Shopify-Shop-Domain'])
-            let imglist = res.data.product_listing.images.map((item) => {
-                return { url: item.src }
-            })
-            setImages(imglist);
-            setMainImage(imglist[0])
-        })
+    // useEffect(() => {
+    //     axios.get(`https://dev.flatlay.io/product/${id}`, {
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJlZGkubW5zQGdtYWlsLmNvbSIsInVzZXJJZCI6IjEzMTMyMCIsImlhdCI6MTY1NzA5NDU5NiwiZXhwIjoxNjYyMjc4NTk2fQ.Xh-1G0D54ginQvPr3VK5IHFZ4vg0tNWKf2aOu-g22ZI"
+    //         }
+    //     }).then((res) => {
+    //         setPrudoct(res.data.product_listing);
+    //         setShopName(res.data.headers['X-Shopify-Shop-Domain'])
+    //         let imglist = res.data.product_listing.images.map((item) => {
+    //             return { url: item.src }
+    //         })
+    //         setImages(imglist);
+    //         setMainImage(imglist[0])
+    //     })
 
-        if (userData != undefined) {
-            let mainet = userData.profile.stxAddress.mainnet;
-            let testnet = userData.profile.stxAddress.testnet;
-            fetchPrincipalNFTs(
-                mainet,
-                "SP3QSAJQ4EA8WXEDSRRKMZZ29NH91VZ6C5X88FGZQ.crashpunks-v2::crashpunks-v2",
-                1,
-                0
-            )
-                .then((results) => {
-                    setHasNFT(results)
-                })
-                .catch((reason) => {
-                    errorToast("could not fetch user nfts")
-                })
-        }
+    //     if (userData != undefined) {
+    //         let mainet = userData.profile.stxAddress.mainnet;
+    //         let testnet = userData.profile.stxAddress.testnet;
+    //         fetchPrincipalNFTs(
+    //             mainet,
+    //             "SP3QSAJQ4EA8WXEDSRRKMZZ29NH91VZ6C5X88FGZQ.crashpunks-v2::crashpunks-v2",
+    //             1,
+    //             0
+    //         )
+    //             .then((results) => {
+    //                 setHasNFT(results)
+    //             })
+    //             .catch((reason) => {
+    //                 errorToast("could not fetch user nfts")
+    //             })
+    //     }
 
-    }, [])
+    // }, [])
 
 
     useEffect(() => {
@@ -92,10 +92,7 @@ function BuyProduct() {
 
 
     const submitButton = () => {
-        if (userData == undefined) {
-         //   authenticate();
-            return
-        }
+     
 
         errorToast("Required NFT missing")
      
