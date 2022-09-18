@@ -1,7 +1,7 @@
 import { useToasty } from "../../context/toastify/ToastContext"
 import { useEffect, useState, useMemo } from "react";
 import { Text, Box , Flex } from "@chakra-ui/react"
-import { getOrdersHistory } from '../../api/base-user/OrderHistory-api'
+import { getImsOrdersHistory } from '../../api/base-user/OrderHistory-api'
 import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils"
 import { ORDER_TYPES } from "../../constant/order.types"
 import { mergeWaitingOrders } from "./purchase-order-utils"
@@ -51,7 +51,7 @@ export default function PurchasHistoryPage() {
 
 
     const getPurchseList = async () => {
-        let result = await getOrdersHistory()
+        let result = await getImsOrdersHistory()
         result = mergeWaitingOrders(result)
         result = sortArrayBaseCreateTime(result)
         if (result != null) {
