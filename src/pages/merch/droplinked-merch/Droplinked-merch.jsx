@@ -26,7 +26,7 @@ const DroplinkedMerch = ({ product }) => {
 
   const [selectedSku, setSelectedSku] = useState(null);
 
-  const { userData, authenticate } = UseWalletInfo();
+  const { userData  } = UseWalletInfo();
   const { profile ,signinWithaWallet} = useProfile();
   const { errorToast, successToast } = useToasty();
   const { updateCart } = useCart();
@@ -66,7 +66,7 @@ const DroplinkedMerch = ({ product }) => {
     }
 
     if (userData == undefined) {
-      authenticate();
+      signinWithaWallet();
       return;
     }
 

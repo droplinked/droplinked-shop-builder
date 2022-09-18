@@ -1,8 +1,7 @@
-//import { UseWalletInfo } from "../../../../../context/wallet/WalletContext";
-import { Image, Box } from "@chakra-ui/react";
-//import { authenticateByWallet } from "../../../../../services/wallet-auth/auth";
+
+import { Image } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { signInViaWallet } from "../../../../../api/base-user/Auth-api";
+//import { signInViaWallet } from "../../../../../api/base-user/Auth-api";
 import { useProfile } from "../../../../../context/profile/ProfileContext";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 
@@ -13,43 +12,22 @@ import WalletModal from "./wallet-modal";
 //import activeWalletIcon from "../../../../../assest/icon/pink-wallet.png";
 
 export default function WalletButton({ haventEmail }) {
-  // const { onSignOut, userData, authenticate } = UseWalletInfo();
+
   const { addProfile ,signinWithaWallet} = useProfile();
   const { successToast, errorToast } = useToasty();
 
-  const [state, setState] = useState(null);
   const [walletModal, setWalletModal] = useState(false);
 
 
-  useEffect(() => {
-    if (state) {
-      syncHiroWallet();
-    }
-  }, [state]);
-
-  const syncHiroWallet = async () => {
-    let result = await signInViaWallet(state);
-    console.log(result);
-    if (result.status == "success") {
-      //      console.log(result.data);
-      if (!result.data.user.email) {
-        haventEmail();
-      }
-      addProfile(result.data);
-      successToast("Login successfully");
-    } else {
-      errorToast(result.reason);
-    }
-  };
 
   const signIn = () => {
     //  if( navigator.userAgent.match(/Android/i) != null || navigator.userAgent.match(/iPhone/i)!=null){
     //   setWalletModal(true)
     //  }else{
-    //   authenticateByWallet(setState);
+    //  
     //  }
     signinWithaWallet()
-  //  authenticateByWallet(setState);
+
   };
 
   const closeWalletModal = () => setWalletModal(false);
@@ -57,8 +35,6 @@ export default function WalletButton({ haventEmail }) {
   return (
     <>
       <HeaderItem
-        //  click={(userData == undefined) ? authenticate : onSignOut}
-        //color={userData == undefined ? "#fff" : "#8053ff"}
         color="#fff"
         click={signIn}
       >

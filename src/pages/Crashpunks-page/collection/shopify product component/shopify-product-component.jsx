@@ -2,12 +2,12 @@ import "./shopify-style.scss"
 import { Link } from "react-router-dom";
 import { useState } from "react"
 import { useProfile } from "../../../../context/profile/ProfileContext"
-import { UseWalletInfo } from "../../../../context/wallet/WalletContext"
+//import { UseWalletInfo } from "../../../../context/wallet/WalletContext"
 
 function ShopifyProductLarge({ price, title, imageUrl, id }) {
 
     const [viewBtn, setViewBtn] = useState(false)
-    const { userData, authenticate } = UseWalletInfo();
+   // const { userData, authenticate } = UseWalletInfo();
     const { profile } = useProfile();
 
     return (

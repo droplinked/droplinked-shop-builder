@@ -6,19 +6,7 @@ const appConfig = new AppConfig(["store_write", "publish_data"]);
 
 export const userSession = new UserSession({ appConfig });
 
-function authenticate() {
-  showConnect({
-    appDetails: {
-      name: "Stacks React Starter",
-      icon: window.location.origin + "/logo512.png",
-    },
-    redirectTo: "/",
-    onFinish: () => {
-      window.location.reload();
-    },
-    userSession,
-  });
-}
+
 
 function disconnect() {
   userSession.signUserOut("/");
@@ -41,7 +29,7 @@ const Test = () => {
           </p>
         </div>
       ) : (
-        <button className='test-button' onClick={authenticate}>
+        <button className='test-button'>
           Connect Wallet
         </button>
       )}

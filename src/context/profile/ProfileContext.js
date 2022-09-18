@@ -82,7 +82,7 @@ const ProfileProvider = ({ children }) => {
               signature: data.signature,
               publicKey: data.publicKey,
             };
-            sendWalletDate(userDate)
+            getUserDataViaWallet(userDate)
           },
         });
       },
@@ -90,7 +90,7 @@ const ProfileProvider = ({ children }) => {
     });
   };
 
-  const sendWalletDate = async(userData) => {
+  const getUserDataViaWallet = async(userData) => {
     let result = await signInViaWallet(userData)
     addProfile(result.data);
   }
