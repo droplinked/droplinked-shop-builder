@@ -24,7 +24,7 @@ const ShippingPage = () => {
 
   let navigate = useNavigate();
   const { successToast, errorToast } = useToasty();
-  const { cart } = useCart();
+  const { cart ,updateCart} = useCart();
 
   const getShippingPrice = () => {
     if (cart.type == SHOP_TYPES.DROPLINKED) {
@@ -74,6 +74,7 @@ const ShippingPage = () => {
     if (cart.type == SHOP_TYPES.DROPLINKED) {
       setLoading(true);
       let result = await setEasypostShpping(selectedShipping.id);
+      await updateCart()
       setLoading(false);
       if (result == true) {
         navigate("/payment");
