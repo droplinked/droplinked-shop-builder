@@ -1,7 +1,9 @@
 import { Text, Flex, Image, } from "@chakra-ui/react"
+import { SHOP_TYPES } from "../../../constant/shop-types";
 
+export default function OrderMerch({ item ,type}) {
 
-export default function OrderMerch({ item }) {
+    console.log(item)
 
     // style for variant and quantity and price text
     const textStyel = {
@@ -9,7 +11,9 @@ export default function OrderMerch({ item }) {
         fontWeight: "500"
     }
 
+    const imageUrl = (type == SHOP_TYPES.DROPLINKED)? item.product.media[0].url : item.image_url
 
+    const merchPrice = (type == SHOP_TYPES.DROPLINKED)? item.sku.price : item.price
     // get variant name and value in set in string
     // let variantText = ' '
     // item.sku.options.forEach(option => {
@@ -30,8 +34,7 @@ export default function OrderMerch({ item }) {
             h={{ base: '50px', md: '70px' }}
         >
             <Image
-               // src={item.product.media[0].url}
-               src={item.image_url}
+               src={imageUrl}
                 objectFit='cover'
                 w={{ base: "45px", md: '65px' }}
                 h={{ base: "45px", md: '65px' }}
@@ -59,7 +62,7 @@ export default function OrderMerch({ item }) {
 
                     {/* <Text style={textStyel} w='55%' fontSize={{base:'8px' , sm: "10px", md: "14px" }} >{variantText}</Text> */}
                     <Text style={textStyel} w='30%' fontSize={{base:'8px' , sm: "10px", md: "14px" }} > Quantity: {item.quantity}</Text>
-                    <Text style={textStyel} textAlign='end' w='15%' fontSize={{base:'8px' , sm: "10px", md: "14px" }} >${Totalprice}</Text>
+                    <Text style={textStyel} textAlign='end' w='15%' fontSize={{base:'8px' , sm: "10px", md: "14px" }} >${merchPrice}</Text>
                 </Flex>
             </Flex>
 

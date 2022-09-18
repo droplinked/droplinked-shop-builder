@@ -29,7 +29,6 @@ const animation = `${animationKeyframes} 2s ease infinite`;
 
 export default function Order({ order }) {
 
-//  console.log(order);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isCustomer } = useProfile();
@@ -95,7 +94,7 @@ export default function Order({ order }) {
       _id: order._id,
       totalPrice: parseFloat(order.totalPrice).toFixed(2),
     };
-    //  console.log(payOrder);
+    
     sessionStorage.setItem("payOrder", JSON.stringify(payOrder));
     navigate(`/payment`);
   };
