@@ -38,7 +38,7 @@ const ConfirmPage = () => {
       localStorage.removeItem('session_id');
       localStorage.removeItem('checkout_id');
       localStorage.removeItem('shippingPrice');
-      clearCart();
+      clearCart()
     } else {
       errorToast(result);
     }

@@ -83,8 +83,9 @@ const CartProvider = ({ children }) => {
   };
 
   const clearCart = () => {
-    localStorage.setItem("cart", JSON.stringify([]));
-    setCart([]);
+    let newCart = {items:[]}
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    setCart(newCart);
   };
 
   const changeQuantity = (quantity, variantId) => {
