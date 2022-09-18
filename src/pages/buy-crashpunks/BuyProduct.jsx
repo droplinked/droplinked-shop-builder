@@ -31,7 +31,7 @@ function BuyProduct() {
     const { state, increase } = useCart();
     const [fullsizeImage, setFullSizeImage] = useState(false);
     // const personId = profile.id;
-    const { userData, authenticate } = UseWalletInfo();
+   // const { userData, authenticate } = UseWalletInfo();
     const { errorToast, successToast } = useToasty();
 
     //new states 
@@ -93,7 +93,7 @@ function BuyProduct() {
 
     const submitButton = () => {
         if (userData == undefined) {
-            authenticate();
+         //   authenticate();
             return
         }
 
