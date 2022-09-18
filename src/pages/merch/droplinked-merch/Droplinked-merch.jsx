@@ -27,7 +27,7 @@ const DroplinkedMerch = ({ product }) => {
   const [selectedSku, setSelectedSku] = useState(null);
 
   const { userData, authenticate } = UseWalletInfo();
-  const { profile } = useProfile();
+  const { profile ,signinWithaWallet} = useProfile();
   const { errorToast, successToast } = useToasty();
   const { updateCart } = useCart();
 
@@ -40,10 +40,16 @@ const DroplinkedMerch = ({ product }) => {
   const Addtobasket = async () => {
    
 
+    // if (userData == undefined) {
+    //   authenticate();
+    //   return;
+    // }
+
     if (profile == null) {
-      errorToast("Please login");
+      signinWithaWallet();
       return;
     }
+
     if (quantity == 0) {
       errorToast("Please add items");
       return;
@@ -63,6 +69,7 @@ const DroplinkedMerch = ({ product }) => {
       authenticate();
       return;
     }
+
     const Rules = product.ruleset.rules.map((rule) => rule.address);
 
     setDisableBtn(true);

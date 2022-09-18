@@ -24,7 +24,7 @@ const ShopifyMech = ({ shopName, product }) => {
   const { userData, authenticate } = UseWalletInfo();
   const { addShopifyItemToCart } = useCart();
   const { successToast, errorToast } = useToasty();
-  const { profile } = useProfile();
+  const { profile ,signinWithaWallet} = useProfile();
 
   let images = product.shopifyData.images.map((img) => {
     return { url: img.src };
@@ -54,8 +54,14 @@ const ShopifyMech = ({ shopName, product }) => {
   };
 
   const addItemToBasket = async () => {
+
+    // if (userData == undefined) {
+    //   authenticate();
+    //   return;
+    // }
+
     if (profile == null) {
-      errorToast("Please login");
+      signinWithaWallet();
       return;
     }
 

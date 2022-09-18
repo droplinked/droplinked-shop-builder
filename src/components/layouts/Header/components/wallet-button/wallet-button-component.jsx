@@ -1,6 +1,6 @@
 //import { UseWalletInfo } from "../../../../../context/wallet/WalletContext";
 import { Image, Box } from "@chakra-ui/react";
-import { authenticateByWallet } from "../../../../../services/wallet-auth/auth";
+//import { authenticateByWallet } from "../../../../../services/wallet-auth/auth";
 import { useState, useEffect } from "react";
 import { signInViaWallet } from "../../../../../api/base-user/Auth-api";
 import { useProfile } from "../../../../../context/profile/ProfileContext";
@@ -14,12 +14,12 @@ import WalletModal from "./wallet-modal";
 
 export default function WalletButton({ haventEmail }) {
   // const { onSignOut, userData, authenticate } = UseWalletInfo();
-  const { addProfile } = useProfile();
+  const { addProfile ,signinWithaWallet} = useProfile();
   const { successToast, errorToast } = useToasty();
 
   const [state, setState] = useState(null);
   const [walletModal, setWalletModal] = useState(false);
-  console.log(haventEmail);
+
 
   useEffect(() => {
     if (state) {
@@ -37,7 +37,6 @@ export default function WalletButton({ haventEmail }) {
       }
       addProfile(result.data);
       successToast("Login successfully");
-      // window.location.reload();
     } else {
       errorToast(result.reason);
     }
@@ -49,8 +48,8 @@ export default function WalletButton({ haventEmail }) {
     //  }else{
     //   authenticateByWallet(setState);
     //  }
-
-    authenticateByWallet(setState);
+    signinWithaWallet()
+  //  authenticateByWallet(setState);
   };
 
   const closeWalletModal = () => setWalletModal(false);
