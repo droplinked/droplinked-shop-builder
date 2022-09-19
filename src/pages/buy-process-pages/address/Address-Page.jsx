@@ -8,6 +8,8 @@ import { createCheckout } from "../../../api/producer/Shopify-api";
 import { useCart } from "../../../context/cart/CartContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
+
+import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 import AddressComponent from "../../../components/shared/Address/address-component";
 import Loading from "../../../components/shared/loading/Loading";
 import AddressForm from "../../../components/Modal/Address/Address-modal";
@@ -154,7 +156,13 @@ function AddressPage() {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Button
+              <Box   w="30%">
+              <BasicButton cancelType={true} click={()=>{ navigate("/checkout")}} loading={loading}>back</BasicButton>
+              </Box>
+              <Box   w="30%">
+              <BasicButton click={ProccessToPayment}  loading={loading}>Payment</BasicButton>
+              </Box>
+              {/* <Button
                 w="30%"
                 bgColor="#8053ff"
                 color="#fff"
@@ -179,7 +187,7 @@ function AddressPage() {
                 onClick={ProccessToPayment}
               >
                 Payment
-              </Button>
+              </Button> */}
             </Flex>
           </>
         )}
