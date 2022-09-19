@@ -12,14 +12,14 @@ import {
   Td,
   TableContainer,
 } from "@chakra-ui/react";
-import { getCollections } from "../../../api/producer/Collection-api";
+import { getCollections } from "../../../../api/producer/Collection-api";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useToasty } from "../../../context/toastify/ToastContext";
-import { addProductToCollection } from "../../../api/producer/Collection-api";
+import { useToasty } from "../../../../context/toastify/ToastContext";
+import { addProductToCollection } from "../../../../api/producer/Collection-api";
 
-import Dropdown from "../../../components/shared/Dropdown/Dropdown-component";
-import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import Dropdown from "../../../../components/shared/Dropdown/Dropdown-component";
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 
 const ViewShopifyMerch = ({ product, shopifyData }) => {
   const [collectionList, setCollection] = useState([]);

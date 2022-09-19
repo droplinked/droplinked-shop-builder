@@ -1,7 +1,7 @@
-import "./View-merch-page-style.scss";
+//import "./View-merch-page-style.scss";
 
 import Loading from "../../../components/shared/loading/Loading";
-import ViewShopifyMerch from "./View-shopify-merch";
+import ViewShopifyMerch from "./shopify-merch-page/View-shopify-merch";
 import ImsViewMerch from "./ims-merch-page/ims-viewmerch-page"
 
 import { useEffect, useState } from "react";
