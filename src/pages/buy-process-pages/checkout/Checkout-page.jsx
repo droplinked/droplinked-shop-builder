@@ -89,7 +89,7 @@ function CheckoutPage() {
 
           <ButtonWrapper>
             <Box w={{ base: "150px", md: "200px" }} overflow="hidden">
-              <BasicButton click={backToShop}>Back to shop</BasicButton>
+              <BasicButton click={backToShop} cancelType={true}>Back to shop</BasicButton>
             </Box>
 
             <Box w={{ base: "150px", md: "200px" }} overflow="hidden">
