@@ -146,7 +146,7 @@ function AddProductPage() {
         style={{ marginTop: "80px", width: "100%" }}
       >
         <div className="col-5 col-md-4">
-          <BasicButton click={cancelForm} loading={loading}>
+          <BasicButton click={cancelForm} loading={loading} cancelType={true}>
             Cancel
           </BasicButton>
         </div>

@@ -86,7 +86,7 @@ const ConfirmPage = () => {
         </Box>
 
         <Flex w="100%" justifyContent='space-between'>
-        <BasicButton w='30%' click={backButton} loading={loading}>
+        <BasicButton w='30%' click={backButton} loading={loading} cancelType={true}>
             Back
           </BasicButton>
           <BasicButton w='50%' click={confirm} loading={loading}>

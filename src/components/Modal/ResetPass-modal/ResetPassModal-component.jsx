@@ -62,9 +62,9 @@ export default function ResetPassModal({ backToLogin, close }) {
                     </div>
                 </div>
                 <div className="w-12 mt-3">
-                    <BasicButton click={SubmitForm}  disabled={disableBtn}>Reset password</BasicButton>
+                    <BasicButton click={SubmitForm}  disabled={disableBtn} >Reset password</BasicButton>
                 </div>
-                <div className="sp-text" onClick={backToLogin}>Back to login</div>
+                <div className="sp-text" onClick={backToLogin} cancelType={true}>Back to login</div>
             </div>
         </ModalContainer>
     )

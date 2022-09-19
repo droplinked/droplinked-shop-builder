@@ -250,7 +250,7 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
           <ModalFooter>
             <Flex w="100%" justifyContent="space-between">
               <Box w="40%">
-                <BasicButton click={close} loading={loading}>
+                <BasicButton click={close} loading={loading} cancelType={true}>
                   Cancel
                 </BasicButton>
               </Box>

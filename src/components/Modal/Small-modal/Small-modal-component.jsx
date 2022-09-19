@@ -35,6 +35,7 @@ export default function SmallModal({ show, hide, text, click, header, loading ,b
                                     bgColor="#4d4d4d"
                                     onClick={hide}
                                     loading={loading}
+                                    cancelType={true}
                                 > Cancel</BasicButton>
                             </Box>
                             <Box w='40%'>

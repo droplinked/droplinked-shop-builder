@@ -82,6 +82,7 @@ console.log(optionTypes)
           bgColor="#fa6653"
           onClick={openDeleteModal}
           loading={loading}
+          cancelType={true}
         >
           Delete item
         </BasicButton>

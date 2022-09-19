@@ -114,7 +114,7 @@ export default function AddCollectionPage({ toggle, close }) {
         )}
         <div className="d-flex justify-content-between mt-5">
           <div className="col-5">
-            <BasicButton click={close} disabled={disableBtn}>
+            <BasicButton click={close} disabled={disableBtn} cancelType={true}>
               Cancel
             </BasicButton>
           </div>

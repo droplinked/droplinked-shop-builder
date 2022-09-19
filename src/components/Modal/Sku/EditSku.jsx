@@ -248,7 +248,7 @@ const EditSkuModal = ({ open, close, optionTypes, defaultValue, update }) => {
           <ModalFooter>
             <Flex w="100%" justifyContent="space-between">
               <Box w="40%">
-                <BasicButton click={close} loading={loading} >Cancel</BasicButton>
+                <BasicButton click={close} loading={loading} cancelType={true}>Cancel</BasicButton>
               </Box>
               <Box w="40%">
                 <BasicButton click={submitForm} loading={loading} >Add</BasicButton>

@@ -253,7 +253,7 @@ export default function AddressForm({ type, addressBook, close }) {
                     p='0px'
                     w='100%'
                 >
-                    <BasicButton w='45%' p='12px 16px' click={close} loading={loading} disabled={loading} >Cancel</BasicButton>
+                    <BasicButton w='45%' p='12px 16px' click={close} loading={loading} disabled={loading} cancelType={true}>Cancel</BasicButton>
                     <BasicButton w='45%' p='12px 16px' click={submitForm} loading={loading} disabled={loading}>Submit</BasicButton>
                 </Flex>
             </Box>

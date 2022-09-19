@@ -204,7 +204,7 @@ const ShippingPage = () => {
 
           <Flex w="100%" justifyContent="space-between" h="40px">
             <Box w={{ base: "150px", md: "200px" }} h="100%">
-              <BasicButton loading={loading} click={backButton}>
+              <BasicButton loading={loading} click={backButton} cancelType={true}>
                 Back
               </BasicButton>
             </Box>
