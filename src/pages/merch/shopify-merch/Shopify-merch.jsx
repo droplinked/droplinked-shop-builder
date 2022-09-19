@@ -24,14 +24,14 @@ const ShopifyMech = ({ shopName, product }) => {
   const { userData, authenticate } = UseWalletInfo();
   const { addShopifyItemToCart } = useCart();
   const { successToast, errorToast } = useToasty();
-  const { profile ,signinWithaWallet} = useProfile();
+  const { profile, signinWithaWallet } = useProfile();
 
   let images = product.shopifyData.images.map((img) => {
     return { url: img.src };
   });
 
   const checkGated = async () => {
-    if (product.ruleset == undefined) return true;
+    
 
     const Rules = product.ruleset.rules.map((rule) => rule.address);
     setLoading(true);
@@ -54,7 +54,6 @@ const ShopifyMech = ({ shopName, product }) => {
   };
 
   const addItemToBasket = async () => {
-
     // if (userData == undefined) {
     //   authenticate();
     //   return;
@@ -65,10 +64,37 @@ const ShopifyMech = ({ shopName, product }) => {
       return;
     }
 
-    let checkNftGated = await checkGated();
+    if (product.ruleset == undefined){
+      addToCardFunction()
+    }else{
+      const Rules = product.ruleset.rules.map((rule) => rule.address);
+      setLoading(true);
+      checkRules(userData.profile.stxAddress.mainnet, Rules)
+        .then((e) => {
+          if (e) {
+            addToCardFunction()
+            setLoading(false);
+            return true;
+          } else {
+            setLoading(false);
+            errorToast("Required NFT not found, accessed denied");
+            return false;
+          }
+        })
+        .catch((e) => {
+          setLoading(false);
+          errorToast(e.response.data);
+          return false;
+        });
 
-    if (!checkNftGated) return;
+    }
 
+  //  let checkNftGated = await checkGated();
+   // console.log();
+   // if (!checkNftGated) return;
+  };
+
+  const addToCardFunction = () => {
     let itemObject = {
       amount: quantity,
       product: product.shopifyData,
