@@ -1,10 +1,6 @@
 import "./View-merch-page-style.scss";
 
 import Loading from "../../../components/shared/loading/Loading";
-import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import SmallModal from "../../../components/Modal/Small-modal/Small-modal-component";
-import ProductInformation from "../components/product-information-component";
-import SkuInformation from "../components/sku-information-component";
 import ViewShopifyMerch from "./View-shopify-merch";
 import ImsViewMerch from "./ims-merch-page/ims-viewmerch-page"
 
@@ -13,7 +9,6 @@ import { useParams } from "react-router-dom";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
 import { getProduct } from "../../../api/public/Product-api";
-import { updateMerch, deleteMerch } from "../../../api/producer/Product-api";
 import { keyframes, usePrefersReducedMotion } from "@chakra-ui/react";
 import { ViewMerchWrapper } from "./VIew-merch-page-style"
 
