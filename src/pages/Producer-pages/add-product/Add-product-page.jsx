@@ -4,7 +4,7 @@ import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../components/product-information-component";
 import OptionCheckboxes from "./option-checkbox-component/option-checkbox";
 import SkusComponent from "./skus-component/Skus-component";
-import AddSkuModal from "../components/add-sku-modal/Sku-modal";
+import AddSkuModal from "../../../components/Modal/Sku/AddSku";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";

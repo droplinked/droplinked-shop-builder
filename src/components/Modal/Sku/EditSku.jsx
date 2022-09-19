@@ -1,4 +1,4 @@
-import { SkuContent, SkuLable, SkuInput } from "./edit-sku-modal-style";
+import { SkuContent, SkuLable, SkuInput } from "./Sku-modal-style";
 import {
   Modal,
   ModalOverlay,
@@ -12,12 +12,13 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { useToasty } from "../../../../context/toastify/ToastContext";
-import { updateSku } from "../../../../api/producer/Product-api";
+import { useToasty } from "../../../context/toastify/ToastContext";
+import { updateSku } from "../../../api/producer/Product-api";
 
-import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
+import BasicButton from "../../shared/BasicButton/BasicButton";
 
 const EditSkuModal = ({ open, close, optionTypes, defaultValue, update }) => {
+
   const [price, setPrice] = useState(defaultValue.price);
   const [externalID, setExternalID] = useState(defaultValue.externalID);
   const [quantity, setQuantity] = useState(defaultValue.quantity);

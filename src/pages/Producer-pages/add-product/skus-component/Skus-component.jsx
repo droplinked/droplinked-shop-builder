@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import VariantItem from "../../components/variant-item-component/Variant-item-component";
-import EditSkuModal from "../../components/edit-sku-modal/edit-sku-modal"
+import EditSkuModal from "../../../../components/Modal/Sku/EditSku"
 
 const SkusComponent = ({ skusArray, setSkuArray, optionTypes }) => {
   const [editingVariant, setEditingVariant] = useState(null);

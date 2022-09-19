@@ -9,7 +9,7 @@ import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../../components/product-information-component";
 import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component";
 import SkusComponent from "./skus-component/skus-component";
-import AddSkuModal from "../../components/add-sku-modal/Sku-modal";
+import AddSkuModal from "../../../../components/Modal/Sku/AddSku";
 
 const ImsViewMerch = ({ merch, update }) => {
   const [productInfo, setProductInfo] = useState(null);

@@ -12,12 +12,13 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { useToasty } from "../../../../context/toastify/ToastContext";
-import { addSkuToProduct } from "../../../../api/producer/Product-api";
+import { useToasty } from "../../../context/toastify/ToastContext";
+import { addSkuToProduct } from "../../../api/producer/Product-api";
 
-import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
+import BasicButton from "../../shared/BasicButton/BasicButton";
 
 const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
+
   const [price, setPrice] = useState(null);
   const [externalID, setExternalID] = useState(null);
   const [quantity, setQuantity] = useState(null);
@@ -29,7 +30,7 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
   const [loading, setLoading] = useState(false);
 
   const { successToast, errorToast } = useToasty();
-console.log(optionType)
+
   // chnage options input function
   const changeOption = (id, value) => {
     let newOptionArray = [];
