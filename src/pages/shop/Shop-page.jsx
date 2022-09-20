@@ -1,16 +1,14 @@
-import "./Shop-page-style.scss";
+//import "./Shop-page-style.scss";
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getShopInfoByShopname } from "../../api/public/Shop-api";
 import { getCollectionsByShopname } from "../../api/public/Collection-api";
+import { ShopPageContainer} from "./Shop-page-style";
 
 import Loading from "../../components/shared/loading/Loading";
+import PublicShopPage from "./public/Public-shop-page"
 
-import TopSection from "../../components/shared/TopSection/TopSection";
-import ProfileTopSection from "../Crashpunks-page/crashpunks top section/ProfileTopSection";
-import GalleryCarousel from "../Crashpunks-page/gallery carousel/GalleryCarousel";
-import CollectionsSection from "./Collection-section";
 
 export default function ShopPage() {
   // state for shop information
@@ -37,16 +35,6 @@ export default function ShopPage() {
     setCollections(collections);
   };
 
-  // check if doesnt exist any product in all collections dont show any collection
-  const collectionHasProduct = () => {
-    if (collection == null) return false;
-
-    let flag = false;
-    collection.collections.forEach((collection) => {
-      if (collection.products.length > 0) flag = true;
-    });
-    return flag;
-  };
 
 
   return (
@@ -54,47 +42,9 @@ export default function ShopPage() {
       {shopData == null ? (
         <Loading />
       ) : (
-        <div className="shop-page-container">
-          {shopname == "crashpunks" ? (
-            // specific design for crahspunk shop and (TopSection) component for another shops
-            <>
-              <ProfileTopSection />
-              <GalleryCarousel />
-              <div style={{ height: "30px" }}></div>
-            </>
-          ) : (
-            <TopSection
-              pic={shopData.logo}
-              shopname={shopData.description}
-              instagram={shopData.instagramUrl ? shopData.instagramUrl : ""}
-              twitter={shopData.twitterUrl ? shopData.twitterUrl : ""}
-              discord={shopData.discordUrl ? shopData.discordUrl : ""}
-              web={shopData.webUrl ? shopData.webUrl : ""}
-            />
-          )}
-
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              margin: "40px 20px 0px 20px",
-            }}
-          >
-            {collectionHasProduct() ? (
-              //  if doesnt exist any product in all collections show (No collections listed yet!) message
-              <>
-                <CollectionsSection
-                  collection={collection}
-                  shopname={shopname}
-                  type={shopData.imsType}
-                />
-              </>
-            ) : (
-              <p className="no-collection-text">No collections listed yet!</p>
-            )}
-          </div>
-        </div>
+        <ShopPageContainer >
+            <PublicShopPage shopData={shopData} shopName={shopname} collections={collection}/>
+        </ShopPageContainer>
       )}
     </>
   );
