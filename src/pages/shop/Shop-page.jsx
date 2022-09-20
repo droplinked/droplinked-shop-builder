@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getShopInfoByShopname } from "../../api/public/Shop-api";
 import { getCollectionsByShopname } from "../../api/public/Collection-api";
-import { ShopPageContainer} from "./Shop-page-style";
+import { ShopPageContainer } from "./Shop-page-style";
+import { useProfile } from "../../context/profile/ProfileContext";
 
 import Loading from "../../components/shared/loading/Loading";
-import PublicShopPage from "./public/Public-shop-page"
-
+import PublicShopPage from "./public/Public-shop-page";
+import OwnerShopPage from "./owner/Owner-shop-page";
 
 export default function ShopPage() {
   // state for shop information
@@ -17,8 +18,10 @@ export default function ShopPage() {
   const [collection, setCollections] = useState(null);
 
   let { shopname } = useParams();
+  const { profile } = useProfile();
 
   localStorage.setItem("currentShop", JSON.stringify(shopname));
+  console.log(profile);
 
   useEffect(() => {
     getShopData(shopname);
@@ -35,15 +38,34 @@ export default function ShopPage() {
     setCollections(collections);
   };
 
+  const isOwner = () => {
+    if (profile && profile.type == "PRODUCER" && profile.shopName == shopname)
+      return true;
+    else return false;
+  };
 
+  console.log(isOwner());
 
   return (
     <>
       {shopData == null ? (
         <Loading />
       ) : (
-        <ShopPageContainer >
-            <PublicShopPage shopData={shopData} shopName={shopname} collections={collection}/>
+        <ShopPageContainer>
+          {isOwner() ? (
+            <OwnerShopPage
+              shopData={shopData}
+              shopName={shopname}
+              collections={collection}
+              update={getShopData}
+            />
+          ) : (
+            <PublicShopPage
+              shopData={shopData}
+              shopName={shopname}
+              collections={collection}
+            />
+          )}
         </ShopPageContainer>
       )}
     </>
