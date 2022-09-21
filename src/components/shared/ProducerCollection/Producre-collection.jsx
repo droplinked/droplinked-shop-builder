@@ -3,7 +3,9 @@ import "./Producre-collection-style.scss";
 import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import Product from "../Product/Product";
 import EditCollectionModal from "./edit-collection-modal/Edit-collection-modal";
+import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header"
 
+import { ProducerCollectionWrapper } from "./Producer-collection-style"
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import { deleteCollection } from "../../../api/producer/Collection-api";
@@ -41,13 +43,8 @@ const ProducerCollection = ({ collection, update }) => {
 
   return (
     <>
-      <div className="Collection-wrapper-component">
-        <div className="d-flex justify-content-between align-items-center h-auto">
-          <div className="name">{collection.title}</div>
-          <Link to={`/${profile.shopName}/collection/${collection._id}`}>
-            <button className="collection-btn">View collection</button>
-          </Link>
-        </div>
+      <ProducerCollectionWrapper>
+        <ProducerCollectionHeader title={collection.title} collectionId={collection._id} shopName={profile.shopname} />
         {collection.products.length == 0 ? (
           <div className="d-flex">
             <p className="text-align-center no-pro-text">Empty</p>
@@ -103,7 +100,7 @@ const ProducerCollection = ({ collection, update }) => {
             </div>
           </>
         )}
-      </div>
+      </ProducerCollectionWrapper>
       {deleteModal && (
         <SmallModal
           text={`Are you sure you want to  delete this collection?`}
