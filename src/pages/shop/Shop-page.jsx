@@ -57,7 +57,7 @@ export default function ShopPage() {
               shopData={shopData}
               shopName={shopname}
               collections={collection}
-              update={getShopData}
+              update={getCollectionData}
             />
           ) : (
             <PublicShopPage
