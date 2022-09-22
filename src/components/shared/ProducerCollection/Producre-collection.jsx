@@ -44,7 +44,9 @@ const ProducerCollection = ({ collection, update }) => {
   return (
     <>
       <ProducerCollectionWrapper>
-        <ProducerCollectionHeader title={collection.title} collectionId={collection._id} shopName={profile.shopname} />
+        <ProducerCollectionHeader title={collection.title} collectionId={collection._id} shopName={profile.shopname} editOnclick={openEditModal} 
+        deleteOnclick={openDeleteModal}
+        />
         {collection.products.length == 0 ? (
           <div className="d-flex">
             <p className="text-align-center no-pro-text">Empty</p>
@@ -88,7 +90,7 @@ const ProducerCollection = ({ collection, update }) => {
           </div>
         )}
 
-        {collection.type != "DEFAULT_PUBLIC" && (
+        {/* {collection.type != "DEFAULT_PUBLIC" && (
           <>
             <div className="d-flex justify-content-between align-items-center h-auto">
               <p className="collection-delete-img" onClick={openDeleteModal}>
@@ -99,7 +101,7 @@ const ProducerCollection = ({ collection, update }) => {
               </p>
             </div>
           </>
-        )}
+        )} */}
       </ProducerCollectionWrapper>
       {deleteModal && (
         <SmallModal
