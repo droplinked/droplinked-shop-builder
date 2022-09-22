@@ -51,3 +51,17 @@ export const menuButtonStyle = {
   borderRadius: "md",
   border: "1px solid #555",
 };
+
+export const InputProductComponent = chakra("div", {
+  baseStyle: {
+    d: "flex",
+    w: "100%",
+    border: "2px solid #aaa",
+    borderRadius: "12px",
+    cursor: "pointer",
+    flexDir: "column",
+    _hover: {
+      borderColor: "#ddd",
+    },
+  },
+});

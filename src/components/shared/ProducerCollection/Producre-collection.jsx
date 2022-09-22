@@ -3,24 +3,29 @@ import "./Producre-collection-style.scss";
 import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import Product from "../Product/Product";
 import EditCollectionModal from "./edit-collection-modal/Edit-collection-modal";
-import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header"
+import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
 
-import { ProducerCollectionWrapper } from "./Producer-collection-style"
+import {
+  ProducerCollectionWrapper,
+  InputProductComponent,
+} from "./Producer-collection-style";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import { deleteCollection } from "../../../api/producer/Collection-api";
 import { USER_TYPE } from "../../../constant/user-types";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { AspectRatio, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
 const ProducerCollection = ({ collection, update }) => {
-  
+
   const [deleteModal, setDeleteModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
   const { profile } = useProfile();
+  const navigate = useNavigate();
 
   const DeleteCollection = async () => {
     setLoading(true);
@@ -36,20 +41,34 @@ const ProducerCollection = ({ collection, update }) => {
   };
 
   const openEditModal = () => setEditModal(true);
-
   const closeEditModal = () => setEditModal(false);
-
   const openDeleteModal = () => setDeleteModal(true);
+  const navigateToAddProduct = () => navigate('/producer/add-product')
 
   return (
     <>
       <ProducerCollectionWrapper>
-        <ProducerCollectionHeader title={collection.title} collectionId={collection._id} shopName={profile.shopname} editOnclick={openEditModal} 
-        deleteOnclick={openDeleteModal}
+        <ProducerCollectionHeader
+          title={collection.title}
+          collectionId={collection._id}
+          shopName={profile.shopname}
+          editOnclick={openEditModal}
+          deleteOnclick={openDeleteModal}
         />
         {collection.products.length == 0 ? (
-          <div className="d-flex">
-            <p className="text-align-center no-pro-text">Empty</p>
+          <div className="mt-2 d-flex flex-wrap">
+            <div className="col-6 col-md-3 p-1">
+              <AspectRatio ratio={1}>
+                <InputProductComponent onClick={navigateToAddProduct}>
+                  <Text color="white" fontSize="50px" lineHeight="50px">
+                    +
+                  </Text>
+                  <Text color="white" fontSize="12px">
+                    Add product
+                  </Text>
+                </InputProductComponent>
+              </AspectRatio>
+            </div>
           </div>
         ) : (
           <div className="mt-2 d-flex flex-wrap">
@@ -89,19 +108,6 @@ const ProducerCollection = ({ collection, update }) => {
               })}
           </div>
         )}
-
-        {/* {collection.type != "DEFAULT_PUBLIC" && (
-          <>
-            <div className="d-flex justify-content-between align-items-center h-auto">
-              <p className="collection-delete-img" onClick={openDeleteModal}>
-                Delete
-              </p>
-              <p className="collection-edit-btn" onClick={openEditModal}>
-                Edit
-              </p>
-            </div>
-          </>
-        )} */}
       </ProducerCollectionWrapper>
       {deleteModal && (
         <SmallModal
