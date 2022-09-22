@@ -8,6 +8,7 @@ import {
   Text2,
   TextContainer,
 } from "./Landing-page-style";
+import { BASE_URL } from "../../api/BaseUrl"
 
 import LandingpageImage from "./landing-page-image-component";
 import SignupInput from "./singup-input-component";
@@ -37,6 +38,7 @@ const keyframe_leftanimation = keyframes`
 `;
 
 export default function LandingPage() {
+  
   const prefersReducedMotion = usePrefersReducedMotion();
 
   let [searchParams, setSearchParams] = useSearchParams();
