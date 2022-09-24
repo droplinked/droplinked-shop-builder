@@ -21,6 +21,7 @@ deploy_dev:
     - build_dev
   script:
     - export REACT_APP_BASE_API_URL=$REACT_APP_BASE_API_URL_DEV
+    - echo $REACT_APP_BASE_API_URL_DEV
     - echo "copying files to s3://flatlaystorefront/"
     - aws s3 cp ./build s3://flatlaystorefront/ --recursive
     - aws cloudfront create-invalidation --distribution-id=E2M36M6JJ7FMID --paths /
