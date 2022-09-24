@@ -185,7 +185,7 @@ export default function PaymentPage() {
                                     }}
                                     disabled={disableBtns}
                                     onClick={stripePayment}
-                                >Stripe</Button>
+                                >Credit card</Button>
 
                                 <Button
                                     w="40%"
