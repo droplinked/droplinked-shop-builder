@@ -19,11 +19,12 @@ deploy_dev:
   dependencies:
     - build_dev
   script:
-    - export REACT_APP_BASE_API_URL=$REACT_APP_BASE_API_URL_DEV
     - echo "copying files to s3://flatlaystorefront/"
     - aws s3 cp ./build s3://flatlaystorefront/ --recursive
     - aws cloudfront create-invalidation --distribution-id=E2M36M6JJ7FMID --paths /
     - echo "Copying files complete"
+  variables:
+    REACT_APP_BASE_API_URL: $REACT_APP_BASE_API_URL_DEV
   only:
     - dev
 
@@ -51,11 +52,12 @@ deploy_prod:
   dependencies:
     - build_prod
   script:
-    - export REACT_APP_BASE_API_URL=$REACT_APP_BASE_API_URL_PROD
     - echo "copying files to s3://flatlaystorefront-main/"
     - aws s3 cp ./build s3://flatlaystorefront-main/ --recursive
     - aws cloudfront create-invalidation --distribution-id=E36JNMRV4ZHN7G --paths /
     - echo "Copying files complete"
+  variables:
+   REACT_APP_BASE_API_URL: $REACT_APP_BASE_API_URL_PROD
   only:
     - main
 
