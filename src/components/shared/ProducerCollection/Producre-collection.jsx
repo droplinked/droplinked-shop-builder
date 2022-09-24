@@ -1,4 +1,4 @@
-import "./Producre-collection-style.scss";
+//import "./Producre-collection-style.scss";
 
 import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import Product from "../Product/Product";
@@ -51,7 +51,7 @@ const ProducerCollection = ({ collection, update }) => {
         <ProducerCollectionHeader
           title={collection.title}
           collectionId={collection._id}
-          shopName={profile.shopname}
+          shopName={profile.shopName}
           editOnclick={openEditModal}
           deleteOnclick={openDeleteModal}
         />

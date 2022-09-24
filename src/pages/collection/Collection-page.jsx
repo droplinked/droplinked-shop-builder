@@ -26,7 +26,7 @@ export default function CollectionPage() {
   };
 
   const collectionType =
-    Collection && Collection.products[0].shopifyData
+    Collection && (Collection.products.length > 0) && Collection.products[0].shopifyData
       ? SHOP_TYPES.SHOPIFY
       : SHOP_TYPES.DROPLINKED;
 
@@ -36,6 +36,8 @@ export default function CollectionPage() {
         {Collection ? (
           <>
             <div className="title">{Collection.title}</div>
+            {(Collection.products.length > 0)
+            ?
             <div className=" mt-5 d-flex flex-wrap">
               {Collection.products.map((product, i) => {
                 return (
@@ -64,6 +66,10 @@ export default function CollectionPage() {
                 );
               })}
             </div>
+            :
+            <div className="d-flex justify-content-center title" style={{fontSize:'16px' , marginTop:'60px'}}>Empty</div>
+            }
+            
           </>
         ) : (
           <Loading />

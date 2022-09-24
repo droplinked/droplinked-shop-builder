@@ -15,6 +15,7 @@ const ProducerCollectionHeader = ({
   const linkToViewCollection = () =>
     navigate(`/${shopName}/collection/${collectionId}`);
 
+
   return (
     <>
       <Flex justifyContent="space-between" alignItems="center" h="auto">
