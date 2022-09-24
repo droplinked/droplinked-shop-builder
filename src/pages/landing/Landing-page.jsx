@@ -39,7 +39,7 @@ const keyframe_leftanimation = keyframes`
 export default function LandingPage() {
   
   const prefersReducedMotion = usePrefersReducedMotion();
-console.log(Process.env.TEST)
+console.log(process.env.TEST)
   let [searchParams, setSearchParams] = useSearchParams();
   let urlParam = searchParams.get("modal");
 
