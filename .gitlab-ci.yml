@@ -24,7 +24,7 @@ deploy_dev:
     - aws cloudfront create-invalidation --distribution-id=E2M36M6JJ7FMID --paths /
     - echo "Copying files complete"
   variables:
-    REACT_APP_BASE_API_URL: $REACT_APP_BASE_API_URL_DEV
+    REACT_APP_BASE_API_URL: ${REACT_APP_BASE_API_URL_DEV}
   only:
     - dev
 
@@ -57,7 +57,7 @@ deploy_prod:
     - aws cloudfront create-invalidation --distribution-id=E36JNMRV4ZHN7G --paths /
     - echo "Copying files complete"
   variables:
-   REACT_APP_BASE_API_URL: $REACT_APP_BASE_API_URL_PROD
+   REACT_APP_BASE_API_URL: ${REACT_APP_BASE_API_URL_PROD}
   only:
     - main
 
