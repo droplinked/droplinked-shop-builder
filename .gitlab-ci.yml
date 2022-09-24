@@ -2,7 +2,7 @@ build_dev:
   stage: build
   image: node:lts-alpine3.11
   script:
-  - export REACT_APP_BASE_API_URL=$REACT_APP_BASE_API_URL_DEV
+    - export REACT_APP_BASE_API_URL=$REACT_APP_BASE_API_URL_DEV
     - "npm install"
     - CI=false npm run build
     
@@ -31,7 +31,7 @@ build_prod:
   stage: build
   image: node:lts-alpine3.11
   script:
-  - export REACT_APP_BASE_API_URL=$REACT_APP_BASE_API_URL_PROD
+    - export REACT_APP_BASE_API_URL=$REACT_APP_BASE_API_URL_PROD
     - "npm install"
     - CI=false npm run build
       
