@@ -3,5 +3,3 @@
 // const LIVE = "https://api.droplinked.com"
 
 export const BASE_URL = `${process.env.REACT_APP_BASE_API_URL}`
-console.log('BaseURL')
-console.log(process.env)
