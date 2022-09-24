@@ -20,6 +20,7 @@ deploy_dev:
   dependencies:
     - build_dev
   script:
+    - export TEST=test
     - echo "copying files to s3://flatlaystorefront/"
     - aws s3 cp ./build s3://flatlaystorefront/ --recursive
     - aws cloudfront create-invalidation --distribution-id=E2M36M6JJ7FMID --paths /
@@ -49,6 +50,7 @@ deploy_prod:
   dependencies:
     - build_prod
   script:
+   - export TEST=test
     - echo "copying files to s3://flatlaystorefront-main/"
     - aws s3 cp ./build s3://flatlaystorefront-main/ --recursive
     - aws cloudfront create-invalidation --distribution-id=E36JNMRV4ZHN7G --paths /
