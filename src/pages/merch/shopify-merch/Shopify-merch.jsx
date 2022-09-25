@@ -10,7 +10,9 @@ import {
   DescriptionWrapper,
   DescriptionText,
   ReadmoreButton,
+  ReadmoreIconWrapper,
 } from "../styles/Merch-style";
+import { FiArrowDownCircle } from "react-icons/fi";
 
 import Carousel from "../../../components/shared/Carousel/Carousel-component";
 import ShopifyDetail from "./Shopify-merch-detail-component";
@@ -31,8 +33,6 @@ const ShopifyMech = ({ shopName, product }) => {
   });
 
   const checkGated = async () => {
-    
-
     const Rules = product.ruleset.rules.map((rule) => rule.address);
     setLoading(true);
     checkRules(userData.profile.stxAddress.mainnet, Rules)
@@ -64,15 +64,15 @@ const ShopifyMech = ({ shopName, product }) => {
       return;
     }
 
-    if (product.ruleset == undefined){
-      addToCardFunction()
-    }else{
+    if (product.ruleset == undefined) {
+      addToCardFunction();
+    } else {
       const Rules = product.ruleset.rules.map((rule) => rule.address);
       setLoading(true);
       checkRules(userData.profile.stxAddress.mainnet, Rules)
         .then((e) => {
           if (e) {
-            addToCardFunction()
+            addToCardFunction();
             setLoading(false);
             return true;
           } else {
@@ -86,12 +86,11 @@ const ShopifyMech = ({ shopName, product }) => {
           errorToast(e.response.data);
           return false;
         });
-
     }
 
-  //  let checkNftGated = await checkGated();
-   // console.log();
-   // if (!checkNftGated) return;
+    //  let checkNftGated = await checkGated();
+    // console.log();
+    // if (!checkNftGated) return;
   };
 
   const addToCardFunction = () => {
@@ -137,7 +136,14 @@ const ShopifyMech = ({ shopName, product }) => {
             display={testLimit == true ? "inline-block " : "-webkit-box"}
           />
 
-          <ReadmoreButton onClick={changeTextLimit}>Read more</ReadmoreButton>
+          {/* <ReadmoreButton onClick={changeTextLimit}>Read more</ReadmoreButton> */}
+
+          <ReadmoreIconWrapper
+            onClick={changeTextLimit}
+            transform={testLimit == true ? "rotate(180deg)" : "rotate(0deg)"}
+          >
+            <FiArrowDownCircle color="white" size="40px" />
+          </ReadmoreIconWrapper>
         </DescriptionWrapper>
         {/* description */}
       </MerchPageWrapper>

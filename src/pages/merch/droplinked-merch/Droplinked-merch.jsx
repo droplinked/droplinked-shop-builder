@@ -12,9 +12,10 @@ import {
   MerchPageWrapper,
   DescriptionWrapper,
   DescriptionText,
-  ReadmoreButton,
+  ReadmoreIconWrapper,
   DescriptionTextWrapper,
 } from "../styles/Merch-style";
+import { FiArrowDownCircle } from "react-icons/fi";
 
 import Carousel from "../../../components/shared/Carousel/Carousel-component";
 import DroplinkedDetail from "./Droplinked-merch-detail";
@@ -100,7 +101,7 @@ const DroplinkedMerch = ({ product }) => {
     setDisableBtn(false);
   };
 
-  const changeTextLimit = () => setTextLimit((p) => !p)
+  const changeTextLimit = () => setTextLimit((p) => !p);
 
   return (
     <MerchPageWrapper>
@@ -129,12 +130,12 @@ const DroplinkedMerch = ({ product }) => {
         >
           {product.description}
         </DescriptionTextWrapper>
-        <ReadmoreButton
-          className="merch-readmore-button"
+        <ReadmoreIconWrapper
           onClick={changeTextLimit}
+          transform={textLimit == true ? "rotate(180deg)" : "rotate(0deg)"}
         >
-          Read more
-        </ReadmoreButton>
+          <FiArrowDownCircle color="white" size="40px" />
+        </ReadmoreIconWrapper>
       </DescriptionWrapper>
       {/* description */}
     </MerchPageWrapper>
