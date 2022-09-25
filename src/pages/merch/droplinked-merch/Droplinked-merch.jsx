@@ -13,6 +13,7 @@ import {
   DescriptionWrapper,
   DescriptionText,
   ReadmoreButton,
+  DescriptionTextWrapper,
 } from "../styles/Merch-style";
 
 import Carousel from "../../../components/shared/Carousel/Carousel-component";
@@ -23,11 +24,10 @@ const DroplinkedMerch = ({ product }) => {
   const [disableBtn, setDisableBtn] = useState(false);
   const [textLimit, setTextLimit] = useState(false);
 
-
   const [selectedSku, setSelectedSku] = useState(null);
 
-  const { userData  } = UseWalletInfo();
-  const { profile ,signinWithaWallet} = useProfile();
+  const { userData } = UseWalletInfo();
+  const { profile, signinWithaWallet } = useProfile();
   const { errorToast, successToast } = useToasty();
   const { updateCart } = useCart();
 
@@ -38,8 +38,6 @@ const DroplinkedMerch = ({ product }) => {
 
   // add to baskset functionality
   const Addtobasket = async () => {
-   
-
     // if (userData == undefined) {
     //   authenticate();
     //   return;
@@ -102,7 +100,7 @@ const DroplinkedMerch = ({ product }) => {
     setDisableBtn(false);
   };
 
-  const changeTextLimit = () => setTextLimit((p) => !p);
+  const changeTextLimit = () => setTextLimit((p) => !p)
 
   return (
     <MerchPageWrapper>
@@ -126,11 +124,11 @@ const DroplinkedMerch = ({ product }) => {
       {/* detail side */}
       {/* description */}
       <DescriptionWrapper>
-        <DescriptionText
-          display={textLimit == true ? "inline-block " : "-webkit-box"}
+        <DescriptionTextWrapper
+          whiteSpace={textLimit == true ? "pre-line" : "nowrap"}
         >
           {product.description}
-        </DescriptionText>
+        </DescriptionTextWrapper>
         <ReadmoreButton
           className="merch-readmore-button"
           onClick={changeTextLimit}

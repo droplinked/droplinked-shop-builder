@@ -124,6 +124,15 @@ export const DetailWrapper = chakra("div", {
   },
 });
 
-//////
+export const DescriptionTextWrapper = chakra("p", {
+  baseStyle: {
+    fontWeight: "500",
+    fontSize: "18px",
+    w: "100%",
+    color: "#b3b3b3",
+    textOverflow: 'ellipsis',
+    overflow: 'hidden'
+  },
+});
 
 
