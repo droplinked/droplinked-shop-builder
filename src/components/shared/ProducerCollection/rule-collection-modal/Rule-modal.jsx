@@ -36,7 +36,8 @@ const RuleModal = ({ open, close }) => {
 
   const addNewRule = () => {
     let arrNew = Array.from(ruleList)
-    
+    arrNew.push({address: "", type: "NFT", index:arrNew.length})
+    setRuleList(arrNew)
   }
 
 console.log(ruleList);
