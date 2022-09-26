@@ -12,8 +12,10 @@ import {
   MerchPageWrapper,
   DescriptionWrapper,
   DescriptionText,
-  ReadmoreButton,
+  ReadmoreIconWrapper,
+  DescriptionTextWrapper,
 } from "../styles/Merch-style";
+import { FiArrowDownCircle } from "react-icons/fi";
 
 import Carousel from "../../../components/shared/Carousel/Carousel-component";
 import DroplinkedDetail from "./Droplinked-merch-detail";
@@ -23,11 +25,10 @@ const DroplinkedMerch = ({ product }) => {
   const [disableBtn, setDisableBtn] = useState(false);
   const [textLimit, setTextLimit] = useState(false);
 
-
   const [selectedSku, setSelectedSku] = useState(null);
 
-  const { userData  } = UseWalletInfo();
-  const { profile ,signinWithaWallet} = useProfile();
+  const { userData } = UseWalletInfo();
+  const { profile, signinWithaWallet } = useProfile();
   const { errorToast, successToast } = useToasty();
   const { updateCart } = useCart();
 
@@ -38,8 +39,6 @@ const DroplinkedMerch = ({ product }) => {
 
   // add to baskset functionality
   const Addtobasket = async () => {
-   
-
     // if (userData == undefined) {
     //   authenticate();
     //   return;
@@ -126,17 +125,17 @@ const DroplinkedMerch = ({ product }) => {
       {/* detail side */}
       {/* description */}
       <DescriptionWrapper>
-        <DescriptionText
-          display={textLimit == true ? "inline-block " : "-webkit-box"}
+        <DescriptionTextWrapper
+          whiteSpace={textLimit == true ? "pre-line" : "nowrap"}
         >
           {product.description}
-        </DescriptionText>
-        <ReadmoreButton
-          className="merch-readmore-button"
+        </DescriptionTextWrapper>
+        <ReadmoreIconWrapper
           onClick={changeTextLimit}
+          transform={textLimit == true ? "rotate(180deg)" : "rotate(0deg)"}
         >
-          Read more
-        </ReadmoreButton>
+          <FiArrowDownCircle color="white" size="40px" />
+        </ReadmoreIconWrapper>
       </DescriptionWrapper>
       {/* description */}
     </MerchPageWrapper>

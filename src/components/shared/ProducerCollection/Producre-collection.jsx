@@ -1,9 +1,10 @@
-import "./Producre-collection-style.scss";
+//import "./Producre-collection-style.scss";
 
 import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import Product from "../Product/Product";
 import EditCollectionModal from "./edit-collection-modal/Edit-collection-modal";
 import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
+import RuleModal from "./rule-collection-modal/Rule-modal"
 
 import {
   ProducerCollectionWrapper,
@@ -21,6 +22,7 @@ const ProducerCollection = ({ collection, update }) => {
 
   const [deleteModal, setDeleteModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [ruleModal, setRuleModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
@@ -43,6 +45,8 @@ const ProducerCollection = ({ collection, update }) => {
   const openEditModal = () => setEditModal(true);
   const closeEditModal = () => setEditModal(false);
   const openDeleteModal = () => setDeleteModal(true);
+  const openRuleModal = () => setRuleModal(true)
+  const closeRuleModal = () => setRuleModal(false)
   const navigateToAddProduct = () => navigate('/producer/add-product')
 
   return (
@@ -51,9 +55,10 @@ const ProducerCollection = ({ collection, update }) => {
         <ProducerCollectionHeader
           title={collection.title}
           collectionId={collection._id}
-          shopName={profile.shopname}
+          shopName={profile.shopName}
           editOnclick={openEditModal}
           deleteOnclick={openDeleteModal}
+          openRuleModal={openRuleModal}
         />
         {collection.products.length == 0 ? (
           <div className="mt-2 d-flex flex-wrap">
@@ -126,6 +131,7 @@ const ProducerCollection = ({ collection, update }) => {
           update={update}
         />
       )}
+      <RuleModal  open={ruleModal} close={closeRuleModal} />
     </>
   );
 };

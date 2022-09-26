@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { getRules } from "../../../../api/producer/Ruleset-api";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { updateCollection } from "../../../../api/producer/Collection-api";
+import { Spinner, Flex } from "@chakra-ui/react";
 
 const EditCollectionModal = ({ collection, close, update }) => {
   const [selectedRule, setSelectedRule] = useState(() => {
@@ -32,7 +33,6 @@ const EditCollectionModal = ({ collection, close, update }) => {
 
   const changeRule = (e) => setSelectedRule(e.target.value);
 
-  
   const submitForm = async () => {
     if (collectionName == "") {
       errorToast("Collection name required");
@@ -72,7 +72,7 @@ const EditCollectionModal = ({ collection, close, update }) => {
           />
         </div>
         <div className="mt-5 w-100">
-          {Rules && (
+          {Rules ? (
             <select onChange={changeRule}>
               <option value="" selected disabled hidden>
                 {selectedRule != ""
@@ -84,6 +84,10 @@ const EditCollectionModal = ({ collection, close, update }) => {
               })}
               <option value={""}>Public</option>
             </select>
+          ) : (
+            <Flex w="100%" justifyContent="center">
+              <Spinner color="white" size="lg" />
+            </Flex>
           )}
         </div>
         {/* content */}

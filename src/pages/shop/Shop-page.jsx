@@ -21,7 +21,6 @@ export default function ShopPage() {
   const { profile } = useProfile();
 
   localStorage.setItem("currentShop", JSON.stringify(shopname));
-  console.log(profile);
 
   useEffect(() => {
     getShopData(shopname);
@@ -44,7 +43,6 @@ export default function ShopPage() {
     else return false;
   };
 
-  console.log(isOwner());
 
   return (
     <>

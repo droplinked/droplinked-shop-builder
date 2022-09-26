@@ -58,24 +58,21 @@ export const ReadmoreButton = chakra("div", {
   },
 });
 
-
-
 export const VariantSelect = chakra("select", {
   baseStyle: {
-    border: '2px solid #b4b4b4',
-    borderRadius: '8px',
-    padding: {base:'12px 16px 9px 16px' ,md:'6px 12px'},
-    outline: 'none',
-    backgroundColor: 'transparent',
-    color: '#fff',
-    fontWeight: '600',
-    fontSize: {base:'16px',md:'20px'},
-    transition: '0.5s',
-    backgroundColor: '#353536',
-    w:'100%'
+    border: "2px solid #b4b4b4",
+    borderRadius: "8px",
+    padding: { base: "12px 16px 9px 16px", md: "6px 12px" },
+    outline: "none",
+    backgroundColor: "transparent",
+    color: "#fff",
+    fontWeight: "600",
+    fontSize: { base: "16px", md: "20px" },
+    transition: "0.5s",
+    backgroundColor: "#353536",
+    w: "100%",
   },
 });
-
 
 export const QuantityButton = chakra("div", {
   baseStyle: {
@@ -89,8 +86,6 @@ export const QuantityButton = chakra("div", {
     p: "5px",
   },
 });
-
-
 
 export const ProductTitle = chakra("p", {
   baseStyle: {
@@ -124,6 +119,23 @@ export const DetailWrapper = chakra("div", {
   },
 });
 
-//////
+export const DescriptionTextWrapper = chakra("p", {
+  baseStyle: {
+    fontWeight: "500",
+    fontSize: "18px",
+    w: "100%",
+    color: "#b3b3b3",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
+  },
+});
 
-
+export const ReadmoreIconWrapper = chakra("p", {
+  baseStyle: {
+    w: "auto",
+    h: "auto",
+    mt: "30px",
+    cursor: "pointer",
+    transition: "0.5s",
+  },
+});

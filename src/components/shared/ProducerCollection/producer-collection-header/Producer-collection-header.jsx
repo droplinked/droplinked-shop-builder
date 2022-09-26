@@ -9,11 +9,13 @@ const ProducerCollectionHeader = ({
   shopName,
   editOnclick,
   deleteOnclick,
+  openRuleModal
 }) => {
   const navigate = useNavigate();
 
   const linkToViewCollection = () =>
     navigate(`/${shopName}/collection/${collectionId}`);
+
 
   return (
     <>
@@ -30,7 +32,7 @@ const ProducerCollectionHeader = ({
             <MenuItem {...menuItemStyle} onClick={editOnclick}>
               Edit collection
             </MenuItem>
-            <MenuItem {...menuItemStyle}>Edit ruleset</MenuItem>
+            <MenuItem {...menuItemStyle} onClick={openRuleModal}>Edit ruleset</MenuItem>
             <MenuItem {...menuItemStyle} onClick={deleteOnclick}>
               Delete collection
             </MenuItem>
