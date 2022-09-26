@@ -13,8 +13,6 @@ const RuleAddressComponent = ({type, address, change, index }) => {
   contractName = array2 ? array2[0] : ""
   nftName =  array2 ? array2[1] : ""
 
-  console.log(address);
-
   const changeAddress = (e) => change(e.target.value, index);
 
 
