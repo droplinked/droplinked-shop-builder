@@ -5,17 +5,21 @@ import {
   RulesetText,
   RuleSelect,
   AddRuleButton,
+  RuleAddressInput,
 } from "./Rule-modal-style";
 import { Flex, Box } from "@chakra-ui/react";
 import { TiDelete } from "react-icons/ti";
 import { useState } from "react";
+import { addRuleset } from "../../../../api/producer/Ruleset-api"
+import BasicButton from "../../BasicButton/BasicButton";
 
-import RuleAddressComponent from "./Rule-address-component";
+//import RuleAddressComponent from "./Rule-address-component";
 
-const RuleModal = ({ open, close }) => {
+const RuleModal = ({ open, close ,collectionId}) => {
   const [ruleList, setRuleList] = useState([
-    { address: "", type: "NFT", index: "1" },
+    { address: "", type: "NFT", index: 1 },
   ]);
+  const [loading , setLoading] = useState(false)
 
   const handleChildClick = (event) => {
     event.stopPropagation();
@@ -41,20 +45,31 @@ const RuleModal = ({ open, close }) => {
 
   const addNewRule = () => {
     let arrNew = Array.from(ruleList);
-    arrNew.push({ address: "", type: "NFT", index: arrNew.length });
+    arrNew.push({ address: "", type: "NFT", index: (arrNew.length+1) });
     setRuleList(arrNew);
   };
-
+console.log('x');
   const deleteRule = (index) => {
-    let arrNew = Array.from(ruleList);
+  //  let arrNew = Array.from(ruleList);
+  let arrNew = []
+  ruleList.forEach(item =>arrNew.push(item))
+
     arrNew = arrNew.filter((rule, i) => {
       if (i != index) return rule;
     });
     arrNew = arrNew.map((rule, i) => {
-      return { ...rule, index: i };
+      return { ...rule, index: (i+1) };
     });
     setRuleList(arrNew);
   };
+
+  const submitRuleSet = async() => {
+    console.log(ruleList)
+    // setLoading(true)
+    // let result = await addRuleset(collectionId , ruleList)
+    // console.log(result);
+    // setLoading(false)
+  }
 
 
   return (
@@ -89,17 +104,28 @@ const RuleModal = ({ open, close }) => {
                         <option value="CONTRACT">CONTRACT</option>
                       </RuleSelect>
                     </Flex>
-                    <RuleAddressComponent
-                      type={rule.type}
-                      index={index}
-                      address={rule.address}
-                      change={changeRuleAddress}
+                    <RuleAddressInput
+                      value={rule.address}
+                      onChange={(e) => changeRuleAddress(e.target.value, index)}
+                      placeholder={
+                        rule.type == "NFT"
+                          ? "Contract address :: Contract name . NFT name"
+                          : "Contract address :: Contract name"
+                      }
                     />
                   </Box>
                 );
               })}
 
               <AddRuleButton onClick={addNewRule}>Add rule</AddRuleButton>
+              <Flex mt="40px" w="100%" justifyContent="space-between">
+                <Box w="40%">
+                  <BasicButton cancelType={true} click={close} loading={loading} >Cancel</BasicButton>
+                </Box>
+                <Box w="40%">
+                  <BasicButton click={submitRuleSet} loading={loading}>Submit</BasicButton>
+                </Box>
+              </Flex>
             </Flex>
           </RuleModalCotent>
         </RuleModalWrapper>

@@ -116,7 +116,7 @@ const ProducerCollection = ({ collection, update }) => {
           update={update}
         />
       )}
-      <RuleModal open={ruleModal} close={closeRuleModal} />
+      <RuleModal open={ruleModal} close={closeRuleModal} collectionId={collection._id}/>
     </>
   );
 };
