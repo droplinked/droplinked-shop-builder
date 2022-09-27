@@ -1,13 +1,13 @@
 import "./Edit-collection-modal-style.scss";
 
-import ModalContainer from "../../../Modal/modal-container/modal-container";
-import FormInput from "../../FormInput/FormInput";
-import BasicButton from "../../BasicButton/BasicButton";
+import ModalContainer from "../../Modal/modal-container/modal-container";
+import FormInput from "../../shared/FormInput/FormInput";
+import BasicButton from "../../shared/BasicButton/BasicButton";
 
 import { useState, useEffect } from "react";
-import { getRules } from "../../../../api/producer/Ruleset-api";
-import { useToasty } from "../../../../context/toastify/ToastContext";
-import { updateCollection } from "../../../../api/producer/Collection-api";
+import { getRules } from "../../../api/producer/Ruleset-api";
+import { useToasty } from "../../../context/toastify/ToastContext";
+import { updateCollection } from "../../../api/producer/Collection-api";
 import { Spinner, Flex } from "@chakra-ui/react";
 
 const EditCollectionModal = ({ collection, close, update }) => {
@@ -94,12 +94,12 @@ const EditCollectionModal = ({ collection, close, update }) => {
         {/* footer */}
         <div className="d-flex justify-content-between mt-5">
           <div className="col-5">
-            <BasicButton click={close} disabled={loading} cancelType={true}>
+            <BasicButton click={close} loading={loading} cancelType={true}>
               Cancel
             </BasicButton>
           </div>
           <div className="col-5">
-            <BasicButton click={submitForm} disabled={loading}>
+            <BasicButton click={submitForm} loading={loading}>
               Submit
             </BasicButton>
           </div>

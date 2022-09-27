@@ -89,9 +89,9 @@ const ProfileDropdown = ({ close }) => {
           <Link to="/producer/ims">
             <ProfileItem click={close}>Inventory</ProfileItem>
           </Link>
-          <Link to="/producer/ruleset">
+          {/* <Link to="/producer/ruleset">
             <ProfileItem click={close}>Rulesets</ProfileItem>
-          </Link>
+          </Link> */}
           <Link to="/producer/collection">
             <ProfileItem click={close}>Collections</ProfileItem>
           </Link>

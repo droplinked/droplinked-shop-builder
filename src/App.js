@@ -12,6 +12,9 @@ import TextView from "./pages/test/testview"
 import ShippingPage from "./pages/buy-process-pages/shipping/Shipping-page"
 import CartPage from "./pages/buy-process-pages/cart/cart-page"
 import ConfirmPage from "./pages/buy-process-pages/confirm/confirm"
+
+import ViewCollection from "./pages/Producer-pages/view-collection/View-collection"
+
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/landing/Landing-page"));
 const TermsPage = lazy(() => import("./pages/terms/Terms-page"));
@@ -41,9 +44,9 @@ const ViewMerchPage = lazy(() =>
 const AddProductPage = lazy(() =>
   import("./pages/Producer-pages/add-product/Add-product-page")
 );
-const RuleSetPage = lazy(() =>
-  import("./pages/Producer-pages/rulesets/RuleSet-page")
-);
+// const RuleSetPage = lazy(() =>
+//   import("./pages/Producer-pages/rulesets/RuleSet-page")
+// );
 const CollectionMainPage = lazy(() =>
   import("./pages/Producer-pages/collection/Collection-page")
 );
@@ -85,6 +88,7 @@ const ShopInfoComponent = lazy(() =>
   import("./pages/settings/shop-info-component/Shop-info-component")
 );
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -121,8 +125,9 @@ function App() {
                   element={<AccountRecovery />}
                 />
                 <Route path="add-product" element={<AddProductPage />} />
-                <Route path="ruleset" element={<RuleSetPage />} />
+                {/* <Route path="ruleset" element={<RuleSetPage />} /> */}
                 <Route path="collection" element={<CollectionMainPage />} />
+                <Route path="collection/:collectionId" element={<ViewCollection />} />
                 <Route
                   path="orders"
                   element={

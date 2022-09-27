@@ -14,14 +14,14 @@ const ProducerCollectionHeader = ({
   const navigate = useNavigate();
 
   const linkToViewCollection = () =>
-    navigate(`/${shopName}/collection/${collectionId}`);
+    navigate(`/producer/collection/${collectionId}`);
 
 
   return (
     <>
       <Flex justifyContent="space-between" alignItems="center" h="auto">
         <ShopNameText>{title}</ShopNameText>
-        <Link to={`/${shopName}/collection/${collectionId}`}></Link>
+        <Link to={`/producer/collection/${collectionId}`}></Link>
 
         <Menu>
           <MenuButton {...menuButtonStyle}>More</MenuButton>

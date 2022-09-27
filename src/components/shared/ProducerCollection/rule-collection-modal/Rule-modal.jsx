@@ -56,7 +56,6 @@ const RuleModal = ({ open, close }) => {
     setRuleList(arrNew);
   };
 
-  console.log(ruleList);
 
   return (
     <>

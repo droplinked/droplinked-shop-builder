@@ -13,18 +13,19 @@ export default function BasicButton({
       h="100%"
       bgColor={cancelType ? "transparent" : "#8053ff"}
       color={cancelType ? "#fd4545" : "#222"}
-      border={cancelType ? "1px solid #fd4545" : "1px solid #8053ff"}
+      border={cancelType ? "2px solid #fd4545" : "2px solid #8053ff"}
       fontSize={{ base: "16px", md: "20px" }}
       fontWeight="600"
       borderRadius="8px"
       margin="0px auto"
       p={{ base: "12px 20px 9px 20px", md: "12px 20px" }}
+      outline='none'
       _hover={{
         borderColor: cancelType ? "#fd4545" : "#8053ff",
         bgColor: cancelType ? "#fd4545" : "#222",
         color: cancelType ? "#222" : "#8053ff",
       }}
-      _disabled={{ bgColor: "#4A4A4A" }}
+      _disabled={{ bgColor: "transparent" }}
       onClick={click}
       disabled={loading}
       {...otherprops}

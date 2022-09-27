@@ -2,24 +2,20 @@
 
 import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import Product from "../Product/Product";
-import EditCollectionModal from "./edit-collection-modal/Edit-collection-modal";
+import EditCollectionModal from "../../Modal/Edit-collection/Edit-collection-modal";
 import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
-import RuleModal from "./rule-collection-modal/Rule-modal"
+import RuleModal from "./rule-collection-modal/Rule-modal";
+import AddProduct from "../AddProduct/Add-product-component";
 
-import {
-  ProducerCollectionWrapper,
-  InputProductComponent,
-} from "./Producer-collection-style";
+import { ProducerCollectionWrapper } from "./Producer-collection-style";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import { deleteCollection } from "../../../api/producer/Collection-api";
 import { USER_TYPE } from "../../../constant/user-types";
-import { useNavigate } from "react-router-dom";
-import { AspectRatio, Text } from "@chakra-ui/react";
+
 import { useState } from "react";
 
 const ProducerCollection = ({ collection, update }) => {
-
   const [deleteModal, setDeleteModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [ruleModal, setRuleModal] = useState(false);
@@ -27,7 +23,6 @@ const ProducerCollection = ({ collection, update }) => {
 
   const { errorToast, successToast } = useToasty();
   const { profile } = useProfile();
-  const navigate = useNavigate();
 
   const DeleteCollection = async () => {
     setLoading(true);
@@ -45,9 +40,8 @@ const ProducerCollection = ({ collection, update }) => {
   const openEditModal = () => setEditModal(true);
   const closeEditModal = () => setEditModal(false);
   const openDeleteModal = () => setDeleteModal(true);
-  const openRuleModal = () => setRuleModal(true)
-  const closeRuleModal = () => setRuleModal(false)
-  const navigateToAddProduct = () => navigate('/producer/add-product')
+  const openRuleModal = () => setRuleModal(true);
+  const closeRuleModal = () => setRuleModal(false);
 
   return (
     <>
@@ -61,18 +55,9 @@ const ProducerCollection = ({ collection, update }) => {
           openRuleModal={openRuleModal}
         />
         {collection.products.length == 0 ? (
-          <div className="mt-2 d-flex flex-wrap">
+          <div className="mt-2 d-flex flex-wrap w-100">
             <div className="col-6 col-md-3 p-1">
-              <AspectRatio ratio={1}>
-                <InputProductComponent onClick={navigateToAddProduct}>
-                  <Text color="white" fontSize="50px" lineHeight="50px">
-                    +
-                  </Text>
-                  <Text color="white" fontSize="12px">
-                    Add product
-                  </Text>
-                </InputProductComponent>
-              </AspectRatio>
+              <AddProduct />
             </div>
           </div>
         ) : (
@@ -131,7 +116,7 @@ const ProducerCollection = ({ collection, update }) => {
           update={update}
         />
       )}
-     <RuleModal  open={ruleModal} close={closeRuleModal} />
+      <RuleModal open={ruleModal} close={closeRuleModal} />
     </>
   );
 };
