@@ -1,12 +1,5 @@
 import { chakra } from "@chakra-ui/react";
 
-export const AddProductWrapper = chakra("div", {
-  baseStyle: {
-    display:'flex',
-    flexWrap:'wrap',
-  },
-});
-
 
 export const InputProductComponent = chakra("div", {
     baseStyle: {
