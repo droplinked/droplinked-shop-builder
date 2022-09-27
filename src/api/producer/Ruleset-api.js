@@ -2,8 +2,6 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-
-
 export const getRules = async (errorFunc) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
@@ -17,12 +15,28 @@ export const getRules = async (errorFunc) => {
   }
 };
 
+export const addRuleset = async (collectionID, rules) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/producer/ruleset`,
+      {
+        collectionID: collectionID,
+        rules: rules,
+      },
+      { headers: { Authorization: "Bearer " + token } }
+    );
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
 
 export const newRule = async (rule) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
-    const res = await axios.post(`${BASE_URL}/producer/ruleset`,rule,
-     {headers: { Authorization: "Bearer " + token },
+    const res = await axios.post(`${BASE_URL}/producer/ruleset`, rule, {
+      headers: { Authorization: "Bearer " + token },
     });
     return true;
   } catch (err) {
@@ -30,29 +44,25 @@ export const newRule = async (rule) => {
   }
 };
 
-
-
 export const deleteRule = async (id) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
-    const res = await axios.delete(`${BASE_URL}/producer/ruleset/${id}`,
-     {headers: { Authorization: "Bearer " + token },
+    const res = await axios.delete(`${BASE_URL}/producer/ruleset/${id}`, {
+      headers: { Authorization: "Bearer " + token },
     });
-    return true
+    return true;
   } catch (err) {
     return err.response.data.reason;
   }
 };
 
-
-
-export const updateRule = async (id , rule) => {
+export const updateRule = async (id, rule) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
-    const res = await axios.put(`${BASE_URL}/producer/ruleset/${id}`,rule,
-     {headers: { Authorization: "Bearer " + token },
+    const res = await axios.put(`${BASE_URL}/producer/ruleset/${id}`, rule, {
+      headers: { Authorization: "Bearer " + token },
     });
-    return true
+    return true;
   } catch (err) {
     return err.response.data.reason;
   }
