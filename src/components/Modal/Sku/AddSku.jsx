@@ -18,7 +18,6 @@ import { addSkuToProduct } from "../../../api/producer/Product-api";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 
 const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
-
   const [price, setPrice] = useState(null);
   const [externalID, setExternalID] = useState(null);
   const [quantity, setQuantity] = useState(null);
@@ -128,8 +127,8 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
     };
 
     if (merchId == undefined) {
-      update(obj)
-      close()
+      update(obj);
+      close();
     } else {
       setLoading(true);
       let result = await addSkuToProduct(merchId, obj);
@@ -143,7 +142,6 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
         setLoading(false);
       }
     }
-
   };
 
   return (
@@ -206,7 +204,7 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
             </SkuContent>
 
             <Text fontSize="18px" color="#fff" fontWeight="600" mb="20px">
-              Delivery
+              Delivery box size per item
             </Text>
 
             <SkuContent>

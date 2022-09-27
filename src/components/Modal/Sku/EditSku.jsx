@@ -204,7 +204,7 @@ const EditSkuModal = ({ open, close, optionTypes, defaultValue, update }) => {
             </SkuContent>
 
             <Text fontSize="18px" color="#fff" fontWeight="600" mb="20px">
-              Delivery
+            Delivery box size per item
             </Text>
 
             <SkuContent>
