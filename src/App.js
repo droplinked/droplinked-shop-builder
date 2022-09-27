@@ -44,9 +44,9 @@ const ViewMerchPage = lazy(() =>
 const AddProductPage = lazy(() =>
   import("./pages/Producer-pages/add-product/Add-product-page")
 );
-const RuleSetPage = lazy(() =>
-  import("./pages/Producer-pages/rulesets/RuleSet-page")
-);
+// const RuleSetPage = lazy(() =>
+//   import("./pages/Producer-pages/rulesets/RuleSet-page")
+// );
 const CollectionMainPage = lazy(() =>
   import("./pages/Producer-pages/collection/Collection-page")
 );
@@ -125,7 +125,7 @@ function App() {
                   element={<AccountRecovery />}
                 />
                 <Route path="add-product" element={<AddProductPage />} />
-                <Route path="ruleset" element={<RuleSetPage />} />
+                {/* <Route path="ruleset" element={<RuleSetPage />} /> */}
                 <Route path="collection" element={<CollectionMainPage />} />
                 <Route path="collection/:collectionId" element={<ViewCollection />} />
                 <Route
