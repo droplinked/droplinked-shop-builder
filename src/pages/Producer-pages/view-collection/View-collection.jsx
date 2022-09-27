@@ -14,7 +14,7 @@ import { AiFillEdit } from "react-icons/ai";
 
 import Product from "../../../components/shared/Product/Product";
 import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
-import EditCollectionModal from "../../../components/shared/ProducerCollection/edit-collection-modal/Edit-collection-modal"
+import EditCollectionModal from "../../../components/Modal/Edit-collection/Edit-collection-modal"
 
 const ViewCollection = () => {
 

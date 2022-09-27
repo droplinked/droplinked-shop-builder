@@ -1,13 +1,13 @@
 import "./Edit-collection-modal-style.scss";
 
-import ModalContainer from "../../../Modal/modal-container/modal-container";
-import FormInput from "../../FormInput/FormInput";
-import BasicButton from "../../BasicButton/BasicButton";
+import ModalContainer from "../../Modal/modal-container/modal-container";
+import FormInput from "../../shared/FormInput/FormInput";
+import BasicButton from "../../shared/BasicButton/BasicButton";
 
 import { useState, useEffect } from "react";
-import { getRules } from "../../../../api/producer/Ruleset-api";
-import { useToasty } from "../../../../context/toastify/ToastContext";
-import { updateCollection } from "../../../../api/producer/Collection-api";
+import { getRules } from "../../../api/producer/Ruleset-api";
+import { useToasty } from "../../../context/toastify/ToastContext";
+import { updateCollection } from "../../../api/producer/Collection-api";
 import { Spinner, Flex } from "@chakra-ui/react";
 
 const EditCollectionModal = ({ collection, close, update }) => {

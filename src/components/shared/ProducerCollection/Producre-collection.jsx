@@ -2,10 +2,11 @@
 
 import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import Product from "../Product/Product";
-import EditCollectionModal from "./edit-collection-modal/Edit-collection-modal";
+import EditCollectionModal from "../../Modal/Edit-collection/Edit-collection-modal";
 import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
 import RuleModal from "./rule-collection-modal/Rule-modal";
 import AddProduct from "../AddProduct/Add-product-component";
+
 import { ProducerCollectionWrapper } from "./Producer-collection-style";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
