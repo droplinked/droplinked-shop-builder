@@ -94,12 +94,12 @@ const EditCollectionModal = ({ collection, close, update }) => {
         {/* footer */}
         <div className="d-flex justify-content-between mt-5">
           <div className="col-5">
-            <BasicButton click={close} disabled={loading} cancelType={true}>
+            <BasicButton click={close} loading={loading} cancelType={true}>
               Cancel
             </BasicButton>
           </div>
           <div className="col-5">
-            <BasicButton click={submitForm} disabled={loading}>
+            <BasicButton click={submitForm} loading={loading}>
               Submit
             </BasicButton>
           </div>
