@@ -15,7 +15,7 @@ export default function CollectionPage() {
   const [Collection, setCollectin] = useState(null);
 
   const { collectionId, shopname } = useParams();
-
+console.log("s")
   useEffect(() => {
     getCollections(collectionId);
   }, []);

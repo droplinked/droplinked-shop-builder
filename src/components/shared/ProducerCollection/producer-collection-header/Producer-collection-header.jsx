@@ -14,7 +14,7 @@ const ProducerCollectionHeader = ({
   const navigate = useNavigate();
 
   const linkToViewCollection = () =>
-    navigate(`/${shopName}/collection/${collectionId}`);
+    navigate(`/producer/collection/${collectionId}`);
 
 
   return (

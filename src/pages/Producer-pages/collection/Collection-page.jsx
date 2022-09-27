@@ -4,6 +4,7 @@ import AddCollectionPage from "./add-collection-page/Add-collection-component";
 import Loading from "../../../components/shared/loading/Loading";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import ProducerCollection from "../../../components/shared/ProducerCollection/Producre-collection";
+import AddProduct from "../../../components/shared/AddProduct/Add-product-component"
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -35,6 +36,8 @@ export default function CollectionMainPage() {
 
 const closeNewCollectionModal = () => setModal(false)
 
+console.log("xxx")
+
   return (
     <>
       <div className="Collection-page-wrapper">
@@ -50,7 +53,7 @@ const closeNewCollectionModal = () => setModal(false)
           <>
             {collectins.length <= 0 ? (
               <div className="mt-5 col-lg-6 col-md-10 col-12 ">
-                <p className="no-collection-text">No Collection</p>
+               <AddProduct />
               </div>
             ) : (
               <>
@@ -64,6 +67,7 @@ const closeNewCollectionModal = () => setModal(false)
                     </div>
                   );
                 })}
+                <AddProduct />
               </>
             )}
           </>

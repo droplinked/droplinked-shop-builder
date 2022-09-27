@@ -60,7 +60,9 @@ const ProducerCollection = ({ collection, update }) => {
           openRuleModal={openRuleModal}
         />
         {collection.products.length == 0 ? (
+          <div className="mt-2">
           <AddProduct />
+          </div>
         ) : (
           <div className="mt-2 d-flex flex-wrap">
             {collection.products
