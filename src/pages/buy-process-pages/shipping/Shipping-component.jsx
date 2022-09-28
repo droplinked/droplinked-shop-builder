@@ -12,7 +12,7 @@ const ShippingComponent = ({ shippingItem, selected, setSelected }) => {
       borderColor={
         selected && selected.id == shippingItem.id ? "#8053ff" : "#4d4d4d"
       }
-      borderRadius="30px"
+      borderRadius="8px"
       // justifyContent="space-between"
       cursor="pointer"
       onClick={() => {
