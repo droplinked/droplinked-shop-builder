@@ -11,27 +11,27 @@ import { updateCollection } from "../../../api/producer/Collection-api";
 import { Spinner, Flex } from "@chakra-ui/react";
 
 const EditCollectionModal = ({ collection, close, update }) => {
-  const [selectedRule, setSelectedRule] = useState(() => {
-    return collection.ruleSetID ? collection.ruleSetID : "";
-  });
+  // const [selectedRule, setSelectedRule] = useState(() => {
+  //   return collection.ruleSetID ? collection.ruleSetID : "";
+  // });
   const [collectionName, setCollectionName] = useState(collection.title);
-  const [Rules, setRules] = useState(null);
+  //const [Rules, setRules] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
 
-  useEffect(() => {
-    getRulesData();
-  }, []);
+  // useEffect(() => {
+  //   getRulesData();
+  // }, []);
 
-  const getRulesData = async () => {
-    let result = await getRules(() => {});
-    setRules(result);
-  };
+  // const getRulesData = async () => {
+  //   let result = await getRules(() => {});
+  //   setRules(result);
+  // };
 
   const changeName = (e) => setCollectionName(e.target.value);
 
-  const changeRule = (e) => setSelectedRule(e.target.value);
+ // const changeRule = (e) => setSelectedRule(e.target.value);
 
   const submitForm = async () => {
     if (collectionName == "") {
@@ -39,17 +39,17 @@ const EditCollectionModal = ({ collection, close, update }) => {
       return;
     }
 
-    let RuleInfo = {
-      title: collectionName,
-      image: "",
-      nftImages: [],
-      type: selectedRule == "" ? "PUBLIC" : "HOLDER",
-    };
+    // let RuleInfo = {
+    //   title: collectionName,
+    //   image: "",
+    //   nftImages: [],
+    //   type: selectedRule == "" ? "PUBLIC" : "HOLDER",
+    // };
 
-    if (selectedRule != "") RuleInfo = { ...RuleInfo, ruleSetID: selectedRule };
+   // if (selectedRule != "") RuleInfo = { ...RuleInfo, ruleSetID: selectedRule };
 
     setLoading(true);
-    let result = await updateCollection(collection._id, RuleInfo);
+    let result = await updateCollection(collection._id, collectionName);
     if (result == true) {
       successToast("Collection updated successfully");
       update();
@@ -71,7 +71,7 @@ const EditCollectionModal = ({ collection, close, update }) => {
             changeValue={changeName}
           />
         </div>
-        <div className="mt-5 w-100">
+        {/* <div className="mt-5 w-100">
           {Rules ? (
             <select onChange={changeRule}>
               <option value="" selected disabled hidden>
@@ -89,7 +89,7 @@ const EditCollectionModal = ({ collection, close, update }) => {
               <Spinner color="white" size="lg" />
             </Flex>
           )}
-        </div>
+        </div> */}
         {/* content */}
         {/* footer */}
         <div className="d-flex justify-content-between mt-5">

@@ -25,7 +25,7 @@ export default function BasicButton({
         bgColor: cancelType ? "#fd4545" : "#222",
         color: cancelType ? "#222" : "#8053ff",
       }}
-      _disabled={{ bgColor: "transparent" }}
+      _disabled={{ bgColor: "#222" }}
       onClick={click}
       disabled={loading}
       {...otherprops}

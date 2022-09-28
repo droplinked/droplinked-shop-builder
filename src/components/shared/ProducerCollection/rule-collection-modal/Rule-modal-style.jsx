@@ -75,7 +75,8 @@ export const RuleAddressInput = chakra("input", {
     fontSize: { base: "14px", md: "18px" },
     transition: "0.5s",
     backgroundColor: "#353536",
-    w: { base: "100%", md: "50%" },
+    w:'100%'
+   // w: { base: "100%", md: "50%" },
   },
 });
 
@@ -121,4 +122,7 @@ export const AddRuleButton = chakra("button", {
      }
     },
   });
+
+
+  
   

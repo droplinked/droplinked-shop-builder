@@ -3,18 +3,14 @@ import "./Add-collection-style.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../../context/toastify/ToastContext";
-import { getRules } from "../../../../api/producer/Ruleset-api";
 import { newCollection } from "../../../../api/producer/Collection-api";
 
 import ModalContainer from "../../../../components/Modal/modal-container/modal-container";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
-import Loading from "../../../../components/shared/loading/Loading";
-import Dropdown from "../../../../components/shared/Dropdown/Dropdown-component";
 import FormInput from "../../../../components/shared/FormInput/FormInput";
 
 export default function AddCollectionPage({ toggle, close }) {
-  const [rules, setRules] = useState(null);
-  const [selectedRule, setSelectedRule] = useState(null);
+
   const [collectionName, setCollectionName] = useState("");
   const [disableBtn, setDisableBtn] = useState(false);
 
@@ -29,51 +25,18 @@ export default function AddCollectionPage({ toggle, close }) {
       navigate("/");
     }
 
-    const updateRules = async () => {
-      let result = await getRules(errorToast);
-      if (result != null) changeToPairValId(result);
-    };
-
-    updateRules();
   }, []);
 
-  const changeToPairValId = (ruleArray) => {
-    let newPair = ruleArray.map((rule) => {
-      return { id: rule._id, value: rule.name };
-    });
-    newPair.unshift({ id: "", value: "Public" });
-    setRules(newPair);
-  };
 
   const submitForm = async () => {
+
     if (collectionName == "") {
       errorToast("Collection name required");
       return;
     }
-    if (selectedRule == null) {
-      errorToast("Assign a ruleset to the collection");
-      return;
-    }
 
-    let RuleInfo;
-    if (selectedRule == "") {
-      RuleInfo = {
-        title: collectionName,
-        image: "",
-        nftImages: [],
-        type: "PUBLIC",
-      };
-    } else {
-      RuleInfo = {
-        title: collectionName,
-        image: "",
-        nftImages: [],
-        type: "HOLDER",
-        ruleSetID: selectedRule,
-      };
-    }
     setDisableBtn(true);
-    let result = await newCollection(RuleInfo);
+    let result = await newCollection(collectionName);
     if (result == true) {
       successToast("New collection added successfully");
       toggle();
@@ -83,13 +46,8 @@ export default function AddCollectionPage({ toggle, close }) {
     setDisableBtn(false);
   };
 
-  const changeRule = (e) => {
-    setSelectedRule(e.target.value);
-  };
+  const changeName = (e) => setCollectionName(e.target.value);
 
-  const changeName = (e) => {
-    setCollectionName(e.target.value);
-  };
 
   return (
     <ModalContainer close={close}>
@@ -102,24 +60,14 @@ export default function AddCollectionPage({ toggle, close }) {
             value={collectionName}
           />
         </div>
-        {rules && (
-          <div className="mt-5">
-            <Dropdown
-              value={selectedRule}
-              pairArray={rules}
-              change={changeRule}
-              placeholder={"Choose ruleset"}
-            />
-          </div>
-        )}
         <div className="d-flex justify-content-between mt-5">
           <div className="col-5">
-            <BasicButton click={close} disabled={disableBtn} cancelType={true}>
+            <BasicButton click={close} loading={disableBtn} cancelType={true}>
               Cancel
             </BasicButton>
           </div>
           <div className="col-5">
-            <BasicButton click={submitForm} disabled={disableBtn}>
+            <BasicButton click={submitForm} loading={disableBtn}>
               Submit
             </BasicButton>
           </div>
