@@ -21,12 +21,12 @@ export const getCollections = async () => {
 };
 
 //update collection
-export const updateCollection = async (id, newObj) => {
+export const updateCollection = async (id, title) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.put(
       `${BASE_URL}/producer/collection/${id}`,
-      newObj,
+      { title: title },
       {
         headers: { Authorization: "Bearer " + token },
       }
@@ -38,12 +38,12 @@ export const updateCollection = async (id, newObj) => {
 };
 
 // add new collection
-export const newCollection = async (newCollection) => {
+export const newCollection = async (title) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.post(
       `${BASE_URL}/producer/collection`,
-      newCollection,
+      { title: title },
       {
         headers: { Authorization: "Bearer " + token },
       }

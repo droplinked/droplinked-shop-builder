@@ -67,7 +67,6 @@ console.log("xxx")
                     </div>
                   );
                 })}
-                <AddProduct />
               </>
             )}
           </>
