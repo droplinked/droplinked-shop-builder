@@ -2,16 +2,27 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
-export const getRules = async (errorFunc) => {
+export const getRules = async () => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.get(`${BASE_URL}/producer/ruleset`, {
       headers: { Authorization: "Bearer " + token },
     });
-    return res.data.data.ruleSets;
+    return res.data;
   } catch (err) {
-    errorFunc(err.response.data.reason);
-    return null;
+    return err.response;
+  }
+};
+
+export const getRuleById = async (ruleId) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const res = await axios.get(`${BASE_URL}/producer/ruleset/${ruleId}`, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return res.data;
+  } catch (err) {
+    return err.response;
   }
 };
 
@@ -59,7 +70,10 @@ export const deleteRule = async (id) => {
 export const updateRule = async (id, rule) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
-    const res = await axios.put(`${BASE_URL}/producer/ruleset/${id}`, rule, {
+    const res = await axios.put(`${BASE_URL}/producer/ruleset/${id}`,
+    {
+      rules: rule,
+    }, {
       headers: { Authorization: "Bearer " + token },
     });
     return true;

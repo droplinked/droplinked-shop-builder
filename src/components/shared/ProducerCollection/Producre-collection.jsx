@@ -16,6 +16,7 @@ import { USER_TYPE } from "../../../constant/user-types";
 import { useState } from "react";
 
 const ProducerCollection = ({ collection, update }) => {
+
   const [deleteModal, setDeleteModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [ruleModal, setRuleModal] = useState(false);
@@ -116,7 +117,7 @@ const ProducerCollection = ({ collection, update }) => {
           update={update}
         />
       )}
-      <RuleModal open={ruleModal} close={closeRuleModal} collectionId={collection._id}/>
+      <RuleModal open={ruleModal} close={closeRuleModal} collectionId={collection._id} ruleId={collection.ruleSetID || undefined} />
     </>
   );
 };
