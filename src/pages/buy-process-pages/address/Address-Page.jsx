@@ -18,6 +18,7 @@ function AddressPage() {
   // navigate if not user
   let navigate = useNavigate();
   const { profile } = useProfile();
+
   let token = JSON.parse(localStorage.getItem("token"));
   if (!token) navigate("/");
 
@@ -34,9 +35,9 @@ function AddressPage() {
   };
 
   useEffect(() => {
-    setSelectedAddress(null);
+    if(addressList.length > 0) setSelectedAddress(addressList[0]);
+    else setSelectedAddress(null);
   }, [addressList]);
-
 
   const ProccessToPayment = async () => {
     if (selectedAddress == null) {
@@ -162,32 +163,6 @@ function AddressPage() {
               <Box   w="30%">
               <BasicButton click={ProccessToPayment}  loading={loading}>Payment</BasicButton>
               </Box>
-              {/* <Button
-                w="30%"
-                bgColor="#8053ff"
-                color="#fff"
-                fontSize="20px"
-                fontWeight="600"
-                _hover={{ borderColor: "#4d4d4d", color: "#222" }}
-                disabled={loading}
-                onClick={() => {
-                  navigate("/checkout");
-                }}
-              >
-                Back
-              </Button>
-              <Button
-                w="30%"
-                bgColor="#8053ff"
-                color="#fff"
-                fontSize="20px"
-                fontWeight="600"
-                _hover={{ borderColor: "#4d4d4d", color: "#222" }}
-                disabled={loading}
-                onClick={ProccessToPayment}
-              >
-                Payment
-              </Button> */}
             </Flex>
           </>
         )}
