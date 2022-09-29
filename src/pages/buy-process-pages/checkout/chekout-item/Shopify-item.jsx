@@ -10,11 +10,10 @@ import {
   TitleWrapper,
   Title,
   VariantText,
-
 } from "./Checkout-item-style";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { useCart } from "../../../../context/cart/CartContext";
-
+import { useNavigate } from "react-router-dom";
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 
