@@ -6,7 +6,7 @@ export const CheckoutItemWrapper = chakra("div", {
     w: "100%",
     p: "20px 40px",
     h: "auto",
-  //  mb: "28px",
+    //  mb: "28px",
     flexDirection: { base: "column", md: "row" },
     justifyContent: "space-between",
   },
@@ -15,8 +15,9 @@ export const CheckoutItemWrapper = chakra("div", {
 export const DetailWrapper = chakra("div", {
   baseStyle: {
     d: "flex",
-    w: { base: "100%", md: "50%" },
+    w: { base: "100%", md: "60%" },
     flexDirection: "row",
+    mb: { base: "20px", md: "0px" },
   },
 });
 
@@ -27,7 +28,7 @@ export const ProductImage = chakra("img", {
     h: "100px",
     mr: "20px",
     cursor: "pointer",
-    borderRadius:'8px'
+    borderRadius: "8px",
   },
 });
 
@@ -36,7 +37,9 @@ export const TitleWrapper = chakra("div", {
     d: "flex",
     flexDirection: "column",
     align: "start",
-    maxW: "100%",
+    //maxW: "100%",
+    w: "100%",
+    overflow:'hidden'
   },
 });
 
@@ -48,6 +51,9 @@ export const Title = chakra("p", {
     mb: "5px",
     overflow: "hidden",
     cursor: "pointer",
+    textOverflow: "ellipsis",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
   },
 });
 
