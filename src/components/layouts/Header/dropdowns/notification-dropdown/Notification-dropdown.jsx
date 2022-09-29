@@ -19,15 +19,15 @@ const NotificationDropdown = ({ close }) => {
     return (
         <Box
             pos='absolute'
-            top={{ base: "60px", md: '80px' }}
+            top={{ base: "60px", md: '110px' }}
             right={{ base: '15px', md: '70px' }}
-            bgColor='#222'
+            bgColor='#353535'
             w={{ base: '200px', md: '250px' }}
             h='auto'
             borderRadius='8px'
-            p={{ base: "20px", md: "20px" }}
+            p={{ base: "20px", md: "24px" }}
             zIndex='20'
-            boxShadow='dark-lg'
+          //  boxShadow='dark-lg'
         >
             <Flex
                 justifyContent='space-between'

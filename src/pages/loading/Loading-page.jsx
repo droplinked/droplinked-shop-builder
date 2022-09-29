@@ -6,9 +6,9 @@ import Footer from "../../components/layouts/Footer/Footer";
 
 const LoadingPage = () => {
     return (
-        <Box w='100%'  bgColor="#222" >
+        <Box w='100%'  bgColor="#181818" >
             <MainHeader />
-            <Flex bgColor="#222" w='100%' h='100vh' justifyContent='center' alignItems='center'
+            <Flex bgColor="#181818" w='100%' h='100vh' justifyContent='center' alignItems='center'
                 overflow='hidden'
             >
                 <Loading />

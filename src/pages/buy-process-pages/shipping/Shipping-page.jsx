@@ -24,7 +24,7 @@ const ShippingPage = () => {
 
   let navigate = useNavigate();
   const { successToast, errorToast } = useToasty();
-  const { cart ,updateCart} = useCart();
+  const { cart, updateCart } = useCart();
 
   const getShippingPrice = () => {
     if (cart.type == SHOP_TYPES.DROPLINKED) {
@@ -35,11 +35,11 @@ const ShippingPage = () => {
   };
 
   const checkoutObj = JSON.parse(localStorage.getItem("checkout_id"));
+
   useEffect(() => {
     getShippings();
   }, [cart]);
 
- // console.log(selectedShipping);
 
   const getShippings = async () => {
     // get easypost shipping
@@ -48,6 +48,8 @@ const ShippingPage = () => {
 
       if (result.status == "success") {
         setShippings(result.data.shippingRates);
+        if (result.data.shippingRates.length > 0)
+          setSelectedShipping(result.data.shippingRates[0]);
       } else {
         errorToast(result.reason);
         return;
@@ -57,15 +59,15 @@ const ShippingPage = () => {
       let result = await getShippingRate();
       if (result.status == "success") {
         setShippings(result.data.shipping_rates);
+        if (result.data.shipping_rates.length > 0)
+          setSelectedShipping(result.data.shipping_rates[0]);
       } else {
         errorToast(result.reason);
       }
-
     }
   };
 
   const submitForm = async () => {
-
     if (selectedShipping == null) {
       errorToast("Select a shipping please");
       return;
@@ -74,7 +76,7 @@ const ShippingPage = () => {
     if (cart.type == SHOP_TYPES.DROPLINKED) {
       setLoading(true);
       let result = await setEasypostShpping(selectedShipping.id);
-      await updateCart()
+      await updateCart();
       setLoading(false);
       if (result == true) {
         navigate("/payment");
@@ -103,7 +105,6 @@ const ShippingPage = () => {
         navigate("/card");
         setLoading(false);
 
-        // successToast("");
       } else {
         console.log(result);
       }
@@ -111,7 +112,6 @@ const ShippingPage = () => {
       setLoading(false);
     }
   };
-
 
   const backButton = () => navigate("/address");
 
@@ -127,17 +127,17 @@ const ShippingPage = () => {
         <Loading />
       ) : (
         <Flex
-          maxW="600px"
+          maxW="1000px"
           w="100%"
           justifyContent="center"
           alignItems="center"
           flexDir="column"
         >
           <Text
-            fontSize={{ base: "20px", md: "24px" }}
-            fontWeight="600"
-            color="#fff"
-            mb="40px"
+               fontSize={{ base: "20px", md: "36px" }}
+               fontWeight="600"
+               color="#fff"
+               m="0px auto 48px auto"
           >
             Shipping
           </Text>
@@ -168,7 +168,7 @@ const ShippingPage = () => {
               })}
             </>
           )}
-          <Box borderBottom="3px solid #4d4d4d" w="100%" mb="15px"></Box>
+         <Box borderBottom="3px solid #242424" w="100%"></Box> 
 
           {selectedShipping && (
             <>
@@ -186,7 +186,9 @@ const ShippingPage = () => {
                 fontSize="18px"
                 color="#fff"
                 w="100%"
-                mb="60px"
+                mb="36px"
+                px='22px'
+                mt='36px'
               >
                 Shipping: ${getShippingPrice()}
               </Text>
@@ -202,9 +204,13 @@ const ShippingPage = () => {
             </>
           )}
 
-          <Flex w="100%" justifyContent="space-between" h="40px">
+          <Flex w="100%" justifyContent="space-between" h="40px" px='22px'>
             <Box w={{ base: "150px", md: "200px" }} h="100%">
-              <BasicButton loading={loading} click={backButton} cancelType={true}>
+              <BasicButton
+                loading={loading}
+                click={backButton}
+                cancelType={true}
+              >
                 Back
               </BasicButton>
             </Box>

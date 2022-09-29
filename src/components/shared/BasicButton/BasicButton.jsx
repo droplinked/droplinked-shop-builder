@@ -11,9 +11,9 @@ export default function BasicButton({
     <Button
       w="100%"
       h="100%"
-      bgColor={cancelType ? "transparent" : "#8053ff"}
-      color={cancelType ? "#fd4545" : "#222"}
-      border={cancelType ? "2px solid #fd4545" : "2px solid #8053ff"}
+      bgColor={cancelType ? "#353535" : "#8053ff"}
+      color={cancelType ? "#DBDBDB" : "#222"}
+      border={cancelType ? "2px solid #353535" : "2px solid #8053ff"}
       fontSize={{ base: "16px", md: "20px" }}
       fontWeight="600"
       borderRadius="8px"
@@ -21,11 +21,11 @@ export default function BasicButton({
       p={{ base: "12px 20px 9px 20px", md: "12px 20px" }}
       outline='none'
       _hover={{
-        borderColor: cancelType ? "#fd4545" : "#8053ff",
-        bgColor: cancelType ? "#fd4545" : "#222",
-        color: cancelType ? "#222" : "#8053ff",
+        borderColor: cancelType ? "#353535" : "#8053ff",
+        bgColor: cancelType ? "transparent" : "#222",
+        color: cancelType ? "#DBDBDB" : "#8053ff",
       }}
-      _disabled={{ bgColor: "#222" }}
+      _disabled={{ bgColor: "transparent" , color:'#353535' , borderColor:'#353535' }}
       onClick={click}
       disabled={loading}
       {...otherprops}

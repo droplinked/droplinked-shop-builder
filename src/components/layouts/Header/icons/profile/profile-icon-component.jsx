@@ -32,8 +32,8 @@ export default function ProfileIcon({ click }) {
             {(profileImage)
                 ?
                 <Image
-                    w={{ base: "34px", md: '52px' }}
-                    h={{ base: "34px", md: '52px' }}
+                    w={{ base: "34px", md: '46px' }}
+                    h={{ base: "34px", md: '46px' }}
                     borderRadius="50%"
                     cursor='pointer'
                     src={profileImage}

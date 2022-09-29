@@ -1,4 +1,4 @@
-import { ButtonGroup, IconButton, Button, Input } from "@chakra-ui/react";
+import { ButtonGroup, IconButton, Button, Input ,Box} from "@chakra-ui/react";
 import {
   CheckoutItemWrapper,
   DetailWrapper,
@@ -31,6 +31,7 @@ const ShopifytItem = ({ product, variant, amount, shopName }) => {
   const deleteItem = () => deleteItemFromCart(variant.id);
 
   return (
+    <>
     <CheckoutItemWrapper>
       <DetailWrapper>
         <ProductImage src={product.images[0].src} onClick={clickOnProduct} />
@@ -41,9 +42,9 @@ const ShopifytItem = ({ product, variant, amount, shopName }) => {
             <VariantText
               color="#ddd"
               fontWeight="500"
-              fontSize={{ base: "14px", md: "13px" }}
+              fontSize={{ base: "14px", md: "18px" }}
             >
-              {variant.option_values[0].name} : {variant.option_values[0].value}
+              {variant.option_values[0].name}: {variant.option_values[0].value}
             </VariantText>
           )}
         </TitleWrapper>
@@ -73,7 +74,12 @@ const ShopifytItem = ({ product, variant, amount, shopName }) => {
 
         <PriceText>${variant.price}</PriceText>
       </ButtonWrapper>
+      
     </CheckoutItemWrapper>
+    {/* <Box w='100%'  px='16px' bgColor="#242424">
+      <Box w='100%' borderBottom='2px solid #757575'></Box>
+    </Box> */}
+    </>
   );
 };
 export default ShopifytItem;

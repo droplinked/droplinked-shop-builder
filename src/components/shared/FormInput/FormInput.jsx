@@ -46,9 +46,10 @@ export default function FormInput({ value, changeValue, label, type, placeholder
           onChange={changeValue}
           fontWeight='600'
           fontSize={{ base: '14px', md: '20px' }}
-          color='#fff'
-          border='2px'
-          borderColor='#b3b3b3'
+          color='#DBDBDB'
+          bgColor='#181818'
+        //  border='2px'
+         // borderColor='#b3b3b3'
           borderRadius='8px'
           px="16px"
           py={{ base: "8px", md: "12px" }}

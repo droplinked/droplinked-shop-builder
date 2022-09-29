@@ -35,7 +35,7 @@ function CheckoutPage() {
       cart.items.forEach(
         (item) => (total += parseFloat(item.variant.price) * item.amount)
       );
-    }else{
+    } else {
       // calculate for ims products
       cart.items.forEach(
         (item) => (total += parseFloat(item.sku.price) * item.quantity)
@@ -62,24 +62,32 @@ function CheckoutPage() {
       ) : (
         <>
           <HeadText>Checkout</HeadText>
-          {cart.items.map((item, i) => (
-            <>
-              {cart.type == SHOP_TYPES.SHOPIFY ? (
-                <ShopifytItem
-                  product={item.product}
-                  variant={item.variant}
-                  amount={item.amount}
-                />
-              ) : (
-                <DroplinkedItem
-                  product={item.product}
-                  sku={item.sku}
-                  quantity={item.quantity}
-                  shopName={item.shopName}
-                />
-              )}
-            </>
-          ))}
+
+          <Box bgColor="#353535" borderRadius="8px">
+            {cart.items.map((item, i) => (
+              <>
+                {cart.type == SHOP_TYPES.SHOPIFY ? (
+                  <ShopifytItem
+                    product={item.product}
+                    variant={item.variant}
+                    amount={item.amount}
+                  />
+                ) : (
+                  <DroplinkedItem
+                    product={item.product}
+                    sku={item.sku}
+                    quantity={item.quantity}
+                    shopName={item.shopName}
+                  />
+                )}
+                {(i != (cart.items.length-1)) && (
+                  <Box w="100%" px="16px">
+                    <Box w="100%" borderBottom="2px solid #757575"></Box>
+                  </Box>
+                )}
+              </>
+            ))}
+          </Box>
 
           <PriceWrapper>
             <Box>
@@ -89,7 +97,9 @@ function CheckoutPage() {
 
           <ButtonWrapper>
             <Box w={{ base: "150px", md: "200px" }} overflow="hidden">
-              <BasicButton click={backToShop} cancelType={true}>Back to shop</BasicButton>
+              <BasicButton click={backToShop} cancelType={true}>
+                Back to shop
+              </BasicButton>
             </Box>
 
             <Box w={{ base: "150px", md: "200px" }} overflow="hidden">

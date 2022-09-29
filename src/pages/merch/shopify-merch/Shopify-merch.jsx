@@ -142,7 +142,7 @@ const ShopifyMech = ({ shopName, product }) => {
             onClick={changeTextLimit}
             transform={testLimit == true ? "rotate(180deg)" : "rotate(0deg)"}
           >
-            <FiArrowDownCircle color="white" size="40px" />
+            <FiArrowDownCircle color="#DBDBDB" size="40px" />
           </ReadmoreIconWrapper>
         </DescriptionWrapper>
         {/* description */}

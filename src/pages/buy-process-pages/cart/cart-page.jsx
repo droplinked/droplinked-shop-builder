@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import CreditCard from "./CreditCard-component";
 
-
 const CartPage = () => {
   const [cardData, setCardData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -13,45 +12,40 @@ const CartPage = () => {
 
   useEffect(() => {
     if (cardData != null) {
-      submitForm()
+      submitForm();
     }
   }, [cardData]);
 
-  const submitForm = async() => {
-   
-    setLoading(true)
+  const submitForm = async () => {
+    setLoading(true);
     let result = await creatShopifySession(cardData);
     if (result.status == "success") {
-     
       localStorage.setItem(
         "session_id",
         JSON.stringify({ sessionId: result.data })
       );
-      navigate('/confirm')
+      navigate("/confirm");
     } else {
-      setLoading(false)
-     
+      setLoading(false);
     }
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
-  const backButton = () => navigate('/shipping')
-
+  const backButton = () => navigate("/shipping");
 
   return (
     <Flex
       w="100%"
       flexDir="column"
-      p={{ base: "20px", md: "80px" }}
+      px={{ base: "20px", md: "80px" }}
       justifyContent="center"
       alignContent="center"
     >
       <Text
-        color="#fff"
-        fontSize={{ base: "25px", md: "30px" }}
+        fontSize={{ base: "20px", md: "36px" }}
         fontWeight="600"
-        textAlign="center"
-        mb="50px"
+        color="#fff"
+        m="0px auto 48px auto"
       >
         Add card
       </Text>
@@ -59,12 +53,17 @@ const CartPage = () => {
       <Flex w="100%" justifyContent="center" alignContent="center">
         <Box
           w="100%"
-          maxW="450px"
-          p="10px 20px"
-          border="3px solid #4d4d4d"
+          maxW="1000px"
+          p="40px 60px"
+        //  border="3px solid #4d4d4d"
+        bgColor='#242424'
           borderRadius="8px"
         >
-          <CreditCard backToShipping={backButton} setCard={(e) => setCardData(e)} loading={loading} />
+          <CreditCard
+            backToShipping={backButton}
+            setCard={(e) => setCardData(e)}
+            loading={loading}
+          />
         </Box>
       </Flex>
     </Flex>

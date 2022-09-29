@@ -4,10 +4,9 @@ export const CheckoutItemWrapper = chakra("div", {
   baseStyle: {
     d: "flex",
     w: "100%",
-    p: "5px",
-    bgColor: "#333",
+    p: "20px 40px",
     h: "auto",
-    mb: "10px",
+  //  mb: "28px",
     flexDirection: { base: "column", md: "row" },
     justifyContent: "space-between",
   },
@@ -24,10 +23,11 @@ export const DetailWrapper = chakra("div", {
 export const ProductImage = chakra("img", {
   baseStyle: {
     alt: "product image",
-    w: "80px",
-    h: "80px",
+    w: "100px",
+    h: "100px",
     mr: "20px",
     cursor: "pointer",
+    borderRadius:'8px'
   },
 });
 
@@ -44,7 +44,7 @@ export const Title = chakra("p", {
   baseStyle: {
     color: "#fff",
     fontWeight: "600",
-    fontSize: { base: "16px", md: "18px" },
+    fontSize: { base: "16px", md: "24px" },
     mb: "5px",
     overflow: "hidden",
     cursor: "pointer",
@@ -55,7 +55,7 @@ export const VariantText = chakra("p", {
   baseStyle: {
     color: "#ddd",
     fontWeight: "500",
-    fontSize: { base: "14px", md: "13px" },
+    fontSize: { base: "14px", md: "18px" },
   },
 });
 
@@ -94,6 +94,6 @@ export const PriceText = chakra("p", {
   baseStyle: {
     color: "#fff",
     fontWeight: "600",
-    fontSize: "18",
+    fontSize: "24",
   },
 });

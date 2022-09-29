@@ -4,7 +4,7 @@ export const ProducerCollectionWrapper = chakra("div", {
   baseStyle: {
     width: "100%",
     border: "3px solid #d4d4d486",
-    borderRadius: "30px",
+    borderRadius: "8px",
     padding: { base: "15px 10px 10px 10px", md: "25px 20px 15px 20px" },
     transition: "0.8s",
     _hover: {

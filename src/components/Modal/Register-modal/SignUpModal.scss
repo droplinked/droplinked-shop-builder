@@ -86,9 +86,9 @@
 
   .modal-shopname-input {
     display: flex;
-    border: 2px solid #b3b3b3;
+   // border: 2px solid #b3b3b3;
     border-radius: 8px;
-    background-color: transparent;
+    background-color: #181818;
     padding: 13px 16px;
 
     span {
@@ -138,19 +138,21 @@
       font-size: 20px;
       line-height: 28px;
       color: #ffffff;
-      border: 2px solid #b3b3b3;
       border-radius: 8px;
-      background-color: transparent;
+      background-color: #181818 !important;
       padding: 13px 16px;
       outline: none;
-      &:focus {
-        border: 2px solid #8053ff;
-        outline: none;
-      }
-      &:-webkit-autofill {
-        background-color: black;
-      }
+
     }
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px #181818 inset;
+    }
+
+    input:-webkit-autofill:focus {
+      -webkit-text-fill-color: #dbdbdb;
+    }
+    -webkit-text-fill-color: #dbdbdb !important;
+
     .signup-modal-error {
       font-family: "AvenirNext";
       font-weight: 400;

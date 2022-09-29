@@ -11,11 +11,11 @@ import { BsThreeDots } from "react-icons/bs";
 const CollectionHeader = ({ title, openSnipedModal, seeMore }) => {
 
   return (
-    <Flex w="100%" justifyContent="space-between" h="auto" mb="10px">
+    <Flex w="100%" justifyContent="space-between" h="auto" mb="28px" px='3px'>
       
       <Text
         color="#fff"
-        fontSize={{ base: "14px", sm: "16px", md: "22px" }}
+        fontSize={{ base: "14px", sm: "16px", md: "28px" }}
         fontWeight="600"
         onClick={seeMore}
         cursor="pointer"
@@ -26,21 +26,25 @@ const CollectionHeader = ({ title, openSnipedModal, seeMore }) => {
       <Menu>
         <MenuButton>
           <Flex
-            p={{ base: "4px 10px 1px 10px", md: "4px 20px" }}
+            p={{ base: "3px 10px 0px 10px", md: "4px 28px" }}
             color="#fff"
-            bgColor="#353536"
+            border='1px solid #DBDBDB'
+            //bgColor="#353536"
             borderRadius="8px"
             justifyContent="center"
             alignItems="center"
             textAlign="center"
             ml="10px"
             cursor="pointer"
+            fontWeight='600'
+            fontSize={{base:'16px', md:'20px'}}
             _hover={{
               bgColor: "#555558",
             }}
             onClick={seeMore}
           >
-            <BsThreeDots color="white" />
+            {/* <BsThreeDots color="white" size='30px' /> */}
+            More
           </Flex>
         </MenuButton>
         <MenuList

@@ -1,7 +1,8 @@
 import "./basket-modal-style.scss";
 
-import { Text, Button } from "@chakra-ui/react";
+import { Text, Button , Box } from "@chakra-ui/react";
 import CartProvider, { useCart } from "../../../../../context/cart/CartContext";
+import BasicButton from "../../../../shared/BasicButton/BasicButton"
 import { useNavigate } from "react-router-dom";
 import { SHOP_TYPES } from "../../../../../constant/shop-types";
 
@@ -50,7 +51,7 @@ export default function BasketModal({ close }) {
               </>
             );
           })}
-          <Button
+          {/* <Button
             mt="20px"
             color="white"
             w="100%"
@@ -61,7 +62,10 @@ export default function BasketModal({ close }) {
             onClick={ClickCheckuot}
           >
             Check out
-          </Button>
+          </Button> */}
+          <Box mt="20px">
+          <BasicButton click={ClickCheckuot}> Check out</BasicButton>
+          </Box>
         </>
       )}
     </div>
