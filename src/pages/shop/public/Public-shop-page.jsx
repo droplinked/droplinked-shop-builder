@@ -27,7 +27,6 @@ const PublicShopPage = ({shopData , shopName , collections}) => {
         <>
           <ProfileTopSection />
           <GalleryCarousel />
-          <div style={{ height: "30px" }}></div>
         </>
       ) : (
         <TopSection
