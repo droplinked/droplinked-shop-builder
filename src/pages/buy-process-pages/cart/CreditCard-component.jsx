@@ -9,7 +9,7 @@ import {
   formatExpirationDate,
 } from './creditcard-utils';
 import {
-  Box
+  Box,Flex
 } from '@chakra-ui/react'
 
 
@@ -82,6 +82,8 @@ export default class CreditCard extends React.Component {
     const { name, number, expiry, cvc, focused, issuer, formData } = this.state;
     return (
       <div id="PaymentForm">
+        <Flex flexDir={{base:'column',md:'row'}}>
+        <Flex justifyContent='center' alignItem='center' w='45%' h='100%'>
         <Card
             number={number}
             name={name}
@@ -90,6 +92,7 @@ export default class CreditCard extends React.Component {
             focused={focused}
             callback={this.handleCallback}
           />
+          </Flex>
           <Box mb='30px'></Box>
         <form ref={c => (this.form = c)} onSubmit={this.handleSubmit}>
          
@@ -150,6 +153,7 @@ export default class CreditCard extends React.Component {
               <BasicButton type='submit' loading={this.props.loading}w='45%'>PAY</BasicButton>
             </div>
           </form>
+          </Flex>
       </div>
     );
   }

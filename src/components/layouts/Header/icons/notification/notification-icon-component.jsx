@@ -20,8 +20,8 @@ export default function Notification({ click }) {
             justifyContent='center'
             alignItems='center'
             pos='relative'
-            w={{ base: "25px", md: '40px' }}
-            h={{ base: "25px", md: '40px' }}
+            w={{ base: "25px", md: '36px' }}
+            h={{ base: "25px", md: '36px' }}
             mr={{ base: '8px', md: '12px' }}
             cursor='pointer'
             onClick={click}>

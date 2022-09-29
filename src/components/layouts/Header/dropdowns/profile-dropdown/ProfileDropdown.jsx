@@ -59,16 +59,18 @@ const ProfileDropdown = ({ close }) => {
   return (
     <Flex
       pos="absolute"
-      top={{ base: "60px", md: "80px" }}
+      top={{ base: "60px", md: "110px" }}
       right="20px"
-      bgColor="#222"
+     // bgColor="#222"
       w={{ base: "200px", md: "250px" }}
       h="auto"
       minH="100px"
       borderRadius="16px"
       overflow="hidden"
       zIndex="20"
-      boxShadow="dark-lg"
+      p='24px'
+      bgColor='#353535'
+    //  boxShadow="dark-lg"
       flexDirection="column"
     >
       {(isCustomer() && userData) && (

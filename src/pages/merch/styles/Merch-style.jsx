@@ -4,7 +4,7 @@ export const MerchPageWrapper = chakra("div", {
   baseStyle: {
     d: "flex",
     justifyContent: "space-between",
-    maxW: "800px",
+    maxW: "1000px",
     w: "100%",
     flexWrap: "wrap",
     m: "auto",
@@ -14,7 +14,7 @@ export const MerchPageWrapper = chakra("div", {
 export const DescriptionWrapper = chakra("div", {
   baseStyle: {
     display: "flex",
-    mt: { base: "20px", md: "40px" },
+    mt: { base: "20px", md: "80px" },
     w: "100%",
     flexDir: "column",
     alignItems: "center",
@@ -60,9 +60,9 @@ export const ReadmoreButton = chakra("div", {
 
 export const VariantSelect = chakra("select", {
   baseStyle: {
-    border: "2px solid #b4b4b4",
+  //  border: "2px solid #b4b4b4",
     borderRadius: "8px",
-    padding: { base: "12px 16px 9px 16px", md: "6px 12px" },
+    padding: { base: "12px 16px 9px 16px", md: "8px 24px" },
     outline: "none",
     backgroundColor: "transparent",
     color: "#fff",
@@ -90,7 +90,7 @@ export const QuantityButton = chakra("div", {
 export const ProductTitle = chakra("p", {
   baseStyle: {
     color: "#fff",
-    fontSize: "20px",
+    fontSize: "30px",
     fontWeight: "600",
   },
 });

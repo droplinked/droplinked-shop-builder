@@ -21,12 +21,11 @@ const ShopifyDetail = ({
   submit,
   loading,
   selectedVariant,
-  setSelectedVariant
+  setSelectedVariant,
 }) => {
+  const variants = product.variants;
+  const optionsList = product.options;
 
-  const variants = product.variants
-  const optionsList =product.options
-  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -109,70 +108,72 @@ const ShopifyDetail = ({
     <DetailWrapper>
       {selectedVariant && (
         <>
-          <ProductTitle>{product.title}</ProductTitle>
-          <ProductShopname onClick={navigateToShoppage}>
-            {shopName}
-          </ProductShopname>
-          <Text fontWeight="600" fontSize="24px" color="#fff">
-            ${selectedVariant && selectedVariant.price}
-          </Text>
+            <ProductTitle>{product.title}</ProductTitle>
+            <ProductShopname onClick={navigateToShoppage}>
+              {shopName}
+            </ProductShopname>
 
-          <Flex justifyContent="space-between" w="100%" flexWrap="wrap">
-            {optionsList.map((option, i) => {
-              return (
-                <Box w="49%" key={i}>
-                  <VariantSelect
-                    id={option.id}
-                    name={option.name}
-                    onChange={changeVariant}
-                  >
-                    {option.values.map((value, i) => {
-                      return (
-                        <option key={i} value={value}>
-                          {value}
-                        </option>
-                      );
-                    })}
-                  </VariantSelect>
-                </Box>
-              );
-            })}
-          </Flex>
+        
+            <Text fontWeight="600" fontSize="24px" color="#fff">
+              ${selectedVariant && selectedVariant.price}
+            </Text>
 
-          <Flex>
-            <QuantityButton
-              bgColor="#353536"
-              color="#b3b3b3"
-              cursor="pointer"
-              onClick={decreaseQuantity}
-            >
-              <Image src={minus} alt="minus" />
-            </QuantityButton>
+            <Flex justifyContent="space-between" w="100%" flexWrap="wrap">
+              {optionsList.map((option, i) => {
+                return (
+                  <Box w="49%" key={i}>
+                    <VariantSelect
+                      id={option.id}
+                      name={option.name}
+                      onChange={changeVariant}
+                    >
+                      {option.values.map((value, i) => {
+                        return (
+                          <option key={i} value={value}>
+                            {value}
+                          </option>
+                        );
+                      })}
+                    </VariantSelect>
+                  </Box>
+                );
+              })}
+            </Flex>
 
-            <QuantityButton color="white" fontSize="20px">
-              {quantity}
-            </QuantityButton>
+            <Flex>
+              <QuantityButton
+                bgColor="#353536"
+                color="#b3b3b3"
+                cursor="pointer"
+                onClick={decreaseQuantity}
+              >
+                <Image src={minus} alt="minus" />
+              </QuantityButton>
 
-            <QuantityButton
-              bgColor="#353536"
-              color="#b3b3b3"
-              cursor="pointer"
-              onClick={increaseQuantity}
-            >
-              <Image src={plus} alt="minus" />
-            </QuantityButton>
-          </Flex>
-          <Box h="auto">
-            <BasicButton
-              click={submit}
-              loading={loading}
-              disabled={selectedVariant.inventory_quantity <= 0}
-            >
-              {selectedVariant.inventory_quantity > 0
-                ? "Add to basket"
-                : "Sold out"}
-            </BasicButton>
-          </Box>
+              <QuantityButton color="white" fontSize="20px">
+                {quantity}
+              </QuantityButton>
+
+              <QuantityButton
+                bgColor="#353536"
+                color="#b3b3b3"
+                cursor="pointer"
+                onClick={increaseQuantity}
+              >
+                <Image src={plus} alt="minus" />
+              </QuantityButton>
+            </Flex>
+            <Box h="auto">
+              <BasicButton
+                click={submit}
+                loading={loading}
+                disabled={selectedVariant.inventory_quantity <= 0}
+              >
+                {selectedVariant.inventory_quantity > 0
+                  ? "Add to basket"
+                  : "Sold out"}
+              </BasicButton>
+            </Box>
         </>
       )}
     </DetailWrapper>

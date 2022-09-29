@@ -72,7 +72,7 @@ export default function PageWrapper() {
         w="100%"
         h="auto"
         minH="100vh"
-        bgColor="#222"
+        bgColor="#181818"
         pt="50px"
         pb="100px"
         m="0px"

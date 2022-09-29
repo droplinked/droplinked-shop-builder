@@ -71,7 +71,7 @@ export default function AddressComponent({
           borderColor={
             selectAble == true && address._id == (selected && selected._id)
               ? "#8053ff"
-              : "#4d4d4d"
+              : "#353535"
           }
           cursor={selectAble == true ? "pointer" : "auto"}
           onClick={selectAddress}

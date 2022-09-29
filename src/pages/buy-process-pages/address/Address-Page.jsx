@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Button, Box } from "@chakra-ui/react";
+import { Flex, Button, Box, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useAddress } from "../../../context/address/AddressContext";
@@ -9,7 +9,7 @@ import { useCart } from "../../../context/cart/CartContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
 
-import BasicButton from "../../../components/shared/BasicButton/BasicButton"
+import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import AddressComponent from "../../../components/shared/Address/address-component";
 import Loading from "../../../components/shared/loading/Loading";
 import AddressForm from "../../../components/Modal/Address/Address-modal";
@@ -35,7 +35,7 @@ function AddressPage() {
   };
 
   useEffect(() => {
-    if(addressList.length > 0) setSelectedAddress(addressList[0]);
+    if (addressList.length > 0) setSelectedAddress(addressList[0]);
     else setSelectedAddress(null);
   }, [addressList]);
 
@@ -46,17 +46,17 @@ function AddressPage() {
     }
     // add address for droplinked cart
     if (cart.type == SHOP_TYPES.DROPLINKED) {
-      setLoading(true)
-      let result = await addCheckoutAddress(selectedAddress._id)
-      setLoading(false)
+      setLoading(true);
+      let result = await addCheckoutAddress(selectedAddress._id);
+      setLoading(false);
       if (result == true) {
-        successToast("Address successfully added")
-        navigate('/shipping')
+        successToast("Address successfully added");
+        navigate("/shipping");
       } else {
-        errorToast(result)
+        errorToast(result);
       }
     } else {
-       // add address for shopify cart
+      // add address for shopify cart
       let addressObj = {
         first_name: selectedAddress.firstname,
         last_name: selectedAddress.lastname,
@@ -105,11 +105,21 @@ function AddressPage() {
     <Flex
       justifyContent="center"
       alignItems="center"
+      flexDir="column"
       w="100%"
       h="auto"
       px={{ base: "20px", md: "80px" }}
     >
-      <Box w="100%" maxW="800px" m="auto">
+      <Text
+        fontSize={{ base: "20px", md: "36px" }}
+        fontWeight="600"
+        color="#fff"
+        m="0px auto 48px auto"
+      >
+        Select Address
+      </Text>
+
+      <Box w="100%" maxW="1000px" m="auto">
         {addressList == [] ? (
           <Loading />
         ) : (
@@ -136,7 +146,7 @@ function AddressPage() {
                 w="100%"
                 border="1px"
                 borderColor="#fff"
-                borderRadius="15px"
+                borderRadius="8px"
                 p="24px 20px 16px 20px"
                 justifyContent="center"
                 alignItems="center"
@@ -157,11 +167,21 @@ function AddressPage() {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Box   w="30%">
-              <BasicButton cancelType={true} click={()=>{ navigate("/checkout")}} loading={loading}>back</BasicButton>
+              <Box w="30%">
+                <BasicButton
+                  cancelType={true}
+                  click={() => {
+                    navigate("/checkout");
+                  }}
+                  loading={loading}
+                >
+                  back
+                </BasicButton>
               </Box>
-              <Box   w="30%">
-              <BasicButton click={ProccessToPayment}  loading={loading}>Payment</BasicButton>
+              <Box w="30%">
+                <BasicButton click={ProccessToPayment} loading={loading}>
+                  Payment
+                </BasicButton>
               </Box>
             </Flex>
           </>

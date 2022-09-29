@@ -5,12 +5,13 @@ const ShippingComponent = ({ shippingItem, selected, setSelected }) => {
  
   return (
     <Box
-      p="10px 15px"
+      p="12px 18px"
       w="100%"
       mb="30px"
       border="3px solid"
+      bgColor='#242424'
       borderColor={
-        selected && selected.id == shippingItem.id ? "#8053ff" : "#4d4d4d"
+        selected && selected.id == shippingItem.id ? "#8053ff" : "#242424"
       }
       borderRadius="8px"
       // justifyContent="space-between"
@@ -20,8 +21,8 @@ const ShippingComponent = ({ shippingItem, selected, setSelected }) => {
       }}
     >
       <Flex w="100%" justifyContent="space-between" >
-        <Text color="#fff">{shippingItem.title}</Text>
-        <Text color="#fff">${shippingItem.price}</Text>
+        <Text color="#fff" fontSize='20px' >{shippingItem.title}</Text>
+        <Text color="#fff" fontSize='20px'>${shippingItem.price}</Text>
       </Flex>
       {(shippingItem.delivery_range !=null ) && (
         <Flex w="100%" justifyContent="space-between" mt="10px">

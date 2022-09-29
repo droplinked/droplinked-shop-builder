@@ -6,7 +6,8 @@ export const AddressComponentWrapper = chakra("div", {
     mb: "4",
     border: "3px solid",
     borderRadius: "8px",
-    p: "24px 20px 16px 20px",
+    p: "24px 40px 24px 40px",
+    bgColor:'#353535'
   },
 });
 
