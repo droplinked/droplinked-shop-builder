@@ -38,8 +38,8 @@ function GalleryCarousel() {
   return (
     <>
       {/* gallery wrap */}
-      <div className="row d-flex justify-content-center gr">
-        <div className="col-12 col-sm-8  d-flex justify-content-center">
+      <div className="row d-flex justify-content-center gr mb-3">
+        <div className="col-12 col-sm-5  d-flex justify-content-center">
           <div className="gallery-wrapper ">
             {imageArray.map((image, i) => {
               if (i == imageNumber || i == imageNumber + 1) {
@@ -60,7 +60,7 @@ function GalleryCarousel() {
       {/* gallery wrap */}
 
       {/* description */}
-      <div className="row d-flex justify-content-center w-100">
+      <div className="row d-flex justify-content-center w-100 mb-5">
         <div className='col-12 col-sm-8 nft-gallery-description'>9216 NFTs on Bitcoin with Stacks, made by Grace.btc, inspired by sci-fi, anime, and crypto culture.</div>
       </div>
       {/* description */}

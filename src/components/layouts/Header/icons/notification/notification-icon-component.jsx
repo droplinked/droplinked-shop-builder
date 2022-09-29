@@ -33,13 +33,12 @@ export default function Notification({ click }) {
                     h='100%'
                     justifyContent='center'
                     alignItems='center'
-
                 >
                     <Box
                         bgColor='#8053ff'
                         borderRadius='50%'
-                        w='10px'
-                        h='10px'
+                        w='8px'
+                        h='8px'
                         animation={animation}
                     >
 
