@@ -4,9 +4,9 @@ export const CheckoutPageWrapper = chakra("div", {
   baseStyle: {
     d: "flex",
     w: "100%",
-    maxW: "1100px",
+    maxW: "1200px",
     m: "0px auto",
-   // px: { base: "20px", md: "80px" },
+    px: { base: "20px", md: "80px" },
     flexDirection: "column",
   },
 });
