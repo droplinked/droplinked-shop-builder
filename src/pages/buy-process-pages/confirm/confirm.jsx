@@ -20,7 +20,7 @@ const ConfirmPage = () => {
 
   const getItemsPrice = () => {
     let total = 0;
-    cart.forEach((item) => {
+    cart.items.forEach((item) => {
       total += item.amount * parseFloat(item.variant.price);
     });
     return total;
@@ -29,7 +29,7 @@ const ConfirmPage = () => {
   const confirm = async () => {
     setLoading(true);
     let result = await confirmPayment(
-      cart[0].shopName,
+      cart.items[0].shopName,
       checkoutId.checkoutId,
       sessionId.sessionId
     );
@@ -38,12 +38,14 @@ const ConfirmPage = () => {
       localStorage.removeItem('session_id');
       localStorage.removeItem('checkout_id');
       localStorage.removeItem('shippingPrice');
-      clearCart();
+      clearCart()
     } else {
       errorToast(result);
     }
     setLoading(false);
   };
+
+  const backButton = () => navigate('/card')
 
   return (
     <Box w="100%" maxW="1000px" mx="auto" px={{ base: "20px", md: "80px" }}>
@@ -83,8 +85,11 @@ const ConfirmPage = () => {
           </Text>
         </Box>
 
-        <Flex w="100%" maxW="400px" mx="auto">
-          <BasicButton click={confirm} loading={loading}>
+        <Flex w="100%" justifyContent='space-between'>
+        <BasicButton w='30%' click={backButton} loading={loading} cancelType={true}>
+            Back
+          </BasicButton>
+          <BasicButton w='50%' click={confirm} loading={loading}>
             Confirm order
           </BasicButton>
         </Flex>

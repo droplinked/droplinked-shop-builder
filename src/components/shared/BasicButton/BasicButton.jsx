@@ -1,42 +1,48 @@
-import { Button, Spinner } from "@chakra-ui/react"
+import { Button, Spinner } from "@chakra-ui/react";
 
-export default function BasicButton({ children, click , loading, ...otherprops }) {
-
- 
-    return (
-        <Button
-            w="100%"
-            h="100%"
-            bgColor="#8053ff"
-            color="#fff"
-            fontSize={{base:'16px' , md:"20px"}}
-            fontWeight="600"
-            borderRadius='8px'
-            margin='0px auto'
-            p={{base:"12px 20px 9px 20px" , md:"12px 20px"}}
-            _hover={{ borderColor: "#4d4d4d", color: "#222" }}
-            _disabled={{ bgColor:"#4A4A4A"}}
-            onClick={click}
-            disabled={loading}
-            {...otherprops}
-        >
-             {(loading != undefined && loading == true)
-                ? <>
-                  
-                        <Spinner
-                            thickness='4px'
-                            speed='0.65s'
-                            emptyColor='#fff'
-                            color='#222'
-                            size='md'
-                        />
-                    
-                </>
-                :
-                <>
-                { children }
-                </>
-            } 
-        </Button>
-    )
+export default function BasicButton({
+  children,
+  click,
+  loading,
+  cancelType,
+  ...otherprops
+}) {
+  return (
+    <Button
+      w="100%"
+      h="100%"
+      bgColor={cancelType ? "#242424" : "#8053ff"}
+      color={cancelType ? "#DBDBDB" : "#222"}
+      border={cancelType ? "2px solid #242424" : "2px solid #8053ff"}
+      fontSize={{ base: "16px", md: "20px" }}
+      fontWeight="600"
+      borderRadius="8px"
+      margin="0px auto"
+      p={{ base: "12px 20px 9px 20px", md: "12px 20px" }}
+      outline='none'
+      _hover={{
+        borderColor: cancelType ? "#242424" : "#8053ff",
+        bgColor: cancelType ? "transparent" : "#222",
+        color: cancelType ? "#DBDBDB" : "#8053ff",
+      }}
+      _disabled={{ bgColor: "transparent" , color:'#353535' , borderColor:'#242424' }}
+      onClick={click}
+      disabled={loading}
+      {...otherprops}
+    >
+      {loading != undefined && loading == true ? (
+        <>
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="#fff"
+            color="#222"
+            size="md"
+          />
+        </>
+      ) : (
+        <>{children}</>
+      )}
+    </Button>
+  );
 }

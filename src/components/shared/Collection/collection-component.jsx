@@ -1,12 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { Flex, Text, Box } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { BASE_URL } from "../../../api/BaseUrl";
-
-import Product from "../Product/Product";
 import IframeSnipped from "../../Modal/Iframe-snipped-modal/Iframe-snipped-modal";
-import ShopifyCollection from "./shopify-collection.component";
-import CollectionHeader from "./collection-header-component"
+import CollectionHeader from "./collection-header-component";
+import CollectionProducts from "./collection-products-component";
 // collection format : {
 //     ._id: id
 //     products:[]
@@ -37,7 +35,7 @@ export default function Collection({ collection, shopname, type }) {
 
   const openSnipedModal = () => {
     setSnippedModal(true);
-  }
+  };
 
   return (
     <>
@@ -46,59 +44,26 @@ export default function Collection({ collection, shopname, type }) {
         alignItems="start"
         flexDirection="column"
         w="100%"
-        maxW="750px"
+        maxW="1000px"
         mb={{ base: "20px", md: "30px" }}
-        p="10px 10px 0px 10px"
+        p={{base:'10px 10px 0px 10px' ,md:"60px 80px 60px 80px"}}
+        bgColor='#242424'
+        borderRadius='8px'
       >
         {/* head */}
-        <CollectionHeader title={collection.title} openSnipedModal={openSnipedModal} seeMore={seeMore}/>
+        <CollectionHeader
+          title={collection.title}
+          openSnipedModal={openSnipedModal}
+          seeMore={seeMore}
+        />
         {/* head */}
-        {type == "SHOPIFY" ? (
-          <>
-            <Flex w="100%" wrap="wrap">
-              {collection.products.map((product, i) => {
-                if (i < 4) {
-                return (
-                  <Box key={i} w={{ base: "50%", md: "25%" }} p="3px">
-                    <ShopifyCollection key={i} product={product.shopifyData} id={product._id} shopname={shopname} />
-                  </Box>
-                )}
-              })}
-            </Flex>
-          </>
-        ) : (
-          <>
-            {collection.products.length == 0 && (
-              <Text
-                color="#fff"
-                fontSize={{ base: "18px", md: "24px" }}
-                fontWeight="600"
-                w="100%"
-                textAlign="center"
-                mt="30px"
-              >
-                Empty
-              </Text>
-            )}
-
-            <Flex w="100%" wrap="wrap">
-              {collection.products.map((product, i) => {
-                if (i < 4) {
-                  return (
-                    <Box key={i} w={{ base: "50%", md: "25%" }} p="3px">
-                      <Product
-                        title={product.title}
-                        imageUrl={product.media[0].url}
-                        id={product._id}
-                        shopname={shopname}
-                      />
-                    </Box>
-                  );
-                }
-              })}
-            </Flex>
-          </>
-        )}
+        {/* content */}
+        <CollectionProducts
+          products={collection.products}
+          shopname={shopname}
+          type={type}
+        />
+        {/* content */}
       </Flex>
       {snippedModal && (
         <IframeSnipped

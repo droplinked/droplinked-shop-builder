@@ -37,7 +37,7 @@ input:-webkit-autofill:focus {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.7);
   padding-bottom: 50px;
   & .medium-modal-body {
     z-index: 11;
@@ -46,13 +46,13 @@ input:-webkit-autofill:focus {
     margin: auto;
     width: 500px;
     background: #353536;
-    box-shadow: 0px 2px 30px rgba(85, 88, 90, 0.1);
-    border-radius: 24px;
+  //  box-shadow: 0px 2px 30px rgba(85, 88, 90, 0.1);
+    border-radius: 8px;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.5s;
     animation-name: animatetop;
     animation-duration: 0.5s;
-    padding: 20px 40px 40px 40px;
+    padding: 40px 60px 40px 60px;
   }
 }
 

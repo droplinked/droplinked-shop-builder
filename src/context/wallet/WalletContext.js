@@ -1,5 +1,6 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import { authenticate, userSession } from "../../services/wallet-auth/auth";
+//import { authenticate } from "../../services/wallet-auth/auth";
+import { userSession } from "../profile/ProfileContext";
 
 const UserWalletContext = createContext(undefined);
 
@@ -42,7 +43,7 @@ const WalletProvider = ({ children }) => {
 
   return (
     <UserWalletContext.Provider
-      value={{ onSignOut, checkTokens, userData, authenticate, getStxAddress }}
+      value={{ onSignOut, checkTokens, userData, getStxAddress }}
     >
       {children}
     </UserWalletContext.Provider>

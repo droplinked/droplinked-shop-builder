@@ -1,10 +1,10 @@
 import "./Add-product-page-style.scss";
 
-import VariantItem from "../components/variant-item-component/Variant-item-component";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import CheckBox from "../../../components/shared/Checkbox/CheckBox-component";
 import ProductInformation from "../components/product-information-component";
-import SkuForm from "../components/sku-form-component";
+import OptionCheckboxes from "./option-checkbox-component/option-checkbox";
+import SkusComponent from "./skus-component/Skus-component";
+import AddSkuModal from "../../../components/Modal/Sku/AddSku";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,20 +17,16 @@ function AddProductPage() {
   // state for pass to ProductInformation component
   // and  management (title , description , images , collectionId)
   const [productInfo, setProductInfo] = useState(null);
-  // state for each of sku data for pass to SkuForm
-  const [skuData, setSkuData] = useState(null);
-  // state for sku list
-  const [skus, setSkus] = useState([]);
-  // state for eddit skus
-  const [editSku, setEditSku] = useState(null);
-
-  const [options, setOptions] = useState([]);
-  //state for show and hide add variant form
-  const [addvariant, setAddvariant] = useState(false);
-  // loading state
-  const [disbtn, setdisbtn] = useState(false);
-  // state for vanriants type
+  // state for determine selected options type
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  // use for disable button and loading mode
+  const [loading, setLoading] = useState(false);
+  // state  maintain vanriants type
   const [varintType, setVariantType] = useState(null);
+  // this state for show and hide sku modal
+  const [skuModalShow, setSkuModalShow] = useState(false);
+  // state for maintaing array of product skus
+  const [skuArray, setSkuArray] = useState([]);
 
   const { successToast, errorToast } = useToasty();
   const navigate = useNavigate();
@@ -39,21 +35,20 @@ function AddProductPage() {
     if (token == null) {
       navigate("/");
     }
-    initializ();
+    initialVariant();
   }, []);
 
-  // initialize variantType and collectin List
-  const initializ = () => {
+  // get variants type from  back and pass to (varintType state)
+  const initialVariant = () => {
     getVariants()
       .then((e) => setVariantType(e))
       .catch((e) => console.log(e));
   };
 
   // close page
-  const cancelForm = () => {
-    navigate("/producer/ims");
-  };
+  const cancelForm = () => navigate("/producer/ims");
 
+  // validation product fields before submit form
   const validationForm = () => {
     if (productInfo.title == "") {
       errorToast("Item name is required");
@@ -64,7 +59,7 @@ function AddProductPage() {
     } else if (productInfo.images.length == 0) {
       errorToast("Add an image for this item");
       return true;
-    } else if (skus.length == 0) {
+    } else if (skuArray.length == 0) {
       errorToast("Add a new variant");
       return true;
     } else {
@@ -75,183 +70,99 @@ function AddProductPage() {
   // submit all product form
   const submitForm = async (e) => {
     e.preventDefault();
-
+    // validate all fields
     if (validationForm()) return;
 
+    // conver media format
     let media = [];
     productInfo.images.map((img, i) => {
       media.push({ url: img, isMain: i == 0 });
     });
 
-    const proDetail = {
+    const productData = {
       title: productInfo.title,
       description: productInfo.description,
       priceUnit: "USD",
       productCollectionID: productInfo.productCollectionID,
       media: media,
-      sku: skus,
+      sku: skuArray,
     };
 
-    setdisbtn(true);
-    let result = await postProduct(proDetail);
+    setLoading(true);
+    let result = await postProduct(productData);
     if (result == true) {
       successToast("Item added successfully");
       navigate("/producer/ims");
     } else {
       errorToast(result);
-      setdisbtn(false);
+      setLoading(false);
     }
   };
 
-  // change selected options with change checkbox for options type
-  const onChnageCheckBox = (e) => {
-    let newOptions = [];
-    if (e.target.checked) {
-      newOptions = options.map((opt) => opt);
-      newOptions.push({ optionName: e.target.value, optionID: e.target.id });
-    } else {
-      newOptions = options.filter((opt) => opt.optionID != e.target.id);
-    }
-    setOptions(newOptions);
+  const updateSku = (newSku) => {
+    let newArray = Array.from(skuArray);
+    newArray.push(newSku);
+    setSkuArray(newArray);
   };
 
-  // edit and delete exsiting skus
-  const deleteVariant = (index) => {
-    let newVariantList = [];
-    for (const v of skus) newVariantList.push(v);
-    newVariantList.forEach((item, i) => {
-      if (i == index) newVariantList.splice(i, 1);
-    });
-    setSkus(newVariantList);
-  };
+  const closeSkuModal = () => setSkuModalShow(false);
+  const openSkuModal = () => setSkuModalShow(true);
 
-  // select sku for edit
-  const editVariant = (e, index) => {
-    let newSkuList = skus.filter((currentSku, i) => i != index);
-    setSkus(newSkuList);
-    setEditSku(e);
-  };
-
-  // submit form for eddit sku
-  const submitEditSku = () => {
-    let skusArray = Array.from(skus);
-    skusArray.push(editSku);
-    setSkus(skusArray);
-    setEditSku(null);
-  };
-
-  // add new sku to product functions and cancel
-  const submitSkuForm = () => {
-    let skusArray = Array.from(skus);
-    skusArray.push(skuData);
-    setSkus(skusArray);
-    cancelSkuForm();
-  };
-
-  const cancelSkuForm = () => {
-    setAddvariant(false);
-  };
-
-  
   return (
     <div className="add-product-page-wrapper">
       <div className="ims-title mb-5">Add new item</div>
-
+      {/* this component for (title , description , collection , images) */}
       <ProductInformation
         productInfo={productInfo}
         setProductInfo={setProductInfo}
       />
+      {/* this component for show options and  select them */}
+      {varintType && (
+        <OptionCheckboxes
+          variants={varintType}
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
+          disable={skuArray.length > 0}
+        />
+      )}
 
-      <div className="select-variant-wrap mt-4">
-        <p>Choose options: </p>
-        {varintType != null && (
-          <>
-            {varintType.map((item) => {
-              return (
-                <CheckBox
-                  key={item._id}
-                  id={item._id}
-                  change={onChnageCheckBox}
-                  disabled={skus.length > 0}
-                >
-                  {item.name}
-                </CheckBox>
-              );
-            })}
-          </>
-        )}
-      </div>
-      <div className="mt-5 w-100">
-        {skus &&
-          skus.map((sku, i) => {
-            return (
-              <VariantItem
-                key={i}
-                variant={sku}
-                id={i}
-                deleteVariant={deleteVariant}
-                editVariant={editVariant}
-              />
-            );
-          })}
-      </div>
+      {/* show available skus  */}
+      {skuArray.length > 0 && (
+        <SkusComponent
+          skusArray={skuArray}
+          setSkuArray={setSkuArray}
+          optionTypes={selectedOptions}
+        />
+      )}
 
       <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
-        {/* show edit sku form or anothen component */}
-        {editSku == null ? (
-          <>
-            {addvariant == false ? (
-              // add sku form
-              <div className="col-12 col-md-4">
-                <BasicButton
-                  click={() => {
-                    setAddvariant(true);
-                  }}
-                >
-                  Add variant
-                </BasicButton>
-              </div>
-            ) : (
-              // add sku form
-              <div style={{ maxWidth: "600px", width: "100%" }}>
-                <SkuForm
-                  skuData={skuData}
-                  setSkuData={setSkuData}
-                  optionsType={options}
-                  onSubmit={submitSkuForm}
-                  onCancel={cancelSkuForm}
-                />
-              </div>
-            )}
-          </>
-        ) : (
-          // edit sku form
-          <SkuForm
-            skuData={editSku}
-            setSkuData={setEditSku}
-            optionsType={options}
-            onSubmit={submitEditSku}
-            onCancel={submitEditSku}
-          />
-        )}
+        <div className="col-12 col-md-4">
+          <BasicButton click={openSkuModal}>Add variant</BasicButton>
+        </div>
       </div>
-      {/* show edit sku form or anothen component */}
 
       <div
         className="d-flex justify-content-between align-items-center"
         style={{ marginTop: "80px", width: "100%" }}
       >
         <div className="col-5 col-md-4">
-          <BasicButton click={cancelForm} disabled={disbtn}>
+          <BasicButton click={cancelForm} loading={loading} cancelType={true}>
             Cancel
           </BasicButton>
         </div>
         <div className="col-5 col-md-4">
-          <BasicButton click={submitForm} disabled={disbtn}>
+          <BasicButton click={submitForm} loading={loading}>
             Submit
           </BasicButton>
         </div>
       </div>
+      {/* modal for add new sku  */}
+      <AddSkuModal
+        open={skuModalShow}
+        close={closeSkuModal}
+        optionType={selectedOptions}
+        update={updateSku}
+      />
     </div>
   );
 }

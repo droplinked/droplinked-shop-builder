@@ -76,6 +76,7 @@ export default function EmailModal({ close }) {
             click={close}
             loading={loading}
             disabled={loading}
+            cancelType={true}
           >
             Cancel
           </BasicButton>

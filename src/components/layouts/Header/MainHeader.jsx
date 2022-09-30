@@ -25,11 +25,11 @@ function MainHeader() {
   return (
     <Flex
       w='100%'
-      bgColor='#222'
+      bgColor='#181818'
       justifyContent='space-between'
       alignItems='center'
-      padding={{ base: "8px 20px", md: '8px 80px' }}
-      h={{ base: '52px', md: '70px' }}
+      padding={{ base: "8px 20px", md: '36px 80px' }}
+      h={{ base: '52px', md: '124px' }}
     >
       <Link to="/">
         <Text

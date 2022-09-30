@@ -34,6 +34,7 @@ export default function YesNoModal({ show, hide, text, click, header, loading  }
                                     bgColor="#4d4d4d"
                                     onClick={hide}
                                     loading={loading}
+                                    cancelType={true}
                                 >No</BasicButton>
                             </Box>
                             <Box w='40%'>

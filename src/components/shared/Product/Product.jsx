@@ -1,21 +1,25 @@
-import "./Product-style.scss"
+//import "./Product-style.scss";
 
-import { Link } from "react-router-dom"
+import { Box, AspectRatio } from "@chakra-ui/react";
+import { ProductContent, ProductImage, ProductTitle } from "./Product-style";
+import { Link } from "react-router-dom";
+import { USER_TYPE } from "../../../constant/user-types"
 
-export default function Product({  title, imageUrl, id , shopname}){
+export default function Product({ title, imageUrl, id, shopname , type }) {
 
-    return (
-        <div className="Lproduct-component-wrapper">
-            <Link to={`/${shopname}/merch/${id}`}>
-                <div className="product-image-st">
-                    <div className="ratio ratio-1x1">
-                        <img className={` main-image `} src={imageUrl} />
-                    </div>
-                    {/* {viewBtn && <div className="product-view-button"><p>View</p></div>} */}
-                </div>
-                <div className="brand-name">{title}</div>
-            </Link>        
-        </div>
-    )
-
+  let linkAddress  = (type == USER_TYPE.PRODUCER)? `/producer/merch/${id}` :`/${shopname}/merch/${id}`
+  
+  return (
+    <Box w="100%" m="0px 0px 0px 0px" p="5px" >
+      <Link to={linkAddress}>
+        <ProductContent>
+          <AspectRatio ratio={1}>
+            <ProductImage src={imageUrl ? imageUrl : ""} />
+          </AspectRatio>
+        </ProductContent>
+        <ProductTitle>{title}</ProductTitle>
+      </Link>
+    </Box>
+  );
 }
+

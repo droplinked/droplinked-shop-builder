@@ -1,7 +1,6 @@
 import { createContext, useState, useContext } from "react";
-import { BASE_URL } from "../../api/BaseUrl";
-
-import axios from "axios";
+import { removeCart, getCart } from "../../api/base-user/Cart-api";
+import { SHOP_TYPES } from "../../constant/shop-types";
 
 export const CartContext = createContext();
 
@@ -12,85 +11,99 @@ const CartProvider = ({ children }) => {
   );
 
   //update cartstate
-  const updateCart = () => {
-    let token = JSON.parse(localStorage.getItem("token"));
-    //get cart from backend and set in cart state
-    axios
-      .get(`${BASE_URL}/cart`, {
-        headers: { Authorization: "Bearer " + token },
-      })
-      .then((e) => {
-        let cart = e.data.data.cart;
-        setCart(cart);
-      })
-      .catch((e) => {
-        console.log(e.response.data.reason);
-      });
+  const updateCart = async () => {
+    let result = await getCart();
+    if (result.status === "success") {
+      let newCart = { ...result.data.cart, type: SHOP_TYPES.DROPLINKED };
+      if (newCart.items.length > 0) setCart(newCart);
+      else setCart(JSON.parse(localStorage.getItem("cart")) || null)
+    } else {
+      console.log(result.data.reason);
+    }
   };
 
   const addShopifyItemToCart = (item) => {
-    if (cart == null || cart.length == 0) {
-      let currentItems = [];
-      currentItems.push(item);
-      setCart(currentItems);
-      localStorage.setItem("cart", JSON.stringify(currentItems));
+    let newCart;
+    // build new cart if doesnt exist any p
+    if (cart == null || (cart.items.length == 0)) {
+      newCart = { type: SHOP_TYPES.SHOPIFY, items: [item] };
     } else {
-      let currentItems = [];
-      if (item.shopName != cart[0].shopName) {
-        currentItems.push(item);
+      // remove last cart if has item of droplinked type
+      if (cart.type == SHOP_TYPES.DROPLINKED) {
+        removeCart();
+        newCart = { type: SHOP_TYPES.SHOPIFY, items: [item] };
       } else {
-        for (let it of cart) currentItems.push(it);
-        let find = currentItems.find(
-          (current) => current.variant.id == item.variant.id
-        );
-        if (find == undefined) {
-          currentItems.push(item);
-        } else {
-          currentItems = currentItems.map((current) => {
-            if (current.variant.id == item.variant.id) {
-              return { ...current, amount: current.amount + item.amount };
-            } else {
-              return { ...current };
-            }
-          });
+        // check new and old items shop
+        let isSameShop = cart.items[0].shopName == item.shopName ? true : false;
+        // if item from current shop add to cart
+        if (isSameShop) {
+          let existVariant = cart.items.find(
+            (currentItem) => currentItem.variant.id == item.variant.id
+          );
+          // if item exist in cart only increase quantity
+          if (existVariant != undefined) {
+            let newItems = cart.items.map((currentItem) => {
+              if (currentItem.variant.id == item.variant.id) {
+                return {
+                  ...currentItem,
+                  amount: currentItem.amount + item.amount,
+                };
+              } else {
+                return currentItem;
+              }
+            });
+            newCart = { ...cart, items: newItems };
+          } else {
+            // add item with new variant
+            let newItems = [];
+            cart.items.forEach((currentItem) => newItems.push(currentItem));
+            newItems.push(item);
+            newCart = { ...cart, items: newItems };
+          }
+        } // if item be from new shop  build new cart
+        else {
+          newCart = { ...cart, items: [item] };
         }
       }
-      setCart(currentItems);
-      localStorage.setItem("cart", JSON.stringify(currentItems));
     }
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   const deleteItemFromCart = (variantId) => {
     let currentItems = [];
-    currentItems = cart.filter((currentItem) => {
+    currentItems = cart.items.filter((currentItem) => {
       if (currentItem.variant.id != variantId) return currentItem;
     });
-    setCart(currentItems);
-    localStorage.setItem("cart", JSON.stringify(currentItems));
+    let newCart 
+    if(currentItems.length == 0 )newCart=null
+    else newCart = {...cart ,items:currentItems}
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   const clearCart = () => {
-    localStorage.setItem("cart", JSON.stringify([]));
-    setCart([]);
+    let newCart = {items:[]}
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    setCart(newCart);
   };
 
   const changeQuantity = (quantity, variantId) => {
-    let currentCart = []
-    for(let item of cart){
-      currentCart.push(item)
+    let currentCart = [];
+    for (let item of cart.items) {
+      currentCart.push(item);
     }
 
     currentCart = currentCart.map((item) => {
-    
       if (item.variant.id == variantId) {
         return { ...item, amount: quantity };
       } else {
         return item;
       }
     });
-
-    setCart(currentCart);
-    localStorage.setItem("cart", JSON.stringify(currentCart));
+    let newCart = {...cart , items:currentCart}
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   const contextValues = {

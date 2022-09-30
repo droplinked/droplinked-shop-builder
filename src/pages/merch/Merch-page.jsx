@@ -1,43 +1,19 @@
 import "./Merch-page-style.scss";
 
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-// import { UseWalletInfo } from "../../context/wallet/WalletContext";
-// import { useProfile } from "../../context/profile/ProfileContext";
-// import { useToasty } from "../../context/toastify/ToastContext";
-// import { checkRules } from "../../services/nft-service/NFTcheck";
-// import { useCart } from "../../context/cart/CartContext";
+import { useParams} from "react-router-dom";
 import { getProduct } from "../../api/public/Product-api";
-//import { addSkuToCart } from "../../api/base-user/Cart-api";
 
-// import Carousel from "../../components/shared/Carousel/Carousel-component";
 import Loading from "../../components/shared/loading/Loading";
-// import plus from "../../assest/icon/plusIcon.png";
-// import minus from "../../assest/icon/minusIcon.png";
-// import SpcialDropDownComp from "./specialDropDown/Special-dropdown-component";
-// import BasicButton from "../../components/shared/BasicButton/BasicButton";
-import DroplinkedMerch from "./Droplinked-merch";
-import ShopifyMech from "./Shopify-merch";
+import DroplinkedMerch from "./droplinked-merch/Droplinked-merch";
+import ShopifyMech from "./shopify-merch/Shopify-merch";
+
 export default function MerchPage() {
+
   const [product, setProduct] = useState(null);
-//   const [images, setImages] = useState([]);
-//   const [quantity, setQuantity] = useState(1);
-//   const [disableBtn, setDisableBtn] = useState(false);
-  // state for change description limited
-//   const [readmore, setReadmore] = useState(false);
-
-//   const [optionTypes, setOptionTypes] = useState(null);
-//   const [optionsValue, setOptionsValue] = useState(null);
-//   const [options, setOptions] = useState(null);
-//   const [sku, setSku] = useState(null);
-
-//   const { userData, authenticate } = UseWalletInfo();
-//   const { profile } = useProfile();
-//   const { errorToast, successToast } = useToasty();
-//   const { updateCart } = useCart();
-//   const navigate = useNavigate();
 
   let params = useParams();
+
   let merchId = params.merchId;
   let shopname = params.shopname;
 
@@ -46,8 +22,8 @@ export default function MerchPage() {
   }, []);
 
   const getdata = async (merchId) => {
-    let pr = await getProduct(merchId);
-    setProduct(pr);
+    let result = await getProduct(merchId);
+    setProduct(result);
   };
 
 
@@ -61,7 +37,7 @@ export default function MerchPage() {
           {product.type == "DROPLINKED" ? (
             <DroplinkedMerch product={product} />
           ) : (
-            <ShopifyMech ruleset={product.ruleset} product={product.shopifyData} shopdomain={product.shopifyShopDomain} />
+            <ShopifyMech shopName={shopname} product={product} />
           )}
         </>
       )}

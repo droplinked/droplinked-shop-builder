@@ -215,7 +215,7 @@ export default function AddRule({ toggle }) {
                 </div>
                 <div className="w-100 d-flex justify-content-between align-items-center" style={{ marginTop: "80px" }}>
                     <div style={{ width: "40%" }}>
-                        <BasicButton click={toggle} loading={disableBtn} >Cancel</BasicButton>
+                        <BasicButton click={toggle} loading={disableBtn} cancelType={true}>Cancel</BasicButton>
                     </div>
                     <div style={{ width: "40%" }}>
                         <BasicButton click={submitForm} loading={disableBtn} >Submit</BasicButton>

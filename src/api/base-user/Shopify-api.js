@@ -70,7 +70,7 @@ export const confirmPayment = async (
     );
     return true;
   } catch (err) {
-    return err.response.reason;
+    return err.response.status
   }
 };
 

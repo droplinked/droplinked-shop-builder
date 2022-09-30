@@ -55,7 +55,7 @@ const OrderStatus = ({ orderStatus, loading, cancelOnClick, openProccessModal })
 
                         <Flex justifyContent="space-between" w='100%'>
                             <Box w='40%'>
-                                <BasicButton bgColor='#fa6653' click={cancelOnClick} disabled={loading}> Cancel order</BasicButton>
+                                <BasicButton bgColor='#fa6653' click={cancelOnClick} disabled={loading} cancelType={true}> Cancel order</BasicButton>
                             </Box>
                             <Box w='40%'>
                                 <BasicButton click={openProccessModal} disabled={loading} >{processButtonText()}</BasicButton>

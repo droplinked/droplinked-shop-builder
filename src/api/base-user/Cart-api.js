@@ -2,6 +2,20 @@ import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
 
+export const getCart = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  try {
+    const res = await axios.get(`${BASE_URL}/cart`, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    // return res.data.data.cart;
+    return res.data;
+  } catch (err) {
+    return err.response;
+  }
+};
+
 export const addCheckoutAddress = async (addressId) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
@@ -69,11 +83,10 @@ export const checkoutCart = async () => {
   }
 };
 
-
-export const addRootpaymentOrder = (orderId) => {
+export const addRootpaymentOrder = async(orderId) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
-    axios.post(
+    const res = axios.post(
       `${BASE_URL}/cart/root-payments-order-id`,
       { orderID: orderId },
       { headers: { Authorization: "Bearer " + token } }
@@ -81,5 +94,44 @@ export const addRootpaymentOrder = (orderId) => {
     console.log();
   } catch (err) {
     console.log();
+  }
+};
+
+export const removeCart = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const res = await axios.delete(`${BASE_URL}/cart`, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
+
+export const getEasypostShipping = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  try {
+    const res = await axios.get(`${BASE_URL}/cart/shipping-rate`, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return res.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};
+
+export const setEasypostShpping = async (shippingRate) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/cart/shipping-rate`,
+      { rateID: shippingRate },
+      { headers: { Authorization: "Bearer " + token } }
+    );
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
   }
 };

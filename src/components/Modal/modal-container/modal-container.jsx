@@ -15,9 +15,9 @@ export default function ModalContainer({ children, close, center }) {
           justifyContent: "center",
           alignItems: "center",
         }}
-        onClick={close}
+        onMouseDown={close}
       >
-        <div className="medium-modal-body" onClick={handleChildClick}>
+        <div className="medium-modal-body" onMouseDown={handleChildClick}>
           {children}
         </div>
       </div>

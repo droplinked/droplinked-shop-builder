@@ -1,0 +1,4 @@
+export const COLLECTION_TYPE = {
+  DEFAULT_PUBLIC: "DEFAULT_PUBLIC",
+  HOLDER: "HOLDER",
+};

@@ -58,7 +58,7 @@ const StripeComponent = ({cancel}) => {
             <form onSubmit={handleSubmit}>
                 <PaymentElement />
                 <Flex justifyContent='space-between'>
-                <BasicButton w='45%' mt='40px' p="12px 0px" bgColor='#e74c3c' click={cancel}>Cancel</BasicButton>
+                <BasicButton w='45%' mt='40px' p="12px 0px" bgColor='#e74c3c' click={cancel} cancelType={true}>Cancel</BasicButton>
                 <BasicButton w='45%' mt='40px' p="12px 0px" type="submit"  loading={loading}>Submit</BasicButton>
                 </Flex>
                 

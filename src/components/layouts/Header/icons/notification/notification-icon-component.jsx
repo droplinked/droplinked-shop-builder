@@ -20,8 +20,8 @@ export default function Notification({ click }) {
             justifyContent='center'
             alignItems='center'
             pos='relative'
-            w={{ base: "25px", md: '40px' }}
-            h={{ base: "25px", md: '40px' }}
+            w={{ base: "25px", md: '36px' }}
+            h={{ base: "25px", md: '36px' }}
             mr={{ base: '8px', md: '12px' }}
             cursor='pointer'
             onClick={click}>
@@ -33,13 +33,12 @@ export default function Notification({ click }) {
                     h='100%'
                     justifyContent='center'
                     alignItems='center'
-
                 >
                     <Box
                         bgColor='#8053ff'
                         borderRadius='50%'
-                        w='10px'
-                        h='10px'
+                        w='8px'
+                        h='8px'
                         animation={animation}
                     >
 

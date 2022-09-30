@@ -49,8 +49,8 @@ import {
         {/* <button className="edit-btn" onClick={decentrilize}>
           Record
         </button> */}
-        <button className="edit-btn" onClick={() => { editVariant(variant, id) }} id={id}>Edit</button>
-        <button className="delete-btn" onClick={() => { deleteVariant(id) }} id={id}>Delete</button>
+        <button className="edit-btn" onClick={editVariant} id={id}>Edit</button>
+        <button className="delete-btn" onClick={deleteVariant} id={id}>Delete</button>
       </div>
     )
   }

@@ -1,17 +1,15 @@
-import "./Shop-page-style.scss";
+//import "./Shop-page-style.scss";
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getShopInfoByShopname } from "../../api/public/Shop-api";
 import { getCollectionsByShopname } from "../../api/public/Collection-api";
+import { ShopPageContainer } from "./Shop-page-style";
+import { useProfile } from "../../context/profile/ProfileContext";
 
 import Loading from "../../components/shared/loading/Loading";
-
-import TopSection from "../../components/shared/TopSection/TopSection";
-import ProfileTopSection from "../Crashpunks-page/crashpunks top section/ProfileTopSection";
-import GalleryCarousel from "../Crashpunks-page/gallery carousel/GalleryCarousel";
-import ShopifyCollection from "./Shopify-collection";
-import DroplinkedCollectin from "./Droplinked-collection";
+import PublicShopPage from "./public/Public-shop-page";
+import OwnerShopPage from "./owner/Owner-shop-page";
 
 export default function ShopPage() {
   // state for shop information
@@ -20,6 +18,7 @@ export default function ShopPage() {
   const [collection, setCollections] = useState(null);
 
   let { shopname } = useParams();
+  const { profile } = useProfile();
 
   localStorage.setItem("currentShop", JSON.stringify(shopname));
 
@@ -38,64 +37,34 @@ export default function ShopPage() {
     setCollections(collections);
   };
 
-  // check if doesnt exist any product in all collections dont show any collection
-  const checkCollectionState = () => {
-    if (collection == null) return false;
-
-    let flag = false;
-    collection.collections.forEach((collection) => {
-      if (collection.products.length > 0) flag = true;
-    });
-    return flag;
+  const isOwner = () => {
+    if (profile && profile.type == "PRODUCER" && profile.shopName == shopname)
+      return true;
+    else return false;
   };
-  //console.log(shopname) crashpunks
+
 
   return (
     <>
       {shopData == null ? (
         <Loading />
       ) : (
-        <div className="shop-page-container">
-          {shopname == "crashpunks" ? (
-            <>
-              <ProfileTopSection />
-              <GalleryCarousel />
-              <div style={{ height: "30px" }}></div>
-            </>
+        <ShopPageContainer>
+          {isOwner() ? (
+            <OwnerShopPage
+              shopData={shopData}
+              shopName={shopname}
+              collections={collection}
+              update={getCollectionData}
+            />
           ) : (
-            <TopSection
-              pic={shopData.logo}
-              shopname={shopData.description}
-              instagram={shopData.instagramUrl ? shopData.instagramUrl : ""}
-              twitter={shopData.twitterUrl ? shopData.twitterUrl : ""}
-              discord={shopData.discordUrl ? shopData.discordUrl : ""}
-              web={shopData.webUrl ? shopData.webUrl : ""}
+            <PublicShopPage
+              shopData={shopData}
+              shopName={shopname}
+              collections={collection}
             />
           )}
-
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              margin: "40px 20px 0px 20px",
-            }}
-          >
-            {checkCollectionState() ? (
-              // if exist any product show collections that have product
-              <>
-                {shopData.imsType == "SHOPIFY" ? (
-                  <ShopifyCollection collection={collection} shopname={shopname}/>
-                ) : (
-                  <DroplinkedCollectin collection={collection} shopname={shopname}/>
-                )}
-                
-              </>
-            ) : (
-              <p className="no-collection-text">No collections listed yet!</p>
-            )}
-          </div>
-        </div>
+        </ShopPageContainer>
       )}
     </>
   );
