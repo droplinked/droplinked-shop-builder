@@ -30,7 +30,7 @@ export const ButtonWrapper = chakra("div", {
     w: "100%",
     justifyContent: "space-between",
     h: { base: "40px", md: "50px" },
-    px:'40px', 
+    px:{ base: "0px", md: "40px" }, 
    // mt: "20px",
   },
 });

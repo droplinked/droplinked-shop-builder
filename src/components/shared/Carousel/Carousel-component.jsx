@@ -122,8 +122,8 @@ export default function Carousel({ imagesArray }) {
                                 if (i >= startpoint && i < startpoint + 4) {
                                     return <Image
                                         key={i}
-                                        w='80px'
-                                        h='80px'
+                                        w={{base:'50px',md:'50px',lg:'70px'}}
+                                        h={{base:'50px',md:'50px',lg:'70px'}}
                                         borderRadius='8px'
                                         cursor='pointer'
                                         onClick={() => { setMainImage(i) }}

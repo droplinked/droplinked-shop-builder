@@ -90,7 +90,7 @@ export const QuantityButton = chakra("div", {
 export const ProductTitle = chakra("p", {
   baseStyle: {
     color: "#fff",
-    fontSize: "30px",
+    fontSize: {base:"26px",md:'22px',lg:'30px'},
     fontWeight: "600",
   },
 });
@@ -113,6 +113,7 @@ export const DetailWrapper = chakra("div", {
     pl: { base: "0px", md: "20px" },
     pb: { base: "0px", md: "80px" },
     mt: { base: "40px", md: "0px" },
+    mb: { base: "40px", md: "0px" },
     h: { base: "320px", md: "auto" },
     flexDir: "column",
     justifyContent: "space-between",

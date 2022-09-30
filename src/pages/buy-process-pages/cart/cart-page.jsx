@@ -37,7 +37,7 @@ const CartPage = () => {
     <Flex
       w="100%"
       flexDir="column"
-      px={{ base: "20px", md: "80px" }}
+      px={{ base: "20px", md: "80px"}}
       justifyContent="center"
       alignContent="center"
     >
@@ -54,7 +54,9 @@ const CartPage = () => {
         <Box
           w="100%"
           maxW="1000px"
-          p="40px 60px"
+         // p="40px 60px"
+          py='40px'
+          px={{ base: "20px", md: "20px" , lg:'60px'}}
         //  border="3px solid #4d4d4d"
         bgColor='#242424'
           borderRadius="8px"

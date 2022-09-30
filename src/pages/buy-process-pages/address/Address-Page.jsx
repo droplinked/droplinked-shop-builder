@@ -50,7 +50,7 @@ function AddressPage() {
       let result = await addCheckoutAddress(selectedAddress._id);
       setLoading(false);
       if (result == true) {
-        successToast("Address successfully added");
+       // successToast("Address successfully added");
         navigate("/shipping");
       } else {
         errorToast(result);
@@ -92,10 +92,10 @@ function AddressPage() {
           shopName: cart.items[0].shopName,
         };
         localStorage.setItem("checkout_id", JSON.stringify(checkoutId));
-        successToast("Address successfully added");
+        //successToast("Address successfully added");
         navigate("/shipping");
       } else {
-        errorToast(result.reason);
+        errorToast("Failed");
       }
       setLoading(false);
     }

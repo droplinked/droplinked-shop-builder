@@ -39,7 +39,7 @@ export const TitleWrapper = chakra("div", {
     align: "start",
     //maxW: "100%",
     w: "100%",
-    overflow:'hidden'
+    overflow: "hidden",
   },
 });
 
@@ -101,5 +101,62 @@ export const PriceText = chakra("p", {
     color: "#fff",
     fontWeight: "600",
     fontSize: "24",
+  },
+});
+
+export const ButtonControllerWrapper = chakra("div", {
+  baseStyle: {
+    d: "flex",
+    flexDir: "column",
+    justifyContent: "space-between",
+    w: { base: "100%", md: "35%" },
+  },
+});
+
+export const CounterWrapper = chakra("div", {
+  baseStyle: {
+    display: "flex",
+    w: "60%",
+    border: "1px solid gray",
+    borderRadius: "8px",
+   // mb: "10px",
+    px: "20px",
+  },
+});
+
+export const QuantityInput = chakra("input", {
+  baseStyle: {
+    color: "#fff",
+    border: "none",
+    w:'100%',
+    fontWeight: "600",
+    textAlign: "center",
+    outline: "none",
+    bgColor:'transparent',
+    _focus: {
+      border: "none",
+      outline: "none",
+    },
+    fontSize: { base: "16px", md: "20px" },
+  },
+});
+
+export const IconWrapper = chakra("div", {
+  baseStyle: {
+    d: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    cursor: "pointer",
+  },
+});
+
+export const TotalPerItem = chakra("div", {
+  baseStyle: {
+    w: "35%",
+    fontWeight: "600",
+    fontSize: { base: "16px", md: "20px" },
+    color: "#fff",
+    textAlign: "end",
+    h:'100%'
   },
 });

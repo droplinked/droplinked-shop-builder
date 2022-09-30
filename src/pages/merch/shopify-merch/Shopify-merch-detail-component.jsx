@@ -108,17 +108,20 @@ const ShopifyDetail = ({
     <DetailWrapper>
       {selectedVariant && (
         <>
+          <Box  mb={{base:'40px',md:'0px'}}>
             <ProductTitle>{product.title}</ProductTitle>
             <ProductShopname onClick={navigateToShoppage}>
               {shopName}
             </ProductShopname>
+          </Box>
 
-        
-            <Text fontWeight="600" fontSize="24px" color="#fff">
+          <Box>
+
+            <Text fontWeight="600" fontSize="24px" color="#fff"  mb={{base:'20px' , md:'10px',lg:'30px'}} >
               ${selectedVariant && selectedVariant.price}
             </Text>
 
-            <Flex justifyContent="space-between" w="100%" flexWrap="wrap">
+            <Flex justifyContent="space-between" w="100%" flexWrap="wrap" mb={{base:'20px' , md:'10px',lg:'30px'}} >
               {optionsList.map((option, i) => {
                 return (
                   <Box w="49%" key={i}>
@@ -140,7 +143,7 @@ const ShopifyDetail = ({
               })}
             </Flex>
 
-            <Flex>
+            <Flex mb={{base:'20px' , md:'10px',lg:'30px'}} >
               <QuantityButton
                 bgColor="#353536"
                 color="#b3b3b3"
@@ -174,6 +177,7 @@ const ShopifyDetail = ({
                   : "Sold out"}
               </BasicButton>
             </Box>
+          </Box>
         </>
       )}
     </DetailWrapper>
