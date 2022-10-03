@@ -36,6 +36,7 @@ function MainHeader() {
           color='#fff'
           fontSize={{ base: '24px', md: '28px' }}
           fontWeight='600'
+         letterSpacing='0.2em'
         >
           droplinked
         </Text>
