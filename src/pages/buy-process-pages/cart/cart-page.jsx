@@ -1,14 +1,16 @@
 import { Flex, Box, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { creatShopifySession } from "../../../api/base-user/Shopify-api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useParams} from "react-router-dom";
 
 import CreditCard from "./CreditCard-component";
 
 const CartPage = () => {
   const [cardData, setCardData] = useState(null);
   const [loading, setLoading] = useState(false);
+
   let navigate = useNavigate();
+  let { shopname } = useParams();
 
   useEffect(() => {
     if (cardData != null) {
@@ -24,14 +26,14 @@ const CartPage = () => {
         "session_id",
         JSON.stringify({ sessionId: result.data })
       );
-      navigate("/confirm");
+      navigate(`/${shopname}/confirm`);
     } else {
       setLoading(false);
     }
     setLoading(false);
   };
 
-  const backButton = () => navigate("/shipping");
+  const backButton = () => navigate(`/${shopname}/shipping`);
 
   return (
     <Flex

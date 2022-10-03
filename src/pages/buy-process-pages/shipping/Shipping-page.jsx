@@ -9,7 +9,7 @@ import {
   setEasypostShpping,
 } from "../../../api/base-user/Cart-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams} from "react-router-dom";
 import { useCart } from "../../../context/cart/CartContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
 
@@ -17,7 +17,9 @@ import Loading from "../../../components/shared/loading/Loading";
 import ShippingComponent from "./Shipping-component";
 import EasypostShipping from "./easypost-shipping-component";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+
 const ShippingPage = () => {
+
   const [shippings, setShippings] = useState(null);
   const [selectedShipping, setSelectedShipping] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -25,6 +27,7 @@ const ShippingPage = () => {
   let navigate = useNavigate();
   const { successToast, errorToast } = useToasty();
   const { cart, updateCart } = useCart();
+  let { shopname } = useParams();
 
   const getShippingPrice = () => {
     if (cart.type == SHOP_TYPES.DROPLINKED) {
@@ -102,7 +105,7 @@ const ShippingPage = () => {
             shippingPrice: result.data.checkout.shipping_rate.price,
           })
         );
-        navigate("/card");
+        navigate(`/${shopname}/card`);
         setLoading(false);
 
       } else {
@@ -113,7 +116,7 @@ const ShippingPage = () => {
     }
   };
 
-  const backButton = () => navigate("/address");
+  const backButton = () => navigate(`/${shopname}/address`);
 
   return (
     <Flex
