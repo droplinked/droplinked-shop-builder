@@ -12,7 +12,7 @@ const CollectionProducts = ({ products ,shopname , type }) => {
           {products.map((product, i) => {
             if (i < 4) {
               return (
-                <Box key={i} w={{ base: "50%", md: "25%" }} p="3px">
+                <Box key={i} w={{ base: "50%", md: "50%" , lg:'25%' }} p="3px">
                   {type == SHOP_TYPES.SHOPIFY ? (
                     <Product
                       shopname={shopname}
