@@ -9,7 +9,7 @@ import { IconWrapper } from "./ShopInfo-style";
 
 const ShopInfo = ({ ShopData }) => {
   return (
-    <Flex w="100%" flexDir="column" justifyContent="center" alignItems="center">
+    <Flex w="100%" flexDir="column" justifyContent="center" alignItems="center"  pt='30px'>
       <Flex
         borderRadius="50%"
         margin="auto 0px"
