@@ -22,7 +22,7 @@ const PublicShopPage = ({shopData , shopName , collections}) => {
 
   return (
     <>
-      {shopName == "crashpunks" ? (
+      {/* {shopName == "crashpunks" ? (
         // specific design for crahspunk shop and (TopSection) component for another shops
         <>
           <ProfileTopSection />
@@ -37,7 +37,7 @@ const PublicShopPage = ({shopData , shopName , collections}) => {
           discord={shopData.discordUrl ? shopData.discordUrl : ""}
           web={shopData.webUrl ? shopData.webUrl : ""}
         />
-      )}
+      )} */}
 
       <EmptyCollectionBox>
         {collectionHasProduct() ? (
