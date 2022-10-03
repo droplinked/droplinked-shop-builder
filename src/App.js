@@ -162,7 +162,7 @@ function App() {
               <Route path="/payment" element={<PaymentPage />} />
              
               <Route path=":shopname/card" element={<CartPage />} />
-              <Route path="/confirm" element={<ConfirmPage />} />
+              <Route path=":shopname/confirm" element={<ConfirmPage />} />
               <Route path="/crashpunks2" element={<Crashpunks2 />} />
               <Route path="/TestProduct" element={<TestProduct />} />
               <Route path="/testshopifymerchview" element={<TextView />} />
