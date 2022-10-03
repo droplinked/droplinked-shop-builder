@@ -150,13 +150,14 @@ function App() {
                   element={<CollectionPage />}
                 />
                 <Route path="checkout" element={<CheckoutPage />} />
+                <Route path="address" element={<AddressPage />} />
 
               </Route>
               {/* <Route path=":shopname" element={<ShopPage />}  /> */}
 
               <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
               {/* <Route path="checkout" element={<CheckoutPage />} /> */}
-              <Route path="/address" element={<AddressPage />} />
+              {/* <Route path="/address" element={<AddressPage />} /> */}
               <Route path="/payment" element={<PaymentPage />} />
               <Route path="/shipping" element={<ShippingPage />} />
               <Route path="/card" element={<CartPage />} />
