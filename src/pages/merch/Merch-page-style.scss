@@ -1,6 +1,6 @@
 .merch-page-container {
   width: 100%;
-  padding: 0px 80px;
+ // padding: 0px 80px;
   display: flex;
   flex-direction: column;
   height: auto;
@@ -130,7 +130,7 @@
 @media only screen and (max-width: 768px) {
   .merch-page-container {
     width: 100%;
-    padding: 0px 20px;
+   // padding: 0px 20px;
     display: flex;
     justify-content: center;
 

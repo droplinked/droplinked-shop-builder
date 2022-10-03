@@ -8,6 +8,7 @@ export const MerchPageWrapper = chakra("div", {
     w: "100%",
     flexWrap: "wrap",
     m: "auto",
+    pt:{base:'30px',md:'0px'}
   },
 });
 
