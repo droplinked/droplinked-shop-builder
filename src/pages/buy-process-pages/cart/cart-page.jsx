@@ -2,6 +2,7 @@ import { Flex, Box, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { creatShopifySession } from "../../../api/base-user/Shopify-api";
 import { useNavigate ,useParams} from "react-router-dom";
+import { useToasty } from "../../../context/toastify/ToastContext";
 
 import CreditCard from "./CreditCard-component";
 
@@ -10,6 +11,7 @@ const CartPage = () => {
   const [loading, setLoading] = useState(false);
 
   let navigate = useNavigate();
+  const { successToast, errorToast } = useToasty();
   let { shopname } = useParams();
 
   useEffect(() => {
@@ -28,6 +30,7 @@ const CartPage = () => {
       );
       navigate(`/${shopname}/confirm`);
     } else {
+      errorToast("Failed")
       setLoading(false);
     }
     setLoading(false);
