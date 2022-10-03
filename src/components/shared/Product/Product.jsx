@@ -18,9 +18,10 @@ export default function Product({ title, imageUrl, id, shopname, type }) {
       p="5px"
       border= "1px solid transparent"
       _hover={{
-        border: "1px solid #b3b3b3",
-        borderRadius:'8px',
-        transition: "all 0.5s ease-out"
+        // border: "1px solid #b3b3b3",
+         borderRadius:'8px',
+        bgColor:'#353535',
+        transition: "all 0.7s ease-out"
       }}
     >
       <Link to={linkAddress}>
