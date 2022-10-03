@@ -15,6 +15,7 @@ const ShopInfo = ({ ShopData }) => {
       justifyContent="center"
       alignItems="center"
       pt="30px"
+      px='12px'
     >
       <Flex
         borderRadius="50%"
