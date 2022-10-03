@@ -1,5 +1,5 @@
 import instaIcon from "../../../../assest/icon/insta.png";
-import discordIcon from "../../../../assest/icon/discord.png";
+import discordIcon from "../../../../assest/icon/newdiscord.png";
 import twitterIcon from "../../../../assest/icon/twitter.png";
 import webIcon from "../../../../assest/icon/web.png";
 import profilePic from "../../../../assest/image/crashpunks.gif";
