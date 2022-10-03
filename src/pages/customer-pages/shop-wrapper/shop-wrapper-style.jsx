@@ -16,6 +16,6 @@ export const ShopDetailWrapper = chakra("div", {
     borderRadius:'8px',
     bgColor:'#242424',
     w: {base:'100%' ,lg:"250px"},
-    mr: "30px",
+    mr: "40px",
   },
 });

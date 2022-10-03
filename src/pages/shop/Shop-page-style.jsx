@@ -11,6 +11,7 @@ export const ShopPageContainer = chakra("div", {
   baseStyle: {
     marginTop: "0px",
     animation: animation,
+    w:'100%'
   },
 });
 
@@ -28,6 +29,6 @@ export const EmptyCollectionBox = chakra("div", {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    margin: "40px 0px 0px 0px",
+    margin: "0px 0px 40px 0px",
   },
 });

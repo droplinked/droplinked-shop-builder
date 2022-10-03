@@ -30,7 +30,7 @@ const ShopWrapper = () => {
           <> {shopData && <ShopInfo ShopData={shopData} />}</>
         )}
       </ShopDetailWrapper>
-      <Box w={{ base: "100%", lg: "calc(100% - 280px)" }} pt={{base:'30px',lg:'0px'}}>
+      <Box w={{ base: "100%", lg: "calc(100% - 290px)" }} pt={{base:'30px',lg:'0px'}}>
         <Outlet />
       </Box>
     </ShopWrapperStyle>
