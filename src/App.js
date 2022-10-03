@@ -144,13 +144,13 @@ function App() {
               <Route path=":shopname" element={<ShopWrapper />}>
                 <Route index element={<ShopPage />} />
                 <Route path="merch/:merchId" element={<MerchPage />} />
+                <Route
+                  path="collection/:collectionId"
+                  element={<CollectionPage />}
+                />
               </Route>
               {/* <Route path=":shopname" element={<ShopPage />}  /> */}
 
-              <Route
-                path=":shopname/collection/:collectionId"
-                element={<CollectionPage />}
-              />
               <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
               <Route path="checkout" element={<CheckoutPage />} />
               <Route path="/address" element={<AddressPage />} />
