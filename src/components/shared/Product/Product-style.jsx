@@ -17,11 +17,11 @@ export const ProductImage = chakra("img", {
   baseStyle: {
     w: "100%",
     h: "100%",
-    _hover: {
-      opacity: "0.6",
-      transform: "scale(1.2)",
-      transition: "all 2s ease-out",
-    },
+    // _hover: {
+    //   opacity: "0.6",
+    //   transform: "scale(1.2)",
+    //   transition: "all 2s ease-out",
+    // },
   },
 });
 
