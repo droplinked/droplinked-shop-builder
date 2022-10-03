@@ -119,7 +119,7 @@ const ShippingPage = () => {
     <Flex
       w="100%"
       flexDir="column"
-      px={{ base: "20px", md: "80px" }}
+    //  px={{ base: "20px", md: "80px" }}
       justifyContent="center"
       alignItems="center"
     >

@@ -54,7 +54,7 @@ function AddressPage() {
       setLoading(false);
       if (result == true) {
        // successToast("Address successfully added");
-        navigate("/shipping");
+        navigate(`/${shopname}/shipping`);
       } else {
         errorToast(result);
       }
@@ -96,7 +96,7 @@ function AddressPage() {
         };
         localStorage.setItem("checkout_id", JSON.stringify(checkoutId));
         //successToast("Address successfully added");
-        navigate("/shipping");
+        navigate(`/${shopname}/shipping`);
       } else {
         errorToast("Failed");
       }
