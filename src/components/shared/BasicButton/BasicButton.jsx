@@ -36,7 +36,7 @@ export default function BasicButton({
             thickness="4px"
             speed="0.65s"
             emptyColor="#fff"
-            color="#222"
+            color='#8053ff'
             size="md"
           />
         </>

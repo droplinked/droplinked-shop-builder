@@ -1,16 +1,17 @@
 import React from 'react';
 import './style.css';
-import { Box } from '@chakra-ui/react';
+import { Box ,Spinner } from '@chakra-ui/react';
 
 function Loading() {
 	return (
 		<Box
-			display={'flex'}
+			display='flex'
 			alignItems="center"
-			justifyContent={'center'}
-			height="50vh"
+			justifyContent='center'
+			//height="50vh"
+			h='auto'
 		>
-			<div id="fountainG">
+			{/* <div id="fountainG">
 				<div id="fountainG_1" className="fountainG"></div>
 				<div id="fountainG_2" className="fountainG"></div>
 				<div id="fountainG_3" className="fountainG"></div>
@@ -19,7 +20,8 @@ function Loading() {
 				<div id="fountainG_6" className="fountainG"></div>
 				<div id="fountainG_7" className="fountainG"></div>
 				<div id="fountainG_8" className="fountainG"></div>
-			</div>
+			</div> */}
+			<Spinner size='xl' color='#8053ff' />
 		</Box>
 	);
 }
