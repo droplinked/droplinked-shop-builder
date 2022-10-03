@@ -151,6 +151,7 @@ function App() {
                 />
                 <Route path="checkout" element={<CheckoutPage />} />
                 <Route path="address" element={<AddressPage />} />
+                <Route path="shipping" element={<ShippingPage />} />
 
               </Route>
               {/* <Route path=":shopname" element={<ShopPage />}  /> */}
@@ -159,7 +160,7 @@ function App() {
               {/* <Route path="checkout" element={<CheckoutPage />} /> */}
               {/* <Route path="/address" element={<AddressPage />} /> */}
               <Route path="/payment" element={<PaymentPage />} />
-              <Route path="/shipping" element={<ShippingPage />} />
+             
               <Route path="/card" element={<CartPage />} />
               <Route path="/confirm" element={<ConfirmPage />} />
               <Route path="/crashpunks2" element={<Crashpunks2 />} />
