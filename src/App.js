@@ -12,6 +12,7 @@ import TextView from "./pages/test/testview"
 import ShippingPage from "./pages/buy-process-pages/shipping/Shipping-page"
 import CartPage from "./pages/buy-process-pages/cart/cart-page"
 import ConfirmPage from "./pages/buy-process-pages/confirm/confirm"
+import ShopWrapper from "./pages/customer-pages/shop-wrapper/shop-wrapper"
 
 import ViewCollection from "./pages/Producer-pages/view-collection/View-collection"
 
@@ -138,8 +139,11 @@ function App() {
                 />
               </Route>
               {/* producer pages */}
+              <Route path=":shopname" element={<ShopWrapper />}>
+                  <Route index element={<ShopPage />} />
+              </Route>
+              {/* <Route path=":shopname" element={<ShopPage />}  /> */}
 
-              <Route path=":shopname" element={<ShopPage />} />
               <Route path=":shopname/merch/:merchId" element={<MerchPage />} />
               <Route
                 path=":shopname/collection/:collectionId"
