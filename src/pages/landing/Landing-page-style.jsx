@@ -5,7 +5,7 @@ export const LandingPageWrapper = chakra("div", {
     display: "flex",
     h: "auto",
     flexDirection: { base: "column", md: "row" },
-    pl: { base: "20px", md: "80px" },
+    pl: { base: "20px", md: "120px" },
     w: "100%",
   },
 });

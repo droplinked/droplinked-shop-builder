@@ -40,8 +40,8 @@ export default function DefaulHeader({haventEmail}) {
 
         {((url == "/") || (url == "/:") || (url == "/email-confirmation") || (url == "/email-verification/:") || (url == "/producer/account-recovery/:token")) ?
         <>
-            <HeaderItem click={toggleLogin} mr={{ base: "10px", md: '20px' }} style={{ backgroundColor: "#181818" }}>Login</HeaderItem>
-            <HeaderItem click={togglesignup}>Join today</HeaderItem>
+            {/* <HeaderItem click={toggleLogin} mr={{ base: "10px", md: '20px' }} style={{ backgroundColor: "#181818" }}>Login</HeaderItem> */}
+            <HeaderItem click={toggleLogin}>Login</HeaderItem>
             </>
             :
             <WalletButton haventEmail={haventEmail}/>

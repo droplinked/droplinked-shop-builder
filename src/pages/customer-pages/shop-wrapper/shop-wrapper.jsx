@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { getShopInfoByShopname } from "../../../api/public/Shop-api";
 
 import ShopInfo from "../components/shop-info-component/ShopInfo";
-
+import CrashpunksInfo from "../components/crashpunks-info-component/crashpunks-info";
 const ShopWrapper = () => {
   const [shopData, setShop] = useState(null);
   let { shopname } = useParams();
@@ -24,9 +24,13 @@ const ShopWrapper = () => {
   return (
     <ShopWrapperStyle>
       <ShopDetailWrapper>
-        {shopData && <ShopInfo ShopData={shopData} />}
+        {shopname == "crashpunks" ? (
+          <CrashpunksInfo />
+        ) : (
+          <> {shopData && <ShopInfo ShopData={shopData} />}</>
+        )}
       </ShopDetailWrapper>
-      <Box w={{base:'100%',md:'calc(100% - 250px)'}}>
+      <Box w={{ base: "100%", md: "calc(100% - 250px)" }}>
         <Outlet />
       </Box>
     </ShopWrapperStyle>
