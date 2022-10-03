@@ -91,7 +91,6 @@ export const creatShopifySession = async (card) => {
     );
     return {status: 'success' , data : res.data.id};
   } catch (err) {
-    console.log(err);
     return {status: 'error' , data : err.response.message};
   }
 };

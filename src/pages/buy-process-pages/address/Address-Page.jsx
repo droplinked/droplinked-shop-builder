@@ -19,7 +19,8 @@ function AddressPage() {
   // navigate if not user
   let navigate = useNavigate();
   const { profile } = useProfile();
-
+  let { shopname } = useParams();
+  
   let token = JSON.parse(localStorage.getItem("token"));
   if (!token) navigate("/");
 
@@ -31,7 +32,7 @@ function AddressPage() {
   const { addressList } = useAddress();
   const { cart } = useCart();
 
-  let { shopname } = useParams();
+  
 
   const toggleAddressForm = () => {
     setAddressModal((p) => !p);
