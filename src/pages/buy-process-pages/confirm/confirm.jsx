@@ -1,7 +1,7 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { confirmPayment } from "../../../api/base-user/Shopify-api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate  ,useParams } from "react-router-dom";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useCart } from "../../../context/cart/CartContext";
 
@@ -11,7 +11,9 @@ const ConfirmPage = () => {
   const [loading, setLoading] = useState(false);
   const { successToast, errorToast } = useToasty();
   const { clearCart } = useCart();
+
   let navigate = useNavigate();
+  let { shopname } = useParams();
 
   const cart = JSON.parse(localStorage.getItem("cart"));
   const checkoutId = JSON.parse(localStorage.getItem("checkout_id"));
@@ -45,7 +47,7 @@ const ConfirmPage = () => {
     setLoading(false);
   };
 
-  const backButton = () => navigate('/card')
+  const backButton = () => navigate(`${shopname}/card`)
 
   return (
     <Box w="100%" maxW="1000px" mx="auto" px={{ base: "20px", md: "80px" }}>

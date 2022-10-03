@@ -1,9 +1,9 @@
 import "./basket-modal-style.scss";
 
-import { Text, Button , Box } from "@chakra-ui/react";
-import CartProvider, { useCart } from "../../../../../context/cart/CartContext";
-import BasicButton from "../../../../shared/BasicButton/BasicButton"
-import { useNavigate } from "react-router-dom";
+import { Text, Box } from "@chakra-ui/react";
+import { useCart } from "../../../../../context/cart/CartContext";
+import BasicButton from "../../../../shared/BasicButton/BasicButton";
+import { useNavigate ,useParams} from "react-router-dom";
 import { SHOP_TYPES } from "../../../../../constant/shop-types";
 
 import DroplinkedItem from "./basket-item/droplinked-item-cart";
@@ -13,9 +13,10 @@ export default function BasketModal({ close }) {
   const { cart } = useCart();
   console.log(cart);
   let navigate = useNavigate();
+  let { shopname } = useParams();
 
   const ClickCheckuot = () => {
-    navigate("/checkout");
+    navigate(`${shopname}/checkout`);
     close();
   };
 
@@ -64,7 +65,7 @@ export default function BasketModal({ close }) {
             Check out
           </Button> */}
           <Box mt="20px">
-          <BasicButton click={ClickCheckuot}> Check out</BasicButton>
+            <BasicButton click={ClickCheckuot}> Check out</BasicButton>
           </Box>
         </>
       )}

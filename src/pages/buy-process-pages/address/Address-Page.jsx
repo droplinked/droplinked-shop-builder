@@ -8,6 +8,7 @@ import { createCheckout } from "../../../api/producer/Shopify-api";
 import { useCart } from "../../../context/cart/CartContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
+import { useParams } from "react-router-dom";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import AddressComponent from "../../../components/shared/Address/address-component";
@@ -18,7 +19,8 @@ function AddressPage() {
   // navigate if not user
   let navigate = useNavigate();
   const { profile } = useProfile();
-
+  let { shopname } = useParams();
+  
   let token = JSON.parse(localStorage.getItem("token"));
   if (!token) navigate("/");
 
@@ -29,6 +31,8 @@ function AddressPage() {
   const { errorToast, successToast } = useToasty();
   const { addressList } = useAddress();
   const { cart } = useCart();
+
+  
 
   const toggleAddressForm = () => {
     setAddressModal((p) => !p);
@@ -51,7 +55,7 @@ function AddressPage() {
       setLoading(false);
       if (result == true) {
        // successToast("Address successfully added");
-        navigate("/shipping");
+        navigate(`/${shopname}/shipping`);
       } else {
         errorToast(result);
       }
@@ -93,7 +97,7 @@ function AddressPage() {
         };
         localStorage.setItem("checkout_id", JSON.stringify(checkoutId));
         //successToast("Address successfully added");
-        navigate("/shipping");
+        navigate(`/${shopname}/shipping`);
       } else {
         errorToast("Failed");
       }
@@ -108,7 +112,7 @@ function AddressPage() {
       flexDir="column"
       w="100%"
       h="auto"
-      px={{ base: "20px", md: "80px" }}
+    //  px={{ base: "20px", md: "80px" }}
     >
       <Text
         fontSize={{ base: "20px", md: "36px" }}
@@ -171,7 +175,7 @@ function AddressPage() {
                 <BasicButton
                   cancelType={true}
                   click={() => {
-                    navigate("/checkout");
+                    navigate(`/${shopname}/checkout`);
                   }}
                   loading={loading}
                 >

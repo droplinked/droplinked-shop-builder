@@ -100,7 +100,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
         <ModalContainer close={close}>
             <div className="login-modal-component">
                 <div className="title">Login
-                    <img className="close-btn" src={closePng} alt="" onClick={close} />
+                    {/* <img className="close-btn" src={closePng} alt="" onClick={close} /> */}
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}
                     style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}>

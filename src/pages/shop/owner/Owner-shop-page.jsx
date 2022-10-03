@@ -8,7 +8,7 @@ const OwnerShopPage = ({ shopData, shopName, update, collections }) => {
 
   return (
     <>
-      <EditableTopSection shopData={shopData} shopName={shopName} />
+      {/* <EditableTopSection shopData={shopData} shopName={shopName} /> */}
       <Flex mt="40px" flexDir="column" alignItems="center" w="100%" px={{base:'20px' , md:'80px'}}>
         {collections &&
           collections.collections.map((collection) => {
