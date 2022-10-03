@@ -15,7 +15,7 @@ export default function Product({ title, imageUrl, id, shopname, type }) {
     <Box
       w="100%"
       m="0px 0px 0px 0px"
-      p="5px"
+      p="10px"
       border= "1px solid transparent"
       _hover={{
         // border: "1px solid #b3b3b3",
