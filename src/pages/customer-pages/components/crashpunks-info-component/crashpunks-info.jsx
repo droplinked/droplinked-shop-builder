@@ -53,7 +53,7 @@ const CrashpunksInfo = () => {
         mt="30px"
       >
         <Flex
-          w={{ base: "auto", md: "50%" }}
+          w={{ base: "auto", md: "25%" }}
           justifyContent="center"
           alignItem="center"
         >
@@ -67,7 +67,7 @@ const CrashpunksInfo = () => {
         </Flex>
 
         <Flex
-          w={{ base: "auto", md: "50%" }}
+          w={{ base: "auto", md: "25%" }}
           justifyContent="center"
           alignItem="center"
         >
@@ -81,7 +81,7 @@ const CrashpunksInfo = () => {
         </Flex>
 
         <Flex
-          w={{ base: "auto", md: "50%" }}
+          w={{ base: "auto", md: "25%" }}
           justifyContent="center"
           alignItem="center"
         >
@@ -95,7 +95,7 @@ const CrashpunksInfo = () => {
         </Flex>
 
         <Flex
-          w={{ base: "auto", md: "50%" }}
+          w={{ base: "auto", md: "25%" }}
           justifyContent="center"
           alignItem="center"
         >

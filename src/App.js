@@ -142,17 +142,20 @@ function App() {
               </Route>
               {/* producer pages */}
               <Route path=":shopname" element={<ShopWrapper />}>
+
                 <Route index element={<ShopPage />} />
                 <Route path="merch/:merchId" element={<MerchPage />} />
                 <Route
                   path="collection/:collectionId"
                   element={<CollectionPage />}
                 />
+                <Route path="checkout" element={<CheckoutPage />} />
+
               </Route>
               {/* <Route path=":shopname" element={<ShopPage />}  /> */}
 
               <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
-              <Route path="checkout" element={<CheckoutPage />} />
+              {/* <Route path="checkout" element={<CheckoutPage />} /> */}
               <Route path="/address" element={<AddressPage />} />
               <Route path="/payment" element={<PaymentPage />} />
               <Route path="/shipping" element={<ShippingPage />} />

@@ -62,7 +62,7 @@ const ShopInfo = ({ ShopData }) => {
         mt="30px"
       >
         {ShopData.discordUrl != "" && (
-          <Flex w={{base:"auto" ,md:"50%"}} justifyContent="center" alignItem="center">
+          <Flex w={{base:"auto" ,md:"25%"}} justifyContent="center" alignItem="center">
             <IconWrapper
               href={`https://discord.gg/${ShopData.discordUrl}`}
               target="_blank"
@@ -73,7 +73,7 @@ const ShopInfo = ({ ShopData }) => {
           </Flex>
         )}
         {ShopData.webUrl != "" && (
-          <Flex w={{base:"auto" ,md:"50%"}} justifyContent="center" alignItem="center">
+          <Flex w={{base:"auto" ,md:"25%"}} justifyContent="center" alignItem="center">
             <IconWrapper
               href={`https://${ShopData.webUrl}`}
               target="_blank"
@@ -84,7 +84,7 @@ const ShopInfo = ({ ShopData }) => {
           </Flex>
         )}
         {ShopData.twitterUrl != "" && (
-          <Flex w={{base:"auto" ,md:"50%"}} justifyContent="center" alignItem="center">
+          <Flex w={{base:"auto" ,md:"25%"}} justifyContent="center" alignItem="center">
             <IconWrapper
               href={`https://twitter.com/${ShopData.twitterUrl}`}
               target="_blank"
@@ -95,7 +95,7 @@ const ShopInfo = ({ ShopData }) => {
           </Flex>
         )}
         {ShopData.instagramUrl != "" && (
-          <Flex w={{base:"auto" ,md:"50%"}} justifyContent="center" alignItem="center">
+          <Flex w={{base:"auto" ,md:"25%"}} justifyContent="center" alignItem="center">
             <IconWrapper
               href={`https://www.instagram.com/${ShopData.instagramUrl}`}
               target="_blank"

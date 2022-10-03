@@ -5,8 +5,8 @@ export const CheckoutPageWrapper = chakra("div", {
     d: "flex",
     w: "100%",
     maxW: "1200px",
-    m: "0px auto",
-    px: { base: "20px", md: "80px" },
+    m: { base: "30px auto 0px auto", md: "0px auto" },
+    //  px: { base: "20px", md: "80px" },
     flexDirection: "column",
   },
 });
@@ -18,20 +18,20 @@ export const PriceWrapper = chakra("div", {
     justifyContent: "space-between",
     // borderTop: "2px",
     // borderColor: "#8053ff",
-   // pt: "20px",
-   px:'40px', 
-   my:'36px'
+    // pt: "20px",
+    px: "40px",
+    my: "36px",
   },
 });
 
 export const ButtonWrapper = chakra("div", {
   baseStyle: {
-    display:'flex',
+    display: "flex",
     w: "100%",
     justifyContent: "space-between",
     h: { base: "40px", md: "50px" },
-    px:{ base: "0px", md: "40px" }, 
-   // mt: "20px",
+ //   px: { base: "0px", md: "40px" },
+    // mt: "20px",
   },
 });
 
