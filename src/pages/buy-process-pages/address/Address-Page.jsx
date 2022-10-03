@@ -8,6 +8,7 @@ import { createCheckout } from "../../../api/producer/Shopify-api";
 import { useCart } from "../../../context/cart/CartContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
+import { useParams } from "react-router-dom";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import AddressComponent from "../../../components/shared/Address/address-component";
@@ -29,6 +30,8 @@ function AddressPage() {
   const { errorToast, successToast } = useToasty();
   const { addressList } = useAddress();
   const { cart } = useCart();
+
+  let { shopname } = useParams();
 
   const toggleAddressForm = () => {
     setAddressModal((p) => !p);
@@ -108,7 +111,7 @@ function AddressPage() {
       flexDir="column"
       w="100%"
       h="auto"
-      px={{ base: "20px", md: "80px" }}
+    //  px={{ base: "20px", md: "80px" }}
     >
       <Text
         fontSize={{ base: "20px", md: "36px" }}
@@ -171,7 +174,7 @@ function AddressPage() {
                 <BasicButton
                   cancelType={true}
                   click={() => {
-                    navigate("/checkout");
+                    navigate(`/${shopname}/checkout`);
                   }}
                   loading={loading}
                 >

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import { useCart } from "../../../context/cart/CartContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import {
@@ -23,7 +23,9 @@ function CheckoutPage() {
 
   const { profile } = useProfile();
   const { cart } = useCart();
+
   let navigate = useNavigate();
+  let { shopname } = useParams();
 
   const closeEmailModal = () => setShowEmailModal(false);
 
@@ -49,7 +51,7 @@ function CheckoutPage() {
       setShowEmailModal(true);
       return;
     }
-    navigate("/address");
+    navigate(`/${shopname}/address`);
   };
 
   const currentShop = JSON.parse(localStorage.getItem("currentShop"));

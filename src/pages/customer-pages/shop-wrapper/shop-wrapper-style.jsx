@@ -6,7 +6,7 @@ export const ShopWrapperStyle = chakra("div", {
     w: "100%",
     px: {base:'20px',md:"80px"},
     justifyContent: "space-between",
-    flexDir: { base: "column", md: "row" },
+    flexDir: { base: "column",md:'column', lg: "row" },
   },
 });
 
@@ -15,7 +15,7 @@ export const ShopDetailWrapper = chakra("div", {
     justifyContent: "center",
     borderRadius:'8px',
     bgColor:'#242424',
-    w: {base:'100%' ,md:"250px"},
+    w: {base:'100%' ,lg:"250px"},
     mr: "30px",
   },
 });
