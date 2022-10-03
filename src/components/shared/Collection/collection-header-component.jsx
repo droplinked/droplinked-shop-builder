@@ -15,7 +15,7 @@ const CollectionHeader = ({ title, openSnipedModal, seeMore }) => {
       
       <Text
         color="#fff"
-        fontSize={{ base: "14px", sm: "16px", md: "28px" }}
+        fontSize={{ base: "18px", sm: "16px", md: "28px" }}
         fontWeight="600"
         onClick={seeMore}
         cursor="pointer"
@@ -37,7 +37,7 @@ const CollectionHeader = ({ title, openSnipedModal, seeMore }) => {
             ml="10px"
             cursor="pointer"
             fontWeight='600'
-            fontSize={{base:'16px', md:'20px'}}
+            fontSize={{base:'14px', md:'20px'}}
             _hover={{
               bgColor: "#555558",
             }}
