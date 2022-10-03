@@ -16,7 +16,7 @@ export default function SignUpModal({ close, switchToggle, shopname }) {
         <ModalContainer close={close}>
             <div className="register-modal-container">
                 <div className="title">Create a free account
-                    <img className="close-btn" src={closePng} alt="" onClick={close} />
+                    {/* <img className="close-btn" src={closePng} alt="" onClick={close} /> */}
                 </div>
                 {(params.shopname != undefined)
                     ?
