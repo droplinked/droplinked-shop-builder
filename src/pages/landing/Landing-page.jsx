@@ -1,6 +1,6 @@
 import { useState, lazy, Suspense } from "react";
 import { useSearchParams } from "react-router-dom";
-import { keyframes, usePrefersReducedMotion } from "@chakra-ui/react";
+import { keyframes, usePrefersReducedMotion, Text } from "@chakra-ui/react";
 import {
   LandingPageWrapper,
   InputContainrt,
@@ -37,7 +37,6 @@ const keyframe_leftanimation = keyframes`
 `;
 
 export default function LandingPage() {
-  
   const prefersReducedMotion = usePrefersReducedMotion();
   let [searchParams, setSearchParams] = useSearchParams();
   let urlParam = searchParams.get("modal");
@@ -104,6 +103,19 @@ export default function LandingPage() {
         <LandingpageImage />
         {/* image */}
       </LandingPageWrapper>
+
+      <Text
+        color="#f6f6f6"
+        w="100%"
+        textAlign="start"
+        fontWeight="400"
+        fontSize={{ base: "18px", md: "1.95vw" }}
+        px={{ base: "20px", md: "120px" }}
+      >
+        droplinked provides anyone with the deCommerce tools needed to win in
+        web3.
+      </Text>
+
       <Suspense fallback={<></>}>
         {showSignup && (
           <SignUpModal
