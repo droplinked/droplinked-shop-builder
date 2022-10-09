@@ -2,6 +2,7 @@ import { chakra } from "@chakra-ui/react";
 
 export const SelectInputComponent = chakra("input", {
   baseStyle: {
+    w:'100%',
     fontWeight: "600",
     fontSize: { base: "14px", md: "20px" },
     color: "#DBDBDB",
@@ -21,6 +22,12 @@ export const DropDownWrapper = chakra("div", {
   baseStyle: {
     border: "1px solid #8053ff",
     borderRadius: "8px",
+    maxH:'200px',
+    pos:'absolute',
+    overflowY:'scroll',
+    zIndex:'150',
+    bgColor:'#353536',
+    w:'100%'
   },
 });
 

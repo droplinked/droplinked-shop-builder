@@ -1,13 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import { Box, Input } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import {
   SelectInputComponent,
   DropDownWrapper,
   DropDownItem,
 } from "./SelectInput-style";
 
-const SelectInput = ({ valueList, placeholder }) => {
-  const [value, setValue] = useState("");
+const SelectInput = ({ valueList, value , change ,placeholder }) => {
+
+ // const [value, setValue] = useState("");
+
   const [showDropdown, setShowDropdown] = useState(false);
 
   const box = useRef(null);
@@ -18,15 +20,16 @@ const SelectInput = ({ valueList, placeholder }) => {
 
   const openDropDown = () => setShowDropdown((p) => !p);
 
-  const changeValue = (e) => setValue(e.target.value);
+  const changeValue = (e) => change(e.target.value);
+
 
   const selectItem = (value) => {
-    setValue(value);
+    change(value);
     closeDropDown();
   };
 
   return (
-    <Box w="100%" ref={box}>
+    <Box w="100%" ref={box} pos='relative'>
       <SelectInputComponent
         placeholder={placeholder}
         onChange={changeValue}
