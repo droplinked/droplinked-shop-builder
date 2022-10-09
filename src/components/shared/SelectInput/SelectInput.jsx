@@ -5,6 +5,7 @@ import {
   DropDownWrapper,
   DropDownItem,
 } from "./SelectInput-style";
+
 const SelectInput = ({ valueList, placeholder }) => {
   const [value, setValue] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
@@ -35,13 +36,17 @@ const SelectInput = ({ valueList, placeholder }) => {
       />
       {showDropdown && (
         <DropDownWrapper>
-          {valueList.filter((item) => item.includes(value)).map((item) => {
-            return (
-              <DropDownItem onClick={() => selectItem(item)}>
-                {item}
-              </DropDownItem>
-            );
-          })}
+          {valueList
+            .filter((item) =>
+              item.value.toLowerCase().includes(value.toLowerCase())
+            )
+            .map((item) => {
+              return (
+                <DropDownItem onClick={() => selectItem(item.value)}>
+                  {item.label}
+                </DropDownItem>
+              );
+            })}
         </DropDownWrapper>
       )}
     </Box>
