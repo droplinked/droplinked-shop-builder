@@ -1,38 +1,27 @@
-import "./test.scss"
-// delete last change
-import { AppConfig, showConnect, UserSession } from "@stacks/connect";
+import "./test.scss";
 
-const appConfig = new AppConfig(["store_write", "publish_data"]);
-
-export const userSession = new UserSession({ appConfig });
+import axios from "axios";
+import SelectInput from "../../components/shared/SelectInput/SelectInput"
 
 
+console.log("test");
 
-function disconnect() {
-  userSession.signUserOut("/");
-}
+const getShopInfoByShopname = async () => {
+  const res = await axios.get("https://restcountries.com/v3.1/all");
+  console.log(res.data);
+};
+
+
+getShopInfoByShopname();
 
 const Test = () => {
+
+  const valueList = ['aa' , 'bb' , 'cc' , 'dd' ]
   return (
     <div className="test-wrapper">
+       <SelectInput valueList={valueList} placeholder='Choose country...' />
       <div className="test-container">
-      {userSession.isUserSignedIn() ? (
-        <div>
-          <button className='test-button' onClick={disconnect}>
-            Disconnect Wallet
-          </button>
-          <p className="test-text">
-            mainnet: {userSession.loadUserData().profile.stxAddress.mainnet}
-          </p>
-          <p className="test-text">
-            testnet: {userSession.loadUserData().profile.stxAddress.testnet}
-          </p>
-        </div>
-      ) : (
-        <button className='test-button'>
-          Connect Wallet
-        </button>
-      )}
+       
       </div>
     </div>
   );
@@ -58,3 +47,4 @@ const Test = () => {
 };
 
 export default Test;
+
