@@ -4,7 +4,7 @@ import {
     standardPrincipalCV,
   } from "@stacks/transactions"
   import { openContractCall } from "@stacks/connect"
-  import { StacksTestnet } from "@stacks/network"
+  import { StacksTestnet, StacksMainnet} from "@stacks/network"
   import { createHash } from "crypto-browserify"
   import { getOptionNameById } from "../../utils/optionName"
   import { userSession } from "../../../../services/wallet-auth/auth"
@@ -18,7 +18,7 @@ import {
         openContractCall({
           contractAddress: "ST3JDMA2CZV5H6YCGMGCR8A3JDZTFV5TVR43FR6F9",
           contractName: "droplinked-beta1",
-          network: new StacksTestnet(),
+          network: new StacksMainnet(),
           functionName: "add-product",
           functionArgs: [
             uintCV(variant.price * 1e6),
