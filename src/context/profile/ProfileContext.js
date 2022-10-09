@@ -7,7 +7,7 @@ import {
   AppConfig,
   openSignatureRequestPopup,
 } from "@stacks/connect";
-import { StacksTestnet } from "@stacks/network";
+import { StacksTestnet, StacksMainnet } from "@stacks/network";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 export const userSession = new UserSession({ appConfig });
@@ -70,7 +70,7 @@ const ProfileProvider = ({ children }) => {
         const message = userSession.loadUserData().profile.stxAddress.mainnet;
         openSignatureRequestPopup({
           message,
-          network: new StacksTestnet(), // for mainnet, `new StacksMainnet()`
+          network: new StacksMainnet(), // for mainnet, `new StacksMainnet()`
           appDetails: {
             name: "FLATLAY",
             icon: "https://flatlay.io/assets/images/shared/Flatlay-Logo.svg",

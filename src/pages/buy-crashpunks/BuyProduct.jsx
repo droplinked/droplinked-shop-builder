@@ -158,12 +158,12 @@ function BuyProduct() {
 
 
 
-                    <div className="botom-wrapper">
-                        <div className={`${(readmore) ? "readmore-orginal" : "readmore-limited"}`}
+                    <div className="merch-description-wrapper">
+                        <div className={`merch-description ${(readmore) ? "" : "merch-limite-description"}`}
                             dangerouslySetInnerHTML={{ __html: product.body_html }}>
                         </div>
 
-                        <div className="readmore-btn"
+                        <div className="merch-readmore-button"
                         onClick={() => setReadmore(p => !p)}
                         >Read More</div>
                     </div>
