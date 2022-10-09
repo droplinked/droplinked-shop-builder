@@ -20,7 +20,7 @@ export  default function ToastifyProvider({ children }) {
             {children}
             <ToastContainer
                 position="bottom-right"
-                autoClose={5000}
+                autoClose={2500}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
@@ -40,3 +40,5 @@ export function useToasty(){
     return { ...toast }
 
 }
+
+
