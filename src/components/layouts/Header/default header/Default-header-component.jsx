@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DROPDOWN_TYPE } from "../dropdowns/dropdown.type";
-
+import { Box } from "@chakra-ui/react";
 import HeaderItem from "../components/header-button/Header-btn-component";
 import SignUpModal from "../../../Modal/Register-modal/SignUpModal";
 import LoginModal from "../../../Modal/Login-modal/LoginModal";
@@ -58,11 +58,12 @@ export default function DefaulHeader({ haventEmail }) {
           <HeaderItem click={toggleLogin}>Login</HeaderItem>
         </>
       ) : (
-        <>
+        <Box d='flex' alignItems='center'>
           <Cart clickBasket={openBasket} />
+          <Box mr='12px'></Box>
           <WalletButton haventEmail={haventEmail} />
           {dropdown && <DropdownContainer close={close} dropdown={dropdown} />}
-        </>
+        </Box>
       )}
 
       {/* show modals base on state */}
