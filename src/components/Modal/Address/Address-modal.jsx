@@ -1,7 +1,7 @@
 import { Box, Flex, FormControl, FormLabel } from "@chakra-ui/react";
 import { useState } from "react";
 import { useAddress } from "../../../context/address/AddressContext";
-import { COUNTRIES } from "./address-list-constant";
+import { COUNTRIES, US_STATES } from "./address-list-constant";
 
 import FormInput from "../../shared/FormInput/FormInput";
 import BasicButton from "../../shared/BasicButton/BasicButton";
@@ -57,8 +57,8 @@ export default function AddressForm({ type, addressBook, close }) {
     if (error == "city") setError("");
   };
 
-  const ChangeState = (e) => {
-    setState(e.target.value);
+  const ChangeState = (thisState) => {
+    setState(thisState);
     if (error == "state") setError("");
   };
 
@@ -194,6 +194,38 @@ export default function AddressForm({ type, addressBook, close }) {
               placeholder={"Country"}
             />
           </FormControl>
+
+          {/* US_STATES */}
+          {country == "United States" ? (
+            <FormControl maxW="45%" w="45%">
+              <FormLabel
+                w="100%"
+                htmlFor="input-com"
+                fontWeight="600"
+                fontSize={{ base: "14px", md: "20px" }}
+                color="#fff"
+              >
+                State/province
+              </FormLabel>
+
+              <SelectInput
+                valueList={US_STATES}
+                value={state}
+                change={ChangeState}
+                placeholder={"State/province"}
+              />
+            </FormControl>
+          ) : (
+            <FormInput
+              w="45%"
+              label={"State/province"}
+              placeholder={"State/province"}
+              value={state}
+              changeValue={(e)=>ChangeState(e.target.value)}
+              isError={error == "state" && "State/province is required"}
+            />
+          )}
+
           {/* <FormInput
                         w='45%'
                         label={"Country"}
@@ -202,7 +234,9 @@ export default function AddressForm({ type, addressBook, close }) {
                         changeValue={ChangeCountry}
                         isError={(error == "country") && "Country is required"}
                     /> */}
+        </Flex>
 
+        <Flex mb="30px" justifyContent="space-between" alignItems="center">
           <FormInput
             w="45%"
             label={"City"}
@@ -211,17 +245,7 @@ export default function AddressForm({ type, addressBook, close }) {
             changeValue={ChangeCity}
             isError={error == "city" && "City is required"}
           />
-        </Flex>
 
-        <Flex mb="30px" justifyContent="space-between" alignItems="center">
-          <FormInput
-            w="45%"
-            label={"State/province"}
-            placeholder={"State/province"}
-            value={state}
-            changeValue={ChangeState}
-            isError={error == "state" && "State/province is required"}
-          />
           <FormInput
             w="45%"
             label={"Zip"}
