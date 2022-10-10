@@ -16,7 +16,7 @@ export const ItemImage = chakra("img", {
   baseStyle: {
     w: "25%",
     h: "100%",
-    mr: "10px",
+   // mr: "10px",
     alt: "Merch",
     cursor: "pointer",
   },
@@ -26,6 +26,7 @@ export const ItemDetail = chakra("div", {
   baseStyle: {
     w: "75%",
     h: "100%",
+    pl:'10px',
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
