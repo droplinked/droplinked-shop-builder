@@ -179,7 +179,7 @@ function AddressPage() {
                   }}
                   loading={loading}
                 >
-                  back
+                  Back
                 </BasicButton>
               </Box>
               <Box w="30%">

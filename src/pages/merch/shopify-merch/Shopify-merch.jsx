@@ -9,7 +9,6 @@ import {
   MerchPageWrapper,
   DescriptionWrapper,
   DescriptionText,
-  ReadmoreButton,
   ReadmoreIconWrapper,
 } from "../styles/Merch-style";
 import { FiArrowDownCircle } from "react-icons/fi";
@@ -32,25 +31,37 @@ const ShopifyMech = ({ shopName, product }) => {
     return { url: img.src };
   });
 
-  const checkGated = async () => {
-    const Rules = product.ruleset.rules.map((rule) => rule.address);
-    setLoading(true);
-    checkRules(userData.profile.stxAddress.mainnet, Rules)
-      .then((e) => {
-        if (e) {
-          setLoading(false);
-          return true;
-        } else {
-          setLoading(false);
-          errorToast("Required NFT not found, accessed denied");
-          return false;
-        }
-      })
-      .catch((e) => {
-        setLoading(false);
-        errorToast(e.response.data);
-        return false;
-      });
+  // const checkGated = async () => {
+  //   const Rules = product.ruleset.rules.map((rule) => rule.address);
+  //   setLoading(true);
+  //   checkRules(userData.profile.stxAddress.mainnet, Rules)
+  //     .then((e) => {
+  //       if (e) {
+  //         setLoading(false);
+  //         return true;
+  //       } else {
+  //         setLoading(false);
+  //         errorToast("Required NFT not found, accessed denied");
+  //         return false;
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       setLoading(false);
+  //       errorToast(e.response.data);
+  //       return false;
+  //     });
+  // };
+
+  const addToPreCard = () => {
+    const itemObject = {
+      amount: quantity,
+      product: product.shopifyData,
+      shopName: product.shopifyShopDomain,
+      variant: selectedVariant,
+      productId: product._id,
+      productRule: (product.ruleset == undefined) ? undefined : product.ruleset.rules,
+    };
+    addShopifyItemToCart(itemObject);
   };
 
   const addItemToBasket = async () => {
@@ -60,7 +71,8 @@ const ShopifyMech = ({ shopName, product }) => {
     // }
 
     if (profile == null) {
-      signinWithaWallet();
+      // signinWithaWallet();
+      addToPreCard();
       return;
     }
 

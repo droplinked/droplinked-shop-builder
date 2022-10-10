@@ -17,3 +17,23 @@ export const IconImage = chakra("img", {
     pos: "absolute",
   },
 });
+
+export const ItemCounter = chakra("div", {
+  baseStyle: {
+    w: { base: "15px", md: "20px" },
+    h: { base: "15px", md: "20px" },
+    color: "#181818",
+    fontSize: { base: "8px", md: "12px" },
+    pos: "absolute",
+    right: "-5px",
+    top: "-5px",
+    bgColor: "#8053ff",
+    borderRadius: "50%",
+    fontWeight: "600",
+    border: "2px solid #8053ff",
+    d: "flex",
+    justifyContent: "center",
+    justifyItems: "center",
+    alignItem: "center",
+  },
+});

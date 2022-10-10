@@ -26,8 +26,10 @@ export default function PageWrapper() {
   }, []);
 
   useEffect(() => {
+
     let token = JSON.parse(localStorage.getItem("token"));
     if (token != null || token != undefined) {
+      console.log("run");
      if (isCustomer()) updateCart();
       if (!isCustomer()) updateShop();
       updateAddressList();

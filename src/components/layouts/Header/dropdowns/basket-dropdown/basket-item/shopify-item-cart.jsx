@@ -31,24 +31,29 @@ const ShopifyCartItem = ({ product, amount, variant }) => {
           >
             {product.title}
           </ItemTitle>
-          <ItemPrice>${variant.price}</ItemPrice>
+          <Box w="20px" h="20px">
+            <CloseIcon
+              onClick={removeFromCart}
+              style={{
+                fill: "#e74c3c",
+                cursor: "pointer",
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          </Box>
         </Box>
 
-        <Box w="100%" display="flex" justifyContent="space-between">
+        <Box
+          w="100%"
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <ItemQuantity>Quantity: {amount}</ItemQuantity>
+          <ItemPrice>${variant.price}</ItemPrice>
         </Box>
       </ItemDetail>
-      <Box pos="absolute" w="20px" h="20px" right="0px" bottom="10px">
-        <CloseIcon
-          onClick={removeFromCart}
-          style={{
-            fill: "#e74c3c",
-            cursor: "pointer",
-            width: "100%",
-            height: "100%",
-          }}
-        />
-      </Box>
     </CartItemWrapper>
   );
 };

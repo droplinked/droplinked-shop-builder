@@ -105,7 +105,7 @@ export default function Carousel({ imagesArray }) {
                                 return (<Image
                                     src={image}
                                     animation={imageAnimation}
-                                    borderRadius='16px'
+                                    borderRadius='8px'
                                     overflow='hidden'
                                     mb='15px'
                                 />)

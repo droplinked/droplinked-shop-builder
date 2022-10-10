@@ -7,7 +7,7 @@ import {
   AppConfig,
   openSignatureRequestPopup,
 } from "@stacks/connect";
-import { StacksTestnet } from "@stacks/network";
+import { StacksTestnet, StacksMainnet } from "@stacks/network";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 export const userSession = new UserSession({ appConfig });
@@ -23,8 +23,11 @@ const ProfileProvider = ({ children }) => {
 
   const addProfile = async(payload) => {
     localStorage.setItem("token", JSON.stringify(payload.jwt));
-    dispatch({ type: "ADD_PROFILE", payload });
-    
+    localStorage.setItem("profile", JSON.stringify(payload.user));
+    let time = new Date().getTime();
+    localStorage.setItem("login-time", JSON.stringify(time));
+
+    window.location.reload();
   };
 
   const updateProfile = (payload) => {
@@ -70,7 +73,7 @@ const ProfileProvider = ({ children }) => {
         const message = userSession.loadUserData().profile.stxAddress.mainnet;
         openSignatureRequestPopup({
           message,
-          network: new StacksTestnet(), // for mainnet, `new StacksMainnet()`
+          network: new StacksMainnet(), // for mainnet, `new StacksMainnet()`
           appDetails: {
             name: "FLATLAY",
             icon: "https://flatlay.io/assets/images/shared/Flatlay-Logo.svg",
@@ -92,8 +95,8 @@ const ProfileProvider = ({ children }) => {
 
   const getUserDataViaWallet = async(userData) => {
     let result = await signInViaWallet(userData)
-   await addProfile(result.data);
-    window.location.reload();
+    addProfile(result.data);
+  
   }
 
   const contextValues = {

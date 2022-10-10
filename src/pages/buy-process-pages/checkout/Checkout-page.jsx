@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
-import { useNavigate,useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../../../context/cart/CartContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import {
@@ -21,7 +21,7 @@ import ShopifytItem from "./chekout-item/Shopify-item";
 function CheckoutPage() {
   const [showEmailModal, setShowEmailModal] = useState(false);
 
-  const { profile } = useProfile();
+  const { profile ,signinWithaWallet} = useProfile();
   const { cart } = useCart();
 
   let navigate = useNavigate();
@@ -47,10 +47,17 @@ function CheckoutPage() {
   };
 
   const checkoutSubmit = () => {
+
+    if (!profile) {
+      signinWithaWallet();
+      return;
+    }
+
     if (!profile.email) {
       setShowEmailModal(true);
       return;
     }
+
     navigate(`/${shopname}/address`);
   };
 
@@ -63,7 +70,7 @@ function CheckoutPage() {
         <EmptyText>Empty</EmptyText>
       ) : (
         <>
-          <HeadText>Checkout</HeadText>
+          {/* <HeadText>Checkout</HeadText> */}
 
           <Box bgColor="#353535" borderRadius="8px">
             {cart.items.map((item, i) => (
@@ -82,7 +89,7 @@ function CheckoutPage() {
                     shopName={item.shopName}
                   />
                 )}
-                {(i != (cart.items.length-1)) && (
+                {i != cart.items.length - 1 && (
                   <Box w="100%" px="16px">
                     <Box w="100%" borderBottom="2px solid #757575"></Box>
                   </Box>
