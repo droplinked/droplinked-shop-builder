@@ -1,31 +1,69 @@
 import { createContext, useState, useContext } from "react";
 import { removeCart, getCart } from "../../api/base-user/Cart-api";
 import { SHOP_TYPES } from "../../constant/shop-types";
+import { checkRules } from "../../services/nft-service/NFTcheck";
+import { useToasty } from "../../context/toastify/ToastContext";
+import { UseWalletInfo } from "../../context/wallet/WalletContext"
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   // state for cart
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart")) || null
-  );
+  const [cart, setCart] = useState(null);
+
+  const { errorToast } = useToasty()
+  const { userData } = UseWalletInfo();
 
   //update cartstate
   const updateCart = async () => {
-    let result = await getCart();
-    if (result.status === "success") {
-      let newCart = { ...result.data.cart, type: SHOP_TYPES.DROPLINKED };
-      if (newCart.items.length > 0) setCart(newCart);
-      else setCart(JSON.parse(localStorage.getItem("cart")) || null)
+    let localCart = JSON.parse(localStorage.getItem("cart"))
+    if (localCart == null) {
+      // get cart from back
+      let result = await getCart();
+      if (result.status === "success") {
+        let newCart = { ...result.data.cart, type: SHOP_TYPES.DROPLINKED };
+        if (newCart.items.length > 0) setCart(newCart);
+      } else {
+        console.log(result.data.reason);
+      }
     } else {
-      console.log(result.data.reason);
+      localCart.items.forEach(item => gatedAndAddItem(item))
     }
   };
+
+  console.log(cart);
+
+  const gatedAndAddItem = (product) => {
+
+    if (product.productRule == undefined) {
+      addShopifyItemToCart(product);
+    } else {
+
+      const Rules = product.productRule.map((rule) => rule.address);
+
+      checkRules(userData.profile.stxAddress.mainnet, Rules)
+        .then((e) => {
+          if (e) {
+            addShopifyItemToCart(product);
+            return true;
+          } else {
+            errorToast("Required NFT not found, accessed denied");
+            return false;
+          }
+        })
+        .catch((e) => {
+          errorToast(e.response.data);
+          return false;
+        });
+    }
+
+  }
+
 
   const addShopifyItemToCart = (item) => {
     let newCart;
     // build new cart if doesnt exist any p
-    if (cart == null || (cart.items.length == 0)) {
+    if (cart == null || cart.items.length == 0) {
       newCart = { type: SHOP_TYPES.SHOPIFY, items: [item] };
     } else {
       // remove last cart if has item of droplinked type
@@ -75,15 +113,15 @@ const CartProvider = ({ children }) => {
     currentItems = cart.items.filter((currentItem) => {
       if (currentItem.variant.id != variantId) return currentItem;
     });
-    let newCart 
-    if(currentItems.length == 0 )newCart=null
-    else newCart = {...cart ,items:currentItems}
+    let newCart;
+    if (currentItems.length == 0) newCart = null;
+    else newCart = { ...cart, items: currentItems };
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   const clearCart = () => {
-    let newCart = {items:[]}
+    let newCart = { items: [] };
     localStorage.setItem("cart", JSON.stringify(newCart));
     setCart(newCart);
   };
@@ -101,7 +139,7 @@ const CartProvider = ({ children }) => {
         return item;
       }
     });
-    let newCart = {...cart , items:currentCart}
+    let newCart = { ...cart, items: currentCart };
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
   };

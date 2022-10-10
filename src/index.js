@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 import { ChakraProvider } from "@chakra-ui/react";
 import { WalletProvider } from "./context/wallet/WalletContext";
@@ -19,9 +19,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ToastifyProvider>
       <ProfileProvider>
-        <CartProvider>
-          <ChakraProvider>
-            <WalletProvider>
+        <WalletProvider>
+          <CartProvider>
+            <ChakraProvider>
               <AddressProvider>
                 <NotificationProvider>
                   <ShopProvider>
@@ -29,9 +29,9 @@ ReactDOM.render(
                   </ShopProvider>
                 </NotificationProvider>
               </AddressProvider>
-            </WalletProvider>
-          </ChakraProvider>
-        </CartProvider>
+            </ChakraProvider>
+          </CartProvider>
+        </WalletProvider>
       </ProfileProvider>
     </ToastifyProvider>
   </React.StrictMode>,

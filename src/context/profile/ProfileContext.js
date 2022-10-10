@@ -23,8 +23,11 @@ const ProfileProvider = ({ children }) => {
 
   const addProfile = async(payload) => {
     localStorage.setItem("token", JSON.stringify(payload.jwt));
-    dispatch({ type: "ADD_PROFILE", payload });
-    
+    localStorage.setItem("profile", JSON.stringify(payload.user));
+    let time = new Date().getTime();
+    localStorage.setItem("login-time", JSON.stringify(time));
+
+    window.location.reload();
   };
 
   const updateProfile = (payload) => {
@@ -92,8 +95,8 @@ const ProfileProvider = ({ children }) => {
 
   const getUserDataViaWallet = async(userData) => {
     let result = await signInViaWallet(userData)
-   await addProfile(result.data);
-    window.location.reload();
+    addProfile(result.data);
+  
   }
 
   const contextValues = {
