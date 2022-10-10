@@ -1,13 +1,12 @@
 import { Box, Flex, FormControl, FormLabel } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAddress } from "../../../context/address/AddressContext";
-import { getCountries } from "../../../api/public/address-api";
+import { COUNTRIES } from "./address-list-constant";
 
 import FormInput from "../../shared/FormInput/FormInput";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 import ModalContainer from "../modal-container/modal-container";
 import SelectInput from "../../shared/SelectInput/SelectInput";
-import Loading from "../../shared/loading/Loading";
 
 export default function AddressForm({ type, addressBook, close }) {
   // address context functions for add new address or update address
@@ -37,20 +36,6 @@ export default function AddressForm({ type, addressBook, close }) {
   const [error, setError] = useState("");
   // state for loading mode
   const [loading, setLoading] = useState(false);
-
-  const [addressList, setAddressList] = useState(null);
-
-  useEffect(() => {
-    getAddressList();
-  }, []);
-
-  const getAddressList = async () => {
-    let resultList = await getCountries();
-    let mapList = resultList.map((address) => {
-      return { value: address.name.common, label: address.name.common };
-    });
-    setAddressList(mapList);
-  };
 
   // change state valuse
   const ChangeLine1 = (e) => {
@@ -174,43 +159,42 @@ export default function AddressForm({ type, addressBook, close }) {
 
   return (
     <ModalContainer close={close}>
-      {addressList ? (
-        <Box>
-          <FormInput
-            mb="30px"
-            label={"Address line 1"}
-            placeholder={"Address line 1"}
-            value={line1}
-            changeValue={ChangeLine1}
-            isError={error == "line1" && "Address line1 is required"}
-          />
-          <FormInput
-            mb="30px"
-            label={"Address line 2 ( building or unit #)"}
-            placeholder={"Address line 2 ( building or unit #)"}
-            value={line2}
-            changeValue={ChangeLine2}
-          />
-          <Flex mb="30px" justifyContent="space-between" alignItems="center">
-            <FormControl maxW="45%" w="45%">
-              <FormLabel
-                w="100%"
-                htmlFor="input-com"
-                fontWeight="600"
-                fontSize={{ base: "14px", md: "20px" }}
-                color="#fff"
-              >
-                Country
-              </FormLabel>
+      <Box>
+        <FormInput
+          mb="30px"
+          label={"Address line 1"}
+          placeholder={"Address line 1"}
+          value={line1}
+          changeValue={ChangeLine1}
+          isError={error == "line1" && "Address line1 is required"}
+        />
+        <FormInput
+          mb="30px"
+          label={"Address line 2 ( building or unit #)"}
+          placeholder={"Address line 2 ( building or unit #)"}
+          value={line2}
+          changeValue={ChangeLine2}
+        />
+        <Flex mb="30px" justifyContent="space-between" alignItems="center">
+          <FormControl maxW="45%" w="45%">
+            <FormLabel
+              w="100%"
+              htmlFor="input-com"
+              fontWeight="600"
+              fontSize={{ base: "14px", md: "20px" }}
+              color="#fff"
+            >
+              Country
+            </FormLabel>
 
-              <SelectInput
-                valueList={addressList}
-                value={country}
-                change={ChangeCountry}
-                placeholder={"Country"}
-              />
-            </FormControl>
-            {/* <FormInput
+            <SelectInput
+              valueList={COUNTRIES}
+              value={country}
+              change={ChangeCountry}
+              placeholder={"Country"}
+            />
+          </FormControl>
+          {/* <FormInput
                         w='45%'
                         label={"Country"}
                         placeholder={"Country"}
@@ -219,88 +203,85 @@ export default function AddressForm({ type, addressBook, close }) {
                         isError={(error == "country") && "Country is required"}
                     /> */}
 
+          <FormInput
+            w="45%"
+            label={"City"}
+            placeholder={"City"}
+            value={city}
+            changeValue={ChangeCity}
+            isError={error == "city" && "City is required"}
+          />
+        </Flex>
+
+        <Flex mb="30px" justifyContent="space-between" alignItems="center">
+          <FormInput
+            w="45%"
+            label={"State/province"}
+            placeholder={"State/province"}
+            value={state}
+            changeValue={ChangeState}
+            isError={error == "state" && "State/province is required"}
+          />
+          <FormInput
+            w="45%"
+            label={"Zip"}
+            placeholder={"Zip"}
+            value={zip}
+            changeValue={ChangeZip}
+            isError={error == "zip" && "Zip is required"}
+          />
+        </Flex>
+
+        {type == "CUSTOMER" ? (
+          <Flex mb="60px" justifyContent="space-between" alignItems="center">
             <FormInput
               w="45%"
-              label={"City"}
-              placeholder={"City"}
-              value={city}
-              changeValue={ChangeCity}
-              isError={error == "city" && "City is required"}
+              label={"First name"}
+              placeholder={"First name"}
+              value={firstname}
+              changeValue={ChangeFirstname}
+              isError={error == "firstname" && "firstname is required"}
+            />
+            <FormInput
+              w="45%"
+              label={"Last name"}
+              placeholder={"Last name"}
+              value={lastname}
+              changeValue={ChangeLastname}
+              isError={error == "lastname" && "Lastname is required"}
             />
           </Flex>
+        ) : (
+          <Box mb="20px"></Box>
+        )}
 
-          <Flex mb="30px" justifyContent="space-between" alignItems="center">
-            <FormInput
-              w="45%"
-              label={"State/province"}
-              placeholder={"State/province"}
-              value={state}
-              changeValue={ChangeState}
-              isError={error == "state" && "State/province is required"}
-            />
-            <FormInput
-              w="45%"
-              label={"Zip"}
-              placeholder={"Zip"}
-              value={zip}
-              changeValue={ChangeZip}
-              isError={error == "zip" && "Zip is required"}
-            />
-          </Flex>
-
-          {type == "CUSTOMER" ? (
-            <Flex mb="60px" justifyContent="space-between" alignItems="center">
-              <FormInput
-                w="45%"
-                label={"First name"}
-                placeholder={"First name"}
-                value={firstname}
-                changeValue={ChangeFirstname}
-                isError={error == "firstname" && "firstname is required"}
-              />
-              <FormInput
-                w="45%"
-                label={"Last name"}
-                placeholder={"Last name"}
-                value={lastname}
-                changeValue={ChangeLastname}
-                isError={error == "lastname" && "Lastname is required"}
-              />
-            </Flex>
-          ) : (
-            <Box mb="20px"></Box>
-          )}
-
-          <Flex
-            justifyContent="space-between"
-            alignItems="center"
-            p="0px"
-            w="100%"
+        <Flex
+          justifyContent="space-between"
+          alignItems="center"
+          p="0px"
+          w="100%"
+        >
+          <BasicButton
+            w="45%"
+            p="12px 16px"
+            click={close}
+            loading={loading}
+            disabled={loading}
+            cancelType={true}
           >
-            <BasicButton
-              w="45%"
-              p="12px 16px"
-              click={close}
-              loading={loading}
-              disabled={loading}
-              cancelType={true}
-            >
-              Cancel
-            </BasicButton>
-            <BasicButton
-              w="45%"
-              p="12px 16px"
-              click={submitForm}
-              loading={loading}
-              disabled={loading}
-            >
-              Submit
-            </BasicButton>
-          </Flex>
-        </Box>
-      ) : (
-        <Loading />
-      )}
+            Cancel
+          </BasicButton>
+          <BasicButton
+            w="45%"
+            p="12px 16px"
+            click={submitForm}
+            loading={loading}
+            disabled={loading}
+          >
+            Submit
+          </BasicButton>
+        </Flex>
+      </Box>
     </ModalContainer>
   );
 }
