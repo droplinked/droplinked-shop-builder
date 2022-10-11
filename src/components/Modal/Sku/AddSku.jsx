@@ -19,7 +19,7 @@ import BasicButton from "../../shared/BasicButton/BasicButton";
 
 const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
   const [price, setPrice] = useState(null);
-  const [externalID, setExternalID] = useState(null);
+  const [externalID, setExternalID] = useState("");
   const [quantity, setQuantity] = useState(null);
   const [options, setOptions] = useState([]);
   const [length, setLength] = useState(null);
