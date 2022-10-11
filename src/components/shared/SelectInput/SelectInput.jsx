@@ -36,6 +36,7 @@ const SelectInput = ({ valueList, value , change ,placeholder }) => {
         value={value}
         onClick={openDropDown}
         onClickOutside={openDropDown}
+        autoComplete='off'
       />
       {showDropdown && (
         <DropDownWrapper>

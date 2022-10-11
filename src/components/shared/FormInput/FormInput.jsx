@@ -11,7 +11,7 @@ export default function FormInput({ value, changeValue, label, type, placeholder
 
 
   return (
-    <FormControl {...otherProps}>
+    <FormControl {...otherProps} >
       <FormLabel
         htmlFor='input-com'
         fontWeight='600'
@@ -28,13 +28,13 @@ export default function FormInput({ value, changeValue, label, type, placeholder
           fontWeight='600'
           fontSize={{ base: '14px', md: '20px' }}
           color='#fff'
-          border='2px'
-          borderColor='#b3b3b3'
+          border='none'
+        //  borderColor='#b3b3b3'
           borderRadius='8px'
           px="16px"
           py={{ base: "8px", md: "12px" }}
           outline='none'
-          _focus={{ borderColor: "#8053ff" }}
+          _focus={{ outline:'none'}}
           h='auto'
           placeholder={placeholder}
         />
@@ -48,13 +48,14 @@ export default function FormInput({ value, changeValue, label, type, placeholder
           fontSize={{ base: '14px', md: '20px' }}
           color='#DBDBDB'
           bgColor='#181818'
+          border='none'
         //  border='2px'
          // borderColor='#b3b3b3'
           borderRadius='8px'
           px="16px"
           py={{ base: "8px", md: "12px" }}
           outline='none'
-          _focus={{ borderColor: "#8053ff" }}
+          _focus={{ outline:'none' }}
           h='auto'
           placeholder={placeholder}
         />
