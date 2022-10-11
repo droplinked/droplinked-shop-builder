@@ -114,8 +114,8 @@ export default function ShopInfoComponent({ active }) {
             localStorage.setItem("shop", JSON.stringify(result.data.shop));
             successToast("Shop info successfully updated")
             updateShop()
-            if (profile.status != "IMS_TYPE_COMPLETED")
-                navigate("/register/ims-type");
+            console.log(profile.status);
+            if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
         } else {
             errorToast(result.reason)
         }
