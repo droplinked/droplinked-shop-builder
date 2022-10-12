@@ -60,7 +60,7 @@ export default function DefaulHeader({ haventEmail }) {
       ) : (
         <Box d='flex' alignItems='center'>
           <Cart clickBasket={openBasket} />
-          <Box mr='12px'></Box>
+          <Box mr={{base:'6px',md:'12px'}}></Box>
           <WalletButton haventEmail={haventEmail} />
           {dropdown && <DropdownContainer close={close} dropdown={dropdown} />}
         </Box>

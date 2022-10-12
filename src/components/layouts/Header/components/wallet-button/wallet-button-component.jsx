@@ -1,5 +1,5 @@
 
-import { Image } from "@chakra-ui/react";
+import { Image ,Box} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 //import { signInViaWallet } from "../../../../../api/base-user/Auth-api";
 import { useProfile } from "../../../../../context/profile/ProfileContext";
@@ -45,7 +45,8 @@ export default function WalletButton({ haventEmail }) {
           src={headerWalletIcon}
           // src={userData == undefined ? headerWalletIcon : activeWalletIcon}
         />
-        Connect
+        <Box pt={{base: "3px", md: "0px"}}>Connect</Box>
+      
       </HeaderItem>
       {walletModal && <WalletModal close={closeWalletModal} />}
 
