@@ -4,6 +4,7 @@ build_dev:
   script:
 
     - export REACT_APP_BASE_API_URL=$BASE_API_URL_DEV
+     - export REACT_APP_STRIPE_KEY=$STRIPE_KEY_TEST
     - "npm install"
     - CI=false npm run build
     
@@ -34,6 +35,7 @@ build_prod:
   script:
 
     - export REACT_APP_BASE_API_URL=$BASE_API_URL_PROD
+    - export REACT_APP_STRIPE_KEY=$STRIPE_KEY_LIVE
     - "npm install"
     - CI=false npm run build
       
