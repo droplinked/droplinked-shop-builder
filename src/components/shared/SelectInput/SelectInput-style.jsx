@@ -35,10 +35,12 @@ export const DropDownItem = chakra("div", {
   baseStyle: {
     cursor: "pointer",
     fontWeight: "600",
-    fontSize: { base: "14px", md: "20px" },
+    fontSize: { base: "12px", md: "16px" },
     color: "#DBDBDB",
     px: "16px",
     py: "4px",
+    borderTop:'2px solid #242424',
+    borderBottom:'2px solid #242424',
     outline: "none",
     h: "auto",
     _hover: {
