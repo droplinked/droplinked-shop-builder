@@ -210,7 +210,7 @@ const ShippingPage = () => {
           <Flex w="100%" justifyContent="space-between" h="40px" px='22px'>
             <Box w={{ base: "150px", md: "200px" }} h="100%">
               <BasicButton
-                loading={loading}
+                disable={loading}
                 click={backButton}
                 cancelType={true}
               >

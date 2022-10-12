@@ -29,7 +29,7 @@ export default function BasicButton({
       _disabled={{
         bgColor: "transparent",
         color: "#DBDBDB",
-        borderColor: "#242424",
+        borderColor: "#363636",
       }}
       onClick={click}
       disabled={disable || loading}
