@@ -184,7 +184,7 @@ function AddressPage() {
               </Box>
               <Box w="30%">
                 <BasicButton click={ProccessToPayment} loading={loading}>
-                  Payment
+                  Next
                 </BasicButton>
               </Box>
             </Flex>

@@ -45,7 +45,7 @@ export default function WalletButton({ haventEmail }) {
           src={headerWalletIcon}
           // src={userData == undefined ? headerWalletIcon : activeWalletIcon}
         />
-        Connect wallet
+        Connect
       </HeaderItem>
       {walletModal && <WalletModal close={closeWalletModal} />}
 

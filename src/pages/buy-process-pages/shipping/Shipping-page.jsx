@@ -219,7 +219,7 @@ const ShippingPage = () => {
             </Box>
             <Box w={{ base: "150px", md: "200px" }} h="100%">
               <BasicButton click={submitForm} loading={loading}>
-                Submit
+                Next
               </BasicButton>
             </Box>
           </Flex>

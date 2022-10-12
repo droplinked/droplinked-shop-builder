@@ -69,12 +69,12 @@ export default function AddressForm({ type, addressBook, close }) {
 
   const ChangeFirstname = (e) => {
     setFirstname(e.target.value);
-    if (error == "firstname") setError("");
+    if (error == "First Name") setError("");
   };
 
   const ChangeLastname = (e) => {
     setLastname(e.target.value);
-    if (error == "lastname") setError("");
+    if (error == "Last Name") setError("");
   };
 
   // submit form
@@ -144,11 +144,11 @@ export default function AddressForm({ type, addressBook, close }) {
     } else if (type == "CUSTOMER") {
       let flag = true;
       if (firstname == "") {
-        setError("firstname");
+        setError("First Name");
         flag = false;
       }
       if (lastname == "") {
-        setError("lastname");
+        setError("Last Name");
         flag = false;
       }
       return flag;
@@ -260,19 +260,19 @@ export default function AddressForm({ type, addressBook, close }) {
           <Flex mb="60px" justifyContent="space-between" alignItems="center">
             <FormInput
               w="45%"
-              label={"First name"}
-              placeholder={"First name"}
+              label={"First Name"}
+              placeholder={"First Name"}
               value={firstname}
               changeValue={ChangeFirstname}
-              isError={error == "firstname" && "firstname is required"}
+              isError={error == "First Name" && "First Name is required"}
             />
             <FormInput
               w="45%"
-              label={"Last name"}
-              placeholder={"Last name"}
+              label={"Last Name"}
+              placeholder={"Last Name"}
               value={lastname}
               changeValue={ChangeLastname}
-              isError={error == "lastname" && "Lastname is required"}
+              isError={error == "Last Name" && "Last Name is required"}
             />
           </Flex>
         ) : (

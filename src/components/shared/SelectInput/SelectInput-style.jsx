@@ -7,7 +7,7 @@ export const SelectInputComponent = chakra("input", {
     fontSize: { base: "14px", md: "20px" },
     color: "#DBDBDB",
     bgColor: "#181818",
-    border: "1px solid #b3b3b3",
+   // border: "1px solid #b3b3b3",
     borderRadius: "8px",
     px: "16px",
     py: { base: "8px", md: "12px" },
@@ -20,13 +20,13 @@ export const SelectInputComponent = chakra("input", {
 
 export const DropDownWrapper = chakra("div", {
   baseStyle: {
-    border: "1px solid #8053ff",
+    border: "2px solid #363636",
     borderRadius: "8px",
-    maxH:'200px',
+    maxH:'300px',
     pos:'absolute',
     overflowY:'scroll',
     zIndex:'150',
-    bgColor:'#353536',
+    bgColor:'#181818',
     w:'100%'
   },
 });
@@ -35,10 +35,12 @@ export const DropDownItem = chakra("div", {
   baseStyle: {
     cursor: "pointer",
     fontWeight: "600",
-    fontSize: { base: "14px", md: "20px" },
+    fontSize: { base: "12px", md: "16px" },
     color: "#DBDBDB",
     px: "16px",
     py: "4px",
+    borderTop:'2px solid #242424',
+    borderBottom:'2px solid #242424',
     outline: "none",
     h: "auto",
     _hover: {

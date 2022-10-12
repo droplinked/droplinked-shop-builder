@@ -112,7 +112,7 @@ function CheckoutPage() {
             </Box>
 
             <Box w={{ base: "150px", md: "200px" }} overflow="hidden">
-              <BasicButton click={checkoutSubmit}>Check out</BasicButton>
+              <BasicButton click={checkoutSubmit}>Next</BasicButton>
             </Box>
           </ButtonWrapper>
         </>

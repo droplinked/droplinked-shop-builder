@@ -6,22 +6,17 @@ import {
   DropDownItem,
 } from "./SelectInput-style";
 
-const SelectInput = ({ valueList, value , change ,placeholder }) => {
-
- // const [value, setValue] = useState("");
-
+const SelectInput = ({ valueList, value, change, placeholder }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const box = useRef(null);
 
+  const openDropDown = () => setShowDropdown(true);
   const closeDropDown = () => setShowDropdown(false);
-
-  useOutsideAlerter(box, closeDropDown);
-
-  const openDropDown = () => setShowDropdown((p) => !p);
 
   const changeValue = (e) => change(e.target.value);
 
+  useOutsideAlerter(box, closeDropDown);
 
   const selectItem = (value) => {
     change(value);
@@ -29,13 +24,13 @@ const SelectInput = ({ valueList, value , change ,placeholder }) => {
   };
 
   return (
-    <Box w="100%" ref={box} pos='relative'>
+    <Box w="100%" ref={box} pos="relative">
       <SelectInputComponent
         placeholder={placeholder}
         onChange={changeValue}
         value={value}
-        onClick={openDropDown}
-        onClickOutside={openDropDown}
+        onFocus={openDropDown}
+        autoComplete="off"
       />
       {showDropdown && (
         <DropDownWrapper>

@@ -125,7 +125,7 @@ export default function PurchasHistoryPage() {
                         </Box>
                     </Box>
                 }
-                 <Box><BasicButton w={{base:"100%" , md:'200px'}} click={backToShop} cancelType={true}>Back</BasicButton></Box>
+                 <Box><BasicButton w={{base:"100%" , md:'200px'}} click={backToShop}>Back to shop</BasicButton></Box>
             </>
         }
 

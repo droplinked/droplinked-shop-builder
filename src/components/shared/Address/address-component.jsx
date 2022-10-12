@@ -1,7 +1,11 @@
 import { Box, Text, Flex, Button } from "@chakra-ui/react";
 import { useAddress } from "../../../context/address/AddressContext";
 import { useState } from "react";
-import { AddressComponentWrapper ,AddressText,AddressLineText} from "./address-style"
+import {
+  AddressComponentWrapper,
+  AddressText,
+  AddressLineText,
+} from "./address-style";
 import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import AddressForm from "../../Modal/Address/Address-modal";
 
@@ -76,22 +80,22 @@ export default function AddressComponent({
           cursor={selectAble == true ? "pointer" : "auto"}
           onClick={selectAddress}
         >
-          {address.addressType != "SHOP" ? (
+          {address.addressType != "SHOP" && (
             <AddressText>
-              {address.country} - {address.city}, {address.firstname}{" "}
-              {address.lastname}
-            </AddressText>
-          ) : (
-            <AddressText>
-              {address.country} - {address.city}
+              {address.firstname} {address.lastname}
             </AddressText>
           )}
+
+          <AddressText>{address.addressLine1}</AddressText>
           <AddressLineText>
-            {address.addressLine1}
+            {address.state}
+            {", "}
+            {address.city}
+            {", "}
+            {address.zip}
           </AddressLineText>
-          <AddressLineText>
-            {address.state} {address.zip}{" "}
-          </AddressLineText>
+          <AddressLineText>{address.country}</AddressLineText>
+
 
           <Flex alignItems="center" justifyContent="flex-end">
             <Flex

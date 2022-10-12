@@ -61,8 +61,9 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                 errorToast("This account has been deleted")
                 return;
             } else {
-                addProfile(data)
                 navigateUser(status, data.user.shopName)
+                addProfile(data)
+                
                 return
             }
 

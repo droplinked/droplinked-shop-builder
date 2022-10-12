@@ -96,7 +96,10 @@ export default function PersonalInfoComponent({ active }) {
         <Box
             color='white'
             fontSize='22px'
+            bgColor='#353535'
             w="100%"
+            p='10px'
+            borderRadius='8px'
             animation={(active == 'personal' ? startAnimation : '')}
         >
             <InputImage image={profileImage} setImage={setProfileImage} />

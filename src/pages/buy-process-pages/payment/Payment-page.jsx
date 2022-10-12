@@ -19,7 +19,7 @@ import StripeComponent from "./stripe modal/stripe-modal-component"
 import Loading from "../../../components/shared/loading/Loading"
 
 
-const stripePromise = loadStripe(STRIPE_KEY.TEST);
+const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_KEY}`);
 
 export default function PaymentPage() {
 
