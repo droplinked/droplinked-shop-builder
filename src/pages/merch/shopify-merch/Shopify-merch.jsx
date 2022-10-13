@@ -61,6 +61,7 @@ const ShopifyMech = ({ shopName, product }) => {
       productId: product._id,
       productRule: (product.ruleset == undefined) ? undefined : product.ruleset.rules,
     };
+    successToast("Item added to cart");
     addShopifyItemToCart(itemObject);
   };
 
