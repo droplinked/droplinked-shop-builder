@@ -177,7 +177,7 @@ function AddressPage() {
                   click={() => {
                     navigate(`/${shopname}/checkout`);
                   }}
-                  loading={loading}
+                  disable={loading}
                 >
                   Back
                 </BasicButton>

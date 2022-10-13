@@ -4,6 +4,7 @@ export default function BasicButton({
   children,
   click,
   loading,
+  disable,
   cancelType,
   ...otherprops
 }) {
@@ -19,15 +20,19 @@ export default function BasicButton({
       borderRadius="8px"
       margin="0px auto"
       p={{ base: "12px 20px 9px 20px", md: "12px 20px" }}
-      outline='none'
+      outline="none"
       _hover={{
         borderColor: cancelType ? "#242424" : "#8053ff",
         bgColor: cancelType ? "transparent" : "#222",
         color: cancelType ? "#DBDBDB" : "#8053ff",
       }}
-      _disabled={{ bgColor: "transparent" , color:'#353535' , borderColor:'#242424' }}
+      _disabled={{
+        bgColor: "transparent",
+        color: "#DBDBDB",
+        borderColor: "#363636",
+      }}
       onClick={click}
-      disabled={loading}
+      disabled={disable || loading}
       {...otherprops}
     >
       {loading != undefined && loading == true ? (
@@ -36,7 +41,7 @@ export default function BasicButton({
             thickness="4px"
             speed="0.65s"
             emptyColor="#fff"
-            color='#8053ff'
+            color="#8053ff"
             size="md"
           />
         </>

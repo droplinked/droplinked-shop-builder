@@ -289,8 +289,7 @@ export default function AddressForm({ type, addressBook, close }) {
             w="45%"
             p="12px 16px"
             click={close}
-            loading={loading}
-            disabled={loading}
+            disable={loading}
             cancelType={true}
           >
             Cancel

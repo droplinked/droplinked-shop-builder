@@ -1,4 +1,4 @@
-import { Box, Text, Flex, Button } from "@chakra-ui/react";
+import { Flex, Button } from "@chakra-ui/react";
 import { useAddress } from "../../../context/address/AddressContext";
 import { useState } from "react";
 import {
