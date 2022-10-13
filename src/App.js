@@ -114,16 +114,17 @@ function App() {
                 path="email-verification/:token"
                 element={<EmailVerifyPage />}
               />
+               <Route
+                  path="producer/account-recovery/:token"
+                  element={<AccountRecovery />}
+                />
               <Route path="settings" element={<SettingsPage />} />
 
               {/* producer pages */}
               <Route path="producer" element={<Producer />}>
                 <Route path="ims" element={<InventoryPage />} />
                 <Route path="merch/:id" element={<ViewMerchPage />} />
-                <Route
-                  path="account-recovery/:token"
-                  element={<AccountRecovery />}
-                />
+               
                 <Route path="add-product" element={<AddProductPage />} />
                 {/* <Route path="ruleset" element={<RuleSetPage />} /> */}
                 <Route path="collection" element={<CollectionMainPage />} />
