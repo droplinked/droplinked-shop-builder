@@ -30,7 +30,7 @@ const ShopifytItem = ({ product, variant, amount, shopName }) => {
 
   const deleteItem = () => deleteItemFromCart(variant.id);
 
-  const getTotalItem = () => (parseFloat(variant.price) * amount).toFixed(1);
+  const getTotalItem = () => (parseFloat(variant.price) * amount).toFixed(2);
 
   const increaseQuantity = () => changeQuantity(amount + 1, variant.id);
 
