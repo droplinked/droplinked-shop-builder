@@ -59,7 +59,7 @@ const ConfirmPage = () => {
         flexDirection="column"
       >
         {/* top side */}
-        <Box p="10px 5px" mb="50px" w={{ base: "100%", md: "100%" }}>
+        <Box p="10px 5px" mb="50px" w={{ base: "100%", md: "100%" }} display='flex' flexDir='column' alignItems='end'>
           <Text
             color="#ddd"
             mb="20px"
