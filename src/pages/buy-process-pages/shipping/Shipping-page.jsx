@@ -9,7 +9,7 @@ import {
   setEasypostShpping,
 } from "../../../api/base-user/Cart-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { useNavigate , useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../../../context/cart/CartContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
 
@@ -19,7 +19,6 @@ import EasypostShipping from "./easypost-shipping-component";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 
 const ShippingPage = () => {
-
   const [shippings, setShippings] = useState(null);
   const [selectedShipping, setSelectedShipping] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -42,7 +41,6 @@ const ShippingPage = () => {
   useEffect(() => {
     getShippings();
   }, [cart]);
-
 
   const getShippings = async () => {
     // get easypost shipping
@@ -84,7 +82,7 @@ const ShippingPage = () => {
         (item) => (total += parseFloat(item.sku.price) * item.quantity)
       );
     }
-    total +=  parseFloat(getShippingPrice())
+    total += parseFloat(getShippingPrice());
     return total.toFixed(2);
   };
 
@@ -125,7 +123,6 @@ const ShippingPage = () => {
         );
         navigate(`/${shopname}/card`);
         setLoading(false);
-
       } else {
         console.log(result);
       }
@@ -140,7 +137,7 @@ const ShippingPage = () => {
     <Flex
       w="100%"
       flexDir="column"
-    //  px={{ base: "20px", md: "80px" }}
+      //  px={{ base: "20px", md: "80px" }}
       justifyContent="center"
       alignItems="center"
     >
@@ -155,10 +152,10 @@ const ShippingPage = () => {
           flexDir="column"
         >
           <Text
-               fontSize={{ base: "20px", md: "36px" }}
-               fontWeight="600"
-               color="#fff"
-               m="0px auto 48px auto"
+            fontSize={{ base: "20px", md: "36px" }}
+            fontWeight="600"
+            color="#fff"
+            m="0px auto 48px auto"
           >
             Shipping
           </Text>
@@ -189,7 +186,7 @@ const ShippingPage = () => {
               })}
             </>
           )}
-         <Box borderBottom="3px solid #242424" w="100%"></Box> 
+          <Box borderBottom="3px solid #242424" w="100%"></Box>
 
           {selectedShipping && (
             <>
@@ -202,7 +199,7 @@ const ShippingPage = () => {
               >
                 Merchs: ${selectedShipping.checkout.subtotal_price}
               </Text> */}
-              <Text
+              {/* <Text
                 fontWeight="600"
                 fontSize="18px"
                 color="#fff"
@@ -212,21 +209,23 @@ const ShippingPage = () => {
                 mt='36px'
               >
                 Shipping: ${getShippingPrice()}
-              </Text>
+              </Text> */}
               <Text
+              textAlign='end'
                 fontWeight="600"
-                fontSize="18px"
+                fontSize={{ base: "18px", md: "24px" }}
                 color="#fff"
                 w="100%"
-                px='22px'
-                mb='60px'
+                px="22px"
+                mb="60px"
+                mt="30px"
               >
                 Total price: ${getTotalPrice()}
               </Text>
             </>
           )}
 
-          <Flex w="100%" justifyContent="space-between" h="40px" px='22px'>
+          <Flex w="100%" justifyContent="space-between" h="40px" px="22px">
             <Box w={{ base: "150px", md: "200px" }} h="100%">
               <BasicButton
                 disable={loading}

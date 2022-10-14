@@ -15,10 +15,7 @@ export const PriceWrapper = chakra("div", {
   baseStyle: {
     display: "flex",
     w: "100%",
-    justifyContent: "space-between",
-    // borderTop: "2px",
-    // borderColor: "#8053ff",
-    // pt: "20px",
+    justifyContent: "end",
     px: "40px",
     my: "36px",
   },
