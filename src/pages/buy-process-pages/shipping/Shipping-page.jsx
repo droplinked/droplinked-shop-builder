@@ -70,6 +70,24 @@ const ShippingPage = () => {
     }
   };
 
+  const getTotalPrice = () => {
+    if (cart == null) return 0;
+    let total = 0;
+    // calculate for shopify products
+    if (cart.type == SHOP_TYPES.SHOPIFY) {
+      cart.items.forEach(
+        (item) => (total += parseFloat(item.variant.price) * item.amount)
+      );
+    } else {
+      // calculate for ims products
+      cart.items.forEach(
+        (item) => (total += parseFloat(item.sku.price) * item.quantity)
+      );
+    }
+    total +=  parseFloat(getShippingPrice())
+    return total.toFixed(2);
+  };
+
   const submitForm = async () => {
     if (selectedShipping == null) {
       errorToast("Select a shipping please");
@@ -195,15 +213,16 @@ const ShippingPage = () => {
               >
                 Shipping: ${getShippingPrice()}
               </Text>
-              {/* <Text
+              <Text
                 fontWeight="600"
                 fontSize="18px"
                 color="#fff"
                 w="100%"
-                mb="60px"
+                px='22px'
+                mb='60px'
               >
-                Total price: ${selectedShipping.checkout.total_price}
-              </Text> */}
+                Total price: ${getTotalPrice()}
+              </Text>
             </>
           )}
 
