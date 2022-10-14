@@ -93,6 +93,6 @@ export const creatShopifySession = async (card) => {
   } catch (err) {
     console.log(err)
     if(err.response != undefined) return {status: 'error' , data : (err.response.message)}
-    else return {status: 'error' , data : "Failed"}
+    else return {status: 'error' , data : "Time out"}
   }
 };
