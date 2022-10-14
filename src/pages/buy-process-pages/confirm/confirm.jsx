@@ -1,7 +1,7 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { confirmPayment } from "../../../api/base-user/Shopify-api";
-import { useNavigate  ,useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useCart } from "../../../context/cart/CartContext";
 
@@ -18,14 +18,16 @@ const ConfirmPage = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
   const checkoutId = JSON.parse(localStorage.getItem("checkout_id"));
   const sessionId = JSON.parse(localStorage.getItem("session_id"));
-  const shippingPrice = parseFloat(JSON.parse(localStorage.getItem("shippingPrice")).shippingPrice)
+  const shippingPrice = parseFloat(
+    JSON.parse(localStorage.getItem("shippingPrice")).shippingPrice
+  ).toFixed(2);
 
   const getItemsPrice = () => {
     let total = 0;
     cart.items.forEach((item) => {
       total += item.amount * parseFloat(item.variant.price);
     });
-    return total;
+    return total.toFixed(2);
   };
 
   const confirm = async () => {
@@ -37,17 +39,21 @@ const ConfirmPage = () => {
     );
     if (result == true) {
       navigate("/purchseHistory?redirect_status=succeeded");
-      localStorage.removeItem('session_id');
-      localStorage.removeItem('checkout_id');
-      localStorage.removeItem('shippingPrice');
-      clearCart()
+      localStorage.removeItem("session_id");
+      localStorage.removeItem("checkout_id");
+      localStorage.removeItem("shippingPrice");
+      clearCart();
     } else {
       errorToast(result);
     }
     setLoading(false);
   };
 
-  const backButton = () => navigate(`${shopname}/card`)
+  const getTotal = () => {
+    return (parseFloat(shippingPrice) + parseFloat(getItemsPrice())).toFixed(2);
+  };
+
+  const backButton = () => navigate(`${shopname}/card`);
 
   return (
     <Box w="100%" maxW="1000px" mx="auto" px={{ base: "20px", md: "80px" }}>
@@ -59,7 +65,14 @@ const ConfirmPage = () => {
         flexDirection="column"
       >
         {/* top side */}
-        <Box p="10px 5px" mb="50px" w={{ base: "100%", md: "100%" }} display='flex' flexDir='column' alignItems='end'>
+        <Box
+          p="10px 5px"
+          mb="50px"
+          w={{ base: "100%", md: "100%" }}
+          display="flex"
+          flexDir="column"
+          alignItems="end"
+        >
           <Text
             color="#ddd"
             mb="20px"
@@ -82,16 +95,20 @@ const ConfirmPage = () => {
             fontSize={{ base: "18px", md: "22px" }}
             fontWeight="600"
           >
-            Total price: $
-            {(shippingPrice) + getItemsPrice()}
+            Total price: ${getTotal()}
           </Text>
         </Box>
 
-        <Flex w="100%" justifyContent='space-between'>
-        <BasicButton w='30%' click={backButton} loading={loading} cancelType={true}>
+        <Flex w="100%" justifyContent="space-between">
+          <BasicButton
+            w="30%"
+            click={backButton}
+            loading={loading}
+            cancelType={true}
+          >
             Back
           </BasicButton>
-          <BasicButton w='50%' click={confirm} loading={loading}>
+          <BasicButton w="50%" click={confirm} loading={loading}>
             Confirm order
           </BasicButton>
         </Flex>
