@@ -1,13 +1,14 @@
 import "./Account-recovery-style.scss"
 
-import BasicButton from "../../components/shared/BasicButton/BasicButton"
-import FormInput from "../../components/shared/FormInput/FormInput"
+import BasicButton from "../../../components/shared/BasicButton/BasicButton"
+import FormInput from "../../../components/shared/FormInput/FormInput"
 
 import { useParams, useNavigate } from "react-router-dom";
-import { toastValue } from "../../context/toastify/ToastContext"
+import { toastValue } from "../../../context/toastify/ToastContext"
 import { useState, useContext } from "react"
 import { useForm } from "react-hook-form";
-import { recoveryAccount } from "../../api/base-user/Auth-api"
+import { recoveryAccount } from "../../../api/base-user/Auth-api"
+
 
 export default function AccountRecovery() {
 
