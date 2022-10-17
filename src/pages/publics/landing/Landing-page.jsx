@@ -1,6 +1,12 @@
 import { useState, lazy, Suspense } from "react";
-import { useSearchParams } from "react-router-dom";
-import { keyframes, usePrefersReducedMotion, Text } from "@chakra-ui/react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import {
+  keyframes,
+  usePrefersReducedMotion,
+  Text,
+  Flex,
+  Box,
+} from "@chakra-ui/react";
 import {
   LandingPageWrapper,
   InputContainrt,
@@ -9,6 +15,7 @@ import {
   TextContainer,
 } from "./Landing-page-style";
 
+import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import LandingpageImage from "./components/landing-page-image-component";
 import SignupInput from "./components/singup-input-component";
 
@@ -23,7 +30,6 @@ const LoginModal = lazy(() =>
 const ResetPassModal = lazy(() =>
   import("../../../components/Modal/ResetPass-modal/ResetPassModal-component")
 );
-
 
 const keyframe_leftanimation = keyframes`
 0% {
@@ -40,6 +46,7 @@ export default function LandingPage() {
   const prefersReducedMotion = usePrefersReducedMotion();
   let [searchParams, setSearchParams] = useSearchParams();
   let urlParam = searchParams.get("modal");
+  const navigate = useNavigate();
 
   // show login modal
   const [showLogin, setLogin] = useState(() => {
@@ -78,6 +85,7 @@ export default function LandingPage() {
     toggleReset();
     toggleLogin();
   };
+  const navigateToEnquiry = () => navigate("/enquiry");
 
   return (
     <>
@@ -107,14 +115,23 @@ export default function LandingPage() {
       <Text
         color="#f6f6f6"
         w="100%"
-        textAlign="start"
+        textAlign="center"
         fontWeight="400"
         fontSize={{ base: "18px", md: "1.95vw" }}
         px={{ base: "20px", md: "120px" }}
+        mb="30px"
       >
-        droplinked provides anyone with the deCommerce tools needed to win in
-        web3.
+        Droplinked provides simplified web3 tools to open shop and grow
+        together.
       </Text>
+
+      <Flex w="100%" justifyContent="center" px={{ base: "20px", md: "80px" }}>
+        <Box w={{ base: "100%", md: "400px" }}>
+          <BasicButton color="white" click={navigateToEnquiry}>
+            Enquire to learn more
+          </BasicButton>
+        </Box>
+      </Flex>
 
       <Suspense fallback={<></>}>
         {showSignup && (
