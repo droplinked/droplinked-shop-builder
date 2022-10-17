@@ -13,7 +13,7 @@ import ShippingPage from "./pages/buy-process-pages/shipping/Shipping-page";
 import CartPage from "./pages/buy-process-pages/cart/cart-page";
 import ConfirmPage from "./pages/buy-process-pages/confirm/confirm";
 import ShopWrapper from "./pages/customer/shop-wrapper/shop-wrapper";
-
+import Enquiry from './pages/publics/enquiry/Enquiry'
 import ViewCollection from "./pages/Producer/view-collection/View-collection";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
@@ -91,6 +91,7 @@ function App() {
       <ScrollTop>
         <Suspense fallback={<LoadingPage />}>
           <Routes>
+          <Route path="/enquiry" element={<Enquiry />} />
             <Route path="/" element={<PageWrapper />}>
               <Route index element={<LandingPage />} />
               <Route path="terms" element={<TermsPage />} />
