@@ -6,7 +6,7 @@ import { lazy, Suspense } from "react";
 import Crashpunks2 from "./pages/test/crashpunks2";
 import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderProvider from "./context/order/OrdersContext";
-import LoadingPage from "./pages/loading/Loading-page";
+import LoadingPage from "./pages/publics/loading/Loading-page";
 import TestProduct from "./pages/test/test-product";
 import TextView from "./pages/test/testview";
 import ShippingPage from "./pages/buy-process-pages/shipping/Shipping-page";
@@ -18,7 +18,7 @@ import ViewCollection from "./pages/Producer-pages/view-collection/View-collecti
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
-const TermsPage = lazy(() => import("./pages/terms/Terms-page"));
+const TermsPage = lazy(() => import("./pages/publics/terms/Terms-page"));
 const PrivacyPage = lazy(() => import("./pages/publics/privacy/Privacy-page"));
 const RegisterPage = lazy(() =>
   import("./pages/Registering-pages/register/Register-page")
