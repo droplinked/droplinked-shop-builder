@@ -1,9 +1,10 @@
 import {  useEffect, useContext } from "react"
-import { toastValue } from "../../context/toastify/ToastContext"
+import { toastValue } from "../../../context/toastify/ToastContext"
 import { useParams, useNavigate } from "react-router-dom";
-import { emailVerify } from "../../api/base-user/Auth-api"
+import { emailVerify } from "../../../api/base-user/Auth-api"
 
-import Loading from "../../components/shared/loading/Loading"
+
+import Loading from "../../../components/shared/loading/Loading"
 
 export default function EmailVerifyPage() {
 

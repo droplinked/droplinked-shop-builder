@@ -28,7 +28,7 @@ const RegisterIms = lazy(() =>
   import("./pages/Registering-pages/register-ims/Ims-page")
 );
 const EmailVerifyPage = lazy(() =>
-  import("./pages/email-verify/Email-verification-page")
+  import("./pages/publics/email-verify/Email-verification-page")
 );
 const AccountRecovery = lazy(() =>
   import("./pages/account-recovery/Account-recovery")
