@@ -64,7 +64,6 @@ const PaymentPage = lazy(() =>
   import("./pages/buy-process-pages/payment/Payment-page")
 );
 const CreatorPage = lazy(() => import("./pages/Crashpunks-page/CreatorPage"));
-const BuyProduct = lazy(() => import("./pages/buy-crashpunks/BuyProduct"));
 
 const SettingsPage = lazy(() => import("./pages/settings/Settings-page"));
 
@@ -169,7 +168,6 @@ function App() {
               <Route path="/testshopifymerchview" element={<TextView />} />
 
               {/* <Route path="/crashpunks" element={<CreatorPage />} /> */}
-              <Route path="/product/:id" element={<BuyProduct />} />
               <Route path="/creatorpage" element={<Creator />} />
               <Route path="/notifications" element={<Notifications />} />
               <Route
