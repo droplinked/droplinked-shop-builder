@@ -31,6 +31,8 @@ const ShopifyMech = ({ shopName, product }) => {
     return { url: img.src };
   });
 
+  console.log(product)
+
   // const checkGated = async () => {
   //   const Rules = product.ruleset.rules.map((rule) => rule.address);
   //   setLoading(true);
