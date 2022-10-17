@@ -1,9 +1,6 @@
 import {EmptyCollectionText ,EmptyCollectionBox} from "../Shop-page-style";
 
 
-import TopSection from "../../../components/shared/TopSection/TopSection";
-import ProfileTopSection from "../../Crashpunks-page/crashpunks top section/ProfileTopSection";
-import GalleryCarousel from "../../Crashpunks-page/gallery carousel/GalleryCarousel";
 import CollectionsSection from "../Collection-section";
 
 const PublicShopPage = ({shopData , shopName , collections}) => {
