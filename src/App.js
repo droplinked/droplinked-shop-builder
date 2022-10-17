@@ -52,7 +52,7 @@ const CollectionMainPage = lazy(() =>
   import("./pages/Producer-pages/collection/Collection-page")
 );
 const ShopPage = lazy(() => import("./pages/shop/Shop-page"));
-const MerchPage = lazy(() => import("./pages/merch/Merch-page"));
+const MerchPage = lazy(() => import("./pages/customer/merch/Merch-page"));
 const CollectionPage = lazy(() => import("./pages/customer/collection/Collection-page"));
 const CheckoutPage = lazy(() =>
   import("./pages/buy-process-pages/checkout/Checkout-page")

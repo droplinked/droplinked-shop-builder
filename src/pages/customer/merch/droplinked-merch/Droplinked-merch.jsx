@@ -2,22 +2,21 @@ import "../Merch-page-style.scss";
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { UseWalletInfo } from "../../../context/wallet/WalletContext";
-import { useProfile } from "../../../context/profile/ProfileContext";
-import { useToasty } from "../../../context/toastify/ToastContext";
-import { checkRules } from "../../../services/nft-service/NFTcheck";
-import { useCart } from "../../../context/cart/CartContext";
-import { addSkuToCart } from "../../../api/base-user/Cart-api";
+import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
+import { useProfile } from "../../../../context/profile/ProfileContext";
+import { useToasty } from "../../../../context/toastify/ToastContext";
+import { checkRules } from "../../../../services/nft-service/NFTcheck";
+import { useCart } from "../../../../context/cart/CartContext";
+import { addSkuToCart } from "../../../../api/base-user/Cart-api";
 import {
   MerchPageWrapper,
   DescriptionWrapper,
-  DescriptionText,
   ReadmoreIconWrapper,
   DescriptionTextWrapper,
 } from "../styles/Merch-style";
 import { FiArrowDownCircle } from "react-icons/fi";
 
-import Carousel from "../../../components/shared/Carousel/Carousel-component";
+import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import DroplinkedDetail from "./Droplinked-merch-detail";
 
 const DroplinkedMerch = ({ product }) => {

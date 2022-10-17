@@ -9,9 +9,9 @@ import { Flex, Box, Text, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useEffect } from "react";
 
-import plus from "../../../assest/icon/plusIcon.png";
-import minus from "../../../assest/icon/minusIcon.png";
-import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import plus from "../../../../assest/icon/plusIcon.png";
+import minus from "../../../../assest/icon/minusIcon.png";
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 
 const DroplinkedDetail = ({
   product,

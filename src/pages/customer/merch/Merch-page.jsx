@@ -2,9 +2,9 @@ import "./Merch-page-style.scss";
 
 import { useState, useEffect } from "react";
 import { useParams} from "react-router-dom";
-import { getProduct } from "../../api/public/Product-api";
+import { getProduct } from "../../../api/public/Product-api";
 
-import Loading from "../../components/shared/loading/Loading";
+import Loading from "../../../components/shared/loading/Loading";
 import DroplinkedMerch from "./droplinked-merch/Droplinked-merch";
 import ShopifyMech from "./shopify-merch/Shopify-merch";
 
