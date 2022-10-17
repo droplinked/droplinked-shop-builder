@@ -2,9 +2,9 @@ import { Flex, Text, Box , keyframes, usePrefersReducedMotion  } from "@chakra-u
 import { useNavigate } from "react-router-dom";
 import { MdOutlineMessage } from "react-icons/md";
 
-import { useNotifications } from "../../context/notifications/NotificationsContext"
-import { convetToCustomFormat } from "../../utils/date.utils/convertDate"
-import { NOTIFICATION_TYPE } from "../../constant/notification.type"
+import { useNotifications } from "../../../context/notifications/NotificationsContext"
+import { convetToCustomFormat } from "../../../utils/date.utils/convertDate"
+import { NOTIFICATION_TYPE } from "../../../constant/notification.type"
 
 const keyframe_notifcation = keyframes`
 0% {

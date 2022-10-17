@@ -77,7 +77,7 @@ const Producer = lazy(() =>
   import("./pages/producer-wrapper/Producer-wrapper-page")
 );
 const Notifications = lazy(() =>
-  import("./pages/notifications/Notifications-page")
+  import("./pages/publics/notifications/Notifications-page")
 );
 const CollectionIframe = lazy(() =>
   import("./pages/customer/collection-iframe/CollectionIfram-page")

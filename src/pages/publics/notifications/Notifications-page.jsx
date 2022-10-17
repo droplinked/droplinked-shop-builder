@@ -1,8 +1,8 @@
 import { Flex, Text } from "@chakra-ui/react"
-import { useNotifications } from "../../context/notifications/NotificationsContext"
+import { useNotifications } from "../../../context/notifications/NotificationsContext"
 
 import NotificationComponent from "./Notification.component"
-import Loading from "../../components/shared/loading/Loading"
+import Loading from "../../../components/shared/loading/Loading"
 
 export default function Notifications() {
 
