@@ -16,11 +16,6 @@ const LockIcon = () => {
               <Flex
                 justifyContent="center"
                 alignItems="center"
-                w={{ base: "25px", md: "36px" }}
-                h={{ base: "25px", md: "36px" }}
-                p={{ base: "4px", md: "6px" }}
-                borderRadius="50%"
-                bgColor="#222"
                 cursor="pointer"
               >
                 <HiOutlineLockClosed color="white" size='sm' />

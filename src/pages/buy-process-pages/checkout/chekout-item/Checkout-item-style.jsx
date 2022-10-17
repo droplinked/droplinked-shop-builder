@@ -9,6 +9,7 @@ export const CheckoutItemWrapper = chakra("div", {
     //  mb: "28px",
     flexDirection: { base: "column", md: "row" },
     justifyContent: "space-between",
+    pos:'relative'
   },
 });
 

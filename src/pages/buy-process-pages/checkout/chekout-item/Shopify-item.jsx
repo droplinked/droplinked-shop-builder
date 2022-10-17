@@ -16,6 +16,7 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { useCart } from "../../../../context/cart/CartContext";
 import { useNavigate } from "react-router-dom";
 
+import LockIcon from "../../../../components/shared/lock-icon/lockIcon";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 
 const ShopifytItem = ({ product, variant, amount, shopName }) => {
@@ -49,7 +50,19 @@ const ShopifytItem = ({ product, variant, amount, shopName }) => {
           <ProductImage src={product.images[0].src} onClick={clickOnProduct} />
 
           <TitleWrapper>
-            <Title onClick={clickOnProduct}>{product.title}</Title>
+            <Flex >
+              <Flex
+                ml="-2px"
+                mt='4px'
+                w={{ base: "16px", md: "26px" }}
+                h={{ base: "16px", md: "26px" }}
+                justifyContent="center"
+                alignItems="center"
+              >
+                <LockIcon />
+              </Flex>
+              <Title onClick={clickOnProduct}>{product.title}</Title>
+            </Flex>
 
             {variant && (
               <VariantText
@@ -67,8 +80,6 @@ const ShopifytItem = ({ product, variant, amount, shopName }) => {
 
         <ButtonControllerWrapper>
           <Flex justifyContent="space-between" alignItems="center" mb="10px">
-
-
             <CounterWrapper>
               <IconWrapper onClick={increaseQuantity}>
                 <AiFillCaretUp color="white" alignItem="center" />

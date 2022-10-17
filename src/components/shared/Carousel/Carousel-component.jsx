@@ -99,7 +99,16 @@ export default function Carousel({ imagesArray, lock }) {
               />
             </Flex> */}
             {/* full size icon */}
-            <Box pos="absolute" top="10px" right="10px">
+            <Box
+              pos="absolute"
+              top="10px"
+              right="10px"
+              w={{ base: "25px", md: "36px" }}
+              h={{ base: "25px", md: "36px" }}
+              p={{ base: "4px", md: "6px" }}
+              bgColor="#222"
+              borderRadius='50%'
+            >
               {true ? <LockIcon /> : <UnlockIcon />}
             </Box>
 
