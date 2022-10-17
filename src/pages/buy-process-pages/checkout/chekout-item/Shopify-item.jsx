@@ -54,6 +54,7 @@ const ShopifytItem = ({ product, variant, amount, shopName }) => {
               <Flex
                 ml="-2px"
                 mt='4px'
+                mr='4px'
                 w={{ base: "16px", md: "26px" }}
                 h={{ base: "16px", md: "26px" }}
                 justifyContent="center"
