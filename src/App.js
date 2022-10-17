@@ -17,7 +17,7 @@ import ShopWrapper from "./pages/customer-pages/shop-wrapper/shop-wrapper";
 import ViewCollection from "./pages/Producer-pages/view-collection/View-collection";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
-const LandingPage = lazy(() => import("./pages/landing/Landing-page"));
+const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
 const TermsPage = lazy(() => import("./pages/terms/Terms-page"));
 const PrivacyPage = lazy(() => import("./pages/privacy/Privacy-page"));
 const RegisterPage = lazy(() =>

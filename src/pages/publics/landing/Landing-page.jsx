@@ -9,21 +9,21 @@ import {
   TextContainer,
 } from "./Landing-page-style";
 
-import LandingpageImage from "./landing-page-image-component";
-import SignupInput from "./singup-input-component";
+import LandingpageImage from "./components/landing-page-image-component";
+import SignupInput from "./components/singup-input-component";
 
 const SignUpModal = lazy(() =>
-  import("../../components/Modal/Register-modal/SignUpModal")
+  import("../../../components/Modal/Register-modal/SignUpModal")
 );
-//import SignUpModal from "../../components/Modal/Register-modal/SignUpModal"
+
 const LoginModal = lazy(() =>
-  import("../../components/Modal/Login-modal/LoginModal")
+  import("../../../components/Modal/Login-modal/LoginModal")
 );
-//import LoginModal from "../../components/Modal/Login-modal/LoginModal"
+
 const ResetPassModal = lazy(() =>
-  import("../../components/Modal/ResetPass-modal/ResetPassModal-component")
+  import("../../../components/Modal/ResetPass-modal/ResetPassModal-component")
 );
-//import ResetPassModal from "../../components/Modal/ResetPass-modal/ResetPassModal-component"
+
 
 const keyframe_leftanimation = keyframes`
 0% {

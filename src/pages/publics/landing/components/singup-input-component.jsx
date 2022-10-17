@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Flex, Image, Spinner } from "@chakra-ui/react";
-import { checkShopname } from "../../api/public/CheckShopname-api";
+import { checkShopname } from "../../../../api/public/CheckShopname-api";
 import {
   SignupWrapper,
   DomainText,
@@ -8,7 +8,7 @@ import {
   SignupButton,
   ErrorText,
 } from "./signup-input-style";
-import alertIcon from "../../assest/icon/alert.png";
+import alertIcon from "../../../../assest/icon/alert.png";
 
 const SignupInput = ({ setUsername, userName, toggleSignUp }) => {
   const [loading, setLoading] = useState(false);
