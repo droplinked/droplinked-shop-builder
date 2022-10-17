@@ -14,7 +14,7 @@ import CartPage from "./pages/buy-process-pages/cart/cart-page";
 import ConfirmPage from "./pages/buy-process-pages/confirm/confirm";
 import ShopWrapper from "./pages/customer/shop-wrapper/shop-wrapper";
 
-import ViewCollection from "./pages/Producer-pages/view-collection/View-collection";
+import ViewCollection from "./pages/Producer/view-collection/View-collection";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
@@ -37,19 +37,17 @@ const ThankForRegisterPage = lazy(() =>
   import("./pages/thanks-for-register/ThankForRegister-page")
 );
 const InventoryPage = lazy(() =>
-  import("./pages/Producer-pages/ims/Inventory-page")
+  import("./pages/Producer/ims/Inventory-page")
 );
 const ViewMerchPage = lazy(() =>
-  import("./pages/Producer-pages/view-merch/View-merch-page")
+  import("./pages/Producer/view-merch/View-merch-page")
 );
 const AddProductPage = lazy(() =>
-  import("./pages/Producer-pages/add-product/Add-product-page")
+  import("./pages/Producer/add-product/Add-product-page")
 );
-// const RuleSetPage = lazy(() =>
-//   import("./pages/Producer-pages/rulesets/RuleSet-page")
-// );
+
 const CollectionMainPage = lazy(() =>
-  import("./pages/Producer-pages/collection/Collection-page")
+  import("./pages/Producer/collection/Collection-page")
 );
 const ShopPage = lazy(() => import("./pages/shop/Shop-page"));
 const MerchPage = lazy(() => import("./pages/customer/merch/Merch-page"));
@@ -67,7 +65,7 @@ const PaymentPage = lazy(() =>
 const SettingsPage = lazy(() => import("./pages/settings/Settings-page"));
 
 const IncomingOrderPage = lazy(() =>
-  import("./pages/Producer-pages/incomin-order/IncomingOrder-page")
+  import("./pages/Producer/incomin-order/IncomingOrder-page")
 );
 
 const PurchasHistoryPage = lazy(() =>
