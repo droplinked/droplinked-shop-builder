@@ -8,6 +8,7 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 import { ChakraProvider } from "@chakra-ui/react";
 import { WalletProvider } from "./context/wallet/WalletContext";
+import { theme } from "./theme"
 import ToastifyProvider from "./context/toastify/ToastContext";
 import CartProvider from "./context/cart/CartContext";
 import ProfileProvider from "./context/profile/ProfileContext";
@@ -21,7 +22,7 @@ ReactDOM.render(
       <ProfileProvider>
         <WalletProvider>
           <CartProvider>
-            <ChakraProvider>
+            <ChakraProvider theme={theme}>
               <AddressProvider>
                 <NotificationProvider>
                   <ShopProvider>

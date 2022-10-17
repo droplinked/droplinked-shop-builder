@@ -48,7 +48,7 @@ export const SignupButton = chakra("button", {
     justifyContent: "center",
     alignItems: "center",
     p: { base: "12px 20px 9px 20px", md: "12px 20px" },
-    bg: "#8053ff",
+    bg: "primary",
     borderRadius: "8px",
     fontWeight: "600",
     fontSize: { base: "16px", md: "1.4vw" },
