@@ -88,8 +88,8 @@ export default class CreditCard extends React.Component {
         {/* </Flex> */}
         {/* <Box mb="30px"></Box> */}
         <form ref={(c) => (this.form = c)} onSubmit={this.handleSubmit}>
-          <Flex flexDir={{base:'column',md:'row'}}>
-            <Box w={{base:'100%' , md:'50%'}} mb={{base:'30px' , md:'0px'}} overflow='hidden'>
+          <Flex flexDir='column'>
+            <Box w='100%' mb={{base:'30px' , md:'30px'}} overflow='hidden'>
               <Card
                 number={number}
                 name={name}
@@ -99,7 +99,7 @@ export default class CreditCard extends React.Component {
                 callback={this.handleCallback}
               />
             </Box>
-            <Box w={{base:'100%' , md:'50%'}} >
+            <Box w='100%' >
               <CardInput
                 type="tel"
                 name="number"
@@ -218,19 +218,19 @@ export default class CreditCard extends React.Component {
             </div>
           </Box> */}
           <div
-            className="form-actions d-flex w-100 justify-content-between"
+            className="form-actions d-flex  w-100 "
             style={{ padding: "0px" }}
           >
             <BasicButton
               click={this.props.backToShipping}
-              loading={this.props.loading}
+              disable={this.props.loading}
               w="45%"
               cancelType={true}
             >
               Back
             </BasicButton>
-            <BasicButton type="submit" loading={this.props.loading} w="45%">
-              PAY
+            <BasicButton type="submit" disable={this.props.loading} w="45%">
+              {this.props.buttonText}
             </BasicButton>
           </div>
         </form>

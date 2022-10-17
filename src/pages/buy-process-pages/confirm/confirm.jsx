@@ -65,39 +65,7 @@ const ConfirmPage = () => {
         flexDirection="column"
       >
         {/* top side */}
-        <Box
-          p="10px 5px"
-          mb="50px"
-          w={{ base: "100%", md: "100%" }}
-          display="flex"
-          flexDir="column"
-          alignItems="end"
-        >
-          <Text
-            color="#ddd"
-            mb="20px"
-            fontSize={{ base: "18px", md: "22px" }}
-            fontWeight="600"
-          >
-            Items: ${getItemsPrice()}
-          </Text>
-          <Text
-            color="#ddd"
-            mb="20px"
-            fontSize={{ base: "18px", md: "22px" }}
-            fontWeight="600"
-          >
-            Shipping: ${shippingPrice}
-          </Text>
-          <Text
-            color="#ddd"
-            mb="20px"
-            fontSize={{ base: "18px", md: "22px" }}
-            fontWeight="600"
-          >
-            Total price: ${getTotal()}
-          </Text>
-        </Box>
+        
 
         <Flex w="100%" justifyContent="space-between">
           <BasicButton
