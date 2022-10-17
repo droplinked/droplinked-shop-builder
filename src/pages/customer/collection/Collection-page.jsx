@@ -1,14 +1,14 @@
 import "./Collection-page-style.scss";
 import "react-toastify/dist/ReactToastify.css";
 
-import Loading from "../../components/shared/loading/Loading";
-import Product from "../../components/shared/Product/Product";
+import Loading from "../../../components/shared/loading/Loading";
+import Product from "../../../components/shared/Product/Product";
 
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getCollectionById } from "../../api/public/Collection-api";
-import { SHOP_TYPES } from "../../constant/shop-types";
-import { USER_TYPE } from "../../constant/user-types"
+import { getCollectionById } from "../../../api/public/Collection-api";
+import { SHOP_TYPES } from "../../../constant/shop-types";
+import { USER_TYPE } from "../../../constant/user-types"
 
 export default function CollectionPage() {
 
