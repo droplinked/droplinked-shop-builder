@@ -80,7 +80,7 @@ const Notifications = lazy(() =>
   import("./pages/notifications/Notifications-page")
 );
 const CollectionIframe = lazy(() =>
-  import("./pages/collection-iframe/CollectionIfram-page")
+  import("./pages/customer/collection-iframe/CollectionIfram-page")
 );
 const Test = lazy(() => import("./pages/test/Test-page"));
 const ShopInfoComponent = lazy(() =>

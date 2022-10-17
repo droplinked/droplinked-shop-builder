@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 import { Flex, Box } from '@chakra-ui/react'
-import { getCollectionById } from "../../api/public/Collection-api"
+import { getCollectionById } from "../../../api/public/Collection-api"
 import { useParams } from "react-router-dom";
 
 import FrameProduct from "./iframe-product-component"
-import Loading from "../../components/shared/loading/Loading"
+import Loading from "../../../components/shared/loading/Loading"
 
 
 const CollectionIframe = () => {
