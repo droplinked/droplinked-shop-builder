@@ -63,14 +63,13 @@ const AddressPage = lazy(() =>
 const PaymentPage = lazy(() =>
   import("./pages/buy-process-pages/payment/Payment-page")
 );
-const CreatorPage = lazy(() => import("./pages/Crashpunks-page/CreatorPage"));
 
 const SettingsPage = lazy(() => import("./pages/settings/Settings-page"));
 
 const IncomingOrderPage = lazy(() =>
   import("./pages/Producer-pages/incomin-order/IncomingOrder-page")
 );
-const Creator = lazy(() => import("./pages/creator/CreatorPage"));
+
 const PurchasHistoryPage = lazy(() =>
   import("./pages/purchase-history/PurchaseHistory")
 );
@@ -167,8 +166,6 @@ function App() {
               <Route path="/TestProduct" element={<TestProduct />} />
               <Route path="/testshopifymerchview" element={<TextView />} />
 
-              {/* <Route path="/crashpunks" element={<CreatorPage />} /> */}
-              <Route path="/creatorpage" element={<Creator />} />
               <Route path="/notifications" element={<Notifications />} />
               <Route
                 path="/collection-iframe/:shopname/:collectionId"
