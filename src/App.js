@@ -31,7 +31,7 @@ const EmailVerifyPage = lazy(() =>
   import("./pages/publics/email-verify/Email-verification-page")
 );
 const AccountRecovery = lazy(() =>
-  import("./pages/account-recovery/Account-recovery")
+  import("./pages/publics/account-recovery/Account-recovery")
 );
 const ThankForRegisterPage = lazy(() =>
   import("./pages/thanks-for-register/ThankForRegister-page")
