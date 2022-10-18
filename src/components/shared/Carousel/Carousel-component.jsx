@@ -123,6 +123,8 @@ export default function Carousel({ imagesArray, lock }) {
                       borderRadius="8px"
                       overflow="hidden"
                       mb="15px"
+                      cursor="pointer"
+                      onClick={openFullsize}
                     />
                   );
                 }
