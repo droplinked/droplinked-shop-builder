@@ -15,7 +15,7 @@ const CartPage = () => {
   const [buttonText, setButtonText] = useState("PAY");
 
   let navigate = useNavigate();
-  const { successToast, errorToast } = useToasty();
+  const { errorToast } = useToasty();
   let { shopname } = useParams();
   const { clearCart } = useCart();
 
@@ -24,6 +24,9 @@ const CartPage = () => {
     JSON.parse(localStorage.getItem("shippingPrice")).shippingPrice
   ).toFixed(2);
   const checkoutId = JSON.parse(localStorage.getItem("checkout_id"));
+  const selectedAddress = JSON.parse(localStorage.getItem("selected_address"));
+
+  console.log(selectedAddress);
 
   useEffect(() => {
     if (cardData != null) {
@@ -90,16 +93,85 @@ const CartPage = () => {
       px={{ base: "20px", md: "80px" }}
       justifyContent="center"
       alignContent="center"
-      maxW="700px"
+      maxW="1000px"
       mx="auto"
     >
-      <Box w="100%" mx="auto" borderBottom="2px solid gray">
+      <Box w="100%" mx="auto" bg="gray" p="25px" borderRadius="8px" mb="24px">
         {cart.items.map((item, i) => {
           return <Item key={i} product={item} />;
         })}
+        <Text
+          textAlign="end"
+          w="100%"
+          mt="20px"
+          mb="15px"
+          color="#fff"
+          fontWeight="400"
+          fontSize={{ base: "16px", md: "20px" }}
+        >
+          Total price: ${getItemsPrice()}
+        </Text>
       </Box>
 
-      <Flex w="100%" justifyContent="end">
+      <Box
+        w="100%"
+        mx="auto"
+        bg="gray"
+        p="20px 40px"
+        borderRadius="8px"
+        mb="24px"
+      >
+        <Text
+          w="100%"
+          mb="7px"
+          color="#fff"
+          fontWeight="500"
+          fontSize={{ base: "18px", md: "24px" }}
+        >
+          {selectedAddress.country} - {selectedAddress.state} ,{" "}
+          {selectedAddress.firstname} {selectedAddress.lastname}
+        </Text>
+        <Text
+          w="100%"
+          mb="5px"
+          color="#fff"
+          fontWeight="400"
+          fontSize={{ base: "16px", md: "20px" }}
+        >
+          {selectedAddress.addressLine1}
+        </Text>
+
+        <Flex w="100%" justifyContent="space-between" mb="40px">
+          <Text
+            color="#fff"
+            fontWeight="400"
+            fontSize={{ base: "12px", md: "20px" }}
+          >
+            {selectedAddress.city} {selectedAddress.zip}{" "}
+          </Text>
+
+          <Text
+            color="#fff"
+            fontWeight="400"
+            fontSize={{ base: "16px", md: "20px" }}
+          >
+            Shipping price: ${shippingPrice}
+          </Text>
+        </Flex>
+      </Box>
+      <Box w="100%" borderBottom="1px solid #757575" mb="32px"></Box>
+      <Text
+      w="100%"
+      textAlign='center'
+        mb="32px"
+        color="#fff"
+        fontWeight="400"
+        fontSize={{ base: "16px", md: "20px" }}
+      >
+        Total payment: ${getTotal()}
+      </Text>
+
+      {/* <Flex w="100%" justifyContent="end">
         <Box
           p="10px 5px"
           mb="20px"
@@ -111,16 +183,16 @@ const CartPage = () => {
           <Flex w="100%" justifyContent="space-between">
             <Text
               color="#ddd"
-              mb="20px"
-              fontSize={{ base: "18px", md: "22px" }}
+              mb="10px"
+              fontSize={{ base: "18px", md: "18px" }}
               fontWeight="600"
             >
               Items:
             </Text>
             <Text
               color="#ddd"
-              mb="20px"
-              fontSize={{ base: "18px", md: "22px" }}
+              mb="10px"
+              fontSize={{ base: "18px", md: "18px" }}
               fontWeight="600"
             >
               ${getItemsPrice()}
@@ -129,16 +201,16 @@ const CartPage = () => {
           <Flex w="100%" justifyContent="space-between">
             <Text
               color="#ddd"
-              mb="20px"
-              fontSize={{ base: "18px", md: "22px" }}
+              mb="10px"
+              fontSize={{ base: "18px", md: "18px" }}
               fontWeight="600"
             >
               Shipping:
             </Text>
             <Text
               color="#ddd"
-              mb="20px"
-              fontSize={{ base: "18px", md: "22px" }}
+              mb="10px"
+              fontSize={{ base: "18px", md: "18px" }}
               fontWeight="600"
             >
               ${shippingPrice}
@@ -147,48 +219,47 @@ const CartPage = () => {
           <Flex w="100%" justifyContent="space-between">
             <Text
               color="#ddd"
-              mb="10px"
-              fontSize={{ base: "18px", md: "22px" }}
+              fontSize={{ base: "18px", md: "18px" }}
               fontWeight="600"
             >
               Taxes:
             </Text>
             <Text
               color="#ddd"
-              mb="10px"
-              fontSize={{ base: "18px", md: "22px" }}
+              fontSize={{ base: "18px", md: "18px" }}
               fontWeight="600"
             >
               $0
             </Text>
           </Flex>
         </Box>
-      </Flex>
-      <Flex w="100%" justifyContent="end" mb='20px'>
-      <Flex w="50%" justifyContent="space-between">
-        <Text
-          color="#ddd"
-          mb="20px"
-          fontSize={{ base: "20px", md: "24px" }}
-          fontWeight="600"
-        >
-          Total price:
-        </Text>
-        <Text
-          color="#ddd"
-          mb="20px"
-          fontSize={{ base: "20px", md: "24px" }}
-          fontWeight="600"
-        >
-          ${getTotal()}
-        </Text>
-      </Flex>
-      </Flex>
+      </Flex> */}
+
+      {/* <Flex w="100%" justifyContent="end" mb="20px">
+        <Flex w="50%" justifyContent="space-between">
+          <Text
+            color="#ddd"
+            mb="20px"
+            fontSize={{ base: "20px", md: "24px" }}
+            fontWeight="600"
+          >
+            Total price:
+          </Text>
+          <Text
+            color="#ddd"
+            mb="20px"
+            fontSize={{ base: "20px", md: "24px" }}
+            fontWeight="600"
+          >
+            ${getTotal()}
+          </Text>
+        </Flex>
+      </Flex> */}
 
       <Flex w="100%" justifyContent="center" alignContent="center">
         <Box
           w="100%"
-         // maxW="500px"
+           maxW="500px"
           // p="40px 60px"
           py="40px"
           px={{ base: "20px", md: "20px", lg: "60px" }}

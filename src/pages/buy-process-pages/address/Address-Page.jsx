@@ -91,6 +91,7 @@ function AddressPage() {
       let result = await createCheckout(cart.items[0].shopName, data);
       setLoading(false);
       if (result.status == "success") {
+        localStorage.setItem("selected_address", JSON.stringify(selectedAddress));
         let checkoutId = {
           checkoutId: result.data.checkout.token,
           shopName: cart.items[0].shopName,
