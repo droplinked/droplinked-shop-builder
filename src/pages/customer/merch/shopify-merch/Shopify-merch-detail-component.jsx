@@ -9,6 +9,7 @@ import { Flex, Box, Text, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+import LockIcon from "../../../../components/shared/lock-icon/lockIcon";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import plus from "../../../../assest/icon/plusIcon.png";
 import minus from "../../../../assest/icon/minusIcon.png";
@@ -108,7 +109,7 @@ const ShopifyDetail = ({
     <DetailWrapper>
       {selectedVariant && (
         <>
-          <Box  mb={{base:'40px',md:'0px'}}>
+          <Box mb={{ base: "40px", md: "0px" }}>
             <ProductTitle>{product.title}</ProductTitle>
             <ProductShopname onClick={navigateToShoppage}>
               {shopName}
@@ -116,12 +117,35 @@ const ShopifyDetail = ({
           </Box>
 
           <Box>
+            <Flex>
+              <Text
+                fontWeight="600"
+                fontSize="24px"
+                color="#fff"
+                mb={{ base: "20px", md: "10px", lg: "30px" }}
+              >
+                ${selectedVariant && selectedVariant.price}
+              </Text>
 
-            <Text fontWeight="600" fontSize="24px" color="#fff"  mb={{base:'20px' , md:'10px',lg:'30px'}} >
-              ${selectedVariant && selectedVariant.price}
-            </Text>
+              <Box
+                mt={{ base: "5px", md: "0px" }}
+                ml="15px"
+                w={{ base: "25px", md: "36px" }}
+                h={{ base: "25px", md: "36px" }}
+                p={{ base: "4px", md: "6px" }}
+                bgColor="#222"
+                borderRadius="50%"
+              >
+                <LockIcon />
+              </Box>
+            </Flex>
 
-            <Flex justifyContent="space-between" w="100%" flexWrap="wrap" mb={{base:'20px' , md:'10px',lg:'30px'}} >
+            <Flex
+              justifyContent="space-between"
+              w="100%"
+              flexWrap="wrap"
+              mb={{ base: "20px", md: "10px", lg: "30px" }}
+            >
               {optionsList.map((option, i) => {
                 return (
                   <Box w="49%" key={i}>
@@ -143,7 +167,7 @@ const ShopifyDetail = ({
               })}
             </Flex>
 
-            <Flex mb={{base:'20px' , md:'10px',lg:'30px'}} >
+            <Flex mb={{ base: "20px", md: "10px", lg: "30px" }}>
               <QuantityButton
                 bgColor="#353536"
                 color="#b3b3b3"

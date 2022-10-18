@@ -99,7 +99,7 @@ export default function Carousel({ imagesArray, lock }) {
               />
             </Flex> */}
             {/* full size icon */}
-            <Box
+            {/* <Box
               pos="absolute"
               top="10px"
               right="10px"
@@ -110,7 +110,7 @@ export default function Carousel({ imagesArray, lock }) {
               borderRadius='50%'
             >
               {true ? <LockIcon /> : <UnlockIcon />}
-            </Box>
+            </Box> */}
 
             {images &&
               images.map((image, i) => {
