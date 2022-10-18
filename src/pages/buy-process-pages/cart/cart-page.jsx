@@ -6,8 +6,8 @@ import { useToasty } from "../../../context/toastify/ToastContext";
 import { confirmPayment } from "../../../api/base-user/Shopify-api";
 import { useCart } from "../../../context/cart/CartContext";
 
-
 import CreditCard from "./CreditCard-component";
+import Item from "./pitem";
 
 const CartPage = () => {
   const [cardData, setCardData] = useState(null);
@@ -33,7 +33,7 @@ const CartPage = () => {
 
   const submitForm = async () => {
     setLoading(true);
-    setButtonText("Adding card ...")
+    setButtonText("Adding card ...");
     let result = await creatShopifySession(cardData);
     if (result.status == "success") {
       // localStorage.setItem(
@@ -41,10 +41,9 @@ const CartPage = () => {
       //   JSON.stringify({ sessionId: result.data })
       // );
       // navigate(`/${shopname}/confirm`);
-      confirmOrder(result.data)
-
+      confirmOrder(result.data);
     } else {
-      setButtonText("PAY")
+      setButtonText("PAY");
       errorToast("Failed");
       setLoading(false);
     }
@@ -63,8 +62,8 @@ const CartPage = () => {
     return (parseFloat(shippingPrice) + parseFloat(getItemsPrice())).toFixed(2);
   };
 
-  const confirmOrder = async(sessionId) => {
-    setButtonText("Confirming...")
+  const confirmOrder = async (sessionId) => {
+    setButtonText("Confirming...");
     let result = await confirmPayment(
       cart.items[0].shopName,
       checkoutId.checkoutId,
@@ -77,11 +76,9 @@ const CartPage = () => {
       localStorage.removeItem("shippingPrice");
       clearCart();
     } else {
-      setButtonText("PAY")
+      setButtonText("PAY");
       errorToast(result);
     }
-    
-
   };
 
   const backButton = () => navigate(`/${shopname}/shipping`);
@@ -93,48 +90,105 @@ const CartPage = () => {
       px={{ base: "20px", md: "80px" }}
       justifyContent="center"
       alignContent="center"
+      maxW="700px"
+      mx="auto"
     >
-  
-      <Box
-        mx="auto"
-        maxW="500px"
-        p="10px 5px"
-        mb="50px"
-        w={{ base: "100%", md: "100%" }}
-        display="flex"
-        flexDir="column"
-        alignItems="center"
-      >
-        <Text
-          color="#ddd"
-          mb="20px"
-          fontSize={{ base: "18px", md: "22px" }}
-          fontWeight="600"
-        >
-          Items: ${getItemsPrice()}
-        </Text>
-        <Text
-          color="#ddd"
-          mb="20px"
-          fontSize={{ base: "18px", md: "22px" }}
-          fontWeight="600"
-        >
-          Shipping: ${shippingPrice}
-        </Text>
-        <Text
-          color="#ddd"
-          mb="20px"
-          fontSize={{ base: "18px", md: "22px" }}
-          fontWeight="600"
-        >
-          Total price: ${getTotal()}
-        </Text>
+      <Box w="100%" mx="auto" borderBottom="2px solid gray">
+        {cart.items.map((item, i) => {
+          return <Item key={i} product={item} />;
+        })}
       </Box>
+
+      <Flex w="100%" justifyContent="end">
+        <Box
+          p="10px 5px"
+          mb="20px"
+          w="50%"
+          display="flex"
+          flexDir="column"
+          borderBottom="2px solid gray"
+        >
+          <Flex w="100%" justifyContent="space-between">
+            <Text
+              color="#ddd"
+              mb="20px"
+              fontSize={{ base: "18px", md: "22px" }}
+              fontWeight="600"
+            >
+              Items:
+            </Text>
+            <Text
+              color="#ddd"
+              mb="20px"
+              fontSize={{ base: "18px", md: "22px" }}
+              fontWeight="600"
+            >
+              ${getItemsPrice()}
+            </Text>
+          </Flex>
+          <Flex w="100%" justifyContent="space-between">
+            <Text
+              color="#ddd"
+              mb="20px"
+              fontSize={{ base: "18px", md: "22px" }}
+              fontWeight="600"
+            >
+              Shipping:
+            </Text>
+            <Text
+              color="#ddd"
+              mb="20px"
+              fontSize={{ base: "18px", md: "22px" }}
+              fontWeight="600"
+            >
+              ${shippingPrice}
+            </Text>
+          </Flex>
+          <Flex w="100%" justifyContent="space-between">
+            <Text
+              color="#ddd"
+              mb="10px"
+              fontSize={{ base: "18px", md: "22px" }}
+              fontWeight="600"
+            >
+              Taxes:
+            </Text>
+            <Text
+              color="#ddd"
+              mb="10px"
+              fontSize={{ base: "18px", md: "22px" }}
+              fontWeight="600"
+            >
+              $0
+            </Text>
+          </Flex>
+        </Box>
+      </Flex>
+      <Flex w="100%" justifyContent="end" mb='20px'>
+      <Flex w="50%" justifyContent="space-between">
+        <Text
+          color="#ddd"
+          mb="20px"
+          fontSize={{ base: "20px", md: "24px" }}
+          fontWeight="600"
+        >
+          Total price:
+        </Text>
+        <Text
+          color="#ddd"
+          mb="20px"
+          fontSize={{ base: "20px", md: "24px" }}
+          fontWeight="600"
+        >
+          ${getTotal()}
+        </Text>
+      </Flex>
+      </Flex>
 
       <Flex w="100%" justifyContent="center" alignContent="center">
         <Box
           w="100%"
-          maxW="500px"
+         // maxW="500px"
           // p="40px 60px"
           py="40px"
           px={{ base: "20px", md: "20px", lg: "60px" }}
