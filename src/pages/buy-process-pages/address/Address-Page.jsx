@@ -120,7 +120,7 @@ function AddressPage() {
         color="#fff"
         m="0px auto 48px auto"
       >
-        Select address
+        Address
       </Text>
 
       <Box w="100%" maxW="1000px" m="auto">
