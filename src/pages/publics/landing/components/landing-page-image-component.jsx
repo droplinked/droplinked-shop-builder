@@ -1,6 +1,6 @@
-import mainImage from "../../../../assest/image/imgtest.png"
-import { Box, Image, AspectRatio, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 
+import { Box, Image, AspectRatio, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
+import mainImage from "../../../../assest/image/landingPageImage.png"
 
 const keyframe_rightanimation = keyframes`
 0% {
