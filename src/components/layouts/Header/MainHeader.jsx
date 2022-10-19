@@ -31,13 +31,13 @@ function MainHeader() {
       h={{ base: "60px", md: "124px" }}
     >
       <Link to="/">
-        <Image
-          h={{ base: "26px", sm: "36px", md: "46px" }}
+        {/* <Image
+          h={{ base: "26px", sm: "36px", md: "28px" }}
          // h={{ base: "26px", sm: "36px", md: "52px" }}
           w="auto"
           src={header}
-        />
-        {/* <Text
+        /> */}
+         <Text
           color="#fff"
           fontSize={{ base: "24px", md: "28px" }}
           fontWeight="600"
@@ -45,7 +45,7 @@ function MainHeader() {
           pt={{ base: "3px", md: "0px" }}
         >
           droplinked
-        </Text> */}
+        </Text> 
       </Link>
       <Flex h="100%">
         {profile ? (
