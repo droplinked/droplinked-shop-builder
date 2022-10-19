@@ -32,7 +32,8 @@ function MainHeader() {
     >
       <Link to="/">
         <Image
-          h={{ base: "26px", sm: "36px", md: "52px" }}
+          h={{ base: "26px", sm: "36px", md: "46px" }}
+         // h={{ base: "26px", sm: "36px", md: "52px" }}
           w="auto"
           src={header}
         />
