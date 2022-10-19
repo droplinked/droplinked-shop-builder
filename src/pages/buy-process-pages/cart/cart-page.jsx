@@ -26,7 +26,6 @@ const CartPage = () => {
   const checkoutId = JSON.parse(localStorage.getItem("checkout_id"));
   const selectedAddress = JSON.parse(localStorage.getItem("selected_address"));
 
-
   useEffect(() => {
     if (cardData != null) {
       submitForm();
@@ -103,7 +102,7 @@ const CartPage = () => {
           textAlign="end"
           w="100%"
           mt="20px"
-         // mb="15px"
+          // mb="15px"
           color="#fff"
           fontWeight="400"
           fontSize={{ base: "16px", md: "20px" }}
@@ -140,7 +139,7 @@ const CartPage = () => {
           {selectedAddress.addressLine1}
         </Text>
 
-        <Flex w="100%" justifyContent="space-between" >
+        <Flex w="100%" justifyContent="space-between">
           <Text
             color="#fff"
             fontWeight="400"
@@ -160,8 +159,9 @@ const CartPage = () => {
       </Box>
       <Box w="100%" borderBottom="1px solid #757575" mb="32px"></Box>
       <Text
-      w="100%"
-      textAlign='start'
+        w="100%"
+        textAlign="end"
+        pr="40px"
         mb="32px"
         color="#fff"
         fontWeight="400"
@@ -256,10 +256,7 @@ const CartPage = () => {
       </Flex> */}
 
       <Flex w="100%" justifyContent="center" alignContent="center">
-        <Box
-          w="100%"
-          
-        >
+        <Box w="100%">
           <CreditCard
             backToShipping={backButton}
             setCard={(e) => setCardData(e)}
