@@ -88,8 +88,20 @@ export default class CreditCard extends React.Component {
         {/* </Flex> */}
         {/* <Box mb="30px"></Box> */}
         <form ref={(c) => (this.form = c)} onSubmit={this.handleSubmit}>
-          <Flex flexDir='column'>
-            <Box w='100%' mb={{base:'30px' , md:'30px'}} overflow='hidden'>
+          <Flex
+            flexDir={{ base: "column", md: "row" }}
+            py="40px"
+            px={{ base: "20px", md: "20px", lg: "60px" }}
+            bgColor="#242424"
+            borderRadius="8px"
+            mb="20px"
+          >
+            <Box
+              w={{ base: "100%", md: "50%" }}
+              // mb={{ base: "30px", md: "30px" }}
+              overflow="hidden"
+              mb="-20px"
+            >
               <Card
                 number={number}
                 name={name}
@@ -99,7 +111,7 @@ export default class CreditCard extends React.Component {
                 callback={this.handleCallback}
               />
             </Box>
-            <Box w='100%' >
+            <Box w={{ base: "100%", md: "50%" }} mb="-20px">
               <CardInput
                 type="tel"
                 name="number"
@@ -218,20 +230,24 @@ export default class CreditCard extends React.Component {
             </div>
           </Box> */}
           <div
-            className="form-actions d-flex  w-100 "
+            className="form-actions d-flex justify-content-between w-100 "
             style={{ padding: "0px" }}
           >
-            <BasicButton
-              click={this.props.backToShipping}
-              disable={this.props.loading}
-              w="45%"
-              cancelType={true}
-            >
-              Back
-            </BasicButton>
-            <BasicButton type="submit" disable={this.props.loading} w="45%">
-              {this.props.buttonText}
-            </BasicButton>
+            <Box w="45%">
+              <BasicButton
+                click={this.props.backToShipping}
+                disable={this.props.loading}
+                w="100%"
+                cancelType={true}
+              >
+                Back
+              </BasicButton>
+            </Box>
+            <Box w="45%">
+              <BasicButton type="submit" disable={this.props.loading} w="100%">
+                {this.props.buttonText}
+              </BasicButton>
+            </Box>
           </div>
         </form>
         {/* </Flex> */}

@@ -96,7 +96,7 @@ const CartPage = () => {
       maxW="1000px"
       mx="auto"
     >
-      <Box w="100%" mx="auto" bg="gray" p="25px" borderRadius="8px" mb="24px">
+      <Box w="100%" mx="auto" bg="gray" p="40px" borderRadius="8px" mb="24px">
         {cart.items.map((item, i) => {
           return <Item key={i} product={item} />;
         })}
@@ -104,7 +104,7 @@ const CartPage = () => {
           textAlign="end"
           w="100%"
           mt="20px"
-          mb="15px"
+         // mb="15px"
           color="#fff"
           fontWeight="400"
           fontSize={{ base: "16px", md: "20px" }}
@@ -117,7 +117,7 @@ const CartPage = () => {
         w="100%"
         mx="auto"
         bg="gray"
-        p="20px 40px"
+        p="40px 40px"
         borderRadius="8px"
         mb="24px"
       >
@@ -141,7 +141,7 @@ const CartPage = () => {
           {selectedAddress.addressLine1}
         </Text>
 
-        <Flex w="100%" justifyContent="space-between" mb="40px">
+        <Flex w="100%" justifyContent="space-between" >
           <Text
             color="#fff"
             fontWeight="400"
@@ -162,7 +162,7 @@ const CartPage = () => {
       <Box w="100%" borderBottom="1px solid #757575" mb="32px"></Box>
       <Text
       w="100%"
-      textAlign='center'
+      textAlign='start'
         mb="32px"
         color="#fff"
         fontWeight="400"
@@ -259,13 +259,7 @@ const CartPage = () => {
       <Flex w="100%" justifyContent="center" alignContent="center">
         <Box
           w="100%"
-           maxW="500px"
-          // p="40px 60px"
-          py="40px"
-          px={{ base: "20px", md: "20px", lg: "60px" }}
-          //  border="3px solid #4d4d4d"
-          bgColor="#242424"
-          borderRadius="8px"
+          
         >
           <CreditCard
             backToShipping={backButton}

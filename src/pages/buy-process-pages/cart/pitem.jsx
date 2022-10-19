@@ -8,7 +8,7 @@ const Item = ({ product }) => {
   let price = parseFloat(product.variant.price).toFixed(2);
 
   return (
-    <Box w="100%" mb="13px" borderBottom='1px solid #757575'>
+    <Box w="100%" mb="16px" borderBottom='1px solid #757575'  pb='16px'>
       {/* <Image src={imgSrc}
        w={{base:'60px' , md:'80px'}}
         h={{base:'60px' , md:'80px'}}
@@ -19,6 +19,7 @@ const Item = ({ product }) => {
         fontSize={{ base: "18px", md: "24px" }}
         mb="7px"
         w="100%"
+       
       >
         {productTitle}
       </Text>
