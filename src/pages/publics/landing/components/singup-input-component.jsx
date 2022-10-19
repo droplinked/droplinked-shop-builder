@@ -8,6 +8,8 @@ import {
   SignupButton,
   ErrorText,
 } from "./signup-input-style";
+
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
 import alertIcon from "../../../../assest/icon/alert.png";
 
 const SignupInput = ({ setUsername, userName, toggleSignUp }) => {
@@ -58,8 +60,9 @@ const SignupInput = ({ setUsername, userName, toggleSignUp }) => {
           />
         </Flex>
         <Flex w="25%">
-          <SignupButton onClick={clickSignin}>
-            {loading ? <Spinner color="white" thickness="4px" /> : <>Sign up</>}
+          <SignupButton >
+            <BasicButton loading={loading} click={clickSignin}>Sign up </BasicButton>
+            {/* {loading ? <Spinner color="white" thickness="4px" /> : <>Sign up</>} */}
           </SignupButton>
         </Flex>
       </SignupWrapper>
