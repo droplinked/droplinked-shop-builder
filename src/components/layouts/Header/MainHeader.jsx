@@ -29,12 +29,14 @@ function MainHeader() {
       alignItems="center"
       padding={{ base: "8px 20px", md: "36px 80px" }}
       h={{ base: "52px", md: "124px" }}
+      border='1px solid blue'
     >
       <Link to="/">
         <Image
           h={{ base: "26px", sm: "36px", md: "46px" }}
          // h={{ base: "26px", sm: "36px", md: "52px" }}
           w="auto"
+          border='1px solid red'
           src={header}
         />
         {/* <Text

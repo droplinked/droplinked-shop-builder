@@ -16,6 +16,7 @@ export default function HeaderItem({ children, click, ...otherProps }) {
             pt={{base:'3px' , md:'0px'}}
             fontSize={{ base: '12px', md: '20px' }}
             cursor='pointer'
+            
             _hover={{
                 bgColor:'#424242',
             }}

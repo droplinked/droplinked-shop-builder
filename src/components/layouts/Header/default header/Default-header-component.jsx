@@ -58,7 +58,7 @@ export default function DefaulHeader({ haventEmail }) {
           <HeaderItem click={toggleLogin}>Login</HeaderItem>
         </>
       ) : (
-        <Box d='flex' alignItems='center'>
+        <Box d='flex' alignItems='center' border='1px solid red'>
           <Cart clickBasket={openBasket} />
           <Box mr={{base:'6px',md:'12px'}}></Box>
           <WalletButton haventEmail={haventEmail} />
