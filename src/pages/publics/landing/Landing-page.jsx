@@ -13,6 +13,7 @@ import {
   TextUp,
   Text2,
   TextContainer,
+  SpaceBox
 } from "./Landing-page-style";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
@@ -89,7 +90,7 @@ export default function LandingPage() {
   const navigateToEnquiry = () => navigate("/enquiry");
 
   return (
-    <>
+    <Box mb='-50px'>
       <LandingPageWrapper>
         {/* inputs */}
         <InputContainrt>
@@ -114,6 +115,8 @@ export default function LandingPage() {
       </LandingPageWrapper>
      
 
+      <SpaceBox></SpaceBox>
+
       <Text
         color="#f6f6f6"
         w="100%"
@@ -121,14 +124,17 @@ export default function LandingPage() {
         fontWeight="400"
         fontSize={{ base: "18px", md: "1.95vw" }}
         px={{ base: "20px", md: "120px" }}
-        mb="80px"
+       // mb="80px"
       >
         Droplinked provides simplified web3 tools to open shop and grow
         together.
       </Text>
 
+      <SpaceBox></SpaceBox>
+
       <LandingIcons />
 
+      <SpaceBox></SpaceBox>
 
       <Flex w="100%" justifyContent="center" px={{ base: "20px", md: "80px" }}>
         <Box w={{ base: "100%", md: "400px" }}>
@@ -137,6 +143,8 @@ export default function LandingPage() {
           </BasicButton>
         </Box>
       </Flex>
+
+      <SpaceBox></SpaceBox>
 
       <Suspense fallback={<></>}>
         {showSignup && (
@@ -162,6 +170,6 @@ export default function LandingPage() {
           />
         )}
       </Suspense>
-    </>
+    </Box>
   );
 }

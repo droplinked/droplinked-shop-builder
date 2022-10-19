@@ -18,11 +18,12 @@ const LandingIcons = () => {
     <Flex
       w="100%"
       maxW="800px"
-      pt={{ base: "40px", md: "60px" }}
+     // pt={{ base: "40px", md: "60px" }}
       mx="auto"
       flexWrap="wrap"
       justifyContent="space-between"
-      mb="80px"
+      mb={{base:'-50px',md:"-70px"}}
+     // mb="80px"
     >
       {/* <RowWrapper> */}
       <Iconwrapper>

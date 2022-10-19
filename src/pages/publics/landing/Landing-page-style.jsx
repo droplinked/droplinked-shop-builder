@@ -7,6 +7,7 @@ export const LandingPageWrapper = chakra("div", {
     flexDirection: { base: "column", md: "row" },
     pl: { base: "20px", md: "120px" },
     w: "100%",
+    mb:'-30px'
   },
 });
 
@@ -45,3 +46,12 @@ export const TextContainer = chakra("div", {
     mt: "4.5vw",
   },
 });
+
+
+export const SpaceBox = chakra("div", {
+  baseStyle: {
+    w: "100%",
+    mb:{base:"100px" , md:'120px'}
+  },
+});
+
