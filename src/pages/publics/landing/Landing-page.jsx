@@ -132,9 +132,9 @@ export default function LandingPage() {
 
       <SpaceBox></SpaceBox>
 
-      <LandingIcons />
+      {/* <LandingIcons />
 
-      <SpaceBox></SpaceBox>
+      <SpaceBox></SpaceBox> */}
 
       <Flex w="100%" justifyContent="center" px={{ base: "20px", md: "80px" }}>
         <Box w={{ base: "100%", md: "400px" }}>

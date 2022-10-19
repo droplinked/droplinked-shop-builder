@@ -13,7 +13,7 @@ export default function BasicButton({
       w="100%"
       h="100%"
       bgColor={cancelType ? "#242424" : "#8053ff"}
-      color={cancelType ? "#DBDBDB" : "#222"}
+      color={cancelType ? "#DBDBDB" : "#fff"}
       border={cancelType ? "2px solid #242424" : "2px solid #8053ff"}
       fontSize={{ base: "16px", md: "20px" }}
       fontWeight="600"
