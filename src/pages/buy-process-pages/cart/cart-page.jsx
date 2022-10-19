@@ -26,7 +26,6 @@ const CartPage = () => {
   const checkoutId = JSON.parse(localStorage.getItem("checkout_id"));
   const selectedAddress = JSON.parse(localStorage.getItem("selected_address"));
 
-  console.log(selectedAddress);
 
   useEffect(() => {
     if (cardData != null) {
@@ -80,7 +79,7 @@ const CartPage = () => {
       clearCart();
     } else {
       setButtonText("PAY");
-      errorToast(result);
+      errorToast("Invalid card information, try again");
     }
   };
 
