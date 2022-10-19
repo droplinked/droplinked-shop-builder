@@ -17,6 +17,7 @@ import {
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import LandingpageImage from "./components/landing-page-image-component";
+import LandingIcons from "./components/landing-icons-component"
 import SignupInput from "./components/singup-input-component";
 
 const SignUpModal = lazy(() =>
@@ -111,6 +112,7 @@ export default function LandingPage() {
         <LandingpageImage />
         {/* image */}
       </LandingPageWrapper>
+     
 
       <Text
         color="#f6f6f6"
@@ -119,11 +121,14 @@ export default function LandingPage() {
         fontWeight="400"
         fontSize={{ base: "18px", md: "1.95vw" }}
         px={{ base: "20px", md: "120px" }}
-        mb="30px"
+        mb="80px"
       >
         Droplinked provides simplified web3 tools to open shop and grow
         together.
       </Text>
+
+      <LandingIcons />
+
 
       <Flex w="100%" justifyContent="center" px={{ base: "20px", md: "80px" }}>
         <Box w={{ base: "100%", md: "400px" }}>
