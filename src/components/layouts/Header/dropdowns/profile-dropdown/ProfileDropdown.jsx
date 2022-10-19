@@ -2,9 +2,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { useProfile } from "../../../../../context/profile/ProfileContext";
 import { Flex, Image } from "@chakra-ui/react";
 import { UseWalletInfo } from "../../../../../context/wallet/WalletContext";
+import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 
 import ProfileItem from "./ProfileItem-component";
 import headerWalletIcon from "../../../../../assest/icon/headerWalletIcon.svg";
+
+
+
 
 const ProfileDropdown = ({ close }) => {
   const { profile, logout, isCustomer, isRegisteredProducer } = useProfile();
@@ -73,14 +77,15 @@ const ProfileDropdown = ({ close }) => {
     //  boxShadow="dark-lg"
       flexDirection="column"
     >
-      {(isCustomer() && userData) && (
+      {/* {(isCustomer() && userData) && (
         <ProfileItem>
           <Flex justifyContent="center" alignItems="center">
-            <Image src={headerWalletIcon} mr="5px" />
+            <MdOutlineAccountBalanceWallet style={{marginRight:"8px"}} size='30px'/> 
+             <Image src={headerWalletIcon}  /> 
             {walletAddress()}
           </Flex>
         </ProfileItem>
-      )}
+      )} */}
 
       {isRegisteredProducer() && (
         <ProfileItem click={clickProfile}>Profile</ProfileItem>
