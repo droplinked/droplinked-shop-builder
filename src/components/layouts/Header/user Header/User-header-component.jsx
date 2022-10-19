@@ -3,11 +3,12 @@ import DropdownContainer from "../dropdowns/dropdown-container/DropDown-containe
 import Notification from "../icons/notification/notification-icon-component";
 import ProfileIcon from "../icons/profile/profile-icon-component";
 import Cart from "../icons/cart/cart-icon-component";
+import newWalletIcon from "../../../../assest/icon/new-wallet-icon.svg";
 
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { DROPDOWN_TYPE } from "../dropdowns/dropdown.type";
 import { useState } from "react";
-import { Flex, Text, Box } from "@chakra-ui/react";
+import { Flex, Text, Image } from "@chakra-ui/react";
 import { useProfile } from "../../../../context/profile/ProfileContext";
 import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
 
@@ -58,8 +59,8 @@ export default function UserHeader() {
         {/* <ProfileIcon click={openProfileDropdown} /> */}
 
         <Flex
-          mr="-12px"
-          px={{base:"8px",md:"12px"}}
+          // mr="-12px"
+          px={{ base: "8px", md: "12px" }}
           py="5px"
           borderRadius="0px"
           borderLeft="3px solid #353536"
@@ -72,16 +73,16 @@ export default function UserHeader() {
           }}
           onClick={openProfileDropdown}
         >
-          <MdOutlineAccountBalanceWallet
-            color="white"
-            style={{ marginRight: "8px" }}
-            size='35px'
+          <Image
+            w={{ base: "25px", md: "36px" }}
+            h={{ base: "25px", md: "36px" }}
+            src={newWalletIcon}
           />
           <Text
             fontSize={{ base: "12px", md: "16px" }}
             fontWeight="600"
             color="white"
-            d={{base:'none' , md:'block'}}
+            d={{ base: "none", md: "block" }}
           >
             {walletAddress()}
           </Text>
