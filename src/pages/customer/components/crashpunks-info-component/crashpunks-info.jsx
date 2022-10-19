@@ -6,9 +6,14 @@ import profilePic from "../../../../assest/image/crashpunks.gif";
 
 import {  Flex, Image, Text } from "@chakra-ui/react";
 import { IconWrapper } from "./crashpunks-info-style";
+import { useNavigate } from "react-router-dom";
 import { defaultAuthURL } from "@stacks/connect";
 
 const CrashpunksInfo = () => {
+  let navigate = useNavigate();
+
+  const navigateToShop = () => navigate("/crashpunks")
+  
   return (
     <Flex
       w="100%"
@@ -34,6 +39,8 @@ const CrashpunksInfo = () => {
           height="100%"
           objectFit="cover"
           borderRadius="50%"
+          cursor='pointer'
+          onClick={navigateToShop}
         />
       </Flex>
 
