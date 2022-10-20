@@ -1,5 +1,6 @@
 
 import { Box, Image, AspectRatio, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
+import { useNavigate } from "react-router-dom";
 import mainImage from "../../../../assest/image/landingPageImage.png"
 
 const keyframe_rightanimation = keyframes`
@@ -18,6 +19,10 @@ export default function LandingpageImage() {
 
     const prefersReducedMotion = usePrefersReducedMotion();
 
+    let navigate = useNavigate();
+
+    const navigateToShop = () => navigate("/crashpunks")
+
     const rightsideAnimation = prefersReducedMotion
         ? undefined
         : `${keyframe_rightanimation}  1s linear`;
@@ -31,6 +36,8 @@ export default function LandingpageImage() {
                             pos='absolute'
                             top='0px'
                             maxW='100%'
+                            cursor='pointer'
+                            onClick={navigateToShop}
                             src={mainImage} alt="" />
                     </Box>
                 </AspectRatio>
