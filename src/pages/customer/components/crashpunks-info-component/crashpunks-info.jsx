@@ -50,6 +50,7 @@ const CrashpunksInfo = () => {
         fontSize="18px"
         textAlign="center"
         color="#ffffff"
+        onClick={navigateToShop}
       >
         CrashPunks
       </Text>
