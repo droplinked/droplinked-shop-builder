@@ -30,10 +30,10 @@ const LandingIcons = () => {
         color="#f6f6f6"
         w="100%"
         textAlign="center"
-        fontWeight="400"
+        fontWeight="600"
         fontSize={{
-          base: "12px",
-          sm: "14px",
+          base: "4vw",
+          sm: "3vw",
           md: "18px",
           lg: "24px",
           xl: "34px",
