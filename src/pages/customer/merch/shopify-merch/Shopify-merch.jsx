@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "../../../../context/cart/CartContext";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useProfile } from "../../../../context/profile/ProfileContext";
@@ -18,41 +18,48 @@ import ShopifyDetail from "./Shopify-merch-detail-component";
 
 const ShopifyMech = ({ shopName, product }) => {
   const [loading, setLoading] = useState(false);
+  // if product cant pass rule lock value == true
+  const [lock, setLock] = useState(true);
   const [testLimit, setTextLimit] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(null);
 
-  const { userData, authenticate } = UseWalletInfo();
+  const { userData } = UseWalletInfo();
   const { addShopifyItemToCart } = useCart();
   const { successToast, errorToast } = useToasty();
-  const { profile, signinWithaWallet } = useProfile();
+  const { profile } = useProfile();
 
   let images = product.shopifyData.images.map((img) => {
     return { url: img.src };
   });
 
-  console.log(product)
 
-  // const checkGated = async () => {
-  //   const Rules = product.ruleset.rules.map((rule) => rule.address);
-  //   setLoading(true);
-  //   checkRules(userData.profile.stxAddress.mainnet, Rules)
-  //     .then((e) => {
-  //       if (e) {
-  //         setLoading(false);
-  //         return true;
-  //       } else {
-  //         setLoading(false);
-  //         errorToast("Required NFT not found, accessed denied");
-  //         return false;
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       setLoading(false);
-  //       errorToast(e.response.data);
-  //       return false;
-  //     });
-  // };
+  useEffect(() => {
+    if (product.ruleset == undefined) setLock(false);
+    else {
+      if (userData != undefined) checkGated();
+    }
+  }, [userData]);
+
+  const checkGated = () => {
+    const Rules = product.ruleset.rules.map((rule) => rule.address);
+    setLoading(true);
+    checkRules(userData.profile.stxAddress.mainnet, Rules)
+      .then((e) => {
+        if (e) {
+          setLoading(false);
+          setLock(false);
+        } else {
+          setLoading(false);
+          setLock(true);
+        }
+      })
+      .catch((e) => {
+        setLoading(false);
+        setLock(true);
+        errorToast(e.response.data);
+      });
+  };
 
   const addToPreCard = () => {
     const itemObject = {
@@ -61,51 +68,24 @@ const ShopifyMech = ({ shopName, product }) => {
       shopName: product.shopifyShopDomain,
       variant: selectedVariant,
       productId: product._id,
-      productRule: (product.ruleset == undefined) ? undefined : product.ruleset.rules,
+      productRule:
+        product.ruleset == undefined ? undefined : product.ruleset.rules,
     };
     successToast("Item added to cart");
     addShopifyItemToCart(itemObject);
   };
 
   const addItemToBasket = async () => {
-    // if (userData == undefined) {
-    //   authenticate();
-    //   return;
-    // }
-
     if (profile == null) {
       // signinWithaWallet();
       addToPreCard();
       return;
-    }
-
-    if (product.ruleset == undefined) {
-      addToCardFunction();
     } else {
-      const Rules = product.ruleset.rules.map((rule) => rule.address);
-      setLoading(true);
-      checkRules(userData.profile.stxAddress.mainnet, Rules)
-        .then((e) => {
-          if (e) {
-            addToCardFunction();
-            setLoading(false);
-            return true;
-          } else {
-            setLoading(false);
-            errorToast("Required NFT not found, accessed denied");
-            return false;
-          }
-        })
-        .catch((e) => {
-          setLoading(false);
-          errorToast(e.response.data);
-          return false;
-        });
+      if (lock) errorToast("Required NFT not found, accessed denied");
+      else addToCardFunction();
     }
 
-    //  let checkNftGated = await checkGated();
-    // console.log();
-    // if (!checkNftGated) return;
+  
   };
 
   const addToCardFunction = () => {
@@ -136,6 +116,7 @@ const ShopifyMech = ({ shopName, product }) => {
           product={product.shopifyData}
           shopName={shopName}
           quantity={quantity}
+          lock={lock}
           setQuantity={setQuantity}
           submit={addItemToBasket}
           loading={loading}

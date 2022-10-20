@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 import LockIcon from "../../../../components/shared/lock-icon/lockIcon";
+import UnlockIcon from "../../../../components/shared/unlock-icon/unlockIcon";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import plus from "../../../../assest/icon/plusIcon.png";
 import minus from "../../../../assest/icon/minusIcon.png";
@@ -19,6 +20,7 @@ const ShopifyDetail = ({
   shopName,
   quantity,
   setQuantity,
+  lock,
   submit,
   loading,
   selectedVariant,
@@ -136,7 +138,7 @@ const ShopifyDetail = ({
                 bgColor="#222"
                 borderRadius="50%"
               >
-                <LockIcon />
+                {lock == true ? <LockIcon /> : <UnlockIcon />}
               </Box>
             </Flex>
 
