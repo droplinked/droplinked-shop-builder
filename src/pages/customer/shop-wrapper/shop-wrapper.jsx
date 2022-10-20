@@ -19,7 +19,6 @@ const ShopWrapper = () => {
     setShop(shopinfo);
   };
 
-  console.log(shopData);
 
   return (
     <ShopWrapperStyle>

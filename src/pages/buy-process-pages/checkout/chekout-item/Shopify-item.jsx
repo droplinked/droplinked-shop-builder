@@ -16,12 +16,15 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { useCart } from "../../../../context/cart/CartContext";
 import { useNavigate } from "react-router-dom";
 
+import UnlockIcon from "../../../../components/shared/unlock-icon/unlockIcon";
 import LockIcon from "../../../../components/shared/lock-icon/lockIcon";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 
-const ShopifytItem = ({ product, variant, amount, shopName }) => {
+const ShopifytItem = ({ product, variant, lock, amount, shopName }) => {
   const { deleteItemFromCart, changeQuantity } = useCart();
   const navigate = useNavigate();
+
+  console.log(lock);
 
   const clickOnProduct = () => navigate(`/${shopName}/merch/${product._id}`);
 
@@ -50,17 +53,17 @@ const ShopifytItem = ({ product, variant, amount, shopName }) => {
           <ProductImage src={product.images[0].src} onClick={clickOnProduct} />
 
           <TitleWrapper>
-            <Flex >
+            <Flex>
               <Flex
                 ml="-2px"
-                mt='4px'
-                mr='4px'
+                mt="4px"
+                mr="4px"
                 w={{ base: "16px", md: "26px" }}
                 h={{ base: "16px", md: "26px" }}
                 justifyContent="center"
                 alignItems="center"
               >
-                <LockIcon />
+                {lock == true ? <LockIcon /> : <UnlockIcon />}
               </Flex>
               <Title onClick={clickOnProduct}>{product.title}</Title>
             </Flex>

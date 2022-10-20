@@ -61,6 +61,16 @@ function CheckoutPage() {
     navigate(`/${shopname}/address`);
   };
 
+  const checkGated = (rule) => {
+    if(rule == undefined) {
+      return false
+    }else{
+      if(!profile) return true
+      else return false
+    }
+    
+  }
+
   const currentShop = JSON.parse(localStorage.getItem("currentShop"));
   const backToShop = () => navigate(`/${currentShop}`);
 
@@ -78,6 +88,7 @@ function CheckoutPage() {
                 {cart.type == SHOP_TYPES.SHOPIFY ? (
                   <ShopifytItem
                     product={item.product}
+                    lock={checkGated(item.productRule)}
                     variant={item.variant}
                     amount={item.amount}
                   />
