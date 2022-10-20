@@ -13,12 +13,12 @@ import {
   TextUp,
   Text2,
   TextContainer,
-  SpaceBox
+  SpaceBox,
 } from "./Landing-page-style";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import LandingpageImage from "./components/landing-page-image-component";
-import LandingIcons from "./components/landing-icons-component"
+import LandingIcons from "./components/landing-icons-component";
 import SignupInput from "./components/singup-input-component";
 
 const SignUpModal = lazy(() =>
@@ -90,7 +90,7 @@ export default function LandingPage() {
   const navigateToEnquiry = () => navigate("/enquiry");
 
   return (
-    <Box mb='-50px'>
+    <Box mb="-50px">
       <LandingPageWrapper>
         {/* inputs */}
         <InputContainrt>
@@ -113,31 +113,19 @@ export default function LandingPage() {
         <LandingpageImage />
         {/* image */}
       </LandingPageWrapper>
-     
 
       <SpaceBox></SpaceBox>
 
-      <Text
-        color="#f6f6f6"
-        w="100%"
-        textAlign="center"
-        fontWeight="400"
-        fontSize={{ base: "18px", md: "1.95vw" }}
-        px={{ base: "20px", md: "120px" }}
-       // mb="80px"
-      >
-        Droplinked provides simplified web3 tools to open shop and grow
-        together.
-      </Text>
+    
+
+    
+
+      <LandingIcons />
 
       <SpaceBox></SpaceBox>
-
-      {/* <LandingIcons />
-
-      <SpaceBox></SpaceBox> */}
 
       <Flex w="100%" justifyContent="center" px={{ base: "20px", md: "80px" }}>
-        <Box w={{ base: "100%", md: "400px" }} >
+        <Box w={{ base: "100%", md: "400px" }}>
           <BasicButton color="white" click={navigateToEnquiry}>
             Enquire to learn more
           </BasicButton>

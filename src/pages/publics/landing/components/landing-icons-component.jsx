@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Text, Box } from "@chakra-ui/react";
 import {
   Iconwrapper,
   IconImage,
@@ -17,58 +17,92 @@ const LandingIcons = () => {
   return (
     <Flex
       w="100%"
-      maxW="800px"
-     // pt={{ base: "40px", md: "60px" }}
+      maxW={{ base: "100%", md: "750px", lg: "900px", xl: "1200px" }}
       mx="auto"
       flexWrap="wrap"
       justifyContent="space-between"
-      mb={{base:'-50px',md:"-70px"}}
-     // mb="80px"
+      mb={{ base: "-50px", md: "-70px" }}
+      //border="1px solid red"
+      px={{ base: "20px", md: "0px" }}
+      // mb="80px"
     >
+      <Text
+        color="#f6f6f6"
+        w="100%"
+        textAlign="center"
+        fontWeight="400"
+        fontSize={{
+          base: "18px",
+          sm: "22px",
+          md: "20px",
+          lg: "24px",
+          xl: "34px",
+        }}
+        // px={{ base: "20px", md: "120px" }}
+      >
+        Droplinked provides simplified web3 tools{" "}
+        <Box d={{ base: "block", md: "none" }}></Box> to open shop and grow
+        together.
+      </Text>
+
+      <Box w="100%" mb={{ base: "100px", md: "120px" }}></Box>
+
       {/* <RowWrapper> */}
-      <Iconwrapper>
-        <ImageWrapper>
-          <IconImage src={gatedIcon} />
-        </ImageWrapper>
-        <IconText>Token gating</IconText>
-      </Iconwrapper>
+      <Flex w={{ base: "50%", md: "33%" }} alignItems="center" justifyContent='center'>
+        <Iconwrapper>
+          <ImageWrapper>
+            <IconImage src={gatedIcon} />
+          </ImageWrapper>
+          <IconText>Token gating</IconText>
+        </Iconwrapper>
+      </Flex>
 
-      <Iconwrapper>
-        <ImageWrapper>
-          <IconImage src={listingIcon} />
-        </ImageWrapper>
-        <IconText>Smart product listings</IconText>
-      </Iconwrapper>
+      <Flex w={{ base: "50%", md: "33%" }} alignItems="center" justifyContent='center'>
+        <Iconwrapper>
+          <ImageWrapper>
+            <IconImage src={listingIcon} />
+          </ImageWrapper>
+          <IconText>Smart product listings</IconText>
+        </Iconwrapper>
+      </Flex>
 
+      <Flex w={{ base: "50%", md: "33%" }} alignItems="center" justifyContent='center'>
       <Iconwrapper>
         <ImageWrapper>
           <IconImage src={sellsIcon} />
         </ImageWrapper>
-        <IconText>co-selling & tracking</IconText>
+        <IconText>Co-selling & tracking</IconText>
       </Iconwrapper>
+      </Flex>
       {/* </RowWrapper> */}
 
       {/* <RowWrapper> */}
+      <Flex w={{ base: "50%", md: "33%" }} alignItems="center" justifyContent='center'>
       <Iconwrapper>
         <ImageWrapper>
           <IconImage src={paymentIcon} />
         </ImageWrapper>
         <IconText>Payments & revshare</IconText>
       </Iconwrapper>
+      </Flex>
 
+      <Flex w={{ base: "50%", md: "33%" }} alignItems="center" justifyContent='center'>
       <Iconwrapper>
         <ImageWrapper>
           <IconImage src={campaginIcon} />
         </ImageWrapper>
         <IconText>Campaigns & offers</IconText>
       </Iconwrapper>
+      </Flex>
 
+      <Flex w={{ base: "50%", md: "33%" }} alignItems="center" justifyContent='center'>
       <Iconwrapper>
         <ImageWrapper>
           <IconImage src={loyalityIcon} />
         </ImageWrapper>
         <IconText>Loyalty programs</IconText>
       </Iconwrapper>
+      </Flex>
       {/* </RowWrapper> */}
     </Flex>
   );
