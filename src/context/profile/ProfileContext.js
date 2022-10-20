@@ -66,7 +66,7 @@ const ProfileProvider = ({ children }) => {
     showConnect({
       appDetails: {
         name: "droplinked",
-        icon: "https://droplinked.com/droplinked-black.png",
+        icon: "https://droplinked.com/Vector.png",
       },
       // redirectTo: "/",
       onFinish: () => {
@@ -76,7 +76,7 @@ const ProfileProvider = ({ children }) => {
           network: new StacksMainnet(), // for mainnet, `new StacksMainnet()`
           appDetails: {
             name: "droplinked",
-            icon: "https://droplinked.com/droplinked-black.png",
+            icon: "https://droplinked.com/Vector.png",
           },
           onFinish(data) {
             let userDate = {
