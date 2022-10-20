@@ -65,8 +65,8 @@ const ProfileProvider = ({ children }) => {
   const signinWithaWallet =  () => {
     showConnect({
       appDetails: {
-        name: "FLATLAY",
-        icon: "https://flatlay.io/assets/images/shared/Flatlay-Logo.svg",
+        name: "droplinked",
+        icon: "https://droplinked.com/droplinked-black.png",
       },
       // redirectTo: "/",
       onFinish: () => {
@@ -75,8 +75,8 @@ const ProfileProvider = ({ children }) => {
           message,
           network: new StacksMainnet(), // for mainnet, `new StacksMainnet()`
           appDetails: {
-            name: "FLATLAY",
-            icon: "https://flatlay.io/assets/images/shared/Flatlay-Logo.svg",
+            name: "droplinked",
+            icon: "https://droplinked.com/droplinked-black.png",
           },
           onFinish(data) {
             let userDate = {
