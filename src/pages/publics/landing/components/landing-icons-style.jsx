@@ -47,9 +47,9 @@ export const IconText = chakra("p", {
     color: "lightGray",
     // fontSize: { base: "14px", sm: "16", md: "22px" },
     fontSize: {
-      base: "16px",
-      sm: "22px",
-      md: "20px",
+      base: "12px",
+      sm: "14px",
+      md: "18px",
       lg: "24px",
       xl: "34px",
     },

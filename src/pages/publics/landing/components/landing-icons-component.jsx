@@ -32,9 +32,9 @@ const LandingIcons = () => {
         textAlign="center"
         fontWeight="400"
         fontSize={{
-          base: "18px",
-          sm: "22px",
-          md: "20px",
+          base: "12px",
+          sm: "14px",
+          md: "18px",
           lg: "24px",
           xl: "34px",
         }}
