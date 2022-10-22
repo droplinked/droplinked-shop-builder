@@ -1,13 +1,52 @@
-import { useCountdown } from "../../../../hooks/countdown/useCountdown"
+import { useCountdown } from "../../../../hooks/countdown/useCountdown";
+import {
+  CountdownWrapper,
+  TextMessage,
+  TimeNum,
+  TimeText,
+  ItemWrapper,
+} from "./countdown-component-style";
+import { Grid, Flex, Box } from "@chakra-ui/react";
 
 const Countdown = () => {
+  const [days, hours, minutes, seconds] = useCountdown(
+    "2022-10-31 24:00:00 GMT-4"
+  );
 
-    const [days, hours, minutes, seconds] = useCountdown("2022-10-31 24:00:00 GMT-4");
- 
+  return (
+    <Box pb='36px' w='100%' h='100%'>
+    <CountdownWrapper>
+      <TextMessage>20% OFF</TextMessage>
+      <TextMessage>CrashPunks Holder{" "}    <Box d={{ base: "none", md: "block" }}></Box>48 Hours Only</TextMessage>
+      {/* <TextMessage></TextMessage>
+     */}
+      <Flex
+       w={{base:"130px",sm:'200px',md:'250px',lg:'180px',xl:'250px'}}
+        justifyContent='space-between' mx='auto' mt='10px'>
+        <ItemWrapper>
+          <TimeNum>{days}</TimeNum>
+          <TimeText>Days</TimeText>
+        </ItemWrapper>
 
+        <ItemWrapper>
+          <TimeNum>{hours}</TimeNum>
+          <TimeText>Hours</TimeText>
+        </ItemWrapper>
 
+        <ItemWrapper>
+          <TimeNum>{minutes}</TimeNum>
+          <TimeText>Minutes</TimeText>
+        </ItemWrapper>
 
-    return <></>
-}
+        <ItemWrapper>
+          <TimeNum>{seconds}</TimeNum>
+          <TimeText>Secconds</TimeText>
+        </ItemWrapper>
 
-export default Countdown
+      </Flex>
+    </CountdownWrapper>
+    </Box>
+  );
+};
+
+export default Countdown;

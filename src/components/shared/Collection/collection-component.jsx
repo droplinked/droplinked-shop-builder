@@ -1,10 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { BASE_URL } from "../../../api/BaseUrl";
+import { CollectionWrapper } from "./collection-component-style";
+
 import IframeSnipped from "../../Modal/Iframe-snipped-modal/Iframe-snipped-modal";
 import CollectionHeader from "./collection-header-component";
 import CollectionProducts from "./collection-products-component";
+import Countdown from "./countdown-component/countdown-component";
 // collection format : {
 //     ._id: id
 //     products:[]
@@ -39,21 +42,7 @@ export default function Collection({ collection, shopname, type }) {
 
   return (
     <>
-      <Flex
-        justifyContent="center"
-        alignItems="start"
-        flexDirection="column"
-        w="100%"
-        // maxW="1000px"
-        mb={{ base: "20px", md: "30px" }}
-        p={{
-          base: "10px 10px 0px 10px",
-          md: "20px 30px 20px 30px",
-          lg: "60px 80px 60px 80px",
-        }}
-        bgColor="#242424"
-        borderRadius="8px"
-      >
+      <CollectionWrapper>
         {/* head */}
         <CollectionHeader
           title={collection.title}
@@ -61,14 +50,21 @@ export default function Collection({ collection, shopname, type }) {
           seeMore={seeMore}
         />
         {/* head */}
-        {/* content */}
-        <CollectionProducts
-          products={collection.products}
-          shopname={shopname}
-          type={type}
-        />
-        {/* content */}
-      </Flex>
+        <Flex w="100%" flexDir={{base:"column" , md:'row'}}>
+          <Box w={{base:'100%',md:"50%"}}>
+            {/* content */}
+            <CollectionProducts
+              products={collection.products}
+              shopname={shopname}
+              type={type}
+            />
+            {/* content */}
+          </Box>
+          <Box w={{base:'100%',md:"50%"}}>
+            <Countdown />
+          </Box>
+        </Flex>
+      </CollectionWrapper>
       {snippedModal && (
         <IframeSnipped
           link={link}
