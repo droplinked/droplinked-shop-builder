@@ -76,7 +76,7 @@ const PurchasHistoryPage = lazy(() =>
   import("./pages/purchase-history/PurchaseHistory")
 );
 const Producer = lazy(() =>
-  import("./pages/producer-wrapper/Producer-wrapper-page")
+  import("./pages/Producer/producer-wrapper/Producer-wrapper-page")
 );
 const Notifications = lazy(() =>
   import("./pages/publics/notifications/Notifications-page")

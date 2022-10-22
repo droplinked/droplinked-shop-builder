@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useProfile } from "../../context/profile/ProfileContext"
+import { useProfile } from "../../../context/profile/ProfileContext"
+
 
 export default function Producer() {
 
