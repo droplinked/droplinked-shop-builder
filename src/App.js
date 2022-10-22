@@ -9,9 +9,9 @@ import OrderProvider from "./context/order/OrdersContext";
 import LoadingPage from "./pages/publics/loading/Loading-page";
 import TestProduct from "./pages/test/test-product";
 import TextView from "./pages/test/testview";
-import ShippingPage from "./pages/buy-process-pages/shipping/Shipping-page";
-import CartPage from "./pages/buy-process-pages/cart/cart-page";
-import ConfirmPage from "./pages/buy-process-pages/confirm/confirm";
+import ShippingPage from "./pages/customer/buy-process-pages/shipping/Shipping-page";
+// import CartPage from "./pages/buy-process-pages/cart/cart-page";
+// import ConfirmPage from "./pages/buy-process-pages/confirm/confirm";
 import ShopWrapper from "./pages/customer/shop-wrapper/shop-wrapper";
 import Enquiry from './pages/publics/enquiry/Enquiry'
 import ViewCollection from "./pages/Producer/view-collection/View-collection";
@@ -53,14 +53,18 @@ const ShopPage = lazy(() => import("./pages/shop/Shop-page"));
 const MerchPage = lazy(() => import("./pages/customer/merch/Merch-page"));
 const CollectionPage = lazy(() => import("./pages/customer/collection/Collection-page"));
 const CheckoutPage = lazy(() =>
-  import("./pages/buy-process-pages/checkout/Checkout-page")
+  import("./pages/customer/buy-process-pages/checkout/Checkout-page")
 );
 const AddressPage = lazy(() =>
-  import("./pages/buy-process-pages/address/Address-Page")
+  import("./pages/customer/buy-process-pages/address/Address-Page")
 );
+// const PaymentPage = lazy(() =>
+//   import("./pages/buy-process-pages/payment/Payment-page")
+// );
+
 const PaymentPage = lazy(() =>
-  import("./pages/buy-process-pages/payment/Payment-page")
-);
+   import("./pages/customer/buy-process-pages/payment/payment-page")
+ )
 
 const SettingsPage = lazy(() => import("./pages/settings/Settings-page"));
 
@@ -72,7 +76,7 @@ const PurchasHistoryPage = lazy(() =>
   import("./pages/purchase-history/PurchaseHistory")
 );
 const Producer = lazy(() =>
-  import("./pages/producer-wrapper/Producer-wrapper-page")
+  import("./pages/Producer/producer-wrapper/Producer-wrapper-page")
 );
 const Notifications = lazy(() =>
   import("./pages/publics/notifications/Notifications-page")
@@ -150,6 +154,7 @@ function App() {
                 <Route path="checkout" element={<CheckoutPage />} />
                 <Route path="address" element={<AddressPage />} />
                 <Route path="shipping" element={<ShippingPage />} />
+                <Route path="payment" element={<PaymentPage />} />
 
               </Route>
               {/* <Route path=":shopname" element={<ShopPage />}  /> */}
@@ -157,10 +162,10 @@ function App() {
               <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
               {/* <Route path="checkout" element={<CheckoutPage />} /> */}
               {/* <Route path="/address" element={<AddressPage />} /> */}
-              <Route path="/payment" element={<PaymentPage />} />
+              {/* <Route path="/payment" element={<PaymentPage />} /> */}
              
-              <Route path=":shopname/card" element={<CartPage />} />
-              <Route path=":shopname/confirm" element={<ConfirmPage />} />
+              {/* <Route path=":shopname/card" element={<CartPage />} />
+              <Route path=":shopname/confirm" element={<ConfirmPage />} /> */}
               <Route path="/crashpunks2" element={<Crashpunks2 />} />
               <Route path="/TestProduct" element={<TestProduct />} />
               <Route path="/testshopifymerchview" element={<TextView />} />

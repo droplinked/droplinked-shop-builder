@@ -15,7 +15,7 @@ export const MerchPageWrapper = chakra("div", {
 export const DescriptionWrapper = chakra("div", {
   baseStyle: {
     display: "flex",
-    mt: { base: "20px", md: "80px" },
+    mt: { base: "60px", md: "80px" },
     w: "100%",
     flexDir: "column",
     alignItems: "center",

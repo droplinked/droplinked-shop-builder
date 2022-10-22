@@ -9,6 +9,7 @@ import { Flex, Box, Text, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+import EventButton from "./event-button-component/event-button-component"
 import LockIcon from "../../../../components/shared/lock-icon/lockIcon";
 import UnlockIcon from "../../../../components/shared/unlock-icon/unlockIcon";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
@@ -192,7 +193,10 @@ const ShopifyDetail = ({
                 <Image src={plus} alt="minus" />
               </QuantityButton>
             </Flex>
-            <Box h="auto">
+            
+            <EventButton click={submit}/>
+
+            {/* <Box h="auto">
               <BasicButton
                 click={submit}
                 loading={loading}
@@ -202,7 +206,8 @@ const ShopifyDetail = ({
                   ? "Add to basket"
                   : "Sold out"}
               </BasicButton>
-            </Box>
+            </Box> */}
+
           </Box>
         </>
       )}
