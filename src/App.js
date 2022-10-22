@@ -56,7 +56,7 @@ const CheckoutPage = lazy(() =>
   import("./pages/customer/buy-process-pages/checkout/Checkout-page")
 );
 const AddressPage = lazy(() =>
-  import("./pages/buy-process-pages/address/Address-Page")
+  import("./pages/customer/buy-process-pages/address/Address-Page")
 );
 const PaymentPage = lazy(() =>
   import("./pages/buy-process-pages/payment/Payment-page")
