@@ -1,10 +1,10 @@
 import { Flex, Box, Text } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { creatShopifySession } from "../../../api/base-user/Shopify-api";
+import { creatShopifySession } from "../../../../../api/base-user/Shopify-api";
 import { useNavigate, useParams } from "react-router-dom";
-import { useToasty } from "../../../context/toastify/ToastContext";
-import { confirmPayment } from "../../../api/base-user/Shopify-api";
-import { useCart } from "../../../context/cart/CartContext";
+import { useToasty } from "../../../../../context/toastify/ToastContext";
+import { confirmPayment } from "../../../../../api/base-user/Shopify-api";
+import { useCart } from "../../../../../context/cart/CartContext";
 
 import CreditCard from "./CreditCard-component";
 import Item from "./pitem";
