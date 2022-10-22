@@ -1,5 +1,4 @@
-import { Box, Spinner } from "@chakra-ui/react";
-import { useState } from "react";
+import { Box } from "@chakra-ui/react";
 import { ReactComponent as CloseIcon } from "../../../../../../assest/icon/xmark.svg";
 import { useCart } from "../../../../../../context/cart/CartContext";
 import {
@@ -9,28 +8,21 @@ import {
   ItemTitle,
   ItemPrice,
   ItemQuantity,
+  RowWrapper,
 } from "./cart-item-style";
 
 const ShopifyCartItem = ({ product, amount, variant }) => {
-  const [loading, setLoading] = useState(false);
   const { deleteItemFromCart } = useCart();
 
   const removeFromCart = () => deleteItemFromCart(variant.id);
 
   return (
     <CartItemWrapper>
-      <ItemImage
-        src={product.images[0].src}
-        // onClick={navigateToProductPage}
-      />
+      <ItemImage src={product.images[0].src} />
 
       <ItemDetail>
-        <Box w="100%" maxW="100%" display="flex" justifyContent="space-between">
-          <ItemTitle
-          // onClick={navigateToProductPage}
-          >
-            {product.title}
-          </ItemTitle>
+        <RowWrapper>
+          <ItemTitle>{product.title}</ItemTitle>
           <Box w="20px" h="20px">
             <CloseIcon
               onClick={removeFromCart}
@@ -42,17 +34,12 @@ const ShopifyCartItem = ({ product, amount, variant }) => {
               }}
             />
           </Box>
-        </Box>
+        </RowWrapper>
 
-        <Box
-          w="100%"
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-        >
+        <RowWrapper>
           <ItemQuantity>Quantity: {amount}</ItemQuantity>
           <ItemPrice>${variant.price}</ItemPrice>
-        </Box>
+        </RowWrapper>
       </ItemDetail>
     </CartItemWrapper>
   );
