@@ -3,20 +3,20 @@ import { Flex, Text, Box } from "@chakra-ui/react";
 import {
   getShippingRate,
   updateCheckout,
-} from "../../../api/base-user/Shopify-api";
+} from "../../../../api/base-user/Shopify-api";
 import {
   getEasypostShipping,
   setEasypostShpping,
-} from "../../../api/base-user/Cart-api";
-import { useToasty } from "../../../context/toastify/ToastContext";
+} from "../../../../api/base-user/Cart-api";
+import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCart } from "../../../context/cart/CartContext";
-import { SHOP_TYPES } from "../../../constant/shop-types";
+import { useCart } from "../../../../context/cart/CartContext";
+import { SHOP_TYPES } from "../../../../constant/shop-types";
 
-import Loading from "../../../components/shared/loading/Loading";
+import Loading from "../../../../components/shared/loading/Loading";
 import ShippingComponent from "./Shipping-component";
 import EasypostShipping from "./easypost-shipping-component";
-import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 
 const ShippingPage = () => {
   const [shippings, setShippings] = useState(null);

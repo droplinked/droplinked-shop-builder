@@ -1,5 +1,5 @@
 import { Flex, Text, Box } from "@chakra-ui/react";
-import { convertToStandardFormat } from "../../../utils/date.utils/convertDate";
+import { convertToStandardFormat } from "../../../../utils/date.utils/convertDate";
 
 const EasypostShipping = ({ shippingItem, selected, setSelected }) => {
   return (

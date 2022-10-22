@@ -9,7 +9,7 @@ import OrderProvider from "./context/order/OrdersContext";
 import LoadingPage from "./pages/publics/loading/Loading-page";
 import TestProduct from "./pages/test/test-product";
 import TextView from "./pages/test/testview";
-import ShippingPage from "./pages/buy-process-pages/shipping/Shipping-page";
+import ShippingPage from "./pages/customer/buy-process-pages/shipping/Shipping-page";
 import CartPage from "./pages/buy-process-pages/cart/cart-page";
 import ConfirmPage from "./pages/buy-process-pages/confirm/confirm";
 import ShopWrapper from "./pages/customer/shop-wrapper/shop-wrapper";
