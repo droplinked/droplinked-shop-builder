@@ -10,14 +10,14 @@ import { Grid, Flex, Box } from "@chakra-ui/react";
 
 const Countdown = () => {
   const [days, hours, minutes, seconds] = useCountdown(
-    "2022-10-31 24:00:00 GMT-4"
+    "2022-10-24 24:00:00 GMT-4"
   );
 
   return (
     <Box pb='36px' w='100%' h='100%'>
     <CountdownWrapper>
       <TextMessage>20% OFF</TextMessage>
-      <TextMessage>CrashPunks Holder{" "}    <Box d={{ base: "none", md: "block" }}></Box>48 Hours Only</TextMessage>
+      <TextMessage>CrashPunks Holders{" "}    <Box d={{ base: "none", md: "block" }}></Box>48 Hours Only</TextMessage>
       {/* <TextMessage></TextMessage>
      */}
       <Flex
