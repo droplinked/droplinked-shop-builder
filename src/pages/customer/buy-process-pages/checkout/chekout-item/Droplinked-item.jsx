@@ -15,9 +15,9 @@ import { ButtonGroup, IconButton, Input, Button } from "@chakra-ui/react";
 import {
   deleteSkuFromCart,
   updateQuantity,
-} from "../../../../api/base-user/Cart-api";
-import { useToasty } from "../../../../context/toastify/ToastContext";
-import { useCart } from "../../../../context/cart/CartContext";
+} from "../../../../../api/base-user/Cart-api";
+import { useToasty } from "../../../../../context/toastify/ToastContext";
+import { useCart } from "../../../../../context/cart/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 

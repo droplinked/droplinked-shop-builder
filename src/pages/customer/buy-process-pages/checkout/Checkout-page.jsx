@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCart } from "../../../context/cart/CartContext";
-import { useProfile } from "../../../context/profile/ProfileContext";
+import { useCart } from "../../../../context/cart/CartContext";
+import { useProfile } from "../../../../context/profile/ProfileContext";
 import {
   CheckoutPageWrapper,
   EmptyText,
-  HeadText,
   PriceWrapper,
   PriceText,
   ButtonWrapper,
 } from "./Checkout-page-style";
-import { SHOP_TYPES } from "../../../constant/shop-types";
+import { SHOP_TYPES } from "../../../../constant/shop-types";
 
-import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import EmailModal from "../../../components/Modal/Email-modal/email-modal";
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
+import EmailModal from "../../../../components/Modal/Email-modal/email-modal";
 import DroplinkedItem from "./chekout-item/Droplinked-item";
 import ShopifytItem from "./chekout-item/Shopify-item";
 
