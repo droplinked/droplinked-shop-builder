@@ -9,6 +9,12 @@ import { useCart } from "../../../../context/cart/CartContext";
 import { useProfile } from "../../../../context/profile/ProfileContext";
 import { SHOP_TYPES } from "../../../../constant/shop-types";
 import { useParams } from "react-router-dom";
+import {
+  AddressPageWrapper,
+  PageTitle,
+  AddAddressButton,
+  ButtonWrapper,
+} from "./Address-page-style";
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import AddressComponent from "../../../../components/shared/Address/address-component";
@@ -20,7 +26,7 @@ function AddressPage() {
   let navigate = useNavigate();
   const { profile } = useProfile();
   let { shopname } = useParams();
-  
+
   let token = JSON.parse(localStorage.getItem("token"));
   if (!token) navigate("/");
 
@@ -31,8 +37,6 @@ function AddressPage() {
   const { errorToast, successToast } = useToasty();
   const { addressList } = useAddress();
   const { cart } = useCart();
-
-  
 
   const toggleAddressForm = () => {
     setAddressModal((p) => !p);
@@ -54,7 +58,7 @@ function AddressPage() {
       let result = await addCheckoutAddress(selectedAddress._id);
       setLoading(false);
       if (result == true) {
-       // successToast("Address successfully added");
+        // successToast("Address successfully added");
         navigate(`/${shopname}/shipping`);
       } else {
         errorToast(result);
@@ -91,7 +95,10 @@ function AddressPage() {
       let result = await createCheckout(cart.items[0].shopName, data);
       setLoading(false);
       if (result.status == "success") {
-        localStorage.setItem("selected_address", JSON.stringify(selectedAddress));
+        localStorage.setItem(
+          "selected_address",
+          JSON.stringify(selectedAddress)
+        );
         let checkoutId = {
           checkoutId: result.data.checkout.token,
           shopName: cart.items[0].shopName,
@@ -107,22 +114,8 @@ function AddressPage() {
   };
 
   return (
-    <Flex
-      justifyContent="center"
-      alignItems="center"
-      flexDir="column"
-      w="100%"
-      h="auto"
-    //  px={{ base: "20px", md: "80px" }}
-    >
-      <Text
-        fontSize={{ base: "20px", md: "36px" }}
-        fontWeight="600"
-        color="#fff"
-        m="0px auto 48px auto"
-      >
-        Address
-      </Text>
+    <AddressPageWrapper>
+      <PageTitle>Address</PageTitle>
 
       <Box w="100%" maxW="1000px" m="auto">
         {addressList == [] ? (
@@ -147,31 +140,12 @@ function AddressPage() {
             {addressModal ? (
               <AddressForm close={toggleAddressForm} type={"CUSTOMER"} />
             ) : (
-              <Flex
-                w="100%"
-                border="1px"
-                borderColor="#fff"
-                borderRadius="8px"
-                p="24px 20px 16px 20px"
-                justifyContent="center"
-                alignItems="center"
-                color="#fff"
-                fontSize="20px"
-                fontWeight="600"
-                _hover={{ borderColor: "#8053ff", color: "#8053ff" }}
-                cursor="pointer"
-                onClick={toggleAddressForm}
-              >
+              <AddAddressButton onClick={toggleAddressForm}>
                 + Add new address
-              </Flex>
+              </AddAddressButton>
             )}
 
-            <Flex
-              w="100%"
-              mt="40px"
-              justifyContent="space-between"
-              alignItems="center"
-            >
+            <ButtonWrapper>
               <Box w="30%">
                 <BasicButton
                   cancelType={true}
@@ -188,11 +162,11 @@ function AddressPage() {
                   Next
                 </BasicButton>
               </Box>
-            </Flex>
+            </ButtonWrapper>
           </>
         )}
       </Box>
-    </Flex>
+    </AddressPageWrapper>
   );
 }
 
