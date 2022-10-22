@@ -27,7 +27,7 @@ import BasicButton from "../../../../../components/shared/BasicButton/BasicButto
 import UnlockIcon from "../../../../../components/shared/unlock-icon/unlockIcon";
 import LockIcon from "../../../../../components/shared/lock-icon/lockIcon";
 
-const DroplinkedItem = ({ product, sku, quantity, shopName }) => {
+const DroplinkedItem = ({ product, sku, quantity,lock, shopName }) => {
   const [loading, setLoading] = useState(false);
 
   const { successToast, errorToast } = useToasty();
@@ -87,7 +87,7 @@ const DroplinkedItem = ({ product, sku, quantity, shopName }) => {
         <TitleWrapper>
           <Flex>
             <LockIconWrapper>
-              {true ? <LockIcon /> : <UnlockIcon />}
+              {lock ? <LockIcon /> : <UnlockIcon />}
             </LockIconWrapper>
             <Title onClick={clickOnProduct}>{product.title}</Title>
           </Flex>

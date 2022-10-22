@@ -95,6 +95,7 @@ function CheckoutPage() {
                   <DroplinkedItem
                     product={item.product}
                     sku={item.sku}
+                    lock={checkGated(item.product.ruleset)}
                     quantity={item.quantity}
                     shopName={item.shopName}
                   />
