@@ -71,7 +71,7 @@ export const CounterWrapper = chakra("div", {
       w:{base:'100%',md:'20%'},
       h:'100%',
       bgColor:'#1D173B',
-      color:'primary',
+      color:'#fff',
       fontWeight:'700',
       fontSize: { base: "12px", sm:'16px', md: "12px", lg:'14px'  ,xl:"18px"},
       borderRadius:'8px'
