@@ -5,13 +5,14 @@ import {
   TitleWrapper,
   Title,
   VariantText,
-  ButtonWrapper,
-  InputQuantity,
-  SubmitQuantity,
-  PriceText,
+  TotalPerItem,
+  QuantityInput,
+  IconWrapper,
+  CounterWrapper,
+  ButtonControllerWrapper,
+  LockIconWrapper,
 } from "./Checkout-item-style";
-import { AiOutlineDelete } from "react-icons/ai";
-import { ButtonGroup, IconButton, Input, Button } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import {
   deleteSkuFromCart,
   updateQuantity,
@@ -20,10 +21,14 @@ import { useToasty } from "../../../../../context/toastify/ToastContext";
 import { useCart } from "../../../../../context/cart/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+
+import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+import UnlockIcon from "../../../../../components/shared/unlock-icon/unlockIcon";
+import LockIcon from "../../../../../components/shared/lock-icon/lockIcon";
 
 const DroplinkedItem = ({ product, sku, quantity, shopName }) => {
   const [loading, setLoading] = useState(false);
-  const [amount, setAmount] = useState(quantity);
 
   const { successToast, errorToast } = useToasty();
   const { updateCart } = useCart();
@@ -50,11 +55,9 @@ const DroplinkedItem = ({ product, sku, quantity, shopName }) => {
     setLoading(false);
   };
 
-  const changeAmount = (e) => setAmount(e.target.value);
-
-  const updateAmount = async () => {
+  const updateAmount = async (newAmount) => {
     setLoading(true);
-    let result = await updateQuantity(sku._id, amount);
+    let result = await updateQuantity(sku._id, newAmount);
     if (result == true) {
       successToast("Item added");
       updateCart();
@@ -64,43 +67,59 @@ const DroplinkedItem = ({ product, sku, quantity, shopName }) => {
     setLoading(false);
   };
 
+  const increaseQuantity = () => updateAmount(quantity + 1);
+
+  const decreaseQuantity = () => {
+    if (quantity == 1) deleteMerch();
+    else updateAmount(quantity - 1);
+  };
+
+  const getTotalPrice = () => {
+    let total = parseFloat(sku.price) * quantity;
+    return total.toFixed(2);
+  };
+
   return (
     <CheckoutItemWrapper>
       <DetailWrapper>
         <ProductImage src={product.media[0].url} onClick={clickOnProduct} />
+
         <TitleWrapper>
-          <Title onClick={clickOnProduct}>{product.title}</Title>
+          <Flex>
+            <LockIconWrapper>
+              {true ? <LockIcon /> : <UnlockIcon />}
+            </LockIconWrapper>
+            <Title onClick={clickOnProduct}>{product.title}</Title>
+          </Flex>
           <VariantText>{getVariant()}</VariantText>
+          <VariantText>${sku.price}</VariantText>
         </TitleWrapper>
       </DetailWrapper>
-      <ButtonWrapper>
-        <ButtonGroup size="md" isAttached variant="outline">
-          <IconButton
-            aria-label="delete"
-            icon={
-              <AiOutlineDelete
-                color="#fd4545"
-                size="sm"
-                style={{ maxHeight: "100%" }}
+
+      <ButtonControllerWrapper>
+        <Flex justifyContent="space-between" alignItems="center" mb="10px">
+          <CounterWrapper>
+            <IconWrapper onClick={increaseQuantity}>
+              <AiFillCaretUp
+                color={loading ? "gray" : "white"}
+                alignItem="center"
               />
-            }
-            _hover={{ bgColor: "none", borderColor: "#8053ff" }}
-            _focus={{ bgColor: "none", borderColor: "#8053ff" }}
-            _active={{ bgColor: "none", borderColor: "#8053ff" }}
-            onClick={deleteMerch}
-            disabled={loading}
-          />
-          <Input {...InputQuantity} value={amount} onChange={changeAmount} />
-          <Button
-            {...SubmitQuantity}
-            onClick={updateAmount}
-            disabled={loading}
-          >
-            Submit
-          </Button>
-        </ButtonGroup>
-        <PriceText>${sku.price}</PriceText>
-      </ButtonWrapper>
+            </IconWrapper>
+
+            <QuantityInput value={quantity} />
+
+            <IconWrapper onClick={decreaseQuantity}>
+              <AiFillCaretDown color={loading ? "gray" : "white"} />
+            </IconWrapper>
+          </CounterWrapper>
+          <TotalPerItem>${getTotalPrice()}</TotalPerItem>
+        </Flex>
+        <Box w="100%">
+          <BasicButton disable={loading} cancelType={true} click={deleteMerch}>
+            Remove
+          </BasicButton>
+        </Box>
+      </ButtonControllerWrapper>
     </CheckoutItemWrapper>
   );
 };

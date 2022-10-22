@@ -11,6 +11,7 @@ import {
   QuantityInput,
   IconWrapper,
   TotalPerItem,
+  LockIconWrapper,
 } from "./Checkout-item-style";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { useCart } from "../../../../../context/cart/CartContext";
@@ -24,13 +25,7 @@ const ShopifytItem = ({ product, variant, lock, amount, shopName }) => {
   const { deleteItemFromCart, changeQuantity } = useCart();
   const navigate = useNavigate();
 
-  console.log(lock);
-
   const clickOnProduct = () => navigate(`/${shopName}/merch/${product._id}`);
-
-  // const changeAmount = (e) => setQuantity(e.target.value);
-
-  // const submitChange = () => changeQuantity(quantity, variant.id);
 
   const deleteItem = () => deleteItemFromCart(variant.id);
 
@@ -54,17 +49,9 @@ const ShopifytItem = ({ product, variant, lock, amount, shopName }) => {
 
           <TitleWrapper>
             <Flex>
-              <Flex
-                ml="-2px"
-                mt="4px"
-                mr="4px"
-                w={{ base: "16px", md: "26px" }}
-                h={{ base: "16px", md: "26px" }}
-                justifyContent="center"
-                alignItems="center"
-              >
+              <LockIconWrapper>
                 {lock == true ? <LockIcon /> : <UnlockIcon />}
-              </Flex>
+              </LockIconWrapper>
               <Title onClick={clickOnProduct}>{product.title}</Title>
             </Flex>
 

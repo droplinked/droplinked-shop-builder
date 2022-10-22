@@ -9,7 +9,7 @@ export const CheckoutItemWrapper = chakra("div", {
     //  mb: "28px",
     flexDirection: { base: "column", md: "row" },
     justifyContent: "space-between",
-    pos:'relative'
+    pos: "relative",
   },
 });
 
@@ -66,44 +66,6 @@ export const VariantText = chakra("p", {
   },
 });
 
-export const ButtonWrapper = chakra("div", {
-  baseStyle: {
-    d: "flex",
-    w: { base: "100%", md: "45%" },
-    mr: "20px",
-    h: { base: "60px", md: "80px" },
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-});
-
-export const InputQuantity = {
-  borderRadius: "0px",
-  cursor: "pointer",
-  w: "80px",
-  textAlign: "center",
-  color: "#fff",
-  fontSize: "20px",
-  fontWeight: "600",
-  _hover: { bgColor: "none", borderColor: "#8053ff" },
-  _focus: { bgColor: "none", borderColor: "#8053ff" },
-};
-
-export const SubmitQuantity = {
-  color: "#fff",
-  fontSize: "20px",
-  fontWeight: "600",
-  _hover: { bgColor: "none", borderColor: "#8053ff" },
-  _focus: { bgColor: "none", borderColor: "#8053ff" },
-};
-
-export const PriceText = chakra("p", {
-  baseStyle: {
-    color: "#fff",
-    fontWeight: "600",
-    fontSize: "24",
-  },
-});
 
 export const ButtonControllerWrapper = chakra("div", {
   baseStyle: {
@@ -120,7 +82,7 @@ export const CounterWrapper = chakra("div", {
     w: "60%",
     border: "1px solid gray",
     borderRadius: "8px",
-   // mb: "10px",
+    // mb: "10px",
     px: "20px",
   },
 });
@@ -129,11 +91,11 @@ export const QuantityInput = chakra("input", {
   baseStyle: {
     color: "#fff",
     border: "none",
-    w:'100%',
+    w: "100%",
     fontWeight: "600",
     textAlign: "center",
     outline: "none",
-    bgColor:'transparent',
+    bgColor: "transparent",
     _focus: {
       border: "none",
       outline: "none",
@@ -158,6 +120,18 @@ export const TotalPerItem = chakra("div", {
     fontSize: { base: "16px", md: "20px" },
     color: "#fff",
     textAlign: "end",
-    h:'100%'
+    h: "100%",
+  },
+});
+
+export const LockIconWrapper = chakra("div", {
+  baseStyle: {
+    ml: "-2px",
+    mt: "4px",
+    mr: "4px",
+    w: { base: "16px", md: "26px" },
+    h: { base: "16px", md: "26px" },
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
