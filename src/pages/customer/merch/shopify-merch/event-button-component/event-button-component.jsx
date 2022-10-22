@@ -11,7 +11,7 @@ import {
 import { useCountdown } from "../../../../../hooks/countdown/useCountdown";
 import { Flex } from "@chakra-ui/react";
 
-const EventButton = () => {
+const EventButton = ({click}) => {
   const [days, hours, minutes, seconds] = useCountdown(
     "2022-10-24 24:00:00 GMT-4"
   );
@@ -43,7 +43,7 @@ const EventButton = () => {
           </ItemWrapper>
         </CounterWrapper>
       </Flex>
-      <BuyButton>Buy now</BuyButton>
+      <BuyButton onClick={click}>Buy now</BuyButton>
     </EventButtonWrapper>
   );
 };

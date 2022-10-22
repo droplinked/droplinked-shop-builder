@@ -194,7 +194,7 @@ const ShopifyDetail = ({
               </QuantityButton>
             </Flex>
             
-            <EventButton />
+            <EventButton click={submit}/>
 
             {/* <Box h="auto">
               <BasicButton
