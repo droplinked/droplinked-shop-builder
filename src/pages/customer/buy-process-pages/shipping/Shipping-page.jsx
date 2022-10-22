@@ -121,7 +121,7 @@ const ShippingPage = () => {
             shippingPrice: result.data.checkout.shipping_rate.price,
           })
         );
-        navigate(`/${shopname}/card`);
+        navigate(`/${shopname}/payment`);
         setLoading(false);
       } else {
         console.log(result);

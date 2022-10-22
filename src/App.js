@@ -150,6 +150,7 @@ function App() {
                 <Route path="checkout" element={<CheckoutPage />} />
                 <Route path="address" element={<AddressPage />} />
                 <Route path="shipping" element={<ShippingPage />} />
+                <Route path="payment" element={<CartPage />} />
 
               </Route>
               {/* <Route path=":shopname" element={<ShopPage />}  /> */}
@@ -157,10 +158,10 @@ function App() {
               <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
               {/* <Route path="checkout" element={<CheckoutPage />} /> */}
               {/* <Route path="/address" element={<AddressPage />} /> */}
-              <Route path="/payment" element={<PaymentPage />} />
+              {/* <Route path="/payment" element={<PaymentPage />} /> */}
              
-              <Route path=":shopname/card" element={<CartPage />} />
-              <Route path=":shopname/confirm" element={<ConfirmPage />} />
+              {/* <Route path=":shopname/card" element={<CartPage />} />
+              <Route path=":shopname/confirm" element={<ConfirmPage />} /> */}
               <Route path="/crashpunks2" element={<Crashpunks2 />} />
               <Route path="/TestProduct" element={<TestProduct />} />
               <Route path="/testshopifymerchview" element={<TextView />} />
