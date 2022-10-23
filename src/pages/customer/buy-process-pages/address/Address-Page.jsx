@@ -58,6 +58,10 @@ function AddressPage() {
       let result = await addCheckoutAddress(selectedAddress._id);
       setLoading(false);
       if (result == true) {
+        localStorage.setItem(
+          "selected_address",
+          JSON.stringify(selectedAddress)
+        );
         // successToast("Address successfully added");
         navigate(`/${shopname}/shipping`);
       } else {
