@@ -6,11 +6,10 @@ import {
   TimeText,
   ItemWrapper,
 } from "./countdown-component-style";
-import { Grid, Flex, Box } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 
 const Countdown = () => {
- // "2022-10-24 24:00:00 GMT-4"
- // new Date("Mon Oct 24 2022 24:00:00 GMT");
+
   const [days, hours, minutes, seconds] = useCountdown(
     'Tue Oct 25 2022 10:30:00 GMT+0330'
   );

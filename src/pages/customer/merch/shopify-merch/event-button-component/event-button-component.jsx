@@ -13,7 +13,7 @@ import { Flex } from "@chakra-ui/react";
 
 const EventButton = ({click}) => {
   const [days, hours, minutes, seconds] = useCountdown(
-    'Mon Oct 25 2022 24:00:00 GMT-0700'
+    'Tue Oct 25 2022 10:30:00 GMT+0330'
   );
 
   return (
