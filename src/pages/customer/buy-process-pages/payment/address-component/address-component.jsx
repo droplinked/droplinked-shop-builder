@@ -6,7 +6,7 @@ const AddressComponent = ({shippingPrice , selectedAddress}) => {
     <Box
       w="100%"
       mx="auto"
-      bg="gray"
+      bg="subLayer"
       p="40px 40px"
       borderRadius="8px"
       mb="24px"

@@ -230,7 +230,7 @@ export default function ShopInfoComponent({ active }) {
                                 borderRadius='10px'
                                 bgColor='transparent'
                                 onClick={() => { setAddressModal(true) }}
-                                border='2px solid gray'
+                                border='2px solid subLayer'
                                 _hover={{
                                     bgColor: 'transparent',
                                     borderColor: "#fff"

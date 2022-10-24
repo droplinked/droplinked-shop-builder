@@ -94,7 +94,7 @@ const CartPage = () => {
       maxW="1000px"
       mx="auto"
     >
-      <Box w="100%" mx="auto" bg="gray" p="40px" borderRadius="8px" mb="24px">
+      <Box w="100%" mx="auto" bg="subLayer" p="40px" borderRadius="8px" mb="24px">
         {cart.items.map((item, i) => {
           return <Item key={i} product={item} />;
         })}
@@ -114,7 +114,7 @@ const CartPage = () => {
       <Box
         w="100%"
         mx="auto"
-        bg="gray"
+        bg="subLayer"
         p="40px 40px"
         borderRadius="8px"
         mb="24px"
@@ -177,7 +177,7 @@ const CartPage = () => {
           w="50%"
           display="flex"
           flexDir="column"
-          borderBottom="2px solid gray"
+          borderBottom="2px solid subLayer"
         >
           <Flex w="100%" justifyContent="space-between">
             <Text

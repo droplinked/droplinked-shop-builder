@@ -80,7 +80,7 @@ export const CounterWrapper = chakra("div", {
   baseStyle: {
     display: "flex",
     w: "60%",
-    border: "1px solid gray",
+    border: "1px solid subLayer",
     borderRadius: "8px",
     // mb: "10px",
     px: "20px",

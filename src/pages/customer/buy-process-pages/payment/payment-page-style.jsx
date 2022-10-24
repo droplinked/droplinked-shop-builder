@@ -17,7 +17,7 @@ export const ProductWrapper = chakra("div", {
   baseStyle: {
     w: "100%",
     mx: "auto",
-    bg: "gray",
+    bg: "subLayer",
     p: "40px",
     borderRadius: "8px",
     mb: "24px",
