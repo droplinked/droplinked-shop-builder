@@ -8,6 +8,7 @@ export const theme = extendTheme({
     mainLayer: "#141414",
     subLayer: "#242424",
     button:'#353535',
-    line:'#5E5E5E'
+    line:'#5E5E5E',
+    white:'#fff'
   },
 });

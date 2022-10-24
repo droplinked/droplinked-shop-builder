@@ -32,6 +32,15 @@ const ShopifyDetail = ({
 
   const navigate = useNavigate();
 
+
+  const eventCondition = () => {
+    let x = new Date('Tue Oct 25 2022 10:30:00 GMT+0330').getTime()
+    let y = new Date().getTime()
+
+    if(x-y>0) return true
+    else return false
+  }
+
   useEffect(() => {
     initialVariant();
   }, []);
@@ -193,8 +202,23 @@ const ShopifyDetail = ({
                 <Image src={plus} alt="minus" />
               </QuantityButton>
             </Flex>
-            
+            {(eventCondition())
+            ?
             <EventButton click={submit}/>
+            :
+            <Box h="auto">
+              <BasicButton
+                click={submit}
+                loading={loading}
+                disabled={selectedVariant.inventory_quantity <= 0}
+              >
+                {selectedVariant.inventory_quantity > 0
+                  ? "Add to basket"
+                  : "Sold out"}
+              </BasicButton>
+            </Box>
+            }
+           
 
             {/* <Box h="auto">
               <BasicButton

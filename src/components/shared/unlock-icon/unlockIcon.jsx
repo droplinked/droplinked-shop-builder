@@ -1,9 +1,10 @@
-import { Tooltip, Flex } from "@chakra-ui/react";
+import { Tooltip, Flex, Image } from "@chakra-ui/react";
 import { HiOutlineLockOpen } from "react-icons/hi";
 import { useState } from "react";
 
+import unlockIconfrom from "../../../assest/icon/unlock.svg";
+
 const UnlockIcon = () => {
-  
   const [isLabelOpen, setIsLabelOpen] = useState(false);
 
   const open = () => setIsLabelOpen(true);
@@ -20,12 +21,14 @@ const UnlockIcon = () => {
       minW="350px"
     >
       <Flex justifyContent="center" alignItems="center" cursor="pointer">
-        <HiOutlineLockOpen
+        <Image src={unlockIconfrom}  onMouseOver={open}  onMouseOut={close}/>  
+       
+        {/* <HiOutlineLockOpen
           color="white"
           size="sm"
-          onMouseOver={open}
-          onMouseOut={close}
-        />
+         
+         
+        /> */}
       </Flex>
     </Tooltip>
   );

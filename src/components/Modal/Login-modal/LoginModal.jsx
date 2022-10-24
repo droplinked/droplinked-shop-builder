@@ -80,13 +80,13 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
                 navigate("/email-confirmation")
                 return
             case "VERIFIED":
-                navigate("/register/shop-info")
+                navigate("/register")
                 return
             case "PROFILE_COMPLETED":
-                navigate("/register/shop-info")
+                navigate("/register")
                 return
             case "SHOP_INFO_COMPLETED":
-                navigate("/register/ims-type")
+                navigate("/register")
                 return
             case "IMS_TYPE_COMPLETED":
                 navigate(`/${shopName}`)

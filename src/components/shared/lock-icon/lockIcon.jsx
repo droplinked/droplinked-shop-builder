@@ -1,8 +1,9 @@
 // CiLock
 // CiUnlock
 import { useState } from "react";
-import { Tooltip, Flex } from "@chakra-ui/react";
+import { Tooltip, Flex ,Image } from "@chakra-ui/react";
 import { HiOutlineLockClosed } from "react-icons/hi";
+import lockIcon from "../../../assest/icon/lockIcon.svg"
 
 const LockIcon = () => {
   const [isLabelOpen, setIsLabelOpen] = useState(false);
@@ -21,13 +22,14 @@ const LockIcon = () => {
       minW="350px"
     >
       <Flex justifyContent="center" alignItems="center" cursor="pointer">
-        <HiOutlineLockClosed
+        <Image src={lockIcon} onMouseOver={open} onMouseOut={close}/>
+        {/* <HiOutlineLockClosed
           color="white"
           size="sm"
-          onMouseOver={open}
-          onMouseOut={close}
+          
+          
         //  onMouseOver={close}
-        />
+        /> */}
       </Flex>
     </Tooltip>
   );
