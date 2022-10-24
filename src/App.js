@@ -21,12 +21,12 @@ const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
 const TermsPage = lazy(() => import("./pages/publics/terms/Terms-page"));
 const PrivacyPage = lazy(() => import("./pages/publics/privacy/Privacy-page"));
 const RegisterPage = lazy(() =>
-  import("./pages/Registering-pages/register/Register-page")
+  import("./pages/Producer/register/register-page")
 );
 
-const RegisterIms = lazy(() =>
-  import("./pages/Registering-pages/register-ims/Ims-page")
-);
+// const RegisterIms = lazy(() =>
+//   import("./pages/Registering-pages/register-ims/Ims-page")
+// );
 const EmailVerifyPage = lazy(() =>
   import("./pages/publics/email-verify/Email-verification-page")
 );
@@ -85,9 +85,10 @@ const CollectionIframe = lazy(() =>
   import("./pages/customer/collection-iframe/CollectionIfram-page")
 );
 const Test = lazy(() => import("./pages/test/Test-page"));
-const ShopInfoComponent = lazy(() =>
-  import("./pages/settings/shop-info-component/Shop-info-component")
-);
+
+// const ShopInfoComponent = lazy(() =>
+//   import("./pages/settings/shop-info-component/Shop-info-component")
+// );
 
 function App() {
   return (
@@ -101,11 +102,13 @@ function App() {
               <Route path="terms" element={<TermsPage />} />
               <Route path="privacy" element={<PrivacyPage />} />
 
+              <Route path="register" element={<RegisterPage />} />
+
               {/* register */}
-              <Route path="register" element={<RegisterPage />}>
+              {/* <Route path="register" element={<RegisterPage />}>
                 <Route path="shop-info" element={<ShopInfoComponent />} />
                 <Route path="ims-type" element={<RegisterIms />} />
-              </Route>
+              </Route> */}
               {/* register */}
               <Route
                 path="email-confirmation"
