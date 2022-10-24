@@ -12,6 +12,7 @@ const Countdown = () => {
   const [days, hours, minutes, seconds] = useCountdown(
     "2022-10-24 24:00:00 GMT-4"
   );
+  console.log('hours' , hours)
 
   return (
     <Box pb='36px' w='100%' h='100%'>
