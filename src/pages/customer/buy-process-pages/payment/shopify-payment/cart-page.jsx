@@ -85,16 +85,16 @@ const CartPage = () => {
   const backButton = () => navigate(`/${shopname}/shipping`);
 
   return (
-    <Flex
+    <Box
       w="100%"
-      flexDir="column"
-      px={{ base: "20px", md: "80px" }}
-      justifyContent="center"
-      alignContent="center"
-      maxW="1000px"
-      mx="auto"
+      // flexDir="column"
+      // px={{ base: "20px", md: "80px" }}
+      // justifyContent="center"
+      // alignContent="center"
+      // maxW="1000px"
+      // mx="auto"
     >
-      <Box w="100%" mx="auto" bg="subLayer" p="40px" borderRadius="8px" mb="24px">
+      {/* <Box w="100%" mx="auto" bg="subLayer" p="40px" borderRadius="8px" mb="24px">
         {cart.items.map((item, i) => {
           return <Item key={i} product={item} />;
         })}
@@ -168,7 +168,7 @@ const CartPage = () => {
         fontSize={{ base: "16px", md: "20px" }}
       >
         Total payment: ${getTotal()}
-      </Text>
+      </Text> */}
 
       {/* <Flex w="100%" justifyContent="end">
         <Box
@@ -265,7 +265,7 @@ const CartPage = () => {
           />
         </Box>
       </Flex>
-    </Flex>
+    </Box>
   );
 };
 
