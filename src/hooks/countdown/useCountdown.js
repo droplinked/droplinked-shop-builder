@@ -6,9 +6,10 @@ const useCountdown = (targetDate) => {
   const [countDown, setCountDown] = useState(
     countDownDate - new Date().getTime()
   );
-  let y = new Date()
+  let y = new Date("Mon Oct 24 2022 24:00:00 GMT-4")
 
-  console.log('time' , y)
+  console.log('current time: ' , y)
+  console.log('now : ' ,new Date())
 
   useEffect(() => {
     const interval = setInterval(() => {
