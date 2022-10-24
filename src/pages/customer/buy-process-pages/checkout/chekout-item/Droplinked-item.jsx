@@ -101,7 +101,7 @@ const DroplinkedItem = ({ product, sku, quantity,lock, shopName }) => {
           <CounterWrapper>
             <IconWrapper onClick={increaseQuantity}>
               <AiFillCaretUp
-                color={loading ? "gray" : "white"}
+                color={loading ? "subLayer" : "white"}
                 alignItem="center"
               />
             </IconWrapper>
@@ -109,7 +109,7 @@ const DroplinkedItem = ({ product, sku, quantity,lock, shopName }) => {
             <QuantityInput value={quantity} />
 
             <IconWrapper onClick={decreaseQuantity}>
-              <AiFillCaretDown color={loading ? "gray" : "white"} />
+              <AiFillCaretDown color={loading ? "subLayer" : "white"} />
             </IconWrapper>
           </CounterWrapper>
           <TotalPerItem>${getTotalPrice()}</TotalPerItem>

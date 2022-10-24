@@ -129,7 +129,7 @@ export default function ShopInfoComponent({ active }) {
     }
 
     return (
-        <Box w='100%' animation={(active == 'shop' ? startAnimation : '')}>
+        <Box w='100%' animation={(active == 'shop' ? startAnimation : '')} bg='subLayer' p='10px' borderRadius='8px'>
             {(shop == null)
                 ?
                 <Loading />
@@ -138,7 +138,7 @@ export default function ShopInfoComponent({ active }) {
                     <InputImage image={shop.logo} setImage={changeShopLogo} />
 
                     {/* shop name input */}
-                    <FormControl>
+                    <FormControl >
                         <FormLabel
                             htmlFor='input-com'
                             fontWeight='600'
@@ -230,7 +230,7 @@ export default function ShopInfoComponent({ active }) {
                                 borderRadius='10px'
                                 bgColor='transparent'
                                 onClick={() => { setAddressModal(true) }}
-                                border='2px solid gray'
+                                border='2px solid subLayer'
                                 _hover={{
                                     bgColor: 'transparent',
                                     borderColor: "#fff"

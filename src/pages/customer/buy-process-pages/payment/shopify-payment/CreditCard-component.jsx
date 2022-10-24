@@ -100,7 +100,7 @@ export default class CreditCard extends React.Component {
               w={{ base: "100%", md: "50%" }}
               // mb={{ base: "30px", md: "30px" }}
               overflow="hidden"
-              mb="-20px"
+              mb="20px"
             >
               <Card
                 number={number}

@@ -98,7 +98,7 @@ const ShippingPage = () => {
       await updateCart();
       setLoading(false);
       if (result == true) {
-        navigate("/payment");
+        navigate(`/${shopname}/payment`);
       } else {
         console.log(result);
       }
