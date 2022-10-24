@@ -20,6 +20,14 @@ export default function Collection({ collection, shopname, type }) {
   const param = useParams();
   const navigate = useNavigate();
 
+  const eventCondition = () => {
+    let x = new Date('Tue Oct 25 2022 10:30:00 GMT+0330').getTime();
+    let y = new Date().getTime();
+
+    if (x - y > 0) return true;
+    else return false;
+  };
+
   // collection iframe code
   let iframeCode = `<iframe  
     style={{width:'100%' , height:"100%"  , overflow:'hidden' }}
@@ -50,20 +58,34 @@ export default function Collection({ collection, shopname, type }) {
           seeMore={seeMore}
         />
         {/* head */}
-        <Flex w="100%" flexDir={{base:"column" , md:'row'}}>
-          <Box w={{base:'100%',md:"50%"}}>
+        {eventCondition() ? (
+          <Flex w="100%" flexDir={{ base: "column", md: "row" }}>
+            <Box w={{ base: "100%", md: "50%" }}>
+              {/* content */}
+              <CollectionProducts
+                products={collection.products}
+                shopname={shopname}
+                type={type}
+              />
+              {/* content */}
+            </Box>
+            <Box w={{ base: "100%", md: "50%" }}>
+              <Countdown />
+            </Box>
+          </Flex>
+        ) : (
+          <Flex w="100%" >
             {/* content */}
+            <Box w={{ base: "100%", md: "50%" }}>
             <CollectionProducts
               products={collection.products}
               shopname={shopname}
               type={type}
             />
+            </Box>
             {/* content */}
-          </Box>
-          <Box w={{base:'100%',md:"50%"}}>
-            <Countdown />
-          </Box>
-        </Flex>
+          </Flex>
+        )}
       </CollectionWrapper>
       {snippedModal && (
         <IframeSnipped
