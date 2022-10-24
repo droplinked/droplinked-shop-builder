@@ -68,7 +68,7 @@ export default function DroplinkedItem({ item, close }) {
 
         <RowWrapper>
           <ItemQuantity>Quantity: {item.quantity}</ItemQuantity>
-          <ItemPrice>${item.totalPrice}</ItemPrice>
+          <ItemPrice>${parseFloat(item.totalPrice).toFixed(2)}</ItemPrice>
         </RowWrapper>
       </ItemDetail>
     </CartItemWrapper>
