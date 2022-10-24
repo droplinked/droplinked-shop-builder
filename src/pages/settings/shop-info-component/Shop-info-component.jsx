@@ -129,7 +129,7 @@ export default function ShopInfoComponent({ active }) {
     }
 
     return (
-        <Box w='100%' animation={(active == 'shop' ? startAnimation : '')}>
+        <Box w='100%' animation={(active == 'shop' ? startAnimation : '')} bg='subLayer' p='10px' borderRadius='8px'>
             {(shop == null)
                 ?
                 <Loading />
@@ -138,7 +138,7 @@ export default function ShopInfoComponent({ active }) {
                     <InputImage image={shop.logo} setImage={changeShopLogo} />
 
                     {/* shop name input */}
-                    <FormControl>
+                    <FormControl >
                         <FormLabel
                             htmlFor='input-com'
                             fontWeight='600'
