@@ -9,8 +9,10 @@ import {
 import { Grid, Flex, Box } from "@chakra-ui/react";
 
 const Countdown = () => {
+ // "2022-10-24 24:00:00 GMT-4"
+ // new Date("Mon Oct 24 2022 24:00:00 GMT");
   const [days, hours, minutes, seconds] = useCountdown(
-    "2022-10-24 24:00:00 GMT-4"
+    "Mon Oct 24 2022 24:00:00 GMT-4"
   );
   console.log('hours' , hours)
 
