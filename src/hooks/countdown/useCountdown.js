@@ -11,6 +11,7 @@ const useCountdown = (targetDate) => {
   console.log('current time: ' , y)
   console.log('now : ' ,new Date())
   console.log('test : ' ,new Date(1625600237781))
+  console.log('test2 : ' ,new Date('Mon Oct 24 2022 23:39:46 GMT+0330'))
 
   useEffect(() => {
     const interval = setInterval(() => {
