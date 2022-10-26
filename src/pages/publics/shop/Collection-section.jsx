@@ -1,4 +1,4 @@
-import Collection from "../../components/shared/Collection/collection-component";
+import Collection from "../../../components/shared/Collection/collection-component";
 
 const CollectionsSection = ({ collection ,shopname , type }) => {
   return (

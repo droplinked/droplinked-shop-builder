@@ -1,7 +1,7 @@
   import EditableTopSection from "./editable-profile-section/Editable-profile-section";
-import ProducerCollection from "../../../components/shared/ProducerCollection/Producre-collection";
+import ProducerCollection from "../../../../components/shared/ProducerCollection/Producre-collection";
 
-import { COLLECTION_TYPE } from "../../../constant/collection-types";
+import { COLLECTION_TYPE } from "../../../../constant/collection-types";
 import { Flex, Box } from "@chakra-ui/react";
 
 const OwnerShopPage = ({ shopData, shopName, update, collections }) => {

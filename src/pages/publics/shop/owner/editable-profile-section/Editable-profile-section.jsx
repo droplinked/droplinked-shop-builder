@@ -1,11 +1,11 @@
-import InputImage from "../../../../components/shared/InputImage/InputImage";
+import InputImage from "../../../../../components/shared/InputImage/InputImage";
 
-import instaIcon from "../../../../assest/icon/insta.png";
-import discordIcon from "../../../../assest/icon/discord.png";
-import twitterIcon from "../../../../assest/icon/twitter.png";
-import webIcon from "../../../../assest/icon/web.png";
-import { useToasty } from "../../../../context/toastify/ToastContext";
-import { updateShopApi } from "../../../../api/producer/Shop-api";
+import instaIcon from "../../../../../assest/icon/insta.png";
+import discordIcon from "../../../../../assest/icon/discord.png";
+import twitterIcon from "../../../../../assest/icon/twitter.png";
+import webIcon from "../../../../../assest/icon/web.png";
+import { useToasty } from "../../../../../context/toastify/ToastContext";
+import { updateShopApi } from "../../../../../api/producer/Shop-api";
 
 import { Box, Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";

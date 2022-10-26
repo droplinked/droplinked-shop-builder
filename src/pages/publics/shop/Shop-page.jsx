@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getShopInfoByShopname } from "../../api/public/Shop-api";
-import { getCollectionsByShopname } from "../../api/public/Collection-api";
+import { getShopInfoByShopname } from "../../../api/public/Shop-api";
+import { getCollectionsByShopname } from "../../../api/public/Collection-api";
 import { ShopPageContainer } from "./Shop-page-style";
-import { useProfile } from "../../context/profile/ProfileContext";
+import { useProfile } from "../../../context/profile/ProfileContext";
 
-import Loading from "../../components/shared/loading/Loading";
+import Loading from "../../../components/shared/loading/Loading";
 import PublicShopPage from "./public/Public-shop-page";
 import OwnerShopPage from "./owner/Owner-shop-page";
 
