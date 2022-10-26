@@ -1,10 +1,10 @@
 import { Flex, Box , keyframes, usePrefersReducedMotion} from '@chakra-ui/react'
-import { useAddress } from "../../../context/address/AddressContext"
+import { useAddress } from "../../../../context/address/AddressContext"
 import { useState } from "react"
 
-import AddressComponent from "../../../components/shared/Address/address-component"
-import AddressForm from "../../../components/Modal/Address/Address-modal"
-import Loading from "../../../components/shared/loading/Loading"
+import AddressComponent from "../../../../components/shared/Address/address-component"
+import AddressForm from "../../../../components/Modal/Address/Address-modal"
+import Loading from "../../../../components/shared/loading/Loading"
 
 const keyframe_startanimation = keyframes`
 0% {

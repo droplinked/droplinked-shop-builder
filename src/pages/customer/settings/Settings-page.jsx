@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import { useState } from "react";
-import { useProfile } from "../../context/profile/ProfileContext";
+import { useProfile } from "../../../context/profile/ProfileContext";
 import { useNavigate } from "react-router-dom";
 
 import AddressBookComponent from "./address-book-component/address-book-component";

@@ -3,7 +3,6 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
-import Crashpunks2 from "./pages/test/crashpunks2";
 import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderProvider from "./context/order/OrdersContext";
 import LoadingPage from "./pages/publics/loading/Loading-page";
@@ -55,7 +54,7 @@ const PaymentPage = lazy(() =>
    import("./pages/customer/buy-process-pages/payment/payment-page")
  )
 
-const SettingsPage = lazy(() => import("./pages/settings/Settings-page"));
+const SettingsPage = lazy(() => import("./pages/customer/settings/Settings-page"));
 
 const IncomingOrderPage = lazy(() =>
   import("./pages/Producer/incomin-order/IncomingOrder-page")
@@ -143,8 +142,6 @@ function App() {
               </Route>
 
               <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
-              <Route path="/crashpunks2" element={<Crashpunks2 />} />
-
               <Route path="/notifications" element={<Notifications />} />
               <Route
                 path="/collection-iframe/:shopname/:collectionId"

@@ -1,12 +1,12 @@
 import { Flex, Box, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 import { useState } from 'react';
-import { useProfile } from "../../../context/profile/ProfileContext"
-import { BASE_URL } from "../../../api/BaseUrl"
-import { useToasty } from "../../../context/toastify/ToastContext"
+import { useProfile } from "../../../../context/profile/ProfileContext"
+import { BASE_URL } from "../../../../api/BaseUrl"
+import { useToasty } from "../../../../context/toastify/ToastContext"
 
-import InputImage from '../../../components/shared/InputImage/InputImage'
-import FormInput from '../../../components/shared/FormInput/FormInput'
-import BasicButton from '../../../components/shared/BasicButton/BasicButton'
+import InputImage from '../../../../components/shared/InputImage/InputImage'
+import FormInput from '../../../../components/shared/FormInput/FormInput'
+import BasicButton from '../../../../components/shared/BasicButton/BasicButton'
 import axios from "axios"
 
 

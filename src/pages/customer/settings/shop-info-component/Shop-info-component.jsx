@@ -10,21 +10,21 @@ import {
     Button
 } from '@chakra-ui/react'
 
-import { BASE_URL } from "../../../api/BaseUrl"
+import { BASE_URL } from "../../../../api/BaseUrl"
 import { useEffect, useState } from 'react'
-import { useAddress } from "../../../context/address/AddressContext"
-import { useToasty } from "../../../context/toastify/ToastContext"
-import { updateShopApi } from "../../../api/producer/Shop-api"
+import { useAddress } from "../../../../context/address/AddressContext"
+import { useToasty } from "../../../../context/toastify/ToastContext"
+import { updateShopApi } from "../../../../api/producer/Shop-api"
 import { useNavigate } from "react-router-dom";
-import { useShop } from "../../../context/shop/ShopContext"
+import { useShop } from "../../../../context/shop/ShopContext"
 
 import axios from "axios"
-import InputImage from '../../../components/shared/InputImage/InputImage'
-import Loading from "../../../components/shared/loading/Loading"
-import FormInput from "../../../components/shared/FormInput/FormInput"
-import BasicButton from "../../../components/shared/BasicButton/BasicButton"
-import AddressComponent from "../../../components/shared/Address/address-component"
-import AddressForm from "../../../components/Modal/Address/Address-modal"
+import InputImage from '../../../../components/shared/InputImage/InputImage'
+import Loading from "../../../../components/shared/loading/Loading"
+import FormInput from "../../../../components/shared/FormInput/FormInput"
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
+import AddressComponent from "../../../../components/shared/Address/address-component"
+import AddressForm from "../../../../components/Modal/Address/Address-modal"
 
 const keyframe_startanimation = keyframes`
 0% {
