@@ -7,11 +7,7 @@ import Crashpunks2 from "./pages/test/crashpunks2";
 import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderProvider from "./context/order/OrdersContext";
 import LoadingPage from "./pages/publics/loading/Loading-page";
-import TestProduct from "./pages/test/test-product";
-import TextView from "./pages/test/testview";
 import ShippingPage from "./pages/customer/buy-process-pages/shipping/Shipping-page";
-// import CartPage from "./pages/buy-process-pages/cart/cart-page";
-// import ConfirmPage from "./pages/buy-process-pages/confirm/confirm";
 import ShopWrapper from "./pages/customer/shop-wrapper/shop-wrapper";
 import Enquiry from './pages/publics/enquiry/Enquiry'
 import ViewCollection from "./pages/Producer/view-collection/View-collection";
@@ -24,9 +20,6 @@ const RegisterPage = lazy(() =>
   import("./pages/Producer/register/register-page")
 );
 
-// const RegisterIms = lazy(() =>
-//   import("./pages/Registering-pages/register-ims/Ims-page")
-// );
 const EmailVerifyPage = lazy(() =>
   import("./pages/publics/email-verify/Email-verification-page")
 );
@@ -58,10 +51,6 @@ const CheckoutPage = lazy(() =>
 const AddressPage = lazy(() =>
   import("./pages/customer/buy-process-pages/address/Address-Page")
 );
-// const PaymentPage = lazy(() =>
-//   import("./pages/buy-process-pages/payment/Payment-page")
-// );
-
 const PaymentPage = lazy(() =>
    import("./pages/customer/buy-process-pages/payment/payment-page")
  )
@@ -84,11 +73,8 @@ const Notifications = lazy(() =>
 const CollectionIframe = lazy(() =>
   import("./pages/customer/collection-iframe/CollectionIfram-page")
 );
-const Test = lazy(() => import("./pages/test/Test-page"));
+//const Test = lazy(() => import("./pages/test/Test-page"));
 
-// const ShopInfoComponent = lazy(() =>
-//   import("./pages/settings/shop-info-component/Shop-info-component")
-// );
 
 function App() {
   return (
@@ -104,11 +90,6 @@ function App() {
 
               <Route path="register" element={<RegisterPage />} />
 
-              {/* register */}
-              {/* <Route path="register" element={<RegisterPage />}>
-                <Route path="shop-info" element={<ShopInfoComponent />} />
-                <Route path="ims-type" element={<RegisterIms />} />
-              </Route> */}
               {/* register */}
               <Route
                 path="email-confirmation"
@@ -160,25 +141,15 @@ function App() {
                 <Route path="payment" element={<PaymentPage />} />
 
               </Route>
-              {/* <Route path=":shopname" element={<ShopPage />}  /> */}
 
               <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
-              {/* <Route path="checkout" element={<CheckoutPage />} /> */}
-              {/* <Route path="/address" element={<AddressPage />} /> */}
-              {/* <Route path="/payment" element={<PaymentPage />} /> */}
-             
-              {/* <Route path=":shopname/card" element={<CartPage />} />
-              <Route path=":shopname/confirm" element={<ConfirmPage />} /> */}
               <Route path="/crashpunks2" element={<Crashpunks2 />} />
-              <Route path="/TestProduct" element={<TestProduct />} />
-              <Route path="/testshopifymerchview" element={<TextView />} />
 
               <Route path="/notifications" element={<Notifications />} />
               <Route
                 path="/collection-iframe/:shopname/:collectionId"
                 element={<CollectionIframe />}
               />
-              <Route path="/test" element={<Test />} />
             </Route>
           </Routes>
         </Suspense>
