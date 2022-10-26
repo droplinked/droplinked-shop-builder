@@ -22,8 +22,6 @@ export default function ShopPage() {
 
   localStorage.setItem("currentShop", JSON.stringify(shopname));
 
-  console.log(shopData);
-
   useEffect(() => {
     getShopData(shopname);
     getCollectionData(shopname);
