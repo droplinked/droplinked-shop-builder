@@ -15,8 +15,10 @@ import {
   getRuleById,
   updateRule,
 } from "../../../../api/producer/Ruleset-api";
+import { useToasty } from "../../../../context/toastify/ToastContext";
 
 import BasicButton from "../../BasicButton/BasicButton";
+import FormInput from "../../FormInput/FormInput";
 
 const RuleModal = ({ open, close, collectionId, ruleId }) => {
   const [ruleList, setRuleList] = useState(() => {
@@ -24,7 +26,10 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
       ? [{ address: "", type: "NFT", index: 1 }]
       : null;
   });
+  const [webUrl, setWebUrl] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const { successToast, errorToast } = useToasty();
 
   useEffect(() => {
     if (ruleId != undefined) getRuleData();
@@ -38,6 +43,7 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
         return { ...rule, index: i + 1 };
       });
       setRuleList(newRuleArray);
+      if(result.data.ruleSet.webUrl)setWebUrl(result.data.ruleSet.webUrl)
     }
   };
 
@@ -82,18 +88,44 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
     setRuleList(arrNew);
   };
 
+  const changeWebUrl = (e) => setWebUrl(e.target.value);
+
+  // check inputs value
+  const checkValidation = () => {
+    if (webUrl == "") {
+      errorToast("WebUrl is required.");
+      return false;
+    }
+
+    let find = ruleList.find((rule) => rule.address == "");
+
+    if (find != undefined) {
+      errorToast("NFT / Contract address is required.");
+      return false;
+    } else return true;
+  };
+
+
   const submitRuleSet = async () => {
+    // check condition
+    let condition = checkValidation();
+    if (condition == false) return;
+
+    // build ruleset array for pass to api
     let rules = ruleList.map((rule) => {
       return { address: rule.address, type: rule.type };
     });
+
     setLoading(true);
     let result;
     if (ruleId == undefined) {
-      result = await addRuleset(collectionId, rules);
+      result = await addRuleset(collectionId, rules , webUrl);
     } else {
-      result = await updateRule(ruleId, rules);
+      result = await updateRule(ruleId, rules , webUrl);
     }
-    console.log(result);
+
+    if(result != true) errorToast(result)
+
     setLoading(false);
     close();
   };
@@ -109,6 +141,14 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
                 The customer must meet at least one of the rules listed below
                 (OR)
               </RulesetText>
+
+              <FormInput
+                value={webUrl}
+                changeValue={changeWebUrl}
+                label={"NFT store"}
+                placeholder={"NFT store"}
+              />
+              <Box mb="40px"></Box>
 
               {ruleList.map((rule, index) => {
                 return (
