@@ -13,7 +13,7 @@ const UnlockIcon = () => {
   return (
     <Tooltip
       isOpen={isLabelOpen}
-      label="This item is available for everyone"
+      label="You’ve unlocked this exclusive offer!"
       color="#fff"
       bgColor="#222"
       borderRadius="8px"

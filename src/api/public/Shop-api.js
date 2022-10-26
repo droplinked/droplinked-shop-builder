@@ -8,8 +8,8 @@ export const getShopInfoByShopname = async (shopname) => {
     const res = await axios.get(`${BASE_URL}/shopinfo/${shopname}`);
     return res.data.data ;
   } catch (err) {
-    console.error(err.response.data.reason);
-    return null
+    // if shop not find return false
+    return false
   }
   
 };

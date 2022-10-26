@@ -26,7 +26,7 @@ export const getRuleById = async (ruleId) => {
   }
 };
 
-export const addRuleset = async (collectionID, rules) => {
+export const addRuleset = async (collectionID, rules , webUrl) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.post(
@@ -34,6 +34,7 @@ export const addRuleset = async (collectionID, rules) => {
       {
         collectionID: collectionID,
         rules: rules,
+        webUrl:webUrl
       },
       { headers: { Authorization: "Bearer " + token } }
     );
@@ -67,12 +68,13 @@ export const deleteRule = async (id) => {
   }
 };
 
-export const updateRule = async (id, rule) => {
+export const updateRule = async (id, rule , webUrl) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.put(`${BASE_URL}/producer/ruleset/${id}`,
     {
       rules: rule,
+      webUrl :webUrl
     }, {
       headers: { Authorization: "Bearer " + token },
     });

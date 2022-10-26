@@ -2,23 +2,28 @@
 //import Footer from "../../components/layouts/Footer/Footer"
 
 import { Box, Flex } from "@chakra-ui/react";
-import { Outlet } from "react-router-dom";
+import { Outlet  ,useParams } from "react-router-dom";
 import { useCart } from "../../context/cart/CartContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAddress } from "../../context/address/AddressContext";
 import { useNotifications } from "../../context/notifications/NotificationsContext";
 import { useProfile } from "../../context/profile/ProfileContext";
-import { isJwtValid, getProfileData } from "../../api/base-user/Profile-api";
+import { isJwtValid } from "../../api/base-user/Profile-api";
 import { useShop } from "../../context/shop/ShopContext";
+
 import MainHeader from "../../components/layouts/Header/MainHeader";
 import Footer from "../../components/layouts/Footer/Footer";
 
 export default function PageWrapper() {
+
   const { updateCart } = useCart();
   const { updateAddressList } = useAddress();
   const { profile, isCustomer } = useProfile();
   const { updateNotifications } = useNotifications();
   const { updateShop } = useShop();
+  const { shopname } = useParams()
+
+
 
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem("token"));
@@ -26,11 +31,10 @@ export default function PageWrapper() {
   }, []);
 
   useEffect(() => {
-
     let token = JSON.parse(localStorage.getItem("token"));
     if (token != null || token != undefined) {
       console.log("run");
-     if (isCustomer()) updateCart();
+      if (isCustomer()) updateCart();
       if (!isCustomer()) updateShop();
       updateAddressList();
       updateNotifications();
@@ -64,7 +68,8 @@ export default function PageWrapper() {
 
   const cleanStorage = () => {
     localStorage.clear();
-    window.location.replace("/");
+    if(shopname != undefined) window.location.replace(`/${shopname}`)
+    else window.location.replace("/");
   };
 
   return (

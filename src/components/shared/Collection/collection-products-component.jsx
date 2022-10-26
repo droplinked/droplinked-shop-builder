@@ -1,10 +1,10 @@
 import { Flex, Text, Box } from "@chakra-ui/react";
 import { SHOP_TYPES } from "../../../constant/shop-types";
-import { USER_TYPE } from "../../../constant/user-types"
+import { USER_TYPE } from "../../../constant/user-types";
 
 import Product from "../Product/Product";
 
-const CollectionProducts = ({ products ,shopname , type }) => {
+const CollectionProducts = ({ products, shopname, type }) => {
   return (
     <>
       {products.length > 0 ? (
@@ -12,7 +12,7 @@ const CollectionProducts = ({ products ,shopname , type }) => {
           {products.map((product, i) => {
             if (i < 2) {
               return (
-                <Box key={i} w={{ base: "50%", md: "50%" , lg:'50%' }} p="3px">
+                <Box key={i} w={{ base: "50%", md: "50%", lg: "25%" }} p="3px">
                   {type == SHOP_TYPES.SHOPIFY ? (
                     <Product
                       shopname={shopname}

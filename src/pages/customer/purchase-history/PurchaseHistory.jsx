@@ -1,0 +1,133 @@
+import { useToasty } from "../../../context/toastify/ToastContext"
+import { useEffect, useState, useMemo } from "react";
+import { Text, Box , Flex } from "@chakra-ui/react"
+import { getImsOrdersHistory ,getShopifyOrdersHistory} from '../../../api/base-user/OrderHistory-api'
+import { sortArrayBaseCreateTime } from "../../../utils/sort.utils/sort.utils"
+import { ORDER_TYPES } from "../../../constant/order.types"
+import { mergeWaitingOrders } from "./purchase-order-utils"
+import { useNavigate } from "react-router-dom";
+import { SHOP_TYPES } from "../../../constant/shop-types"
+
+import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
+import Loading from "../../../components/shared/loading/Loading"
+import Order from "../../../components/shared/Order/Order-component"
+
+export default function PurchasHistoryPage() {
+
+    const [orders, setorders] = useState(null)
+    const [filter, setFilter] = useState("All")
+
+    const { successToast, errorToast } = useToasty();
+    const navigate = useNavigate()
+
+
+    //get payment status
+    let params = (new URL(document.location)).searchParams;
+    let status = params.get('redirect_status') // null or string
+
+    const setTypesArray = () => {
+        const arr = [
+            { id: "All", value: "All" },
+            { id: ORDER_TYPES.WAITING_FOR_CONFIRMATION, value: "Waiting for confirmation" },
+            { id: ORDER_TYPES.WAITING_FOR_PAYMENT, value: "Waiting for payment" },
+            { id: ORDER_TYPES.PROCESSING, value: "Processing" },
+            { id: ORDER_TYPES.SENT, value: "Sent" },
+            { id: ORDER_TYPES.CANCELED, value: "Canceled" },
+            { id: ORDER_TYPES.REFUNDED, value: "Refunded" },
+        ]
+        return arr
+    }
+
+    let typesArray = useMemo(() => setTypesArray(), []);
+    // setTypesArray();
+
+    useEffect(() => {
+        // if its backurl from stripe show successToast
+        if (status == 'succeeded') successToast("Payment successful")
+        if (status == 'failed') errorToast("Payment canceled")
+        getPurchseList()
+    }, [])
+
+
+    const getPurchseList = async () => {
+
+        let shopifyOrders = await getShopifyOrdersHistory()
+        let imsORders = await getImsOrdersHistory()
+
+        let combinedOrders = []
+         shopifyOrders.forEach(order => combinedOrders.push({...order , type:SHOP_TYPES.SHOPIFY }))
+         imsORders.forEach(order => combinedOrders.push({...order , type:SHOP_TYPES.DROPLINKED }))
+      
+       let result = mergeWaitingOrders(combinedOrders)
+        result = sortArrayBaseCreateTime(result)
+        if (result != null) {
+            setorders(result)
+        }
+    }
+
+    const currentShop = JSON.parse(localStorage.getItem("currentShop"))
+    const backToShop = () => navigate(`/${currentShop}`)
+
+    return (<Box mx={{base:'20px' , md:'80px'}}>
+        {(orders == null)
+            ?
+            <Loading />
+            :
+            <>
+                {(orders.length == 0)
+                    ?
+                    <Text color='white' w='100%' textAlign='center' fontSize='20px' fontWeight='600' mb='300px'>No Order</Text>
+                    :
+                    <Box w='100%'  mb='100px'>
+                        <Box w='100%' maxW='700px' m='auto'>
+                            <Text
+                                color='white'
+                                fontSize={{ base: "30px", md: '40px' }}
+                                fontWeight='600'
+                                textAlign='center'
+                                mb='40px'
+                            >
+                                Purchase history
+                            </Text>
+
+                            <Flex w='100%' justifyContent='center'>
+                                <Box w={{ base: '100%', md: '40%' }} mb='40px'>
+                                    <Dropdown
+                                        value={filter}
+                                        pairArray={typesArray}
+                                        placeholder={filter}
+                                        change={(e) => { setFilter(e.target.value) }}
+                                    />
+                                </Box>
+                            </Flex>
+                            {(filter == "All")
+                                ?
+                                <>
+                                    {orders.map((order, i) => {
+                                        if (order.status == ORDER_TYPES.WAITING_FOR_PAYMENT)
+                                            return <Order key={i} order={order} />
+                                    })}
+                                    {orders.map((order, i) => {
+                                        if (order.status != ORDER_TYPES.WAITING_FOR_PAYMENT)
+                                            return <Order key={i} order={order} />
+                                    })}
+                                </>
+                                :
+                                <>
+                                    {orders.map((order, i) => {
+                                        if (order.status == filter)
+                                            return <Order key={i} order={order} />
+                                    })}
+                                </>
+                            }
+
+                        </Box>
+                    </Box>
+                }
+                 <Box><BasicButton w={{base:"100%" , md:'200px'}} click={backToShop}>Back to shop</BasicButton></Box>
+            </>
+        }
+
+    </Box>)
+}

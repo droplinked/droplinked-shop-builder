@@ -65,18 +65,20 @@ export const RuleSelect = chakra("select", {
 
 export const RuleAddressInput = chakra("input", {
   baseStyle: {
-    border: "2px solid #b4b4b4",
+    // border: "2px solid #b4b4b4",
     borderRadius: "8px",
-    padding: { base: "6px 12px", md: "10px 16px 9px 16px" },
+    px: "16px",
+    py: { base: "8px", md: "12px" },
     outline: "none",
     backgroundColor: "transparent",
-    color: "#fff",
+    color: "lightGray",
+    bg: "dark",
     fontWeight: "600",
     fontSize: { base: "14px", md: "18px" },
     transition: "0.5s",
     backgroundColor: "#353536",
-    w:'100%'
-   // w: { base: "100%", md: "50%" },
+    w: "100%",
+    // w: { base: "100%", md: "50%" },
   },
 });
 
@@ -98,7 +100,7 @@ export const RuleAddressShow = chakra("div", {
 
 export const AddressWrapper = chakra("div", {
   baseStyle: {
-    display:'flex',
+    display: "flex",
     pl: "40px",
     w: "100%",
     color: "white",
@@ -109,20 +111,15 @@ export const AddressWrapper = chakra("div", {
   },
 });
 
-
 export const AddRuleButton = chakra("button", {
-    baseStyle: {
-     fontSize:{base:'16px' , md:'20px'},
-     color:'white',
-     borderBottom:'1px solid white',
-     cursor:'pointer',
-     _hover:{
-        color:'#8053ff',
-        borderColor:'#8053ff',
-     }
+  baseStyle: {
+    fontSize: { base: "16px", md: "20px" },
+    color: "white",
+    borderBottom: "1px solid white",
+    cursor: "pointer",
+    _hover: {
+      color: "#8053ff",
+      borderColor: "#8053ff",
     },
-  });
-
-
-  
-  
+  },
+});
