@@ -1,17 +1,17 @@
-import { useToasty } from "../../context/toastify/ToastContext"
+import { useToasty } from "../../../context/toastify/ToastContext"
 import { useEffect, useState, useMemo } from "react";
 import { Text, Box , Flex } from "@chakra-ui/react"
-import { getImsOrdersHistory ,getShopifyOrdersHistory} from '../../api/base-user/OrderHistory-api'
-import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils"
-import { ORDER_TYPES } from "../../constant/order.types"
+import { getImsOrdersHistory ,getShopifyOrdersHistory} from '../../../api/base-user/OrderHistory-api'
+import { sortArrayBaseCreateTime } from "../../../utils/sort.utils/sort.utils"
+import { ORDER_TYPES } from "../../../constant/order.types"
 import { mergeWaitingOrders } from "./purchase-order-utils"
 import { useNavigate } from "react-router-dom";
-import { SHOP_TYPES } from "../../constant/shop-types"
+import { SHOP_TYPES } from "../../../constant/shop-types"
 
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
-import Dropdown from "../../components/shared/Dropdown/Dropdown-component"
-import Loading from "../../components/shared/loading/Loading"
-import Order from "../../components/shared/Order/Order-component"
+import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
+import Loading from "../../../components/shared/loading/Loading"
+import Order from "../../../components/shared/Order/Order-component"
 
 export default function PurchasHistoryPage() {
 

@@ -62,7 +62,7 @@ const IncomingOrderPage = lazy(() =>
 );
 
 const PurchasHistoryPage = lazy(() =>
-  import("./pages/purchase-history/PurchaseHistory")
+  import("./pages/customer/purchase-history/PurchaseHistory")
 );
 const Producer = lazy(() =>
   import("./pages/Producer/producer-wrapper/Producer-wrapper-page")

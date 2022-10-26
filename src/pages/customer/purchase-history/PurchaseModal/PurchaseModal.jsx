@@ -8,8 +8,8 @@ import {
     ModalCloseButton,
     Button,
 } from "@chakra-ui/react"
-import { ORDER_TYPES } from "../../../constant/order.types"
-import { convertToStandardFormat } from "../../../utils/date.utils/convertDate"
+import { ORDER_TYPES } from "../../../../constant/order.types"
+import { convertToStandardFormat } from "../../../../utils/date.utils/convertDate"
 
 import Item from "../ItemComponent/ItemComponent"
 

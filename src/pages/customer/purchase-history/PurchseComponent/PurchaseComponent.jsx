@@ -1,5 +1,5 @@
 import { Box, Flex, Text, Image, useDisclosure } from "@chakra-ui/react"
-import { convetToCustomFormat } from "../../../utils/date.utils/convertDate"
+import { convetToCustomFormat } from "../../../../utils/date.utils/convertDate"
 
 
 import PurchaseModal from '../PurchaseModal/PurchaseModal'

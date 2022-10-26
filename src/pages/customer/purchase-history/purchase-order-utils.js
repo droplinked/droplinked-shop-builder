@@ -1,5 +1,5 @@
 
-import { ORDER_TYPES } from "../../constant/order.types";
+import { ORDER_TYPES } from "../../../constant/order.types";
 
 export const mergeWaitingOrders = (orders) => {
   let newArray = [];
