@@ -9,7 +9,6 @@ import { Flex, Box, Text, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import EventButton from "./event-button-component/event-button-component"
 import LockIcon from "../../../../components/shared/lock-icon/lockIcon";
 import UnlockIcon from "../../../../components/shared/unlock-icon/unlockIcon";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
@@ -32,14 +31,6 @@ const ShopifyDetail = ({
 
   const navigate = useNavigate();
 
-
-  const eventCondition = () => {
-    let x = new Date('Tue Oct 25 2022 10:30:00 GMT+0330').getTime()
-    let y = new Date().getTime()
-
-    if(x-y>0) return true
-    else return false
-  }
 
   useEffect(() => {
     initialVariant();
@@ -202,10 +193,7 @@ const ShopifyDetail = ({
                 <Image src={plus} alt="minus" />
               </QuantityButton>
             </Flex>
-            {(eventCondition())
-            ?
-            <EventButton click={submit}/>
-            :
+
             <Box h="auto">
               <BasicButton
                 click={submit}
@@ -217,7 +205,6 @@ const ShopifyDetail = ({
                   : "Sold out"}
               </BasicButton>
             </Box>
-            }
            
 
             {/* <Box h="auto">
