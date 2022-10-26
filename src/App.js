@@ -27,7 +27,7 @@ const AccountRecovery = lazy(() =>
   import("./pages/publics/account-recovery/Account-recovery")
 );
 const ThankForRegisterPage = lazy(() =>
-  import("./pages/thanks-for-register/ThankForRegister-page")
+  import("./pages/publics/thanks-for-register/ThankForRegister-page")
 );
 const InventoryPage = lazy(() =>
   import("./pages/Producer/ims/Inventory-page")
