@@ -15,6 +15,18 @@ export const ShopPageContainer = chakra("div", {
   },
 });
 
+
+export const ShopnotFind = chakra("p", {
+  baseStyle: {
+    textAlign:'center',
+    my:'auto',
+   // marginTop: { base: "30px", md: "50px" },
+    fontWeight: "600",
+    color: " #fff",
+    fontSize: { base: "24px", md: "32px" },
+  },
+});
+
 export const EmptyCollectionText = chakra("p", {
   baseStyle: {
     marginTop: { base: "30px", md: "50px" },

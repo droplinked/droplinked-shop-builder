@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getShopInfoByShopname } from "../../../api/public/Shop-api";
 import { getCollectionsByShopname } from "../../../api/public/Collection-api";
-import { ShopPageContainer } from "./Shop-page-style";
+import { ShopPageContainer  ,ShopnotFind} from "./Shop-page-style";
 import { useProfile } from "../../../context/profile/ProfileContext";
 
 import Loading from "../../../components/shared/loading/Loading";
@@ -21,6 +21,8 @@ export default function ShopPage() {
   const { profile } = useProfile();
 
   localStorage.setItem("currentShop", JSON.stringify(shopname));
+
+  console.log(shopData);
 
   useEffect(() => {
     getShopData(shopname);
@@ -43,26 +45,31 @@ export default function ShopPage() {
     else return false;
   };
 
-
   return (
     <>
       {shopData == null ? (
         <Loading />
       ) : (
         <ShopPageContainer>
-          {isOwner() ? (
-            <OwnerShopPage
-              shopData={shopData}
-              shopName={shopname}
-              collections={collection}
-              update={getCollectionData}
-            />
+          {shopData == false ? (
+            <ShopnotFind>Shop not find</ShopnotFind>
           ) : (
-            <PublicShopPage
-              shopData={shopData}
-              shopName={shopname}
-              collections={collection}
-            />
+            <>
+              {isOwner() ? (
+                <OwnerShopPage
+                  shopData={shopData}
+                  shopName={shopname}
+                  collections={collection}
+                  update={getCollectionData}
+                />
+              ) : (
+                <PublicShopPage
+                  shopData={shopData}
+                  shopName={shopname}
+                  collections={collection}
+                />
+              )}
+            </>
           )}
         </ShopPageContainer>
       )}
