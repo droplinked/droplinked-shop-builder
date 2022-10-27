@@ -1,4 +1,4 @@
-import "./LoginModal.style.scss";
+//import "./LoginModal.style.scss";
 
 import ModalContainer from "../modal-container/modal-container";
 import FormInput from "../../shared/FormInput/FormInput";
