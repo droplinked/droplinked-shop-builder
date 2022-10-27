@@ -62,7 +62,7 @@ function CheckoutPage() {
 
   const checkGated = (rule) => {
     if(rule == undefined) {
-      return false
+      return null
     }else{
       if(!profile) return true
       else return false

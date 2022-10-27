@@ -49,9 +49,11 @@ const ShopifytItem = ({ product, variant, lock, amount, shopName }) => {
 
           <TitleWrapper>
             <Flex>
-              <LockIconWrapper>
-                {lock == true ? <LockIcon /> : <UnlockIcon />}
-              </LockIconWrapper>
+              {lock != null && (
+                <LockIconWrapper>
+                  {lock == true ? <LockIcon /> : <UnlockIcon />}
+                </LockIconWrapper>
+              )}
               <Title onClick={clickOnProduct}>{product.title}</Title>
             </Flex>
 
