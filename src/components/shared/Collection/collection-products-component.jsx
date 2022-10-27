@@ -10,9 +10,9 @@ const CollectionProducts = ({ products, shopname, type }) => {
       {products.length > 0 ? (
         <Flex w="100%" wrap="wrap">
           {products.map((product, i) => {
-            if (i < 4) {
+            if (i < 2) {
               return (
-                <Box key={i} w={{ base: "50%", md: "50%", lg: "25%" }} p="3px">
+                <Box key={i} w={{ base: "50%", md: "50%", lg: "50%" }} p="3px">
                   {type == SHOP_TYPES.SHOPIFY ? (
                     <Product
                       shopname={shopname}
