@@ -31,7 +31,6 @@ const ShopifyDetail = ({
 
   const navigate = useNavigate();
 
-
   useEffect(() => {
     initialVariant();
   }, []);
@@ -195,17 +194,10 @@ const ShopifyDetail = ({
             </Flex>
 
             <Box h="auto">
-              <BasicButton
-                click={submit}
-                loading={loading}
-                disabled={selectedVariant.inventory_quantity <= 0}
-              >
-                {selectedVariant.inventory_quantity > 0
-                  ? "Add to basket"
-                  : "Sold out"}
+              <BasicButton click={submit} loading={loading}>
+                Add to basket
               </BasicButton>
             </Box>
-           
 
             {/* <Box h="auto">
               <BasicButton
@@ -218,7 +210,6 @@ const ShopifyDetail = ({
                   : "Sold out"}
               </BasicButton>
             </Box> */}
-
           </Box>
         </>
       )}
