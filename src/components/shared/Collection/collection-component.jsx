@@ -51,17 +51,15 @@ export default function Collection({ collection, shopname, type }) {
         />
         {/* head */}
 
-        <Flex w="100%">
-          {/* content */}
-          <Box w={{ base: "100%", md: "50%" }}>
-            <CollectionProducts
-              products={collection.products}
-              shopname={shopname}
-              type={type}
-            />
-          </Box>
-          {/* content */}
-        </Flex>
+        {/* content */}
+        <Box w="100%">
+          <CollectionProducts
+            products={collection.products}
+            shopname={shopname}
+            type={type}
+          />
+        </Box>
+        {/* content */}
       </CollectionWrapper>
       {snippedModal && (
         <IframeSnipped

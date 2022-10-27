@@ -26,7 +26,7 @@ const SignUpModal = lazy(() =>
 );
 
 const LoginModal = lazy(() =>
-  import("../../../components/Modal/Login-modal/LoginModal")
+  import("../../../components/Modal/Login-modal/login-modal")
 );
 
 const ResetPassModal = lazy(() =>
