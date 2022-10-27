@@ -5,7 +5,7 @@ import FormInput from "../../shared/FormInput/FormInput";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 
 import { Box } from "@chakra-ui/react";
-//import { useForm } from "react-hook-form";
+import { Title, BottomText } from "./login-modal-style";
 import { PROFILE_STATUS } from "../../../constant/profile-status-types";
 import { useState, useContext } from "react";
 import { toastValue } from "../../../context/toastify/ToastContext";
@@ -114,8 +114,8 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
   return (
     <>
       <ModalContainer close={close}>
-        <div className="login-modal-component">
-          <div className="title">Login</div>
+        <Box w="100%">
+          <Title>Login</Title>
 
           <Box w="100%" pt="20px">
             <FormInput
@@ -138,18 +138,14 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
               Login
             </BasicButton>
           </Box>
-
-          <div className="text mt-4">
-            <p>
-              <a onClick={switchReset}>Forgot password</a>?
-            </p>
-          </div>
-          <div className="text mt-2">
-            <p>
-              Don’t have an account? <a onClick={switchToggle}>Register now</a>!
-            </p>
-          </div>
-        </div>
+          <Box mb="25px"></Box>
+          <BottomText onClick={switchReset}>Forgot password?</BottomText>
+          <Box mb="10px"></Box>
+          <BottomText onClick={switchToggle}>
+            {" "}
+            Don’t have an account? Register now!
+          </BottomText>
+        </Box>
       </ModalContainer>
     </>
   );
