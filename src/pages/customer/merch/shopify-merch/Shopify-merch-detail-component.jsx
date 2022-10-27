@@ -129,17 +129,19 @@ const ShopifyDetail = ({
                 ${selectedVariant && selectedVariant.price}
               </Text>
 
-              <Box
-                mt={{ base: "5px", md: "0px" }}
-                ml="15px"
-                w={{ base: "25px", md: "36px" }}
-                h={{ base: "25px", md: "36px" }}
-                p={{ base: "4px", md: "6px" }}
-                bgColor="#222"
-                borderRadius="50%"
-              >
-                {lock == true ? <LockIcon /> : <UnlockIcon />}
-              </Box>
+              {lock != null && (
+                <Box
+                  mt={{ base: "5px", md: "0px" }}
+                  ml="15px"
+                  w={{ base: "25px", md: "36px" }}
+                  h={{ base: "25px", md: "36px" }}
+                  p={{ base: "4px", md: "6px" }}
+                  bgColor="#222"
+                  borderRadius="50%"
+                >
+                  {lock == true ? <LockIcon /> : <UnlockIcon />}
+                </Box>
+              )}
             </Flex>
 
             <Flex

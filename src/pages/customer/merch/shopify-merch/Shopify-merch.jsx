@@ -35,7 +35,7 @@ const ShopifyMech = ({ shopName, product }) => {
 
 
   useEffect(() => {
-    if (product.ruleset == undefined) setLock(false);
+    if (product.ruleset == undefined) setLock(null);
     else {
       if (userData != undefined) checkGated();
     }

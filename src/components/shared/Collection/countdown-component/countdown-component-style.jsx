@@ -2,6 +2,10 @@ import { chakra } from "@chakra-ui/react";
 
 export const CountdownWrapper = chakra("div", {
   baseStyle: {
+    d:"flex",
+    justifyContent:'center',
+   alignItems:'center',
+   flexDir:'column',
     w: "100%",
     h: "100%",
     borderRadius: "8px",

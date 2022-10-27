@@ -20,11 +20,13 @@ const Countdown = () => {
   return (
     <Box pb='36px' w='100%' h='100%'>
     <CountdownWrapper>
-      <TextMessage>20% OFF</TextMessage>
-      <TextMessage>CrashPunks Holders{" "}    <Box d={{ base: "none", md: "block" }}></Box>48 Hours Only</TextMessage>
+      {/* <TextMessage>20% OFF</TextMessage>
+      <TextMessage>CrashPunks Holders{" "}    <Box d={{ base: "none", md: "block" }}></Box>48 Hours Only</TextMessage> */}
+      <TextMessage>20% off</TextMessage>
+      <TextMessage>for CrashPunk NFT Holders</TextMessage>
       {/* <TextMessage></TextMessage>
      */}
-      <Flex
+      {/* <Flex
        w={{base:"130px",sm:'200px',md:'250px',lg:'180px',xl:'250px'}}
         justifyContent='space-between' mx='auto' mt='10px'>
         <ItemWrapper>
@@ -47,7 +49,7 @@ const Countdown = () => {
           <TimeText>Secconds</TimeText>
         </ItemWrapper>
 
-      </Flex>
+      </Flex> */}
     </CountdownWrapper>
     </Box>
   );
