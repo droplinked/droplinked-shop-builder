@@ -7,7 +7,7 @@ export const ProflieReduser = (profile, action) => {
     case "ADD_PROFILE":
       let time = new Date().getTime();
       localStorage.setItem("login-time", JSON.stringify(time));
-     
+      localStorage.setItem("token", JSON.stringify(action.payload.jwt));
       localStorage.setItem("profile", JSON.stringify(action.payload.user));
       return { ...action.payload.user };
 
