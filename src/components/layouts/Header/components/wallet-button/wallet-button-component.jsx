@@ -7,7 +7,7 @@ import { useToasty } from "../../../../../context/toastify/ToastContext";
 import HeaderItem from "../header-button/Header-btn-component";
 import headerWalletIcon from "../../../../../assest/icon/headerWalletIcon.svg";
 import newWalletIcon  from "../../../../../assest/icon/new-wallet-icon.svg"
-import WalletModal from "./wallet-modal";
+//import WalletModal from "./wallet-modal";
 
 //import activeWalletIcon from "../../../../../assest/icon/pink-wallet.png";
 
