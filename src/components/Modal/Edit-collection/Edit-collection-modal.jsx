@@ -4,11 +4,12 @@ import ModalContainer from "../../Modal/modal-container/modal-container";
 import FormInput from "../../shared/FormInput/FormInput";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 
-import { useState, useEffect } from "react";
-import { getRules } from "../../../api/producer/Ruleset-api";
+import { useState  } from "react";
+//import { EditCollectionWrapper } from "./Edit-collection-modal-style";
+//import { getRules } from "../../../api/producer/Ruleset-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { updateCollection } from "../../../api/producer/Collection-api";
-import { Spinner, Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 const EditCollectionModal = ({ collection, close, update }) => {
   // const [selectedRule, setSelectedRule] = useState(() => {
@@ -31,7 +32,7 @@ const EditCollectionModal = ({ collection, close, update }) => {
 
   const changeName = (e) => setCollectionName(e.target.value);
 
- // const changeRule = (e) => setSelectedRule(e.target.value);
+  // const changeRule = (e) => setSelectedRule(e.target.value);
 
   const submitForm = async () => {
     if (collectionName == "") {
@@ -46,7 +47,7 @@ const EditCollectionModal = ({ collection, close, update }) => {
     //   type: selectedRule == "" ? "PUBLIC" : "HOLDER",
     // };
 
-   // if (selectedRule != "") RuleInfo = { ...RuleInfo, ruleSetID: selectedRule };
+    // if (selectedRule != "") RuleInfo = { ...RuleInfo, ruleSetID: selectedRule };
 
     setLoading(true);
     let result = await updateCollection(collection._id, collectionName);
@@ -62,50 +63,31 @@ const EditCollectionModal = ({ collection, close, update }) => {
 
   return (
     <ModalContainer close={close}>
-      <div className="add-collection-page-wrapper">
+      <Flex flexDir='column' w='100%' margin='0px auto'>
         {/* content */}
-        <div className="mt-5">
-          <FormInput
-            label={"Collection name"}
-            value={collectionName}
-            changeValue={changeName}
-          />
-        </div>
-        {/* <div className="mt-5 w-100">
-          {Rules ? (
-            <select onChange={changeRule}>
-              <option value="" selected disabled hidden>
-                {selectedRule != ""
-                  ? Rules.find((rule) => rule._id == selectedRule).name
-                  : "Public"}
-              </option>
-              {Rules.map((rule) => {
-                return <option value={rule._id}>{rule.name}</option>;
-              })}
-              <option value={""}>Public</option>
-            </select>
-          ) : (
-            <Flex w="100%" justifyContent="center">
-              <Spinner color="white" size="lg" />
-            </Flex>
-          )}
-        </div> */}
+        <Box mt="20px"></Box>
+        <FormInput
+          label={"Collection name"}
+          value={collectionName}
+          changeValue={changeName}
+        />
+
         {/* content */}
         {/* footer */}
-        <div className="d-flex justify-content-between mt-5">
-          <div className="col-5">
+        <Flex justifyContent="space-between" mt="20px" w='100%'>
+          <Box w="40%">
             <BasicButton click={close} loading={loading} cancelType={true}>
               Cancel
             </BasicButton>
-          </div>
-          <div className="col-5">
+          </Box>
+          <Box w="40%">
             <BasicButton click={submitForm} loading={loading}>
               Submit
             </BasicButton>
-          </div>
-        </div>
+          </Box>
+        </Flex>
         {/* footer */}
-      </div>
+      </Flex>
     </ModalContainer>
   );
 };
