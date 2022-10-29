@@ -1,4 +1,4 @@
-import "./Edit-collection-modal-style.scss";
+
 
 import ModalContainer from "../../Modal/modal-container/modal-container";
 import FormInput from "../../shared/FormInput/FormInput";
