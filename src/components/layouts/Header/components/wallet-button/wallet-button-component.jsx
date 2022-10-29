@@ -46,7 +46,7 @@ export default function WalletButton({ haventEmail }) {
           Connect
         </Box>
       </HeaderItem>
-      {walletModal && <WalletModal close={closeWalletModal} />}
+      {/* {walletModal && <WalletModal close={closeWalletModal} />} */}
 
       {/* <WalletModal /> */}
     </>
