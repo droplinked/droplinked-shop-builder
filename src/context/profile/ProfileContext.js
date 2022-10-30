@@ -7,6 +7,7 @@ import {
   AppConfig,
   openSignatureRequestPopup,
 } from "@stacks/connect";
+import { PROFILE_STATUS } from "../../constant/profile-status-types";
 import { StacksTestnet, StacksMainnet } from "@stacks/network";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
@@ -21,12 +22,13 @@ const ProfileProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("profile")) || null
   );
 
-  const addProfile = async(payload) => {
-    localStorage.setItem("token", JSON.stringify(payload.jwt));
-    localStorage.setItem("profile", JSON.stringify(payload.user));
-    let time = new Date().getTime();
-    localStorage.setItem("login-time", JSON.stringify(time));
+  const addProfile = (payload) => {
+    dispatch({ type: "ADD_PROFILE", payload });
+  };
 
+  // this function reload page
+  const addProfileViaWallet = (payload) => {
+    addProfile(payload);
     window.location.reload();
   };
 
@@ -53,7 +55,8 @@ const ProfileProvider = ({ children }) => {
     if (profile) {
       if (
         profile.type == "PRODUCER" &&
-        profile.status == "IMS_TYPE_COMPLETED"
+        (profile.status == PROFILE_STATUS.IMS_TYPE_COMPLETED ||
+          profile.status == PROFILE_STATUS.ACTIVE)
       ) {
         return true;
       } else {
@@ -62,7 +65,7 @@ const ProfileProvider = ({ children }) => {
     }
   };
 
-  const signinWithaWallet =  () => {
+  const signinWithaWallet = () => {
     showConnect({
       appDetails: {
         name: "droplinked",
@@ -85,7 +88,7 @@ const ProfileProvider = ({ children }) => {
               signature: data.signature,
               publicKey: data.publicKey,
             };
-            getUserDataViaWallet(userDate)
+            getUserDataViaWallet(userDate);
           },
         });
       },
@@ -93,11 +96,10 @@ const ProfileProvider = ({ children }) => {
     });
   };
 
-  const getUserDataViaWallet = async(userData) => {
-    let result = await signInViaWallet(userData)
-    addProfile(result.data);
-  
-  }
+  const getUserDataViaWallet = async (userData) => {
+    let result = await signInViaWallet(userData);
+    addProfileViaWallet(result.data);
+  };
 
   const contextValues = {
     addProfile,

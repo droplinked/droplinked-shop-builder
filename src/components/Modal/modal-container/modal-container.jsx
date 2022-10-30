@@ -1,26 +1,20 @@
 import "./modal-container-style.scss";
 
-export default function ModalContainer({ children, close, center }) {
+import { ModalContainerWrapper ,ModalBody} from "./modal-container-style";
+
+export default function ModalContainer({ children, close }) {
   // prevent close modal when click on modal
   const handleChildClick = (event) => {
     event.stopPropagation();
   };
 
   return (
-    <>
-      <div
-        className="medium-modal-wrapper"
-        style={{
-          display: `${center ? "flex" : ""}`,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        onMouseDown={close}
-      >
-        <div className="medium-modal-body" onMouseDown={handleChildClick}>
-          {children}
-        </div>
-      </div>
-    </>
+    <ModalContainerWrapper onMouseDown={close}>
+      <ModalBody  onMouseDown={handleChildClick}>
+        {children}
+      </ModalBody>
+    </ModalContainerWrapper>
   );
 }
+
+// className="medium-modal-body"
