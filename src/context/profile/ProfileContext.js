@@ -7,6 +7,7 @@ import {
   AppConfig,
   openSignatureRequestPopup,
 } from "@stacks/connect";
+import { PROFILE_STATUS } from "../../constant/profile-status-types";
 import { StacksTestnet, StacksMainnet } from "@stacks/network";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
@@ -54,7 +55,8 @@ const ProfileProvider = ({ children }) => {
     if (profile) {
       if (
         profile.type == "PRODUCER" &&
-        profile.status == "IMS_TYPE_COMPLETED"
+        (profile.status == PROFILE_STATUS.IMS_TYPE_COMPLETED ||
+          profile.status == PROFILE_STATUS.ACTIVE)
       ) {
         return true;
       } else {
