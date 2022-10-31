@@ -16,17 +16,25 @@ import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import EmailModal from "../../../../components/Modal/Email-modal/email-modal";
 import DroplinkedItem from "./chekout-item/Droplinked-item";
 import ShopifytItem from "./chekout-item/Shopify-item";
+import SignUpModal from "../../../../components/Modal/Register-modal/SignUpModal";
+import LoginModal from "../../../../components/Modal/Login-modal/login-modal";
 
 function CheckoutPage() {
   const [showEmailModal, setShowEmailModal] = useState(false);
+  const [modal, setModdal] = useState(null);
 
-  const { profile ,signinWithaWallet} = useProfile();
+  const { profile, signinWithaWallet } = useProfile();
   const { cart } = useCart();
 
   let navigate = useNavigate();
   let { shopname } = useParams();
 
   const closeEmailModal = () => setShowEmailModal(false);
+
+  const switchModal = () =>
+    modal == "LOGIN" ? setModdal("SIGNUP") : setModdal("LOGIN");
+
+  const closeModal = () => setModdal(null);
 
   const getTotalPrice = () => {
     if (cart == null) return 0;
@@ -45,30 +53,37 @@ function CheckoutPage() {
     return total.toFixed(2);
   };
 
-  const checkoutSubmit = () => {
+  const checkLogin = () => {
+    let checkResult = true;
+
+    const isGated = cart.items.find((item) => item.productRule != undefined);
 
     if (!profile) {
-      signinWithaWallet();
-      return;
+      if (isGated) signinWithaWallet();
+      else switchModal();
+      checkResult = false;
+    } else if (!profile.email) {
+      setShowEmailModal(true);
+      checkResult = false;
     }
 
-    if (!profile.email) {
-      setShowEmailModal(true);
-      return;
-    }
+    return checkResult;
+  };
+
+  const checkoutSubmit = () => {
+    if (!checkLogin()) return;
 
     navigate(`/${shopname}/address`);
   };
 
   const checkGated = (rule) => {
-    if(rule == undefined) {
-      return false
-    }else{
-      if(!profile) return true
-      else return false
+    if (rule == undefined) {
+      return false;
+    } else {
+      if (!profile) return true;
+      else return false;
     }
-    
-  }
+  };
 
   const currentShop = JSON.parse(localStorage.getItem("currentShop"));
   const backToShop = () => navigate(`/${currentShop}`);
@@ -129,6 +144,15 @@ function CheckoutPage() {
         </>
       )}
       {showEmailModal && <EmailModal close={closeEmailModal} />}
+      {modal && (
+        <>
+          {modal == "LOGIN" ? (
+            <LoginModal close={closeModal} switchToggle={switchModal} />
+          ) : (
+            <SignUpModal close={closeModal} switchToggle={switchModal} />
+          )}
+        </>
+      )}
     </CheckoutPageWrapper>
   );
 }
