@@ -7,6 +7,7 @@ import {
   AppConfig,
   openSignatureRequestPopup,
 } from "@stacks/connect";
+import { useToasty } from "../toastify/ToastContext";
 import { PROFILE_STATUS } from "../../constant/profile-status-types";
 import { StacksTestnet, StacksMainnet } from "@stacks/network";
 
@@ -21,6 +22,7 @@ const ProfileProvider = ({ children }) => {
     ProflieReduser,
     JSON.parse(localStorage.getItem("profile")) || null
   );
+  const { errorToast } = useToasty();
 
   const addProfile = (payload) => {
     dispatch({ type: "ADD_PROFILE", payload });
@@ -29,7 +31,7 @@ const ProfileProvider = ({ children }) => {
   // this function reload page
   const addProfileViaWallet = (payload) => {
     addProfile(payload);
-    window.location.reload();
+    // window.location.reload();
   };
 
   const updateProfile = (payload) => {
@@ -87,6 +89,7 @@ const ProfileProvider = ({ children }) => {
                 userSession.loadUserData().profile.stxAddress.mainnet,
               signature: data.signature,
               publicKey: data.publicKey,
+              email: profile.email ? profile.email : "",
             };
             getUserDataViaWallet(userDate);
           },
@@ -98,7 +101,8 @@ const ProfileProvider = ({ children }) => {
 
   const getUserDataViaWallet = async (userData) => {
     let result = await signInViaWallet(userData);
-    addProfileViaWallet(result.data);
+    if (result.status == "success") addProfileViaWallet(result.data);
+    else errorToast(result);
   };
 
   const contextValues = {
