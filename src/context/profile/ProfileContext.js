@@ -89,7 +89,7 @@ const ProfileProvider = ({ children }) => {
                 userSession.loadUserData().profile.stxAddress.mainnet,
               signature: data.signature,
               publicKey: data.publicKey,
-              email: profile.email ? profile.email : "",
+              email: (profile && profile.email) ? profile.email : "",
             };
             getUserDataViaWallet(userDate);
           },
