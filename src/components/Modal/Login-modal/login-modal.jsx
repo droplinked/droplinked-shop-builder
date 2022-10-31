@@ -7,6 +7,7 @@ import BasicButton from "../../shared/BasicButton/BasicButton";
 import { Box } from "@chakra-ui/react";
 import { Title, BottomText } from "./login-modal-style";
 import { PROFILE_STATUS } from "../../../constant/profile-status-types";
+import { USER_TYPE } from "../../../constant/user-types";
 import { useState, useContext } from "react";
 import { toastValue } from "../../../context/toastify/ToastContext";
 import { isValidEmail } from "../../../utils/validations/emailValidation";
@@ -73,6 +74,10 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
 
     let status = data.user.status;
 
+    if (data.user.type == USER_TYPE.CUSTOMER) {
+      addProfile(data);
+      return;
+    }
     if (status === PROFILE_STATUS.NEW) {
       localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
       navigateUser(status);

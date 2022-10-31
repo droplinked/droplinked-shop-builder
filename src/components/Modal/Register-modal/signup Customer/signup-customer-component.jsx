@@ -44,6 +44,7 @@ export default function SignupCustomer({ switchToggle, close }) {
         if (result != null) {
             successToast("Account successfully created")
             close()
+            console.log(result);
             addProfile(result)
         } 
         setLoading(false)

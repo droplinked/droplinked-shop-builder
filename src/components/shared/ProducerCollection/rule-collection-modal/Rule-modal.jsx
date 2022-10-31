@@ -6,8 +6,9 @@ import {
   RuleSelect,
   AddRuleButton,
   RuleAddressInput,
+  DiscoutPecentage,
 } from "./Rule-modal-style";
-import { Flex, Box } from "@chakra-ui/react";
+import { Flex, Box, Input } from "@chakra-ui/react";
 import { TiDelete } from "react-icons/ti";
 import { useState, useEffect } from "react";
 import {
@@ -23,7 +24,15 @@ import FormInput from "../../FormInput/FormInput";
 const RuleModal = ({ open, close, collectionId, ruleId }) => {
   const [ruleList, setRuleList] = useState(() => {
     return ruleId == undefined
-      ? [{ address: "", type: "NFT", index: 1 }]
+      ? [
+          {
+            address: "",
+            type: "NFT",
+            discountPercentage: "",
+            description: "",
+            index: 1,
+          },
+        ]
       : null;
   });
   const [webUrl, setWebUrl] = useState("");
@@ -43,7 +52,7 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
         return { ...rule, index: i + 1 };
       });
       setRuleList(newRuleArray);
-      if(result.data.ruleSet.webUrl)setWebUrl(result.data.ruleSet.webUrl)
+      if (result.data.ruleSet.webUrl) setWebUrl(result.data.ruleSet.webUrl);
     }
   };
 
@@ -92,19 +101,53 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
 
   // check inputs value
   const checkValidation = () => {
+    let checkSwitch = true;
     if (webUrl == "") {
       errorToast("WebUrl is required.");
       return false;
     }
 
-    let find = ruleList.find((rule) => rule.address == "");
+    ruleList.forEach((rule) => {
+      if (rule.address == "") {
+        errorToast("NFT / Contract address is required.");
+        checkSwitch = false;
+      } else if (rule.discountPercentage == "") {
+        errorToast("Discount percentage is required.");
+        checkSwitch = false;
+      } else if (rule.description == "") {
+        errorToast("description is required.");
+        checkSwitch = false;
+      }
+    });
 
-    if (find != undefined) {
-      errorToast("NFT / Contract address is required.");
-      return false;
-    } else return true;
+    return checkSwitch;
+
+    // let find = ruleList.find((rule) => rule.address == "");
+
+    // if (find != undefined) {
+    //   errorToast("NFT / Contract address is required.");
+    //   return false;
+    // } else return true;
   };
 
+  //
+  const changeDiscount = (e, index) => {
+    let arrNew = Array.from(ruleList);
+    arrNew = arrNew.map((rule, i) => {
+      if (i == index) return { ...rule, discountPercentage: e.target.value };
+      else return { ...rule };
+    });
+    setRuleList(arrNew);
+  };
+  //
+  const changeDescription = (e, index) => {
+    let arrNew = Array.from(ruleList);
+    arrNew = arrNew.map((rule, i) => {
+      if (i == index) return { ...rule, description: e.target.value };
+      else return { ...rule };
+    });
+    setRuleList(arrNew);
+  };
 
   const submitRuleSet = async () => {
     // check condition
@@ -113,18 +156,18 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
 
     // build ruleset array for pass to api
     let rules = ruleList.map((rule) => {
-      return { address: rule.address, type: rule.type };
+      return { ...rule };
     });
 
     setLoading(true);
     let result;
     if (ruleId == undefined) {
-      result = await addRuleset(collectionId, rules , webUrl);
+      result = await addRuleset(collectionId, rules, webUrl);
     } else {
-      result = await updateRule(ruleId, rules , webUrl);
+      result = await updateRule(ruleId, rules, webUrl);
     }
 
-    if(result != true) errorToast(result)
+    if (result != true) errorToast(result);
 
     setLoading(false);
     close();
@@ -148,28 +191,46 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
                 label={"NFT store"}
                 placeholder={"NFT store"}
               />
+
               <Box mb="40px"></Box>
 
               {ruleList.map((rule, index) => {
                 return (
                   <Box w="100%" mb="40px" key={index}>
-                    <Flex w="100%" mb="10px" alignItems="center">
-                      <TiDelete
-                        color="red"
-                        size="30px"
-                        cursor="pointer"
-                        onClick={() => {
-                          deleteRule(index);
-                        }}
+                    <Flex
+                      w="100%"
+                      mb="10px"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <Flex w="40%">
+                        <TiDelete
+                          color="red"
+                          size="30px"
+                          cursor="pointer"
+                          onClick={() => {
+                            deleteRule(index);
+                          }}
+                        />
+                        <RuleSelect
+                          value={rule.type}
+                          onChange={(e) =>
+                            changeRuleType(e.target.value, index)
+                          }
+                        >
+                          <option value="NFT">NFT</option>
+                          <option value="CONTRACT">CONTRACT</option>
+                        </RuleSelect>
+                      </Flex>
+                      <DiscoutPecentage
+                        type="number"
+                        w="50%"
+                        placeholder="% Percent"
+                        value={rule.discountPercentage}
+                        onChange={(e) => changeDiscount(e, index)}
                       />
-                      <RuleSelect
-                        value={rule.type}
-                        onChange={(e) => changeRuleType(e.target.value, index)}
-                      >
-                        <option value="NFT">NFT</option>
-                        <option value="CONTRACT">CONTRACT</option>
-                      </RuleSelect>
                     </Flex>
+
                     <RuleAddressInput
                       value={rule.address}
                       onChange={(e) => changeRuleAddress(e.target.value, index)}
@@ -178,6 +239,16 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
                           ? "Contract address :: Contract name . NFT name"
                           : "Contract address :: Contract name"
                       }
+                    />
+
+                    <Box mb="20px"></Box>
+
+                    <DiscoutPecentage
+                      value={rule.description}
+                      type="text"
+                      w="100%"
+                      placeholder="Description"
+                      onChange={(e) => changeDescription(e, index)}
                     />
                   </Box>
                 );
