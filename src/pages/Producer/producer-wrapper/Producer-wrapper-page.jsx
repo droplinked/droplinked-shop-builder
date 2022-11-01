@@ -11,7 +11,8 @@ export default function Producer() {
   useEffect(() => {
     if (
       profile.type == "PRODUCER" &&
-      profile.status != ( PROFILE_STATUS.ACTIVE && PROFILE_STATUS.IMS_TYPE_COMPLETED)
+      profile.status != PROFILE_STATUS.ACTIVE &&
+      profile.status != PROFILE_STATUS.IMS_TYPE_COMPLETED
     ) {
       navigate("/register/shop-info");
     }
