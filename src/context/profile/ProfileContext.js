@@ -31,7 +31,7 @@ const ProfileProvider = ({ children }) => {
   // this function reload page
   const addProfileViaWallet = (payload) => {
     addProfile(payload);
-    // window.location.reload();
+    window.location.reload();
   };
 
   const updateProfile = (payload) => {
@@ -89,7 +89,7 @@ const ProfileProvider = ({ children }) => {
                 userSession.loadUserData().profile.stxAddress.mainnet,
               signature: data.signature,
               publicKey: data.publicKey,
-              email: (profile && profile.email) ? profile.email : "",
+              email: profile && profile.email ? profile.email : "",
             };
             getUserDataViaWallet(userDate);
           },
