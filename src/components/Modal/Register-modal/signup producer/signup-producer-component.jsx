@@ -16,12 +16,12 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [shopName, setShopName] = useState("");
+  const [shopName, setShopName] = useState(shopname);
 
   const changeEmail = (e) => setEmail(e.target.value);
   const changePass = (e) => setPassword(e.target.value);
   const changeConPass = (e) => setConfirmPassword(e.target.value);
-  const changeShopName = (e) => setShopName(e.target.value);
+  //const changeShopName = (e) => setShopName(e.target.value);
 
   let navigate = useNavigate();
 
@@ -88,7 +88,6 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
       <Box mb="20px"></Box>
       <FormInput
         value={shopName}
-        changeValue={changeShopName}
         label={"Username"}
         placeholder={"Username"}
       />
