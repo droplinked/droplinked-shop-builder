@@ -76,6 +76,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         value={password}
         changeValue={changePass}
         label={"Password"}
+        type='password'
         placeholder={"Password"}
       />
       <Box mb="20px"></Box>
@@ -83,6 +84,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         value={confirmPassword}
         changeValue={changeConPass}
         label={"Confirm password"}
+        type='password'
         placeholder={"Confirm password"}
       />
       <Box mb="20px"></Box>
