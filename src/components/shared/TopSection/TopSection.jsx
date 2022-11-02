@@ -60,26 +60,24 @@ export default function TopSection({
               <Icon src={webIcon} alt=""/>
             </IconWrapper>
           )}
-          {twitter != "" && (
-            <a
+           {twitter != "" && (
+            <IconWrapper
               href={`https://twitter.com/${twitter}`}
               target="_blank"
               rel="noreferrer"
-              className="social"
             >
-              <img src={twitterIcon} alt="" className="ratio ratio-1x1" />
-            </a>
-          )}
+              <Icon src={twitterIcon} alt="" />
+            </IconWrapper>
+          )} 
           {instagram != "" && (
-            <a
+            <IconWrapper
               href={`https://www.instagram.com/${instagram}`}
               target="_blank"
               rel="noreferrer"
-              className="social"
             >
-              <img src={instaIcon} alt="" className="ratio ratio-1x1" />
-            </a>
-          )}
+              <Icon src={instaIcon} alt="" />
+            </IconWrapper>
+          )} 
         </Flex>
       </Flex>
     </Box>
