@@ -13,3 +13,12 @@ export const BottomText = chakra("p", {
     },
   },
 });
+
+export const Title = chakra("p", {
+  baseStyle: {
+    fontWeight: "600",
+    fontSize: { base: "20px", md: "28px" },
+    textAlign: "center",
+    color: "white",
+  },
+});
