@@ -1,4 +1,4 @@
-import "./mainHeader.scss";
+
 
 import { Link } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext";
