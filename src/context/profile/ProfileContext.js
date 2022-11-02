@@ -1,12 +1,15 @@
 import { createContext, useReducer, useContext } from "react";
 import { ProflieReduser } from "./ProfileReducer";
 import { signInViaWallet } from "../../api/base-user/Auth-api";
+import { getProfileData } from "../../api/base-user/Profile-api"
 import {
   showConnect,
   UserSession,
   AppConfig,
   openSignatureRequestPopup,
 } from "@stacks/connect";
+import { useToasty } from "../toastify/ToastContext";
+import { PROFILE_STATUS } from "../../constant/profile-status-types";
 import { StacksTestnet, StacksMainnet } from "@stacks/network";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
@@ -20,19 +23,27 @@ const ProfileProvider = ({ children }) => {
     ProflieReduser,
     JSON.parse(localStorage.getItem("profile")) || null
   );
+  const { errorToast } = useToasty();
 
-  const addProfile = async(payload) => {
-    localStorage.setItem("token", JSON.stringify(payload.jwt));
-    localStorage.setItem("profile", JSON.stringify(payload.user));
-    let time = new Date().getTime();
-    localStorage.setItem("login-time", JSON.stringify(time));
+  const addProfile = (payload) => {
+    dispatch({ type: "ADD_PROFILE", payload });
+  };
 
+  // this function reload page
+  const addProfileViaWallet = (payload) => {
+    addProfile(payload);
     window.location.reload();
   };
 
   const updateProfile = (payload) => {
     dispatch({ type: "UPDATE_PROFILE", payload });
   };
+
+  const updateProfileDate  = async() => {
+   let result =  await getProfileData()
+   console.log(result);
+   updateProfile(result.data.user)
+  }
 
   const logout = () => {
     let currentShop = JSON.parse(localStorage.getItem("currentShop"));
@@ -53,7 +64,8 @@ const ProfileProvider = ({ children }) => {
     if (profile) {
       if (
         profile.type == "PRODUCER" &&
-        profile.status == "IMS_TYPE_COMPLETED"
+        (profile.status == PROFILE_STATUS.IMS_TYPE_COMPLETED ||
+          profile.status == PROFILE_STATUS.ACTIVE)
       ) {
         return true;
       } else {
@@ -62,7 +74,7 @@ const ProfileProvider = ({ children }) => {
     }
   };
 
-  const signinWithaWallet =  () => {
+  const signinWithaWallet = () => {
     showConnect({
       appDetails: {
         name: "droplinked",
@@ -84,8 +96,9 @@ const ProfileProvider = ({ children }) => {
                 userSession.loadUserData().profile.stxAddress.mainnet,
               signature: data.signature,
               publicKey: data.publicKey,
+              email: profile && profile.email ? profile.email : "",
             };
-            getUserDataViaWallet(userDate)
+            getUserDataViaWallet(userDate);
           },
         });
       },
@@ -93,11 +106,11 @@ const ProfileProvider = ({ children }) => {
     });
   };
 
-  const getUserDataViaWallet = async(userData) => {
-    let result = await signInViaWallet(userData)
-    addProfile(result.data);
-  
-  }
+  const getUserDataViaWallet = async (userData) => {
+    let result = await signInViaWallet(userData);
+    if (result.status == "success") addProfileViaWallet(result.data);
+    else errorToast(result);
+  };
 
   const contextValues = {
     addProfile,
@@ -106,6 +119,7 @@ const ProfileProvider = ({ children }) => {
     isCustomer,
     isRegisteredProducer,
     signinWithaWallet,
+    updateProfileDate,
     profile,
   };
 

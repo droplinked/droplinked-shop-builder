@@ -1,14 +1,14 @@
-import "./mainHeader.scss";
+
 
 import { Link } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext";
-import { Flex, Text, Image } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useState } from "react";
+import { HeaderWrapper, HeaderTitle } from "./MainHeader-style";
 
 import DefaulHeader from "./default header/Default-header-component";
 import UserHeader from "./user Header/User-header-component";
 import EmailModal from "../../Modal/Email-modal/email-modal";
-import header from "../../../assest/icon/droplinked.png";
 
 function MainHeader() {
   const [showEmailModal, setEmailModal] = useState(false);
@@ -22,30 +22,9 @@ function MainHeader() {
   // if havent any profile show default component
 
   return (
-    <Flex
-      w="100%"
-      bgColor="#181818"
-      justifyContent="space-between"
-      alignItems="center"
-      padding={{ base: "12px 20px", md: "36px 80px" }}
-      h={{ base: "60px", md: "124px" }}
-    >
+    <HeaderWrapper>
       <Link to="/">
-        {/* <Image
-          h={{ base: "26px", sm: "36px", md: "28px" }}
-         // h={{ base: "26px", sm: "36px", md: "52px" }}
-          w="auto"
-          src={header}
-        /> */}
-         <Text
-          color="#fff"
-          fontSize={{ base: "24px", md: "28px" }}
-          fontWeight="600"
-          letterSpacing="0.2em"
-          pt={{ base: "3px", md: "0px" }}
-        >
-          droplinked
-        </Text> 
+        <HeaderTitle>droplinked</HeaderTitle>
       </Link>
       <Flex h="100%">
         {profile ? (
@@ -55,7 +34,7 @@ function MainHeader() {
         )}
         {showEmailModal && <EmailModal close={closeEmailModal} />}
       </Flex>
-    </Flex>
+    </HeaderWrapper>
   );
 }
 

@@ -3,7 +3,6 @@ import { useProfile } from "../../../../../context/profile/ProfileContext";
 import { Flex, Image } from "@chakra-ui/react";
 import { UseWalletInfo } from "../../../../../context/wallet/WalletContext";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
-
 import ProfileItem from "./ProfileItem-component";
 import headerWalletIcon from "../../../../../assest/icon/headerWalletIcon.svg";
 
@@ -11,7 +10,7 @@ import headerWalletIcon from "../../../../../assest/icon/headerWalletIcon.svg";
 
 
 const ProfileDropdown = ({ close }) => {
-  const { profile, logout, isCustomer, isRegisteredProducer } = useProfile();
+  const { profile, logout, isCustomer, isRegisteredProducer , signinWithaWallet } = useProfile();
   const { userData } = UseWalletInfo();
   let navigate = useNavigate();
 
@@ -22,6 +21,7 @@ const ProfileDropdown = ({ close }) => {
     userStatus = profile.status;
   }
 
+  const signInWallet = () => signinWithaWallet()
 
   const walletAddress = () => {
     if (userData) {
@@ -86,6 +86,10 @@ const ProfileDropdown = ({ close }) => {
           </Flex>
         </ProfileItem>
       )} */}
+
+      {(isCustomer()&& !userData) && (
+        <ProfileItem click={signInWallet}>Connect wallet</ProfileItem>
+      )}
 
       {isRegisteredProducer() && (
         <ProfileItem click={clickProfile}>Profile</ProfileItem>

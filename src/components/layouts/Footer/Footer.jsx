@@ -1,34 +1,52 @@
-import "./footer.scss";
-import footerLogo from "../../../assest/icon/Flatlay-Logo.png"
-import telegram from "../../../assest/icon/telegram.png"
-import twiter from "../../../assest/icon/brand.png"
+import footerLogo from "../../../assest/icon/Flatlay-Logo.png";
+import telegram from "../../../assest/icon/telegram.png";
+import twiter from "../../../assest/icon/brand.png";
+
+import { Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import {
+  FooterWrapper,
+  FooterBody,
+  Leftside,
+  FooterText,
+  FooterLogo,
+  RightSide,
+  TermText,
+  FooterIcon,
+} from "./footer-style";
 
 export default function Footer() {
   return (
-    <div style={{borderTop: "1px solid #B3B3B3"}}>
-    <div className="footer-wrap">
-      <div className="footer-body">
-        <div className="leftside">
-          <div className="text"><p>droplinked by</p></div>
-          <a href='https://flatlay.io/'>
-            <img src={footerLogo} className="logo" alt={'logo'}/>
-          </a>
-        </div>
-        <div className="righside">
-          <Link to="/terms">
-          <span className="right-text">Terms of service</span>
-          </Link>
-          <a href='https://twitter.com/flatlay'>
-            <img src={twiter} className="icon-img be-i" alt={'twitter'}/>
-          </a>
-          <a href='https://t.me/droplinked'>
-            <img src={telegram} className="icon-img" alt={'telegram'} />
-          </a>
-        </div>
-      </div>
-    </div>
-    </div>
+    <Box borderTop="1px solid #B3B3B3">
+      <FooterWrapper>
+        <FooterBody>
+          <Leftside>
+            <FooterText>droplinked by</FooterText>
+
+            {/* <div className="text">
+            
+            </div> */}
+            <a href="https://flatlay.io/">
+              <FooterLogo src={footerLogo} alt={"logo"} />
+            </a>
+          </Leftside>
+          <RightSide>
+            <Link to="/terms">
+              <TermText>Terms of service</TermText>
+            </Link>
+            <a href="https://twitter.com/flatlay">
+              <FooterIcon
+                src={twiter}
+                mr={{ base: "12px", md: "20px" }}
+                alt={"twitter"}
+              />
+            </a>
+            <a href="https://t.me/droplinked">
+              <FooterIcon src={telegram} alt={"telegram"} />
+            </a>
+          </RightSide>
+        </FooterBody>
+      </FooterWrapper>
+    </Box>
   );
 }
-

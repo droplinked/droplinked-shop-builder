@@ -4,57 +4,31 @@ import twitterIcon from "../../../../assest/icon/twitter.png";
 import webIcon from "../../../../assest/icon/web.png";
 import defaultProfile from "../../../../assest/image/defaultProfile.png";
 
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import { IconWrapper } from "./ShopInfo-style";
+import { Flex, Image } from "@chakra-ui/react";
+import {
+  IconWrapper,
+  ShopinfoWrapper,
+  ProfileImageWrapper,
+  ProfileImage,
+  DefaultProfileImage,
+  ShopnameText,
+  IconContainer,
+} from "./ShopInfo-style";
 
 const ShopInfo = ({ ShopData }) => {
   return (
-    <Flex
-      w="100%"
-      flexDir="column"
-      justifyContent="center"
-      alignItems="center"
-      pt="30px"
-      px='12px'
-    >
-      <Flex
-        borderRadius="50%"
-        margin="auto 0px"
-        justifyContent="center"
-        alignItems="center"
-        width="120px"
-        height="120px"
-        border="1px solid #353535"
-      >
+    <ShopinfoWrapper>
+      <ProfileImageWrapper>
         {ShopData.logo ? (
-          <Image
-            src={ShopData.logo}
-            margin="auto"
-            width="100%"
-            height="100%"
-            objectFit="cover"
-            borderRadius="50%"
-          />
+          <ProfileImage src={ShopData.logo} />
         ) : (
-          <Box
-            width="60%"
-            height="60%"
-            backgroundRepeat="no-repeat"
-            backgroundSize="cover"
+          <DefaultProfileImage
             style={{ backgroundImage: `url(${defaultProfile})` }}
-          ></Box>
+          ></DefaultProfileImage>
         )}
-      </Flex>
+      </ProfileImageWrapper>
 
-      <Text
-        marginTop="20px"
-        fontWeight="600"
-        fontSize="18px"
-        textAlign="center"
-        color="#ffffff"
-      >
-        {ShopData.name}
-      </Text>
+      <ShopnameText>{ShopData.name}</ShopnameText>
 
       <Flex
         flexWrap="wrap"
@@ -63,7 +37,7 @@ const ShopInfo = ({ ShopData }) => {
         mt="30px"
       >
         {ShopData.discordUrl != "" && (
-          <Flex w={{base:"auto" ,md:"25%"}} justifyContent="center" alignItem="center">
+          <IconContainer>
             <IconWrapper
               href={`https://discord.gg/${ShopData.discordUrl}`}
               target="_blank"
@@ -71,10 +45,10 @@ const ShopInfo = ({ ShopData }) => {
             >
               <Image src={discordIcon} display="flex" margin="auto 0px" />
             </IconWrapper>
-          </Flex>
+          </IconContainer>
         )}
         {ShopData.webUrl != "" && (
-          <Flex w={{base:"auto" ,md:"25%"}} justifyContent="center" alignItem="center">
+          <IconContainer>
             <IconWrapper
               href={`https://${ShopData.webUrl}`}
               target="_blank"
@@ -82,10 +56,10 @@ const ShopInfo = ({ ShopData }) => {
             >
               <Image src={webIcon} display="flex" margin="auto 0px" />
             </IconWrapper>
-          </Flex>
+          </IconContainer>
         )}
         {ShopData.twitterUrl != "" && (
-          <Flex w={{base:"auto" ,md:"25%"}} justifyContent="center" alignItem="center">
+          <IconContainer>
             <IconWrapper
               href={`https://twitter.com/${ShopData.twitterUrl}`}
               target="_blank"
@@ -93,10 +67,10 @@ const ShopInfo = ({ ShopData }) => {
             >
               <Image src={twitterIcon} display="flex" margin="auto 0px" />
             </IconWrapper>
-          </Flex>
+          </IconContainer>
         )}
         {ShopData.instagramUrl != "" && (
-          <Flex w={{base:"auto" ,md:"25%"}} justifyContent="center" alignItem="center">
+          <IconContainer>
             <IconWrapper
               href={`https://www.instagram.com/${ShopData.instagramUrl}`}
               target="_blank"
@@ -104,10 +78,10 @@ const ShopInfo = ({ ShopData }) => {
             >
               <Image src={instaIcon} display="flex" margin="auto 0px" />
             </IconWrapper>
-          </Flex>
+          </IconContainer>
         )}
       </Flex>
-    </Flex>
+    </ShopinfoWrapper>
   );
 };
 

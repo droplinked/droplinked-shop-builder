@@ -6,12 +6,15 @@ import {
   ImageWrapper,
 } from "./landing-icons-style";
 
-import gatedIcon from "../../../../assest/icon/gated-icon.png";
-import campaginIcon from "../../../../assest/icon/campain-icon.png";
-import sellsIcon from "../../../../assest/icon/sells-icon.png";
-import listingIcon from "../../../../assest/icon/product-listing-icon.png";
-import paymentIcon from "../../../../assest/icon/payment-icon.png";
-import loyalityIcon from "../../../../assest/icon/loyality-icon.png";
+//import gatedIcon from "../../../../assest/icon/gated-icon.png";
+
+import gatedIcon from "../../../../assest/icon/gated-icon.svg";
+import listingIcon from "../../../../assest/icon/product-listing-icon.svg";
+import sellsIcon from "../../../../assest/icon/sells-icon.svg";
+import paymentIcon from "../../../../assest/icon/payment-icon.svg";
+import campaginIcon from "../../../../assest/icon/campain-icon.svg";
+
+import loyalityIcon from "../../../../assest/icon/loyality-icon.svg";
 
 const LandingIcons = () => {
   return (

@@ -1,4 +1,4 @@
-import "./Small-modal-style.scss"
+
 
 import BasicButton from '../../shared/BasicButton/BasicButton'
 

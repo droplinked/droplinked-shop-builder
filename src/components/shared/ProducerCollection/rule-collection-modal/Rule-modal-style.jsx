@@ -58,7 +58,8 @@ export const RuleSelect = chakra("select", {
     fontSize: { base: "14px", md: "18px" },
     transition: "0.5s",
     backgroundColor: "#353536",
-    w: { base: "100%", md: "50%" },
+    w: "auto",
+    //  w: { base: "100%", md: "40%" },
     ml: "10px",
   },
 });
@@ -120,6 +121,29 @@ export const AddRuleButton = chakra("button", {
     _hover: {
       color: "#8053ff",
       borderColor: "#8053ff",
+    },
+  },
+});
+
+export const DiscoutPecentage = chakra("input", {
+  baseStyle: {
+    w: "50%",
+    h: "100%",
+    bg: "dark",
+    fontWeight: "600",
+    fontSize: { base: "14px", md: "20px" },
+    color: "lightGray",
+    border: "none",
+    borderRadius: "8px",
+    px: "16px",
+    py: { base: "8px", md: "12px" },
+    _hover: {
+      border: "none",
+      outline: "none",
+    },
+    _focus: {
+      border: "none",
+      outline: "none",
     },
   },
 });

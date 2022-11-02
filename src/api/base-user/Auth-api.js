@@ -61,6 +61,7 @@ export const signInViaWallet = async (data) => {
       stacksAddress: data.stacksAddress,
       publicKey: data.publicKey,
       signature: data.signature,
+      email:data.email
     });
     //  console.log(res.data);
     return res.data;

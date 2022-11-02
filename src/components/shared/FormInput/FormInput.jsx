@@ -29,6 +29,7 @@ export default function FormInput({ value, changeValue, label, type, placeholder
           fontSize={{ base: '14px', md: '20px' }}
           color='#fff'
           border='none'
+          bgColor='#181818'
         //  borderColor='#b3b3b3'
           borderRadius='8px'
           px="16px"

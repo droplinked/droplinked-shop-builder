@@ -1,4 +1,4 @@
-import "./Add-product-page-style.scss";
+//import "./Add-product-page-style.scss";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../components/product-information-component";
@@ -10,7 +10,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getVariants, postProduct } from "../../../api/producer/Product-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
-
+import { ModalContainerWrapper, TitleText } from "./Add-product-style";
+import { Flex } from "@chakra-ui/react";
 function AddProductPage() {
   const token = JSON.parse(localStorage.getItem("token"));
 
@@ -109,61 +110,63 @@ function AddProductPage() {
   const openSkuModal = () => setSkuModalShow(true);
 
   return (
-    <div className="add-product-page-wrapper">
-      <div className="ims-title mb-5">Add new item</div>
-      {/* this component for (title , description , collection , images) */}
-      <ProductInformation
-        productInfo={productInfo}
-        setProductInfo={setProductInfo}
-      />
-      {/* this component for show options and  select them */}
-      {varintType && (
-        <OptionCheckboxes
-          variants={varintType}
-          selectedOptions={selectedOptions}
-          setSelectedOptions={setSelectedOptions}
-          disable={skuArray.length > 0}
+    <Flex w="100%" justifyContent="center" alignItems="center" p={{base:'0px 20px',md:'0px 80px'}}>
+      <ModalContainerWrapper>
+        <TitleText>Add new item</TitleText>
+        {/* this component for (title , description , collection , images) */}
+        <ProductInformation
+          productInfo={productInfo}
+          setProductInfo={setProductInfo}
         />
-      )}
+        {/* this component for show options and  select them */}
+        {varintType && (
+          <OptionCheckboxes
+            variants={varintType}
+            selectedOptions={selectedOptions}
+            setSelectedOptions={setSelectedOptions}
+            disable={skuArray.length > 0}
+          />
+        )}
 
-      {/* show available skus  */}
-      {skuArray.length > 0 && (
-        <SkusComponent
-          skusArray={skuArray}
-          setSkuArray={setSkuArray}
-          optionTypes={selectedOptions}
+        {/* show available skus  */}
+        {skuArray.length > 0 && (
+          <SkusComponent
+            skusArray={skuArray}
+            setSkuArray={setSkuArray}
+            optionTypes={selectedOptions}
+          />
+        )}
+
+        <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
+          <div className="col-12 col-md-4">
+            <BasicButton click={openSkuModal}>Add variant</BasicButton>
+          </div>
+        </div>
+
+        <div
+          className="d-flex justify-content-between align-items-center"
+          style={{ marginTop: "80px", width: "100%" }}
+        >
+          <div className="col-5 col-md-4">
+            <BasicButton click={cancelForm} loading={loading} cancelType={true}>
+              Cancel
+            </BasicButton>
+          </div>
+          <div className="col-5 col-md-4">
+            <BasicButton click={submitForm} loading={loading}>
+              Submit
+            </BasicButton>
+          </div>
+        </div>
+        {/* modal for add new sku  */}
+        <AddSkuModal
+          open={skuModalShow}
+          close={closeSkuModal}
+          optionType={selectedOptions}
+          update={updateSku}
         />
-      )}
-
-      <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
-        <div className="col-12 col-md-4">
-          <BasicButton click={openSkuModal}>Add variant</BasicButton>
-        </div>
-      </div>
-
-      <div
-        className="d-flex justify-content-between align-items-center"
-        style={{ marginTop: "80px", width: "100%" }}
-      >
-        <div className="col-5 col-md-4">
-          <BasicButton click={cancelForm} loading={loading} cancelType={true}>
-            Cancel
-          </BasicButton>
-        </div>
-        <div className="col-5 col-md-4">
-          <BasicButton click={submitForm} loading={loading}>
-            Submit
-          </BasicButton>
-        </div>
-      </div>
-      {/* modal for add new sku  */}
-      <AddSkuModal
-        open={skuModalShow}
-        close={closeSkuModal}
-        optionType={selectedOptions}
-        update={updateSku}
-      />
-    </div>
+      </ModalContainerWrapper>
+    </Flex>
   );
 }
 

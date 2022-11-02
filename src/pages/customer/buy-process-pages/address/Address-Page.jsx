@@ -8,6 +8,7 @@ import { createCheckout } from "../../../../api/producer/Shopify-api";
 import { useCart } from "../../../../context/cart/CartContext";
 import { useProfile } from "../../../../context/profile/ProfileContext";
 import { SHOP_TYPES } from "../../../../constant/shop-types";
+import { UseWalletInfo } from "../../../../context/wallet/WalletContext"
 import { useParams } from "react-router-dom";
 import {
   AddressPageWrapper,
@@ -26,6 +27,7 @@ function AddressPage() {
   let navigate = useNavigate();
   const { profile } = useProfile();
   let { shopname } = useParams();
+  const { getStxAddress } = UseWalletInfo()
 
   let token = JSON.parse(localStorage.getItem("token"));
   if (!token) navigate("/");
@@ -46,6 +48,13 @@ function AddressPage() {
     if (addressList.length > 0) setSelectedAddress(addressList[0]);
     else setSelectedAddress(null);
   }, [addressList]);
+
+//  item
+  const hasGatedProductInCard = () => {
+   let findItem =  cart.items.find(item => item.productRule != undefined)
+   if (findItem == undefined) return false 
+   else return true
+  }
 
   const ProccessToPayment = async () => {
     if (selectedAddress == null) {
@@ -91,6 +100,7 @@ function AddressPage() {
         checkout: {
           billing_address: addressObj,
           shipping_address: addressObj,
+          wallet:getStxAddress() ,
           line_items: itemsArray,
           email: profile.email,
         },
