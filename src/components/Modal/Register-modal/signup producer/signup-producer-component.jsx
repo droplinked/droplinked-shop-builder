@@ -26,14 +26,14 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
   let navigate = useNavigate();
 
   const onSubmit = async () => {
+    
     let info = {
       email: email,
       password: password,
-      confirmPass: confirmPassword,
       shopName: shopName,
     };
 
-    if (info.password !== info.confirmPass) {
+    if (password !== confirmPassword) {
       errorToast("Passwords do not match, please re-enter");
       return;
     }
@@ -76,7 +76,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         value={password}
         changeValue={changePass}
         label={"Password"}
-        type='password'
+        type="password"
         placeholder={"Password"}
       />
       <Box mb="20px"></Box>
@@ -84,15 +84,11 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         value={confirmPassword}
         changeValue={changeConPass}
         label={"Confirm password"}
-        type='password'
+        type="password"
         placeholder={"Confirm password"}
       />
       <Box mb="20px"></Box>
-      <FormInput
-        value={shopName}
-        label={"Username"}
-        placeholder={"Username"}
-      />
+      <FormInput value={shopName} label={"Username"} placeholder={"Username"} />
       <Box mb="20px"></Box>
       <BasicButton click={onSubmit} disabled={loading}>
         Sign up
