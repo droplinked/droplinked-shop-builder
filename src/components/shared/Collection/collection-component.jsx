@@ -20,7 +20,8 @@ export default function Collection({ collection, shopname, type }) {
   const param = useParams();
   const navigate = useNavigate();
 
-  //let event = collection.title == "Holder merchandise";
+  let event = collection.title == "Holder merchandise";
+
 
   // collection iframe code
   let iframeCode = `<iframe  
@@ -54,16 +55,16 @@ export default function Collection({ collection, shopname, type }) {
         {/* head */}
 
         {/* content */}
-        <Box w="100%">
+        {/* <Box w="100%">
           <CollectionProducts
             products={collection.products}
             shopname={shopname}
             type={type}
           />
-        </Box>
+        </Box> */}
 
-        {/* {event == true ? (
-          <Flex flexDir={{ base: "column", md: "row" }}>
+        {event == true ? (
+          <Flex w='100%' flexDir={{ base: "column", md: "row" }}>
             <Box w={{ base: "100%", md: "50%" }}>
               <CollectionProducts
                 products={collection.products}
@@ -76,16 +77,14 @@ export default function Collection({ collection, shopname, type }) {
             </Box>
           </Flex>
         ) : (
-          <Flex flexDir={{ base: "column", md: "row" }}>
-            <Box w={{ base: "100%", md: "50%" }}>
-              <CollectionProducts
-                products={collection.products}
-                shopname={shopname}
-                type={type}
-              />
-            </Box>
-          </Flex>
-        )} */}
+          <Box w="100%">
+            <CollectionProducts
+              products={collection.products}
+              shopname={shopname}
+              type={type}
+            />
+          </Box>
+        )}
 
         {/* content */}
       </CollectionWrapper>
