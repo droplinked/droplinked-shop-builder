@@ -6,11 +6,14 @@ import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import ProfileItem from "./ProfileItem-component";
 import headerWalletIcon from "../../../../../assest/icon/headerWalletIcon.svg";
 
-
-
-
 const ProfileDropdown = ({ close }) => {
-  const { profile, logout, isCustomer, isRegisteredProducer , signinWithaWallet } = useProfile();
+  const {
+    profile,
+    logout,
+    isCustomer,
+    isRegisteredProducer,
+    signinWithaWallet,
+  } = useProfile();
   const { userData } = UseWalletInfo();
   let navigate = useNavigate();
 
@@ -21,7 +24,7 @@ const ProfileDropdown = ({ close }) => {
     userStatus = profile.status;
   }
 
-  const signInWallet = () => signinWithaWallet()
+  const signInWallet = () => signinWithaWallet();
 
   const walletAddress = () => {
     if (userData) {
@@ -65,16 +68,16 @@ const ProfileDropdown = ({ close }) => {
       pos="absolute"
       top={{ base: "60px", md: "110px" }}
       right="20px"
-     // bgColor="#222"
+      // bgColor="#222"
       w={{ base: "200px", md: "250px" }}
       h="auto"
       minH="100px"
       borderRadius="16px"
       overflow="hidden"
       zIndex="20"
-      p='24px'
-      bgColor='#353535'
-    //  boxShadow="dark-lg"
+      p="24px"
+      bgColor="#353535"
+      //  boxShadow="dark-lg"
       flexDirection="column"
     >
       {/* {(isCustomer() && userData) && (
@@ -86,8 +89,10 @@ const ProfileDropdown = ({ close }) => {
           </Flex>
         </ProfileItem>
       )} */}
-
-      {(isCustomer()&& !userData) && (
+      {isCustomer() && userData && (
+        <ProfileItem click={signInWallet}>{walletAddress()}</ProfileItem>
+      )}
+      {isCustomer() && !userData && (
         <ProfileItem click={signInWallet}>Connect wallet</ProfileItem>
       )}
 
