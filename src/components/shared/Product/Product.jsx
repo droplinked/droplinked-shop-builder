@@ -1,4 +1,3 @@
-//import "./Product-style.scss";
 
 import { Box, AspectRatio } from "@chakra-ui/react";
 import { ProductContent, ProductImage, ProductTitle } from "./Product-style";
@@ -18,7 +17,6 @@ export default function Product({ title, imageUrl, id, shopname, type }) {
       p="10px"
       border= "1px solid transparent"
       _hover={{
-        // border: "1px solid #b3b3b3",
          borderRadius:'8px',
         bgColor:'#353535',
         transition: "all 0.7s ease-out"
