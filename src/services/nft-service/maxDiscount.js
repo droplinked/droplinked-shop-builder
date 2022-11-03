@@ -53,8 +53,8 @@ const getMaxDiscount = async (principal, ruleset) => {
       }
     }
   }
-
-  return maxDiscountObject;
+  if (maxDiscountObject.address == "") return null;
+  else return maxDiscountObject;
 };
 
 export { fetchPrincipalNFTs, getMaxDiscount };

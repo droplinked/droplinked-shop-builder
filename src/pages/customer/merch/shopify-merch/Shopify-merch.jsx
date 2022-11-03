@@ -13,6 +13,8 @@ import {
 } from "../styles/Merch-style";
 import { isGated } from "../../../../utils/gated.utils/gated-utils";
 import { FiArrowDownCircle } from "react-icons/fi";
+import { getUserAddress } from "../../../../services/wallet-auth/api";
+import { getMaxDiscount } from "../../../../services/nft-service/maxDiscount";
 
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import ShopifyDetail from "./Shopify-merch-detail-component";
@@ -24,6 +26,7 @@ const ShopifyMech = ({ shopName, product }) => {
   const [testLimit, setTextLimit] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(null);
+  const [rulePassed, setRulePassed] = useState(null);
 
   const { userData } = UseWalletInfo();
   const { addShopifyItemToCart } = useCart();
@@ -36,8 +39,10 @@ const ShopifyMech = ({ shopName, product }) => {
 
   useEffect(() => {
     if (isGated(product.ruleset)) {
-      if (userData != undefined) checkGated();
-      else setLock(true);
+      if (userData != undefined) {
+        checkGated();
+        findPassedRuleset();
+      } else setLock(true);
     } else setLock(null);
   }, [userData]);
 
@@ -100,6 +105,15 @@ const ShopifyMech = ({ shopName, product }) => {
 
   const changeTextLimit = () => setTextLimit((p) => !p);
 
+  // find rule that passed
+  const findPassedRuleset = async () => {
+    let res = await getMaxDiscount(
+      getUserAddress(userData).mainnet,
+      product.ruleset.rules
+    );
+    setRulePassed(res);
+  };
+
   return (
     <>
       <MerchPageWrapper>
@@ -116,6 +130,7 @@ const ShopifyMech = ({ shopName, product }) => {
           quantity={quantity}
           lock={lock}
           setQuantity={setQuantity}
+          rulePassed={rulePassed}
           submit={addItemToBasket}
           loading={loading}
           selectedVariant={selectedVariant}

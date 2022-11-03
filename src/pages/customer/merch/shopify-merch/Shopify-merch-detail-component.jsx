@@ -21,11 +21,13 @@ const ShopifyDetail = ({
   quantity,
   setQuantity,
   lock,
+  rulePassed ,
   submit,
   loading,
   selectedVariant,
   setSelectedVariant,
 }) => {
+
   const variants = product.variants;
   const optionsList = product.options;
 
@@ -34,6 +36,8 @@ const ShopifyDetail = ({
   useEffect(() => {
     initialVariant();
   }, []);
+
+  console.log(rulePassed);
 
   // function
   const initialVariant = () => {

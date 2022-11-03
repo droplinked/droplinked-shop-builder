@@ -7,8 +7,7 @@ import axios from 'axios'
 const fetchPrincipalNFTs = (principal, asset_identifiers, limit, offset) => {
 	const baseURL = 'https://stacks-node-api.mainnet.stacks.co/'
 	const url = 'extended/v1/tokens/nft/holdings'
-	console.log(principal)
-	console.log(asset_identifiers)
+
 	return axios
 		.get(url, {
 			baseURL,
