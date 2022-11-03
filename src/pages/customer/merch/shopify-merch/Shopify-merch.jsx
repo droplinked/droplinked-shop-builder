@@ -34,12 +34,11 @@ const ShopifyMech = ({ shopName, product }) => {
     return { url: img.src };
   });
 
-  console.log(product.ruleset);
   useEffect(() => {
-    if (product.ruleset == undefined) setLock(null);
-    else {
+    if (isGated(product.ruleset)) {
       if (userData != undefined) checkGated();
-    }
+      else setLock(true);
+    } else setLock(null);
   }, [userData]);
 
   const checkGated = () => {
