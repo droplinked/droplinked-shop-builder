@@ -11,6 +11,7 @@ import {
   DescriptionText,
   ReadmoreIconWrapper,
 } from "../styles/Merch-style";
+import { isGated } from "../../../../utils/gated.utils/gated-utils";
 import { FiArrowDownCircle } from "react-icons/fi";
 
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
@@ -33,7 +34,7 @@ const ShopifyMech = ({ shopName, product }) => {
     return { url: img.src };
   });
 
-
+  console.log(product.ruleset);
   useEffect(() => {
     if (product.ruleset == undefined) setLock(null);
     else {
@@ -84,8 +85,6 @@ const ShopifyMech = ({ shopName, product }) => {
       if (lock) errorToast("Required NFT not found, accessed denied");
       else addToCardFunction();
     }
-
-  
   };
 
   const addToCardFunction = () => {

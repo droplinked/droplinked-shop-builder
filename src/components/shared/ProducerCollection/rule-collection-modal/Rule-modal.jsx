@@ -80,7 +80,13 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
 
   const addNewRule = () => {
     let arrNew = Array.from(ruleList);
-    arrNew.push({ address: "", type: "NFT", index: arrNew.length + 1 });
+    arrNew.push({
+      address: "",
+      type: "NFT",
+      discountPercentage: "",
+      description: "",
+      index: arrNew.length + 1,
+    });
     setRuleList(arrNew);
   };
 
@@ -194,65 +200,68 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
 
               <Box mb="40px"></Box>
 
-              {ruleList.map((rule, index) => {
-                return (
-                  <Box w="100%" mb="40px" key={index}>
-                    <Flex
-                      w="100%"
-                      mb="10px"
-                      justifyContent="space-between"
-                      alignItems="center"
-                    >
-                      <Flex w="40%">
-                        <TiDelete
-                          color="red"
-                          size="30px"
-                          cursor="pointer"
-                          onClick={() => {
-                            deleteRule(index);
-                          }}
+              {ruleList != null &&
+                ruleList.map((rule, index) => {
+                  return (
+                    <Box w="100%" mb="40px" key={index}>
+                      <Flex
+                        w="100%"
+                        mb="10px"
+                        justifyContent="space-between"
+                        alignItems="center"
+                      >
+                        <Flex w="40%">
+                          <TiDelete
+                            color="red"
+                            size="30px"
+                            cursor="pointer"
+                            onClick={() => {
+                              deleteRule(index);
+                            }}
+                          />
+                          <RuleSelect
+                            value={rule.type}
+                            onChange={(e) =>
+                              changeRuleType(e.target.value, index)
+                            }
+                          >
+                            <option value="NFT">NFT</option>
+                            <option value="CONTRACT">CONTRACT</option>
+                          </RuleSelect>
+                        </Flex>
+                        <DiscoutPecentage
+                          type="number"
+                          w="50%"
+                          placeholder="% Percent"
+                          value={rule.discountPercentage}
+                          onChange={(e) => changeDiscount(e, index)}
                         />
-                        <RuleSelect
-                          value={rule.type}
-                          onChange={(e) =>
-                            changeRuleType(e.target.value, index)
-                          }
-                        >
-                          <option value="NFT">NFT</option>
-                          <option value="CONTRACT">CONTRACT</option>
-                        </RuleSelect>
                       </Flex>
-                      <DiscoutPecentage
-                        type="number"
-                        w="50%"
-                        placeholder="% Percent"
-                        value={rule.discountPercentage}
-                        onChange={(e) => changeDiscount(e, index)}
+
+                      <RuleAddressInput
+                        value={rule.address}
+                        onChange={(e) =>
+                          changeRuleAddress(e.target.value, index)
+                        }
+                        placeholder={
+                          rule.type == "NFT"
+                            ? "Contract address :: Contract name . NFT name"
+                            : "Contract address :: Contract name"
+                        }
                       />
-                    </Flex>
 
-                    <RuleAddressInput
-                      value={rule.address}
-                      onChange={(e) => changeRuleAddress(e.target.value, index)}
-                      placeholder={
-                        rule.type == "NFT"
-                          ? "Contract address :: Contract name . NFT name"
-                          : "Contract address :: Contract name"
-                      }
-                    />
+                      <Box mb="20px"></Box>
 
-                    <Box mb="20px"></Box>
-
-                    <DiscoutPecentage
-                      value={rule.description}
-                      type="text"
-                      w="100%"
-                      placeholder="Description"
-                      onChange={(e) => changeDescription(e, index)}
-                    />
-                  </Box>
-                );
-              })}
+                      <DiscoutPecentage
+                        value={rule.description}
+                        type="text"
+                        w="100%"
+                        placeholder="Description"
+                        onChange={(e) => changeDescription(e, index)}
+                      />
+                    </Box>
+                  );
+                })}
 
               <AddRuleButton onClick={addNewRule}>Add rule</AddRuleButton>
               <Flex mt="40px" w="100%" justifyContent="space-between">
