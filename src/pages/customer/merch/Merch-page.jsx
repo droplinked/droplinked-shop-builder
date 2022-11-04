@@ -1,8 +1,9 @@
-import "./Merch-page-style.scss";
+//import "./Merch-page-style.scss";
 
 import { useState, useEffect } from "react";
 import { useParams} from "react-router-dom";
 import { getProduct } from "../../../api/public/Product-api";
+import { MerchpageContainer } from "./Merch-page-style"
 
 import Loading from "../../../components/shared/loading/Loading";
 import DroplinkedMerch from "./droplinked-merch/Droplinked-merch";
@@ -29,7 +30,7 @@ export default function MerchPage() {
 
 
   return (
-    <div className="merch-page-container">
+    <MerchpageContainer>
       {product == null ? (
         <Loading />
       ) : (
@@ -41,6 +42,6 @@ export default function MerchPage() {
           )}
         </>
       )}
-    </div>
+    </MerchpageContainer>
   );
 }
