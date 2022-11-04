@@ -74,7 +74,7 @@ export default function AddressComponent({
         <AddressComponentWrapper
           borderColor={
             selectAble == true && address._id == (selected && selected._id)
-              ? "#8053ff"
+              ? "primary"
               : "#353535"
           }
           cursor={selectAble == true ? "pointer" : "auto"}
@@ -105,7 +105,7 @@ export default function AddressComponent({
               w={{ base: "45%", md: "40%" }}
             >
               <Button
-                bgColor="#8053ff"
+                bgColor="primary"
                 color="#fff"
                 w="45%"
                 h="35px"

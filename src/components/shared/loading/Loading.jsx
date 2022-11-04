@@ -10,7 +10,7 @@ function Loading() {
 			justifyContent='center'
 			h='auto'
 		>
-			<Spinner size='xl' color='#8053ff' />
+			<Spinner size='xl' color='primary' />
 		</Box>
 	);
 }

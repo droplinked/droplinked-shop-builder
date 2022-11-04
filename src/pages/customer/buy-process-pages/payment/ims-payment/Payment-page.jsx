@@ -150,14 +150,14 @@ export default function ImsPayment() {
           >
             <Button
               w="40%"
-              color="#8053ff"
+              color="primary"
               border="1px"
-              borderColor="#8053ff"
+              borderColor="primary"
               bgColor="#222"
               _hover={{
                 color: "#222",
                 borderColor: "#222",
-                bgColor: "#8053ff",
+                bgColor: "primary",
               }}
               disabled={disableBtns}
               onClick={stripePayment}
@@ -167,14 +167,14 @@ export default function ImsPayment() {
 
             <Button
               w="40%"
-              color="#8053ff"
+              color="primary"
               border="1px"
-              borderColor="#8053ff"
+              borderColor="primary"
               bgColor="#222"
               _hover={{
                 color: "#222",
                 borderColor: "#222",
-                bgColor: "#8053ff",
+                bgColor: "primary",
               }}
               disabled={true}
               //  onClick={rootpaymentsPayment}

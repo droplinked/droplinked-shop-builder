@@ -19,10 +19,10 @@ import OrderModal from "../../Modal/Order/Order-modal";
 import BasicButton from "../BasicButton/BasicButton";
 
 const animationKeyframes = keyframes`
-0% { color: #8053ff; }
+0% { color: primary; }
 40% { color: #fff; }
-80% { color: #8053ff; }
-100% { color: #8053ff; }
+80% { color: primary; }
+100% { color: primary; }
 `;
 
 const animation = `${animationKeyframes} 2s ease infinite`;
@@ -108,7 +108,7 @@ export default function Order({ order }) {
       mb="40px"
       transition="0.8s"
       _hover={{
-        border: "3px solid #8053ff",
+        border: "3px solid primary",
       }}
       onClick={onOpen}
     >

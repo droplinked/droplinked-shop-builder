@@ -44,7 +44,7 @@ const ViewCollection = () => {
           <Flex alignItems="center" justifyContent="center" mb="40px">
             <CollectionTitle>{Collection.title}</CollectionTitle>
             <AiFillEdit
-              color="#8053ff"
+              color="primary"
               size="20px"
               cursor="pointer"
               onClick={openEditModal}

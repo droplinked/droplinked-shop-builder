@@ -35,7 +35,7 @@ export default function Notification({ click }) {
                     alignItems='center'
                 >
                     <Box
-                        bgColor='#8053ff'
+                        bgColor='primary'
                         borderRadius='50%'
                         w='8px'
                         h='8px'

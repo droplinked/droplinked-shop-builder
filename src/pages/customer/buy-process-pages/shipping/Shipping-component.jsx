@@ -11,7 +11,7 @@ const ShippingComponent = ({ shippingItem, selected, setSelected }) => {
       border="3px solid"
       bgColor='#242424'
       borderColor={
-        selected && selected.id == shippingItem.id ? "#8053ff" : "#242424"
+        selected && selected.id == shippingItem.id ? "primary" : "#242424"
       }
       borderRadius="8px"
       // justifyContent="space-between"

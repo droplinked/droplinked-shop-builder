@@ -149,7 +149,7 @@ export default function ShopInfoComponent({ active }) {
                             border='2px'
                             borderColor='#b3b3b3'
                             borderRadius='8px'
-                            _focus={{ borderColor: "#8053ff" }}
+                            _focus={{ borderColor: "primary" }}
                             px="16px"
                             py={{ base: "8px", md: "12px" }}
                         >

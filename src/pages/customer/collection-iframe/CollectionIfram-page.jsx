@@ -43,7 +43,7 @@ const CollectionIframe = () => {
                     width: '6px',
                 },
                 '&::-webkit-scrollbar-thumb': {
-                    background: '#8053ff',
+                    background: 'primary',
                     borderRadius: '24px',
                 },
             }}

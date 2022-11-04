@@ -23,7 +23,7 @@ export const BackGroundImage = chakra("div", {
     w: "100%",
     h: "100%",
     border: "6px",
-    borderColor: "#8053ff",
+    borderColor: "primary",
     borderRadius: "100%",
     bgRepeat: "no-repeat",
     bgPosition: "center",
@@ -40,7 +40,7 @@ export const BackGroundImageWrapper = chakra("div", {
     pos: "relative",
     borderRadius: "100%",
     border: "4px",
-    borderColor: "#8053ff",
+    borderColor: "primary",
     boxShadow: "0px 2px 4px 0px rgba(0, 0, 0, 0.1)",
   },
 });
@@ -56,11 +56,11 @@ export const LabelTest = chakra("lable", {
         borderRadius:"100%",
         bgColor:"#222",
         border:"2px",
-        borderColor:"#8053ff",
+        borderColor:"primary",
         cursor:"pointer",
         justifyContent:"center",
         alignItems:"center",
-        _hover:{ border: "4px", borderColor: "#8053ff" },
+        _hover:{ border: "4px", borderColor: "primary" },
     },
   });
   

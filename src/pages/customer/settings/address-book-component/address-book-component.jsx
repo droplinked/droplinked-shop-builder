@@ -75,7 +75,7 @@ export default function AddressBookComponent({active}) {
                             color="#fff"
                             fontSize="20px"
                             fontWeight="600"
-                            _hover={{ borderColor: "#8053ff", color: "#8053ff" }}
+                            _hover={{ borderColor: "primary", color: "primary" }}
                             cursor="pointer"
                             onClick={toggleAddressForm}
                         >

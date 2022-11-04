@@ -54,7 +54,7 @@ const ShopImsPage = ({ products, update ,filter}) => {
             pr="4.5rem"
             placeholder="Shopify domain"
             border="2px solid"
-            _focus={{ borderColor: "#8053ff" }}
+            _focus={{ borderColor: "primary" }}
             onChange={changeDomain}
             value={domain}
             color="#fff"
@@ -63,7 +63,7 @@ const ShopImsPage = ({ products, update ,filter}) => {
             <Button
               h="1.75rem"
               size="sm"
-              bgColor="#8053ff"
+              bgColor="primary"
               color="#fff"
               onClick={importDomain}
             >

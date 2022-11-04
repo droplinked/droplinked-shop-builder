@@ -9,7 +9,7 @@ const EasypostShipping = ({ shippingItem, selected, setSelected }) => {
       mb="30px"
       border="3px solid"
       borderColor={
-        selected && selected.id == shippingItem.id ? "#8053ff" : "#4d4d4d"
+        selected && selected.id == shippingItem.id ? "primary" : "#4d4d4d"
       }
       borderRadius="8px"
       // justifyContent="space-between"

@@ -119,8 +119,8 @@ export const AddRuleButton = chakra("button", {
     borderBottom: "1px solid white",
     cursor: "pointer",
     _hover: {
-      color: "#8053ff",
-      borderColor: "#8053ff",
+      color: "primary",
+      borderColor: "primary",
     },
   },
 });

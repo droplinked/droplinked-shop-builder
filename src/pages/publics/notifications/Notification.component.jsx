@@ -54,7 +54,7 @@ const NotificationComponent = ({ notification }) => {
             px='10px'
             maxW='700px'
             border='2px'
-            borderColor={(notification.seen)?"#666":'#8053ff'}
+            borderColor={(notification.seen)?"#666":'primary'}
             borderRadius='10px'
             justifyContent='space-between'
             alignItems='center'
