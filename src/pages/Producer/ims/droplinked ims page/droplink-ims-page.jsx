@@ -5,10 +5,11 @@ import Product from "../../../../components/shared/Product/Product";
 
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { USER_TYPE } from "../../../../constant/user-types";
+import { Flex, Text, Box } from "@chakra-ui/react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 
-export default function DroplinkedImsPage({ products,filter }) {
+export default function DroplinkedImsPage({ products, filter }) {
   const fileRef = useRef(null);
 
   const { errorToast } = useToasty();
@@ -35,59 +36,43 @@ export default function DroplinkedImsPage({ products,filter }) {
 
   return (
     <>
-      <div className="w-100 d-flex justify-content-center align-items-center mb-5">
+      <Flex w="100%" justifyContent="center" alignItems="center" mb='40px'>
         <Link
           to="/producer/add-product"
           style={{ width: "200px", display: "flex" }}
         >
           <BasicButton>Add item</BasicButton>
         </Link>
-      </div>
-      {/* <input
-        type="file"
-        className="d-none"
-        ref={fileRef}
-        onChange={uploadFile}
-      /> */}
+      </Flex>
 
-      {/* <div style={{ margin: "10px 0px 20px 0px" }}>
-        <div
-          className="Import-item-button"
-          onClick={() => {
-            fileRef.current.click();
-          }}
-        >
-          Import via JSON
-        </div>
-      </div> */}
-
-      {/* <div style={{ margin: "25px 0xp" }}>
-        <SeachBox change={onChangeSearchBox} />
-      </div> */}
-      <div className="product-small-wrapper">
+      <Flex w="100%" flexWrap="wrap">
         {products.length <= 0 ? (
-          <div className="w-100 d-flex justify-content-center align-items-center">
-            <p className="no-product"></p>
-          </div>
+          <Text w="100%" textAlign="center" fontSize="24px" fontWeight="600">
+            Empty
+          </Text>
         ) : (
           <>
             {products
               .filter((pr) => pr.title.toLowerCase().includes(filter))
               .map((item, i) => {
                 return (
-                  <div className="col-6 col-md-4 col-lg-3 p-1" key={i}>
+                  <Box
+                    key={i}
+                    w={{ base: "50%", sm: "33%", md: "25%" }}
+                    p="10px"
+                  >
                     <Product
                       title={item.title}
                       imageUrl={item.media[0].url}
                       id={item._id}
                       type={USER_TYPE.PRODUCER}
                     />
-                  </div>
+                  </Box>
                 );
               })}
           </>
         )}
-      </div>
+      </Flex>
     </>
   );
 }
