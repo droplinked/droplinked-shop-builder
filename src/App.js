@@ -7,7 +7,7 @@ import ScrollTop from "./services/scroll-top/ScrollTop";
 import OrderProvider from "./context/order/OrdersContext";
 import LoadingPage from "./pages/publics/loading/Loading-page";
 import ShippingPage from "./pages/customer/buy-process-pages/shipping/Shipping-page";
-import ShopWrapper from "./pages/customer/shop-wrapper/shop-wrapper";
+//import ShopWrapper from "./pages/customer/shop-wrapper/shop-wrapper";
 import Enquiry from './pages/publics/enquiry/Enquiry'
 import ViewCollection from "./pages/Producer/view-collection/View-collection";
 import UserWrapper from "./pages/user-wrapper/user-wrapper"
