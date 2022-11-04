@@ -11,7 +11,8 @@ export const ShopPageContainer = chakra("div", {
   baseStyle: {
     marginTop: "0px",
     animation: animation,
-    w:'100%'
+    w:'100%',
+    maxW:'800px',
   },
 });
 
