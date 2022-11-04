@@ -3,7 +3,7 @@ import { removeCart, getCart } from "../../api/base-user/Cart-api";
 import { SHOP_TYPES } from "../../constant/shop-types";
 import { checkRules } from "../../services/nft-service/NFTcheck";
 import { useToasty } from "../../context/toastify/ToastContext";
-import { UseWalletInfo } from "../../context/wallet/WalletContext"
+import { UseWalletInfo } from "../../context/wallet/WalletContext";
 
 export const CartContext = createContext();
 
@@ -11,12 +11,12 @@ const CartProvider = ({ children }) => {
   // state for cart
   const [cart, setCart] = useState(null);
 
-  const { errorToast } = useToasty()
-  const { userData } = UseWalletInfo();
+  const { errorToast } = useToasty();
+  const { userData, getStxAddress } = UseWalletInfo();
 
   //update cartstate
   const updateCart = async () => {
-    let localCart = JSON.parse(localStorage.getItem("cart"))
+    let localCart = JSON.parse(localStorage.getItem("cart"));
     if (localCart == null) {
       // get cart from back
       let result = await getCart();
@@ -27,18 +27,22 @@ const CartProvider = ({ children }) => {
         console.log(result.data.reason);
       }
     } else {
-      localCart.items.forEach(item => gatedAndAddItem(item))
+      localCart.items.forEach((item) => gatedAndAddItem(item));
+    }
+  };
+ 
+  const addWalletToCard = () => {
+    if (userData) {
+      console.log(cart);
+      let newCard = { ...cart, wallet: getStxAddress() };
+      setCart(newCard)
     }
   };
 
-  console.log(cart);
-
   const gatedAndAddItem = (product) => {
-
     if (product.productRule == undefined) {
       addShopifyItemToCart(product);
     } else {
-
       const Rules = product.productRule.map((rule) => rule.address);
 
       checkRules(userData.profile.stxAddress.mainnet, Rules)
@@ -56,11 +60,9 @@ const CartProvider = ({ children }) => {
           return false;
         });
     }
+  };
 
-  }
-
-
-  const addShopifyItemToCart = (item) => {
+  const addShopifyItemToCart = (item , rulePassed) => {
     let newCart;
     // build new cart if doesnt exist any p
     if (cart == null || cart.items.length == 0) {
@@ -103,6 +105,11 @@ const CartProvider = ({ children }) => {
           newCart = { ...cart, items: [item] };
         }
       }
+    }
+    console.log('rulePassed',rulePassed);
+    if(rulePassed && rulePassed == true){
+      console.log('card',cart);
+      newCart = { ...newCart, wallet: getStxAddress() }
     }
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
@@ -150,6 +157,7 @@ const CartProvider = ({ children }) => {
     deleteItemFromCart,
     clearCart,
     changeQuantity,
+    addWalletToCard,
     cart,
   };
 

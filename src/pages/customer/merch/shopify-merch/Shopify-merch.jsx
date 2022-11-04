@@ -91,7 +91,7 @@ const ShopifyMech = ({ shopName, product }) => {
     }
   };
 
-  const addToCardFunction = () => {
+  const addToCardFunction = async() => {
     let itemObject = {
       amount: quantity,
       product: product.shopifyData,
@@ -100,7 +100,8 @@ const ShopifyMech = ({ shopName, product }) => {
       productId: product._id,
     };
     successToast("Item added to cart");
-    addShopifyItemToCart(itemObject);
+    if(rulePassed) addShopifyItemToCart(itemObject , true)
+    else addShopifyItemToCart(itemObject);
   };
 
   const changeTextLimit = () => setTextLimit((p) => !p);
