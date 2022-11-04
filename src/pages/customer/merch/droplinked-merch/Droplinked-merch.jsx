@@ -1,4 +1,4 @@
-import "../Merch-page-style.scss";
+//import "../Merch-page-style.scss";
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
