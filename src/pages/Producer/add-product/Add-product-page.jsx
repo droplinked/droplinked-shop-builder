@@ -1,5 +1,3 @@
-//import "./Add-product-page-style.scss";
-
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../components/product-information-component";
 import OptionCheckboxes from "./option-checkbox-component/option-checkbox";
@@ -11,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { getVariants, postProduct } from "../../../api/producer/Product-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { ModalContainerWrapper, TitleText } from "./Add-product-style";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 function AddProductPage() {
   const token = JSON.parse(localStorage.getItem("token"));
 
@@ -110,7 +108,11 @@ function AddProductPage() {
   const openSkuModal = () => setSkuModalShow(true);
 
   return (
-    <Flex w="100%" justifyContent="center" alignItems="center" p={{base:'0px 20px',md:'0px 80px'}}>
+    <Flex
+      w="100%"
+      justifyContent="center"
+      alignItems="center"
+    >
       <ModalContainerWrapper>
         <TitleText>Add new item</TitleText>
         {/* this component for (title , description , collection , images) */}
@@ -137,27 +139,29 @@ function AddProductPage() {
           />
         )}
 
-        <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
-          <div className="col-12 col-md-4">
+        <Flex mt="30px" w="100%" justifyContent="center" alignItems="center">
+          <Box w={{ base: "100%", md: "25%" }}>
             <BasicButton click={openSkuModal}>Add variant</BasicButton>
-          </div>
-        </div>
+          </Box>
+        </Flex>
 
-        <div
-          className="d-flex justify-content-between align-items-center"
-          style={{ marginTop: "80px", width: "100%" }}
+        <Flex
+          justifyContent="space-between"
+          alignItems="center"
+          mt="80px"
+          w="100%"
         >
-          <div className="col-5 col-md-4">
+          <Box w={{ base: "40%", md: "30%" }}>
             <BasicButton click={cancelForm} loading={loading} cancelType={true}>
               Cancel
             </BasicButton>
-          </div>
-          <div className="col-5 col-md-4">
+          </Box>
+          <Box w={{ base: "40%", md: "30%" }}>
             <BasicButton click={submitForm} loading={loading}>
               Submit
             </BasicButton>
-          </div>
-        </div>
+          </Box>
+        </Flex>
         {/* modal for add new sku  */}
         <AddSkuModal
           open={skuModalShow}

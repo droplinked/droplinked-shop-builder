@@ -7,10 +7,9 @@ export const ModalContainerWrapper = chakra("div", {
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    maxWidth: "900px",
     bg: "subLayer",
-    p: { base: "30px 20px", md: "50px 80px" },
     borderRadius: "8px",
+    p:{base:'30px 20px',sm:'40px 30px' , md:'40px 60px' , lg:'40px 100px'  }
   },
 });
 
@@ -23,4 +22,4 @@ export const TitleText = chakra("p", {
   },
 });
 
-//padding: 0px 20px;
+
