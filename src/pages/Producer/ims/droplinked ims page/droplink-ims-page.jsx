@@ -1,5 +1,3 @@
-import "./droplink-ims-page.scss";
-
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import Product from "../../../../components/shared/Product/Product";
 
