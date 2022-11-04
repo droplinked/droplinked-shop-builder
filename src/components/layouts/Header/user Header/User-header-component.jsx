@@ -18,7 +18,7 @@ export default function UserHeader() {
   const { isCustomer } = useProfile();
   const { shop } = useShop();
 
-
+  
   const openProfileDropdown = () => {
     setDropdown(DROPDOWN_TYPE.PROFILE);
   };
@@ -64,21 +64,34 @@ export default function UserHeader() {
         </>
       ) : (
         <>
-          <Text color="white" fontSize={{base:'16px',md:"24px"}} fontWeight="500" mr={{base:'8px',md:"16px"}}>
-            {shop.name}
-          </Text>
-          <Flex
-            w={{base:'36px',md:"46px"}}
-            h={{base:'36px',md:"46px"}}
-            borderRadius="50%"
-            bg="subLayer"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text color="white" fontSize={{base:'20px',md:"28px"}} fontWeight="600">
-              {shop.name.charAt(0).toUpperCase()}
-            </Text>
-          </Flex>
+          {shop && (
+            <>
+              <Text
+                color="white"
+                fontSize={{ base: "16px", md: "24px" }}
+                fontWeight="500"
+                mr={{ base: "8px", md: "16px" }}
+              >
+                {shop.name}
+              </Text>
+              <Flex
+                w={{ base: "36px", md: "46px" }}
+                h={{ base: "36px", md: "46px" }}
+                borderRadius="50%"
+                bg="subLayer"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Text
+                  color="white"
+                  fontSize={{ base: "20px", md: "28px" }}
+                  fontWeight="600"
+                >
+                  {shop.name.charAt(0).toUpperCase()}
+                </Text>
+              </Flex>
+            </>
+          )}
         </>
       )}
       {dropdown && <DropdownContainer close={close} dropdown={dropdown} />}
