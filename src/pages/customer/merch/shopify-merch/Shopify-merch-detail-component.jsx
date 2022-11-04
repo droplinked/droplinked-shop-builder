@@ -28,7 +28,6 @@ const ShopifyDetail = ({
   setSelectedVariant,
 }) => {
   const [variants, setVariants] = useState(product.variants);
-  // const variants = product.variants;
   const optionsList = product.options;
 
   const navigate = useNavigate();
@@ -43,8 +42,7 @@ const ShopifyDetail = ({
 
   const discountVariants = () => {
     let percentage = rulePassed.discountPercentage / 100;
-    console.log("percentage", percentage);
-    let variantList = variants.map((variant) => {
+    let variantList = product.variants.map((variant) => {
       let currentPrice = parseFloat(variant.price).toFixed(2);
       return {
         ...variant,
@@ -126,7 +124,7 @@ const ShopifyDetail = ({
       }
     });
   };
-  console.log("selectedVariant", selectedVariant);
+
   return (
     <DetailWrapper>
       {selectedVariant && (
