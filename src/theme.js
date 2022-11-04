@@ -7,8 +7,14 @@ export const theme = extendTheme({
     lightGray: "#DBDBDB",
     mainLayer: "#141414",
     subLayer: "#242424",
-    button:'#353535',
-    line:'#5E5E5E',
-    white:'#fff'
+    button: "#353535",
+    line: "#5E5E5E",
+    white: "#fff",
+  },
+  breakpoints: {
+    sm: "481px",
+    md: "768px",
+    lg: "1280px",
+    xl: "96em",
   },
 });
