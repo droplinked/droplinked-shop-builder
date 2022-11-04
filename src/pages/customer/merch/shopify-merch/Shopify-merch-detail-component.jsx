@@ -7,7 +7,7 @@ import {
 } from "../styles/Merch-style";
 import { Flex, Box, Text, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import LockIcon from "../../../../components/shared/lock-icon/lockIcon";
 import UnlockIcon from "../../../../components/shared/unlock-icon/unlockIcon";
@@ -21,23 +21,39 @@ const ShopifyDetail = ({
   quantity,
   setQuantity,
   lock,
-  rulePassed ,
+  rulePassed,
   submit,
   loading,
   selectedVariant,
   setSelectedVariant,
 }) => {
-
-  const variants = product.variants;
+  const [variants, setVariants] = useState(product.variants);
+  // const variants = product.variants;
   const optionsList = product.options;
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    initialVariant();
-  }, []);
+    if (rulePassed) discountVariants();
+  }, [rulePassed]);
 
-  console.log(rulePassed);
+  useEffect(() => {
+    initialVariant();
+  }, [variants]);
+
+  const discountVariants = () => {
+    let percentage = rulePassed.discountPercentage / 100;
+    console.log("percentage", percentage);
+    let variantList = variants.map((variant) => {
+      let currentPrice = parseFloat(variant.price).toFixed(2);
+      return {
+        ...variant,
+        previousPrice: variant.price,
+        price: currentPrice - currentPrice * percentage,
+      };
+    });
+    setVariants(variantList);
+  };
 
   // function
   const initialVariant = () => {
@@ -110,7 +126,7 @@ const ShopifyDetail = ({
       }
     });
   };
-
+  console.log("selectedVariant", selectedVariant);
   return (
     <DetailWrapper>
       {selectedVariant && (
@@ -124,14 +140,29 @@ const ShopifyDetail = ({
 
           <Box>
             <Flex>
-              <Text
-                fontWeight="600"
-                fontSize="24px"
-                color="#fff"
-                mb={{ base: "20px", md: "10px", lg: "30px" }}
-              >
-                ${selectedVariant && selectedVariant.price}
-              </Text>
+              {selectedVariant.previousPrice ? (
+                <Flex
+                  mb={{ base: "20px", md: "10px", lg: "30px" }}
+                  alignItems="flex-end"
+                >
+                  <Text fontWeight="600" fontSize="24px" color="#fff" mr="16px">
+                    ${selectedVariant && selectedVariant.price}
+                  </Text>
+
+                  <Text fontWeight="600" fontSize="16px" color="#fff">
+                    ${selectedVariant && selectedVariant.previousPrice}
+                  </Text>
+                </Flex>
+              ) : (
+                <Text
+                  fontWeight="600"
+                  fontSize="24px"
+                  color="#fff"
+                  mb={{ base: "20px", md: "10px", lg: "30px" }}
+                >
+                  ${selectedVariant && selectedVariant.price}
+                </Text>
+              )}
 
               {lock != null && (
                 <Box
