@@ -70,6 +70,7 @@ export default function Collection({ collection, shopname, type }) {
                 products={collection.products}
                 shopname={shopname}
                 type={type}
+                event={true}
               />
             </Box>
             <Box w={{ base: "100%", md: "50%" }}>
@@ -82,6 +83,7 @@ export default function Collection({ collection, shopname, type }) {
               products={collection.products}
               shopname={shopname}
               type={type}
+              event={false}
             />
           </Box>
         )}
