@@ -18,7 +18,6 @@ export default function UserHeader() {
   const { isCustomer } = useProfile();
   const { shop } = useShop();
 
-  console.log(shop.name);
 
   const openProfileDropdown = () => {
     setDropdown(DROPDOWN_TYPE.PROFILE);
