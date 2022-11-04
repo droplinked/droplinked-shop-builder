@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
+    width:100%;
+    min-width: 100%;
     & .ims-title {
       color: #fff;
       font-weight: 600;
@@ -35,7 +36,7 @@
   
   @media only screen and (max-width: 768px) {
     .Collection-page-wrapper {
-      margin:0px 20px;
+    //  margin:0px 20px;
 
       & .no-collection-text{
         font-size: 20px;

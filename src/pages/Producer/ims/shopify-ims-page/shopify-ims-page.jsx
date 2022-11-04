@@ -40,7 +40,7 @@ const ShopImsPage = ({ products, update ,filter}) => {
       w="100%"
       justifyContent="center"
       flexDir="column"
-      px={{ base: "0px", md: "80px" }}
+    //  px={{ base: "0px", md: "80px" }}
       maxW="900px"
     >
       {products.length == 0 ? (

@@ -10,6 +10,7 @@ import ShippingPage from "./pages/customer/buy-process-pages/shipping/Shipping-p
 import ShopWrapper from "./pages/customer/shop-wrapper/shop-wrapper";
 import Enquiry from './pages/publics/enquiry/Enquiry'
 import ViewCollection from "./pages/Producer/view-collection/View-collection";
+import UserWrapper from "./pages/user-wrapper/user-wrapper"
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
@@ -81,31 +82,29 @@ function App() {
       <ScrollTop>
         <Suspense fallback={<LoadingPage />}>
           <Routes>
+
           <Route path="/enquiry" element={<Enquiry />} />
+
             <Route path="/" element={<PageWrapper />}>
+
+            {/* without login  */}
               <Route index element={<LandingPage />} />
               <Route path="terms" element={<TermsPage />} />
               <Route path="privacy" element={<PrivacyPage />} />
-
               <Route path="register" element={<RegisterPage />} />
+              <Route path="email-confirmation" element={<ThankForRegisterPage />}/>
+              <Route path="email-verification/:token"  element={<EmailVerifyPage />} />
+              <Route path="producer/account-recovery/:token"  element={<AccountRecovery />}  />
+            {/* without login  */}
 
-              {/* register */}
-              <Route
-                path="email-confirmation"
-                element={<ThankForRegisterPage />}
-              />
-              <Route
-                path="email-verification/:token"
-                element={<EmailVerifyPage />}
-              />
-               <Route
-                  path="producer/account-recovery/:token"
-                  element={<AccountRecovery />}
-                />
+
               <Route path="settings" element={<SettingsPage />} />
+              <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
+              <Route path="/notifications" element={<Notifications />} />
+              <Route path="/collection-iframe/:shopname/:collectionId" element={<CollectionIframe />}/>
 
               {/* producer pages */}
-              <Route path="producer" element={<Producer />}>
+              <Route path="producer" element={<UserWrapper />}>
                 <Route path="ims" element={<InventoryPage />} />
                 <Route path="merch/:id" element={<ViewMerchPage />} />
                
@@ -126,7 +125,7 @@ function App() {
                 />
               </Route>
               {/* producer pages */}
-              <Route path=":shopname" element={<ShopWrapper />}>
+              <Route path=":shopname" element={<UserWrapper />}>
 
                 <Route index element={<ShopPage />} />
                 <Route path="merch/:merchId" element={<MerchPage />} />
@@ -141,12 +140,7 @@ function App() {
 
               </Route>
 
-              <Route path="/purchseHistory" element={<PurchasHistoryPage />} />
-              <Route path="/notifications" element={<Notifications />} />
-              <Route
-                path="/collection-iframe/:shopname/:collectionId"
-                element={<CollectionIframe />}
-              />
+              
             </Route>
           </Routes>
         </Suspense>
