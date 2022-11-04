@@ -13,12 +13,8 @@ export const UserWrapperPage = chakra("div", {
 export const SideBarWrapper = chakra("div", {
   baseStyle: {
     w: { base: "100px", md: "200px" },
-    h: "300px",
-    bg: "subLayer",
-    mr: "20px",
-    bg: "subLayer",
-    px: { base: "14px", md: "32px" },
-    py: { base: "32px", md: "56px" },
+    h: "100%",
+    mr:'20px'
   },
 });
 

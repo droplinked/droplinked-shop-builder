@@ -1,4 +1,3 @@
-import { Flex } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import {
   UserWrapperPage,
@@ -9,6 +8,8 @@ import {
 import Sidebar from "../../components/layouts/Sidebar/sidebar";
 
 const UserWrapper = () => {
+
+
   return (
     <UserWrapperPage>
       <SideBarWrapper>
