@@ -8,7 +8,7 @@ import { createCheckout } from "../../../../api/producer/Shopify-api";
 import { useCart } from "../../../../context/cart/CartContext";
 import { useProfile } from "../../../../context/profile/ProfileContext";
 import { SHOP_TYPES } from "../../../../constant/shop-types";
-import { UseWalletInfo } from "../../../../context/wallet/WalletContext"
+import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
 import { useParams } from "react-router-dom";
 import {
   AddressPageWrapper,
@@ -27,7 +27,7 @@ function AddressPage() {
   let navigate = useNavigate();
   const { profile } = useProfile();
   let { shopname } = useParams();
-  const { getStxAddress } = UseWalletInfo()
+  const { getStxAddress } = UseWalletInfo();
 
   let token = JSON.parse(localStorage.getItem("token"));
   if (!token) navigate("/");
@@ -39,7 +39,7 @@ function AddressPage() {
   const { errorToast, successToast } = useToasty();
   const { addressList } = useAddress();
   const { cart } = useCart();
-
+  console.log(cart);
   const toggleAddressForm = () => {
     setAddressModal((p) => !p);
   };
@@ -49,12 +49,26 @@ function AddressPage() {
     else setSelectedAddress(null);
   }, [addressList]);
 
-//  item
+  //  item
   const hasGatedProductInCard = () => {
-   let findItem =  cart.items.find(item => item.productRule != undefined)
-   if (findItem == undefined) return false 
-   else return true
-  }
+    let findItem = cart.items.find((item) => item.productRule != undefined);
+    if (findItem == undefined) return false;
+    else return true;
+  };
+
+  const getAddressObj = () => {
+    return {
+      first_name: selectedAddress.firstname,
+      last_name: selectedAddress.lastname,
+      country: selectedAddress.country,
+      province: selectedAddress.state,
+      city: selectedAddress.city,
+      address1: selectedAddress.addressLine1,
+      address2: selectedAddress.addressLine2,
+      zip: selectedAddress.zip,
+      phone: "",
+    };
+  };
 
   const ProccessToPayment = async () => {
     if (selectedAddress == null) {
@@ -78,17 +92,8 @@ function AddressPage() {
       }
     } else {
       // add address for shopify cart
-      let addressObj = {
-        first_name: selectedAddress.firstname,
-        last_name: selectedAddress.lastname,
-        country: selectedAddress.country,
-        province: selectedAddress.state,
-        city: selectedAddress.city,
-        address1: selectedAddress.addressLine1,
-        address2: selectedAddress.addressLine2,
-        zip: selectedAddress.zip,
-        phone: "",
-      };
+      let addressObj = getAddressObj();
+
       let itemsArray = cart.items.map((item) => {
         return {
           variant_id: item.variant.id,
@@ -100,7 +105,7 @@ function AddressPage() {
         checkout: {
           billing_address: addressObj,
           shipping_address: addressObj,
-          wallet:getStxAddress() ,
+          wallet: cart.wallet ? getStxAddress() : "",
           line_items: itemsArray,
           email: profile.email,
         },
