@@ -121,7 +121,7 @@ const ShopifyMech = ({ shopName, product , openLogin}) => {
     <>
       <MerchPageWrapper>
         {/* images */}
-        <Box w={{ base: "100%", md: "50%" }} minh="500px">
+        <Box w={{ base: "100%", sm: "100%" , md:'50%' }} minh="500px">
           <Carousel imagesArray={images} />
         </Box>
         {/* images */}

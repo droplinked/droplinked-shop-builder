@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../../api/public/Product-api";
 import { MerchpageContainer } from "./Merch-page-style";
+import { Box } from "@chakra-ui/react";
 
 import Loading from "../../../components/shared/loading/Loading";
 import DroplinkedMerch from "./droplinked-merch/Droplinked-merch";
@@ -57,19 +58,20 @@ export default function MerchPage() {
       {product == null ? (
         <Loading />
       ) : (
-        <>
+        <Box maxW="800px" mx="auto">
           {product.type == "DROPLINKED" ? (
-            <DroplinkedMerch product={product} openLogin={toggleLogin}/>
+            <DroplinkedMerch product={product} openLogin={toggleLogin} />
           ) : (
-            <ShopifyMech shopName={shopname} product={product} openLogin={toggleLogin}/>
+            <ShopifyMech
+              shopName={shopname}
+              product={product}
+              openLogin={toggleLogin}
+            />
           )}
-        </>
+        </Box>
       )}
       {showSignup && (
-        <SignUpModal
-          close={toggleSignUp}
-          switchToggle={switchModal}
-        />
+        <SignUpModal close={toggleSignUp} switchToggle={switchModal} />
       )}
       {showLogin && (
         <LoginModal
