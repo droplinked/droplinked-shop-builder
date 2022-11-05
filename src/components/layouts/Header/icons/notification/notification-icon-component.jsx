@@ -1,6 +1,8 @@
-import { Flex, keyframes, Box } from "@chakra-ui/react"
-import { IoMdNotificationsOutline } from "react-icons/io";
+import { Flex, keyframes, Box , Image} from "@chakra-ui/react"
+//import { IoMdNotificationsOutline } from "react-icons/io";
 import { useNotifications } from "../../../../../context/notifications/NotificationsContext"
+import { CartIconWrapper ,IconImage } from "../cart/cart-icon-style"
+import notificationIcon from  "../../../../../assest/icon/notification-icon.svg"
 
 const animationKeyframes = keyframes`
 0% { opacity:0.2; }
@@ -15,17 +17,10 @@ export default function Notification({ click }) {
 
     const { unseenNofitCount } = useNotifications()
 
+
     return (
-        <Flex
-            justifyContent='center'
-            alignItems='center'
-            pos='relative'
-            w={{ base: "25px", md: '36px' }}
-            h={{ base: "25px", md: '36px' }}
-            mr={{ base: '8px', md: '12px' }}
-            cursor='pointer'
-            onClick={click}>
-            <IoMdNotificationsOutline style={{ width: "100%", height: "100%", color: "#fff" }} />
+        <CartIconWrapper pt='5px'>
+                <IconImage  src={notificationIcon}/>
             {(unseenNofitCount() > 0) &&
                 <Flex
                     pos='absolute'
@@ -45,6 +40,6 @@ export default function Notification({ click }) {
                     </Box>
                 </Flex>
             }
-        </Flex >
+        </CartIconWrapper >
     )
 }
