@@ -10,6 +10,7 @@ export const theme = extendTheme({
     button: "#353535",
     line: "#5E5E5E",
     white: "#fff",
+    DarkGray:'#3C3C3C'
   },
   breakpoints: {
     sm: "481px",
