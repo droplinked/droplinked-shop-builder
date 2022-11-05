@@ -70,10 +70,10 @@ const RegisterPage = () => {
       return;
     }
 
-    // if (shopAddressBook == undefined) {
-    //   errorToast("Address is required");
-    //   return;
-    // }
+    if (shopAddressBook == undefined) {
+      errorToast("Address is required");
+      return;
+    }
 
     let shopInformation = {
       social: {
@@ -87,23 +87,21 @@ const RegisterPage = () => {
       description: shop.description,
     };
 
-    console.log(shopInformation);
+    setDisableBtn(true);
 
-    // setDisableBtn(true);
+    let result = await updateShopApi(shopInformation);
 
-    // let result = await updateShopApi(shopInformation);
+    if (result.status == "success") {
+      localStorage.setItem("shop", JSON.stringify(result.data.shop));
+      successToast("Shop info successfully updated");
+      updateShop();
+      await updateProfileData();
+      if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
+    } else {
+      errorToast(result.reason);
+    }
 
-    // if (result.status == "success") {
-    //   localStorage.setItem("shop", JSON.stringify(result.data.shop));
-    //   successToast("Shop info successfully updated");
-    //   updateShop();
-    //   await updateProfileData();
-    //   if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
-    // } else {
-    //   errorToast(result.reason);
-    // }
-
-    // setDisableBtn(false);
+    setDisableBtn(false);
   };
 
   return (
