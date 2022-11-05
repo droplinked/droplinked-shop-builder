@@ -23,8 +23,9 @@ const CartProvider = ({ children }) => {
       if (result.status === "success") {
         let newCart = { ...result.data.cart, type: SHOP_TYPES.DROPLINKED };
         if (newCart.items.length > 0) setCart(newCart);
+        else setCart(null)
       } else {
-        console.log(result.data.reason);
+        errorToast(result.data.reason);
       }
     } else {
       localCart.items.forEach((item) => gatedAndAddItem(item));
@@ -33,7 +34,6 @@ const CartProvider = ({ children }) => {
  
   const addWalletToCard = () => {
     if (userData) {
-      console.log(cart);
       let newCard = { ...cart, wallet: getStxAddress() };
       setCart(newCard)
     }
