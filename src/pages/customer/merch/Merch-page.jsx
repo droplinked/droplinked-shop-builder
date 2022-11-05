@@ -58,7 +58,7 @@ export default function MerchPage() {
       {product == null ? (
         <Loading />
       ) : (
-        <Box maxW="800px" mx="auto">
+        <Box maxW="800px" w='100%' mx="auto">
           {product.type == "DROPLINKED" ? (
             <DroplinkedMerch product={product} openLogin={toggleLogin} />
           ) : (
