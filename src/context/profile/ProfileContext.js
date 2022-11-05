@@ -110,7 +110,7 @@ const ProfileProvider = ({ children }) => {
     let result = await signInViaWallet(userData);
     if (result.status == "success") addProfileViaWallet(result.data);
     else{
-      
+      userSession.signUserOut(window.location.pathname);
       errorToast(result);
     } 
   };
