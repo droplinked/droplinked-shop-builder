@@ -67,7 +67,7 @@ export const signInViaWallet = async (data) => {
     return res.data;
   } catch (err) {
     //  console.log(err.response.data);
-    return err.response.data;
+    return err.response.data.reason;
     // return err.response.data.reason;
   }
 };

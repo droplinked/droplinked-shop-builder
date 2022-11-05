@@ -109,7 +109,10 @@ const ProfileProvider = ({ children }) => {
   const getUserDataViaWallet = async (userData) => {
     let result = await signInViaWallet(userData);
     if (result.status == "success") addProfileViaWallet(result.data);
-    else errorToast(result);
+    else{
+      
+      errorToast(result);
+    } 
   };
 
   const contextValues = {
