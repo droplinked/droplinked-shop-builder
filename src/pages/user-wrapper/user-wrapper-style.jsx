@@ -25,5 +25,9 @@ export const PageContainer = chakra("div", {
     w: { base: "100%", sm: "calc(100% - 120px)", md: "calc(100% - 220px)" },
     justifyContent: "center",
     alignItems: "center",
+    bg:'subLayer',
+    borderRadius:'8px',
+    px: { base: "20px", sm: "40px", md: "80px" },
+    py: { base: "20px", sm: "20px", md: "60px" },
   },
 });
