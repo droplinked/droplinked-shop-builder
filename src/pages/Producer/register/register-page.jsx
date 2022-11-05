@@ -138,41 +138,45 @@ const RegisterPage = () => {
 
             <FormInput value={`droplinked.com/${shop.name}`} label={"Domain"} />
 
-            <Box mb="40px"></Box>
+            <Box mb="20px"></Box>
 
             <FillInput
               preText={"https://"}
               value={shop.webUrl}
               change={(e) => chageShopInformation("webUrl", e)}
               placeholder={"droplinked.com"}
+              label={"Website"}
             />
 
-            <Box mb="40px"></Box>
+            <Box mb="20px"></Box>
 
             <FillInput
               preText={"discord.gg/"}
               value={shop.discordUrl}
               change={(e) => chageShopInformation("discordUrl", e)}
               placeholder={"droplinked"}
+              label={"Discord"}
             />
 
-            <Box mb="40px"></Box>
+            <Box mb="20px"></Box>
             <FillInput
               preText={"twitter.com/"}
               value={shop.twitterUrl}
               change={(e) => chageShopInformation("twitterUrl", e)}
               placeholder={"droplinked"}
+              label={"Twitter"}
             />
 
-            <Box mb="40px"></Box>
+            <Box mb="20px"></Box>
             <FillInput
               preText={"instagram.com/"}
               value={shop.instagramUrl}
               change={(e) => chageShopInformation("instagramUrl", e)}
               placeholder={"droplinked"}
+              label={"Instagram"}
             />
 
-            <Box mb="40px"></Box>
+            <Box mb="20px"></Box>
 
             {shopAddressBook ? (
               <Box w="100%">
