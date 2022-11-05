@@ -2,6 +2,7 @@ import instaIcon from "../../../../assest/icon/insta.png";
 import discordIcon from "../../../../assest/icon/newdiscord.png";
 import twitterIcon from "../../../../assest/icon/twitter.png";
 import webIcon from "../../../../assest/icon/web.png";
+import profilePic from "../../../../assest/image/crashpunks.gif";
 
 import { Flex, Image, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +24,7 @@ const CrashpunksInfo = () => {
   return (
     <ShopinfoWrapper>
       <ProfileImageWrapper>
-        <ProfileImage onClick={navigateToShop} />
+        <ProfileImage src={profilePic} onClick={navigateToShop} />
       </ProfileImageWrapper>
 
       <ShopnameText>CrashPunks</ShopnameText>
