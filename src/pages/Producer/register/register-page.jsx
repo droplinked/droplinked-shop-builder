@@ -30,7 +30,7 @@ const RegisterPage = () => {
   const { addressList } = useAddress();
   const { errorToast, successToast } = useToasty();
   const { updateShop } = useShop();
-  const { updateProfileDate } = useProfile();
+  const { updateProfileData } = useProfile();
 
   const profile = JSON.parse(localStorage.getItem("profile"));
 
@@ -94,7 +94,7 @@ const RegisterPage = () => {
       localStorage.setItem("shop", JSON.stringify(result.data.shop));
       successToast("Shop info successfully updated");
       updateShop();
-      updateProfileDate();
+      await updateProfileData();
       if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
     } else {
       errorToast(result.reason);

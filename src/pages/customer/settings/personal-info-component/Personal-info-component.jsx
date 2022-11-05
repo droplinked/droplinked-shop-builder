@@ -26,7 +26,7 @@ export default function PersonalInfoComponent({ active }) {
     const profile = JSON.parse(localStorage.getItem("profile"));
     let token = JSON.parse(localStorage.getItem("token"));
 
-    const { updateProfile } = useProfile();
+    const { updateProfileData } = useProfile();
     const { errorToast, successToast } = useToasty()
     const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -83,7 +83,7 @@ export default function PersonalInfoComponent({ active }) {
             .then(e => {
                 successToast('Profile successfully updated')
                 // update profile date if it is success full
-                updateProfile(e.data.data.user)
+                 updateProfileData()
             })
             .catch(e => {
                 errorToast(e.response.data.reason)

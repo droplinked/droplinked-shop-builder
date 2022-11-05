@@ -1,7 +1,7 @@
 import { createContext, useReducer, useContext } from "react";
 import { ProflieReduser } from "./ProfileReducer";
 import { signInViaWallet } from "../../api/base-user/Auth-api";
-import { getProfileData } from "../../api/base-user/Profile-api"
+import { getProfileData } from "../../api/base-user/Profile-api";
 import {
   showConnect,
   UserSession,
@@ -39,11 +39,10 @@ const ProfileProvider = ({ children }) => {
     dispatch({ type: "UPDATE_PROFILE", payload });
   };
 
-  const updateProfileDate  = async() => {
-   let result =  await getProfileData()
-   console.log(result);
-   updateProfile(result.data.user)
-  }
+  const updateProfileData = async () => {
+    let result = await getProfileData();
+    updateProfile(result.data.user);
+  };
 
   const logout = () => {
     let currentShop = JSON.parse(localStorage.getItem("currentShop"));
@@ -109,10 +108,10 @@ const ProfileProvider = ({ children }) => {
   const getUserDataViaWallet = async (userData) => {
     let result = await signInViaWallet(userData);
     if (result.status == "success") addProfileViaWallet(result.data);
-    else{
+    else {
       userSession.signUserOut(window.location.pathname);
       errorToast(result);
-    } 
+    }
   };
 
   const contextValues = {
@@ -122,7 +121,7 @@ const ProfileProvider = ({ children }) => {
     isCustomer,
     isRegisteredProducer,
     signinWithaWallet,
-    updateProfileDate,
+    updateProfileData,
     profile,
   };
 

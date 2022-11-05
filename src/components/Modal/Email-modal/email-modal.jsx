@@ -3,36 +3,35 @@ import { useState } from "react";
 import { setProfileEmail } from "../../../api/base-user/Profile-api";
 import { isValidEmail } from "../../../utils/validations/emailValidation";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { useProfile } from "../../../context/profile/ProfileContext"
+import { useProfile } from "../../../context/profile/ProfileContext";
 
 import FormInput from "../../shared/FormInput/FormInput";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 import ModalContainer from "../modal-container/modal-container";
 
 export default function EmailModal({ close }) {
-
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
 
-  const { updateProfile } = useProfile();
+  const { updateProfileData } = useProfile();
   const { errorToast, successToast } = useToasty();
 
   // submit form function
   const submit = async () => {
     // validation email format
-    if(!isValidEmail(email)){
-      errorToast('Please enter a valid email address.')
-      return
+    if (!isValidEmail(email)) {
+      errorToast("Please enter a valid email address.");
+      return;
     }
-    
+
     setLoading(true);
     let result = await setProfileEmail(email);
     if (result == true) {
-      updateProfile({email:email})
+      await updateProfileData();
       successToast("Your email address updated");
-      close()
+      close();
     } else {
-      errorToast(result)
+      errorToast(result);
       setLoading(false);
     }
   };
