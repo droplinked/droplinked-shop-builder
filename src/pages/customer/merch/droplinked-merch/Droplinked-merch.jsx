@@ -14,12 +14,13 @@ import {
   ReadmoreIconWrapper,
   DescriptionTextWrapper,
 } from "../styles/Merch-style";
+import { isGated } from "../../../../utils/gated.utils/gated-utils";
 import { FiArrowDownCircle } from "react-icons/fi";
 
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import DroplinkedDetail from "./Droplinked-merch-detail";
 
-const DroplinkedMerch = ({ product }) => {
+const DroplinkedMerch = ({ product , openLogin}) => {
   const [quantity, setQuantity] = useState(1);
   const [disableBtn, setDisableBtn] = useState(false);
   const [textLimit, setTextLimit] = useState(false);
@@ -44,7 +45,9 @@ const DroplinkedMerch = ({ product }) => {
     // }
 
     if (profile == null) {
-      signinWithaWallet();
+      if (isGated(product.ruleset)) signinWithaWallet()
+      else openLogin()
+     // signinWithaWallet();
       return;
     }
 

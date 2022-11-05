@@ -66,19 +66,19 @@ const ShopifyMech = ({ shopName, product , openLogin}) => {
       });
   };
 
-  const addToPreCard = () => {
-    const itemObject = {
-      amount: quantity,
-      product: product.shopifyData,
-      shopName: product.shopifyShopDomain,
-      variant: selectedVariant,
-      productId: product._id,
-      productRule:
-        product.ruleset == undefined ? undefined : product.ruleset.rules,
-    };
-    successToast("Item added to cart");
-    addShopifyItemToCart(itemObject);
-  };
+  // const addToPreCard = () => {
+  //   const itemObject = {
+  //     amount: quantity,
+  //     product: product.shopifyData,
+  //     shopName: product.shopifyShopDomain,
+  //     variant: selectedVariant,
+  //     productId: product._id,
+  //     productRule:
+  //       product.ruleset == undefined ? undefined : product.ruleset.rules,
+  //   };
+  //   successToast("Item added to cart");
+  //   addShopifyItemToCart(itemObject);
+  // };
 
   const addItemToBasket = async () => {
     if (profile == null) {
