@@ -15,7 +15,7 @@ export const RegisterContainer = chakra("div", {
     d:'flex',
     flexDir:'column',
     w: "100%",
-    p: "50px",
+    p: { base: "40px 24px", md: "50px" },
     maxW: "800px",
     bg: "subLayer",
     borderRadius: "16px",

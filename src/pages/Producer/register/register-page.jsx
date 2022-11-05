@@ -22,6 +22,7 @@ import AddressComponent from "../../../components/shared/Address/address-compone
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import AddressForm from "../../../components/Modal/Address/Address-modal";
 import Loading from "../../../components/shared/loading/Loading";
+import FillInput from "../../../components/shared/FillInput/FillInput";
 
 const RegisterPage = () => {
   const [shop, setShop] = useState(null);
@@ -69,10 +70,10 @@ const RegisterPage = () => {
       return;
     }
 
-    if (shopAddressBook == undefined) {
-      errorToast("Address is required");
-      return;
-    }
+    // if (shopAddressBook == undefined) {
+    //   errorToast("Address is required");
+    //   return;
+    // }
 
     let shopInformation = {
       social: {
@@ -86,21 +87,23 @@ const RegisterPage = () => {
       description: shop.description,
     };
 
-    setDisableBtn(true);
+    console.log(shopInformation);
 
-    let result = await updateShopApi(shopInformation);
+    // setDisableBtn(true);
 
-    if (result.status == "success") {
-      localStorage.setItem("shop", JSON.stringify(result.data.shop));
-      successToast("Shop info successfully updated");
-      updateShop();
-      await updateProfileData();
-      if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
-    } else {
-      errorToast(result.reason);
-    }
+    // let result = await updateShopApi(shopInformation);
 
-    setDisableBtn(false);
+    // if (result.status == "success") {
+    //   localStorage.setItem("shop", JSON.stringify(result.data.shop));
+    //   successToast("Shop info successfully updated");
+    //   updateShop();
+    //   await updateProfileData();
+    //   if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
+    // } else {
+    //   errorToast(result.reason);
+    // }
+
+    // setDisableBtn(false);
   };
 
   return (
@@ -137,40 +140,38 @@ const RegisterPage = () => {
 
             <FormInput value={`droplinked.com/${shop.name}`} label={"Domain"} />
 
-            <Box mb="20px"></Box>
+            <Box mb="40px"></Box>
 
-            <FormInput
+            <FillInput
+              preText={"https://"}
               value={shop.webUrl}
-              changeValue={(e) => chageShopInformation("webUrl", e)}
-              label={"Website"}
-              placeholder="www.example.com"
+              change={(e) => chageShopInformation("webUrl", e)}
+              placeholder={"droplinked.com"}
             />
 
-            <Box mb="20px"></Box>
+            <Box mb="40px"></Box>
 
-            <FormInput
+            <FillInput
+              preText={"discord.gg/"}
               value={shop.discordUrl}
-              changeValue={(e) => chageShopInformation("discordUrl", e)}
-              label={"Discord"}
-              placeholder="Username"
+              change={(e) => chageShopInformation("discordUrl", e)}
+              placeholder={"droplinked"}
             />
 
-            <Box mb="20px"></Box>
-
-            <FormInput
+            <Box mb="40px"></Box>
+            <FillInput
+              preText={"twitter.com/"}
               value={shop.twitterUrl}
-              changeValue={(e) => chageShopInformation("twitterUrl", e)}
-              label={"Twitter"}
-              placeholder="Username"
+              change={(e) => chageShopInformation("twitterUrl", e)}
+              placeholder={"droplinked"}
             />
 
-            <Box mb="20px"></Box>
-
-            <FormInput
+            <Box mb="40px"></Box>
+            <FillInput
+              preText={"instagram.com/"}
               value={shop.instagramUrl}
-              changeValue={(e) => chageShopInformation("instagramUrl", e)}
-              label={"Instagram"}
-              placeholder="Username"
+              change={(e) => chageShopInformation("instagramUrl", e)}
+              placeholder={"droplinked"}
             />
 
             <Box mb="40px"></Box>
