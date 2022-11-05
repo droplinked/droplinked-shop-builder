@@ -28,7 +28,7 @@ export const ItemCounter = chakra("div", {
     right: "-5px",
     top: "-5px",
     bgColor: "primary",
-    borderRadius: "50%",
+    borderRadius: "50% 50% 0px 50%",
     fontWeight: "600",
     border: "2px solid primary",
     d: "flex",
