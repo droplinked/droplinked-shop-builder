@@ -19,7 +19,7 @@ import { getMaxDiscount } from "../../../../services/nft-service/maxDiscount";
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import ShopifyDetail from "./Shopify-merch-detail-component";
 
-const ShopifyMech = ({ shopName, product }) => {
+const ShopifyMech = ({ shopName, product , openLogin}) => {
   const [loading, setLoading] = useState(false);
   // if product cant pass rule lock value == true
   const [lock, setLock] = useState(true);
@@ -31,7 +31,7 @@ const ShopifyMech = ({ shopName, product }) => {
   const { userData } = UseWalletInfo();
   const { addShopifyItemToCart } = useCart();
   const { successToast, errorToast } = useToasty();
-  const { profile } = useProfile();
+  const { profile ,signinWithaWallet } = useProfile();
 
   let images = product.shopifyData.images.map((img) => {
     return { url: img.src };
@@ -82,8 +82,10 @@ const ShopifyMech = ({ shopName, product }) => {
 
   const addItemToBasket = async () => {
     if (profile == null) {
+      if (isGated(product.ruleset)) signinWithaWallet()
+      else openLogin()
       // signinWithaWallet();
-      addToPreCard();
+      //addToPreCard();
       return;
     } else {
       if (lock) errorToast("Required NFT not found, accessed denied");
