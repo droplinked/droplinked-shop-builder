@@ -2,70 +2,40 @@ import instaIcon from "../../../../assest/icon/insta.png";
 import discordIcon from "../../../../assest/icon/newdiscord.png";
 import twitterIcon from "../../../../assest/icon/twitter.png";
 import webIcon from "../../../../assest/icon/web.png";
-import profilePic from "../../../../assest/image/crashpunks.gif";
 
-import {  Flex, Image, Text } from "@chakra-ui/react";
-import { IconWrapper } from "./crashpunks-info-style";
+import { Flex, Image, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-//import { defaultAuthURL } from "@stacks/connect";
+import {
+  IconWrapper,
+  ShopinfoWrapper,
+  ProfileImageWrapper,
+  ProfileImage,
+  ShopnameText,
+  IconContainer,
+} from "../sidebar-style";
+
 
 const CrashpunksInfo = () => {
   let navigate = useNavigate();
 
-  const navigateToShop = () => navigate("/crashpunks")
-  
-  return (
-    <Flex
-      w="100%"
-      flexDir="column"
-      justifyContent="center"
-      alignItems="center"
-      h='100%'
-    >
-      <Flex
-        borderRadius="50%"
-        margin="auto 0px"
-        justifyContent="center"
-        alignItems="center"
-        width="120px"
-        height="120px"
-        border="1px solid #353535"
-      >
-        <Image
-          src={profilePic}
-          margin="auto"
-          width="100%"
-          height="100%"
-          objectFit="cover"
-          borderRadius="50%"
-          cursor='pointer'
-          onClick={navigateToShop}
-        />
-      </Flex>
+  const navigateToShop = () => navigate("/crashpunks");
 
-      <Text
-        marginTop="20px"
-        fontWeight="600"
-        fontSize="18px"
-        textAlign="center"
-        color="#ffffff"
-        onClick={navigateToShop}
-      >
-        CrashPunks
-      </Text>
+  return (
+    <ShopinfoWrapper>
+      <ProfileImageWrapper>
+        <ProfileImage onClick={navigateToShop} />
+      </ProfileImageWrapper>
+
+      <ShopnameText>CrashPunks</ShopnameText>
 
       <Flex
         flexWrap="wrap"
-        justifyContent="space-between"
+        justifyContent={{ sm: "center", md: "space-between" }}
         alignItem="center"
         mt="30px"
-        w='100%'
+        w="100%"
       >
-        <Flex
-          w={{ base: "auto", md: "25%" }}
-          justifyContent="center"
-          alignItem="center"
-        >
+        <IconContainer>
           <IconWrapper
             href="https://discord.gg/crashpunks"
             target="_blank"
@@ -73,13 +43,9 @@ const CrashpunksInfo = () => {
           >
             <Image src={discordIcon} display="flex" margin="auto 0px" />
           </IconWrapper>
-        </Flex>
+        </IconContainer>
 
-        <Flex
-          w={{ base: "auto", md: "25%" }}
-          justifyContent="center"
-          alignItem="center"
-        >
+        <IconContainer>
           <IconWrapper
             href="http://crashpunks.com/"
             target="_blank"
@@ -87,13 +53,9 @@ const CrashpunksInfo = () => {
           >
             <Image src={webIcon} display="flex" margin="auto 0px" />
           </IconWrapper>
-        </Flex>
+        </IconContainer>
 
-        <Flex
-          w={{ base: "auto", md: "25%" }}
-          justifyContent="center"
-          alignItem="center"
-        >
+        <IconContainer>
           <IconWrapper
             href="https://twitter.com/crashpunks"
             target="_blank"
@@ -101,13 +63,9 @@ const CrashpunksInfo = () => {
           >
             <Image src={twitterIcon} display="flex" margin="auto 0px" />
           </IconWrapper>
-        </Flex>
+        </IconContainer>
 
-        <Flex
-          w={{ base: "auto", md: "25%" }}
-          justifyContent="center"
-          alignItem="center"
-        >
+        <IconContainer>
           <IconWrapper
             href="https://www.instagram.com/crashpunks/"
             target="_blank"
@@ -115,10 +73,10 @@ const CrashpunksInfo = () => {
           >
             <Image src={instaIcon} display="flex" margin="auto 0px" />
           </IconWrapper>
-        </Flex>
+        </IconContainer>
       </Flex>
-    </Flex>
+    </ShopinfoWrapper>
   );
 };
 
-export default CrashpunksInfo
+export default CrashpunksInfo;

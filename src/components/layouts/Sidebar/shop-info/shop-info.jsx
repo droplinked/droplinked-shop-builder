@@ -13,7 +13,7 @@ import {
   DefaultProfileImage,
   ShopnameText,
   IconContainer,
-} from "./shop-info-style";
+} from "../sidebar-style";
 
 const ShopInfo = ({ ShopData }) => {
   return (
@@ -32,7 +32,7 @@ const ShopInfo = ({ ShopData }) => {
 
       <Flex
         flexWrap="wrap"
-        justifyContent="space-between"
+        justifyContent={{sm:'center',md:"space-between"}}
         alignItem="center"
         mt="30px"
         w='100%'
