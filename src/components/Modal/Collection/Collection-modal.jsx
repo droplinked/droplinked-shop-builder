@@ -4,33 +4,64 @@ import BasicButton from "../../shared/BasicButton/BasicButton";
 
 import { useState } from "react";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { updateCollection } from "../../../api/producer/Collection-api";
+import {
+  updateCollection,
+  newCollection,
+} from "../../../api/producer/Collection-api";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 const CollectionModal = ({ collection, close, update }) => {
-  const [collectionName, setCollectionName] = useState(collection.title);
+  const [collectionName, setCollectionName] = useState(() => {
+  return  collection == undefined ? "" : collection.title;
+  });
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
 
+  const isNewCollection = (collection == undefined) ? true : false
+
   const changeName = (e) => setCollectionName(e.target.value);
 
   const submitForm = async () => {
+
     if (collectionName == "") {
       errorToast("Collection name required");
       return;
     }
 
     setLoading(true);
-    let result = await updateCollection(collection._id, collectionName);
+
+    let result;
+    if (isNewCollection) result = await newCollection(collectionName);
+    else result = await updateCollection(collection._id, collectionName);
+
     if (result == true) {
-      successToast("Collection updated successfully");
+      if (isNewCollection) successToast("New collection added successfully");
+      else successToast("Collection updated successfully");
       update();
     } else {
       errorToast(result);
     }
     close();
     setLoading(false);
+    // let result = await newCollection(collectionName);
+    // if (result == true) {
+    //   successToast("New collection added successfully");
+    //   toggle();
+    // } else {
+    //   errorToast(result);
+    // }
+
+  //  setLoading(true);
+    // let result = await updateCollection(collection._id, collectionName);
+    // if (result == true) {
+    //   successToast("Collection updated successfully");
+    //   update();
+    // } else {
+    //   errorToast(result);
+    // }
+    // close();
+    // setLoading(false);
   };
 
   return (
