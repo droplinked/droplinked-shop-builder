@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useAddress } from "../../../../context/address/AddressContext";
@@ -23,38 +23,37 @@ import Loading from "../../../../components/shared/loading/Loading";
 import AddressForm from "../../../../components/Modal/Address/Address-modal";
 
 function AddressPage() {
-  // navigate if not user
-  let navigate = useNavigate();
+  // hooks
+  const navigate = useNavigate();
   const { profile } = useProfile();
-  let { shopname } = useParams();
+  const { shopname } = useParams();
   const { getStxAddress } = UseWalletInfo();
-
+  const { errorToast } = useToasty();
+  const { addressList } = useAddress();
+  const { cart } = useCart();
+  // navigate if not user
   let token = JSON.parse(localStorage.getItem("token"));
   if (!token) navigate("/");
-
+  // states
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [addressModal, setAddressModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { errorToast, successToast } = useToasty();
-  const { addressList } = useAddress();
-  const { cart } = useCart();
-  console.log(cart);
-  const toggleAddressForm = () => {
-    setAddressModal((p) => !p);
-  };
-
   useEffect(() => {
-    if (addressList.length > 0) setSelectedAddress(addressList[0]);
-    else setSelectedAddress(null);
+    if (addressList) {
+      if (addressList.length > 0) setSelectedAddress(addressList[0]);
+      else setSelectedAddress(null);
+    }
   }, [addressList]);
 
+  const toggleAddressForm = () => setAddressModal((p) => !p);
+
   //  item
-  const hasGatedProductInCard = () => {
-    let findItem = cart.items.find((item) => item.productRule != undefined);
-    if (findItem == undefined) return false;
-    else return true;
-  };
+  // const hasGatedProductInCard = () => {
+  //   let findItem = cart.items.find((item) => item.productRule != undefined);
+  //   if (findItem == undefined) return false;
+  //   else return true;
+  // };
 
   const getAddressObj = () => {
     return {
@@ -101,6 +100,7 @@ function AddressPage() {
           product_id: item.productId,
         };
       });
+
       let data = {
         checkout: {
           billing_address: addressObj,
@@ -110,6 +110,7 @@ function AddressPage() {
           email: profile.email,
         },
       };
+
       setLoading(true);
       let result = await createCheckout(cart.items[0].shopName, data);
       setLoading(false);
