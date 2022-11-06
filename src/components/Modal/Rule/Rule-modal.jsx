@@ -15,11 +15,12 @@ import {
   addRuleset,
   getRuleById,
   updateRule,
-} from "../../../../api/producer/Ruleset-api";
-import { useToasty } from "../../../../context/toastify/ToastContext";
+} from "../../../api/producer/Ruleset-api";
+import { useToasty } from "../../../context/toastify/ToastContext";
 
-import BasicButton from "../../BasicButton/BasicButton";
-import FormInput from "../../FormInput/FormInput";
+
+import BasicButton from "../../shared/BasicButton/BasicButton";
+import FormInput from "../../shared/FormInput/FormInput";
 
 const RuleModal = ({ open, close, collectionId, ruleId }) => {
   const [ruleList, setRuleList] = useState(() => {

@@ -4,7 +4,7 @@ import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import Product from "../Product/Product";
 import CollectionModal from "../../Modal/Collection/Collection-modal";
 import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
-import RuleModal from "./rule-collection-modal/Rule-modal";
+import RuleModal from "../../Modal/Rule/Rule-modal";
 import AddProduct from "../AddProduct/Add-product-component";
 
 import {
