@@ -17,7 +17,7 @@ import EmailModal from "../../../../components/Modal/Email-modal/email-modal";
 import DroplinkedItem from "./chekout-item/Droplinked-item";
 import ShopifytItem from "./chekout-item/Shopify-item";
 import SignUpModal from "../../../../components/Modal/Register-modal/SignUpModal";
-import LoginModal from "../../../../components/Modal/Login-modal/login-modal";
+import LoginModal from "../../../../components/Modal/Login/login-modal";
 
 function CheckoutPage() {
   const [showEmailModal, setShowEmailModal] = useState(false);

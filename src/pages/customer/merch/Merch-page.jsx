@@ -9,7 +9,7 @@ import { Box } from "@chakra-ui/react";
 import Loading from "../../../components/shared/loading/Loading";
 import DroplinkedMerch from "./droplinked-merch/Droplinked-merch";
 import ShopifyMech from "./shopify-merch/Shopify-merch";
-import LoginModal from "../../../components/Modal/Login-modal/login-modal";
+import LoginModal from "../../../components/Modal/Login/login-modal";
 import SignUpModal from "../../../components/Modal/Register-modal/SignUpModal";
 import ResetPassModal from "../../../components/Modal/ResetPass-modal/ResetPassModal-component";
 
