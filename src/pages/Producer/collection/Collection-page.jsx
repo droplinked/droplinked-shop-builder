@@ -1,4 +1,4 @@
-import "./Collection-page-style.scss";
+//import "./Collection-page-style.scss";
 
 import Loading from "../../../components/shared/loading/Loading";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
@@ -9,6 +9,13 @@ import CollectionModal from "../../../components/Modal/Collection/Collection-mod
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCollections } from "../../../api/producer/Collection-api";
+import {
+  CollectionPageWrapper,
+  HeaderTitle,
+  ListedNumber,
+  ButtonWrapper,
+  AddproductWrapper
+} from "./Collection-page-style";
 
 export default function CollectionMainPage() {
   const [Modal, setModal] = useState(false);
@@ -34,47 +41,43 @@ export default function CollectionMainPage() {
   const closeNewCollectionModal = () => setModal(false);
 
   return (
-    <>
-      <div className="Collection-page-wrapper">
-        <div className="ims-title">Collections</div>
-        <div className="number-of-merchs">
-          {collectins && collectins.length} Listed
-        </div>
-        <div className="mt-5 col-12 col-md-3 ">
-          <BasicButton click={ToggleModal}>Add collection</BasicButton>
-        </div>
+    <CollectionPageWrapper>
+      <HeaderTitle>Collections</HeaderTitle>
+      <ListedNumber>{collectins && collectins.length} Listed</ListedNumber>
+      <ButtonWrapper>
+        <BasicButton click={ToggleModal}>Add collection</BasicButton>
+      </ButtonWrapper>
 
-        {collectins ? (
-          <>
-            {collectins.length <= 0 ? (
-              <div className="mt-5 col-lg-6 col-md-10 col-12 ">
-                <AddProduct />
-              </div>
-            ) : (
-              <>
-                {collectins.map((collection, i) => {
-                  return (
-                    <div key={i} className="mt-5 col-lg-6 col-md-10 col-12 ">
-                      <ProducerCollection
-                        collection={collection}
-                        update={updateCollections}
-                      />
-                    </div>
-                  );
-                })}
-              </>
-            )}
-          </>
-        ) : (
-          <Loading />
-        )}
-      </div>
+      {collectins ? (
+        <>
+          {collectins.length <= 0 ? (
+            <AddproductWrapper>
+              <AddProduct />
+            </AddproductWrapper>
+          ) : (
+            <>
+              {collectins.map((collection, i) => {
+                return (
+                  <AddproductWrapper key={i} >
+                    <ProducerCollection
+                      collection={collection}
+                      update={updateCollections}
+                    />
+                  </AddproductWrapper>
+                );
+              })}
+            </>
+          )}
+        </>
+      ) : (
+        <Loading />
+      )}
       {Modal && (
         <CollectionModal
           close={closeNewCollectionModal}
           update={updateCollections}
         />
       )}
-    </>
+    </CollectionPageWrapper>
   );
 }
