@@ -12,7 +12,7 @@ export const ShopPageContainer = chakra("div", {
     marginTop: "0px",
     animation: animation,
     w:'100%',
-    maxW:'800px',
+   // maxW:'800px',
   },
 });
 

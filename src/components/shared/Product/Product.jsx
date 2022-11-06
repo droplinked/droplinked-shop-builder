@@ -11,11 +11,13 @@ export default function Product({ title, imageUrl, id, shopname, type }) {
       : `/${shopname}/merch/${id}`;
 
   return (
+    
     <Box
       w="100%"
-      m="0px 0px 0px 0px"
-      p="10px"
+      m="0px"
+      p="0.3em"
       border= "1px solid transparent"
+      aspectRatio='1'
       _hover={{
          borderRadius:'8px',
         bgColor:'#353535',
@@ -24,12 +26,13 @@ export default function Product({ title, imageUrl, id, shopname, type }) {
     >
       <Link to={linkAddress}>
         <ProductContent>
-          <AspectRatio ratio={1}>
+          
             <ProductImage src={imageUrl ? imageUrl : ""} />
-          </AspectRatio>
+        
         </ProductContent>
         <ProductTitle>{title}</ProductTitle>
       </Link>
     </Box>
+      
   );
 }

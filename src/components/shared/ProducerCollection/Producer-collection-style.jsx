@@ -4,20 +4,31 @@ export const ProducerCollectionWrapper = chakra("div", {
   baseStyle: {
     width: "100%",
     borderRadius: "8px",
-    padding: { base: "15px 10px 10px 10px", md: "25px 20px 15px 20px" },
+    // padding: { base: "15px 10px 10px 10px", md: "25px 20px 15px 20px" },
     transition: "0.8s",
-    bg:'subLayer',
+    bg: "subLayer",
+    padding: { base: "25px 20px", sm: "30px 40px", md: "50px 60px" },
   },
 });
 
 export const ShopNameText = chakra("div", {
   baseStyle: {
     color: "#fff",
-    fontWeight: "600",
-    fontSize: { base: "18px", md: "24px" },
+    fontWeight: "500",
+    fontSize: { base: "18px", sm: "24px", md: "32px" ,lg:'36px' ,xl:'40px' },
     pt: { base: "3px", md: "0px" },
     overflow: "hidden",
     whiteSpace: "nowrap",
+    cursor:'pointer'
+  },
+});
+
+
+export const ProductsWrapper = chakra("div", {
+  baseStyle: {
+      d:'grid' ,
+      gap:'10px 10px',
+      gridTemplateColumns:{ base:'1fr 1fr', md:'1fr 1fr 1fr 1fr'}
   },
 });
 
@@ -41,11 +52,17 @@ export const menuItemStyle = {
 
 export const menuButtonStyle = {
   color: "white",
-  bg:'mainLayer',
+  bg: "mainLayer",
   px: 4,
   py: 1,
   fontSize: { base: "16px", md: "20px" },
   transition: "all 0.2s",
   borderRadius: "md",
 };
-
+export const HeaderIcon = chakra("img", {
+  baseStyle: {
+    w: { base: "20px", sm: "28px", md: "32px" ,lg:'40px'},
+    h: { base: "20px", sm: "28px", md: "32px" ,lg:'40px' },
+    cursor:'pointer'
+  },
+});

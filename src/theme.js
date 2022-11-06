@@ -15,8 +15,8 @@ export const theme = extendTheme({
   breakpoints: {
     sm: "481px",
     md: "768px",
-    lg: "1280px",
-    xl: "96em",
+    lg: "992px",
+    xl: "1200px",
   },
 });
 //8053ff
