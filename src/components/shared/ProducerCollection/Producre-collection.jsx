@@ -2,7 +2,7 @@
 
 import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import Product from "../Product/Product";
-import EditCollectionModal from "../../Modal/Edit-collection/Edit-collection-modal";
+import CollectionModal from "../../Modal/Collection/Collection-modal";
 import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
 import RuleModal from "./rule-collection-modal/Rule-modal";
 import AddProduct from "../AddProduct/Add-product-component";
@@ -111,7 +111,7 @@ const ProducerCollection = ({ collection, update }) => {
         />
       )}
       {editModal && (
-        <EditCollectionModal
+        <CollectionModal
           collection={collection}
           close={closeEditModal}
           update={update}
