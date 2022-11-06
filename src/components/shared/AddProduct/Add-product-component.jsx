@@ -1,5 +1,5 @@
-import { AddProductWrapper, InputProductComponent } from "./Add-product-style";
-import { AspectRatio, Text } from "@chakra-ui/react";
+import { InputProductComponent } from "./Add-product-style";
+import { AspectRatio, Text, Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
@@ -8,7 +8,7 @@ const AddProduct = () => {
   const navigateToAddProduct = () => navigate("/producer/add-product");
 
   return (
-    <div className="w-100">
+    <Box w="100%">
       <AspectRatio ratio={1}>
         <InputProductComponent onClick={navigateToAddProduct}>
           <Text color="white" fontSize="50px" lineHeight="50px">
@@ -19,7 +19,7 @@ const AddProduct = () => {
           </Text>
         </InputProductComponent>
       </AspectRatio>
-    </div>
+    </Box>
   );
 };
 
