@@ -19,7 +19,7 @@ const ProfileButton = ({ text, icon, click }) => {
         src={icon}
         w='24px'
         h='24px'
-        mr={{ base: "0px", md: "10px" }}
+        mr={{ base: "0px", md: "20px" }}
       />
       <Text
         d={{ base: "none", md: "flex" }}
