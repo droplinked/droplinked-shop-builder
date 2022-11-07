@@ -26,13 +26,14 @@ export const getRuleById = async (ruleId) => {
   }
 };
 
-export const addRuleset = async (collectionID, rules , webUrl) => {
+export const addRuleset = async (collectionID, rules , webUrl , gated) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.post(
       `${BASE_URL}/producer/ruleset`,
       {
         collectionID: collectionID,
+        gated: gated,
         rules: rules,
         webUrl:webUrl
       },

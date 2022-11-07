@@ -9,6 +9,8 @@ import {
 } from "./rule-modal-style";
 import { Box, Flex, Checkbox } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
+import { convertRuleArray } from "./rule-utils";
+import { addRuleset } from "../../../api/producer/Ruleset-api";
 
 import deleteIcon from "../../../assest/icon/delete-icon.svg";
 import FormInput from "../../shared/FormInput/FormInput";
@@ -22,9 +24,10 @@ const TYPES = {
   description: "description",
 };
 
-const Rule = () => {
+const Rule = ({ collectionId, update, close }) => {
   const [Rulelist, setRulelist] = useState(null);
   const [webUrl, setWebUrl] = useState("");
+  const [gated, setGated] = useState(false);
 
   const changeWebUrl = (e) => setWebUrl(e.target.value);
 
@@ -33,9 +36,8 @@ const Rule = () => {
       let ruleObj = [
         {
           addresses: "",
-          gated: false,
-          nftsCount: 0,
-          discountPercentage: 0,
+          nftsCount:'',
+          discountPercentage: '',
           description: ".",
         },
       ];
@@ -54,26 +56,34 @@ const Rule = () => {
     setRulelist(newRuleList);
   };
 
+  const changeGated = () => setGated(p => !p)
+
   const addnewRule = () => {
     let newRuleList = Array.from(Rulelist);
     newRuleList.push({
       addresses: "",
-      gated: false,
-      nftsCount: 0,
-      discountPercentage: 0,
+      nftsCount: '',
+      discountPercentage: '',
       description: ".",
     });
     setRulelist(newRuleList);
   };
 
-
-
   const deleteRule = (index) => {
-    if(Rulelist.length == 1) return
+    if (Rulelist.length == 1) return;
     let newRuleList = Array.from(Rulelist);
-    newRuleList = newRuleList.filter((rule , i) => {return i != index})
+    newRuleList = newRuleList.filter((rule, i) => {
+      return i != index;
+    });
     setRulelist(newRuleList);
-  }
+  };
+
+  const submit = async () => {
+    let rules = convertRuleArray(Rulelist);
+    let result = await addRuleset(collectionId, rules, webUrl ,gated);
+    console.log(result);
+    update();
+  };
 
   return (
     <RuleModalWrapper>
@@ -86,6 +96,16 @@ const Rule = () => {
           change={changeWebUrl}
           placeholder={"Your website"}
         />
+<Box mb="20px"></Box>
+        <Checkbox
+          size="md"
+          color="primary"
+          colorScheme="green"
+          isChecked={gated}
+          onChange={changeGated}
+        >
+          Gated
+        </Checkbox>
 
         <Box mb="40px"></Box>
         {Rulelist != null && (
@@ -93,8 +113,13 @@ const Rule = () => {
             (
             {Rulelist.map((rule, index) => {
               return (
-                <Box mb="40px" pos="relative">
-                  <DeleteIconComponent src={deleteIcon} onClick={()=>{deleteRule(index)}}/>
+                <Box mb="100px" pos="relative">
+                  <DeleteIconComponent
+                    src={deleteIcon}
+                    onClick={() => {
+                      deleteRule(index);
+                    }}
+                  />
                   <TextareaInput
                     value={rule.addresses}
                     onChange={(e) => {
@@ -108,17 +133,6 @@ const Rule = () => {
                     alignItems="center"
                     w="100%"
                   >
-                    <Checkbox
-                      size="md"
-                      color="primary"
-                      colorScheme="green"
-                      isChecked={rule.gated}
-                      onChange={(e) => {
-                        changeRuleproperty(e.target.checked, "gated", index);
-                      }}
-                    >
-                      Gated
-                    </Checkbox>
                     <Box w="200px">
                       <InputComponent
                         type="number"
@@ -131,7 +145,7 @@ const Rule = () => {
                             index
                           );
                         }}
-                        disabled={rule.gated}
+                        disabled={gated}
                       />
                     </Box>
                     <Box w="200px">
@@ -146,7 +160,6 @@ const Rule = () => {
                             index
                           );
                         }}
-                        disabled={rule.gated}
                       />
                     </Box>
                   </Flex>
@@ -173,6 +186,15 @@ const Rule = () => {
         )}
 
         <AddRuleButton onClick={addnewRule}>Add new rule</AddRuleButton>
+        <Box mb="40px"></Box>
+        <Flex w="100%" justifyContent="space-between">
+          <Box w="200px">
+            <BasicButton click={close}>Cancel</BasicButton>
+          </Box>
+          <Box w="200px">
+            <BasicButton click={submit}>Add</BasicButton>
+          </Box>
+        </Flex>
       </RuleModalCotent>
     </RuleModalWrapper>
   );

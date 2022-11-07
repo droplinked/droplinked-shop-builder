@@ -5,7 +5,7 @@ import Product from "../Product/Product";
 import CollectionModal from "../../Modal/Collection/Collection-modal";
 import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
 import OldRuleModal from "../../Modal/oldRule/Rule-modal";
-import Rule from "../../Modal/Rule/rule-modal"
+import Rule from "../../Modal/Rule/rule-modal";
 import AddProduct from "../AddProduct/Add-product-component";
 
 import {
@@ -59,7 +59,6 @@ const ProducerCollection = ({ collection, update }) => {
           openRuleModal={openRuleModal}
         />
         <ProductsWrapper>
-          
           {collection.products.length == 0 ? (
             <Box w="100%">
               <AddProduct />
@@ -121,13 +120,13 @@ const ProducerCollection = ({ collection, update }) => {
           update={update}
         />
       )}
-      <OldRuleModal
+      {/* <OldRuleModal
         open={ruleModal}
         close={closeRuleModal}
         collectionId={collection._id}
         ruleId={collection.ruleSetID || undefined}
-      />
-      <Rule />
+      /> */}
+     {ruleModal && <Rule close={closeRuleModal} collectionId={collection._id} update={update}/>}
     </>
   );
 };
