@@ -4,22 +4,30 @@ import inventoryIcon from "../../../../assest/icon/inventory-icon.svg";
 import settingIcon from "../../../../assest/icon/setting-icon.svg";
 import orderIcon from "../../../../assest/icon/order-icon.svg";
 import logoutIcon from "../../../../assest/icon/logout-icon.svg";
+import shopIcon from "../../../../assest/icon/shop-icon.svg";
 
 import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../../context/profile/ProfileContext"
 
 const Profilebar = () => {
-  const { logout } = useProfile();
+  const { logout  ,profile} = useProfile();
   let navigate = useNavigate();
 
   const collectionClick = () => navigate("/producer/collection");
   const orderClick = () => navigate("/producer/orders");
   const settingClick = () => navigate("/settings");
   const inventoryClick = () => navigate("/producer/ims");
+  const shopClick = () => navigate(`/${profile.shopName}`);
+
 
   return (
     <Box w="100%">
+       <ProfileButton
+        text={"Shop"}
+        icon={shopIcon}
+        click={shopClick}
+      />
       <ProfileButton
         text={"Collections"}
         icon={collectionIcon}
