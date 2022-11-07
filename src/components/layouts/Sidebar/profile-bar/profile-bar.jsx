@@ -7,7 +7,7 @@ import logoutIcon from "../../../../assest/icon/logout-icon.svg";
 import shopIcon from "../../../../assest/icon/shop-icon.svg";
 
 import { Box } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate  , matchRoutes, useLocation } from "react-router-dom";
 import { useProfile } from "../../../../context/profile/ProfileContext"
 
 const Profilebar = () => {
@@ -20,6 +20,8 @@ const Profilebar = () => {
   const inventoryClick = () => navigate("/producer/ims");
   const shopClick = () => navigate(`/${profile.shopName}`);
 
+  const location = useLocation().pathname
+
 
   return (
     <Box w="100%">
@@ -27,16 +29,19 @@ const Profilebar = () => {
         text={"Shop"}
         icon={shopIcon}
         click={shopClick}
+        active={(location == `/${profile.shopName}`)}
       />
       <ProfileButton
         text={"Collections"}
         icon={collectionIcon}
         click={collectionClick}
+        active={(location == '/producer/collection')}
       />
       <ProfileButton
         text={"Inventory"}
         icon={inventoryIcon}
         click={inventoryClick}
+        active={(location =='/producer/ims')}
       />
       <ProfileButton text={"Orders"} icon={orderIcon} click={orderClick} />
       <ProfileButton
