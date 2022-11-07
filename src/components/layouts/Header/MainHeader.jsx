@@ -11,6 +11,7 @@ import UserHeader from "./user Header/User-header-component";
 import EmailModal from "../../Modal/Email-modal/email-modal";
 
 function MainHeader() {
+  
   const [showEmailModal, setEmailModal] = useState(false);
   const { profile } = useProfile();
 
