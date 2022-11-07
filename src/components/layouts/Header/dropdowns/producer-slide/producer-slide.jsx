@@ -11,12 +11,14 @@ import inventoryIcon from "../../../../../assest/icon/inventory-icon.svg";
 import settingIcon from "../../../../../assest/icon/setting-icon.svg";
 import orderIcon from "../../../../../assest/icon/order-icon.svg";
 import logoutIcon from "../../../../../assest/icon/logout-icon.svg";
+import shopIcon from "../../../../../assest/icon/shop-icon.svg";
 
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../../../context/profile/ProfileContext";
 
 const ProducerSlide = ({ close }) => {
-  const { logout } = useProfile();
+  
+  const { logout, profile } = useProfile();
   let navigate = useNavigate();
 
   const collectionClick = () => {
@@ -36,11 +38,20 @@ const ProducerSlide = ({ close }) => {
     close();
   };
 
+  const shopClick = () => {
+    navigate(`/${profile.shopName}`);
+    close();
+  };
+
   return (
     <ProducerSlideWrapper>
       <SlideButton onClick={close}>
         <SlideIcon src={closeIcon} transform="rotate(45deg)" />
         <SlideText>Close</SlideText>
+      </SlideButton>
+      <SlideButton onClick={shopClick}>
+        <SlideIcon src={shopIcon} />
+        <SlideText>Shop</SlideText>
       </SlideButton>
       <SlideButton onClick={collectionClick}>
         <SlideIcon src={collectionIcon} />
