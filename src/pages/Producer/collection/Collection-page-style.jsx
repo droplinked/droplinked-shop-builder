@@ -22,8 +22,7 @@ export const ButtonWrapper = chakra("div", {
 export const AddproductWrapper = chakra("div", {
   baseStyle: {
     mt:'48px' , 
-    w:{base:'100%',sm:'100%', md:'50%'},
-    minW:'400px'
+    w:{base:'100%',sm:'100%', md:'100%'},
   },
 });
 
