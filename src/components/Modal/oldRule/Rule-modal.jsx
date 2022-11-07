@@ -22,7 +22,7 @@ import { useToasty } from "../../../context/toastify/ToastContext";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 import FormInput from "../../shared/FormInput/FormInput";
 
-const RuleModal = ({ open, close, collectionId, ruleId }) => {
+const OldRuleModal = ({ open, close, collectionId, ruleId }) => {
   const [ruleList, setRuleList] = useState(() => {
     return ruleId == undefined
       ? [
@@ -289,4 +289,4 @@ const RuleModal = ({ open, close, collectionId, ruleId }) => {
   );
 };
 
-export default RuleModal;
+export default OldRuleModal;
