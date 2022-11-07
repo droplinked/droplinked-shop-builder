@@ -5,6 +5,7 @@ import Product from "../Product/Product";
 import CollectionModal from "../../Modal/Collection/Collection-modal";
 import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
 import OldRuleModal from "../../Modal/oldRule/Rule-modal";
+import Rule from "../../Modal/Rule/rule-modal"
 import AddProduct from "../AddProduct/Add-product-component";
 
 import {
@@ -126,6 +127,7 @@ const ProducerCollection = ({ collection, update }) => {
         collectionId={collection._id}
         ruleId={collection.ruleSetID || undefined}
       />
+      <Rule />
     </>
   );
 };
