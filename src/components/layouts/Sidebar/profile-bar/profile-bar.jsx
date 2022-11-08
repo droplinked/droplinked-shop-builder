@@ -24,7 +24,7 @@ const Profilebar = () => {
 
 
   return (
-    <Box w="100%">
+    <Box w="100%" px={{lg:'0px',xl:'10px'}}>
        <ProfileButton
         text={"Shop"}
         icon={shopIcon}

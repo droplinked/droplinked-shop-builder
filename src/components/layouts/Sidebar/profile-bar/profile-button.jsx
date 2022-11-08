@@ -15,16 +15,16 @@ const ProfileButton = ({ text, icon, click ,active  }) => {
         bg: "primary",
       }}
       onClick={click}
-      justifyContent={{ base: "center", md: "start" }}
+      justifyContent={{ base: "center", lg: "start" }}
     >
       <Image
         src={icon}
         w='24px'
         h='24px'
-        mr={{ base: "0px", md: "20px" }}
+        mr={{ base: "0px", lg: "20px" }}
       />
       <Text
-        d={{ base: "none", md: "flex" }}
+        d={{ base: "none", lg: "flex" }}
         color="white"
         fontWeight="500"
         fontSize="18px"
