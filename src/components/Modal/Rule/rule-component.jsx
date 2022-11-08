@@ -4,7 +4,7 @@ import { useState } from "react";
 import { convertAddressToArray } from "./rule-utils";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 
-const AddRuleComponent = ({ rule, addToRules, close }) => {
+const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
   const [addressList, setAddressList] = useState("");
   const [description, setDescription] = useState("");
   const [discount, setDiscount] = useState("");
@@ -49,15 +49,17 @@ const AddRuleComponent = ({ rule, addToRules, close }) => {
           />
         </Box>
         <Box w={{ base: "100%", lg: "30%" }}>
-          <Flex alignItems="center">
-            <LableInput mr="16px">Discount</LableInput>
-            <InputComponent
-              placeholder="Discount"
-              value={discount}
-              onChange={changeDiscount}
-              type="number"
-            />
-          </Flex>
+          {!isGated && (
+            <Flex alignItems="center">
+              <LableInput mr="16px">Discount</LableInput>
+              <InputComponent
+                placeholder="Discount"
+                value={discount}
+                onChange={changeDiscount}
+                type="number"
+              />
+            </Flex>
+          )}
           <Box mb="20px"></Box>
           <Flex alignItems="center">
             <LableInput mr="16px">Counter</LableInput>

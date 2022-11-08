@@ -89,7 +89,7 @@ const Rule = ({ collectionId, update, close }) => {
           })}
 
         {addNewRule ? (
-          <AddRuleComponent close={toggleRuleModal} addToRules={addToRules} />
+          <AddRuleComponent close={toggleRuleModal} isGated={ruleType == RuleTypes.GATED} addToRules={addToRules} />
         ) : (
           <AddRuleButton onClick={toggleRuleModal}>Add new rule</AddRuleButton>
         )}
