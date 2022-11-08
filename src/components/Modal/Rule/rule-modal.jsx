@@ -46,15 +46,17 @@ const Rule = ({ collectionId, update, close, ruleId }) => {
   const getRuleData = async () => {
     let result = await getRuleById(ruleId);
     console.log(result);
-    if (result.status == "success") initializeRule(result.data.ruleSet.rules);
+    if (result.status == "success") initializeRule(result.data.ruleSet);
   };
 
   const initializeRule = (rule) => {
-    let initialRuleList = rule.map((currentRule) => {
+    setWebUrl(rule.webUrl);
+    if (rule.gated) setRuleType(RuleTypes.GATED);
+    let initialRuleList = rule.rules.map((currentRule) => {
       return {
-        addresses: (currentRule.addresses),
+        addresses: currentRule.addresses,
         type: currentRule.type,
-        counter: (currentRule.nftsCount)? currentRule.nftsCount : "",
+        counter: currentRule.nftsCount ? currentRule.nftsCount : "",
         discount: currentRule.discountPercentage,
         des: currentRule.description,
       };
@@ -103,7 +105,7 @@ const Rule = ({ collectionId, update, close, ruleId }) => {
     let result = await addRuleset(collectionId, rulesArray, webUrl, gated);
     console.log(result);
     update();
-    close()
+    close();
   };
 
   return (
