@@ -11,7 +11,7 @@ import {
 import { Box, Flex, Checkbox } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 // import { convertAddressToArray } from "./rule-utils";
-// import { addRuleset } from "../../../api/producer/Ruleset-api";
+import { addRuleset } from "../../../api/producer/Ruleset-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { RuleTypes } from "./rule-type";
 
@@ -34,25 +34,19 @@ const Rule = ({ collectionId, update, close }) => {
   //this state used add new rule
   const [addNewRule, setAddNewRule] = useState(false);
 
-  
   const changeWebUrl = (e) => setWebUrl(e.target.value);
 
   const chnageRuleType = (e) => setRuleType(e.target.value);
 
   const toggleRuleModal = () => setAddNewRule((p) => !p);
 
-  // useEffect(() => {
-  //   // add default rule first
-  //   if (Rulelist.length == 0) addnewRule();
-  // }, []);
-
-
   const deleteRule = (index) => {
     let newArray = Array.from(Rulelist);
-    newArray = newArray.filter((rule ,i )=>{return i!=index})
+    newArray = newArray.filter((rule, i) => {
+      return i != index;
+    });
     setRulelist(newArray);
-  }
-
+  };
 
   const addToRules = (newRule) => {
     let currentRuleArray = Array.from(Rulelist);
@@ -60,19 +54,33 @@ const Rule = ({ collectionId, update, close }) => {
     setRulelist(currentRuleArray);
   };
 
-  const editRule = (newRule , index) => {
+  const editRule = (newRule, index) => {
     let currentRuleArray = Array.from(Rulelist);
-    currentRuleArray = currentRuleArray.map((rule , i) =>{
-      if(index == i ){return {...newRule}}
-      else {return {...rule}}
-    })
+    currentRuleArray = currentRuleArray.map((rule, i) => {
+      if (index == i) {
+        return { ...newRule };
+      } else {
+        return { ...rule };
+      }
+    });
     setRulelist(currentRuleArray);
-  }
+  };
 
   const submit = async () => {
-    // let rules = convertAddressToArray(Rulelist);
-    // let result = await addRuleset(collectionId, rules, webUrl, ruleType);
-    // update();
+    const gated = ruleType == RuleTypes.DISCOUNT ? false : true;
+    let rulesArray = [];
+    rulesArray = Rulelist.map((rule) => {
+      return {
+        addresses: rule.address,
+        type: "NFT",
+        nftsCount: rule.counter,
+        discountPercentage: rule.discount ? rule.discount : "",
+        description: rule.des,
+      };
+    });
+    let result = await addRuleset(collectionId, rulesArray, webUrl, gated);
+    console.log(result);
+    update();
   };
 
   return (
@@ -90,8 +98,10 @@ const Rule = ({ collectionId, update, close }) => {
 
         <Box mb="20px"></Box>
 
-        <TypeSelect value={ruleType} onChange={chnageRuleType} 
-        disabled={(Rulelist.length > 0)}
+        <TypeSelect
+          value={ruleType}
+          onChange={chnageRuleType}
+          disabled={Rulelist.length > 0}
         >
           <option value={RuleTypes.GATED}>Gated</option>
           <option value={RuleTypes.DISCOUNT}>Discount</option>
@@ -100,12 +110,25 @@ const Rule = ({ collectionId, update, close }) => {
         <Box mb="40px"></Box>
 
         {Rulelist.length > 0 &&
-          Rulelist.map((rule , i) => {
-            return <RuleItem rule={rule} deleteFunc={()=>{deleteRule(i)}} isGated={ruleType == RuleTypes.GATED} editRule={(newRule)=>editRule(newRule , i)}/>;
+          Rulelist.map((rule, i) => {
+            return (
+              <RuleItem
+                rule={rule}
+                deleteFunc={() => {
+                  deleteRule(i);
+                }}
+                isGated={ruleType == RuleTypes.GATED}
+                editRule={(newRule) => editRule(newRule, i)}
+              />
+            );
           })}
 
         {addNewRule ? (
-          <AddRuleComponent close={toggleRuleModal} isGated={ruleType == RuleTypes.GATED} addToRules={addToRules} />
+          <AddRuleComponent
+            close={toggleRuleModal}
+            isGated={ruleType == RuleTypes.GATED}
+            addToRules={addToRules}
+          />
         ) : (
           <AddRuleButton onClick={toggleRuleModal}>Add new rule</AddRuleButton>
         )}
