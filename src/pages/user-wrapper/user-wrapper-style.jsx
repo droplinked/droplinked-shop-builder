@@ -22,12 +22,9 @@ export const SideBarWrapper = chakra("div", {
 export const PageContainer = chakra("div", {
   baseStyle: {
     d: "flex",
-    w: { base: "100%", sm: "calc(100% - 120px)", md: "calc(100% - 220px)" },
+   // w: { base: "100%", sm: "calc(100% - 120px)",lg:"calc(100% - 200px)"  ,xl: "calc(100% - 23%)" },
+   w:'100%',
     justifyContent: "center",
     alignItems: "center",
-    // bg:'subLayer',
-    // borderRadius:'8px',
-    // px: { base: "20px", sm: "40px", md: "80px" },
-    // py: { base: "20px", sm: "20px", md: "60px" },
   },
 });
