@@ -7,7 +7,9 @@ import { IconComponent, GreenIcon, TextBorder } from "./rule-modal-style";
 const RuleItem = ({ rule }) => {
   
   return (
-    <Flex alignItems="center" mb='30px'>
+    <Flex alignItems="center"
+     mb={{base:'10px' , md:'10px',lg:'30px'}}
+     >
       <IconComponent src={editIcon} />
       <IconComponent src={deleteIcon} />
       <Flex pl='8px' py="14px" borderRadius="8px" alignItems='center' bg="mainLayer" w="100%" maxW="100%" overflow='hidden'>
