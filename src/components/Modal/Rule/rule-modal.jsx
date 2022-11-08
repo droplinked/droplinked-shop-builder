@@ -47,6 +47,13 @@ const Rule = ({ collectionId, update, close }) => {
   // }, []);
 
 
+  const deleteRule = (index) => {
+    let newArray = Array.from(Rulelist);
+    newArray = newArray.filter((rule ,i )=>{return i!=index})
+    setRulelist(newArray);
+  }
+
+
   const addToRules = (newRule) => {
     let currentRuleArray = Array.from(Rulelist);
     currentRuleArray.push(newRule);
@@ -84,8 +91,8 @@ const Rule = ({ collectionId, update, close }) => {
         <Box mb="40px"></Box>
 
         {Rulelist.length > 0 &&
-          Rulelist.map((rule) => {
-            return <RuleItem rule={rule} />;
+          Rulelist.map((rule , i) => {
+            return <RuleItem rule={rule} deleteFunc={()=>{deleteRule(i)}}/>;
           })}
 
         {addNewRule ? (
