@@ -60,6 +60,15 @@ const Rule = ({ collectionId, update, close }) => {
     setRulelist(currentRuleArray);
   };
 
+  const editRule = (newRule , index) => {
+    let currentRuleArray = Array.from(Rulelist);
+    currentRuleArray = currentRuleArray.map((rule , i) =>{
+      if(index == i ){return {...newRule}}
+      else {return {...rule}}
+    })
+    setRulelist(currentRuleArray);
+  }
+
   const submit = async () => {
     // let rules = convertAddressToArray(Rulelist);
     // let result = await addRuleset(collectionId, rules, webUrl, ruleType);
@@ -92,7 +101,7 @@ const Rule = ({ collectionId, update, close }) => {
 
         {Rulelist.length > 0 &&
           Rulelist.map((rule , i) => {
-            return <RuleItem rule={rule} deleteFunc={()=>{deleteRule(i)}}/>;
+            return <RuleItem rule={rule} deleteFunc={()=>{deleteRule(i)}} isGated={ruleType == RuleTypes.GATED} editRule={(newRule)=>editRule(newRule , i)}/>;
           })}
 
         {addNewRule ? (

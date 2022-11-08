@@ -1,7 +1,8 @@
 import { LableInput, InputComponent, TextareaInput } from "./rule-modal-style";
 import { Box, Flex } from "@chakra-ui/react";
-import { useState } from "react";
-import { convertAddressToArray } from "./rule-utils";
+import { useState, useEffect } from "react";
+import { convertAddressToArray, convertArrayToAddress } from "./rule-utils";
+
 import BasicButton from "../../shared/BasicButton/BasicButton";
 
 const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
@@ -9,6 +10,15 @@ const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
   const [description, setDescription] = useState("");
   const [discount, setDiscount] = useState("");
   const [counter, setCounter] = useState("");
+
+  useEffect(() => {
+    if (rule) {
+      setAddressList(convertArrayToAddress(rule.address));
+      setDescription(rule.des);
+      if (rule.discount) setDiscount(rule.discount);
+      setCounter(rule.counter);
+    }
+  }, []);
 
   const changeAddressList = (e) => setAddressList(e.target.value);
   const changeDescription = (e) => setDescription(e.target.value);
