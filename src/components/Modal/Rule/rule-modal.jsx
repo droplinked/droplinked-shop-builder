@@ -34,38 +34,18 @@ const Rule = ({ collectionId, update, close }) => {
   //this state used add new rule
   const [addNewRule, setAddNewRule] = useState(false);
 
-  // useEffect(() => {
-  //   // add default rule first
-  //   if (Rulelist.length == 0) addnewRule();
-  // }, []);
-
+  
   const changeWebUrl = (e) => setWebUrl(e.target.value);
-
-  // change property's value of an object of rule list
-  // const changeRuleproperty = (value, type, index) => {
-  //   let newRuleList = Rulelist.map((rule, i) => {
-  //     if (index != i) {
-  //       return { ...rule };
-  //     } else {
-  //       return { ...rule, [type]: value };
-  //     }
-  //   });
-  //   setRulelist(newRuleList);
-  // };
 
   const chnageRuleType = (e) => setRuleType(e.target.value);
 
   const toggleRuleModal = () => setAddNewRule((p) => !p);
 
-  // delete current rule
-  // const deleteRule = (index) => {
-  //   if (Rulelist.length == 1) return;
-  //   let newRuleList = Array.from(Rulelist);
-  //   newRuleList = newRuleList.filter((rule, i) => {
-  //     return i != index;
-  //   });
-  //   setRulelist(newRuleList);
-  // };
+  // useEffect(() => {
+  //   // add default rule first
+  //   if (Rulelist.length == 0) addnewRule();
+  // }, []);
+
 
   const addToRules = (newRule) => {
     let currentRuleArray = Array.from(Rulelist);
@@ -95,7 +75,7 @@ const Rule = ({ collectionId, update, close }) => {
         <Box mb="20px"></Box>
 
         <TypeSelect value={ruleType} onChange={chnageRuleType} 
-       // disabled={true}
+        disabled={(Rulelist.length > 0)}
         >
           <option value={RuleTypes.GATED}>Gated</option>
           <option value={RuleTypes.DISCOUNT}>Discount</option>

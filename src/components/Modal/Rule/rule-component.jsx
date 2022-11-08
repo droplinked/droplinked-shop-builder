@@ -41,7 +41,7 @@ const AddRuleComponent = ({ rule, addToRules, close }) => {
       <InputComponent
         placeholder="Description"
         value={description}
-        onChange={changeDescription}
+        onChange={changeDescription} 
       />
       <Box mb="20px"></Box>
       <Flex w="100%" alignItems="center" mb="20px">
@@ -51,6 +51,7 @@ const AddRuleComponent = ({ rule, addToRules, close }) => {
             placeholder="Discount"
             value={discount}
             onChange={changeDiscount}
+            type="number"
           />
         </Box>
         <Box w="40%">
@@ -59,6 +60,7 @@ const AddRuleComponent = ({ rule, addToRules, close }) => {
             placeholder="Counter"
             value={counter}
             onChange={changeCounter}
+            type="number"
           />
         </Box>
       </Flex>
