@@ -14,7 +14,7 @@ import {
   HeaderTitle,
   ListedNumber,
   ButtonWrapper,
-  AddproductWrapper
+  AddproductWrapper,
 } from "./Collection-page-style";
 
 export default function CollectionMainPage() {
@@ -42,8 +42,8 @@ export default function CollectionMainPage() {
 
   return (
     <CollectionPageWrapper>
-      <HeaderTitle>Collections</HeaderTitle>
-      <ListedNumber>{collectins && collectins.length} Listed</ListedNumber>
+      {/* <HeaderTitle>Collections</HeaderTitle>
+      <ListedNumber>{collectins && collectins.length} Listed</ListedNumber> */}
       <ButtonWrapper>
         <BasicButton click={ToggleModal}>Add collection</BasicButton>
       </ButtonWrapper>
@@ -58,7 +58,7 @@ export default function CollectionMainPage() {
             <>
               {collectins.map((collection, i) => {
                 return (
-                  <AddproductWrapper key={i} >
+                  <AddproductWrapper key={i}>
                     <ProducerCollection
                       collection={collection}
                       update={updateCollections}

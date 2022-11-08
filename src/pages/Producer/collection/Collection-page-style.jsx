@@ -13,7 +13,7 @@ export const CollectionPageWrapper = chakra("div", {
 
 export const ButtonWrapper = chakra("div", {
   baseStyle: {
-    mt:'48px' , 
+    mb:'20px' , 
     w:{base:'100%', md:'25%'},
     minW:'300px'
   },
@@ -21,7 +21,7 @@ export const ButtonWrapper = chakra("div", {
 
 export const AddproductWrapper = chakra("div", {
   baseStyle: {
-    mt:'48px' , 
+    mb:'20px' , 
     w:{base:'100%',sm:'100%', md:'100%'},
   },
 });
