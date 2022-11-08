@@ -2,7 +2,7 @@
 //import Footer from "../../components/layouts/Footer/Footer"
 
 import { Box, Flex } from "@chakra-ui/react";
-import { Outlet  ,useParams } from "react-router-dom";
+import { Outlet, useParams, useLocation } from "react-router-dom";
 import { useCart } from "../../context/cart/CartContext";
 import { useEffect } from "react";
 import { useAddress } from "../../context/address/AddressContext";
@@ -15,15 +15,14 @@ import MainHeader from "../../components/layouts/Header/MainHeader";
 import Footer from "../../components/layouts/Footer/Footer";
 
 export default function PageWrapper() {
-
   const { updateCart } = useCart();
   const { updateAddressList } = useAddress();
   const { profile, isCustomer } = useProfile();
   const { updateNotifications } = useNotifications();
   const { updateShop } = useShop();
-  const { shopname } = useParams()
+  const { shopname } = useParams();
 
-
+  let location = useLocation();
 
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem("token"));
@@ -41,6 +40,10 @@ export default function PageWrapper() {
       setInterval(updateNotifications, 60000);
     }
   }, [profile]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const firtsCheck = async () => {
     lastSeen();
@@ -68,7 +71,7 @@ export default function PageWrapper() {
 
   const cleanStorage = () => {
     localStorage.clear();
-    if(shopname != undefined) window.location.replace(`/${shopname}`)
+    if (shopname != undefined) window.location.replace(`/${shopname}`);
     else window.location.replace("/");
   };
 

@@ -79,7 +79,6 @@ const CollectionIframe = lazy(() =>
 function App() {
   return (
     <BrowserRouter>
-      <ScrollTop>
         <Suspense fallback={<LoadingPage />}>
           <Routes>
 
@@ -144,7 +143,6 @@ function App() {
             </Route>
           </Routes>
         </Suspense>
-      </ScrollTop>
     </BrowserRouter>
   );
 }
