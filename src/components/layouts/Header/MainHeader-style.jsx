@@ -19,5 +19,6 @@ export const HeaderTitle = chakra("p", {
     fontWeight: "600",
     letterSpacing: "0.2em",
     pt: { base: "3px", md: "0px" },
+    cursor:'pointer'
   },
 });
