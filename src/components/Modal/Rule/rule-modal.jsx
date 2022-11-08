@@ -45,13 +45,14 @@ const Rule = ({ collectionId, update, close, ruleId }) => {
 
   const getRuleData = async () => {
     let result = await getRuleById(ruleId);
+    console.log(result);
     if (result.status == "success") initializeRule(result.data.ruleSet.rules);
   };
 
   const initializeRule = (rule) => {
     let initialRuleList = rule.map((currentRule) => {
       return {
-        address: convertArrayToAddress(currentRule.addresses),
+        addresses: (currentRule.addresses),
         type: currentRule.type,
         counter: (currentRule.nftsCount)? currentRule.nftsCount : "",
         discount: currentRule.discountPercentage,
@@ -92,7 +93,7 @@ const Rule = ({ collectionId, update, close, ruleId }) => {
     let rulesArray = [];
     rulesArray = Rulelist.map((rule) => {
       return {
-        addresses: rule.address,
+        addresses: rule.addresses,
         type: "NFT",
         nftsCount: rule.counter,
         discountPercentage: rule.discount ? rule.discount : "",
@@ -102,6 +103,7 @@ const Rule = ({ collectionId, update, close, ruleId }) => {
     let result = await addRuleset(collectionId, rulesArray, webUrl, gated);
     console.log(result);
     update();
+    close()
   };
 
   return (

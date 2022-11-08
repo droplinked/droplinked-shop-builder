@@ -27,7 +27,7 @@ const RuleItem = ({ rule, deleteFunc, editRule, isGated }) => {
             overflow="hidden"
           >
             <GreenIcon>{rule.discount}</GreenIcon>
-            <TextBorder>NFT: {rule.address.length}</TextBorder>
+            <TextBorder>NFT: {rule.addresses.length}</TextBorder>
             <TextBorder>Amount: {rule.counter}</TextBorder>
             <TextBorder pr="0px" borderRight="none" maxW="30%">
               description: {rule.des}

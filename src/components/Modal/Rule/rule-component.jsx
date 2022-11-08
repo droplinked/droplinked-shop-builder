@@ -13,7 +13,7 @@ const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
 
   useEffect(() => {
     if (rule) {
-      setAddressList(convertArrayToAddress(rule.address));
+      setAddressList(convertArrayToAddress(rule.addresses));
       setDescription(rule.des);
       if (rule.discount) setDiscount(rule.discount);
       setCounter(rule.counter);
@@ -29,7 +29,7 @@ const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
     let ruleAddressList = convertAddressToArray(addressList);
 
     const ruleObj = {
-      address: ruleAddressList,
+      addresses: ruleAddressList,
       discount: discount,
       des: description,
       counter: counter,
