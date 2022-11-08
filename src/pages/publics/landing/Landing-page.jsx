@@ -30,7 +30,7 @@ const LoginModal = lazy(() =>
 );
 
 const ResetPassModal = lazy(() =>
-  import("../../../components/Modal/ResetPass-modal/ResetPassModal-component")
+  import("../../../components/Modal/ResetPass/ResetPassModal-component")
 );
 
 const keyframe_leftanimation = keyframes`

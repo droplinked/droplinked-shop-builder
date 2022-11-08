@@ -11,7 +11,7 @@ import DroplinkedMerch from "./droplinked-merch/Droplinked-merch";
 import ShopifyMech from "./shopify-merch/Shopify-merch";
 import LoginModal from "../../../components/Modal/Login/login-modal";
 import SignUpModal from "../../../components/Modal/Register-modal/SignUpModal";
-import ResetPassModal from "../../../components/Modal/ResetPass-modal/ResetPassModal-component";
+import ResetPassModal from "../../../components/Modal/ResetPass/ResetPassModal-component";
 
 export default function MerchPage() {
   const [product, setProduct] = useState(null);

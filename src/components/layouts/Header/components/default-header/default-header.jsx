@@ -5,7 +5,7 @@ import { Box } from "@chakra-ui/react";
 import HeaderItem from "../header-button/Header-btn-component";
 import SignUpModal from "../../../../Modal/Register-modal/SignUpModal";
 import LoginModal from "../../../../Modal/Login/login-modal";
-import ResetPassModal from "../../../../Modal/ResetPass-modal/ResetPassModal-component";
+import ResetPassModal from "../../../../Modal/ResetPass/ResetPassModal-component";
 import WalletButton from "../wallet-button/wallet-button-component";
 import Cart from "../../icons/cart/cart-icon-component";
 import DropdownContainer from "../../dropdowns/dropdown-container/DropDown-container";
