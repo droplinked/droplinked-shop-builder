@@ -67,13 +67,12 @@ export const TextareaInput = chakra("textarea", {
     w: "100%",
     color: "white",
     border: "none",
-    bgColor: "mainLayer",
+    bgColor: "subLayer",
     borderRadius: "8px",
     px: "16px",
     py: { base: "8px", md: "12px" },
     outline: "none",
     _focus: { outline: "none" },
-    h: "auto",
   },
 });
 
@@ -83,7 +82,7 @@ export const InputComponent = chakra("input", {
     fontSize: { base: "10px", sm: "12px", md: "16px" },
     color: "white",
     border: "none",
-    bgColor: "mainLayer",
+    bgColor: "subLayer",
     borderRadius: "8px",
     w: "100%",
     px: "16px",
@@ -118,7 +117,7 @@ export const IconComponent = chakra("img", {
   },
 });
 
-export const LableInput = chakra("lable", {
+export const LableInput = chakra("div", {
   baseStyle: {
     fontWeight: "600",
     fontSize: { base: "10px", sm: "12px", md: "16px" },

@@ -1,4 +1,4 @@
-import { LableInput, InputComponent  ,TextareaInput} from "./rule-modal-style";
+import { LableInput, InputComponent, TextareaInput } from "./rule-modal-style";
 import { Box, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { convertAddressToArray } from "./rule-utils";
@@ -29,49 +29,64 @@ const AddRuleComponent = ({ rule, addToRules, close }) => {
   };
 
   return (
-    <Box w="100%" mb="40px">
-      <LableInput>NFT Identify</LableInput>
-      <TextareaInput
-        placeholder="NFT Identify"
-        value={addressList}
-        onChange={changeAddressList}
-      />
-      <Box mb="20px"></Box>
+    <Box
+      w="100%"
+      mb="40px"
+      borderRadius="8px"
+      bg="mainLayer"
+      p={{ base: "10px", md: "20px", lg: "30px" }}
+    >
+      <Flex
+        justifyContent="space-between"
+        flexDir={{ base: "column", lg: "row" }}
+      >
+        <Box w={{ base: "100%", lg: "60%" }}>
+          <LableInput>NFT Identify</LableInput>
+          <TextareaInput
+            placeholder="NFT Identify"
+            value={addressList}
+            onChange={changeAddressList}
+          />
+        </Box>
+        <Box w={{ base: "100%", lg: "30%" }}>
+          <Flex alignItems="center">
+            <LableInput mr="16px">Discount</LableInput>
+            <InputComponent
+              placeholder="Discount"
+              value={discount}
+              onChange={changeDiscount}
+              type="number"
+            />
+          </Flex>
+          <Box mb="20px"></Box>
+          <Flex alignItems="center">
+            <LableInput mr="16px">Counter</LableInput>
+            <InputComponent
+              placeholder="Counter"
+              value={counter}
+              onChange={changeCounter}
+              type="number"
+            />
+          </Flex>
+        </Box>
+      </Flex>
+
+      <Box mb="40px"></Box>
       <LableInput>Description</LableInput>
       <InputComponent
         placeholder="Description"
         value={description}
-        onChange={changeDescription} 
+        onChange={changeDescription}
       />
-      <Box mb="20px"></Box>
-      <Flex w="100%" alignItems="center" mb="20px">
-        <Box w="40%" mr="30px">
-          <LableInput>Discount</LableInput>
-          <InputComponent
-            placeholder="Discount"
-            value={discount}
-            onChange={changeDiscount}
-            type="number"
-          />
-        </Box>
-        <Box w="40%">
-          <LableInput>Counter</LableInput>
-          <InputComponent
-            placeholder="Counter"
-            value={counter}
-            onChange={changeCounter}
-            type="number"
-          />
-        </Box>
-      </Flex>
+      <Box mb="40px"></Box>
       <Flex justifyContent="space-between">
-        <Box w="40%">
+        <Box w={{ base: "100px", md: "200px" }}>
           <BasicButton click={close} cancelType={true}>
-            close
+            Cancel
           </BasicButton>
         </Box>
-        <Box w="40%">
-          <BasicButton click={submitForm}>submit</BasicButton>
+        <Box w={{ base: "100px", md: "200px" }}>
+          <BasicButton click={submitForm}>Save</BasicButton>
         </Box>
       </Flex>
     </Box>
