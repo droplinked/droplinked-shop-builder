@@ -5,85 +5,78 @@ import {
   InputComponent,
   TextareaInput,
   AddRuleButton,
+  TypeSelect,
   DeleteIconComponent,
 } from "./rule-modal-style";
 import { Box, Flex, Checkbox } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { convertRuleArray } from "./rule-utils";
-import { addRuleset } from "../../../api/producer/Ruleset-api";
-import { useToasty } from "../../../context/toastify/ToastContext"
+// import { convertAddressToArray } from "./rule-utils";
+// import { addRuleset } from "../../../api/producer/Ruleset-api";
+import { useToasty } from "../../../context/toastify/ToastContext";
+import { RuleTypes } from "./rule-type";
 
-import deleteIcon from "../../../assest/icon/delete-icon.svg";
+// import deleteIcon from "../../../assest/icon/delete-icon.svg";
 import FillInput from "../../shared/FillInput/FillInput";
 import BasicButton from "../../shared/BasicButton/BasicButton";
+import AddRuleComponent from "./rule-component";
 
 // this modal use for add new rule or edit exsiting rule
 const Rule = ({ collectionId, update, close }) => {
-
-  const { errorToast , successToast} = useToasty()
+  // ............
+  const { errorToast, successToast } = useToasty();
   // this state for list of rules
   const [Rulelist, setRulelist] = useState([]);
   // this state used for web url address
   const [webUrl, setWebUrl] = useState("");
-  //this state used for  gated boolean
-  const [gated, setGated] = useState(false);
+  //this state used for  rule type
+  const [ruleType, setRuleType] = useState(RuleTypes.DISCOUNT);
+  //this state used add new rule
+  const [addNewRule, setAddNewRule] = useState(false);
 
-
-
-  useEffect(() => {
-    // add default rule first
-    if (Rulelist.length == 0) addnewRule()
-  }, []);
+  // useEffect(() => {
+  //   // add default rule first
+  //   if (Rulelist.length == 0) addnewRule();
+  // }, []);
 
   const changeWebUrl = (e) => setWebUrl(e.target.value);
-  const changeGated = () => setGated((p) => !p);
 
   // change property's value of an object of rule list
-  const changeRuleproperty = (value, type, index) => {
-    let newRuleList = Rulelist.map((rule, i) => {
-      if (index != i) {
-        return { ...rule };
-      } else {
-        return { ...rule, [type]: value };
-      }
-    });
-    setRulelist(newRuleList);
-  };
+  // const changeRuleproperty = (value, type, index) => {
+  //   let newRuleList = Rulelist.map((rule, i) => {
+  //     if (index != i) {
+  //       return { ...rule };
+  //     } else {
+  //       return { ...rule, [type]: value };
+  //     }
+  //   });
+  //   setRulelist(newRuleList);
+  // };
 
+  const chnageRuleType = (e) => setRuleType(e.target.value);
 
-  // add new rule
-  const addnewRule = () => {
-    let newRuleList = Array.from(Rulelist);
-    newRuleList.push({
-      addresses: "",
-      nftsCount: "",
-      discountPercentage: "",
-      description: "",
-    });
-    setRulelist(newRuleList);
-  };
+  const toggleRuleModal = () => setAddNewRule((p) => !p);
 
   // delete current rule
-  const deleteRule = (index) => {
-    if (Rulelist.length == 1) return;
-    let newRuleList = Array.from(Rulelist);
-    newRuleList = newRuleList.filter((rule, i) => {
-      return i != index;
-    });
-    setRulelist(newRuleList);
+  // const deleteRule = (index) => {
+  //   if (Rulelist.length == 1) return;
+  //   let newRuleList = Array.from(Rulelist);
+  //   newRuleList = newRuleList.filter((rule, i) => {
+  //     return i != index;
+  //   });
+  //   setRulelist(newRuleList);
+  // };
+
+  const addToRules = (newRule) => {
+    let currentRuleArray = Array.from(Rulelist);
+    currentRuleArray.push(newRule);
+    setRulelist(currentRuleArray);
   };
 
-  // check conditions for fiedls
-  // const checkConditions = () => {
-  //   if(webUrl == '') {
-
-  //   }
-  // }
 
   const submit = async () => {
-    let rules = convertRuleArray(Rulelist);
-    let result = await addRuleset(collectionId, rules, webUrl, gated);
-    update();
+    // let rules = convertAddressToArray(Rulelist);
+    // let result = await addRuleset(collectionId, rules, webUrl, ruleType);
+    // update();
   };
 
   return (
@@ -94,11 +87,13 @@ const Rule = ({ collectionId, update, close }) => {
         <FillInput
           preText={"https://"}
           value={webUrl}
+          label="Weburl"
           change={changeWebUrl}
           placeholder={"Your website"}
         />
+
         <Box mb="20px"></Box>
-        <Checkbox
+        {/* <Checkbox
           size="md"
           color="primary"
           colorScheme="green"
@@ -106,10 +101,20 @@ const Rule = ({ collectionId, update, close }) => {
           onChange={changeGated}
         >
           Gated
-        </Checkbox>
+        </Checkbox> */}
+        <TypeSelect value={ruleType} onChange={chnageRuleType} disabled={true}>
+          <option value={RuleTypes.GATED}>Gated</option>
+          <option value={RuleTypes.DISCOUNT}>Discount</option>
+        </TypeSelect>
 
         <Box mb="40px"></Box>
-        {Rulelist.length > 0 && (
+
+        {Rulelist.length > 0 &&
+          Rulelist.map((rule) => {
+            return <></>;
+          })}
+
+        {/* {Rulelist.length > 0 && (
           <>
             (
             {Rulelist.map((rule, index) => {
@@ -184,9 +189,13 @@ const Rule = ({ collectionId, update, close }) => {
             })}
             )
           </>
+        )} */}
+        {addNewRule ? (
+          <AddRuleComponent close={toggleRuleModal} addToRules={addToRules} />
+        ) : (
+          <AddRuleButton onClick={toggleRuleModal}>Add new rule</AddRuleButton>
         )}
 
-        <AddRuleButton onClick={addnewRule}>Add new rule</AddRuleButton>
         <Box mb="40px"></Box>
         <Flex w="100%" justifyContent="space-between">
           <Box w="200px">
