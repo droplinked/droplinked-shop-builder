@@ -22,7 +22,7 @@ import LandingIcons from "./components/landing-icons-component";
 import SignupInput from "./components/singup-input-component";
 
 const SignUpModal = lazy(() =>
-  import("../../../components/Modal/Register-modal/SignUpModal")
+  import("../../../components/Modal/Register/SignUpModal")
 );
 
 const LoginModal = lazy(() =>

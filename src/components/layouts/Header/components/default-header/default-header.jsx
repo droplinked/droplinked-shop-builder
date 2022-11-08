@@ -3,7 +3,7 @@ import { DROPDOWN_TYPE } from "../../dropdowns/dropdown.type";
 import { Box } from "@chakra-ui/react";
 
 import HeaderItem from "../header-button/Header-btn-component";
-import SignUpModal from "../../../../Modal/Register-modal/SignUpModal";
+import SignUpModal from "../../../../Modal/Register/SignUpModal";
 import LoginModal from "../../../../Modal/Login/login-modal";
 import ResetPassModal from "../../../../Modal/ResetPass/ResetPassModal-component";
 import WalletButton from "../wallet-button/wallet-button-component";

@@ -16,7 +16,7 @@ import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import EmailModal from "../../../../components/Modal/Email/email-modal";
 import DroplinkedItem from "./chekout-item/Droplinked-item";
 import ShopifytItem from "./chekout-item/Shopify-item";
-import SignUpModal from "../../../../components/Modal/Register-modal/SignUpModal";
+import SignUpModal from "../../../../components/Modal/Register/SignUpModal";
 import LoginModal from "../../../../components/Modal/Login/login-modal";
 
 function CheckoutPage() {
