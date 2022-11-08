@@ -4,7 +4,7 @@ export const FooterWrapper = chakra("div", {
   baseStyle: {
     height: "82px",
     minWidth: "100%",
-    padding: { base: "0px 20px", md: "0px 80px" },
+    padding: { base: "0px 20px", md: "0px 40px" ,lg:'0px 80px' },
     backgroundColor: "dark",
     display: "flex",
   },

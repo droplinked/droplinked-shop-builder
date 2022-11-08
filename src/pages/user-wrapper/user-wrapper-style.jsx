@@ -5,7 +5,7 @@ export const UserWrapperPage = chakra("div", {
     d: "flex",
     alignItems: "start",
     width: "100%",
-    px: { base: "20px", md: "80px" },
+    px: { base: "20px", md: "40px" , lg:'80px'},
     h: "auto",
   },
 });
