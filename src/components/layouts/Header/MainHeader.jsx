@@ -4,7 +4,7 @@ import { Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { HeaderWrapper, HeaderTitle } from "./MainHeader-style";
 
-import DefaulHeader from "./default header/Default-header-component";
+import DefaulHeader from "./components/default-header/default-header";
 import CustomerHeader from "./components/customer-header/customer-header"
 import EmailModal from "../../Modal/Email-modal/email-modal";
 import ProducerHeader from "./components/producer-header/producer-header"

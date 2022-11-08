@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { DROPDOWN_TYPE } from "../dropdowns/dropdown.type";
+import { DROPDOWN_TYPE } from "../../dropdowns/dropdown.type";
 import { Box } from "@chakra-ui/react";
-import HeaderItem from "../components/header-button/Header-btn-component";
-import SignUpModal from "../../../Modal/Register-modal/SignUpModal";
-import LoginModal from "../../../Modal/Login/login-modal";
-import ResetPassModal from "../../../Modal/ResetPass-modal/ResetPassModal-component";
-import WalletButton from "../components/wallet-button/wallet-button-component";
-import Cart from "../icons/cart/cart-icon-component";
-import DropdownContainer from "../dropdowns/dropdown-container/DropDown-container";
+
+import HeaderItem from "../header-button/Header-btn-component";
+import SignUpModal from "../../../../Modal/Register-modal/SignUpModal";
+import LoginModal from "../../../../Modal/Login/login-modal";
+import ResetPassModal from "../../../../Modal/ResetPass-modal/ResetPassModal-component";
+import WalletButton from "../wallet-button/wallet-button-component";
+import Cart from "../../icons/cart/cart-icon-component";
+import DropdownContainer from "../../dropdowns/dropdown-container/DropDown-container";
 
 export default function DefaulHeader({ haventEmail }) {
   // state for show (login , singup , resetpass)modals
