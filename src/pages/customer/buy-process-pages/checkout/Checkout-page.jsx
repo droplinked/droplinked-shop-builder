@@ -13,7 +13,7 @@ import {
 import { SHOP_TYPES } from "../../../../constant/shop-types";
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
-import EmailModal from "../../../../components/Modal/Email-modal/email-modal";
+import EmailModal from "../../../../components/Modal/Email/email-modal";
 import DroplinkedItem from "./chekout-item/Droplinked-item";
 import ShopifytItem from "./chekout-item/Shopify-item";
 import SignUpModal from "../../../../components/Modal/Register-modal/SignUpModal";

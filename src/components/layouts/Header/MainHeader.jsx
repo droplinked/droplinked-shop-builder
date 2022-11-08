@@ -6,7 +6,7 @@ import { HeaderWrapper, HeaderTitle } from "./MainHeader-style";
 
 import DefaulHeader from "./components/default-header/default-header";
 import CustomerHeader from "./components/customer-header/customer-header"
-import EmailModal from "../../Modal/Email-modal/email-modal";
+import EmailModal from "../../Modal/Email/email-modal";
 import ProducerHeader from "./components/producer-header/producer-header"
 
 function MainHeader() {
