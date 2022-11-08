@@ -8,7 +8,7 @@ import {
 import { Box, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { convertArrayToAddress } from "./rule-utils";
-import { addRuleset, getRuleById } from "../../../api/producer/Ruleset-api";
+import { addRuleset, getRuleById ,updateRule } from "../../../api/producer/Ruleset-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { RuleTypes } from "./rule-type";
 
@@ -102,7 +102,9 @@ const Rule = ({ collectionId, update, close, ruleId }) => {
         description: rule.des,
       };
     });
-    let result = await addRuleset(collectionId, rulesArray, webUrl, gated);
+    let result 
+    if(ruleId != undefined)result = await updateRule(ruleId ,collectionId, rulesArray, webUrl, gated);
+    else result = await addRuleset(collectionId, rulesArray, webUrl, gated);
     console.log(result);
     update();
     close();

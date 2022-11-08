@@ -45,6 +45,24 @@ export const addRuleset = async (collectionID, rules , webUrl , gated) => {
   }
 };
 
+export const updateRule = async (id, collectionID, rules , webUrl , gated) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const res = await axios.put(`${BASE_URL}/producer/ruleset/${id}`,
+    {
+      collectionID: collectionID,
+        gated: gated,
+        rules: rules,
+        webUrl:webUrl
+    }, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
+
 export const newRule = async (rule) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
@@ -69,18 +87,4 @@ export const deleteRule = async (id) => {
   }
 };
 
-export const updateRule = async (id, rule , webUrl) => {
-  const token = JSON.parse(localStorage.getItem("token"));
-  try {
-    const res = await axios.put(`${BASE_URL}/producer/ruleset/${id}`,
-    {
-      rules: rule,
-      webUrl :webUrl
-    }, {
-      headers: { Authorization: "Bearer " + token },
-    });
-    return true;
-  } catch (err) {
-    return err.response.data.reason;
-  }
-};
+
