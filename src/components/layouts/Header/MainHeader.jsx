@@ -5,7 +5,7 @@ import { useState } from "react";
 import { HeaderWrapper, HeaderTitle } from "./MainHeader-style";
 
 import DefaulHeader from "./default header/Default-header-component";
-import UserHeader from "./user Header/User-header-component";
+import CustomerHeader from "./components/customer-header/customer-header"
 import EmailModal from "../../Modal/Email-modal/email-modal";
 import ProducerHeader from "./components/producer-header/producer-header"
 
@@ -26,10 +26,10 @@ function MainHeader() {
   return (
     <HeaderWrapper>
       <HeaderTitle onClick={navigateToLandingPage}>droplinked</HeaderTitle>
-      <Flex h="100%" alignItems="center">
+      <Flex h="100%">
         {profile ? (
           <Flex h="100%" alignItems="center">
-            {isCustomer() ? <></> : <ProducerHeader/>}
+            {isCustomer() ? <CustomerHeader/> : <ProducerHeader/>}
           </Flex>
         ) : (
           <DefaulHeader haventEmail={customerHaventEmail} />
