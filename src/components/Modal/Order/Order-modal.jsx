@@ -18,10 +18,10 @@ import { SHOP_TYPES } from "../../../constant/shop-types";
 import OrderMerch from "./Order-merch-component";
 import OrderStatus from "./Order-status-component";
 import OrderAddress from "./Order-address-component";
-import YesNoModal from "../yes-or-no-modal/YesOrNo-modal-component";
+import YesNoModal from "../YesOrNo/YesOrNo-modal-component";
 
 export default function OrderModal({ order, isOpen, onClose }) {
-console.log(order)
+
   // this state use for loading stauts
   const [loadingBtn, setLoadingBtn] = useState(false);
   // this state use for show proccessModal
