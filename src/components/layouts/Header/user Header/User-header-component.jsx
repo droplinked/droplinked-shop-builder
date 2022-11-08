@@ -3,7 +3,7 @@ import Notification from "../icons/notification/notification-icon-component";
 import Cart from "../icons/cart/cart-icon-component";
 import newWalletIcon from "../../../../assest/icon/new-wallet-icon.svg";
 import burgerIcon from "../../../../assest/icon/burger-icon.svg";
-import ProducerSlide from "../dropdowns/producer-slide/producer-slide";
+
 
 import { DROPDOWN_TYPE } from "../dropdowns/dropdown.type";
 import { useState } from "react";
@@ -90,7 +90,7 @@ export default function UserHeader() {
         </>
       )}
       {dropdown && <DropdownContainer close={close} dropdown={dropdown} />}
-      {openslide && <ProducerSlide close={toggleSlide} />}
+    
     </Flex>
   );
 }
