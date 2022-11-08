@@ -19,8 +19,8 @@ export const RuleModalCotent = chakra("div", {
     boxSizing: " border-box",
     height: "auto",
     margin: "auto",
-    maxWidth: "800px",
-    width: { base: "100%", md: "90%" },
+    maxWidth: "1000px",
+    width: { base: "100%", md: "90%" , lg:'1000px' , xl:'1200px' },
     background: "subLayer",
     boxShadow: "0px 2px 30px rgba(85, 88, 90, 0.1)",
     borderRadius: "24px",
@@ -110,13 +110,11 @@ export const AddRuleButton = chakra("p", {
   },
 });
 
-export const DeleteIconComponent = chakra("img", {
+export const IconComponent = chakra("img", {
   baseStyle: {
-    w: "15px",
-    h: "15px",
-    pos: "absolute",
-    top: "0px",
-    left: "-20px",
+    w: "24px",
+    h: "24px",
+    mr: "16px",
   },
 });
 
@@ -126,5 +124,33 @@ export const LableInput = chakra("lable", {
     fontSize: { base: "10px", sm: "12px", md: "16px" },
     color: "white",
     marginBottom: "10px",
+  },
+});
+
+export const GreenIcon = chakra("div", {
+  baseStyle: {
+    d: "flex",
+    w: "30px",
+    h: "30px",
+    borderRadius: "50% 50% 0px 50%",
+    bg: "primary",
+    mr: "18px",
+    color:'mainLayer',
+    justifyContent:'center',
+    alignItems:'center'
+  },
+});
+
+export const TextBorder = chakra("p", {
+  baseStyle: {
+    fontSize: "20px",
+    fontWeight: "500",
+    color: "white",
+    pr: "18px",
+    borderRight: "1px solid white",
+    mr: "18px",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
 });

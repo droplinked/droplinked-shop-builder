@@ -16,6 +16,7 @@ import { useToasty } from "../../../context/toastify/ToastContext";
 import { RuleTypes } from "./rule-type";
 
 // import deleteIcon from "../../../assest/icon/delete-icon.svg";
+import RuleItem from "./rule-item";
 import FillInput from "../../shared/FillInput/FillInput";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 import AddRuleComponent from "./rule-component";
@@ -72,7 +73,6 @@ const Rule = ({ collectionId, update, close }) => {
     setRulelist(currentRuleArray);
   };
 
-
   const submit = async () => {
     // let rules = convertAddressToArray(Rulelist);
     // let result = await addRuleset(collectionId, rules, webUrl, ruleType);
@@ -93,16 +93,10 @@ const Rule = ({ collectionId, update, close }) => {
         />
 
         <Box mb="20px"></Box>
-        {/* <Checkbox
-          size="md"
-          color="primary"
-          colorScheme="green"
-          isChecked={gated}
-          onChange={changeGated}
+
+        <TypeSelect value={ruleType} onChange={chnageRuleType} 
+       // disabled={true}
         >
-          Gated
-        </Checkbox> */}
-        <TypeSelect value={ruleType} onChange={chnageRuleType} disabled={true}>
           <option value={RuleTypes.GATED}>Gated</option>
           <option value={RuleTypes.DISCOUNT}>Discount</option>
         </TypeSelect>
@@ -111,85 +105,9 @@ const Rule = ({ collectionId, update, close }) => {
 
         {Rulelist.length > 0 &&
           Rulelist.map((rule) => {
-            return <></>;
+            return <RuleItem rule={rule} />;
           })}
 
-        {/* {Rulelist.length > 0 && (
-          <>
-            (
-            {Rulelist.map((rule, index) => {
-              return (
-                <Box mb="100px" pos="relative">
-                  <DeleteIconComponent
-                    src={deleteIcon}
-                    onClick={() => {
-                      deleteRule(index);
-                    }}
-                  />
-                  <TextareaInput
-                    value={rule.addresses}
-                    onChange={(e) => {
-                      changeRuleproperty(e.target.value, "addresses", index);
-                    }}
-                    placeholder={"NFT Identify"}
-                  />
-                  <Box mb="10px"></Box>
-                  <Flex
-                    justifyContent="space-between"
-                    alignItems="center"
-                    w="100%"
-                  >
-                    <Box w="200px">
-                      <InputComponent
-                        type="number"
-                        placeholder="counter"
-                        value={rule.nftsCount}
-                        onChange={(e) => {
-                          changeRuleproperty(
-                            e.target.value,
-                            "nftsCount",
-                            index
-                          );
-                        }}
-                        disabled={gated}
-                      />
-                    </Box>
-                    <Box w="200px">
-                      <InputComponent
-                        type="number"
-                        placeholder="discount"
-                        value={rule.discountPercentage}
-                        onChange={(e) => {
-                          changeRuleproperty(
-                            e.target.value,
-                            "discountPercentage",
-                            index
-                          );
-                        }}
-                      />
-                    </Box>
-                  </Flex>
-                  <Box mb="10px"></Box>
-
-                  <Box w="100%">
-                    <InputComponent
-                      placeholder="desciption"
-                      value={rule.description}
-                      onChange={(e) => {
-                        changeRuleproperty(
-                          e.target.value,
-                          "description",
-                          index
-                        );
-                      }}
-                    />
-                  </Box>
-                </Box>
-              );
-            })}
-            )
-          </>
-        )} */}
         {addNewRule ? (
           <AddRuleComponent close={toggleRuleModal} addToRules={addToRules} />
         ) : (

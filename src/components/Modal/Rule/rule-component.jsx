@@ -1,4 +1,4 @@
-import { LableInput, InputComponent } from "./rule-modal-style";
+import { LableInput, InputComponent  ,TextareaInput} from "./rule-modal-style";
 import { Box, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { convertAddressToArray } from "./rule-utils";
@@ -31,7 +31,7 @@ const AddRuleComponent = ({ rule, addToRules, close }) => {
   return (
     <Box w="100%" mb="40px">
       <LableInput>NFT Identify</LableInput>
-      <InputComponent
+      <TextareaInput
         placeholder="NFT Identify"
         value={addressList}
         onChange={changeAddressList}
