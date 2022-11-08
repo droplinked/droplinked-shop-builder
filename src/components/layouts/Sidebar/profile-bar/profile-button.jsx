@@ -19,15 +19,15 @@ const ProfileButton = ({ text, icon, click ,active  }) => {
     >
       <Image
         src={icon}
-        w='24px'
-        h='24px'
-        mr={{ base: "0px", lg: "20px" }}
+        w={{md:'24px',lg:'18px',xl:"24px"}}
+        h={{md:'24px',lg:'18px',xl:"24px"}}
+        mr={{ lg: "10px", xl: "20px" }}
       />
       <Text
         d={{ base: "none", lg: "flex" }}
         color="white"
         fontWeight="500"
-        fontSize="18px"
+        fontSize={{lg:'12px',xl:"18px"}}
         h="100%"
         alignItems="center"
       >
