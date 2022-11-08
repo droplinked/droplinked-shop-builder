@@ -11,40 +11,34 @@ import { Box, Flex, Checkbox } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { convertRuleArray } from "./rule-utils";
 import { addRuleset } from "../../../api/producer/Ruleset-api";
+import { useToasty } from "../../../context/toastify/ToastContext"
 
 import deleteIcon from "../../../assest/icon/delete-icon.svg";
-import FormInput from "../../shared/FormInput/FormInput";
 import FillInput from "../../shared/FillInput/FillInput";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 
-const TYPES = {
-  addresses: "addresses",
-  nftsCount: "nftsCount",
-  discountPercentage: "discountPercentage",
-  description: "description",
-};
-
+// this modal use for add new rule or edit exsiting rule
 const Rule = ({ collectionId, update, close }) => {
-  const [Rulelist, setRulelist] = useState(null);
+
+  const { errorToast , successToast} = useToasty()
+  // this state for list of rules
+  const [Rulelist, setRulelist] = useState([]);
+  // this state used for web url address
   const [webUrl, setWebUrl] = useState("");
+  //this state used for  gated boolean
   const [gated, setGated] = useState(false);
 
-  const changeWebUrl = (e) => setWebUrl(e.target.value);
+
 
   useEffect(() => {
-    if (Rulelist == null) {
-      let ruleObj = [
-        {
-          addresses: "",
-          nftsCount:'',
-          discountPercentage: '',
-          description: ".",
-        },
-      ];
-      setRulelist(ruleObj);
-    }
+    // add default rule first
+    if (Rulelist.length == 0) addnewRule()
   }, []);
 
+  const changeWebUrl = (e) => setWebUrl(e.target.value);
+  const changeGated = () => setGated((p) => !p);
+
+  // change property's value of an object of rule list
   const changeRuleproperty = (value, type, index) => {
     let newRuleList = Rulelist.map((rule, i) => {
       if (index != i) {
@@ -56,19 +50,20 @@ const Rule = ({ collectionId, update, close }) => {
     setRulelist(newRuleList);
   };
 
-  const changeGated = () => setGated(p => !p)
 
+  // add new rule
   const addnewRule = () => {
     let newRuleList = Array.from(Rulelist);
     newRuleList.push({
       addresses: "",
-      nftsCount: '',
-      discountPercentage: '',
-      description: ".",
+      nftsCount: "",
+      discountPercentage: "",
+      description: "",
     });
     setRulelist(newRuleList);
   };
 
+  // delete current rule
   const deleteRule = (index) => {
     if (Rulelist.length == 1) return;
     let newRuleList = Array.from(Rulelist);
@@ -78,10 +73,16 @@ const Rule = ({ collectionId, update, close }) => {
     setRulelist(newRuleList);
   };
 
+  // check conditions for fiedls
+  // const checkConditions = () => {
+  //   if(webUrl == '') {
+
+  //   }
+  // }
+
   const submit = async () => {
     let rules = convertRuleArray(Rulelist);
-    let result = await addRuleset(collectionId, rules, webUrl ,gated);
-    console.log(result);
+    let result = await addRuleset(collectionId, rules, webUrl, gated);
     update();
   };
 
@@ -96,7 +97,7 @@ const Rule = ({ collectionId, update, close }) => {
           change={changeWebUrl}
           placeholder={"Your website"}
         />
-<Box mb="20px"></Box>
+        <Box mb="20px"></Box>
         <Checkbox
           size="md"
           color="primary"
@@ -108,7 +109,7 @@ const Rule = ({ collectionId, update, close }) => {
         </Checkbox>
 
         <Box mb="40px"></Box>
-        {Rulelist != null && (
+        {Rulelist.length > 0 && (
           <>
             (
             {Rulelist.map((rule, index) => {
