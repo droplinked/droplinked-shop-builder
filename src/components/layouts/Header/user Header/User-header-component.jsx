@@ -56,7 +56,9 @@ export default function UserHeader() {
   };
 
   return (
-    <Flex alignItems="center" ml={{ base: "10px", md: "15px" }}>
+    <Flex alignItems="center" 
+   // ml={{ base: "10px", md: "15px" }}
+    >
       {isCustomer() ? (
         <>
           <Cart clickBasket={openBasket} />

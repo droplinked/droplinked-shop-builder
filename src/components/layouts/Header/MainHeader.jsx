@@ -7,10 +7,11 @@ import { HeaderWrapper, HeaderTitle } from "./MainHeader-style";
 import DefaulHeader from "./default header/Default-header-component";
 import UserHeader from "./user Header/User-header-component";
 import EmailModal from "../../Modal/Email-modal/email-modal";
+import ProducerHeader from "./components/producer-header/producer-header"
 
 function MainHeader() {
   const [showEmailModal, setEmailModal] = useState(false);
-  const { profile } = useProfile();
+  const { profile, isCustomer } = useProfile();
   const navigate = useNavigate();
 
   const closeEmailModal = () => setEmailModal(false);
@@ -25,9 +26,11 @@ function MainHeader() {
   return (
     <HeaderWrapper>
       <HeaderTitle onClick={navigateToLandingPage}>droplinked</HeaderTitle>
-      <Flex h="100%">
+      <Flex h="100%" alignItems="center">
         {profile ? (
-          <UserHeader />
+          <Flex h="100%" alignItems="center">
+            {isCustomer() ? <></> : <ProducerHeader/>}
+          </Flex>
         ) : (
           <DefaulHeader haventEmail={customerHaventEmail} />
         )}
