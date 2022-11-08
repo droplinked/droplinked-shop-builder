@@ -20,7 +20,7 @@ export const RuleModalCotent = chakra("div", {
     height: "auto",
     margin: "auto",
     maxWidth: "1000px",
-    width: { base: "100%", md: "90%" , lg:'1000px' , xl:'1200px' },
+    width: { base: "100%", md: "90%", lg: "1000px", xl: "1200px" },
     background: "subLayer",
     boxShadow: "0px 2px 30px rgba(85, 88, 90, 0.1)",
     borderRadius: "24px",
@@ -112,9 +112,9 @@ export const AddRuleButton = chakra("p", {
 
 export const IconComponent = chakra("img", {
   baseStyle: {
-    w: "24px",
-    h: "24px",
-    mr: "16px",
+    w: { base: "12px", sm: "16px", md: "18px", lg: "22px", xl: "24px" },
+    h: { base: "12px", sm: "16px", md: "18px", lg: "22px", xl: "24px" },
+    mr: { base: "8px", sm: "10px", md: "12px", lg: "14px", xl: "16px" },
   },
 });
 
@@ -130,25 +130,26 @@ export const LableInput = chakra("lable", {
 export const GreenIcon = chakra("div", {
   baseStyle: {
     d: "flex",
-    w: "30px",
-    h: "30px",
+    w: { base: "14px", sm: "18px", md: "22px", lg: "28px", xl: "30px" },
+    h: { base: "14px", sm: "18px", md: "22px", lg: "28px", xl: "30px" },
     borderRadius: "50% 50% 0px 50%",
     bg: "primary",
-    mr: "18px",
-    color:'mainLayer',
-    justifyContent:'center',
-    alignItems:'center'
+    mr: { base: "8px", sm: "10px", md: "12px", lg: "18px", xl: "18px" },
+    color: "mainLayer",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: { base: "8px", sm: "10px", md: "12px" , lg:'16px' },
   },
 });
 
 export const TextBorder = chakra("p", {
   baseStyle: {
-    fontSize: "20px",
+    fontSize: { base: "10px", sm: "12px", md: "14px", lg: "18px", xl: "20px" },
     fontWeight: "500",
     color: "white",
-    pr: "18px",
+    pr: { base: "8px", sm: "10px", md: "12px", lg: "18px", xl: "18px" },
     borderRight: "1px solid white",
-    mr: "18px",
+    mr: { base: "8px", sm: "10px", md: "12px", lg: "18px", xl: "18px" },
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
