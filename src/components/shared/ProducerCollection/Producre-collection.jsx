@@ -126,7 +126,14 @@ const ProducerCollection = ({ collection, update }) => {
         collectionId={collection._id}
         ruleId={collection.ruleSetID || undefined}
       /> */}
-     {ruleModal && <Rule close={closeRuleModal} collectionId={collection._id} update={update}/>}
+      {ruleModal && (
+        <Rule
+          close={closeRuleModal}
+          collectionId={collection._id}
+          update={update}
+          ruleId={collection.ruleSetID || undefined}
+        />
+      )}
     </>
   );
 };

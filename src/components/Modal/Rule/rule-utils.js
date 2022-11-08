@@ -7,6 +7,7 @@ export const convertAddressToArray = (ruleAddress) => {
 };
 
 export const convertArrayToAddress = (ruleArray) => {
+  console.log(ruleArray);
   let addressString = ruleArray.join(";");
   addressString += ";";
   return addressString;

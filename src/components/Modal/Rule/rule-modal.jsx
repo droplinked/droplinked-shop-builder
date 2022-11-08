@@ -2,16 +2,13 @@ import {
   RuleModalWrapper,
   RuleModalCotent,
   ModalHeader,
-  InputComponent,
-  TextareaInput,
   AddRuleButton,
   TypeSelect,
-  DeleteIconComponent,
 } from "./rule-modal-style";
-import { Box, Flex, Checkbox } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-// import { convertAddressToArray } from "./rule-utils";
-import { addRuleset } from "../../../api/producer/Ruleset-api";
+import { convertArrayToAddress } from "./rule-utils";
+import { addRuleset, getRuleById } from "../../../api/producer/Ruleset-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { RuleTypes } from "./rule-type";
 
@@ -22,7 +19,7 @@ import BasicButton from "../../shared/BasicButton/BasicButton";
 import AddRuleComponent from "./rule-component";
 
 // this modal use for add new rule or edit exsiting rule
-const Rule = ({ collectionId, update, close }) => {
+const Rule = ({ collectionId, update, close, ruleId }) => {
   // ............
   const { errorToast, successToast } = useToasty();
   // this state for list of rules
@@ -39,6 +36,30 @@ const Rule = ({ collectionId, update, close }) => {
   const chnageRuleType = (e) => setRuleType(e.target.value);
 
   const toggleRuleModal = () => setAddNewRule((p) => !p);
+
+  useEffect(() => {
+    if (ruleId != undefined) {
+      getRuleData();
+    }
+  }, []);
+
+  const getRuleData = async () => {
+    let result = await getRuleById(ruleId);
+    if (result.status == "success") initializeRule(result.data.ruleSet.rules);
+  };
+
+  const initializeRule = (rule) => {
+    let initialRuleList = rule.map((currentRule) => {
+      return {
+        address: convertArrayToAddress(currentRule.addresses),
+        type: currentRule.type,
+        counter: (currentRule.nftsCount)? currentRule.nftsCount : "",
+        discount: currentRule.discountPercentage,
+        des: currentRule.description,
+      };
+    });
+    setRulelist(initialRuleList);
+  };
 
   const deleteRule = (index) => {
     let newArray = Array.from(Rulelist);
