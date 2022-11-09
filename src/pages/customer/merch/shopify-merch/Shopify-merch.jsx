@@ -15,7 +15,7 @@ import {
 import {
   getMaxDiscount,
   gatedPassesRules,
-} from "../../../../services/NFTCheck";
+} from "../../../../services/NFTCheck1";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { getUserAddress } from "../../../../services/wallet-auth/api";
 //import { getMaxDiscount } from "../../../../services/nft-service/maxDiscount";
@@ -38,35 +38,41 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
   const { successToast, errorToast } = useToasty();
   const { profile, signinWithaWallet } = useProfile();
 
+  const gatedStatus =
+  product.ruleset == undefined
+    ? "PUBLIC"
+    : product.ruleset.gated
+    ? "GATED"
+    : "DISCOUNT";
+
   const isGated = product.ruleset == undefined ? false : true;
 
   let images = product.shopifyData.images.map((img) => {
     return { url: img.src };
   });
 
-  console.log(product);
 
   useEffect(() => {
-    if (isGated && userData) checkProductRule();
+      if (gatedStatus != "PUBLIC" && userData) checkProductRule();
   }, [userData]);
 
   const checkProductRule = async () => {
-    if (product.ruleset.gated) {
-      let result = await gatedPassesRules(
-        getUserAddress(userData).mainnet,
-        product.ruleset
-      );
-    } else {
-      let result = await getMaxDiscount(
-        getUserAddress(userData).mainnet,
-        product.ruleset
-      );
-      console.log(result);
-      if (result.NFTsPassed.length > 0) {
-        setPercent(result.discountPercentage);
-       // setLock(false);
-      }
+
+
+    if (gatedStatus == "GATED") {
+        let result = await gatedPassesRules(
+          getUserAddress(userData).mainnet,
+          product.ruleset
+        );
+        if (result) setLock(false);
     }
+    else {
+        let result = await getMaxDiscount(
+          getUserAddress(userData).mainnet,
+          product.ruleset
+        );
+        if (result.NFTsPassed.length > 0)  setPercent(result.discountPercentage);
+      }
   };
 
   const addItemToBasket = async () => {
@@ -81,24 +87,13 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
       return;
     }
 
-    // if (isGated) {
-    //   if (lock) errorToast("Required NFT not found, accessed denied");
-    //   else addToCardFunction();
-    // } else {
-    //   addToCardFunction();
-    // }
+    if(gatedStatus == 'GATED' && lock){
+      errorToast("Required NFT not found, accessed denied");
+      return
+    }
+
     addToCardFunction();
 
-    // if (profile == null) {
-    //   if (isGated) signinWithaWallet();
-    //   else openLogin();
-    //   // signinWithaWallet();
-    //   //addToPreCard();
-    //   return;
-    // } else {
-    //   if (lock) errorToast("Required NFT not found, accessed denied");
-    //   else addToCardFunction();
-    // }
   };
 
   const addToCardFunction = async () => {
@@ -115,15 +110,6 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
   };
 
   const changeTextLimit = () => setTextLimit((p) => !p);
-
-  // find rule that passed
-  // const findPassedRuleset = async () => {
-  //   let res = await getMaxDiscount(
-  //     getUserAddress(userData).mainnet,
-  //     product.ruleset.rules
-  //   );
-  //   //setRulePassed(res);
-  // };
 
   return (
     <>
