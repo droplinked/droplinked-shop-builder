@@ -21,7 +21,7 @@ const ShopifyDetail = ({
   quantity,
   setQuantity,
   lock,
-  rulePassed,
+  percent,
   submit,
   loading,
   selectedVariant,
@@ -33,15 +33,17 @@ const ShopifyDetail = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (rulePassed) discountVariants();
-  }, [rulePassed]);
+    if (percent) discountVariants();
+  }, [percent]);
 
   useEffect(() => {
     initialVariant();
   }, [variants]);
 
+    
+
   const discountVariants = () => {
-    let percentage = rulePassed.discountPercentage / 100;
+    let percentage = percent / 100;
     let variantList = product.variants.map((variant) => {
       let currentPrice = parseFloat(variant.price).toFixed(2);
       return {
@@ -162,7 +164,7 @@ const ShopifyDetail = ({
                 </Text>
               )}
 
-              {lock != null && (
+              {/* {lock != null && (
                 <Box
                   mt={{ base: "5px", md: "0px" }}
                   ml="15px"
@@ -174,7 +176,7 @@ const ShopifyDetail = ({
                 >
                   {lock == true ? <LockIcon /> : <UnlockIcon />}
                 </Box>
-              )}
+              )} */}
             </Flex>
 
             <Flex
