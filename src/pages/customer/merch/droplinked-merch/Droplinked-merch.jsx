@@ -15,12 +15,13 @@ import {
   ReadmoreIconWrapper,
   DescriptionTextWrapper,
 } from "../styles/Merch-style";
+import { GATED_TYPE } from "../../../../constant/gated-status-type";
 //import { isGated } from "../../../../utils/gated.utils/gated-utils";
 import { FiArrowDownCircle } from "react-icons/fi";
 import {
   getMaxDiscount,
   gatedPassesRules,
-} from "../../../../services/NFTCheck";
+} from "../../../../services/NFTCheck1";
 
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import DroplinkedDetail from "./Droplinked-merch-detail";
@@ -30,30 +31,43 @@ const DroplinkedMerch = ({ bproduct, openLogin }) => {
   const [quantity, setQuantity] = useState(1);
   const [disableBtn, setDisableBtn] = useState(false);
   const [textLimit, setTextLimit] = useState(false);
-
   const [selectedSku, setSelectedSku] = useState(null);
+  const [lock, setLock] = useState(true);
 
   const { userData } = UseWalletInfo();
   const { profile, signinWithaWallet } = useProfile();
   const { errorToast, successToast } = useToasty();
   const { updateCart } = useCart();
+  const params = useParams();
+  // const findGatedStatus = () => {
+  //   if(product.ruleset == undefined) return "PUBLIC"
+  //   else {
+  //     if(product.ruleset.gated) return "GATED"
+  //     else return "DISCOUNT"
+  //   }
+  // }
+  const gatedStatus =
+    product.ruleset == undefined
+      ? "PUBLIC"
+      : product.ruleset.gated
+      ? "GATED"
+      : "DISCOUNT";
+  const isGated = product.ruleset == undefined ? false : true;
 
-  let params = useParams();
   let shopname = params.shopname;
   let images = product.media;
-  const isGated = product.ruleset == undefined ? false : true;
-  console.log(product);
 
   useEffect(() => {
-    if (isGated && userData) checkProductRule();
+    if (gatedStatus != "PUBLIC" && userData) checkProductRule();
   }, [userData]);
 
   const checkProductRule = async () => {
-    if (product.ruleset.gated) {
+    if (gatedStatus == "GATED") {
       let result = await gatedPassesRules(
         getUserAddress(userData).mainnet,
         product.ruleset
       );
+      if (result) setLock(false);
     } else {
       let result = await getMaxDiscount(
         getUserAddress(userData).mainnet,
@@ -92,37 +106,20 @@ const DroplinkedMerch = ({ bproduct, openLogin }) => {
       return;
     }
 
+    if (gatedStatus == "GATED") {
+      if (!lock) addMerhcToCart();
+      else errorToast("Required NFT not found, accessed denied");
+    } else {
+      addMerhcToCart();
+    }
+  };
+
+  const addMerhcToCart = async () => {
     const cart = {
       skuID: selectedSku._id,
       quantity: quantity,
     };
 
-    setDisableBtn(true);
-    if (!product.ruleset.gated) {
-      await addMerhcToCart(cart);
-      setDisableBtn(false);
-      return;
-    }
-
-    // const Rules = product.ruleset.rules.map((rule) => rule.address);
-
-    // setDisableBtn(true);
-    // checkRules(userData.profile.stxAddress.mainnet, Rules)
-    //   .then(async (e) => {
-    //     if (e) {
-    //       await addMerhcToCart(cart);
-    //     } else {
-    //       setDisableBtn(false);
-    //       errorToast("Required NFT not found, accessed denied");
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     setDisableBtn(false);
-    //     errorToast(e.response.data);
-    //   });
-  };
-
-  const addMerhcToCart = async (cart) => {
     setDisableBtn(true);
     let result = await addSkuToCart(cart);
     if (result == true) {
