@@ -3,7 +3,9 @@ import { chakra } from "@chakra-ui/react";
 export const ProducerCollectionWrapper = chakra("div", {
   baseStyle: {
     width: "100%",
+    maxW:'100%',
     borderRadius: "8px",
+    overflow:'hidden',
     // padding: { base: "15px 10px 10px 10px", md: "25px 20px 15px 20px" },
     transition: "0.8s",
     bg: "subLayer",
@@ -26,9 +28,12 @@ export const ShopNameText = chakra("div", {
 
 export const ProductsWrapper = chakra("div", {
   baseStyle: {
-      d:'grid' ,
-      gap:'10px 10px',
-      gridTemplateColumns:{ base:'1fr 1fr', md:'1fr 1fr 1fr 1fr'}
+      // d:'grid' ,
+      // gap:'10px 10px',
+      // gridTemplateColumns:{ base:'1fr 1fr', md:'1fr 1fr 1fr'},
+      d:'flex' ,
+      flexWrap:'wrap'
+
   },
 });
 

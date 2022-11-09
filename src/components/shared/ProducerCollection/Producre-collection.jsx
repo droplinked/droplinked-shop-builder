@@ -59,7 +59,7 @@ const ProducerCollection = ({ collection, update }) => {
           openRuleModal={openRuleModal}
         />
         <ProductsWrapper>
-          {collection.products.length == 0 ? (
+            {collection.products.length == 0 ? (
             <Box w="100%">
               <AddProduct />
             </Box>
@@ -72,7 +72,7 @@ const ProducerCollection = ({ collection, update }) => {
                 .map((product, i) => {
                   if (product.type == "SHOPIFY") {
                     return (
-                      <Box key={i} w="100%">
+                      <Box key={i} w={{base:"50%" , lg:'25%'}}  p='3px'>
                         <Product
                           shopname={profile.shopName}
                           title={product.shopifyData.title}
@@ -87,7 +87,7 @@ const ProducerCollection = ({ collection, update }) => {
                     );
                   } else {
                     return (
-                      <Box key={i} w="100%">
+                      <Box key={i} w={{base:"50%" , lg:'25%'}}  p='3px'>
                         <Product
                           shopname={profile.shopName}
                           title={product.title}
@@ -100,7 +100,7 @@ const ProducerCollection = ({ collection, update }) => {
                   }
                 })}
             </>
-          )}
+          )}  
         </ProductsWrapper>
       </ProducerCollectionWrapper>
       {deleteModal && (
