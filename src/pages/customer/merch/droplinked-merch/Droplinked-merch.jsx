@@ -1,26 +1,32 @@
 //import "../Merch-page-style.scss";
 import { Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
 import { useProfile } from "../../../../context/profile/ProfileContext";
 import { useToasty } from "../../../../context/toastify/ToastContext";
-import { checkRules } from "../../../../services/nft-service/NFTcheck";
+//import { checkRules } from "../../../../services/nft-service/NFTcheck";
 import { useCart } from "../../../../context/cart/CartContext";
 import { addSkuToCart } from "../../../../api/base-user/Cart-api";
+import { getUserAddress } from "../../../../services/wallet-auth/api";
 import {
   MerchPageWrapper,
   DescriptionWrapper,
   ReadmoreIconWrapper,
   DescriptionTextWrapper,
 } from "../styles/Merch-style";
-import { isGated } from "../../../../utils/gated.utils/gated-utils";
+//import { isGated } from "../../../../utils/gated.utils/gated-utils";
 import { FiArrowDownCircle } from "react-icons/fi";
+import {
+  getMaxDiscount,
+  gatedPassesRules,
+} from "../../../../services/NFTCheck";
 
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import DroplinkedDetail from "./Droplinked-merch-detail";
 
-const DroplinkedMerch = ({ product , openLogin}) => {
+const DroplinkedMerch = ({ bproduct, openLogin }) => {
+  const [product, setProduct] = useState(bproduct);
   const [quantity, setQuantity] = useState(1);
   const [disableBtn, setDisableBtn] = useState(false);
   const [textLimit, setTextLimit] = useState(false);
@@ -34,20 +40,51 @@ const DroplinkedMerch = ({ product , openLogin}) => {
 
   let params = useParams();
   let shopname = params.shopname;
-
   let images = product.media;
+  const isGated = product.ruleset == undefined ? false : true;
+  console.log(product);
+
+  useEffect(() => {
+    if (isGated && userData) checkProductRule();
+  }, [userData]);
+
+  const checkProductRule = async () => {
+    console.log('start');
+    if (product.ruleset.gated) {
+      let result = await gatedPassesRules(
+        getUserAddress(userData).mainnet,
+        product.ruleset
+      );
+      console.log(result);
+    } else {
+      let result = await getMaxDiscount(
+        getUserAddress(userData).mainnet,
+        product.ruleset
+      );
+     if(result.NFTsPassed.length > 0)discountSkus(result.discountPercentage)
+    }
+  };
+
+
+  const discountSkus = (percentage) => {
+      let currentSku = product.skus.map(sku => {
+        let newPrice = parseFloat(sku.price - (sku.price *(percentage/100))).toFixed(2)
+        return {...sku , price:newPrice , previousPrice:sku.price}
+      })
+        const newProduct = {...product , skus:currentSku}
+        setProduct(newProduct)
+  }
 
   // add to baskset functionality
   const Addtobasket = async () => {
-    // if (userData == undefined) {
-    //   authenticate();
-    //   return;
-    // }
-
     if (profile == null) {
-      if (isGated(product.ruleset)) signinWithaWallet()
-      else openLogin()
-     // signinWithaWallet();
+      if (isGated) signinWithaWallet();
+      else openLogin();
+      return;
+    }
+
+    if (userData == undefined && isGated) {
+      signinWithaWallet();
       return;
     }
 
@@ -56,37 +93,32 @@ const DroplinkedMerch = ({ product , openLogin}) => {
       return;
     }
 
-    const cart = {
-      skuID: selectedSku._id,
-      quantity: quantity,
-    };
+    // const cart = {
+    //   skuID: selectedSku._id,
+    //   quantity: quantity,
+    // };
 
-    if (product.ruleset == undefined) {
-      await addMerhcToCart(cart);
-      return;
-    }
+    // if (product.ruleset == undefined) {
+    //   await addMerhcToCart(cart);
+    //   return;
+    // }
 
-    if (userData == undefined) {
-      signinWithaWallet();
-      return;
-    }
+    // const Rules = product.ruleset.rules.map((rule) => rule.address);
 
-    const Rules = product.ruleset.rules.map((rule) => rule.address);
-
-    setDisableBtn(true);
-    checkRules(userData.profile.stxAddress.mainnet, Rules)
-      .then(async (e) => {
-        if (e) {
-          await addMerhcToCart(cart);
-        } else {
-          setDisableBtn(false);
-          errorToast("Required NFT not found, accessed denied");
-        }
-      })
-      .catch((e) => {
-        setDisableBtn(false);
-        errorToast(e.response.data);
-      });
+    // setDisableBtn(true);
+    // checkRules(userData.profile.stxAddress.mainnet, Rules)
+    //   .then(async (e) => {
+    //     if (e) {
+    //       await addMerhcToCart(cart);
+    //     } else {
+    //       setDisableBtn(false);
+    //       errorToast("Required NFT not found, accessed denied");
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     setDisableBtn(false);
+    //     errorToast(e.response.data);
+    //   });
   };
 
   const addMerhcToCart = async (cart) => {
@@ -108,7 +140,7 @@ const DroplinkedMerch = ({ product , openLogin}) => {
   return (
     <MerchPageWrapper>
       {/* imgage side */}
-      <Box w={{ base: "100%", sm: "100%" , md:'50%' }} minh="500px">
+      <Box w={{ base: "100%", sm: "100%", md: "50%" }} minh="500px">
         <Carousel imagesArray={images} />
       </Box>
       {/* imgage side */}

@@ -51,7 +51,7 @@ const nonGatedPassesRules = async (
   };
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+
 const getMaxDiscount = async (
   principal,
   ruleSet,
@@ -73,7 +73,7 @@ const getMaxDiscount = async (
   return maxDiscount;
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+
 const gatedPassesRules = async (
   principal,
   ruleSet,

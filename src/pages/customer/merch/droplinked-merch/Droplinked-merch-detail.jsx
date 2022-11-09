@@ -76,7 +76,7 @@ const DroplinkedDetail = ({
 
   useEffect(() => {
     initialSelectedVariant();
-  }, []);
+  }, [product]);
 
   const decreaseQuantity = () => {
     if (quantity > 1) setQuantity((p) => p - 1);

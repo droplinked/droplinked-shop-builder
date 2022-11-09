@@ -60,7 +60,7 @@ export default function MerchPage() {
       ) : (
         <Box maxW="800px" w='100%' mx="auto">
           {product.type == "DROPLINKED" ? (
-            <DroplinkedMerch product={product} openLogin={toggleLogin} />
+            <DroplinkedMerch bproduct={product} openLogin={toggleLogin} />
           ) : (
             <ShopifyMech
               shopName={shopname}
