@@ -130,7 +130,7 @@ const Rule = ({ collectionId, update, close, ruleId }) => {
           onChange={chnageRuleType}
           disabled={Rulelist.length > 0}
         >
-          <option value={RuleTypes.GATED}>Gated</option>
+          <option value={RuleTypes.GATED}>Gating</option>
           <option value={RuleTypes.DISCOUNT}>Discount</option>
         </TypeSelect>
 

@@ -51,9 +51,9 @@ const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
         flexDir={{ base: "column", lg: "row" }}
       >
         <Box w={{ base: "100%", lg: "60%" }}>
-          <LableInput>NFT Identify</LableInput>
+          <LableInput>NFT asset identifier</LableInput>
           <TextareaInput
-            placeholder="NFT Identify"
+            placeholder="NFT asset identifier"
             value={addressList}
             onChange={changeAddressList}
           />
@@ -84,9 +84,9 @@ const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
       </Flex>
 
       <Box mb="40px"></Box>
-      <LableInput>Description</LableInput>
+      <LableInput>Tagline</LableInput>
       <InputComponent
-        placeholder="Description"
+        placeholder="Tagline"
         value={description}
         onChange={changeDescription}
       />
