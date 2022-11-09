@@ -1,10 +1,15 @@
-import "./Inventory-page-style.scss";
+//import "./Inventory-page-style.scss";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProducts } from "../../../api/producer/Product-api";
 import { getShop } from "../../../api/base-user/Profile-api";
 import { SHOP_TYPES } from "../../../constant/shop-types";
+import {
+  ImsPageWrapper,
+  HeaderTitle,
+  MerchCounter,
+} from "./Inventory-page-style";
 
 import Loading from "../../../components/shared/loading/Loading";
 import DroplinkedImsPage from "./droplinked ims page/droplink-ims-page";
@@ -34,33 +39,35 @@ function InventoryPage() {
     setShop(sh);
   };
 
-  const changeFilter = (e) => setFilter(e.target.value.toLowerCase())
+  const changeFilter = (e) => setFilter(e.target.value.toLowerCase());
 
   return (
-    <>
-      <div className="IMS-page-wrapper">
-        <div className="ims-title">Merchandise</div>
-        <div className="number-of-merchs">
-          {products != undefined ? products.length : "0"} Listed
-        </div>
-        <SeachBox change={changeFilter}/>
-        {products ? (
-          <>
-            {shop != null && (
-              <>
-                {shop.imsType == SHOP_TYPES.DROPLINKED ? (
-                  <DroplinkedImsPage products={products} filter={filter}  />
-                ) : (
-                  <ShopImsPage products={products} update={getData} filter={filter} />
-                )}
-              </>
-            )}
-          </>
-        ) : (
-          <Loading />
-        )}
-      </div>
-    </>
+    <ImsPageWrapper>
+      <HeaderTitle>Merchandise</HeaderTitle>
+      <MerchCounter>
+        {products != undefined ? products.length : "0"} Listed
+      </MerchCounter>
+      <SeachBox change={changeFilter} />
+      {products ? (
+        <>
+          {shop != null && (
+            <>
+              {shop.imsType == SHOP_TYPES.DROPLINKED ? (
+                <DroplinkedImsPage products={products} filter={filter} />
+              ) : (
+                <ShopImsPage
+                  products={products}
+                  update={getData}
+                  filter={filter}
+                />
+              )}
+            </>
+          )}
+        </>
+      ) : (
+        <Loading />
+      )}
+    </ImsPageWrapper>
   );
 }
 

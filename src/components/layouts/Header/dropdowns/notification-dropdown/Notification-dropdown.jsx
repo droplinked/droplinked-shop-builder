@@ -42,7 +42,7 @@ const NotificationDropdown = ({ close }) => {
                     fontWeight='600'
                 >New notifications</Text>
                 <Text
-                    color='#8053ff'
+                    color='primary'
                     fontSize={{ base: "14px", md: "16px" }}
                     fontWeight='600'
                 >{unseenNofitCount()}</Text>

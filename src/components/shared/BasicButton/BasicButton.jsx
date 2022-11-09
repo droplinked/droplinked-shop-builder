@@ -12,9 +12,9 @@ export default function BasicButton({
     <Button
       w="100%"
       h="100%"
-      bgColor={cancelType ? "#242424" : "#8053ff"}
-      color={cancelType ? "#DBDBDB" : "#fff"}
-      border={cancelType ? "2px solid #242424" : "2px solid #8053ff"}
+      bgColor={cancelType ? "dark" : "primary"}
+      color={cancelType ? "DarkGray" : "#fff"}
+      border={cancelType ? "2px solid button" : "2px solid primary"}
       fontSize={{ base: "16px", md: "20px" }}
       fontWeight="600"
       borderRadius="8px"
@@ -22,13 +22,13 @@ export default function BasicButton({
       p={{ base: "12px 20px 9px 20px", md: "12px 20px" }}
       outline="none"
       _hover={{
-        borderColor: cancelType ? "#242424" : "#8053ff",
-        bgColor: cancelType ? "transparent" : "#222",
-        color: cancelType ? "#DBDBDB" : "#8053ff",
+        borderColor: cancelType ? "button" : "primary",
+        bgColor: cancelType ? "dark" : "dark",
+        color: cancelType ? "DarkGray" : "primary",
       }}
       _disabled={{
-        bgColor: "transparent",
-        color: "#DBDBDB",
+        bgColor: "dark",
+        color: "DarkGray",
         borderColor: "#363636",
       }}
       onClick={click}
@@ -41,7 +41,7 @@ export default function BasicButton({
             thickness="4px"
             speed="0.65s"
             emptyColor="#fff"
-            color="#8053ff"
+            color="primary"
             size="md"
           />
         </>

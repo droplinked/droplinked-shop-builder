@@ -8,11 +8,12 @@ import { SHOP_TYPES } from "../../../../../constant/shop-types";
 
 const ProductItem = ({ type, product }) => {
   let title = product.product.title;
+console.log(product);
 
   let variant =
     type == SHOP_TYPES.SHOPIFY
       ? product.variant.title
-      : product.sku.options[0].value;
+      :( product.sku.options[0] ? product.sku.options[0].value :'');
 
   let price =
     type == SHOP_TYPES.SHOPIFY

@@ -10,7 +10,7 @@ export const SignupWrapper = chakra("div", {
     p: "8px",
     alignItems: "center",
     border: "2px",
-    borderColor: "#8053ff",
+    borderColor: "primary",
     mt: { base: "36px", md: "3vw" },
   },
 });

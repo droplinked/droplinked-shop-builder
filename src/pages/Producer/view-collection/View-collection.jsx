@@ -13,7 +13,7 @@ import { AiFillEdit } from "react-icons/ai";
 
 import Product from "../../../components/shared/Product/Product";
 import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
-import EditCollectionModal from "../../../components/Modal/Edit-collection/Edit-collection-modal";
+import CollectionModal from "../../../components/Modal/Collection/Collection-modal";
 import Loading from "../../../components/shared/loading/Loading";
 
 const ViewCollection = () => {
@@ -44,7 +44,7 @@ const ViewCollection = () => {
           <Flex alignItems="center" justifyContent="center" mb="40px">
             <CollectionTitle>{Collection.title}</CollectionTitle>
             <AiFillEdit
-              color="#8053ff"
+              color="primary"
               size="20px"
               cursor="pointer"
               onClick={openEditModal}
@@ -75,7 +75,7 @@ const ViewCollection = () => {
         <Loading />
       )}
       {editCollectionModal && (
-        <EditCollectionModal
+        <CollectionModal
           collection={Collection}
           close={closeEditModal}
           update={getCollections}

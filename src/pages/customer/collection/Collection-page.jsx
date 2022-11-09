@@ -1,6 +1,3 @@
-import "./Collection-page-style.scss";
-import "react-toastify/dist/ReactToastify.css";
-
 import Loading from "../../../components/shared/loading/Loading";
 import Product from "../../../components/shared/Product/Product";
 
@@ -8,10 +5,11 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCollectionById } from "../../../api/public/Collection-api";
 import { SHOP_TYPES } from "../../../constant/shop-types";
-import { USER_TYPE } from "../../../constant/user-types"
+import { USER_TYPE } from "../../../constant/user-types";
+import { CollectionPageWrapper, HeaderTitle } from "./Collection-page-style";
+import { Flex, Box } from "@chakra-ui/react";
 
 export default function CollectionPage() {
-
   const [Collection, setCollectin] = useState(null);
 
   const { collectionId, shopname } = useParams();
@@ -26,55 +24,55 @@ export default function CollectionPage() {
   };
 
   const collectionType =
-    Collection && (Collection.products.length > 0) && Collection.products[0].shopifyData
+    Collection &&
+    Collection.products.length > 0 &&
+    Collection.products[0].shopifyData
       ? SHOP_TYPES.SHOPIFY
       : SHOP_TYPES.DROPLINKED;
 
   return (
     <>
-      <div className="view-collcetion-page-wrapper">
+      <CollectionPageWrapper>
         {Collection ? (
           <>
-            <div className="title">{Collection.title}</div>
-            {(Collection.products.length > 0)
-            ?
-            <div className=" mt-5 d-flex flex-wrap">
-              {Collection.products.map((product, i) => {
-                return (
-                  <div key={i} className="col-6 col-md-3 p-1">
-                    {collectionType == SHOP_TYPES.SHOPIFY ? (
-                      <Product
-                        shopname={shopname}
-                        id={product._id}
-                        title={product.shopifyData.title}
-                        imageUrl={
-                          product.shopifyData.images.length > 0 &&
-                          product.shopifyData.images[0].src
-                        }
-                        type={USER_TYPE.CUSTOMER}
-                      />
-                    ) : (
-                      <Product
-                        shopname={shopname}
-                        id={product._id}
-                        title={product.title}
-                        imageUrl={product.media[0].url}
-                        type={USER_TYPE.CUSTOMER}
-                      />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-            :
-            <div className="d-flex justify-content-center title" style={{fontSize:'16px' , marginTop:'60px'}}>Empty</div>
-            }
-            
+            <HeaderTitle>{Collection.title}</HeaderTitle>
+            {Collection.products.length > 0 ? (
+              <Flex mt="30px" flexWrap="wrap">
+                {Collection.products.map((product, i) => {
+                  return (
+                    <Box w={{ base: "50%", md: "25%" }} p="5px" key={i}>
+                      {collectionType == SHOP_TYPES.SHOPIFY ? (
+                        <Product
+                          shopname={shopname}
+                          id={product._id}
+                          title={product.shopifyData.title}
+                          imageUrl={
+                            product.shopifyData.images.length > 0 &&
+                            product.shopifyData.images[0].src
+                          }
+                          type={USER_TYPE.CUSTOMER}
+                        />
+                      ) : (
+                        <Product
+                          shopname={shopname}
+                          id={product._id}
+                          title={product.title}
+                          imageUrl={product.media[0].url}
+                          type={USER_TYPE.CUSTOMER}
+                        />
+                      )}
+                    </Box>
+                  );
+                })}
+              </Flex>
+            ) : (
+              <HeaderTitle>Empty</HeaderTitle>
+            )}
           </>
         ) : (
           <Loading />
         )}
-      </div>
+      </CollectionPageWrapper>
     </>
   );
 }

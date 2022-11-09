@@ -76,7 +76,7 @@ const DroplinkedDetail = ({
 
   useEffect(() => {
     initialSelectedVariant();
-  }, []);
+  }, [product]);
 
   const decreaseQuantity = () => {
     if (quantity > 1) setQuantity((p) => p - 1);
@@ -116,9 +116,24 @@ const DroplinkedDetail = ({
     <DetailWrapper>
       <ProductTitle>{product.title}</ProductTitle>
       <ProductShopname onClick={navigateToShoppage}>{shopName}</ProductShopname>
-      <Text fontWeight="600" fontSize="24px" color="#fff">
-        ${selectedSku && selectedSku.price}
-      </Text>
+      {selectedSku && selectedSku.previousPrice ? (
+        <Flex
+          mb={{ base: "20px", md: "10px", lg: "30px" }}
+          alignItems="flex-end"
+        >
+          <Text fontWeight="600" fontSize="24px" color="#fff" mr="16px">
+            ${selectedSku.price}
+          </Text>
+
+          <Text fontWeight="600" fontSize="16px" color="#fff">
+            ${selectedSku.previousPrice}
+          </Text>
+        </Flex>
+      ) : (
+        <Text fontWeight="600" fontSize="24px" color="#fff">
+          ${selectedSku && selectedSku.price}
+        </Text>
+      )}
       <Flex justifyContent="space-between" w="100%" flexWrap="wrap">
         {optionsList.map((option, i) => {
           return (

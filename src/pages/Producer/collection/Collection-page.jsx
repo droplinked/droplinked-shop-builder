@@ -1,17 +1,23 @@
-import "./Collection-page-style.scss";
+//import "./Collection-page-style.scss";
 
-import AddCollectionPage from "./add-collection-page/Add-collection-component";
 import Loading from "../../../components/shared/loading/Loading";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import ProducerCollection from "../../../components/shared/ProducerCollection/Producre-collection";
-import AddProduct from "../../../components/shared/AddProduct/Add-product-component"
+import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
+import CollectionModal from "../../../components/Modal/Collection/Collection-modal";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCollections } from "../../../api/producer/Collection-api";
+import {
+  CollectionPageWrapper,
+  HeaderTitle,
+  ListedNumber,
+  ButtonWrapper,
+  AddproductWrapper,
+} from "./Collection-page-style";
 
 export default function CollectionMainPage() {
-  
   const [Modal, setModal] = useState(false);
   const [collectins, setCollections] = useState(null);
 
@@ -19,9 +25,7 @@ export default function CollectionMainPage() {
 
   const token = JSON.parse(localStorage.getItem("token"));
 
-  if (token == null) {
-    navigate("/");
-  }
+  if (token == null) navigate("/");
 
   const updateCollections = async () => {
     let collections = await getCollections();
@@ -34,47 +38,46 @@ export default function CollectionMainPage() {
 
   const ToggleModal = () => setModal((p) => !p);
 
-const closeNewCollectionModal = () => setModal(false)
-
-console.log("xxx")
+  const closeNewCollectionModal = () => setModal(false);
 
   return (
-    <>
-      <div className="Collection-page-wrapper">
-        <div className="ims-title">Collections</div>
-        <div className="number-of-merchs">
-          {collectins && collectins.length} Listed
-        </div>
-        <div className="mt-5 col-12 col-md-3 ">
-          <BasicButton click={ToggleModal}>Add collection</BasicButton>
-        </div>
+    <CollectionPageWrapper>
+      {/* <HeaderTitle>Collections</HeaderTitle>
+      <ListedNumber>{collectins && collectins.length} Listed</ListedNumber> */}
+      <ButtonWrapper>
+        <BasicButton click={ToggleModal}>Add collection</BasicButton>
+      </ButtonWrapper>
 
-        {collectins ? (
-          <>
-            {collectins.length <= 0 ? (
-              <div className="mt-5 col-lg-6 col-md-10 col-12 ">
-               <AddProduct />
-              </div>
-            ) : (
-              <>
-                {collectins.map((collection, i) => {
-                  return (
-                    <div key={i} className="mt-5 col-lg-6 col-md-10 col-12 ">
-                      <ProducerCollection
-                        collection={collection}
-                        update={updateCollections}
-                      />
-                    </div>
-                  );
-                })}
-              </>
-            )}
-          </>
-        ) : (
-          <Loading />
-        )}
-      </div>
-      {Modal && <AddCollectionPage toggle={ToggleModal} close={closeNewCollectionModal}/>}
-    </>
+      {collectins ? (
+        <>
+          {collectins.length <= 0 ? (
+            <AddproductWrapper>
+              <AddProduct />
+            </AddproductWrapper>
+          ) : (
+            <>
+              {collectins.map((collection, i) => {
+                return (
+                  <AddproductWrapper key={i}>
+                    <ProducerCollection
+                      collection={collection}
+                      update={updateCollections}
+                    />
+                  </AddproductWrapper>
+                );
+              })}
+            </>
+          )}
+        </>
+      ) : (
+        <Loading />
+      )}
+      {Modal && (
+        <CollectionModal
+          close={closeNewCollectionModal}
+          update={updateCollections}
+        />
+      )}
+    </CollectionPageWrapper>
   );
 }

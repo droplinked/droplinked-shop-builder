@@ -45,7 +45,7 @@ const OrderStatus = ({ orderStatus, loading, cancelOnClick, openProccessModal })
         <>
             {(isCustomer())
                 ?
-                <Box fontSize={{ base: "20px", md: '24px' }} fontWeight='600' color='#8053ff' textAlign='center' w='100%'>
+                <Box fontSize={{ base: "20px", md: '24px' }} fontWeight='600' color='primary' textAlign='center' w='100%'>
                     {orderText()}
                 </Box>
                 :
@@ -63,7 +63,7 @@ const OrderStatus = ({ orderStatus, loading, cancelOnClick, openProccessModal })
                         </Flex>
                         :
                         <>
-                            <Box fontSize={{ base: "20px", md: '24px' }} fontWeight='600' color='#8053ff' textAlign='center' w='100%'>
+                            <Box fontSize={{ base: "20px", md: '24px' }} fontWeight='600' color='primary' textAlign='center' w='100%'>
                                 {orderText()}
                             </Box>
                         </>

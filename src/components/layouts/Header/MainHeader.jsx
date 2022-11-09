@@ -1,20 +1,22 @@
-
-
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import { Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import { HeaderWrapper, HeaderTitle } from "./MainHeader-style";
 
-import DefaulHeader from "./default header/Default-header-component";
-import UserHeader from "./user Header/User-header-component";
-import EmailModal from "../../Modal/Email-modal/email-modal";
+import DefaulHeader from "./components/default-header/default-header";
+import CustomerHeader from "./components/customer-header/customer-header"
+import EmailModal from "../../Modal/Email/email-modal";
+import ProducerHeader from "./components/producer-header/producer-header"
 
 function MainHeader() {
   const [showEmailModal, setEmailModal] = useState(false);
-  const { profile } = useProfile();
+  const { profile, isCustomer } = useProfile();
+  const navigate = useNavigate();
 
   const closeEmailModal = () => setEmailModal(false);
+
+  const navigateToLandingPage = () => navigate("/");
 
   const customerHaventEmail = () => setEmailModal(true);
   // show droplinked logo in leftside and condition for right side
@@ -23,12 +25,12 @@ function MainHeader() {
 
   return (
     <HeaderWrapper>
-      <Link to="/">
-        <HeaderTitle>droplinked</HeaderTitle>
-      </Link>
+      <HeaderTitle onClick={navigateToLandingPage}>droplinked</HeaderTitle>
       <Flex h="100%">
         {profile ? (
-          <UserHeader />
+          <Flex h="100%" alignItems="center">
+            {isCustomer() ? <CustomerHeader/> : <ProducerHeader/>}
+          </Flex>
         ) : (
           <DefaulHeader haventEmail={customerHaventEmail} />
         )}

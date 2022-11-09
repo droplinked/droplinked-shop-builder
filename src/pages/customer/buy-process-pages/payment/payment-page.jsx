@@ -15,15 +15,17 @@ import {
 } from "./payment-page-style";
 
 const PaymentPage = () => {
-    
   const { cart } = useCart();
 
   const selectedAddress = JSON.parse(localStorage.getItem("selected_address"));
 
-  const shippingPrice =
-    cart.type == SHOP_TYPES.DROPLINKED
-      ? cart.selectedEasyPostShipmentRate
-      : JSON.parse(localStorage.getItem("shippingPrice")).shippingPrice;
+  const shippingPrice = () => {
+    if (cart) {
+      return cart.type == SHOP_TYPES.DROPLINKED
+        ? cart.selectedEasyPostShipmentRate
+        : JSON.parse(localStorage.getItem("shippingPrice")).shippingPrice;
+    }
+  };
 
   const getItemsPrice = () => {
     let totalPrice = 0;
@@ -40,27 +42,33 @@ const PaymentPage = () => {
   };
 
   const getTotalPrice = () => {
-    return (parseFloat(getItemsPrice()) + parseFloat(shippingPrice)).toFixed(2);
+    return (parseFloat(getItemsPrice()) + parseFloat(shippingPrice())).toFixed(
+      2
+    );
   };
 
   return (
     <PaymentPageWrapper>
-      <ProductWrapper>
-        {cart.items.map((item, i) => {
-          return <ProductItem key={i} type={cart.type} product={item} />;
-        })}
-        <TotalPrice>Total price: ${getItemsPrice()}</TotalPrice>
-      </ProductWrapper>
+      {cart && (
+        <>
+          <ProductWrapper>
+            {cart.items.map((item, i) => {
+              return <ProductItem key={i} type={cart.type} product={item} />;
+            })}
+            <TotalPrice>Total price: ${getItemsPrice()}</TotalPrice>
+          </ProductWrapper>
 
-      <AddressComponent
-        shippingPrice={parseFloat(shippingPrice).toFixed(2)}
-        selectedAddress={selectedAddress}
-      />
+          <AddressComponent
+            shippingPrice={parseFloat(shippingPrice()).toFixed(2)}
+            selectedAddress={selectedAddress}
+          />
 
-      <Box w="100%" borderBottom="1px solid #757575" mb="32px"></Box>
+          <Box w="100%" borderBottom="1px solid #757575" mb="32px"></Box>
 
-      <TotalPayment>Total payment: ${getTotalPrice()}</TotalPayment>
-      {cart.type == SHOP_TYPES.DROPLINKED ? <ImsPayment /> : <CartPage />}
+          <TotalPayment>Total payment: ${getTotalPrice()}</TotalPayment>
+          {cart.type == SHOP_TYPES.DROPLINKED ? <ImsPayment /> : <CartPage />}
+        </>
+      )}
     </PaymentPageWrapper>
   );
 };

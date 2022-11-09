@@ -32,8 +32,8 @@ export default function ShopPage() {
     setShop(shopinfo);
   };
 
-  const getCollectionData = async (shop) => {
-    let collections = await getCollectionsByShopname(shop);
+  const getCollectionData = async () => {
+    let collections = await getCollectionsByShopname(shopname);
     setCollections(collections);
   };
 

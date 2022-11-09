@@ -11,23 +11,41 @@ import {
   DescriptionText,
   ReadmoreIconWrapper,
 } from "../styles/Merch-style";
+//import { isGated } from "../../../../utils/gated.utils/gated-utils";
+import {
+  getMaxDiscount,
+  gatedPassesRules,
+} from "../../../../services/NFTCheck1";
 import { FiArrowDownCircle } from "react-icons/fi";
+import { getUserAddress } from "../../../../services/wallet-auth/api";
+//import { getMaxDiscount } from "../../../../services/nft-service/maxDiscount";
 
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import ShopifyDetail from "./Shopify-merch-detail-component";
 
-const ShopifyMech = ({ shopName, product }) => {
+const ShopifyMech = ({ shopName, product, openLogin }) => {
   const [loading, setLoading] = useState(false);
   // if product cant pass rule lock value == true
   const [lock, setLock] = useState(true);
+
   const [testLimit, setTextLimit] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(null);
+  const [percent, setPercent] = useState(null);
 
   const { userData } = UseWalletInfo();
   const { addShopifyItemToCart } = useCart();
   const { successToast, errorToast } = useToasty();
-  const { profile } = useProfile();
+  const { profile, signinWithaWallet } = useProfile();
+
+  const gatedStatus =
+  product.ruleset == undefined
+    ? "PUBLIC"
+    : product.ruleset.gated
+    ? "GATED"
+    : "DISCOUNT";
+
+  const isGated = product.ruleset == undefined ? false : true;
 
   let images = product.shopifyData.images.map((img) => {
     return { url: img.src };
@@ -35,60 +53,50 @@ const ShopifyMech = ({ shopName, product }) => {
 
 
   useEffect(() => {
-    if (product.ruleset == undefined) setLock(null);
-    else {
-      if (userData != undefined) checkGated();
-    }
+      if (gatedStatus != "PUBLIC" && userData) checkProductRule();
   }, [userData]);
 
-  const checkGated = () => {
-    const Rules = product.ruleset.rules.map((rule) => rule.address);
-    setLoading(true);
-    checkRules(userData.profile.stxAddress.mainnet, Rules)
-      .then((e) => {
-        if (e) {
-          setLoading(false);
-          setLock(false);
-        } else {
-          setLoading(false);
-          setLock(true);
-        }
-      })
-      .catch((e) => {
-        setLoading(false);
-        setLock(true);
-        errorToast(e.response.data);
-      });
-  };
+  const checkProductRule = async () => {
 
-  const addToPreCard = () => {
-    const itemObject = {
-      amount: quantity,
-      product: product.shopifyData,
-      shopName: product.shopifyShopDomain,
-      variant: selectedVariant,
-      productId: product._id,
-      productRule:
-        product.ruleset == undefined ? undefined : product.ruleset.rules,
-    };
-    successToast("Item added to cart");
-    addShopifyItemToCart(itemObject);
+
+    if (gatedStatus == "GATED") {
+        let result = await gatedPassesRules(
+          getUserAddress(userData).mainnet,
+          product.ruleset
+        );
+        if (result) setLock(false);
+    }
+    else {
+        let result = await getMaxDiscount(
+          getUserAddress(userData).mainnet,
+          product.ruleset
+        );
+        if (result.NFTsPassed.length > 0)  setPercent(result.discountPercentage);
+      }
   };
 
   const addItemToBasket = async () => {
     if (profile == null) {
-      // signinWithaWallet();
-      addToPreCard();
+      if (isGated) signinWithaWallet();
+      else openLogin();
       return;
-    } else {
-      if (lock) errorToast("Required NFT not found, accessed denied");
-      else addToCardFunction();
     }
 
-  
+    if (userData == undefined && isGated) {
+      signinWithaWallet();
+      return;
+    }
+
+    if(gatedStatus == 'GATED' && lock){
+      errorToast("Required NFT not found, accessed denied");
+      return
+    }
+
+    addToCardFunction();
+
   };
 
-  const addToCardFunction = () => {
+  const addToCardFunction = async () => {
     let itemObject = {
       amount: quantity,
       product: product.shopifyData,
@@ -97,7 +105,8 @@ const ShopifyMech = ({ shopName, product }) => {
       productId: product._id,
     };
     successToast("Item added to cart");
-    addShopifyItemToCart(itemObject);
+    if (percent) addShopifyItemToCart(itemObject, true);
+    else addShopifyItemToCart(itemObject);
   };
 
   const changeTextLimit = () => setTextLimit((p) => !p);
@@ -106,7 +115,7 @@ const ShopifyMech = ({ shopName, product }) => {
     <>
       <MerchPageWrapper>
         {/* images */}
-        <Box w={{ base: "100%", md: "50%" }} minh="500px">
+        <Box w={{ base: "100%", sm: "100%", md: "50%" }} minh="500px">
           <Carousel imagesArray={images} />
         </Box>
         {/* images */}
@@ -118,6 +127,7 @@ const ShopifyMech = ({ shopName, product }) => {
           quantity={quantity}
           lock={lock}
           setQuantity={setQuantity}
+          percent={percent}
           submit={addItemToBasket}
           loading={loading}
           selectedVariant={selectedVariant}

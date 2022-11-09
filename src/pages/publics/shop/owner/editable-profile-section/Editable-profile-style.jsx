@@ -44,7 +44,7 @@ export const IconImage = chakra("img", {
 export const EditButton = chakra("button", {
   baseStyle: {
     w: "auto",
-    color: "#8053ff",
+    color: "primary",
     fontWeight: "600",
     mt: { base: "20px", md: "30px" },
     fontSize: { base: "16px", md: "20px" },

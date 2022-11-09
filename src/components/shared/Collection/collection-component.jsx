@@ -4,7 +4,7 @@ import { useState } from "react";
 import { BASE_URL } from "../../../api/BaseUrl";
 import { CollectionWrapper } from "./collection-component-style";
 
-import IframeSnipped from "../../Modal/Iframe-snipped-modal/Iframe-snipped-modal";
+import IframeSnipped from "../../Modal/Iframe-snipped/Iframe-snipped-modal";
 import CollectionHeader from "./collection-header-component";
 import CollectionProducts from "./collection-products-component";
 import Countdown from "./countdown-component/countdown-component";
@@ -70,6 +70,7 @@ export default function Collection({ collection, shopname, type }) {
                 products={collection.products}
                 shopname={shopname}
                 type={type}
+                event={true}
               />
             </Box>
             <Box w={{ base: "100%", md: "50%" }} py='10px'>
@@ -82,6 +83,7 @@ export default function Collection({ collection, shopname, type }) {
               products={collection.products}
               shopname={shopname}
               type={type}
+              event={false}
             />
           </Box>
         )}

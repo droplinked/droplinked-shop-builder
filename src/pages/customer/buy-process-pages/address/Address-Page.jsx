@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useAddress } from "../../../../context/address/AddressContext";
@@ -8,7 +8,7 @@ import { createCheckout } from "../../../../api/producer/Shopify-api";
 import { useCart } from "../../../../context/cart/CartContext";
 import { useProfile } from "../../../../context/profile/ProfileContext";
 import { SHOP_TYPES } from "../../../../constant/shop-types";
-import { UseWalletInfo } from "../../../../context/wallet/WalletContext"
+import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
 import { useParams } from "react-router-dom";
 import {
   AddressPageWrapper,
@@ -23,38 +23,51 @@ import Loading from "../../../../components/shared/loading/Loading";
 import AddressForm from "../../../../components/Modal/Address/Address-modal";
 
 function AddressPage() {
-  // navigate if not user
-  let navigate = useNavigate();
+  // hooks
+  const navigate = useNavigate();
   const { profile } = useProfile();
-  let { shopname } = useParams();
-  const { getStxAddress } = UseWalletInfo()
-
+  const { shopname } = useParams();
+  const { getStxAddress } = UseWalletInfo();
+  const { errorToast } = useToasty();
+  const { addressList } = useAddress();
+  const { cart } = useCart();
+  // navigate if not user
   let token = JSON.parse(localStorage.getItem("token"));
   if (!token) navigate("/");
-
+  // states
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [addressModal, setAddressModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { errorToast, successToast } = useToasty();
-  const { addressList } = useAddress();
-  const { cart } = useCart();
-
-  const toggleAddressForm = () => {
-    setAddressModal((p) => !p);
-  };
-
   useEffect(() => {
-    if (addressList.length > 0) setSelectedAddress(addressList[0]);
-    else setSelectedAddress(null);
+    if (addressList) {
+      if (addressList.length > 0) setSelectedAddress(addressList[0]);
+      else setSelectedAddress(null);
+    }
   }, [addressList]);
 
-//  item
-  const hasGatedProductInCard = () => {
-   let findItem =  cart.items.find(item => item.productRule != undefined)
-   if (findItem == undefined) return false 
-   else return true
-  }
+  const toggleAddressForm = () => setAddressModal((p) => !p);
+
+  //  item
+  // const hasGatedProductInCard = () => {
+  //   let findItem = cart.items.find((item) => item.productRule != undefined);
+  //   if (findItem == undefined) return false;
+  //   else return true;
+  // };
+
+  const getAddressObj = () => {
+    return {
+      first_name: selectedAddress.firstname,
+      last_name: selectedAddress.lastname,
+      country: selectedAddress.country,
+      province: selectedAddress.state,
+      city: selectedAddress.city,
+      address1: selectedAddress.addressLine1,
+      address2: selectedAddress.addressLine2,
+      zip: selectedAddress.zip,
+      phone: "",
+    };
+  };
 
   const ProccessToPayment = async () => {
     if (selectedAddress == null) {
@@ -78,17 +91,8 @@ function AddressPage() {
       }
     } else {
       // add address for shopify cart
-      let addressObj = {
-        first_name: selectedAddress.firstname,
-        last_name: selectedAddress.lastname,
-        country: selectedAddress.country,
-        province: selectedAddress.state,
-        city: selectedAddress.city,
-        address1: selectedAddress.addressLine1,
-        address2: selectedAddress.addressLine2,
-        zip: selectedAddress.zip,
-        phone: "",
-      };
+      let addressObj = getAddressObj();
+
       let itemsArray = cart.items.map((item) => {
         return {
           variant_id: item.variant.id,
@@ -96,15 +100,17 @@ function AddressPage() {
           product_id: item.productId,
         };
       });
+
       let data = {
         checkout: {
           billing_address: addressObj,
           shipping_address: addressObj,
-          wallet:getStxAddress() ,
+          wallet: cart.wallet ? getStxAddress() : "",
           line_items: itemsArray,
           email: profile.email,
         },
       };
+
       setLoading(true);
       let result = await createCheckout(cart.items[0].shopName, data);
       setLoading(false);

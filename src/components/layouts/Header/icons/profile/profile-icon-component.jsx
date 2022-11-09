@@ -39,7 +39,7 @@ export default function ProfileIcon({ click }) {
                     src={profileImage}
                     onClick={click}
                     border='2px'
-                    borderColor='#8053ff'
+                    borderColor='primary'
                 />
                 :
                 <Flex
@@ -48,7 +48,7 @@ export default function ProfileIcon({ click }) {
                     cursor='pointer'
                     borderRadius='50%'
                     border='2px'
-                    borderColor='#8053ff'
+                    borderColor='primary'
                     w={{ base: "34px", md: '52px' }}
                     h={{ base: "34px", md: '52px' }}
                     style={{

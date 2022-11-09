@@ -22,6 +22,7 @@ import AddressComponent from "../../../components/shared/Address/address-compone
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import AddressForm from "../../../components/Modal/Address/Address-modal";
 import Loading from "../../../components/shared/loading/Loading";
+import FillInput from "../../../components/shared/FillInput/FillInput";
 
 const RegisterPage = () => {
   const [shop, setShop] = useState(null);
@@ -30,7 +31,7 @@ const RegisterPage = () => {
   const { addressList } = useAddress();
   const { errorToast, successToast } = useToasty();
   const { updateShop } = useShop();
-  const { updateProfileDate } = useProfile();
+  const { updateProfileData } = useProfile();
 
   const profile = JSON.parse(localStorage.getItem("profile"));
 
@@ -94,7 +95,7 @@ const RegisterPage = () => {
       localStorage.setItem("shop", JSON.stringify(result.data.shop));
       successToast("Shop info successfully updated");
       updateShop();
-      updateProfileDate();
+      await updateProfileData();
       if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
     } else {
       errorToast(result.reason);
@@ -139,41 +140,43 @@ const RegisterPage = () => {
 
             <Box mb="20px"></Box>
 
-            <FormInput
+            <FillInput
+              preText={"https://"}
               value={shop.webUrl}
-              changeValue={(e) => chageShopInformation("webUrl", e)}
+              change={(e) => chageShopInformation("webUrl", e)}
+              placeholder={"droplinked.com"}
               label={"Website"}
-              placeholder="www.example.com"
             />
 
             <Box mb="20px"></Box>
 
-            <FormInput
+            <FillInput
+              preText={"discord.gg/"}
               value={shop.discordUrl}
-              changeValue={(e) => chageShopInformation("discordUrl", e)}
+              change={(e) => chageShopInformation("discordUrl", e)}
+              placeholder={"droplinked"}
               label={"Discord"}
-              placeholder="Username"
             />
 
             <Box mb="20px"></Box>
-
-            <FormInput
+            <FillInput
+              preText={"twitter.com/"}
               value={shop.twitterUrl}
-              changeValue={(e) => chageShopInformation("twitterUrl", e)}
+              change={(e) => chageShopInformation("twitterUrl", e)}
+              placeholder={"droplinked"}
               label={"Twitter"}
-              placeholder="Username"
             />
 
             <Box mb="20px"></Box>
-
-            <FormInput
+            <FillInput
+              preText={"instagram.com/"}
               value={shop.instagramUrl}
-              changeValue={(e) => chageShopInformation("instagramUrl", e)}
+              change={(e) => chageShopInformation("instagramUrl", e)}
+              placeholder={"droplinked"}
               label={"Instagram"}
-              placeholder="Username"
             />
 
-            <Box mb="40px"></Box>
+            <Box mb="20px"></Box>
 
             {shopAddressBook ? (
               <Box w="100%">

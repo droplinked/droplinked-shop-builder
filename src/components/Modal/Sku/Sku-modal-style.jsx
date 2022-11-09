@@ -43,12 +43,12 @@ export const SkuContent = chakra("div", {
 
 export const SkuLable = chakra('lable', {
     baseStyle: {
-        color: '#8053ff',
+        color: 'primary',
         fontWight: '500',
         fontSize: '18px',
         width: '40%',
         p: '5px',
-        borderBottom: ' 2px solid #8053ff'
+        borderBottom: ' 2px solid primary'
     },
 })
 
@@ -66,7 +66,7 @@ export const SkuInput = chakra('input', {
         bgColor: 'transparent',
         transition: '0.5s',
         _focus: {
-            border: '2px solid #8053ff'
+            border: '2px solid primary'
         }
     },
 })

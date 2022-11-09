@@ -19,16 +19,15 @@ import OrderModal from "../../Modal/Order/Order-modal";
 import BasicButton from "../BasicButton/BasicButton";
 
 const animationKeyframes = keyframes`
-0% { color: #8053ff; }
+0% { color: primary; }
 40% { color: #fff; }
-80% { color: #8053ff; }
-100% { color: #8053ff; }
+80% { color: primary; }
+100% { color: primary; }
 `;
 
 const animation = `${animationKeyframes} 2s ease infinite`;
 
 export default function Order({ order }) {
-
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isCustomer } = useProfile();
@@ -43,11 +42,15 @@ export default function Order({ order }) {
   const getTotalPrice = () => {
     let total = 0.0;
     if (order.type == SHOP_TYPES.DROPLINKED) {
-      total = parseFloat(order.totalPrice).toFixed(2);
+      total = parseFloat(order.totalPrice)
+      if(order.shippingPrice) total += parseFloat(order.shippingPrice)
+      if(order.totalDiscount) total -= parseFloat(order.totalDiscount)
+
     } else {
       order.items.forEach((item) => (total += parseFloat(item.price)));
     }
-    return total;
+    
+    return parseFloat(total).toFixed(2)
   };
 
   const imageUrl = (item) => (order.type == SHOP_TYPES.DROPLINKED)? item.product.media[0].url : item.image_url 
@@ -108,7 +111,7 @@ export default function Order({ order }) {
       mb="40px"
       transition="0.8s"
       _hover={{
-        border: "3px solid #8053ff",
+        border: "3px solid primary",
       }}
       onClick={onOpen}
     >

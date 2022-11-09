@@ -71,11 +71,11 @@ export default function InputImage({ image, setImage }) {
           borderRadius="100%"
           bgColor="#222"
           border="2px"
-          borderColor="#8053ff"
+          borderColor="primary"
           cursor="pointer"
           justifyContent="center"
           alignItems="center"
-          _hover={{ border: "4px", borderColor: "#8053ff" }}
+          _hover={{ border: "4px", borderColor: "primary" }}
         >
           <MdOutlineEdit style={{ fill: "white" }} />
         </FormLabel>
@@ -115,7 +115,7 @@ export default function InputImage({ image, setImage }) {
               thickness="4px"
               speed="0.65s"
               emptyColor="gray.200"
-              color="#8053ff"
+              color="primary"
               size="xl"
             />
           )}

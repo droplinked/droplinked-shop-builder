@@ -21,7 +21,7 @@ export default function PurchaseHistory({ order }) {
                     onClick={onOpen}
                     cursor='pointer'
                     _hover={{
-                        borderColor:'#8053ff'  
+                        borderColor:'primary'  
                     }}
                 >
                    <Flex

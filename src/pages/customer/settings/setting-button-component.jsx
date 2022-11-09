@@ -16,11 +16,11 @@ export default function SettingButton({ children, click ,active }) {
         textAlign='center'
         p='12px 0px'
         mb='15px'
-        bgColor={active?'#8053ff':'transparent'}
+        bgColor={active?'primary':'transparent'}
         border='1px'
-        borderColor="#8053ff"
+        borderColor="primary"
         _hover={{
-             bgColor: '#8053ff',
+             bgColor: 'primary',
              color:"black"
              }}
         onClick={click}

@@ -12,7 +12,7 @@ export const SelectInputComponent = chakra("input", {
     px: "16px",
     py: { base: "8px", md: "12px" },
     outline: "none",
-    _focus: { borderColor: "#8053ff" },
+    _focus: { borderColor: "primary" },
     h: "auto",
     cursor: "pointer",
   },

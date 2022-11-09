@@ -4,6 +4,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useCart } from "../../../../../context/cart/CartContext";
 import { checkoutCart } from "../../../../../api/base-user/Cart-api";
+import { getUserAddress } from "../../../../../services/wallet-auth/api";
+import { UseWalletInfo } from "../../../../../context/wallet/WalletContext";
 //import { STRIPE_KEY } from "./stripe.key";
 //import { addRootpaymentOrder } from "../../../api/base-user/Cart-api"
 import { useNavigate } from "react-router-dom";
@@ -11,7 +13,7 @@ import {
   getClientSecret,
   CanselOrder,
 } from "../../../../../api/base-user/OrderHistory-api";
-
+ // getUserAddress(userData).mainnet
 // import axios from "axios"
 import StripeComponent from "./stripe modal/stripe-modal-component";
 //import Loading from "../../../../../components/shared/loading/Loading";
@@ -25,6 +27,7 @@ export default function ImsPayment() {
   const [disableBtns, setDisables] = useState(false);
 
   const { cart, updateCart } = useCart();
+  const { userData } = UseWalletInfo();
   let navigate = useNavigate();
   var lastOrder = JSON.parse(sessionStorage.getItem("payOrder"));
   // console.log(lastOrder);
@@ -77,12 +80,13 @@ export default function ImsPayment() {
   };
 
   const stripePayment = async () => {
+    let walletAddress = (userData)?getUserAddress(userData).mainnet:''
     setDisables(true);
     let result;
     if (lastOrder != null) {
       result = await getClientSecret(lastOrder._id);
     } else {
-      result = await checkoutCart();
+      result = await checkoutCart(walletAddress);
     }
 
     if (result != null) {
@@ -150,14 +154,14 @@ export default function ImsPayment() {
           >
             <Button
               w="40%"
-              color="#8053ff"
+              color="primary"
               border="1px"
-              borderColor="#8053ff"
+              borderColor="primary"
               bgColor="#222"
               _hover={{
                 color: "#222",
                 borderColor: "#222",
-                bgColor: "#8053ff",
+                bgColor: "primary",
               }}
               disabled={disableBtns}
               onClick={stripePayment}
@@ -167,14 +171,14 @@ export default function ImsPayment() {
 
             <Button
               w="40%"
-              color="#8053ff"
+              color="primary"
               border="1px"
-              borderColor="#8053ff"
+              borderColor="primary"
               bgColor="#222"
               _hover={{
                 color: "#222",
                 borderColor: "#222",
-                bgColor: "#8053ff",
+                bgColor: "primary",
               }}
               disabled={true}
               //  onClick={rootpaymentsPayment}
