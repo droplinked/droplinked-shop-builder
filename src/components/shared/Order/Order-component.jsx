@@ -29,7 +29,6 @@ const animation = `${animationKeyframes} 2s ease infinite`;
 
 export default function Order({ order }) {
 
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isCustomer } = useProfile();
   const navigate = useNavigate();
@@ -43,11 +42,15 @@ export default function Order({ order }) {
   const getTotalPrice = () => {
     let total = 0.0;
     if (order.type == SHOP_TYPES.DROPLINKED) {
-      total = parseFloat(order.totalPrice).toFixed(2);
+      total = parseFloat(order.totalPrice)
+      if(order.shippingPrice) total += parseFloat(order.shippingPrice)
+      if(order.totalDiscount) total -= parseFloat(order.totalDiscount)
+
     } else {
       order.items.forEach((item) => (total += parseFloat(item.price)));
     }
-    return total;
+    
+    return parseFloat(total).toFixed(2)
   };
 
   const imageUrl = (item) => (order.type == SHOP_TYPES.DROPLINKED)? item.product.media[0].url : item.image_url 
