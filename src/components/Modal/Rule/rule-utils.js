@@ -1,5 +1,5 @@
 export const convertAddressToArray = (ruleAddress) => {
-  let addressArray = ruleAddress.replace(/\s+/g, "").split(";");
+  let addressArray = ruleAddress.replace(/\s+/g, "").split(",");
   addressArray = addressArray.filter((address) => {
     return address != "";
   });
@@ -8,7 +8,7 @@ export const convertAddressToArray = (ruleAddress) => {
 
 export const convertArrayToAddress = (ruleArray) => {
   console.log(ruleArray);
-  let addressString = ruleArray.join(";");
-  addressString += ";";
+  let addressString = ruleArray.join(",");
+  addressString += ",";
   return addressString;
 };

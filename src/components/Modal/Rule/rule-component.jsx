@@ -53,7 +53,7 @@ const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
         <Box w={{ base: "100%", lg: "60%" }}>
           <LableInput>NFT asset identifier</LableInput>
           <TextareaInput
-            placeholder="NFT asset identifier"
+            placeholder="NFT asset identifier  (comma seprated , )"
             value={addressList}
             onChange={changeAddressList}
           />
