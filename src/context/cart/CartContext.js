@@ -4,6 +4,10 @@ import { SHOP_TYPES } from "../../constant/shop-types";
 import { checkRules } from "../../services/nft-service/NFTcheck";
 import { useToasty } from "../../context/toastify/ToastContext";
 import { UseWalletInfo } from "../../context/wallet/WalletContext";
+import { getMaxDiscount } from "../../services/NFTCheck1";
+import { getUserAddress } from "../../services/wallet-auth/api";
+
+// getUserAddress(userData).mainnet
 
 export const CartContext = createContext();
 
@@ -16,26 +20,69 @@ const CartProvider = ({ children }) => {
 
   //update cartstate
   const updateCart = async () => {
-    let localCart = JSON.parse(localStorage.getItem("cart"));
-    if (localCart == null) {
-      // get cart from back
-      let result = await getCart();
-      if (result.status === "success") {
-        let newCart = { ...result.data.cart, type: SHOP_TYPES.DROPLINKED };
-        if (newCart.items.length > 0) setCart(newCart);
-        else setCart(null)
-      } else {
-        errorToast(result.data.reason);
+    let result = await getCart();
+
+    if (result.status === "success") {
+      let resultCard = result.data.cart;
+      // return
+      if (resultCard.items.length <= 0) setCart(null);
+      //
+      else {
+        let items = [];
+        for (let i = 0; i < resultCard.items.length; i++) {
+          let newItem = await addImsItemToCard(resultCard.items[i])
+          items.push(newItem);
+        }
+        setCart({ ...resultCard, items: items, type: SHOP_TYPES.DROPLINKED });
       }
     } else {
-      localCart.items.forEach((item) => gatedAndAddItem(item));
+      errorToast(result.data.reason);
     }
   };
- 
+
+  const addImsItemToCard = async(item) => {
+    if (item.ruleset && !item.ruleset.gated) {
+      let discountResult = await getMaxDiscount(
+        getUserAddress(userData).mainnet,
+        item.ruleset
+      );
+
+      if (discountResult.NFTsPassed.length > 0) {
+        let newItem = discountProductSkus(
+          discountResult.discountPercentage,
+          item
+        );
+        return(newItem);
+      } //
+      else {
+        return(item);
+      }
+    } //
+    else {
+      return(item);
+    }
+  }
+
+  // discoutn price for items
+  const discountProductSkus = (discount, product) => {
+    let newSku = {
+      ...product.sku,
+      price: parseFloat(
+        product.sku.price - product.sku.price * (discount / 100)
+      ).toFixed(2),
+    };
+    let newTotal = parseFloat(
+      product.totalPrice - product.totalPrice * (discount / 100)
+    ).toFixed(2);
+
+    return { ...product, sku: newSku, totalPrice: newTotal };
+  };
+
+  //
   const addWalletToCard = () => {
     if (userData) {
       let newCard = { ...cart, wallet: getStxAddress() };
-      setCart(newCard)
+      setCart(newCard);
     }
   };
 
@@ -62,7 +109,7 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  const addShopifyItemToCart = (item , rulePassed) => {
+  const addShopifyItemToCart = (item, rulePassed) => {
     let newCart;
     // build new cart if doesnt exist any p
     if (cart == null || cart.items.length == 0) {
@@ -106,10 +153,10 @@ const CartProvider = ({ children }) => {
         }
       }
     }
-    console.log('rulePassed',rulePassed);
-    if(rulePassed && rulePassed == true){
-      console.log('card',cart);
-      newCart = { ...newCart, wallet: getStxAddress() }
+    console.log("rulePassed", rulePassed);
+    if (rulePassed && rulePassed == true) {
+      console.log("card", cart);
+      newCart = { ...newCart, wallet: getStxAddress() };
     }
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
