@@ -68,12 +68,12 @@ export const updateQuantity = async (skuId, q) => {
   }
 };
 
-export const checkoutCart = async () => {
+export const checkoutCart = async (walletAddress) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = await axios.post(
       `${BASE_URL}/cart/checkout`,
-      {},
+      {wallet:walletAddress},
       { headers: { Authorization: "Bearer " + token } }
     );
     return res.data.data.client_secret;
