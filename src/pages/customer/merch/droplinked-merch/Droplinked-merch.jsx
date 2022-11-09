@@ -15,7 +15,7 @@ import {
   ReadmoreIconWrapper,
   DescriptionTextWrapper,
 } from "../styles/Merch-style";
-import { GATED_TYPE } from "../../../../constant/gated-status-type";
+//import { GATED_TYPE } from "../../../../constant/gated-status-type";
 //import { isGated } from "../../../../utils/gated.utils/gated-utils";
 import { FiArrowDownCircle } from "react-icons/fi";
 import {
