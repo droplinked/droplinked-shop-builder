@@ -49,31 +49,30 @@ const DroplinkedMerch = ({ bproduct, openLogin }) => {
   }, [userData]);
 
   const checkProductRule = async () => {
-    console.log('start');
     if (product.ruleset.gated) {
       let result = await gatedPassesRules(
         getUserAddress(userData).mainnet,
         product.ruleset
       );
-      console.log(result);
     } else {
       let result = await getMaxDiscount(
         getUserAddress(userData).mainnet,
         product.ruleset
       );
-     if(result.NFTsPassed.length > 0)discountSkus(result.discountPercentage)
+      if (result.NFTsPassed.length > 0) discountSkus(result.discountPercentage);
     }
   };
 
-
   const discountSkus = (percentage) => {
-      let currentSku = product.skus.map(sku => {
-        let newPrice = parseFloat(sku.price - (sku.price *(percentage/100))).toFixed(2)
-        return {...sku , price:newPrice , previousPrice:sku.price}
-      })
-        const newProduct = {...product , skus:currentSku}
-        setProduct(newProduct)
-  }
+    let currentSku = product.skus.map((sku) => {
+      let newPrice = parseFloat(
+        sku.price - sku.price * (percentage / 100)
+      ).toFixed(2);
+      return { ...sku, price: newPrice, previousPrice: sku.price };
+    });
+    const newProduct = { ...product, skus: currentSku };
+    setProduct(newProduct);
+  };
 
   // add to baskset functionality
   const Addtobasket = async () => {
@@ -93,15 +92,17 @@ const DroplinkedMerch = ({ bproduct, openLogin }) => {
       return;
     }
 
-    // const cart = {
-    //   skuID: selectedSku._id,
-    //   quantity: quantity,
-    // };
+    const cart = {
+      skuID: selectedSku._id,
+      quantity: quantity,
+    };
 
-    // if (product.ruleset == undefined) {
-    //   await addMerhcToCart(cart);
-    //   return;
-    // }
+    setDisableBtn(true);
+    if (!product.ruleset.gated) {
+      await addMerhcToCart(cart);
+      setDisableBtn(false);
+      return;
+    }
 
     // const Rules = product.ruleset.rules.map((rule) => rule.address);
 
