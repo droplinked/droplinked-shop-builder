@@ -17,7 +17,6 @@ import CollectionModal from "../../../components/Modal/Collection/Collection-mod
 import Loading from "../../../components/shared/loading/Loading";
 
 const ViewCollection = () => {
-
   const [Collection, setCollection] = useState(null);
   const [editCollectionModal, setEditCollectionModal] = useState(false);
 
@@ -32,7 +31,6 @@ const ViewCollection = () => {
     let coll = await getCollectionById(collectionId);
     setCollection(coll);
   };
-
 
   const openEditModal = () => setEditCollectionModal(true);
   const closeEditModal = () => setEditCollectionModal(false);
@@ -54,7 +52,17 @@ const ViewCollection = () => {
           <ProductWrapper>
             {Collection.products.length > 0 &&
               Collection.products.map((product, i) => {
-                return (
+                console.log(product);
+                return product.type == "SHOPIFY" ? (
+                  <div key={i} className="col-6 col-md-3 p-1">
+                    <Product
+                      title={product.shopifyData.title}
+                      imageUrl={product.shopifyData.images[0].src}
+                      id={product._id}
+                      type={USER_TYPE.PRODUCER}
+                    />
+                  </div>
+                ) : (
                   <div key={i} className="col-6 col-md-3 p-1">
                     <Product
                       title={product.title}
@@ -86,3 +94,7 @@ const ViewCollection = () => {
 };
 
 export default ViewCollection;
+
+{
+  /*  */
+}
