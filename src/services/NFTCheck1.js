@@ -9,7 +9,7 @@ import axios from "axios"
 
 const fetchPrincipalNFTs = (
   principal,
-  assetIdentifiers,
+  asset_identifiers,
   limit,
   offset
 ) => {
@@ -19,7 +19,7 @@ const fetchPrincipalNFTs = (
       baseURL: "https://stacks-node-api.mainnet.stacks.co/",
       params: {
         principal,
-        assetIdentifiers,
+        asset_identifiers,
         limit,
         offset,
       },
