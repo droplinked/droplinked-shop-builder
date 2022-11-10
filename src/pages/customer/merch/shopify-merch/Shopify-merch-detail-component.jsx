@@ -149,7 +149,7 @@ const ShopifyDetail = ({
                     ${selectedVariant && selectedVariant.price}
                   </Text>
 
-                  <Text fontWeight="600" fontSize="16px" color="#fff">
+                  <Text fontWeight="600" fontSize={{base:"10px",md:"14px"}} color="lightGray">
                     ${selectedVariant && selectedVariant.previousPrice}
                   </Text>
                 </Flex>
