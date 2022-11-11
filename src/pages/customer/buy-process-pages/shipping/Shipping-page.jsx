@@ -23,6 +23,8 @@ const ShippingPage = () => {
   const [selectedShipping, setSelectedShipping] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [customShippingPrice, setCustomShippingPrice] = useState(10);
+
   let navigate = useNavigate();
   const { successToast, errorToast } = useToasty();
   const { cart, updateCart } = useCart();
@@ -46,11 +48,19 @@ const ShippingPage = () => {
     // get easypost shipping
     if (cart.type == SHOP_TYPES.DROPLINKED) {
       let result = await getEasypostShipping();
-
+      //
       if (result.status == "success") {
-        setShippings(result.data.shippingRates);
-        if (result.data.shippingRates.length > 0)
-          setSelectedShipping(result.data.shippingRates[0]);
+        console.log(result.data);
+        if (
+          result.data.shippingRates &&
+          result.data.shippingRates.type == "CUSTOM"
+        ) {
+          setCustomShippingPrice(result.data.shippingRates.shippingPrice);
+        } else {
+          setShippings(result.data.shippingRates);
+          if (result.data.shippingRates.length > 0)
+            setSelectedShipping(result.data.shippingRates[0]);
+        }
       } else {
         errorToast(result.reason);
         return;
@@ -141,6 +151,55 @@ const ShippingPage = () => {
       justifyContent="center"
       alignItems="center"
     >
+      <>
+        {customShippingPrice == null ? (
+          <Loading />
+        ) : (
+          <Flex
+            maxW="1000px"
+            w="100%"
+            justifyContent="center"
+            alignItems="center"
+            flexDir="column"
+          >
+            <Text
+              textAlign="end"
+              fontWeight="600"
+              fontSize={{ base: "18px", md: "24px" }}
+              color="#fff"
+              w="100%"
+              px="22px"
+              mb="60px"
+              mt="30px"
+            >
+              Shipping price: ${parseFloat(customShippingPrice).toFixed()}
+            </Text>
+
+            <Flex w="100%" justifyContent="space-between" h="40px" px="22px">
+              <Box w={{ base: "150px", md: "200px" }} h="100%">
+                <BasicButton
+                  disable={loading}
+                  click={backButton}
+                  cancelType={true}
+                >
+                  Back
+                </BasicButton>
+              </Box>
+              <Box w={{ base: "150px", md: "200px" }} h="100%">
+                <BasicButton
+                  click={() => {
+                    navigate(`/${shopname}/payment`);
+                  }}
+                  loading={loading}
+                >
+                  Next
+                </BasicButton>
+              </Box>
+            </Flex>
+          </Flex>
+        )}
+      </>
+
       {shippings == null ? (
         <Loading />
       ) : (
@@ -190,28 +249,8 @@ const ShippingPage = () => {
 
           {selectedShipping && (
             <>
-              {/* <Text
-                fontWeight="600"
-                fontSize="18px"
-                color="#fff"
-                w="100%"
-                mb="10px"
-              >
-                Merchs: ${selectedShipping.checkout.subtotal_price}
-              </Text> */}
-              {/* <Text
-                fontWeight="600"
-                fontSize="18px"
-                color="#fff"
-                w="100%"
-                mb="36px"
-                px='22px'
-                mt='36px'
-              >
-                Shipping: ${getShippingPrice()}
-              </Text> */}
               <Text
-              textAlign='end'
+                textAlign="end"
                 fontWeight="600"
                 fontSize={{ base: "18px", md: "24px" }}
                 color="#fff"
