@@ -31,7 +31,6 @@ const RuleItem = ({ rule, deleteFunc, editRule, isGated }) => {
             <TextBorder>Amount: {rule.counter}</TextBorder>
             <TextBorder pr="0px" borderRight="none" maxW="30%">
               description: {rule.des}
-              asdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
             </TextBorder>
           </Flex>
         </Flex>
