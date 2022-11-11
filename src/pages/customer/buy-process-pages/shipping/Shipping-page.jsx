@@ -23,7 +23,7 @@ const ShippingPage = () => {
   const [selectedShipping, setSelectedShipping] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const [customShippingPrice, setCustomShippingPrice] = useState(10);
+  const [customShippingPrice, setCustomShippingPrice] = useState(null);
 
   let navigate = useNavigate();
   const { successToast, errorToast } = useToasty();
