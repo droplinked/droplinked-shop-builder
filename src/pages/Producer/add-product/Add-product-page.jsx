@@ -58,6 +58,7 @@ function AddProductPage() {
   const changeShippingType = (e) => setShippingType(e.target.value);
   const changeShppingPrice = (e) => setShippingPrice(e.target.value);
 
+
   // close page
   const cancelForm = () => navigate("/producer/ims");
 
@@ -98,7 +99,7 @@ function AddProductPage() {
       priceUnit: "USD",
       productCollectionID: productInfo.productCollectionID,
       shippingType: shippingType,
-      shippingPrice: shippingPrice == "" ? 0 : shippingPrice,
+      shippingPrice: shippingPrice == "" ? 0 : parseFloat(shippingPrice),
       media: media,
       sku: skuArray,
     };
@@ -135,7 +136,7 @@ function AddProductPage() {
         <Flex alignItems="center" justifyContent="start" w="100%">
           <TypeSelect value={shippingType} onChange={changeShippingType}>
             <option value={SHIPING_TYPES.EASY_POST}>Easy post</option>
-            <option value={SHIPING_TYPES.CUSTOM}>Custom</option>
+            <option value={SHIPING_TYPES.CUSTOM}>self managed, Courier</option>
           </TypeSelect>
           <Box mr={{ base: "10px", md: "15px" }}></Box>
           {shippingType == SHIPING_TYPES.CUSTOM && (
