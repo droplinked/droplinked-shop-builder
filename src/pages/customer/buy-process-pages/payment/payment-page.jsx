@@ -22,10 +22,19 @@ const PaymentPage = () => {
   const shippingPrice = () => {
     if (cart) {
       return cart.type == SHOP_TYPES.DROPLINKED
-        ? cart.selectedEasyPostShipmentRate
+        ?( cart.selectedEasyPostShipmentRate?cart.selectedEasyPostShipmentRate :getCustomShipping())
         : JSON.parse(localStorage.getItem("shippingPrice")).shippingPrice;
     }
   };
+
+  const getCustomShipping = () => {
+    let totalS = 0 
+    cart.items.map(item => {
+      totalS += parseFloat(item.product.shippingPrice).toFixed
+
+    })
+    return totalS
+  }
 
   const getItemsPrice = () => {
     let totalPrice = 0;
