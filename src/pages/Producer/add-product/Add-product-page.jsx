@@ -98,7 +98,7 @@ function AddProductPage() {
       priceUnit: "USD",
       productCollectionID: productInfo.productCollectionID,
       shippingType: shippingType,
-      shippingPrice: shippingPrice,
+      shippingPrice: shippingPrice == "" ? 0 : shippingPrice,
       media: media,
       sku: skuArray,
     };
