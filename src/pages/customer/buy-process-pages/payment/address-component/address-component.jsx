@@ -45,7 +45,7 @@ const AddressComponent = ({shippingPrice , selectedAddress}) => {
           fontWeight="400"
           fontSize={{ base: "16px", md: "20px" }}
         >
-          Shipping price: ${shippingPrice}
+          Shipping price: {(shippingPrice == 0)?"Free":`$${shippingPrice}`}
         </Text>
       </Flex>
     </Box>

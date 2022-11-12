@@ -8,8 +8,16 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getVariants, postProduct } from "../../../api/producer/Product-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { ModalContainerWrapper, TitleText } from "./Add-product-style";
+import {
+  ModalContainerWrapper,
+  TitleText,
+  TypeSelect,
+  LableInput,
+  InputComponent,
+} from "./Add-product-style";
 import { Flex, Box } from "@chakra-ui/react";
+import { SHIPING_TYPES } from "./shippings-type";
+
 function AddProductPage() {
   const token = JSON.parse(localStorage.getItem("token"));
 
@@ -27,6 +35,9 @@ function AddProductPage() {
   // state for maintaing array of product skus
   const [skuArray, setSkuArray] = useState([]);
 
+  const [shippingType, setShippingType] = useState(SHIPING_TYPES.EASY_POST);
+  const [shippingPrice, setShippingPrice] = useState("");
+
   const { successToast, errorToast } = useToasty();
   const navigate = useNavigate();
 
@@ -43,6 +54,10 @@ function AddProductPage() {
       .then((e) => setVariantType(e))
       .catch((e) => console.log(e));
   };
+
+  const changeShippingType = (e) => setShippingType(e.target.value);
+  const changeShppingPrice = (e) => setShippingPrice(e.target.value);
+
 
   // close page
   const cancelForm = () => navigate("/producer/ims");
@@ -83,6 +98,8 @@ function AddProductPage() {
       description: productInfo.description,
       priceUnit: "USD",
       productCollectionID: productInfo.productCollectionID,
+      shippingType: shippingType,
+      shippingPrice: shippingPrice == "" ? 0 : parseFloat(shippingPrice),
       media: media,
       sku: skuArray,
     };
@@ -108,11 +125,7 @@ function AddProductPage() {
   const openSkuModal = () => setSkuModalShow(true);
 
   return (
-    <Flex
-      w="100%"
-      justifyContent="center"
-      alignItems="center"
-    >
+    <Flex w="100%" justifyContent="center" alignItems="center">
       <ModalContainerWrapper>
         <TitleText>Add new item</TitleText>
         {/* this component for (title , description , collection , images) */}
@@ -120,6 +133,22 @@ function AddProductPage() {
           productInfo={productInfo}
           setProductInfo={setProductInfo}
         />
+        <Flex alignItems="center" justifyContent="start" w="100%">
+          <TypeSelect value={shippingType} onChange={changeShippingType}>
+            <option value={SHIPING_TYPES.EASY_POST}>Easy post</option>
+            <option value={SHIPING_TYPES.CUSTOM}>self managed, Courier</option>
+          </TypeSelect>
+          <Box mr={{ base: "10px", md: "15px" }}></Box>
+          {shippingType == SHIPING_TYPES.CUSTOM && (
+            <InputComponent
+              placeholder="Shipping price $"
+              value={shippingPrice}
+              onChange={changeShppingPrice}
+              type="number"
+            />
+          )}
+        </Flex>
+
         {/* this component for show options and  select them */}
         {varintType && (
           <OptionCheckboxes

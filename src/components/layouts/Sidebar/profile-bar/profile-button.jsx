@@ -1,7 +1,7 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 
 const ProfileButton = ({ text, icon, click ,active  }) => {
-  console.log(active);
+
   return (
     <Flex
       w="100%"

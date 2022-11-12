@@ -18,7 +18,7 @@ const keyframe_dropdowncontainer = keyframes`
 `;
 
 const DropdownContainer = ({ close , dropdown }) => {
-
+console.log('dropdown',dropdown);
     const prefersReducedMotion = usePrefersReducedMotion();
 
     const dropdown_animation = prefersReducedMotion

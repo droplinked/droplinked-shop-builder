@@ -12,7 +12,7 @@ import ShopifyCartItem from "./basket-item/shopify-item-cart";
 
 export default function BasketModal({ close }) {
   const { cart } = useCart();
-  console.log(cart);
+
   let navigate = useNavigate();
   let { shopname } = useParams();
 

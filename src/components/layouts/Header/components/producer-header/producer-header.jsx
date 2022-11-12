@@ -9,6 +9,8 @@ import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 
 
+import Notification from "../../icons/notification/notification-icon-component";
+
 import ProducerSlide from "../../dropdowns/producer-slide/producer-slide";
 import burgerIcon from "../../../../../assest/icon/burger-icon.svg";
 
@@ -17,12 +19,14 @@ const ProducerHeader = () => {
     const { shop } = useShop();
 
     const [openslide, setOpenSlide] = useState(false);
+
  
     const toggleSlide = () => setOpenSlide((p) => !p);
-    
+
 
   return (
     <>
+      <Notification />
       {shop && (
         <Box d={{ base: "none", sm: "flex" }} alignItems="center">
           <ShopnameText>{shop.name}</ShopnameText>

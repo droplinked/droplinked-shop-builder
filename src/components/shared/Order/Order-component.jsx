@@ -28,7 +28,6 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 2s ease infinite`;
 
 export default function Order({ order }) {
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isCustomer } = useProfile();
   const navigate = useNavigate();
@@ -42,22 +41,28 @@ export default function Order({ order }) {
   const getTotalPrice = () => {
     let total = 0.0;
     if (order.type == SHOP_TYPES.DROPLINKED) {
-      total = parseFloat(order.totalPrice)
-      if(order.shippingPrice) total += parseFloat(order.shippingPrice)
-      if(order.totalDiscount) total -= parseFloat(order.totalDiscount)
-
+      total = parseFloat(order.totalPrice);
+      if (order.shippingPrice) total += parseFloat(order.shippingPrice);
+      if (order.totalDiscount) total -= parseFloat(order.totalDiscount);
+      if (
+        order.items[0].product.shippingType &&
+        order.items[0].product.shippingType == "CUSTOM"
+      ) {
+        order.items.forEach((item) => {
+          total += parseFloat(item.product.shippingPrice);
+        });
+      }
     } else {
       order.items.forEach((item) => (total += parseFloat(item.price)));
     }
-    
-    return parseFloat(total).toFixed(2)
+
+    return parseFloat(total).toFixed(2);
   };
 
-  const imageUrl = (item) => (order.type == SHOP_TYPES.DROPLINKED)? item.product.media[0].url : item.image_url 
-
-
-
-
+  const imageUrl = (item) =>
+    order.type == SHOP_TYPES.DROPLINKED
+      ? item.product.media[0].url
+      : item.image_url;
 
   const statusText = () => {
     switch (order.status) {
@@ -71,8 +76,10 @@ export default function Order({ order }) {
         return "Processing";
       case ORDER_TYPES.REFUNDED:
         return "Canceled";
-      case ORDER_TYPES.WAITING_FOR_PAYMENT:
-        return "Waiting for payment";
+        case ORDER_TYPES.WAITING_FOR_PAYMENT:
+          return "Waiting for confirmation";
+      // case ORDER_TYPES.WAITING_FOR_PAYMENT:
+      //   return "Waiting for payment";
       default:
         return "";
     }
@@ -97,7 +104,7 @@ export default function Order({ order }) {
       _id: order._id,
       totalPrice: parseFloat(order.totalPrice).toFixed(2),
     };
-    
+
     sessionStorage.setItem("payOrder", JSON.stringify(payOrder));
     navigate(`/payment`);
   };
@@ -191,7 +198,7 @@ export default function Order({ order }) {
             </Text>
           </Flex>
           {/* status */}
-          {order.status == ORDER_TYPES.WAITING_FOR_PAYMENT && (
+          {/* {order.status == ORDER_TYPES.WAITING_FOR_PAYMENT && (
             <Box
               pos="absolute"
               w={{ base: "120px", md: "160px" }}
@@ -201,7 +208,7 @@ export default function Order({ order }) {
             >
               <BasicButton onClick={paynow}>Pay now</BasicButton>
             </Box>
-          )}
+          )} */}
         </Box>
       ) : (
         <Stack>

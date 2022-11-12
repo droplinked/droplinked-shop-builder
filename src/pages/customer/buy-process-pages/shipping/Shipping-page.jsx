@@ -46,11 +46,18 @@ const ShippingPage = () => {
     // get easypost shipping
     if (cart.type == SHOP_TYPES.DROPLINKED) {
       let result = await getEasypostShipping();
-
+      //
       if (result.status == "success") {
-        setShippings(result.data.shippingRates);
-        if (result.data.shippingRates.length > 0)
-          setSelectedShipping(result.data.shippingRates[0]);
+        if (
+          result.data.shippingRates &&
+          result.data.shippingRates.type == "CUSTOM"
+        ) {
+          navigate(`/${shopname}/payment`);
+        } else {
+          setShippings(result.data.shippingRates);
+          if (result.data.shippingRates.length > 0)
+            setSelectedShipping(result.data.shippingRates[0]);
+        }
       } else {
         errorToast(result.reason);
         return;
@@ -141,6 +148,7 @@ const ShippingPage = () => {
       justifyContent="center"
       alignItems="center"
     >
+
       {shippings == null ? (
         <Loading />
       ) : (
@@ -190,28 +198,8 @@ const ShippingPage = () => {
 
           {selectedShipping && (
             <>
-              {/* <Text
-                fontWeight="600"
-                fontSize="18px"
-                color="#fff"
-                w="100%"
-                mb="10px"
-              >
-                Merchs: ${selectedShipping.checkout.subtotal_price}
-              </Text> */}
-              {/* <Text
-                fontWeight="600"
-                fontSize="18px"
-                color="#fff"
-                w="100%"
-                mb="36px"
-                px='22px'
-                mt='36px'
-              >
-                Shipping: ${getShippingPrice()}
-              </Text> */}
               <Text
-              textAlign='end'
+                textAlign="end"
                 fontWeight="600"
                 fontSize={{ base: "18px", md: "24px" }}
                 color="#fff"

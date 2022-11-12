@@ -106,7 +106,6 @@ const EditSkuModal = ({ open, close, optionTypes, defaultValue, update }) => {
 
   // submit add sku function
   const submitForm = async () => {
-    console.log("xx");
     let dimensions = {
       length: length,
       width: width,
@@ -124,7 +123,6 @@ const EditSkuModal = ({ open, close, optionTypes, defaultValue, update }) => {
       weight: weight,
     };
 
-    console.log(obj);
     if (defaultValue._id) {
       setLoading(true);
       let result = await updateSku(defaultValue._id, obj);

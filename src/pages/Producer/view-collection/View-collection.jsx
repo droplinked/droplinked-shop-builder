@@ -52,7 +52,6 @@ const ViewCollection = () => {
           <ProductWrapper>
             {Collection.products.length > 0 &&
               Collection.products.map((product, i) => {
-                console.log(product);
                 return product.type == "SHOPIFY" ? (
                   <div key={i} className="col-6 col-md-3 p-1">
                     <Product

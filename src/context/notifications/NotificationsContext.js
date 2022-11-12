@@ -10,32 +10,36 @@ export const NotContext = createContext();
 export default function NotificationProvider({ children }) {
   const [notifications, setNotifications] = useState([]);
 
+  console.log('notifications',notifications);
+
   const updateNotifications = async () => {
     let result = await getNotifications();
     result = sortArrayBaseCreateTime(result);
     if (result != null) setNotifications(result);
   };
 
+
   const seenNotif = async (id) => {
     await seenNotification(id);
     await updateNotifications();
   };
 
-  const unseenNofitCount = () => {
+  const unseenNotifList = () => {
     if (notifications.length > 0) {
-      let n = notifications.filter(
+      let unseens = notifications.filter(
         (notification) => notification.seen == false
       );
-      return n.length;
+      return unseens;
     } else {
-      return 0;
+      return [];
     }
   };
+
 
   const ContextValue = {
     notifications,
     updateNotifications,
-    unseenNofitCount,
+    unseenNotifList,
     seenNotif,
   };
 

@@ -45,7 +45,6 @@ const Rule = ({ collectionId, update, close, ruleId }) => {
 
   const getRuleData = async () => {
     let result = await getRuleById(ruleId);
-    console.log(result);
     if (result.status == "success") initializeRule(result.data.ruleSet);
   };
 
@@ -105,7 +104,6 @@ const Rule = ({ collectionId, update, close, ruleId }) => {
     let result 
     if(ruleId != undefined)result = await updateRule(ruleId ,collectionId, rulesArray, webUrl, gated);
     else result = await addRuleset(collectionId, rulesArray, webUrl, gated);
-    console.log(result);
     update();
     close();
   };
