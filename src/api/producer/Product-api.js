@@ -95,7 +95,7 @@ export const deleteMerch = async (id) => {
 export const updateSku = async (id, sku) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
-    const res = await axios.post(`${BASE_URL}/producer/product/sku/${id}`,{
+    const res = await axios.put(`${BASE_URL}/producer/product/sku/${id}`,{
       skus : [sku]
     }, {
       headers: { Authorization: "Bearer " + token },
