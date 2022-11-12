@@ -35,7 +35,7 @@ const PaymentPage = () => {
     cart.items.forEach((item) => {
       totalS += item.product.shippingPrice;
     });
-    return totalS == 0 ? "Free" : totalS;
+    return totalS 
   };
 
   const getItemsPrice = () => {
