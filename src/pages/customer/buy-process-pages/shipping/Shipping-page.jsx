@@ -23,8 +23,6 @@ const ShippingPage = () => {
   const [selectedShipping, setSelectedShipping] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const [customShippingPrice, setCustomShippingPrice] = useState(null);
-
   let navigate = useNavigate();
   const { successToast, errorToast } = useToasty();
   const { cart, updateCart } = useCart();
@@ -55,7 +53,7 @@ const ShippingPage = () => {
           result.data.shippingRates &&
           result.data.shippingRates.type == "CUSTOM"
         ) {
-          setCustomShippingPrice(result.data.shippingRates.shippingPrice);
+          navigate(`/${shopname}/payment`);
         } else {
           setShippings(result.data.shippingRates);
           if (result.data.shippingRates.length > 0)
@@ -151,54 +149,6 @@ const ShippingPage = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <>
-        {customShippingPrice == null ? (
-          <Loading />
-        ) : (
-          <Flex
-            maxW="1000px"
-            w="100%"
-            justifyContent="center"
-            alignItems="center"
-            flexDir="column"
-          >
-            <Text
-              textAlign="end"
-              fontWeight="600"
-              fontSize={{ base: "18px", md: "24px" }}
-              color="#fff"
-              w="100%"
-              px="22px"
-              mb="60px"
-              mt="30px"
-            >
-              Shipping price: ${parseFloat(customShippingPrice).toFixed()}
-            </Text>
-
-            <Flex w="100%" justifyContent="space-between" h="40px" px="22px">
-              <Box w={{ base: "150px", md: "200px" }} h="100%">
-                <BasicButton
-                  disable={loading}
-                  click={backButton}
-                  cancelType={true}
-                >
-                  Back
-                </BasicButton>
-              </Box>
-              <Box w={{ base: "150px", md: "200px" }} h="100%">
-                <BasicButton
-                  click={() => {
-                    navigate(`/${shopname}/payment`);
-                  }}
-                  loading={loading}
-                >
-                  Next
-                </BasicButton>
-              </Box>
-            </Flex>
-          </Flex>
-        )}
-      </>
 
       {shippings == null ? (
         <Loading />

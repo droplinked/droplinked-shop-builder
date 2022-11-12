@@ -16,25 +16,27 @@ import {
 
 const PaymentPage = () => {
   const { cart } = useCart();
+  ///console.log(cart);
 
   const selectedAddress = JSON.parse(localStorage.getItem("selected_address"));
 
   const shippingPrice = () => {
     if (cart) {
       return cart.type == SHOP_TYPES.DROPLINKED
-        ?( cart.selectedEasyPostShipmentRate?cart.selectedEasyPostShipmentRate :getCustomShipping())
+        ? cart.items[0].product.shippingType == "CUSTOM"
+          ? getCustomShipping()
+          : cart.selectedEasyPostShipmentRate
         : JSON.parse(localStorage.getItem("shippingPrice")).shippingPrice;
     }
   };
 
   const getCustomShipping = () => {
-    let totalS = 0 
-    cart.items.map(item => {
-      totalS += parseFloat(item.product.shippingPrice).toFixed
-
-    })
-    return totalS
-  }
+    let totalS = 0;
+    cart.items.forEach((item) => {
+      totalS += item.product.shippingPrice;
+    });
+    return totalS == 0 ? "Free" : totalS;
+  };
 
   const getItemsPrice = () => {
     let totalPrice = 0;
