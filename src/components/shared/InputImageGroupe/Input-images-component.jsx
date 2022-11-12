@@ -23,7 +23,6 @@ export default function InputImagesGroup({ setState, state }) {
 
   const openFile = () =>{
      fileRef.current.click()
-     console.log("xxx");
     }
 
   const changeImage = (e) => {

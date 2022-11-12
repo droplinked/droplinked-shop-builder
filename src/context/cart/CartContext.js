@@ -153,9 +153,7 @@ const CartProvider = ({ children }) => {
         }
       }
     }
-    console.log("rulePassed", rulePassed);
     if (rulePassed && rulePassed == true) {
-      console.log("card", cart);
       newCart = { ...newCart, wallet: getStxAddress() };
     }
     setCart(newCart);

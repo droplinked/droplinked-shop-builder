@@ -91,9 +91,8 @@ export const addRootpaymentOrder = async(orderId) => {
       { orderID: orderId },
       { headers: { Authorization: "Bearer " + token } }
     );
-    console.log();
+
   } catch (err) {
-    console.log();
   }
 };
 

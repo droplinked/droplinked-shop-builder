@@ -4,11 +4,9 @@ import axios from "axios";
 import SelectInput from "../../components/shared/SelectInput/SelectInput"
 
 
-console.log("test");
 
 const getShopInfoByShopname = async () => {
   const res = await axios.get("https://restcountries.com/v3.1/all");
-  console.log(res.data);
 };
 
 

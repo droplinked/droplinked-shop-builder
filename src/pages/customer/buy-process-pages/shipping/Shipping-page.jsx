@@ -48,7 +48,6 @@ const ShippingPage = () => {
       let result = await getEasypostShipping();
       //
       if (result.status == "success") {
-        console.log(result.data);
         if (
           result.data.shippingRates &&
           result.data.shippingRates.type == "CUSTOM"
