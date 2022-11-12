@@ -68,6 +68,28 @@ export default function ViewMerchPage() {
     }
   };
 
+
+  return (
+    <>
+      {!merch ? (
+        <Loading />
+      ) : (
+        <ViewMerchWrapper animation={pageAnimation} >
+          {merch.shopifyData ? (
+            <ViewShopifyMerch product={merch} shopifyData={merch.shopifyData} />
+          ) : (
+            <ImsViewMerch merch={merch} update={getMerch}/>
+          )}
+        </ViewMerchWrapper>
+      )}
+    </>
+  );
+}
+
+
+
+
+
   // const cancelForm = () => {
   //   navigate("/producer/ims");
   // };
@@ -120,20 +142,3 @@ export default function ViewMerchPage() {
   //   }
   //   setModalDisBtn(false);
   // };
-
-  return (
-    <>
-      {!merch ? (
-        <Loading />
-      ) : (
-        <ViewMerchWrapper animation={pageAnimation} >
-          {merch.shopifyData ? (
-            <ViewShopifyMerch product={merch} shopifyData={merch.shopifyData} />
-          ) : (
-            <ImsViewMerch merch={merch} update={getMerch}/>
-          )}
-        </ViewMerchWrapper>
-      )}
-    </>
-  );
-}
