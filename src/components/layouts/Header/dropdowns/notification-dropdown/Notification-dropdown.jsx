@@ -9,9 +9,9 @@ import BasicButton from "../../../../shared/BasicButton/BasicButton"
 
 const NotificationDropdown = ({ close }) => {
 
-    const { notifications, unseenNofitCount } = useNotifications()
+    const { notifications, unseenNotifList } = useNotifications()
     let navigate = useNavigate();
-
+console.log('x');
     const notificationClick = () => {
         close()
         navigate("/notifications")
@@ -45,7 +45,7 @@ const NotificationDropdown = ({ close }) => {
                     color='primary'
                     fontSize={{ base: "14px", md: "16px" }}
                     fontWeight='600'
-                >{unseenNofitCount()}</Text>
+                >{unseenNotifList().length}</Text>
             </Flex>
             {(notifications.length > 0) &&
                 notifications.map((notif, i) => {
