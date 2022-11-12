@@ -1,4 +1,9 @@
-import { DeleteButtonWrapper } from "./ims-viewmerch-style";
+import {
+  DeleteButtonWrapper,
+  TypeSelect,
+  InputComponent,
+  LableInput,
+} from "./ims-viewmerch-style";
 import { Flex, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { updateMerch, deleteMerch } from "../../../../api/producer/Product-api";
@@ -11,12 +16,24 @@ import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-com
 import SkusComponent from "./skus-component/skus-component";
 import AddSkuModal from "../../../../components/Modal/Sku/AddSku";
 
+const SHIPING_TYPES = {
+  EASY_POST: "EASY_POST",
+  CUSTOM: "CUSTOM",
+};
+
 const ImsViewMerch = ({ merch, update }) => {
   const [productInfo, setProductInfo] = useState(null);
 
   const [deleteModal, setDeleteModal] = useState(false);
   const [addSkuModal, setAddSkuModal] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [shippingType, setShippingType] = useState(() => {
+    return merch.shippingType ? merch.shippingType : SHIPING_TYPES.EASY_POST;
+  });
+  const [shippingPrice, setShippingPrice] = useState(() => {
+    return merch.shippingPrice ? merch.shippingPrice : "";
+  });
 
   const { successToast, errorToast } = useToasty();
   const navigate = useNavigate();
@@ -26,7 +43,7 @@ const ImsViewMerch = ({ merch, update }) => {
     merch.skus[0].options.map((opt) => {
       return { variantID: opt.variantID, variantName: opt.variantName };
     });
- 
+
   const cancelForm = () => navigate("/producer/ims");
 
   const openDeleteModal = () => setDeleteModal(true);
@@ -35,6 +52,9 @@ const ImsViewMerch = ({ merch, update }) => {
   const openAddSkuModal = () => setAddSkuModal(true);
   const closeAddSkuModal = () => setAddSkuModal(false);
 
+  const changeShippigType = (e) => setShippingType(e.target.value);
+  const changeShippigPrice = (e) => setShippingPrice(e.target.value);
+console.log(shippingPrice);
   // update prodcut
   const submitForm = async () => {
     let media = [];
@@ -45,6 +65,8 @@ const ImsViewMerch = ({ merch, update }) => {
     const product = {
       title: productInfo.title,
       description: productInfo.description,
+      shippingType: shippingType,
+      shippingPrice: shippingPrice == "" ? 0 : parseFloat(shippingPrice),
       priceUnit: "USD",
       collectionID: productInfo.productCollectionID,
       media: media,
@@ -94,6 +116,23 @@ const ImsViewMerch = ({ merch, update }) => {
         setProductInfo={setProductInfo}
         defaultValue={merch}
       />
+
+      <Flex alignItems="center" justifyContent="start" w="100%">
+        <TypeSelect value={shippingType} onChange={changeShippigType}>
+          <option value={SHIPING_TYPES.EASY_POST}>Easy post</option>
+          <option value={SHIPING_TYPES.CUSTOM}>self managed, Courier</option>
+        </TypeSelect>
+        <Box mr={{ base: "10px", md: "15px" }}></Box>
+        {shippingType == SHIPING_TYPES.CUSTOM && (
+          <InputComponent
+            placeholder="Shipping price $"
+            value={shippingPrice}
+            onChange={changeShippigPrice}
+            type="number"
+          />
+        )}
+      </Flex>
+
       {merch.skus.length > 0 && (
         <SkusComponent skusArray={merch.skus} update={update} />
       )}
