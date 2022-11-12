@@ -27,6 +27,7 @@ export default function Notification() {
   const close = () => setDropdown(null);
 
   return (
+    <>
     <CartIconWrapper pt="5px">
       <IconImage src={notificationIcon} onClick={openNotification}/>
       {unSeenNofits.length > 0 && (
@@ -50,8 +51,10 @@ export default function Notification() {
           {unSeenNofits.length}
         </Flex>
       )}
-      {dropdown && <DropdownContainer close={close} dropdown={dropdown} />}
+     
     </CartIconWrapper>
+    {dropdown && <DropdownContainer close={close} dropdown={'NOTIFICATION'} />}
+    </>
   );
 }
 
