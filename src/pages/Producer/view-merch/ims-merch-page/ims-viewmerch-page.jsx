@@ -21,10 +21,13 @@ const ImsViewMerch = ({ merch, update }) => {
   const { successToast, errorToast } = useToasty();
   const navigate = useNavigate();
 
-  const optionTypes = merch.skus[0].options.map((opt) => {
-    return { variantID: opt.variantID, variantName: opt.variantName };
-  });
-  const cancelForm = () =>  navigate("/producer/ims");
+  const optionTypes =
+    merch.skus.length > 0 &&
+    merch.skus[0].options.map((opt) => {
+      return { variantID: opt.variantID, variantName: opt.variantName };
+    });
+ 
+  const cancelForm = () => navigate("/producer/ims");
 
   const openDeleteModal = () => setDeleteModal(true);
   const closeDeleteModal = () => setDeleteModal(false);
@@ -91,13 +94,17 @@ const ImsViewMerch = ({ merch, update }) => {
         setProductInfo={setProductInfo}
         defaultValue={merch}
       />
-      <SkusComponent skusArray={merch.skus} update={update} />
+      {merch.skus.length > 0 && (
+        <SkusComponent skusArray={merch.skus} update={update} />
+      )}
 
-      <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
-        <div className="col-12 col-md-4">
-          <BasicButton click={openAddSkuModal}>Add variant</BasicButton>
+      {merch.skus.length > 0 && (
+        <div className="mt-5 w-100 d-flex justify-content-center align-items-center">
+          <div className="col-12 col-md-4">
+            <BasicButton click={openAddSkuModal}>Add variant</BasicButton>
+          </div>
         </div>
-      </div>
+      )}
 
       <Flex
         justifyContent="space-between"
