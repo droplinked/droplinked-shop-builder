@@ -76,8 +76,10 @@ export default function Order({ order }) {
         return "Processing";
       case ORDER_TYPES.REFUNDED:
         return "Canceled";
-      case ORDER_TYPES.WAITING_FOR_PAYMENT:
-        return "Waiting for payment";
+        case ORDER_TYPES.WAITING_FOR_PAYMENT:
+          return "Waiting for confirmation";
+      // case ORDER_TYPES.WAITING_FOR_PAYMENT:
+      //   return "Waiting for payment";
       default:
         return "";
     }
@@ -196,7 +198,7 @@ export default function Order({ order }) {
             </Text>
           </Flex>
           {/* status */}
-          {order.status == ORDER_TYPES.WAITING_FOR_PAYMENT && (
+          {/* {order.status == ORDER_TYPES.WAITING_FOR_PAYMENT && (
             <Box
               pos="absolute"
               w={{ base: "120px", md: "160px" }}
@@ -206,7 +208,7 @@ export default function Order({ order }) {
             >
               <BasicButton onClick={paynow}>Pay now</BasicButton>
             </Box>
-          )}
+          )} */}
         </Box>
       ) : (
         <Stack>
