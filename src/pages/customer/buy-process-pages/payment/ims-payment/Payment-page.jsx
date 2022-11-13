@@ -166,7 +166,7 @@ export default function ImsPayment() {
               disabled={disableBtns}
               onClick={stripePayment}
             >
-              Credit card
+            {disableBtns ? "Wait" : "Credit card"}  
             </Button>
 
             <Button
