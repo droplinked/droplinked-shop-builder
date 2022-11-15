@@ -73,7 +73,21 @@ export const checkoutCart = async (walletAddress) => {
   try {
     const res = await axios.post(
       `${BASE_URL}/cart/checkout`,
-      {wallet:walletAddress},
+      { wallet: walletAddress },
+      { headers: { Authorization: "Bearer " + token } }
+    );
+    return true;
+  } catch (err) {
+    return err.response.data.reason;
+  }
+};
+
+export const checkoutFree = async (walletAddress) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/cart/checkout-free`,
+      { wallet: walletAddress },
       { headers: { Authorization: "Bearer " + token } }
     );
     return res.data.data.client_secret;
@@ -83,7 +97,7 @@ export const checkoutCart = async (walletAddress) => {
   }
 };
 
-export const addRootpaymentOrder = async(orderId) => {
+export const addRootpaymentOrder = async (orderId) => {
   const token = JSON.parse(localStorage.getItem("token"));
   try {
     const res = axios.post(
@@ -91,9 +105,7 @@ export const addRootpaymentOrder = async(orderId) => {
       { orderID: orderId },
       { headers: { Authorization: "Bearer " + token } }
     );
-
-  } catch (err) {
-  }
+  } catch (err) {}
 };
 
 export const removeCart = async () => {
