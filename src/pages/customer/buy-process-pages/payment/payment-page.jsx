@@ -77,7 +77,7 @@ const PaymentPage = () => {
           <Box w="100%" borderBottom="1px solid #757575" mb="32px"></Box>
 
           <TotalPayment>Total payment: ${getTotalPrice()}</TotalPayment>
-          {cart.type == SHOP_TYPES.DROPLINKED ? <ImsPayment totalPrice={getTotalPrice()}/> : <CartPage />}
+          {cart.type == SHOP_TYPES.DROPLINKED ? <ImsPayment totalPrice={parseFloat(getTotalPrice())}/> : <CartPage />}
         </>
       )}
     </PaymentPageWrapper>
