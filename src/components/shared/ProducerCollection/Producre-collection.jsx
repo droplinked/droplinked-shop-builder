@@ -60,7 +60,7 @@ const ProducerCollection = ({ collection, update }) => {
         />
         <ProductsWrapper>
             {collection.products.length == 0 ? (
-            <Box w="100%">
+            <Box w={{base:"50%" , lg:'25%'}}>
               <AddProduct />
             </Box>
           ) : (
