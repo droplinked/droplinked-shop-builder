@@ -54,7 +54,7 @@ const ImsViewMerch = ({ merch, update }) => {
 
   const changeShippigType = (e) => setShippingType(e.target.value);
   const changeShippigPrice = (e) => setShippingPrice(e.target.value);
-console.log(shippingPrice);
+
   // update prodcut
   const submitForm = async () => {
     let media = [];
