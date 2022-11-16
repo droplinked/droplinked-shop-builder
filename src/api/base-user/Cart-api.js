@@ -76,7 +76,7 @@ export const checkoutCart = async (walletAddress) => {
       { wallet: walletAddress },
       { headers: { Authorization: "Bearer " + token } }
     );
-    return true;
+    return res.data.data.client_secret;
   } catch (err) {
     return err.response.data.reason;
   }
@@ -90,10 +90,9 @@ export const checkoutFree = async (walletAddress) => {
       { wallet: walletAddress },
       { headers: { Authorization: "Bearer " + token } }
     );
-    return res.data.data.client_secret;
+    return true;
   } catch (err) {
-    console.error(err.response.data.reason);
-    return null;
+    return err.response.data.reason;
   }
 };
 
