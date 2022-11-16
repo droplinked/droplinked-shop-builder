@@ -26,7 +26,7 @@ const Profilebar = () => {
   return (
     <Box w="100%" px={{lg:'0px',xl:'10px'}}>
        <ProfileButton
-        text={"Shop"}
+        text={"View Shop"}
         icon={shopIcon}
         click={shopClick}
         active={(location == `/${profile.shopName}`)}
