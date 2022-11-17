@@ -9,6 +9,7 @@ import { Flex, Box, Text, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useEffect } from "react";
 
+import RuleState from "../../components/rule-state-component/rule-state";
 import plus from "../../../../assest/icon/plusIcon.png";
 import minus from "../../../../assest/icon/minusIcon.png";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
@@ -18,6 +19,8 @@ const DroplinkedDetail = ({
   shopName,
   selectedSku,
   setSelectedSku,
+  rule,
+  lock,
   quantity,
   setQuantity,
   submit,
@@ -26,6 +29,7 @@ const DroplinkedDetail = ({
   const navigate = useNavigate();
   const navigateToShoppage = () => navigate(`/${shopName}`);
 
+  //
   // find all options type in product and return array of objects like {{variantID:id , values:[]}}
   const getOptionsList = () => {
     let optionsId = product.skus[0].options.map((opt) => opt.variantID);
@@ -125,7 +129,11 @@ const DroplinkedDetail = ({
             ${selectedSku.price}
           </Text>
 
-          <Text fontWeight="600" fontSize={{base:"10px",md:"14px"}} color="lightGray">
+          <Text
+            fontWeight="600"
+            fontSize={{ base: "10px", md: "14px" }}
+            color="lightGray"
+          >
             ${selectedSku.previousPrice}
           </Text>
         </Flex>
@@ -134,6 +142,7 @@ const DroplinkedDetail = ({
           ${selectedSku && selectedSku.price}
         </Text>
       )}
+      {rule != undefined && <RuleState lock={lock} description={rule.rules[0].description} />}
       <Flex justifyContent="space-between" w="100%" flexWrap="wrap">
         {optionsList.map((option, i) => {
           return (
