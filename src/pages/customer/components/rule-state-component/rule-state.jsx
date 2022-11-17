@@ -18,9 +18,7 @@ const RuleState = ({ lock, description }) => {
         p='4px'
       />
       {lock && (
-        <Text color="white" fontSize="12px">
-          {description}sdafsdfasdfasdfasdfasdfasdfasdf asdfasfasfasf
-        </Text>
+        <Text color="white" fontSize="12px">{description}</Text>
       )}
     </Flex>
   );
