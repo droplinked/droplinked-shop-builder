@@ -73,7 +73,10 @@ const DroplinkedMerch = ({ bproduct, openLogin }) => {
         getUserAddress(userData).mainnet,
         product.ruleset
       );
-      if (result.NFTsPassed.length > 0) discountSkus(result.discountPercentage);
+      if (result.NFTsPassed.length > 0) {
+        discountSkus(result.discountPercentage);
+        setLock(false);
+      }
     }
   };
 
@@ -147,6 +150,8 @@ const DroplinkedMerch = ({ bproduct, openLogin }) => {
       <DroplinkedDetail
         product={product}
         shopName={shopname}
+        rule={product.ruleset}
+        lock={lock}
         selectedSku={selectedSku}
         setSelectedSku={setSelectedSku}
         quantity={quantity}
