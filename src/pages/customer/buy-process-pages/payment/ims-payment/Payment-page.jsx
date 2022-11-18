@@ -81,7 +81,7 @@ export default function ImsPayment({ totalPrice }) {
     let walletAddress = userData ? getUserAddress(userData).mainnet : "";
     setDisables(true);
     let result = await checkoutFree(walletAddress);
-    if (result == true) navigate(`/purchseHistory?redirect_status=succeeded`);
+    if (result == true) navigate(`/purchseHistory?redirect_status=confirm`);
     else errorToast(result);
     setDisables(false);
   };

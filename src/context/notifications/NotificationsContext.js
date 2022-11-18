@@ -10,7 +10,6 @@ export const NotContext = createContext();
 export default function NotificationProvider({ children }) {
   const [notifications, setNotifications] = useState([]);
 
-  console.log('notifications',notifications);
 
   const updateNotifications = async () => {
     let result = await getNotifications();
