@@ -1,10 +1,11 @@
 import {  useElements, useStripe, PaymentElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
-import { useCart } from "../../../../../../context/cart/CartContext"
+import { useCart } from "../../../../../context/cart/CartContext"
 import { Flex } from '@chakra-ui/react';
-import { useToasty } from "../../../../../../context/toastify/ToastContext"
-import ModalContainer from "../../../../../../components/Modal/modal-container/modal-container"
-import BasicButton from "../../../../../../components/shared/BasicButton/BasicButton";
+import { useToasty } from "../../../../../context/toastify/ToastContext"
+
+import ModalContainer from "../../../../../components/Modal/modal-container/modal-container"
+import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 import Timer from "./time-component"
 
 

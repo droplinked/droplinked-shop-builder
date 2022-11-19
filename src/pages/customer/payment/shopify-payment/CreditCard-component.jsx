@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "react-credit-cards";
-import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import { CardInput } from "./CreditCard-style";
 import "react-credit-cards/es/styles-compiled.css";
 import {

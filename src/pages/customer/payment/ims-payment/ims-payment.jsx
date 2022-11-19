@@ -2,19 +2,19 @@ import { Box, Button } from "@chakra-ui/react";
 import { useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useCart } from "../../../../../context/cart/CartContext";
+import { useCart } from "../../../../context/cart/CartContext";
 import {
   checkoutCart,
   checkoutFree,
-} from "../../../../../api/base-user/Cart-api";
-import { getUserAddress } from "../../../../../services/wallet-auth/api";
-import { UseWalletInfo } from "../../../../../context/wallet/WalletContext";
-import { useToasty } from "../../../../../context/toastify/ToastContext";
+} from "../../../../api/base-user/Cart-api";
+import { getUserAddress } from "../../../../services/wallet-auth/api";
+import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
+import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
 import {
   getClientSecret,
   CanselOrder,
-} from "../../../../../api/base-user/OrderHistory-api";
+} from "../../../../api/base-user/OrderHistory-api";
 import {
   ImsPaymentWrapper,
   ImsPaymentContainer,
@@ -22,7 +22,7 @@ import {
   PaymetnButton,
 } from "./ims-payment-style";
 
-import SmallModal from "../../../../../components/Modal/Small-modal/Small-modal-component";
+import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component";
 import StripeComponent from "./stripe modal/stripe-modal-component";
 
 const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_KEY}`);

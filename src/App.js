@@ -50,7 +50,7 @@ const AddressPage = lazy(() =>
   import("./pages/customer/address/Address-Page")
 );
 const PaymentPage = lazy(() =>
-   import("./pages/customer/buy-process-pages/payment/payment-page")
+   import("./pages/customer/payment/payment-page")
  )
 
 const SettingsPage = lazy(() => import("./pages/customer/settings/Settings-page"));

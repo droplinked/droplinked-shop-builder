@@ -3,10 +3,9 @@ import ImsPayment from "./ims-payment/ims-payment";
 import ProductItem from "./item-component/product-item";
 import AddressComponent from "./address-component/address-component";
 
-import { useCart } from "../../../../context/cart/CartContext";
-import { SHOP_TYPES } from "../../../../constant/shop-types";
+import { useCart } from "../../../context/cart/CartContext";
+import { SHOP_TYPES } from "../../../constant/shop-types";
 import { Box } from "@chakra-ui/react";
-
 import {
   PaymentPageWrapper,
   ProductWrapper,

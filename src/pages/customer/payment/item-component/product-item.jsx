@@ -4,7 +4,7 @@ import {
   ProductTitle,
   VariantText,
 } from "./product-item-style";
-import { SHOP_TYPES } from "../../../../../constant/shop-types";
+import { SHOP_TYPES } from "../../../../constant/shop-types";
 
 const ProductItem = ({ type, product }) => {
   let title = product.product.title;
