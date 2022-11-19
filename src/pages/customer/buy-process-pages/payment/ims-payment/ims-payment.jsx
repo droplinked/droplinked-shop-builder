@@ -80,9 +80,13 @@ export default function ImsPayment({ totalPrice }) {
     }
 
     if (result != null) {
-      setClientSecret(result);
-      setPaymentSelected("Stripe");
-      setTimeout(cancelPayment, 300000);
+      if (result.status == "success") {
+        setClientSecret(result.data);
+        setPaymentSelected("Stripe");
+        setTimeout(cancelPayment, 300000);
+      } else {
+        errorToast(result.data);
+      }
     }
     setDisables(false);
   };
