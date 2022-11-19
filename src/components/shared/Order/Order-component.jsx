@@ -60,9 +60,9 @@ export default function Order({ order }) {
   };
 
   const imageUrl = (item) =>
-    order.type == SHOP_TYPES.DROPLINKED
-      ? item.product.media[0].url
-      : item.image_url;
+    order.type == SHOP_TYPES.SHOPIFY
+      ? item.image_url
+      : item.product.media[0].url;
 
   const statusText = () => {
     switch (order.status) {
@@ -76,8 +76,8 @@ export default function Order({ order }) {
         return "Processing";
       case ORDER_TYPES.REFUNDED:
         return "Canceled";
-        case ORDER_TYPES.WAITING_FOR_PAYMENT:
-          return "Waiting for confirmation";
+      case ORDER_TYPES.WAITING_FOR_PAYMENT:
+        return "Waiting for confirmation";
       // case ORDER_TYPES.WAITING_FOR_PAYMENT:
       //   return "Waiting for payment";
       default:
