@@ -16,14 +16,15 @@ import {
   CanselOrder,
 } from "../../../../../api/base-user/OrderHistory-api";
 
+import SmallModal from "../../../../../components/Modal/Small-modal/Small-modal-component"
 import StripeComponent from "./stripe modal/stripe-modal-component";
 
 const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_KEY}`);
 
 export default function ImsPayment({ totalPrice }) {
-
   const [paymentSelected, setPaymentSelected] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
+  const [confirmModal, setConfirmModal] = useState(false);
   const [disableBtns, setDisables] = useState(false);
   // ............................  //
   const { errorToast } = useToasty();
@@ -47,6 +48,9 @@ export default function ImsPayment({ totalPrice }) {
     clientSecret: clientSecret,
     appearance,
   };
+
+  const openConfirmModal = () => setConfirmModal(true);
+  const closeConfirmModal = () => setConfirmModal(false);
 
   const cancelPayment = async () => {
     if (lastOrder) {
@@ -116,7 +120,7 @@ export default function ImsPayment({ totalPrice }) {
                 bgColor: "primary",
               }}
               disabled={disableBtns}
-              onClick={totalPrice == 0 ? confirmOrder : stripePayment}
+              onClick={totalPrice == 0 ? openConfirmModal : stripePayment}
             >
               {totalPrice == 0
                 ? "Confirm"
@@ -150,6 +154,16 @@ export default function ImsPayment({ totalPrice }) {
             }}
           />
         </Elements>
+      )}
+      {confirmModal && (
+        <SmallModal
+          show={confirmModal}
+          hide={closeConfirmModal}
+          text={"Do you want to confirm this order?"}
+          click={confirmOrder}
+          loading={disableBtns}
+          buttonText={"Confirm"}
+        />
       )}
     </Box>
   );
