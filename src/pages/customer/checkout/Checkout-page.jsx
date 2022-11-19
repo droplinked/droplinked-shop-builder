@@ -11,6 +11,7 @@ import {
   ButtonWrapper,
 } from "./Checkout-page-style";
 import { SHOP_TYPES } from "../../../constant/shop-types";
+import { getTotalPrice } from "./checkout-utils";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import EmailModal from "../../../components/Modal/Email/email-modal";
@@ -30,25 +31,8 @@ function CheckoutPage() {
 
   const closeEmailModal = () => setShowEmailModal(false);
 
-  const switchModal = () =>modal == "LOGIN" ? setModdal("SIGNUP") : setModdal("LOGIN");
+  const switchModal = () => modal == "LOGIN" ? setModdal("SIGNUP") : setModdal("LOGIN");
   const closeModal = () => setModdal(null);
-
-  const getTotalPrice = () => {
-    if (cart == null) return 0;
-    let total = 0;
-    // calculate for shopify products
-    if (cart.type == SHOP_TYPES.SHOPIFY) {
-      cart.items.forEach(
-        (item) => (total += parseFloat(item.variant.price) * item.amount)
-      );
-    } else {
-      // calculate for ims products
-      cart.items.forEach(
-        (item) => (total += parseFloat(item.sku.price) * item.quantity)
-      );
-    }
-    return total.toFixed(2);
-  };
 
   const checkLogin = () => {
     let checkResult = true;
@@ -74,11 +58,11 @@ function CheckoutPage() {
   };
 
   const checkGated = (rule) => {
-    if(rule == undefined) {
-      return null
-    }else{
-      if(!profile) return true
-      else return false
+    if (rule == undefined) {
+      return null;
+    } else {
+      if (!profile) return true;
+      else return false;
     }
   };
 
@@ -91,8 +75,6 @@ function CheckoutPage() {
         <EmptyText>Empty</EmptyText>
       ) : (
         <>
-          {/* <HeadText>Checkout</HeadText> */}
-
           <Box bgColor="#353535" borderRadius="8px">
             {cart.items.map((item, i) => (
               <>
@@ -123,7 +105,7 @@ function CheckoutPage() {
 
           <PriceWrapper>
             <Box>
-              <PriceText>Total price: ${getTotalPrice()}</PriceText>
+              <PriceText>Total price: ${getTotalPrice(cart)}</PriceText>
             </Box>
           </PriceWrapper>
 
