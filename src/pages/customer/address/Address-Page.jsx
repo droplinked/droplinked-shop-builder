@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useToasty } from "../../../../context/toastify/ToastContext";
-import { useAddress } from "../../../../context/address/AddressContext";
-import { addCheckoutAddress } from "../../../../api/base-user/Cart-api";
-import { createCheckout } from "../../../../api/producer/Shopify-api";
-import { useCart } from "../../../../context/cart/CartContext";
-import { useProfile } from "../../../../context/profile/ProfileContext";
-import { SHOP_TYPES } from "../../../../constant/shop-types";
-import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
+import { useToasty } from "../../../context/toastify/ToastContext";
+import { useAddress } from "../../../context/address/AddressContext";
+import { addCheckoutAddress } from "../../../api/base-user/Cart-api";
+import { createCheckout } from "../../../api/producer/Shopify-api";
+import { useCart } from "../../../context/cart/CartContext";
+import { useProfile } from "../../../context/profile/ProfileContext";
+import { SHOP_TYPES } from "../../../constant/shop-types";
+import { UseWalletInfo } from "../../../context/wallet/WalletContext";
 import { useParams } from "react-router-dom";
 import {
   AddressPageWrapper,
@@ -17,10 +17,10 @@ import {
   ButtonWrapper,
 } from "./Address-page-style";
 
-import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
-import AddressComponent from "../../../../components/shared/Address/address-component";
-import Loading from "../../../../components/shared/loading/Loading";
-import AddressForm from "../../../../components/Modal/Address/Address-modal";
+import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import AddressComponent from "../../../components/shared/Address/address-component";
+import Loading from "../../../components/shared/loading/Loading";
+import AddressForm from "../../../components/Modal/Address/Address-modal";
 
 function AddressPage() {
   // hooks
