@@ -10,10 +10,9 @@ export const getCart = async () => {
     const res = await axios.get(`${BASE_URL}/cart`, {
       headers: { Authorization: "Bearer " + token },
     });
-    // return res.data.data.cart;
-    return res.data;
+    return { status: API_STATUS.SUCCESS, data: res.data.data.cart };
   } catch (err) {
-    return err.response;
+    return { status: API_STATUS.FAILED, data: err.response.data.reason };
   }
 };
 

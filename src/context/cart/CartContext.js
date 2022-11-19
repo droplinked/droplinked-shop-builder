@@ -1,13 +1,12 @@
 import { createContext, useState, useContext } from "react";
 import { removeCart, getCart } from "../../api/base-user/Cart-api";
 import { SHOP_TYPES } from "../../constant/shop-types";
-import { checkRules } from "../../services/nft-service/NFTcheck";
 import { useToasty } from "../../context/toastify/ToastContext";
 import { UseWalletInfo } from "../../context/wallet/WalletContext";
 import { getMaxDiscount } from "../../services/check-rule-service/check-rule";
 import { getUserAddress } from "../../services/wallet-auth/api";
+import { API_STATUS } from "../../constant/api-status";
 
-// getUserAddress(userData).mainnet
 
 export const CartContext = createContext();
 
@@ -17,30 +16,27 @@ const CartProvider = ({ children }) => {
 
   const { errorToast } = useToasty();
   const { userData, getStxAddress } = UseWalletInfo();
-
   //update cartstate
   const updateCart = async () => {
     let result = await getCart();
 
-    if (result.status === "success") {
-      let resultCard = result.data.cart;
-      // return
+    if (result.status ===  API_STATUS.SUCCESS) {
+      let resultCard = result.data
       if (resultCard.items.length <= 0) setCart(null);
-      //
       else {
         let items = [];
         for (let i = 0; i < resultCard.items.length; i++) {
-          let newItem = await addImsItemToCard(resultCard.items[i])
+          let newItem = await checkRuleset(resultCard.items[i])
           items.push(newItem);
         }
         setCart({ ...resultCard, items: items, type: SHOP_TYPES.DROPLINKED });
       }
     } else {
-      errorToast(result.data.reason);
+      errorToast(result.data);
     }
   };
 
-  const addImsItemToCard = async(item) => {
+  const checkRuleset = async(item) => {
     if (item.ruleset && !item.ruleset.gated) {
       let discountResult = await getMaxDiscount(
         getUserAddress(userData).mainnet,
@@ -48,7 +44,7 @@ const CartProvider = ({ children }) => {
       );
 
       if (discountResult.NFTsPassed.length > 0) {
-        let newItem = discountProductSkus(
+        let newItem = calculateDiscount(
           discountResult.discountPercentage,
           item
         );
@@ -64,7 +60,7 @@ const CartProvider = ({ children }) => {
   }
 
   // discoutn price for items
-  const discountProductSkus = (discount, product) => {
+  const calculateDiscount = (discount, product) => {
     let newSku = {
       ...product.sku,
       price: parseFloat(
@@ -86,28 +82,6 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  const gatedAndAddItem = (product) => {
-    if (product.productRule == undefined) {
-      addShopifyItemToCart(product);
-    } else {
-      const Rules = product.productRule.map((rule) => rule.address);
-
-      checkRules(userData.profile.stxAddress.mainnet, Rules)
-        .then((e) => {
-          if (e) {
-            addShopifyItemToCart(product);
-            return true;
-          } else {
-            errorToast("Required NFT not found, accessed denied");
-            return false;
-          }
-        })
-        .catch((e) => {
-          errorToast(e.response.data);
-          return false;
-        });
-    }
-  };
 
   const addShopifyItemToCart = (item, rulePassed) => {
     let newCart;
