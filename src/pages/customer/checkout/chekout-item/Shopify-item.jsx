@@ -17,8 +17,8 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { useCart } from "../../../../context/cart/CartContext";
 import { useNavigate } from "react-router-dom";
 
-import UnlockIcon from "../../../../components/shared/unlock-icon/unlockIcon";
-import LockIcon from "../../../../components/shared/lock-icon/lockIcon";
+import UnlockIcon from "./unlock-icon/unlockIcon";
+import LockIcon from "./lock-icon/lockIcon";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 
 const ShopifytItem = ({ product, variant, lock, amount, shopName }) => {

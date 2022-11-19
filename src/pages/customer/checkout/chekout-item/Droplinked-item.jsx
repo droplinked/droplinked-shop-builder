@@ -24,8 +24,8 @@ import { useState } from "react";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
-import UnlockIcon from "../../../../components/shared/unlock-icon/unlockIcon";
-import LockIcon from "../../../../components/shared/lock-icon/lockIcon";
+import UnlockIcon from "./unlock-icon/unlockIcon";
+import LockIcon from "./lock-icon/lockIcon";
 
 const DroplinkedItem = ({ product, sku, quantity,lock, shopName }) => {
   const [loading, setLoading] = useState(false);
