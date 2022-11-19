@@ -76,9 +76,9 @@ export const checkoutCart = async (walletAddress) => {
       { wallet: walletAddress },
       { headers: { Authorization: "Bearer " + token } }
     );
-    return res.data.data.client_secret;
+    return {status:'success',data:res.data.data.client_secret};
   } catch (err) {
-    return err.response.data.reason;
+    return {status:'failed' ,data:err.response.data.reason}
   }
 };
 
