@@ -12,8 +12,8 @@ export default function BasicButton({
     <Button
       w="100%"
       h="100%"
-      bgColor={cancelType ? "dark" : "primary"}
-      color={cancelType ? "DarkGray" : "#fff"}
+      bgColor={cancelType ? "button" : "primary"}
+      color={cancelType ? "offText" : "#fff"}
       border={cancelType ? "2px solid button" : "2px solid primary"}
       fontSize={{ base: "16px", md: "20px" }}
       fontWeight="600"
@@ -23,12 +23,12 @@ export default function BasicButton({
       outline="none"
       _hover={{
         borderColor: cancelType ? "button" : "primary",
-        bgColor: cancelType ? "dark" : "dark",
-        color: cancelType ? "DarkGray" : "primary",
+        bgColor: cancelType ? "button" : "button",
+        color: cancelType ? "offText" : "primary",
       }}
       _disabled={{
-        bgColor: "dark",
-        color: "DarkGray",
+        bgColor: "button",
+        color: "offText",
         borderColor: "#363636",
       }}
       onClick={click}
