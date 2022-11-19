@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
+import { API_STATUS } from "../../constant/api-status";
 
 export const getShippingRate = async () => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -16,9 +17,9 @@ export const getShippingRate = async () => {
         headers: { Authorization: "Bearer " + token },
       }
     );
-    return res.data;
+    return { status: API_STATUS.SUCCESS, data: res.data.data };
   } catch (err) {
-    return err.response.data;
+    return { status: API_STATUS.FAILED, data: err.response.data.reason };
   }
 };
 

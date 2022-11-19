@@ -12,6 +12,9 @@ import { useToasty } from "../../../context/toastify/ToastContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../../../context/cart/CartContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
+import { getTotalPrice } from "./shipping-utils";
+import { API_STATUS } from "../../../constant/api-status";
+
 
 import Loading from "../../../components/shared/loading/Loading";
 import ShippingComponent from "./Shipping-component";
@@ -28,26 +31,19 @@ const ShippingPage = () => {
   const { cart, updateCart } = useCart();
   let { shopname } = useParams();
 
-  const getShippingPrice = () => {
-    if (cart.type == SHOP_TYPES.DROPLINKED) {
-      return selectedShipping.rate;
-    } else {
-      return selectedShipping.price;
-    }
-  };
-
   const checkoutObj = JSON.parse(localStorage.getItem("checkout_id"));
 
   useEffect(() => {
     getShippings();
   }, [cart]);
 
+
   const getShippings = async () => {
     // get easypost shipping
     if (cart.type == SHOP_TYPES.DROPLINKED) {
       let result = await getEasypostShipping();
       //
-      if (result.status == "success") {
+      if (result.status == API_STATUS.SUCCESS ) {
         if (
           result.data.shippingRates &&
           result.data.shippingRates.type == "CUSTOM"
@@ -59,38 +55,20 @@ const ShippingPage = () => {
             setSelectedShipping(result.data.shippingRates[0]);
         }
       } else {
-        errorToast(result.reason);
+        errorToast(result.data);
         return;
       }
     } else {
       // get shopify shipping
       let result = await getShippingRate();
-      if (result.status == "success") {
+      if (result.status == API_STATUS.SUCCESS) {
         setShippings(result.data.shipping_rates);
         if (result.data.shipping_rates.length > 0)
           setSelectedShipping(result.data.shipping_rates[0]);
       } else {
-        errorToast(result.reason);
+        errorToast(result.data);
       }
     }
-  };
-
-  const getTotalPrice = () => {
-    if (cart == null) return 0;
-    let total = 0;
-    // calculate for shopify products
-    if (cart.type == SHOP_TYPES.SHOPIFY) {
-      cart.items.forEach(
-        (item) => (total += parseFloat(item.variant.price) * item.amount)
-      );
-    } else {
-      // calculate for ims products
-      cart.items.forEach(
-        (item) => (total += parseFloat(item.sku.price) * item.quantity)
-      );
-    }
-    total += parseFloat(getShippingPrice());
-    return total.toFixed(2);
   };
 
   const submitForm = async () => {
@@ -148,7 +126,6 @@ const ShippingPage = () => {
       justifyContent="center"
       alignItems="center"
     >
-
       {shippings == null ? (
         <Loading />
       ) : (
@@ -208,7 +185,7 @@ const ShippingPage = () => {
                 mb="60px"
                 mt="30px"
               >
-                Total price: ${getTotalPrice()}
+                Total price: ${getTotalPrice(cart ,selectedShipping)}
               </Text>
             </>
           )}
