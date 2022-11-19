@@ -4,7 +4,6 @@ import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import Product from "../Product/Product";
 import CollectionModal from "../../Modal/Collection/Collection-modal";
 import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
-import OldRuleModal from "../../Modal/oldRule/Rule-modal";
 import Rule from "../../Modal/Rule/rule-modal";
 import AddProduct from "../AddProduct/Add-product-component";
 
@@ -120,12 +119,6 @@ const ProducerCollection = ({ collection, update }) => {
           update={update}
         />
       )}
-      {/* <OldRuleModal
-        open={ruleModal}
-        close={closeRuleModal}
-        collectionId={collection._id}
-        ruleId={collection.ruleSetID || undefined}
-      /> */}
       {ruleModal && (
         <Rule
           close={closeRuleModal}
