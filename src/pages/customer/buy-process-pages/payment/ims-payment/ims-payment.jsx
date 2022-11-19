@@ -15,15 +15,22 @@ import {
   getClientSecret,
   CanselOrder,
 } from "../../../../../api/base-user/OrderHistory-api";
+import {
+  ImsPaymentWrapper,
+  ImsPaymentContainer,
+  ButtonsWrapper,
+  PaymetnButton,
+} from "./ims-payment-style";
 
+import SmallModal from "../../../../../components/Modal/Small-modal/Small-modal-component";
 import StripeComponent from "./stripe modal/stripe-modal-component";
 
 const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_KEY}`);
 
 export default function ImsPayment({ totalPrice }) {
-
   const [paymentSelected, setPaymentSelected] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
+  const [confirmModal, setConfirmModal] = useState(false);
   const [disableBtns, setDisables] = useState(false);
   // ............................  //
   const { errorToast } = useToasty();
@@ -47,6 +54,9 @@ export default function ImsPayment({ totalPrice }) {
     clientSecret: clientSecret,
     appearance,
   };
+
+  const openConfirmModal = () => setConfirmModal(true);
+  const closeConfirmModal = () => setConfirmModal(false);
 
   const cancelPayment = async () => {
     if (lastOrder) {
@@ -87,60 +97,23 @@ export default function ImsPayment({ totalPrice }) {
   };
 
   return (
-    <Box w="100%" maxW="1000px" mx="auto" px={{ base: "20px", md: "80px" }}>
-      <Box
-        display="flex"
-        wrap="wrap"
-        row-gap="10px"
-        w="100%"
-        flexDirection="column"
-      >
+    <ImsPaymentWrapper>
+      <ImsPaymentContainer>
         <Box w="100%" p="10px 5px">
-          <Box
-            w="100%"
-            display="flex"
-            height={{ base: "100px", md: "auto" }}
-            flexDirection="row"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Button
-              w="40%"
-              color="primary"
-              border="1px"
-              borderColor="primary"
-              bgColor="#222"
-              _hover={{
-                color: "#222",
-                borderColor: "#222",
-                bgColor: "primary",
-              }}
+          <ButtonsWrapper>
+            <PaymetnButton
               disabled={disableBtns}
-              onClick={totalPrice == 0 ? confirmOrder : stripePayment}
+              onClick={totalPrice == 0 ? openConfirmModal : stripePayment}
             >
               {totalPrice == 0
                 ? "Confirm"
                 : `${disableBtns ? "Wait" : "Credit card"}`}
-            </Button>
+            </PaymetnButton>
 
-            <Button
-              w="40%"
-              color="primary"
-              border="1px"
-              borderColor="primary"
-              bgColor="#222"
-              _hover={{
-                color: "#222",
-                borderColor: "#222",
-                bgColor: "primary",
-              }}
-              disabled={true}
-            >
-              Crypto payment
-            </Button>
-          </Box>
+            <PaymetnButton disabled={true}>Crypto payment</PaymetnButton>
+          </ButtonsWrapper>
         </Box>
-      </Box>
+      </ImsPaymentContainer>
 
       {paymentSelected == "Stripe" && (
         <Elements stripe={stripePromise} options={options}>
@@ -151,6 +124,16 @@ export default function ImsPayment({ totalPrice }) {
           />
         </Elements>
       )}
-    </Box>
+      {confirmModal && (
+        <SmallModal
+          show={confirmModal}
+          hide={closeConfirmModal}
+          text={"Do you want to confirm this order?"}
+          click={confirmOrder}
+          loading={disableBtns}
+          buttonText={"Confirm"}
+        />
+      )}
+    </ImsPaymentWrapper>
   );
 }

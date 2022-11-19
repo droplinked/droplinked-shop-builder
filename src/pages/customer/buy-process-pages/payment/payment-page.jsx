@@ -1,5 +1,5 @@
 import CartPage from "./shopify-payment/cart-page";
-import ImsPayment from "./ims-payment/Payment-page";
+import ImsPayment from "./ims-payment/ims-payment";
 import ProductItem from "./item-component/product-item";
 import AddressComponent from "./address-component/address-component";
 
