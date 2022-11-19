@@ -10,6 +10,7 @@ import { useProfile } from "../../../context/profile/ProfileContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
 import { UseWalletInfo } from "../../../context/wallet/WalletContext";
 import { useParams } from "react-router-dom";
+import { API_STATUS } from "../../../constant/api-status";
 import {
   AddressPageWrapper,
   PageTitle,
@@ -76,15 +77,14 @@ function AddressPage() {
       setLoading(true);
       let result = await addCheckoutAddress(selectedAddress._id);
       setLoading(false);
-      if (result == true) {
+      if (result.status == API_STATUS.SUCCESS) {
         localStorage.setItem(
           "selected_address",
           JSON.stringify(selectedAddress)
         );
-        // successToast("Address successfully added");
         navigate(`/${shopname}/shipping`);
       } else {
-        errorToast(result);
+        errorToast(result.data);
       }
     } else {
       // add address for shopify cart
