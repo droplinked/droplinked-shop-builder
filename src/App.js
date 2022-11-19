@@ -7,7 +7,7 @@ import OrderProvider from "./context/order/OrdersContext";
 import LoadingPage from "./pages/publics/loading/Loading-page";
 import ShippingPage from "./pages/customer/shipping/Shipping-page";
 import Enquiry from './pages/publics/enquiry/Enquiry'
-import ViewCollection from "./pages/Producer/view-collection/View-collection";
+import ProducerCollection from "./pages/Producer/producer-collection/producer-collection";
 import UserWrapper from "./pages/user-wrapper/user-wrapper"
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
@@ -110,7 +110,7 @@ function App() {
                 <Route path="collection" element={<CollectionMainPage />} />
                 <Route
                   path="collection/:collectionId"
-                  element={<ViewCollection />}
+                  element={<ProducerCollection />}
                 />
                 <Route
                   path="orders"

@@ -2,7 +2,7 @@ import {
   ViewCollectionPageWrapper,
   ProductWrapper,
   CollectionTitle,
-} from "./View-collection-style";
+} from "./producer-collection-style";
 import { useParams } from "react-router-dom";
 import { getCollectionById } from "../../../api/public/Collection-api";
 import { useEffect, useState } from "react";
@@ -16,7 +16,7 @@ import AddProduct from "../../../components/shared/AddProduct/Add-product-compon
 import CollectionModal from "../../../components/Modal/Collection/Collection-modal";
 import Loading from "../../../components/shared/loading/Loading";
 
-const ViewCollection = () => {
+const ProducerCollection = () => {
   const [Collection, setCollection] = useState(null);
   const [editCollectionModal, setEditCollectionModal] = useState(false);
 
@@ -92,8 +92,6 @@ const ViewCollection = () => {
   );
 };
 
-export default ViewCollection;
+export default ProducerCollection;
 
-{
-  /*  */
-}
+
