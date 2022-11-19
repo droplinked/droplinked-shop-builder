@@ -69,7 +69,7 @@ const Notifications = lazy(() =>
   import("./pages/publics/notifications/Notifications-page")
 );
 const CollectionIframe = lazy(() =>
-  import("./pages/customer/collection-iframe/CollectionIfram-page")
+  import("./pages/publics/collection-iframe/CollectionIfram-page")
 );
 //const Test = lazy(() => import("./pages/test/Test-page"));
 
