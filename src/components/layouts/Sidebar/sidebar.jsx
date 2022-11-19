@@ -1,13 +1,13 @@
 import CrashpunksInfo from "./crashpunks-info/crashpunks-info";
 import ShopInfo from "./shop-info/shop-info";
-import Profilebar from "./profile-bar/profile-bar"
+import Profilebar from "./profile-bar/profile-bar";
 
 import { getShopInfoByShopname } from "../../../api/public/Shop-api";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { USER_TYPE } from "../../../constant/user-types";
-import { SidebarWrapper } from "./sidebar-style"
+import { SidebarWrapper } from "./sidebar-style";
 
 const Sidebar = () => {
   const [shopData, setShop] = useState(null);
@@ -24,19 +24,34 @@ const Sidebar = () => {
   };
 
   return (
-    <SidebarWrapper>
-      {profile && profile.type == USER_TYPE.PRODUCER ? (
-        <Profilebar />
-      ) : (
+    <>
+      {
         <>
-          {shopname == "crashpunks" ? (
-            <CrashpunksInfo />
+          {profile && profile.type == USER_TYPE.PRODUCER ? (
+            <SidebarWrapper>
+              <Profilebar />
+            </SidebarWrapper>
           ) : (
-            <> {shopData && <ShopInfo ShopData={shopData} />}</>
+            <>
+              {shopname == "crashpunks" ? (
+                <SidebarWrapper>
+                  <CrashpunksInfo />
+                </SidebarWrapper>
+              ) : (
+                <>
+                  {" "}
+                  {shopData && (
+                    <SidebarWrapper>
+                      <ShopInfo ShopData={shopData} />
+                    </SidebarWrapper>
+                  )}
+                </>
+              )}
+            </>
           )}
         </>
-      )}
-    </SidebarWrapper>
+      }
+    </>
   );
 };
 
