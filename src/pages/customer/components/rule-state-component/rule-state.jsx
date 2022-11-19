@@ -4,8 +4,7 @@ import unlockIconfrom from "../../../../assest/icon/unlock.svg";
 import lockIcon from "../../../../assest/icon/lockIcon.svg";
 
 const RuleState = ({ lock, description }) => {
-  console.log("lock", lock);
-  console.log("description", description);
+
   return (
     <Flex w="100%" alignItems="center">
       <Image
