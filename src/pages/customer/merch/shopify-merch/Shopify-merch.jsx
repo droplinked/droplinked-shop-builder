@@ -15,7 +15,7 @@ import {
 import {
   getMaxDiscount,
   gatedPassesRules,
-} from "../../../../services/NFTCheck1";
+} from "../../../../services/check-rule-service/check-rule";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { getUserAddress } from "../../../../services/wallet-auth/api";
 //import { getMaxDiscount } from "../../../../services/nft-service/maxDiscount";

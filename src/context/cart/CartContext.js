@@ -4,7 +4,7 @@ import { SHOP_TYPES } from "../../constant/shop-types";
 import { checkRules } from "../../services/nft-service/NFTcheck";
 import { useToasty } from "../../context/toastify/ToastContext";
 import { UseWalletInfo } from "../../context/wallet/WalletContext";
-import { getMaxDiscount } from "../../services/NFTCheck1";
+import { getMaxDiscount } from "../../services/check-rule-service/check-rule";
 import { getUserAddress } from "../../services/wallet-auth/api";
 
 // getUserAddress(userData).mainnet
