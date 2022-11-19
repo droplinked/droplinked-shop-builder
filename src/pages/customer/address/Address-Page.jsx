@@ -31,13 +31,17 @@ function AddressPage() {
   const { errorToast } = useToasty();
   const { addressList } = useAddress();
   const { cart } = useCart();
-  // navigate if not user
-  let token = JSON.parse(localStorage.getItem("token"));
-  if (!token) navigate("/");
-  // states
+  // state
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [addressModal, setAddressModal] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  let token = JSON.parse(localStorage.getItem("token"));
+
+  useEffect(() => {
+    // navigate if not user
+    if (!token) navigate("/");
+  }, []);
 
   useEffect(() => {
     if (addressList) {
@@ -47,13 +51,6 @@ function AddressPage() {
   }, [addressList]);
 
   const toggleAddressForm = () => setAddressModal((p) => !p);
-
-  //  item
-  // const hasGatedProductInCard = () => {
-  //   let findItem = cart.items.find((item) => item.productRule != undefined);
-  //   if (findItem == undefined) return false;
-  //   else return true;
-  // };
 
   const getAddressObj = () => {
     return {
