@@ -17,6 +17,7 @@ import {
   AddAddressButton,
   ButtonWrapper,
 } from "./Address-page-style";
+import { getAddressObject  ,getLineItems} from "./address-utils"
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import AddressComponent from "../../../components/shared/Address/address-component";
@@ -53,19 +54,6 @@ function AddressPage() {
 
   const toggleAddressForm = () => setAddressModal((p) => !p);
 
-  const getAddressObj = () => {
-    return {
-      first_name: selectedAddress.firstname,
-      last_name: selectedAddress.lastname,
-      country: selectedAddress.country,
-      province: selectedAddress.state,
-      city: selectedAddress.city,
-      address1: selectedAddress.addressLine1,
-      address2: selectedAddress.addressLine2,
-      zip: selectedAddress.zip,
-      phone: "",
-    };
-  };
 
   const ProccessToPayment = async () => {
     if (selectedAddress == null) {
@@ -78,32 +66,22 @@ function AddressPage() {
       let result = await addCheckoutAddress(selectedAddress._id);
       setLoading(false);
       if (result.status == API_STATUS.SUCCESS) {
-        localStorage.setItem(
-          "selected_address",
-          JSON.stringify(selectedAddress)
-        );
+        localStorage.setItem("selected_address",JSON.stringify(selectedAddress));
         navigate(`/${shopname}/shipping`);
       } else {
         errorToast(result.data);
       }
     } else {
       // add address for shopify cart
-      let addressObj = getAddressObj();
-
-      let itemsArray = cart.items.map((item) => {
-        return {
-          variant_id: item.variant.id,
-          quantity: item.amount,
-          product_id: item.productId,
-        };
-      });
+      let addressObj = getAddressObject(selectedAddress);
+      let lineItems = getLineItems(cart)
 
       let data = {
         checkout: {
           billing_address: addressObj,
           shipping_address: addressObj,
           wallet: cart.wallet ? getStxAddress() : "",
-          line_items: itemsArray,
+          line_items: lineItems,
           email: profile.email,
         },
       };
@@ -111,17 +89,13 @@ function AddressPage() {
       setLoading(true);
       let result = await createCheckout(cart.items[0].shopName, data);
       setLoading(false);
-      if (result.status == "success") {
-        localStorage.setItem(
-          "selected_address",
-          JSON.stringify(selectedAddress)
-        );
+      if (result.status == API_STATUS.SUCCESS) {
+        localStorage.setItem("selected_address",JSON.stringify(selectedAddress));
         let checkoutId = {
           checkoutId: result.data.checkout.token,
           shopName: cart.items[0].shopName,
         };
         localStorage.setItem("checkout_id", JSON.stringify(checkoutId));
-        //successToast("Address successfully added");
         navigate(`/${shopname}/shipping`);
       } else {
         errorToast("Failed");
