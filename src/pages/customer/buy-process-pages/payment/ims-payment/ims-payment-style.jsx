@@ -37,6 +37,8 @@ export const PaymetnButton = chakra("button", {
     border: "1px",
     borderColor: "primary",
     bgColor: "#222",
+    borderRadius: "8px",
+    p: { base: "8px 20px 9px 20px", md: "8px 20px" },
     _hover: {
       color: "#222",
       borderColor: "#222",
