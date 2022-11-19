@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCart } from "../../../../context/cart/CartContext";
-import { useProfile } from "../../../../context/profile/ProfileContext";
+import { useCart } from "../../../context/cart/CartContext";
+import { useProfile } from "../../../context/profile/ProfileContext";
 import {
   CheckoutPageWrapper,
   EmptyText,
@@ -10,30 +10,27 @@ import {
   PriceText,
   ButtonWrapper,
 } from "./Checkout-page-style";
-import { SHOP_TYPES } from "../../../../constant/shop-types";
+import { SHOP_TYPES } from "../../../constant/shop-types";
 
-import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
-import EmailModal from "../../../../components/Modal/Email/email-modal";
+import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import EmailModal from "../../../components/Modal/Email/email-modal";
 import DroplinkedItem from "./chekout-item/Droplinked-item";
 import ShopifytItem from "./chekout-item/Shopify-item";
-import SignUpModal from "../../../../components/Modal/Register/SignUpModal";
-import LoginModal from "../../../../components/Modal/Login/login-modal";
+import SignUpModal from "../../../components/Modal/Register/SignUpModal";
+import LoginModal from "../../../components/Modal/Login/login-modal";
 
 function CheckoutPage() {
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [modal, setModdal] = useState(null);
 
+  const navigate = useNavigate();
   const { profile, signinWithaWallet } = useProfile();
   const { cart } = useCart();
-
-  let navigate = useNavigate();
-  let { shopname } = useParams();
+  const { shopname } = useParams();
 
   const closeEmailModal = () => setShowEmailModal(false);
 
-  const switchModal = () =>
-    modal == "LOGIN" ? setModdal("SIGNUP") : setModdal("LOGIN");
-
+  const switchModal = () =>modal == "LOGIN" ? setModdal("SIGNUP") : setModdal("LOGIN");
   const closeModal = () => setModdal(null);
 
   const getTotalPrice = () => {
