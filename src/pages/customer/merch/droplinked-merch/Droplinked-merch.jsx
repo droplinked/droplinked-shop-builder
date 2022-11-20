@@ -21,7 +21,7 @@ import { FiArrowDownCircle } from "react-icons/fi";
 import {
   getMaxDiscount,
   gatedPassesRules,
-} from "../../../../services/NFTCheck1";
+} from "../../../../services/check-rule-service/check-rule";
 
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import DroplinkedDetail from "./Droplinked-merch-detail";

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
+import { API_STATUS } from "../../constant/api-status";
 
 export const getCart = async () => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -9,10 +10,9 @@ export const getCart = async () => {
     const res = await axios.get(`${BASE_URL}/cart`, {
       headers: { Authorization: "Bearer " + token },
     });
-    // return res.data.data.cart;
-    return res.data;
+    return { status: API_STATUS.SUCCESS, data: res.data.data.cart };
   } catch (err) {
-    return err.response;
+    return { status: API_STATUS.FAILED, data: err.response.data.reason };
   }
 };
 
@@ -24,9 +24,9 @@ export const addCheckoutAddress = async (addressId) => {
       { addressBookID: addressId },
       { headers: { Authorization: "Bearer " + token } }
     );
-    return true;
+    return { status: API_STATUS.SUCCESS, data: res.data };
   } catch (err) {
-    return err.response.data.reason;
+    return { status: API_STATUS.FAILED, data: err.response.data.reason };
   }
 };
 
@@ -76,9 +76,9 @@ export const checkoutCart = async (walletAddress) => {
       { wallet: walletAddress },
       { headers: { Authorization: "Bearer " + token } }
     );
-    return {status:'success',data:res.data.data.client_secret};
+    return { status: "success", data: res.data.data.client_secret };
   } catch (err) {
-    return {status:'failed' ,data:err.response.data.reason}
+    return { status: "failed", data: err.response.data.reason };
   }
 };
 
@@ -121,14 +121,13 @@ export const removeCart = async () => {
 
 export const getEasypostShipping = async () => {
   const token = JSON.parse(localStorage.getItem("token"));
-
   try {
     const res = await axios.get(`${BASE_URL}/cart/shipping-rate`, {
       headers: { Authorization: "Bearer " + token },
     });
-    return res.data;
+    return { status: API_STATUS.SUCCESS, data: res.data.data };
   } catch (err) {
-    return err.response.data;
+    return { status: API_STATUS.FAILED, data: err.response.data.reason };
   }
 };
 

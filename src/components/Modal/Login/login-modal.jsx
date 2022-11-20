@@ -14,6 +14,7 @@ import { isValidEmail } from "../../../utils/validations/emailValidation";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import { SignIn } from "../../../api/base-user/Auth-api";
+import { API_STATUS } from "../../../constant/api-status";
 
 // this modal for login user and managment function after login based on status and userType
 export default function LoginModal({ close, switchToggle, switchReset }) {
@@ -24,7 +25,7 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
   // hooks
   const { addProfile } = useProfile();
   const { successToast, errorToast } = useContext(toastValue);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const changeEmail = (e) => setEmail(e.target.value);
   const changePassword = (e) => setPassword(e.target.value);
@@ -52,18 +53,17 @@ export default function LoginModal({ close, switchToggle, switchReset }) {
     };
 
     if (validateForm() == false) return;
-    // set in loading state
+
     setLoading(true);
 
     let result = await SignIn(info);
 
-    if (result.status == "success") {
+    if (result.status == API_STATUS.SUCCESS) {
       loginFunction(result.data);
     } else {
-      errorToast(result.reason);
+      errorToast(result.data);
     }
 
-    // set in normal situation
     setLoading(false);
   };
 

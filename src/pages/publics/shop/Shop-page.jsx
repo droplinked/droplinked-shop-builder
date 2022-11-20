@@ -4,9 +4,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getShopInfoByShopname } from "../../../api/public/Shop-api";
 import { getCollectionsByShopname } from "../../../api/public/Collection-api";
-import { ShopPageContainer  ,ShopnotFind} from "./Shop-page-style";
+import { ShopPageContainer, ShopnotFind } from "./Shop-page-style";
 import { useProfile } from "../../../context/profile/ProfileContext";
+import { Box, Flex } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
+import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import Loading from "../../../components/shared/loading/Loading";
 import PublicShopPage from "./public/Public-shop-page";
 import OwnerShopPage from "./owner/Owner-shop-page";
@@ -19,6 +22,7 @@ export default function ShopPage() {
 
   let { shopname } = useParams();
   const { profile } = useProfile();
+  const navigate = useNavigate();
 
   localStorage.setItem("currentShop", JSON.stringify(shopname));
 
@@ -43,6 +47,8 @@ export default function ShopPage() {
     else return false;
   };
 
+  const navigateToLandingpage = () => navigate("/");
+
   return (
     <>
       {shopData == null ? (
@@ -50,7 +56,12 @@ export default function ShopPage() {
       ) : (
         <ShopPageContainer>
           {shopData == false ? (
-            <ShopnotFind>Shop not find</ShopnotFind>
+            <Box>
+              <ShopnotFind>Shop not found</ShopnotFind>
+              <Flex pt="88px" justifyContent="center">
+                <BasicButton w="50%" click={navigateToLandingpage}>Claim your shop now</BasicButton>
+              </Flex>
+            </Box>
           ) : (
             <>
               {isOwner() ? (

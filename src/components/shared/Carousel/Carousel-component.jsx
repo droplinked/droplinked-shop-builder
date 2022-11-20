@@ -7,8 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
-import LockIcon from "../lock-icon/lockIcon";
-import UnlockIcon from "../unlock-icon/unlockIcon";
+
 import leftIcon from "../../../assest/icon/leftflask.png";
 import rightIcon from "../../../assest/icon/righIcon.png";
 import fullsizeIcon from "../../../assest/icon/fillsize.svg";

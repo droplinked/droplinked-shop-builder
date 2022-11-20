@@ -5,10 +5,9 @@ import { lazy, Suspense } from "react";
 
 import OrderProvider from "./context/order/OrdersContext";
 import LoadingPage from "./pages/publics/loading/Loading-page";
-import ShippingPage from "./pages/customer/buy-process-pages/shipping/Shipping-page";
-//import ShopWrapper from "./pages/customer/shop-wrapper/shop-wrapper";
+import ShippingPage from "./pages/customer/shipping/Shipping-page";
 import Enquiry from './pages/publics/enquiry/Enquiry'
-import ViewCollection from "./pages/Producer/view-collection/View-collection";
+import ProducerCollection from "./pages/Producer/producer-collection/producer-collection";
 import UserWrapper from "./pages/user-wrapper/user-wrapper"
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
@@ -43,15 +42,15 @@ const CollectionMainPage = lazy(() =>
 );
 const ShopPage = lazy(() => import("./pages/publics/shop/Shop-page"));
 const MerchPage = lazy(() => import("./pages/customer/merch/Merch-page"));
-const CollectionPage = lazy(() => import("./pages/customer/collection/Collection-page"));
+const CollectionPage = lazy(() => import("./pages/publics/collection/Collection-page"));
 const CheckoutPage = lazy(() =>
-  import("./pages/customer/buy-process-pages/checkout/Checkout-page")
+  import("./pages/customer/checkout/Checkout-page")
 );
 const AddressPage = lazy(() =>
-  import("./pages/customer/buy-process-pages/address/Address-Page")
+  import("./pages/customer/address/Address-Page")
 );
 const PaymentPage = lazy(() =>
-   import("./pages/customer/buy-process-pages/payment/payment-page")
+   import("./pages/customer/payment/payment-page")
  )
 
 const SettingsPage = lazy(() => import("./pages/customer/settings/Settings-page"));
@@ -70,7 +69,7 @@ const Notifications = lazy(() =>
   import("./pages/publics/notifications/Notifications-page")
 );
 const CollectionIframe = lazy(() =>
-  import("./pages/customer/collection-iframe/CollectionIfram-page")
+  import("./pages/publics/collection-iframe/CollectionIfram-page")
 );
 //const Test = lazy(() => import("./pages/test/Test-page"));
 
@@ -111,7 +110,7 @@ function App() {
                 <Route path="collection" element={<CollectionMainPage />} />
                 <Route
                   path="collection/:collectionId"
-                  element={<ViewCollection />}
+                  element={<ProducerCollection />}
                 />
                 <Route
                   path="orders"
