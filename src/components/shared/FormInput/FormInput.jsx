@@ -29,7 +29,7 @@ export default function FormInput({ value, changeValue, label, type, placeholder
           fontSize={{ base: '14px', md: '20px' }}
           color='#fff'
           border='none'
-          bgColor='#181818'
+          bgColor='subLayer'
         //  borderColor='#b3b3b3'
           borderRadius='8px'
           px="16px"
@@ -48,7 +48,7 @@ export default function FormInput({ value, changeValue, label, type, placeholder
           fontWeight='600'
           fontSize={{ base: '14px', md: '20px' }}
           color='#DBDBDB'
-          bgColor='#181818'
+          bgColor='subLayer'
           border='none'
         //  border='2px'
          // borderColor='#b3b3b3'

@@ -33,7 +33,7 @@ export const ModalBody = chakra("div", {
     height: "auto",
     margin: "auto",
     width: { base: "100%", md: "500px" },
-    background: "subLayer",
+    background: "mainLayer",
     borderRadius: "8px",
     animation:animation,
     padding: { base: "30px 20px 30px 20px", md: "40px 60px 40px 60px" },

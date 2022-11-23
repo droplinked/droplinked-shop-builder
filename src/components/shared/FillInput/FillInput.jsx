@@ -15,7 +15,7 @@ const FillInput = ({ preText, value, change, placeholder ,label }) => {
         w="100%"
         px="16px"
         py={{ base: "8px", md: "12px" }}
-        bgColor="dark"
+        bgColor="subLayer"
         borderRadius="8px"
         alignItems="center"
       >

@@ -17,7 +17,7 @@ export const RegisterContainer = chakra("div", {
     w: "100%",
     p: { base: "40px 24px", md: "50px" },
     maxW: "800px",
-    bg: "subLayer",
+    bg: "mainLayer",
     borderRadius: "16px",
     mx: "auto",
     alignItems:'center'
@@ -63,7 +63,7 @@ export const CounterText = chakra("p", {
 
 export const AddressButton = chakra("button", {
   baseStyle: {
-    border: "2px solid subLayer",
+    border: "2px solid mainLayer",
     _hover: {
     //  bgColor: "transparent",
      // borderColor: "#fff",

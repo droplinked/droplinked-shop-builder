@@ -4,7 +4,7 @@ export const HeaderWrapper = chakra("div", {
   baseStyle: {
     d:'flex',
     w: "100%",
-    bgColor: "#181818",
+    bgColor: "bG",
     justifyContent: "space-between",
     alignItems: "center",
     padding: { base: "12px 20px", md: "36px 40px" , lg:"36px 80px" },

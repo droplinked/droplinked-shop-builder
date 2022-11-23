@@ -15,7 +15,7 @@ export const ShopnameText = chakra("p", {
       w: { base: "36px", md: "46px" },
       h: { base: "36px", md: "46px" },
       borderRadius: "50%",
-      bg: "subLayer",
+      bg: "mainLayer",
       justifyContent: "center",
       alignItems: "center",
     },

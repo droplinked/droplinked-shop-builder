@@ -7,7 +7,7 @@ export const ImsPageWrapper = chakra("div", {
     justifyContent: "center",
     alignItems: "center",
     w: "100%",
-    bg:'subLayer',
+    bg:'mainLayer',
     borderRadius:'8px',
     p:{base:'30px 20px',sm:'40px 30px' , md:'40px 60px' , lg:'40px 100px'  }
   },

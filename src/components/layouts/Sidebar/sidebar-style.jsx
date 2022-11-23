@@ -3,7 +3,7 @@ import { chakra } from "@chakra-ui/react";
 export const SidebarWrapper = chakra("div", {
   baseStyle: {
     w: "100%",
-    bg: "subLayer",
+    bg: "mainLayer",
     px: { sm: "14px", lg: "24px" },
     py: { sm: "32px", lg: "56px" },
     borderRadius: "8px",

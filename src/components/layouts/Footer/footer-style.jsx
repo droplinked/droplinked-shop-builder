@@ -5,7 +5,7 @@ export const FooterWrapper = chakra("div", {
     height: "82px",
     minWidth: "100%",
     padding: { base: "0px 20px", md: "0px 40px" ,lg:'0px 80px' },
-    backgroundColor: "dark",
+    backgroundColor: "bG",
     display: "flex",
   },
 });
