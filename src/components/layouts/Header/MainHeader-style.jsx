@@ -14,7 +14,7 @@ export const HeaderWrapper = chakra("div", {
 
 export const HeaderTitle = chakra("p", {
   baseStyle: {
-    color: "#fff",
+    color: "white",
     fontSize: { base: "24px", md: "28px" },
     fontWeight: "600",
     letterSpacing: "0.2em",

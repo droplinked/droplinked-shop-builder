@@ -182,7 +182,7 @@ export default function AddressForm({ type, addressBook, close }) {
               htmlFor="input-com"
               fontWeight="600"
               fontSize={{ base: "14px", md: "20px" }}
-              color="#fff"
+              color="white"
             >
               Country
             </FormLabel>
@@ -203,7 +203,7 @@ export default function AddressForm({ type, addressBook, close }) {
                 htmlFor="input-com"
                 fontWeight="600"
                 fontSize={{ base: "14px", md: "20px" }}
-                color="#fff"
+                color="white"
               >
                 State/province
               </FormLabel>

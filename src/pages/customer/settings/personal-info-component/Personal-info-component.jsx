@@ -96,7 +96,7 @@ export default function PersonalInfoComponent({ active }) {
         <Box
             color='white'
             fontSize='22px'
-            bgColor='#353535'
+            bgColor='button'
             w="100%"
             p='10px'
             borderRadius='8px'

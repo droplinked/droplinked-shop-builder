@@ -31,7 +31,7 @@ const CollectionIframe = () => {
             left='0'
             pos='fixed'
             zIndex='50'
-            bgColor='#181818'
+            bgColor='subLayer'
             justifyContent='center'
             alignItems='start'
             overflowY="auto"

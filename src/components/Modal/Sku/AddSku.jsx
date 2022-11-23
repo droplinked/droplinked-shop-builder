@@ -153,7 +153,7 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
           minW={{ base: "90%", md: "700px" }}
           w={{ base: "90%", md: "700px" }}
         >
-          <ModalHeader color="#fff" textAlign="center">
+          <ModalHeader color="white" textAlign="center">
             Variant Form
           </ModalHeader>
           <ModalCloseButton />
@@ -203,7 +203,7 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
               />
             </SkuContent>
 
-            <Text fontSize="18px" color="#fff" fontWeight="600" mb="20px">
+            <Text fontSize="18px" color="white" fontWeight="600" mb="20px">
               Delivery box size per item
             </Text>
 

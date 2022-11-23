@@ -75,7 +75,7 @@ export default function AddressComponent({
           borderColor={
             selectAble == true && address._id == (selected && selected._id)
               ? "primary"
-              : "#353535"
+              : "button"
           }
           cursor={selectAble == true ? "pointer" : "auto"}
           onClick={selectAddress}
@@ -106,7 +106,7 @@ export default function AddressComponent({
             >
               <Button
                 bgColor="primary"
-                color="#fff"
+                color="white"
                 w="45%"
                 h="35px"
                 fontSize={{ base: "12px", md: "16px" }}
@@ -118,7 +118,7 @@ export default function AddressComponent({
               {deleteable == true && (
                 <Button
                   bgColor="#e74c3c"
-                  color="#fff"
+                  color="white"
                   w="45%"
                   h="35px"
                   fontSize={{ base: "12px", md: "16px" }}

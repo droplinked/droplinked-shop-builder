@@ -20,7 +20,7 @@ export default function Product({ title, imageUrl, id, shopname, type }) {
       aspectRatio='1'
       _hover={{
          borderRadius:'8px',
-        bgColor:'#353535',
+        bgColor:'button',
         transition: "all 0.7s ease-out"
       }}
     >

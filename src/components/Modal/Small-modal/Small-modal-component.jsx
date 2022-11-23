@@ -20,12 +20,12 @@ export default function SmallModal({ show, hide, text, click, header, loading ,b
             <Modal isOpen={show} onClose={hide} >
                 <ModalOverlay />
                 <ModalContent bgColor="#222">
-                    <ModalHeader color="#fff">{header}</ModalHeader>
+                    <ModalHeader color="white">{header}</ModalHeader>
                    
                     <ModalBody
                         fontWeight='600'
                         fontSize={{ base: "16px", md: '20px' }}
-                        textAlign='center' color='#fff'>
+                        textAlign='center' color='white'>
                         {text}
                     </ModalBody>
                     <ModalFooter>

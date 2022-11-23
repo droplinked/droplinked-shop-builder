@@ -75,7 +75,7 @@ function CheckoutPage() {
         <EmptyText>Empty</EmptyText>
       ) : (
         <>
-          <Box bgColor="#353535" borderRadius="8px">
+          <Box bgColor="button" borderRadius="8px">
             {cart.items.map((item, i) => (
               <>
                 {cart.type == SHOP_TYPES.SHOPIFY ? (

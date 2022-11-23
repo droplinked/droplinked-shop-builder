@@ -90,7 +90,7 @@ export default function OrderModal({ order, isOpen, onClose }) {
       <ModalOverlay />
       <ModalContent mt="120px" maxW="700px" w="100%" mx="20px" bgColor="#222">
         <ModalHeader
-          color="#fff"
+          color="white"
           fontSize="22px"
           fontWeight="600"
           textAlign="center"

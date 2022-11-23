@@ -41,7 +41,7 @@ export const ProfileImageWrapper = chakra("div", {
     alignItems: "center",
     width: { sm: "50px", lg: "120px" },
     height: { sm: "50px", lg: "120px" },
-    border: "1px solid #353535",
+    border: "1px solid button",
   },
 });
 
@@ -70,7 +70,7 @@ export const ShopnameText = chakra("p", {
     fontWeight: "600",
     fontSize:{ sm: "8px", lg: "18px" },
     textAlign: "center",
-    color: "#ffffff",
+    color: "white",
   },
 });
 

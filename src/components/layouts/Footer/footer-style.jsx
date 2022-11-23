@@ -61,7 +61,7 @@ export const TermText = chakra("span", {
     fontSize: "12px ",
     lineHeight: "16px",
     textAlign: "right",
-    color: "#b3b3b3",
+    color: "lightGray",
     mr: { base: "12px", md: "32px" },
     mt: "auto",
     mb: "auto",

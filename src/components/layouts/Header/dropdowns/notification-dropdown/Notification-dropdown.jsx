@@ -20,7 +20,7 @@ const NotificationDropdown = ({ close }) => {
       pos="absolute"
       top={{ base: "60px", md: "110px" }}
       right={{ base: "15px", md: "70px" }}
-      bgColor="#353535"
+      bgColor="button"
       w={{ base: "200px", md: "250px" }}
       h="auto"
       borderRadius="8px"

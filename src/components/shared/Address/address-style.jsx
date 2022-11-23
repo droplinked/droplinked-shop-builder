@@ -7,7 +7,7 @@ export const AddressComponentWrapper = chakra("div", {
     border: "3px solid",
     borderRadius: "8px",
     p: "24px 40px 24px 40px",
-    bgColor:'#353535'
+    bgColor:'button'
   },
 });
 
@@ -15,7 +15,7 @@ export const AddressText = chakra("p", {
   baseStyle: {
     fontSize: { base: "16px", md: "18px" },
     fontWeight: "600",
-    color: "#fff",
+    color: "white",
     mb: "5px",
   },
 });

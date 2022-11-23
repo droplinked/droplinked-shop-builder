@@ -45,7 +45,7 @@ export default function EmailModal({ close }) {
     <ModalContainer close={close}>
       <Box>
         <Text
-          color="#fff"
+          color="white"
           w="100%"
           textAlign="center"
           mb="20px"

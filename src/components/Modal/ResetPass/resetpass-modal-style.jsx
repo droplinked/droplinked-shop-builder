@@ -13,7 +13,7 @@ export const Title = chakra("p", {
 export const Detail = chakra("p", {
   baseStyle: {
     mt: "40px",
-    color: "#fff",
+    color: "white",
     fontSize: { base: "12px", md: "16px" },
     width: "100%",
     fontWeight: "500",

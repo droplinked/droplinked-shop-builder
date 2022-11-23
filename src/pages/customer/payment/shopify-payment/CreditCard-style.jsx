@@ -7,18 +7,18 @@ export const CardInput = chakra("input", {
     //color: "#ddd",
     border:'none',
     color:'#DBDBDB',
-    bgColor:'#181818',
+    bgColor:'subLayer',
     borderRadius:'8px',
     px:"16px",
     py:{ base: "8px", md: "12px" },
     
     _hover: {
       color: '#DBDBDB',
-      bgColor: "#181818",
+      bgColor: "subLayer",
     },
     _focus: {
         color: '#DBDBDB',
-        bgColor: "#181818",
+        bgColor: "subLayer",
       },
   },
 });
