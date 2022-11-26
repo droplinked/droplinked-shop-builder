@@ -1,8 +1,9 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useCart } from "../../../../context/cart/CartContext";
+import { API_STATUS } from "../../../../constant/api-status";
 import {
   checkoutCart,
   checkoutFree,
@@ -39,10 +40,9 @@ export default function ImsPayment({ totalPrice }) {
 
   let navigate = useNavigate();
   var lastOrder = JSON.parse(sessionStorage.getItem("payOrder"));
-  // redirect from this page if cart and lastOrder be empty
-  if (cart && cart.items.length == 0 && lastOrder == null) {
-    navigate("/purchseHistory?redirect_status=failed");
-  }
+
+  if (cart && cart.items.length == 0 && lastOrder == null) navigate("/purchseHistory?redirect_status=failed");
+  
 
   // stripe component style
   const appearance = {
@@ -63,7 +63,9 @@ export default function ImsPayment({ totalPrice }) {
       await CanselOrder(lastOrder._id);
       sessionStorage.removeItem("payOrder");
     } else {
+      setDisables(true);
       await checkoutCart();
+      setDisables(false);
       updateCart();
     }
     navigate("/purchseHistory?redirect_status=failed");
@@ -78,9 +80,9 @@ export default function ImsPayment({ totalPrice }) {
     } else {
       result = await checkoutCart(walletAddress);
     }
-
+   
     if (result != null) {
-      if (result.status == "success") {
+      if (result.status ==  API_STATUS.SUCCESS) {
         setClientSecret(result.data);
         setPaymentSelected("Stripe");
         setTimeout(cancelPayment, 300000);
@@ -95,10 +97,11 @@ export default function ImsPayment({ totalPrice }) {
     let walletAddress = userData ? getUserAddress(userData).mainnet : "";
     setDisables(true);
     let result = await checkoutFree(walletAddress);
-    updateCart();
-    if (result == true) navigate(`/purchseHistory?redirect_status=confirm`);
-    else errorToast(result);
     setDisables(false);
+    updateCart();
+    if (result.status ==  API_STATUS.SUCCESS) navigate(`/purchseHistory?redirect_status=confirm`);
+    else errorToast(result.data);
+    
   };
 
   return (

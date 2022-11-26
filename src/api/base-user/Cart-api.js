@@ -76,9 +76,9 @@ export const checkoutCart = async (walletAddress) => {
       { wallet: walletAddress },
       { headers: { Authorization: "Bearer " + token } }
     );
-    return { status: "success", data: res.data.data.client_secret };
+    return { status: API_STATUS.SUCCESS, data: res.data.data.client_secret };
   } catch (err) {
-    return { status: "failed", data: err.response.data.reason };
+    return { status: API_STATUS.FAILED, data: err.response.data.reason };
   }
 };
 
@@ -90,9 +90,9 @@ export const checkoutFree = async (walletAddress) => {
       { wallet: walletAddress },
       { headers: { Authorization: "Bearer " + token } }
     );
-    return true;
+    return { status: API_STATUS.SUCCESS, data: res.data};
   } catch (err) {
-    return err.response.data.reason;
+    return { status: API_STATUS.FAILED, data: err.response.data.reason };
   }
 };
 

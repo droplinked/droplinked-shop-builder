@@ -69,9 +69,9 @@ export const confirmPayment = async (
         headers: { Authorization: "Bearer " + token },
       }
     );
-    return true;
+    return {status: API_STATUS.SUCCESS , data : res.data};
   } catch (err) {
-    return err.response.status
+   return {status: API_STATUS.FAILED , data : err.response.status}
   }
 };
 
@@ -90,10 +90,9 @@ export const creatShopifySession = async (card) => {
         },
       },
     );
-    return {status: 'success' , data : res.data.id};
+    return {status: API_STATUS.SUCCESS , data : res.data.id};
   } catch (err) {
-    console.log(err)
-    if(err.response != undefined) return {status: 'error' , data : (err.response.message)}
-    else return {status: 'error' , data : "Time out"}
+    if(err.response != undefined) return { status: API_STATUS.FAILED, data: err.response.message };
+    else return {status: API_STATUS.FAILED , data : "Time out"}
   }
 };

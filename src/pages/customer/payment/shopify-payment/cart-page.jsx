@@ -1,30 +1,31 @@
-import { Flex, Box, Text } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { creatShopifySession } from "../../../../api/base-user/Shopify-api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { confirmPayment } from "../../../../api/base-user/Shopify-api";
 import { useCart } from "../../../../context/cart/CartContext";
+import { API_STATUS } from "../../../../constant/api-status";
 
 import CreditCard from "./CreditCard-component";
-import Item from "./pitem";
+//import Item from "./pitem";
 
 const CartPage = () => {
   const [cardData, setCardData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [buttonText, setButtonText] = useState("PAY");
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { errorToast } = useToasty();
-  let { shopname } = useParams();
+  const { shopname } = useParams();
   const { clearCart } = useCart();
 
   const cart = JSON.parse(localStorage.getItem("cart"));
-  const shippingPrice = parseFloat(
-    JSON.parse(localStorage.getItem("shippingPrice")).shippingPrice
-  ).toFixed(2);
+  // const shippingPrice = parseFloat(
+  //   JSON.parse(localStorage.getItem("shippingPrice")).shippingPrice
+  // ).toFixed(2);
   const checkoutId = JSON.parse(localStorage.getItem("checkout_id"));
-  const selectedAddress = JSON.parse(localStorage.getItem("selected_address"));
+  //const selectedAddress = JSON.parse(localStorage.getItem("selected_address"));
 
   useEffect(() => {
     if (cardData != null) {
@@ -36,7 +37,7 @@ const CartPage = () => {
     setLoading(true);
     setButtonText("Adding card ...");
     let result = await creatShopifySession(cardData);
-    if (result.status == "success") {
+    if (result.status == API_STATUS.SUCCESS) {
       // localStorage.setItem(
       //   "session_id",
       //   JSON.stringify({ sessionId: result.data })
@@ -51,17 +52,24 @@ const CartPage = () => {
     setLoading(false);
   };
 
-  const getItemsPrice = () => {
-    let total = 0;
-    cart.items.forEach((item) => {
-      total += item.amount * parseFloat(item.variant.price);
-    });
-    return total.toFixed(2);
-  };
+  // const getItemsPrice = () => {
+  //   let total = 0;
+  //   cart.items.forEach((item) => {
+  //     total += item.amount * parseFloat(item.variant.price);
+  //   });
+  //   return total.toFixed(2);
+  // };
 
-  const getTotal = () => {
-    return (parseFloat(shippingPrice) + parseFloat(getItemsPrice())).toFixed(2);
-  };
+  // const getTotal = () => {
+  //   return (parseFloat(shippingPrice) + parseFloat(getItemsPrice())).toFixed(2);
+  // };
+
+  const cleaningData = () => {
+    localStorage.removeItem("session_id");
+    localStorage.removeItem("checkout_id");
+    localStorage.removeItem("shippingPrice");
+    clearCart();
+  }
 
   const confirmOrder = async (sessionId) => {
     setButtonText("Confirming...");
@@ -70,12 +78,9 @@ const CartPage = () => {
       checkoutId.checkoutId,
       sessionId
     );
-    if (result == true) {
+    if (result.status == API_STATUS.SUCCESS) {
       navigate("/purchseHistory?redirect_status=succeeded");
-      localStorage.removeItem("session_id");
-      localStorage.removeItem("checkout_id");
-      localStorage.removeItem("shippingPrice");
-      clearCart();
+      cleaningData()
     } else {
       setButtonText("PAY");
       errorToast("Invalid card information, try again");
@@ -85,16 +90,25 @@ const CartPage = () => {
   const backButton = () => navigate(`/${shopname}/shipping`);
 
   return (
-    <Box
-      w="100%"
-      // flexDir="column"
-      // px={{ base: "20px", md: "80px" }}
-      // justifyContent="center"
-      // alignContent="center"
-      // maxW="1000px"
-      // mx="auto"
-    >
-      {/* <Box w="100%" mx="auto" bg="subLayer" p="40px" borderRadius="8px" mb="24px">
+    <Box w="100%">
+      
+      <Flex w="100%" justifyContent="center" alignContent="center">
+        <Box w="100%">
+          <CreditCard
+            backToShipping={backButton}
+            setCard={(e) => setCardData(e)}
+            loading={loading}
+            buttonText={buttonText}
+          />
+        </Box>
+      </Flex>
+    </Box>
+  );
+};
+
+export default CartPage;
+
+{/* <Box w="100%" mx="auto" bg="subLayer" p="40px" borderRadius="8px" mb="24px">
         {cart.items.map((item, i) => {
           return <Item key={i} product={item} />;
         })}
@@ -254,19 +268,3 @@ const CartPage = () => {
           </Text>
         </Flex>
       </Flex> */}
-
-      <Flex w="100%" justifyContent="center" alignContent="center">
-        <Box w="100%">
-          <CreditCard
-            backToShipping={backButton}
-            setCard={(e) => setCardData(e)}
-            loading={loading}
-            buttonText={buttonText}
-          />
-        </Box>
-      </Flex>
-    </Box>
-  );
-};
-
-export default CartPage;
