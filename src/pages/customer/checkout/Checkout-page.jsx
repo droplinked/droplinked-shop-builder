@@ -30,11 +30,10 @@ function CheckoutPage() {
   const { shopname } = useParams();
 
   const closeEmailModal = () => setShowEmailModal(false);
-
   const switchModal = () => modal == "LOGIN" ? setModdal("SIGNUP") : setModdal("LOGIN");
   const closeModal = () => setModdal(null);
 
-  const checkLogin = () => {
+  const isLogin = () => {
     let checkResult = true;
 
     const isGated = cart.items.find((item) => item.productRule != undefined);
@@ -52,7 +51,7 @@ function CheckoutPage() {
   };
 
   const checkoutSubmit = () => {
-    if (!checkLogin()) return;
+    if (!isLogin()) return;
 
     navigate(`/${shopname}/address`);
   };

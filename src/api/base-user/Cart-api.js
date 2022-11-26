@@ -48,9 +48,9 @@ export const deleteSkuFromCart = async (skuId) => {
     const res = await axios.delete(`${BASE_URL}/cart/sku/${skuId}`, {
       headers: { Authorization: "Bearer " + token },
     });
-    return true;
+    return { status: API_STATUS.SUCCESS, data: res.data.data };
   } catch (err) {
-    return err.response.data.reason;
+    return { status: API_STATUS.FAILED, data: err.response.data.reason};
   }
 };
 
@@ -62,9 +62,9 @@ export const updateQuantity = async (skuId, q) => {
       { quantity: parseInt(q) },
       { headers: { Authorization: "Bearer " + token } }
     );
-    return true;
+    return { status: API_STATUS.SUCCESS, data: res.data.data };
   } catch (err) {
-    return err.response.data.reason;
+    return { status: API_STATUS.FAILED, data: err.response.data.reason };
   }
 };
 
