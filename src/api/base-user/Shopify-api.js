@@ -45,9 +45,9 @@ export const updateCheckout = async (shopname, checkoutId, handle) => {
         headers: { Authorization: "Bearer " + token },
       }
     );
-    return res.data;
+    return { status: API_STATUS.SUCCESS, data: res.data.data };
   } catch (err) {
-    return err.response.data;
+    return { status: API_STATUS.FAILED, data: err.response.data.reason };
   }
 };
 

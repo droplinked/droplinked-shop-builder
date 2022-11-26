@@ -139,8 +139,9 @@ export const setEasypostShpping = async (shippingRate) => {
       { rateID: shippingRate },
       { headers: { Authorization: "Bearer " + token } }
     );
-    return true;
+    return { status: API_STATUS.SUCCESS, data: res.data.data };
   } catch (err) {
-    return err.response.data.reason;
+    return { status: API_STATUS.FAILED, data: err.response.data.reason };
+   // return err.response.data.reason;
   }
 };
