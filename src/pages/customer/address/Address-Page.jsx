@@ -17,7 +17,7 @@ import {
   AddAddressButton,
   ButtonWrapper,
 } from "./Address-page-style";
-import { getAddressObject  ,getLineItems} from "./address-utils"
+import { getAddressObject, getShopifyData } from "./address-utils";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import AddressComponent from "../../../components/shared/Address/address-component";
@@ -54,54 +54,54 @@ function AddressPage() {
 
   const toggleAddressForm = () => setAddressModal((p) => !p);
 
+  const submitAddressForDroplinked = async () => {
+    return await addCheckoutAddress(selectedAddress._id);
+  };
+
+  const submitAddressForShopify = async () => {
+    let addressObj = getAddressObject(selectedAddress);
+    let shopifyData = getShopifyData(
+      addressObj,
+      cart.wallet ? getStxAddress() : "",
+      cart,
+      profile.email
+    );
+    return await createCheckout(cart.items[0].shopName, shopifyData);
+  };
 
   const ProccessToPayment = async () => {
     if (selectedAddress == null) {
       errorToast("Please choose an address");
       return;
     }
-    // add address for droplinked cart
+    let result;
+    setLoading(true);
     if (cart.type == SHOP_TYPES.DROPLINKED) {
-      setLoading(true);
-      let result = await addCheckoutAddress(selectedAddress._id);
-      setLoading(false);
-      if (result.status == API_STATUS.SUCCESS) {
-        localStorage.setItem("selected_address",JSON.stringify(selectedAddress));
-        navigate(`/${shopname}/shipping`);
-      } else {
-        errorToast(result.data);
-      }
+      result = await submitAddressForDroplinked();
     } else {
-      // add address for shopify cart
-      let addressObj = getAddressObject(selectedAddress);
-      let lineItems = getLineItems(cart)
+      result = await submitAddressForShopify();
+    }
+    setLoading(false);
 
-      let data = {
-        checkout: {
-          billing_address: addressObj,
-          shipping_address: addressObj,
-          wallet: cart.wallet ? getStxAddress() : "",
-          line_items: lineItems,
-          email: profile.email,
-        },
-      };
-
-      setLoading(true);
-      let result = await createCheckout(cart.items[0].shopName, data);
-      setLoading(false);
-      if (result.status == API_STATUS.SUCCESS) {
-        localStorage.setItem("selected_address",JSON.stringify(selectedAddress));
-        let checkoutId = {
+    if (result.status == API_STATUS.SUCCESS) {
+      if (cart.type == SHOP_TYPES.SHOPIFY) {
+            let checkoutId = {
           checkoutId: result.data.checkout.token,
           shopName: cart.items[0].shopName,
         };
         localStorage.setItem("checkout_id", JSON.stringify(checkoutId));
-        navigate(`/${shopname}/shipping`);
-      } else {
-        errorToast("Failed");
       }
-      setLoading(false);
+
+        localStorage.setItem("selected_address",JSON.stringify(selectedAddress));
+        navigate(`/${shopname}/shipping`);
+      
+    } else {
+      cart.type == SHOP_TYPES.DROPLINKED
+        ? errorToast(result.data)
+        : errorToast("Failed");
     }
+
+  
   };
 
   return (
