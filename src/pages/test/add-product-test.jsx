@@ -141,6 +141,15 @@ const AddproductTest = () => {
           </Box>
         </Flex>
       </AddProductContentWrapper>
+
+      <Box mb="16px"></Box>
+
+      <AddProductContentWrapper>
+        <SectionTitle>Variants</SectionTitle>
+        <Box mb="48px"></Box>
+        
+      </AddProductContentWrapper>
+
     </AddProductPageWrapper>
   );
 };
