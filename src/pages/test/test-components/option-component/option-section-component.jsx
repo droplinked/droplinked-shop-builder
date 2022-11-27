@@ -5,7 +5,7 @@ import { useState } from "react";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import plus from "../../../../assest/icon/plusIcon.png";
 
-const OptionSection = () => {
+const OptionSection = ({ isLast, addOption }) => {
   const OPTION_TYPES = {
     SIZE: "SIZE",
     COLOR: "COLOR",
@@ -52,7 +52,7 @@ const OptionSection = () => {
           return (
             <Flex alignItems="center" mb="16px">
               <Text color="white" fontSize="20px" mr="10%" minW="130px">
-                Value {i+1}
+                Value {i + 1}
               </Text>
               <Flex w="100%" alignItems="center">
                 <ValueInput value={value.value} placeholder="example" />
@@ -60,6 +60,7 @@ const OptionSection = () => {
                   <Image
                     src={plus}
                     onClick={addNewValue}
+                    cursor='pointer'
                     ml="16px"
                     w="24px"
                     h="24px"
@@ -72,7 +73,11 @@ const OptionSection = () => {
       </Box>
       <Box mb="10px"></Box>
       <Box w="100%">
-        <BasicButton cancelType={true}>Add new</BasicButton>
+        {isLast && (
+          <BasicButton cancelType={true} click={addOption}>
+            Add new
+          </BasicButton>
+        )}
       </Box>
     </Box>
   );

@@ -11,12 +11,11 @@ import {
 import { Box, Image, Text, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 
-import OptionSection from "./test-components/option-component/option-section-component"
+import OptionSection from "./test-components/option-component/option-section-component";
 import SelectCollection from "./test-components/select-collection/select-collection-component";
 import FormInput from "../../components/shared/FormInput/FormInput";
 import testImg from "./example-image.jpg";
 import uploadImage from "./upload-image.svg";
-
 
 const SHIPPING_TYPE = {
   EASY_POST: "EASY_POST",
@@ -25,8 +24,15 @@ const SHIPPING_TYPE = {
 
 const AddproductTest = () => {
   const [shippingType, setShippingType] = useState(SHIPPING_TYPE.EASY_POST);
+  const [optionList, setOptionList] = useState([{}]);
 
   const changeShippingType = (e) => setShippingType(e.target.value);
+
+  const addOption = () => {
+    let currentValue = Array.from(optionList);
+    currentValue.push({});
+    setOptionList(currentValue);
+  };
 
   return (
     <AddProductPageWrapper>
@@ -128,7 +134,11 @@ const AddproductTest = () => {
           <Text color="white" fontSize="16px" mr="15%">
             Optional
           </Text>
-          <OptionSection />
+          <Box w="100%">
+            {optionList.map((opt , i) => {
+              return <OptionSection isLast={(optionList.length == (i+1))} addOption={addOption}/>;
+            })}
+          </Box>
         </Flex>
       </AddProductContentWrapper>
     </AddProductPageWrapper>
