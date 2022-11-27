@@ -4,15 +4,28 @@ import {
   SectionTitle,
   ImagesWrapper,
   ImageItem,
+  SelectTag,
+  OptionTag,
+  CustomShippingInput,
 } from "./add-product-style";
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Image, Text, Flex } from "@chakra-ui/react";
+import { useState } from "react";
 
 import SelectCollection from "./test-components/select-collection/select-collection-component";
 import FormInput from "../../components/shared/FormInput/FormInput";
 import testImg from "./example-image.jpg";
 import uploadImage from "./upload-image.svg";
 
+const SHIPPING_TYPE = {
+  EASY_POST: "EASY_POST",
+  CUSTOM: "CUSTOM",
+};
+
 const AddproductTest = () => {
+  const [shippingType, setShippingType] = useState(SHIPPING_TYPE.EASY_POST);
+
+  const changeShippingType = (e) => setShippingType(e.target.value);
+
   return (
     <AddProductPageWrapper>
       <AddProductContentWrapper>
@@ -56,6 +69,64 @@ const AddproductTest = () => {
         </Text>
         <Box mb="16px"></Box>
         <SelectCollection />
+        <Box mb="40px"></Box>
+        <Text
+          htmlFor="input-com"
+          fontWeight="600"
+          fontSize={{ base: "14px", md: "20px" }}
+          color="white"
+        >
+          Shipping
+        </Text>
+        <Box mb="16px"></Box>
+        <Flex justifyContent="space-between">
+          <Box w="40%">
+            <SelectTag onChange={changeShippingType}>
+              <OptionTag value={SHIPPING_TYPE.EASY_POST}>Easy post</OptionTag>
+              <OptionTag value={SHIPPING_TYPE.CUSTOM}>Custom</OptionTag>
+            </SelectTag>
+          </Box>
+          {shippingType == SHIPPING_TYPE.CUSTOM && (
+            <Box w="40%">
+              <CustomShippingInput placeholder="$ 10" />
+            </Box>
+          )}
+        </Flex>
+      </AddProductContentWrapper>
+
+      <Box mb="16px"></Box>
+
+      <AddProductContentWrapper>
+        <SectionTitle>Properties</SectionTitle>
+        <Box mb="48px"></Box>
+        <Flex w="100%" p="10px 0px">
+          <Text color="white" fontSize="16px" mr="15%">
+            Required
+          </Text>
+          <Flex justifyContent="space-between" w="100%">
+            <Text color="white" fontSize="16px">
+              Price
+            </Text>
+            <Box w="1px" bg="#262626" h="100%" border="1px solid #262626"></Box>
+            <Text color="white" fontSize="16px">
+              Quantity
+            </Text>
+            <Box w="1px" bg="#262626" h="100%" border="1px solid #262626"></Box>
+            <Text color="white" fontSize="16px">
+              External ID
+            </Text>
+            <Box w="1px" bg="#262626" h="100%" border="1px solid #262626"></Box>
+            <Text color="white" fontSize="16px">
+              Delivery boxing information
+            </Text>
+          </Flex>
+        </Flex>
+        <Box mb="48px"></Box>
+        <Flex w="100%" p="10px 0px">
+          <Text color="white" fontSize="16px" mr="15%">
+            Optional
+          </Text>
+        </Flex>
       </AddProductContentWrapper>
     </AddProductPageWrapper>
   );

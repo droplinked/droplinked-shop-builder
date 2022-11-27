@@ -22,7 +22,7 @@ const collectionArray = [
 
 const SelectCollection = () => {
   const [collection, setCollection] = useState(null);
-console.log(collection);
+
   return (
     <SelectCollectionWrapper>
       <Box

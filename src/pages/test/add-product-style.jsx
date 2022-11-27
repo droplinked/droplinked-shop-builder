@@ -32,17 +32,54 @@ export const ImagesWrapper = chakra("div", {
   },
 });
 
-
 export const ImageItem = chakra("div", {
-    baseStyle: {
-      w: "100%",
-      aspectRatio:'1 / 1',
-      borderRadius:'8px',
-      backgroundSize:'cover',
-      d:'flex',
-      alignItems:'center',
-      justifyContent:'center',
-      flexDir:'column',
-      overflow:'hidden'
-    },
-  });
+  baseStyle: {
+    w: "100%",
+    aspectRatio: "1 / 1",
+    borderRadius: "8px",
+    backgroundSize: "cover",
+    d: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDir: "column",
+    overflow: "hidden",
+  },
+});
+
+export const SelectTag = chakra("select", {
+  baseStyle: {
+    w: "100%",
+    d: "flex",
+    justifyContent: "space-between",
+    p: "18px",
+    bg:'subLayer',
+    border:'none',
+    outline:'none',
+    borderRadius:'8px',
+    color:'darkGray',
+    fontSize:'20px'
+  },
+});
+
+
+export const OptionTag = chakra("option", {
+  baseStyle: {
+    bg:'subLayer',
+    color:'darkGray',
+    fontSize:'20px'
+  },
+});
+
+
+export const CustomShippingInput = chakra("input", {
+  baseStyle: {
+    w: "100%",
+    p: "18px",
+    bg:'subLayer',
+    border:'none',
+    outline:'none',
+    borderRadius:'8px',
+    color:'darkGray',
+    fontSize:'20px'
+  },
+});
