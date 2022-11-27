@@ -16,6 +16,7 @@ import SelectCollection from "./test-components/select-collection/select-collect
 import FormInput from "../../components/shared/FormInput/FormInput";
 import testImg from "./example-image.jpg";
 import uploadImage from "./upload-image.svg";
+import AddVariantForm from "./test-components/variant-from-component/add-variant-form-component";
 
 const SHIPPING_TYPE = {
   EASY_POST: "EASY_POST",
@@ -135,8 +136,13 @@ const AddproductTest = () => {
             Optional
           </Text>
           <Box w="100%">
-            {optionList.map((opt , i) => {
-              return <OptionSection isLast={(optionList.length == (i+1))} addOption={addOption}/>;
+            {optionList.map((opt, i) => {
+              return (
+                <OptionSection
+                  isLast={optionList.length == i + 1}
+                  addOption={addOption}
+                />
+              );
             })}
           </Box>
         </Flex>
@@ -147,9 +153,8 @@ const AddproductTest = () => {
       <AddProductContentWrapper>
         <SectionTitle>Variants</SectionTitle>
         <Box mb="48px"></Box>
-        
+        <AddVariantForm />
       </AddProductContentWrapper>
-
     </AddProductPageWrapper>
   );
 };
