@@ -71,7 +71,7 @@ const Notifications = lazy(() =>
 const CollectionIframe = lazy(() =>
   import("./pages/publics/collection-iframe/CollectionIfram-page")
 );
-//const Test = lazy(() => import("./pages/test/Test-page"));
+
 
 
 function App() {
