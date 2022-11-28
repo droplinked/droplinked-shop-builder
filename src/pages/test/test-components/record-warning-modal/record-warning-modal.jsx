@@ -2,7 +2,13 @@ import { Box, Text, Flex } from "@chakra-ui/react";
 
 import ModalContainer from "../../../../components/Modal/modal-container/modal-container";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
-const RecordModal = () => {
+const RecordModal = ({recordVariant ,  cancel }) => {
+
+
+  const clickSubmit = () => {
+    recordVariant()
+    cancel()
+  }
   return (
     <ModalContainer>
       <Flex alignItems="center" flexDir="column" w="100%" h="100%">
@@ -19,10 +25,13 @@ const RecordModal = () => {
         <Box mb="100px"></Box>
         <Flex w="100%" justifyContent="space-between">
           <Box w="40%" maxW="200px">
-            <BasicButton cancelType={true}> Cancel</BasicButton>
+            <BasicButton cancelType={true} click={cancel}>
+              {" "}
+              Cancel
+            </BasicButton>
           </Box>
           <Box w="40%" maxW="200px">
-            <BasicButton>Record</BasicButton>
+            <BasicButton click={clickSubmit}>Record</BasicButton>
           </Box>
         </Flex>
       </Flex>

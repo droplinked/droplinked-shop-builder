@@ -18,7 +18,7 @@ import testImg from "./example-image.jpg";
 import uploadImage from "./upload-image.svg";
 import AddVariantForm from "./test-components/variant-from-component/add-variant-form-component";
 import VariantComponent from "./test-components/variant-component/variant-component";
-import RecordModal from "./test-components/record-warning-modal/record-warning-modal"
+import RecordModal from "./test-components/record-warning-modal/record-warning-modal";
 
 const SHIPPING_TYPE = {
   EASY_POST: "EASY_POST",
@@ -26,11 +26,18 @@ const SHIPPING_TYPE = {
 };
 
 const AddproductTest = () => {
+
   const [shippingType, setShippingType] = useState(SHIPPING_TYPE.EASY_POST);
   const [optionList, setOptionList] = useState([{}]);
   const [variantList, setVariantList] = useState([]);
+  const [showRecordModal, setShowRecordModal] = useState(false);
+  const [isRecord, setIsRecord] = useState(false);
 
   const changeShippingType = (e) => setShippingType(e.target.value);
+
+  const toggleRecordModal = () => setShowRecordModal((p) => !p);
+
+  const recordVariant = () => setIsRecord(true);
 
   const addOption = () => {
     let currentValue = Array.from(optionList);
@@ -162,13 +169,13 @@ const AddproductTest = () => {
       <AddProductContentWrapper>
         <SectionTitle>Variants</SectionTitle>
         <Box mb="48px"></Box>
-      
-        <VariantComponent />
-        <VariantComponent />
+
+        <VariantComponent isRecord={isRecord} openModal={toggleRecordModal}/>
+        <VariantComponent isRecord={isRecord} openModal={toggleRecordModal}/>
         <Box mb="16px"></Box>
         <AddVariantForm addVariant={addVariant} />
       </AddProductContentWrapper>
-      <RecordModal />
+      {showRecordModal && <RecordModal recordVariant={recordVariant} cancel={toggleRecordModal} />}
     </AddProductPageWrapper>
   );
 };
