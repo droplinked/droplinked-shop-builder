@@ -7,7 +7,6 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
-
 import leftIcon from "../../../assest/icon/leftflask.png";
 import rightIcon from "../../../assest/icon/righIcon.png";
 import fullsizeIcon from "../../../assest/icon/fillsize.svg";
@@ -25,7 +24,7 @@ const keyframe_imageAnimation = keyframes`
 // Carousel component get array of object that contain url and build a image carousel of these images
 // imagesArray format = [{...,url:"imageUrl"} , { } ,....]
 
-export default function Carousel({ imagesArray, lock }) {
+export default function Carousel({ videoUrl, imagesArray, lock }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   // array of all images
@@ -110,24 +109,45 @@ export default function Carousel({ imagesArray, lock }) {
             >
               {true ? <LockIcon /> : <UnlockIcon />}
             </Box> */}
-
-            {images &&
-              images.map((image, i) => {
-                //select image with same index with mainImage
-                if (i == mainImage) {
-                  return (
-                    <Image
-                      src={image}
-                      animation={imageAnimation}
-                      borderRadius="8px"
-                      overflow="hidden"
-                      mb="15px"
-                      cursor="pointer"
-                      onClick={openFullsize}
-                    />
-                  );
-                }
-              })}
+            {videoUrl ? (
+              <video
+                style={{
+                  maxWidth: "100%",
+                  width: "100%",
+                  height: "100%",
+                  minHeight: "100%",
+                  aspectRatio: "1/1",
+                }}
+                playsInline
+                controlsF
+                autoPlay
+                loop
+                muted
+                controlsList="none"
+                alt="All the devices"
+                src={videoUrl}
+              />
+            ) : (
+              <>
+                {images &&
+                  images.map((image, i) => {
+                    //select image with same index with mainImage
+                    if (i == mainImage) {
+                      return (
+                        <Image
+                          src={image}
+                          animation={imageAnimation}
+                          borderRadius="8px"
+                          overflow="hidden"
+                          mb="15px"
+                          cursor="pointer"
+                          onClick={openFullsize}
+                        />
+                      );
+                    }
+                  })}
+              </>
+            )}
           </Box>
           {/* main image wrapper */}
           {/* bottom side */}

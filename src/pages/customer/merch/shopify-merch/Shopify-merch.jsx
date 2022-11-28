@@ -23,6 +23,11 @@ import { getUserAddress } from "../../../../services/wallet-auth/api";
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import ShopifyDetail from "./Shopify-merch-detail-component";
 
+const VIDEO_URL = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+
+
+
+
 const ShopifyMech = ({ shopName, product, openLogin }) => {
   const [loading, setLoading] = useState(false);
   // if product cant pass rule lock value == true
@@ -116,7 +121,7 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
       <MerchPageWrapper>
         {/* images */}
         <Box w={{ base: "100%", sm: "100%", md: "50%" }} minh="500px">
-          <Carousel imagesArray={images} />
+          <Carousel videoUrl={VIDEO_URL} imagesArray={images} />
         </Box>
         {/* images */}
 
