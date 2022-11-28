@@ -19,6 +19,7 @@ import uploadImage from "./upload-image.svg";
 import AddVariantForm from "./test-components/variant-from-component/add-variant-form-component";
 import VariantComponent from "./test-components/variant-component/variant-component";
 import RecordModal from "./test-components/record-warning-modal/record-warning-modal";
+import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
 const SHIPPING_TYPE = {
   EASY_POST: "EASY_POST",
@@ -26,7 +27,6 @@ const SHIPPING_TYPE = {
 };
 
 const AddproductTest = () => {
-
   const [shippingType, setShippingType] = useState(SHIPPING_TYPE.EASY_POST);
   const [optionList, setOptionList] = useState([{}]);
   const [variantList, setVariantList] = useState([]);
@@ -170,12 +170,20 @@ const AddproductTest = () => {
         <SectionTitle>Variants</SectionTitle>
         <Box mb="48px"></Box>
 
-        <VariantComponent isRecord={isRecord} openModal={toggleRecordModal}/>
-        <VariantComponent isRecord={isRecord} openModal={toggleRecordModal}/>
+        <VariantComponent isRecord={isRecord} openModal={toggleRecordModal} />
+        <VariantComponent isRecord={isRecord} openModal={toggleRecordModal} />
         <Box mb="16px"></Box>
         <AddVariantForm addVariant={addVariant} />
       </AddProductContentWrapper>
-      {showRecordModal && <RecordModal recordVariant={recordVariant} cancel={toggleRecordModal} />}
+      <Box mb='36px'></Box>
+      <Flex w="100%" justifyContent="end">
+        <Box w="200px">
+          <BasicButton>Save</BasicButton>
+        </Box>
+      </Flex>
+      {showRecordModal && (
+        <RecordModal recordVariant={recordVariant} cancel={toggleRecordModal} />
+      )}
     </AddProductPageWrapper>
   );
 };
