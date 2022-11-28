@@ -117,6 +117,7 @@ export default function Carousel({ videoUrl, imagesArray, lock }) {
                   height: "100%",
                   minHeight: "100%",
                   aspectRatio: "1/1",
+                  borderRadius:'8px'
                 }}
                 playsInline
                 controlsF
