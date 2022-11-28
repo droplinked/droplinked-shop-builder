@@ -8,8 +8,17 @@ export default function Product({ title, imageUrl, id, shopname, type }) {
     type == USER_TYPE.PRODUCER
       ? `/producer/merch/${id}`
       : `/${shopname}/merch/${id}`;
-  console.log("id", id);
-  // 636b905cdaa23b9cd28e2df4
+
+  const getVideoUrl = () => {
+    if (id == "635aab29783d1c18937c167d")
+      return "https://res.cloudinary.com/djh0wdj3m/video/upload/v1667599059/samurai-shirt_n4nptf.mp4";
+    else if (id == "635aab29783d1c18937c1680")
+      return "https://upload-droplonked.s3.us-west-2.amazonaws.com/geisha-shirt-3D-sq.mp4";
+    else return undefined;
+  };
+
+  const videoUrl = getVideoUrl();
+
   return (
     <Box
       w="100%"
@@ -25,14 +34,14 @@ export default function Product({ title, imageUrl, id, shopname, type }) {
     >
       <Link to={linkAddress}>
         <ProductContent>
-          {id == "636b905cdaa23b9cd28e2df4" ? (
+          {videoUrl ? (
             <video
               style={{
                 maxWidth: "100%",
                 width: "100%",
                 height: "100%",
                 minHeight: "100%",
-                aspectRatio:'1/1'
+                aspectRatio: "1/1",
               }}
               playsInline
               controlsF
@@ -41,7 +50,7 @@ export default function Product({ title, imageUrl, id, shopname, type }) {
               muted
               controlsList="none"
               alt="All the devices"
-              src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+              src={videoUrl}
             />
           ) : (
             <ProductImage src={imageUrl ? imageUrl : ""} />
