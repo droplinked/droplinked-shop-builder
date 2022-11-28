@@ -18,6 +18,7 @@ import testImg from "./example-image.jpg";
 import uploadImage from "./upload-image.svg";
 import AddVariantForm from "./test-components/variant-from-component/add-variant-form-component";
 import VariantComponent from "./test-components/variant-component/variant-component";
+import RecordModal from "./test-components/record-warning-modal/record-warning-modal"
 
 const SHIPPING_TYPE = {
   EASY_POST: "EASY_POST",
@@ -167,6 +168,7 @@ const AddproductTest = () => {
         <Box mb="16px"></Box>
         <AddVariantForm addVariant={addVariant} />
       </AddProductContentWrapper>
+      <RecordModal />
     </AddProductPageWrapper>
   );
 };
