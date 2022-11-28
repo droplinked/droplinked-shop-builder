@@ -17,6 +17,7 @@ import FormInput from "../../components/shared/FormInput/FormInput";
 import testImg from "./example-image.jpg";
 import uploadImage from "./upload-image.svg";
 import AddVariantForm from "./test-components/variant-from-component/add-variant-form-component";
+import VariantComponent from "./test-components/variant-component/variant-component";
 
 const SHIPPING_TYPE = {
   EASY_POST: "EASY_POST",
@@ -26,6 +27,7 @@ const SHIPPING_TYPE = {
 const AddproductTest = () => {
   const [shippingType, setShippingType] = useState(SHIPPING_TYPE.EASY_POST);
   const [optionList, setOptionList] = useState([{}]);
+  const [variantList, setVariantList] = useState([]);
 
   const changeShippingType = (e) => setShippingType(e.target.value);
 
@@ -33,6 +35,12 @@ const AddproductTest = () => {
     let currentValue = Array.from(optionList);
     currentValue.push({});
     setOptionList(currentValue);
+  };
+
+  const addVariant = () => {
+    let currentValue = Array.from(variantList);
+    currentValue.push({});
+    setVariantList(currentValue);
   };
 
   return (
@@ -153,7 +161,11 @@ const AddproductTest = () => {
       <AddProductContentWrapper>
         <SectionTitle>Variants</SectionTitle>
         <Box mb="48px"></Box>
-        <AddVariantForm />
+      
+        <VariantComponent />
+        <VariantComponent />
+        <Box mb="16px"></Box>
+        <AddVariantForm addVariant={addVariant} />
       </AddProductContentWrapper>
     </AddProductPageWrapper>
   );

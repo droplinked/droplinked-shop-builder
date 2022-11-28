@@ -9,7 +9,7 @@ import {
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 
-const AddVariantForm = () => {
+const AddVariantForm = ({addVariant}) => {
   return (
     <Box w="100%" bg="subLayer" p="36px 48px" borderRadius="8px">
       <Flex alignItems="center" justifyContent="space-between" mb="16px">
@@ -70,7 +70,7 @@ const AddVariantForm = () => {
 
       <Flex justifyContent='end' w='100%'>
       <Box w="200px" >
-        <BasicButton>Save</BasicButton>
+        <BasicButton click={addVariant}>Save</BasicButton>
       </Box>
       </Flex>
     </Box>
