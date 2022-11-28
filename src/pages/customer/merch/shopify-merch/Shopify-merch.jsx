@@ -119,7 +119,7 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
   const getVideoUrl = () => {
     if (product._id == "635aab29783d1c18937c167d")
       return "https://res.cloudinary.com/djh0wdj3m/video/upload/v1667599059/samurai-shirt_n4nptf.mp4";
-    else if (product._id == "635aab29783d1c18937c1680")
+    else if (product._id == "635aab29783d1c18937c167e")
       return "https://upload-droplonked.s3.us-west-2.amazonaws.com/geisha-shirt-3D-sq.mp4";
     else return undefined;
   };
