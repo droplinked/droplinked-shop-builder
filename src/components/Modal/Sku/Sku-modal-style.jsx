@@ -57,7 +57,7 @@ export const SkuInput = chakra('input', {
     baseStyle: {
         fontWeight: '600',
         fontSize: '18px',
-        color: "#fff",
+        color: "white",
         w: '40%',
         p: '5px',
         border: '2px solid #b3b3b3',

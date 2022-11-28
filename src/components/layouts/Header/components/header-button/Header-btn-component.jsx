@@ -8,8 +8,8 @@ export default function HeaderItem({ children, click, ...otherProps }) {
             justifyContent='center'
             alignItems='center'
             h='100%'
-            color='#fff'
-            bgColor='#353536'
+            color='white'
+            bgColor='button'
             borderRadius='8px'
             fontWeight='600'
             px={{ base:"16px" , md:'28px'}}

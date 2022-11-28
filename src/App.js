@@ -71,7 +71,11 @@ const Notifications = lazy(() =>
 const CollectionIframe = lazy(() =>
   import("./pages/publics/collection-iframe/CollectionIfram-page")
 );
-//const Test = lazy(() => import("./pages/test/Test-page"));
+
+const AddproductTest = lazy(() =>
+  import("./pages/test/add-product-test")
+);
+
 
 
 function App() {
@@ -120,6 +124,7 @@ function App() {
                     </OrderProvider>
                   }
                 />
+                 <Route path="addproduct-template" element={<AddproductTest />} />
               </Route>
               {/* producer pages */}
               <Route path=":shopname" element={<UserWrapper />}>

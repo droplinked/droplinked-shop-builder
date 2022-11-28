@@ -7,7 +7,7 @@ export const ModalContainerWrapper = chakra("div", {
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    bg: "subLayer",
+    bg: "mainLayer",
     borderRadius: "8px",
     p:{base:'30px 20px',sm:'40px 30px' , md:'40px 60px' , lg:'40px 100px'  }
   },
@@ -28,7 +28,7 @@ export const TypeSelect = chakra("select", {
     fontSize: { base: "10px", sm: "12px", md: "16px" },
     color: "white",
     border: "none",
-    bgColor: "mainLayer",
+    bgColor: "subLayer",
     borderRadius: "8px",
     w: "300px",
     px: "16px",

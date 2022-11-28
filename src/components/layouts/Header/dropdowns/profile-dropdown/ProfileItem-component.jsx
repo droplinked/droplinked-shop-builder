@@ -9,7 +9,7 @@ const ProfileItem = ({children,click}) => {
             textAlign='center'
             fontWeight='600'
             cursor='pointer'
-            color='#fff'
+            color='white'
             onClick={click}
             w='100%'
             _hover={{

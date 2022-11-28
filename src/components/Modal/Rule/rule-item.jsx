@@ -21,7 +21,7 @@ const RuleItem = ({ rule, deleteFunc, editRule, isGated }) => {
             py="14px"
             borderRadius="8px"
             alignItems="center"
-            bg="mainLayer"
+            bg="subLayer"
             w="100%"
             maxW="100%"
             overflow="hidden"

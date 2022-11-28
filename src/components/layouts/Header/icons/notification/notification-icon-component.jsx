@@ -34,7 +34,7 @@ export default function Notification() {
         <Flex
           w={{ base: "15px", md: "20px" }}
           h={{ base: "15px", md: "20px" }}
-          color="#181818"
+          color="subLayer"
           fontSize={{ base: "8px", md: "12px" }}
           pos="absolute"
           right="-5px"

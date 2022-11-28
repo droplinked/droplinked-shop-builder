@@ -129,7 +129,7 @@ export default function ShopInfoComponent({ active }) {
     }
 
     return (
-        <Box w='100%' animation={(active == 'shop' ? startAnimation : '')} bg='subLayer' p='10px' borderRadius='8px'>
+        <Box w='100%' animation={(active == 'shop' ? startAnimation : '')} bg='mainLayer' p='10px' borderRadius='8px'>
             {(shop == null)
                 ?
                 <Loading />
@@ -230,7 +230,7 @@ export default function ShopInfoComponent({ active }) {
                                 borderRadius='10px'
                                 bgColor='transparent'
                                 onClick={() => { setAddressModal(true) }}
-                                border='2px solid subLayer'
+                                border='2px solid mainLayer'
                                 _hover={{
                                     bgColor: 'transparent',
                                     borderColor: "#fff"

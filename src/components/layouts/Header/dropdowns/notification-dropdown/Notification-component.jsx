@@ -56,7 +56,7 @@ const NotificationComponent = ({ notif, close }) => {
                 <Text
                     fontSize={{ base: "10px", md: '14px' }}
                     fontWeight='600'
-                    color='#fff'
+                    color='white'
                 >
                     {notif.text}
                 </Text>

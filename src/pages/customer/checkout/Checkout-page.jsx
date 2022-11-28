@@ -30,11 +30,10 @@ function CheckoutPage() {
   const { shopname } = useParams();
 
   const closeEmailModal = () => setShowEmailModal(false);
-
   const switchModal = () => modal == "LOGIN" ? setModdal("SIGNUP") : setModdal("LOGIN");
   const closeModal = () => setModdal(null);
 
-  const checkLogin = () => {
+  const isLogin = () => {
     let checkResult = true;
 
     const isGated = cart.items.find((item) => item.productRule != undefined);
@@ -52,7 +51,7 @@ function CheckoutPage() {
   };
 
   const checkoutSubmit = () => {
-    if (!checkLogin()) return;
+    if (!isLogin()) return;
 
     navigate(`/${shopname}/address`);
   };
@@ -75,7 +74,7 @@ function CheckoutPage() {
         <EmptyText>Empty</EmptyText>
       ) : (
         <>
-          <Box bgColor="#353535" borderRadius="8px">
+          <Box bgColor="button" borderRadius="8px">
             {cart.items.map((item, i) => (
               <>
                 {cart.type == SHOP_TYPES.SHOPIFY ? (

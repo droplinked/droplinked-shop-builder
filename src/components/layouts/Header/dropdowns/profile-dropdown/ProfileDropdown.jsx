@@ -76,7 +76,7 @@ const ProfileDropdown = ({ close }) => {
       overflow="hidden"
       zIndex="20"
       p="24px"
-      bgColor="#353535"
+      bgColor="button"
       //  boxShadow="dark-lg"
       flexDirection="column"
     >

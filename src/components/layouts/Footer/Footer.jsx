@@ -17,7 +17,7 @@ import {
 
 export default function Footer() {
   return (
-    <Box borderTop="1px solid #B3B3B3">
+    <Box borderTop="1px solid lightGray">
       <FooterWrapper>
         <FooterBody>
           <Leftside>

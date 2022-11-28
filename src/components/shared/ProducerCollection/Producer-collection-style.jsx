@@ -8,7 +8,7 @@ export const ProducerCollectionWrapper = chakra("div", {
     overflow:'hidden',
     // padding: { base: "15px 10px 10px 10px", md: "25px 20px 15px 20px" },
     transition: "0.8s",
-    bg: "subLayer",
+    bg: "mainLayer",
     padding: { base: "25px 20px", sm: "30px 40px", md:'20px 30px' ,lg:'30px 40px' ,xl: "50px 60px" },
   },
 });
@@ -57,7 +57,7 @@ export const menuItemStyle = {
 
 export const menuButtonStyle = {
   color: "white",
-  bg: "mainLayer",
+  bg: "subLayer",
   px: 4,
   py: 1,
   fontSize: { base: "16px", md: "20px" },

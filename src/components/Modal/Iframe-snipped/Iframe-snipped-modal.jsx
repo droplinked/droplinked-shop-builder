@@ -41,7 +41,7 @@ const IframeSnipped = ({ link, code, close }) => {
             >
                 <Box
                     bgColor={(showType == "API") ? "#222" : "#4a4a4a"}
-                    color={(showType == "API") ? "#fff" : "#222"}
+                    color={(showType == "API") ? "white" : "#222"}
                     borderRadius='8px'
                     w='50%'
                     textAlign='center'
@@ -53,7 +53,7 @@ const IframeSnipped = ({ link, code, close }) => {
                 <Box
                     transition='0.4s'
                     bgColor={(showType == "IFRAME") ? "#222" : "#4a4a4a"}
-                    color={(showType == "IFRAME") ? "#fff" : "#222"}
+                    color={(showType == "IFRAME") ? "white" : "#222"}
                     borderRadius='8px'
                     py='5px'
                     w='50%'
@@ -70,7 +70,7 @@ const IframeSnipped = ({ link, code, close }) => {
                 <Code
                     whiteSpace='pre-line'
                     children={code}
-                    bgColor='#141414'
+                    bgColor='subLayer'
                     fontSize={{ base: "12px", md: '16px' }}
                     color='#8059ff'
                     w='100%'
@@ -81,7 +81,7 @@ const IframeSnipped = ({ link, code, close }) => {
                 :
                 <Box
                     whiteSpace='pre-line'
-                    bgColor='#141414'
+                    bgColor='subLayer'
                     fontSize={{ base: "12px", md: '16px' }}
                     color='#8059ff'
                     w='100%'

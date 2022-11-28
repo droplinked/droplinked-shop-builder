@@ -27,7 +27,7 @@ export default function OrderMerch({ item ,type}) {
     return (
         <Flex
             borderBottom='1px'
-            borderColor='#fff'
+            borderColor='white'
             pb='5px'
             h={{ base: '50px', md: '70px' }}
         >
@@ -45,7 +45,7 @@ export default function OrderMerch({ item ,type}) {
                 justifyContent='space-between'
             >
                 <Text
-                    color="#fff"
+                    color="white"
                     fontSize={{ base: "16px", md: '20px' }}
                     fontWeight='600'
                     overflow='hidden'

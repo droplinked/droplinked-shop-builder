@@ -15,7 +15,6 @@ import { SHOP_TYPES } from "../../../constant/shop-types";
 import { getTotalPrice } from "./shipping-utils";
 import { API_STATUS } from "../../../constant/api-status";
 
-
 import Loading from "../../../components/shared/loading/Loading";
 import ShippingComponent from "./Shipping-component";
 import EasypostShipping from "./easypost-shipping-component";
@@ -26,24 +25,21 @@ const ShippingPage = () => {
   const [selectedShipping, setSelectedShipping] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { successToast, errorToast } = useToasty();
   const { cart, updateCart } = useCart();
-  let { shopname } = useParams();
-
-  const checkoutObj = JSON.parse(localStorage.getItem("checkout_id"));
+  const { shopname } = useParams();
 
   useEffect(() => {
     getShippings();
   }, [cart]);
-
 
   const getShippings = async () => {
     // get easypost shipping
     if (cart.type == SHOP_TYPES.DROPLINKED) {
       let result = await getEasypostShipping();
       //
-      if (result.status == API_STATUS.SUCCESS ) {
+      if (result.status == API_STATUS.SUCCESS) {
         if (
           result.data.shippingRates &&
           result.data.shippingRates.type == "CUSTOM"
@@ -76,44 +72,32 @@ const ShippingPage = () => {
       errorToast("Select a shipping please");
       return;
     }
-
+    let result;
+    setLoading(true);
     if (cart.type == SHOP_TYPES.DROPLINKED) {
-      setLoading(true);
-      let result = await setEasypostShpping(selectedShipping.id);
+      result = await setEasypostShpping(selectedShipping.id);
       await updateCart();
-      setLoading(false);
-      if (result == true) {
-        navigate(`/${shopname}/payment`);
-      } else {
-        console.log(result);
-      }
     } else {
-      // add shipping for shopify cart
-      setLoading(true);
-      let result = await updateCheckout(
+      const checkoutObj = JSON.parse(localStorage.getItem("checkout_id"));
+      result = await updateCheckout(
         checkoutObj.shopName,
         checkoutObj.checkoutId,
         selectedShipping.handle
       );
-      if (result.status == "success") {
-        localStorage.setItem(
-          "customer-id",
-          JSON.stringify({ customerId: "cus_LImymG9KktMZdb" })
-        );
-        localStorage.setItem(
-          "shippingPrice",
-          JSON.stringify({
-            shippingPrice: result.data.checkout.shipping_rate.price,
-          })
-        );
-        navigate(`/${shopname}/payment`);
-        setLoading(false);
-      } else {
-        console.log(result);
-      }
-
-      setLoading(false);
     }
+    setLoading(false);
+
+    if (result.status == API_STATUS.SUCCESS) {
+      if (cart.type == SHOP_TYPES.SHOPIFY) {
+        localStorage.setItem("customer-id",JSON.stringify({ customerId: "cus_LImymG9KktMZdb" }));
+        localStorage.setItem("shippingPrice",JSON.stringify({shippingPrice: result.data.checkout.shipping_rate.price,}));
+      }
+      navigate(`/${shopname}/payment`);
+    } else {
+      errorToast(result.data);
+    }
+
+    
   };
 
   const backButton = () => navigate(`/${shopname}/address`);
@@ -185,7 +169,7 @@ const ShippingPage = () => {
                 mb="60px"
                 mt="30px"
               >
-                Total price: ${getTotalPrice(cart ,selectedShipping)}
+                Total price: ${getTotalPrice(cart, selectedShipping)}
               </Text>
             </>
           )}
@@ -213,3 +197,43 @@ const ShippingPage = () => {
 };
 
 export default ShippingPage;
+
+
+// setLoading(true);
+    // if (cart.type == SHOP_TYPES.DROPLINKED) {
+    //   let result = await setEasypostShpping(selectedShipping.id);
+    //   await updateCart();
+
+    //   if (result.status == API_STATUS.SUCCESS) {
+    //     navigate(`/${shopname}/payment`);
+    //   } else {
+    //     errorToast(result.data);
+    //   }
+    // } else {
+    //   const checkoutObj = JSON.parse(localStorage.getItem("checkout_id"));
+    //   // add shipping for shopify cart
+    //   setLoading(true);
+    //   let result = await updateCheckout(
+    //     checkoutObj.shopName,
+    //     checkoutObj.checkoutId,
+    //     selectedShipping.handle
+    //   );
+    //   if (result.status == API_STATUS.SUCCESS) {
+    //     localStorage.setItem(
+    //       "customer-id",
+    //       JSON.stringify({ customerId: "cus_LImymG9KktMZdb" })
+    //     );
+    //     localStorage.setItem(
+    //       "shippingPrice",
+    //       JSON.stringify({
+    //         shippingPrice: result.data.checkout.shipping_rate.price,
+    //       })
+    //     );
+    //     navigate(`/${shopname}/payment`);
+    //     setLoading(false);
+    //   } else {
+    //     errorToast(result.data);
+    //   }
+
+    //   setLoading(false);
+    // }

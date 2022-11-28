@@ -13,7 +13,7 @@ export const CollectionWrapper = chakra("div", {
       md: "20px 30px 20px 30px",
       lg: "60px 80px 60px 80px",
     },
-    bgColor: "#242424",
+    bgColor: "mainLayer",
     borderRadius: "8px",
   },
 });

@@ -14,7 +14,7 @@ const CollectionHeader = ({ title, openSnipedModal, seeMore }) => {
     <Flex w="100%" justifyContent="space-between" h="auto" mb="28px" px='3px'>
       
       <Text
-        color="#fff"
+        color="white"
         fontSize={{ base: "18px", sm: "16px", md: "28px" }}
         fontWeight="600"
         onClick={seeMore}
@@ -27,7 +27,7 @@ const CollectionHeader = ({ title, openSnipedModal, seeMore }) => {
         <MenuButton>
           <Flex
             p={{ base: "3px 10px 0px 10px", md: "4px 28px" }}
-            color="#fff"
+            color="white"
             border='1px solid #DBDBDB'
             //bgColor="#353536"
             borderRadius="8px"
@@ -55,7 +55,7 @@ const CollectionHeader = ({ title, openSnipedModal, seeMore }) => {
         >
           <MenuItem
             bgColor="#353536"
-            color="#fff"
+            color="white"
             fontSize={{ base: "14px", md: "18px" }}
             _hover={{ bgColor: "#555" }}
             _focus={{ bgColor: "#353536" }}

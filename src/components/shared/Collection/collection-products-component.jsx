@@ -49,7 +49,7 @@ const CollectionProducts = ({ products, shopname, type, event }) => {
         </Flex>
       ) : (
         <Text
-          color="#fff"
+          color="white"
           fontSize={{ base: "18px", md: "24px" }}
           fontWeight="600"
           w="100%"

@@ -7,7 +7,7 @@ export const ViewMerchWrapper = chakra("div", {
     justifyContent:'center',
     alignItems:'center',
     w:'100%',
-    bg:'subLayer',
+    bg:'mainLayer',
     borderRadius:"8px",
     margin:'0px auto',
   //  p:'0px 20px',

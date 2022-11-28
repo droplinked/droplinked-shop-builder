@@ -7,7 +7,7 @@ const FillInput = ({ preText, value, change, placeholder ,label }) => {
         htmlFor="input-com"
         fontWeight="600"
         fontSize={{ base: "14px", md: "20px" }}
-        color="#fff"
+        color="white"
       >
         {label}
       </FormLabel>
@@ -15,7 +15,7 @@ const FillInput = ({ preText, value, change, placeholder ,label }) => {
         w="100%"
         px="16px"
         py={{ base: "8px", md: "12px" }}
-        bgColor="dark"
+        bgColor="subLayer"
         borderRadius="8px"
         alignItems="center"
       >

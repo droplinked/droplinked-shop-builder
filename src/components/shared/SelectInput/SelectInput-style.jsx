@@ -6,7 +6,7 @@ export const SelectInputComponent = chakra("input", {
     fontWeight: "600",
     fontSize: { base: "14px", md: "20px" },
     color: "#DBDBDB",
-    bgColor: "#181818",
+    bgColor: "subLayer",
    // border: "1px solid #b3b3b3",
     borderRadius: "8px",
     px: "16px",
@@ -26,7 +26,7 @@ export const DropDownWrapper = chakra("div", {
     pos:'absolute',
     overflowY:'scroll',
     zIndex:'150',
-    bgColor:'#181818',
+    bgColor:'subLayer',
     w:'100%'
   },
 });

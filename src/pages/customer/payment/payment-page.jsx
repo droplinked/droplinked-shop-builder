@@ -3,6 +3,7 @@ import ImsPayment from "./ims-payment/ims-payment";
 import ProductItem from "./item-component/product-item";
 import AddressComponent from "./address-component/address-component";
 
+import { useMemo } from "react";
 import { useCart } from "../../../context/cart/CartContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
 import { Box } from "@chakra-ui/react";
@@ -12,49 +13,18 @@ import {
   TotalPrice,
   TotalPayment,
 } from "./payment-page-style";
+import { getItemsPrice , getShippingPrice} from "./payment-utils"
 
 const PaymentPage = () => {
   const { cart } = useCart();
-  ///console.log(cart);
 
   const selectedAddress = JSON.parse(localStorage.getItem("selected_address"));
+  let itemsPrice = useMemo(() => getItemsPrice(cart), [cart]);
+  let shippingPrice = useMemo(() => getShippingPrice(cart), [cart]);
 
-  const shippingPrice = () => {
-    if (cart) {
-      return cart.type == SHOP_TYPES.DROPLINKED
-        ? cart.items[0].product.shippingType == "CUSTOM"
-          ? getCustomShipping()
-          : cart.selectedEasyPostShipmentRate
-        : JSON.parse(localStorage.getItem("shippingPrice")).shippingPrice;
-    }
-  };
-
-  const getCustomShipping = () => {
-    let totalS = 0;
-    cart.items.forEach((item) => {
-      totalS += item.product.shippingPrice;
-    });
-    return totalS 
-  };
-
-  const getItemsPrice = () => {
-    let totalPrice = 0;
-    if (cart.type == SHOP_TYPES.DROPLINKED) {
-      cart.items.forEach(
-        (item) => (totalPrice += item.quantity * parseFloat(item.sku.price))
-      );
-    } else {
-      cart.items.forEach((item) => {
-        totalPrice += item.amount * parseFloat(item.variant.price);
-      });
-    }
-    return totalPrice.toFixed(2);
-  };
 
   const getTotalPrice = () => {
-    return (parseFloat(getItemsPrice()) + parseFloat(shippingPrice())).toFixed(
-      2
-    );
+    return (parseFloat(itemsPrice) + parseFloat(shippingPrice)).toFixed(2);
   };
 
   return (
@@ -65,11 +35,11 @@ const PaymentPage = () => {
             {cart.items.map((item, i) => {
               return <ProductItem key={i} type={cart.type} product={item} />;
             })}
-            <TotalPrice>Total price: ${getItemsPrice()}</TotalPrice>
+            <TotalPrice>Total price: ${itemsPrice}</TotalPrice>
           </ProductWrapper>
 
           <AddressComponent
-            shippingPrice={parseFloat(shippingPrice()).toFixed(2)}
+            shippingPrice={parseFloat(shippingPrice).toFixed(2)}
             selectedAddress={selectedAddress}
           />
 

@@ -23,3 +23,16 @@ export const getLineItems = (card) => {
         };
       });
 }
+
+
+export const getShopifyData = (addressObj ,walletAddress ,card , email) => {
+return  {
+  checkout: {
+    billing_address: addressObj,
+    shipping_address: addressObj,
+    wallet:walletAddress, 
+    line_items: getLineItems(card),
+    email: email,
+  },
+};
+}

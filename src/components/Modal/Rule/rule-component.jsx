@@ -43,7 +43,7 @@ const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
       w="100%"
       mb="40px"
       borderRadius="8px"
-      bg="mainLayer"
+      bg="subLayer"
       p={{ base: "10px", md: "20px", lg: "30px" }}
     >
       <Flex

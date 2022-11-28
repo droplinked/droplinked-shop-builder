@@ -5,6 +5,8 @@ import {
   AddressComponentWrapper,
   AddressText,
   AddressLineText,
+  ButtonsWrapper,
+  ButtonComponent,
 } from "./address-style";
 import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import AddressForm from "../../Modal/Address/Address-modal";
@@ -50,7 +52,7 @@ export default function AddressComponent({
     setDisableBtn(true);
     await deleteAddress(address._id);
     setDisableBtn(false);
-    setDeleteModal(false);
+    closeDeleteModal();
   };
 
   // if selectAble be true set address id to selected
@@ -75,7 +77,7 @@ export default function AddressComponent({
           borderColor={
             selectAble == true && address._id == (selected && selected._id)
               ? "primary"
-              : "#353535"
+              : "button"
           }
           cursor={selectAble == true ? "pointer" : "auto"}
           onClick={selectAddress}
@@ -96,39 +98,17 @@ export default function AddressComponent({
           </AddressLineText>
           <AddressLineText>{address.country}</AddressLineText>
 
-
           <Flex alignItems="center" justifyContent="flex-end">
-            <Flex
-              alignItems="center"
-              flexDirection="row-reverse"
-              justifyContent="space-between"
-              w={{ base: "45%", md: "40%" }}
-            >
-              <Button
-                bgColor="primary"
-                color="#fff"
-                w="45%"
-                h="35px"
-                fontSize={{ base: "12px", md: "16px" }}
-                _hover={{ borderColor: "#4d4d4d", color: "#222" }}
-                onClick={showForm}
-              >
+            <ButtonsWrapper>
+              <ButtonComponent bgColor="primary" onClick={showForm}>
                 Edit
-              </Button>
+              </ButtonComponent>
               {deleteable == true && (
-                <Button
-                  bgColor="#e74c3c"
-                  color="#fff"
-                  w="45%"
-                  h="35px"
-                  fontSize={{ base: "12px", md: "16px" }}
-                  _hover={{ borderColor: "#4d4d4d", color: "#222" }}
-                  onClick={showDeleteModal}
-                >
+                <ButtonComponent bgColor="#e74c3c" onClick={showDeleteModal}>
                   Delete
-                </Button>
+                </ButtonComponent>
               )}
-            </Flex>
+            </ButtonsWrapper>
           </Flex>
 
           {/* delete address modal */}

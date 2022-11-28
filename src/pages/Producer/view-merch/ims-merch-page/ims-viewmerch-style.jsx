@@ -14,7 +14,7 @@ export const TypeSelect = chakra("select", {
     fontSize: { base: "10px", sm: "12px", md: "16px" },
     color: "white",
     border: "none",
-    bgColor: "mainLayer",
+    bgColor: "subLayer",
     borderRadius: "8px",
     w: "300px",
     px: "16px",

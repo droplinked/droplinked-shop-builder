@@ -30,7 +30,7 @@ export default function WalletButton({ haventEmail }) {
 
   return (
     <>
-      <HeaderItem color="#fff" click={signIn}>
+      <HeaderItem color="white" click={signIn}>
         <Image
           w={{ base: "25px", md: "36px" }}
           h={{ base: "25px", md: "36px" }}
