@@ -47,7 +47,7 @@ const DroplinkedMerch = ({ bproduct, openLogin }) => {
   //   }
   // }
   const gatedStatus =
-    product.ruleset == undefined
+  (product.ruleset == undefined || product.ruleset.rules.length == 0 )
       ? "PUBLIC"
       : product.ruleset.gated
       ? "GATED"

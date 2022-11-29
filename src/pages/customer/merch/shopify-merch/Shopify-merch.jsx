@@ -44,7 +44,7 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
   const { profile, signinWithaWallet } = useProfile();
 
   const gatedStatus =
-  product.ruleset == undefined
+  (product.ruleset == undefined || product.ruleset.rules.length == 0 )
     ? "PUBLIC"
     : product.ruleset.gated
     ? "GATED"
