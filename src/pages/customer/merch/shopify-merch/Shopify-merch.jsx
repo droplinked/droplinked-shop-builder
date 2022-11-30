@@ -94,7 +94,7 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
         product.ruleset
       );
       if (result.NFTsPassed.length > 0) {
-        //discountSkus(result.discountPercentage);
+        setPercent(result.discountPercentage);
         setLock(false);
       }
     }
@@ -142,7 +142,7 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
       productId: product._id,
     };
     successToast("Item added to cart");
-    if (percent) addShopifyItemToCart(itemObject, true);
+    if (gatedStatus !== "PUBLIC") addShopifyItemToCart(itemObject, true);
     else addShopifyItemToCart(itemObject);
   };
 

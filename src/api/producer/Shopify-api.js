@@ -16,7 +16,7 @@ export const createCheckout = async(shopdomain , checkout) => {
             });
             return {status:API_STATUS.SUCCESS ,data: res.data.data};
           } catch (err) {
-            return {status:API_STATUS.FAILED, data:err.response.data}
+            return {status:API_STATUS.FAILED, data:err.response.data.reason.error}
           }
 }
 
