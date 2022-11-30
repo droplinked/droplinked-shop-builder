@@ -14,9 +14,9 @@ export const createCheckout = async(shopdomain , checkout) => {
              {
               headers: { Authorization: "Bearer " + token },
             });
-            return{status:API_STATUS.SUCCESS ,data: res.data.data};
+            return {status:API_STATUS.SUCCESS ,data: res.data.data};
           } catch (err) {
-            return{status:API_STATUS.FAILED, data:err.response.data}
+            return {status:API_STATUS.FAILED, data:err.response.data}
           }
 }
 
