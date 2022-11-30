@@ -83,7 +83,6 @@ function AddressPage() {
       result = await submitAddressForShopify();
     }
     setLoading(false);
-
     if (result.status == API_STATUS.SUCCESS) {
       if (cart.type == SHOP_TYPES.SHOPIFY) {
             let checkoutId = {

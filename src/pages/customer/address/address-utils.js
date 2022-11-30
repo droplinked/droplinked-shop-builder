@@ -30,7 +30,7 @@ return  {
   checkout: {
     billing_address: addressObj,
     shipping_address: addressObj,
-   // wallet:walletAddress, 
+    wallet:walletAddress, 
     line_items: getLineItems(card),
     email: email,
   },
