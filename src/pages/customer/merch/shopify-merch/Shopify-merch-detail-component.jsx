@@ -133,16 +133,10 @@ const ShopifyDetail = ({
     <DetailWrapper>
       {selectedVariant && (
         <>
-          <Box mb={{ base: "40px", md: "0px" }}>
             <ProductTitle>{product.title}</ProductTitle>
-            <ProductShopname onClick={navigateToShoppage}>
-              {shopName}
-            </ProductShopname>
-          </Box>
+            <ProductShopname onClick={navigateToShoppage}>{shopName}</ProductShopname>
 
-          <Box>
-            <Flex>
-              {selectedVariant.previousPrice ? (
+            {selectedVariant.previousPrice ? (
                 <Flex
                   mb={{ base: "20px", md: "10px", lg: "30px" }}
                   alignItems="flex-end"
@@ -165,8 +159,13 @@ const ShopifyDetail = ({
                   ${selectedVariant && selectedVariant.price}
                 </Text>
               )}
+          {hasRule && <RuleState lock={lock} description={rule.rules[0].description} />}
 
-              {/* {lock != null && (
+          
+            {/* <Flex>
+             
+
+               {lock != null && (
                 <Box
                   mt={{ base: "5px", md: "0px" }}
                   ml="15px"
@@ -178,15 +177,10 @@ const ShopifyDetail = ({
                 >
                   {lock == true ? <LockIcon /> : <UnlockIcon />}
                 </Box>
-              )} */}
-            </Flex>
-            {hasRule && <RuleState lock={lock} description={rule.rules[0].description} />}
-            <Flex
-              justifyContent="space-between"
-              w="100%"
-              flexWrap="wrap"
-              mb={{ base: "20px", md: "10px", lg: "30px" }}
-            >
+              )} 
+            </Flex> */}
+           
+            <Flex justifyContent="space-between" w="100%" flexWrap="wrap">
               {optionsList.map((option, i) => {
                 return (
                   <Box w="49%" key={i}>
@@ -208,11 +202,11 @@ const ShopifyDetail = ({
               })}
             </Flex>
 
-            <Flex mb={{ base: "20px", md: "10px", lg: "30px" }}>
+            <Flex>
               <QuantityButton
-                bgColor="#353536"
-                color="#b3b3b3"
-                cursor="pointer"
+                 bgColor="#353536"
+                 color="#b3b3b3"
+                 cursor="pointer"
                 onClick={decreaseQuantity}
               >
                 <Image src={minus} alt="minus" />
@@ -249,7 +243,7 @@ const ShopifyDetail = ({
                   : "Sold out"}
               </BasicButton>
             </Box> */}
-          </Box>
+          
         </>
       )}
     </DetailWrapper>

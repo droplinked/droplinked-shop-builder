@@ -29,8 +29,7 @@ const DroplinkedDetail = ({
   const navigate = useNavigate();
   const navigateToShoppage = () => navigate(`/${shopName}`);
 
-
-  const hasRule = ((rule != undefined)&&(rule.rules.length > 0))?true:false
+  const hasRule = rule != undefined && rule.rules.length > 0 ? true : false;
 
   //
   // find all options type in product and return array of objects like {{variantID:id , values:[]}}
@@ -141,11 +140,18 @@ const DroplinkedDetail = ({
           </Text>
         </Flex>
       ) : (
-        <Text fontWeight="600" fontSize="24px" color="#fff">
+        <Text
+          fontWeight="600"
+          fontSize="24px"
+          color="#fff"
+          mb={{ base: "20px", md: "10px", lg: "30px" }}
+        >
           ${selectedSku && selectedSku.price}
         </Text>
       )}
-      {hasRule && <RuleState lock={lock} description={rule.rules[0].description} />}
+      {hasRule && (
+        <RuleState lock={lock} description={rule.rules[0].description} />
+      )}
       <Flex justifyContent="space-between" w="100%" flexWrap="wrap">
         {optionsList.map((option, i) => {
           return (

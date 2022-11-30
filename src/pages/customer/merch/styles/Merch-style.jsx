@@ -91,8 +91,15 @@ export const QuantityButton = chakra("div", {
 export const ProductTitle = chakra("p", {
   baseStyle: {
     color: "#fff",
-    fontSize: {base:"26px",md:'22px',lg:'30px'},
+    // fontSize: {base:"26px",md:'22px',lg:'30px'},
+    fontSize: {base:"1.3rem",md:'1rem',lg:'1.5rem'},
     fontWeight: "600",
+    // textOverflow:'ellipsis',
+    // overflow:'hidden',
+    // whiteSpace:'nowrap'
+//     text-overflow: ellipsis; 
+// overflow: hidden; 
+// white-space: nowrap;
   },
 });
 
