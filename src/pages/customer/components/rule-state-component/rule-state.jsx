@@ -16,9 +16,10 @@ const RuleState = ({ lock, description }) => {
         borderRadius='50%'
         p='4px'
       />
-      {lock && (
+      <Text color="white" fontSize="12px">{description}</Text>
+      {/* {lock && (
         <Text color="white" fontSize="12px">{description}</Text>
-      )}
+      )} */}
     </Flex>
   );
 };

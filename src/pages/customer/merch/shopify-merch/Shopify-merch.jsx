@@ -61,24 +61,56 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
       if (gatedStatus != "PUBLIC" && userData) checkProductRule();
   }, [userData]);
 
+  // const checkProductRule = async () => {
+
+
+  //   if (gatedStatus == "GATED") {
+  //       let result = await gatedPassesRules(
+  //         getUserAddress(userData).mainnet,
+  //         product.ruleset
+  //       );
+  //       if (result) setLock(false);
+  //   }
+  //   else {
+  //       let result = await getMaxDiscount(
+  //         getUserAddress(userData).mainnet,
+  //         product.ruleset
+  //       );
+  //       if (result.NFTsPassed.length > 0)  setPercent(result.discountPercentage);
+  //     }
+  // };
+
+
   const checkProductRule = async () => {
-
-
     if (gatedStatus == "GATED") {
-        let result = await gatedPassesRules(
-          getUserAddress(userData).mainnet,
-          product.ruleset
-        );
-        if (result) setLock(false);
-    }
-    else {
-        let result = await getMaxDiscount(
-          getUserAddress(userData).mainnet,
-          product.ruleset
-        );
-        if (result.NFTsPassed.length > 0)  setPercent(result.discountPercentage);
+      let result = await gatedPassesRules(
+        getUserAddress(userData).mainnet,
+        product.ruleset
+      );
+      if (result) setLock(false);
+    } else {
+      let result = await getMaxDiscount(
+        getUserAddress(userData).mainnet,
+        product.ruleset
+      );
+      if (result.NFTsPassed.length > 0) {
+        //discountSkus(result.discountPercentage);
+        setLock(false);
       }
+    }
   };
+
+  // const discountSkus = (percentage) => {
+  //   let currentSku = product.skus.map((sku) => {
+  //     let newPrice = parseFloat(
+  //       sku.price - sku.price * (percentage / 100)
+  //     ).toFixed(2);
+  //     return { ...sku, price: newPrice, previousPrice: sku.price };
+  //   });
+  //   const newProduct = { ...product, skus: currentSku };
+  //   setProduct(newProduct);
+  // };
+
 
   const addItemToBasket = async () => {
     if (profile == null) {
@@ -140,6 +172,7 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
           shopName={shopName}
           quantity={quantity}
           lock={lock}
+          rule={product.ruleset}
           setQuantity={setQuantity}
           percent={percent}
           submit={addItemToBasket}

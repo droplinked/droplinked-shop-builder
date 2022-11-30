@@ -12,12 +12,14 @@ import { useEffect, useState } from "react";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import plus from "../../../../assest/icon/plusIcon.png";
 import minus from "../../../../assest/icon/minusIcon.png";
+import RuleState from "../../components/rule-state-component/rule-state";
 
 const ShopifyDetail = ({
   product,
   shopName,
   quantity,
   setQuantity,
+  rule,
   lock,
   percent,
   submit,
@@ -29,6 +31,8 @@ const ShopifyDetail = ({
   const optionsList = product.options;
 
   const navigate = useNavigate();
+
+  const hasRule = ((rule != undefined)&&(rule.rules.length > 0))?true:false
 
   useEffect(() => {
     if (percent) discountVariants();
@@ -176,7 +180,7 @@ const ShopifyDetail = ({
                 </Box>
               )} */}
             </Flex>
-
+            {hasRule && <RuleState lock={lock} description={rule.rules[0].description} />}
             <Flex
               justifyContent="space-between"
               w="100%"
