@@ -66,7 +66,8 @@ function AddressPage() {
       cart,
       profile.email
     );
-    return await createCheckout(cart.items[0].shopName, shopifyData);
+    let result =  await createCheckout(cart.items[0].shopName, shopifyData);
+    return result 
   };
 
   const ProccessToPayment = async () => {
@@ -98,7 +99,7 @@ function AddressPage() {
     } else {
       cart.type == SHOP_TYPES.DROPLINKED
         ? errorToast(result.data)
-        : errorToast("Failed");
+        : errorToast(result.data);
     }
 
   
