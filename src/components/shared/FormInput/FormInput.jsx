@@ -22,7 +22,7 @@ export default function FormInput({
       {label && (
         <FormLabel
           htmlFor="input-com"
-          fontWeight="600"
+          fontWeight="500"
           fontSize={{ base: "14px", md: "20px" }}
           color="white"
         >

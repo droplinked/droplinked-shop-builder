@@ -11,7 +11,7 @@ const ProductIntroducing = () => {
 
 
   const changeTitle = (e) => setTitle(e.target.value)
-  const changeDesctiption = () => setDescription(e.target.value)
+  const changeDesctiption = (e) => setDescription(e.target.value)
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">

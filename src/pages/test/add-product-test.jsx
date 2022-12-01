@@ -21,7 +21,7 @@ import VariantComponent from "./test-components/variant-component/variant-compon
 import RecordModal from "./test-components/record-warning-modal/record-warning-modal";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import ProductIntroducing from "./product-introducing-component/productn-intoducing"
-
+import TechnicalInformation from "./technical-information/technical-information"
 const SHIPPING_TYPE = {
   EASY_POST: "EASY_POST",
   CUSTOM: "CUSTOM",
@@ -56,6 +56,8 @@ const AddproductTest = () => {
     <AddProductPageWrapper>
       
       <ProductIntroducing />
+      <Box mb="16px"></Box>
+      <TechnicalInformation />
       {/* <AddProductContentWrapper>
         <SectionTitle>Introduction</SectionTitle>
         <Box mb="48px"></Box>
