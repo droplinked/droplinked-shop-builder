@@ -20,6 +20,7 @@ import AddVariantForm from "./test-components/variant-from-component/add-variant
 import VariantComponent from "./test-components/variant-component/variant-component";
 import RecordModal from "./test-components/record-warning-modal/record-warning-modal";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
+import ProductIntroducing from "./product-introducing-component/productn-intoducing"
 
 const SHIPPING_TYPE = {
   EASY_POST: "EASY_POST",
@@ -27,33 +28,35 @@ const SHIPPING_TYPE = {
 };
 
 const AddproductTest = () => {
-  const [shippingType, setShippingType] = useState(SHIPPING_TYPE.EASY_POST);
-  const [optionList, setOptionList] = useState([{}]);
-  const [variantList, setVariantList] = useState([]);
-  const [showRecordModal, setShowRecordModal] = useState(false);
-  const [isRecord, setIsRecord] = useState(false);
+  // const [shippingType, setShippingType] = useState(SHIPPING_TYPE.EASY_POST);
+  // const [optionList, setOptionList] = useState([{}]);
+  // const [variantList, setVariantList] = useState([]);
+  // const [showRecordModal, setShowRecordModal] = useState(false);
+  // const [isRecord, setIsRecord] = useState(false);
 
-  const changeShippingType = (e) => setShippingType(e.target.value);
+  // const changeShippingType = (e) => setShippingType(e.target.value);
 
-  const toggleRecordModal = () => setShowRecordModal((p) => !p);
+  // const toggleRecordModal = () => setShowRecordModal((p) => !p);
 
-  const recordVariant = () => setIsRecord(true);
+  // const recordVariant = () => setIsRecord(true);
 
-  const addOption = () => {
-    let currentValue = Array.from(optionList);
-    currentValue.push({});
-    setOptionList(currentValue);
-  };
+  // const addOption = () => {
+  //   let currentValue = Array.from(optionList);
+  //   currentValue.push({});
+  //   setOptionList(currentValue);
+  // };
 
-  const addVariant = () => {
-    let currentValue = Array.from(variantList);
-    currentValue.push({});
-    setVariantList(currentValue);
-  };
+  // const addVariant = () => {
+  //   let currentValue = Array.from(variantList);
+  //   currentValue.push({});
+  //   setVariantList(currentValue);
+  // };
 
   return (
     <AddProductPageWrapper>
-      <AddProductContentWrapper>
+      
+      <ProductIntroducing />
+      {/* <AddProductContentWrapper>
         <SectionTitle>Introduction</SectionTitle>
         <Box mb="48px"></Box>
         <FormInput changeValue={() => {}} label="Title" placeholder="default" />
@@ -183,7 +186,7 @@ const AddproductTest = () => {
       </Flex>
       {showRecordModal && (
         <RecordModal recordVariant={recordVariant} cancel={toggleRecordModal} />
-      )}
+      )} */}
     </AddProductPageWrapper>
   );
 };
