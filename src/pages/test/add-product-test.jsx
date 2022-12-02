@@ -20,9 +20,10 @@ import AddVariantForm from "./test-components/variant-from-component/add-variant
 import VariantComponent from "./test-components/variant-component/variant-component";
 import RecordModal from "./test-components/record-warning-modal/record-warning-modal";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
-import ProductIntroducing from "./product-introducing-component/productn-intoducing"
-import TechnicalInformation from "./technical-information/technical-information"
-import ProductProperites from "./product-properties/product-properties"
+import ProductIntroducing from "./product-introducing-component/productn-intoducing";
+import TechnicalInformation from "./technical-information/technical-information";
+import ProductProperites from "./product-properties/product-properties";
+import AddSkuSection from "./add-sku-section/add-sku-section";
 
 const SHIPPING_TYPE = {
   EASY_POST: "EASY_POST",
@@ -56,12 +57,13 @@ const AddproductTest = () => {
 
   return (
     <AddProductPageWrapper>
-      
       <ProductIntroducing />
       <Box mb="16px"></Box>
       <TechnicalInformation />
       <Box mb="16px"></Box>
       <ProductProperites />
+      <Box mb="16px"></Box>
+      <AddSkuSection />
       {/* <AddProductContentWrapper>
         <SectionTitle>Introduction</SectionTitle>
         <Box mb="48px"></Box>
