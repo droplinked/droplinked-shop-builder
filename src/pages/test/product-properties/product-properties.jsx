@@ -99,7 +99,7 @@ const ProductProperites = () => {
         if(value.index == valueIndex){return {index: value.index, value: newValue }}
         else { return {...value}}
     })
-    findOption = {...findOption , value:optionValues}
+    findOption = {...findOption , values:optionValues}
     optionArray = optionArray.map(option => {
         if(option.index == optionIndex)return { ...findOption}
         else return {...option}
