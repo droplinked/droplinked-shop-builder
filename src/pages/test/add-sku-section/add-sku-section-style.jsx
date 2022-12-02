@@ -51,6 +51,7 @@ export const SmallInput = chakra("input", {
       color:'darkGray' ,
       bg:'mainLayer' ,
       border:'none',
+      py:'7px' ,
       outline:'none',
       _placeholder: {
         color: "darkGray",

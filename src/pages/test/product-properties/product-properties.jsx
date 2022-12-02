@@ -16,13 +16,10 @@ import { useToasty } from "../../../context/toastify/ToastContext";
 import plus from "../../../assest/icon/plus-icon.svg";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 
-const ProductProperites = () => {
+const ProductProperites = (OptionList , setOptionList) => {
   const { errorToast } = useToasty();
 
   const [variantsType, setVariantType] = useState(null);
-  const [OptionList, setOptionList] = useState([]);
-
-  console.log("OptionList", OptionList);
 
   useEffect(() => {
     initialVariants();
