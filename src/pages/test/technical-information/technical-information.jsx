@@ -45,9 +45,9 @@ const TechnicalInformation = () => {
   const changeShippingDropdown = (e) => setShippingType(e.target.value);
   const changeShippingPrice = (e) => setShippingPrice(e.target.value);
 
-  console.log("collection : ", selectedCollection);
-  console.log("shippingType : ", shippingType);
-  console.log("shippingprice : ", shippingPrice);
+  // console.log("collection : ", selectedCollection);
+  // console.log("shippingType : ", shippingType);
+  // console.log("shippingprice : ", shippingPrice);
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">

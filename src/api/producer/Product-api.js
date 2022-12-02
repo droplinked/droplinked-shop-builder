@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
+import { API_STATUS } from "../../constant/api-status";
 
 export const getProducts = async () => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -21,8 +22,10 @@ export const getVariants = async () => {
     const res = await axios.get(`${BASE_URL}/producer/product/variant`, {
       headers: { Authorization: "Bearer " + token },
     });
-    return res.data.data.variants;
+   return {status:API_STATUS.SUCCESS ,data: res.data.data.variants}
+   
   } catch (err) {
+    return {status:API_STATUS.FAILED, data:err.response.data.reason}
     console.error(err.response.data.reason);
     return null;
   }
