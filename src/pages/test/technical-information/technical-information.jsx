@@ -3,14 +3,28 @@ import { useState, useEffect } from "react";
 import { getCollections } from "../../../api/producer/Collection-api";
 import { API_STATUS } from "../../../constant/api-status";
 import { useToasty } from "../../../context/toastify/ToastContext";
+import {
+  SelectComponent,
+  OptionComponent,
+  InputComponent
+} from "./technical-information-style";
 
 import Loading from "../../../components/shared/loading/Loading";
+import Dropdown from "../../../components/shared/Dropdown/Dropdown-component";
+import FormInput from "../../../components/shared/FormInput/FormInput";
+
+const SHIPING_TYPE = [
+  { id: "EASY_POST", value: "Easy post" },
+  { id: "CUSTOM", value: "Custom" },
+];
 
 const TechnicalInformation = () => {
   const { errorToast } = useToasty();
 
   const [collectionList, setCollectionList] = useState(null);
   const [selectedCollection, setSelectedCollection] = useState(null);
+  const [shippingType, setShippingType] = useState("EASY_POST");
+  const [shippingPrice, setShippingPrice] = useState("");
 
   useEffect(() => {
     initializeCollection();
@@ -28,7 +42,12 @@ const TechnicalInformation = () => {
       : false;
   };
 
-  console.log("selected : ", selectedCollection);
+  const changeShippingDropdown = (e) => setShippingType(e.target.value);
+  const changeShippingPrice = (e) => setShippingPrice(e.target.value);
+
+  console.log("collection : ", selectedCollection);
+  console.log("shippingType : ", shippingType);
+  console.log("shippingprice : ", shippingPrice);
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
@@ -88,24 +107,39 @@ const TechnicalInformation = () => {
             })}
         </Flex>
         <Box mb="48px"></Box>
-        <Select
-          w="100%"
-          //  d="flex"
-          //  justifyContent="space-between"
-          //  p="18px"
-          bg="subLayer"
-          border="none"
-          outline="none"
-          borderRadius="8px"
-          color="darkGray"
-          fontSize="20px"
-          _focus={{
-            outline: "none",
-          }}
-        >
-          <option color="white">x</option>
-          <option color="white">y</option>
-        </Select>
+        <Flex w="100%" justifyContent="space-between">
+          <Box w="45%">
+            <Text fontSize="20px" fontWeight="500" color="white">
+              Shipping
+            </Text>
+            <Box mb="18px"></Box>
+            <SelectComponent
+              value={shippingType}
+              onChange={changeShippingDropdown}
+            >
+              {SHIPING_TYPE.map((item, i) => {
+                return (
+                  <OptionComponent key={i} value={item.id}>
+                    {item.value}
+                  </OptionComponent>
+                );
+              })}
+            </SelectComponent>
+          </Box>
+          {shippingType == "CUSTOM" && (
+            <Box w="45%">
+              <Text fontSize="20px" fontWeight="500" color="white">
+                Shipping price
+              </Text>
+              <Box mb="18px"></Box>
+              <InputComponent
+                value={shippingPrice}
+                placeholder="Shipping price"
+                changeValue={changeShippingPrice}
+              />
+            </Box>
+          )}
+        </Flex>
       </Box>
     </Box>
   );
