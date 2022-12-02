@@ -1,5 +1,5 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import {
   SkuFormWrapper,
   LeftSideText,
@@ -7,13 +7,31 @@ import {
   FieldInput,
   SmallInput,
   GrayLine,
+  SelectComponent,
+  OptionComponent,
 } from "./add-sku-section-style";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 
-const AddSkuSection = () => {
+
+const AddSkuSection = ({ OptionList }) => {
   const [open, setOpen] = useState(false);
+  const [sku, setSku] = useState({});
   const openForm = () => setOpen((p) => !p);
+
+  useEffect(()=>{
+    initial()
+  },[])
+
+
+  const initial = () => {
+    let initialSku = {
+      price: '' ,
+      
+    }
+  }
+
+  console.log("OptionList ", OptionList);
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
@@ -48,7 +66,7 @@ const AddSkuSection = () => {
               borderRadius="8px"
               justifyContent="space-between"
               alignItems="center"
-              h='100%'
+              h="100%"
             >
               <SmallInput placeholder="Lenght" />
               <GrayLine />
@@ -63,6 +81,20 @@ const AddSkuSection = () => {
             </Text>
           </Flex>
         </InputWrapper>
+
+        {OptionList.map((option) => {
+          return (
+
+              <InputWrapper mt='16px' key={option.index}>
+                <LeftSideText>{option.optionName}</LeftSideText>
+                <SelectComponent>
+                   {option.values.map((value) => {
+                    return <OptionComponent key={value.index}>{value.value}</OptionComponent>;
+                  })} 
+                </SelectComponent>
+              </InputWrapper>
+          );
+        })}
 
         <Box mb="36px"></Box>
         <Flex justifyContent="flex-end">
