@@ -1,9 +1,12 @@
 import { AddProductPageWrapper } from "./add-product-style";
-import { Box , Flex} from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { useState, useReducer } from "react";
 import { productIntroReducer } from "./product-intro-reducer";
 import { productTechReducer } from "./product-technical-reducer";
 import { postProduct } from "../../api/producer/Product-api";
+import { useToasty } from "../../context/toastify/ToastContext";
+import { SHIPING_TYPES } from "../../constant/shipping-types";
+import { API_STATUS } from "../../constant/api-status";
 
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import ProductIntroducing from "./product-introducing-component/productn-intoducing";
@@ -19,12 +22,13 @@ const initialProductIntor = {
 
 const initialTechnicalInfo = {
   collectionID: "",
-  shippingType: "",
+  shippingType: SHIPING_TYPES.EASY_POST,
   shippingPrice: "",
 };
 
 const AddproductTest = () => {
-  //useReducer(reducer, initial());
+  const { successToast,errorToast } = useToasty();
+
   const [productIntro, dispatchInto] = useReducer(
     productIntroReducer,
     initialProductIntor
@@ -36,11 +40,37 @@ const AddproductTest = () => {
   const [OptionList, setOptionList] = useState([]);
   const [skus, setSkus] = useState([]);
 
-  // Object.assign(person, job)
+  const isValidate = () => {
+    if (isEmpty(productIntro.title, "title")) return false;
+    if (isEmpty(productIntro.description, "description")) return false;
+    if (isEmpty(TechnicalInfo.collectionID, "collection")) return false;
+    return true;
+  };
 
-  const saveProduct = () => {
-  //  let finalData = Object.assign(productIntro, TechnicalInfo, { skus: skus });
-   // console.log("finalData : ", finalData);
+  const isEmpty = (value, name) => {
+    if (value == "") {
+      errorToast(`Sku ${name} is required`);
+      return true;
+    }
+  };
+
+  const saveProduct = async() => {
+    if (isValidate()) {
+      const mediaArray = productIntro.media.map((url, i) => {
+        return { url: url, isMain: i == 0 ? true : false };
+      });
+      let finalData = Object.assign(
+        { ...productIntro, media: mediaArray },
+        TechnicalInfo,
+        {
+          sku: skus,
+        }
+      );
+
+      let result = await postProduct(finalData)
+      if(result.status == API_STATUS.SUCCESS)successToast('Done success fully')
+      else errorToast(result.data)
+    }
   };
 
   return (

@@ -123,11 +123,11 @@ const TechnicalInformation = ({ TechnicalInfo, dispatchTechnical }) => {
               value={TechnicalInfo.shippingType}
               onChange={changeShippingDropdown}
             >
-              <OptionComponent value={SHIPING_TYPES.CUSTOM}>
-                {SHIPING_TYPES.CUSTOM}
-              </OptionComponent>
               <OptionComponent value={SHIPING_TYPES.EASY_POST}>
                 {SHIPING_TYPES.EASY_POST}
+              </OptionComponent>
+              <OptionComponent value={SHIPING_TYPES.CUSTOM}>
+                {SHIPING_TYPES.CUSTOM}
               </OptionComponent>
             </SelectComponent>
           </Box>

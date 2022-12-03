@@ -26,8 +26,6 @@ export const getVariants = async () => {
    
   } catch (err) {
     return {status:API_STATUS.FAILED, data:err.response.data.reason}
-    console.error(err.response.data.reason);
-    return null;
   }
 };
 
@@ -49,9 +47,9 @@ export const deleteSku = async (id) => {
     const res = await axios.delete(`${BASE_URL}/producer/product/sku/${id}`, {
       headers: { Authorization: "Bearer " + token },
     });
-    return true;
+    return {status:API_STATUS.SUCCESS ,data: res.data}
   } catch (err) {
-    return err.response.data.reason;
+    return {status:API_STATUS.FAILED, data:err.response.data.reason}
   }
 };
 

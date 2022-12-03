@@ -10,7 +10,7 @@ import deleteIcon from "../../../../assest/icon/delete-icon.svg";
 import editIcon from "../../../../assest/icon/edit-icon.svg";
 
 const VariantComponent = ({ sku }) => {
-  console.log("sku", sku);
+
   return (
     <VariantComponentWrapper>
       <DetailWrapper>
