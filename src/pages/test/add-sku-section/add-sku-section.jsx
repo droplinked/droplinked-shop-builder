@@ -1,5 +1,5 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
-import { useState , useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import {
   SkuFormWrapper,
   LeftSideText,
@@ -13,25 +13,100 @@ import {
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 
+function reducer(state, action) {
+  switch (action.type) {
+    case "updateSku":
+      return { ...action.payload };
+    case "updatePrice":
+      return { ...state, price: parseFloat(action.payload) };
+    case "updateQuantity":
+      return { ...state, quantity: parseInt(action.payload) };
+    case "updateExternalId":
+      return { ...state, externalID: action.payload };
+    case "updateWeight":
+      return { ...state, weight: parseFloat(action.payload) };
+    case "updateLength":
+      return {
+        ...state,
+        dimensions: { ...state.dimensions, length: parseFloat(action.payload) },
+      };
+    case "updateWidth":
+      return {
+        ...state,
+        dimensions: { ...state.dimensions, width: parseFloat(action.payload) },
+      };
+    case "updateHeight":
+      return {
+        ...state,
+        dimensions: { ...state.dimensions, height: parseFloat(action.payload) },
+      };
+      case "updateOptions":
+      return {
+        ...state,
+        options: action.payload ,
+      };
+
+    default:
+      throw new Error();
+  }
+}
 
 const AddSkuSection = ({ OptionList }) => {
+  const initial = () => {
+    let options =
+      OptionList.length == 0
+        ? []
+        : OptionList.map((option) => {
+            return { variantID: option.optionId, value: "" };
+          });
+
+    let initialSku = {
+      price: "",
+      externalID: "",
+      quantity: "",
+      options: options,
+      dimensions: {
+        length: "",
+        width: "",
+        height: "",
+      },
+      weight: "",
+    };
+    return initialSku;
+  };
+
   const [open, setOpen] = useState(false);
-  const [sku, setSku] = useState({});
+  const [sku, dispatch] = useReducer(reducer, initial());
   const openForm = () => setOpen((p) => !p);
 
-  useEffect(()=>{
-    initial()
-  },[])
+  useEffect(() => {
+    dispatch({ type: "updateSku", payload: initial() });
+  }, [OptionList]);
 
+  const changePrice = (e) =>
+    dispatch({ type: "updatePrice", payload: e.target.value });
+  const changeQuantity = (e) =>
+    dispatch({ type: "updateQuantity", payload: e.target.value });
+  const changeExternalId = (e) =>
+    dispatch({ type: "updateExternalId", payload: e.target.value });
+  const changeWeight = (e) =>
+    dispatch({ type: "updateWeight", payload: e.target.value });
+  const changeLength = (e) =>
+    dispatch({ type: "updateLength", payload: e.target.value });
+  const changeWidth = (e) =>
+    dispatch({ type: "updateWidth", payload: e.target.value });
+  const changeHeight = (e) =>
+    dispatch({ type: "updateHeight", payload: e.target.value });
 
-  const initial = () => {
-    let initialSku = {
-      price: '' ,
-      
-    }
-  }
+  const changeOption = (value, optionId) => {
+    let optionIndex = sku.options.findIndex(
+      (option) => option.variantID == optionId
+    );
+    let newOptions = sku.options;
+   newOptions[optionIndex].value = value;
+   dispatch({ type: "updateOptions", payload: newOptions });
 
-  console.log("OptionList ", OptionList);
+  };
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
@@ -43,17 +118,31 @@ const AddSkuSection = ({ OptionList }) => {
       <SkuFormWrapper>
         <InputWrapper>
           <LeftSideText>Price</LeftSideText>
-          <FieldInput placeholder="Price" />
+          <FieldInput
+            placeholder="Price"
+            type="number"
+            onChange={changePrice}
+            value={sku.price}
+          />
         </InputWrapper>
         <Box mb="16px"></Box>
         <InputWrapper>
           <LeftSideText>Quantity</LeftSideText>
-          <FieldInput placeholder="Quantity" />
+          <FieldInput
+            placeholder="Quantity"
+            type="number"
+            onChange={changeQuantity}
+            value={sku.quantity}
+          />
         </InputWrapper>
         <Box mb="16px"></Box>
         <InputWrapper>
           <LeftSideText>External ID</LeftSideText>
-          <FieldInput placeholder="External ID" />
+          <FieldInput
+            placeholder="External ID"
+            onChange={changeExternalId}
+            value={sku.externalID}
+          />
         </InputWrapper>
         <Box mb="16px"></Box>
         <InputWrapper>
@@ -68,13 +157,33 @@ const AddSkuSection = ({ OptionList }) => {
               alignItems="center"
               h="100%"
             >
-              <SmallInput placeholder="Lenght" />
+              <SmallInput
+                placeholder="Lenght"
+                type="number"
+                onChange={changeLength}
+                value={sku.dimensions.length}
+              />
               <GrayLine />
-              <SmallInput placeholder="Height" />
+              <SmallInput
+                placeholder="Height"
+                type="number"
+                onChange={changeHeight}
+                value={sku.dimensions.height}
+              />
               <GrayLine />
-              <SmallInput placeholder="Width" />
+              <SmallInput
+                placeholder="Width"
+                type="number"
+                onChange={changeWidth}
+                value={sku.dimensions.width}
+              />
               <GrayLine />
-              <SmallInput placeholder="Weight" />
+              <SmallInput
+                placeholder="Weight"
+                type="number"
+                onChange={changeWeight}
+                value={sku.weight}
+              />
             </Flex>
             <Text ml="12px" fontSize="20px" fontWeight="500" color="darkGray">
               inch/oz
@@ -84,15 +193,25 @@ const AddSkuSection = ({ OptionList }) => {
 
         {OptionList.map((option) => {
           return (
-
-              <InputWrapper mt='16px' key={option.index}>
-                <LeftSideText>{option.optionName}</LeftSideText>
-                <SelectComponent>
-                   {option.values.map((value) => {
-                    return <OptionComponent key={value.index}>{value.value}</OptionComponent>;
-                  })} 
-                </SelectComponent>
-              </InputWrapper>
+            <InputWrapper mt="16px" key={option.index}>
+              <LeftSideText>{option.optionName}</LeftSideText>
+              <SelectComponent
+                onChange={(e) => {
+                  changeOption(e.target.value, option.optionId);
+                }}
+              >
+                <OptionComponent selected disabled hidden>
+                  Select {option.optionName}
+                </OptionComponent>
+                {option.values.map((value) => {
+                  return (
+                    <OptionComponent key={value.index} value={value.value}>
+                      {value.value}
+                    </OptionComponent>
+                  );
+                })}
+              </SelectComponent>
+            </InputWrapper>
           );
         })}
 
