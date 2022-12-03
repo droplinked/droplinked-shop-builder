@@ -10,6 +10,7 @@ import {
   SelectComponent,
   OptionComponent,
 } from "./add-sku-section-style";
+import { useToasty } from "../../../context/toastify/ToastContext";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import VariantComponent from "../test-components/variant-component/variant-component";
@@ -53,6 +54,8 @@ function reducer(state, action) {
 }
 
 const AddSkuSection = ({ OptionList, skus, setSkus }) => {
+  const { errorToast } = useToasty();
+
   const initial = () => {
     let options =
       OptionList.length == 0
@@ -113,18 +116,60 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
     dispatch({ type: "updateOptions", payload: newOptions });
   };
 
+  console.log("sku", sku);
+
+  const isValidate = () => {
+    if (isEmpty(sku.price, "price")) return false;
+
+    if (isEmpty(sku.quantity, "quantity")) return false;
+
+    if (isEmpty(sku.weight, "weight")) {
+      return false;
+    }
+    if (isEmpty(sku.dimensions.length, "length")) return false;
+
+    if (isEmpty(sku.dimensions.width, "width")) return false;
+
+    if (isEmpty(sku.dimensions.height, "height")) return false;
+
+    let check = true
+    sku.options.forEach((option) => {
+      if (isEmpty(option.value, option.variantName)){
+         check =  false
+         return
+        };
+    });
+
+    return check;
+  };
+
+  const isEmpty = (value, name) => {
+    console.log("name", value);
+    if (value.length == 0) {
+      errorToast(`Sku ${name} is required`);
+      return true;
+    } else if (value <= 0) {
+      errorToast(`${name} should be greater than zero`);
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const submitAddVariant = () => {
-    let currentSkus = Array.from(skus);
-    currentSkus.push(sku);
-    setSkus(currentSkus);
-    dispatch({ type: "updateSku", payload: initial() });
-    openForm();
+    if (isValidate()) {
+      let currentSkus = Array.from(skus);
+      currentSkus.push(sku);
+      setSkus(currentSkus);
+      dispatch({ type: "updateSku", payload: initial() });
+      openForm();
+    }
   };
 
   const close = () => {
     dispatch({ type: "updateSku", payload: initial() });
     openForm();
-  }
+  };
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
@@ -238,8 +283,10 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
 
           <Box mb="36px"></Box>
           <Flex justifyContent="space-between">
-          <Box w="200px">
-              <BasicButton cancelType={true} click={close}>Close</BasicButton>
+            <Box w="200px">
+              <BasicButton cancelType={true} click={close}>
+                Close
+              </BasicButton>
             </Box>
             <Box w="200px">
               <BasicButton click={submitAddVariant}>Save variant</BasicButton>
