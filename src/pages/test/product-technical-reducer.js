@@ -5,7 +5,7 @@ export function productTechReducer(state, action) {
     case "updateShippingType":
       return { ...state, shippingType: action.payload };
     case "updateShippingPrice":
-      return { ...state, shippingPrice: parseFloat(action.payload) };
+      return { ...state, shippingPrice: action.payload };
     default:
       throw new Error();
   }

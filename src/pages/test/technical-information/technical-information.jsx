@@ -51,7 +51,10 @@ const TechnicalInformation = ({ TechnicalInfo, dispatchTechnical }) => {
     dispatchTechnical({ type: "updateShippingType", payload: e.target.value });
 
   const changeShippingPrice = (e) =>
-    dispatchTechnical({ type: "updateShippingPrice", payload: e.target.value });
+    dispatchTechnical({
+      type: "updateShippingPrice",
+      payload: parseFloat(e.target.value),
+    });
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
@@ -76,11 +79,15 @@ const TechnicalInformation = ({ TechnicalInfo, dispatchTechnical }) => {
           {/* {collectionList == null && <Loading />} */}
           <Box
             p="8px 16px"
-            bg={TechnicalInfo.productCollectionID == "" ? "primary" : "mainLayer"}
+            bg={
+              TechnicalInfo.productCollectionID == "" ? "primary" : "mainLayer"
+            }
             mr="20px"
             maxH="auto"
             color={
-              TechnicalInfo.productCollectionID == "" ? "primaryDark" : "darkGray"
+              TechnicalInfo.productCollectionID == ""
+                ? "primaryDark"
+                : "darkGray"
             }
             fontSize="20px"
             borderRadius="28px"
@@ -138,6 +145,7 @@ const TechnicalInformation = ({ TechnicalInfo, dispatchTechnical }) => {
               </Text>
               <Box mb="18px"></Box>
               <InputComponent
+                type="number"
                 value={TechnicalInfo.shippingPrice}
                 placeholder="Shipping price"
                 onChange={changeShippingPrice}

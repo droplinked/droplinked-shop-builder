@@ -47,7 +47,7 @@ const AddproductTest = () => {
     if (isEmpty(TechnicalInfo.productCollectionID, "collection")) return false;
     return true;
   };
-
+console.log('shipping price',TechnicalInfo.shippingPrice);
   const isEmpty = (value, name) => {
     if (value == "") {
       errorToast(`Sku ${name} is required`);
