@@ -2,9 +2,10 @@
 
 import axios from "axios";
 import dltImg from "../../../assest/icon/icons8-multiply-100.png";
+import uploadImage from "../../../assest/icon/upload-icon.svg";
 import Loading from "../loading/Loading";
 
-import { Image } from "@chakra-ui/react";
+import { Image , Box , Text} from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import {
@@ -93,7 +94,14 @@ export default function InputImagesGroup({ setState, state }) {
           </InputAddImage>
         ) : (
           <InputAddImage onClick={openFile}>
-            <AddImageText>+ Add image</AddImageText>
+            
+              <Image src={uploadImage} w="50px" h="50px" />
+              <Box mb="24px"></Box>
+              <Text fontSize="18px" color="darkGray">
+                Add 3 images here
+              </Text>
+           
+            {/* <AddImageText>+ Add image</AddImageText> */}
           </InputAddImage>
         )}
       </ItemImage>

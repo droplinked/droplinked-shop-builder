@@ -15,7 +15,7 @@ import OptionSection from "./test-components/option-component/option-section-com
 import SelectCollection from "./test-components/select-collection/select-collection-component";
 import FormInput from "../../components/shared/FormInput/FormInput";
 import testImg from "./example-image.jpg";
-import uploadImage from "./upload-image.svg";
+//import uploadImage from "./upload-image.svg";
 import AddVariantForm from "./test-components/variant-from-component/add-variant-form-component";
 import VariantComponent from "./test-components/variant-component/variant-component";
 import RecordModal from "./test-components/record-warning-modal/record-warning-modal";
