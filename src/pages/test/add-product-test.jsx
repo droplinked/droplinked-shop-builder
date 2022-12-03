@@ -1,7 +1,8 @@
 import { AddProductPageWrapper } from "./add-product-style";
 import { Box } from "@chakra-ui/react";
-import { useState , useReducer} from "react";
-import { productIntroReducer } from "./product-intro-reducer"
+import { useState, useReducer } from "react";
+import { productIntroReducer } from "./product-intro-reducer";
+import { productTechReducer } from "./product-technical-reducer";
 
 import ProductIntroducing from "./product-introducing-component/productn-intoducing";
 import TechnicalInformation from "./technical-information/technical-information";
@@ -19,18 +20,38 @@ const initialProductIntor = {
   media: [],
 };
 
+const initialTechnicalInfo = {
+  collectionID: "",
+  shippingType: "",
+  shippingPrice: "",
+};
+
 const AddproductTest = () => {
   //useReducer(reducer, initial());
-  const [productIntro , dispatchInto] = useReducer(productIntroReducer, initialProductIntor);
+  const [productIntro, dispatchInto] = useReducer(
+    productIntroReducer,
+    initialProductIntor
+  );
+  const [TechnicalInfo, dispatchTechnical] = useReducer(
+    productTechReducer,
+    initialTechnicalInfo
+  );
   const [OptionList, setOptionList] = useState([]);
   const [skus, setSkus] = useState([]);
 
+  console.log("TechnicalInfo", TechnicalInfo);
 
   return (
     <AddProductPageWrapper>
-      <ProductIntroducing productIntro={productIntro} dispatchInto={dispatchInto}/>
+      <ProductIntroducing
+        productIntro={productIntro}
+        dispatchInto={dispatchInto}
+      />
       <Box mb="16px"></Box>
-      <TechnicalInformation />
+      <TechnicalInformation
+        TechnicalInfo={TechnicalInfo}
+        dispatchTechnical={dispatchTechnical}
+      />
       <Box mb="16px"></Box>
       <ProductProperites
         OptionList={OptionList}
@@ -44,15 +65,7 @@ const AddproductTest = () => {
 
 export default AddproductTest;
 
-// "title": "title",
-// "description": "descr",
 // "priceUnit": "USD",
 // "productCollectionID": "62eaab4e27d6d30ba22955ab",
 // "shippingType": "CUSTOM",
 // "shippingPrice": 20,
-// "media": [
-//     {
-//         "url": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-//         "isMain": true
-//     }
-// ],

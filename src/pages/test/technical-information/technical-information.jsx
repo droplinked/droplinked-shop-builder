@@ -6,19 +6,20 @@ import { useToasty } from "../../../context/toastify/ToastContext";
 import {
   SelectComponent,
   OptionComponent,
-  InputComponent
+  InputComponent,
 } from "./technical-information-style";
+import { SHIPING_TYPES } from "../../../constant/shipping-types";
 
 import Loading from "../../../components/shared/loading/Loading";
 import Dropdown from "../../../components/shared/Dropdown/Dropdown-component";
 import FormInput from "../../../components/shared/FormInput/FormInput";
 
-const SHIPING_TYPE = [
-  { id: "EASY_POST", value: "Easy post" },
-  { id: "CUSTOM", value: "Custom" },
-];
+// const SHIPING_TYPE = [
+//   { id: "EASY_POST", value: "Easy post" },
+//   { id: "CUSTOM", value: "Custom" },
+// ];
 
-const TechnicalInformation = () => {
+const TechnicalInformation = ({ TechnicalInfo, dispatchTechnical }) => {
   const { errorToast } = useToasty();
 
   const [collectionList, setCollectionList] = useState(null);
@@ -37,17 +38,20 @@ const TechnicalInformation = () => {
   };
 
   const isSelected = (collection) => {
-    return selectedCollection && collection._id == selectedCollection._id
+    return TechnicalInfo.collectionID &&
+      collection._id == TechnicalInfo.collectionID
       ? true
       : false;
   };
 
-  const changeShippingDropdown = (e) => setShippingType(e.target.value);
-  const changeShippingPrice = (e) => setShippingPrice(e.target.value);
+  const selectCollection = (collectionId) =>
+    dispatchTechnical({ type: "updateCollectionId", payload: collectionId });
 
-  // console.log("collection : ", selectedCollection);
-  // console.log("shippingType : ", shippingType);
-  // console.log("shippingprice : ", shippingPrice);
+  const changeShippingDropdown = (e) =>
+    dispatchTechnical({ type: "updateShippingType", payload: e.target.value });
+
+  const changeShippingPrice = (e) =>
+    dispatchTechnical({ type: "updateShippingPrice", payload: e.target.value });
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
@@ -72,10 +76,12 @@ const TechnicalInformation = () => {
           {/* {collectionList == null && <Loading />} */}
           <Box
             p="8px 16px"
-            bg={selectedCollection == null ? "primary" : "mainLayer"}
+            bg={TechnicalInfo.collectionID == "" ? "primary" : "mainLayer"}
             mr="20px"
             maxH="auto"
-            color={selectedCollection == null ? "primaryDark" : "darkGray"}
+            color={
+              TechnicalInfo.collectionID == "" ? "primaryDark" : "darkGray"
+            }
             fontSize="20px"
             borderRadius="28px"
             mb="16px"
@@ -88,7 +94,7 @@ const TechnicalInformation = () => {
                 <Box
                   cursor="pointer"
                   onClick={() => {
-                    setSelectedCollection(collection);
+                    selectCollection(collection._id);
                   }}
                   key={collection._id}
                   value={collection._id}
@@ -114,28 +120,27 @@ const TechnicalInformation = () => {
             </Text>
             <Box mb="18px"></Box>
             <SelectComponent
-              value={shippingType}
+              value={TechnicalInfo.shippingType}
               onChange={changeShippingDropdown}
             >
-              {SHIPING_TYPE.map((item, i) => {
-                return (
-                  <OptionComponent key={i} value={item.id}>
-                    {item.value}
-                  </OptionComponent>
-                );
-              })}
+              <OptionComponent value={SHIPING_TYPES.CUSTOM}>
+                {SHIPING_TYPES.CUSTOM}
+              </OptionComponent>
+              <OptionComponent value={SHIPING_TYPES.EASY_POST}>
+                {SHIPING_TYPES.EASY_POST}
+              </OptionComponent>
             </SelectComponent>
           </Box>
-          {shippingType == "CUSTOM" && (
+          {TechnicalInfo.shippingType == "CUSTOM" && (
             <Box w="45%">
               <Text fontSize="20px" fontWeight="500" color="white">
                 Shipping price
               </Text>
               <Box mb="18px"></Box>
               <InputComponent
-                value={shippingPrice}
+                value={TechnicalInfo.shippingPrice}
                 placeholder="Shipping price"
-                changeValue={changeShippingPrice}
+                onChange={changeShippingPrice}
               />
             </Box>
           )}
