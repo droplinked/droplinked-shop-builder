@@ -33,6 +33,10 @@ const SHIPPING_TYPE = {
 const AddproductTest = () => {
 
   const [OptionList, setOptionList] = useState([]);
+  const [skus, setSkus] = useState([]);
+
+  // console.log('skus' , skus);
+
 
  // const changeSetOption = (e) => setOptionList(e)
   // const [shippingType, setShippingType] = useState(SHIPPING_TYPE.EASY_POST);
@@ -67,7 +71,7 @@ const AddproductTest = () => {
       <Box mb="16px"></Box>
       <ProductProperites OptionList={OptionList}  setOptionList={setOptionList} />
       <Box mb="16px"></Box>
-      <AddSkuSection OptionList={OptionList}/>
+      <AddSkuSection OptionList={OptionList} skus={skus} setSkus={setSkus}/>
       {/* <AddProductContentWrapper>
         <SectionTitle>Introduction</SectionTitle>
         <Box mb="48px"></Box>

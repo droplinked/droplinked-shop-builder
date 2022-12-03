@@ -4,6 +4,7 @@ import { chakra } from "@chakra-ui/react";
 export const VariantComponentWrapper = chakra("div", {
   baseStyle: {
     d: "flex",
+    w:'100%',
     p:'16px 4px',
     borderBottom:'3px solid',
     borderColor:'line' ,
