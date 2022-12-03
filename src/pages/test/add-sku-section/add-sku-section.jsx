@@ -116,8 +116,6 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
     dispatch({ type: "updateOptions", payload: newOptions });
   };
 
-  console.log("sku", sku);
-
   const isValidate = () => {
     if (isEmpty(sku.price, "price")) return false;
 
@@ -132,19 +130,18 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
 
     if (isEmpty(sku.dimensions.height, "height")) return false;
 
-    let check = true
+    let check = true;
     sku.options.forEach((option) => {
-      if (isEmpty(option.value, option.variantName)){
-         check =  false
-         return
-        };
+      if (isEmpty(option.value, option.variantName)) {
+        check = false;
+        return;
+      }
     });
 
     return check;
   };
 
   const isEmpty = (value, name) => {
-    console.log("name", value);
     if (value.length == 0) {
       errorToast(`Sku ${name} is required`);
       return true;
@@ -156,14 +153,44 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
     }
   };
 
+
+  const existSameOptions = () => {
+    if (sku.options.length == 0) return false;
+    let result = false;
+    let thisSkuOption = sku.options;
+
+    skus.forEach((currentSku) => {
+      let isSame = true;
+      currentSku.options.forEach((option) => {
+        let find = thisSkuOption.find(
+          (op) => op.variantID == option.variantID
+        );
+        if(find.value == '')isSame = false
+        if (find.value != option.value) isSame = false;
+      });
+
+      if (isSame) {
+        errorToast(`There is same sku`);
+        result = true;
+        return;
+      }
+    });
+    return result;
+  };
+
   const submitAddVariant = () => {
-    if (isValidate()) {
+
+    if(!isValidate()) return
+    if(existSameOptions()) return
+
+    
+
       let currentSkus = Array.from(skus);
       currentSkus.push(sku);
       setSkus(currentSkus);
       dispatch({ type: "updateSku", payload: initial() });
       openForm();
-    }
+    
   };
 
   const close = () => {
