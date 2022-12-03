@@ -16,12 +16,11 @@ import { useToasty } from "../../../context/toastify/ToastContext";
 import plus from "../../../assest/icon/plus-icon.svg";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 
-const ProductProperites = ({OptionList , setOptionList}) => {
-
+const ProductProperites = ({ OptionList, setOptionList }) => {
   const { errorToast } = useToasty();
 
   const [variantsType, setVariantType] = useState(null);
- 
+
   useEffect(() => {
     initialVariants();
   }, []);
@@ -92,16 +91,19 @@ const ProductProperites = ({OptionList , setOptionList}) => {
 
   const changeOptionValue = (optionIndex, valueIndex, newValue) => {
     let optionArray = Array.from(OptionList);
-    let findOption = optionArray.find(option => option.index == optionIndex)
-    let optionValues = findOption.values.map(value => {
-        if(value.index == valueIndex){return {index: value.index, value: newValue }}
-        else { return {...value}}
-    })
-    findOption = {...findOption , values:optionValues}
-    optionArray = optionArray.map(option => {
-        if(option.index == optionIndex)return { ...findOption}
-        else return {...option}
-    })
+    let findOption = optionArray.find((option) => option.index == optionIndex);
+    let optionValues = findOption.values.map((value) => {
+      if (value.index == valueIndex) {
+        return { index: value.index, value: newValue };
+      } else {
+        return { ...value };
+      }
+    });
+    findOption = { ...findOption, values: optionValues };
+    optionArray = optionArray.map((option) => {
+      if (option.index == optionIndex) return { ...findOption };
+      else return { ...option };
+    });
     setOptionList(optionArray);
   };
 
@@ -218,11 +220,13 @@ const ProductProperites = ({OptionList , setOptionList}) => {
               );
             })}
 
-          <Box w="100%">
-            <BasicButton click={addNewOption} cancelType={true}>
-              Add new
-            </BasicButton>{" "}
-          </Box>
+          {OptionList.length < 2 && (
+            <Box w="100%">
+              <BasicButton click={addNewOption} cancelType={true}>
+                Add new
+              </BasicButton>{" "}
+            </Box>
+          )}
         </Box>
       </Flex>
     </Box>

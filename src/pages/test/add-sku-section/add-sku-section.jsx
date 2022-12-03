@@ -182,11 +182,9 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
 
     if(!isValidate()) return
     if(existSameOptions()) return
-
-    
-
+      
       let currentSkus = Array.from(skus);
-      currentSkus.push(sku);
+      currentSkus.push({...sku , index:currentSkus.length});
       setSkus(currentSkus);
       dispatch({ type: "updateSku", payload: initial() });
       openForm();
