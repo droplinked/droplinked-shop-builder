@@ -4,14 +4,11 @@ import { useState } from "react";
 import FormInput from "../../../components/shared/FormInput/FormInput";
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component";
 
-const ProductIntroducing = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [images, setImages] = useState([]);
+const ProductIntroducing = ({productIntro , dispatchInto}) => {
 
-
-  const changeTitle = (e) => setTitle(e.target.value)
-  const changeDesctiption = (e) => setDescription(e.target.value)
+  const changeTitle = (e) => dispatchInto({ type: "updateTitle", payload: e.target.value });
+  const changeDesctiption = (e) => dispatchInto({ type: "updateDescription", payload: e.target.value });
+  const changeMedia = (images) => dispatchInto({ type: "updateMedia", payload: images });
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
@@ -21,17 +18,17 @@ const ProductIntroducing = () => {
       <Box mb="48px"></Box>
 
       <Box p="0px 24px">
-        <FormInput label="Title" placeholder="Default" value={title} changeValue={changeTitle}/>
+        <FormInput label="Title" placeholder="Default" value={productIntro.title} changeValue={changeTitle}/>
         <Box mb="40px"></Box>
         <FormInput
           label="Description"
           placeholder="Default"
           type="textarea"
-          value={description}
+          value={productIntro.description}
           changeValue={changeDesctiption}
         />
         <Box mb="48px"></Box>
-        <InputImagesGroup setState={setImages} state={images} />
+        <InputImagesGroup setState={changeMedia} state={productIntro.media} />
       </Box>
     </Box>
   );

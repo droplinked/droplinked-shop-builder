@@ -1,6 +1,7 @@
 import { AddProductPageWrapper } from "./add-product-style";
 import { Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState , useReducer} from "react";
+import { productIntroReducer } from "./product-intro-reducer"
 
 import ProductIntroducing from "./product-introducing-component/productn-intoducing";
 import TechnicalInformation from "./technical-information/technical-information";
@@ -19,13 +20,15 @@ const initialProductIntor = {
 };
 
 const AddproductTest = () => {
-  const [productIntro, setProductIntro] = useState(initialProductIntor);
+  //useReducer(reducer, initial());
+  const [productIntro , dispatchInto] = useReducer(productIntroReducer, initialProductIntor);
   const [OptionList, setOptionList] = useState([]);
   const [skus, setSkus] = useState([]);
 
+
   return (
     <AddProductPageWrapper>
-      <ProductIntroducing />
+      <ProductIntroducing productIntro={productIntro} dispatchInto={dispatchInto}/>
       <Box mb="16px"></Box>
       <TechnicalInformation />
       <Box mb="16px"></Box>
