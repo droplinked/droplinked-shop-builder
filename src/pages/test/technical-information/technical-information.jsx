@@ -38,8 +38,8 @@ const TechnicalInformation = ({ TechnicalInfo, dispatchTechnical }) => {
   };
 
   const isSelected = (collection) => {
-    return TechnicalInfo.collectionID &&
-      collection._id == TechnicalInfo.collectionID
+    return TechnicalInfo.productCollectionID &&
+      collection._id == TechnicalInfo.productCollectionID
       ? true
       : false;
   };
@@ -76,11 +76,11 @@ const TechnicalInformation = ({ TechnicalInfo, dispatchTechnical }) => {
           {/* {collectionList == null && <Loading />} */}
           <Box
             p="8px 16px"
-            bg={TechnicalInfo.collectionID == "" ? "primary" : "mainLayer"}
+            bg={TechnicalInfo.productCollectionID == "" ? "primary" : "mainLayer"}
             mr="20px"
             maxH="auto"
             color={
-              TechnicalInfo.collectionID == "" ? "primaryDark" : "darkGray"
+              TechnicalInfo.productCollectionID == "" ? "primaryDark" : "darkGray"
             }
             fontSize="20px"
             borderRadius="28px"

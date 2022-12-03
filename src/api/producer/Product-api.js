@@ -35,9 +35,9 @@ export const postProduct = async (product) => {
     const res = await axios.post(`${BASE_URL}/producer/product`, product, {
       headers: { Authorization: "Bearer " + token },
     });
-    return true;
+    return {status:API_STATUS.SUCCESS ,data: res.data}
   } catch (err) {
-    return err.response.data.reason;
+    return {status:API_STATUS.FAILED, data:err.response.data.reason}
   }
 };
 

@@ -21,9 +21,9 @@ const initialProductIntor = {
 };
 
 const initialTechnicalInfo = {
-  collectionID: "",
+  productCollectionID: "",
   shippingType: SHIPING_TYPES.EASY_POST,
-  shippingPrice: "",
+  shippingPrice: 0,
 };
 
 const AddproductTest = () => {
@@ -39,11 +39,12 @@ const AddproductTest = () => {
   );
   const [OptionList, setOptionList] = useState([]);
   const [skus, setSkus] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const isValidate = () => {
     if (isEmpty(productIntro.title, "title")) return false;
     if (isEmpty(productIntro.description, "description")) return false;
-    if (isEmpty(TechnicalInfo.collectionID, "collection")) return false;
+    if (isEmpty(TechnicalInfo.productCollectionID, "collection")) return false;
     return true;
   };
 
@@ -64,10 +65,13 @@ const AddproductTest = () => {
         TechnicalInfo,
         {
           sku: skus,
+        },{
+          priceUnit: "USD"
         }
       );
-
+      setLoading(true)
       let result = await postProduct(finalData)
+      setLoading(false)
       if(result.status == API_STATUS.SUCCESS)successToast('Done success fully')
       else errorToast(result.data)
     }
@@ -94,7 +98,7 @@ const AddproductTest = () => {
       <Box mb="32px"></Box>
       <Flex w="100%" justifyContent="end">
         <Box w="200px">
-          <BasicButton click={saveProduct}>Save</BasicButton>
+          <BasicButton click={saveProduct} loading={loading}>Save</BasicButton>
         </Box>
       </Flex>
     </AddProductPageWrapper>
