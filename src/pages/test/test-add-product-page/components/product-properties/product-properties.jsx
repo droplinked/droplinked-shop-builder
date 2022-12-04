@@ -4,8 +4,6 @@ import {
   OptionText,
   GrayLine,
   OptionFormWrapper,
-  SelectComponent,
-  OptionComponent,
   ValueInput,
   PlusIcon,
 } from "./product-properties-style";
@@ -14,6 +12,8 @@ import {
   SectionTitle,
   Margin48px,
   AddProductLabel,
+  SelectComponent,
+  OptionComponent,
 } from "../style/share-style";
 import { getVariants } from "../../../../../api/producer/Product-api";
 import { API_STATUS } from "../../../../../constant/api-status";
