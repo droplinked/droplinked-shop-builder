@@ -1,17 +1,7 @@
-import { Box, Text, Flex } from "@chakra-ui/react";
-import { useState, useEffect, useReducer, useMemo } from "react";
-import {
-  SkuFormWrapper,
-  LeftSideText,
-  InputWrapper,
-  FieldInput,
-  SmallInput,
-  GrayLine,
-  SelectComponent,
-  OptionComponent,
-} from "./add-sku-section-style";
+import { Box, Text } from "@chakra-ui/react";
+import { useState} from "react";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
-import { skuReducer } from "../../reducer/add-sku-reducer";
+
 
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 import VariantComponent from "../variant-component/variant-component";
@@ -19,6 +9,8 @@ import SkuForm from "../sku-form/sku-form";
 
 const AddSkuSection = ({ OptionList, skus, setSkus }) => {
   const [open, setOpen] = useState(false);
+
+  const { errorToast } = useToasty();
 
   const openForm = () => setOpen((p) => !p);
 
@@ -36,10 +28,34 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
     setSkus(currentSkus);
   };
 
+  const existSameOptions = (sku) => {
+    if (sku.options.length == 0) return false;
+    let result = false;
+    let thisSkuOption = sku.options;
+
+    skus.forEach((currentSku) => {
+      let isSame = true;
+      currentSku.options.forEach((option) => {
+        let find = thisSkuOption.find((op) => op.variantID == option.variantID);
+        if (find.value == "") isSame = false;
+        if (find.value != option.value) isSame = false;
+      });
+
+      if (isSame) {
+        errorToast(`There is same sku`);
+        result = true;
+        return;
+      }
+    });
+    return result;
+  };
+
   const submitForm = (sku) => {
+    if (existSameOptions(sku)) return false
     let currentSkus = Array.from(skus);
     currentSkus.push({ ...sku, index: currentSkus.length });
     setSkus(currentSkus);
+    return true
   };
 
   return (
@@ -61,7 +77,6 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
       })}
       {open ? (
         <SkuForm
-          skus={skus}
           closeForm={openForm}
           OptionList={OptionList}
           submitForm={submitForm}

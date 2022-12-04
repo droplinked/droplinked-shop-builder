@@ -42,7 +42,7 @@ import {
     return initialSku;
   };
 
-const SkuForm = ({skus , closeForm ,OptionList , submitForm}) => {
+const SkuForm = ({closeForm ,OptionList , submitForm}) => {
 
     const initial = useMemo(() => initialReducer(OptionList), []);
 
@@ -121,35 +121,14 @@ const SkuForm = ({skus , closeForm ,OptionList , submitForm}) => {
   };
 
 
-  const existSameOptions = () => {
-    if (sku.options.length == 0) return false;
-    let result = false;
-    let thisSkuOption = sku.options;
-
-    skus.forEach((currentSku) => {
-      let isSame = true;
-      currentSku.options.forEach((option) => {
-        let find = thisSkuOption.find((op) => op.variantID == option.variantID);
-        if (find.value == "") isSame = false;
-        if (find.value != option.value) isSame = false;
-      });
-
-      if (isSame) {
-        errorToast(`There is same sku`);
-        result = true;
-        return;
-      }
-    });
-    return result;
-  };
-
-
   const submitAddVariant = () => {
     if (!isValidate()) return;
-    if (existSameOptions()) return;
-    submitForm(sku)
-    dispatch({ type: "updateSku", payload: initial });
-    closeForm();
+    let result  = submitForm(sku)
+    if(result){
+      dispatch({ type: "updateSku", payload: initial });
+      closeForm();
+    }
+    
   };
 
   const close = () => {
