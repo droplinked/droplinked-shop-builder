@@ -58,6 +58,15 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
     return true
   };
 
+  const changeSku = (sku , index) => {
+    let currentSkus = Array.from(skus);
+    currentSkus = currentSkus.map((current) => {
+      if(current.index == index){return {...sku , index:index}}
+        else{ return { ...current }}
+      });
+    setSkus(currentSkus);
+  };
+
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
       <Text fontWeight="500" fontSize="24px" color="white">
@@ -69,9 +78,11 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
           <VariantComponent
             key={currentSku.index}
             sku={currentSku}
+            OptionList={OptionList}
             deleteSku={() => {
               deleteSku(currentSku.index);
             }}
+            changeSku={changeSku}
           />
         );
       })}

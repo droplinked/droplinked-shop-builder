@@ -1,21 +1,43 @@
 import { useState, useEffect, useReducer, useMemo } from "react";
 import { Box, Text, Flex } from "@chakra-ui/react";
 import {
-    SkuFormWrapper,
-    LeftSideText,
-    InputWrapper,
-    FieldInput,
-    SmallInput,
-    GrayLine,
-    SelectComponent,
-    OptionComponent,
-  } from "./sku-form-style";
-  import { useToasty } from "../../../../../context/toastify/ToastContext";
-  import { skuReducer } from "../../reducer/add-sku-reducer";
+  SkuFormWrapper,
+  LeftSideText,
+  InputWrapper,
+  FieldInput,
+  SmallInput,
+  GrayLine,
+  SelectComponent,
+  OptionComponent,
+} from "./sku-form-style";
+import { useToasty } from "../../../../../context/toastify/ToastContext";
+import { skuReducer } from "../../reducer/add-sku-reducer";
 
-  import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
-  const initialReducer = (OptionList) => {
+const initialReducer = (OptionList, defaultValue) => {
+  let initialSku;
+  if (defaultValue) {
+    let options = defaultValue.options.map((option) => {
+      return {
+        variantID: option.variantID,
+        variantName: option.variantName,
+        value: option.value,
+      };
+    });
+    initialSku = {
+      price: defaultValue.price,
+      externalID: defaultValue.externalID,
+      quantity: defaultValue.quantity,
+      options: options,
+      dimensions: {
+        length: defaultValue.dimensions.length,
+        width: defaultValue.dimensions.width,
+        height: defaultValue.dimensions.height,
+      },
+      weight: defaultValue.weight,
+    };
+  } else {
     let options =
       OptionList.length == 0
         ? []
@@ -26,8 +48,8 @@ import {
               value: "",
             };
           });
-  
-    let initialSku = {
+
+    initialSku = {
       price: "",
       externalID: "",
       quantity: "",
@@ -39,23 +61,23 @@ import {
       },
       weight: "",
     };
-    return initialSku;
-  };
+  }
 
-const SkuForm = ({closeForm ,OptionList , submitForm}) => {
+  return initialSku;
+};
 
-    const initial = useMemo(() => initialReducer(OptionList), []);
+const SkuForm = ({ closeForm, OptionList, submitForm, defaultValue }) => {
+  const initial = useMemo(() => initialReducer(OptionList, defaultValue), []);
 
-    const [sku, dispatch] = useReducer(skuReducer, initial);
+  const [sku, dispatch] = useReducer(skuReducer, initial);
 
-    const { errorToast } = useToasty();
+  const { errorToast } = useToasty();
 
-    
   useEffect(() => {
     dispatch({ type: "updateSku", payload: initial });
   }, [OptionList]);
 
-    const changePrice = (e) =>
+  const changePrice = (e) =>
     dispatch({ type: "updatePrice", payload: e.target.value });
   const changeQuantity = (e) =>
     dispatch({ type: "updateQuantity", payload: e.target.value });
@@ -120,23 +142,19 @@ const SkuForm = ({closeForm ,OptionList , submitForm}) => {
     return check;
   };
 
-
   const submitAddVariant = () => {
     if (!isValidate()) return;
-    let result  = submitForm(sku)
-    if(result){
+    let result = submitForm(sku);
+    if (result) {
       dispatch({ type: "updateSku", payload: initial });
       closeForm();
     }
-    
   };
 
   const close = () => {
     dispatch({ type: "updateSku", payload: initial });
     closeForm();
   };
-
-   
 
   return (
     <SkuFormWrapper>
@@ -253,4 +271,4 @@ const SkuForm = ({closeForm ,OptionList , submitForm}) => {
     </SkuFormWrapper>
   );
 };
- export default SkuForm 
+export default SkuForm;
