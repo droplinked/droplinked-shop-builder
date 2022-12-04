@@ -9,7 +9,7 @@ import { Image, Flex, Text } from "@chakra-ui/react";
 import deleteIcon from "../../../../../assest/icon/delete-icon.svg";
 import editIcon from "../../../../../assest/icon/edit-icon.svg";
 
-const VariantComponent = ({ sku }) => {
+const VariantComponent = ({ sku ,deleteSku}) => {
 
   return (
     <VariantComponentWrapper>
@@ -45,7 +45,7 @@ const VariantComponent = ({ sku }) => {
           >
             <Flex w="10px" h="10px" bg="#1C1C1C" borderRadius="50%"></Flex>
           </Flex>
-          <Image src={deleteIcon} w="24px" h="24px" mr="16px" />
+          <Image onClick={deleteSku} src={deleteIcon} w="24px" h="24px" mr="16px" />
           <Image src={editIcon} w="24px" h="24px" />
         </Flex>
       {/*  {isRecord ? (

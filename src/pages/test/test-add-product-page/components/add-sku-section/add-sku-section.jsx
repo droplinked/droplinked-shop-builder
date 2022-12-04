@@ -1,5 +1,5 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect, useReducer, useMemo } from "react";
 import {
   SkuFormWrapper,
   LeftSideText,
@@ -11,85 +11,52 @@ import {
   OptionComponent,
 } from "./add-sku-section-style";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
+import { skuReducer } from "../../reducer/add-sku-reducer";
 
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 import VariantComponent from "../variant-component/variant-component";
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "updateSku":
-      return { ...action.payload };
-    case "updatePrice":
-      return { ...state, price: parseFloat(action.payload) };
-    case "updateQuantity":
-      return { ...state, quantity: parseInt(action.payload) };
-    case "updateExternalId":
-      return { ...state, externalID: action.payload };
-    case "updateWeight":
-      return { ...state, weight: parseFloat(action.payload) };
-    case "updateLength":
-      return {
-        ...state,
-        dimensions: { ...state.dimensions, length: parseFloat(action.payload) },
-      };
-    case "updateWidth":
-      return {
-        ...state,
-        dimensions: { ...state.dimensions, width: parseFloat(action.payload) },
-      };
-    case "updateHeight":
-      return {
-        ...state,
-        dimensions: { ...state.dimensions, height: parseFloat(action.payload) },
-      };
-    case "updateOptions":
-      return {
-        ...state,
-        options: action.payload,
-      };
+const initialReducer = (OptionList) => {
+  let options =
+    OptionList.length == 0
+      ? []
+      : OptionList.map((option) => {
+          return {
+            variantID: option.optionId,
+            variantName: option.optionName,
+            value: "",
+          };
+        });
 
-    default:
-      throw new Error();
-  }
-}
+  let initialSku = {
+    price: "",
+    externalID: "",
+    quantity: "",
+    options: options,
+    dimensions: {
+      length: "",
+      width: "",
+      height: "",
+    },
+    weight: "",
+  };
+  return initialSku;
+};
 
 const AddSkuSection = ({ OptionList, skus, setSkus }) => {
   const { errorToast } = useToasty();
 
-  const initial = () => {
-    let options =
-      OptionList.length == 0
-        ? []
-        : OptionList.map((option) => {
-            return {
-              variantID: option.optionId,
-              variantName: option.optionName,
-              value: "",
-            };
-          });
-
-    let initialSku = {
-      price: "",
-      externalID: "",
-      quantity: "",
-      options: options,
-      dimensions: {
-        length: "",
-        width: "",
-        height: "",
-      },
-      weight: "",
-    };
-    return initialSku;
-  };
-
+  const initial = useMemo(() => initialReducer(OptionList), []);
+  // console.log(" skus ", skus);
   const [open, setOpen] = useState(false);
-  const [sku, dispatch] = useReducer(reducer, initial());
+  const [sku, dispatch] = useReducer(skuReducer, initial);
 
   const openForm = () => setOpen((p) => !p);
 
+  console.log("skus ", skus);
+
   useEffect(() => {
-    dispatch({ type: "updateSku", payload: initial() });
+    dispatch({ type: "updateSku", payload: initial });
   }, [OptionList]);
 
   const changePrice = (e) =>
@@ -107,13 +74,19 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
   const changeHeight = (e) =>
     dispatch({ type: "updateHeight", payload: e.target.value });
 
+
+
   const changeOption = (value, optionId) => {
-    let optionIndex = sku.options.findIndex(
-      (option) => option.variantID == optionId
-    );
-    let newOptions = sku.options;
-    newOptions[optionIndex].value = value;
-    dispatch({ type: "updateOptions", payload: newOptions });
+    let currentOptions = sku.options.map((option) => option);
+    currentOptions = currentOptions.map((option) => {
+      if (option.variantID == optionId) {
+        return { ...option, value: value };
+      } else {
+        return { ...option };
+      }
+    });
+
+    dispatch({ type: "updateOptions", payload: currentOptions });
   };
 
   const isValidate = () => {
@@ -153,7 +126,6 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
     }
   };
 
-
   const existSameOptions = () => {
     if (sku.options.length == 0) return false;
     let result = false;
@@ -162,10 +134,8 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
     skus.forEach((currentSku) => {
       let isSame = true;
       currentSku.options.forEach((option) => {
-        let find = thisSkuOption.find(
-          (op) => op.variantID == option.variantID
-        );
-        if(find.value == '')isSame = false
+        let find = thisSkuOption.find((op) => op.variantID == option.variantID);
+        if (find.value == "") isSame = false;
         if (find.value != option.value) isSame = false;
       });
 
@@ -179,22 +149,28 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
   };
 
   const submitAddVariant = () => {
+    if (!isValidate()) return;
+    if (existSameOptions()) return;
 
-    if(!isValidate()) return
-    if(existSameOptions()) return
-      
-      let currentSkus = Array.from(skus);
-      currentSkus.push({...sku , index:currentSkus.length});
-      setSkus(currentSkus);
-      dispatch({ type: "updateSku", payload: initial() });
-      openForm();
-    
+    let currentSkus = Array.from(skus);
+    currentSkus.push({ ...sku, index: currentSkus.length });
+    setSkus(currentSkus);
+    dispatch({ type: "updateSku", payload: initial });
+    openForm();
   };
 
   const close = () => {
-    dispatch({ type: "updateSku", payload: initial() });
+    dispatch({ type: "updateSku", payload: initial });
     openForm();
   };
+
+  const deleteSku = (index) => {
+    console.log('index' ,index);
+    let currentSkus = Array.from(skus);
+    currentSkus = currentSkus.filter(sku => {return sku.index != index }).map((sku , i) => {return {...sku , index:i}});
+    console.log('currentSkus' ,currentSkus);
+    setSkus(currentSkus);
+  }
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
@@ -202,8 +178,8 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
         Variants
       </Text>
       <Box mb="48px"></Box>
-      {skus.map((currentSku, i) => {
-        return <VariantComponent key={i} sku={currentSku} />;
+      {skus.map(currentSku => {
+        return <VariantComponent key={currentSku.index} sku={currentSku} deleteSku={()=>{deleteSku(currentSku.index)}} />;
       })}
       {open ? (
         <SkuFormWrapper>
