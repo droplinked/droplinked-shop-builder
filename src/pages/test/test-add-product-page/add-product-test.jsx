@@ -1,19 +1,19 @@
 import { AddProductPageWrapper } from "./add-product-style";
 import { Box, Flex } from "@chakra-ui/react";
 import { useState, useReducer } from "react";
-import { productIntroReducer } from "./product-intro-reducer";
-import { productTechReducer } from "./product-technical-reducer";
-import { postProduct } from "../../api/producer/Product-api";
-import { useToasty } from "../../context/toastify/ToastContext";
-import { SHIPING_TYPES } from "../../constant/shipping-types";
-import { API_STATUS } from "../../constant/api-status";
+import { productIntroReducer } from "./reducer/product-intro-reducer";
+import { productTechReducer } from "./reducer/product-technical-reducer";
+import { postProduct } from "../../../api/producer/Product-api";
+import { useToasty } from "../../../context/toastify/ToastContext";
+import { SHIPING_TYPES } from "../../../constant/shipping-types";
+import { API_STATUS } from "../../../constant/api-status";
 
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
-import ProductIntroducing from "./product-introducing-component/productn-intoducing";
-import TechnicalInformation from "./technical-information/technical-information";
-import ProductProperites from "./product-properties/product-properties";
-import AddSkuSection from "./add-sku-section/add-sku-section";
-
+import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import ProductIntroducing from "./components/product-introducing-component/productn-intoducing";
+import TechnicalInformation from "./components/technical-information/technical-information";
+import ProductProperites from "./components/product-properties/product-properties";
+import AddSkuSection from "./components/add-sku-section/add-sku-section";
+ 
 const initialProductIntor = {
   title: "",
   description: "",
@@ -47,7 +47,7 @@ const AddproductTest = () => {
     if (isEmpty(TechnicalInfo.productCollectionID, "collection")) return false;
     return true;
   };
-console.log('shipping price',TechnicalInfo.shippingPrice);
+
   const isEmpty = (value, name) => {
     if (value == "") {
       errorToast(`Sku ${name} is required`);

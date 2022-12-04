@@ -73,7 +73,7 @@ const CollectionIframe = lazy(() =>
 );
 
 const AddproductTest = lazy(() =>
-  import("./pages/test/add-product-test")
+  import("./pages/test/test-add-product-page/add-product-test")
 );
 
 

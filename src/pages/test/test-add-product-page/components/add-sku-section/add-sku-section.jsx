@@ -10,10 +10,10 @@ import {
   SelectComponent,
   OptionComponent,
 } from "./add-sku-section-style";
-import { useToasty } from "../../../context/toastify/ToastContext";
+import { useToasty } from "../../../../../context/toastify/ToastContext";
 
-import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import VariantComponent from "../test-components/variant-component/variant-component";
+import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+import VariantComponent from "../variant-component/variant-component";
 
 function reducer(state, action) {
   switch (action.type) {

@@ -1,18 +1,18 @@
 import { Box, Text, Flex, Select } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { getCollections } from "../../../api/producer/Collection-api";
-import { API_STATUS } from "../../../constant/api-status";
-import { useToasty } from "../../../context/toastify/ToastContext";
+import { getCollections } from "../../../../../api/producer/Collection-api";
+import { API_STATUS } from "../../../../../constant/api-status";
+import { useToasty } from "../../../../../context/toastify/ToastContext";
 import {
   SelectComponent,
   OptionComponent,
   InputComponent,
 } from "./technical-information-style";
-import { SHIPING_TYPES } from "../../../constant/shipping-types";
+import { SHIPING_TYPES } from "../../../../../constant/shipping-types";
 
-import Loading from "../../../components/shared/loading/Loading";
-import Dropdown from "../../../components/shared/Dropdown/Dropdown-component";
-import FormInput from "../../../components/shared/FormInput/FormInput";
+import Loading from "../../../../../components/shared/loading/Loading";
+import Dropdown from "../../../../../components/shared/Dropdown/Dropdown-component";
+import FormInput from "../../../../../components/shared/FormInput/FormInput";
 
 // const SHIPING_TYPE = [
 //   { id: "EASY_POST", value: "Easy post" },

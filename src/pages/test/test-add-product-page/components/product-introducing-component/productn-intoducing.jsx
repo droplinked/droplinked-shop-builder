@@ -1,8 +1,8 @@
 import { Box, Text } from "@chakra-ui/react";
-import { useState } from "react";
 
-import FormInput from "../../../components/shared/FormInput/FormInput";
-import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component";
+
+import FormInput from "../../../../../components/shared/FormInput/FormInput";
+import InputImagesGroup from "../../../../../components/shared/InputImageGroupe/Input-images-component";
 
 const ProductIntroducing = ({productIntro , dispatchInto}) => {
 

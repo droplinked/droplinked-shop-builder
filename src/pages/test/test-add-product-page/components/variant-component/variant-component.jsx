@@ -6,8 +6,8 @@ import {
 } from "./variant-conponent-style";
 
 import { Image, Flex, Text } from "@chakra-ui/react";
-import deleteIcon from "../../../../assest/icon/delete-icon.svg";
-import editIcon from "../../../../assest/icon/edit-icon.svg";
+import deleteIcon from "../../../../../assest/icon/delete-icon.svg";
+import editIcon from "../../../../../assest/icon/edit-icon.svg";
 
 const VariantComponent = ({ sku }) => {
 

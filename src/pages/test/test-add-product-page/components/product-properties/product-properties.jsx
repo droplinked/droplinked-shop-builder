@@ -9,12 +9,12 @@ import {
   ValueInput,
   PlusIcon,
 } from "./product-properties-style";
-import { getVariants } from "../../../api/producer/Product-api";
-import { API_STATUS } from "../../../constant/api-status";
-import { useToasty } from "../../../context/toastify/ToastContext";
+import { getVariants } from "../../../../../api/producer/Product-api";
+import { API_STATUS } from "../../../../../constant/api-status";
+import { useToasty } from "../../../../../context/toastify/ToastContext";
 
-import plus from "../../../assest/icon/plus-icon.svg";
-import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import plus from "../../../../../assest/icon/plus-icon.svg";
+import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
 const ProductProperites = ({ OptionList, setOptionList }) => {
   const { errorToast } = useToasty();
