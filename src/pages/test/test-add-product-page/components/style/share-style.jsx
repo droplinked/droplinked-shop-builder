@@ -17,6 +17,15 @@ export const SectionTitle = chakra("p", {
   },
 });
 
+export const AddProductLabel = chakra("p", {
+  baseStyle: {
+    fontWeight: "500",
+    fontSize: "20px",
+    color: "white",
+  },
+});
+
+
 
 export const Margin48px = chakra("div", {
     baseStyle: {
