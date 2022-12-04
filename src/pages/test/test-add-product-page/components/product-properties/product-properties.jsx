@@ -9,6 +9,12 @@ import {
   ValueInput,
   PlusIcon,
 } from "./product-properties-style";
+import {
+  SectionWrapper,
+  SectionTitle,
+  Margin48px,
+  AddProductLabel,
+} from "../style/share-style";
 import { getVariants } from "../../../../../api/producer/Product-api";
 import { API_STATUS } from "../../../../../constant/api-status";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
@@ -108,16 +114,16 @@ const ProductProperites = ({ OptionList, setOptionList }) => {
   };
 
   return (
-    <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
-      <Text fontWeight="500" fontSize="24px" color="white">
+    <SectionWrapper>
+      <SectionTitle>
         Properties
-      </Text>
-      <Box mb="48px"></Box>
+      </SectionTitle>
+      <Margin48px />
 
       <Flex p="10px 0px">
-        <Text fontWeight="400" fontSize="20px" color="white">
+        <AddProductLabel>
           Required
-        </Text>
+        </AddProductLabel>
         <Box mr="100px"></Box>
         <Flex w="100%" justifyContent="space-between">
           <OptionText>Price</OptionText>
@@ -130,12 +136,12 @@ const ProductProperites = ({ OptionList, setOptionList }) => {
         </Flex>
       </Flex>
 
-      <Box mb="48px"></Box>
+      <Margin48px />
 
       <Flex p="10px 0px">
-        <Text fontWeight="400" fontSize="20px" color="white" pt="8px">
+        <AddProductLabel>
           Optional
-        </Text>
+        </AddProductLabel>
 
         <Box mr="100px"></Box>
         <Box w="100%">
@@ -229,7 +235,7 @@ const ProductProperites = ({ OptionList, setOptionList }) => {
           )}
         </Box>
       </Flex>
-    </Box>
+    </SectionWrapper>
   );
 };
 
