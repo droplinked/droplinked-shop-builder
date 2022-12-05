@@ -9,6 +9,7 @@ import ShippingPage from "./pages/customer/shipping/Shipping-page";
 import Enquiry from './pages/publics/enquiry/Enquiry'
 import ProducerCollection from "./pages/Producer/producer-collection/producer-collection";
 import UserWrapper from "./pages/user-wrapper/user-wrapper"
+import Shops from "./pages/affiliate/shops/shops"
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
@@ -140,6 +141,12 @@ function App() {
                 <Route path="shipping" element={<ShippingPage />} />
                 <Route path="payment" element={<PaymentPage />} />
 
+              </Route>
+
+              {/* producer pages */}
+              <Route path="affiliate" element={<UserWrapper />}>
+                <Route path="shops" element={<Shops />} />
+                
               </Route>
 
               
