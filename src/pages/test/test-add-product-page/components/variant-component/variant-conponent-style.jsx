@@ -6,6 +6,7 @@ export const VariantComponentWrapper = chakra("div", {
     d: "flex",
     w:'100%',
     p:'16px 4px',
+    alignItems:'center',
     borderBottom:'3px solid',
     borderColor:'line' ,
     justifyContent:'space-between'

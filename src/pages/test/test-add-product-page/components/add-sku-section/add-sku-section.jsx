@@ -68,14 +68,12 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
   };
 
 
-  const RecordSku = (index) => {
-    let currentSkus = Array.from(skus);
-    currentSkus = currentSkus.map((current) => {
-      if(current.index == index){return {...current , record:true  }}
-        else{ return { ...current }}
-      });
+  const update = (newSkus) => {
+    let currentSkus = Array.from(newSkus);
     setSkus(currentSkus);
   }
+
+  
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
@@ -88,12 +86,14 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
           <VariantComponent
             key={currentSku.index}
             sku={currentSku}
+            skus={skus}
             OptionList={OptionList}
             deleteSku={() => {
               deleteSku(currentSku.index);
             }}
             changeSku={changeSku}
-            record={RecordSku}
+           // record={RecordSku}
+            update={update}
           />
         );
       })}

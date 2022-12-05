@@ -5,13 +5,13 @@ import ModalContainer from "../modal-container/modal-container";
 import FormInput from "../../shared/FormInput/FormInput";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 
-const RecordModal = ({ close }) => {
+const RecordModal = ({ close , submit , loading}) => {
     
   const [commision, setCommision] = useState("");
 
   const changeCommision = (e) => setCommision(e.target.value);
 
-  const submit = () => {};
+   // const submit = () => {};
 
   return (
     <ModalContainer close={close}>
@@ -36,13 +36,13 @@ const RecordModal = ({ close }) => {
         <Box mb="36px"></Box>
         <Flex w="100%" justifyContent="space-between">
           <Box w="45%">
-            <BasicButton cancelType={true} click={close}>
+            <BasicButton cancelType={true} click={close} disable={loading}>
               Cancel
             </BasicButton>
           </Box>
 
           <Box w="45%">
-            <BasicButton click={submit}>Record</BasicButton>
+            <BasicButton click={submit} loading={loading}>Record</BasicButton>
           </Box>
         </Flex>
       </Flex>
