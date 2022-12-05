@@ -1,38 +1,51 @@
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Image, Text, Box } from "@chakra-ui/react";
 
-const ProfileButton = ({ text, icon, click ,active  }) => {
+import { useSideBar } from "../../../../context/sidebar/sidebar-context";
+
+const ProfileButton = ({ text, icon, click, active }) => {
+  const { showSideBar } = useSideBar();
 
   return (
     <Flex
-      w="100%"
-      p="10px"
-      borderRadius="8px"
-      bg={active?"primary":'transparent'}
-      mb="20px"
+      py="12px"
+      mb="16px"
+      bg="transparent"
       cursor="pointer"
       alignItems="center"
       _hover={{
-        bg: "primary",
+        filter:
+          "invert(57%) sepia(70%) saturate(472%) hue-rotate(113deg) brightness(94%) contrast(82%)",
       }}
       onClick={click}
-      justifyContent={{ base: "center", lg: "start" }}
+      filter={
+        active
+          ? "invert(57%) sepia(70%) saturate(472%) hue-rotate(113deg) brightness(94%) contrast(82%)"
+          : ""
+      }
     >
-      <Image
-        src={icon}
-        w={{md:'24px',lg:'18px',xl:"24px"}}
-        h={{md:'24px',lg:'18px',xl:"24px"}}
-        mr={{ lg: "10px", xl: "20px" }}
-      />
-      <Text
-        d={{ base: "none", lg: "flex" }}
-        color="white"
-        fontWeight="500"
-        fontSize={{lg:'12px',xl:"18px"}}
-        h="100%"
-        alignItems="center"
+      <Image w="24px" h="24px" src={icon} stroke="red" />
+
+      <Box
+        w={showSideBar ? "150px" : "0px"}
+        pl="16px"
+        overflow="hidden"
+        transition="width 1s"
       >
-        {text}
-      </Text>
+        <Text
+          color="white"
+          w="150px"
+          fontWeight="500"
+          fontSize={{ lg: "12px", xl: "18px" }}
+          h="100%"
+          alignItems="center"
+          transform={
+            showSideBar ? "translate(0px,0px)" : "translate(-150px,0px)"
+          }
+          transition="transform 1s"
+        >
+          {text}
+        </Text>
+      </Box>
     </Flex>
   );
 };

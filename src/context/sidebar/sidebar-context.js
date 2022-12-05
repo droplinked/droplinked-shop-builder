@@ -10,10 +10,13 @@ export default function SideBarProvider({ children }) {
 
   const closeSideBar = () => setShowSideBar(false);
 
+  const toggleSideBar = () => setShowSideBar(p => !p);
+
   const contextValues = {
     showSideBar,
     openSideBar,
     closeSideBar,
+    toggleSideBar
   };
 
   return (
