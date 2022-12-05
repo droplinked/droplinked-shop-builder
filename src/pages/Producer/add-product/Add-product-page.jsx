@@ -17,6 +17,7 @@ import {
 } from "./Add-product-style";
 import { Flex, Box } from "@chakra-ui/react";
 import { SHIPING_TYPES } from "./shippings-type";
+import { API_STATUS } from "../../../constant/api-status";
 
 function AddProductPage() {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -49,10 +50,13 @@ function AddProductPage() {
   }, []);
 
   // get variants type from  back and pass to (varintType state)
-  const initialVariant = () => {
-    getVariants()
-      .then((e) => setVariantType(e))
-      .catch((e) => console.log(e));
+  const initialVariant = async() => {
+    let result = await getVariants();
+    if (result.status == API_STATUS.SUCCESS) setVariantType(result.data);
+    else errorToast(result.data);
+    // getVariants()
+    //   .then((e) => setVariantType(e))
+    //   .catch((e) => console.log(e));
   };
 
   const changeShippingType = (e) => setShippingType(e.target.value);
