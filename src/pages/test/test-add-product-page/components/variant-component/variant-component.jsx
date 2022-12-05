@@ -11,15 +11,24 @@ import { useState } from "react";
 import SkuForm from "../sku-form/sku-form";
 import deleteIcon from "../../../../../assest/icon/delete-icon.svg";
 import editIcon from "../../../../../assest/icon/edit-icon.svg";
+import RecordModal from "../../../../../components/Modal/record/record-modal";
 
-const VariantComponent = ({ sku, OptionList, deleteSku, changeSku }) => {
+const VariantComponent = ({
+  sku,
+  OptionList,
+  deleteSku,
+  changeSku,
+  record,
+}) => {
   const [showForm, setShowForm] = useState(false);
+  const [showRecordModal, setShowRecordModal] = useState(false);
 
   const toggleForm = () => setShowForm((p) => !p);
+  const toggleRecordModal = () => setShowRecordModal((p) => !p);
 
   const submitForm = (thisSku) => {
-    changeSku(thisSku , sku.index)
-    return true
+    changeSku(thisSku, sku.index);
+    return true;
   };
 
   return (
@@ -61,7 +70,7 @@ const VariantComponent = ({ sku, OptionList, deleteSku, changeSku }) => {
               alignItems="center"
               mr="16px"
               cursor="pointer"
-              // onClick={openModal}
+              onClick={toggleRecordModal}
             >
               <Flex w="10px" h="10px" bg="#1C1C1C" borderRadius="50%"></Flex>
             </Flex>
@@ -81,6 +90,7 @@ const VariantComponent = ({ sku, OptionList, deleteSku, changeSku }) => {
       ) : (
         
       )} */}
+          {showRecordModal && <RecordModal close={toggleRecordModal} />}
         </VariantComponentWrapper>
       )}
     </>

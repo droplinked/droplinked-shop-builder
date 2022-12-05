@@ -53,7 +53,7 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
   const submitForm = (sku) => {
     if (existSameOptions(sku)) return false
     let currentSkus = Array.from(skus);
-    currentSkus.push({ ...sku, index: currentSkus.length });
+    currentSkus.push({ ...sku, index: currentSkus.length, record:false });
     setSkus(currentSkus);
     return true
   };
@@ -61,11 +61,21 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
   const changeSku = (sku , index) => {
     let currentSkus = Array.from(skus);
     currentSkus = currentSkus.map((current) => {
-      if(current.index == index){return {...sku , index:index}}
+      if(current.index == index){return {...sku , index:index }}
         else{ return { ...current }}
       });
     setSkus(currentSkus);
   };
+
+
+  const RecordSku = (index) => {
+    let currentSkus = Array.from(skus);
+    currentSkus = currentSkus.map((current) => {
+      if(current.index == index){return {...current , record:true  }}
+        else{ return { ...current }}
+      });
+    setSkus(currentSkus);
+  }
 
   return (
     <Box w="100%" bg="mainLayer" p="50px 60px" borderRadius="8px">
@@ -83,6 +93,7 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
               deleteSku(currentSku.index);
             }}
             changeSku={changeSku}
+            record={RecordSku}
           />
         );
       })}
