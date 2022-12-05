@@ -8,10 +8,12 @@ import DefaulHeader from "./components/default-header/default-header";
 import CustomerHeader from "./components/customer-header/customer-header"
 import EmailModal from "../../Modal/Email/email-modal";
 import ProducerHeader from "./components/producer-header/producer-header"
+import { useSideBar } from "../../../context/sidebar/sidebar-context"
 
 function MainHeader() {
   const [showEmailModal, setEmailModal] = useState(false);
   const { profile, isCustomer } = useProfile();
+  const { openSideBar ,closeSideBar } = useSideBar()
   const navigate = useNavigate();
 
   const closeEmailModal = () => setEmailModal(false);

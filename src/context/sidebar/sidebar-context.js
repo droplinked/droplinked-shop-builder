@@ -1,22 +1,19 @@
 import { createContext, useState, useContext } from "react";
 //import { useToasty } from "../../context/toastify/ToastContext";
 
-
-
 export const SideBarContext = createContext();
 
 export default function SideBarProvider({ children }) {
-
   const [showSideBar, setShowSideBar] = useState(false);
+  console.log(showSideBar);
+  const openSideBar = () => setShowSideBar(true);
 
-  const openSideBar = () => setShowSideBar(true)
-
-  const closeSideBar = () => setShowSideBar(false)
+  const closeSideBar = () => setShowSideBar(false);
 
   const contextValues = {
     showSideBar,
-    openSideBar ,
-    closeSideBar
+    openSideBar,
+    closeSideBar,
   };
 
   return (
