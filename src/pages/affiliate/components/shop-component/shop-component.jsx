@@ -41,7 +41,7 @@ const ShopComponent = ({ shop }) => {
         />
         <Box mb="16px"></Box>
         <Text
-          fontSize={{ base: "12px", md: "16px", lg: "22px" }}
+          fontSize={{ base: "8px", md: "16px", lg: "22px" }}
           fontWeight="700"
           color="primary"
         >
