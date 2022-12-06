@@ -114,7 +114,7 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
 
   const addItemToBasket = async () => {
     if (profile == null) {
-      if (isGated) signinWithaWallet();
+      if (gatedStatus != "PUBLIC") signinWithaWallet();
       else openLogin();
       return;
     }
