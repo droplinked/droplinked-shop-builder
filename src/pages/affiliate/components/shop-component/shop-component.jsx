@@ -1,5 +1,7 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text, AspectRatio } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import instaIcon from "../../../../assest/icon/insta.png";
 import discordIcon from "../../../../assest/icon/newdiscord.png";
 import twitterIcon from "../../../../assest/icon/twitter.png";
@@ -8,9 +10,8 @@ import webIcon from "../../../../assest/icon/web.png";
 import ProductComponent from "../product-component/product-component";
 
 const ShopComponent = ({ shop }) => {
-  useEffect(() => {
-    console.log(window.innerWidth);
-  }, [window.innerWidth]);
+
+  const navigate = useNavigate()
 
   const getNumberOfItem = () => {
     if (window.innerWidth > 1200) return 5;
@@ -21,7 +22,8 @@ const ShopComponent = ({ shop }) => {
 
   let numberOfItems = getNumberOfItem();
 
-  console.log("numberOfItems", numberOfItems);
+  const navigateToShop = () => navigate('/affiliate/shop/hungryartist')
+
 
   return (
     <Flex p={{ base: "12px 20px", md: "24px 40px", lg: "36px 60px" }} h="auto">
@@ -96,19 +98,38 @@ const ShopComponent = ({ shop }) => {
         {shop.products.map((product, i) => {
           if (i < numberOfItems) return <ProductComponent product={product} />;
         })}
-        <Flex
+        <Box
           w="100%"
           h="100%"
           bg="mainLayer"
           borderRadius="8px"
           p="16px"
-          justifyContent="center"
-          alignItems="center"
+          cursor="pointer"
+          onClick={navigateToShop}
         >
-          <Text fontSize="24px" fontWeight="500" color="darkGray">
-            {shop.products.length - numberOfItems}+
+          <AspectRatio w="100%" ratio={1}>
+            <Text
+              fontSize={{ base: "20px", md: "24px" }}
+              fontWeight="500"
+              color="darkGray"
+            >
+              {shop.products.length - numberOfItems}+
+            </Text>
+          </AspectRatio>
+          <Box mb="16px"></Box>
+          <Text
+            w="100%"
+            textAlign="center"
+            fontSize={{ base: "8px", md: "14px" }}
+            fontWeight="500"
+            color="lightGray"
+            _hover={{
+              color: "white",
+            }}
+          >
+            see more products
           </Text>
-        </Flex>
+        </Box>
       </Flex>
     </Flex>
   );
