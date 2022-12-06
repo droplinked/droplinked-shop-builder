@@ -11,6 +11,7 @@ import ProducerCollection from "./pages/Producer/producer-collection/producer-co
 import UserWrapper from "./pages/user-wrapper/user-wrapper"
 import Shops from "./pages/affiliate/shops/shops"
 import AffiliateShop from "./pages/affiliate/shop/shop"
+import AffiliateProduct from "./pages/affiliate/product/product"
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
@@ -148,6 +149,7 @@ function App() {
               <Route path="affiliate" element={<UserWrapper />}>
                 <Route path="shops" element={<Shops />} />
                 <Route path="shop/hungryartist" element={<AffiliateShop />} />
+                <Route path="product/4578465442138754" element={<AffiliateProduct />} />
                 
                 
               </Route>
