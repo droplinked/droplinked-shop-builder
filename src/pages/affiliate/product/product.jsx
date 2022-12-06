@@ -5,12 +5,17 @@ import leftFlash from "../../../assest/icon/left-flash.svg";
 import rightFlash from "../../../assest/icon/right-flash.svg";
 import lockIcon from "../../../assest/icon/lockIcon.svg";
 
+import SkuComponent from "./sku-component"
+
 const AffiliateProduct = () => {
+
+
   let images = productData.images;
 
   return (
     <Box px="80px" w="100%">
       <Box w="100%" p="60px 140px" bg="mainLayer" borderRadius="8px">
+
         <Flex w="100%" columnGap="80px">
           <Box w="350px">
             <Image
@@ -79,7 +84,15 @@ const AffiliateProduct = () => {
               </Text>
             </Flex>
           </Box>
+
+
         </Flex>
+
+        <Box mb='80px'></Box>
+
+          {productData.skus.map((sku,i)=>{
+            return <SkuComponent sku={sku} key={i}/>
+          })}
       </Box>
     </Box>
   );
