@@ -90,7 +90,7 @@ export default function LandingPage() {
   const navigateToEnquiry = () => navigate("/enquiry");
 
   return (
-    <Box mb="-50px">
+    <Box  pt='50px' pb='100px'>
       <LandingPageWrapper>
         {/* inputs */}
         <InputContainrt>

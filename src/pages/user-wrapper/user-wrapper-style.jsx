@@ -3,29 +3,36 @@ import { chakra } from "@chakra-ui/react";
 export const UserWrapperPage = chakra("div", {
   baseStyle: {
     d: "flex",
-    alignItems: "start",
+    //  alignItems: "start",
     width: "100%",
-    px: { base: "20px", md: "40px" , lg:'36px'},
-    h: "auto",
+    px: { base: "20px", md: "40px", lg: "36px" },
+    h: "100%",
+    minH: "100%",
   },
 });
 
 export const SideBarWrapper = chakra("div", {
   baseStyle: {
-    d: { base: "none", sm: "inline" },
-  //  w: { sm: "78px", lg: "200px" , xl:'23%' },
-    w:'auto' ,
-    h: "100%",
-    mr: { sm: "10px", md: "20px" , xl:'36px'},
+    //  d: { base: "none", sm: "inline" },
+    d: "flex",
+    //  w: { sm: "78px", lg: "200px" , xl:'23%' },
+    w: "auto",
+    h: "auto",
+    minH: "100%",
+    borderRight: "1px solid ",
+    borderColor: "line",
+    mr: { sm: "10px", md: "20px", xl: "36px" },
   },
 });
 
 export const PageContainer = chakra("div", {
   baseStyle: {
     d: "flex",
-   // w: { base: "100%", sm: "calc(100% - 120px)",lg:"calc(100% - 200px)"  ,xl: "calc(100% - 23%)" },
-   w:'100%',
+    // w: { base: "100%", sm: "calc(100% - 120px)",lg:"calc(100% - 200px)"  ,xl: "calc(100% - 23%)" },
+    w: "100%",
     justifyContent: "center",
     alignItems: "center",
+    pt:'50px',
+    pb:"100px"
   },
 });

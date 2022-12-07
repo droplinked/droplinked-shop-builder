@@ -27,7 +27,7 @@ const Profilebar = () => {
   const location = useLocation().pathname;
 
   return (
-    <Box w="auto" h="auto">
+    <Box w="auto" h="100%" borderRight='1px solid' borderColor='line'>
       <ProfileButton
         text={"View Shop"}
         icon={shopIcon}
