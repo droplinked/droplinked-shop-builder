@@ -7,7 +7,7 @@ export const HeaderWrapper = chakra("div", {
     bgColor: "bG",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: { base: "12px 20px", md: "36px 40px", lg: "36px 80px" },
+    padding: { base: "12px 20px", md: "36px 40px", lg: "36px 36px" },
     h: { base: "60px", md: "124px" },
   },
 });

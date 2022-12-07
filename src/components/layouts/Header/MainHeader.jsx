@@ -15,7 +15,7 @@ import burger  from "../../../assest/icon/test-burger-icon.svg"
 function MainHeader() {
   const [showEmailModal, setEmailModal] = useState(false);
   const { profile, isCustomer , isRegisteredProducer} = useProfile();
-  const { toggleSideBar } = useSideBar()
+  const { showSideBar,  toggleSideBar } = useSideBar()
   const navigate = useNavigate();
 
   const closeEmailModal = () => setEmailModal(false);
@@ -30,7 +30,11 @@ function MainHeader() {
   return (
     <HeaderWrapper>
       <Flex w='auto' alignItems='center'>
-      {isRegisteredProducer() && <BurgerIcon src={burger} onClick={toggleSideBar}/>}
+      {isRegisteredProducer() && <BurgerIcon src={burger} onClick={toggleSideBar}
+      transform={showSideBar?'rotate(90deg)':'rotate(0deg)'}
+      transition='1s'
+      // transform: rotate(45deg);
+      />}
       <HeaderTitle onClick={navigateToLandingPage}>droplinked</HeaderTitle>
       </Flex>
       <Flex h="100%">

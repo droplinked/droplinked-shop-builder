@@ -5,7 +5,7 @@ export const SideBarContext = createContext();
 
 export default function SideBarProvider({ children }) {
   const [showSideBar, setShowSideBar] = useState(false);
-  console.log(showSideBar);
+
   const openSideBar = () => setShowSideBar(true);
 
   const closeSideBar = () => setShowSideBar(false);
