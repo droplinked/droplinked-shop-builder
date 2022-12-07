@@ -13,8 +13,7 @@ export const UserWrapperPage = chakra("div", {
 
 export const SideBarWrapper = chakra("div", {
   baseStyle: {
-    //  d: { base: "none", sm: "inline" },
-    d: "flex",
+    d: { base: "none", sm: "flex" },
     //  w: { sm: "78px", lg: "200px" , xl:'23%' },
     w: "auto",
     h: "auto",
@@ -32,7 +31,7 @@ export const PageContainer = chakra("div", {
     w: "100%",
     justifyContent: "center",
     alignItems: "center",
-    pt:'50px',
-    pb:"100px"
+    pt: "50px",
+    pb: "100px",
   },
 });
