@@ -7,7 +7,7 @@ export const UserWrapperPage = chakra("div", {
     width: "100%",
     px: { base: "20px", md: "40px", lg: "36px" },
     h: "100%",
-    minH: "100%",
+    minH: "100vh",
   },
 });
 
