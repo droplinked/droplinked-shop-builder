@@ -24,38 +24,38 @@ const SkuComponent = ({ sku }) => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Text fontSize="14px" fontWeight="400" color="white">
+          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
             {sku.options.variantName}: {sku.options.value}
           </Text>
           <Box border="1px solid" borderColor="line" w="1px" h="100%"></Box>
-          <Text fontSize="14px" fontWeight="400" color="white">
+          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
             Price: ${sku.price}
           </Text>
           <Box border="1px solid" borderColor="line" w="1px" h="100%"></Box>
-          <Text fontSize="14px" fontWeight="400" color="white">
+          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
             Quantity: {sku.quantity}
           </Text>
           <Box border="1px solid" borderColor="line" w="1px" h="100%"></Box>
-          <Text fontSize="14px" fontWeight="400" color="white">
+          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
             External ID: {sku.externalId}
           </Text>
           <Box border="1px solid" borderColor="line" w="1px" h="100%"></Box>
-          <Text fontSize="14px" fontWeight="400" color="white">
+          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
             DBD: {sku.dbd.length}*{sku.dbd.width}*{sku.dbd.height}
           </Text>
           <Box border="1px solid" borderColor="line" w="1px" h="100%"></Box>
-          <Text fontSize="14px" fontWeight="400" color="white">
+          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
             Weight: {sku.Weight}
           </Text>
         </Flex>
 
         <Button
-          p="8px 24px"
-          fontSize="18px"
+          p={{base:"8px 8px",lg:"8px 24px"}}
+          fontSize={{base:"10px",md:'12px',lg:"18px"}}
           fontWeight="500"
           bg="primary"
           borderRaduis="8px"
-          ml="15%"
+          ml={{lg:"10%",xl:"15%"}}
           _hover={{
             bg: "primary",
             border: "none",
