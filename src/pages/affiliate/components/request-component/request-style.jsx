@@ -7,3 +7,16 @@ export const TextComponent = chakra("p", {
     color: "white",
   },
 });
+
+
+
+
+export const RequestButton = chakra("button", {
+  baseStyle: {
+    w:'140px',
+    p:'8px 0px',
+    borderRadius:"36px" ,
+    fontSize:'14px',
+    fontWeight:'500'
+  },
+});
