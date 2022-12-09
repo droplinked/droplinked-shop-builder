@@ -8,6 +8,7 @@ export const UserWrapperPage = chakra("div", {
     px: { base: "20px", md: "40px", lg: "36px" },
     h: "100%",
     minH: "100vh",
+
   },
 });
 
@@ -26,7 +27,7 @@ export const SideBarWrapper = chakra("div", {
 
 export const PageContainer = chakra("div", {
   baseStyle: {
-    d: "flex",
+  //  d: "flex",
     // w: { base: "100%", sm: "calc(100% - 120px)",lg:"calc(100% - 200px)"  ,xl: "calc(100% - 23%)" },
     w: "100%",
     justifyContent: "center",
