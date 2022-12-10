@@ -13,7 +13,7 @@ import ProductIntroducing from "./components/product-introducing-component/produ
 import TechnicalInformation from "./components/technical-information/technical-information";
 import ProductProperites from "./components/product-properties/product-properties";
 import AddSkuSection from "./components/add-sku-section/add-sku-section";
- 
+ //
 const initialProductIntor = {
   title: "",
   description: "",
