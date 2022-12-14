@@ -8,7 +8,11 @@ import {
 import { Box, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { convertArrayToAddress } from "./rule-utils";
-import { addRuleset, getRuleById ,updateRule } from "../../../api/producer/Ruleset-api";
+import {
+  addRuleset,
+  getRuleById,
+  updateRule,
+} from "../../../api/producer/Ruleset-api";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { RuleTypes } from "./rule-type";
 
@@ -17,11 +21,14 @@ import RuleItem from "./rule-item";
 import FillInput from "../../shared/FillInput/FillInput";
 import BasicButton from "../../shared/BasicButton/BasicButton";
 import AddRuleComponent from "./rule-component";
+import Loading from "../../shared/loading/Loading";
 
 // this modal use for add new rule or edit exsiting rule
 const Rule = ({ collectionId, update, close, ruleId }) => {
   // ............
   const { errorToast, successToast } = useToasty();
+  // this state is for when the modal is
+  const [loading, setLoading] = useState(true);
   // this state for list of rules
   const [Rulelist, setRulelist] = useState([]);
   // this state used for web url address
@@ -40,12 +47,15 @@ const Rule = ({ collectionId, update, close, ruleId }) => {
   useEffect(() => {
     if (ruleId != undefined) {
       getRuleData();
+    } else {
+      setLoading(false);
     }
   }, []);
 
   const getRuleData = async () => {
     let result = await getRuleById(ruleId);
     if (result.status == "success") initializeRule(result.data.ruleSet);
+    setLoading(false);
   };
 
   const initializeRule = (rule) => {
@@ -101,74 +111,83 @@ const Rule = ({ collectionId, update, close, ruleId }) => {
         description: rule.des,
       };
     });
-    let result 
-    if(ruleId != undefined)result = await updateRule(ruleId ,collectionId, rulesArray, webUrl, gated);
+    let result;
+    if (ruleId != undefined)
+      result = await updateRule(
+        ruleId,
+        collectionId,
+        rulesArray,
+        webUrl,
+        gated
+      );
     else result = await addRuleset(collectionId, rulesArray, webUrl, gated);
     update();
     close();
   };
 
-  return (
-    <RuleModalWrapper>
-      <RuleModalCotent>
-        <ModalHeader>Ruleset</ModalHeader>
+  let modalContent = (
+    <RuleModalCotent>
+      <ModalHeader>Ruleset</ModalHeader>
 
-        <FillInput
-          preText={"https://"}
-          value={webUrl}
-          label="Weburl"
-          change={changeWebUrl}
-          placeholder={"Your website"}
+      <FillInput
+        preText={"https://"}
+        value={webUrl}
+        label="Weburl"
+        change={changeWebUrl}
+        placeholder={"Your website"}
+      />
+
+      <Box mb="20px"></Box>
+
+      <TypeSelect
+        value={ruleType}
+        onChange={chnageRuleType}
+        disabled={Rulelist.length > 0}
+      >
+        <option value={RuleTypes.GATED}>Gating</option>
+        <option value={RuleTypes.DISCOUNT}>Discount</option>
+      </TypeSelect>
+
+      <Box mb="40px"></Box>
+
+      {Rulelist.length > 0 &&
+        Rulelist.map((rule, i) => {
+          return (
+            <RuleItem
+              rule={rule}
+              deleteFunc={() => {
+                deleteRule(i);
+              }}
+              isGated={ruleType == RuleTypes.GATED}
+              editRule={(newRule) => editRule(newRule, i)}
+            />
+          );
+        })}
+
+      {addNewRule ? (
+        <AddRuleComponent
+          close={toggleRuleModal}
+          isGated={ruleType == RuleTypes.GATED}
+          addToRules={addToRules}
         />
+      ) : (
+        <AddRuleButton onClick={toggleRuleModal}>Add new rule</AddRuleButton>
+      )}
 
-        <Box mb="20px"></Box>
+      <Box mb="40px"></Box>
+      <Flex w="100%" justifyContent="space-between">
+        <Box w="200px">
+          <BasicButton click={close}>Cancel</BasicButton>
+        </Box>
+        <Box w="200px">
+          <BasicButton click={submit}>Add</BasicButton>
+        </Box>
+      </Flex>
+    </RuleModalCotent>
+  );
 
-        <TypeSelect
-          value={ruleType}
-          onChange={chnageRuleType}
-          disabled={Rulelist.length > 0}
-        >
-          <option value={RuleTypes.GATED}>Gating</option>
-          <option value={RuleTypes.DISCOUNT}>Discount</option>
-        </TypeSelect>
-
-        <Box mb="40px"></Box>
-
-        {Rulelist.length > 0 &&
-          Rulelist.map((rule, i) => {
-            return (
-              <RuleItem
-                rule={rule}
-                deleteFunc={() => {
-                  deleteRule(i);
-                }}
-                isGated={ruleType == RuleTypes.GATED}
-                editRule={(newRule) => editRule(newRule, i)}
-              />
-            );
-          })}
-
-        {addNewRule ? (
-          <AddRuleComponent
-            close={toggleRuleModal}
-            isGated={ruleType == RuleTypes.GATED}
-            addToRules={addToRules}
-          />
-        ) : (
-          <AddRuleButton onClick={toggleRuleModal}>Add new rule</AddRuleButton>
-        )}
-
-        <Box mb="40px"></Box>
-        <Flex w="100%" justifyContent="space-between">
-          <Box w="200px">
-            <BasicButton click={close}>Cancel</BasicButton>
-          </Box>
-          <Box w="200px">
-            <BasicButton click={submit}>Add</BasicButton>
-          </Box>
-        </Flex>
-      </RuleModalCotent>
-    </RuleModalWrapper>
+  return (
+    <RuleModalWrapper>{loading ? <Loading /> : modalContent}</RuleModalWrapper>
   );
 };
 
