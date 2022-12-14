@@ -12,7 +12,7 @@ export const ProducerSlideWrapper = chakra("div", {
     h: "100vh",
     w: "80vw",
     zIndex: "50",
-    bgColor: "button",
+    bgColor: "mainLayer",
     position: "fixed",
     borderRadius: "8px",
     top: "0",
