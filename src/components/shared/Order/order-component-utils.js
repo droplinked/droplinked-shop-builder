@@ -14,7 +14,7 @@ export const getStatus = (orderStatus) => {
     case ORDER_TYPES.REFUNDED:
       return "Canceled";
     case ORDER_TYPES.WAITING_FOR_PAYMENT:
-      return "Waiting for confirmation";
+      return "Waiting for payment";
     // case ORDER_TYPES.WAITING_FOR_PAYMENT:
     //   return "Waiting for payment";
     default:
