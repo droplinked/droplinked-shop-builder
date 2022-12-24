@@ -28,9 +28,7 @@ const Sidebar = () => {
       {
         <>
           {profile && profile.type == USER_TYPE.PRODUCER ? (
-            <SidebarWrapper>
               <Profilebar />
-            </SidebarWrapper>
           ) : (
             <>
               {shopname == "crashpunks" ? (

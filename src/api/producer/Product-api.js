@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
+import { API_STATUS } from "../../constant/api-status";
 
 export const getProducts = async () => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -21,10 +22,10 @@ export const getVariants = async () => {
     const res = await axios.get(`${BASE_URL}/producer/product/variant`, {
       headers: { Authorization: "Bearer " + token },
     });
-    return res.data.data.variants;
+   return {status:API_STATUS.SUCCESS ,data: res.data.data.variants}
+   
   } catch (err) {
-    console.error(err.response.data.reason);
-    return null;
+    return {status:API_STATUS.FAILED, data:err.response.data.reason}
   }
 };
 
@@ -34,9 +35,9 @@ export const postProduct = async (product) => {
     const res = await axios.post(`${BASE_URL}/producer/product`, product, {
       headers: { Authorization: "Bearer " + token },
     });
-    return true;
+    return {status:API_STATUS.SUCCESS ,data: res.data}
   } catch (err) {
-    return err.response.data.reason;
+    return {status:API_STATUS.FAILED, data:err.response.data.reason}
   }
 };
 
@@ -46,9 +47,9 @@ export const deleteSku = async (id) => {
     const res = await axios.delete(`${BASE_URL}/producer/product/sku/${id}`, {
       headers: { Authorization: "Bearer " + token },
     });
-    return true;
+    return {status:API_STATUS.SUCCESS ,data: res.data}
   } catch (err) {
-    return err.response.data.reason;
+    return {status:API_STATUS.FAILED, data:err.response.data.reason}
   }
 };
 

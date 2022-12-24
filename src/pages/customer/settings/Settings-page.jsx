@@ -27,7 +27,7 @@ export default function SettingsPage() {
   const backToShop = () => navigate(`/${currentShop}`);
 
   return (
-    <Flex w="100%" px={{ base: "20px", md: "80px" }} justifyContent="center">
+    <Flex w="100%" px={{ base: "20px", md: "80px" }} justifyContent="center" pt='50px' pb='100px'>
       <Flex
         w="100%"
         maxW="900px"

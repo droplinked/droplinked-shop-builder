@@ -2,11 +2,14 @@ import { chakra } from "@chakra-ui/react";
 
 export const SidebarWrapper = chakra("div", {
   baseStyle: {
-    w: "100%",
+    //w: "100%",
+    w: { sm: "78px", lg: "200px" , xl:'auto' },
+    max:'200px',
     bg: "mainLayer",
     px: { sm: "14px", lg: "24px" },
     py: { sm: "32px", lg: "56px" },
     borderRadius: "8px",
+ mt:'50px'
   },
 });
 
@@ -29,6 +32,7 @@ export const ShopinfoWrapper = chakra("div", {
     flexDir: "column",
     justifyContent: "center",
     alignItems: "center",
+    
   },
 });
 
@@ -41,7 +45,6 @@ export const ProfileImageWrapper = chakra("div", {
     alignItems: "center",
     width: { sm: "50px", lg: "120px" },
     height: { sm: "50px", lg: "120px" },
-    border: "1px solid button",
   },
 });
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
+import { API_STATUS } from "../../constant/api-status";
 //import { useToasty } from "../../context/toastify/ToastContext"
 
 export const getCollections = async () => {
@@ -13,8 +14,10 @@ export const getCollections = async () => {
         headers: { Authorization: "Bearer " + token },
       }
     );
+    return {status:API_STATUS.SUCCESS ,data: res.data.data.collections};
     return res.data.data.collections;
   } catch (err) {
+    return {status:API_STATUS.FAILED, data:err.response.data.reason}
     console.log(err.response.data.reason);
     return null;
   }

@@ -9,6 +9,10 @@ import ShippingPage from "./pages/customer/shipping/Shipping-page";
 import Enquiry from './pages/publics/enquiry/Enquiry'
 import ProducerCollection from "./pages/Producer/producer-collection/producer-collection";
 import UserWrapper from "./pages/user-wrapper/user-wrapper"
+import Shops from "./pages/affiliate/shops/shops"
+import AffiliateShop from "./pages/affiliate/shop/shop"
+import AffiliateProduct from "./pages/affiliate/product/product"
+import RequestsPage from "./pages/affiliate/requests/request"
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
@@ -73,7 +77,7 @@ const CollectionIframe = lazy(() =>
 );
 
 const AddproductTest = lazy(() =>
-  import("./pages/test/add-product-test")
+  import("./pages/test/test-add-product-page/add-product-test")
 );
 
 
@@ -140,6 +144,14 @@ function App() {
                 <Route path="shipping" element={<ShippingPage />} />
                 <Route path="payment" element={<PaymentPage />} />
 
+              </Route>
+
+              {/* producer pages */}
+              <Route path="affiliate" element={<UserWrapper />}>
+                <Route path="shops" element={<Shops />} />
+                <Route path="shop/hungryartist" element={<AffiliateShop />} />
+                <Route path="product/4578465442138754" element={<AffiliateProduct />} />
+                <Route path="requests" element={<RequestsPage />} />
               </Route>
 
               

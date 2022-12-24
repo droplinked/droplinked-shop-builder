@@ -21,7 +21,7 @@ import OrderAddress from "./Order-address-component";
 import YesNoModal from "../YesOrNo/YesOrNo-modal-component";
 
 export default function OrderModal({ order, isOpen, onClose }) {
-
+console.log('order : ' , order)
   // this state use for loading stauts
   const [loadingBtn, setLoadingBtn] = useState(false);
   // this state use for show proccessModal
@@ -100,7 +100,7 @@ export default function OrderModal({ order, isOpen, onClose }) {
         <ModalCloseButton color="white" mt="10px" />
         <ModalBody>
           {/* address component */}
-          {(order.type == SHOP_TYPES.DROPLINKED ) && 
+          {(order.type != SHOP_TYPES.SHOPIFY ) && 
             <OrderAddress address={order.customerAddressBook} /> 
           }
            

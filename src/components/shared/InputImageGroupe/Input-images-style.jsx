@@ -16,9 +16,10 @@ export const ItemImage = chakra("div", {
     position: "relative",
     cursor: "pointer",
     display: "flex",
+
     justifyContent: "center",
     alignitems: "center",
-    borderRadius: "12px",
+    borderRadius: "8px",
     aspectRatio: "1 / 1",
   },
 });
@@ -28,14 +29,16 @@ export const InputAddImage = chakra("div", {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    flexDir:'column',
     width: "100%",
     height: "100%",
-    border: "2px solid rgb(173, 173, 173)",
-    borderRadius: "12px",
+    bg:'subLayer',
+   // border: "2px solid rgb(173, 173, 173)",
+    borderRadius: "8px",
     transition: "0.5s",
-    _hover: {
-      border: "2px solid white",
-    },
+    // _hover: {
+    //   border: "2px solid white",
+    // },
   },
 });
 

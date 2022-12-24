@@ -13,6 +13,7 @@ import { useShop } from "../../context/shop/ShopContext";
 
 import MainHeader from "../../components/layouts/Header/MainHeader";
 import Footer from "../../components/layouts/Footer/Footer";
+import SideBarProvider from "../../context/sidebar/sidebar-context";
 
 export default function PageWrapper() {
   const { updateCart } = useCart();
@@ -75,21 +76,23 @@ export default function PageWrapper() {
   };
 
   return (
-    <Flex flexDirection="column" overflowX="hidden" w="100%">
-      <MainHeader />
-      <Box
-        w="100%"
-        h="auto"
-        minH="100vh"
-        bgColor="bG"
-       // pt="50px"
-        pb="100px"
-        m="0px"
-        overflowX="hidden"
-      >
-        <Outlet />
-      </Box>
-      <Footer />
-    </Flex>
+    <SideBarProvider>
+      <Flex flexDirection="column" overflowX="hidden" w="100%" h='100%'>
+        <MainHeader />
+        <Box
+          w="100%"
+          h="100%"
+          minH="100vh"
+          bgColor="bG"
+         //  pt="50px"
+         // pb="100px"
+          m="0px"
+          overflowX="hidden"
+        >
+          <Outlet />
+        </Box>
+        <Footer />
+      </Flex>
+    </SideBarProvider>
   );
 }

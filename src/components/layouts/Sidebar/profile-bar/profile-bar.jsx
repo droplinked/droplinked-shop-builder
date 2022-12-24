@@ -7,11 +7,15 @@ import logoutIcon from "../../../../assest/icon/logout-icon.svg";
 import shopIcon from "../../../../assest/icon/shop-icon.svg";
 
 import { Box } from "@chakra-ui/react";
-import { useNavigate  , matchRoutes, useLocation } from "react-router-dom";
-import { useProfile } from "../../../../context/profile/ProfileContext"
+import { useNavigate, matchRoutes, useLocation } from "react-router-dom";
+import { useProfile } from "../../../../context/profile/ProfileContext";
+
+
 
 const Profilebar = () => {
-  const { logout  ,profile} = useProfile();
+  const { logout, profile } = useProfile();
+
+
   let navigate = useNavigate();
 
   const collectionClick = () => navigate("/producer/collection");
@@ -20,28 +24,27 @@ const Profilebar = () => {
   const inventoryClick = () => navigate("/producer/ims");
   const shopClick = () => navigate(`/${profile.shopName}`);
 
-  const location = useLocation().pathname
-
+  const location = useLocation().pathname;
 
   return (
-    <Box w="100%" px={{lg:'0px',xl:'10px'}}>
-       <ProfileButton
+    <Box w="auto" h="100%" borderRight='1px solid' borderColor='line'>
+      <ProfileButton
         text={"View Shop"}
         icon={shopIcon}
         click={shopClick}
-        active={(location == `/${profile.shopName}`)}
+        active={location == `/${profile.shopName}`}
       />
       <ProfileButton
         text={"Collections"}
         icon={collectionIcon}
         click={collectionClick}
-        active={(location == '/producer/collection')}
+        active={location == "/producer/collection"}
       />
       <ProfileButton
         text={"Inventory"}
         icon={inventoryIcon}
         click={inventoryClick}
-        active={(location =='/producer/ims')}
+        active={location == "/producer/ims"}
       />
       <ProfileButton text={"Orders"} icon={orderIcon} click={orderClick} />
       <ProfileButton
@@ -51,6 +54,7 @@ const Profilebar = () => {
       />
       <ProfileButton text={"Logout"} icon={logoutIcon} click={logout} />
     </Box>
+    
   );
 };
 

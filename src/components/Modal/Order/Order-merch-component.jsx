@@ -9,9 +9,9 @@ export default function OrderMerch({ item ,type}) {
         fontWeight: "500"
     }
 
-    const imageUrl = (type == SHOP_TYPES.DROPLINKED)? item.product.media[0].url : item.image_url
+    const imageUrl = (type != SHOP_TYPES.SHOPIFY)? item.product.media[0].url : item.image_url
 
-    const merchPrice = (type == SHOP_TYPES.DROPLINKED)? item.sku.price : item.price
+    const merchPrice = (type != SHOP_TYPES.SHOPIFY)? item.sku.price : item.price
     // get variant name and value in set in string
     // let variantText = ' '
     // item.sku.options.forEach(option => {
@@ -50,8 +50,8 @@ export default function OrderMerch({ item ,type}) {
                     fontWeight='600'
                     overflow='hidden'
                 >
-                     {item.title}
-                    {/* {item.product.title} */}
+                     {/* {item.title} */}
+                    {item.product.title} 
                 </Text>
                 <Flex
                     w='100%'
