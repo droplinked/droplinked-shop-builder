@@ -11,6 +11,7 @@ export const ProducerSlideWrapper = chakra("div", {
   baseStyle: {
     h: "100vh",
     w: "80vw",
+    d:{ base: "inline", sm: "none" },
     zIndex: "50",
     bgColor: "mainLayer",
     position: "fixed",
