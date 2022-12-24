@@ -15,10 +15,12 @@ export default function IncomingOrderPage() {
     const setTypesArray = () => {
         const arr = [
             { id: "All", value: "All" },
-            { id: ORDER_TYPES.WAITING_FOR_CONFIRMATION, value: "Waiting for confirmation" },,
+            { id: ORDER_TYPES.WAITING_FOR_CONFIRMATION, value: "Waiting for confirmation" },
+            { id: ORDER_TYPES.WAITING_FOR_PAYMENT, value: "Waiting for payment" },
             { id: ORDER_TYPES.PROCESSING, value: "Processing" },
             { id: ORDER_TYPES.SENT, value: "Sent" },
             { id: ORDER_TYPES.CANCELED, value: "Canceled" },
+            { id: ORDER_TYPES.REFUNDED, value: "Refunded" },
         ]
         return arr
     }
@@ -68,7 +70,7 @@ export default function IncomingOrderPage() {
                                 )
                         })}
                         {orders.map((order, i) => {
-                            if ((order.status != (ORDER_TYPES.WAITING_FOR_CONFIRMATION) && order.status != (ORDER_TYPES.WAITING_FOR_PAYMENT)))
+                            if ((order.status != (ORDER_TYPES.WAITING_FOR_CONFIRMATION)))
                                 return (
                                     <Box key={i} mb='30px'>
                                         <Order order={order} />
