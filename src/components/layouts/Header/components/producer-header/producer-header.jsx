@@ -7,7 +7,7 @@ import {
 import { useShop } from "../../../../../context/shop/ShopContext";
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
-
+import { useSideBar } from "../../../../../context/sidebar/sidebar-context"
 
 import Notification from "../../icons/notification/notification-icon-component";
 
@@ -18,10 +18,11 @@ const ProducerHeader = () => {
 
     const { shop } = useShop();
 
-    const [openslide, setOpenSlide] = useState(false);
+   // const [openslide, setOpenSlide] = useState(false);
+    const { showSideBar,  toggleSideBar } = useSideBar()
 
  
-    const toggleSlide = () => setOpenSlide((p) => !p);
+   // const toggleSlide = () => setOpenSlide((p) => !p);
 
 
   return (
@@ -35,8 +36,8 @@ const ProducerHeader = () => {
           </ProfileIconWrapper>
         </Box>
       )}
-      <BurgerIcon src={burgerIcon} onClick={toggleSlide} />
-      {openslide && <ProducerSlide close={toggleSlide} />}
+      {/* <BurgerIcon src={burgerIcon} onClick={toggleSlide} /> */}
+       {showSideBar && <ProducerSlide close={toggleSideBar} />} 
     </>
   );
 };

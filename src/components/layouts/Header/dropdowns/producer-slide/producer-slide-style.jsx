@@ -1,7 +1,7 @@
 import { chakra, keyframes } from "@chakra-ui/react";
 
 const animationKeyframes = keyframes`
-  0% { transform: translateX(80vw);}
+  0% { transform: translateX(-80vw);}
   100% {  transform: translateX(0px);}
 `;
 
@@ -12,11 +12,11 @@ export const ProducerSlideWrapper = chakra("div", {
     h: "100vh",
     w: "80vw",
     zIndex: "50",
-    bgColor: "button",
+    bgColor: "mainLayer",
     position: "fixed",
     borderRadius: "8px",
     top: "0",
-    right: "0",
+    left: "0",
     animation: animation,
     py: "30px",
   },
