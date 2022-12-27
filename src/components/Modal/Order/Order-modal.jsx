@@ -21,7 +21,7 @@ import OrderAddress from "./Order-address-component";
 import YesNoModal from "../YesOrNo/YesOrNo-modal-component";
 
 export default function OrderModal({ order, isOpen, onClose }) {
-console.log('order : ' , order)
+
   // this state use for loading stauts
   const [loadingBtn, setLoadingBtn] = useState(false);
   // this state use for show proccessModal
