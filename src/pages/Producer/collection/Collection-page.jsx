@@ -19,7 +19,7 @@ import {
 
 export default function CollectionMainPage() {
   const [Modal, setModal] = useState(false);
-  const [collectins, setCollections] = useState(null);
+  const [collections, setCollections] = useState(null);
 
   const navigate = useNavigate();
 
@@ -28,8 +28,8 @@ export default function CollectionMainPage() {
   if (token == null) navigate("/");
 
   const updateCollections = async () => {
-    let collections = await getCollections();
-    if (collections != null) setCollections(collections);
+    let resutl = await getCollections();
+    if (resutl != null) setCollections(resutl.data);
   };
 
   useEffect(() => {
@@ -40,6 +40,7 @@ export default function CollectionMainPage() {
 
   const closeNewCollectionModal = () => setModal(false);
 
+
   return (
     <CollectionPageWrapper>
       {/* <HeaderTitle>Collections</HeaderTitle>
@@ -48,15 +49,15 @@ export default function CollectionMainPage() {
         <BasicButton click={ToggleModal}>Add collection</BasicButton>
       </ButtonWrapper>
 
-      {collectins ? (
+      {collections ? (
         <>
-          {collectins.length <= 0 ? (
+          {collections.length <= 0 ? (
             <AddproductWrapper>
               <AddProduct />
             </AddproductWrapper>
           ) : (
             <>
-              {collectins.map((collection, i) => {
+              {collections.map((collection, i) => {
                 return (
                   <AddproductWrapper key={i}>
                     <ProducerCollection
