@@ -1,6 +1,6 @@
 import { Flex, Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { getCollections } from "../../../api/producer/Collection-api";
+import { getAllCollections } from "../../../api/producer/Collection-api";
 
 import FormInput from "../../../components/shared/FormInput/FormInput";
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component";
@@ -26,9 +26,9 @@ const ProductInformation = ({ productInfo, setProductInfo, defaultValue }) => {
   }, []);
 
   const initialCollection = async () => {
-    let result = await getCollections();
+    let result = await getAllCollections();
     if (result != null) {
-      let collections = result.map((col) => {
+      let collections = result.data.map((col) => {
         return { id: col._id, value: col.title };
       });
       setCollection(collections);
