@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense , useEffect} from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import {
   keyframes,
@@ -20,6 +20,8 @@ import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import LandingpageImage from "./components/landing-page-image-component";
 import LandingIcons from "./components/landing-icons-component";
 import SignupInput from "./components/singup-input-component";
+
+import { useProfile } from "../../../context/profile/ProfileContext";
 
 const SignUpModal = lazy(() =>
   import("../../../components/Modal/Register/SignUpModal")
@@ -48,6 +50,8 @@ export default function LandingPage() {
   const prefersReducedMotion = usePrefersReducedMotion();
   let [searchParams, setSearchParams] = useSearchParams();
   let urlParam = searchParams.get("modal");
+
+  const { profile } = useProfile()
   const navigate = useNavigate();
 
   // show login modal
@@ -65,6 +69,12 @@ export default function LandingPage() {
   const leftsideAnimation = prefersReducedMotion
     ? undefined
     : `${keyframe_leftanimation}  1s linear`;
+
+    useEffect(()=>{
+      if(profile && (profile.type == "PRODUCER")){
+        navigate(`/${profile.shopName}`);
+      }
+    },[])
 
   const toggleSignUp = () => {
     setShowSignup((p) => !p);
