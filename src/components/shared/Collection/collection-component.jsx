@@ -73,7 +73,7 @@ export default function Collection({ collection, shopname, type }) {
                 event={true}
               />
             </Box>
-            <Box w={{ base: "100%", md: "50%" }}>
+            <Box w={{ base: "100%", md: "50%" }} py='10px'>
               <Countdown />
             </Box>
           </Flex>
