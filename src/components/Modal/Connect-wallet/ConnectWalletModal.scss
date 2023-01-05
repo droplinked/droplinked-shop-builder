@@ -1,0 +1,20 @@
+.wallet-container {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  background-color: #666666;
+  font-size: 20px;
+  padding: 15px;
+  margin: 16px auto;
+  border-radius: 10px;
+  cursor: pointer;
+
+  .stx-logo {
+    width: 40px;
+  }
+
+  .cspr-logo {
+    height: 30px;
+    margin: 7px;
+  }
+}

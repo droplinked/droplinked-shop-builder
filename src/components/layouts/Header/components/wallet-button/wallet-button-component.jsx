@@ -6,9 +6,10 @@ import { useToasty } from "../../../../../context/toastify/ToastContext";
 
 import HeaderItem from "../header-button/Header-btn-component";
 import headerWalletIcon from "../../../../../assest/icon/headerWalletIcon.svg";
-import newWalletIcon  from "../../../../../assest/icon/new-wallet-icon.svg"
-//import WalletModal from "./wallet-modal";
+import newWalletIcon from "../../../../../assest/icon/new-wallet-icon.svg";
+import ConnectWalletModal from "../../../../Modal/Connect-wallet/ConnectWalletModal";
 
+//import WalletModal from "./wallet-modal";
 //import activeWalletIcon from "../../../../../assest/icon/pink-wallet.png";
 
 export default function WalletButton({ haventEmail }) {
@@ -16,6 +17,9 @@ export default function WalletButton({ haventEmail }) {
   const { successToast, errorToast } = useToasty();
 
   const [walletModal, setWalletModal] = useState(false);
+  const closeWalletModal = () => setWalletModal(false);
+  const connectHiroWallet = () => signinWithaWallet();
+  const connectCasper = () => {};
 
   const signIn = () => {
     //  if( navigator.userAgent.match(/Android/i) != null || navigator.userAgent.match(/iPhone/i)!=null){
@@ -23,10 +27,8 @@ export default function WalletButton({ haventEmail }) {
     //  }else{
     //
     //  }
-    signinWithaWallet();
+    setWalletModal(true);
   };
-
-  const closeWalletModal = () => setWalletModal(false);
 
   return (
     <>
@@ -46,8 +48,16 @@ export default function WalletButton({ haventEmail }) {
           Connect
         </Box>
       </HeaderItem>
-      {/* {walletModal && <WalletModal close={closeWalletModal} />} */}
 
+      {walletModal && (
+        <ConnectWalletModal
+          close={closeWalletModal}
+          clickHiro={connectHiroWallet}
+          clickCasper={connectCasper}
+        />
+      )}
+
+      {/* {walletModal && <WalletModal close={closeWalletModal} />} */}
       {/* <WalletModal /> */}
     </>
   );
