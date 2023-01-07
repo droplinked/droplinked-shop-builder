@@ -10,8 +10,8 @@ const MODAL_TYPE = {
   RESET: "RESET",
 };
 
-const AuthModal = ({ show, close }) => {
-  const [modalType, setModalType] = useState(MODAL_TYPE.SIGNIN);
+const AuthModal = ({ show, close ,shopName , type }) => {
+  const [modalType, setModalType] = useState((type)?type:MODAL_TYPE.SIGNIN);
 
   const switchModal = () =>
     setModalType(
@@ -31,7 +31,7 @@ const AuthModal = ({ show, close }) => {
         );
       case MODAL_TYPE.SIGNUP:
         return (
-          <SignupModal show={show} close={close} switchModal={switchModal}  />
+          <SignupModal show={show} close={close} switchModal={switchModal} shopName={shopName}  />
         );
       case MODAL_TYPE.RESET:
         return (
