@@ -3,43 +3,20 @@ import { DROPDOWN_TYPE } from "../../dropdowns/dropdown.type";
 import { Box } from "@chakra-ui/react";
 
 import HeaderItem from "../header-button/Header-btn-component";
-import SignUpModal from "../../../../Modal/Register/SignUpModal";
-import LoginModal from "../../../../Modal/Login/login-modal";
-import ResetPassModal from "../../../../Modal/ResetPass/ResetPassModal-component";
 import WalletButton from "../wallet-button/wallet-button-component";
 import Cart from "../../icons/cart/cart-icon-component";
 import DropdownContainer from "../../dropdowns/dropdown-container/DropDown-container";
 import AuthModal from "../../../../../modals/auth/AuthModal";
 
 export default function DefaulHeader({ haventEmail }) {
-  // state for show (login , singup , resetpass)modals
- // const [signUpmodal, setSignModal] = useState(false);
+
   const [authModal, setAuthModal] = useState(false);
-  const [resetModal, setResetModal] = useState(false);
   const [dropdown, setDropdown] = useState(null);
 
   let url = window.location.pathname;
 
-  // const togglesignup = () => {
-  //   setSignModal((p) => !p);
-  // };
-  const toggleLogin = () => setAuthModal((p) => !p);
 
-  const toggleReset = () => {
-    setResetModal((p) => !p);
-  };
-
-  // switch between signup and login  modals
-  // const switchToggl = () => {
-  //   togglesignup();
-  //   toggleLogin();
-  // };
-
-  // switch between resetpass and login  modals
-  const switchLogRes = () => {
-    toggleLogin();
-    toggleReset();
-  };
+  const toggleAuthModal= () => setAuthModal((p) => !p);
 
   const openBasket = () => setDropdown(DROPDOWN_TYPE.BASKET);
   const close = () => setDropdown(null);
@@ -55,8 +32,8 @@ export default function DefaulHeader({ haventEmail }) {
       url == "/email-verification/:" ||
       url == "/producer/account-recovery/:token" ? (
         <>
-          {/* <HeaderItem click={toggleLogin} mr={{ base: "10px", md: '20px' }} style={{ backgroundColor: "#181818" }}>Login</HeaderItem> */}
-          <HeaderItem click={toggleLogin}>Login</HeaderItem>
+          {/* <HeaderItem click={toggleAuthModal} mr={{ base: "10px", md: '20px' }} style={{ backgroundColor: "#181818" }}>Login</HeaderItem> */}
+          <HeaderItem click={toggleAuthModal}>Login</HeaderItem>
         </>
       ) : (
         <Box d="flex" alignItems="center">
@@ -66,22 +43,9 @@ export default function DefaulHeader({ haventEmail }) {
           {dropdown && <DropdownContainer close={close} dropdown={dropdown} />}
         </Box>
       )}
+      
+      <AuthModal show={authModal} close={toggleAuthModal} />
 
-      {/* show modals base on state */}
-      {/* {signUpmodal && (
-        <SignUpModal close={togglesignup} switchToggle={switchToggl} />
-      )} */}
-
-      <AuthModal show={authModal} close={toggleLogin} />
-
-      {resetModal && (
-        <ResetPassModal
-          backToLogin={switchLogRes}
-          close={() => {
-            setResetModal(false);
-          }}
-        />
-      )}
     </>
   );
 }
