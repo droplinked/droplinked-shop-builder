@@ -17,12 +17,11 @@ import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import EmailModal from "../../../components/Modal/Email/email-modal";
 import DroplinkedItem from "./chekout-item/Droplinked-item";
 import ShopifytItem from "./chekout-item/Shopify-item";
-import SignUpModal from "../../../components/Modal/Register/SignUpModal";
-import LoginModal from "../../../components/Modal/Login/login-modal";
+import AuthModal from "../../../modals/auth/AuthModal"
 
 function CheckoutPage() {
   const [showEmailModal, setShowEmailModal] = useState(false);
-  const [modal, setModdal] = useState(null);
+  const [modal, setModdal] = useState(false);
 
   const navigate = useNavigate();
   const { profile, signinWithaWallet } = useProfile();
@@ -30,8 +29,9 @@ function CheckoutPage() {
   const { shopname } = useParams();
 
   const closeEmailModal = () => setShowEmailModal(false);
-  const switchModal = () => modal == "LOGIN" ? setModdal("SIGNUP") : setModdal("LOGIN");
-  const closeModal = () => setModdal(null);
+
+  const toggleModal = () => setModdal(p => !p);
+
 
   const isLogin = () => {
     let checkResult = true;
@@ -40,7 +40,7 @@ function CheckoutPage() {
 
     if (!profile) {
       if (isGated) signinWithaWallet();
-      else switchModal();
+      else toggleModal();
       checkResult = false;
     } else if (!profile.email) {
       setShowEmailModal(true);
@@ -122,15 +122,8 @@ function CheckoutPage() {
         </>
       )}
       {showEmailModal && <EmailModal close={closeEmailModal} />}
-      {modal && (
-        <>
-          {modal == "LOGIN" ? (
-            <LoginModal close={closeModal} switchToggle={switchModal} />
-          ) : (
-            <SignUpModal close={closeModal} switchToggle={switchModal} />
-          )}
-        </>
-      )}
+      <AuthModal show={modal} close={toggleModal} />
+
     </CheckoutPageWrapper>
   );
 }
