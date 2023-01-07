@@ -9,31 +9,31 @@ import ResetPassModal from "../../../../Modal/ResetPass/ResetPassModal-component
 import WalletButton from "../wallet-button/wallet-button-component";
 import Cart from "../../icons/cart/cart-icon-component";
 import DropdownContainer from "../../dropdowns/dropdown-container/DropDown-container";
+import AuthModal from "../../../../../modals/auth/AuthModal";
 
 export default function DefaulHeader({ haventEmail }) {
   // state for show (login , singup , resetpass)modals
-  const [signUpmodal, setSignModal] = useState(false);
-  const [loginmodal, setloginModal] = useState(false);
+ // const [signUpmodal, setSignModal] = useState(false);
+  const [authModal, setAuthModal] = useState(false);
   const [resetModal, setResetModal] = useState(false);
   const [dropdown, setDropdown] = useState(null);
 
   let url = window.location.pathname;
 
-  const togglesignup = () => {
-    setSignModal((p) => !p);
-  };
-  const toggleLogin = () => {
-    setloginModal((p) => !p);
-  };
+  // const togglesignup = () => {
+  //   setSignModal((p) => !p);
+  // };
+  const toggleLogin = () => setAuthModal((p) => !p);
+
   const toggleReset = () => {
     setResetModal((p) => !p);
   };
 
   // switch between signup and login  modals
-  const switchToggl = () => {
-    togglesignup();
-    toggleLogin();
-  };
+  // const switchToggl = () => {
+  //   togglesignup();
+  //   toggleLogin();
+  // };
 
   // switch between resetpass and login  modals
   const switchLogRes = () => {
@@ -59,25 +59,21 @@ export default function DefaulHeader({ haventEmail }) {
           <HeaderItem click={toggleLogin}>Login</HeaderItem>
         </>
       ) : (
-        <Box d='flex' alignItems='center'>
+        <Box d="flex" alignItems="center">
           <Cart clickBasket={openBasket} />
-          <Box mr={{base:'6px',md:'12px'}}></Box>
+          <Box mr={{ base: "6px", md: "12px" }}></Box>
           <WalletButton haventEmail={haventEmail} />
           {dropdown && <DropdownContainer close={close} dropdown={dropdown} />}
         </Box>
       )}
 
       {/* show modals base on state */}
-      {signUpmodal && (
+      {/* {signUpmodal && (
         <SignUpModal close={togglesignup} switchToggle={switchToggl} />
-      )}
-      {loginmodal && (
-        <LoginModal
-          close={toggleLogin}
-          switchToggle={switchToggl}
-          switchReset={switchLogRes}
-        />
-      )}
+      )} */}
+
+      <AuthModal show={authModal} close={toggleLogin} />
+
       {resetModal && (
         <ResetPassModal
           backToLogin={switchLogRes}

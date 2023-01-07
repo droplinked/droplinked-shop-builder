@@ -4,7 +4,7 @@ import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
 
 import { Box } from "@chakra-ui/react";
-import { Title, BottomText } from "./login-modal-style";
+import { Title, BottomText } from "./LoginModal-style";
 import { PROFILE_STATUS } from "../../constant/profile-status-types";
 import { USER_TYPE } from "../../constant/user-types";
 import { useState, useContext } from "react";
@@ -18,7 +18,7 @@ import { API_STATUS } from "../../constant/api-status";
 
 
 
-const LoginModal = ({ close, switchToggle, switchReset }) => {
+const LoginModal = ({show , close, switchModal, switchReset }) => {
     // state for disable buttons
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -147,7 +147,7 @@ const LoginModal = ({ close, switchToggle, switchReset }) => {
           <Box mb="25px"></Box>
           <BottomText onClick={switchReset}>Forgot password?</BottomText>
           <Box mb="10px"></Box>
-          <BottomText onClick={switchToggle}>
+          <BottomText onClick={switchModal}>
             Don’t have an account? Register now!
           </BottomText>
         </Box>

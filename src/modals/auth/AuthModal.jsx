@@ -8,7 +8,7 @@ const MODAL_TYPE = {
   SIGNUP: "SIGNUP",
 };
 
-const AuthModal = () => {
+const AuthModal = ({show , close}) => {
   const [modalType, setModalType] = useState(MODAL_TYPE.SIGNIN);
 
   const switchModal = () =>

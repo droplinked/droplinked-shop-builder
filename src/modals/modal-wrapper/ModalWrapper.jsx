@@ -1,6 +1,6 @@
-import "./modal-container-style.scss";
+import "./ModalWrapper-style.scss";
 
-import { ModalContainerWrapper, ModalBody } from "./modal-container-style";
+import { ModalContainerWrapper, ModalBody } from "./ModalWrapper-style";
 
 const ModalWrapper = ({ children, show, close }) => {
   if (!show) return null;

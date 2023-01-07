@@ -6,7 +6,7 @@ import { Box } from "@chakra-ui/react";
 import { Title } from "./SignupModal-style";
 import { useParams } from "react-router-dom";
 
-const SignupModal = ({ show, close, switchToggle, shopname }) => {
+const SignupModal = ({ show, close, switchModal, shopname }) => {
   const params = useParams();
 
   return (
@@ -14,12 +14,12 @@ const SignupModal = ({ show, close, switchToggle, shopname }) => {
       <Box w="100%" h="100%">
         <Title>Create a free account</Title>
         {params.shopname != undefined ? (
-          <SignupCustomer close={close} switchToggle={switchToggle} />
+          <SignupCustomer close={close} switchToggle={switchModal} />
         ) : (
           <SignupProducer
             close={close}
             shopname={shopname}
-            switchToggle={switchToggle}
+            switchToggle={switchModal}
           />
         )}
       </Box>
