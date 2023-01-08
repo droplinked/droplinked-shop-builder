@@ -2,7 +2,7 @@ import "./ModalWrapper-style.scss";
 
 import { ModalContainerWrapper, ModalBody } from "./ModalWrapper-style";
 
-const ModalWrapper = ({ children, show, close }) => {
+const s = ({ children, show, close }) => {
   if (!show) return null;
 
   const handleChildClick = (event) => {

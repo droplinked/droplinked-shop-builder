@@ -1,9 +1,9 @@
-import { LableInput, InputComponent, TextareaInput } from "./rule-modal-style";
+import { LableInput, InputComponent, TextareaInput } from "./RuleModal-style";
 import { Box, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { convertAddressToArray, convertArrayToAddress } from "./rule-utils";
 
-import BasicButton from "../../shared/BasicButton/BasicButton";
+import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
 const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
   const [addressList, setAddressList] = useState("");

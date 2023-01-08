@@ -1,9 +1,9 @@
-import editIcon from "../../../assest/icon/edit-icon.svg";
-import deleteIcon from "../../../assest/icon/delete-icon.svg";
-import AddRuleComponent from "./rule-component";
+import editIcon from "../../assest/icon/edit-icon.svg";
+import deleteIcon from "../../assest/icon/delete-icon.svg";
+import AddRuleComponent from "./AddRuleComponent";
 
 import { Flex } from "@chakra-ui/react";
-import { IconComponent, GreenIcon, TextBorder } from "./rule-modal-style";
+import { IconComponent, GreenIcon, TextBorder } from "./RuleModal-style";
 import { useState } from "react";
 
 const RuleItem = ({ rule, deleteFunc, editRule, isGated }) => {
