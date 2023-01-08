@@ -14,10 +14,10 @@ import { SHOP_TYPES } from "../../../constant/shop-types";
 import { getTotalPrice } from "./checkout-utils";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import EmailModal from "../../../components/Modal/Email/email-modal";
+import EmailModal from "../../../modals/email/EmailModal";
 import DroplinkedItem from "./chekout-item/Droplinked-item";
 import ShopifytItem from "./chekout-item/Shopify-item";
-import AuthModal from "../../../modals/auth/AuthModal"
+import AuthModal from "../../../modals/auth/AuthModal";
 
 function CheckoutPage() {
   const [showEmailModal, setShowEmailModal] = useState(false);
@@ -30,8 +30,7 @@ function CheckoutPage() {
 
   const closeEmailModal = () => setShowEmailModal(false);
 
-  const toggleModal = () => setModdal(p => !p);
-
+  const toggleModal = () => setModdal((p) => !p);
 
   const isLogin = () => {
     let checkResult = true;
@@ -121,9 +120,8 @@ function CheckoutPage() {
           </ButtonWrapper>
         </>
       )}
-      {showEmailModal && <EmailModal close={closeEmailModal} />}
+      <EmailModal show={showEmailModal} close={closeEmailModal} />
       <AuthModal show={modal} close={toggleModal} />
-
     </CheckoutPageWrapper>
   );
 }
