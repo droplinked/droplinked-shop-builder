@@ -1,4 +1,4 @@
-import { SkuContent, SkuLable, SkuInput } from "./Sku-modal-style";
+import { SkuContent, SkuLable, SkuInput } from "./EditSkuModal-style";
 import {
   Modal,
   ModalOverlay,
@@ -12,23 +12,24 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { useToasty } from "../../../context/toastify/ToastContext";
-import { addSkuToProduct } from "../../../api/producer/Product-api";
+import { useToasty } from "../../context/toastify/ToastContext";
+import { updateSku } from "../../api/producer/Product-api";
 
-import BasicButton from "../../shared/BasicButton/BasicButton";
+import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
-const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
-  const [price, setPrice] = useState(null);
-  const [externalID, setExternalID] = useState("");
-  const [quantity, setQuantity] = useState(null);
-  const [options, setOptions] = useState([]);
-  const [length, setLength] = useState(null);
-  const [width, setWidth] = useState(null);
-  const [height, setHeight] = useState(null);
-  const [weight, setWeight] = useState(null);
+const EditSkuModal = ({ show, close, optionTypes, defaultValue, update }) => {
+
+  const [price, setPrice] = useState(defaultValue.price);
+  const [externalID, setExternalID] = useState(defaultValue.externalID);
+  const [quantity, setQuantity] = useState(defaultValue.quantity);
+  const [options, setOptions] = useState(defaultValue.options);
+  const [length, setLength] = useState(defaultValue.dimensions.length);
+  const [width, setWidth] = useState(defaultValue.dimensions.width);
+  const [height, setHeight] = useState(defaultValue.dimensions.height);
+  const [weight, setWeight] = useState(defaultValue.weight);
   const [loading, setLoading] = useState(false);
 
-  const { successToast, errorToast } = useToasty();
+  const { errorToast, successToast } = useToasty();
 
   // chnage options input function
   const changeOption = (id, value) => {
@@ -63,7 +64,6 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
     if (!value) {
       errorToast(`Sku ${lowerText} is required`);
       validate = false;
-      return;
     }
     if (value <= 0) {
       errorToast(`${UpperText} should be greater than zero`);
@@ -71,22 +71,19 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
     }
     return validate;
   };
-
   // validation form's values
   const validateForm = () => {
-    if (options.length != optionType.length) {
+    if (options.length != optionTypes.length) {
       errorToast("Sku options is required");
       return false;
     }
 
     let validateOption = true;
-
     options.forEach((opt) => {
       if (opt.value.length == 0) {
         validateOption = false;
       }
     });
-
     if (!validateOption) {
       errorToast("Sku options is required");
       return false;
@@ -126,27 +123,26 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
       weight: weight,
     };
 
-    if (merchId == undefined) {
-      update(obj);
-      close();
-    } else {
+    if (defaultValue._id) {
       setLoading(true);
-      let result = await addSkuToProduct(merchId, obj);
-
+      let result = await updateSku(defaultValue._id, obj);
+      setLoading(false);
       if (result) {
-        successToast("Sku update");
+        successToast("New SKU added");
         update();
         close();
       } else {
         errorToast(result);
-        setLoading(false);
       }
+    } else {
+      update(obj, defaultValue.index);
+      close();
     }
   };
 
   return (
     <>
-      <Modal isOpen={open} onClose={close}>
+      <Modal isOpen={show} onClose={close}>
         <ModalOverlay />
         <ModalContent
           bgColor="#202020"
@@ -159,7 +155,9 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
           <ModalCloseButton />
 
           <ModalBody w="100%">
-            {optionType.map((option) => {
+            {optionTypes.map((option) => {
+              let find = options.find((op) => op.variantID == option.variantID);
+              let value = find ? find.value : "";
               return (
                 <SkuContent>
                   <SkuLable>{option.variantName}</SkuLable>
@@ -168,7 +166,7 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
                     onChange={(e) =>
                       changeOption(option.variantID, e.target.value)
                     }
-                    value={option.value}
+                    value={value}
                     placeholder={option.variantName}
                   />
                 </SkuContent>
@@ -204,7 +202,7 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
             </SkuContent>
 
             <Text fontSize="18px" color="white" fontWeight="600" mb="20px">
-              Delivery box size per item
+            Delivery box size per item
             </Text>
 
             <SkuContent>
@@ -248,14 +246,10 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
           <ModalFooter>
             <Flex w="100%" justifyContent="space-between">
               <Box w="40%">
-                <BasicButton click={close} loading={loading} cancelType={true}>
-                  Cancel
-                </BasicButton>
+                <BasicButton click={close} loading={loading} cancelType={true}>Cancel</BasicButton>
               </Box>
               <Box w="40%">
-                <BasicButton click={submitForm} loading={loading}>
-                  Add
-                </BasicButton>
+                <BasicButton click={submitForm} loading={loading} >Add</BasicButton>
               </Box>
             </Flex>
           </ModalFooter>
@@ -265,4 +259,4 @@ const AddSkuModal = ({ open, close, optionType, update, merchId }) => {
   );
 };
 
-export default AddSkuModal;
+export default EditSkuModal;

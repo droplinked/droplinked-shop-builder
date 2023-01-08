@@ -2,7 +2,7 @@ import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../components/product-information-component";
 import OptionCheckboxes from "./option-checkbox-component/option-checkbox";
 import SkusComponent from "./skus-component/Skus-component";
-import AddSkuModal from "../../../components/Modal/Sku/AddSku";
+import AddSkuModal from "../../../modals/add-sku/AddSkuModal";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -197,7 +197,7 @@ function AddProductPage() {
         </Flex>
         {/* modal for add new sku  */}
         <AddSkuModal
-          open={skuModalShow}
+          show={skuModalShow}
           close={closeSkuModal}
           optionType={selectedOptions}
           update={updateSku}
