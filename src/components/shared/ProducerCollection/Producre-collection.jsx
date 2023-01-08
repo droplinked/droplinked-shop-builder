@@ -1,6 +1,6 @@
 //import "./Producre-collection-style.scss";
 
-import SmallModal from "../../Modal/Small-modal/Small-modal-component";
+import SmallModal from "../../../modals/small/SmallModal";
 import Product from "../Product/Product";
 import CollectionModal from "../../../modals/collection/CollectionModal";
 import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
@@ -14,7 +14,7 @@ import {
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useProfile } from "../../../context/profile/ProfileContext";
 import { deleteCollection } from "../../../api/producer/Collection-api";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { USER_TYPE } from "../../../constant/user-types";
 
 import { useState } from "react";
@@ -102,16 +102,16 @@ const ProducerCollection = ({ collection, update }) => {
           )}
         </ProductsWrapper>
       </ProducerCollectionWrapper>
-      {deleteModal && (
-        <SmallModal
+
+       {deleteModal && <SmallModal
           text={`Are you sure you want to  delete this collection?`}
           show={deleteModal}
           hide={() => setDeleteModal(false)}
           click={DeleteCollection}
           loading={loading}
           buttonText={"Delete"}
-        />
-      )}
+        />}
+
 
       <CollectionModal
         show={editModal}

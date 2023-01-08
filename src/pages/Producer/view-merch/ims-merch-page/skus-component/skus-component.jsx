@@ -5,10 +5,9 @@ import { useToasty } from "../../../../../context/toastify/ToastContext";
 
 import VariantItem from "../../../components/variant-item-component/Variant-item-component";
 import EditSkuModal from "../../../../../modals/edit-sku/EditSkuModal";
-import SmallModal from "../../../../../components/Modal/Small-modal/Small-modal-component";
+import SmallModal from "../../../../../modals/small/SmallModal";
 
 const SkusComponent = ({ skusArray, update }) => {
-
   const [editingSku, setEditingSku] = useState(false);
   const [deleteSkuModal, setDeleteSkuModal] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -49,24 +48,22 @@ const SkusComponent = ({ skusArray, update }) => {
         );
       })}
       {/* {editingSku && <SkuModal open={editingSku != null} close={closeModal} update={update} sku={editingSku}/>} */}
-        <EditSkuModal
-          show={editingSku}
-          close={closeModal}
-          optionTypes={optionTypes}
-          defaultValue={editingSku}
-          update={update}
-        />
+      <EditSkuModal
+        show={editingSku}
+        close={closeModal}
+        optionTypes={optionTypes}
+        defaultValue={editingSku}
+        update={update}
+      />
 
-      {deleteSkuModal && (
-        <SmallModal
-          show={deleteSkuModal}
-          hide={closeDeleteModal}
-          text={"Do you want to delete this sku?"}
-          click={DeleteSku}
-          loading={loading}
-          buttonText={"Delete"}
-        />
-      )}
+      <SmallModal
+        show={deleteSkuModal}
+        hide={closeDeleteModal}
+        text={"Do you want to delete this sku?"}
+        click={DeleteSku}
+        loading={loading}
+        buttonText={"Delete"}
+      />
     </Box>
   );
 };

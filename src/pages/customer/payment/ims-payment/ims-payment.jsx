@@ -4,10 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useCart } from "../../../../context/cart/CartContext";
 import { API_STATUS } from "../../../../constant/api-status";
-import {
-  checkoutCart,
-  checkoutFree,
-} from "../../../../api/base-user/Cart-api";
+import { checkoutCart, checkoutFree } from "../../../../api/base-user/Cart-api";
 import { getUserAddress } from "../../../../services/wallet-auth/api";
 import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
 import { useToasty } from "../../../../context/toastify/ToastContext";
@@ -23,7 +20,7 @@ import {
   PaymetnButton,
 } from "./ims-payment-style";
 
-import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component";
+import SmallModal from "../../../../modals/small/SmallModal";
 import StripeComponent from "./stripe modal/stripe-modal-component";
 
 const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_KEY}`);
@@ -41,8 +38,8 @@ export default function ImsPayment({ totalPrice }) {
   let navigate = useNavigate();
   var lastOrder = JSON.parse(sessionStorage.getItem("payOrder"));
 
-  if (cart && cart.items.length == 0 && lastOrder == null) navigate("/purchseHistory?redirect_status=failed");
-  
+  if (cart && cart.items.length == 0 && lastOrder == null)
+    navigate("/purchseHistory?redirect_status=failed");
 
   // stripe component style
   const appearance = {
@@ -80,9 +77,9 @@ export default function ImsPayment({ totalPrice }) {
     } else {
       result = await checkoutCart(walletAddress);
     }
-   
+
     if (result != null) {
-      if (result.status ==  API_STATUS.SUCCESS) {
+      if (result.status == API_STATUS.SUCCESS) {
         setClientSecret(result.data);
         setPaymentSelected("Stripe");
         setTimeout(cancelPayment, 300000);
@@ -99,9 +96,9 @@ export default function ImsPayment({ totalPrice }) {
     let result = await checkoutFree(walletAddress);
     setDisables(false);
     updateCart();
-    if (result.status ==  API_STATUS.SUCCESS) navigate(`/purchseHistory?redirect_status=confirm`);
+    if (result.status == API_STATUS.SUCCESS)
+      navigate(`/purchseHistory?redirect_status=confirm`);
     else errorToast(result.data);
-    
   };
 
   return (
@@ -132,16 +129,15 @@ export default function ImsPayment({ totalPrice }) {
           />
         </Elements>
       )}
-      {confirmModal && (
-        <SmallModal
-          show={confirmModal}
-          hide={closeConfirmModal}
-          text={"Do you want to confirm this order?"}
-          click={confirmOrder}
-          loading={disableBtns}
-          buttonText={"Confirm"}
-        />
-      )}
+
+      <SmallModal
+        show={confirmModal}
+        hide={closeConfirmModal}
+        text={"Do you want to confirm this order?"}
+        click={confirmOrder}
+        loading={disableBtns}
+        buttonText={"Confirm"}
+      />
     </ImsPaymentWrapper>
   );
 }

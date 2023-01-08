@@ -8,7 +8,7 @@ import {
   ButtonsWrapper,
   ButtonComponent,
 } from "./address-style";
-import SmallModal from "../../Modal/Small-modal/Small-modal-component";
+import SmallModal from "../../../modals/small/SmallModal";
 import AddressModal from "../../../modals/address/AddressModal";
 
 // (address) formta in props {
@@ -109,7 +109,7 @@ export default function AddressComponent({
         </Flex>
 
         {/* delete address modal */}
-        {deleteModal && (
+
           <SmallModal
             text={`Are you sure you want to delete this address?`}
             show={deleteModal}
@@ -118,7 +118,7 @@ export default function AddressComponent({
             loading={disableBtn}
             buttonText={"Delete"}
           />
-        )}
+
         {/* delete address modal */}
       </AddressComponentWrapper>
 
