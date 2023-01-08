@@ -11,7 +11,7 @@ import { useState } from "react";
 import SkuForm from "../sku-form/sku-form";
 import deleteIcon from "../../../../../assest/icon/delete-icon.svg";
 import editIcon from "../../../../../assest/icon/edit-icon.svg";
-import RecordModal from "../../../../../components/Modal/record/record-modal";
+import RecordModal from "../../../../../modals/record/RecordModal";
 
 const VariantComponent = ({
   sku,
@@ -119,13 +119,12 @@ const VariantComponent = ({
             <Image onClick={toggleForm} src={editIcon} w="24px" h="24px" />
           </Flex>
 
-          {showRecordModal && (
-            <RecordModal
-              close={toggleRecordModal}
-              submit={RecordSku}
-              loading={loading}
-            />
-          )}
+          <RecordModal
+            show={showRecordModal}
+            close={toggleRecordModal}
+            submit={RecordSku}
+            loading={loading}
+          />
         </VariantComponentWrapper>
       )}
     </>

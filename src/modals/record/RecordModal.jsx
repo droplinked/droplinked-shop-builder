@@ -1,11 +1,11 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 
-import ModalContainer from "../modal-container/modal-container";
-import FormInput from "../../shared/FormInput/FormInput";
-import BasicButton from "../../shared/BasicButton/BasicButton";
+import ModalWrapper from "../modal-wrapper/ModalWrapper";
+import FormInput from "../../components/shared/FormInput/FormInput";
+import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
-const RecordModal = ({ close , submit , loading}) => {
+const RecordModal = ({ show ,close , submit , loading}) => {
     
   const [commision, setCommision] = useState("");
 
@@ -14,7 +14,7 @@ const RecordModal = ({ close , submit , loading}) => {
    // const submit = () => {};
 
   return (
-    <ModalContainer close={close}>
+    <ModalWrapper show={show} close={close}>
       <Flex flexDir="column" alignItems="center">
         <Text fontWeight="700" fontSize="24px" color="#FEB900" mb="36px">
           Warning !
@@ -46,7 +46,7 @@ const RecordModal = ({ close , submit , loading}) => {
           </Box>
         </Flex>
       </Flex>
-    </ModalContainer>
+    </ModalWrapper>
   );
 };
 
