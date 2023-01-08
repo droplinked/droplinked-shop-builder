@@ -1,13 +1,13 @@
 //  use this component for show collection iframe code  in snipped modal 
 //  or collection Api url 
 import { Flex, Code, Box } from "@chakra-ui/react"
-import { useToasty } from "../../../context/toastify/ToastContext"
+import { useToasty } from "../../context/toastify/ToastContext"
 import { useState } from "react"
 
-import BasicButton from "../../shared/BasicButton/BasicButton"
-import ModalContainer from "../modal-container/modal-container"
+import BasicButton from "../../components/shared/BasicButton/BasicButton"
+import ModalWrapper from "../modal-wrapper/ModalWrapper"
 
-const IframeSnipped = ({ link, code, close }) => {
+const IframeModal = ({show, link, code, close }) => {
 
     // use this state for switch between api and iframe component
     const [showType, setShowType] = useState("IFRAME")
@@ -29,7 +29,7 @@ const IframeSnipped = ({ link, code, close }) => {
 
 
     return (
-        <ModalContainer close={close}>
+        <ModalWrapper show={show} close={close}>
             {/* top buttons */}
             <Flex
                 justifyContent='space-between'
@@ -104,8 +104,8 @@ const IframeSnipped = ({ link, code, close }) => {
                 <Box w={{ base: '100px', md: '150px' }}><BasicButton fontSize={{ base: '14px', md: "16px" }} click={embed} >Click to copy</BasicButton></Box>
             </Flex>
             {/* botom buttons */}
-        </ModalContainer>
+        </ModalWrapper>
     )
 }
 
-export default IframeSnipped
+export default IframeModal

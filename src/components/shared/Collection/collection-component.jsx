@@ -4,7 +4,7 @@ import { useState } from "react";
 import { BASE_URL } from "../../../api/BaseUrl";
 import { CollectionWrapper } from "./collection-component-style";
 
-import IframeSnipped from "../../Modal/Iframe-snipped/Iframe-snipped-modal";
+import IframeModal from "../../../modals/iframe/IframeModal";
 import CollectionHeader from "./collection-header-component";
 import CollectionProducts from "./collection-products-component";
 import Countdown from "./countdown-component/countdown-component";
@@ -21,7 +21,6 @@ export default function Collection({ collection, shopname, type }) {
   const navigate = useNavigate();
 
   let event = collection.title == "Holder merchandise";
-
 
   // collection iframe code
   let iframeCode = `<iframe  
@@ -64,7 +63,7 @@ export default function Collection({ collection, shopname, type }) {
         </Box> */}
 
         {event == true ? (
-          <Flex w='100%' flexDir={{ base: "column", md: "row" }}>
+          <Flex w="100%" flexDir={{ base: "column", md: "row" }}>
             <Box w={{ base: "100%", md: "50%" }}>
               <CollectionProducts
                 products={collection.products}
@@ -90,15 +89,15 @@ export default function Collection({ collection, shopname, type }) {
 
         {/* content */}
       </CollectionWrapper>
-      {snippedModal && (
-        <IframeSnipped
-          link={link}
-          code={iframeCode}
-          close={() => {
-            setSnippedModal(false);
-          }}
-        />
-      )}
+
+      <IframeModal
+        show={snippedModal}
+        link={link}
+        code={iframeCode}
+        close={() => {
+          setSnippedModal(false);
+        }}
+      />
     </>
   );
 }
