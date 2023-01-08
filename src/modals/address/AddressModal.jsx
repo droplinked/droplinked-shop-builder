@@ -1,14 +1,15 @@
 import { Box, Flex, FormControl, FormLabel } from "@chakra-ui/react";
 import { useState } from "react";
-import { useAddress } from "../../../context/address/AddressContext";
+
+import { useAddress } from "../../context/address/AddressContext";
 import { COUNTRIES, US_STATES } from "./address-list-constant";
 
-import FormInput from "../../shared/FormInput/FormInput";
-import BasicButton from "../../shared/BasicButton/BasicButton";
-import ModalContainer from "../modal-container/modal-container";
-import SelectInput from "../../shared/SelectInput/SelectInput";
+import FormInput from "../../components/shared/FormInput/FormInput";
+import BasicButton from "../../components/shared/BasicButton/BasicButton";
+import ModalWrapper from "../modal-wrapper/ModalWrapper";
+import SelectInput from "../../components/shared/SelectInput/SelectInput";
 
-export default function AddressForm({ type, addressBook, close }) {
+export default function AddressModal({show ,  type, addressBook, close }) {
   // address context functions for add new address or update address
   const { addAddress, updateAddress } = useAddress();
 
@@ -158,7 +159,7 @@ export default function AddressForm({ type, addressBook, close }) {
   };
 
   return (
-    <ModalContainer close={close}>
+    <ModalWrapper show={show} close={close}>
       <Box>
         <FormInput
           mb="30px"
@@ -305,6 +306,6 @@ export default function AddressForm({ type, addressBook, close }) {
           </BasicButton>
         </Flex>
       </Box>
-    </ModalContainer>
+    </ModalWrapper>
   );
 }

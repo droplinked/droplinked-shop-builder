@@ -22,7 +22,7 @@ import { getAddressObject, getShopifyData } from "./address-utils";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import AddressComponent from "../../../components/shared/Address/address-component";
 import Loading from "../../../components/shared/loading/Loading";
-import AddressForm from "../../../components/Modal/Address/Address-modal";
+import AddressModal from "../../../modals/address/AddressModal";
 
 function AddressPage() {
   // hooks
@@ -128,13 +128,10 @@ function AddressPage() {
               }
             })}
             <Box mt="40px"></Box>
-            {addressModal ? (
-              <AddressForm close={toggleAddressForm} type={"CUSTOMER"} />
-            ) : (
-              <AddAddressButton onClick={toggleAddressForm}>
+   
+            <AddAddressButton onClick={toggleAddressForm}>
                 + Add new address
               </AddAddressButton>
-            )}
 
             <ButtonWrapper>
               <Box w="30%">
@@ -157,6 +154,7 @@ function AddressPage() {
           </>
         )}
       </Box>
+      <AddressModal show={addressModal} close={toggleAddressForm} type={"CUSTOMER"} />
     </AddressPageWrapper>
   );
 }

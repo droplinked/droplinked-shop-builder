@@ -20,7 +20,7 @@ import FormInput from "../../../components/shared/FormInput/FormInput";
 import InputImage from "../../../components/shared/InputImage/InputImage";
 import AddressComponent from "../../../components/shared/Address/address-component";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import AddressForm from "../../../components/Modal/Address/Address-modal";
+import AddressModal from "../../../modals/address/AddressModal";
 import Loading from "../../../components/shared/loading/Loading";
 import FillInput from "../../../components/shared/FillInput/FillInput";
 
@@ -206,14 +206,14 @@ const RegisterPage = () => {
           <Loading />
         )}
       </RegisterContainer>
-      {addressModal && (
-        <AddressForm
-          type={"SHOP"}
-          close={() => {
-            setAddressModal(false);
-          }}
-        />
-      )}
+
+      <AddressModal
+        show={addressModal}
+        type={"SHOP"}
+        close={() => {
+          setAddressModal(false);
+        }}
+      />
     </RegisterPageWrapper>
   );
 };
