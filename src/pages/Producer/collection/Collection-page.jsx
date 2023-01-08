@@ -4,15 +4,13 @@ import Loading from "../../../components/shared/loading/Loading";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import ProducerCollection from "../../../components/shared/ProducerCollection/Producre-collection";
 import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
-import CollectionModal from "../../../components/Modal/Collection/Collection-modal";
+import CollectionModal from "../../../modals/collection/CollectionModal";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCollections } from "../../../api/producer/Collection-api";
 import {
   CollectionPageWrapper,
-  HeaderTitle,
-  ListedNumber,
   ButtonWrapper,
   AddproductWrapper,
 } from "./Collection-page-style";
@@ -39,7 +37,6 @@ export default function CollectionMainPage() {
   const ToggleModal = () => setModal((p) => !p);
 
   const closeNewCollectionModal = () => setModal(false);
-
 
   return (
     <CollectionPageWrapper>
@@ -73,12 +70,12 @@ export default function CollectionMainPage() {
       ) : (
         <Loading />
       )}
-      {Modal && (
-        <CollectionModal
-          close={closeNewCollectionModal}
-          update={updateCollections}
-        />
-      )}
+
+      <CollectionModal
+        show={Modal}
+        close={closeNewCollectionModal}
+        update={updateCollections}
+      />
     </CollectionPageWrapper>
   );
 }

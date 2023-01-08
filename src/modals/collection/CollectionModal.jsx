@@ -1,16 +1,18 @@
-import ModalContainer from "../../Modal/modal-container/modal-container";
-import FormInput from "../../shared/FormInput/FormInput";
-import BasicButton from "../../shared/BasicButton/BasicButton";
 
 import { useState } from "react";
-import { useToasty } from "../../../context/toastify/ToastContext";
+import { Box, Flex, Text } from "@chakra-ui/react";
+
+import { useToasty } from "../../context/toastify/ToastContext";
 import {
   updateCollection,
   newCollection,
-} from "../../../api/producer/Collection-api";
-import { Box, Flex, Text } from "@chakra-ui/react";
+} from "../../api/producer/Collection-api";
 
-const CollectionModal = ({ collection, close, update }) => {
+import ModalWrapper from "../modal-wrapper/ModalWrapper";
+import FormInput from "../../components/shared/FormInput/FormInput";
+import BasicButton from "../../components/shared/BasicButton/BasicButton";
+
+const CollectionModal = ({show , collection, close, update }) => {
   const [collectionName, setCollectionName] = useState(() => {
   return  collection == undefined ? "" : collection.title;
   });
@@ -44,28 +46,10 @@ const CollectionModal = ({ collection, close, update }) => {
     }
     close();
     setLoading(false);
-    // let result = await newCollection(collectionName);
-    // if (result == true) {
-    //   successToast("New collection added successfully");
-    //   toggle();
-    // } else {
-    //   errorToast(result);
-    // }
-
-  //  setLoading(true);
-    // let result = await updateCollection(collection._id, collectionName);
-    // if (result == true) {
-    //   successToast("Collection updated successfully");
-    //   update();
-    // } else {
-    //   errorToast(result);
-    // }
-    // close();
-    // setLoading(false);
   };
 
   return (
-    <ModalContainer close={close}>
+    <ModalWrapper show={show} close={close}>
       <Text
         color="white"
         fontWeight="600"
@@ -99,7 +83,7 @@ const CollectionModal = ({ collection, close, update }) => {
         </Flex>
         {/* footer */}
       </Flex>
-    </ModalContainer>
+    </ModalWrapper>
   );
 };
 

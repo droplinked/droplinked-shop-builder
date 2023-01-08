@@ -2,7 +2,7 @@
 
 import SmallModal from "../../Modal/Small-modal/Small-modal-component";
 import Product from "../Product/Product";
-import CollectionModal from "../../Modal/Collection/Collection-modal";
+import CollectionModal from "../../../modals/collection/CollectionModal";
 import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
 import Rule from "../../Modal/Rule/rule-modal";
 import AddProduct from "../AddProduct/Add-product-component";
@@ -58,8 +58,8 @@ const ProducerCollection = ({ collection, update }) => {
           openRuleModal={openRuleModal}
         />
         <ProductsWrapper>
-            {collection.products.length == 0 ? (
-            <Box w={{base:"50%" , lg:'25%'}}>
+          {collection.products.length == 0 ? (
+            <Box w={{ base: "50%", lg: "25%" }}>
               <AddProduct />
             </Box>
           ) : (
@@ -71,7 +71,7 @@ const ProducerCollection = ({ collection, update }) => {
                 .map((product, i) => {
                   if (product.type == "SHOPIFY") {
                     return (
-                      <Box key={i} w={{base:"50%" , lg:'25%'}}  p='3px'>
+                      <Box key={i} w={{ base: "50%", lg: "25%" }} p="3px">
                         <Product
                           shopname={profile.shopName}
                           title={product.shopifyData.title}
@@ -86,7 +86,7 @@ const ProducerCollection = ({ collection, update }) => {
                     );
                   } else {
                     return (
-                      <Box key={i} w={{base:"50%" , lg:'25%'}}  p='3px'>
+                      <Box key={i} w={{ base: "50%", lg: "25%" }} p="3px">
                         <Product
                           shopname={profile.shopName}
                           title={product.title}
@@ -99,7 +99,7 @@ const ProducerCollection = ({ collection, update }) => {
                   }
                 })}
             </>
-          )}  
+          )}
         </ProductsWrapper>
       </ProducerCollectionWrapper>
       {deleteModal && (
@@ -112,13 +112,14 @@ const ProducerCollection = ({ collection, update }) => {
           buttonText={"Delete"}
         />
       )}
-      {editModal && (
-        <CollectionModal
-          collection={collection}
-          close={closeEditModal}
-          update={update}
-        />
-      )}
+
+      <CollectionModal
+        show={editModal}
+        collection={collection}
+        close={closeEditModal}
+        update={update}
+      />
+
       {ruleModal && (
         <Rule
           close={closeRuleModal}

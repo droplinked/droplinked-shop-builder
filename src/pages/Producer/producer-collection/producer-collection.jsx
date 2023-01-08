@@ -13,7 +13,7 @@ import { AiFillEdit } from "react-icons/ai";
 
 import Product from "../../../components/shared/Product/Product";
 import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
-import CollectionModal from "../../../components/Modal/Collection/Collection-modal";
+import CollectionModal from "../../../modals/collection/CollectionModal";
 import Loading from "../../../components/shared/loading/Loading";
 
 const ProducerCollection = () => {
@@ -81,17 +81,15 @@ const ProducerCollection = () => {
       ) : (
         <Loading />
       )}
-      {editCollectionModal && (
-        <CollectionModal
-          collection={Collection}
-          close={closeEditModal}
-          update={getCollections}
-        />
-      )}
+
+      <CollectionModal
+        show={editCollectionModal}
+        collection={Collection}
+        close={closeEditModal}
+        update={getCollections}
+      />
     </ViewCollectionPageWrapper>
   );
 };
 
 export default ProducerCollection;
-
-
