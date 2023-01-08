@@ -2,8 +2,7 @@ import { Box, Flex } from "@chakra-ui/react"
 import { ORDER_TYPES } from "../../../constant/order.types"
 import { useProfile } from "../../../context/profile/ProfileContext"
 
-import BasicButton from "../../shared/BasicButton/BasicButton"
-
+import BasicButton from "../../../components/shared/BasicButton/BasicButton"
 
 
 const OrderStatus = ({ orderStatus, loading, cancelOnClick, openProccessModal }) => {

@@ -23,8 +23,8 @@ import {
   ProductImage,
   OrderStatus,
 } from "./Order-component-style";
-import OrderModal from "../../Modal/Order/Order-modal";
-import BasicButton from "../BasicButton/BasicButton";
+import OrderModal from "../../../modals/order/OrderModal";
+//import BasicButton from "../BasicButton/BasicButton";
 
 const animationKeyframes = keyframes`
 0% { color: primary; }
@@ -128,7 +128,7 @@ export default function Order({ order }) {
         </Stack>
       )}
       {order.items.length > 0 && (
-        <OrderModal order={order} isOpen={isOpen} onClose={onClose} />
+        <OrderModal order={order} show={isOpen} close={onClose} />
       )}
     </OrderWrapper>
   );
