@@ -47,7 +47,7 @@ function MainHeader() {
             {isCustomer() ? <CustomerHeader /> : <ProducerHeader />}
           </Flex>
         ) : (
-          <DefaulHeader haventEmail={toggleEmailModal} />
+          <DefaulHeader />
         )}
         <EmailModal show={showEmailModal} close={toggleEmailModal} />
       </Flex>

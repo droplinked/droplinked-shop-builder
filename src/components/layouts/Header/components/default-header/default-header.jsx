@@ -8,7 +8,7 @@ import Cart from "../../icons/cart/cart-icon-component";
 import DropdownContainer from "../../dropdowns/dropdown-container/DropDown-container";
 import AuthModal from "../../../../../modals/auth/AuthModal";
 
-export default function DefaulHeader({ haventEmail }) {
+export default function DefaulHeader() {
 
   const [authModal, setAuthModal] = useState(false);
   const [dropdown, setDropdown] = useState(null);
@@ -39,7 +39,7 @@ export default function DefaulHeader({ haventEmail }) {
         <Box d="flex" alignItems="center">
           <Cart clickBasket={openBasket} />
           <Box mr={{ base: "6px", md: "12px" }}></Box>
-          <WalletButton haventEmail={haventEmail} />
+          <WalletButton />
           {dropdown && <DropdownContainer close={close} dropdown={dropdown} />}
         </Box>
       )}
