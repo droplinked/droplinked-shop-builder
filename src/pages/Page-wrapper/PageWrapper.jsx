@@ -12,7 +12,7 @@ import { isJwtValid } from "../../api/base-user/Profile-api";
 import { useShop } from "../../context/shop/ShopContext";
 
 import Header from "../../layouts/header/Header";
-import Footer from "../../components/layouts/Footer/Footer";
+import Footer from "../../layouts/footer/Footer";
 import SideBarProvider from "../../context/sidebar/sidebar-context";
 
 export default function PageWrapper() {
