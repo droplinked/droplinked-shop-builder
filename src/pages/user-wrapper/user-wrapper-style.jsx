@@ -14,13 +14,14 @@ export const UserWrapperPage = chakra("div", {
 
 export const SideBarWrapper = chakra("div", {
   baseStyle: {
-    d: { base: "none", sm: "flex" },
+    d: { base: "inline", sm: "flex" },
     //  w: { sm: "78px", lg: "200px" , xl:'23%' },
-    w: "auto",
+    w:{ base: "0px", sm: "auto" },
     h: "auto",
     minH: "100%",
     borderRight: "1px solid ",
-    borderColor: "line",
+    //borderColor: "line",
+    borderColor:{ base: "transparent", sm: "line" },
     mr: { sm: "10px", md: "20px", xl: "36px" },
   },
 });
