@@ -11,7 +11,7 @@ import { useProfile } from "../../context/profile/ProfileContext";
 import { isJwtValid } from "../../api/base-user/Profile-api";
 import { useShop } from "../../context/shop/ShopContext";
 
-import MainHeader from "../../components/layouts/Header/MainHeader";
+import Header from "../../layouts/header/Header";
 import Footer from "../../components/layouts/Footer/Footer";
 import SideBarProvider from "../../context/sidebar/sidebar-context";
 
@@ -84,8 +84,9 @@ export default function PageWrapper() {
         w="100%"
         h="100%"
         minH="100vh"
+        bg='bG'
       >
-        <MainHeader />
+        <Header />
         <Box
           w="100%"
           h="100%"
