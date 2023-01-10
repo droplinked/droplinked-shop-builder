@@ -6,9 +6,7 @@ import { HeaderWrapper, HeaderTitle, BurgerIcon } from "./Header-style";
 import { useProfile } from "../../context/profile/ProfileContext";
 import { useSideBar } from "../../context/sidebar/sidebar-context";
 /* components */
-//import DefaulHeader from "./components/default-header/default-header";
-//import CustomerHeader from "./components/customer-header/customer-header";
-//import ProducerHeader from "./components/producer-header/producer-header";
+import ProducerHeader from "./components/producer-header/ProducerHeader"
 import CustomerHeader from "./components/customer-header/CustomerHeader"
 import PublicHeader from "./components/public-header/PublicHeader";
 import EmailModal from "../../modals/email/EmailModal";
@@ -47,8 +45,7 @@ const Header = () => {
       <Flex h="100%" alignItems='center'>
         {profile ? (
           <Flex h="100%" alignItems="center">
-            {isCustomer() ? <CustomerHeader /> : <></>}
-            {/* {isCustomer() ? <CustomerHeader /> : <ProducerHeader />} */}
+            {isCustomer() ? <CustomerHeader /> : <ProducerHeader />}
           </Flex>
         ) : (
           <PublicHeader />
