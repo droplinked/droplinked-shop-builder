@@ -5,16 +5,16 @@ import {
   PageContainer,
 } from "./user-wrapper-style";
 
-import Sidebar from "../../components/layouts/Sidebar/sidebar";
+import Sidebar from "../../layouts/sidebar/Sidebar"
 
 const UserWrapper = () => {
 
 
   return (
     <UserWrapperPage>
-      <SideBarWrapper>
+      {/* <SideBarWrapper> */}
         <Sidebar />
-      </SideBarWrapper>
+      {/* </SideBarWrapper> */}
       <PageContainer>
         <Outlet />
       </PageContainer>
