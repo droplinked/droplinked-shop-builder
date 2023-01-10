@@ -77,22 +77,27 @@ export default function PageWrapper() {
 
   return (
     <SideBarProvider>
-      <Flex flexDirection="column" overflowX="hidden" w="100%" h='100%'>
+      <Box
+        boxSizing="border-box"
+        // overflowX="hidden"
+        maxW="100vw"
+        w="100%"
+        h="100%"
+        minH="100vh"
+      >
         <MainHeader />
         <Box
           w="100%"
           h="100%"
           minH="100vh"
           bgColor="bG"
-         //  pt="50px"
-         // pb="100px"
           m="0px"
           overflowX="hidden"
         >
           <Outlet />
         </Box>
         <Footer />
-      </Flex>
+      </Box>
     </SideBarProvider>
   );
 }
