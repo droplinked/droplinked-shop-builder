@@ -68,7 +68,6 @@ const ProfileDropdown = ({ close }) => {
       pos="absolute"
       top={{ base: "60px", md: "110px" }}
       right="20px"
-      // bgColor="#222"
       w={{ base: "200px", md: "250px" }}
       h="auto"
       minH="100px"
@@ -77,18 +76,9 @@ const ProfileDropdown = ({ close }) => {
       zIndex="20"
       p="24px"
       bgColor="button"
-      //  boxShadow="dark-lg"
       flexDirection="column"
     >
-      {/* {(isCustomer() && userData) && (
-        <ProfileItem>
-          <Flex justifyContent="center" alignItems="center">
-            <MdOutlineAccountBalanceWallet style={{marginRight:"8px"}} size='30px'/> 
-             <Image src={headerWalletIcon}  /> 
-            {walletAddress()}
-          </Flex>
-        </ProfileItem>
-      )} */}
+
       {isCustomer() && userData && (
         <ProfileItem click={signInWallet}>{walletAddress()}</ProfileItem>
       )}
