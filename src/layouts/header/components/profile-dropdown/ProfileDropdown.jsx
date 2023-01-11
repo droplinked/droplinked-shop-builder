@@ -1,21 +1,30 @@
 import { useNavigate, Link } from "react-router-dom";
 
-import { useProfile } from "../../../../context/profile/ProfileContext";
+
 import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
-import { ProfileDropdownWrapper ,ProfileItem } from "./ProfileDropdown-style";
+import { ProfileDropdownWrapper, ProfileItem } from "./ProfileDropdown-style";
+import { signinViaHirowallet } from "../../../../utils/hirowallet/hirowallet-utils";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectCurrentProfile,
+  selectIsCustomer,
+  selectIsActiveProducer,
+} from "../../../../store/profile/profile.selector";
+import { setCurrentUser } from "../../../../store/profile/profile.action"
+import { logoutUser } from "../../../../store/profile/profile.action";
 
 import DropdownContainer from "../dropdown-container/DropdownContainer";
 
 const ProfileDropdown = ({ show, close }) => {
-  const {
-    profile,
-    logout,
-    isCustomer,
-    isRegisteredProducer,
-    signinWithaWallet,
-  } = useProfile();
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userData } = UseWalletInfo();
-  let navigate = useNavigate();
+
+  const profile = useSelector(selectCurrentProfile);
+  const isCustomer = useSelector(selectIsCustomer);
+  const isRegisteredProducer = useSelector(selectIsActiveProducer);
+  const logout = () => dispatch(logoutUser());
 
   let userStatus = profile.status;
   if (profile.user) {
@@ -24,7 +33,9 @@ const ProfileDropdown = ({ show, close }) => {
     userStatus = profile.status;
   }
 
-  const signInWallet = () => signinWithaWallet();
+  const addUser = (data) =>  dispatch(setCurrentUser(data)) 
+
+  const signInWallet = () =>  signinViaHirowallet(profile, addUser);
 
   const walletAddress = () => {
     if (userData) {
@@ -66,18 +77,18 @@ const ProfileDropdown = ({ show, close }) => {
   return (
     <DropdownContainer show={show} close={close}>
       <ProfileDropdownWrapper>
-        {isCustomer() && userData && (
+        {isCustomer && userData && (
           <ProfileItem onClick={signInWallet}>{walletAddress()}</ProfileItem>
         )}
-        {isCustomer() && !userData && (
+        {isCustomer && !userData && (
           <ProfileItem onClick={signInWallet}>Connect wallet</ProfileItem>
         )}
 
-        {isRegisteredProducer() && (
+        {isRegisteredProducer && (
           <ProfileItem onClick={clickProfile}>Profile</ProfileItem>
         )}
 
-        {isRegisteredProducer() && (
+        {isRegisteredProducer && (
           <>
             <Link to="/producer/ims">
               <ProfileItem onClick={close}>Inventory</ProfileItem>
@@ -91,7 +102,7 @@ const ProfileDropdown = ({ show, close }) => {
           </>
         )}
 
-        {isCustomer() && (
+        {isCustomer && (
           <Link to="/purchseHistory">
             <ProfileItem onClick={close}>Purchase history</ProfileItem>
           </Link>

@@ -4,18 +4,20 @@ import { useState } from "react";
 import { setProfileEmail } from "../../api/base-user/Profile-api";
 import { isValidEmail } from "../../utils/validations/emailValidation";
 import { useToasty } from "../../context/toastify/ToastContext";
-import { useProfile } from "../../context/profile/ProfileContext";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../../store/profile/profile.action";
+import { getProfileData } from "../../api/base-user/Profile-api";
 
 import FormInput from "../../components/shared/FormInput/FormInput";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 
-export default function EmailModal({show , close }) {
+export default function EmailModal({ show, close }) {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
 
-  const { updateProfileData } = useProfile();
   const { errorToast, successToast } = useToasty();
+  const dispatch = useDispatch();
 
   // submit form function
   const submit = async () => {
@@ -28,7 +30,8 @@ export default function EmailModal({show , close }) {
     setLoading(true);
     let result = await setProfileEmail(email);
     if (result == true) {
-      await updateProfileData();
+      let newProfile = await getProfileData();
+      dispatch(setCurrentUser(newProfile.data.user));
       successToast("Your email address updated");
       close();
     } else {

@@ -1,35 +1,42 @@
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import hiroWalletIcon from "../../assest/icon/headerWalletIcon.svg";
 
-
-
 import {
   WalletOptionItem,
   WalletOptionIcon,
   WalletOptionName,
-  Title
+  Title,
 } from "./WalletModal-style";
-import { useProfile } from "../../context/profile/ProfileContext";
+import { signinViaHirowallet } from "../../utils/hirowallet/hirowallet-utils";
+import { setCurrentUser } from "../../store/profile/profile.action";
 import { Box } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentProfile } from "../../store/profile/profile.selector";
 
 const WalletModal = ({ show, close }) => {
+  const dispatch = useDispatch();
 
-    const { signinWithaWallet } = useProfile();
+  const profile = useSelector(selectCurrentProfile);
 
-    const singInViaHiroWallet = () => signinWithaWallet()
+  const addUser = (data) => dispatch(setCurrentUser(data))
+
+  const singInViaHiroWallet = async () => {
+    signinViaHirowallet(profile, addUser);
+  };
+
 
   return (
     <ModalWrapper show={show} close={close}>
       <Box w="100%">
         <Title>Select wallet</Title>
-        <Box mb='30px' ></Box>
+        <Box mb="30px"></Box>
         <WalletOptionItem onClick={singInViaHiroWallet}>
           <WalletOptionIcon src={hiroWalletIcon} />
           <WalletOptionName>Hiro wallet</WalletOptionName>
         </WalletOptionItem>
         <Box mb="16px"></Box>
         <WalletOptionItem>
-          <WalletOptionIcon src={hiroWalletIcon} fill='var(white)' />
+          <WalletOptionIcon src={hiroWalletIcon} fill="var(white)" />
           <WalletOptionName>Casper wallet</WalletOptionName>
         </WalletOptionItem>
       </Box>
@@ -38,6 +45,3 @@ const WalletModal = ({ show, close }) => {
 };
 
 export default WalletModal;
-
-
-

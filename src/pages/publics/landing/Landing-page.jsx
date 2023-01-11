@@ -15,7 +15,8 @@ import {
   TextContainer,
   SpaceBox,
 } from "./Landing-page-style";
-import { useProfile } from "../../../context/profile/ProfileContext";
+import { useSelector } from "react-redux";
+import { selectCurrentProfile } from "../../../store/profile/profile.selector";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import LandingpageImage from "./components/landing-page-image-component";
@@ -39,7 +40,7 @@ const keyframe_leftanimation = keyframes`
 export default function LandingPage() {
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  const { profile } = useProfile();
+  const profile = useSelector(selectCurrentProfile);
   const navigate = useNavigate();
 
   const [showAuthModal, setShowAuthModal] = useState(false);

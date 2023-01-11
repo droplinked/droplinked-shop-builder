@@ -7,9 +7,10 @@ import { useParams } from "react-router-dom";
 import { getCollectionById } from "../../../api/public/Collection-api";
 import { useEffect, useState } from "react";
 import { USER_TYPE } from "../../../constant/user-types";
-import { useProfile } from "../../../context/profile/ProfileContext";
 import { Flex } from "@chakra-ui/react";
 import { AiFillEdit } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { selectCurrentProfile } from "../../../store/profile/profile.selector";
 
 import Product from "../../../components/shared/Product/Product";
 import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
@@ -21,7 +22,7 @@ const ProducerCollection = () => {
   const [editCollectionModal, setEditCollectionModal] = useState(false);
 
   const { collectionId } = useParams();
-  const { profile } = useProfile();
+  const profile = useSelector(selectCurrentProfile);
 
   useEffect(() => {
     getCollections();

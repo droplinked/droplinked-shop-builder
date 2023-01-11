@@ -1,6 +1,6 @@
 import { useState, createContext, useContext, useEffect } from "react";
 //import { authenticate } from "../../services/wallet-auth/auth";
-import { userSession } from "../profile/ProfileContext";
+import { userSession } from "../../utils/hirowallet/hirowallet-utils";
 
 const UserWalletContext = createContext(undefined);
 

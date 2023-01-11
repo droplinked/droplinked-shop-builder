@@ -11,10 +11,10 @@ import { useState, useContext } from "react";
 import { toastValue } from "../../context/toastify/ToastContext";
 import { isValidEmail } from "../../utils/validations/emailValidation";
 import { useNavigate } from "react-router-dom";
-import { useProfile } from "../../context/profile/ProfileContext";
 import { SignIn } from "../../api/base-user/Auth-api";
 import { API_STATUS } from "../../constant/api-status";
-
+import { useDispatch } from 'react-redux';
+import { setCurrentUser } from "../../store/profile/profile.action"
 
 
 
@@ -24,9 +24,10 @@ const LoginModal = ({show , close, switchModal, switchReset }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // hooks
-  const { addProfile } = useProfile();
+
   const { successToast, errorToast } = useContext(toastValue);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const changeEmail = (e) => setEmail(e.target.value);
   const changePassword = (e) => setPassword(e.target.value);
@@ -76,7 +77,8 @@ const LoginModal = ({show , close, switchModal, switchReset }) => {
     let status = data.user.status;
 
     if (data.user.type == USER_TYPE.CUSTOMER) {
-      addProfile(data);
+      dispatch(setCurrentUser(data));
+    //  addProfile(data);
       return;
     }
     if (status === PROFILE_STATUS.NEW) {
@@ -88,7 +90,8 @@ const LoginModal = ({show , close, switchModal, switchReset }) => {
       return;
     } else {
       navigateUser(status, data.user.shopName);
-      addProfile(data);
+      dispatch(setCurrentUser(data));
+     // addProfile(data);
       return;
     }
   };

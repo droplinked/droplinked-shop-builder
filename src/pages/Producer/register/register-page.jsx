@@ -14,7 +14,7 @@ import { updateShopApi } from "../../../api/producer/Shop-api";
 import { useShop } from "../../../context/shop/ShopContext";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
-import { useProfile } from "../../../context/profile/ProfileContext";
+
 
 import FormInput from "../../../components/shared/FormInput/FormInput";
 import InputImage from "../../../components/shared/InputImage/InputImage";
@@ -31,7 +31,7 @@ const RegisterPage = () => {
   const { addressList } = useAddress();
   const { errorToast, successToast } = useToasty();
   const { updateShop } = useShop();
-  const { updateProfileData } = useProfile();
+
 
   const profile = JSON.parse(localStorage.getItem("profile"));
 
@@ -95,7 +95,7 @@ const RegisterPage = () => {
       localStorage.setItem("shop", JSON.stringify(result.data.shop));
       successToast("Shop info successfully updated");
       updateShop();
-      await updateProfileData();
+    //  await updateProfileData();
       if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
     } else {
       errorToast(result.reason);

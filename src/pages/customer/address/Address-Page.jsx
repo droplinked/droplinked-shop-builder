@@ -6,7 +6,6 @@ import { useAddress } from "../../../context/address/AddressContext";
 import { addCheckoutAddress } from "../../../api/base-user/Cart-api";
 import { createCheckout } from "../../../api/producer/Shopify-api";
 import { useCart } from "../../../context/cart/CartContext";
-import { useProfile } from "../../../context/profile/ProfileContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
 import { UseWalletInfo } from "../../../context/wallet/WalletContext";
 import { useParams } from "react-router-dom";
@@ -18,6 +17,8 @@ import {
   ButtonWrapper,
 } from "./Address-page-style";
 import { getAddressObject, getShopifyData } from "./address-utils";
+import { useSelector } from "react-redux";
+import { selectCurrentProfile } from "../../../store/profile/profile.selector";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import AddressComponent from "../../../components/shared/Address/address-component";
@@ -27,12 +28,12 @@ import AddressModal from "../../../modals/address/AddressModal";
 function AddressPage() {
   // hooks
   const navigate = useNavigate();
-  const { profile } = useProfile();
   const { shopname } = useParams();
   const { getStxAddress } = UseWalletInfo();
   const { errorToast } = useToasty();
   const { addressList } = useAddress();
   const { cart } = useCart();
+  const profile = useSelector(selectCurrentProfile);
   // state
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [addressModal, setAddressModal] = useState(false);
@@ -66,8 +67,8 @@ function AddressPage() {
       cart,
       profile.email
     );
-    let result =  await createCheckout(cart.items[0].shopName, shopifyData);
-    return result 
+    let result = await createCheckout(cart.items[0].shopName, shopifyData);
+    return result;
   };
 
   const ProccessToPayment = async () => {
@@ -85,23 +86,20 @@ function AddressPage() {
     setLoading(false);
     if (result.status == API_STATUS.SUCCESS) {
       if (cart.type == SHOP_TYPES.SHOPIFY) {
-            let checkoutId = {
+        let checkoutId = {
           checkoutId: result.data.checkout.token,
           shopName: cart.items[0].shopName,
         };
         localStorage.setItem("checkout_id", JSON.stringify(checkoutId));
       }
 
-        localStorage.setItem("selected_address",JSON.stringify(selectedAddress));
-        navigate(`/${shopname}/shipping`);
-      
+      localStorage.setItem("selected_address", JSON.stringify(selectedAddress));
+      navigate(`/${shopname}/shipping`);
     } else {
       cart.type == SHOP_TYPES.DROPLINKED
         ? errorToast(result.data)
         : errorToast(result.data);
     }
-
-  
   };
 
   return (
@@ -128,10 +126,10 @@ function AddressPage() {
               }
             })}
             <Box mt="40px"></Box>
-   
+
             <AddAddressButton onClick={toggleAddressForm}>
-                + Add new address
-              </AddAddressButton>
+              + Add new address
+            </AddAddressButton>
 
             <ButtonWrapper>
               <Box w="30%">
@@ -154,7 +152,11 @@ function AddressPage() {
           </>
         )}
       </Box>
-      <AddressModal show={addressModal} close={toggleAddressForm} type={"CUSTOMER"} />
+      <AddressModal
+        show={addressModal}
+        close={toggleAddressForm}
+        type={"CUSTOMER"}
+      />
     </AddressPageWrapper>
   );
 }

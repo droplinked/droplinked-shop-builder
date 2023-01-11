@@ -1,21 +1,26 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { useProfile } from "../profile/ProfileContext";
 import { getOrdersList, SeenOrder } from "../../api/producer/Orders-api";
 import { sortArrayBaseCreateTime } from "../../utils/sort.utils/sort.utils";
+import { useSelector } from "react-redux";
+import {
+  selectCurrentProfile,
+  selectIsActiveProducer,
+} from "../../store/profile/profile.selector";
 
 export const OrderContext = createContext();
 
 export default function OrderProvider({ children }) {
   const [orders, setOrders] = useState([]);
 
-  const { profile, isRegisteredProducer } = useProfile();
+  const profile = useSelector(selectCurrentProfile);
+  const isRegisteredProducer = useSelector(selectIsActiveProducer);
   
   let token = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
     if (profile == null || token == null) return;
 
-    if (isRegisteredProducer()) {
+    if (isRegisteredProducer) {
       updateOrder();
     }
   }, [profile]);

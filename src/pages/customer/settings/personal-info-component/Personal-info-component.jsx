@@ -1,8 +1,8 @@
 import { Flex, Box, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 import { useState } from 'react';
-import { useProfile } from "../../../../context/profile/ProfileContext"
 import { BASE_URL } from "../../../../api/BaseUrl"
 import { useToasty } from "../../../../context/toastify/ToastContext"
+
 
 import InputImage from '../../../../components/shared/InputImage/InputImage'
 import FormInput from '../../../../components/shared/FormInput/FormInput'
@@ -26,8 +26,8 @@ export default function PersonalInfoComponent({ active }) {
     const profile = JSON.parse(localStorage.getItem("profile"));
     let token = JSON.parse(localStorage.getItem("token"));
 
-    const { updateProfileData } = useProfile();
     const { errorToast, successToast } = useToasty()
+
     const prefersReducedMotion = usePrefersReducedMotion();
 
     // profile image state
@@ -83,7 +83,8 @@ export default function PersonalInfoComponent({ active }) {
             .then(e => {
                 successToast('Profile successfully updated')
                 // update profile date if it is success full
-                 updateProfileData()
+                // updateProfileData()
+             
             })
             .catch(e => {
                 errorToast(e.response.data.reason)

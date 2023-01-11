@@ -3,7 +3,6 @@ import { Box } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
-import { useProfile } from "../../../../context/profile/ProfileContext";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 //import { checkRules } from "../../../../services/nft-service/NFTcheck";
 import { useCart } from "../../../../context/cart/CartContext";
@@ -22,6 +21,12 @@ import {
   getMaxDiscount,
   gatedPassesRules,
 } from "../../../../services/check-rule-service/check-rule";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectCurrentProfile,
+} from "../../../../store/profile/profile.selector";
+import { setCurrentUser } from "../../../../store/profile/profile.action";
+import { signinViaHirowallet } from "../../../../utils/hirowallet/hirowallet-utils";
 
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import DroplinkedDetail from "./Droplinked-merch-detail";
@@ -34,8 +39,9 @@ const DroplinkedMerch = ({ bproduct, openLogin }) => {
   const [selectedSku, setSelectedSku] = useState(null);
   const [lock, setLock] = useState(true);
 
+  const dispatch = useDispatch();
   const { userData } = UseWalletInfo();
-  const { profile, signinWithaWallet } = useProfile();
+  const profile = useSelector(selectCurrentProfile);
   const { errorToast, successToast } = useToasty();
   const { updateCart } = useCart();
   const params = useParams();
@@ -56,6 +62,10 @@ const DroplinkedMerch = ({ bproduct, openLogin }) => {
 
   let shopname = params.shopname;
   let images = product.media;
+
+  const addUser = (data) =>  dispatch(setCurrentUser(data)) 
+
+  const signInWallet = () =>  signinViaHirowallet(profile, addUser);
 
   useEffect(() => {
     if (gatedStatus != "PUBLIC" && userData) checkProductRule();
@@ -94,13 +104,13 @@ const DroplinkedMerch = ({ bproduct, openLogin }) => {
   // add to baskset functionality
   const Addtobasket = async () => {
     if (profile == null) {
-      if (isGated) signinWithaWallet();
+      if (isGated) signInWallet();
       else openLogin();
       return;
     }
 
     if (userData == undefined && isGated) {
-      signinWithaWallet();
+      signInWallet();
       return;
     }
 

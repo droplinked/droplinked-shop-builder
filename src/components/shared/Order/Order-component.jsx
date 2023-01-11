@@ -5,16 +5,18 @@ import {
   useDisclosure,
   Stack,
   Skeleton,
-  Image,
   keyframes,
-  GridItem,
 } from "@chakra-ui/react";
 import { convetToCustomFormat } from "../../../utils/date.utils/convertDate";
 import { ORDER_TYPES } from "../../../constant/order.types";
-import { useProfile } from "../../../context/profile/ProfileContext";
+
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { SHOP_TYPES } from "../../../constant/shop-types";
 import { getStatus , getTotalPrice} from "./order-component-utils"
+import {
+  selectIsCustomer,
+} from "../../../store/profile/profile.selector";
 import {
   OrderWrapper,
   DateText,
@@ -37,7 +39,7 @@ const animation = `${animationKeyframes} 2s ease infinite`;
 
 export default function Order({ order }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isCustomer } = useProfile();
+  const isCustomer = useSelector(selectIsCustomer);
   const navigate = useNavigate();
 
   const getQuantity = () => {
@@ -55,7 +57,7 @@ export default function Order({ order }) {
   const animationCondition = () => {
     const status = order.status;
 
-    if (isCustomer()) {
+    if (isCustomer) {
       if (status == ORDER_TYPES.WAITING_FOR_PAYMENT) return true;
       else return false;
     } else {

@@ -5,7 +5,8 @@ import { useParams } from "react-router-dom";
 import { getShopInfoByShopname } from "../../../api/public/Shop-api";
 import { getCollectionsByShopname } from "../../../api/public/Collection-api";
 import { ShopPageContainer, ShopnotFind } from "./Shop-page-style";
-import { useProfile } from "../../../context/profile/ProfileContext";
+import { useSelector } from "react-redux";
+import { selectCurrentProfile } from "../../../store/profile/profile.selector";
 import { Box, Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +22,7 @@ export default function ShopPage() {
   const [collection, setCollections] = useState(null);
 
   let { shopname } = useParams();
-  const { profile } = useProfile();
+  const profile = useSelector(selectCurrentProfile);
   const navigate = useNavigate();
 
   localStorage.setItem("currentShop", JSON.stringify(shopname));

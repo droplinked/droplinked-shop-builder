@@ -2,19 +2,19 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
 
-
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { useProfile } from "../../../context/profile/ProfileContext";
 import { customerSignup } from "../../../api/base-user/Auth-api";
 import { BottomText } from "../SignupModal-style";
+import { useDispatch } from "react-redux";
+
+import { setCurrentUser } from "../../../store/profile/profile.action";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import FormInput from "../../../components/shared/FormInput/FormInput";
 
 export default function SignupCustomer({ switchToggle, close }) {
-  const { addProfile } = useProfile();
-
   const { errorToast, successToast } = useToasty();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +32,7 @@ export default function SignupCustomer({ switchToggle, close }) {
     }
 
     if (validationEmail(email)) {
-        errorToast("Please enter a valid email address.");
+      errorToast("Please enter a valid email address.");
       return;
     }
 
@@ -43,7 +43,7 @@ export default function SignupCustomer({ switchToggle, close }) {
     if (result != null) {
       successToast("Account successfully created");
       close();
-      addProfile(result);
+      dispatch(setCurrentUser(result));
     }
     setLoading(false);
   };
@@ -71,7 +71,7 @@ export default function SignupCustomer({ switchToggle, close }) {
         value={password}
         changeValue={changePass}
         label={"Password"}
-        type='password'
+        type="password"
         placeholder={"Password"}
       />
       <Box mb="20px"></Box>
@@ -79,7 +79,7 @@ export default function SignupCustomer({ switchToggle, close }) {
         value={confirmPassword}
         changeValue={changeConfirmPass}
         label={"Confirm password"}
-        type='password'
+        type="password"
         placeholder={"Confirm password"}
       />
       <Box mb="20px"></Box>

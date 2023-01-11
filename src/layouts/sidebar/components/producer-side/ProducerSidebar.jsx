@@ -9,7 +9,6 @@ import closeIcon from "../../../../assest/icon/plus-icon.svg";
 
 import { Box } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useProfile } from "../../../../context/profile/ProfileContext";
 import { useSideBar } from "../../../../context/sidebar/sidebar-context";
 import {
   ProducerSlideWrapper,
@@ -17,12 +16,18 @@ import {
   SlideIcon,
   SlideText,
 } from "./ProducerSidebar-style";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCurrentProfile } from "../../../../store/profile/profile.selector";
+import { logoutUser } from "../../../../store/profile/profile.action";
 
 const ProducerSidebar = () => {
-  const { logout, profile } = useProfile();
+  const dispatch = useDispatch();
+  const profile = useSelector(selectCurrentProfile);
   const { showSideBar, toggleSideBar } = useSideBar();
 
   let navigate = useNavigate();
+
+  const logout = () => dispatch(logoutUser());
 
   const collectionClick = () => navigate("/producer/collection");
   const orderClick = () => navigate("/producer/orders");
@@ -40,7 +45,6 @@ const ProducerSidebar = () => {
         w="auto"
         h="100%"
         mt="50px"
-        
         display={{ base: "none", sm: "block" }}
         //  flexDirection='column'
       >

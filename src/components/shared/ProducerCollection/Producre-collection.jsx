@@ -12,10 +12,13 @@ import {
   ProductsWrapper,
 } from "./Producer-collection-style";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { useProfile } from "../../../context/profile/ProfileContext";
 import { deleteCollection } from "../../../api/producer/Collection-api";
 import { Box } from "@chakra-ui/react";
 import { USER_TYPE } from "../../../constant/user-types";
+import { useSelector } from "react-redux";
+import {
+  selectCurrentProfile,
+} from "../../../store/profile/profile.selector";
 
 import { useState } from "react";
 
@@ -26,7 +29,7 @@ const ProducerCollection = ({ collection, update }) => {
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
-  const { profile } = useProfile();
+  const profile = useSelector(selectCurrentProfile);
 
   const DeleteCollection = async () => {
     setLoading(true);
