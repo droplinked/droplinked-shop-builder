@@ -16,7 +16,10 @@ import { useAddress } from "../../../../context/address/AddressContext";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { updateShopApi } from "../../../../api/producer/Shop-api";
 import { useNavigate } from "react-router-dom";
-import { useShop } from "../../../../context/shop/ShopContext";
+//import { useShop } from "../../../../context/shop/ShopContext";
+import { getShop } from "../../../../api/base-user/Profile-api";
+import { useDispatch } from "react-redux";
+import { setCurrentShop } from "../../../../store/shop/shop.action";
 
 import axios from "axios";
 import InputImage from "../../../../components/shared/InputImage/InputImage";
@@ -41,13 +44,15 @@ export default function ShopInfoComponent({ active }) {
   const token = JSON.parse(localStorage.getItem("token"));
   const profile = JSON.parse(localStorage.getItem("profile"));
 
+  const dispatch = useDispatch()
+
   const [shop, setShop] = useState(null);
   const [disableBtn, setDisableBtn] = useState(false);
   const [addressModal, setAddressModal] = useState(false);
 
   const { addressList } = useAddress();
   const { errorToast, successToast } = useToasty();
-  const { updateShop } = useShop();
+  //const { updateShop } = useShop();
 
   let navigate = useNavigate();
 
@@ -110,7 +115,10 @@ export default function ShopInfoComponent({ active }) {
     if (result.status == "success") {
       localStorage.setItem("shop", JSON.stringify(result.data.shop));
       successToast("Shop info successfully updated");
-      updateShop();
+      let newShop = await getShop();
+      if (newShop) {
+        dispatch(setCurrentShop(newShop));
+      }
       if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
     } else {
       errorToast(result.reason);

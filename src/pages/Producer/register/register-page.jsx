@@ -11,9 +11,11 @@ import { useEffect, useState } from "react";
 import { useAddress } from "../../../context/address/AddressContext";
 import { getShop } from "../../../api/base-user/Profile-api";
 import { updateShopApi } from "../../../api/producer/Shop-api";
-import { useShop } from "../../../context/shop/ShopContext";
+//import { useShop } from "../../../context/shop/ShopContext";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCurrentShop } from "../../../store/shop/shop.action";
 
 
 import FormInput from "../../../components/shared/FormInput/FormInput";
@@ -30,7 +32,8 @@ const RegisterPage = () => {
   const [disableBtn, setDisableBtn] = useState(false);
   const { addressList } = useAddress();
   const { errorToast, successToast } = useToasty();
-  const { updateShop } = useShop();
+  //const { updateShop } = useShop();
+  const dispatch = useDispatch();
 
 
   const profile = JSON.parse(localStorage.getItem("profile"));
@@ -94,7 +97,10 @@ const RegisterPage = () => {
     if (result.status == "success") {
       localStorage.setItem("shop", JSON.stringify(result.data.shop));
       successToast("Shop info successfully updated");
-      updateShop();
+      let newShop = await getShop();
+      if (newShop) {
+        dispatch(setCurrentShop(newShop));
+      }
     //  await updateProfileData();
       if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
     } else {

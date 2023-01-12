@@ -8,12 +8,15 @@ import { useEffect } from "react";
 import { useAddress } from "../../context/address/AddressContext";
 import { useNotifications } from "../../context/notifications/NotificationsContext";
 import { isJwtValid } from "../../api/base-user/Profile-api";
-import { useShop } from "../../context/shop/ShopContext";
+//import { useShop } from "../../context/shop/ShopContext";
 import { useSelector } from "react-redux";
 import {
   selectCurrentProfile,
   selectIsCustomer,
 } from "../../store/profile/profile.selector";
+import { getShop } from "../../api/base-user/Profile-api";
+import { useDispatch } from "react-redux";
+import { setCurrentShop } from "../../store/shop/shop.action";
 
 import Header from "../../layouts/header/Header";
 import Footer from "../../layouts/footer/Footer";
@@ -25,8 +28,9 @@ export default function PageWrapper() {
   const profile = useSelector(selectCurrentProfile);
   const isCustomer = useSelector(selectIsCustomer);
   const { updateNotifications } = useNotifications();
-  const { updateShop } = useShop();
+  //const { updateShop } = useShop();
   const { shopname } = useParams();
+  const dispatch = useDispatch();
 
   let location = useLocation();
 
@@ -35,11 +39,16 @@ export default function PageWrapper() {
     if (token != null || token != undefined) firtsCheck();
   }, []);
 
-  useEffect(() => {
+  useEffect(async () => {
     let token = JSON.parse(localStorage.getItem("token"));
     if (token != null || token != undefined) {
       if (isCustomer) updateCart();
-      if (!isCustomer) updateShop();
+      if (!isCustomer) {
+        let newShop = await getShop();
+        if (newShop) {
+          dispatch(setCurrentShop(newShop));
+        }
+      }
       updateAddressList();
       updateNotifications();
       setInterval(updateNotifications, 60000);

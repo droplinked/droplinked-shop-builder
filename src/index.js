@@ -17,7 +17,7 @@ import CartProvider from "./context/cart/CartContext";
 //import ProfileProvider from "./context/profile/ProfileContext";
 import AddressProvider from "./context/address/AddressContext";
 import NotificationProvider from "./context/notifications/NotificationsContext";
-import ShopProvider from "./context/shop/ShopContext";
+//import ShopProvider from "./context/shop/ShopContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,9 +29,9 @@ ReactDOM.render(
               <ChakraProvider theme={theme}>
                 <AddressProvider>
                   <NotificationProvider>
-                    <ShopProvider>
+                    {/* <ShopProvider> */}
                       <App />
-                    </ShopProvider>
+                    {/* </ShopProvider> */}
                   </NotificationProvider>
                 </AddressProvider>
               </ChakraProvider>
