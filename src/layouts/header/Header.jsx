@@ -27,7 +27,6 @@ const Header = () => {
   const isCustomer = useSelector(selectIsCustomer);
   const isRegisteredProducer = useSelector(selectIsActiveProducer);
 //
-console.log("profile ", useSelector(selectCurrentProfile));
   const { showSideBar, toggleSideBar } = useSideBar();
   const navigate = useNavigate();
 
