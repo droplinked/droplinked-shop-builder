@@ -37,7 +37,7 @@ const animationKeyframes = keyframes`
 
 const animation = `${animationKeyframes} 2s ease infinite`;
 
-export default function Order({ order }) {
+export default function Order({ updateOrder, order }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isCustomer = useSelector(selectIsCustomer);
   const navigate = useNavigate();
@@ -130,7 +130,7 @@ export default function Order({ order }) {
         </Stack>
       )}
       {order.items.length > 0 && (
-        <OrderModal order={order} show={isOpen} close={onClose} />
+        <OrderModal updateOrder={updateOrder} order={order} show={isOpen} close={onClose} />
       )}
     </OrderWrapper>
   );

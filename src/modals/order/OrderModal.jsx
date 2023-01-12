@@ -12,7 +12,7 @@ import { useState } from "react";
 import { updateOrderStatus } from "../../api/producer/Orders-api";
 import { ORDER_TYPES } from "../../constant/order.types";
 import { useToasty } from "../../context/toastify/ToastContext";
-import { useOrder } from "../../context/order/OrdersContext";
+//import { useOrder } from "../../context/order/OrdersContext";
 import { SHOP_TYPES } from "../../constant/shop-types";
 
 import OrderMerch from "./components/OrderMerch";
@@ -20,7 +20,7 @@ import OrderStatus from "./components/OrderStatus";
 import OrderAddress from "./components/OrderAddress";
 import SmallModal from "../../modals/small/SmallModal";
 
-export default function OrderModal({ order, show, close }) {
+export default function OrderModal({updateOrder , order, show, close }) {
   // this state use for loading stauts
   const [loadingBtn, setLoadingBtn] = useState(false);
   // this state use for show proccessModal
@@ -29,7 +29,7 @@ export default function OrderModal({ order, show, close }) {
   const [cancelOrderModal, setCancelOrderModal] = useState(false);
 
   const { successToast, errorToast } = useToasty();
-  const { updateOrder } = useOrder();
+ // const { updateOrder } = useOrder();
 
   const progressClick = async () => {
     let statusType =
