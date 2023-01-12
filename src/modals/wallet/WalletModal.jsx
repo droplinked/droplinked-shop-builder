@@ -12,6 +12,7 @@ import { setCurrentUser } from "../../store/profile/profile.action";
 import { Box } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentProfile } from "../../store/profile/profile.selector";
+import { autuWithCasperTest } from "../../utils/casperwallet/casperwallet-utils"
 
 const WalletModal = ({ show, close }) => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const WalletModal = ({ show, close }) => {
           <WalletOptionName>Hiro wallet</WalletOptionName>
         </WalletOptionItem>
         <Box mb="16px"></Box>
-        <WalletOptionItem>
+        <WalletOptionItem onClick={autuWithCasperTest}>
           <WalletOptionIcon src={hiroWalletIcon} fill="var(white)" />
           <WalletOptionName>Casper wallet</WalletOptionName>
         </WalletOptionItem>
