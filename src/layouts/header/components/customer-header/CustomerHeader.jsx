@@ -4,14 +4,16 @@ import newWalletIcon from "../../../../assest/icon/new-wallet-icon.svg";
 import Notification from "../notification/Notification";
 import ProfileDropdown from "../profile-dropdown/ProfileDropdown";
 
-import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
-
+//import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import { UserHeaderWrapper, WalletAddressText } from "./CustomerHeader-style";
+import { selectHiroWalletData } from "../../../../store/hiro-wallet/hiro-wallet.selector";
 import { Image } from "@chakra-ui/react";
 
 const CustomerHeader = () => {
-  const { userData } = UseWalletInfo();
+  //const { userData } = UseWalletInfo();
+  const userData = useSelector(selectHiroWalletData)
   const [showProfileDropdown, setShowProfileDropdown] = useState(null);
 
   const toggleProfileDropdown = () => setShowProfileDropdown((p) => !p);

@@ -20,7 +20,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentProfile } from "../../../../store/profile/profile.selector";
 import { setCurrentUser } from "../../../../store/profile/profile.action";
 import { signinViaHirowallet } from "../../../../utils/hirowallet/hirowallet-utils";
-//import { getMaxDiscount } from "../../../../services/nft-service/maxDiscount";
+import { selectHiroWalletData } from "../../../../store/hiro-wallet/hiro-wallet.selector";
 
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import ShopifyDetail from "./Shopify-merch-detail-component";
@@ -39,7 +39,7 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
   const [percent, setPercent] = useState(null);
 
   const dispatch = useDispatch();
-  const { userData } = UseWalletInfo();
+  const userData = useSelector(selectHiroWalletData);
   const { addShopifyItemToCart } = useCart();
   const { successToast, errorToast } = useToasty();
   const profile = useSelector(selectCurrentProfile);

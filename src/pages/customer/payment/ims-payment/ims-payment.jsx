@@ -2,6 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { useSelector } from "react-redux";
 import { useCart } from "../../../../context/cart/CartContext";
 import { API_STATUS } from "../../../../constant/api-status";
 import { checkoutCart, checkoutFree } from "../../../../api/base-user/Cart-api";
@@ -19,6 +20,7 @@ import {
   ButtonsWrapper,
   PaymetnButton,
 } from "./ims-payment-style";
+import { selectHiroWalletData } from "../../../../store/hiro-wallet/hiro-wallet.selector";
 
 import SmallModal from "../../../../modals/small/SmallModal";
 import StripeComponent from "./stripe modal/stripe-modal-component";
@@ -33,7 +35,7 @@ export default function ImsPayment({ totalPrice }) {
   // ............................  //
   const { errorToast } = useToasty();
   const { cart, updateCart } = useCart();
-  const { userData } = UseWalletInfo();
+  const userData = useSelector(selectHiroWalletData);
 
   let navigate = useNavigate();
   var lastOrder = JSON.parse(sessionStorage.getItem("payOrder"));

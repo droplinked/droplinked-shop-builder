@@ -7,7 +7,6 @@ import { addCheckoutAddress } from "../../../api/base-user/Cart-api";
 import { createCheckout } from "../../../api/producer/Shopify-api";
 import { useCart } from "../../../context/cart/CartContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
-import { UseWalletInfo } from "../../../context/wallet/WalletContext";
 import { useParams } from "react-router-dom";
 import { API_STATUS } from "../../../constant/api-status";
 import {
@@ -29,7 +28,6 @@ function AddressPage() {
   // hooks
   const navigate = useNavigate();
   const { shopname } = useParams();
-  const { getStxAddress } = UseWalletInfo();
   const { errorToast } = useToasty();
   const { addressList } = useAddress();
   const { cart } = useCart();
@@ -63,7 +61,7 @@ function AddressPage() {
     let addressObj = getAddressObject(selectedAddress);
     let shopifyData = getShopifyData(
       addressObj,
-      cart.wallet ? getStxAddress() : "",
+      cart.wallet ? profile.stacksAddress : "",
       cart,
       profile.email
     );

@@ -17,6 +17,8 @@ import {
 import { getShop } from "../../api/base-user/Profile-api";
 import { useDispatch } from "react-redux";
 import { setCurrentShop } from "../../store/shop/shop.action";
+import { userSession } from "../../utils/hirowallet/hirowallet-utils";
+import { setCurrentHiroWallet } from "../../store/hiro-wallet/hiro-wallet.action";
 
 import Header from "../../layouts/header/Header";
 import Footer from "../../layouts/footer/Footer";
@@ -34,9 +36,29 @@ export default function PageWrapper() {
 
   let location = useLocation();
 
+  const getHiroWalletData = () => {
+    if (userSession.isSignInPending()) {
+      userSession
+        .handlePendingSignIn()
+        .then((userData) => {
+          window.history.replaceState({}, document.title, "/");
+          dispatch(setCurrentHiroWallet(userData));
+          //  setUserData(userData);
+        })
+        .catch((err) => {
+          dispatch(setCurrentHiroWallet(undefined));
+          //  setUserData(undefined);
+        });
+    } else if (userSession.isUserSignedIn()) {
+      dispatch(setCurrentHiroWallet(userSession.loadUserData()));
+      //  setUserData(userSession.loadUserData());
+    }
+  };
+
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem("token"));
     if (token != null || token != undefined) firtsCheck();
+    getHiroWalletData();
   }, []);
 
   useEffect(async () => {

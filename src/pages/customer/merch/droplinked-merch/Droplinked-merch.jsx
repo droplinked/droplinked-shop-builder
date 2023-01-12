@@ -25,6 +25,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectCurrentProfile,
 } from "../../../../store/profile/profile.selector";
+import { selectHiroWalletData } from "../../../../store/hiro-wallet/hiro-wallet.selector";
 import { setCurrentUser } from "../../../../store/profile/profile.action";
 import { signinViaHirowallet } from "../../../../utils/hirowallet/hirowallet-utils";
 
@@ -40,7 +41,8 @@ const DroplinkedMerch = ({ bproduct, openLogin }) => {
   const [lock, setLock] = useState(true);
 
   const dispatch = useDispatch();
-  const { userData } = UseWalletInfo();
+ // const { userData } = UseWalletInfo();
+  const userData = useSelector(selectHiroWalletData);
   const profile = useSelector(selectCurrentProfile);
   const { errorToast, successToast } = useToasty();
   const { updateCart } = useCart();

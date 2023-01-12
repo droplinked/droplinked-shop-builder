@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import { store } from './store/store';
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { WalletProvider } from "./context/wallet/WalletContext";
+//import { WalletProvider } from "./context/wallet/WalletContext";
 import { theme } from "./theme";
 import ToastifyProvider from "./context/toastify/ToastContext";
 import CartProvider from "./context/cart/CartContext";
@@ -24,7 +24,7 @@ ReactDOM.render(
     <ToastifyProvider>
       <Provider store={store}>
         {/* <ProfileProvider> */}
-          <WalletProvider>
+          {/* <WalletProvider> */}
             <CartProvider>
               <ChakraProvider theme={theme}>
                 <AddressProvider>
@@ -36,7 +36,7 @@ ReactDOM.render(
                 </AddressProvider>
               </ChakraProvider>
             </CartProvider>
-          </WalletProvider>
+          {/* </WalletProvider> */}
         {/* </ProfileProvider> */}
       </Provider>
     </ToastifyProvider>

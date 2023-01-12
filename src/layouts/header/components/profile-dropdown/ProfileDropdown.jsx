@@ -1,7 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 
-
-import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
+//import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
 import { ProfileDropdownWrapper, ProfileItem } from "./ProfileDropdown-style";
 import { signinViaHirowallet } from "../../../../utils/hirowallet/hirowallet-utils";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,17 +9,17 @@ import {
   selectIsCustomer,
   selectIsActiveProducer,
 } from "../../../../store/profile/profile.selector";
-import { setCurrentUser } from "../../../../store/profile/profile.action"
+import { setCurrentUser } from "../../../../store/profile/profile.action";
 import { logoutUser } from "../../../../store/profile/profile.action";
+import { selectHiroWalletData } from "../../../../store/hiro-wallet/hiro-wallet.selector";
 
 import DropdownContainer from "../dropdown-container/DropdownContainer";
 
 const ProfileDropdown = ({ show, close }) => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { userData } = UseWalletInfo();
-
+  //const { userData } = UseWalletInfo();
+  const userData = useSelector(selectHiroWalletData);
   const profile = useSelector(selectCurrentProfile);
   const isCustomer = useSelector(selectIsCustomer);
   const isRegisteredProducer = useSelector(selectIsActiveProducer);
@@ -33,9 +32,9 @@ const ProfileDropdown = ({ show, close }) => {
     userStatus = profile.status;
   }
 
-  const addUser = (data) =>  dispatch(setCurrentUser(data)) 
+  const addUser = (data) => dispatch(setCurrentUser(data));
 
-  const signInWallet = () =>  signinViaHirowallet(profile, addUser);
+  const signInWallet = () => signinViaHirowallet(profile, addUser);
 
   const walletAddress = () => {
     if (userData) {
