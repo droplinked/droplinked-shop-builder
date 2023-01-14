@@ -16,7 +16,7 @@ import ToastifyProvider from "./context/toastify/ToastContext";
 import CartProvider from "./context/cart/CartContext";
 //import ProfileProvider from "./context/profile/ProfileContext";
 //import AddressProvider from "./context/address/AddressContext";
-import NotificationProvider from "./context/notifications/NotificationsContext";
+//import NotificationProvider from "./context/notifications/NotificationsContext";
 //import ShopProvider from "./context/shop/ShopContext";
 
 ReactDOM.render(
@@ -28,11 +28,11 @@ ReactDOM.render(
             <CartProvider>
               <ChakraProvider theme={theme}>
                 {/* <AddressProvider> */}
-                  <NotificationProvider>
+                  {/* <NotificationProvider> */}
                     {/* <ShopProvider> */}
                       <App />
                     {/* </ShopProvider> */}
-                  </NotificationProvider>
+                  {/* </NotificationProvider> */}
                 {/* </AddressProvider> */}
               </ChakraProvider>
             </CartProvider>

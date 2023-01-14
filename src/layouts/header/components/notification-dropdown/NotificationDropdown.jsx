@@ -1,14 +1,13 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useNotifications } from "../../../../context/notifications/NotificationsContext";
+
 
 import NOtificationItem from "./NotificationItem";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import DropdownContainer from "../dropdown-container/DropdownContainer";
 
-const NotificationDropdown = ({ show, close }) => {
-    
-  const { notifications, unseenNotifList } = useNotifications();
+const NotificationDropdown = ({updateNotifications , notifications, unSeenNofits, show, close }) => {
+
   let navigate = useNavigate();
 
   const notificationClick = () => {
@@ -49,14 +48,14 @@ const NotificationDropdown = ({ show, close }) => {
             fontSize={{ base: "14px", md: "16px" }}
             fontWeight="600"
           >
-            {unseenNotifList().length}
+            {unSeenNofits.length}
           </Text>
         </Flex>
         {notifications.length > 0 &&
           notifications.map((notif, i) => {
             if (notif.seen == false) {
               if (i < 5)
-                return <NOtificationItem key={i} notif={notif} close={close} />;
+                return <NOtificationItem key={i} updateNotifications={updateNotifications} notif={notif} close={close} />;
             }
           })}
         <Box h={{ base: "40px", md: "50px" }} pt="10px">

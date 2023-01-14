@@ -1,8 +1,11 @@
 import { Flex, keyframes } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 
-import { useNotifications } from "../../../../context/notifications/NotificationsContext";
 import { CartIconWrapper, IconImage } from "./Notification-style";
+import {
+  getNotifications,
+} from "../../../../api/base-user/Notification-api";
+import { sortArrayBaseCreateTime } from "../../../../utils/sort.utils/sort.utils";
 
 import NotificationDropdown from "../notification-dropdown/NotificationDropdown";
 import notificationIcon from "../../../../assest/icon/notification-icon.svg";
@@ -16,14 +19,37 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 1s linear infinite`;
 
 export default function Notification() {
-    
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const { unseenNotifList } = useNotifications();
+  const [notifications, setNotifications] = useState([]);
 
-  const unSeenNofits = unseenNotifList();
+  
+  const getUnseenNotifications = () => {
+    if (notifications.length > 0) {
+      let unseens = notifications.filter(
+        (notification) => notification.seen == false
+      );
+      return unseens;
+    } else {
+      return [];
+    }
+  };
+
+  const unSeenNofits = useMemo(() => getUnseenNotifications(), [notifications]);
 
   const toggleNotificationDropdown = () => setShowDropdown((p) => !p);
+
+  const updateNotifications = async () => {
+    let result = await getNotifications();
+    result = sortArrayBaseCreateTime(result);
+    if (result != null) setNotifications(result);
+  };
+
+
+  useEffect(() => {
+    updateNotifications();
+      setInterval(updateNotifications, 60000);
+  }, []);
 
   return (
     <>
@@ -55,6 +81,9 @@ export default function Notification() {
         )}
       </CartIconWrapper>
       <NotificationDropdown
+      updateNotifications={updateNotifications}
+      notifications={notifications}
+      unSeenNofits={unSeenNofits}
         show={showDropdown}
         close={toggleNotificationDropdown}
       />
