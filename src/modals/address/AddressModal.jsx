@@ -1,18 +1,25 @@
 import { Box, Flex, FormControl, FormLabel } from "@chakra-ui/react";
 import { useState } from "react";
 
-import { useAddress } from "../../context/address/AddressContext";
+import { useToasty } from "../../context/toastify/ToastContext";
 import { COUNTRIES, US_STATES } from "./address-list-constant";
+import { newAddress, UpdateAddress } from "../../api/base-user/Address-api";
 
 import FormInput from "../../components/shared/FormInput/FormInput";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import SelectInput from "../../components/shared/SelectInput/SelectInput";
 
-export default function AddressModal({show ,  type, addressBook, close }) {
+export default function AddressModal({
+  show,
+  updateAddressList,
+  type,
+  addressBook,
+  close,
+}) {
   // address context functions for add new address or update address
-  const { addAddress, updateAddress } = useAddress();
 
+  const { successToast, errorToast } = useToasty();
   // form values states
   // if get address book on props set addressbook value for default or not set '' for default value
   const [line1, setLine1] = useState(
@@ -78,6 +85,26 @@ export default function AddressModal({show ,  type, addressBook, close }) {
     if (error == "Last Name") setError("");
   };
 
+  const update = async (formData, addressBookId) => {
+    let result = await UpdateAddress(formData, addressBookId);
+    if (result == true) successToast("Address updated successfully");
+    else errorToast(result);
+
+    updateAddressList();
+    return result == true ? true : false;
+  };
+
+  const addAddress = async (formDate) => {
+    let result = await newAddress(formDate);
+    if (result == true) {
+      successToast("Address added successfully");
+    } else {
+      errorToast(result);
+    }
+    await updateAddressList();
+    return result == true ? true : false;
+  };
+
   // submit form
   const submitForm = async () => {
     // validate form if has invalid data stop function
@@ -116,7 +143,7 @@ export default function AddressModal({show ,  type, addressBook, close }) {
     let result;
 
     if (addressBook) {
-      result = await updateAddress(formData, addressBook._id);
+      result = await update(formData, addressBook._id);
     } else {
       result = await addAddress(formData);
     }
@@ -222,7 +249,7 @@ export default function AddressModal({show ,  type, addressBook, close }) {
               label={"State/province"}
               placeholder={"State/province"}
               value={state}
-              changeValue={(e)=>ChangeState(e.target.value)}
+              changeValue={(e) => ChangeState(e.target.value)}
               isError={error == "state" && "State/province is required"}
             />
           )}

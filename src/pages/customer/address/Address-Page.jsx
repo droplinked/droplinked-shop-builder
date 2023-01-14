@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { useAddress } from "../../../context/address/AddressContext";
+
 import { addCheckoutAddress } from "../../../api/base-user/Cart-api";
 import { createCheckout } from "../../../api/producer/Shopify-api";
 import { useCart } from "../../../context/cart/CartContext";
@@ -15,6 +15,7 @@ import {
   AddAddressButton,
   ButtonWrapper,
 } from "./Address-page-style";
+import { getAddressList } from "../../../api/base-user/Address-api";
 import { getAddressObject, getShopifyData } from "./address-utils";
 import { useSelector } from "react-redux";
 import { selectCurrentProfile } from "../../../store/profile/profile.selector";
@@ -29,7 +30,7 @@ function AddressPage() {
   const navigate = useNavigate();
   const { shopname } = useParams();
   const { errorToast } = useToasty();
-  const { addressList } = useAddress();
+  const [addressList, setAddressList] = useState([]);
   const { cart } = useCart();
   const profile = useSelector(selectCurrentProfile);
   // state
@@ -39,9 +40,15 @@ function AddressPage() {
 
   let token = JSON.parse(localStorage.getItem("token"));
 
+  const updateAddressList = async () => {
+    let result = await getAddressList(errorToast);
+    if (result != null) setAddressList(result);
+  };
+
   useEffect(() => {
     // navigate if not user
     if (!token) navigate("/");
+    else updateAddressList();
   }, []);
 
   useEffect(() => {

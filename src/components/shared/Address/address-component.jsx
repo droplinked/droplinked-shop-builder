@@ -1,5 +1,5 @@
-import { Flex, Button } from "@chakra-ui/react";
-import { useAddress } from "../../../context/address/AddressContext";
+import { Flex } from "@chakra-ui/react";
+import { useToasty } from "../../../context/toastify/ToastContext";
 import { useState } from "react";
 import {
   AddressComponentWrapper,
@@ -8,6 +8,7 @@ import {
   ButtonsWrapper,
   ButtonComponent,
 } from "./address-style";
+import { DeleteAddress } from "../../../api/base-user/Address-api";
 import SmallModal from "../../../modals/small/SmallModal";
 import AddressModal from "../../../modals/address/AddressModal";
 
@@ -45,12 +46,14 @@ export default function AddressComponent({
   // state for open and close delete modal
   const [deleteModal, setDeleteModal] = useState(false);
 
-  const { deleteAddress } = useAddress();
+  const { successToast, errorToast } = useToasty();
 
   // delete button only show if deleteable be true
   const deleteAddressFunc = async () => {
     setDisableBtn(true);
-    await deleteAddress(address._id);
+    let result = await DeleteAddress(address._id);
+    if (result == true) successToast("Address deleted successfully");
+    else errorToast(result);
     setDisableBtn(false);
     closeDeleteModal();
   };
@@ -66,7 +69,7 @@ export default function AddressComponent({
 
   const closeDeleteModal = () => setDeleteModal(false);
 
-  const toggleAddressModal = () => setShowAddressModal(p => !p)
+  const toggleAddressModal = () => setShowAddressModal((p) => !p);
 
   return (
     <>
@@ -110,14 +113,14 @@ export default function AddressComponent({
 
         {/* delete address modal */}
 
-          <SmallModal
-            text={`Are you sure you want to delete this address?`}
-            show={deleteModal}
-            hide={closeDeleteModal}
-            click={deleteAddressFunc}
-            loading={disableBtn}
-            buttonText={"Delete"}
-          />
+        <SmallModal
+          text={`Are you sure you want to delete this address?`}
+          show={deleteModal}
+          hide={closeDeleteModal}
+          click={deleteAddressFunc}
+          loading={disableBtn}
+          buttonText={"Delete"}
+        />
 
         {/* delete address modal */}
       </AddressComponentWrapper>

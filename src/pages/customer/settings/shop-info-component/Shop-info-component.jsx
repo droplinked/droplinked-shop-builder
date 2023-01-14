@@ -12,7 +12,7 @@ import {
 
 import { BASE_URL } from "../../../../api/BaseUrl";
 import { useEffect, useState } from "react";
-import { useAddress } from "../../../../context/address/AddressContext";
+import { getAddressList } from "../../../../api/base-user/Address-api";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { updateShopApi } from "../../../../api/producer/Shop-api";
 import { useNavigate } from "react-router-dom";
@@ -44,23 +44,31 @@ export default function ShopInfoComponent({ active }) {
   const token = JSON.parse(localStorage.getItem("token"));
   const profile = JSON.parse(localStorage.getItem("profile"));
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [shop, setShop] = useState(null);
   const [disableBtn, setDisableBtn] = useState(false);
   const [addressModal, setAddressModal] = useState(false);
 
-  const { addressList } = useAddress();
+  const [addressList, setAddressList] = useState([]);
   const { errorToast, successToast } = useToasty();
   //const { updateShop } = useShop();
 
   let navigate = useNavigate();
 
   const prefersReducedMotion = usePrefersReducedMotion();
-
   const startAnimation = prefersReducedMotion
     ? undefined
     : `${keyframe_startanimation}  0.2s linear`;
+
+  const updateAddressList = async () => {
+    let result = await getAddressList(errorToast);
+    if (result != null) setAddressList(result);
+  };
+
+  useEffect(() => {
+    updateAddressList();
+  }, []);
 
   let shopAddressBook = addressList.find(
     (address) => address.addressType == "SHOP"

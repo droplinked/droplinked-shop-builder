@@ -5,7 +5,6 @@ import { Box } from "@chakra-ui/react";
 import { Outlet, useParams, useLocation } from "react-router-dom";
 import { useCart } from "../../context/cart/CartContext";
 import { useEffect } from "react";
-import { useAddress } from "../../context/address/AddressContext";
 import { useNotifications } from "../../context/notifications/NotificationsContext";
 import { isJwtValid } from "../../api/base-user/Profile-api";
 //import { useShop } from "../../context/shop/ShopContext";
@@ -26,7 +25,6 @@ import SideBarProvider from "../../context/sidebar/sidebar-context";
 
 export default function PageWrapper() {
   const { updateCart } = useCart();
-  const { updateAddressList } = useAddress();
   const profile = useSelector(selectCurrentProfile);
   const isCustomer = useSelector(selectIsCustomer);
   const { updateNotifications } = useNotifications();
@@ -71,7 +69,6 @@ export default function PageWrapper() {
           dispatch(setCurrentShop(newShop));
         }
       }
-      updateAddressList();
       updateNotifications();
       setInterval(updateNotifications, 60000);
     }

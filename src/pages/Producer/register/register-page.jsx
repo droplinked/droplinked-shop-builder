@@ -8,7 +8,6 @@ import {
 } from "./register-page-style";
 import { FormControl, FormLabel, Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useAddress } from "../../../context/address/AddressContext";
 import { getShop } from "../../../api/base-user/Profile-api";
 import { updateShopApi } from "../../../api/producer/Shop-api";
 //import { useShop } from "../../../context/shop/ShopContext";
@@ -16,7 +15,7 @@ import { useToasty } from "../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentShop } from "../../../store/shop/shop.action";
-
+import { getAddressList } from "../../../api/base-user/Address-api";
 
 import FormInput from "../../../components/shared/FormInput/FormInput";
 import InputImage from "../../../components/shared/InputImage/InputImage";
@@ -30,17 +29,22 @@ const RegisterPage = () => {
   const [shop, setShop] = useState(null);
   const [addressModal, setAddressModal] = useState(false);
   const [disableBtn, setDisableBtn] = useState(false);
-  const { addressList } = useAddress();
+  const [addressList, setAddressList] = useState([]);
   const { errorToast, successToast } = useToasty();
   //const { updateShop } = useShop();
   const dispatch = useDispatch();
-
 
   const profile = JSON.parse(localStorage.getItem("profile"));
 
   let navigate = useNavigate();
 
+  const updateAddressList = async () => {
+    let result = await getAddressList(errorToast);
+    if (result != null) setAddressList(result);
+  };
+
   useEffect(() => {
+    updateAddressList();
     getShopData();
   }, []);
 
@@ -101,7 +105,7 @@ const RegisterPage = () => {
       if (newShop) {
         dispatch(setCurrentShop(newShop));
       }
-    //  await updateProfileData();
+      //  await updateProfileData();
       if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
     } else {
       errorToast(result.reason);

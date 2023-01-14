@@ -4,9 +4,9 @@ import {
   keyframes,
   usePrefersReducedMotion,
 } from "@chakra-ui/react";
-import { useAddress } from "../../../../context/address/AddressContext";
-import { useState } from "react";
-
+import { getAddressList } from "../../../../api/base-user/Address-api";
+import { useState , useEffect } from "react";
+import { useToasty } from "../../../../context/toastify/ToastContext";
 import AddressComponent from "../../../../components/shared/Address/address-component";
 import AddressModal from "../../../../modals/address/AddressModal";
 import Loading from "../../../../components/shared/loading/Loading";
@@ -25,8 +25,20 @@ const keyframe_startanimation = keyframes`
 export default function AddressBookComponent({ active }) {
   const [addressModal, setAddressModal] = useState(false);
 
-  const { addressList } = useAddress();
+  const [addressList, setAddressList] = useState([]);
+
+  const { errorToast } = useToasty();
   const prefersReducedMotion = usePrefersReducedMotion();
+
+  const updateAddressList = async () => {
+    let result = await getAddressList(errorToast);
+    if (result != null) setAddressList(result);
+  };
+
+  useEffect(() => {
+     updateAddressList();
+  }, []);
+
 
   const startAnimation = prefersReducedMotion
     ? undefined

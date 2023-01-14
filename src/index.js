@@ -15,7 +15,7 @@ import { theme } from "./theme";
 import ToastifyProvider from "./context/toastify/ToastContext";
 import CartProvider from "./context/cart/CartContext";
 //import ProfileProvider from "./context/profile/ProfileContext";
-import AddressProvider from "./context/address/AddressContext";
+//import AddressProvider from "./context/address/AddressContext";
 import NotificationProvider from "./context/notifications/NotificationsContext";
 //import ShopProvider from "./context/shop/ShopContext";
 
@@ -27,13 +27,13 @@ ReactDOM.render(
           {/* <WalletProvider> */}
             <CartProvider>
               <ChakraProvider theme={theme}>
-                <AddressProvider>
+                {/* <AddressProvider> */}
                   <NotificationProvider>
                     {/* <ShopProvider> */}
                       <App />
                     {/* </ShopProvider> */}
                   </NotificationProvider>
-                </AddressProvider>
+                {/* </AddressProvider> */}
               </ChakraProvider>
             </CartProvider>
           {/* </WalletProvider> */}
