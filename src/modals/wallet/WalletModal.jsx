@@ -1,6 +1,6 @@
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
-import hiroWalletIcon from "../../assest/icon/headerWalletIcon.svg";
-
+import hiroWalletIcon from "../../assest/icon/hiroWalletIcon.svg";
+import casperIcon from "../../assest/icon/casper-wallet-icon.svg"
 import {
   WalletOptionItem,
   WalletOptionIcon,
@@ -37,7 +37,7 @@ const WalletModal = ({ show, close }) => {
         </WalletOptionItem>
         <Box mb="16px"></Box>
         <WalletOptionItem onClick={autuWithCasperTest}>
-          <WalletOptionIcon src={hiroWalletIcon} fill="var(white)" />
+          <WalletOptionIcon src={casperIcon} fill="var(white)" />
           <WalletOptionName>Casper wallet</WalletOptionName>
         </WalletOptionItem>
       </Box>
