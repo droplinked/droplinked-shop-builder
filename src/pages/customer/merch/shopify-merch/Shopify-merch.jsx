@@ -2,7 +2,6 @@ import { Box } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useCart } from "../../../../context/cart/CartContext";
 import { useToasty } from "../../../../context/toastify/ToastContext";
-import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
 import {
   MerchPageWrapper,
   DescriptionWrapper,

@@ -2,7 +2,6 @@
 import { Box } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 //import { checkRules } from "../../../../services/nft-service/NFTcheck";
 import { useCart } from "../../../../context/cart/CartContext";

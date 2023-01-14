@@ -7,7 +7,6 @@ import { useCart } from "../../../../context/cart/CartContext";
 import { API_STATUS } from "../../../../constant/api-status";
 import { checkoutCart, checkoutFree } from "../../../../api/base-user/Cart-api";
 import { getUserAddress } from "../../../../services/wallet-auth/api";
-import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
 import {

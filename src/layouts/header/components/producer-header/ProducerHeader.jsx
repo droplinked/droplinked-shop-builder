@@ -3,7 +3,6 @@ import {
   ProfileIconWrapper,
   ProfileChar,
 } from "./ProducerHeader-style";
-import { useShop } from "../../../../context/shop/ShopContext";
 import { useSelector } from "react-redux";
 import { selectCurrentShop } from "../../../../store/shop/shop.selector";
 import { Box } from "@chakra-ui/react";
@@ -13,7 +12,6 @@ import Notification from "../notification/Notification";
 
 const ProducerHeader = () => { 
   const shop = useSelector(selectCurrentShop)
-  //const { shop } = useShop();
 
 
   return (
