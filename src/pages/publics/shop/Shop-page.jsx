@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getShopInfoByShopname } from "../../../api/public/Shop-api";
+//import { getShopInfoByShopname } from "../../../api/public/Shop-api";
 import { getCollectionsByShopname } from "../../../api/public/Collection-api";
 import { ShopPageContainer, ShopnotFind } from "./Shop-page-style";
 import { useSelector } from "react-redux";
 import { selectCurrentProfile } from "../../../store/profile/profile.selector";
+import { useApi } from "../../../hooks/useApi/useApi";
+import { getShopInfoByShopname } from "../../../api-service/publics/shop-api";
 import { Box, Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -22,19 +24,20 @@ export default function ShopPage() {
   const [collection, setCollections] = useState(null);
 
   let { shopname } = useParams();
+  const { getApi } = useApi();
   const profile = useSelector(selectCurrentProfile);
   const navigate = useNavigate();
 
   localStorage.setItem("currentShop", JSON.stringify(shopname));
 
   useEffect(() => {
-    getShopData(shopname);
+    getShopData();
     getCollectionData(shopname);
   }, [shopname]);
 
-  const getShopData = async (shop) => {
-    let shopinfo = await getShopInfoByShopname(shop);
-    setShop(shopinfo);
+  const getShopData = async () => {
+    let result = await getApi(getShopInfoByShopname(shopname));
+    if (result) setShop(result);
   };
 
   const getCollectionData = async () => {
@@ -60,7 +63,9 @@ export default function ShopPage() {
             <Box>
               <ShopnotFind>Shop not found</ShopnotFind>
               <Flex pt="88px" justifyContent="center">
-                <BasicButton w="50%" click={navigateToLandingpage}>Claim your shop now</BasicButton>
+                <BasicButton w="50%" click={navigateToLandingpage}>
+                  Claim your shop now
+                </BasicButton>
               </Flex>
             </Box>
           ) : (
