@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-//import { getShopInfoByShopname } from "../../../api/public/Shop-api";
-import { getCollectionsByShopname } from "../../../api/public/Collection-api";
+import { getCollectionsByShopname } from "../../../api-service/publics/collection-api";
 import { ShopPageContainer, ShopnotFind } from "./Shop-page-style";
 import { useSelector } from "react-redux";
 import { selectCurrentProfile } from "../../../store/profile/profile.selector";
@@ -41,8 +40,8 @@ export default function ShopPage() {
   };
 
   const getCollectionData = async () => {
-    let collections = await getCollectionsByShopname(shopname);
-    setCollections(collections);
+    let result = await getApi(getCollectionsByShopname(shopname));
+    if (result) setCollections(result);
   };
 
   const isOwner = () => {

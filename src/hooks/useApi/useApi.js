@@ -71,7 +71,6 @@ export function useApi() {
           },
         }
       );
-     console.log('in hook : ',res.data);
       return res.data.data;
     } catch (err) {
       if (err.response) {
