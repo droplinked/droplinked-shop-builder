@@ -1,14 +1,17 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { MdOutlineMessage } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-
+import { useApi } from "../../../../hooks/useApi/useApi";
+import { postSeenNotification } from "../../../../api-service/notification/notificationApiService";
 import { convertToStandardFormat } from "../../../../utils/date.utils/convertDate";
 import { NOTIFICATION_TYPE } from "../../../../constant/notification.type";
-import { seenNotification } from "../../../../api/base-user/Notification-api";
+
 
 const NOtificationItem = ({ updateNotifications, notif, close }) => {
+  const { postApi } = useApi()
+
   const seenNotif = async (id) => {
-    await seenNotification(id);
+    await postApi(postSeenNotification(id));
     await updateNotifications();
   };
 
