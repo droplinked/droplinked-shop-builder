@@ -2,7 +2,6 @@ import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import FormInput from "../../components/shared/FormInput/FormInput";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
-
 import { Box } from "@chakra-ui/react";
 import { Title, BottomText } from "./LoginModal-style";
 import { PROFILE_STATUS } from "../../constant/profile-status-types";
@@ -11,21 +10,20 @@ import { useState, useContext } from "react";
 import { toastValue } from "../../context/toastify/ToastContext";
 import { isValidEmail } from "../../utils/validations/emailValidation";
 import { useNavigate } from "react-router-dom";
-import { SignIn } from "../../api/base-user/Auth-api";
-import { API_STATUS } from "../../constant/api-status";
-import { useDispatch } from 'react-redux';
-import { setCurrentUser } from "../../store/profile/profile.action"
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../../store/profile/profile.action";
+import { postLogin } from "../../api-service/auth/authApiService";
+import { useApi } from "../../hooks/useApi/useApi";
 
-
-
-const LoginModal = ({show , close, switchModal, switchReset }) => {
-    // state for disable buttons
+const LoginModal = ({ show, close, switchModal, switchReset }) => {
+  // state for disable buttons
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // hooks
 
-  const { successToast, errorToast } = useContext(toastValue);
+  const { postApi } = useApi();
+  const { errorToast } = useContext(toastValue);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -49,22 +47,18 @@ const LoginModal = ({show , close, switchModal, switchReset }) => {
 
   // submit form function
   const onSubmit = async () => {
-    let info = {
-      email: email,
-      password: password,
-    };
+    // let info = {
+    //   email: email,
+    //   password: password,
+    // };
 
     if (validateForm() == false) return;
 
     setLoading(true);
 
-    let result = await SignIn(info);
-
-    if (result.status == API_STATUS.SUCCESS) {
-      loginFunction(result.data);
-    } else {
-      errorToast(result.data);
-    }
+    // let result = await SignIn(info);
+    let result = await postApi(postLogin(email, password));
+    if (result) loginFunction(result);
 
     setLoading(false);
   };
@@ -78,7 +72,7 @@ const LoginModal = ({show , close, switchModal, switchReset }) => {
 
     if (data.user.type == USER_TYPE.CUSTOMER) {
       dispatch(setCurrentUser(data));
-    //  addProfile(data);
+      //  addProfile(data);
       return;
     }
     if (status === PROFILE_STATUS.NEW) {
@@ -91,7 +85,7 @@ const LoginModal = ({show , close, switchModal, switchReset }) => {
     } else {
       navigateUser(status, data.user.shopName);
       dispatch(setCurrentUser(data));
-     // addProfile(data);
+      // addProfile(data);
       return;
     }
   };
@@ -157,7 +151,6 @@ const LoginModal = ({show , close, switchModal, switchReset }) => {
       </ModalWrapper>
     </>
   );
-}
+};
 
-
-export default LoginModal
+export default LoginModal;

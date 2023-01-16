@@ -1,16 +1,16 @@
 import axios from "axios";
 
 import { BASE_URL } from "../BaseUrl";
-import { API_STATUS } from "../../constant/api-status";
+//import { API_STATUS } from "../../constant/api-status";
 
-export const SignIn = async (info) => {
-  try {
-    const res = await axios.post(`${BASE_URL}/signin`, info);
-    return { status: API_STATUS.SUCCESS, data: res.data.data };
-  } catch (err) {
-    return { status: API_STATUS.FAILED, data: err.response.data.reason };
-  }
-};
+// export const SignIn = async (info) => {
+//   try {
+//     const res = await axios.post(`${BASE_URL}/signin`, info);
+//     return { status: API_STATUS.SUCCESS, data: res.data.data };
+//   } catch (err) {
+//     return { status: API_STATUS.FAILED, data: err.response.data.reason };
+//   }
+// };
 
 export const customerSignup = async (info, errorFunc) => {
   try {
