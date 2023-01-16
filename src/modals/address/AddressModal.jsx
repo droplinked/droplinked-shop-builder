@@ -3,8 +3,10 @@ import { useState } from "react";
 
 import { useToasty } from "../../context/toastify/ToastContext";
 import { COUNTRIES, US_STATES } from "./address-list-constant";
-import { UpdateAddress } from "../../api/base-user/Address-api";
-import { postAddress } from "../../api-service/address/addressApiService";
+import {
+  postAddress,
+  patchAddress,
+} from "../../api-service/address/addressApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 
 import FormInput from "../../components/shared/FormInput/FormInput";
@@ -22,7 +24,7 @@ export default function AddressModal({
   // address context functions for add new address or update address
 
   const { successToast, errorToast } = useToasty();
-  const { postApi } = useApi()
+  const { postApi, patchApi } = useApi();
   // form values states
   // if get address book on props set addressbook value for default or not set '' for default value
   const [line1, setLine1] = useState(
@@ -89,25 +91,23 @@ export default function AddressModal({
   };
 
   const update = async (formData, addressBookId) => {
-    let result = await UpdateAddress(formData, addressBookId);
-    if (result == true) successToast("Address updated successfully");
-    else errorToast(result);
-
-    updateAddressList();
-    return result == true ? true : false;
+    let result = await patchApi(patchAddress(formData, addressBookId));
+    if (result) {
+      successToast("Address updated successfully");
+      if (updateAddressList) updateAddressList();
+      return true;
+    }
   };
 
   const addAddress = async (formDate) => {
-    console.log('postApi ' , postAddress(formDate));
-    let result = await postApi(postAddress(formDate))
-    console.log('result ' , result);
+    let result = await postApi(postAddress(formDate));
     if (result) {
       successToast("Address added successfully");
-      if(updateAddressList)updateAddressList()
-      return true
+      if (updateAddressList) updateAddressList();
+      return true;
     }
-  
-   // return result ? true : false;
+
+    // return result ? true : false;
   };
 
   // submit form
@@ -153,7 +153,7 @@ export default function AddressModal({
       result = await addAddress(formData);
     }
     setLoading(false);
-    console.log('final res ' ,result );
+    console.log("final res ", result);
     if (result) close();
   };
 

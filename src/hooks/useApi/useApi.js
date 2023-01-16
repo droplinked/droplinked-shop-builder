@@ -36,7 +36,7 @@ export function useApi() {
 
   const patchApi = async ({ url, token, body }) => {
     try {
-      const res = await axios.patch(
+      const res = await axios.put(
         `${BASE_URL}/${url}`,
         { ...(body && { ...body }) },
         {
@@ -60,7 +60,6 @@ export function useApi() {
   };
 
   const getApi = async ({ url, token, body }) => {
-  
     try {
       const res = await axios.get(`${BASE_URL}/${url}`, {
         ...(body && { ...body }),
@@ -86,22 +85,17 @@ export function useApi() {
 
   const deleteApi = async ({ url, token, body }) => {
     try {
-      const res = await axios.delete(
-        `${BASE_URL}/${url}`,
-        { ...(body && { ...body }) },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            ...(token && { Authorization: "Bearer " + token }),
-          },
-        }
-      );
+      const res = await axios.delete(`${BASE_URL}/${url}`, {
+        ...(body && { ...body }),
+        headers: {
+          "Content-Type": "application/json",
+          ...(token && { Authorization: "Bearer " + token }),
+        },
+      });
       return res.data.data;
     } catch (err) {
       if (err.response) {
-        if (typeof err.response.data.data.message == "object")
-          errorToast(err.response.data.data.message[0]);
-        else errorToast(err.response.data.data.message);
+        errorToast(err.response.data.reason);
       } else {
         errorToast(err.message);
       }

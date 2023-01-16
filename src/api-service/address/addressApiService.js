@@ -25,3 +25,14 @@ export const deleteAddress = (addressId) => {
   };
   return { ...apiObj };
 };
+
+
+export const patchAddress = (addressObj , addressId) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `address/${addressId}`,
+    body: addressObj,
+    token: token,
+  };
+  return { ...apiObj };
+};

@@ -8,9 +8,11 @@ import {
   ButtonsWrapper,
   ButtonComponent,
 } from "./address-style";
-import { DeleteAddress } from "../../../api/base-user/Address-api";
+
+import { useApi } from "../../../hooks/useApi/useApi";
 import SmallModal from "../../../modals/small/SmallModal";
 import AddressModal from "../../../modals/address/AddressModal";
+import { deleteAddress } from "../../../api-service/address/addressApiService";
 
 // (address) formta in props {
 //      addressLine1: string
@@ -46,14 +48,14 @@ export default function AddressComponent({
   // state for open and close delete modal
   const [deleteModal, setDeleteModal] = useState(false);
 
-  const { successToast, errorToast } = useToasty();
+  const { successToast } = useToasty();
+  const { deleteApi } = useApi();
 
   // delete button only show if deleteable be true
   const deleteAddressFunc = async () => {
     setDisableBtn(true);
-    let result = await DeleteAddress(address._id);
-    if (result == true) successToast("Address deleted successfully");
-    else errorToast(result);
+    let result = await deleteApi(deleteAddress(address._id));
+    if (result) successToast("Address deleted successfully");
     setDisableBtn(false);
     closeDeleteModal();
   };
