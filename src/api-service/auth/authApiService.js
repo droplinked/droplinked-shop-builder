@@ -1,5 +1,3 @@
-
-
 export const postLogin = (email, password) => {
   let apiObj = {
     url: `signin`,
@@ -22,3 +20,12 @@ export const postSignupCustomer = (email, password) => {
   return { ...apiObj };
 };
 
+export const postEmailVerify = (token) => {
+  let apiObj = {
+    url: `email/verify`,
+    body: {
+      token: token,
+    },
+  };
+  return { ...apiObj };
+};

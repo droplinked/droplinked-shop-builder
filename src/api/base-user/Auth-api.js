@@ -22,14 +22,14 @@ import { BASE_URL } from "../BaseUrl";
 //   }
 // };
 
-export const emailVerify = async (token) => {
-  try {
-    const res = await axios.post(`${BASE_URL}/email/verify`, { token: token });
-    return true;
-  } catch (err) {
-    return err.response.data.reason;
-  }
-};
+// export const emailVerify = async (token) => {
+//   try {
+//     const res = await axios.post(`${BASE_URL}/email/verify`, { token: token });
+//     return true;
+//   } catch (err) {
+//     return err.response.data.reason;
+//   }
+// };
 
 export const resetPassword = async (email) => {
   try {
