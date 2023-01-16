@@ -1,10 +1,8 @@
 import { Flex, keyframes } from "@chakra-ui/react";
 import { useState, useEffect, useMemo } from "react";
-
+import { useApi } from "../../../../hooks/useApi/useApi";
 import { CartIconWrapper, IconImage } from "./Notification-style";
-import {
-  getNotifications,
-} from "../../../../api/base-user/Notification-api";
+import { getNotifications } from "../../../../api-service/notification/notificationApiService";
 import { sortArrayBaseCreateTime } from "../../../../utils/sort.utils/sort.utils";
 
 import NotificationDropdown from "../notification-dropdown/NotificationDropdown";
@@ -22,8 +20,8 @@ export default function Notification() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const [notifications, setNotifications] = useState([]);
+  const { getApi } = useApi();
 
-  
   const getUnseenNotifications = () => {
     if (notifications.length > 0) {
       let unseens = notifications.filter(
@@ -40,15 +38,17 @@ export default function Notification() {
   const toggleNotificationDropdown = () => setShowDropdown((p) => !p);
 
   const updateNotifications = async () => {
-    let result = await getNotifications();
-    result = sortArrayBaseCreateTime(result);
-    if (result != null) setNotifications(result);
+    let result = await getApi(getNotifications())
+    if(result){
+      result = sortArrayBaseCreateTime(result.notifications);
+      setNotifications(result);
+    }
+   
   };
-
 
   useEffect(() => {
     updateNotifications();
-      setInterval(updateNotifications, 60000);
+    setInterval(updateNotifications, 60000);
   }, []);
 
   return (
@@ -81,9 +81,9 @@ export default function Notification() {
         )}
       </CartIconWrapper>
       <NotificationDropdown
-      updateNotifications={updateNotifications}
-      notifications={notifications}
-      unSeenNofits={unSeenNofits}
+        updateNotifications={updateNotifications}
+        notifications={notifications}
+        unSeenNofits={unSeenNofits}
         show={showDropdown}
         close={toggleNotificationDropdown}
       />

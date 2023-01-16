@@ -4,18 +4,18 @@ import { BASE_URL } from "../BaseUrl";
 
 
 
-export const getNotifications = async () => {
-  const token = JSON.parse(localStorage.getItem("token"));
-    try {
-        const res = await axios.get(`${BASE_URL}/notification`,
-        {headers: { Authorization: "Bearer " + token },
-        })
-        return res.data.data.notifications
-      } catch (err) {
-        console.error(err.response.data.reason)
-        return null
-      }
-};
+// export const getNotifications = async () => {
+//   const token = JSON.parse(localStorage.getItem("token"));
+//     try {
+//         const res = await axios.get(`${BASE_URL}/notification`,
+//         {headers: { Authorization: "Bearer " + token },
+//         })
+//         return res.data.data.notifications
+//       } catch (err) {
+//         console.error(err.response.data.reason)
+//         return null
+//       }
+// };
 
 
 

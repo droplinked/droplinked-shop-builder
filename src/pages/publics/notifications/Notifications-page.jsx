@@ -1,17 +1,23 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { getNotifications } from "../../../api/base-user/Notification-api";
+import { getNotifications } from "../../../api-service/notification/notificationApiService";
 import { sortArrayBaseCreateTime } from "../../../utils/sort.utils/sort.utils";
 import { useState, useEffect } from "react";
+import { useApi } from "../../../hooks/useApi/useApi";
 import NotificationComponent from "./Notification.component";
 import Loading from "../../../components/shared/loading/Loading";
 
 export default function Notifications() {
   const [notifications, setNotifications] = useState([]);
 
+  const { getApi } = useApi();
+
   const updateNotifications = async () => {
-    let result = await getNotifications();
-    result = sortArrayBaseCreateTime(result);
-    if (result != null) setNotifications(result);
+    
+    let result = await getApi(getNotifications());
+    if (result) {
+      result = sortArrayBaseCreateTime(result.notifications);
+      setNotifications(result);
+    }
   };
 
   useEffect(() => {
