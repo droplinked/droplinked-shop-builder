@@ -29,3 +29,13 @@ export const postEmailVerify = (token) => {
   };
   return { ...apiObj };
 };
+
+export const postResetPassword = (email) => {
+  let apiObj = {
+    url: `producer/reset-password`,
+    body: {
+      email: email,
+    },
+  };
+  return { ...apiObj };
+};

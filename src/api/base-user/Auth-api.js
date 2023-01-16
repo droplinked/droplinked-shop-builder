@@ -31,16 +31,16 @@ import { BASE_URL } from "../BaseUrl";
 //   }
 // };
 
-export const resetPassword = async (email) => {
-  try {
-    const res = await axios.post(`${BASE_URL}/producer/reset-password`, {
-      email: email,
-    });
-    return true;
-  } catch (err) {
-    return err.response.data.reason;
-  }
-};
+// export const resetPassword = async (email) => {
+//   try {
+//     const res = await axios.post(`${BASE_URL}/producer/reset-password`, {
+//       email: email,
+//     });
+//     return true;
+//   } catch (err) {
+//     return err.response.data.reason;
+//   }
+// };
 
 export const recoveryAccount = async (token, newPass) => {
   try {

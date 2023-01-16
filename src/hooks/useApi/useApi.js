@@ -24,9 +24,10 @@ export function useApi() {
       return res.data.data;
     } catch (err) {
       if (err.response) {
-        if (typeof err.response.data.data.message == "object")
-          errorToast(err.response.data.data.message[0]);
-        else errorToast(err.response.data.data.message);
+        errorToast(err.response.data.reason);
+        // if (typeof err.response.data.data.message == "object")
+        //   errorToast(err.response.data.data.message[0]);
+        // else errorToast(err.response.data.data.message);
       } else {
         errorToast(err.message);
       }
