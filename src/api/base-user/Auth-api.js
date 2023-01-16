@@ -12,15 +12,15 @@ import { BASE_URL } from "../BaseUrl";
 //   }
 // };
 
-export const customerSignup = async (info, errorFunc) => {
-  try {
-    const res = await axios.post(`${BASE_URL}/customer/signup`, info);
-    return res.data.data;
-  } catch (err) {
-    errorFunc(err.response.data.reason);
-    return null;
-  }
-};
+// export const customerSignup = async (info, errorFunc) => {
+//   try {
+//     const res = await axios.post(`${BASE_URL}/customer/signup`, info);
+//     return res.data.data;
+//   } catch (err) {
+//     errorFunc(err.response.data.reason);
+//     return null;
+//   }
+// };
 
 export const emailVerify = async (token) => {
   try {

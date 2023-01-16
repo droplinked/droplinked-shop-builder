@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
 
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { customerSignup } from "../../../api/base-user/Auth-api";
+//import { customerSignup } from "../../../api/base-user/Auth-api";
 import { BottomText } from "../SignupModal-style";
 import { useDispatch } from "react-redux";
+import { postSignupCustomer } from "../../../api-service/auth/authApiService";
+import { useApi } from "../../../hooks/useApi/useApi";
 
 import { setCurrentUser } from "../../../store/profile/profile.action";
 
@@ -15,6 +17,7 @@ import FormInput from "../../../components/shared/FormInput/FormInput";
 export default function SignupCustomer({ switchToggle, close }) {
   const { errorToast, successToast } = useToasty();
   const dispatch = useDispatch();
+  const { postApi } = useApi();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,11 +39,13 @@ export default function SignupCustomer({ switchToggle, close }) {
       return;
     }
 
-    let accountInfo = { email: email, password: password };
+    //let accountInfo = { email: email, password: password };
     setLoading(true);
 
-    let result = await customerSignup(accountInfo, errorToast);
-    if (result != null) {
+    // let result = await customerSignup(accountInfo, errorToast);
+    let result = await postApi(postSignupCustomer(email, password));
+    console.log('result , ' , result);
+    if (result) {
       successToast("Account successfully created");
       close();
       dispatch(setCurrentUser(result));
