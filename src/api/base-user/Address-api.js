@@ -19,17 +19,17 @@ import { BASE_URL } from "../BaseUrl";
 
 
 
-export const newAddress = async (address) => {
-  const token = JSON.parse(localStorage.getItem("token"));
-    try {
-        const res = await axios.post(`${BASE_URL}/address`, address , {
-          headers: { Authorization: "Bearer " + token },
-        })
-        return true
-      } catch (err) {
-        return err.response.data.reason;
-      }
-};
+// export const newAddress = async (address) => {
+//   const token = JSON.parse(localStorage.getItem("token"));
+//     try {
+//         const res = await axios.post(`${BASE_URL}/address`, address , {
+//           headers: { Authorization: "Bearer " + token },
+//         })
+//         return true
+//       } catch (err) {
+//         return err.response.data.reason;
+//       }
+// };
 
 
 export const DeleteAddress = async (id) => {

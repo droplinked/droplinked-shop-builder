@@ -3,7 +3,9 @@ import { useState } from "react";
 
 import { useToasty } from "../../context/toastify/ToastContext";
 import { COUNTRIES, US_STATES } from "./address-list-constant";
-import { newAddress, UpdateAddress } from "../../api/base-user/Address-api";
+import { UpdateAddress } from "../../api/base-user/Address-api";
+import { postAddress } from "../../api-service/address/addressApiService";
+import { useApi } from "../../hooks/useApi/useApi";
 
 import FormInput from "../../components/shared/FormInput/FormInput";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
@@ -20,6 +22,7 @@ export default function AddressModal({
   // address context functions for add new address or update address
 
   const { successToast, errorToast } = useToasty();
+  const { postApi } = useApi()
   // form values states
   // if get address book on props set addressbook value for default or not set '' for default value
   const [line1, setLine1] = useState(
@@ -95,14 +98,16 @@ export default function AddressModal({
   };
 
   const addAddress = async (formDate) => {
-    let result = await newAddress(formDate);
-    if (result == true) {
+    console.log('postApi ' , postAddress(formDate));
+    let result = await postApi(postAddress(formDate))
+    console.log('result ' , result);
+    if (result) {
       successToast("Address added successfully");
-    } else {
-      errorToast(result);
+      if(updateAddressList)updateAddressList()
+      return true
     }
-    await updateAddressList();
-    return result == true ? true : false;
+  
+   // return result ? true : false;
   };
 
   // submit form
@@ -148,8 +153,8 @@ export default function AddressModal({
       result = await addAddress(formData);
     }
     setLoading(false);
-
-    if (result == true) close();
+    console.log('final res ' ,result );
+    if (result) close();
   };
 
   // validation form required
