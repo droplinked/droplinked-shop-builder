@@ -12,7 +12,6 @@ import {
 
 import { BASE_URL } from "../../../../api/BaseUrl";
 import { useEffect, useState } from "react";
-import { getAddressList } from "../../../../api/base-user/Address-api";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { updateShopApi } from "../../../../api/producer/Shop-api";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +19,8 @@ import { useNavigate } from "react-router-dom";
 import { getShop } from "../../../../api/base-user/Profile-api";
 import { useDispatch } from "react-redux";
 import { setCurrentShop } from "../../../../store/shop/shop.action";
+import { useApi } from "../../../../hooks/useApi/useApi";
+import { getAddress } from "../../../../api-service/address/addressApiService";
 
 import axios from "axios";
 import InputImage from "../../../../components/shared/InputImage/InputImage";
@@ -45,6 +46,7 @@ export default function ShopInfoComponent({ active }) {
   const profile = JSON.parse(localStorage.getItem("profile"));
 
   const dispatch = useDispatch();
+  const { getApi } = useApi();
 
   const [shop, setShop] = useState(null);
   const [disableBtn, setDisableBtn] = useState(false);
@@ -62,8 +64,8 @@ export default function ShopInfoComponent({ active }) {
     : `${keyframe_startanimation}  0.2s linear`;
 
   const updateAddressList = async () => {
-    let result = await getAddressList(errorToast);
-    if (result != null) setAddressList(result);
+    let result = await getApi(getAddress());
+    if (result) setAddressList(result.addressBooks);
   };
 
   useEffect(() => {

@@ -15,7 +15,8 @@ import { useToasty } from "../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentShop } from "../../../store/shop/shop.action";
-import { getAddressList } from "../../../api/base-user/Address-api";
+import { useApi } from "../../../hooks/useApi/useApi";
+import { getAddress } from "../../../api-service/address/addressApiService";
 
 import FormInput from "../../../components/shared/FormInput/FormInput";
 import InputImage from "../../../components/shared/InputImage/InputImage";
@@ -33,14 +34,15 @@ const RegisterPage = () => {
   const { errorToast, successToast } = useToasty();
   //const { updateShop } = useShop();
   const dispatch = useDispatch();
+  const { getApi } = useApi();
 
   const profile = JSON.parse(localStorage.getItem("profile"));
 
   let navigate = useNavigate();
 
   const updateAddressList = async () => {
-    let result = await getAddressList(errorToast);
-    if (result != null) setAddressList(result);
+    let result = await getApi(getAddress());
+    if (result) setAddressList(result.addressBooks);
   };
 
   useEffect(() => {

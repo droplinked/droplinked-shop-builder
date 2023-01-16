@@ -4,18 +4,18 @@ import { BASE_URL } from "../BaseUrl";
 
 
 
-export const getAddressList = async (errorFunc) => {
-  const token = JSON.parse(localStorage.getItem("token"));
-    try {
-        const res = await axios.get(`${BASE_URL}/address`, {
-          headers: { Authorization: "Bearer " + token },
-        })
-        return res.data.data.addressBooks
-      } catch (err) {
-        errorFunc(err.response.data.reason);
-        return null;
-      }
-};
+// export const getAddressList = async (errorFunc) => {
+//   const token = JSON.parse(localStorage.getItem("token"));
+//     try {
+//         const res = await axios.get(`${BASE_URL}/address`, {
+//           headers: { Authorization: "Bearer " + token },
+//         })
+//         return res.data.data.addressBooks
+//       } catch (err) {
+//         errorFunc(err.response.data.reason);
+//         return null;
+//       }
+// };
 
 
 

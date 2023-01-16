@@ -15,10 +15,11 @@ import {
   AddAddressButton,
   ButtonWrapper,
 } from "./Address-page-style";
-import { getAddressList } from "../../../api/base-user/Address-api";
 import { getAddressObject, getShopifyData } from "./address-utils";
 import { useSelector } from "react-redux";
 import { selectCurrentProfile } from "../../../store/profile/profile.selector";
+import { useApi } from "../../../hooks/useApi/useApi";
+import { getAddress } from "../../../api-service/address/addressApiService";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import AddressComponent from "../../../components/shared/Address/address-component";
@@ -32,6 +33,7 @@ function AddressPage() {
   const { errorToast } = useToasty();
   const [addressList, setAddressList] = useState([]);
   const { cart } = useCart();
+  const { getApi } = useApi();
   const profile = useSelector(selectCurrentProfile);
   // state
   const [selectedAddress, setSelectedAddress] = useState(null);
@@ -41,8 +43,8 @@ function AddressPage() {
   let token = JSON.parse(localStorage.getItem("token"));
 
   const updateAddressList = async () => {
-    let result = await getAddressList(errorToast);
-    if (result != null) setAddressList(result);
+    let result = await getApi(getAddress());
+    if (result) setAddressList(result.addressBooks);
   };
 
   useEffect(() => {
