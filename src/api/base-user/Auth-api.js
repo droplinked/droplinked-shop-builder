@@ -42,17 +42,17 @@ import { BASE_URL } from "../BaseUrl";
 //   }
 // };
 
-export const recoveryAccount = async (token, newPass) => {
-  try {
-    const res = await axios.post(`${BASE_URL}/producer/account-recovery`, {
-      accountRecoveryToken: token,
-      newPassword: newPass,
-    });
-    return true;
-  } catch (err) {
-    return err.response.data.reason;
-  }
-};
+// export const recoveryAccount = async (token, newPass) => {
+//   try {
+//     const res = await axios.post(`${BASE_URL}/producer/account-recovery`, {
+//       accountRecoveryToken: token,
+//       newPassword: newPass,
+//     });
+//     return true;
+//   } catch (err) {
+//     return err.response.data.reason;
+//   }
+// };
 
 export const signInViaWallet = async (data) => {
   try {

@@ -39,3 +39,15 @@ export const postResetPassword = (email) => {
   };
   return { ...apiObj };
 };
+
+
+export const postAccountRecovery = (token , password) => {
+  let apiObj = {
+    url: `producer/account-recovery`,
+    body: {
+      accountRecoveryToken: token,
+      newPassword: password,
+    },
+  };
+  return { ...apiObj };
+};
