@@ -2,12 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 
-
 import { toastValue } from "../../../context/toastify/ToastContext";
-import { producerSignup } from "../../../api/producer/Auth-api";
+import { postProducerSignup } from "../../../api-service/auth/authApiService";
 import { isValidEmail } from "../../../utils/validations/emailValidation";
 import { BottomText } from "../SignupModal-style";
-
+import { useApi } from "../../../hooks/useApi/useApi";
 
 import FormInput from "../../../components/shared/FormInput/FormInput";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
@@ -15,6 +14,8 @@ import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 export default function SignupProducer({ close, shopname, switchToggle }) {
   const { successToast, errorToast } = useContext(toastValue);
   const [loading, setLoading] = useState(false);
+
+  const { postApi } = useApi();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,12 +30,11 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
   let navigate = useNavigate();
 
   const onSubmit = async () => {
-    
-    let info = {
-      email: email,
-      password: password,
-      shopName: shopName,
-    };
+    // let info = {
+    //   email: email,
+    //   password: password,
+    //   shopName: shopName,
+    // };
 
     if (password !== confirmPassword) {
       errorToast("Passwords do not match, please re-enter");
@@ -53,16 +53,16 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
     }
 
     setLoading(true);
+    let result = await postApi(postProducerSignup(email, password, shopName));
+    setLoading(false);
 
-    let result = await producerSignup(info);
-    if (result == true) {
+    if (result) {
+      localStorage.setItem("registerEmail", JSON.stringify(email));
       successToast("Account successfully created");
       close();
       navigate("/email-confirmation");
-    } else {
-      errorToast(result);
     }
-    setLoading(false);
+ 
   };
 
   return (
