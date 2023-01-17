@@ -1,6 +1,6 @@
 import { Box,Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { getCollections } from "../../../../../api/producer/Collection-api";
+
 import { API_STATUS } from "../../../../../constant/api-status";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 import {
@@ -28,9 +28,9 @@ const TechnicalInformation = ({ TechnicalInfo, dispatchTechnical }) => {
   }, []);
 
   const initializeCollection = async () => {
-    let result = await getCollections();
-    if (result.status == API_STATUS.SUCCESS) setCollectionList(result.data);
-    else errorToast(result.data);
+   // let result = await getCollections();
+  //  if (result.status == API_STATUS.SUCCESS) setCollectionList(result.data);
+   // else errorToast(result.data);
   };
 
   const isSelected = (collection) => {

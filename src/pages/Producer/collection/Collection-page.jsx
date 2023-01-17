@@ -8,7 +8,8 @@ import CollectionModal from "../../../modals/collection/CollectionModal";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getCollections } from "../../../api/producer/Collection-api";
+import { getCollectionsWithProduct } from "../../../api-service/collections/collectionApiService";
+import { useApi } from "../../../hooks/useApi/useApi";
 import {
   CollectionPageWrapper,
   ButtonWrapper,
@@ -20,14 +21,15 @@ export default function CollectionMainPage() {
   const [collections, setCollections] = useState(null);
 
   const navigate = useNavigate();
+  const { getApi } = useApi();
 
   const token = JSON.parse(localStorage.getItem("token"));
 
   if (token == null) navigate("/");
 
   const updateCollections = async () => {
-    let resutl = await getCollections();
-    if (resutl != null) setCollections(resutl.data);
+    let result = await getApi(getCollectionsWithProduct());
+    if (result) setCollections(result.collections);
   };
 
   useEffect(() => {

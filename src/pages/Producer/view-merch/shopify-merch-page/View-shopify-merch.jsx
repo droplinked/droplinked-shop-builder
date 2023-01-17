@@ -12,7 +12,8 @@ import {
   Td,
   TableContainer,
 } from "@chakra-ui/react";
-import { getCollections } from "../../../../api/producer/Collection-api";
+import { getCollectionsWithProduct } from "../../../../api-service/collections/collectionApiService";
+import { useApi } from "../../../../hooks/useApi/useApi";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../../context/toastify/ToastContext";
@@ -29,15 +30,16 @@ const ViewShopifyMerch = ({ product, shopifyData }) => {
   );
   const { successToast, errorToast } = useToasty();
   const navigate = useNavigate();
+  const { getApi } = useApi();
 
   useEffect(() => {
     initialCollection();
   }, []);
 
   const initialCollection = async () => {
-    let result = await getCollections();
-    if (result != null) {
-      let collections = result.map((col) => {
+    let result = await getApi(getCollectionsWithProduct());
+    if (result) {
+      let collections = result.collections.map((col) => {
         return { id: col._id, value: col.title };
       });
       setCollection(collections);
@@ -65,7 +67,6 @@ const ViewShopifyMerch = ({ product, shopifyData }) => {
       setLoading(false);
     }
   };
-
 
   return (
     <Flex
