@@ -37,21 +37,21 @@ import { API_STATUS } from "../../constant/api-status";
 // };
 
 //update collection
-export const updateCollection = async (id, title) => {
-  const token = JSON.parse(localStorage.getItem("token"));
-  try {
-    const res = await axios.put(
-      `${BASE_URL}/producer/collection/${id}`,
-      { title: title },
-      {
-        headers: { Authorization: "Bearer " + token },
-      }
-    );
-    return true;
-  } catch (err) {
-    return err.response.data.reason;
-  }
-};
+// export const updateCollection = async (id, title) => {
+//   const token = JSON.parse(localStorage.getItem("token"));
+//   try {
+//     const res = await axios.put(
+//       `${BASE_URL}/producer/collection/${id}`,
+//       { title: title },
+//       {
+//         headers: { Authorization: "Bearer " + token },
+//       }
+//     );
+//     return true;
+//   } catch (err) {
+//     return err.response.data.reason;
+//   }
+// };
 
 // add new collection
 export const newCollection = async (title) => {

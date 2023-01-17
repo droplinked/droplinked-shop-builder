@@ -6,13 +6,12 @@ export const getCollectionById = (collectionId) => {
 };
 
 export const getCollectionsByShopname = (shopname) => {
-    let apiObj = {
-      url: `collections/${shopname}`,
-    };
-    return { ...apiObj };
+  let apiObj = {
+    url: `collections/${shopname}`,
   };
+  return { ...apiObj };
+};
 
-  
 export const getCollections = () => {
   const token = JSON.parse(localStorage.getItem("token"));
   let apiObj = {
@@ -22,7 +21,7 @@ export const getCollections = () => {
   return { ...apiObj };
 };
 
-export const getCollectionsWithProduct= () => {
+export const getCollectionsWithProduct = () => {
   const token = JSON.parse(localStorage.getItem("token"));
   let apiObj = {
     url: `producer/collection?withProducts=true`,
@@ -31,5 +30,14 @@ export const getCollectionsWithProduct= () => {
   return { ...apiObj };
 };
 
-
-
+export const updateCollection = (collectionId, collectionName) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `producer/collection/${collectionId}`,
+    body: {
+      title: collectionName,
+    },
+    token: token,
+  };
+  return { ...apiObj };
+};

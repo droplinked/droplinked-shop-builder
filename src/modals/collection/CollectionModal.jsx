@@ -4,10 +4,10 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 
 import { useToasty } from "../../context/toastify/ToastContext";
 import {
-  updateCollection,
   newCollection,
 } from "../../api/producer/Collection-api";
-
+import { updateCollection } from "../../api-service/collections/collectionApiService";
+import { useApi } from "../../hooks/useApi/useApi";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import FormInput from "../../components/shared/FormInput/FormInput";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
@@ -19,6 +19,7 @@ const CollectionModal = ({show , collection, close, update }) => {
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
+  const { patchApi } = useApi()
 
   const isNewCollection = (collection == undefined) ? true : false
 
@@ -35,15 +36,14 @@ const CollectionModal = ({show , collection, close, update }) => {
 
     let result;
     if (isNewCollection) result = await newCollection(collectionName);
-    else result = await updateCollection(collection._id, collectionName);
+    else result = await patchApi(updateCollection(collection._id, collectionName))
 
-    if (result == true) {
+    if (result) {
       if (isNewCollection) successToast("New collection added successfully");
       else successToast("Collection updated successfully");
       update();
-    } else {
-      errorToast(result);
     }
+    
     close();
     setLoading(false);
   };
