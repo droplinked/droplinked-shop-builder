@@ -4,8 +4,9 @@ import {
   CollectionTitle,
 } from "./producer-collection-style";
 import { useParams } from "react-router-dom";
-import { getCollectionById } from "../../../api/public/Collection-api";
+import { getCollectionById } from "../../../api-service/collections/collectionApiService";
 import { useEffect, useState } from "react";
+import { useApi } from "../../../hooks/useApi/useApi";
 import { USER_TYPE } from "../../../constant/user-types";
 import { Flex } from "@chakra-ui/react";
 import { AiFillEdit } from "react-icons/ai";
@@ -22,6 +23,7 @@ const ProducerCollection = () => {
   const [editCollectionModal, setEditCollectionModal] = useState(false);
 
   const { collectionId } = useParams();
+  const { getApi } = useApi();
   const profile = useSelector(selectCurrentProfile);
 
   useEffect(() => {
@@ -29,8 +31,8 @@ const ProducerCollection = () => {
   }, []);
 
   const getCollections = async () => {
-    let coll = await getCollectionById(collectionId);
-    setCollection(coll);
+    let result = await getApi(getCollectionById(collectionId))
+    if(result)setCollection(result);
   };
 
   const openEditModal = () => setEditCollectionModal(true);

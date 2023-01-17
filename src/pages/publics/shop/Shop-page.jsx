@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getCollectionsByShopname } from "../../../api-service/publics/collection-api";
+import { getCollectionsByShopname } from "../../../api-service/collections/collectionApiService";
 import { ShopPageContainer, ShopnotFind } from "./Shop-page-style";
 import { useSelector } from "react-redux";
 import { selectCurrentProfile } from "../../../store/profile/profile.selector";
