@@ -9,8 +9,10 @@ import { checkoutCart, checkoutFree } from "../../../../api/base-user/Cart-api";
 import { getUserAddress } from "../../../../services/wallet-auth/api";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
-import { CanselOrder } from "../../../../api/base-user/OrderHistory-api";
-import { getOrderClientSecret } from "../../../../api-service/order/orderApiService";
+import {
+  getOrderClientSecret,
+  postCancelOrder,
+} from "../../../../api-service/order/orderApiService";
 import { useApi } from "../../../../hooks/useApi/useApi";
 import {
   ImsPaymentWrapper,
@@ -33,7 +35,7 @@ export default function ImsPayment({ totalPrice }) {
   // ............................  //
   const { errorToast } = useToasty();
   const { cart, updateCart } = useCart();
-  const { getApi } = useApi();
+  const { getApi, postApi } = useApi();
   const userData = useSelector(selectHiroWalletData);
 
   let navigate = useNavigate();
@@ -58,7 +60,7 @@ export default function ImsPayment({ totalPrice }) {
 
   const cancelPayment = async () => {
     if (lastOrder) {
-      await CanselOrder(lastOrder._id);
+      await postApi(postCancelOrder(lastOrder._id));
       sessionStorage.removeItem("payOrder");
     } else {
       setDisables(true);

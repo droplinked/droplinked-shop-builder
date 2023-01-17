@@ -1,6 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
 
-import { BASE_URL } from "../BaseUrl";
+// import { BASE_URL } from "../BaseUrl";
 
 // export const getImsOrdersHistory = async () => {
 //   const token = JSON.parse(localStorage.getItem("token"));
@@ -43,16 +43,16 @@ import { BASE_URL } from "../BaseUrl";
 //   }
 // };
 
-export const CanselOrder = async (orderId) => {
-  const token = JSON.parse(localStorage.getItem("token"));
+// export const CanselOrder = async (orderId) => {
+//   const token = JSON.parse(localStorage.getItem("token"));
 
-  try {
-    const res = await axios.post(`${BASE_URL}/order/${orderId}/cancel-payment`,{}, {
-      headers: { Authorization: "Bearer " + token },
-    });
-    return true;
-  } catch (err) {
-    return err.response.data.reason;
-  }
-};
+//   try {
+//     const res = await axios.post(`${BASE_URL}/order/${orderId}/cancel-payment`,{}, {
+//       headers: { Authorization: "Bearer " + token },
+//     });
+//     return true;
+//   } catch (err) {
+//     return err.response.data.reason;
+//   }
+// };
 

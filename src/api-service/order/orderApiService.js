@@ -26,3 +26,13 @@ export const getOrderClientSecret = (orderId) => {
   };
   return { ...apiObj };
 };
+
+
+export const postCancelOrder = (orderId) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `order/${orderId}/cancel-payment`,
+    token: token,
+  };
+  return { ...apiObj };
+};
