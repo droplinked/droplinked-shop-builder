@@ -56,9 +56,11 @@ const WalletModal = ({ show, close }) => {
 
 
   const singInViaCasperWallet = async () => {
+    console.log('click capser wallet');
     casper_login(
       (account_info) => {
         // Send this account_info to backend to check if it is valid
+        //
         console.log("account : ", account_info);
         callWalletApi(account_info.account_hash , account_info.publicKey , account_info.signature)
       },
