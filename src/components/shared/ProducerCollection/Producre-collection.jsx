@@ -1,10 +1,10 @@
 //import "./Producre-collection-style.scss";
 
-import SmallModal from "../../Modal/Small-modal/Small-modal-component";
+import SmallModal from "../../../modals/small/SmallModal";
 import Product from "../Product/Product";
-import CollectionModal from "../../Modal/Collection/Collection-modal";
+import CollectionModal from "../../../modals/collection/CollectionModal";
 import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
-import Rule from "../../Modal/Rule/rule-modal";
+import RuleModal from "../../../modals/rule/RuleModal";
 import AddProduct from "../AddProduct/Add-product-component";
 
 import {
@@ -12,10 +12,13 @@ import {
   ProductsWrapper,
 } from "./Producer-collection-style";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { useProfile } from "../../../context/profile/ProfileContext";
 import { deleteCollection } from "../../../api/producer/Collection-api";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { USER_TYPE } from "../../../constant/user-types";
+import { useSelector } from "react-redux";
+import {
+  selectCurrentProfile,
+} from "../../../store/profile/profile.selector";
 
 import { useState } from "react";
 
@@ -26,7 +29,7 @@ const ProducerCollection = ({ collection, update }) => {
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
-  const { profile } = useProfile();
+  const profile = useSelector(selectCurrentProfile);
 
   const DeleteCollection = async () => {
     setLoading(true);
@@ -58,8 +61,8 @@ const ProducerCollection = ({ collection, update }) => {
           openRuleModal={openRuleModal}
         />
         <ProductsWrapper>
-            {collection.products.length == 0 ? (
-            <Box w={{base:"50%" , lg:'25%'}}>
+          {collection.products.length == 0 ? (
+            <Box w={{ base: "50%", lg: "25%" }}>
               <AddProduct />
             </Box>
           ) : (
@@ -71,7 +74,7 @@ const ProducerCollection = ({ collection, update }) => {
                 .map((product, i) => {
                   if (product.type == "SHOPIFY") {
                     return (
-                      <Box key={i} w={{base:"50%" , lg:'25%'}}  p='3px'>
+                      <Box key={i} w={{ base: "50%", lg: "25%" }} p="3px">
                         <Product
                           shopname={profile.shopName}
                           title={product.shopifyData.title}
@@ -86,7 +89,7 @@ const ProducerCollection = ({ collection, update }) => {
                     );
                   } else {
                     return (
-                      <Box key={i} w={{base:"50%" , lg:'25%'}}  p='3px'>
+                      <Box key={i} w={{ base: "50%", lg: "25%" }} p="3px">
                         <Product
                           shopname={profile.shopName}
                           title={product.title}
@@ -99,34 +102,36 @@ const ProducerCollection = ({ collection, update }) => {
                   }
                 })}
             </>
-          )}  
+          )}
         </ProductsWrapper>
       </ProducerCollectionWrapper>
-      {deleteModal && (
-        <SmallModal
+
+       {deleteModal && <SmallModal
           text={`Are you sure you want to  delete this collection?`}
           show={deleteModal}
           hide={() => setDeleteModal(false)}
           click={DeleteCollection}
           loading={loading}
           buttonText={"Delete"}
-        />
-      )}
-      {editModal && (
-        <CollectionModal
-          collection={collection}
-          close={closeEditModal}
-          update={update}
-        />
-      )}
-      {ruleModal && (
-        <Rule
+        />}
+
+
+      <CollectionModal
+        show={editModal}
+        collection={collection}
+        close={closeEditModal}
+        update={update}
+      />
+
+
+        <RuleModal
+        show={ruleModal}
           close={closeRuleModal}
           collectionId={collection._id}
           update={update}
           ruleId={collection.ruleSetID || undefined}
         />
-      )}
+
     </>
   );
 };

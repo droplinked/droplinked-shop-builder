@@ -1,100 +1,116 @@
-import { Text, Box , Flex } from "@chakra-ui/react"
-import { useOrder } from "../../../context/order/OrdersContext"
-import { ORDER_TYPES } from "../../../constant/order.types"
-import { useMemo, useState } from "react"
+import { Text, Box, Flex } from "@chakra-ui/react";
+//import { useOrder } from "../../../context/order/OrdersContext";
+import { ORDER_TYPES } from "../../../constant/order.types";
+import { getOrdersList } from "../../../api/producer/Orders-api";
+import { useMemo, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectIsActiveProducer } from "../../../store/profile/profile.selector";
+import { useNavigate } from "react-router-dom";
+import { sortArrayBaseCreateTime } from "../../../utils/sort.utils/sort.utils";
 
-
-import Order from "../../../components/shared/Order/Order-component"
-import Dropdown from "../../../components/shared/Dropdown/Dropdown-component"
+import Order from "../../../components/shared/Order/Order-component";
+import Dropdown from "../../../components/shared/Dropdown/Dropdown-component";
 
 export default function IncomingOrderPage() {
+  const [filter, setFilter] = useState("All");
+  const [orders, setOrders] = useState([]);
+  // const { orders } = useOrder()
+  const navigate = useNavigate();
+  const isRegisteredProducer = useSelector(selectIsActiveProducer);
 
-    const [filter, setFilter] = useState("All")
-    const { orders } = useOrder()
+  const updateOrder = async () => {
+    let result = await getOrdersList();
 
-    const setTypesArray = () => {
-        const arr = [
-            { id: "All", value: "All" },
-            { id: ORDER_TYPES.WAITING_FOR_CONFIRMATION, value: "Waiting for confirmation" },
-            { id: ORDER_TYPES.WAITING_FOR_PAYMENT, value: "Waiting for payment" },
-            { id: ORDER_TYPES.PROCESSING, value: "Processing" },
-            { id: ORDER_TYPES.SENT, value: "Sent" },
-            { id: ORDER_TYPES.CANCELED, value: "Canceled" },
-            { id: ORDER_TYPES.REFUNDED, value: "Refunded" },
-        ]
-        return arr
+    if (result != null) {
+      result = sortArrayBaseCreateTime(result);
+      setOrders(result);
     }
+  };
 
-    let typesArray = useMemo(() => setTypesArray(), []);
+  useEffect(() => {
+    if (isRegisteredProducer) {
+      updateOrder();
+    } else {
+      navigate("/");
+    }
+  }, []);
 
+  const setTypesArray = () => {
+    const arr = [
+      { id: "All", value: "All" },
+      {
+        id: ORDER_TYPES.WAITING_FOR_CONFIRMATION,
+        value: "Waiting for confirmation",
+      },
+      { id: ORDER_TYPES.WAITING_FOR_PAYMENT, value: "Waiting for payment" },
+      { id: ORDER_TYPES.PROCESSING, value: "Processing" },
+      { id: ORDER_TYPES.SENT, value: "Sent" },
+      { id: ORDER_TYPES.CANCELED, value: "Canceled" },
+      { id: ORDER_TYPES.REFUNDED, value: "Refunded" },
+    ];
+    return arr;
+  };
 
-    return (
-        <Box
-            w='100%'
-            px={{ base: "20px", md: "80px" }}
+  let typesArray = useMemo(() => setTypesArray(), []);
+
+  return (
+    <Box w="100%" px={{ base: "20px", md: "80px" }}>
+      <Box w="100%" maxW="700px" m="auto">
+        <Text
+          color="white"
+          fontSize={{ base: "30px", md: "40px" }}
+          fontWeight="600"
+          textAlign="center"
+          mb="40px"
         >
-            <Box
-                w='100%'
-                maxW='700px'
-                m='auto'
-            >
-                <Text
-                    color='white'
-                    fontSize={{ base: "30px", md: '40px' }}
-                    fontWeight='600'
-                    textAlign='center'
-                    mb='40px'
-                >
-                    Incoming orders
-                </Text>
-                <Flex w='100%' justifyContent='center'>
-                <Box w={{base:'100%' , md:'40%'}} mb='40px'>
-                    <Dropdown
-                        value={filter}
-                        pairArray={typesArray}
-                        placeholder={filter}
-                        change={(e) => { setFilter(e.target.value) }}
-                    />
-                </Box>
-                </Flex>
+          Incoming orders
+        </Text>
+        <Flex w="100%" justifyContent="center">
+          <Box w={{ base: "100%", md: "40%" }} mb="40px">
+            <Dropdown
+              value={filter}
+              pairArray={typesArray}
+              placeholder={filter}
+              change={(e) => {
+                setFilter(e.target.value);
+              }}
+            />
+          </Box>
+        </Flex>
 
-                {(filter == "All")
-                    ?
-                    <>
-                        {orders.map((order, i) => {
-                            if (order.status == ORDER_TYPES.WAITING_FOR_CONFIRMATION)
-                                return (
-                                    <Box key={i} mb='30px'>
-                                        <Order order={order} />
-                                    </Box>
-                                )
-                        })}
-                        {orders.map((order, i) => {
-                            if ((order.status != (ORDER_TYPES.WAITING_FOR_CONFIRMATION)))
-                                return (
-                                    <Box key={i} mb='30px'>
-                                        <Order order={order} />
-                                    </Box>
-                                )
-                        })}
-                    </>
-                    :
-                    <>
-                        {orders.map((order, i) => {
-                            if (order.status == ORDER_TYPES.REFUNDED) {
-                                if (filter == ORDER_TYPES.CANCELED)
-                                    return <Order key={i} order={order} />
-                            } else {
-                                if (order.status == filter)
-                                    return <Order key={i} order={order} />
-                            }
-                        })}
-                    </>
-                }
-
-
-
-            </Box>
-        </Box>
-    )
+        {filter == "All" ? (
+          <>
+            {orders.map((order, i) => {
+              if (order.status == ORDER_TYPES.WAITING_FOR_CONFIRMATION)
+                return (
+                  <Box key={i} mb="30px">
+                    <Order updateOrder={updateOrder} order={order} />
+                  </Box>
+                );
+            })}
+            {orders.map((order, i) => {
+              if (order.status != ORDER_TYPES.WAITING_FOR_CONFIRMATION)
+                return (
+                  <Box key={i} mb="30px">
+                    <Order updateOrder={updateOrder}  order={order} />
+                  </Box>
+                );
+            })}
+          </>
+        ) : (
+          <>
+            {orders.map((order, i) => {
+              if (order.status == ORDER_TYPES.REFUNDED) {
+                if (filter == ORDER_TYPES.CANCELED)
+                  return <Order updateOrder={updateOrder}  key={i} order={order} />;
+              } else {
+                if (order.status == filter)
+                  return <Order updateOrder={updateOrder}  key={i} order={order} />;
+              }
+            })}
+          </>
+        )}
+      </Box>
+    </Box>
+  );
 }

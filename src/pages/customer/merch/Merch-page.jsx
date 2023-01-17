@@ -9,19 +9,12 @@ import { Box } from "@chakra-ui/react";
 import Loading from "../../../components/shared/loading/Loading";
 import DroplinkedMerch from "./droplinked-merch/Droplinked-merch";
 import ShopifyMech from "./shopify-merch/Shopify-merch";
-import LoginModal from "../../../components/Modal/Login/login-modal";
-import SignUpModal from "../../../components/Modal/Register/SignUpModal";
-import ResetPassModal from "../../../components/Modal/ResetPass/ResetPassModal-component";
+import AuthModal from "../../../modals/auth/AuthModal";
 
 export default function MerchPage() {
   const [product, setProduct] = useState(null);
 
-  // show login modal
-  const [showLogin, setLogin] = useState(false);
-  // show signup modal
-  const [showSignup, setShowSignup] = useState(false);
-  // show reset pass modal
-  const [showResetPass, setResetPass] = useState(false);
+  const [authModal, setAuthModal] = useState(false);
 
   let params = useParams();
 
@@ -37,57 +30,26 @@ export default function MerchPage() {
     setProduct(result);
   };
 
-  const toggleSignUp = () => setShowSignup((p) => !p);
-
-  const toggleLogin = () => setLogin((p) => !p);
-
-  const toggleReset = () => setResetPass((p) => !p);
-
-  const switchModal = () => {
-    toggleSignUp();
-    toggleLogin();
-  };
-
-  const switchResetAndLogin = () => {
-    toggleReset();
-    toggleLogin();
-  };
+  const toggleAuthModal = () => setAuthModal((p) => !p);
 
   return (
     <MerchpageContainer>
       {product == null ? (
         <Loading />
       ) : (
-        <Box maxW="800px" w='100%' mx="auto">
+        <Box maxW="800px" w="100%" mx="auto">
           {product.type == "DROPLINKED" ? (
-            <DroplinkedMerch bproduct={product} openLogin={toggleLogin} />
+            <DroplinkedMerch bproduct={product} openLogin={toggleAuthModal} />
           ) : (
             <ShopifyMech
               shopName={shopname}
               product={product}
-              openLogin={toggleLogin}
+              openLogin={toggleAuthModal}
             />
           )}
         </Box>
       )}
-      {showSignup && (
-        <SignUpModal close={toggleSignUp} switchToggle={switchModal} />
-      )}
-      {showLogin && (
-        <LoginModal
-          close={toggleLogin}
-          switchToggle={switchModal}
-          switchReset={switchResetAndLogin}
-        />
-      )}
-      {showResetPass && (
-        <ResetPassModal
-          backToLogin={switchResetAndLogin}
-          close={() => {
-            setResetPass(false);
-          }}
-        />
-      )}
+      <AuthModal show={authModal} close={toggleAuthModal} />
     </MerchpageContainer>
   );
 }

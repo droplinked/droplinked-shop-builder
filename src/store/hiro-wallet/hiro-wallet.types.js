@@ -1,0 +1,5 @@
+const HIRO_WALLET_ACTION_TYPES = {
+  SET_HIRO_WALLET:'hirowallet/SET_HIRO_WALLET'
+};
+
+export default HIRO_WALLET_ACTION_TYPES;

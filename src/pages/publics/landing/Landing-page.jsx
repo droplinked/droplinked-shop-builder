@@ -1,12 +1,12 @@
-import { useState, lazy, Suspense , useEffect} from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   keyframes,
   usePrefersReducedMotion,
-  Text,
   Flex,
   Box,
 } from "@chakra-ui/react";
+
 import {
   LandingPageWrapper,
   InputContainrt,
@@ -15,25 +15,16 @@ import {
   TextContainer,
   SpaceBox,
 } from "./Landing-page-style";
+import { useSelector } from "react-redux";
+import { selectCurrentProfile } from "../../../store/profile/profile.selector";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import LandingpageImage from "./components/landing-page-image-component";
 import LandingIcons from "./components/landing-icons-component";
 import SignupInput from "./components/singup-input-component";
+import AuthModal from "../../../modals/auth/AuthModal";
 
-import { useProfile } from "../../../context/profile/ProfileContext";
 
-const SignUpModal = lazy(() =>
-  import("../../../components/Modal/Register/SignUpModal")
-);
-
-const LoginModal = lazy(() =>
-  import("../../../components/Modal/Login/login-modal")
-);
-
-const ResetPassModal = lazy(() =>
-  import("../../../components/Modal/ResetPass/ResetPassModal-component")
-);
 
 const keyframe_leftanimation = keyframes`
 0% {
@@ -48,20 +39,11 @@ const keyframe_leftanimation = keyframes`
 
 export default function LandingPage() {
   const prefersReducedMotion = usePrefersReducedMotion();
-  let [searchParams, setSearchParams] = useSearchParams();
-  let urlParam = searchParams.get("modal");
 
-  const { profile } = useProfile()
+  const profile = useSelector(selectCurrentProfile);
   const navigate = useNavigate();
 
-  // show login modal
-  const [showLogin, setLogin] = useState(() => {
-    return urlParam == "login" ? true : false;
-  });
-  // show signup modal
-  const [showSignup, setShowSignup] = useState(false);
-  // show reset pass modal
-  const [showResetPass, setResetPass] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const [userName, setUsername] = useState("");
   // loading button
@@ -70,37 +52,18 @@ export default function LandingPage() {
     ? undefined
     : `${keyframe_leftanimation}  1s linear`;
 
-    useEffect(()=>{
-      if(profile && (profile.type == "PRODUCER")){
-        navigate(`/${profile.shopName}`);
-      }
-    },[])
+  useEffect(() => {
+    if (profile && profile.type == "PRODUCER") {
+      navigate(`/${profile.shopName}`);
+    }
+  }, []);
 
-  const toggleSignUp = () => {
-    setShowSignup((p) => !p);
-  };
+  const toggleModal = () => setShowAuthModal((p) => !p);
 
-  const toggleLogin = () => {
-    setLogin((p) => !p);
-  };
-
-  const toggleReset = () => {
-    setResetPass((p) => !p);
-  };
-
-  const switchModal = () => {
-    toggleSignUp();
-    toggleLogin();
-  };
-
-  const switchResetAndLogin = () => {
-    toggleReset();
-    toggleLogin();
-  };
   const navigateToEnquiry = () => navigate("/enquiry");
 
   return (
-    <Box  pt='50px' pb='100px'>
+    <Box pt="50px" pb="100px">
       <LandingPageWrapper>
         {/* inputs */}
         <InputContainrt>
@@ -114,7 +77,7 @@ export default function LandingPage() {
             <SignupInput
               setUsername={setUsername}
               userName={userName}
-              toggleSignUp={toggleSignUp}
+              toggleSignUp={toggleModal}
             />
           </TextContainer>
         </InputContainrt>
@@ -125,10 +88,6 @@ export default function LandingPage() {
       </LandingPageWrapper>
 
       <SpaceBox></SpaceBox>
-
-    
-
-    
 
       <LandingIcons />
 
@@ -144,30 +103,13 @@ export default function LandingPage() {
 
       <SpaceBox></SpaceBox>
 
-      <Suspense fallback={<></>}>
-        {showSignup && (
-          <SignUpModal
-            close={toggleSignUp}
-            shopname={userName}
-            switchToggle={switchModal}
-          />
-        )}
-        {showLogin && (
-          <LoginModal
-            close={toggleLogin}
-            switchToggle={switchModal}
-            switchReset={switchResetAndLogin}
-          />
-        )}
-        {showResetPass && (
-          <ResetPassModal
-            backToLogin={switchResetAndLogin}
-            close={() => {
-              setResetPass(false);
-            }}
-          />
-        )}
-      </Suspense>
+      <AuthModal
+        show={showAuthModal}
+        close={toggleModal}
+        shopName={userName}
+        type="SIGNUP"
+      />
+
     </Box>
   );
 }

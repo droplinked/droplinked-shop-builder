@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../../../context/cart/CartContext";
-import { useProfile } from "../../../context/profile/ProfileContext";
 import {
   CheckoutPageWrapper,
   EmptyText,
@@ -12,26 +11,34 @@ import {
 } from "./Checkout-page-style";
 import { SHOP_TYPES } from "../../../constant/shop-types";
 import { getTotalPrice } from "./checkout-utils";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCurrentProfile } from "../../../store/profile/profile.selector";
+import { setCurrentUser } from "../../../store/profile/profile.action";
+import { signinViaHirowallet } from "../../../utils/hirowallet/hirowallet-utils";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import EmailModal from "../../../components/Modal/Email/email-modal";
+import EmailModal from "../../../modals/email/EmailModal";
 import DroplinkedItem from "./chekout-item/Droplinked-item";
 import ShopifytItem from "./chekout-item/Shopify-item";
-import SignUpModal from "../../../components/Modal/Register/SignUpModal";
-import LoginModal from "../../../components/Modal/Login/login-modal";
+import AuthModal from "../../../modals/auth/AuthModal";
 
 function CheckoutPage() {
   const [showEmailModal, setShowEmailModal] = useState(false);
-  const [modal, setModdal] = useState(null);
+  const [modal, setModdal] = useState(false);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { profile, signinWithaWallet } = useProfile();
+  const profile = useSelector(selectCurrentProfile);
   const { cart } = useCart();
   const { shopname } = useParams();
 
+  const addUser = (data) => dispatch(setCurrentUser(data));
+
+  const signInWallet = () => signinViaHirowallet(profile, addUser);
+
   const closeEmailModal = () => setShowEmailModal(false);
-  const switchModal = () => modal == "LOGIN" ? setModdal("SIGNUP") : setModdal("LOGIN");
-  const closeModal = () => setModdal(null);
+
+  const toggleModal = () => setModdal((p) => !p);
 
   const isLogin = () => {
     let checkResult = true;
@@ -39,8 +46,8 @@ function CheckoutPage() {
     const isGated = cart.items.find((item) => item.productRule != undefined);
 
     if (!profile) {
-      if (isGated) signinWithaWallet();
-      else switchModal();
+      if (isGated) signInWallet();
+      else toggleModal();
       checkResult = false;
     } else if (!profile.email) {
       setShowEmailModal(true);
@@ -121,16 +128,8 @@ function CheckoutPage() {
           </ButtonWrapper>
         </>
       )}
-      {showEmailModal && <EmailModal close={closeEmailModal} />}
-      {modal && (
-        <>
-          {modal == "LOGIN" ? (
-            <LoginModal close={closeModal} switchToggle={switchModal} />
-          ) : (
-            <SignUpModal close={closeModal} switchToggle={switchModal} />
-          )}
-        </>
-      )}
+      <EmailModal show={showEmailModal} close={closeEmailModal} />
+      <AuthModal show={modal} close={toggleModal} />
     </CheckoutPageWrapper>
   );
 }

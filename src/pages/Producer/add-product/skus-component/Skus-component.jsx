@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import VariantItem from "../../components/variant-item-component/Variant-item-component";
-import EditSkuModal from "../../../../components/Modal/Sku/EditSku"
+import EditSkuModal from "../../../../modals/edit-sku/EditSkuModal";
 
 const SkusComponent = ({ skusArray, setSkuArray, optionTypes }) => {
-  const [editingVariant, setEditingVariant] = useState(null);
+  const [editingVariant, setEditingVariant] = useState(false);
 
   // edit and delete exsiting skus
   const deleteVariant = (index) => {
@@ -18,17 +18,16 @@ const SkusComponent = ({ skusArray, setSkuArray, optionTypes }) => {
     setEditingVariant({ ...variant, index: index });
   };
 
-  const closeModal = () => setEditingVariant(null);
+  const closeModal = () => setEditingVariant(false);
 
-  const updateSku = (skuObject , index) => {
-
-    let  newArray = skusArray.map((sku, i) => {
-        if (i == index) return skuObject;
-        else return sku;
-      });
+  const updateSku = (skuObject, index) => {
+    let newArray = skusArray.map((sku, i) => {
+      if (i == index) return skuObject;
+      else return sku;
+    });
 
     setSkuArray(newArray);
-  }
+  };
 
   return (
     <div className="mt-5 w-100">
@@ -44,15 +43,14 @@ const SkusComponent = ({ skusArray, setSkuArray, optionTypes }) => {
             />
           );
         })}
-      {editingVariant && (
-        <EditSkuModal
-          open={editingVariant != null}
-          close={closeModal}
-          optionTypes={optionTypes}
-          defaultValue={editingVariant}
-          update={updateSku}
-        />
-      )}
+
+      <EditSkuModal
+        show={editingVariant}
+        close={closeModal}
+        optionTypes={optionTypes}
+        defaultValue={editingVariant}
+        update={updateSku}
+      />
     </div>
   );
 };

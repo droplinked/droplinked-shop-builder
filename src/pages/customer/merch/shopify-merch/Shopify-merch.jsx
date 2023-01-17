@@ -2,9 +2,6 @@ import { Box } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useCart } from "../../../../context/cart/CartContext";
 import { useToasty } from "../../../../context/toastify/ToastContext";
-import { useProfile } from "../../../../context/profile/ProfileContext";
-import { checkRules } from "../../../../services/nft-service/NFTcheck";
-import { UseWalletInfo } from "../../../../context/wallet/WalletContext";
 import {
   MerchPageWrapper,
   DescriptionWrapper,
@@ -18,15 +15,17 @@ import {
 } from "../../../../services/check-rule-service/check-rule";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { getUserAddress } from "../../../../services/wallet-auth/api";
-//import { getMaxDiscount } from "../../../../services/nft-service/maxDiscount";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCurrentProfile } from "../../../../store/profile/profile.selector";
+import { setCurrentUser } from "../../../../store/profile/profile.action";
+import { signinViaHirowallet } from "../../../../utils/hirowallet/hirowallet-utils";
+import { selectHiroWalletData } from "../../../../store/hiro-wallet/hiro-wallet.selector";
 
 import Carousel from "../../../../components/shared/Carousel/Carousel-component";
 import ShopifyDetail from "./Shopify-merch-detail-component";
 
-const VIDEO_URL = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
-
-
-
+const VIDEO_URL =
+  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4";
 
 const ShopifyMech = ({ shopName, product, openLogin }) => {
   const [loading, setLoading] = useState(false);
@@ -38,17 +37,22 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [percent, setPercent] = useState(null);
 
-  const { userData } = UseWalletInfo();
+  const dispatch = useDispatch();
+  const userData = useSelector(selectHiroWalletData);
   const { addShopifyItemToCart } = useCart();
   const { successToast, errorToast } = useToasty();
-  const { profile, signinWithaWallet } = useProfile();
+  const profile = useSelector(selectCurrentProfile);
+
+  const addUser = (data) => dispatch(setCurrentUser(data));
+
+  const signInWallet = () => signinViaHirowallet(profile, addUser);
 
   const gatedStatus =
-  (product.ruleset == undefined || product.ruleset.rules.length == 0 )
-    ? "PUBLIC"
-    : product.ruleset.gated
-    ? "GATED"
-    : "DISCOUNT";
+    product.ruleset == undefined || product.ruleset.rules.length == 0
+      ? "PUBLIC"
+      : product.ruleset.gated
+      ? "GATED"
+      : "DISCOUNT";
 
   const isGated = product.ruleset == undefined ? false : true;
 
@@ -56,13 +60,11 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
     return { url: img.src };
   });
 
-
   useEffect(() => {
-      if (gatedStatus != "PUBLIC" && userData) checkProductRule();
+    if (gatedStatus != "PUBLIC" && userData) checkProductRule();
   }, [userData]);
 
   // const checkProductRule = async () => {
-
 
   //   if (gatedStatus == "GATED") {
   //       let result = await gatedPassesRules(
@@ -79,7 +81,6 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
   //       if (result.NFTsPassed.length > 0)  setPercent(result.discountPercentage);
   //     }
   // };
-
 
   const checkProductRule = async () => {
     if (gatedStatus == "GATED") {
@@ -111,26 +112,24 @@ const ShopifyMech = ({ shopName, product, openLogin }) => {
   //   setProduct(newProduct);
   // };
 
-
   const addItemToBasket = async () => {
     if (profile == null) {
-      if (gatedStatus != "PUBLIC") signinWithaWallet();
+      if (gatedStatus != "PUBLIC") signInWallet();
       else openLogin();
       return;
     }
 
     if (userData == undefined && isGated) {
-      signinWithaWallet();
+      signInWallet();
       return;
     }
 
-    if(gatedStatus == 'GATED' && lock){
+    if (gatedStatus == "GATED" && lock) {
       errorToast("Required NFT not found, accessed denied");
-      return
+      return;
     }
 
     addToCardFunction();
-
   };
 
   const addToCardFunction = async () => {

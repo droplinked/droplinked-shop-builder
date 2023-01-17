@@ -1,35 +1,34 @@
-import {  useEffect, useContext } from "react"
-import { toastValue } from "../../../context/toastify/ToastContext"
+import { useEffect, useContext } from "react";
+import { toastValue } from "../../../context/toastify/ToastContext";
 import { useParams, useNavigate } from "react-router-dom";
-import { emailVerify } from "../../../api/base-user/Auth-api"
+import { postEmailVerify } from "../../../api-service/auth/authApiService";
+import { useApi } from "../../../hooks/useApi/useApi";
 
-
-import Loading from "../../../components/shared/loading/Loading"
+import Loading from "../../../components/shared/loading/Loading";
 
 export default function EmailVerifyPage() {
+  const nav = useNavigate();
+  let token = useParams().token;
+  
+  const { postApi } = useApi();
+  const { successToast } = useContext(toastValue);
 
-    const nav = useNavigate()
-    let token = useParams().token;
-    const { successToast, errorToast } = useContext(toastValue);
+  useEffect(() => {
+    const verify = async () => {
+      let result = await postApi(postEmailVerify(token));
+      if (result) {
+        nav("/?modal=login");
+        successToast("Your email has been verified, please login");
+      } else {
+        nav("/");
+      }
+    };
+    verify();
+  }, []);
 
-    useEffect(() => {
-        const verify = async () => {
-           let result =  await emailVerify(token)
-           if(result == true ){
-            nav("/?modal=login")
-            successToast("Your email has been verified, please login")
-           }else{
-            nav("/")
-            errorToast(result)
-           }
-        }
-        verify()
-    }, [])
-
-    return (<>
-        <Loading />
-    </>)
+  return (
+    <>
+      <Loading />
+    </>
+  );
 }
-
-
-

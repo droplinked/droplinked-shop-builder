@@ -1,43 +1,72 @@
 //import MainHeader from "../../components/layouts/Header/MainHeader"
 //import Footer from "../../components/layouts/Footer/Footer"
 
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Outlet, useParams, useLocation } from "react-router-dom";
 import { useCart } from "../../context/cart/CartContext";
 import { useEffect } from "react";
-import { useAddress } from "../../context/address/AddressContext";
-import { useNotifications } from "../../context/notifications/NotificationsContext";
-import { useProfile } from "../../context/profile/ProfileContext";
 import { isJwtValid } from "../../api/base-user/Profile-api";
-import { useShop } from "../../context/shop/ShopContext";
+//import { useShop } from "../../context/shop/ShopContext";
+import { useSelector } from "react-redux";
+import {
+  selectCurrentProfile,
+  selectIsCustomer,
+} from "../../store/profile/profile.selector";
+import { getShop } from "../../api/base-user/Profile-api";
+import { useDispatch } from "react-redux";
+import { setCurrentShop } from "../../store/shop/shop.action";
+import { userSession } from "../../utils/hirowallet/hirowallet-utils";
+import { setCurrentHiroWallet } from "../../store/hiro-wallet/hiro-wallet.action";
 
-import MainHeader from "../../components/layouts/Header/MainHeader";
-import Footer from "../../components/layouts/Footer/Footer";
+import Header from "../../layouts/header/Header";
+import Footer from "../../layouts/footer/Footer";
 import SideBarProvider from "../../context/sidebar/sidebar-context";
 
 export default function PageWrapper() {
   const { updateCart } = useCart();
-  const { updateAddressList } = useAddress();
-  const { profile, isCustomer } = useProfile();
-  const { updateNotifications } = useNotifications();
-  const { updateShop } = useShop();
+  const profile = useSelector(selectCurrentProfile);
+  const isCustomer = useSelector(selectIsCustomer);
+  //const { updateShop } = useShop();
   const { shopname } = useParams();
+  const dispatch = useDispatch();
 
   let location = useLocation();
+
+  const getHiroWalletData = () => {
+    if (userSession.isSignInPending()) {
+      userSession
+        .handlePendingSignIn()
+        .then((userData) => {
+          window.history.replaceState({}, document.title, "/");
+          dispatch(setCurrentHiroWallet(userData));
+          //  setUserData(userData);
+        })
+        .catch((err) => {
+          dispatch(setCurrentHiroWallet(undefined));
+          //  setUserData(undefined);
+        });
+    } else if (userSession.isUserSignedIn()) {
+      dispatch(setCurrentHiroWallet(userSession.loadUserData()));
+      //  setUserData(userSession.loadUserData());
+    }
+  };
 
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem("token"));
     if (token != null || token != undefined) firtsCheck();
+    getHiroWalletData();
   }, []);
 
-  useEffect(() => {
+  useEffect(async () => {
     let token = JSON.parse(localStorage.getItem("token"));
     if (token != null || token != undefined) {
-      if (isCustomer()) updateCart();
-      if (!isCustomer()) updateShop();
-      updateAddressList();
-      updateNotifications();
-      setInterval(updateNotifications, 60000);
+      if (isCustomer) updateCart();
+      if (!isCustomer) {
+        let newShop = await getShop();
+        if (newShop) {
+          dispatch(setCurrentShop(newShop));
+        }
+      }
     }
   }, [profile]);
 
@@ -77,22 +106,28 @@ export default function PageWrapper() {
 
   return (
     <SideBarProvider>
-      <Flex flexDirection="column" overflowX="hidden" w="100%" h='100%'>
-        <MainHeader />
+      <Box
+        boxSizing="border-box"
+        // overflowX="hidden"
+        maxW="100vw"
+        w="100%"
+        h="100%"
+        minH="100vh"
+        bg="bG"
+      >
+        <Header />
         <Box
           w="100%"
           h="100%"
           minH="100vh"
           bgColor="bG"
-         //  pt="50px"
-         // pb="100px"
           m="0px"
           overflowX="hidden"
         >
           <Outlet />
         </Box>
         <Footer />
-      </Flex>
+      </Box>
     </SideBarProvider>
   );
 }

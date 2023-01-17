@@ -12,9 +12,9 @@ import { useNavigate } from "react-router-dom";
 
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 import ProductInformation from "../../components/product-information-component";
-import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component";
+import SmallModal from "../../../../modals/small/SmallModal";
 import SkusComponent from "./skus-component/skus-component";
-import AddSkuModal from "../../../../components/Modal/Sku/AddSku";
+import AddSkuModal from "../../../../modals/add-sku/AddSkuModal";
 
 const SHIPING_TYPES = {
   EASY_POST: "EASY_POST",
@@ -162,7 +162,7 @@ const ImsViewMerch = ({ merch, update }) => {
           </BasicButton>
         </Box>
       </Flex>
-      {deleteModal && (
+
         <SmallModal
           show={deleteModal}
           hide={closeDeleteModal}
@@ -171,16 +171,15 @@ const ImsViewMerch = ({ merch, update }) => {
           loading={loading}
           buttonText={"Delete"}
         />
-      )}
-      {addSkuModal && (
-        <AddSkuModal
-          open={addSkuModal}
-          close={closeAddSkuModal}
-          optionType={optionTypes}
-          update={update}
-          merchId={merch._id}
-        />
-      )}
+
+
+      <AddSkuModal
+        show={addSkuModal}
+        close={closeAddSkuModal}
+        optionType={optionTypes}
+        update={update}
+        merchId={merch._id}
+      />
     </>
   );
 };
