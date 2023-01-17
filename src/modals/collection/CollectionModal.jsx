@@ -3,10 +3,7 @@ import { useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 import { useToasty } from "../../context/toastify/ToastContext";
-import {
-  newCollection,
-} from "../../api/producer/Collection-api";
-import { updateCollection } from "../../api-service/collections/collectionApiService";
+import { updateCollection ,addCollection } from "../../api-service/collections/collectionApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import FormInput from "../../components/shared/FormInput/FormInput";
@@ -19,7 +16,7 @@ const CollectionModal = ({show , collection, close, update }) => {
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
-  const { patchApi } = useApi()
+  const { patchApi ,postApi } = useApi()
 
   const isNewCollection = (collection == undefined) ? true : false
 
@@ -35,7 +32,7 @@ const CollectionModal = ({show , collection, close, update }) => {
     setLoading(true);
 
     let result;
-    if (isNewCollection) result = await newCollection(collectionName);
+    if (isNewCollection) result = await postApi(addCollection(collectionName))
     else result = await patchApi(updateCollection(collection._id, collectionName))
 
     if (result) {

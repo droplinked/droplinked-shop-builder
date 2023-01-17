@@ -54,21 +54,21 @@ import { API_STATUS } from "../../constant/api-status";
 // };
 
 // add new collection
-export const newCollection = async (title) => {
-  const token = JSON.parse(localStorage.getItem("token"));
-  try {
-    const res = await axios.post(
-      `${BASE_URL}/producer/collection`,
-      { title: title },
-      {
-        headers: { Authorization: "Bearer " + token },
-      }
-    );
-    return true;
-  } catch (err) {
-    return err.response.data.reason;
-  }
-};
+// export const newCollection = async (title) => {
+//   const token = JSON.parse(localStorage.getItem("token"));
+//   try {
+//     const res = await axios.post(
+//       `${BASE_URL}/producer/collection`,
+//       { title: title },
+//       {
+//         headers: { Authorization: "Bearer " + token },
+//       }
+//     );
+//     return true;
+//   } catch (err) {
+//     return err.response.data.reason;
+//   }
+// };
 
 //delete collection
 export const deleteCollection = async (id) => {

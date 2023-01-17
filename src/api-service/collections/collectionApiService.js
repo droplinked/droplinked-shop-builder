@@ -41,3 +41,15 @@ export const updateCollection = (collectionId, collectionName) => {
   };
   return { ...apiObj };
 };
+
+export const addCollection = (collectionName) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `producer/collection`,
+    body: {
+      title: collectionName,
+    },
+    token: token,
+  };
+  return { ...apiObj };
+};
