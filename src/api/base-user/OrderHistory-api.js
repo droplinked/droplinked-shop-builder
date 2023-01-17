@@ -14,18 +14,18 @@ import { BASE_URL } from "../BaseUrl";
 //     return null;
 //   }
 // };
-export const getShopifyOrdersHistory = async () => {
-  const token = JSON.parse(localStorage.getItem("token"));
-  try {
-    const res = await axios.get(`${BASE_URL}/order?shopify=true`, {
-      headers: { Authorization: "Bearer " + token },
-    });
-    return res.data.data.orders;
-  } catch (err) {
-    console.log(err.response.data.reason);
-    return null;
-  }
-};
+// export const getShopifyOrdersHistory = async () => {
+//   const token = JSON.parse(localStorage.getItem("token"));
+//   try {
+//     const res = await axios.get(`${BASE_URL}/order?shopify=true`, {
+//       headers: { Authorization: "Bearer " + token },
+//     });
+//     return res.data.data.orders;
+//   } catch (err) {
+//     console.log(err.response.data.reason);
+//     return null;
+//   }
+// };
 
 
 export const getClientSecret = async (orderId) => {

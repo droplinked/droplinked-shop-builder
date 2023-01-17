@@ -7,3 +7,13 @@ export const getImsOrders = () => {
   };
   return { ...apiObj };
 };
+
+export const getshopifyOrders = () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  let apiObj = {
+    url: `order?shopify=true`,
+    token: token,
+  };
+  return { ...apiObj };
+};
