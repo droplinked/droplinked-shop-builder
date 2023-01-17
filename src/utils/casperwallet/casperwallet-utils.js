@@ -92,11 +92,13 @@ export const casper_login = function (
   });
 };
 
-export const autuWithCasperTest = () => {
-    casper_login(
+export const autuWithCasperTest = async() => {
+
+  casper_login(
         (account_info) => {
             // Send this account_info to backend to check if it is valid
-            console.log('account_info ' , account_info);
+         //   console.log('account_info ' , account_info);
+            return account_info
         },
         (error) => {
             switch (error){
@@ -109,4 +111,5 @@ export const autuWithCasperTest = () => {
             }
         }
     );
+
 }
