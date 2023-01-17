@@ -17,3 +17,12 @@ export const getshopifyOrders = () => {
   };
   return { ...apiObj };
 };
+
+export const getOrderClientSecret = (orderId) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `order/${orderId}/client-secret`,
+    token: token,
+  };
+  return { ...apiObj };
+};

@@ -28,20 +28,20 @@ import { BASE_URL } from "../BaseUrl";
 // };
 
 
-export const getClientSecret = async (orderId) => {
-  const token = JSON.parse(localStorage.getItem("token"));
+// export const getClientSecret = async (orderId) => {
+//   const token = JSON.parse(localStorage.getItem("token"));
 
-  try {
-    const res = await axios.get(`${BASE_URL}/order/${orderId}/client-secret`, {
-      headers: { Authorization: "Bearer " + token },
-    });
-    // return res.data.data;
-    return res.data.data.client_secret;
-  } catch (err) {
-    console.log(err.response.data.reason);
-    return null;
-  }
-};
+//   try {
+//     const res = await axios.get(`${BASE_URL}/order/${orderId}/client-secret`, {
+//       headers: { Authorization: "Bearer " + token },
+//     });
+//     // return res.data.data;
+//     return res.data.data.client_secret;
+//   } catch (err) {
+//     console.log(err.response.data.reason);
+//     return null;
+//   }
+// };
 
 export const CanselOrder = async (orderId) => {
   const token = JSON.parse(localStorage.getItem("token"));

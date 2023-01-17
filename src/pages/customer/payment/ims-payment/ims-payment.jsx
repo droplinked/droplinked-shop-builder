@@ -9,10 +9,9 @@ import { checkoutCart, checkoutFree } from "../../../../api/base-user/Cart-api";
 import { getUserAddress } from "../../../../services/wallet-auth/api";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
-import {
-  getClientSecret,
-  CanselOrder,
-} from "../../../../api/base-user/OrderHistory-api";
+import { CanselOrder } from "../../../../api/base-user/OrderHistory-api";
+import { getOrderClientSecret } from "../../../../api-service/order/orderApiService";
+import { useApi } from "../../../../hooks/useApi/useApi";
 import {
   ImsPaymentWrapper,
   ImsPaymentContainer,
@@ -34,6 +33,7 @@ export default function ImsPayment({ totalPrice }) {
   // ............................  //
   const { errorToast } = useToasty();
   const { cart, updateCart } = useCart();
+  const { getApi } = useApi();
   const userData = useSelector(selectHiroWalletData);
 
   let navigate = useNavigate();
@@ -74,19 +74,15 @@ export default function ImsPayment({ totalPrice }) {
     setDisables(true);
     let result;
     if (lastOrder != null) {
-      result = await getClientSecret(lastOrder._id);
+      result = await getApi(getOrderClientSecret(lastOrder._id));
     } else {
       result = await checkoutCart(walletAddress);
     }
 
-    if (result != null) {
-      if (result.status == API_STATUS.SUCCESS) {
-        setClientSecret(result.data);
-        setPaymentSelected("Stripe");
-        setTimeout(cancelPayment, 300000);
-      } else {
-        errorToast(result.data);
-      }
+    if (result) {
+      setClientSecret(result.data);
+      setPaymentSelected("Stripe");
+      setTimeout(cancelPayment, 300000);
     }
     setDisables(false);
   };
