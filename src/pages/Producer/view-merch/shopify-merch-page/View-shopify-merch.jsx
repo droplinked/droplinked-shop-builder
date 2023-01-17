@@ -17,7 +17,7 @@ import { useApi } from "../../../../hooks/useApi/useApi";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../../context/toastify/ToastContext";
-import { addProductToCollection } from "../../../../api/producer/Collection-api";
+import { addProductToCollection } from "../../../../api-service/collections/collectionApiService";
 
 import Dropdown from "../../../../components/shared/Dropdown/Dropdown-component";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
@@ -28,9 +28,9 @@ const ViewShopifyMerch = ({ product, shopifyData }) => {
   const [selectedCollection, setSelectedCollection] = useState(
     product.productCollectionID
   );
-  const { successToast, errorToast } = useToasty();
+  const { successToast } = useToasty();
   const navigate = useNavigate();
-  const { getApi } = useApi();
+  const { getApi, postApi } = useApi();
 
   useEffect(() => {
     initialCollection();
@@ -58,14 +58,14 @@ const ViewShopifyMerch = ({ product, shopifyData }) => {
     e.preventDefault();
 
     setLoading(true);
-    let result = await addProductToCollection(selectedCollection, product._id);
-    if (result == true) {
+    let result = await postApi(
+      addProductToCollection(selectedCollection, product._id)
+    );
+    if (result) {
       successToast("Item successfully updated");
       navigate("/producer/ims");
-    } else {
-      errorToast(result);
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   return (

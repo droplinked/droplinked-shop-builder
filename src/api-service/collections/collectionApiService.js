@@ -54,11 +54,20 @@ export const addCollection = (collectionName) => {
   return { ...apiObj };
 };
 
-
 export const deleteCollection = (collectionId) => {
   const token = JSON.parse(localStorage.getItem("token"));
   let apiObj = {
     url: `producer/collection/${collectionId}`,
+    token: token,
+  };
+  return { ...apiObj };
+};
+
+export const addProductToCollection = (collectionId, productId) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `producer/collection/${collectionId}/product`,
+    body: { productID: productId },
     token: token,
   };
   return { ...apiObj };
