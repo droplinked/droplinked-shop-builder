@@ -71,17 +71,17 @@ import { API_STATUS } from "../../constant/api-status";
 // };
 
 //delete collection
-export const deleteCollection = async (id) => {
-  const token = JSON.parse(localStorage.getItem("token"));
-  try {
-    const res = await axios.delete(`${BASE_URL}/producer/collection/${id}`, {
-      headers: { Authorization: "Bearer " + token },
-    });
-    return true;
-  } catch (err) {
-    return err.response.data.reason;
-  }
-};
+// export const deleteCollection = async (id) => {
+//   const token = JSON.parse(localStorage.getItem("token"));
+//   try {
+//     const res = await axios.delete(`${BASE_URL}/producer/collection/${id}`, {
+//       headers: { Authorization: "Bearer " + token },
+//     });
+//     return true;
+//   } catch (err) {
+//     return err.response.data.reason;
+//   }
+// };
 
 export const addProductToCollection = async (collectionId, productId) => {
   const token = JSON.parse(localStorage.getItem("token"));

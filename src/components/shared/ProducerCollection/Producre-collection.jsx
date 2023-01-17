@@ -12,8 +12,9 @@ import {
   ProductsWrapper,
 } from "./Producer-collection-style";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { deleteCollection } from "../../../api/producer/Collection-api";
+import { deleteCollection } from "../../../api-service/collections/collectionApiService";
 import { Box } from "@chakra-ui/react";
+import { useApi } from "../../../hooks/useApi/useApi";
 import { USER_TYPE } from "../../../constant/user-types";
 import { useSelector } from "react-redux";
 import {
@@ -29,11 +30,12 @@ const ProducerCollection = ({ collection, update }) => {
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
+  const { deleteApi } = useApi()
   const profile = useSelector(selectCurrentProfile);
 
-  const DeleteCollection = async () => {
+  const clickOnDeleteCollection = async () => {
     setLoading(true);
-    let result = await deleteCollection(collection._id);
+    let result = await deleteApi(deleteCollection(collection._id))
     if (result == true) {
       successToast("Collection deleted successfully");
       update();
@@ -110,7 +112,7 @@ const ProducerCollection = ({ collection, update }) => {
           text={`Are you sure you want to  delete this collection?`}
           show={deleteModal}
           hide={() => setDeleteModal(false)}
-          click={DeleteCollection}
+          click={clickOnDeleteCollection}
           loading={loading}
           buttonText={"Delete"}
         />}

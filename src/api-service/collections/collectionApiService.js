@@ -53,3 +53,13 @@ export const addCollection = (collectionName) => {
   };
   return { ...apiObj };
 };
+
+
+export const deleteCollection = (collectionId) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `producer/collection/${collectionId}`,
+    token: token,
+  };
+  return { ...apiObj };
+};
