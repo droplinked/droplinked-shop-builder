@@ -4,21 +4,21 @@ import { BASE_URL } from "../BaseUrl";
 import { API_STATUS } from "../../constant/api-status";
 //import { useToasty } from "../../context/toastify/ToastContext"
 
-export const getAllCollections = async () => {
-  //  const { errorToast } = useToasty()
-  const token = JSON.parse(localStorage.getItem("token"));
-  try {
-    const res = await axios.get(
-      `${BASE_URL}/producer/collection`,
-      {
-        headers: { Authorization: "Bearer " + token },
-      }
-    );
-    return {status:API_STATUS.SUCCESS ,data: res.data.data.collections};
-  } catch (err) {
-    return {status:API_STATUS.FAILED, data:err.response.data.reason}
-  }
-};
+// export const getAllCollections = async () => {
+//   //  const { errorToast } = useToasty()
+//   const token = JSON.parse(localStorage.getItem("token"));
+//   try {
+//     const res = await axios.get(
+//       `${BASE_URL}/producer/collection`,
+//       {
+//         headers: { Authorization: "Bearer " + token },
+//       }
+//     );
+//     return {status:API_STATUS.SUCCESS ,data: res.data.data.collections};
+//   } catch (err) {
+//     return {status:API_STATUS.FAILED, data:err.response.data.reason}
+//   }
+// };
 
 export const getCollections = async () => {
   //  const { errorToast } = useToasty()

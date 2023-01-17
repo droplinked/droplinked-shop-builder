@@ -11,5 +11,16 @@ export const getCollectionsByShopname = (shopname) => {
     };
     return { ...apiObj };
   };
+
   
+export const getCollections = () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `producer/collection`,
+    token: token,
+  };
+  return { ...apiObj };
+};
+
+
 
