@@ -62,3 +62,13 @@ export const postProducerSignup = (email, password, shopName) => {
   };
   return { ...apiObj };
 };
+
+export const postResendEmail = (email) => {
+  let apiObj = {
+    url: `email/resend`,
+    body: {
+      email: email,
+    },
+  };
+  return { ...apiObj };
+};
