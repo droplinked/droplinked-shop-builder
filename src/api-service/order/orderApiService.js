@@ -36,3 +36,14 @@ export const postCancelOrder = (orderId) => {
   };
   return { ...apiObj };
 };
+
+
+export const getProducerOrder = () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `producer/order`,
+    token: token,
+  };
+  return { ...apiObj };
+};
+

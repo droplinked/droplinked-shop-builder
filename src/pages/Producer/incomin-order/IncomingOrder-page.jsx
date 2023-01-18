@@ -1,7 +1,7 @@
 import { Text, Box, Flex } from "@chakra-ui/react";
-//import { useOrder } from "../../../context/order/OrdersContext";
 import { ORDER_TYPES } from "../../../constant/order.types";
-import { getOrdersList } from "../../../api/producer/Orders-api";
+import { getProducerOrder } from "../../../api-service/order/orderApiService";
+import { useApi } from "../../../hooks/useApi/useApi";
 import { useMemo, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectIsActiveProducer } from "../../../store/profile/profile.selector";
@@ -16,13 +16,13 @@ export default function IncomingOrderPage() {
   const [orders, setOrders] = useState([]);
   // const { orders } = useOrder()
   const navigate = useNavigate();
+  const { getApi } = useApi()
   const isRegisteredProducer = useSelector(selectIsActiveProducer);
 
   const updateOrder = async () => {
-    let result = await getOrdersList();
-
-    if (result != null) {
-      result = sortArrayBaseCreateTime(result);
+    let result = await getApi(getProducerOrder())
+    if (result) {
+      result = sortArrayBaseCreateTime(result.orders);
       setOrders(result);
     }
   };
