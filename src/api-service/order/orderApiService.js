@@ -27,7 +27,6 @@ export const getOrderClientSecret = (orderId) => {
   return { ...apiObj };
 };
 
-
 export const postCancelOrder = (orderId) => {
   const token = JSON.parse(localStorage.getItem("token"));
   let apiObj = {
@@ -36,7 +35,6 @@ export const postCancelOrder = (orderId) => {
   };
   return { ...apiObj };
 };
-
 
 export const getProducerOrder = () => {
   const token = JSON.parse(localStorage.getItem("token"));
@@ -47,3 +45,12 @@ export const getProducerOrder = () => {
   return { ...apiObj };
 };
 
+export const postOrderStatus = (orderId, status) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `producer/order/${orderId}/status`,
+    body: { status: status },
+    token: token,
+  };
+  return { ...apiObj };
+};

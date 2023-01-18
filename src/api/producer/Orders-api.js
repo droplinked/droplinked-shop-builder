@@ -1,6 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
 
-import { BASE_URL } from "../BaseUrl";
+// import { BASE_URL } from "../BaseUrl";
 
 
 // export const getOrdersList = async () => {
@@ -18,28 +18,28 @@ import { BASE_URL } from "../BaseUrl";
 //   }
 // };
 
-export const SeenOrder = async (id) => {
-  const token = JSON.parse(localStorage.getItem("token"));
-    try {
-      const res = await axios.post(`${BASE_URL}/producer/order/seen/${id}`,{}, {
-        headers: { Authorization: "Bearer " + token },
-      });
-      return true;
-    } catch (err) {
-      return err.response.data.reason
-    }
-  };
+// export const SeenOrder = async (id) => {
+//   const token = JSON.parse(localStorage.getItem("token"));
+//     try {
+//       const res = await axios.post(`${BASE_URL}/producer/order/seen/${id}`,{}, {
+//         headers: { Authorization: "Bearer " + token },
+//       });
+//       return true;
+//     } catch (err) {
+//       return err.response.data.reason
+//     }
+//   };
 
 
-  export const updateOrderStatus = async (orderId , status) => {
-    const token = JSON.parse(localStorage.getItem("token"));
-      try {
-        const res = await axios.post(`${BASE_URL}/producer/order/${orderId}/status`,
-        {status: status}, 
-        { headers: { Authorization: "Bearer " + token }});
-        return true;
-      } catch (err) {
-        return err.response.data.reason
-      }
-    };
+  // export const updateOrderStatus = async (orderId , status) => {
+  //   const token = JSON.parse(localStorage.getItem("token"));
+  //     try {
+  //       const res = await axios.post(`${BASE_URL}/producer/order/${orderId}/status`,
+  //       {status: status}, 
+  //       { headers: { Authorization: "Bearer " + token }});
+  //       return true;
+  //     } catch (err) {
+  //       return err.response.data.reason
+  //     }
+  //   };
   
