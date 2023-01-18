@@ -1,20 +1,20 @@
 import { createContext, useState, useContext } from "react";
-import { removeCart, getCart } from "../../api/base-user/Cart-api";
+import { removeCart  } from "../../api/base-user/Cart-api";
 import { SHOP_TYPES } from "../../constant/shop-types";
-import { useToasty } from "../../context/toastify/ToastContext";
 import { getMaxDiscount } from "../../services/check-rule-service/check-rule";
 import { getUserAddress } from "../../services/wallet-auth/api";
-import { API_STATUS } from "../../constant/api-status";
 import { useSelector } from "react-redux";
 import { selectHiroWalletData } from "../../store/hiro-wallet/hiro-wallet.selector";
+import { useApi } from "../../hooks/useApi/useApi";
+import { getCart } from "../../api-service/cart/cartApiService";
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   // state for cart
   const [cart, setCart] = useState(null);
-
-  const { errorToast } = useToasty();
+  console.log('cart : ' , cart);
+  const { getApi } =  useApi()
   const userData = useSelector(selectHiroWalletData);
 
   const getStacksAddress = () => {
@@ -26,10 +26,10 @@ const CartProvider = ({ children }) => {
   };
   //update cartstate
   const updateCart = async () => {
-    let result = await getCart();
-
-    if (result.status === API_STATUS.SUCCESS) {
-      let resultCard = result.data;
+    let result = await getApi(getCart());
+    console.log('result , ' , result.cart );
+    if (result) {
+      let resultCard = result.cart      ;
       if (resultCard.items.length <= 0) setCart(null);
       else {
         let items = [];
@@ -39,8 +39,6 @@ const CartProvider = ({ children }) => {
         }
         setCart({ ...resultCard, items: items, type: SHOP_TYPES.DROPLINKED });
       }
-    } else {
-      errorToast(result.data);
     }
   };
 

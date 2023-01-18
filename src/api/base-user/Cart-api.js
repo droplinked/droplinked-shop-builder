@@ -3,18 +3,18 @@ import axios from "axios";
 import { BASE_URL } from "../BaseUrl";
 import { API_STATUS } from "../../constant/api-status";
 
-export const getCart = async () => {
-  const token = JSON.parse(localStorage.getItem("token"));
+// export const getCart = async () => {
+//   const token = JSON.parse(localStorage.getItem("token"));
 
-  try {
-    const res = await axios.get(`${BASE_URL}/cart`, {
-      headers: { Authorization: "Bearer " + token },
-    });
-    return { status: API_STATUS.SUCCESS, data: res.data.data.cart };
-  } catch (err) {
-    return { status: API_STATUS.FAILED, data: err.response.data.reason };
-  }
-};
+//   try {
+//     const res = await axios.get(`${BASE_URL}/cart`, {
+//       headers: { Authorization: "Bearer " + token },
+//     });
+//     return { status: API_STATUS.SUCCESS, data: res.data.data.cart };
+//   } catch (err) {
+//     return { status: API_STATUS.FAILED, data: err.response.data.reason };
+//   }
+// };
 
 export const addCheckoutAddress = async (addressId) => {
   const token = JSON.parse(localStorage.getItem("token"));
