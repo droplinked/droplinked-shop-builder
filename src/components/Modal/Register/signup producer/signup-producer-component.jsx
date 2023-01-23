@@ -21,7 +21,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
   const changeEmail = (e) => setEmail(e.target.value);
   const changePass = (e) => setPassword(e.target.value);
   const changeConPass = (e) => setConfirmPassword(e.target.value);
-  //const changeShopName = (e) => setShopName(e.target.value);
+  const changeShopName = (e) =>{if(shopname == undefined) setShopName(e.target.value)}
 
   let navigate = useNavigate();
 
@@ -88,7 +88,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         placeholder={"Confirm password"}
       />
       <Box mb="20px"></Box>
-      <FormInput value={shopName} label={"Username"} placeholder={"Username"} />
+      <FormInput value={shopName} changeValue={changeShopName} label={"Username"} placeholder={"Username"} />
       <Box mb="20px"></Box>
       <BasicButton click={onSubmit} disabled={loading}>
         Sign up
