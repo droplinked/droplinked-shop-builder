@@ -79,7 +79,7 @@ export function useApi() {
       } else {
         errorToast(err.message);
       }
-      return undefined;
+      return false;
     }
   };
 

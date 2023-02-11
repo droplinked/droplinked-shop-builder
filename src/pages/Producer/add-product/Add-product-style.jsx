@@ -1,75 +1,116 @@
 import { chakra } from "@chakra-ui/react";
 
-export const ModalContainerWrapper = chakra("div", {
+export const PageWrapper = chakra("div", {
+  baseStyle: {
+    w: "100%",
+    display: "flex",
+    flexDir: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    pt:'24px',
+    gap:'16px'
+  },
+});
+
+export const ComponentWrapper = chakra("div", {
+  baseStyle: {
+    w: "100%",
+    maxW: "1000px",
+    bg: "#1c1c1c",
+    p: "50px 60px",
+    borderRadius: "8px",
+  },
+});
+
+
+export const ComponentTitle = chakra("p", {
+  baseStyle: {
+    fontSize:'20px',
+    fontWeight:'500',
+    color:"#fff",
+  },
+});
+
+
+export const Text16px = chakra("p", {
+  baseStyle: {
+    fontSize:'16px',
+    fontWeight:'500',
+    color:"#fff",
+  },
+});
+
+
+
+export const CollectionContainer = chakra("div", {
   baseStyle: {
     d: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    bg: "mainLayer",
+    w: "100%",
     borderRadius: "8px",
-    p:{base:'30px 20px',sm:'40px 30px' , md:'40px 60px' , lg:'40px 100px'  }
+    bg: "subLayer",
+    p: "18px 18px",
+    flexWrap: "wrap",
+    pb: "100px",
   },
 });
 
-export const TitleText = chakra("p", {
+
+
+export const CollectionItem = chakra("div", {
   baseStyle: {
-    color: "white",
-    fontWeight: "600",
-    fontSize: { base: "26px", md: "30px" },
-    mb: "40px",
+    cursor:"pointer" ,
+    p: "8px 16px",
+    mr: "20px",
+    maxH: "auto",
+    fontSize: "20px",
+    borderRadius: "28px",
+    mb: "16px",
   },
 });
 
-export const TypeSelect = chakra("select", {
+
+export const SelectComponent = chakra("select", {
   baseStyle: {
-    fontWeight: "600",
-    fontSize: { base: "10px", sm: "12px", md: "16px" },
-    color: "white",
-    border: "none",
-    bgColor: "subLayer",
+    w: "100%",
+    d: "flex",
+    backgroundColor: "subLayer",
     borderRadius: "8px",
-    w: "300px",
-    px: "16px",
-    py: { base: "8px", md: "12px" },
+    color: "darkGray",
+    p: "18px 18px",
+    fontSize: "20px",
+    fontWeight: "500",
     outline: "none",
-    _focus: { outline: "none" },
-    h: "auto",
-    mr: "40px",
-    _disabled: {
-      color: "button",
+    _focus: {
+      border: "none",
+      outline: "none",
     },
   },
 });
+
+export const OptionComponent = chakra("option", {
+  baseStyle: {
+    w: "100%",
+    bg: "subLayer",
+    color: "darkGray",
+    p: "18px 18px",
+  },
+});
+
 
 export const InputComponent = chakra("input", {
   baseStyle: {
-    fontWeight: "600",
-    fontSize: { base: "10px", sm: "12px", md: "16px" },
-    color: "white",
-    border: "none",
-    bgColor: "dark",
-    borderRadius: "8px",
     w: "100%",
-    px: "16px",
-    py: { base: "8px", md: "12px" },
+    d: "flex",
+    color: "darkGray",
+    bg: "subLayer",
+    p: "18px 18px",
+    fontSize: "20px",
+    fontWeight: "500",
+    border: "none",
     outline: "none",
-    _focus: { outline: "none" },
-    h: "auto",
-    _disabled: {
-      color: "button",
+    borderRadius: "8px",
+    _placeholder: {
+      color: "darkGray",
     },
   },
 });
-
-
-export const LableInput = chakra("div", {
-  baseStyle: {
-    fontWeight: "600",
-    fontSize: { base: "10px", sm: "12px", md: "16px" },
-    color: "white",
-    marginBottom: "10px",
-  },
-});
-

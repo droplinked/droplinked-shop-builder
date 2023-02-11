@@ -59,7 +59,7 @@ const TechnicalInformation = ({ TechnicalInfo, dispatchTechnical }) => {
 
       <Box p="0px 24px">
         <AddProductLabel>Collections</AddProductLabel>
-        <Box mb="18px"></Box>
+        CollectionComponent
         <CollectionContainer>
           <CollectionItem
             bg={

@@ -12,7 +12,7 @@ export const ImagesInputWrapper = chakra("div", {
 export const ItemImage = chakra("div", {
   baseStyle: {
     padding: "10px",
-    width: { base: "48%", md: "30%" },
+    width: { base: "48%", md: "25%" },
     position: "relative",
     cursor: "pointer",
     display: "flex",
