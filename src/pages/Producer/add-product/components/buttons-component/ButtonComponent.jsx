@@ -9,7 +9,7 @@ import BasicButton from "../../../../../components/shared/BasicButton/BasicButto
 const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
   const [loading, setLoading] = useState(false);
 
-  const { errorToast } = useToasty();
+  const { errorToast , successToast} = useToasty();
   const { postApi } = useApi();
 
   const backToPriviesPage = () => {};
