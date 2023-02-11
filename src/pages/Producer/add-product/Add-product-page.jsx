@@ -30,6 +30,7 @@ import ProductIntoComponent from "./components/ProductIntoComponent";
 import TechnicalComponent from "./components/technical-component/TechnicalComponent";
 import PropertiesComponent from "./components/properties-component/PropertiesComponent";
 import VariantsComponent from "./components/variants-component/VariantsComponent";
+import ButtonComponent from "./components/buttons-component/ButtonComponent";
 
 const initialProductIntor = {
   title: "",
@@ -70,7 +71,12 @@ function AddProductPage() {
         OptionList={OptionList}
         setOptionList={setOptionList}
       />
-      <VariantsComponent OptionList={OptionList} skus={skus} setSkus={setSkus} />
+      <VariantsComponent
+        OptionList={OptionList}
+        skus={skus}
+        setSkus={setSkus}
+      />
+      <ButtonComponent productIntro={productIntro} TechnicalData={TechnicalData} skus={skus} />
     </PageWrapper>
   );
 }
