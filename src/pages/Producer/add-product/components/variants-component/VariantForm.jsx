@@ -7,6 +7,7 @@ import {
   Text16px,
   Line,
 } from "../../Add-product-style";
+import SkuForm from "./SkuForm";
 
 import editIcon from "../../../../../assest/icon/edit-icon.svg";
 import deleteIcon from "../../../../../assest/icon/delete-icon.svg";
@@ -52,14 +53,13 @@ const VariantForm = ({
   return (
     <>
       {showForm ? (
-        <></>
+        <SkuForm
+          closeForm={toggleForm}
+          OptionList={OptionList}
+          submitForm={submitForm}
+          defaultValue={sku}
+        />
       ) : (
-        // <SkuForm
-        //   closeForm={toggleForm}
-        //   OptionList={OptionList}
-        //   submitForm={submitForm}
-        //   defaultValue={sku}
-        // />
         <VariantComponentWrapper>
           <DetailWrapper>
             {sku.options.map((option) => {
