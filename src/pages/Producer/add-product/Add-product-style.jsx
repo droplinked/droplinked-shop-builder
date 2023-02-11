@@ -7,8 +7,8 @@ export const PageWrapper = chakra("div", {
     flexDir: "column",
     alignItems: "center",
     justifyContent: "center",
-    pt:'24px',
-    gap:'16px'
+    pt: "24px",
+    gap: "16px",
   },
 });
 
@@ -22,25 +22,37 @@ export const ComponentWrapper = chakra("div", {
   },
 });
 
-
 export const ComponentTitle = chakra("p", {
   baseStyle: {
-    fontSize:'20px',
-    fontWeight:'500',
-    color:"#fff",
+    fontSize: "20px",
+    fontWeight: "500",
+    color: "#fff",
   },
 });
-
 
 export const Text16px = chakra("p", {
   baseStyle: {
-    fontSize:'16px',
-    fontWeight:'500',
-    color:"#fff",
+    fontSize: "16px",
+    fontWeight: "500",
+    color: "#fff",
   },
 });
 
+export const Text16px400 = chakra("p", {
+  baseStyle: {
+    fontSize: "16px",
+    fontWeight: "400",
+    color: "#fff",
+  },
+});
 
+export const Text14px400 = chakra("p", {
+  baseStyle: {
+    fontSize: "14px",
+    fontWeight: "400",
+    color: "#fff",
+  },
+});
 
 export const CollectionContainer = chakra("div", {
   baseStyle: {
@@ -54,11 +66,9 @@ export const CollectionContainer = chakra("div", {
   },
 });
 
-
-
 export const CollectionItem = chakra("div", {
   baseStyle: {
-    cursor:"pointer" ,
+    cursor: "pointer",
     p: "8px 16px",
     mr: "20px",
     maxH: "auto",
@@ -67,7 +77,6 @@ export const CollectionItem = chakra("div", {
     mb: "16px",
   },
 });
-
 
 export const SelectComponent = chakra("select", {
   baseStyle: {
@@ -96,7 +105,6 @@ export const OptionComponent = chakra("option", {
   },
 });
 
-
 export const InputComponent = chakra("input", {
   baseStyle: {
     w: "100%",
@@ -114,3 +122,60 @@ export const InputComponent = chakra("input", {
     },
   },
 });
+
+export const GrayLine = chakra("div", {
+  baseStyle: {
+    w: "1px",
+    border: "1px solid",
+    h: "100%",
+    minH: "20px",
+    borderColor: "gray",
+    borderRadius: "8px",
+    bg: "line",
+  },
+});
+
+
+
+export const OptionFormWrapper = chakra("div", {
+  baseStyle: {
+   w:'100%',
+   p:'24px 36px' ,
+   bg:'subLayer',
+   mb:'10px',
+   borderRadius:'8px'
+  },
+});
+
+export const ValueInput = chakra("input", {
+  baseStyle: {
+  fontSize:'20px'  ,
+  fontWeight:'500',
+  color:'darkGray' ,
+  p:'15px 24px' ,
+  w:'100%',
+  backgroundColor: "mainLayer",
+  borderRadius: "8px",
+  _placeholder:{
+    color:'darkGray' ,
+  },
+  _focus:{
+    outline:'none'
+  }
+  },
+});
+
+
+export const PlusIcon = chakra("img", {
+  baseStyle: {
+  w:'24px' ,
+  h:'24px' ,
+  mx:'18px' ,
+  cursor:'pointer'
+  }
+});
+
+
+
+
+

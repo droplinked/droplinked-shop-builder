@@ -18,7 +18,7 @@ const ShippingComponent = ({ TechnicalData, dispatchTechnical }) => {
       payload: parseFloat(e.target.value),
     });
 
-  return (s
+  return (
     <>
       <Text16px>Shipping</Text16px>
       <Box mb="16px" />

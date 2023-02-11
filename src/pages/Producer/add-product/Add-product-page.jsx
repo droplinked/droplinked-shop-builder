@@ -18,7 +18,7 @@
 // import { Flex, Box } from "@chakra-ui/react";
 // import { SHIPING_TYPES } from "./shippings-type";
 // import { API_STATUS } from "../../../constant/api-status";
-import { useReducer } from "react";
+import { useReducer , useState } from "react";
 import { Box } from "@chakra-ui/react";
 
 import { SHIPING_TYPES } from "../../../constant/shipping-types";
@@ -28,6 +28,7 @@ import { PageWrapper } from "./Add-product-style";
 
 import ProductIntoComponent from "./components/ProductIntoComponent";
 import TechnicalComponent from "./components/technical-component/TechnicalComponent";
+import PropertiesComponent from "./components/properties-component/PropertiesComponent";
 
 const initialProductIntor = {
   title: "",
@@ -51,8 +52,11 @@ function AddProductPage() {
     productTechReducer,
     initialTechnicalInfo
   );
+  const [OptionList, setOptionList] = useState([]);
 
   return (
+    
+
     <PageWrapper>
       <ProductIntoComponent
         productIntro={productIntro}
@@ -61,6 +65,10 @@ function AddProductPage() {
       <TechnicalComponent
         TechnicalData={TechnicalData}
         dispatchTechnical={dispatchTechnical}
+      />
+      <PropertiesComponent
+        OptionList={OptionList}
+        setOptionList={setOptionList}
       />
     </PageWrapper>
   );
