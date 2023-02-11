@@ -1,9 +1,9 @@
 import { Box } from "@chakra-ui/react";
 
-import { ComponentWrapper, ComponentTitle } from "../Add-product-style"
+import { ComponentWrapper, ComponentTitle } from "../../Add-product-style"
 
-import FormInput from "../../../../components/shared/FormInput/FormInput";
-import InputImagesGroup from "../../../../components/shared/InputImageGroupe/Input-images-component";
+import FormInput from "../../../../../components/shared/FormInput/FormInput";
+import InputImagesGroup from "../../../../../components/shared/InputImageGroupe/Input-images-component";
 
 const ProductIntoComponent = ({ productIntro, dispatchIntro }) => {
   const changeTitle = (e) =>

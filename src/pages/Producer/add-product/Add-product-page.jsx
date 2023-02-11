@@ -26,7 +26,7 @@ import { productIntroReducer } from "./reducer/product-intro-reducer";
 import { productTechReducer } from "./reducer/technical-data-reducer";
 import { PageWrapper } from "./Add-product-style";
 
-import ProductIntoComponent from "./components/ProductIntoComponent";
+import ProductIntoComponent from "./components/product-intro-component/ProductIntoComponent";
 import TechnicalComponent from "./components/technical-component/TechnicalComponent";
 import PropertiesComponent from "./components/properties-component/PropertiesComponent";
 import VariantsComponent from "./components/variants-component/VariantsComponent";

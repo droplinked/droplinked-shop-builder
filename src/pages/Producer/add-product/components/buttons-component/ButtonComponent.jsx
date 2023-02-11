@@ -2,12 +2,15 @@ import { Flex, Box } from "@chakra-ui/react";
 import { useState } from "react";
 
 import { useToasty } from "../../../../../context/toastify/ToastContext";
+import { useApi } from "../../../../../hooks/useApi/useApi";
+import { postAddProduct } from "../../../../../api-service/product/productApiService";
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
 const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
   const [loading, setLoading] = useState(false);
 
   const { errorToast } = useToasty();
+  const { postApi } = useApi();
 
   const backToPriviesPage = () => {};
 
@@ -40,16 +43,20 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
           priceUnit: "USD",
         }
       );
-      //   setLoading(true);
-      //   let result = await postProduct(finalData);
-      //   setLoading(false);
-      //   if (result.status == API_STATUS.SUCCESS)
-      //     successToast("Done success fully");
-      //   else errorToast(result.data);
+      setLoading(true);
+      let result = await postApi(postAddProduct(finalData));
+      setLoading(false);
+      if (result) successToast("Done success fully");
     }
   };
   return (
-    <Flex w="100%" maxW='1000px' alignItems="center" justifyContent="space-between" pt='20px'>
+    <Flex
+      w="100%"
+      maxW="1000px"
+      alignItems="center"
+      justifyContent="space-between"
+      pt="20px"
+    >
       <Box w="200px">
         <BasicButton
           cancelType={true}
