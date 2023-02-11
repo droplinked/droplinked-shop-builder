@@ -12,6 +12,7 @@ import Shops from "./pages/affiliate/shops/shops";
 import AffiliateShop from "./pages/affiliate/shop/shop";
 import AffiliateProduct from "./pages/affiliate/product/product";
 import RequestsPage from "./pages/affiliate/requests/request";
+import EditProductPage from "./pages/Producer/edit-product/EditProductPage";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
@@ -115,7 +116,9 @@ function App() {
             {/* producer pages */}
             <Route path="producer" element={<UserWrapper />}>
               <Route path="ims" element={<InventoryPage />} />
-              <Route path="merch/:id" element={<ViewMerchPage />} />
+              
+              <Route path="merch/:id" element={<EditProductPage />} />
+              {/* <Route path="merch/:id" element={<ViewMerchPage />} /> */}
 
               <Route path="add-product" element={<AddProductPage />} />
               {/* <Route path="ruleset" element={<RuleSetPage />} /> */}
