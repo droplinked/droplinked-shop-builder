@@ -176,6 +176,38 @@ export const PlusIcon = chakra("img", {
 });
 
 
+export const VariantComponentWrapper = chakra("div", {
+  baseStyle: {
+    d: "flex",
+    w:'100%',
+    p:'16px 4px',
+    alignItems:'center',
+    borderBottom:'3px solid',
+    borderColor:'line' ,
+    justifyContent:'space-between'
+  },
+});
+
+export const DetailWrapper = chakra("div", {
+  baseStyle: {
+    d: "flex",
+    w:'75%',
+    justifyContent:'space-between'
+  },
+});
+
+export const Line = chakra("div", {
+  baseStyle: {
+    w:'3px' ,
+    bg:'line' ,
+    border:'1px solid' ,
+    borderColor:'line'
+  },
+});
+
+
+
+
 
 
 
