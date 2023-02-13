@@ -28,7 +28,12 @@ const EditProductPage = () => {
 
   return (
     <PageWrapper>
-      <ProductIntroComponent productIntro={productIntro} dispatchIntro={dispatchIntro} />
+      {productIntro && (
+        <ProductIntroComponent
+          productIntro={productIntro}
+          dispatchIntro={dispatchIntro}
+        />
+      )}
     </PageWrapper>
   );
 };
