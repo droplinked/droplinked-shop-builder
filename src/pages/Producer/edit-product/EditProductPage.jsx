@@ -5,23 +5,34 @@ import { SHIPING_TYPES } from "./shippings-type";
 import { useApi } from "../../../hooks/useApi/useApi";
 import { getProducerProductById } from "../../../api-service/product/productApiService";
 import { productIntroReducer } from "./reducer/product-intro-reducer";
+import { productTechReducer } from "./reducer/technical-data-reducer";
 import { PageWrapper } from "./EditProductPage-style";
-import { getIntroData } from "./utils";
+import { getIntroData, getTechnicalData } from "./utils";
 
 import ProductIntroComponent from "./components/product-intro-component/ProductIntroComponent";
+import TechnicalComponent from "./components/technical-component/TechnicalComponent";
 
 const EditProductPage = () => {
   const [productIntro, dispatchIntro] = useReducer(productIntroReducer, null);
+  const [TechnicalData, dispatchTechnical] = useReducer(
+    productTechReducer,
+    null
+  );
 
   const merchId = useParams().id;
   const { getApi } = useApi();
-  console.log("productIntro : ", productIntro);
+  console.log("TechnicalData : ", TechnicalData);
+
   useEffect(async () => {
     let result = await getApi(getProducerProductById(merchId));
     if (result) {
       dispatchIntro({
         type: "initialIntroData",
         payload: getIntroData(result.product),
+      });
+      dispatchTechnical({
+        type: "initialize",
+        payload: getTechnicalData(result.product),
       });
     }
   }, []);
@@ -32,6 +43,12 @@ const EditProductPage = () => {
         <ProductIntroComponent
           productIntro={productIntro}
           dispatchIntro={dispatchIntro}
+        />
+      )}
+      {TechnicalData && (
+        <TechnicalComponent
+          TechnicalData={TechnicalData}
+          dispatchTechnical={dispatchTechnical}
         />
       )}
     </PageWrapper>
