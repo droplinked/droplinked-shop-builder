@@ -13,3 +13,26 @@ export const getTechnicalData = (product) => {
     shippingPrice: product.shippingPrice,
   };
 };
+
+export const getPropertiesData = (product) => {
+  let currentOption = [];
+  product.skus[0].options.forEach((option, i) => {
+    currentOption.push({
+      optionId: option.variantID,
+      optionName: option.variantName,
+      values: [],
+      index: i + 1,
+    });
+  });
+
+  currentOption.forEach((option) => {
+    option.values = product.skus.map((sku, i) => {
+      return {
+        index: i + 1,
+        value: sku.options.find((opt) => opt.variantID == option.optionId)
+          .value,
+      };
+    });
+  });
+  return currentOption;
+};

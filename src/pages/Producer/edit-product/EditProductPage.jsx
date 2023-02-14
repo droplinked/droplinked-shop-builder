@@ -7,10 +7,11 @@ import { getProducerProductById } from "../../../api-service/product/productApiS
 import { productIntroReducer } from "./reducer/product-intro-reducer";
 import { productTechReducer } from "./reducer/technical-data-reducer";
 import { PageWrapper } from "./EditProductPage-style";
-import { getIntroData, getTechnicalData } from "./utils";
+import { getIntroData, getTechnicalData, getPropertiesData } from "./utils";
 
 import ProductIntroComponent from "./components/product-intro-component/ProductIntroComponent";
 import TechnicalComponent from "./components/technical-component/TechnicalComponent";
+import PropertiesComponent from "./components/PropertiesComponent/PropertiesComponent";
 
 const EditProductPage = () => {
   const [productIntro, dispatchIntro] = useReducer(productIntroReducer, null);
@@ -18,11 +19,11 @@ const EditProductPage = () => {
     productTechReducer,
     null
   );
+  const [OptionList, setOptionList] = useState(null);
 
   const merchId = useParams().id;
   const { getApi } = useApi();
-  console.log("TechnicalData : ", TechnicalData);
-
+console.log("OptionList : " , OptionList)
   useEffect(async () => {
     let result = await getApi(getProducerProductById(merchId));
     if (result) {
@@ -34,6 +35,7 @@ const EditProductPage = () => {
         type: "initialize",
         payload: getTechnicalData(result.product),
       });
+      setOptionList(getPropertiesData(result.product));
     }
   }, []);
 
@@ -49,6 +51,13 @@ const EditProductPage = () => {
         <TechnicalComponent
           TechnicalData={TechnicalData}
           dispatchTechnical={dispatchTechnical}
+        />
+      )}
+
+      {OptionList && (
+        <PropertiesComponent
+          OptionList={OptionList}
+          setOptionList={setOptionList}
         />
       )}
     </PageWrapper>
