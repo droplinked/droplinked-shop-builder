@@ -36,3 +36,19 @@ export const getPropertiesData = (product) => {
   });
   return currentOption;
 };
+
+export const getSkusData = (product) => {
+  let x = product.skus.map((sku) => {
+    return {
+      _id: sku._id,
+      price: sku.price,
+      quantity: sku.quantity,
+      record: sku.record,
+      weight:sku.weight ,
+      options:sku.options,
+      dimensions:sku.dimensions,
+      externalID:sku.externalID
+    };
+  });
+  return x
+};

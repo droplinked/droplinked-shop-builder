@@ -25,3 +25,41 @@ export const getVariants = () => {
   };
   return { ...apiObj };
 };
+
+export const putUpdateSku = ( skuId, externalID, price, quantity, options ) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `producer/product/sku/${skuId}`,
+    body: {
+      externalID: externalID,
+      price: price,
+      quantity: quantity,
+      options: options,
+    },
+    token: token,
+  };
+  return { ...apiObj };
+};
+
+export const postAddSkuToProduct = (productId, sku) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  console.log("sku ", sku);
+  let apiObj = {
+    url: `producer/product/${productId}/sku`,
+    body: {
+      skus: [{ ...sku }],
+    },
+    token: token,
+  };
+  return { ...apiObj };
+};
+
+
+export const deleteRemoveSku = (skuId) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `producer/product/sku/${skuId}`,
+    token: token,
+  };
+  return { ...apiObj };
+};

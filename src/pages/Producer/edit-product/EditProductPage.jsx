@@ -7,11 +7,17 @@ import { getProducerProductById } from "../../../api-service/product/productApiS
 import { productIntroReducer } from "./reducer/product-intro-reducer";
 import { productTechReducer } from "./reducer/technical-data-reducer";
 import { PageWrapper } from "./EditProductPage-style";
-import { getIntroData, getTechnicalData, getPropertiesData } from "./utils";
+import {
+  getIntroData,
+  getTechnicalData,
+  getPropertiesData,
+  getSkusData,
+} from "./utils";
 
 import ProductIntroComponent from "./components/product-intro-component/ProductIntroComponent";
 import TechnicalComponent from "./components/technical-component/TechnicalComponent";
 import PropertiesComponent from "./components/PropertiesComponent/PropertiesComponent";
+import VariantsComponent from "./components/variants-component/VariantsComponent";
 
 const EditProductPage = () => {
   const [productIntro, dispatchIntro] = useReducer(productIntroReducer, null);
@@ -19,12 +25,14 @@ const EditProductPage = () => {
     productTechReducer,
     null
   );
+
   const [OptionList, setOptionList] = useState(null);
+  const [skus, setSkus] = useState(null);
 
   const merchId = useParams().id;
   const { getApi } = useApi();
-console.log("OptionList : " , OptionList)
-  useEffect(async () => {
+
+  const getProductData = async () => {
     let result = await getApi(getProducerProductById(merchId));
     if (result) {
       dispatchIntro({
@@ -36,7 +44,12 @@ console.log("OptionList : " , OptionList)
         payload: getTechnicalData(result.product),
       });
       setOptionList(getPropertiesData(result.product));
+      setSkus(getSkusData(result.product));
     }
+  };
+
+  useEffect(() => {
+    getProductData();
   }, []);
 
   return (
@@ -58,6 +71,14 @@ console.log("OptionList : " , OptionList)
         <PropertiesComponent
           OptionList={OptionList}
           setOptionList={setOptionList}
+        />
+      )}
+      {skus && (
+        <VariantsComponent
+          OptionList={OptionList}
+          skus={skus}
+          productId={merchId}
+          updateProduct={getProductData}
         />
       )}
     </PageWrapper>
