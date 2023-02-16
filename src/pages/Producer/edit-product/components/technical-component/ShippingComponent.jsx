@@ -7,14 +7,19 @@ import {
   OptionComponent,
   InputComponent,
 } from "../../EditProductPage-style";
+import { TECH_REDUCER_TYPES } from "../../reducer/technical-data-reducer";
 
+// this component handles shipping
 const ShippingComponent = ({ TechnicalData, dispatchTechnical }) => {
   const changeShippingDropdown = (e) =>
-    dispatchTechnical({ type: "updateShippingType", payload: e.target.value });
+    dispatchTechnical({
+      type: TECH_REDUCER_TYPES.CHANGE_SHIPPING_TYPE,
+      payload: e.target.value,
+    });
 
   const changeShippingPrice = (e) =>
     dispatchTechnical({
-      type: "updateShippingPrice",
+      type: TECH_REDUCER_TYPES.CHANGE_SHIPPING_PRICE,
       payload: parseFloat(e.target.value),
     });
 

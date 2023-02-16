@@ -12,17 +12,30 @@ import {
   SmallInput,
 } from "../../EditProductPage-style";
 import { skuReducer } from "./sku-reducer";
+import { useApi } from "../../../../../hooks/useApi/useApi";
+import {
+  postAddSkuToProduct,
+  putUpdateSku,
+} from "../../../../../api-service/product/productApiService";
 import { initialReducer } from "./initial-reducer";
+import { existSameOptions } from "./utils";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
-const SkuForm = ({ closeForm, OptionList, submitForm, defaultValue }) => {
+const SkuForm = ({
+  closeForm,
+  OptionList,
+  skus,
+  defaultValue,
+  updateProduct,
+  productId,
+}) => {
   const initial = useMemo(() => initialReducer(OptionList, defaultValue), []);
 
   const [sku, dispatch] = useReducer(skuReducer, initial);
-console.log('sku : '  , sku)
   const { errorToast } = useToasty();
+  const { postApi, patchApi } = useApi();
 
   useEffect(() => {
     dispatch({ type: "updateSku", payload: initial });
@@ -93,11 +106,28 @@ console.log('sku : '  , sku)
     return check;
   };
 
-  const submitAddVariant = () => {
+  const submitForm = async () => {
     if (!isValidate()) return;
-    console.log('submit form sku : ' , sku)
-    let result = submitForm(sku);
+    if (existSameOptions(skus, sku)) {
+      errorToast(`There is same sku`);
+      return;
+    }
+    let result;
+    if (defaultValue) {
+      result = await patchApi(
+        putUpdateSku(
+          sku._id,
+          sku.externalID,
+          sku.price,
+          sku.quantity,
+          sku.options
+        )
+      );
+    } else {
+      result = await postApi(postAddSkuToProduct(productId, sku));
+    }
     if (result) {
+      updateProduct();
       dispatch({ type: "updateSku", payload: initial });
       closeForm();
     }
@@ -217,7 +247,7 @@ console.log('sku : '  , sku)
           </BasicButton>
         </Box>
         <Box w="200px">
-          <BasicButton click={submitAddVariant}>Save variant</BasicButton>
+          <BasicButton click={submitForm}>Save variant</BasicButton>
         </Box>
       </Flex>
     </SkuFormWrapper>

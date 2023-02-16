@@ -1,3 +1,4 @@
+// returns intro data with correct format
 export const getIntroData = (product) => {
   return {
     title: product.title,
@@ -5,7 +6,7 @@ export const getIntroData = (product) => {
     media: product.media.map((img) => img.url),
   };
 };
-
+// returns thecnical data with correct format
 export const getTechnicalData = (product) => {
   return {
     productCollectionID: product.productCollectionID,
@@ -13,7 +14,7 @@ export const getTechnicalData = (product) => {
     shippingPrice: product.shippingPrice,
   };
 };
-
+// returns options data with correct format
 export const getPropertiesData = (product) => {
   let currentOption = [];
   product.skus[0].options.forEach((option, i) => {
@@ -36,7 +37,7 @@ export const getPropertiesData = (product) => {
   });
   return currentOption;
 };
-
+// returns skus data with correct format
 export const getSkusData = (product) => {
   let x = product.skus.map((sku) => {
     return {

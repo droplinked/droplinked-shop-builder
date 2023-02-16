@@ -1,8 +1,12 @@
 import { Box } from "@chakra-ui/react";
 
 import { ComponentWrapper, ComponentTitle } from "../../EditProductPage-style";
+
+
 import CollectionComponent from "./CollectionComponent";
 import ShippingComponent from "./ShippingComponent";
+
+// this component handles collection and shipping
 const TechnicalComponent = ({ TechnicalData, dispatchTechnical }) => {
   return (
     <ComponentWrapper>

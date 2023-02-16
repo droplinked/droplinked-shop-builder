@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Text, Image } from "@chakra-ui/react";
+import { Flex, Image } from "@chakra-ui/react";
 
 import {
   VariantComponentWrapper,
@@ -9,74 +9,42 @@ import {
 } from "../../EditProductPage-style";
 import SkuForm from "./SkuForm";
 import { useApi } from "../../../../../hooks/useApi/useApi";
-import { putUpdateSku } from "../../../../../api-service/product/productApiService";
+import { deleteRemoveSku } from "../../../../../api-service/product/productApiService";
 
 import editIcon from "../../../../../assest/icon/edit-icon.svg";
 import deleteIcon from "../../../../../assest/icon/delete-icon.svg";
 
-const VariantForm = ({
+const SkuComponent = ({
   sku,
   OptionList,
-  productId,
   // record={RecordSku}
-  update,
-  deleteSku
+  updateProduct,
+  skus,
 }) => {
-
-    console.log('current sku , ' , sku)
   const [showForm, setShowForm] = useState(false);
   const [showRecordModal, setShowRecordModal] = useState(false);
-  const [loading, setLoading] = useState(false);
 
-  const { patchApi } = useApi();
+  const { deleteApi } = useApi();
 
   const toggleForm = () => setShowForm((p) => !p);
   const toggleRecordModal = () => setShowRecordModal((p) => !p);
 
-  const submitForm = async (sku) => {
-    console.log('update sku : ' , sku)
-    let result = await patchApi(
-      putUpdateSku(
-        sku._id,
-        sku.externalID,
-        sku.price,
-        sku.quantity,
-        sku.options
-      )
-    );
-    if (result) {
-      update();
-      return true;
-    }
+  const deleteSku = async () => {
+    let result = await deleteApi(deleteRemoveSku(sku._id));
+    if (result) updateProduct();
   };
 
-  const RecordSku = () => {
-    //   setLoading(true);
-    //   setTimeout(function () {
-    //     let currentSkus = Array.from(skus);
-    //     currentSkus = currentSkus.map((current) => {
-    //       if (current.index == sku.index) {
-    //         return { ...current, record: true };
-    //       } else {
-    //         return { ...current };
-    //       }
-    //     });
-    //     update(currentSkus);
-    //     setLoading(false);
-    //     toggleRecordModal();
-    //   }, 2000);
-  };
-
-
+  const RecordSku = () => {};
 
   return (
     <>
       {showForm ? (
         <SkuForm
+          skus={skus}
           closeForm={toggleForm}
           OptionList={OptionList}
-          submitForm={submitForm}
           defaultValue={sku}
+          updateProduct={updateProduct}
         />
       ) : (
         <VariantComponentWrapper>
@@ -127,7 +95,7 @@ const VariantForm = ({
               </Flex>
             )}
             <Image
-              onClick={()=>{deleteSku(sku._id)}}
+              onClick={deleteSku}
               src={deleteIcon}
               w="24px"
               h="24px"
@@ -148,4 +116,4 @@ const VariantForm = ({
   );
 };
 
-export default VariantForm;
+export default SkuComponent;

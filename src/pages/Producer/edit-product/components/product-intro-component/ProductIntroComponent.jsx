@@ -1,17 +1,25 @@
 import { Box } from "@chakra-ui/react";
 
 import { ComponentWrapper, ComponentTitle } from "../../EditProductPage-style";
+import { INTRO_REDUCER_TYPES } from "../../reducer/product-intro-reducer";
 
 import FormInput from "../../../../../components/shared/FormInput/FormInput";
 import InputImagesGroup from "../../../../../components/shared/InputImageGroupe/Input-images-component";
 
+// this component shows title and description and images and handle changes
 const ProductIntroComponent = ({ productIntro, dispatchIntro }) => {
   const changeTitle = (e) =>
-    dispatchIntro({ type: "updateTitle", payload: e.target.value });
+    dispatchIntro({
+      type: INTRO_REDUCER_TYPES.CHANGE_TITLE,
+      payload: e.target.value,
+    });
   const changeDesctiption = (e) =>
-    dispatchIntro({ type: "updateDescription", payload: e.target.value });
+    dispatchIntro({
+      type: INTRO_REDUCER_TYPES.CHANGE_DESCRIPTION,
+      payload: e.target.value,
+    });
   const changeMedia = (images) =>
-    dispatchIntro({ type: "updateMedia", payload: images });
+    dispatchIntro({ type: INTRO_REDUCER_TYPES.CHANGE_MEDIA, payload: images });
 
   return (
     <ComponentWrapper>

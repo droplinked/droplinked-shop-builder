@@ -1,24 +1,33 @@
 import { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 
-
 import { useApi } from "../../../../../hooks/useApi/useApi";
 import { getCollections } from "../../../../../api-service/collections/collectionApiService";
-import { CollectionContainer, CollectionItem ,Text16px } from "../../EditProductPage-style";
+import {
+  CollectionContainer,
+  CollectionItem,
+  Text16px,
+} from "../../EditProductPage-style";
+import { TECH_REDUCER_TYPES } from "../../reducer/technical-data-reducer";
 
 const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
   const { getApi } = useApi();
 
   const [collectionList, setCollectionList] = useState([]);
 
+  // get all collection data
   useEffect(async () => {
     let result = await getApi(getCollections());
     if (result) setCollectionList(result.collections);
   }, []);
 
   const selectCollection = (collectionId) =>
-    dispatchTechnical({ type: "updateCollectionId", payload: collectionId });
+    dispatchTechnical({
+      type: TECH_REDUCER_TYPES.CHANGE_COLLECTION,
+      payload: collectionId,
+    });
 
+  // check this collection is selected
   const isSelected = (collection) => {
     return TechnicalData.productCollectionID &&
       collection._id == TechnicalData.productCollectionID

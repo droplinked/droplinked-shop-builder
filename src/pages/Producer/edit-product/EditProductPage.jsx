@@ -1,11 +1,10 @@
 import { useReducer, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { SHIPING_TYPES } from "./shippings-type";
 import { useApi } from "../../../hooks/useApi/useApi";
 import { getProducerProductById } from "../../../api-service/product/productApiService";
-import { productIntroReducer } from "./reducer/product-intro-reducer";
-import { productTechReducer } from "./reducer/technical-data-reducer";
+import { productIntroReducer ,INTRO_REDUCER_TYPES } from "./reducer/product-intro-reducer";
+import { productTechReducer , TECH_REDUCER_TYPES} from "./reducer/technical-data-reducer";
 import { PageWrapper } from "./EditProductPage-style";
 import {
   getIntroData,
@@ -20,27 +19,31 @@ import PropertiesComponent from "./components/PropertiesComponent/PropertiesComp
 import VariantsComponent from "./components/variants-component/VariantsComponent";
 
 const EditProductPage = () => {
+  // state for keep title and  description and images
   const [productIntro, dispatchIntro] = useReducer(productIntroReducer, null);
+  // state for keep collection and shipping
   const [TechnicalData, dispatchTechnical] = useReducer(
     productTechReducer,
     null
   );
-
+  // state for keep option types and values
   const [OptionList, setOptionList] = useState(null);
+  // state for keep skus
   const [skus, setSkus] = useState(null);
 
   const merchId = useParams().id;
   const { getApi } = useApi();
 
+  // gets product data by productId and initializes states
   const getProductData = async () => {
     let result = await getApi(getProducerProductById(merchId));
     if (result) {
       dispatchIntro({
-        type: "initialIntroData",
+        type: INTRO_REDUCER_TYPES.INITIALIZE,
         payload: getIntroData(result.product),
       });
       dispatchTechnical({
-        type: "initialize",
+        type: TECH_REDUCER_TYPES.INITIALIZE,
         payload: getTechnicalData(result.product),
       });
       setOptionList(getPropertiesData(result.product));
