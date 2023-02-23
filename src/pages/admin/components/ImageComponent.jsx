@@ -8,19 +8,19 @@ const ImageComponent = () => {
   const changeImage = (e) => {
     const file = e.target.files[0];
 
-    if (file.size > 500000) {
-      console.log("File size exceeded (max: 500 kb)");
-      return;
-    }
-    if (
-      file.type !== "image/jpeg" &&
-      file.type !== "image/png" &&
-      file.type !== "image/gif" &&
-      file.type !== "image/jpg"
-    ) {
-      console.log("File type not supported");
-      return;
-    }
+    // if (file.size > 500000) {
+    //   console.log("File size exceeded (max: 500 kb)");
+    //   return;
+    // }
+    // if (
+    //   file.type !== "image/jpeg" &&
+    //   file.type !== "image/png" &&
+    //   file.type !== "image/gif" &&
+    //   file.type !== "image/jpg"
+    // ) {
+    //   console.log("File type not supported");
+    //   return;
+    // }
 
     const formData = new FormData();
     formData.append("image", file);
