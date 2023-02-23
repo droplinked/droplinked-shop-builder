@@ -5,6 +5,7 @@ import { selectCurrentShop } from "../../store/shop/shop.selector";
 
 import Loading from "../../components/shared/loading/Loading";
 import FormInput from "../../components/shared/FormInput/FormInput";
+import ImageComponent from "./components/ImageComponent";
 
 const AdminPage = () => {
   const shopData = useSelector(selectCurrentShop);
@@ -176,6 +177,7 @@ const AdminPage = () => {
           submit
         </button>
       </div>
+      <ImageComponent />
     </>
   );
 };
