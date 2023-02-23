@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
+import axios from "axios";
+
 import { selectCurrentShop } from "../../store/shop/shop.selector";
 
 import Loading from "../../components/shared/loading/Loading";
@@ -23,6 +25,7 @@ const AdminPage = () => {
   const [backgroundImage, setBackgroundImage] = useState("");
   const [backgroundImageSecondary, setBackgroundImageSecondary] = useState("");
   const [infoEmail, InfoEmail] = useState("");
+  const [token, setToken] = useState("");
   // changes
   const changeDescription = (e) => setDescription(e.target.value);
   const changeDiscordUrl = (e) => setDiscordUrl(e.target.value);
@@ -38,6 +41,7 @@ const AdminPage = () => {
   const changeBackgroundImageSecondary = (e) =>
     setBackgroundImageSecondary(e.target.value);
   const changeInfoEmail = (e) => InfoEmail(e.target.value);
+  const changeToken = (e) => setToken(e.target.value);
 
   useEffect(() => {
     // initial values
@@ -57,7 +61,7 @@ const AdminPage = () => {
     if (shopData.infoEmail) InfoEmail(shopData.infoEmail);
   }, [shopData]);
 
-  const submitForm = () => {
+  const submitForm = async () => {
     const dataObj = {
       description: description,
       logo: logo,
@@ -74,6 +78,27 @@ const AdminPage = () => {
       infoEmail: infoEmail,
     };
     console.log("dataObj ", dataObj);
+
+    try {
+      const res = await axios.put(
+        `https://apiv2.droplinked.com/shop`,
+        dataObj,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      console.log(res.data.data);
+    } catch (err) {
+      if (err.response) {
+        console.log(err.response.data.message);
+      } else {
+        console.log(err.message);
+      }
+      return;
+    }
   };
 
   if (shopData == null) return <Loading />;
@@ -171,6 +196,13 @@ const AdminPage = () => {
           label="infoEmail"
           placeholder="infoEmail"
           changeValue={changeInfoEmail}
+        />
+        <div style={{ marginBottom: "20px" }}></div>
+        <FormInput
+          value={token}
+          label="token"
+          placeholder="token"
+          changeValue={changeToken}
         />
         <div style={{ marginBottom: "20px" }}></div>
         <button style={{ backgroundColor: "white" }} onClick={submitForm}>
