@@ -13,6 +13,7 @@ import AffiliateShop from "./pages/affiliate/shop/shop";
 import AffiliateProduct from "./pages/affiliate/product/product";
 import RequestsPage from "./pages/affiliate/requests/request";
 import EditProductPage from "./pages/Producer/edit-product/EditProductPage";
+import AdminPage from "./pages/admin/AdminPage";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
@@ -142,6 +143,7 @@ function App() {
               <Route path="address" element={<AddressPage />} />
               <Route path="shipping" element={<ShippingPage />} />
               <Route path="payment" element={<PaymentPage />} />
+              <Route path="admin" element={<AdminPage />} />
             </Route>
 
             {/* producer pages */}
