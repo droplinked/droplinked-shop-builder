@@ -56,6 +56,25 @@ const AdminPage = () => {
     if (shopData.infoEmail) InfoEmail(shopData.infoEmail);
   }, [shopData]);
 
+  const submitForm = () => {
+    const dataObj = {
+      description: description,
+      logo: logo,
+      discordUrl: discordUrl,
+      instagramUrl: instagramUrl,
+      twitterUrl: twitterUrl,
+      webUrl: webUrl,
+      addressBookID: shopData.addressBookID,
+      shopifyDomain: shopifyDomain,
+      headerIcon: headerIcon,
+      backgroundText: backgroundText,
+      backgroundImage: backgroundImage,
+      backgroundImageSecondary: backgroundImageSecondary,
+      infoEmail: infoEmail,
+    };
+    console.log("dataObj ", dataObj);
+  };
+
   if (shopData == null) return <Loading />;
 
   return (
@@ -153,6 +172,9 @@ const AdminPage = () => {
           changeValue={changeInfoEmail}
         />
         <div style={{ marginBottom: "20px" }}></div>
+        <button style={{ backgroundColor: "white" }} onClick={submitForm}>
+          submit
+        </button>
       </div>
     </>
   );
