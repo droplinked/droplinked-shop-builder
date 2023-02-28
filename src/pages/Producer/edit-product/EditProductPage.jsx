@@ -17,6 +17,7 @@ import ProductIntroComponent from "./components/product-intro-component/ProductI
 import TechnicalComponent from "./components/technical-component/TechnicalComponent";
 import PropertiesComponent from "./components/PropertiesComponent/PropertiesComponent";
 import VariantsComponent from "./components/variants-component/VariantsComponent";
+import ButtonComponent from "./components/buttons-component/ButtonComponent";
 
 const EditProductPage = () => {
   // state for keep title and  description and images
@@ -84,6 +85,7 @@ const EditProductPage = () => {
           updateProduct={getProductData}
         />
       )}
+        <ButtonComponent productIntro={productIntro} TechnicalData={TechnicalData} skus={skus} />
     </PageWrapper>
   );
 };
