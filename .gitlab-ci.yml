@@ -1,6 +1,8 @@
 build_dev:
   stage: build
   image: node:lts-alpine3.11
+  environment:
+    name: dev
   script:
 
     - export REACT_APP_BASE_API_URL=$BASE_API_URL_DEV
@@ -19,6 +21,8 @@ build_dev:
 deploy_dev:
   stage: deploy
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  environment:
+    name: dev
   dependencies:
     - build_dev
   script:
@@ -32,6 +36,8 @@ deploy_dev:
 build_prod:
   stage: build
   image: node:lts-alpine3.11
+  environment:
+    name: prod
   script:
 
     - export REACT_APP_BASE_API_URL=$BASE_API_URL_PROD
@@ -50,6 +56,8 @@ build_prod:
 deploy_prod:
   stage: deploy
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  environment:
+    name: prod
   dependencies:
     - build_prod
   script:
