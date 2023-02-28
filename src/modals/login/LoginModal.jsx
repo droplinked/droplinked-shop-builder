@@ -137,7 +137,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
               type="password"
             />
             <Box mb="20px"></Box>
-            <BasicButton click={onSubmit} disable={loading}>
+            <BasicButton click={onSubmit} disable={loading} loading={loading} >
               Login
             </BasicButton>
           </Box>
