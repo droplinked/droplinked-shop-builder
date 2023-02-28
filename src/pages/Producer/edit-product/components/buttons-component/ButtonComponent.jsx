@@ -1,17 +1,16 @@
-
 import { Flex, Box } from "@chakra-ui/react";
 import { useState } from "react";
 
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 import { useApi } from "../../../../../hooks/useApi/useApi";
-import { postAddProduct } from "../../../../../api-service/product/productApiService";
+import { putUpdateProduct } from "../../../../../api-service/product/productApiService";
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
-const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
+const ButtonComponent = ({ productIntro, TechnicalData, skus, productId }) => {
   const [loading, setLoading] = useState(false);
 
-  const { errorToast , successToast} = useToasty();
-  const { postApi } = useApi();
+  const { errorToast, successToast } = useToasty();
+  const { patchApi } = useApi();
 
   const backToPriviesPage = () => {};
 
@@ -44,11 +43,10 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
           priceUnit: "USD",
         }
       );
-      console.log('finalData ', finalData)
-    //   setLoading(true);
-    //   let result = await postApi(postAddProduct(finalData));
-    //   setLoading(false);
-    //   if (result) successToast("Done success fully");
+      setLoading(true);
+      let result = await patchApi(putUpdateProduct(productId, finalData));
+      setLoading(false);
+      if (result) successToast("Done success fully");
     }
   };
   return (

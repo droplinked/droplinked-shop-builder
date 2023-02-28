@@ -26,7 +26,7 @@ export const getVariants = () => {
   return { ...apiObj };
 };
 
-export const putUpdateSku = ( skuId, externalID, price, quantity, options ) => {
+export const putUpdateSku = (skuId, externalID, price, quantity, options) => {
   const token = JSON.parse(localStorage.getItem("token"));
   let apiObj = {
     url: `producer/product/sku/${skuId}`,
@@ -54,11 +54,20 @@ export const postAddSkuToProduct = (productId, sku) => {
   return { ...apiObj };
 };
 
-
 export const deleteRemoveSku = (skuId) => {
   const token = JSON.parse(localStorage.getItem("token"));
   let apiObj = {
     url: `producer/product/sku/${skuId}`,
+    token: token,
+  };
+  return { ...apiObj };
+};
+
+export const putUpdateProduct = (productId, productObj) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  let apiObj = {
+    url: `producer/product/${productId}`,
+    body: productObj,
     token: token,
   };
   return { ...apiObj };

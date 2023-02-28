@@ -85,7 +85,7 @@ const EditProductPage = () => {
           updateProduct={getProductData}
         />
       )}
-        <ButtonComponent productIntro={productIntro} TechnicalData={TechnicalData} skus={skus} />
+        <ButtonComponent productIntro={productIntro} TechnicalData={TechnicalData} skus={skus}  productId={merchId} />
     </PageWrapper>
   );
 };
