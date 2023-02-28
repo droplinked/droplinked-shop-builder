@@ -1,5 +1,5 @@
-import { Flex, Button } from "@chakra-ui/react";
-import { useAddress } from "../../../context/address/AddressContext";
+import { Flex } from "@chakra-ui/react";
+import { useToasty } from "../../../context/toastify/ToastContext";
 import { useState } from "react";
 import {
   AddressComponentWrapper,
@@ -8,8 +8,11 @@ import {
   ButtonsWrapper,
   ButtonComponent,
 } from "./address-style";
-import SmallModal from "../../Modal/Small-modal/Small-modal-component";
-import AddressForm from "../../Modal/Address/Address-modal";
+
+import { useApi } from "../../../hooks/useApi/useApi";
+import SmallModal from "../../../modals/small/SmallModal";
+import AddressModal from "../../../modals/address/AddressModal";
+import { deleteAddress } from "../../../api-service/address/addressApiService";
 
 // (address) formta in props {
 //      addressLine1: string
@@ -41,16 +44,18 @@ export default function AddressComponent({
   // state for disable button
   const [disableBtn, setDisableBtn] = useState(false);
   // state for open and close address form
-  const [openAddressForm, setOpenAddressForm] = useState(false);
+  const [showAddressModal, setShowAddressModal] = useState(false);
   // state for open and close delete modal
   const [deleteModal, setDeleteModal] = useState(false);
 
-  const { deleteAddress } = useAddress();
+  const { successToast } = useToasty();
+  const { deleteApi } = useApi();
 
   // delete button only show if deleteable be true
   const deleteAddressFunc = async () => {
     setDisableBtn(true);
-    await deleteAddress(address._id);
+    let result = await deleteApi(deleteAddress(address._id));
+    if (result) successToast("Address deleted successfully");
     setDisableBtn(false);
     closeDeleteModal();
   };
@@ -62,75 +67,72 @@ export default function AddressComponent({
     }
   };
 
-  const showForm = () => setOpenAddressForm(true);
-
-  const closeForm = () => setOpenAddressForm(false);
-
   const showDeleteModal = () => setDeleteModal(true);
 
   const closeDeleteModal = () => setDeleteModal(false);
 
+  const toggleAddressModal = () => setShowAddressModal((p) => !p);
+
   return (
     <>
-      {openAddressForm == false ? (
-        <AddressComponentWrapper
-          borderColor={
-            selectAble == true && address._id == (selected && selected._id)
-              ? "primary"
-              : "button"
-          }
-          cursor={selectAble == true ? "pointer" : "auto"}
-          onClick={selectAddress}
-        >
-          {address.addressType != "SHOP" && (
-            <AddressText>
-              {address.firstname} {address.lastname}
-            </AddressText>
-          )}
+      <AddressComponentWrapper
+        borderColor={
+          selectAble == true && address._id == (selected && selected._id)
+            ? "primary"
+            : "button"
+        }
+        cursor={selectAble == true ? "pointer" : "auto"}
+        onClick={selectAddress}
+      >
+        {address.addressType != "SHOP" && (
+          <AddressText>
+            {address.firstname} {address.lastname}
+          </AddressText>
+        )}
 
-          <AddressText>{address.addressLine1}</AddressText>
-          <AddressLineText>
-            {address.state}
-            {", "}
-            {address.city}
-            {", "}
-            {address.zip}
-          </AddressLineText>
-          <AddressLineText>{address.country}</AddressLineText>
+        <AddressText>{address.addressLine1}</AddressText>
+        <AddressLineText>
+          {address.state}
+          {", "}
+          {address.city}
+          {", "}
+          {address.zip}
+        </AddressLineText>
+        <AddressLineText>{address.country}</AddressLineText>
 
-          <Flex alignItems="center" justifyContent="flex-end">
-            <ButtonsWrapper>
-              <ButtonComponent bgColor="primary" onClick={showForm}>
-                Edit
+        <Flex alignItems="center" justifyContent="flex-end">
+          <ButtonsWrapper>
+            <ButtonComponent bgColor="primary" onClick={toggleAddressModal}>
+              Edit
+            </ButtonComponent>
+            {deleteable == true && (
+              <ButtonComponent bgColor="#e74c3c" onClick={showDeleteModal}>
+                Delete
               </ButtonComponent>
-              {deleteable == true && (
-                <ButtonComponent bgColor="#e74c3c" onClick={showDeleteModal}>
-                  Delete
-                </ButtonComponent>
-              )}
-            </ButtonsWrapper>
-          </Flex>
+            )}
+          </ButtonsWrapper>
+        </Flex>
 
-          {/* delete address modal */}
-          {deleteModal && (
-            <SmallModal
-              text={`Are you sure you want to delete this address?`}
-              show={deleteModal}
-              hide={closeDeleteModal}
-              click={deleteAddressFunc}
-              loading={disableBtn}
-              buttonText={"Delete"}
-            />
-          )}
-          {/* delete address modal */}
-        </AddressComponentWrapper>
-      ) : (
-        <AddressForm
-          close={closeForm}
-          addressBook={address}
-          type={address.addressType}
+        {/* delete address modal */}
+
+        <SmallModal
+          text={`Are you sure you want to delete this address?`}
+          show={deleteModal}
+          hide={closeDeleteModal}
+          click={deleteAddressFunc}
+          loading={disableBtn}
+          buttonText={"Delete"}
         />
-      )}
+
+        {/* delete address modal */}
+      </AddressComponentWrapper>
+
+      <AddressModal
+        show={showAddressModal}
+        close={toggleAddressModal}
+        addressBook={address}
+        type={address.addressType}
+      />
     </>
   );
 }

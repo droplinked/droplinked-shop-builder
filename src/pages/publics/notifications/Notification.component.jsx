@@ -1,8 +1,8 @@
 import { Flex, Text, Box , keyframes, usePrefersReducedMotion  } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom";
 import { MdOutlineMessage } from "react-icons/md";
-
-import { useNotifications } from "../../../context/notifications/NotificationsContext"
+import { useApi } from "../../../hooks/useApi/useApi";
+import { postSeenNotification } from "../../../api-service/notification/notificationApiService";
 import { convetToCustomFormat } from "../../../utils/date.utils/convertDate"
 import { NOTIFICATION_TYPE } from "../../../constant/notification.type"
 
@@ -17,14 +17,20 @@ const keyframe_notifcation = keyframes`
 }
 `;
 
-const NotificationComponent = ({ notification }) => {
+const NotificationComponent = ({updateNotifications , notification }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
+    const { postApi } = useApi()
 
     const notificationAnimation = prefersReducedMotion
         ? undefined
         : `${keyframe_notifcation}  0.3s linear`;
 
-    const { seenNotif } = useNotifications()
+        const seenNotif = async (id) => {
+            await postApi(postSeenNotification(id));
+            await updateNotifications();
+          };
+
+
     let navigate = useNavigate();
 
 

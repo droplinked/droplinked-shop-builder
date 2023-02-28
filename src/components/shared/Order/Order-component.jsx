@@ -5,16 +5,18 @@ import {
   useDisclosure,
   Stack,
   Skeleton,
-  Image,
   keyframes,
-  GridItem,
 } from "@chakra-ui/react";
 import { convetToCustomFormat } from "../../../utils/date.utils/convertDate";
 import { ORDER_TYPES } from "../../../constant/order.types";
-import { useProfile } from "../../../context/profile/ProfileContext";
+
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { SHOP_TYPES } from "../../../constant/shop-types";
 import { getStatus , getTotalPrice} from "./order-component-utils"
+import {
+  selectIsCustomer,
+} from "../../../store/profile/profile.selector";
 import {
   OrderWrapper,
   DateText,
@@ -23,8 +25,8 @@ import {
   ProductImage,
   OrderStatus,
 } from "./Order-component-style";
-import OrderModal from "../../Modal/Order/Order-modal";
-import BasicButton from "../BasicButton/BasicButton";
+import OrderModal from "../../../modals/order/OrderModal";
+//import BasicButton from "../BasicButton/BasicButton";
 
 const animationKeyframes = keyframes`
 0% { color: primary; }
@@ -35,9 +37,9 @@ const animationKeyframes = keyframes`
 
 const animation = `${animationKeyframes} 2s ease infinite`;
 
-export default function Order({ order }) {
+export default function Order({ updateOrder, order }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isCustomer } = useProfile();
+  const isCustomer = useSelector(selectIsCustomer);
   const navigate = useNavigate();
 
   const getQuantity = () => {
@@ -55,7 +57,7 @@ export default function Order({ order }) {
   const animationCondition = () => {
     const status = order.status;
 
-    if (isCustomer()) {
+    if (isCustomer) {
       if (status == ORDER_TYPES.WAITING_FOR_PAYMENT) return true;
       else return false;
     } else {
@@ -128,7 +130,7 @@ export default function Order({ order }) {
         </Stack>
       )}
       {order.items.length > 0 && (
-        <OrderModal order={order} isOpen={isOpen} onClose={onClose} />
+        <OrderModal updateOrder={updateOrder} order={order} show={isOpen} close={onClose} />
       )}
     </OrderWrapper>
   );

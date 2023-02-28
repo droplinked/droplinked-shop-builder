@@ -4,18 +4,17 @@ import { deleteSku } from "../../../../../api/producer/Product-api";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 
 import VariantItem from "../../../components/variant-item-component/Variant-item-component";
-import EditSkuModal from "../../../../../components/Modal/Sku/EditSku";
-import SmallModal from "../../../../../components/Modal/Small-modal/Small-modal-component";
+import EditSkuModal from "../../../../../modals/edit-sku/EditSkuModal";
+import SmallModal from "../../../../../modals/small/SmallModal";
 
 const SkusComponent = ({ skusArray, update }) => {
-
-  const [editingSku, setEditingSku] = useState(null);
+  const [editingSku, setEditingSku] = useState(false);
   const [deleteSkuModal, setDeleteSkuModal] = useState(null);
   const [loading, setLoading] = useState(false);
   const { successToast, errorToast } = useToasty();
 
   const editVariant = (sku) => setEditingSku(sku);
-  const closeModal = () => setEditingSku(null);
+  const closeModal = () => setEditingSku(false);
 
   const openDeleteModal = (skuID) => setDeleteSkuModal(skuID);
   const closeDeleteModal = () => setDeleteSkuModal(null);
@@ -49,25 +48,22 @@ const SkusComponent = ({ skusArray, update }) => {
         );
       })}
       {/* {editingSku && <SkuModal open={editingSku != null} close={closeModal} update={update} sku={editingSku}/>} */}
-      {editingSku && (
-        <EditSkuModal
-          open={editingSku != null}
-          close={closeModal}
-          optionTypes={optionTypes}
-          defaultValue={editingSku}
-          update={update}
-        />
-      )}
-      {deleteSkuModal && (
-        <SmallModal
-          show={deleteSkuModal}
-          hide={closeDeleteModal}
-          text={"Do you want to delete this sku?"}
-          click={DeleteSku}
-          loading={loading}
-          buttonText={"Delete"}
-        />
-      )}
+      <EditSkuModal
+        show={editingSku}
+        close={closeModal}
+        optionTypes={optionTypes}
+        defaultValue={editingSku}
+        update={update}
+      />
+
+      <SmallModal
+        show={deleteSkuModal}
+        hide={closeDeleteModal}
+        text={"Do you want to delete this sku?"}
+        click={DeleteSku}
+        loading={loading}
+        buttonText={"Delete"}
+      />
     </Box>
   );
 };

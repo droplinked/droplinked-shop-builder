@@ -8,19 +8,21 @@ import {
 } from "./register-page-style";
 import { FormControl, FormLabel, Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useAddress } from "../../../context/address/AddressContext";
 import { getShop } from "../../../api/base-user/Profile-api";
 import { updateShopApi } from "../../../api/producer/Shop-api";
-import { useShop } from "../../../context/shop/ShopContext";
+//import { useShop } from "../../../context/shop/ShopContext";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useNavigate } from "react-router-dom";
-import { useProfile } from "../../../context/profile/ProfileContext";
+import { useDispatch } from "react-redux";
+import { setCurrentShop } from "../../../store/shop/shop.action";
+import { useApi } from "../../../hooks/useApi/useApi";
+import { getAddress } from "../../../api-service/address/addressApiService";
 
 import FormInput from "../../../components/shared/FormInput/FormInput";
 import InputImage from "../../../components/shared/InputImage/InputImage";
 import AddressComponent from "../../../components/shared/Address/address-component";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import AddressForm from "../../../components/Modal/Address/Address-modal";
+import AddressModal from "../../../modals/address/AddressModal";
 import Loading from "../../../components/shared/loading/Loading";
 import FillInput from "../../../components/shared/FillInput/FillInput";
 
@@ -28,16 +30,23 @@ const RegisterPage = () => {
   const [shop, setShop] = useState(null);
   const [addressModal, setAddressModal] = useState(false);
   const [disableBtn, setDisableBtn] = useState(false);
-  const { addressList } = useAddress();
+  const [addressList, setAddressList] = useState([]);
   const { errorToast, successToast } = useToasty();
-  const { updateShop } = useShop();
-  const { updateProfileData } = useProfile();
+  //const { updateShop } = useShop();
+  const dispatch = useDispatch();
+  const { getApi } = useApi();
 
   const profile = JSON.parse(localStorage.getItem("profile"));
 
   let navigate = useNavigate();
 
+  const updateAddressList = async () => {
+    let result = await getApi(getAddress());
+    if (result) setAddressList(result.addressBooks);
+  };
+
   useEffect(() => {
+    updateAddressList();
     getShopData();
   }, []);
 
@@ -94,8 +103,11 @@ const RegisterPage = () => {
     if (result.status == "success") {
       localStorage.setItem("shop", JSON.stringify(result.data.shop));
       successToast("Shop info successfully updated");
-      updateShop();
-      await updateProfileData();
+      let newShop = await getShop();
+      if (newShop) {
+        dispatch(setCurrentShop(newShop));
+      }
+      //  await updateProfileData();
       if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
     } else {
       errorToast(result.reason);
@@ -206,14 +218,14 @@ const RegisterPage = () => {
           <Loading />
         )}
       </RegisterContainer>
-      {addressModal && (
-        <AddressForm
-          type={"SHOP"}
-          close={() => {
-            setAddressModal(false);
-          }}
-        />
-      )}
+
+      <AddressModal
+        show={addressModal}
+        type={"SHOP"}
+        close={() => {
+          setAddressModal(false);
+        }}
+      />
     </RegisterPageWrapper>
   );
 };

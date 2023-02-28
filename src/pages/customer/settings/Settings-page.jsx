@@ -1,7 +1,11 @@
 import { Flex } from "@chakra-ui/react";
 import { useState } from "react";
-import { useProfile } from "../../../context/profile/ProfileContext";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {
+  selectIsCustomer,
+  selectIsActiveProducer,
+} from "../../../store/profile/profile.selector";
 
 import AddressBookComponent from "./address-book-component/address-book-component";
 import ShopInfoComponent from "./shop-info-component/Shop-info-component";
@@ -9,11 +13,12 @@ import PersonalInfoComponent from "./personal-info-component/Personal-info-compo
 import SettingButton from "./setting-button-component";
 
 export default function SettingsPage() {
-  const { isRegisteredProducer, isCustomer } = useProfile();
-  const navigate = useNavigate()
+  const isCustomer = useSelector(selectIsCustomer);
+  const isRegisteredProducer = useSelector(selectIsActiveProducer);
+  const navigate = useNavigate();
   // this state use for selected setting
   const [settingComponent, setSettingComponent] = useState(
-    isRegisteredProducer() ? "shop" : "personal"
+    isRegisteredProducer ? "shop" : "personal"
   );
 
   // change state by click on buttons for change setting component used
@@ -27,7 +32,13 @@ export default function SettingsPage() {
   const backToShop = () => navigate(`/${currentShop}`);
 
   return (
-    <Flex w="100%" px={{ base: "20px", md: "80px" }} justifyContent="center" pt='50px' pb='100px'>
+    <Flex
+      w="100%"
+      px={{ base: "20px", md: "80px" }}
+      justifyContent="center"
+      pt="50px"
+      pb="100px"
+    >
       <Flex
         w="100%"
         maxW="900px"
@@ -45,7 +56,7 @@ export default function SettingsPage() {
         >
           <SettingButton click={backToShop}> Back to shop </SettingButton>
           {/* select setting buttons  */}
-          {isCustomer() && (
+          {isCustomer && (
             <SettingButton
               click={personalSetting}
               active={settingComponent == "personal"}
@@ -55,7 +66,7 @@ export default function SettingsPage() {
             </SettingButton>
           )}
 
-          {isRegisteredProducer() && (
+          {isRegisteredProducer && (
             <SettingButton
               click={shopSetting}
               active={settingComponent == "shop"}
@@ -64,7 +75,7 @@ export default function SettingsPage() {
               Shop info{" "}
             </SettingButton>
           )}
-          {isCustomer() && (
+          {isCustomer && (
             <SettingButton
               click={addressSetting}
               active={settingComponent == "address"}

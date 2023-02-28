@@ -1,6 +1,7 @@
 import { Flex, Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { getAllCollections } from "../../../api/producer/Collection-api";
+import { useApi } from "../../../hooks/useApi/useApi";
+import { getCollections } from "../../../api-service/collections/collectionApiService";
 
 import FormInput from "../../../components/shared/FormInput/FormInput";
 import InputImagesGroup from "../../../components/shared/InputImageGroupe/Input-images-component";
@@ -14,6 +15,7 @@ const ProductInformation = ({ productInfo, setProductInfo, defaultValue }) => {
     
   const [images, setImages] = useState(defaultValue ? defaultValue.images : []);
   const [collectionList, setCollection] = useState([]);
+  const { getApi } = useApi()
 
   // change productInfo.images with images state changing
   useEffect(() => {
@@ -26,9 +28,9 @@ const ProductInformation = ({ productInfo, setProductInfo, defaultValue }) => {
   }, []);
 
   const initialCollection = async () => {
-    let result = await getAllCollections();
-    if (result != null) {
-      let collections = result.data.map((col) => {
+    let result = await getApi(getCollections())
+    if(result){
+      let collections = result.collections.map((col) => {
         return { id: col._id, value: col.title };
       });
       setCollection(collections);

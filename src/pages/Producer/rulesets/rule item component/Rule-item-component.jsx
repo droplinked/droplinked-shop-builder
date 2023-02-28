@@ -1,7 +1,7 @@
 import "./Rule-item-style.scss"
 import EditRule from "../edit rule modal/Edit.Rule.component"
 import { useState } from "react"
-import SmallModal from "../../../../components/Modal/Small-modal/Small-modal-component"
+import SmallModal from "../../../../modals/small/SmallModal"
 import { useToasty } from "../../../../context/toastify/ToastContext"
 import { deleteRule } from "../../../../api/producer/Ruleset-api"
 

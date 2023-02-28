@@ -4,16 +4,18 @@ import {
   CollectionTitle,
 } from "./producer-collection-style";
 import { useParams } from "react-router-dom";
-import { getCollectionById } from "../../../api/public/Collection-api";
+import { getCollectionById } from "../../../api-service/collections/collectionApiService";
 import { useEffect, useState } from "react";
+import { useApi } from "../../../hooks/useApi/useApi";
 import { USER_TYPE } from "../../../constant/user-types";
-import { useProfile } from "../../../context/profile/ProfileContext";
 import { Flex } from "@chakra-ui/react";
 import { AiFillEdit } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { selectCurrentProfile } from "../../../store/profile/profile.selector";
 
 import Product from "../../../components/shared/Product/Product";
 import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
-import CollectionModal from "../../../components/Modal/Collection/Collection-modal";
+import CollectionModal from "../../../modals/collection/CollectionModal";
 import Loading from "../../../components/shared/loading/Loading";
 
 const ProducerCollection = () => {
@@ -21,15 +23,16 @@ const ProducerCollection = () => {
   const [editCollectionModal, setEditCollectionModal] = useState(false);
 
   const { collectionId } = useParams();
-  const { profile } = useProfile();
+  const { getApi } = useApi();
+  const profile = useSelector(selectCurrentProfile);
 
   useEffect(() => {
     getCollections();
   }, []);
 
   const getCollections = async () => {
-    let coll = await getCollectionById(collectionId);
-    setCollection(coll);
+    let result = await getApi(getCollectionById(collectionId))
+    if(result)setCollection(result);
   };
 
   const openEditModal = () => setEditCollectionModal(true);
@@ -81,17 +84,15 @@ const ProducerCollection = () => {
       ) : (
         <Loading />
       )}
-      {editCollectionModal && (
-        <CollectionModal
-          collection={Collection}
-          close={closeEditModal}
-          update={getCollections}
-        />
-      )}
+
+      <CollectionModal
+        show={editCollectionModal}
+        collection={Collection}
+        close={closeEditModal}
+        update={getCollections}
+      />
     </ViewCollectionPageWrapper>
   );
 };
 
 export default ProducerCollection;
-
-

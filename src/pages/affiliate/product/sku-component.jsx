@@ -1,7 +1,7 @@
 import { Flex, Box, Button, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
-import RequestModal from "../../../components/Modal/request/request-modal";
+import RequestAffiliateModal from "../../../modals/request-affiliate/RequestAffiliateModal";
 
 const SkuComponent = ({ sku }) => {
   const [showModal, setShowModal] = useState(false);
@@ -24,38 +24,62 @@ const SkuComponent = ({ sku }) => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
+          <Text
+            fontSize={{ base: "8px", md: "10px", lg: "12px", xl: "14px" }}
+            fontWeight="400"
+            color="white"
+          >
             {sku.options.variantName}: {sku.options.value}
           </Text>
           <Box border="1px solid" borderColor="line" w="1px" h="100%"></Box>
-          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
+          <Text
+            fontSize={{ base: "8px", md: "10px", lg: "12px", xl: "14px" }}
+            fontWeight="400"
+            color="white"
+          >
             Price: ${sku.price}
           </Text>
           <Box border="1px solid" borderColor="line" w="1px" h="100%"></Box>
-          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
+          <Text
+            fontSize={{ base: "8px", md: "10px", lg: "12px", xl: "14px" }}
+            fontWeight="400"
+            color="white"
+          >
             Quantity: {sku.quantity}
           </Text>
           <Box border="1px solid" borderColor="line" w="1px" h="100%"></Box>
-          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
+          <Text
+            fontSize={{ base: "8px", md: "10px", lg: "12px", xl: "14px" }}
+            fontWeight="400"
+            color="white"
+          >
             External ID: {sku.externalId}
           </Text>
           <Box border="1px solid" borderColor="line" w="1px" h="100%"></Box>
-          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
+          <Text
+            fontSize={{ base: "8px", md: "10px", lg: "12px", xl: "14px" }}
+            fontWeight="400"
+            color="white"
+          >
             DBD: {sku.dbd.length}*{sku.dbd.width}*{sku.dbd.height}
           </Text>
           <Box border="1px solid" borderColor="line" w="1px" h="100%"></Box>
-          <Text fontSize={{base:"8px",md:'10px',lg:"12px",xl:"14px"}} fontWeight="400" color="white">
+          <Text
+            fontSize={{ base: "8px", md: "10px", lg: "12px", xl: "14px" }}
+            fontWeight="400"
+            color="white"
+          >
             Weight: {sku.Weight}
           </Text>
         </Flex>
 
         <Button
-          p={{base:"8px 8px",lg:"8px 24px"}}
-          fontSize={{base:"10px",md:'12px',lg:"18px"}}
+          p={{ base: "8px 8px", lg: "8px 24px" }}
+          fontSize={{ base: "10px", md: "12px", lg: "18px" }}
           fontWeight="500"
           bg="primary"
           borderRaduis="8px"
-          ml={{lg:"10%",xl:"15%"}}
+          ml={{ lg: "10%", xl: "15%" }}
           _hover={{
             bg: "primary",
             border: "none",
@@ -67,7 +91,7 @@ const SkuComponent = ({ sku }) => {
           Request
         </Button>
       </Flex>
-      {showModal && <RequestModal close={toggleModal} />}
+      <RequestAffiliateModal show={showModal} close={toggleModal} />
     </>
   );
 };

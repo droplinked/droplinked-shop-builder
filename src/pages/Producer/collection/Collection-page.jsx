@@ -4,15 +4,14 @@ import Loading from "../../../components/shared/loading/Loading";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import ProducerCollection from "../../../components/shared/ProducerCollection/Producre-collection";
 import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
-import CollectionModal from "../../../components/Modal/Collection/Collection-modal";
+import CollectionModal from "../../../modals/collection/CollectionModal";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getCollections } from "../../../api/producer/Collection-api";
+import { getCollectionsWithProduct } from "../../../api-service/collections/collectionApiService";
+import { useApi } from "../../../hooks/useApi/useApi";
 import {
   CollectionPageWrapper,
-  HeaderTitle,
-  ListedNumber,
   ButtonWrapper,
   AddproductWrapper,
 } from "./Collection-page-style";
@@ -22,14 +21,15 @@ export default function CollectionMainPage() {
   const [collections, setCollections] = useState(null);
 
   const navigate = useNavigate();
+  const { getApi } = useApi();
 
   const token = JSON.parse(localStorage.getItem("token"));
 
   if (token == null) navigate("/");
 
   const updateCollections = async () => {
-    let resutl = await getCollections();
-    if (resutl != null) setCollections(resutl.data);
+    let result = await getApi(getCollectionsWithProduct());
+    if (result) setCollections(result.collections);
   };
 
   useEffect(() => {
@@ -39,7 +39,6 @@ export default function CollectionMainPage() {
   const ToggleModal = () => setModal((p) => !p);
 
   const closeNewCollectionModal = () => setModal(false);
-
 
   return (
     <CollectionPageWrapper>
@@ -73,12 +72,12 @@ export default function CollectionMainPage() {
       ) : (
         <Loading />
       )}
-      {Modal && (
-        <CollectionModal
-          close={closeNewCollectionModal}
-          update={updateCollections}
-        />
-      )}
+
+      <CollectionModal
+        show={Modal}
+        close={closeNewCollectionModal}
+        update={updateCollections}
+      />
     </CollectionPageWrapper>
   );
 }

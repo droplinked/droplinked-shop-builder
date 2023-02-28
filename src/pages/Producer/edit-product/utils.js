@@ -1,0 +1,55 @@
+// returns intro data with correct format
+export const getIntroData = (product) => {
+  return {
+    title: product.title,
+    description: product.description,
+    media: product.media.map((img) => img.url),
+  };
+};
+// returns thecnical data with correct format
+export const getTechnicalData = (product) => {
+  return {
+    productCollectionID: product.productCollectionID,
+    shippingType: product.shippingType,
+    shippingPrice: product.shippingPrice,
+  };
+};
+// returns options data with correct format
+export const getPropertiesData = (product) => {
+  let currentOption = [];
+  product.skus[0].options.forEach((option, i) => {
+    currentOption.push({
+      optionId: option.variantID,
+      optionName: option.variantName,
+      values: [],
+      index: i + 1,
+    });
+  });
+
+  currentOption.forEach((option) => {
+    option.values = product.skus.map((sku, i) => {
+      return {
+        index: i + 1,
+        value: sku.options.find((opt) => opt.variantID == option.optionId)
+          .value,
+      };
+    });
+  });
+  return currentOption;
+};
+// returns skus data with correct format
+export const getSkusData = (product) => {
+  let x = product.skus.map((sku) => {
+    return {
+      _id: sku._id,
+      price: sku.price,
+      quantity: sku.quantity,
+      record: sku.record,
+      weight:sku.weight ,
+      options:sku.options,
+      dimensions:sku.dimensions,
+      externalID:sku.externalID
+    };
+  });
+  return x
+};

@@ -4,7 +4,7 @@ import { useCart } from "../../../../../context/cart/CartContext"
 import { Flex } from '@chakra-ui/react';
 import { useToasty } from "../../../../../context/toastify/ToastContext"
 
-import ModalContainer from "../../../../../components/Modal/modal-container/modal-container"
+import ModalWrapper from "../../../../../modals/modal-wrapper/ModalWrapper"
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 import Timer from "./time-component"
 
@@ -53,7 +53,7 @@ const StripeComponent = ({cancel}) => {
     }
 
     return (
-        <ModalContainer>
+        <ModalWrapper show={true} close={()=>{}}>
             <Timer timerSecond={300} />
             <Flex mb='30px'></Flex>
             {(elements != null) &&
@@ -66,7 +66,7 @@ const StripeComponent = ({cancel}) => {
                 
             </form>
             }
-        </ModalContainer>
+        </ModalWrapper>
     )
 }
 

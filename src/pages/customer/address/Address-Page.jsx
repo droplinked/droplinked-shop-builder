@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { useAddress } from "../../../context/address/AddressContext";
+
 import { addCheckoutAddress } from "../../../api/base-user/Cart-api";
 import { createCheckout } from "../../../api/producer/Shopify-api";
 import { useCart } from "../../../context/cart/CartContext";
-import { useProfile } from "../../../context/profile/ProfileContext";
 import { SHOP_TYPES } from "../../../constant/shop-types";
-import { UseWalletInfo } from "../../../context/wallet/WalletContext";
 import { useParams } from "react-router-dom";
 import { API_STATUS } from "../../../constant/api-status";
 import {
@@ -18,21 +16,25 @@ import {
   ButtonWrapper,
 } from "./Address-page-style";
 import { getAddressObject, getShopifyData } from "./address-utils";
+import { useSelector } from "react-redux";
+import { selectCurrentProfile } from "../../../store/profile/profile.selector";
+import { useApi } from "../../../hooks/useApi/useApi";
+import { getAddress } from "../../../api-service/address/addressApiService";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import AddressComponent from "../../../components/shared/Address/address-component";
 import Loading from "../../../components/shared/loading/Loading";
-import AddressForm from "../../../components/Modal/Address/Address-modal";
+import AddressModal from "../../../modals/address/AddressModal";
 
 function AddressPage() {
   // hooks
   const navigate = useNavigate();
-  const { profile } = useProfile();
   const { shopname } = useParams();
-  const { getStxAddress } = UseWalletInfo();
   const { errorToast } = useToasty();
-  const { addressList } = useAddress();
+  const [addressList, setAddressList] = useState([]);
   const { cart } = useCart();
+  const { getApi } = useApi();
+  const profile = useSelector(selectCurrentProfile);
   // state
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [addressModal, setAddressModal] = useState(false);
@@ -40,9 +42,15 @@ function AddressPage() {
 
   let token = JSON.parse(localStorage.getItem("token"));
 
+  const updateAddressList = async () => {
+    let result = await getApi(getAddress());
+    if (result) setAddressList(result.addressBooks);
+  };
+
   useEffect(() => {
     // navigate if not user
     if (!token) navigate("/");
+    else updateAddressList();
   }, []);
 
   useEffect(() => {
@@ -62,12 +70,12 @@ function AddressPage() {
     let addressObj = getAddressObject(selectedAddress);
     let shopifyData = getShopifyData(
       addressObj,
-      cart.wallet ? getStxAddress() : "",
+      cart.wallet ? profile.stacksAddress : "",
       cart,
       profile.email
     );
-    let result =  await createCheckout(cart.items[0].shopName, shopifyData);
-    return result 
+    let result = await createCheckout(cart.items[0].shopName, shopifyData);
+    return result;
   };
 
   const ProccessToPayment = async () => {
@@ -85,23 +93,20 @@ function AddressPage() {
     setLoading(false);
     if (result.status == API_STATUS.SUCCESS) {
       if (cart.type == SHOP_TYPES.SHOPIFY) {
-            let checkoutId = {
+        let checkoutId = {
           checkoutId: result.data.checkout.token,
           shopName: cart.items[0].shopName,
         };
         localStorage.setItem("checkout_id", JSON.stringify(checkoutId));
       }
 
-        localStorage.setItem("selected_address",JSON.stringify(selectedAddress));
-        navigate(`/${shopname}/shipping`);
-      
+      localStorage.setItem("selected_address", JSON.stringify(selectedAddress));
+      navigate(`/${shopname}/shipping`);
     } else {
       cart.type == SHOP_TYPES.DROPLINKED
         ? errorToast(result.data)
         : errorToast(result.data);
     }
-
-  
   };
 
   return (
@@ -128,13 +133,10 @@ function AddressPage() {
               }
             })}
             <Box mt="40px"></Box>
-            {addressModal ? (
-              <AddressForm close={toggleAddressForm} type={"CUSTOMER"} />
-            ) : (
-              <AddAddressButton onClick={toggleAddressForm}>
-                + Add new address
-              </AddAddressButton>
-            )}
+
+            <AddAddressButton onClick={toggleAddressForm}>
+              + Add new address
+            </AddAddressButton>
 
             <ButtonWrapper>
               <Box w="30%">
@@ -157,6 +159,11 @@ function AddressPage() {
           </>
         )}
       </Box>
+      <AddressModal
+        show={addressModal}
+        close={toggleAddressForm}
+        type={"CUSTOMER"}
+      />
     </AddressPageWrapper>
   );
 }

@@ -11,17 +11,10 @@ export const theme = extendTheme({
     primaryLight: "#54DDB7",
     primaryDark: "#084836",
     white: "#fff",
-
     dark: "#181818",
     lightGray: "#C2C2C2",
-    darkGray:"#666666" ,
+    darkGray: "#666666",
     offText: "#5D5D5D",
-
-    //sl: "#141414",
-
-
-    
-    //DarkGray: "#3C3C3C",
   },
   breakpoints: {
     sm: "481px",
@@ -30,4 +23,3 @@ export const theme = extendTheme({
     xl: "1200px",
   },
 });
-//8053ff

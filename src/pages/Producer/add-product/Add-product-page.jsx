@@ -1,209 +1,62 @@
-import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import ProductInformation from "../components/product-information-component";
-import OptionCheckboxes from "./option-checkbox-component/option-checkbox";
-import SkusComponent from "./skus-component/Skus-component";
-import AddSkuModal from "../../../components/Modal/Sku/AddSku";
+import { useReducer, useState } from "react";
 
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { getVariants, postProduct } from "../../../api/producer/Product-api";
-import { useToasty } from "../../../context/toastify/ToastContext";
-import {
-  ModalContainerWrapper,
-  TitleText,
-  TypeSelect,
-  LableInput,
-  InputComponent,
-} from "./Add-product-style";
-import { Flex, Box } from "@chakra-ui/react";
-import { SHIPING_TYPES } from "./shippings-type";
-import { API_STATUS } from "../../../constant/api-status";
+import { SHIPING_TYPES } from "../../../constant/shipping-types";
+import { productIntroReducer } from "./reducer/product-intro-reducer";
+import { productTechReducer } from "./reducer/technical-data-reducer";
+import { PageWrapper } from "./Add-product-style";
+
+import ProductIntoComponent from "./components/product-intro-component/ProductIntoComponent";
+import TechnicalComponent from "./components/technical-component/TechnicalComponent";
+import PropertiesComponent from "./components/properties-component/PropertiesComponent";
+import VariantsComponent from "./components/variants-component/VariantsComponent";
+import ButtonComponent from "./components/buttons-component/ButtonComponent";
+
+const initialProductIntor = {
+  title: "",
+  description: "",
+  media: [],
+};
+
+const initialTechnicalInfo = {
+  productCollectionID: "",
+  shippingType: SHIPING_TYPES.EASY_POST,
+  shippingPrice: 0,
+};
 
 function AddProductPage() {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const [productIntro, dispatchIntro] = useReducer(
+    productIntroReducer,
+    initialProductIntor
+  );
 
-  // state for pass to ProductInformation component
-  // and  management (title , description , images , collectionId)
-  const [productInfo, setProductInfo] = useState(null);
-  // state for determine selected options type
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  // use for disable button and loading mode
-  const [loading, setLoading] = useState(false);
-  // state  maintain vanriants type
-  const [varintType, setVariantType] = useState(null);
-  // this state for show and hide sku modal
-  const [skuModalShow, setSkuModalShow] = useState(false);
-  // state for maintaing array of product skus
-  const [skuArray, setSkuArray] = useState([]);
-
-  const [shippingType, setShippingType] = useState(SHIPING_TYPES.EASY_POST);
-  const [shippingPrice, setShippingPrice] = useState("");
-
-  const { successToast, errorToast } = useToasty();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (token == null) {
-      navigate("/");
-    }
-    initialVariant();
-  }, []);
-
-  // get variants type from  back and pass to (varintType state)
-  const initialVariant = async() => {
-    let result = await getVariants();
-    if (result.status == API_STATUS.SUCCESS) setVariantType(result.data);
-    else errorToast(result.data);
-    // getVariants()
-    //   .then((e) => setVariantType(e))
-    //   .catch((e) => console.log(e));
-  };
-
-  const changeShippingType = (e) => setShippingType(e.target.value);
-  const changeShppingPrice = (e) => setShippingPrice(e.target.value);
-
-
-  // close page
-  const cancelForm = () => navigate("/producer/ims");
-
-  // validation product fields before submit form
-  const validationForm = () => {
-    if (productInfo.title == "") {
-      errorToast("Item name is required");
-      return true;
-    } else if (productInfo.productCollectionID == "") {
-      errorToast("Choose a collection");
-      return true;
-    } else if (productInfo.images.length == 0) {
-      errorToast("Add an image for this item");
-      return true;
-    } else if (skuArray.length == 0) {
-      errorToast("Add a new variant");
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  // submit all product form
-  const submitForm = async (e) => {
-    e.preventDefault();
-    // validate all fields
-    if (validationForm()) return;
-
-    // conver media format
-    let media = [];
-    productInfo.images.map((img, i) => {
-      media.push({ url: img, isMain: i == 0 });
-    });
-
-    const productData = {
-      title: productInfo.title,
-      description: productInfo.description,
-      priceUnit: "USD",
-      productCollectionID: productInfo.productCollectionID,
-      shippingType: shippingType,
-      shippingPrice: shippingPrice == "" ? 0 : parseFloat(shippingPrice),
-      media: media,
-      sku: skuArray,
-    };
-
-    setLoading(true);
-    let result = await postProduct(productData);
-    if (result == true) {
-      successToast("Item added successfully");
-      navigate("/producer/ims");
-    } else {
-      errorToast(result);
-      setLoading(false);
-    }
-  };
-
-  const updateSku = (newSku) => {
-    let newArray = Array.from(skuArray);
-    newArray.push(newSku);
-    setSkuArray(newArray);
-  };
-
-  const closeSkuModal = () => setSkuModalShow(false);
-  const openSkuModal = () => setSkuModalShow(true);
+  const [TechnicalData, dispatchTechnical] = useReducer(
+    productTechReducer,
+    initialTechnicalInfo
+  );
+  const [OptionList, setOptionList] = useState([]);
+  const [skus, setSkus] = useState([]);
 
   return (
-    <Flex w="100%" justifyContent="center" alignItems="center">
-      <ModalContainerWrapper>
-        <TitleText>Add new item</TitleText>
-        {/* this component for (title , description , collection , images) */}
-        <ProductInformation
-          productInfo={productInfo}
-          setProductInfo={setProductInfo}
-        />
-        <Flex alignItems="center" justifyContent="start" w="100%">
-          <TypeSelect value={shippingType} onChange={changeShippingType}>
-            <option value={SHIPING_TYPES.EASY_POST}>Easy post</option>
-            <option value={SHIPING_TYPES.CUSTOM}>self managed, Courier</option>
-          </TypeSelect>
-          <Box mr={{ base: "10px", md: "15px" }}></Box>
-          {shippingType == SHIPING_TYPES.CUSTOM && (
-            <InputComponent
-              placeholder="Shipping price $"
-              value={shippingPrice}
-              onChange={changeShppingPrice}
-              type="number"
-            />
-          )}
-        </Flex>
-
-        {/* this component for show options and  select them */}
-        {varintType && (
-          <OptionCheckboxes
-            variants={varintType}
-            selectedOptions={selectedOptions}
-            setSelectedOptions={setSelectedOptions}
-            disable={skuArray.length > 0}
-          />
-        )}
-
-        {/* show available skus  */}
-        {skuArray.length > 0 && (
-          <SkusComponent
-            skusArray={skuArray}
-            setSkuArray={setSkuArray}
-            optionTypes={selectedOptions}
-          />
-        )}
-
-        <Flex mt="30px" w="100%" justifyContent="center" alignItems="center">
-          <Box w={{ base: "100%", md: "25%" }}>
-            <BasicButton click={openSkuModal}>Add variant</BasicButton>
-          </Box>
-        </Flex>
-
-        <Flex
-          justifyContent="space-between"
-          alignItems="center"
-          mt="80px"
-          w="100%"
-        >
-          <Box w={{ base: "40%", md: "30%" }}>
-            <BasicButton click={cancelForm} loading={loading} cancelType={true}>
-              Cancel
-            </BasicButton>
-          </Box>
-          <Box w={{ base: "40%", md: "30%" }}>
-            <BasicButton click={submitForm} loading={loading}>
-              Submit
-            </BasicButton>
-          </Box>
-        </Flex>
-        {/* modal for add new sku  */}
-        <AddSkuModal
-          open={skuModalShow}
-          close={closeSkuModal}
-          optionType={selectedOptions}
-          update={updateSku}
-        />
-      </ModalContainerWrapper>
-    </Flex>
+    <PageWrapper>
+      <ProductIntoComponent
+        productIntro={productIntro}
+        dispatchIntro={dispatchIntro}
+      />
+      <TechnicalComponent
+        TechnicalData={TechnicalData}
+        dispatchTechnical={dispatchTechnical}
+      />
+      <PropertiesComponent
+        OptionList={OptionList}
+        setOptionList={setOptionList}
+      />
+      <VariantsComponent
+        OptionList={OptionList}
+        skus={skus}
+        setSkus={setSkus}
+      />
+      <ButtonComponent productIntro={productIntro} TechnicalData={TechnicalData} skus={skus} />
+    </PageWrapper>
   );
 }
 

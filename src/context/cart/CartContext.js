@@ -1,42 +1,48 @@
 import { createContext, useState, useContext } from "react";
-import { removeCart, getCart } from "../../api/base-user/Cart-api";
+import { removeCart  } from "../../api/base-user/Cart-api";
 import { SHOP_TYPES } from "../../constant/shop-types";
-import { useToasty } from "../../context/toastify/ToastContext";
-import { UseWalletInfo } from "../../context/wallet/WalletContext";
 import { getMaxDiscount } from "../../services/check-rule-service/check-rule";
 import { getUserAddress } from "../../services/wallet-auth/api";
-import { API_STATUS } from "../../constant/api-status";
-
+import { useSelector } from "react-redux";
+import { selectHiroWalletData } from "../../store/hiro-wallet/hiro-wallet.selector";
+import { useApi } from "../../hooks/useApi/useApi";
+import { getCart } from "../../api-service/cart/cartApiService";
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   // state for cart
   const [cart, setCart] = useState(null);
+  console.log('cart : ' , cart);
+  const { getApi } =  useApi()
+  const userData = useSelector(selectHiroWalletData);
 
-  const { errorToast } = useToasty();
-  const { userData, getStxAddress } = UseWalletInfo();
+  const getStacksAddress = () => {
+    if (userData) {
+      return userData.profile.stxAddress.mainnet;
+    } else {
+      return null;
+    }
+  };
   //update cartstate
   const updateCart = async () => {
-    let result = await getCart();
-
-    if (result.status ===  API_STATUS.SUCCESS) {
-      let resultCard = result.data
+    let result = await getApi(getCart());
+    console.log('result , ' , result.cart );
+    if (result) {
+      let resultCard = result.cart      ;
       if (resultCard.items.length <= 0) setCart(null);
       else {
         let items = [];
         for (let i = 0; i < resultCard.items.length; i++) {
-          let newItem = await checkRuleset(resultCard.items[i])
+          let newItem = await checkRuleset(resultCard.items[i]);
           items.push(newItem);
         }
         setCart({ ...resultCard, items: items, type: SHOP_TYPES.DROPLINKED });
       }
-    } else {
-      errorToast(result.data);
     }
   };
 
-  const checkRuleset = async(item) => {
+  const checkRuleset = async (item) => {
     if (item.ruleset && !item.ruleset.gated) {
       let discountResult = await getMaxDiscount(
         getUserAddress(userData).mainnet,
@@ -48,16 +54,16 @@ const CartProvider = ({ children }) => {
           discountResult.discountPercentage,
           item
         );
-        return(newItem);
+        return newItem;
       } //
       else {
-        return(item);
+        return item;
       }
     } //
     else {
-      return(item);
+      return item;
     }
-  }
+  };
 
   // discoutn price for items
   const calculateDiscount = (discount, product) => {
@@ -77,11 +83,10 @@ const CartProvider = ({ children }) => {
   //
   const addWalletToCard = () => {
     if (userData) {
-      let newCard = { ...cart, wallet: getStxAddress() };
+      let newCard = { ...cart, wallet: getStacksAddress() };
       setCart(newCard);
     }
   };
-
 
   const addShopifyItemToCart = (item, rulePassed) => {
     let newCart;
@@ -128,7 +133,7 @@ const CartProvider = ({ children }) => {
       }
     }
     if (rulePassed && rulePassed == true) {
-      newCart = { ...newCart, wallet: getStxAddress() };
+      newCart = { ...newCart, wallet: getStacksAddress() };
     }
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));

@@ -3,24 +3,26 @@ import Product from "../../../components/shared/Product/Product";
 
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getCollectionById } from "../../../api/public/Collection-api";
+import { getCollectionById } from "../../../api-service/collections/collectionApiService";
 import { SHOP_TYPES } from "../../../constant/shop-types";
 import { USER_TYPE } from "../../../constant/user-types";
 import { CollectionPageWrapper, HeaderTitle } from "./Collection-page-style";
 import { Flex, Box } from "@chakra-ui/react";
+import { useApi } from "../../../hooks/useApi/useApi";
 
 export default function CollectionPage() {
   const [Collection, setCollectin] = useState(null);
 
   const { collectionId, shopname } = useParams();
+  const { getApi } = useApi()
 
   useEffect(() => {
     getCollections(collectionId);
   }, []);
 
   const getCollections = async (id) => {
-    let coll = await getCollectionById(id);
-    setCollectin(coll);
+    let result = await getApi(getCollectionById(id));
+    if (result) setCollectin(result);
   };
 
   const collectionType =

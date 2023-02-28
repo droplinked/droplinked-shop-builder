@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useProfile } from "../../../context/profile/ProfileContext";
 import { PROFILE_STATUS } from "../../../constant/profile-status-types";
+import { useSelector } from "react-redux";
+import { selectCurrentProfile } from "../../../store/profile/profile.selector";
 
 export default function Producer() {
-  const { profile } = useProfile();
+  const profile = useSelector(selectCurrentProfile);
+
   const navigate = useNavigate();
 
   useEffect(() => {
