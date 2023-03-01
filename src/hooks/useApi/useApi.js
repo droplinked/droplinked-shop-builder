@@ -68,7 +68,7 @@ export function useApi() {
           ...(token && { Authorization: "Bearer " + token }),
         },
       });
-
+console.log('res , ' , res)
       return res.data.data;
     } catch (err) {
       if (err.response) {

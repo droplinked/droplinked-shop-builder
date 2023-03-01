@@ -13,9 +13,10 @@ import {
     getRuleById,
     updateRule,
   } from "../../api/producer/Ruleset-api";
+  import { getRulesById } from "../../api-service/rules/rulesApiService";
   import { useToasty } from "../../context/toastify/ToastContext";
   import { RuleTypes } from "./rule-type";
-  
+  import { useApi } from "../../hooks/useApi/useApi";
   // import deleteIcon from "../../../assest/icon/delete-icon.svg";
   import RuleItem from "./RuleItem";
   import FillInput from "../../components/shared/FillInput/FillInput";
@@ -29,6 +30,7 @@ import {
 
     // ............
     const { errorToast, successToast } = useToasty();
+    const { getApi } = useApi()
     // this state for list of rules
     const [Rulelist, setRulelist] = useState([]);
     // this state used for web url address
@@ -56,9 +58,10 @@ import {
   
     const getRuleData = async () => {
       setLoading(true);
-      let result = await getRuleById(ruleId);
+      let result = await getApi(getRulesById(ruleId))
+      console.log('result ' , result)
       setLoading(false);
-      if (result.status == "success") initializeRule(result.data.ruleSet);
+     // if (result.status == "success") initializeRule(result.data.ruleSet);
     };
   
     const initializeRule = (rule) => {
