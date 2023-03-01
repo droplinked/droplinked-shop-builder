@@ -7,7 +7,7 @@ export const getCollectionById = (collectionId) => {
 
 export const getCollectionsByShopname = (shopname) => {
   let apiObj = {
-    url: `collections/${shopname}`,
+    url: `collection/public/${shopname}`,
   };
   return { ...apiObj };
 };

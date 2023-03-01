@@ -12,7 +12,7 @@ const OwnerShopPage = ({ shopData, shopName, update, collections }) => {
       //px={{base:'20px' , md:'80px'}}
       >
         {collections &&
-          collections.collections.map((collection) => {
+          collections.map((collection) => {
             return (
               <Box w="100%" mb='40px'>
                 <ProducerCollection

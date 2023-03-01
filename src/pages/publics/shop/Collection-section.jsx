@@ -3,7 +3,7 @@ import Collection from "../../../components/shared/Collection/collection-compone
 const CollectionsSection = ({ collection ,shopname , type }) => {
   return (
     <>
-      {collection.collections.map((coll, i) => {
+      {collection.map((coll, i) => {
         if (coll.products.length > 0)
           return <Collection key={i} collection={coll} shopname={shopname} type={type} />;
       })}

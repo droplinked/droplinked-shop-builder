@@ -10,7 +10,7 @@ const PublicShopPage = ({shopData , shopName , collections}) => {
     if (collections == null) return false;
 
     let flag = false;
-    collections.collections.forEach((collection) => {
+    collections.forEach((collection) => {
       if (collection.products.length > 0) flag = true;
     });
     return flag;

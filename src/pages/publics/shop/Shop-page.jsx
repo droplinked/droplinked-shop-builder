@@ -7,7 +7,7 @@ import { ShopPageContainer, ShopnotFind } from "./Shop-page-style";
 import { useSelector } from "react-redux";
 import { selectCurrentProfile } from "../../../store/profile/profile.selector";
 import { useApi } from "../../../hooks/useApi/useApi";
-import { getShopInfoByShopname } from "../../../api-service/publics/shop-api";
+import { getShopInformationByName } from "../../../api-service/shop/shopApiService";
 import { Box, Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -35,8 +35,9 @@ export default function ShopPage() {
   }, [shopname]);
 
   const getShopData = async () => {
-    // let result = await getApi(getShopInfoByShopname(shopname));
-    // if (result) setShop(result);
+    let result = await getApi(getShopInformationByName(shopname));
+    console.log('result ' ,result)
+    if (result) setShop(result);
   };
 
   const getCollectionData = async () => {
