@@ -45,10 +45,10 @@ const WalletModal = ({ show, close }) => {
       type: "CASPER",
       email: '',
     });
-      console.log('response : ' ,res.data);
+
     return res.data;
   } catch (err) {
-      console.log('error : ' ,err.response.data);
+      
    // return err.response.data.reason;
     // return err.response.data.reason;
   }
@@ -56,21 +56,21 @@ const WalletModal = ({ show, close }) => {
 
 
   const singInViaCasperWallet = async () => {
-    console.log('click capser wallet');
+    
     casper_login(
       (account_info) => {
         // Send this account_info to backend to check if it is valid
         //
-        console.log("account : ", account_info);
+       
         callWalletApi(account_info.account_hash , account_info.publicKey , account_info.signature)
       },
       (error) => {
         switch (error) {
           case auth_err.casper_signer_not_found:
-            console.log("Casper wallet is not installed");
+          
             break;
           case auth_err.cancelled_signing:
-            console.log("User cancelled signing");
+          
             break;
         }
       }

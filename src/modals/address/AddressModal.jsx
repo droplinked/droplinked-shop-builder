@@ -153,7 +153,6 @@ export default function AddressModal({
       result = await addAddress(formData);
     }
     setLoading(false);
-    console.log("final res ", result);
     if (result) close();
   };
 

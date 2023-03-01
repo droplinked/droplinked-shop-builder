@@ -77,7 +77,7 @@ const AdminPage = () => {
       backgroundImageSecondary: backgroundImageSecondary,
       infoEmail: infoEmail,
     };
-    console.log("dataObj ", dataObj);
+  
 
     try {
       const res = await axios.put(
@@ -90,12 +90,12 @@ const AdminPage = () => {
           },
         }
       );
-      console.log(res.data.data);
+    
     } catch (err) {
       if (err.response) {
-        console.log(err.response.data.message);
+       
       } else {
-        console.log(err.message);
+       
       }
       return;
     }

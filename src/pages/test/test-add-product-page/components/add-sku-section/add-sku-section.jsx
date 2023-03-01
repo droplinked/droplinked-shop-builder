@@ -14,7 +14,7 @@ const AddSkuSection = ({ OptionList, skus, setSkus }) => {
 
   const openForm = () => setOpen((p) => !p);
 
-  console.log("skus ", skus);
+
 
   const deleteSku = (index) => {
     let currentSkus = Array.from(skus);

@@ -43,7 +43,6 @@ export const putUpdateSku = (skuId, externalID, price, quantity, options) => {
 
 export const postAddSkuToProduct = (productId, sku) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  console.log("sku ", sku);
   let apiObj = {
     url: `producer/product/${productId}/sku`,
     body: {

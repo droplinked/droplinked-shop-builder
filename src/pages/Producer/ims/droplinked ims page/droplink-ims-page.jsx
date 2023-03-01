@@ -17,7 +17,7 @@ export default function DroplinkedImsPage({ products, filter }) {
     alert(obj);
   }
   function onReaderLoad(event) {
-    console.log(event.target.result);
+  
   }
 
   const uploadFile = (e) => {

@@ -13,7 +13,6 @@ export const CartContext = createContext();
 const CartProvider = ({ children }) => {
   // state for cart
   const [cart, setCart] = useState(null);
-  console.log('cart : ' , cart);
   const { getApi } =  useApi()
   const userData = useSelector(selectHiroWalletData);
 
@@ -27,7 +26,6 @@ const CartProvider = ({ children }) => {
   //update cartstate
   const updateCart = async () => {
     let result = await getApi(getCart());
-    console.log('result , ' , result.cart );
     if (result) {
       let resultCard = result.cart      ;
       if (resultCard.items.length <= 0) setCart(null);

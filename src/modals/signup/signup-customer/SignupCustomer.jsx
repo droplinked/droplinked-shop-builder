@@ -44,7 +44,6 @@ export default function SignupCustomer({ switchToggle, close }) {
 
     // let result = await customerSignup(accountInfo, errorToast);
     let result = await postApi(postSignupCustomer(email, password));
-    console.log('result , ' , result);
     if (result) {
       successToast("Account successfully created");
       close();
