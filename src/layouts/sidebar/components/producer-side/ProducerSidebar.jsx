@@ -17,12 +17,12 @@ import {
   SlideText,
 } from "./ProducerSidebar-style";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCurrentProfile } from "../../../../store/profile/profile.selector";
+import { selectCurrentShop } from "../../../../store/shop/shop.selector"
 import { logoutUser } from "../../../../store/profile/profile.action";
 
 const ProducerSidebar = () => {
   const dispatch = useDispatch();
-  const profile = useSelector(selectCurrentProfile);
+  const shop = useSelector(selectCurrentShop)
   const { showSideBar, toggleSideBar } = useSideBar();
 
   let navigate = useNavigate();
@@ -33,7 +33,7 @@ const ProducerSidebar = () => {
   const orderClick = () => navigate("/producer/orders");
   const settingClick = () => navigate("/settings");
   const inventoryClick = () => navigate("/producer/ims");
-  const shopClick = () => navigate(`/${profile.shopName}`);
+  const shopClick = () => navigate(`/${shop.name}`);
 
   const location = useLocation().pathname;
 
@@ -52,7 +52,7 @@ const ProducerSidebar = () => {
           text={"View Shop"}
           icon={shopIcon}
           click={shopClick}
-          active={location == `/${profile.shopName}`}
+          active={location == `/${shop.name}`}
         />
         <ProducerSidebarButton
           text={"Collections"}
