@@ -24,7 +24,7 @@ export const getCollections = () => {
 export const getCollectionsWithProduct = () => {
   const token = JSON.parse(localStorage.getItem("token"));
   let apiObj = {
-    url: `producer/collection?withProducts=true`,
+    url: `collection?withProducts=true`,
     token: token,
   };
   return { ...apiObj };

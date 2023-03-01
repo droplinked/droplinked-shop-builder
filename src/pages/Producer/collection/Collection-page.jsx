@@ -6,9 +6,12 @@ import ProducerCollection from "../../../components/shared/ProducerCollection/Pr
 import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
 import CollectionModal from "../../../modals/collection/CollectionModal";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { getCollectionsWithProduct } from "../../../api-service/collections/collectionApiService";
+import { selectCurrentShop } from "../../../store/shop/shop.selector";
+//import { getCollectionsWithProduct } from "../../../api-service/collections/collectionApiService";
+import { getCollectionsByShopname } from "../../../api-service/collections/collectionApiService";
 import { useApi } from "../../../hooks/useApi/useApi";
 import {
   CollectionPageWrapper,
@@ -21,6 +24,7 @@ export default function CollectionMainPage() {
   const [collections, setCollections] = useState(null);
 
   const navigate = useNavigate();
+  const shop = useSelector(selectCurrentShop)
   const { getApi } = useApi();
 
   const token = JSON.parse(localStorage.getItem("token"));
@@ -28,8 +32,8 @@ export default function CollectionMainPage() {
   if (token == null) navigate("/");
 
   const updateCollections = async () => {
-    let result = await getApi(getCollectionsWithProduct());
-    if (result) setCollections(result.collections);
+    let result = await getApi(getCollectionsByShopname(shop.name));
+    if (result) setCollections(result);
   };
 
   useEffect(() => {
