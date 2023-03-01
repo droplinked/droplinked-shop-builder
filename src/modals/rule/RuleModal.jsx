@@ -59,9 +59,8 @@ import {
     const getRuleData = async () => {
       setLoading(true);
       let result = await getApi(getRulesById(ruleId))
-      console.log('result ' , result)
+      if(result)initializeRule(result);
       setLoading(false);
-     // if (result.status == "success") initializeRule(result.data.ruleSet);
     };
   
     const initializeRule = (rule) => {
