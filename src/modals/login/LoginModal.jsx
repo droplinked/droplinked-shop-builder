@@ -12,6 +12,7 @@ import { isValidEmail } from "../../utils/validations/emailValidation";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../../store/profile/profile.action";
+import { setCurrentShop } from "../../store/shop/shop.action"
 import { postLogin } from "../../api-service/auth/authApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 
@@ -72,7 +73,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
     if (data.user.type == USER_TYPE.CUSTOMER) {
       dispatch(setCurrentUser(data));
-      //  addProfile(data);
+      dispatch(setCurrentShop(data.shop));
       return;
     }
     if (status === PROFILE_STATUS.NEW) {
@@ -85,7 +86,6 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     } else {
       navigateUser(status, data.shop.name);
       dispatch(setCurrentUser(data));
-      // addProfile(data);
       return;
     }
   };
