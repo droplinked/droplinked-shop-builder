@@ -62,7 +62,7 @@ import {
       if(result)initializeRule(result);
       setLoading(false);
     };
-  
+  //
     const initializeRule = (rule) => {
       setWebUrl(rule.webUrl);
       if (rule.gated) setRuleType(RuleTypes.GATED);
