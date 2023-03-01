@@ -84,11 +84,11 @@ export default function PageWrapper() {
   };
 
   const checkJWT = async () => {
-    let result = await isJwtValid();
-    if (!result) {
-      cleanStorage();
-      return;
-    }
+    // let result = await isJwtValid();
+    // if (!result) {
+    //   cleanStorage();
+    //   return;
+    // }
   };
 
   const lastSeen = () => {
