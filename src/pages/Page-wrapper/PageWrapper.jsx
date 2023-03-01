@@ -67,9 +67,8 @@ export default function PageWrapper() {
       if (isCustomer) updateCart();
       if (!isCustomer) {
         let newShop = await getApi(getUser())
-        console.log('newShop ',newShop)
         if (newShop) {
-          dispatch(setCurrentShop(newShop));
+          dispatch(setCurrentShop(newShop.shop));
         }
       }
     }
