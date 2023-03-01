@@ -17,6 +17,9 @@ import { useDispatch } from "react-redux";
 import { setCurrentShop } from "../../store/shop/shop.action";
 import { userSession } from "../../utils/hirowallet/hirowallet-utils";
 import { setCurrentHiroWallet } from "../../store/hiro-wallet/hiro-wallet.action";
+// import { getShopInformationByName } from "../../api-service/shop/shopApiService";
+import { getUser } from "../../api-service/user/userApiService";
+import { useApi } from "../../hooks/useApi/useApi";
 
 import Header from "../../layouts/header/Header";
 import Footer from "../../layouts/footer/Footer";
@@ -28,6 +31,7 @@ export default function PageWrapper() {
   const isCustomer = useSelector(selectIsCustomer);
   //const { updateShop } = useShop();
   const { shopname } = useParams();
+  const { getApi } =useApi()
   const dispatch = useDispatch();
 
   let location = useLocation();
@@ -62,7 +66,8 @@ export default function PageWrapper() {
     if (token != null || token != undefined) {
       if (isCustomer) updateCart();
       if (!isCustomer) {
-        let newShop = await getShop();
+        let newShop = await getApi(getUser())
+        console.log('newShop ',newShop)
         if (newShop) {
           dispatch(setCurrentShop(newShop));
         }

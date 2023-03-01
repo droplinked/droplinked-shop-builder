@@ -83,7 +83,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
       errorToast("This account has been deleted");
       return;
     } else {
-      navigateUser(status, data.user.shopName);
+      navigateUser(status, data.shop.name);
       dispatch(setCurrentUser(data));
       // addProfile(data);
       return;

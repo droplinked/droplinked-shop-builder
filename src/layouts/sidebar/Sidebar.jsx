@@ -12,25 +12,25 @@ import ShopInformationSidebar from "./components/shop-information-side/ShopInfor
 import ProducerSidebar from "./components/producer-side/ProducerSidebar";
 
 const Sidebar = () => {
-  const [shopData, setShop] = useState(null);
-  let { shopname } = useParams();
-  const isRegisteredProducer = useSelector(selectIsActiveProducer);
+  // const [shopData, setShop] = useState(null);
+  // let { shopname } = useParams();
+  // const isRegisteredProducer = useSelector(selectIsActiveProducer);
 
-  useEffect(() => {
-    getShopData(shopname);
-  }, [shopname]);
+  // useEffect(() => {
+  //   getShopData(shopname);
+  // }, [shopname]);
 
-  const getShopData = async (shop) => {
-    let shopinfo = await getShopInfoByShopname(shop);
-    setShop(shopinfo);
-  };
+  // const getShopData = async (shop) => {
+  //   let shopinfo = await getShopInfoByShopname(shop);
+  //   setShop(shopinfo);
+  // };
 
   return (
     <SidebarWrapper
-      borderRight={isRegisteredProducer ? "1px solid" : "0px solid"}
+      //borderRight={isRegisteredProducer ? "1px solid" : "0px solid"}
       borderColor={{ base: "transparent", sm: "line" }}
     >
-      {isRegisteredProducer ? (
+      {/* {isRegisteredProducer ? (
         <ProducerSidebar />
       ) : (
         <>
@@ -42,7 +42,7 @@ const Sidebar = () => {
             />
           )}
         </>
-      )}
+      )} */}
     </SidebarWrapper>
   );
 };

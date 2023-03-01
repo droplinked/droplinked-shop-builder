@@ -35,8 +35,8 @@ export default function ShopPage() {
   }, [shopname]);
 
   const getShopData = async () => {
-    let result = await getApi(getShopInfoByShopname(shopname));
-    if (result) setShop(result);
+    // let result = await getApi(getShopInfoByShopname(shopname));
+    // if (result) setShop(result);
   };
 
   const getCollectionData = async () => {
