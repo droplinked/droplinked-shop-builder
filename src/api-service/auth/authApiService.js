@@ -1,6 +1,6 @@
 export const postLogin = (email, password) => {
   let apiObj = {
-    url: `signin`,
+    url: `auth/login`,
     body: {
       email: email,
       password: password,
