@@ -24,9 +24,6 @@ export function useApi() {
     } catch (err) {
       if (err.response) {
         errorToast(err.response.data.reason);
-        // if (typeof err.response.data.data.message == "object")
-        //   errorToast(err.response.data.data.message[0]);
-        // else errorToast(err.response.data.data.message);
       } else {
         errorToast(err.message);
       }
@@ -34,7 +31,7 @@ export function useApi() {
     }
   };
 
-  const patchApi = async ({ url, token, body }) => {
+  const putApi = async ({ url, token, body }) => {
     try {
       const res = await axios.put(
         `${BASE_URL}/${url}`,
@@ -72,9 +69,6 @@ export function useApi() {
     } catch (err) {
       if (err.response) {
         errorToast(err.response.data.reason);
-        // if (typeof err.response.data.data.message == "object")
-        //   errorToast(err.response.data.data.message[0]);
-        // else errorToast(err.response.data.data.message);
       } else {
         errorToast(err.message);
       }
@@ -104,7 +98,7 @@ export function useApi() {
 
   return {
     postApi,
-    patchApi,
+    putApi,
     getApi,
     deleteApi,
   };
