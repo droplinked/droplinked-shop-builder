@@ -1,5 +1,5 @@
 export const getUser = () => {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = JSON.parse(localStorage.getItem("token") || "");
   let apiObj = {
     url: `user`,
     token: token,
@@ -7,8 +7,8 @@ export const getUser = () => {
   return { ...apiObj };
 };
 
-export const putUser = (body) => {
-  const token = JSON.parse(localStorage.getItem("token"));
+export const putUser = (body:any) => {
+  const token = JSON.parse(localStorage.getItem("token") || "");
   let apiObj = {
     url: `user`,
     body:body,
@@ -19,7 +19,7 @@ export const putUser = (body) => {
 
 
 
-export const postUserSignup = (body) => {
+export const postUserSignup = (body:any) => {
   let apiObj = {
     url: `user/signup`,
     body:body,
@@ -28,7 +28,7 @@ export const postUserSignup = (body) => {
 };
 
 
-export const postUserForgotPassword = (body) => {
+export const postUserForgotPassword = (body:any) => {
   let apiObj = {
     url: `user/forgot-password`,
     body:body,
@@ -38,7 +38,7 @@ export const postUserForgotPassword = (body) => {
 
 
 
-export const postUserResendEmail= (body) => {
+export const postUserResendEmail= (body:any) => {
   let apiObj = {
     url: `user/resend-email`,
     body:body,
@@ -47,7 +47,7 @@ export const postUserResendEmail= (body) => {
 };
 
 
-export const postUserEmailVerification= (body) => {
+export const postUserEmailVerification= (body:any) => {
   let apiObj = {
     url: `user/email-verification`,
     body:body,
@@ -56,7 +56,7 @@ export const postUserEmailVerification= (body) => {
 };
 
 
-export const putUserRecoveryAccount= (body) => {
+export const putUserRecoveryAccount= (body:any) => {
   let apiObj = {
     url: `user/recover-account`,
     body:body,
