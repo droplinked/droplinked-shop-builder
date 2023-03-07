@@ -1,8 +1,10 @@
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
+
+
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useApi } from "../../../hooks/useApi/useApi";
-import { postResendEmail } from "../../../api-service/auth/authApiService";
+import { postUserResendEmail } from "../../../apis/userApiService";
 import {
   ThankPageWrapper,
   ThankText,
@@ -25,7 +27,7 @@ export default function ThankForRegisterPage() {
   const resend = async () => {
     // call resent email api
     setLoading(true);
-    let result = await postApi(postResendEmail(email));
+    let result = await postApi(postUserResendEmail(email));
     setLoading(false);
     // if get error from api
     if (result) successToast("A new link was sent to your email");

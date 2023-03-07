@@ -3,9 +3,10 @@ import { useState, useContext } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 
 import { toastValue } from "../../../context/toastify/ToastContext";
-import { postProducerSignup } from "../../../api-service/auth/authApiService";
+//import { postProducerSignup } from "../../../api-service/auth/authApiService";
 import { isValidEmail } from "../../../utils/validations/emailValidation";
 import { BottomText } from "../SignupModal-style";
+import { postUserSignup } from "../../../apis/userApiService";
 import { useApi } from "../../../hooks/useApi/useApi";
 
 import FormInput from "../../../components/shared/FormInput/FormInput";
@@ -53,7 +54,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
     }
 
     setLoading(true);
-    let result = await postApi(postProducerSignup(email, password, shopName));
+    let result = await postApi(postUserSignup(email, password, shopName));
     setLoading(false);
 
     if (result) {
