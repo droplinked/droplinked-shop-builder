@@ -23,7 +23,7 @@ export function useApi() {
       return res.data.data;
     } catch (err) {
       if (err.response) {
-        errorToast(err.response.data.reason);
+        errorToast(err.response.data.message);
       } else {
         errorToast(err.message);
       }
@@ -46,13 +46,11 @@ export function useApi() {
       return res.data.data;
     } catch (err) {
       if (err.response) {
-        if (typeof err.response.data.data.message == "object")
-          errorToast(err.response.data.data.message[0]);
-        else errorToast(err.response.data.data.message);
+        errorToast(err.response.data.message);
       } else {
         errorToast(err.message);
       }
-      return undefined;
+      return false;
     }
   };
 
@@ -68,7 +66,7 @@ export function useApi() {
       return res.data.data;
     } catch (err) {
       if (err.response) {
-        errorToast(err.response.data.reason);
+        errorToast(err.response.data.message);
       } else {
         errorToast(err.message);
       }
@@ -88,11 +86,11 @@ export function useApi() {
       return res.data.data;
     } catch (err) {
       if (err.response) {
-        errorToast(err.response.data.reason);
+        errorToast(err.response.data.message);
       } else {
         errorToast(err.message);
       }
-      return undefined;
+      return false;
     }
   };
 

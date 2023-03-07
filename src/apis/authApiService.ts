@@ -1,10 +1,13 @@
 
 
 
-export const postLoginByEmail = (body:any) => {
+export const postLoginByEmail = (email:string , password:string) => {
     let apiObj = {
       url: `auth/login`,
-      body:body,
+      body: {
+        email: email,
+        password: password,
+      },
     };
     return { ...apiObj };
   };

@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../../store/profile/profile.action";
 import { setCurrentShop } from "../../store/shop/shop.action"
-import { postLogin } from "../../api-service/auth/authApiService";
+import { postLoginByEmail } from "../../apis/authApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
@@ -58,7 +58,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     setLoading(true);
 
     // let result = await SignIn(info);
-    let result = await postApi(postLogin(email, password));
+    let result = await postApi(postLoginByEmail(email, password));
     if (result) loginFunction(result);
 
     setLoading(false);

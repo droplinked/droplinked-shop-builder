@@ -1,13 +1,13 @@
-export const postLogin = (email, password) => {
-  let apiObj = {
-    url: `auth/login`,
-    body: {
-      email: email,
-      password: password,
-    },
-  };
-  return { ...apiObj };
-};
+// export const postLogin = (email, password) => {
+//   let apiObj = {
+//     url: `auth/login`,
+//     body: {
+//       email: email,
+//       password: password,
+//     },
+//   };
+//   return { ...apiObj };
+// };
 
 // export const postSignupCustomer = (email, password) => {
 //   let apiObj = {
