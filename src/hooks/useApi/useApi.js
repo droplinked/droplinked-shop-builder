@@ -3,7 +3,7 @@ import axios from "axios";
 //import { BASE_URL } from "./baseUrl";
 import { useToasty } from "../../context/toastify/ToastContext";
 
-const BASE_URL = `${process.env.REACT_APP_BASE_API_URL}`;
+const BASE_URL = "https://apiv2dev.droplinked.com";
 
 export function useApi() {
   const { errorToast } = useToasty();
