@@ -1,11 +1,12 @@
 import { Text, Box, Flex } from "@chakra-ui/react";
 import { ORDER_TYPES } from "../../../constant/order.types";
-import { getProducerOrder } from "../../../api-service/order/orderApiService";
+//import { getProducerOrder } from "../../../api-service/order/orderApiService";
 import { useApi } from "../../../hooks/useApi/useApi";
 import { useMemo, useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { selectIsActiveProducer } from "../../../store/profile/profile.selector";
-import { useNavigate } from "react-router-dom";
+//import { useSelector } from "react-redux";
+import { getOrders } from "../../../apis/orderApiService";
+//import { selectIsActiveProducer } from "../../../store/profile/profile.selector";
+//import { useNavigate } from "react-router-dom";
 import { sortArrayBaseCreateTime } from "../../../utils/sort.utils/sort.utils";
 
 import Order from "../../../components/shared/Order/Order-component";
@@ -15,24 +16,26 @@ export default function IncomingOrderPage() {
   const [filter, setFilter] = useState("All");
   const [orders, setOrders] = useState([]);
   // const { orders } = useOrder()
-  const navigate = useNavigate();
+ // const navigate = useNavigate();
   const { getApi } = useApi()
-  const isRegisteredProducer = useSelector(selectIsActiveProducer);
+  //const isRegisteredProducer = useSelector(selectIsActiveProducer);
 
   const updateOrder = async () => {
-    let result = await getApi(getProducerOrder())
+    let result = await getApi(getOrders())
     if (result) {
-      result = sortArrayBaseCreateTime(result.orders);
+      result = sortArrayBaseCreateTime(result);
       setOrders(result);
     }
   };
 
   useEffect(() => {
-    if (isRegisteredProducer) {
-      updateOrder();
-    } else {
-      navigate("/");
-    }
+    updateOrder();
+
+    // if (isRegisteredProducer) {
+    //   updateOrder();
+    // } else {
+    //   navigate("/");
+    // }
   }, []);
 
   const setTypesArray = () => {
