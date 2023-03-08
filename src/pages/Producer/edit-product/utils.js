@@ -10,7 +10,7 @@ export const getIntroData = (product) => {
 // returns thecnical data with correct format
 export const getTechnicalData = (product) => {
   return {
-    productCollectionID: product.productCollectionID,
+    productCollectionID: product.productCollectionID._id,
     shippingType: product.shippingType,
     shippingPrice: product.shippingPrice,
   };

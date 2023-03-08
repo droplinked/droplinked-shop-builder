@@ -3,14 +3,15 @@ import { useState } from "react";
 
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 import { useApi } from "../../../../../hooks/useApi/useApi";
-import { putUpdateProduct } from "../../../../../api-service/product/productApiService";
+//import { putUpdateProduct } from "../../../../../api-service/product/productApiService";
+import { putProductById } from "../../../../../apis/productsApiService";
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
 const ButtonComponent = ({ productIntro, TechnicalData, skus, productId }) => {
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
-  const { patchApi } = useApi();
+  const { putApi } = useApi();
 
   const backToPriviesPage = () => {};
 
@@ -44,7 +45,7 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus, productId }) => {
         }
       );
       setLoading(true);
-      let result = await patchApi(putUpdateProduct(productId, finalData));
+      let result = await putApi(putProductById(productId, finalData));
       setLoading(false);
       if (result) successToast("Done success fully");
     }
