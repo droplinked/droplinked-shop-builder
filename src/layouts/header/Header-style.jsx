@@ -14,6 +14,43 @@ export const HeaderWrapper = chakra("div", {
   },
 });
 
+export const UserHeaderWrapper = chakra("div", {
+  baseStyle: {
+    d: "flex",
+    w: "100%",
+    //  bgColor: "bG",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "29px 30px",
+    h: "86px",
+    borderBottom: "1px solid",
+    borderColor: "line",
+  },
+});
+
+export const UserHeaderIcon = chakra("img", {
+  baseStyle: {
+    w: "150px",
+    h: "28px",
+    cursor: "pointer",
+  },
+});
+
+export const ShopnameText = chakra("p", {
+  baseStyle: {
+    color: "lightGray",
+    fontSize: "18px",
+    fontWeight: "500",
+  },
+});
+
+export const ShopnIcon = chakra("img", {
+  baseStyle: {
+    w: "18px",
+    h: "18px",
+  },
+});
+
 export const HeaderTitle = chakra("p", {
   baseStyle: {
     color: "white",
@@ -39,9 +76,9 @@ export const HeaderButton = chakra("button", {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    minW:{ base:'auto' , lg:'200px' },
+    minW: { base: "auto", lg: "200px" },
     h: "auto",
-  //  maxH:'max-content',
+    //  maxH:'max-content',
     color: "white",
     bgColor: "button",
     borderRadius: "8px",
