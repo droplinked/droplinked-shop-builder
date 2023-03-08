@@ -25,7 +25,7 @@ export const getShopPublic = (shopName: string) => {
 export const getShopInfo = (shopName: string) => {
   const token = JSON.parse(localStorage.getItem("token") || "");
   let apiObj = {
-    url: `shop/public/${shopName}`,
+    url: `shop/shopInfo/${shopName}`,
     token: token,
   };
   return { ...apiObj };

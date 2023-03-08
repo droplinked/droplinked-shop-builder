@@ -7,11 +7,11 @@ const PublicShopPage = ({shopData , shopName , collections}) => {
 
       // check if doesnt exist any product in all collections dont show any collection
   const collectionHasProduct = () => {
-    if (collections == null) return false;
+    if (collections == null) return null;
 
     let flag = false;
     collections.forEach((collection) => {
-      if (collection.products.length > 0) flag = true;
+      if (collection.products && collection.products.length > 0) flag = true;
     });
     return flag;
   };

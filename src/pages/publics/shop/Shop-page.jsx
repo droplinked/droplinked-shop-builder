@@ -2,12 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getCollectionsByShopname } from "../../../api-service/collections/collectionApiService";
+//import { getCollectionsByShopname } from "../../../api-service/collections/collectionApiService";
 import { ShopPageContainer, ShopnotFind } from "./Shop-page-style";
 import { useSelector } from "react-redux";
 import { selectCurrentProfile } from "../../../store/profile/profile.selector";
 import { useApi } from "../../../hooks/useApi/useApi";
-import { getShopInformationByName } from "../../../api-service/shop/shopApiService";
+// import { getShopInformationByName } from "../../../api-service/shop/shopApiService";
+// import { getUser } from "../../../apis/userApiService";
+import { getUsersCollections } from "../../../apis/collectionApiService";
+import { getShopInfo } from "../../../apis/shopApiService";
 import { Box, Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +23,7 @@ export default function ShopPage() {
   // state for shop information
   const [shopData, setShop] = useState(null);
   // state for collections date
-  const [collection, setCollections] = useState(null);
+  const [collections, setCollections] = useState(null);
 
   let { shopname } = useParams();
   const { getApi } = useApi();
@@ -35,13 +38,12 @@ export default function ShopPage() {
   }, [shopname]);
 
   const getShopData = async () => {
-    let result = await getApi(getShopInformationByName(shopname));
-   
+    let result = await getApi(getShopInfo(shopname));
     if (result) setShop(result);
   };
 
   const getCollectionData = async () => {
-    let result = await getApi(getCollectionsByShopname(shopname));
+    let result = await getApi(getUsersCollections());
     if (result) setCollections(result);
   };
 
@@ -74,14 +76,14 @@ export default function ShopPage() {
                 <OwnerShopPage
                   shopData={shopData}
                   shopName={shopname}
-                  collections={collection}
+                  collections={collections}
                   update={getCollectionData}
                 />
               ) : (
                 <PublicShopPage
                   shopData={shopData}
                   shopName={shopname}
-                  collections={collection}
+                  collections={collections}
                 />
               )}
             </>
