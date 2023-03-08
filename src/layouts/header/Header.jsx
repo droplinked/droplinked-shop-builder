@@ -25,8 +25,9 @@ const Header = () => {
 
   const profile = useSelector(selectCurrentProfile);
   const isCustomer = useSelector(selectIsCustomer);
-  const isRegisteredProducer = useSelector(selectIsActiveProducer);
-//
+  //const isRegisteredProducer = useSelector(selectIsActiveProducer);
+
+  //
   const { showSideBar, toggleSideBar } = useSideBar();
   const navigate = useNavigate();
 
@@ -36,19 +37,18 @@ const Header = () => {
   // show droplinked logo in leftside and condition for right side
   // if have any profile show(UserHeader component)
   // if havent any profile show default component
-  
+
   return (
     <HeaderWrapper>
       <Flex w="auto" alignItems="center">
-        {isRegisteredProducer && (
-          <BurgerIcon
-            src={burger}
-            onClick={toggleSideBar}
-            transform={showSideBar ? "rotate(90deg)" : "rotate(0deg)"}
-            transition="1s"
-            // transform: rotate(45deg);
-          />
-        )}
+        <BurgerIcon
+          src={burger}
+          onClick={toggleSideBar}
+          transform={showSideBar ? "rotate(90deg)" : "rotate(0deg)"}
+          transition="1s"
+          // transform: rotate(45deg);
+        />
+
         <HeaderTitle onClick={navigateToLandingPage}>droplinked</HeaderTitle>
       </Flex>
       <Flex h="100%" alignItems="center">
