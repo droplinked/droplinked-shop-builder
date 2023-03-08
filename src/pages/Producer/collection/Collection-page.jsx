@@ -6,12 +6,13 @@ import ProducerCollection from "../../../components/shared/ProducerCollection/Pr
 import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
 import CollectionModal from "../../../modals/collection/CollectionModal";
 
-import { useNavigate , useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate  } from "react-router-dom";
+//import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { selectCurrentShop } from "../../../store/shop/shop.selector";
+//import { selectCurrentShop } from "../../../store/shop/shop.selector";
 //import { getCollectionsWithProduct } from "../../../api-service/collections/collectionApiService";
-import { getCollectionsByShopname } from "../../../api-service/collections/collectionApiService";
+import { getUsersCollections } from "../../../apis/collectionApiService"
+//import { getCollectionsByShopname } from "../../../api-service/collections/collectionApiService";
 import { useApi } from "../../../hooks/useApi/useApi";
 import {
   CollectionPageWrapper,
@@ -24,7 +25,7 @@ export default function CollectionMainPage() {
   const [collections, setCollections] = useState(null);
 
   const navigate = useNavigate();
-  const shop = useSelector(selectCurrentShop)
+  //const shop = useSelector(selectCurrentShop)
   const { getApi } = useApi();
 
   const token = JSON.parse(localStorage.getItem("token"));
@@ -32,7 +33,7 @@ export default function CollectionMainPage() {
   if (token == null) navigate("/");
 
   const updateCollections = async () => {
-    let result = await getApi(getCollectionsByShopname(shop.name));
+    let result = await getApi(getUsersCollections());
     if (result) setCollections(result);
   };
 
