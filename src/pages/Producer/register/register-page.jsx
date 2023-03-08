@@ -11,14 +11,11 @@ import {
   CounterText,
   AddressButton,
 } from "./register-page-style";
-//import { getShop } from "../../../api/base-user/Profile-api";
-import { updateShopApi } from "../../../api/producer/Shop-api";
-//import { useShop } from "../../../context/shop/ShopContext";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { setCurrentShop } from "../../../store/shop/shop.action";
 import { useApi } from "../../../hooks/useApi/useApi";
-//import { getAddress } from "../../../api-service/address/addressApiService";
 import { getAddressList } from "../../../apis/addressApiService";
+import { putUpdateShop } from "../../../apis/shopApiService";
 import { getUser } from "../../../apis/userApiService";
 
 import FormInput from "../../../components/shared/FormInput/FormInput";
@@ -35,20 +32,18 @@ const RegisterPage = () => {
   const [addressModal, setAddressModal] = useState(false);
   const [disableBtn, setDisableBtn] = useState(false);
   const [addressList, setAddressList] = useState([]);
-console.log('shop ' , shop)
-  //const { updateShop } = useShop();
+
   //hooks
   const { errorToast, successToast } = useToasty();
   const dispatch = useDispatch();
-  const { getApi } = useApi();
+  const { getApi, putApi } = useApi();
 
-  const profile = JSON.parse(localStorage.getItem("profile"));
 
   let navigate = useNavigate();
 
   const updateAddressList = async () => {
     let result = await getApi(getAddressList());
-    if (result && result.length > 0) setAddressList(result[0]);
+    if (result && result.length > 0) setAddressList(result);
   };
 
   useEffect(() => {
@@ -79,47 +74,37 @@ console.log('shop ' , shop)
     if (e.target.value.length < 31) chageShopInformation("description", e);
   };
 
-   const submitForm = async () => {
-  //   if (shop.description.length < 1) {
-  //     errorToast("Shop name is required");
-  //     return;
-  //   }
+  const submitForm = async () => {
+    if (shop.description.length < 1) {
+      errorToast("Shop name is required");
+      return;
+    }
 
-  //   if (shopAddressBook == undefined) {
-  //     errorToast("Address is required");
-  //     return;
-  //   }
+    if (addressList.lenght === 0) {
+      errorToast("Address is required");
+      return;
+    }
 
-    let shopInformation = {
-      social: {
-        discordUrl: shop.discordUrl,
-        twitter: shop.twitterUrl,
-        instagram: shop.instagramUrl,
-        webUrl: shop.webUrl,
-      },
-      shopLogo: shop.logo,
-      shopAddressID: shop.addressBookID,
+    const shopInformation = {
+      discordUrl: shop.discordUrl,
+      twitterUrl: shop.twitterUrl,
+      instagramUrl: shop.instagramUrl,
+      webUrl: shop.webUrl,
+      logo: shop.logo,
+      addressBookID: addressList[0]._id,
       description: shop.description,
     };
 
-    console.log('shopInformation ' ,shopInformation)
-
     setDisableBtn(true);
 
-   // let result = await updateShopApi(shopInformation);
-
-    // if (result.status == "success") {
-    //   localStorage.setItem("shop", JSON.stringify(result.data.shop));
-    //   successToast("Shop info successfully updated");
-    //   let newShop = await getShop();
-    //   if (newShop) {
-    //     dispatch(setCurrentShop(newShop));
-    //   }
-    //   //  await updateProfileData();
-    //   if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
-    // } else {
-    //   errorToast(result.reason);
-    // }
+    let result = await putApi(putUpdateShop(shopInformation));
+    console.log("result , ", result);
+    if (result) {
+      localStorage.setItem("shop", JSON.stringify(result));
+      successToast("Shop info successfully updated");
+      dispatch(setCurrentShop(result));
+      navigate(`/${result.name}`);
+    }
 
     setDisableBtn(false);
   };
@@ -230,6 +215,7 @@ console.log('shop ' , shop)
       <AddressModal
         show={addressModal}
         type={"SHOP"}
+        updateAddressList={updateAddressList}
         close={() => {
           setAddressModal(false);
         }}
@@ -238,3 +224,16 @@ console.log('shop ' , shop)
   );
 };
 export default RegisterPage;
+
+// if (result.status == "success") {
+//
+//   successToast("Shop info successfully updated");
+//   let newShop = await getShop();
+//   if (newShop) {
+//     dispatch(setCurrentShop(newShop));
+//   }
+//   //  await updateProfileData();
+//   if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
+// } else {
+//   errorToast(result.reason);
+// }
