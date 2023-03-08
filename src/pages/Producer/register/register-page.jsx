@@ -1,3 +1,8 @@
+import { FormControl, FormLabel, Box } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import {
   RegisterPageWrapper,
   RegisterContainer,
@@ -6,17 +11,15 @@ import {
   CounterText,
   AddressButton,
 } from "./register-page-style";
-import { FormControl, FormLabel, Box } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { getShop } from "../../../api/base-user/Profile-api";
+//import { getShop } from "../../../api/base-user/Profile-api";
 import { updateShopApi } from "../../../api/producer/Shop-api";
 //import { useShop } from "../../../context/shop/ShopContext";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { setCurrentShop } from "../../../store/shop/shop.action";
 import { useApi } from "../../../hooks/useApi/useApi";
-import { getAddress } from "../../../api-service/address/addressApiService";
+//import { getAddress } from "../../../api-service/address/addressApiService";
+import { getAddressList } from "../../../apis/addressApiService";
+import { getUser } from "../../../apis/userApiService";
 
 import FormInput from "../../../components/shared/FormInput/FormInput";
 import InputImage from "../../../components/shared/InputImage/InputImage";
@@ -27,12 +30,15 @@ import Loading from "../../../components/shared/loading/Loading";
 import FillInput from "../../../components/shared/FillInput/FillInput";
 
 const RegisterPage = () => {
+  //states
   const [shop, setShop] = useState(null);
   const [addressModal, setAddressModal] = useState(false);
   const [disableBtn, setDisableBtn] = useState(false);
   const [addressList, setAddressList] = useState([]);
-  const { errorToast, successToast } = useToasty();
+console.log('shop ' , shop)
   //const { updateShop } = useShop();
+  //hooks
+  const { errorToast, successToast } = useToasty();
   const dispatch = useDispatch();
   const { getApi } = useApi();
 
@@ -41,8 +47,8 @@ const RegisterPage = () => {
   let navigate = useNavigate();
 
   const updateAddressList = async () => {
-    let result = await getApi(getAddress());
-    if (result) setAddressList(result.addressBooks);
+    let result = await getApi(getAddressList());
+    if (result && result.length > 0) setAddressList(result[0]);
   };
 
   useEffect(() => {
@@ -55,8 +61,8 @@ const RegisterPage = () => {
   );
 
   const getShopData = async () => {
-    let result = await getShop();
-    if (result) setShop({ ...result, description: "" });
+    let result = await getApi(getUser());
+    if (result) setShop({ ...result.shop, description: "" });
   };
 
   const chageShopInformation = (type, e) => {
@@ -73,16 +79,16 @@ const RegisterPage = () => {
     if (e.target.value.length < 31) chageShopInformation("description", e);
   };
 
-  const submitForm = async () => {
-    if (shop.description.length < 1) {
-      errorToast("Shop name is required");
-      return;
-    }
+   const submitForm = async () => {
+  //   if (shop.description.length < 1) {
+  //     errorToast("Shop name is required");
+  //     return;
+  //   }
 
-    if (shopAddressBook == undefined) {
-      errorToast("Address is required");
-      return;
-    }
+  //   if (shopAddressBook == undefined) {
+  //     errorToast("Address is required");
+  //     return;
+  //   }
 
     let shopInformation = {
       social: {
@@ -96,22 +102,24 @@ const RegisterPage = () => {
       description: shop.description,
     };
 
+    console.log('shopInformation ' ,shopInformation)
+
     setDisableBtn(true);
 
-    let result = await updateShopApi(shopInformation);
+   // let result = await updateShopApi(shopInformation);
 
-    if (result.status == "success") {
-      localStorage.setItem("shop", JSON.stringify(result.data.shop));
-      successToast("Shop info successfully updated");
-      let newShop = await getShop();
-      if (newShop) {
-        dispatch(setCurrentShop(newShop));
-      }
-      //  await updateProfileData();
-      if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
-    } else {
-      errorToast(result.reason);
-    }
+    // if (result.status == "success") {
+    //   localStorage.setItem("shop", JSON.stringify(result.data.shop));
+    //   successToast("Shop info successfully updated");
+    //   let newShop = await getShop();
+    //   if (newShop) {
+    //     dispatch(setCurrentShop(newShop));
+    //   }
+    //   //  await updateProfileData();
+    //   if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
+    // } else {
+    //   errorToast(result.reason);
+    // }
 
     setDisableBtn(false);
   };
