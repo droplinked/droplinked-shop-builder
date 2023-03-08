@@ -17,10 +17,13 @@ import { updateShopApi } from "../../../../api/producer/Shop-api";
 import { useNavigate } from "react-router-dom";
 //import { useShop } from "../../../../context/shop/ShopContext";
 import { getShop } from "../../../../api/base-user/Profile-api";
-import { useDispatch } from "react-redux";
+import { selectCurrentShop } from "../../../../store/shop/shop.selector";
+import { useDispatch ,useSelector } from "react-redux";
 import { setCurrentShop } from "../../../../store/shop/shop.action";
 import { useApi } from "../../../../hooks/useApi/useApi";
 import { getAddress } from "../../../../api-service/address/addressApiService";
+import { getAddressList } from "../../../../apis/addressApiService";
+import { selectCurrentProfile } from "../../../../store/profile/profile.selector";
 
 import axios from "axios";
 import InputImage from "../../../../components/shared/InputImage/InputImage";
@@ -42,13 +45,16 @@ const keyframe_startanimation = keyframes`
 `;
 
 export default function ShopInfoComponent({ active }) {
-  const token = JSON.parse(localStorage.getItem("token"));
-  const profile = JSON.parse(localStorage.getItem("profile"));
+ // const token = JSON.parse(localStorage.getItem("token"));
+  //const profile = JSON.parse(localStorage.getItem("profile"));
 
   const dispatch = useDispatch();
   const { getApi } = useApi();
 
   const [shop, setShop] = useState(null);
+  const shopx = useSelector(selectCurrentShop);
+  const profile = useSelector(selectCurrentProfile);
+
   const [disableBtn, setDisableBtn] = useState(false);
   const [addressModal, setAddressModal] = useState(false);
 
@@ -64,29 +70,19 @@ export default function ShopInfoComponent({ active }) {
     : `${keyframe_startanimation}  0.2s linear`;
 
   const updateAddressList = async () => {
-    let result = await getApi(getAddress());
-    if (result) setAddressList(result.addressBooks);
+    let result = await getApi(getAddressList());
+    if (result) setAddressList(result);
   };
 
   useEffect(() => {
     updateAddressList();
+    setShop(shopx)
   }, []);
 
   let shopAddressBook = addressList.find(
     (address) => address.addressType == "SHOP"
   );
 
-  useEffect(() => {
-    axios
-      .get(`${BASE_URL}/profile`, {
-        headers: { Authorization: "Bearer " + token },
-      })
-      .then((e) => {
-        if (e.data.data.shop.description) setShop(e.data.data.shop);
-        else setShop({ ...e.data.data.shop, description: "" });
-      })
-      .catch((e) => console.log(e.response.data.reason));
-  }, [token]);
 
   const changeShopLogo = (imageUrl) => {
     let newObject = {};
