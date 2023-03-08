@@ -10,18 +10,18 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-import { BASE_URL } from "../../../../api/BaseUrl";
 import { useEffect, useState } from "react";
 import { useToasty } from "../../../../context/toastify/ToastContext";
-import { updateShopApi } from "../../../../api/producer/Shop-api";
+//import { updateShopApi } from "../../../../api/producer/Shop-api";
 import { useNavigate } from "react-router-dom";
 //import { useShop } from "../../../../context/shop/ShopContext";
-import { getShop } from "../../../../api/base-user/Profile-api";
+//import { getShop } from "../../../../api/base-user/Profile-api";
+import { putUpdateShop } from "../../../../apis/shopApiService";
 import { selectCurrentShop } from "../../../../store/shop/shop.selector";
 import { useDispatch ,useSelector } from "react-redux";
-import { setCurrentShop } from "../../../../store/shop/shop.action";
+//import { setCurrentShop } from "../../../../store/shop/shop.action";
 import { useApi } from "../../../../hooks/useApi/useApi";
-import { getAddress } from "../../../../api-service/address/addressApiService";
+//import { getAddress } from "../../../../api-service/address/addressApiService";
 import { getAddressList } from "../../../../apis/addressApiService";
 import { selectCurrentProfile } from "../../../../store/profile/profile.selector";
 
@@ -49,7 +49,7 @@ export default function ShopInfoComponent({ active }) {
   //const profile = JSON.parse(localStorage.getItem("profile"));
 
   const dispatch = useDispatch();
-  const { getApi } = useApi();
+  const { getApi , putApi } = useApi();
 
   const [shop, setShop] = useState(null);
   const shopx = useSelector(selectCurrentShop);
@@ -102,35 +102,31 @@ export default function ShopInfoComponent({ active }) {
       return;
     }
 
-    let shopInformation = {
-      social: {
-        discordUrl: shop.discordUrl,
-        twitter: shop.twitterUrl,
-        instagram: shop.instagramUrl,
-        webUrl: shop.webUrl,
-      },
-      shopLogo: shop.logo,
-      shopAddressID: shop.addressBookID,
+    const shopInformation = {
+      discordUrl: shop.discordUrl,
+      twitterUrl: shop.twitterUrl,
+      instagramUrl: shop.instagramUrl,
+      webUrl: shop.webUrl,
+      logo: shop.logo,
+      addressBookID: addressList[0]._id,
       description: shop.description,
     };
 
+
     setDisableBtn(true);
-
-    let result = await updateShopApi(shopInformation);
-
-    if (result.status == "success") {
-      localStorage.setItem("shop", JSON.stringify(result.data.shop));
-      successToast("Shop info successfully updated");
-      let newShop = await getShop();
-      if (newShop) {
-        dispatch(setCurrentShop(newShop));
-      }
-      if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
-    } else {
-      errorToast(result.reason);
-    }
-
+    let result = await putApi(putUpdateShop(shopInformation));
     setDisableBtn(false);
+    // if (result) {
+    //   localStorage.setItem("shop", JSON.stringify(result.data.shop));
+    //   successToast("Shop info successfully updated");
+    //   let newShop = await getShop();
+    //   if (newShop) {
+    //     dispatch(setCurrentShop(newShop));
+    //   }
+    //   if (profile.status == "VERIFIED") navigate(`/${profile.shopName}`);
+    // } 
+
+ 
   };
 
   const changeShopname = (e) => {
