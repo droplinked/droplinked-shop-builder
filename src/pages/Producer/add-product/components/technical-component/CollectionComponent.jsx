@@ -4,8 +4,10 @@ import { Box } from "@chakra-ui/react";
 
 import { Text16px } from "../../Add-product-style";
 import { useApi } from "../../../../../hooks/useApi/useApi";
-import { getCollections } from "../../../../../api-service/collections/collectionApiService";
+//import { getCollections } from "../../../../../api-service/collections/collectionApiService";
+import { getUsersCollections } from "../../../../../apis/collectionApiService";
 import { CollectionContainer, CollectionItem } from "../../Add-product-style";
+
 
 const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
   const { getApi } = useApi();
@@ -13,8 +15,8 @@ const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
   const [collectionList, setCollectionList] = useState([]);
 
   useEffect(async () => {
-    let result = await getApi(getCollections());
-    if (result) setCollectionList(result.collections);
+    let result = await getApi(getUsersCollections());
+    if (result) setCollectionList(result);
   }, []);
 
   const selectCollection = (collectionId) =>
