@@ -24,6 +24,7 @@ import {
 import { useState } from "react";
 
 const ProducerCollection = ({ collection, update }) => {
+  console.log('collectin ' , collection)
   const [deleteModal, setDeleteModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [ruleModal, setRuleModal] = useState(false);
@@ -63,7 +64,7 @@ const ProducerCollection = ({ collection, update }) => {
           openRuleModal={openRuleModal}
         />
         <ProductsWrapper>
-          {collection.products.length == 0 ? (
+          {(!collection.products || collection.products.length == 0) ? (
             <Box w={{ base: "50%", lg: "25%" }}>
               <AddProduct />
             </Box>

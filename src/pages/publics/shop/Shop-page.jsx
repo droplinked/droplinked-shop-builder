@@ -71,22 +71,30 @@ export default function ShopPage() {
               </Flex>
             </Box>
           ) : (
-            <>
-              {isOwner() ? (
-                <OwnerShopPage
-                  shopData={shopData}
-                  shopName={shopname}
-                  collections={collections}
-                  update={getCollectionData}
-                />
-              ) : (
-                <PublicShopPage
-                  shopData={shopData}
-                  shopName={shopname}
-                  collections={collections}
-                />
-              )}
-            </>
+
+            <OwnerShopPage
+            shopData={shopData}
+            shopName={shopname}
+            collections={collections}
+            update={getCollectionData}
+          />
+
+            // <>
+            //   {isOwner() ? (
+            //     <OwnerShopPage
+            //       shopData={shopData}
+            //       shopName={shopname}
+            //       collections={collections}
+            //       update={getCollectionData}
+            //     />
+            //   ) : (
+            //     <PublicShopPage
+            //       shopData={shopData}
+            //       shopName={shopname}
+            //       collections={collections}
+            //     />
+            //   )}
+          //  </>
           )}
         </ShopPageContainer>
       )}
