@@ -3,7 +3,8 @@ import { useState } from "react";
 
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 import { useApi } from "../../../../../hooks/useApi/useApi";
-import { postAddProduct } from "../../../../../api-service/product/productApiService";
+//import { postAddProduct } from "../../../../../api-service/product/productApiService";
+import { postProduct } from "../../../../../apis/productsApiService";
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
 const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
@@ -43,8 +44,9 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
           priceUnit: "USD",
         }
       );
+      console.log('final data : ', finalData)
       setLoading(true);
-      let result = await postApi(postAddProduct(finalData));
+      let result = await postApi(postProduct(finalData));
       setLoading(false);
       if (result) successToast("Done success fully");
     }

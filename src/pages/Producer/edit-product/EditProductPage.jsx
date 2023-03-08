@@ -6,6 +6,7 @@ import { getProducerProductById } from "../../../api-service/product/productApiS
 import { productIntroReducer ,INTRO_REDUCER_TYPES } from "./reducer/product-intro-reducer";
 import { productTechReducer , TECH_REDUCER_TYPES} from "./reducer/technical-data-reducer";
 import { PageWrapper } from "./EditProductPage-style";
+import { getProductById } from "../../../apis/productsApiService";
 import {
   getIntroData,
   getTechnicalData,
@@ -37,7 +38,7 @@ const EditProductPage = () => {
 
   // gets product data by productId and initializes states
   const getProductData = async () => {
-    let result = await getApi(getProducerProductById(merchId));
+    let result = await getApi(getProductById(merchId));
     if (result) {
       dispatchIntro({
         type: INTRO_REDUCER_TYPES.INITIALIZE,
