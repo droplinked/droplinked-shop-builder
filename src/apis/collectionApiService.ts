@@ -1,8 +1,10 @@
-export const postCreateCollection = (body: any) => {
+export const postCreateCollection = (collectionName: string) => {
   const token = JSON.parse(localStorage.getItem("token") || "");
   let apiObj = {
     url: `collection`,
-    body: body,
+    body: {
+      title: collectionName,
+    },
     token: token,
   };
   return { ...apiObj };
@@ -26,11 +28,16 @@ export const getCollectionById = (collectionId: number) => {
   return { ...apiObj };
 };
 
-export const putUpdateCollection = (collectionId: number, body: any) => {
+export const putUpdateCollection = (
+  collectionId: number,
+  collectionName: string
+) => {
   const token = JSON.parse(localStorage.getItem("token") || "");
   let apiObj = {
     url: `collection/${collectionId}`,
-    body: body,
+    body: {
+      title: collectionName,
+    },
     token: token,
   };
   return { ...apiObj };
