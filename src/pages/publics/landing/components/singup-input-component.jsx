@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Flex, Image, Spinner } from "@chakra-ui/react";
-import { checkShopname } from "../../../../api/public/CheckShopname-api";
+import { Flex, Image } from "@chakra-ui/react";
+import { useApi } from "../../../../hooks/useApi/useApi"
+import { getIsShopExist } from "../../../../apis/shopApiService";
 import {
   SignupWrapper,
   DomainText,
@@ -15,6 +16,8 @@ import alertIcon from "../../../../assest/icon/alert.png";
 const SignupInput = ({ setUsername, userName, toggleSignUp }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const { getApi } = useApi()
 
   const ERRORS_TYPE = {
     EMPTY_ERROR: "Please enter a name to proceed",
@@ -41,7 +44,7 @@ const SignupInput = ({ setUsername, userName, toggleSignUp }) => {
     }
 
     setLoading(true);
-    let result = await checkShopname(userName);
+    let result = await getApi(getIsShopExist(userName))
     if (result == true) toggleSignUp();
     else setError(result);
     setLoading(false);

@@ -9,10 +9,8 @@ export const putUpdateShop = (body: any) => {
 };
 
 export const getIsShopExist = (shopName: string) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
   let apiObj = {
     url: `shop/${shopName}`,
-    token: token,
   };
   return { ...apiObj };
 };
