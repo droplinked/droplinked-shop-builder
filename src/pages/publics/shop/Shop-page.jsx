@@ -9,7 +9,7 @@ import { selectCurrentProfile } from "../../../store/profile/profile.selector";
 import { useApi } from "../../../hooks/useApi/useApi";
 // import { getShopInformationByName } from "../../../api-service/shop/shopApiService";
 // import { getUser } from "../../../apis/userApiService";
-import { getUsersCollections } from "../../../apis/collectionApiService";
+import { getUsersCollections  ,getCollectionPublicByShopname} from "../../../apis/collectionApiService";
 import { getShopInfo } from "../../../apis/shopApiService";
 import { Box, Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,7 @@ export default function ShopPage() {
   };
 
   const getCollectionData = async () => {
-    let result = await getApi(getUsersCollections());
+    let result = await getApi(getCollectionPublicByShopname(shopname));
     if (result) setCollections(result);
   };
 
