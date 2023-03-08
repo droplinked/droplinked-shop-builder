@@ -13,6 +13,7 @@ import {
     getRuleById,
     updateRule,
   } from "../../api/producer/Ruleset-api";
+  import { postCreateRuleset } from "../../apis/rulesetApiService";
   import { getRulesById } from "../../api-service/rules/rulesApiService";
   import { useToasty } from "../../context/toastify/ToastContext";
   import { RuleTypes } from "./rule-type";
@@ -30,7 +31,7 @@ import {
 
     // ............
     const { errorToast, successToast } = useToasty();
-    const { getApi } = useApi()
+    const { getApi , postApi , putApi } = useApi()
     // this state for list of rules
     const [Rulelist, setRulelist] = useState([]);
     // this state used for web url address
@@ -116,6 +117,16 @@ import {
           description: rule.des,
         };
       });
+
+    const requestBody = {
+        collectionID: collectionId,
+        gated: gated,
+        rules: rulesArray,
+        webUrl:webUrl,
+        type:"ETH",
+        redeemedNFTs:[],
+      }
+
       let result;
       if (ruleId != undefined)
         result = await updateRule(
@@ -125,7 +136,7 @@ import {
           webUrl,
           gated
         );
-      else result = await addRuleset(collectionId, rulesArray, webUrl, gated);
+      else result = await postApi(postCreateRuleset(requestBody))
       update();
       close();
     };
