@@ -2,9 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getProducts } from "../../../api/producer/Product-api";
-import { getShop } from "../../../api/base-user/Profile-api";
+import { useSelector } from "react-redux";
+
+import { selectCurrentShop } from "../../../store/shop/shop.selector";
+// import { getProducts } from "../../../api/producer/Product-api";
+// import { getShop } from "../../../api/base-user/Profile-api";
 import { SHOP_TYPES } from "../../../constant/shop-types";
+import { useApi } from "../../../hooks/useApi/useApi"
+import { getProduct } from "../../../apis/productsApiService";
 import {
   ImsPageWrapper,
   HeaderTitle,
@@ -17,11 +22,15 @@ import ShopImsPage from "./shopify-ims-page/shopify-ims-page";
 import SeachBox from "./search-box/Search-box-component";
 
 function InventoryPage() {
+  //states
+  const shop = useSelector(selectCurrentShop);
   const [products, setProdcuts] = useState(null);
-  const [shop, setShop] = useState(null);
+  //const [shop, setShop] = useState(null);
   const [filter, setFilter] = useState("");
-
+  //hooks
+  const { getApi } =useApi()
   const navigate = useNavigate();
+
   const token = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
@@ -33,10 +42,8 @@ function InventoryPage() {
   }, []);
 
   const getData = async () => {
-    let pro = await getProducts();
-    let sh = await getShop();
-    setProdcuts(pro);
-    setShop(sh);
+    let productResult = await getApi(getProduct())
+    if(productResult)setProdcuts(productResult);
   };
 
   const changeFilter = (e) => setFilter(e.target.value.toLowerCase());

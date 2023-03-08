@@ -8,6 +8,8 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 
 export default function DroplinkedImsPage({ products, filter }) {
+
+  console.log('products ' , products);
   const fileRef = useRef(null);
 
   const { errorToast } = useToasty();
