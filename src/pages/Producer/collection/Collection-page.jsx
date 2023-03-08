@@ -9,9 +9,9 @@ import CollectionModal from "../../../modals/collection/CollectionModal";
 import { useNavigate  } from "react-router-dom";
 //import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-//import { selectCurrentShop } from "../../../store/shop/shop.selector";
+import { selectCurrentShop } from "../../../store/shop/shop.selector";
 //import { getCollectionsWithProduct } from "../../../api-service/collections/collectionApiService";
-import { getUsersCollections } from "../../../apis/collectionApiService"
+import { getUsersCollections ,getCollectionPublicByShopname } from "../../../apis/collectionApiService"
 //import { getCollectionsByShopname } from "../../../api-service/collections/collectionApiService";
 import { useApi } from "../../../hooks/useApi/useApi";
 import {
@@ -19,13 +19,15 @@ import {
   ButtonWrapper,
   AddproductWrapper,
 } from "./Collection-page-style";
+import { useSelector } from "react-redux";
+
 
 export default function CollectionMainPage() {
   const [Modal, setModal] = useState(false);
   const [collections, setCollections] = useState(null);
 
   const navigate = useNavigate();
-  //const shop = useSelector(selectCurrentShop)
+  const shop = useSelector(selectCurrentShop)
   const { getApi } = useApi();
 
   const token = JSON.parse(localStorage.getItem("token"));
@@ -33,7 +35,7 @@ export default function CollectionMainPage() {
   if (token == null) navigate("/");
 
   const updateCollections = async () => {
-    let result = await getApi(getUsersCollections());
+    let result = await getApi(getCollectionPublicByShopname(shop.name));
     if (result) setCollections(result);
   };
 
