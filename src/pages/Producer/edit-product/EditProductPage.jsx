@@ -6,7 +6,7 @@ import { getProducerProductById } from "../../../api-service/product/productApiS
 import { productIntroReducer ,INTRO_REDUCER_TYPES } from "./reducer/product-intro-reducer";
 import { productTechReducer , TECH_REDUCER_TYPES} from "./reducer/technical-data-reducer";
 import { PageWrapper } from "./EditProductPage-style";
-import { getProductById } from "../../../apis/productsApiService";
+import { getPublicProductById } from "../../../apis/productsApiService";
 import {
   getIntroData,
   getTechnicalData,
@@ -38,18 +38,18 @@ const EditProductPage = () => {
 
   // gets product data by productId and initializes states
   const getProductData = async () => {
-    let result = await getApi(getProductById(merchId));
+    let result = await getApi(getPublicProductById(merchId));
     if (result) {
       dispatchIntro({
         type: INTRO_REDUCER_TYPES.INITIALIZE,
-        payload: getIntroData(result.product),
+        payload: getIntroData(result),
       });
       dispatchTechnical({
         type: TECH_REDUCER_TYPES.INITIALIZE,
-        payload: getTechnicalData(result.product),
+        payload: getTechnicalData(result),
       });
-      setOptionList(getPropertiesData(result.product));
-      setSkus(getSkusData(result.product));
+      setOptionList(getPropertiesData(result));
+      setSkus(getSkusData(result));
     }
   };
 

@@ -6,8 +6,8 @@ import {
   ComponentTitle,
   Text16px400,
 } from "../../EditProductPage-style";
-import { getVariants } from "../../../../../api-service/product/productApiService";
-import { useApi } from "../../../../../hooks/useApi/useApi";
+//import { getVariants } from "../../../../../api-service/product/productApiService";
+//import { useApi } from "../../../../../hooks/useApi/useApi";
 
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 import PropertiesTopComponent from "./PropertiesTopComponent";
@@ -17,16 +17,23 @@ import OptionFormComponent from "./OptionFormComponent";
 const PropertiesComponent = ({ OptionList, setOptionList }) => {
   const [variantsType, setVariantType] = useState(null);
 
-  const { getApi } = useApi();
+  //const { getApi } = useApi();
 
-  // get variants types
-  const initializeVariants = async () => {
-    let result = await getApi(getVariants());
-    if (result) setVariantType(result.variants);
-  };
-
-  useEffect(() => {
-    initializeVariants();
+  useEffect(async () => {
+    // let result = await getApi(getVariants());
+    // if (result) setVariantType(result.variants);
+    setVariantType(
+      [
+        ({
+          _id: "62a989ab1f2c2bbc5b1e7153",
+          name: "Color",
+        },
+        {
+          _id: "62a989e21f2c2bbc5b1e7154",
+          name: "Size",
+        })
+      ]
+    )
   }, []);
 
 

@@ -49,7 +49,7 @@ const SkuComponent = ({
       ) : (
         <VariantComponentWrapper>
           <DetailWrapper>
-            {sku.options.map((option) => {
+            {/* {sku.options.map((option) => {
               return (
                 <>
                   <Text16px>
@@ -58,7 +58,7 @@ const SkuComponent = ({
                   <Line></Line>
                 </>
               );
-            })}
+            })} */}
 
             <Text16px>Price: ${sku.price}</Text16px>
             <Line></Line>

@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 
 import { useApi } from "../../../../../hooks/useApi/useApi";
-import { getCollections } from "../../../../../api-service/collections/collectionApiService";
+//import { getCollections } from "../../../../../api-service/collections/collectionApiService";
+import { getUsersCollections } from "../../../../../apis/collectionApiService"
 import {
   CollectionContainer,
   CollectionItem,
@@ -17,8 +18,8 @@ const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
 
   // get all collection data
   useEffect(async () => {
-    let result = await getApi(getCollections());
-    if (result) setCollectionList(result.collections);
+    let result = await getApi(getUsersCollections());
+    if (result) setCollectionList(result);
   }, []);
 
   const selectCollection = (collectionId) =>
