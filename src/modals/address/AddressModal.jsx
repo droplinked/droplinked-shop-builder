@@ -7,6 +7,7 @@ import {
   postAddress,
   patchAddress,
 } from "../../api-service/address/addressApiService";
+import { postCreateAddress } from "../../apis/addressApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 
 import FormInput from "../../components/shared/FormInput/FormInput";
@@ -99,8 +100,8 @@ export default function AddressModal({
     }
   };
 
-  const addAddress = async (formDate) => {
-    let result = await postApi(postAddress(formDate));
+  const addAddress = async (formData) => {
+    let result = await postApi(postCreateAddress(formData));
     if (result) {
       successToast("Address added successfully");
       if (updateAddressList) updateAddressList();
@@ -116,32 +117,17 @@ export default function AddressModal({
     let validation = validationForm();
     if (!validation) return;
 
-    let formData;
-
-    // object for customer or producer
-    if (type == "CUSTOMER") {
-      formData = {
-        firstname: firstname,
-        lastname: lastname,
-        addressLine1: line1,
-        addressLine2: line2,
-        country: country,
-        city: city,
-        state: state,
-        zip: zip,
-        addressType: type,
-      };
-    } else {
-      formData = {
-        addressLine1: line1,
-        addressLine2: line2,
-        country: country,
-        city: city,
-        state: state,
-        zip: zip,
-        addressType: type,
-      };
-    }
+    const formData = {
+      firstName: firstname,
+      lastName: lastname,
+      addressLine1: line1,
+      addressLine2: line2,
+      country: country,
+      city: city,
+      state: state,
+      zip: zip,
+      addressType: type,
+    };
 
     setLoading(true);
 
@@ -288,28 +274,24 @@ export default function AddressModal({
           />
         </Flex>
 
-        {type == "CUSTOMER" ? (
-          <Flex mb="60px" justifyContent="space-between" alignItems="center">
-            <FormInput
-              w="45%"
-              label={"First Name"}
-              placeholder={"First Name"}
-              value={firstname}
-              changeValue={ChangeFirstname}
-              isError={error == "First Name" && "First Name is required"}
-            />
-            <FormInput
-              w="45%"
-              label={"Last Name"}
-              placeholder={"Last Name"}
-              value={lastname}
-              changeValue={ChangeLastname}
-              isError={error == "Last Name" && "Last Name is required"}
-            />
-          </Flex>
-        ) : (
-          <Box mb="20px"></Box>
-        )}
+        <Flex mb="60px" justifyContent="space-between" alignItems="center">
+          <FormInput
+            w="45%"
+            label={"First Name"}
+            placeholder={"First Name"}
+            value={firstname}
+            changeValue={ChangeFirstname}
+            isError={error == "First Name" && "First Name is required"}
+          />
+          <FormInput
+            w="45%"
+            label={"Last Name"}
+            placeholder={"Last Name"}
+            value={lastname}
+            changeValue={ChangeLastname}
+            isError={error == "Last Name" && "Last Name is required"}
+          />
+        </Flex>
 
         <Flex
           justifyContent="space-between"
