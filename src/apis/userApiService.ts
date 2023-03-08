@@ -55,7 +55,7 @@ export const postUserEmailVerification = (token: string) => {
   let apiObj = {
     url: `user/email-verification`,
     body: {
-      token: token,
+      email: token,
     },
   };
   return { ...apiObj };
