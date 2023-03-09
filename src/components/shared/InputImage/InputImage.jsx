@@ -43,7 +43,7 @@ export default function InputImage({ image, setImage }) {
       .then((e) => {
         setLoading(false);
         successToast("The image uploaded");
-        setImage(e.data.small);
+        setImage(e.data.original);
       })
       .catch((e) => {
         errorToast(e.response.data.message);
