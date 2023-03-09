@@ -15,15 +15,18 @@ import { setCurrentUser } from "../../store/profile/profile.action";
 import { setCurrentShop } from "../../store/shop/shop.action"
 import { postLoginByEmail } from "../../apis/authApiService";
 import { useApi } from "../../hooks/useApi/useApi";
+import { useProfile } from "../../hooks/useProfile/useProfile";
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   // state for disable buttons
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   // hooks
 
   const { postApi } = useApi();
+  const { setShopData } = useProfile()
   const { errorToast } = useContext(toastValue);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -82,6 +85,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
       errorToast("This account has been deleted");
       return;
     } else {
+      setShopData(data.shop)
       navigateUser(status, data.shop.name);
       dispatch(setCurrentUser(data));
       return;

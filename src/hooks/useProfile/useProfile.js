@@ -7,6 +7,7 @@ import { setCurrentShop } from "../../store/shop/shop.action";
 
 //this hook have been used for handle shop and user data
 export function useProfile() {
+  
   const dispatch = useDispatch();
 
   const profile = useSelector(selectCurrentProfile);
