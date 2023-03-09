@@ -56,26 +56,24 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     if (validateForm() == false) return;
 
     setLoading(true);
-
-    // let result = await SignIn(info);
     let result = await postApi(postLoginByEmail(email, password));
+    setLoading(false);
     if (result) loginFunction(result);
 
-    setLoading(false);
   };
 
   // action on user data based on type and status
   const loginFunction = (data) => {
     //first close modal
     close();
+    console.log('data ' , data)
+    const status = data.user.status;
 
-    let status = data.user.status;
-
-    if (data.user.type == USER_TYPE.CUSTOMER) {
-      dispatch(setCurrentUser(data));
-      dispatch(setCurrentShop(data.shop));
-      return;
-    }
+    // if (data.user.type == USER_TYPE.CUSTOMER) {
+    //   dispatch(setCurrentUser(data));
+    //   dispatch(setCurrentShop(data.shop));
+    //   return;
+    // }
     if (status === PROFILE_STATUS.NEW) {
       localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
       navigateUser(status);
