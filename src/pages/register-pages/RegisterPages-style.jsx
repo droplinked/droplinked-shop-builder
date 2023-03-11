@@ -35,7 +35,7 @@ export const PageContent = chakra("div", {
     },
   });
   
-  export const InputsComponent = chakra("div", {
+  export const PageContentWrapper = chakra("div", {
     baseStyle: {
       w:'100%' ,
       bg:'mainLayer' ,
