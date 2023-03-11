@@ -31,7 +31,7 @@ export default function PageWrapper() {
   const isCustomer = useSelector(selectIsCustomer);
   //const { updateShop } = useShop();
   const { shopname } = useParams();
-  const { getApi } =useApi()
+  const { getApi } = useApi();
   const dispatch = useDispatch();
 
   let location = useLocation();
@@ -66,7 +66,7 @@ export default function PageWrapper() {
     if (token != null || token != undefined) {
       if (isCustomer) updateCart();
       if (!isCustomer) {
-        let newShop = await getApi(getUser())
+        let newShop = await getApi(getUser());
         if (newShop) {
           dispatch(setCurrentShop(newShop.shop));
         }
@@ -123,11 +123,11 @@ export default function PageWrapper() {
         <Box
           w="100%"
           h="100%"
-          minH="100vh"
+          minH="calc( 100vh - 180px )"
           bgColor="bG"
           m="0px"
+          p="0px"
           overflowX="hidden"
-          border='4px solid green'
         >
           <Outlet />
         </Box>

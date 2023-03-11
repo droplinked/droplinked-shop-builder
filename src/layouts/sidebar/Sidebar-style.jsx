@@ -1,19 +1,25 @@
 import { chakra } from "@chakra-ui/react";
 
 export const SidebarWrapper = chakra("div", {
-    baseStyle: {
-    //  d: { base: "inline", sm: "flex" },
-      w:{ base: "0px", sm: "auto" },
-      h: "auto",
-      minH: "100%",
-      mr: { sm: "10px", md: "20px", xl: "36px" },
-      //
-     // borderRight: "1px solid ",
-     // borderColor: "line",
-     // borderColor:{ base: "transparent", sm: "line" },
-    },
-  });
+  baseStyle: {},
+});
 
 
+export const IconWrapper= chakra("div", {
+  baseStyle: {
+   w:'100%' ,
+   p:'12px 24px' ,
+   display:'flex',
+   justifyContent:'center',
+   alignItems:'center'
+  },
+});
 
 
+export const IconComponent = chakra("img", {
+  baseStyle: {
+    w: "16px",
+    h: "16px",
+    cursor:'pointer'
+  },
+});

@@ -1,50 +1,37 @@
-// import { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
+import { Flex } from "@chakra-ui/react";
 
-// import { getShopInfoByShopname } from "../../api/public/Shop-api";
-// import { useSelector } from "react-redux";
-// import { selectIsActiveProducer } from "../../store/profile/profile.selector";
+import { IconComponent, IconWrapper } from "./Sidebar-style";
 
-import { SidebarWrapper } from "./Sidebar-style";
-// import { CRASHPUNKS_SHOPDATA } from "./crashpunks-information-hardcode";
-
-// import ShopInformationSidebar from "./components/shop-information-side/ShopInformationSidebar";
-import ProducerSidebar from "./components/producer-side/ProducerSidebar";
+//icons
+import ProductsIcon from "../../assest/icon/products-icon.svg";
+import collectionIcon from "../../assest/icon/collection-icon.svg";
+import settingIcon from "../../assest/icon/setting-icon.svg";
+import orderIcon from "../../assest/icon/order-icon.svg";
+import informationIcon from "../../assest/icon/information-icon.svg";
+import rulesetsIcon from "../../assest/icon/rulesets-icon.svg";
 
 const Sidebar = () => {
- // const [shopData, setShop] = useState(null);
-  //let { shopname } = useParams();
-  //const isRegisteredProducer = useSelector(selectIsActiveProducer);
-
-  // useEffect(() => {
-  //   getShopData(shopname);
-  // }, [shopname]);
-
-  // const getShopData = async (shop) => {
-  //   let shopinfo = await getShopInfoByShopname(shop);
-  //   setShop(shopinfo);
-  // };
-
   return (
-    <SidebarWrapper
-      // borderRight={isRegisteredProducer ? "1px solid" : "2px solid"}
-      // borderColor={{ base: "transparent", sm: "line" }}
-    >
-          <ProducerSidebar />
-      {/* {isRegisteredProducer ? (
-        <ProducerSidebar />
-      ) : (
-        <>
-          {shopData && (
-            <ShopInformationSidebar
-              ShopData={
-                shopname == "crashpunks" ? CRASHPUNKS_SHOPDATA : shopData
-              }
-            />
-          )}
-        </>
-      )} */}
-    </SidebarWrapper>
+    <Flex w="100%" h='100%' minH='100%' flexDir='column' gap='18px' >
+      <IconWrapper>
+        <IconComponent src={ProductsIcon} />
+      </IconWrapper>
+      <IconWrapper>
+        <IconComponent src={collectionIcon} />
+      </IconWrapper>
+      <IconWrapper>
+        <IconComponent src={rulesetsIcon} />
+      </IconWrapper>
+      <IconWrapper>
+        <IconComponent src={orderIcon} />
+      </IconWrapper>
+      <IconWrapper>
+        <IconComponent src={informationIcon} />
+      </IconWrapper>
+      <IconWrapper>
+        <IconComponent src={settingIcon} />
+      </IconWrapper>
+    </Flex>
   );
 };
 

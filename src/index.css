@@ -1,3 +1,10 @@
+
+* {
+    box-sizing: border-box;
+    font-family: "AvenirNext";
+    font-style: normal;
+}
+
 :root {
 	--bg-dark: #141414;
 	--bg-purple: #25BB92;
