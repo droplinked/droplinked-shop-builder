@@ -136,7 +136,7 @@ function App() {
             </Route>
 
             <Route path=":shopname" element={<AdminWrapper />}>
-              <Route path=":register" element={<RegisterPagesWrapper />}>
+              <Route path="register" element={<RegisterPagesWrapper />}>
                 <Route path="shop-info" element={<RegisterShopInfo />} />
               </Route>
             </Route>

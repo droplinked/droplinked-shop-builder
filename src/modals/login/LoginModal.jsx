@@ -99,7 +99,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
         navigate("/email-confirmation");
         return;
       case PROFILE_STATUS.VERIFIED:
-        navigate("/register");
+        navigate(`/${shopName}/register/shop-info`);
         return;
       case PROFILE_STATUS.PROFILE_COMPLETED:
         navigate("/register");
