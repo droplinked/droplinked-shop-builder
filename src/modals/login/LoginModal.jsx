@@ -70,7 +70,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     //first close modal
     close();
     console.log('data ' , data)
-    const status = data.user.status;
+    const status = data.others.status;
 
     // if (data.user.type == USER_TYPE.CUSTOMER) {
     //   dispatch(setCurrentUser(data));
@@ -78,7 +78,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     //   return;
     // }
     if (status === PROFILE_STATUS.NEW) {
-      localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
+      localStorage.setItem("registerEmail", JSON.stringify(data.others.email));
       navigateUser(status);
       return;
     } else if (status === PROFILE_STATUS.DELETED) {
