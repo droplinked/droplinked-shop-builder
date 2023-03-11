@@ -15,6 +15,8 @@ import RequestsPage from "./pages/affiliate/requests/request";
 import EditProductPage from "./pages/Producer/edit-product/EditProductPage";
 import AdminPage from "./pages/admin/AdminPage";
 import AdminWrapper from "./pages/admin-wrapper/AdminWrapper";
+import RegisterPagesWrapper from "./pages/register-pages/RegisterPageWrapper";
+import RegisterShopInfo from "./pages/register-pages/pages/shop-info/ShopInfo";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
@@ -133,7 +135,11 @@ function App() {
               <Route path="addproduct-template" element={<AddproductTest />} />
             </Route>
 
-            <Route path=":shopname" element={<AdminWrapper />}></Route>
+            <Route path=":shopname" element={<AdminWrapper />}>
+              <Route path=":register" element={<RegisterPagesWrapper />}>
+                <Route path="shop-info" element={<RegisterShopInfo />} />
+              </Route>
+            </Route>
             {/* producer pages */}
             {/* <Route path=":shopname" element={<UserWrapper />}>
               <Route index element={<ShopPage />} />

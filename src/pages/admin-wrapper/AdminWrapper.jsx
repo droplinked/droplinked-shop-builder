@@ -1,4 +1,5 @@
 import { Flex, Box } from "@chakra-ui/react";
+import { Outlet } from "react-router-dom";
 
 import Sidebar from "../../layouts/sidebar/Sidebar";
 
@@ -9,7 +10,7 @@ const AdminWrapper = () => {
         <Sidebar />
       </Box>
       <Box w="100%" h="100%" p='24px'>
-
+      <Outlet />
       </Box>
     </Flex>
   );
