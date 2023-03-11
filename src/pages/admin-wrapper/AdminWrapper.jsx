@@ -8,7 +8,7 @@ const AdminWrapper = () => {
       <Box w="72px" border="2px solid blue" h="100%" pt='24px'>
         <Sidebar />
       </Box>
-      <Box w="100%" border="4px solid pink" h="100%" pt='24px'>
+      <Box w="100%" border="4px solid pink" h="100%" p='24px'>
 
       </Box>
     </Flex>

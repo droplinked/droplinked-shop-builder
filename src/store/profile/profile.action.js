@@ -7,9 +7,9 @@ export const setCurrentUser = (data) => {
   let time = new Date().getTime();
   localStorage.setItem("login-time", JSON.stringify(time));
   localStorage.setItem("token", JSON.stringify(data.access_token));
-  localStorage.setItem("profile", JSON.stringify(data.others));
+  localStorage.setItem("profile", JSON.stringify(data.user));
 
-  return createAction(Profile_ACTION_TYPES.SET_CURRENT_PROFILE, data.others);
+  return createAction(Profile_ACTION_TYPES.SET_CURRENT_PROFILE, data.user);
 };
 
 export const logoutUser = () => {
