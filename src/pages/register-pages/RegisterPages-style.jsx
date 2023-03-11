@@ -41,7 +41,6 @@ export const PageContent = chakra("div", {
       bg:'mainLayer' ,
       borderRadius:'8px' ,
       padding:'50px 60px' ,
-      mb:'36px',
     },
   });
   
