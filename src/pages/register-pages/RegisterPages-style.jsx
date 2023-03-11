@@ -8,3 +8,41 @@ export const SideText = chakra("div", {
     mb: "16px",
   },
 });
+
+
+
+
+export const PageContent = chakra("div", {
+    baseStyle: {
+      w:'100%' ,
+      maxW:'800px',
+      h:'auto' ,
+    },
+  });
+
+
+
+  export const PageInformationComponent = chakra("div", {
+    baseStyle: {
+      w:'100%' ,
+      bg:'mainLayer' ,
+      borderRadius:'8px' ,
+      padding:'24px 60px' ,
+      mb:'50px',
+      fontSize:'16px' ,
+      fontWeight:'500',
+      color:'#fff'
+    },
+  });
+  
+  export const InputsComponent = chakra("div", {
+    baseStyle: {
+      w:'100%' ,
+      bg:'mainLayer' ,
+      borderRadius:'8px' ,
+      padding:'50px 60px' ,
+      mb:'36px',
+    },
+  });
+  
+  
