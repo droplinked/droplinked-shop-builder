@@ -127,6 +127,7 @@ export default function PageWrapper() {
           bgColor="bG"
           m="0px"
           overflowX="hidden"
+          border='4px solid green'
         >
           <Outlet />
         </Box>

@@ -14,6 +14,7 @@ import AffiliateProduct from "./pages/affiliate/product/product";
 import RequestsPage from "./pages/affiliate/requests/request";
 import EditProductPage from "./pages/Producer/edit-product/EditProductPage";
 import AdminPage from "./pages/admin/AdminPage";
+import AdminWrapper from "./pages/admin-wrapper/AdminWrapper";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
@@ -117,7 +118,7 @@ function App() {
             {/* producer pages */}
             <Route path="producer" element={<UserWrapper />}>
               <Route path="ims" element={<InventoryPage />} />
-              
+
               <Route path="merch/:id" element={<EditProductPage />} />
               {/* <Route path="merch/:id" element={<ViewMerchPage />} /> */}
 
@@ -131,8 +132,10 @@ function App() {
               <Route path="orders" element={<IncomingOrderPage />} />
               <Route path="addproduct-template" element={<AddproductTest />} />
             </Route>
+
+            <Route path=":shopname" element={<AdminWrapper />}></Route>
             {/* producer pages */}
-            <Route path=":shopname" element={<UserWrapper />}>
+            {/* <Route path=":shopname" element={<UserWrapper />}>
               <Route index element={<ShopPage />} />
               <Route path="merch/:merchId" element={<MerchPage />} />
               <Route
@@ -144,7 +147,7 @@ function App() {
               <Route path="shipping" element={<ShippingPage />} />
               <Route path="payment" element={<PaymentPage />} />
               <Route path="admin" element={<AdminPage />} />
-            </Route>
+            </Route> */}
 
             {/* producer pages */}
             <Route path="affiliate" element={<UserWrapper />}>
