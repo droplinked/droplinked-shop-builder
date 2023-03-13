@@ -112,7 +112,6 @@ const RegisterShopInfo = () => {
       <AddressModal
         show={showAddressModal}
         close={toggleAddressModal}
-        type={"SHOP"}
         updateAddressList={updateAddressList}
       />
     </>

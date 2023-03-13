@@ -20,7 +20,6 @@ import InputComponent from "./InputComponent";
 export default function AddressModal({
   show,
   updateAddressList,
-  type,
   addressBook,
   close,
 }) {
@@ -127,7 +126,7 @@ export default function AddressModal({
       city: city,
       state: state,
       zip: zip,
-      addressType: type,
+      addressType: "SHOP",
     };
 
     setLoading(true);
@@ -160,18 +159,20 @@ export default function AddressModal({
     } else if (zip == "") {
       setError("zip");
       return false;
-    } else if (type == "CUSTOMER") {
-      let flag = true;
-      if (firstname == "") {
-        setError("First Name");
-        flag = false;
-      }
-      if (lastname == "") {
-        setError("Last Name");
-        flag = false;
-      }
-      return flag;
-    } else {
+    }
+    //  else if (type == "CUSTOMER") {
+    //   let flag = true;
+    //   if (firstname == "") {
+    //     setError("First Name");
+    //     flag = false;
+    //   }
+    //   if (lastname == "") {
+    //     setError("Last Name");
+    //     flag = false;
+    //   }
+    //   return flag;
+    // } 
+    else {
       return true;
     }
   };
