@@ -1,5 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { useState, useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   PageContent,
@@ -10,7 +11,10 @@ import {
   SaveButton,
 } from "../../RegisterPages-style";
 import { useApi } from "../../../../hooks/useApi/useApi";
+import { useProfile } from "../../../../hooks/useProfile/useProfile"
 import { getAddressList } from "../../../../apis/addressApiService";
+import { useToasty } from "../../../../context/toastify/ToastContext";
+import { putUpdateShop } from "../../../../apis/shopApiService";
 import {
   shopInformationReducer,
   SHOP_REDUCER_TYPES,
@@ -34,7 +38,10 @@ const RegisterShopInfo = () => {
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [addressList, setAddressList] = useState([]);
 
-  const { getApi } = useApi();
+  const { getApi, putApi } = useApi();
+  const { errorToast } = useToasty();
+  const { shop } = useProfile()
+  const navigate = useNavigate()
 
   const toggleAddressModal = () => setShowAddressModal((p) => !p);
 
@@ -45,6 +52,11 @@ const RegisterShopInfo = () => {
       dispatchShopInformation({
         type: SHOP_REDUCER_TYPES.CHANGE_ADDRESS_BOOK,
         payload: result[0]._id,
+      });
+    } else {
+      dispatchShopInformation({
+        type: SHOP_REDUCER_TYPES.CHANGE_ADDRESS_BOOK,
+        payload: null,
       });
     }
   };
@@ -61,11 +73,27 @@ const RegisterShopInfo = () => {
       });
   };
 
-  const setAddressBook = (id) =>
-    dispatchShopInformation({
-      type: SHOP_REDUCER_TYPES.CHANGE_ADDRESS_BOOK,
-      payload: id,
-    });
+
+  const clickOnSave = async () => {
+    if (shopInformation.description.length == 0) {
+      errorToast("Shop name is required");
+      return;
+    }
+    if (shopInformation.addressBookID == null) {
+      errorToast("Address is required");
+      return;
+    }
+
+    const apiBody = {
+      description: shopInformation.description,
+      addressBookID: shopInformation.addressBookID,
+    };
+
+    const result = await putApi(putUpdateShop(apiBody));
+    if(result){
+      navigate(`/${shop.name}/register/contact-info`);
+    }
+  };
 
   return (
     <>
@@ -106,7 +134,9 @@ const RegisterShopInfo = () => {
         </PageContentWrapper>
         <Box mb="36px" />
         <Flex justifyContent="end" w="100%">
-          <SaveButton w="200px">Save</SaveButton>
+          <SaveButton w="200px" onClick={clickOnSave}>
+            Save
+          </SaveButton>
         </Flex>
       </PageContent>
       <AddressModal
