@@ -7,10 +7,14 @@ export const SHOP_REDUCER_TYPES = {
 
 export function shopContactReducer(state, action) {
   switch (action.type) {
-    case SHOP_REDUCER_TYPES.CHANGE_ADDRESS_BOOK:
-      return { ...state, addressBookID: action.payload };
-    case SHOP_REDUCER_TYPES.CHANGE_DESCRIPTION:
-      return { ...state, description: action.payload };
+    case SHOP_REDUCER_TYPES.CHANGE_WEBURL:
+      return { ...state, webURL: action.payload };
+    case SHOP_REDUCER_TYPES.CHANGE_INSTAGRAM:
+      return { ...state, instagramURL: action.payload };
+    case SHOP_REDUCER_TYPES.CHANGE_TWITTER:
+      return { ...state, twitterURL: action.payload };
+    case SHOP_REDUCER_TYPES.CHANGE_DISCORD:
+      return { ...state, discordURL: action.payload };
     default:
       throw new Error();
   }

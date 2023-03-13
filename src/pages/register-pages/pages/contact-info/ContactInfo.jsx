@@ -28,18 +28,45 @@ const ContactInfo = () => {
 
   const { putApi } = useApi();
 
-  const clickOnSave = async () => {
-    const apiBody = {
-      discordURL: "",
-      instagramURL: "",
-      twitterURL: "",
-      webURL: "",
+
+  const changeWebUrl = (e) =>
+    dispatchShopInformation({
+      type: SHOP_REDUCER_TYPES.CHANGE_WEBURL,
+      payload: e.target.value,
+    });
+
+  const changeDiscord = (e) =>
+    dispatchShopInformation({
+      type: SHOP_REDUCER_TYPES.CHANGE_DISCORD,
+      payload: e.target.value,
+    });
+
+  const changeTwitter = (e) =>
+    dispatchShopInformation({
+      type: SHOP_REDUCER_TYPES.CHANGE_TWITTER,
+      payload: e.target.value,
+    });
+
+  const changeInsagram = (e) =>
+    dispatchShopInformation({
+      type: SHOP_REDUCER_TYPES.CHANGE_INSTAGRAM,
+      payload: e.target.value,
+    });
+
+
+    const clickOnSave = async () => {
+      const apiBody = {
+        discordURL: "",
+        instagramURL: "",
+        twitterURL: "",
+        webURL: "",
+      };
+      const result = await putApi(putUpdateShop(apiBody));
+      if (result) {
+        navigate(`/${shop.name}/register/contact-info`);
+      }
     };
-    const result = await putApi(putUpdateShop(apiBody));
-    if (result) {
-      navigate(`/${shop.name}/register/contact-info`);
-    }
-  };
+    
   return (
     <PageContent>
       <PageInformationComponent>
@@ -47,16 +74,30 @@ const ContactInfo = () => {
         across multiple platforms.
       </PageInformationComponent>
       <PageContentWrapper>
-        <InputComponent label="Website" placeHolder="https://mystore.com" />
-        <Box mb="52px" />
-        <InputComponent label="Discord" placeHolder="discord/my store" />
+        <InputComponent
+          value={shopInformation.webURL}
+          change={changeWebUrl}
+          label="Website"
+          placeHolder="https://mystore.com"
+        />
         <Box mb="52px" />
         <InputComponent
+          value={shopInformation.discordURL}
+          change={changeDiscord}
+          label="Discord"
+          placeHolder="discord/my store"
+        />
+        <Box mb="52px" />
+        <InputComponent
+          value={shopInformation.twitterURL}
+          change={changeTwitter}
           label="Twitter"
           placeHolder="https://twitter.com/my store"
         />
         <Box mb="52px" />
         <InputComponent
+          value={shopInformation.instagramURL}
+          change={changeInsagram}
           label="Instagram"
           placeHolder="https://www.instagram.com/mystore.com"
         />
