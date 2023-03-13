@@ -1,5 +1,5 @@
-import { Box , Flex} from "@chakra-ui/react";
-import { useState } from "react";
+import { Box, Flex } from "@chakra-ui/react";
+import { useState, useEffect, useMemo } from "react";
 
 import {
   PageContent,
@@ -7,7 +7,7 @@ import {
   PageContentWrapper,
   Text18px,
   AddAddressButton,
-  SaveButton
+  SaveButton,
 } from "../../RegisterPages-style";
 
 import InputComponent from "../../component/input-component/InputComponent";
@@ -15,8 +15,21 @@ import AddressModal from "../../../../modals/address/AddressModal";
 
 const RegisterShopInfo = () => {
   const [showAddressModal, setShowAddressModal] = useState(false);
+  const [addressList, setAddressList] = useState([]);
 
   const toggleAddressModal = () => setShowAddressModal((p) => !p);
+
+  const updateAddressList = async () => {
+    let result = await getApi(getAddressList());
+    if (result && result.length > 0) setAddressList(result);
+  };
+
+  useEffect(() => {
+    updateAddressList();
+    // getShopData();
+  }, []);
+
+  console.log("addressList ", addressList);
 
   return (
     <>
@@ -45,12 +58,16 @@ const RegisterShopInfo = () => {
           </AddAddressButton>
         </PageContentWrapper>
         <Box mb="36px" />
-        <Flex justifyContent='end' w='100%' >
-        <SaveButton w='200px'>Save</SaveButton>
+        <Flex justifyContent="end" w="100%">
+          <SaveButton w="200px">Save</SaveButton>
         </Flex>
-        
       </PageContent>
-      <AddressModal show={showAddressModal} close={toggleAddressModal} />
+      <AddressModal
+        show={showAddressModal}
+        close={toggleAddressModal}
+        type={"SHOP"}
+        updateAddressList={updateAddressList}
+      />
     </>
   );
 };
