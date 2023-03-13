@@ -39,29 +39,32 @@ const RegisterShopInfo = () => {
 
   const updateAddressList = async () => {
     let result = await getApi(getAddressList());
-    if (result && result.length > 0) setAddressList(result);
+    if (result && result.length > 0) {
+      setAddressList(result);
+      dispatchShopInformation({
+        type: SHOP_REDUCER_TYPES.CHANGE_ADDRESS_BOOK,
+        payload: result[0]._id,
+      });
+    }
   };
 
   useEffect(() => {
     updateAddressList();
   }, []);
 
-  const changeDescription = (e) =>{
-    if(e.target.value.length < 21)
-    dispatchShopInformation({
-      type: SHOP_REDUCER_TYPES.CHANGE_DESCRIPTION,
-      payload: e.target.value,
-    });
-  }
-   
+  const changeDescription = (e) => {
+    if (e.target.value.length < 21)
+      dispatchShopInformation({
+        type: SHOP_REDUCER_TYPES.CHANGE_DESCRIPTION,
+        payload: e.target.value,
+      });
+  };
 
-    const setAddressBook = (id) =>
+  const setAddressBook = (id) =>
     dispatchShopInformation({
       type: SHOP_REDUCER_TYPES.CHANGE_ADDRESS_BOOK,
       payload: id,
     });
-
-  console.log("shopInformation ", shopInformation);
 
   return (
     <>
@@ -75,7 +78,7 @@ const RegisterShopInfo = () => {
           <InputComponent
             label="Store name"
             value={shopInformation.description}
-            color={shopInformation.description.length < 20 ? "#fff" : 'red'}
+            color={shopInformation.description.length < 20 ? "#fff" : "red"}
             isRequired={true}
             placeHolder="Enter max 20 characters."
             change={changeDescription}
