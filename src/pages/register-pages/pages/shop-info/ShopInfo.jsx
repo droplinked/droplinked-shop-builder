@@ -9,13 +9,31 @@ import {
   AddAddressButton,
   SaveButton,
 } from "../../RegisterPages-style";
+import { useApi } from "../../../../hooks/useApi/useApi";
+import { getAddressList } from "../../../../apis/addressApiService";
+import {
+  shopInformationReducer,
+  SHOP_REDUCER_TYPES,
+} from "./shop-info-reducer";
 
 import InputComponent from "../../component/input-component/InputComponent";
 import AddressModal from "../../../../modals/address/AddressModal";
 
+const INITIAL_SHOP_INFO = {
+  description: "",
+  addressBookID: null,
+};
+
 const RegisterShopInfo = () => {
+  const [shopInformation, dispatchShopInformation] = useReducer(
+    shopInformationReducer,
+    INITIAL_SHOP_INFO
+  );
+
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [addressList, setAddressList] = useState([]);
+
+  const { getApi } = useApi();
 
   const toggleAddressModal = () => setShowAddressModal((p) => !p);
 
@@ -26,8 +44,19 @@ const RegisterShopInfo = () => {
 
   useEffect(() => {
     updateAddressList();
-    // getShopData();
   }, []);
+
+  const changeDescription = (e) =>
+    dispatchShopInformation({
+      type: SHOP_REDUCER_TYPES.CHANGE_DESCRIPTION,
+      payload: e.target.value,
+    });
+
+    const setAddressBook = (id) =>
+    dispatchShopInformation({
+      type: SHOP_REDUCER_TYPES.CHANGE_ADDRESS_BOOK,
+      payload: id,
+    });
 
   console.log("addressList ", addressList);
 
@@ -44,6 +73,7 @@ const RegisterShopInfo = () => {
             label="Store name"
             isRequired={true}
             placeHolder="Enter max 20 characters."
+            change={changeDescription}
           />
           <Box mb="48px" />
           <InputComponent
