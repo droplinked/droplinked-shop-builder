@@ -36,10 +36,9 @@ export default function ThankForRegisterPage() {
   return (
     <ThankPageWrapper>
       <ThankText>Thank you!</ThankText>
-
       <MessageText>
-        We've sent a confirmation email to
-        <EmailText> "{email}"</EmailText>. Please check your email inbox.
+      We have sent a verification email to 
+        <EmailText> "{email}"</EmailText>. Check inbox to verify your email.
       </MessageText>
 
       <Box w={{ sm: "150px", md: "200px" }}>
