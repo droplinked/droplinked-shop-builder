@@ -1,5 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   PageContent,
@@ -8,6 +9,7 @@ import {
   SaveButton,
 } from "../../RegisterPages-style";
 import { useApi } from "../../../../hooks/useApi/useApi";
+import { useProfile } from "../../../../hooks/useProfile/useProfile";
 import { putUpdateShop } from "../../../../apis/shopApiService";
 import { shopContactReducer, SHOP_REDUCER_TYPES } from "./contact-reducer";
 
@@ -27,7 +29,8 @@ const ContactInfo = () => {
   );
 
   const { putApi } = useApi();
-
+  const { shop } = useProfile();
+  const navigate = useNavigate();
 
   const changeWebUrl = (e) =>
     dispatchShopInformation({
@@ -53,20 +56,19 @@ const ContactInfo = () => {
       payload: e.target.value,
     });
 
-
-    const clickOnSave = async () => {
-      const apiBody = {
-        discordURL: "",
-        instagramURL: "",
-        twitterURL: "",
-        webURL: "",
-      };
-      const result = await putApi(putUpdateShop(apiBody));
-      if (result) {
-        navigate(`/${shop.name}/register/contact-info`);
-      }
+  const clickOnSave = async () => {
+    const apiBody = {
+      discordURL: shopInformation.discordURL,
+      instagramURL: shopInformation.instagramURL,
+      twitterURL: shopInformation.twitterURL,
+      webURL: shopInformation.webURL,
     };
-    
+    const result = await putApi(putUpdateShop(apiBody));
+    if (result) {
+      navigate(`/${shop.name}/register/design`);
+    }
+  };
+
   return (
     <PageContent>
       <PageInformationComponent>
@@ -104,7 +106,7 @@ const ContactInfo = () => {
       </PageContentWrapper>
 
       <Flex justifyContent="end" w="100%" pt="36px">
-        <SaveButton w="200px">Save & next step</SaveButton>
+        <SaveButton w="200px" onClick={clickOnSave} >Save & next step</SaveButton>
       </Flex>
     </PageContent>
   );
