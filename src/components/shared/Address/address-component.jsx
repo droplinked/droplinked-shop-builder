@@ -1,18 +1,20 @@
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { useToasty } from "../../../context/toastify/ToastContext";
 import { useState } from "react";
 import {
   AddressComponentWrapper,
-  AddressText,
-  AddressLineText,
-  ButtonsWrapper,
-  ButtonComponent,
+  Text14,
+  LineComponent,
+  IconComponent,
 } from "./address-style";
 
 import { useApi } from "../../../hooks/useApi/useApi";
 import SmallModal from "../../../modals/small/SmallModal";
 import AddressModal from "../../../modals/address/AddressModal";
 import { deleteAddress } from "../../../api-service/address/addressApiService";
+
+import editIcon from "../../../assest/icon/edit-icon.svg";
+import deleteIcon from "../../../assest/icon/delete-icon.svg";
 
 // (address) formta in props {
 //      addressLine1: string
@@ -75,16 +77,47 @@ export default function AddressComponent({
 
   return (
     <>
-      <AddressComponentWrapper
-        borderColor={
-          selectAble == true && address._id == (selected && selected._id)
-            ? "primary"
-            : "button"
-        }
-        cursor={selectAble == true ? "pointer" : "auto"}
-        onClick={selectAddress}
-      >
-        {address.addressType != "SHOP" && (
+      <AddressComponentWrapper>
+        <Flex alignItems="center" gap="24px">
+          <Text14>
+            {address.country}, {address.state}
+          </Text14>
+          <LineComponent />
+          <Text14>
+            {address.addressLine1}, {address.city}
+          </Text14>
+        </Flex>
+
+        <Flex alignItems="center" gap="24px">
+          <LineComponent />
+          <Text14>{address.zip}</Text14>
+          <Box mr="10px" />
+          <IconComponent src={editIcon} onClick={toggleAddressModal} />
+          <IconComponent src={deleteIcon} onClick={showDeleteModal} />
+        </Flex>
+      </AddressComponentWrapper>
+
+      <SmallModal
+        text={`Are you sure you want to delete this address?`}
+        show={deleteModal}
+        hide={closeDeleteModal}
+        click={deleteAddressFunc}
+        loading={disableBtn}
+        buttonText={"Delete"}
+      />
+
+      <AddressModal
+        show={showAddressModal}
+        close={toggleAddressModal}
+        addressBook={address}
+        type={address.addressType}
+      />
+    </>
+  );
+}
+
+{
+  /* {address.addressType != "SHOP" && (
           <AddressText>
             {address.firstname} {address.lastname}
           </AddressText>
@@ -111,28 +144,17 @@ export default function AddressComponent({
               </ButtonComponent>
             )}
           </ButtonsWrapper>
-        </Flex>
+        </Flex> */
+}
 
-        {/* delete address modal */}
+{
+  /* delete address modal */
+}
 
-        <SmallModal
-          text={`Are you sure you want to delete this address?`}
-          show={deleteModal}
-          hide={closeDeleteModal}
-          click={deleteAddressFunc}
-          loading={disableBtn}
-          buttonText={"Delete"}
-        />
+{
+  /* */
+}
 
-        {/* delete address modal */}
-      </AddressComponentWrapper>
-
-      <AddressModal
-        show={showAddressModal}
-        close={toggleAddressModal}
-        addressBook={address}
-        type={address.addressType}
-      />
-    </>
-  );
+{
+  /* delete address modal */
 }
