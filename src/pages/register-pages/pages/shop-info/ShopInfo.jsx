@@ -18,6 +18,7 @@ import {
 
 import InputComponent from "../../component/input-component/InputComponent";
 import AddressModal from "../../../../modals/address/AddressModal";
+import AddressComponent from "../../../../components/shared/Address/address-component";
 
 const INITIAL_SHOP_INFO = {
   description: "",
@@ -91,9 +92,17 @@ const RegisterShopInfo = () => {
           <Box mb="104px" />
           <Text18px>Locations</Text18px>
           <Box mb="48px" />
-          <AddAddressButton onClick={toggleAddressModal}>
-            Add new Address
-          </AddAddressButton>
+          {addressList.length == 0 ? (
+            <AddAddressButton onClick={toggleAddressModal}>
+              Add new Address
+            </AddAddressButton>
+          ) : (
+            <AddressComponent
+              address={addressList[0]}
+              selectAble={true}
+              deleteable={true}
+            />
+          )}
         </PageContentWrapper>
         <Box mb="36px" />
         <Flex justifyContent="end" w="100%">
