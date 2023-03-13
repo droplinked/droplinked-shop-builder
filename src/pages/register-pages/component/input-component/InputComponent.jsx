@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 
-const InputComponent = ({ isRequired, label, placeHolder, value, change }) => {
+const InputComponent = ({ isRequired, label, placeHolder, value, change ,color }) => {
   return (
     <FormControl isRequired={isRequired} w="100%">
       <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2">
@@ -15,7 +15,7 @@ const InputComponent = ({ isRequired, label, placeHolder, value, change }) => {
         borderRadius="8px"
         fontWeight="500"
         fontSize="16px"
-        color="#fff"
+        color={color?color:"#fff"}
         border='none'
         _focus={{
             border:'none'

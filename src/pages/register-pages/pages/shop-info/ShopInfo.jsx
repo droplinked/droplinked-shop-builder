@@ -1,5 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useReducer } from "react";
 
 import {
   PageContent,
@@ -46,11 +46,14 @@ const RegisterShopInfo = () => {
     updateAddressList();
   }, []);
 
-  const changeDescription = (e) =>
+  const changeDescription = (e) =>{
+    if(e.target.value.length < 21)
     dispatchShopInformation({
       type: SHOP_REDUCER_TYPES.CHANGE_DESCRIPTION,
       payload: e.target.value,
     });
+  }
+   
 
     const setAddressBook = (id) =>
     dispatchShopInformation({
@@ -58,7 +61,7 @@ const RegisterShopInfo = () => {
       payload: id,
     });
 
-  console.log("addressList ", addressList);
+  console.log("shopInformation ", shopInformation);
 
   return (
     <>
@@ -71,6 +74,8 @@ const RegisterShopInfo = () => {
           <Box mb="48px" />
           <InputComponent
             label="Store name"
+            value={shopInformation.description}
+            color={shopInformation.description.length < 20 ? "#fff" : 'red'}
             isRequired={true}
             placeHolder="Enter max 20 characters."
             change={changeDescription}
