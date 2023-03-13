@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box , Flex} from "@chakra-ui/react";
 import { useState } from "react";
 
 import {
@@ -7,6 +7,7 @@ import {
   PageContentWrapper,
   Text18px,
   AddAddressButton,
+  SaveButton
 } from "../../RegisterPages-style";
 
 import InputComponent from "../../component/input-component/InputComponent";
@@ -44,6 +45,10 @@ const RegisterShopInfo = () => {
           </AddAddressButton>
         </PageContentWrapper>
         <Box mb="36px" />
+        <Flex justifyContent='end' w='100%' >
+        <SaveButton w='200px'>Save</SaveButton>
+        </Flex>
+        
       </PageContent>
       <AddressModal show={showAddressModal} close={toggleAddressModal} />
     </>
