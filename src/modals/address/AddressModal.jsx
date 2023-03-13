@@ -23,7 +23,6 @@ export default function AddressModal({
   close,
 }) {
   // address context functions for add new address or update address
-
   const { successToast, errorToast } = useToasty();
   const { postApi, patchApi } = useApi();
   // form values states
