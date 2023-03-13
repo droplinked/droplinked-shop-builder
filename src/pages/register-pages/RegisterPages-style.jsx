@@ -22,11 +22,14 @@ export const PageInformationComponent = chakra("div", {
     w: "100%",
     bg: "mainLayer",
     borderRadius: "8px",
-    padding: "24px 60px",
-    mb: "50px",
+    padding: "24px 20px",
+    mb: "16px",
     fontSize: "16px",
     fontWeight: "500",
     color: "#fff",
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center'
   },
 });
 

@@ -11,7 +11,7 @@ import {
   SaveButton,
 } from "../../RegisterPages-style";
 import { useApi } from "../../../../hooks/useApi/useApi";
-import { useProfile } from "../../../../hooks/useProfile/useProfile"
+import { useProfile } from "../../../../hooks/useProfile/useProfile";
 import { getAddressList } from "../../../../apis/addressApiService";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { putUpdateShop } from "../../../../apis/shopApiService";
@@ -40,8 +40,8 @@ const RegisterShopInfo = () => {
 
   const { getApi, putApi } = useApi();
   const { errorToast } = useToasty();
-  const { shop } = useProfile()
-  const navigate = useNavigate()
+  const { shop } = useProfile();
+  const navigate = useNavigate();
 
   const toggleAddressModal = () => setShowAddressModal((p) => !p);
 
@@ -73,7 +73,6 @@ const RegisterShopInfo = () => {
       });
   };
 
-
   const clickOnSave = async () => {
     if (shopInformation.description.length == 0) {
       errorToast("Shop name is required");
@@ -90,7 +89,7 @@ const RegisterShopInfo = () => {
     };
 
     const result = await putApi(putUpdateShop(apiBody));
-    if(result){
+    if (result) {
       navigate(`/${shop.name}/register/contact-info`);
     }
   };
@@ -135,7 +134,7 @@ const RegisterShopInfo = () => {
         <Box mb="36px" />
         <Flex justifyContent="end" w="100%">
           <SaveButton w="200px" onClick={clickOnSave}>
-            Save
+            Save & next step
           </SaveButton>
         </Flex>
       </PageContent>
