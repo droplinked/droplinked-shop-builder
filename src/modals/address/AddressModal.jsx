@@ -9,11 +9,13 @@ import {
 } from "../../api-service/address/addressApiService";
 import { postCreateAddress } from "../../apis/addressApiService";
 import { useApi } from "../../hooks/useApi/useApi";
+import { TopText, SaveButton } from "./AddressModal-style";
 
 import FormInput from "../../components/shared/FormInput/FormInput";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import SelectInput from "../../components/shared/SelectInput/SelectInput";
+import InputComponent from "./InputComponent";
 
 export default function AddressModal({
   show,
@@ -176,30 +178,39 @@ export default function AddressModal({
 
   return (
     <ModalWrapper show={show} close={close}>
+      <Flex w="100%" justifyContent="center" alignItems="center" mb="36px">
+        <TopText>Address</TopText>
+      </Flex>
       <Box>
-        <FormInput
-          mb="30px"
-          label={"Address line 1"}
-          placeholder={"Address line 1"}
+        <InputComponent
+          label="Address line 1"
+          placeHolder="Number, Street"
+          isRequired={true}
           value={line1}
-          changeValue={ChangeLine1}
-          isError={error == "line1" && "Address line1 is required"}
+          change={ChangeLine1}
         />
-        <FormInput
-          mb="30px"
-          label={"Address line 2 ( building or unit #)"}
-          placeholder={"Address line 2 ( building or unit #)"}
+        <Box mb="36px" />
+        <InputComponent
+          label="Address Line 2"
+          placeHolder="Number, Street"
           value={line2}
-          changeValue={ChangeLine2}
+          change={ChangeLine2}
         />
-        <Flex mb="30px" justifyContent="space-between" alignItems="center">
-          <FormControl maxW="45%" w="45%">
+
+        <Box mb="36px" />
+        <Flex
+          mb="36px"
+          justifyContent="space-between"
+          alignItems="center"
+          gap="24px"
+        >
+          <FormControl maxW="50%" w="50%">
             <FormLabel
               w="100%"
               htmlFor="input-com"
-              fontWeight="600"
-              fontSize={{ base: "14px", md: "20px" }}
-              color="white"
+              fontWeight="500"
+              fontSize="18px"
+              color="#C2C2C2"
             >
               Country
             </FormLabel>
@@ -214,13 +225,13 @@ export default function AddressModal({
 
           {/* US_STATES */}
           {country == "United States" ? (
-            <FormControl maxW="45%" w="45%">
+            <FormControl w="50%">
               <FormLabel
                 w="100%"
                 htmlFor="input-com"
-                fontWeight="600"
-                fontSize={{ base: "14px", md: "20px" }}
-                color="white"
+                fontWeight="500"
+                fontSize="18px"
+                color="#C2C2C2"
               >
                 State/province
               </FormLabel>
@@ -233,90 +244,63 @@ export default function AddressModal({
               />
             </FormControl>
           ) : (
-            <FormInput
-              w="45%"
-              label={"State/province"}
-              placeholder={"State/province"}
-              value={state}
-              changeValue={(e) => ChangeState(e.target.value)}
-              isError={error == "state" && "State/province is required"}
-            />
+            <Box w="50%">
+              <InputComponent
+                label="State"
+                isRequired={true}
+                placeHolder="Virginia"
+                value={state}
+                change={(e) => ChangeState(e.target.value)}
+              />
+            </Box>
           )}
-
-          {/* <FormInput
-                        w='45%'
-                        label={"Country"}
-                        placeholder={"Country"}
-                        value={country}
-                        changeValue={ChangeCountry}
-                        isError={(error == "country") && "Country is required"}
-                    /> */}
         </Flex>
 
-        <Flex mb="30px" justifyContent="space-between" alignItems="center">
-          <FormInput
-            w="45%"
-            label={"City"}
-            placeholder={"City"}
+        <Flex
+          mb="36px"
+          justifyContent="space-between"
+          alignItems="center"
+          gap="24px"
+        >
+          <InputComponent
+            label="City"
+            isRequired={true}
+            placeHolder="Blacksburg"
             value={city}
-            changeValue={ChangeCity}
-            isError={error == "city" && "City is required"}
+            change={ChangeCity}
           />
-
-          <FormInput
-            w="45%"
-            label={"Zip"}
-            placeholder={"Zip"}
+          <InputComponent
+            label="Zip Code*"
+            isRequired={true}
+            placeHolder="15227"
             value={zip}
-            changeValue={ChangeZip}
-            isError={error == "zip" && "Zip is required"}
-          />
-        </Flex>
-
-        <Flex mb="60px" justifyContent="space-between" alignItems="center">
-          <FormInput
-            w="45%"
-            label={"First Name"}
-            placeholder={"First Name"}
-            value={firstname}
-            changeValue={ChangeFirstname}
-            isError={error == "First Name" && "First Name is required"}
-          />
-          <FormInput
-            w="45%"
-            label={"Last Name"}
-            placeholder={"Last Name"}
-            value={lastname}
-            changeValue={ChangeLastname}
-            isError={error == "Last Name" && "Last Name is required"}
+            change={ChangeZip}
           />
         </Flex>
 
         <Flex
+          mb="36px"
           justifyContent="space-between"
           alignItems="center"
-          p="0px"
-          w="100%"
+          gap="24px"
         >
-          <BasicButton
-            w="45%"
-            p="12px 16px"
-            click={close}
-            disable={loading}
-            cancelType={true}
-          >
-            Cancel
-          </BasicButton>
-          <BasicButton
-            w="45%"
-            p="12px 16px"
-            click={submitForm}
-            loading={loading}
-            disabled={loading}
-          >
-            Submit
-          </BasicButton>
+          <InputComponent
+            label="First Name"
+            isRequired={true}
+            placeHolder="First Name"
+            value={firstname}
+            change={ChangeFirstname}
+          />
+          <InputComponent
+            label="Last Name"
+            isRequired={true}
+            placeHolder="Last Name"
+            value={lastname}
+            change={ChangeLastname}
+          />
         </Flex>
+        <SaveButton w='100%' onClick={submitForm} disabled={loading} >Save</SaveButton>
+
       </Box>
     </ModalWrapper>
   );

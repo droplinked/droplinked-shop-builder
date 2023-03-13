@@ -21,7 +21,7 @@ export const ModalContainerWrapper = chakra("div", {
     width: "100%",
     height: "100%",
     overflow: "auto",
-    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    backgroundColor: "rgba(0, 0, 0, 0.9)",
     padding: { base: "30px 30px 30px 30px", md: "100px 0px 50px 0px" },
   },
 });
@@ -32,11 +32,11 @@ export const ModalBody = chakra("div", {
     boxSizing: "border-box",
     height: "auto",
     margin: "auto",
-    width: { base: "100%", md: "500px" },
+    width: { base: "100%", md: "720px" },
     background: "mainLayer",
     borderRadius: "8px",
     animation:animation,
-    padding: { base: "30px 20px 30px 20px", md: "40px 60px 40px 60px" },
+    padding: { base: "30px 20px 30px 20px", md: "60px 80px" },
   },
 });
 

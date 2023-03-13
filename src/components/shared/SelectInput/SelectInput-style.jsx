@@ -3,20 +3,22 @@ import { chakra } from "@chakra-ui/react";
 export const SelectInputComponent = chakra("input", {
   baseStyle: {
     w:'100%',
-    fontWeight: "600",
-    fontSize: { base: "14px", md: "20px" },
-    color: "#DBDBDB",
+    fontWeight: "500",
+    fontSize: "16px",
+    color: "#fff",
     bgColor: "subLayer",
-   // border: "1px solid #b3b3b3",
     borderRadius: "8px",
-    px: "16px",
-    py: { base: "8px", md: "12px" },
+    padding:"8px 24px" ,
     outline: "none",
-    _focus: { borderColor: "primary" },
     h: "auto",
     cursor: "pointer",
+    _placeholder:{
+      color:'#808080'
+    }
   },
 });
+
+
 
 export const DropDownWrapper = chakra("div", {
   baseStyle: {
