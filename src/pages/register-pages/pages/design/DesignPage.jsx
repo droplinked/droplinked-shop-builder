@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, Image , input} from "@chakra-ui/react";
 import { useState } from "react";
 
 import {
@@ -11,6 +11,7 @@ import {
 import { MainThemeImage } from "./DesignPage-style";
 
 import InputImage from "./components/input-image/InputImage";
+import InputColor from "./components/input-color/InputColor";
 import InputComponent from "../../component/input-component/InputComponent";
 
 import theme1Image from "./theme-1.jpg";
@@ -78,6 +79,10 @@ const DesignPage = () => {
             console.log("e ", e);
           }}
         />
+          <Box mb="48px" />
+          <Flex w='100%' alignItems='center' justifyContent='space-between' gap='24px'>
+<InputColor />
+          </Flex>
       </PageContentWrapper>
     </PageContent>
   );
