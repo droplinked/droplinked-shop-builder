@@ -2,8 +2,6 @@ import axios from "axios";
 
 import { useRef, useState } from "react";
 
-
-
 import {
   FormControl,
   FormLabel,
@@ -11,13 +9,14 @@ import {
   Text,
   Box,
   Image,
+  Flex
 } from "@chakra-ui/react";
 import { useToasty } from "../../../../../../context/toastify/ToastContext";
 
 import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
 
-const InputImage = ({ label , placeHolder , change }) => {
-    const fileRef = useRef(null);
+const InputImage = ({ label, placeHolder, change, value }) => {
+  const fileRef = useRef(null);
   const { successToast, errorToast } = useToasty();
 
   const changeImage = (e) => {
@@ -39,17 +38,17 @@ const InputImage = ({ label , placeHolder , change }) => {
 
     const formData = new FormData();
     formData.append("image", file);
-   // setLoading(true);
+    // setLoading(true);
     axios
       .post("https://cdn.droplinked.com/upload", formData)
       .then((e) => {
-       // setLoading(false);
+        // setLoading(false);
         successToast("The image uploaded");
         change(e.data.original);
       })
       .catch((e) => {
         errorToast(e.response.data.message);
-    //    setLoading(false);
+        //    setLoading(false);
         return;
       });
   };
@@ -72,35 +71,45 @@ const InputImage = ({ label , placeHolder , change }) => {
       >
         {placeHolder}
       </Text>
-      <Box
-        w="100%"
-        bg="subLayer"
-        py="24px"
-        display="flex"
-        flexDir="column"
-        alignItems="center"
-        justifyContent="center"
-        borderRadius="8px"
-        cursor="pointer"
-        onClick={openFile}
-      >
-        <Image src={uploadIcon} w="64px" h="64px" />
-        <Box mb="24px" />
-        <Text
-          fontFamily="Avenir Next"
-          fontWeight="400"
-          fontSsize="16px"
-          color="#808080"
+      {value ? (
+        <Flex
+          w="100%"
+          h="200px"
+          maxH='200px'
+          justifyContent="center"
+          alignItems="center"
+          borderRadius="8px"
+          bg="subLayer"
         >
-          Upload a JPEG, JPG, or PNG file as the brand logo
-        </Text>
-      </Box>
-      <Input
-        display="none"
-        type="file"
-        ref={fileRef}
-        onChange={changeImage}
-      />
+          <Image w="auto" maxH='100%' h="auto" onClick={openFile} src={value} />
+        </Flex>
+      ) : (
+        <Box
+          w="100%"
+          bg="subLayer"
+          py="24px"
+          display="flex"
+          flexDir="column"
+          alignItems="center"
+          justifyContent="center"
+          borderRadius="8px"
+          cursor="pointer"
+          onClick={openFile}
+        >
+          <Image src={uploadIcon} w="64px" h="64px" />
+          <Box mb="24px" />
+          <Text
+            fontFamily="Avenir Next"
+            fontWeight="400"
+            fontSsize="16px"
+            color="#808080"
+          >
+            Upload a JPEG, JPG, or PNG file as the brand logo
+          </Text>
+        </Box>
+      )}
+
+      <Input display="none" type="file" ref={fileRef} onChange={changeImage} />
     </FormControl>
   );
 };

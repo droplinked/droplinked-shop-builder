@@ -1,5 +1,6 @@
 import { Box, Flex, Image, input } from "@chakra-ui/react";
-import { useReducer , useState } from "react";
+import { useReducer, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   PageContent,
@@ -9,7 +10,11 @@ import {
   Text18px,
 } from "../../RegisterPages-style";
 import { MainThemeImage } from "./DesignPage-style";
-import { shopDesignReducer ,SHOP_REDUCER_TYPES } from "./reducer";
+import { shopDesignReducer, SHOP_REDUCER_TYPES } from "./reducer";
+import { useToasty } from "../../../../context/toastify/ToastContext";
+import { useApi } from "../../../../hooks/useApi/useApi";
+import { putUpdateShop } from "../../../../apis/shopApiService";
+import { useProfile } from "../../../../hooks/useProfile/useProfile";
 
 import InputImage from "./components/input-image/InputImage";
 import InputColor from "./components/input-color/InputColor";
@@ -30,66 +35,83 @@ const INITIAL_SHOP_Design = {
 };
 
 const IMAGES = [
-  {img :theme1Image , name:'theme-1' } ,
-  {img :theme2Image , name:'theme-2' } ,
-  {img :theme3Image , name:'theme-3' } ,
-]
+  { img: theme1Image, name: "theme-1" },
+  { img: theme2Image, name: "theme-2" },
+  { img: theme3Image, name: "theme-3" },
+];
 
 const DesignPage = () => {
-
-  const [selectedTheme , setSelectedTheme] = useState(IMAGES[0])
+  const [selectedTheme, setSelectedTheme] = useState(IMAGES[0]);
 
   const [designData, dispatch] = useReducer(
     shopDesignReducer,
     INITIAL_SHOP_Design
   );
-console.log('designData : ',designData);
+
+  const { errorToast } = useToasty();
+  const { putApi } = useApi();
+  const { shop } = useProfile();
+  const navigate = useNavigate();
 
   const selectTheme = (item) => {
-    setSelectedTheme(item)
+    setSelectedTheme(item);
     dispatch({
       type: SHOP_REDUCER_TYPES.SET_THEME,
       payload: item.name,
     });
-  }
-
+  };
 
   const changeLogo = (item) => {
     dispatch({
       type: SHOP_REDUCER_TYPES.SET_LOGO,
       payload: item,
     });
-  }
-
+  };
 
   const changeHeaderIcon = (item) => {
     dispatch({
       type: SHOP_REDUCER_TYPES.SET_HEADER_ICON,
       payload: item,
     });
-  }
+  };
 
   const changeDescription = (e) => {
     dispatch({
-        type: SHOP_REDUCER_TYPES.SET_BACKGROUNED_TEXT,
-        payload: e.target.value,
-      });
+      type: SHOP_REDUCER_TYPES.SET_BACKGROUNED_TEXT,
+      payload: e.target.value,
+    });
   };
 
-
-  const changeBanner= (item) => {
+  const changeBanner = (item) => {
     dispatch({
       type: SHOP_REDUCER_TYPES.SET_BACKGROUNED_BANNER,
       payload: item,
     });
-  }
+  };
 
-  const changeTextColor= (e) => {
+  const changeTextColor = (e) => {
     dispatch({
       type: SHOP_REDUCER_TYPES.SET_TEXT_COLOR,
       payload: e.target.value,
     });
-  }
+  };
+
+  const clickSubmit = async () => {
+    // let condition = false;
+    // Object.keys(designData).forEach((item) => {
+    //   if (designData[item].length == 0) condition = true;
+    // });
+console.log('designData ' ,designData);
+    // if (condition) {
+    //   errorToast("Error");
+    //   return;
+    // } else {
+    //   const result = await putApi(putUpdateShop(designData));
+    //   if (result) {
+    //     navigate(`/${shop.name}`);
+    //   }
+    // }
+  };
 
   return (
     <PageContent>
@@ -114,7 +136,9 @@ console.log('designData : ',designData);
             return (
               <Image
                 src={currentObj.img}
-                onClick={()=>{selectTheme(currentObj)}}
+                onClick={() => {
+                  selectTheme(currentObj);
+                }}
                 w="30%"
                 h="154px"
                 borderRadius="8px"
@@ -129,12 +153,14 @@ console.log('designData : ',designData);
         <InputImage
           label="Logo"
           placeHolder="This image will display on the left side of the store page."
+          value={designData.logo}
           change={changeLogo}
         />
         <Box mb="48px" />
         <InputImage
           label="Header logo"
           placeHolder="This image will display at the upper left corner of the store page."
+          value={designData.headerIcon}
           change={changeHeaderIcon}
         />
         <Box mb="48px" />
@@ -143,12 +169,14 @@ console.log('designData : ',designData);
           placeHolder="Write a catchy title for the header"
           isRequired={true}
           change={changeDescription}
+          value={designData.backgroundText}
         />
         <Box mb="48px" />
         <InputImage
           label="Header banner"
           placeHolder="This image will display at the top of the store page."
           change={changeBanner}
+          value={designData.backgroundImage}
         />
         <Box mb="48px" />
         <Flex
@@ -158,7 +186,11 @@ console.log('designData : ',designData);
           gap="24px"
         >
           <Box w="50%">
-            <InputColor value={designData.textColor} change={changeTextColor} label="Color background" />
+            <InputColor
+              value={designData.textColor}
+              change={changeTextColor}
+              label="Color background"
+            />
           </Box>
           {/* <Box w="50%">
             <InputColor label="Color background" />
@@ -167,7 +199,7 @@ console.log('designData : ',designData);
       </PageContentWrapper>
       <Box mb="36px" />
       <Flex justifyContent="end" w="100%">
-        <SaveButton w="200px" onClick={() => {}}>
+        <SaveButton w="200px" onClick={clickSubmit}>
           Save & next step
         </SaveButton>
       </Flex>
