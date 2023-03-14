@@ -15,7 +15,7 @@ const RegisterPagesWrapper = () => {
       <Box position="absolute" left="0px" top="0px">
         <SideText color={currentPath.includes('shop-info')?'primary':'lightGray'}>Shop info</SideText>
         <SideText color={currentPath.includes('contact-info')?'primary':'lightGray'}>Contact options</SideText>
-        <SideText color="lightGray">Design template</SideText>
+        <SideText color={currentPath.includes('design')?'primary':'lightGray'}>Design template</SideText>
       </Box>
       <Outlet />
     </Flex>

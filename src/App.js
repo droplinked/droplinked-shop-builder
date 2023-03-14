@@ -18,6 +18,7 @@ import AdminWrapper from "./pages/admin-wrapper/AdminWrapper";
 import RegisterPagesWrapper from "./pages/register-pages/RegisterPageWrapper";
 import RegisterShopInfo from "./pages/register-pages/pages/shop-info/ShopInfo";
 import ContactInfo from "./pages/register-pages/pages/contact-info/ContactInfo";
+import DesignPage from "./pages/register-pages/pages/design/DesignPage";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
@@ -140,6 +141,7 @@ function App() {
               <Route path="register" element={<RegisterPagesWrapper />}>
                 <Route path="shop-info" element={<RegisterShopInfo />} />
                 <Route path="contact-info" element={<ContactInfo />} />
+                <Route path="design" element={<DesignPage />} />
               </Route>
             </Route>
             {/* producer pages */}
