@@ -1,7 +1,7 @@
-import { Box, Flex, Text, Input } from "@chakra-ui/react";
+import { Box, Flex, Text, FormLabel ,FormControl } from "@chakra-ui/react";
 import { useState, useRef } from "react";
 
-const InputColor = () => {
+const InputColor = ({label}) => {
   const fileRef = useRef(null);
 
   const [selectedColor, setSelectedColor] = useState("#FFFFFF");
@@ -11,6 +11,10 @@ const InputColor = () => {
   };
 
   return (
+    <FormControl isRequired w="100%">
+    <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2" mb="12px">
+      {label}
+    </FormLabel>
     <Flex
       w="100%"
       bg="subLayer"
@@ -42,6 +46,7 @@ const InputColor = () => {
        {selectedColor}
       </Text>
     </Flex>
+    </ FormControl>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Box, Flex, Image , input} from "@chakra-ui/react";
+import { Box, Flex, Image, input } from "@chakra-ui/react";
 import { useState } from "react";
 
 import {
@@ -70,7 +70,11 @@ const DesignPage = () => {
           }}
         />
         <Box mb="48px" />
-        <InputComponent label='Header title' placeHolder='Write a catchy title for the header' isRequired={true} />
+        <InputComponent
+          label="Header title"
+          placeHolder="Write a catchy title for the header"
+          isRequired={true}
+        />
         <Box mb="48px" />
         <InputImage
           label="Header banner"
@@ -79,10 +83,20 @@ const DesignPage = () => {
             console.log("e ", e);
           }}
         />
-          <Box mb="48px" />
-          <Flex w='100%' alignItems='center' justifyContent='space-between' gap='24px'>
-<InputColor />
-          </Flex>
+        <Box mb="48px" />
+        <Flex
+          w="100%"
+          alignItems="center"
+          justifyContent="space-between"
+          gap="24px"
+        >
+          <Box w="50%">
+            <InputColor label='Color background' />
+          </Box>
+          <Box w="50%">
+            <InputColor label='Color background' />
+          </Box>
+        </Flex>
       </PageContentWrapper>
     </PageContent>
   );
