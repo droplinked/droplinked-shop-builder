@@ -1,8 +1,63 @@
-import { FormControl, FormLabel, Input, Text, Box , Image } from "@chakra-ui/react";
+import axios from "axios";
 
-import uploadIcon from "../../../../../../assest/icon/upload-icon.svg"
+import { useRef, useState } from "react";
 
-const InputImage = () => {
+
+
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  Text,
+  Box,
+  Image,
+} from "@chakra-ui/react";
+import { useToasty } from "../../../../../../context/toastify/ToastContext";
+
+import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
+
+const InputImage = ({change}) => {
+    const fileRef = useRef(null);
+  const { successToast, errorToast } = useToasty();
+
+  const changeImage = (e) => {
+    const file = e.target.files[0];
+
+    if (file.size > 500000) {
+      errorToast("File size exceeded (max: 500 kb)");
+      return;
+    }
+    if (
+      file.type !== "image/jpeg" &&
+      file.type !== "image/png" &&
+      file.type !== "image/gif" &&
+      file.type !== "image/jpg"
+    ) {
+      errorToast("File type not supported");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", file);
+   // setLoading(true);
+    axios
+      .post("https://cdn.droplinked.com/upload", formData)
+      .then((e) => {
+       // setLoading(false);
+        successToast("The image uploaded");
+       // setImage(e.data.original);
+      })
+      .catch((e) => {
+        errorToast(e.response.data.message);
+    //    setLoading(false);
+        return;
+      });
+  };
+
+  const openFile = () => {
+    fileRef.current.click();
+  };
+
   return (
     <FormControl isRequired w="100%">
       <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2" mb="12px">
@@ -24,39 +79,28 @@ const InputImage = () => {
         display="flex"
         flexDir="column"
         alignItems="center"
-        justifyContent='center'
-        borderRadius='8px'
-        cursor='pointer'
-      >
-        <Image src={uploadIcon} w='64px' h='64px' />
-        <Box mb='24px' />
-        <Text
-        fontFamily="Avenir Next"
-        fontWeight="400"
-        fontSsize="16px"
-        color="#808080"
-      >
-       Upload a JPEG, JPG, or PNG file as the brand logo
-      </Text>
-      </Box>
-      {/* <Input
-        placeholder={placeHolder}
-        value={value}
-        onChange={change}
-        padding="0px 24px"
-        background="subLayer"
+        justifyContent="center"
         borderRadius="8px"
-        fontWeight="500"
-        fontSize="16px"
-        color={color ? color : "#fff"}
-        border="none"
-        _focus={{
-          border: "none",
-        }}
-        _placeholder={{
-          color: "#666666",
-        }}
-      /> */}
+        cursor="pointer"
+        onClick={openFile}
+      >
+        <Image src={uploadIcon} w="64px" h="64px" />
+        <Box mb="24px" />
+        <Text
+          fontFamily="Avenir Next"
+          fontWeight="400"
+          fontSsize="16px"
+          color="#808080"
+        >
+          Upload a JPEG, JPG, or PNG file as the brand logo
+        </Text>
+      </Box>
+      <Input
+        display="none"
+        type="file"
+        ref={fileRef}
+        onChange={changeImage}
+      />
     </FormControl>
   );
 };
