@@ -98,6 +98,12 @@ const DesignPage = () => {
           </Box>
         </Flex>
       </PageContentWrapper>
+      <Box mb="36px" />
+        <Flex justifyContent="end" w="100%">
+          <SaveButton w="200px" onClick={()=>{}}>
+            Save & next step
+          </SaveButton>
+        </Flex>
     </PageContent>
   );
 };
