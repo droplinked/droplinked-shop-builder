@@ -97,20 +97,19 @@ const DesignPage = () => {
   };
 
   const clickSubmit = async () => {
-    // let condition = false;
+    let condition = false;
     // Object.keys(designData).forEach((item) => {
     //   if (designData[item].length == 0) condition = true;
     // });
-console.log('designData ' ,designData);
-    // if (condition) {
-    //   errorToast("Error");
-    //   return;
-    // } else {
-    //   const result = await putApi(putUpdateShop(designData));
-    //   if (result) {
-    //     navigate(`/${shop.name}`);
-    //   }
-    // }
+    if (condition) {
+      errorToast("Error");
+      return;
+    } else {
+      const result = await putApi(putUpdateShop(designData));
+      if (result) {
+        navigate(`/${shop.name}`);
+      }
+    }
   };
 
   return (
