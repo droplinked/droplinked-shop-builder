@@ -4,6 +4,7 @@ export const SHOP_REDUCER_TYPES = {
   SET_BACKGROUNED_TEXT: "SET_BACKGROUNED_TEXT",
   SET_BACKGROUNED_BANNER: "SET_BACKGROUNED_BANNER",
   SET_THEME: "SET_THEME",
+  SET_TEXT_COLOR: "SET_TEXT_COLOR",
 };
 
 export function shopDesignReducer(state, action) {
@@ -18,6 +19,8 @@ export function shopDesignReducer(state, action) {
       return { ...state, backgroundImage: action.payload };
     case SHOP_REDUCER_TYPES.SET_THEME:
       return { ...state, theme: action.payload };
+      case SHOP_REDUCER_TYPES.SET_TEXT_COLOR:
+        return { ...state, textColor: action.payload };
     default:
       throw new Error();
   }

@@ -22,7 +22,7 @@ import theme3Image from "./theme-3.jpg";
 const INITIAL_SHOP_Design = {
   logo: "",
   headerIcon: "",
-  textColor: "",
+  textColor: "#ffffff",
   theme: "",
   backgroundText: "",
   backgroundImage: "",
@@ -81,6 +81,13 @@ console.log('designData : ',designData);
     dispatch({
       type: SHOP_REDUCER_TYPES.SET_BACKGROUNED_BANNER,
       payload: item,
+    });
+  }
+
+  const changeTextColor= (e) => {
+    dispatch({
+      type: SHOP_REDUCER_TYPES.SET_TEXT_COLOR,
+      payload: e.target.value,
     });
   }
 
@@ -151,11 +158,11 @@ console.log('designData : ',designData);
           gap="24px"
         >
           <Box w="50%">
-            <InputColor label="Color background" />
+            <InputColor value={designData.textColor} change={changeTextColor} label="Color background" />
           </Box>
-          <Box w="50%">
+          {/* <Box w="50%">
             <InputColor label="Color background" />
-          </Box>
+          </Box> */}
         </Flex>
       </PageContentWrapper>
       <Box mb="36px" />
