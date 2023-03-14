@@ -87,7 +87,7 @@ const ContactInfo = () => {
           value={shopInformation.discordURL}
           change={changeDiscord}
           label="Discord"
-          placeHolder="discord/my store"
+          placeHolder="https://discord.gg/my store"
         />
         <Box mb="52px" />
         <InputComponent
