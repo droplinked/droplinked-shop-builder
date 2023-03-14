@@ -39,7 +39,7 @@ const DesignPage = () => {
 
         <Text18px>Details</Text18px>
         <Box mb="48px" />
-        <InputImage />
+        <InputImage label='Logo' placeHolder='This image will display on the left side of the store page.' setImage={(e)=>{console.log('e ' ,e)}} />
       </PageContentWrapper>
     </PageContent>
   );

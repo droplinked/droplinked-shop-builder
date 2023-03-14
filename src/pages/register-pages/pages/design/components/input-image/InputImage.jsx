@@ -16,7 +16,7 @@ import { useToasty } from "../../../../../../context/toastify/ToastContext";
 
 import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
 
-const InputImage = ({change}) => {
+const InputImage = ({ label , placeHolder , setImage }) => {
     const fileRef = useRef(null);
   const { successToast, errorToast } = useToasty();
 
@@ -45,7 +45,7 @@ const InputImage = ({change}) => {
       .then((e) => {
        // setLoading(false);
         successToast("The image uploaded");
-       // setImage(e.data.original);
+        setImage(e.data.original);
       })
       .catch((e) => {
         errorToast(e.response.data.message);
@@ -61,7 +61,7 @@ const InputImage = ({change}) => {
   return (
     <FormControl isRequired w="100%">
       <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2" mb="12px">
-        Logo
+        {label}
       </FormLabel>
       <Text
         fontFamily="Avenir Next"
@@ -70,7 +70,7 @@ const InputImage = ({change}) => {
         color="#808080"
         mb="12px"
       >
-        This image will display on the left side of the store page.
+        {placeHolder}
       </Text>
       <Box
         w="100%"
