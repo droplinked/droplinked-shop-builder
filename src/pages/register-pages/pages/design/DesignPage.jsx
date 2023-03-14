@@ -10,6 +10,8 @@ import {
 } from "../../RegisterPages-style";
 import { MainThemeImage } from "./DesignPage-style";
 
+import InputImage from "./components/input-image/InputImage";
+
 import theme1Image from "./theme-1.jpg"
 import theme2Image from "./theme-2.jpg"
 import theme3Image from "./theme-3.jpg"
@@ -37,7 +39,7 @@ const DesignPage = () => {
 
         <Text18px>Details</Text18px>
         <Box mb="48px" />
-        
+        <InputImage />
       </PageContentWrapper>
     </PageContent>
   );
