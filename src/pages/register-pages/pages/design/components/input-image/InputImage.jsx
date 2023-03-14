@@ -16,7 +16,7 @@ import { useToasty } from "../../../../../../context/toastify/ToastContext";
 
 import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
 
-const InputImage = ({ label , placeHolder , setImage }) => {
+const InputImage = ({ label , placeHolder , change }) => {
     const fileRef = useRef(null);
   const { successToast, errorToast } = useToasty();
 
@@ -45,7 +45,7 @@ const InputImage = ({ label , placeHolder , setImage }) => {
       .then((e) => {
        // setLoading(false);
         successToast("The image uploaded");
-        setImage(e.data.original);
+        change(e.data.original);
       })
       .catch((e) => {
         errorToast(e.response.data.message);
