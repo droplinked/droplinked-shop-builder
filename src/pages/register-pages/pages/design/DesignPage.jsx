@@ -1,5 +1,5 @@
 import { Box, Flex, Image, input } from "@chakra-ui/react";
-import { useState } from "react";
+import { useReducer } from "react";
 
 import {
   PageContent,
@@ -9,6 +9,7 @@ import {
   Text18px,
 } from "../../RegisterPages-style";
 import { MainThemeImage } from "./DesignPage-style";
+import { shopDesignReducer } from "./reducer";
 
 import InputImage from "./components/input-image/InputImage";
 import InputColor from "./components/input-color/InputColor";
@@ -18,7 +19,23 @@ import theme1Image from "./theme-1.jpg";
 import theme2Image from "./theme-2.jpg";
 import theme3Image from "./theme-3.jpg";
 
+const INITIAL_SHOP_Design = {
+  logo: "",
+  headerIcon: "",
+  textColor: "",
+  theme: "",
+  backgroundText: "",
+  backgroundImage: "",
+  backgroundImageSecondary: "",
+};
+
 const DesignPage = () => {
+  
+  const [designData, dispatch] = useReducer(
+    shopDesignReducer,
+    INITIAL_SHOP_Design
+  );
+
   const images = [theme1Image, theme2Image, theme3Image];
   return (
     <PageContent>
@@ -91,19 +108,19 @@ const DesignPage = () => {
           gap="24px"
         >
           <Box w="50%">
-            <InputColor label='Color background' />
+            <InputColor label="Color background" />
           </Box>
           <Box w="50%">
-            <InputColor label='Color background' />
+            <InputColor label="Color background" />
           </Box>
         </Flex>
       </PageContentWrapper>
       <Box mb="36px" />
-        <Flex justifyContent="end" w="100%">
-          <SaveButton w="200px" onClick={()=>{}}>
-            Save & next step
-          </SaveButton>
-        </Flex>
+      <Flex justifyContent="end" w="100%">
+        <SaveButton w="200px" onClick={() => {}}>
+          Save & next step
+        </SaveButton>
+      </Flex>
     </PageContent>
   );
 };
