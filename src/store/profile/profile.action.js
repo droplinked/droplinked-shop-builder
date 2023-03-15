@@ -14,6 +14,7 @@ export const setCurrentUser = (data) => {
 
 export const setClear = () => {
   localStorage.clear();
+  window.location.replace("/");
   return createAction(Profile_ACTION_TYPES.LOGOUT_PROFILE);
 };
 
