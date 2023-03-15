@@ -15,30 +15,12 @@ import OptionComponent from "./components/option-component/OptionComponent";
 const Sidebar = () => {
   return (
     <Flex w="100%" h='100%' minH='100%' flexDir='column' gap='18px' >
-      <OptionComponent icon={ProductsIcon} />
-      <OptionComponent icon={collectionIcon} />
-      <OptionComponent icon={rulesetsIcon} />
-      <OptionComponent icon={orderIcon} />
-      <OptionComponent icon={informationIcon} />
-      <OptionComponent icon={settingIcon} />
-      {/* <IconWrapper>
-        <IconComponent src={ProductsIcon} />
-      </IconWrapper> */}
-      {/* <IconWrapper>
-        <IconComponent src={collectionIcon} />
-      </IconWrapper>
-      <IconWrapper>
-        <IconComponent src={rulesetsIcon} />
-      </IconWrapper>
-      <IconWrapper>
-        <IconComponent src={orderIcon} />
-      </IconWrapper>
-      <IconWrapper>
-        <IconComponent src={informationIcon} />
-      </IconWrapper>
-      <IconWrapper>
-        <IconComponent src={settingIcon} />
-      </IconWrapper> */}
+      <OptionComponent icon={ProductsIcon} label='products' />
+      <OptionComponent icon={collectionIcon} label='collections'  />
+      <OptionComponent icon={rulesetsIcon} label='ruleset'/>
+      <OptionComponent icon={orderIcon} label='orders'/>
+      <OptionComponent icon={informationIcon} label='informations' />
+      <OptionComponent icon={settingIcon} label='setting' />
     </Flex>
   );
 };
