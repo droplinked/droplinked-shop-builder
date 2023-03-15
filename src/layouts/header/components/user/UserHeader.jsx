@@ -1,4 +1,12 @@
-import { Flex } from "@chakra-ui/react";
+import {
+  Flex,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverBody,
+  Text,
+  Box,
+} from "@chakra-ui/react";
 
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
 import {
@@ -17,10 +25,52 @@ const UserHeader = () => {
   return (
     <UserHeaderWrapper>
       <UserHeaderIcon src={droplinkedIcon} />
-      <Flex alignItems="center" gap="12px">
-        <ShopnameText>{shop.name}</ShopnameText>
-        <ShopnIcon src={shopIconSvg} />
-      </Flex>
+
+      <Popover>
+        <PopoverTrigger>
+          <Flex alignItems="center" gap="12px" cursor="pointer">
+            <ShopnameText>{shop.name}</ShopnameText>
+            <ShopnIcon src={shopIconSvg} />
+          </Flex>
+        </PopoverTrigger>
+        <PopoverContent
+          bg="#292929"
+          borderRadius="8px"
+          p="16px 36px"
+          h="auto"
+          w="auto"
+          border="0px"
+          outline="none"
+          shadow="none"
+        >
+          <PopoverBody>
+            <Text
+              fontFamily="Avenir Next"
+              fontStyle="normal"
+              fontWeight="500"
+              fontSize="14px"
+              color="#FFFFFF"
+              w="100%"
+              textAlign="center"
+            >
+              View Shop
+            </Text>
+            <Box mb="20px" />
+            <Text
+              fontFamily="Avenir Next"
+              fontStyle="normal"
+              fontWeight="500"
+              fontSize="14px"
+              color="#FFFFFF"
+              w="100%"
+              textAlign="center"
+              cursor="pointer"
+            >
+              Logout
+            </Text>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
     </UserHeaderWrapper>
   );
 };
