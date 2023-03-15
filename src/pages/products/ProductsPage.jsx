@@ -17,7 +17,10 @@ import { useNavigate } from "react-router-dom";
 
 import { useProfile } from "../../hooks/useProfile/useProfile";
 
-import searchIcon from "../../assest/icon/search-icon.svg";
+import { PageWrapper } from "./ProductsPage-style";
+
+import PageHeader from "./components/page-header/PageHeader";
+
 import plusIcon from "../../assest/icon/plus-icon.svg";
 import addProductIcon from "../../assest/icon/add-item-green-icon.svg";
 import variantsIcon from "../../assest/icon/products-active-icon.svg";
@@ -26,62 +29,14 @@ import ruleIcon from "../../assest/icon/rulesets-active-icon.svg";
 //
 
 const ProductsPage = () => {
+  const navigate = useNavigate();
+  const { shop } = useProfile();
 
-    const navigate = useNavigate()
-    const { shop } = useProfile()
-
-    const navigateToAddProductPage =() => navigate(`/${shop.name}/add-product`)
+  const navigateToAddProductPage = () => navigate(`/${shop.name}/add-product`);
   return (
     <Box w="100%" h="auto" p="0px 40px">
-      <Box w="100%" bg="mainLayer" borderRadius="8px" p="36px 48px">
-        <Flex
-          w="100%"
-          justifyContent="space-between"
-          alignItems="center"
-          mb="24px"
-        >
-          <InputGroup w="200px">
-            <InputLeftElement
-              pointerEvents="none"
-              children={<Image src={searchIcon} h="16px" w="16px" />}
-            />
-            <Input
-              p="8px 36px"
-              borderRadius="24px"
-              border="1px solid"
-              borderColor="line"
-              fontFamily="Avenir Next"
-              fontWeight="400"
-              fontSize="12px"
-              color="#C2C2C2"
-              placeholder="Phone number"
-              _focus={
-                {
-                  //   borderColor:"line"
-                }
-              }
-            />
-          </InputGroup>
-          <Button
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            padding="12px 16px"
-            width="120px"
-            background="#2EC99E"
-            borderRadius="6px"
-            border="1px solid"
-            borderColor="primary"
-            _hover={{
-              bg: "mainLayer",
-              color: "primary",
-            }}
-            onClick={navigateToAddProductPage}
-          >
-            Add Product
-          </Button>
-        </Flex>
-
+      <PageWrapper>
+        <PageHeader />
         <TableContainer mb="36px">
           <Table>
             <Thead>
@@ -198,7 +153,7 @@ const ProductsPage = () => {
             </Flex>
           </Flex>
         </Flex>
-      </Box>
+      </PageWrapper>
     </Box>
   );
 };
