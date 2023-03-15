@@ -20,7 +20,8 @@ import droplinkedIcon from "../../../../assest/image/green-droplinked-logo.svg";
 import shopIconSvg from "../../../../assest/icon/shop-green-icon.svg";
 
 const UserHeader = () => {
-  const { shop } = useProfile();
+
+  const { shop , logoutUser} = useProfile();
 
   return (
     <UserHeaderWrapper>
@@ -65,6 +66,7 @@ const UserHeader = () => {
               w="100%"
               textAlign="center"
               cursor="pointer"
+              onClick={logoutUser}
             >
               Logout
             </Text>
