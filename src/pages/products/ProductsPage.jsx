@@ -13,27 +13,31 @@ import {
   TableContainer,
   Text,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 
-import { useProfile } from "../../hooks/useProfile/useProfile";
+import { useState, useEffect } from "react";
 
+import { useApi } from "../../hooks/useApi/useApi";
+import { getProduct } from "../../apis/productsApiService";
 import { PageWrapper } from "./ProductsPage-style";
 
 import PageHeader from "./components/page-header/PageHeader";
 import AddProductComponent from "./components/add-product-component/AddProductComponent";
 
-import plusIcon from "../../assest/icon/plus-icon.svg";
-import addProductIcon from "../../assest/icon/add-item-green-icon.svg";
-import variantsIcon from "../../assest/icon/products-active-icon.svg";
-import collectionIcon from "../../assest/icon/collection-active-icon.svg";
-import ruleIcon from "../../assest/icon/rulesets-active-icon.svg";
-//
-
 const ProductsPage = () => {
-  const navigate = useNavigate();
-  const { shop } = useProfile();
+  const [products, setProducts] = useState(null);
 
-  const navigateToAddProductPage = () => navigate(`/${shop.name}/add-product`);
+  const { getApi } = useApi();
+
+  const getAllProducts = async () => {
+    let result = await getApi(getProduct());
+    if(result) setProducts(result)
+    else setProducts([])
+  };
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
   return (
     <Box w="100%" h="auto" p="0px 40px">
       <PageWrapper>
@@ -58,7 +62,7 @@ const ProductsPage = () => {
             </Thead>
           </Table>
         </TableContainer>
-       <AddProductComponent />
+        <AddProductComponent />
       </PageWrapper>
     </Box>
   );
