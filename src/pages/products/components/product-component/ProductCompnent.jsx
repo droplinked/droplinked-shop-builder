@@ -1,20 +1,14 @@
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
   Tr,
-  Th,
   Td,
-  TableCaption,
-  TableContainer,
   Image,
   Flex,
   Text,
 } from "@chakra-ui/react";
 
 const ProductCompnent = ({ product }) => {
-  console.log("pro ", product);
+
+
   return (
     <Tr cursor='pointer'>
       <Td>
