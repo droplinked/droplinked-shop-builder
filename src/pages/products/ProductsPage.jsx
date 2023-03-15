@@ -30,13 +30,15 @@ const ProductsPage = () => {
 
   const getAllProducts = async () => {
     let result = await getApi(getProduct());
-    if(result) setProducts(result)
-    else setProducts([])
+    if (result) setProducts(result);
+    else setProducts([]);
   };
 
   useEffect(() => {
     getAllProducts();
   }, []);
+
+  console.log('products ', products)
 
   return (
     <Box w="100%" h="auto" p="0px 40px">
@@ -62,7 +64,7 @@ const ProductsPage = () => {
             </Thead>
           </Table>
         </TableContainer>
-        <AddProductComponent />
+        {products.length <= 0 && <AddProductComponent />}
       </PageWrapper>
     </Box>
   );
