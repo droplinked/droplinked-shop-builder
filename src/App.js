@@ -12,7 +12,7 @@ import Enquiry from "./pages/publics/enquiry/Enquiry";
 // import AffiliateShop from "./pages/affiliate/shop/shop";
 // import AffiliateProduct from "./pages/affiliate/product/product";
 // import RequestsPage from "./pages/affiliate/requests/request";
-// import EditProductPage from "./pages/Producer/edit-product/EditProductPage";
+ import EditProductPage from "./pages/Producer/edit-product/EditProductPage";
 // import AdminPage from "./pages/admin/AdminPage";
 import AdminWrapper from "./pages/admin-wrapper/AdminWrapper";
 import RegisterPagesWrapper from "./pages/register-pages/RegisterPageWrapper";
@@ -142,6 +142,7 @@ function App() {
               </Route>
               <Route path="products" element={<ProductsPage />} />
               <Route path="add-product" element={<AddProductPage />} />
+              <Route path="product/:productId" element={<EditProductPage />} /> 
             </Route>
             {/* producer pages */}
             {/* <Route path=":shopname" element={<UserWrapper />}>
