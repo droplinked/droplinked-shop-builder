@@ -6,6 +6,15 @@ import {
   Input,
   Image,
   Button,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
 } from "@chakra-ui/react";
 
 import searchIcon from "../../assest/icon/search-icon.svg";
@@ -14,7 +23,7 @@ const ProductsPage = () => {
   return (
     <Box w="100%" h="auto" p="0px 40px">
       <Box w="100%" bg="mainLayer" borderRadius="8px" p="36px 48px">
-        <Flex w="100%" justifyContent="space-between" alignItems="center">
+        <Flex w="100%" justifyContent="space-between" alignItems="center" mb='24px'>
           <InputGroup w="200px">
             <InputLeftElement
               pointerEvents="none"
@@ -45,8 +54,8 @@ const ProductsPage = () => {
             width="120px"
             background="#2EC99E"
             borderRadius="6px"
-            border='1px solid'
-            borderColor='primary'
+            border="1px solid"
+            borderColor="primary"
             _hover={{
               bg: "mainLayer",
               color: "primary",
@@ -55,6 +64,19 @@ const ProductsPage = () => {
             Add Product
           </Button>
         </Flex>
+
+        <TableContainer border='1px solid red'>
+          <Table variant="simple">
+          <Thead>
+      <Tr>
+        <Th w='35%'>Product</Th>
+        <Th w='35%'>Collections</Th>
+        <Th w='15%'>Inventory</Th>
+        <Th w='15%'>Status</Th>
+      </Tr>
+    </Thead>
+          </Table>
+        </TableContainer>
       </Box>
     </Box>
   );
