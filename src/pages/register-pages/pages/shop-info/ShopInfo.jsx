@@ -114,7 +114,7 @@ const RegisterShopInfo = () => {
           <Box mb="48px" />
           <InputComponent
             label="Store URL"
-            value="https://droplinked.com/mystore"
+            value={`https://droplinked.com/${shop.name}`}
           />
           <Box mb="104px" />
           <Text18px>Locations</Text18px>
