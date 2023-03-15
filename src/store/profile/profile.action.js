@@ -12,7 +12,7 @@ export const setCurrentUser = (data) => {
   return createAction(Profile_ACTION_TYPES.SET_CURRENT_PROFILE, data.user);
 };
 
-export const logoutUser = () => {
+export const setClear = () => {
   localStorage.clear();
   return createAction(Profile_ACTION_TYPES.LOGOUT_PROFILE);
 };
