@@ -15,15 +15,22 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Text,
 } from "@chakra-ui/react";
 
 import searchIcon from "../../assest/icon/search-icon.svg";
+import plusIcon from "../../assest/icon/plus-icon.svg";
 
 const ProductsPage = () => {
   return (
     <Box w="100%" h="auto" p="0px 40px">
       <Box w="100%" bg="mainLayer" borderRadius="8px" p="36px 48px">
-        <Flex w="100%" justifyContent="space-between" alignItems="center" mb='24px'>
+        <Flex
+          w="100%"
+          justifyContent="space-between"
+          alignItems="center"
+          mb="24px"
+        >
           <InputGroup w="200px">
             <InputLeftElement
               pointerEvents="none"
@@ -65,18 +72,50 @@ const ProductsPage = () => {
           </Button>
         </Flex>
 
-        <TableContainer border='1px solid red'>
-          <Table variant="simple">
-          <Thead>
-      <Tr>
-        <Th w='35%'>Product</Th>
-        <Th w='35%'>Collections</Th>
-        <Th w='15%'>Inventory</Th>
-        <Th w='15%'>Status</Th>
-      </Tr>
-    </Thead>
+        <TableContainer mb="36px">
+          <Table>
+            <Thead>
+              <Tr borderColor="red">
+                <Th w="35%" color="white">
+                  Product
+                </Th>
+                <Th w="35%" color="white">
+                  Collections
+                </Th>
+                <Th w="15%" color="white">
+                  Inventory
+                </Th>
+                <Th w="15%" color="white">
+                  Status
+                </Th>
+              </Tr>
+            </Thead>
           </Table>
         </TableContainer>
+        <Flex
+          w="100%"
+          p="36px 60px"
+          flexDir="column"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Flex
+            w="169px"
+            h="148px"
+            flexDir="column"
+            alignItems="center"
+            justifyContent="center"
+            bg="subLayer"
+            borderRadius="8px"
+            cursor="pointer"
+          >
+            <Image src={plusIcon} h="48px" w="48px" />
+            <Box mb="24px" />
+            <Text color="#fff" fontWeight="500" fontSize="18px">
+              Add Product
+            </Text>
+          </Flex>
+        </Flex>
       </Box>
     </Box>
   );
