@@ -22,10 +22,10 @@ const InputImage = ({ label, placeHolder, change, value }) => {
   const changeImage = (e) => {
     const file = e.target.files[0];
 
-    if (file.size > 500000) {
-      errorToast("File size exceeded (max: 500 kb)");
-      return;
-    }
+    // if (file.size > 500000) {
+    //   errorToast("File size exceeded (max: 500 kb)");
+    //   return;
+    // }
     if (
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
