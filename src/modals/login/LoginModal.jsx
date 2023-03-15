@@ -12,7 +12,7 @@ import { isValidEmail } from "../../utils/validations/emailValidation";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../../store/profile/profile.action";
-import { setCurrentShop } from "../../store/shop/shop.action"
+import { setCurrentShop } from "../../store/shop/shop.action";
 import { postLoginByEmail } from "../../apis/authApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 import { useProfile } from "../../hooks/useProfile/useProfile";
@@ -26,7 +26,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   // hooks
 
   const { postApi } = useApi();
-  const { setShopData } = useProfile()
+  const { setShopData } = useProfile();
   const { errorToast } = useContext(toastValue);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -62,14 +62,13 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     let result = await postApi(postLoginByEmail(email, password));
     setLoading(false);
     if (result) loginFunction(result);
-
   };
 
   // action on user data based on type and status
   const loginFunction = (data) => {
     //first close modal
     close();
-    console.log('data ' , data)
+    console.log("data ", data);
     const status = data.user.status;
 
     // if (data.user.type == USER_TYPE.CUSTOMER) {
@@ -85,7 +84,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
       errorToast("This account has been deleted");
       return;
     } else {
-      setShopData(data.shop)
+      setShopData(data.shop);
       navigateUser(status, data.shop.name);
       dispatch(setCurrentUser(data));
       return;
@@ -102,16 +101,16 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
         navigate(`/${shopName}/register/shop-info`);
         return;
       case PROFILE_STATUS.PROFILE_COMPLETED:
-        navigate("/register");
+        navigate(`/${shopName}/register/shop-info`);
         return;
       case PROFILE_STATUS.SHOP_INFO_COMPLETED:
-        navigate("/register");
+        navigate(`/${shopName}/products/`);
         return;
       case PROFILE_STATUS.IMS_TYPE_COMPLETED:
-        navigate(`/${shopName}`);
+        navigate(`/${shopName}/products/`);
         return;
       case PROFILE_STATUS.ACTIVE:
-        navigate(`/${shopName}`);
+        navigate(`/${shopName}/products/`);
         return;
     }
   };
@@ -139,7 +138,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
               type="password"
             />
             <Box mb="20px"></Box>
-            <BasicButton click={onSubmit} disable={loading} loading={loading} >
+            <BasicButton click={onSubmit} disable={loading} loading={loading}>
               Login
             </BasicButton>
           </Box>
