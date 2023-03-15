@@ -10,13 +10,21 @@ import orderIcon from "../../assest/icon/order-icon.svg";
 import informationIcon from "../../assest/icon/information-icon.svg";
 import rulesetsIcon from "../../assest/icon/rulesets-icon.svg";
 
+import OptionComponent from "./components/option-component/OptionComponent";
+
 const Sidebar = () => {
   return (
     <Flex w="100%" h='100%' minH='100%' flexDir='column' gap='18px' >
-      <IconWrapper>
+      <OptionComponent icon={ProductsIcon} />
+      <OptionComponent icon={collectionIcon} />
+      <OptionComponent icon={rulesetsIcon} />
+      <OptionComponent icon={orderIcon} />
+      <OptionComponent icon={informationIcon} />
+      <OptionComponent icon={settingIcon} />
+      {/* <IconWrapper>
         <IconComponent src={ProductsIcon} />
-      </IconWrapper>
-      <IconWrapper>
+      </IconWrapper> */}
+      {/* <IconWrapper>
         <IconComponent src={collectionIcon} />
       </IconWrapper>
       <IconWrapper>
@@ -30,7 +38,7 @@ const Sidebar = () => {
       </IconWrapper>
       <IconWrapper>
         <IconComponent src={settingIcon} />
-      </IconWrapper>
+      </IconWrapper> */}
     </Flex>
   );
 };
