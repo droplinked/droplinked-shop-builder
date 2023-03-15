@@ -33,7 +33,7 @@ const EditProductPage = () => {
   // state for keep skus
   const [skus, setSkus] = useState(null);
 
-  const merchId = useParams().id;
+  const merchId = useParams().productId;
   const { getApi } = useApi();
 
   // gets product data by productId and initializes states
