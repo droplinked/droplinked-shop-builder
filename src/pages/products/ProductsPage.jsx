@@ -8,15 +8,14 @@ import {
   Button,
   Table,
   Thead,
-  Tbody,
-  Tfoot,
   Tr,
   Th,
-  Td,
-  TableCaption,
   TableContainer,
   Text,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+
+import { useProfile } from "../../hooks/useProfile/useProfile";
 
 import searchIcon from "../../assest/icon/search-icon.svg";
 import plusIcon from "../../assest/icon/plus-icon.svg";
@@ -27,6 +26,11 @@ import ruleIcon from "../../assest/icon/rulesets-active-icon.svg";
 //
 
 const ProductsPage = () => {
+
+    const navigate = useNavigate()
+    const { shop } = useProfile()
+
+    const navigateToAddProductPage =() => navigate(`/${shop.name}/add-product`)
   return (
     <Box w="100%" h="auto" p="0px 40px">
       <Box w="100%" bg="mainLayer" borderRadius="8px" p="36px 48px">
@@ -72,6 +76,7 @@ const ProductsPage = () => {
               bg: "mainLayer",
               color: "primary",
             }}
+            onClick={navigateToAddProductPage}
           >
             Add Product
           </Button>
@@ -113,6 +118,7 @@ const ProductsPage = () => {
             bg="subLayer"
             borderRadius="8px"
             cursor="pointer"
+            onClick={navigateToAddProductPage}
           >
             <Image src={plusIcon} h="48px" w="48px" />
             <Box mb="24px" />
