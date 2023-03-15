@@ -17,14 +17,13 @@ import {
 } from "./Landing-page-style";
 import { useSelector } from "react-redux";
 import { selectCurrentProfile } from "../../../store/profile/profile.selector";
+import { useProfile } from "../../../hooks/useProfile/useProfile";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import LandingpageImage from "./components/landing-page-image-component";
 import LandingIcons from "./components/landing-icons-component";
 import SignupInput from "./components/singup-input-component";
 import AuthModal from "../../../modals/auth/AuthModal";
-
-
 
 const keyframe_leftanimation = keyframes`
 0% {
@@ -40,7 +39,7 @@ const keyframe_leftanimation = keyframes`
 export default function LandingPage() {
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  const profile = useSelector(selectCurrentProfile);
+  const { profile, shop } = useProfile();
   const navigate = useNavigate();
 
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -53,8 +52,8 @@ export default function LandingPage() {
     : `${keyframe_leftanimation}  1s linear`;
 
   useEffect(() => {
-    if (profile && profile.type == "PRODUCER") {
-      navigate(`/${profile.shopName}`);
+    if (shop) {
+      navigate(`/${shop.name}/products`);
     }
   }, []);
 
@@ -109,7 +108,6 @@ export default function LandingPage() {
         shopName={userName}
         type="SIGNUP"
       />
-
     </Box>
   );
 }

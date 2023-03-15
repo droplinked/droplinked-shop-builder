@@ -12,7 +12,7 @@ import {
   selectCurrentProfile,
   selectIsCustomer,
 } from "../../store/profile/profile.selector";
-import { getShop } from "../../api/base-user/Profile-api";
+import { useProfile } from "../../hooks/useProfile/useProfile";
 import { useDispatch } from "react-redux";
 import { setCurrentShop } from "../../store/shop/shop.action";
 import { userSession } from "../../utils/hirowallet/hirowallet-utils";
@@ -27,13 +27,15 @@ import SideBarProvider from "../../context/sidebar/sidebar-context";
 
 export default function PageWrapper() {
   const { updateCart } = useCart();
-  const profile = useSelector(selectCurrentProfile);
+  //const profile = useSelector(selectCurrentProfile);
   const isCustomer = useSelector(selectIsCustomer);
   //const { updateShop } = useShop();
   const { shopname } = useParams();
   const { getApi } = useApi();
+  const { profile , shop} = useProfile()
   const dispatch = useDispatch();
-
+console.log('profile ' , profile);
+console.log('shop ' , shop);
   let location = useLocation();
 
   const getHiroWalletData = () => {
@@ -104,7 +106,7 @@ export default function PageWrapper() {
 
   const cleanStorage = () => {
     localStorage.clear();
-    if (shopname != undefined) window.location.replace(`/${shopname}`);
+    if (shop) window.location.replace(`/${shop.name}/products`);
     else window.location.replace("/");
   };
 
