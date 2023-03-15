@@ -42,9 +42,9 @@ const ThankForRegisterPage = lazy(() =>
 // const ViewMerchPage = lazy(() =>
 //   import("./pages/Producer/view-merch/View-merch-page")
 // );
-// const AddProductPage = lazy(() =>
-//   import("./pages/Producer/add-product/Add-product-page")
-// );
+const AddProductPage = lazy(() =>
+  import("./pages/Producer/add-product/Add-product-page")
+);
 
 // const CollectionMainPage = lazy(() =>
 //   import("./pages/Producer/collection/Collection-page")
@@ -141,6 +141,7 @@ function App() {
                 <Route path="design" element={<DesignPage />} />
               </Route>
               <Route path="products" element={<ProductsPage />} />
+              <Route path="add-product" element={<AddProductPage />} />
             </Route>
             {/* producer pages */}
             {/* <Route path=":shopname" element={<UserWrapper />}>
