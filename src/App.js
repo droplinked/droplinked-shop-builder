@@ -143,7 +143,7 @@ function App() {
               <Route path="products" element={<ProductsPage />} />
               <Route path="add-product" element={<AddProductPage />} />
               <Route path="product/:productId" element={<EditProductPage />} /> 
-              <Route path="Collections" element={<CollectionMainPage />} /> 
+              <Route path="collections" element={<CollectionMainPage />} /> 
             </Route>
             {/* producer pages */}
             {/* <Route path=":shopname" element={<UserWrapper />}>
