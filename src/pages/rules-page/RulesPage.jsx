@@ -1,7 +1,7 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
-import { PageWrapper } from "./RulesPage-style";
+import { PageWrapper ,NoRuleText } from "./RulesPage-style";
 import { useApi } from "../../hooks/useApi/useApi";
 import { getRulesets } from "../../apis/rulesetApiService";
 
@@ -39,9 +39,9 @@ const RulePage = () => {
       <PageWrapper>
         <SearchComponent />
         <Box mb="36px" />
-        <Flex w="100%" justifyContent="center" alignItems="center">
-          <AddRuleComponent />
-        </Flex>
+        {rules.length <= 0 && (
+          <NoRuleText>No ruleset</NoRuleText>
+        )}
       </PageWrapper>
     </Box>
   );

@@ -8,3 +8,15 @@ export const PageWrapper = chakra("div", {
     p: "36px 48px",
   },
 });
+
+
+
+export const NoRuleText = chakra("p", {
+  baseStyle: {
+    w: "100%",
+    textAlign:'center',
+    fontSize:'24px' ,
+    fontWeight:'600',
+    color:'#fff'
+  },
+});
