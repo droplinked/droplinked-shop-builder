@@ -20,7 +20,7 @@ const Sidebar = () => {
         path="collections"
       />
       <OptionComponent icon={rulesetsIcon} label="ruleset" />
-      <OptionComponent icon={orderIcon} label="orders" />
+      <OptionComponent icon={orderIcon} label="orders" path='orders' />
       <OptionComponent icon={informationIcon} label="informations" />
       <OptionComponent icon={settingIcon} label="setting" />
     </Flex>

@@ -64,9 +64,9 @@ const CollectionMainPage = lazy(() =>
 //   import("./pages/customer/settings/Settings-page")
 // );
 
-// const IncomingOrderPage = lazy(() =>
-//   import("./pages/Producer/incomin-order/IncomingOrder-page")
-// );
+const IncomingOrderPage = lazy(() =>
+  import("./pages/Producer/incomin-order/IncomingOrder-page")
+);
 
 // const PurchasHistoryPage = lazy(() =>
 //   import("./pages/customer/purchase-history/PurchaseHistory")
@@ -144,6 +144,7 @@ function App() {
               <Route path="add-product" element={<AddProductPage />} />
               <Route path="product/:productId" element={<EditProductPage />} /> 
               <Route path="collections" element={<CollectionMainPage />} /> 
+              <Route path="orders" element={<IncomingOrderPage />} /> 
             </Route>
             {/* producer pages */}
             {/* <Route path=":shopname" element={<UserWrapper />}>
