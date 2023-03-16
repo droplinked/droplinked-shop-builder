@@ -12,7 +12,7 @@ import Enquiry from "./pages/publics/enquiry/Enquiry";
 // import AffiliateShop from "./pages/affiliate/shop/shop";
 // import AffiliateProduct from "./pages/affiliate/product/product";
 // import RequestsPage from "./pages/affiliate/requests/request";
- import EditProductPage from "./pages/Producer/edit-product/EditProductPage";
+import EditProductPage from "./pages/Producer/edit-product/EditProductPage";
 // import AdminPage from "./pages/admin/AdminPage";
 import AdminWrapper from "./pages/admin-wrapper/AdminWrapper";
 import RegisterPagesWrapper from "./pages/register-pages/RegisterPageWrapper";
@@ -20,6 +20,7 @@ import RegisterShopInfo from "./pages/register-pages/pages/shop-info/ShopInfo";
 import ContactInfo from "./pages/register-pages/pages/contact-info/ContactInfo";
 import DesignPage from "./pages/register-pages/pages/design/DesignPage";
 import ProductsPage from "./pages/products/ProductsPage";
+import RulePage from "./pages/rules-page/RulesPage";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
@@ -142,9 +143,10 @@ function App() {
               </Route>
               <Route path="products" element={<ProductsPage />} />
               <Route path="add-product" element={<AddProductPage />} />
-              <Route path="product/:productId" element={<EditProductPage />} /> 
-              <Route path="collections" element={<CollectionMainPage />} /> 
-              <Route path="orders" element={<IncomingOrderPage />} /> 
+              <Route path="product/:productId" element={<EditProductPage />} />
+              <Route path="collections" element={<CollectionMainPage />} />
+              <Route path="orders" element={<IncomingOrderPage />} />
+              <Route path="rules" element={<RulePage />} />
             </Route>
             {/* producer pages */}
             {/* <Route path=":shopname" element={<UserWrapper />}>
