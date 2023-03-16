@@ -23,19 +23,24 @@ const AuthModal = ({ show, close ,shopName , type }) => {
       modalType == MODAL_TYPE.SIGNIN ? MODAL_TYPE.RESET : MODAL_TYPE.SIGNIN
     );
 
+    const closeModal = () => {
+      setModalType(MODAL_TYPE.SIGNIN)
+      close()
+    }
+console.log('modalType ' ,modalType)
   const correctComponent = () => {
     switch (modalType) {
       case MODAL_TYPE.SIGNIN:
         return (
-          <LoginModal show={show} close={close} switchModal={switchModal} switchReset={switchResetModal}/>
+          <LoginModal show={show} close={closeModal} switchModal={switchModal} switchReset={switchResetModal}/>
         );
       case MODAL_TYPE.SIGNUP:
         return (
-          <SignupModal show={show} close={close} switchModal={switchModal} shopName={shopName}  />
+          <SignupModal show={show} close={closeModal} switchModal={switchModal} shopName={shopName}  />
         );
       case MODAL_TYPE.RESET:
         return (
-          <ResetPassModal show={show} close={close} switchReset={switchResetModal} />
+          <ResetPassModal show={show} close={closeModal} switchReset={switchResetModal} />
         );
     }
   };

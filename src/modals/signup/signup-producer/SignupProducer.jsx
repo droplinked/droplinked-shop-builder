@@ -112,9 +112,9 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
           .
         </BottomText>
       </Flex>
-      <Flex mt="20px" w="100%">
-        <BottomText>
-          Already have an account? <a onClick={switchToggle}>Login</a>
+      <Flex mt="20px" w="100%" onClick={switchToggle}>
+        <BottomText >
+          Already have an account? <a >Login</a>
         </BottomText>
       </Flex>
       {/* <form
