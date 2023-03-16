@@ -19,7 +19,7 @@ const Sidebar = () => {
         label="collections"
         path="collections"
       />
-      <OptionComponent icon={rulesetsIcon} label="ruleset" />
+      <OptionComponent icon={rulesetsIcon} label="ruleset" path='rules' />
       <OptionComponent icon={orderIcon} label="orders" path='orders' />
       <OptionComponent icon={informationIcon} label="informations" />
       <OptionComponent icon={settingIcon} label="setting" />
