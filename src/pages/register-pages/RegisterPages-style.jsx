@@ -60,7 +60,7 @@ export const AddAddressButton = chakra("button", {
     fontFamily: "Avenir Next",
     fontWeight: "500",
     fontSize: "16px",
-    color: "lightGray",
+    color: "white",
     border:'1px solid' ,
     borderColor:'#292929' ,
     _hover:{
@@ -87,6 +87,11 @@ export const SaveButton = chakra("button", {
     _hover:{
       bg:'mainLayer',
       color: "primary",
+    },
+    _disabled:{
+      bg:'#292929',
+      color: "lightGray",
+      borderColor:'#292929' ,
     }
   },
 });

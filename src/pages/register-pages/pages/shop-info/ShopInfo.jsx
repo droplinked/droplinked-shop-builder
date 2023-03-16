@@ -73,6 +73,20 @@ const RegisterShopInfo = () => {
       });
   };
 
+  const isValidForm = () => {
+    if (shopInformation.description.length == 0) {
+      return false
+    }
+   else if (shopInformation.addressBookID == null) {
+      errorToast("Address is required");
+      return false
+    }
+    else{
+      return true
+    }
+  }
+
+
   const clickOnSave = async () => {
     if (shopInformation.description.length == 0) {
       errorToast("Shop name is required");
@@ -93,6 +107,7 @@ const RegisterShopInfo = () => {
       navigate(`/${shop.name}/register/contact-info`);
     }
   };
+
 
   return (
     <>
@@ -133,7 +148,7 @@ const RegisterShopInfo = () => {
         </PageContentWrapper>
         <Box mb="36px" />
         <Flex justifyContent="end" w="100%">
-          <SaveButton w="200px" onClick={clickOnSave}>
+          <SaveButton w="200px" onClick={clickOnSave} disabled={!isValidForm()} >
             Save & next step
           </SaveButton>
         </Flex>
