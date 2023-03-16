@@ -11,7 +11,7 @@ import {
 import { useApi } from "../../../hooks/useApi/useApi";
 import SmallModal from "../../../modals/small/SmallModal";
 import AddressModal from "../../../modals/address/AddressModal";
-import { deleteAddress } from "../../../api-service/address/addressApiService";
+import { deleteAddress } from "../../../apis/addressApiService";
 
 import editIcon from "../../../assest/icon/edit-icon.svg";
 import deleteIcon from "../../../assest/icon/delete-icon.svg";
@@ -42,6 +42,7 @@ export default function AddressComponent({
   setSelect,
   selectAble,
   deleteable,
+  updateList,
 }) {
   // state for disable button
   const [disableBtn, setDisableBtn] = useState(false);
@@ -57,7 +58,10 @@ export default function AddressComponent({
   const deleteAddressFunc = async () => {
     setDisableBtn(true);
     let result = await deleteApi(deleteAddress(address._id));
-    if (result) successToast("Address deleted successfully");
+    if (result) {
+      successToast("Address deleted successfully");
+      updateList();
+    }
     setDisableBtn(false);
     closeDeleteModal();
   };

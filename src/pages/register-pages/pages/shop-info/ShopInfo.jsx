@@ -54,13 +54,14 @@ const RegisterShopInfo = () => {
         payload: result[0]._id,
       });
     } else {
+      setAddressList([])
       dispatchShopInformation({
         type: SHOP_REDUCER_TYPES.CHANGE_ADDRESS_BOOK,
         payload: null,
       });
     }
   };
-
+  
   useEffect(() => {
     updateAddressList();
   }, []);
@@ -142,6 +143,7 @@ const RegisterShopInfo = () => {
               address={addressList[0]}
               selectAble={true}
               deleteable={true}
+              updateList={updateAddressList}
             />
           )}
         </PageContentWrapper>
