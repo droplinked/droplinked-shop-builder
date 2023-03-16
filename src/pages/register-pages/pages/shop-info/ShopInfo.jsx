@@ -78,7 +78,6 @@ const RegisterShopInfo = () => {
       return false
     }
    else if (shopInformation.addressBookID == null) {
-      errorToast("Address is required");
       return false
     }
     else{
