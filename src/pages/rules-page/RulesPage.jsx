@@ -16,6 +16,7 @@ import { getRulesets } from "../../apis/rulesetApiService";
 
 import SearchComponent from "./components/search-component/SearchComponent";
 import AddRuleComponent from "./components/add-rule-component/AddRuleComponent";
+import RuleComponent from "./components/rule-component/RuleComponent";
 import HeaderComponent from "./components/header-component/HeaderComponent";
 import Loading from "../../components/shared/loading/Loading";
 
@@ -27,7 +28,6 @@ const RulePage = () => {
   const updateRules = async () => {
     const result = await getApi(getRulesets());
     if (result) setRules(result);
-    console.log("results ", result);
   };
 
   useEffect(() => {
@@ -49,12 +49,21 @@ const RulePage = () => {
       <PageWrapper>
         <SearchComponent />
         <Box mb="36px" />
-        {rules.length <= 0 && <NoRuleText>No ruleset</NoRuleText>}
-        <TableContainer mb="36px">
-          <Table>
-            <HeaderComponent />
-          </Table>
-        </TableContainer>
+        {rules.length <= 0 ? (
+          <NoRuleText>No ruleset</NoRuleText>
+        ) : (
+          <TableContainer mb="36px">
+            <Table>
+              <HeaderComponent />
+
+              <Tbody>
+                {rules.map((rule) => {
+                return  <RuleComponent rule={rule} />;
+                })}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        )}
       </PageWrapper>
     </Box>
   );
