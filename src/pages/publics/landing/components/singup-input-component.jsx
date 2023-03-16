@@ -45,8 +45,7 @@ const SignupInput = ({ setUsername, userName, toggleSignUp }) => {
 
     setLoading(true);
     let result = await getApi(getIsShopExist(userName))
-    if (result == true) toggleSignUp();
-    else setError(result);
+    if (result) toggleSignUp();
     setLoading(false);
   };
 
