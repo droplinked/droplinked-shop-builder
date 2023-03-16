@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
 import { PageWrapper } from "./RulesPage-style";
@@ -6,6 +6,7 @@ import { useApi } from "../../hooks/useApi/useApi";
 import { getRulesets } from "../../apis/rulesetApiService";
 
 import SearchComponent from "./components/search-component/SearchComponent";
+import AddRuleComponent from "./components/add-rule-component/AddRuleComponent";
 import Loading from "../../components/shared/loading/Loading";
 
 const RulePage = () => {
@@ -15,13 +16,13 @@ const RulePage = () => {
 
   const updateRules = async () => {
     const result = await getApi(getRulesets());
-    if(result) setRules(result)
+    if (result) setRules(result);
     console.log("results ", result);
   };
 
   useEffect(() => {
     updateRules();
-  },[]);
+  }, []);
 
   if (!rules) {
     return (
@@ -38,6 +39,9 @@ const RulePage = () => {
       <PageWrapper>
         <SearchComponent />
         <Box mb="36px" />
+        <Flex w="100%" justifyContent="center" alignItems="center">
+          <AddRuleComponent />
+        </Flex>
       </PageWrapper>
     </Box>
   );
