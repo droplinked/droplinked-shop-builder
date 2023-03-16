@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 
 import LoginModal from "../login/LoginModal";
 import SignupModal from "../signup/SignupModal";
@@ -11,6 +11,7 @@ const MODAL_TYPE = {
 };
 
 const AuthModal = ({ show, close ,shopName , type }) => {
+
   const [modalType, setModalType] = useState((type)?type:MODAL_TYPE.SIGNIN);
 
   const switchModal = () =>
@@ -24,10 +25,11 @@ const AuthModal = ({ show, close ,shopName , type }) => {
     );
 
     const closeModal = () => {
-      setModalType(MODAL_TYPE.SIGNIN)
+      setModalType((type)?type:MODAL_TYPE.SIGNIN);
       close()
     }
-console.log('modalType ' ,modalType)
+
+
   const correctComponent = () => {
     switch (modalType) {
       case MODAL_TYPE.SIGNIN:
