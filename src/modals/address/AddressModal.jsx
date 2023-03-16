@@ -7,7 +7,10 @@ import {
   postAddress,
   patchAddress,
 } from "../../api-service/address/addressApiService";
-import { postCreateAddress } from "../../apis/addressApiService";
+import {
+  postCreateAddress,
+  putUpdateAddress,
+} from "../../apis/addressApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 import { TopText, SaveButton } from "./AddressModal-style";
 
@@ -25,7 +28,7 @@ export default function AddressModal({
 }) {
   // address context functions for add new address or update address
   const { successToast, errorToast } = useToasty();
-  const { postApi, patchApi } = useApi();
+  const { postApi, putApi } = useApi();
   // form values states
   // if get address book on props set addressbook value for default or not set '' for default value
   const [line1, setLine1] = useState(
@@ -41,11 +44,12 @@ export default function AddressModal({
   const [state, setState] = useState(addressBook ? addressBook.state : "");
   const [zip, setZip] = useState(addressBook ? addressBook.zip : "");
   const [firstname, setFirstname] = useState(
-    addressBook ? addressBook.firstname : ""
+    addressBook ? addressBook.firstName : ""
   );
   const [lastname, setLastname] = useState(
-    addressBook ? addressBook.lastname : ""
+    addressBook ? addressBook.lastName : ""
   );
+  console.log("address book ", addressBook);
   // state for show wrror
   const [error, setError] = useState("");
   // state for loading mode
@@ -92,7 +96,7 @@ export default function AddressModal({
   };
 
   const update = async (formData, addressBookId) => {
-    let result = await patchApi(patchAddress(formData, addressBookId));
+    let result = await putApi(putUpdateAddress(addressBookId, formData));
     if (result) {
       successToast("Address updated successfully");
       if (updateAddressList) updateAddressList();
@@ -171,7 +175,7 @@ export default function AddressModal({
     //     flag = false;
     //   }
     //   return flag;
-    // } 
+    // }
     else {
       return true;
     }
@@ -300,8 +304,9 @@ export default function AddressModal({
             change={ChangeLastname}
           />
         </Flex>
-        <SaveButton w='100%' onClick={submitForm} disabled={loading} >Save</SaveButton>
-
+        <SaveButton w="100%" onClick={submitForm} disabled={loading}>
+          Save
+        </SaveButton>
       </Box>
     </ModalWrapper>
   );
