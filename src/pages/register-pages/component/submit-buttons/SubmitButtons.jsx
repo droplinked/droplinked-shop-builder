@@ -30,7 +30,7 @@ const SubmitButton = ({ children , width , click ,disabled  ,loading}) => {
       onClick={click}
       disabled={disabled}
     >
-        {loading ? <Spinner color='white' size='md' /> :   {children}}
+        {loading ? <Spinner color='white' size='md' /> :   <>{children}</>}
     
     </Button>
   );

@@ -35,7 +35,7 @@ const RegisterShopInfo = () => {
     shopInformationReducer,
     INITIAL_SHOP_INFO
   );
-
+  const [loading, setLoading] = useState(false);
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [addressList, setAddressList] = useState([]);
 
@@ -99,8 +99,9 @@ const RegisterShopInfo = () => {
       description: shopInformation.description,
       addressBookID: shopInformation.addressBookID,
     };
-
+    setLoading(true)
     const result = await putApi(putUpdateShop(apiBody));
+    setLoading(false)
     if (result) {
       navigate(`/${shop.name}/register/contact-info`);
     }
@@ -150,7 +151,7 @@ const RegisterShopInfo = () => {
             width="200px"
             click={clickOnSave}
             disabled={!isValidForm()}
-            loading={true}
+            loading={loading}
           >
             Save & next step
           </SubmitButton>
