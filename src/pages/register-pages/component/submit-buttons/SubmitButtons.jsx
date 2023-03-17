@@ -1,13 +1,14 @@
-import { Button } from "@chakra-ui/react";
+import { Button ,Spinner  } from "@chakra-ui/react";
 
 
-const SubmitButton = ({ children , width }) => {
+const SubmitButton = ({ children , width , click ,disabled  ,loading}) => {
   return (
     <Button
       bg="primary"
       w={width}
+      h='50px'
       borderRadius="8px"
-      padding=" 12px 16px"
+      padding="12px 16px"
       display="flex"
       justifyContent="center"
       alignItems="center"
@@ -26,8 +27,11 @@ const SubmitButton = ({ children , width }) => {
         color: "lightGray",
         borderColor: "#292929",
       }}
+      onClick={click}
+      disabled={disabled}
     >
-      {children}
+        {loading ? <Spinner color='white' size='md' /> :   {children}}
+    
     </Button>
   );
 };

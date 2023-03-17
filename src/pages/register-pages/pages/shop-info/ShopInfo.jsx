@@ -23,6 +23,7 @@ import {
 import InputComponent from "../../component/input-component/InputComponent";
 import AddressModal from "../../../../modals/address/AddressModal";
 import AddressComponent from "../../../../components/shared/Address/address-component";
+import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 
 const INITIAL_SHOP_INFO = {
   description: "",
@@ -54,14 +55,14 @@ const RegisterShopInfo = () => {
         payload: result[0]._id,
       });
     } else {
-      setAddressList([])
+      setAddressList([]);
       dispatchShopInformation({
         type: SHOP_REDUCER_TYPES.CHANGE_ADDRESS_BOOK,
         payload: null,
       });
     }
   };
-  
+
   useEffect(() => {
     updateAddressList();
   }, []);
@@ -76,16 +77,13 @@ const RegisterShopInfo = () => {
 
   const isValidForm = () => {
     if (shopInformation.description.length == 0) {
-      return false
+      return false;
+    } else if (shopInformation.addressBookID == null) {
+      return false;
+    } else {
+      return true;
     }
-   else if (shopInformation.addressBookID == null) {
-      return false
-    }
-    else{
-      return true
-    }
-  }
-
+  };
 
   const clickOnSave = async () => {
     if (shopInformation.description.length == 0) {
@@ -107,7 +105,6 @@ const RegisterShopInfo = () => {
       navigate(`/${shop.name}/register/contact-info`);
     }
   };
-
 
   return (
     <>
@@ -149,9 +146,14 @@ const RegisterShopInfo = () => {
         </PageContentWrapper>
         <Box mb="36px" />
         <Flex justifyContent="end" w="100%">
-          <SaveButton w="200px" onClick={clickOnSave} disabled={!isValidForm()} >
+          <SubmitButton
+            width="200px"
+            click={clickOnSave}
+            disabled={!isValidForm()}
+            loading={true}
+          >
             Save & next step
-          </SaveButton>
+          </SubmitButton>
         </Flex>
       </PageContent>
       <AddressModal
