@@ -100,22 +100,17 @@ const DesignPage = () => {
   };
 
   const clickSubmit = async () => {
-
-    if(!isValidData(designData)){
+    if (!isValidData(designData)) {
       errorToast("Required");
-       return;
-    } 
-console.log('designData ' ,designData);
-setLoading(true)
-    // if (condition) {
-    //   errorToast("Error");
-    //   return;
-    // } else {
-    //   const result = await putApi(putUpdateShop(designData));
-    //   if (result) {
-    //     navigate(`/${shop.name}/products`);
-    //   }
-    // }
+      return;
+    }
+
+    setLoading(true);
+    const result = await putApi(putUpdateShop(designData));
+    setLoading(false);
+    if (result) {
+      navigate(`/${shop.name}/products`);
+    }
   };
 
   return (
@@ -204,7 +199,7 @@ setLoading(true)
       </PageContentWrapper>
       <Box mb="36px" />
       <Flex justifyContent="end" w="100%">
-        <SubmitButton width="200px" click={clickSubmit} loading={loading} >
+        <SubmitButton width="200px" click={clickSubmit} loading={loading}>
           Save & next step
         </SubmitButton>
       </Flex>
