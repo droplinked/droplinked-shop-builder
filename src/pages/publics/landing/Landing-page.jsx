@@ -53,7 +53,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     if (shop) {
-      navigate(`/${shop.name}/products`);
+    //  navigate(`/${shop.name}/products`);
     }
   }, []);
 
