@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { useState, useEffect, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -99,9 +99,9 @@ const RegisterShopInfo = () => {
       description: shopInformation.description,
       addressBookID: shopInformation.addressBookID,
     };
-    setLoading(true)
+    setLoading(true);
     const result = await putApi(putUpdateShop(apiBody));
-    setLoading(false)
+    setLoading(false);
     if (result) {
       navigate(`/${shop.name}/register/contact-info`);
     }
@@ -130,7 +130,12 @@ const RegisterShopInfo = () => {
             value={`https://droplinked.com/${shop.name}`}
           />
           <Box mb="104px" />
-          <Text18px>Locations</Text18px>
+          <FormControl isRequired w="100%">
+            <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2">
+              Locations
+            </FormLabel>
+          </FormControl>
+          {/* <Text18px isRequired >Locations</Text18px> */}
           <Box mb="48px" />
           {addressList.length == 0 ? (
             <AddAddressButton onClick={toggleAddressModal}>
