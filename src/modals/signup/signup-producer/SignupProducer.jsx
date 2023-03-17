@@ -26,7 +26,9 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
   const changeEmail = (e) => setEmail(e.target.value);
   const changePass = (e) => setPassword(e.target.value);
   const changeConPass = (e) => setConfirmPassword(e.target.value);
-  const changeShopName = (e) =>{if(shopname == undefined) setShopName(e.target.value)}
+  const changeShopName = (e) => {
+    if (shopname == undefined) setShopName(e.target.value);
+  };
 
   let navigate = useNavigate();
 
@@ -52,6 +54,10 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
       );
       return;
     }
+    if (password.length < 8) {
+      errorToast("Your password must be at least 8 characters.");
+      return;
+    }
 
     setLoading(true);
     let result = await postApi(postUserSignup(email, password, shopName));
@@ -63,7 +69,6 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
       close();
       navigate("/email-confirmation");
     }
- 
   };
 
   return (
@@ -92,7 +97,12 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         placeholder={"Confirm password"}
       />
       <Box mb="20px"></Box>
-      <FormInput value={shopName} changeValue={changeShopName} label={"Username"} placeholder={"Username"} />
+      <FormInput
+        value={shopName}
+        changeValue={changeShopName}
+        label={"Username"}
+        placeholder={"Username"}
+      />
       <Box mb="20px"></Box>
       <BasicButton click={onSubmit} disabled={loading}>
         Sign up
@@ -113,8 +123,8 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         </BottomText>
       </Flex>
       <Flex mt="20px" w="100%" onClick={switchToggle}>
-        <BottomText >
-          Already have an account? <a >Login</a>
+        <BottomText>
+          Already have an account? <a>Login</a>
         </BottomText>
       </Flex>
       {/* <form
