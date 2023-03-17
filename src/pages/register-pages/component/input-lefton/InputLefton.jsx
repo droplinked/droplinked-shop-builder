@@ -13,7 +13,7 @@ const InputLefton = ({
   value,
   change,
   color,
-  children
+  children,
 }) => {
   return (
     <FormControl isRequired={isRequired} w="100%">
@@ -21,12 +21,20 @@ const InputLefton = ({
         {label}
       </FormLabel>
       <InputGroup size="sm">
-        <InputLeftAddon children={children} />
+        <InputLeftAddon
+          bg="line"
+          borderColor="subLayer"
+          borderRadius="8px"
+          fontWeight="500"
+          fontSize="16px"
+          color={color ? color : "#fff"}
+          children={children}
+        />
         <Input
           placeholder={placeHolder}
           value={value}
           onChange={change}
-          padding="0px 24px"
+          padding="0px 12px"
           background="subLayer"
           borderRadius="8px"
           fontWeight="500"

@@ -15,6 +15,7 @@ import { shopContactReducer, SHOP_REDUCER_TYPES } from "./contact-reducer";
 
 import InputComponent from "../../component/input-component/InputComponent";
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
+import InputLefton from "../../component/input-lefton/InputLefton"; 
 
 const INITIAL_SHOP_CONTACT = {
   discordURL: "",
@@ -81,32 +82,36 @@ const ContactInfo = () => {
         across multiple platforms.
       </PageInformationComponent>
       <PageContentWrapper>
-        <InputComponent
+        <InputLefton
           value={shopInformation.webURL}
           change={changeWebUrl}
           label="Website"
-          placeHolder="https://mystore.com"
+          placeHolder="mystore.com"
+          children='https://'
         />
         <Box mb="52px" />
-        <InputComponent
+        <InputLefton
           value={shopInformation.discordURL}
           change={changeDiscord}
           label="Discord"
-          placeHolder="https://discord.gg/my store"
+          placeHolder="my store"
+          children='https://discord.gg/'
         />
         <Box mb="52px" />
-        <InputComponent
+        <InputLefton
           value={shopInformation.twitterURL}
           change={changeTwitter}
           label="Twitter"
-          placeHolder="https://twitter.com/my store"
+          placeHolder="my store"
+          children='https://twitter.com/'
         />
         <Box mb="52px" />
-        <InputComponent
+        <InputLefton
           value={shopInformation.instagramURL}
           change={changeInsagram}
           label="Instagram"
-          placeHolder="https://www.instagram.com/mystore.com"
+          placeHolder="mystore.com"
+          children='https://www.instagram.com/'
         />
       </PageContentWrapper>
 
