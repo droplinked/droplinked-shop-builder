@@ -1,5 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -14,6 +14,7 @@ import { putUpdateShop } from "../../../../apis/shopApiService";
 import { shopContactReducer, SHOP_REDUCER_TYPES } from "./contact-reducer";
 
 import InputComponent from "../../component/input-component/InputComponent";
+import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 
 const INITIAL_SHOP_CONTACT = {
   discordURL: "",
@@ -27,6 +28,8 @@ const ContactInfo = () => {
     shopContactReducer,
     INITIAL_SHOP_CONTACT
   );
+
+  const [loading, setLoading] = useState(false);
 
   const { putApi } = useApi();
   const { shop } = useProfile();
@@ -63,7 +66,9 @@ const ContactInfo = () => {
       twitterURL: shopInformation.twitterURL,
       webURL: shopInformation.webURL,
     };
+    setLoading(true)
     const result = await putApi(putUpdateShop(apiBody));
+    setLoading(false)
     if (result) {
       navigate(`/${shop.name}/register/design`);
     }
@@ -106,7 +111,9 @@ const ContactInfo = () => {
       </PageContentWrapper>
 
       <Flex justifyContent="end" w="100%" pt="36px">
-        <SaveButton w="200px" onClick={clickOnSave} >Save & next step</SaveButton>
+        <SubmitButton width="200px" click={clickOnSave} loading={loading} >
+          Save & next step
+        </SubmitButton>
       </Flex>
     </PageContent>
   );
