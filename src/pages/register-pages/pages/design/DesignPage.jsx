@@ -107,7 +107,7 @@ const DesignPage = () => {
     } else {
       const result = await putApi(putUpdateShop(designData));
       if (result) {
-        navigate(`/${shop.name}`);
+        navigate(`/${shop.name}/products`);
       }
     }
   };
