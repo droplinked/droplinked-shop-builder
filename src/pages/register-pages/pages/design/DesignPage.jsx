@@ -28,7 +28,7 @@ const INITIAL_SHOP_Design = {
   logo: "",
   headerIcon: "",
   textColor: "#ffffff",
-  theme: "",
+  theme: "theme-3",
   backgroundText: "",
   backgroundImage: "",
   backgroundImageSecondary: "",
@@ -101,15 +101,16 @@ const DesignPage = () => {
     // Object.keys(designData).forEach((item) => {
     //   if (designData[item].length == 0) condition = true;
     // });
-    if (condition) {
-      errorToast("Error");
-      return;
-    } else {
-      const result = await putApi(putUpdateShop(designData));
-      if (result) {
-        navigate(`/${shop.name}/products`);
-      }
-    }
+    console.log('designData ' ,designData);
+    // if (condition) {
+    //   errorToast("Error");
+    //   return;
+    // } else {
+    //   const result = await putApi(putUpdateShop(designData));
+    //   if (result) {
+    //     navigate(`/${shop.name}/products`);
+    //   }
+    // }
   };
 
   return (
