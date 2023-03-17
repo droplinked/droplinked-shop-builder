@@ -18,6 +18,7 @@ import FormInput from "../../components/shared/FormInput/FormInput";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import SelectInput from "../../components/shared/SelectInput/SelectInput";
+import SubmitButton from "./components/submit-button/SubmitButton";
 import InputComponent from "./InputComponent";
 
 export default function AddressModal({
@@ -304,9 +305,12 @@ export default function AddressModal({
             change={ChangeLastname}
           />
         </Flex>
-        <SaveButton w="100%" onClick={submitForm} disabled={loading}>
+        <SubmitButton width='100%' click={submitForm} disabled={loading} loading={loading} >
+        Save
+        </SubmitButton>
+        {/* <SaveButton w="100%" onClick={submitForm} disabled={loading}>
           Save
-        </SaveButton>
+        </SaveButton> */}
       </Box>
     </ModalWrapper>
   );
