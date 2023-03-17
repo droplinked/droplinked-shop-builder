@@ -15,10 +15,12 @@ import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useApi } from "../../../../hooks/useApi/useApi";
 import { putUpdateShop } from "../../../../apis/shopApiService";
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
+import { isValidData } from "./utils";
 
 import InputImage from "./components/input-image/InputImage";
 import InputColor from "./components/input-color/InputColor";
 import InputComponent from "../../component/input-component/InputComponent";
+import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 
 import theme1Image from "./theme-1.jpg";
 import theme2Image from "./theme-2.jpg";
@@ -42,6 +44,7 @@ const IMAGES = [
 
 const DesignPage = () => {
   const [selectedTheme, setSelectedTheme] = useState(IMAGES[0]);
+  const [loading, setLoading] = useState(false);
 
   const [designData, dispatch] = useReducer(
     shopDesignReducer,
@@ -97,11 +100,13 @@ const DesignPage = () => {
   };
 
   const clickSubmit = async () => {
-    let condition = false;
-    // Object.keys(designData).forEach((item) => {
-    //   if (designData[item].length == 0) condition = true;
-    // });
-    console.log('designData ' ,designData);
+
+    if(!isValidData(designData)){
+      errorToast("Required");
+       return;
+    } 
+console.log('designData ' ,designData);
+setLoading(true)
     // if (condition) {
     //   errorToast("Error");
     //   return;
@@ -199,9 +204,9 @@ const DesignPage = () => {
       </PageContentWrapper>
       <Box mb="36px" />
       <Flex justifyContent="end" w="100%">
-        <SaveButton w="200px" onClick={clickSubmit}>
+        <SubmitButton width="200px" click={clickSubmit} loading={loading} >
           Save & next step
-        </SaveButton>
+        </SubmitButton>
       </Flex>
     </PageContent>
   );
