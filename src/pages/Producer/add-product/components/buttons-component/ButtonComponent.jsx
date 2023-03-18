@@ -4,13 +4,16 @@ import { useState } from "react";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 import { useApi } from "../../../../../hooks/useApi/useApi";
 import { postProduct } from "../../../../../apis/productsApiService";
+import { useCustomNavigate } from "../../../../../hooks/useCustomeNavigate/useCustomNavigate";
+
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
 const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
   const [loading, setLoading] = useState(false);
 
-  const { errorToast , successToast} = useToasty();
+  const { errorToast, successToast } = useToasty();
   const { postApi } = useApi();
+  const { shopNavigate } = useCustomNavigate();
 
   const backToPriviesPage = () => {};
 
@@ -43,11 +46,13 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
           priceUnit: "USD",
         }
       );
-      console.log('final data : ', finalData)
       setLoading(true);
       let result = await postApi(postProduct(finalData));
       setLoading(false);
-      if (result) successToast("Done success fully");
+      if (result) {
+        successToast("Done success fully");
+        shopNavigate("products");
+      }
     }
   };
   return (
