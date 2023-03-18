@@ -19,27 +19,23 @@ import { useApi } from "../../../../../hooks/useApi/useApi";
 import plus from "../../../../../assest/icon/plus-icon.svg";
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
+const INITiAL_VARIANTS = [
+  {
+    _id: "62a989ab1f2c2bbc5b1e7153",
+    name: "Color",
+  },
+  {
+    _id: "62a989e21f2c2bbc5b1e7154",
+    name: "Size",
+  },
+];
+
 const PropertiesComponent = ({ OptionList, setOptionList }) => {
- // const { getApi } = useApi();
+  // const { getApi } = useApi();
 
-  const [variantsType, setVariantType] = useState(null);
+  const [variantsType, setVariantType] = useState(INITiAL_VARIANTS);
 
-  useEffect(async () => {
-    // let result = await getApi(getVariants());
-    // if (result) setVariantType(result.variants);
-    setVariantType(
-      [
-        ({
-          _id: "62a989ab1f2c2bbc5b1e7153",
-          name: "Color",
-        },
-        {
-          _id: "62a989e21f2c2bbc5b1e7154",
-          name: "Size",
-        })
-      ]
-    )
-  }, []);
+  console.log("variantsType ", variantsType);
 
   const changeOptionType = (optionId, optionIndex) => {
     let optionName = variantsType.find((vari) => vari._id == optionId).name;
