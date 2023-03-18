@@ -19,7 +19,10 @@ const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
   // get all collection data
   useEffect(async () => {
     let result = await getApi(getUsersCollections());
-    if (result) setCollectionList(result);
+    if (result){ 
+      setCollectionList(result);
+      selectCollection(result[0]._id)
+    }
   }, []);
 
   const selectCollection = (collectionId) =>
@@ -42,7 +45,7 @@ const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
       <Box mb="16px" />
 
       <CollectionContainer>
-        <CollectionItem
+        {/* <CollectionItem
           cursor="default"
           bg={TechnicalData.productCollectionID == "" ? "primary" : "mainLayer"}
           color={
@@ -50,7 +53,7 @@ const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
           }
         >
           Select one
-        </CollectionItem>
+        </CollectionItem> */}
         {collectionList.map((collection) => {
           return (
             <CollectionItem
