@@ -15,7 +15,7 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
   const { postApi } = useApi();
   const { shopNavigate } = useCustomNavigate();
 
-  const backToPriviesPage = () => {};
+  const backToPriviesPage = () =>shopNavigate("products");
 
   const isValidate = () => {
     if (isEmpty(productIntro.title, "title")) return false;
