@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 import { useApi } from "../../../../../hooks/useApi/useApi";
-//import { postAddProduct } from "../../../../../api-service/product/productApiService";
 import { postProduct } from "../../../../../apis/productsApiService";
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
