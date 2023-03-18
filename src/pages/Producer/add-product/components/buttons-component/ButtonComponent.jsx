@@ -24,7 +24,7 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
 
   const isEmpty = (value, name) => {
     if (value == "") {
-      errorToast(`Sku ${name} is required`);
+      errorToast(`${name} is required`);
       return true;
     }
   };
