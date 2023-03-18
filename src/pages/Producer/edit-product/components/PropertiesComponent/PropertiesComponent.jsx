@@ -55,7 +55,7 @@ const PropertiesComponent = ({ OptionList, setOptionList }) => {
       <ComponentTitle>Properties</ComponentTitle>
       <Box mb="36px" />
 
-      <PropertiesTopComponent />
+      {/* <PropertiesTopComponent /> */}
 
       <Flex w="100%" alignItems="center" gap="100px">
         <Text16px400>Optional</Text16px400>
