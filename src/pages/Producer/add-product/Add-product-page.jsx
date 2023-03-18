@@ -20,7 +20,7 @@ const initialProductIntor = {
 const initialTechnicalInfo = {
   productCollectionID: "",
   shippingType: SHIPING_TYPES.EASY_POST,
-  shippingPrice: 0,
+  shippingPrice: '',
 };
 
 function AddProductPage() {
