@@ -3,8 +3,14 @@ import { useParams } from "react-router-dom";
 
 import { useApi } from "../../../hooks/useApi/useApi";
 import { getProducerProductById } from "../../../api-service/product/productApiService";
-import { productIntroReducer ,INTRO_REDUCER_TYPES } from "./reducer/product-intro-reducer";
-import { productTechReducer , TECH_REDUCER_TYPES} from "./reducer/technical-data-reducer";
+import {
+  productIntroReducer,
+  INTRO_REDUCER_TYPES,
+} from "./reducer/product-intro-reducer";
+import {
+  productTechReducer,
+  TECH_REDUCER_TYPES,
+} from "./reducer/technical-data-reducer";
 import { PageWrapper } from "./EditProductPage-style";
 import { getPublicProductById } from "../../../apis/productsApiService";
 import {
@@ -19,6 +25,7 @@ import TechnicalComponent from "./components/technical-component/TechnicalCompon
 import PropertiesComponent from "./components/PropertiesComponent/PropertiesComponent";
 import VariantsComponent from "./components/variants-component/VariantsComponent";
 import ButtonComponent from "./components/buttons-component/ButtonComponent";
+import Loading from "../../../components/shared/loading/Loading";
 
 const EditProductPage = () => {
   // state for keep title and  description and images
@@ -57,6 +64,8 @@ const EditProductPage = () => {
     getProductData();
   }, []);
 
+  if (!productIntro) return <Loading />;
+
   return (
     <PageWrapper>
       {productIntro && (
@@ -86,7 +95,14 @@ const EditProductPage = () => {
           updateProduct={getProductData}
         />
       )}
-        <ButtonComponent productIntro={productIntro} TechnicalData={TechnicalData} skus={skus}  productId={merchId} />
+      {productIntro && (
+        <ButtonComponent
+          productIntro={productIntro}
+          TechnicalData={TechnicalData}
+          skus={skus}
+          productId={merchId}
+        />
+      )}
     </PageWrapper>
   );
 };
