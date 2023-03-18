@@ -1,14 +1,19 @@
 
  export const initialReducer = (OptionList, defaultValue) => {
     let initialSku;
+    console.log('defaultValue ', defaultValue);
     if (defaultValue) {
-      let options = defaultValue.options.map((option) => {
-        return {
-          variantID: option.variantID,
-          variantName: option.variantName,
-          value: option.value,
-        };
-      });
+      let options = []
+      if(defaultValue.options){
+        options = defaultValue.options.map((option) => {
+          return {
+            variantID: option.variantID,
+            variantName: option.variantName,
+            value: option.value,
+          };
+        });
+      }
+    
       initialSku = {
         _id:(defaultValue._id)?defaultValue._id:'',
         price: defaultValue.price,
