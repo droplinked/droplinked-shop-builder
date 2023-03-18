@@ -16,7 +16,7 @@ const OptionComponent = ({ icon, label, path }) => {
     }
   };
   const isActive = useMemo(()=>{return location.pathname.includes(path)},[location])
-  console.log("isActive ", isActive);
+
   return (
     <Tooltip
       label={label}
