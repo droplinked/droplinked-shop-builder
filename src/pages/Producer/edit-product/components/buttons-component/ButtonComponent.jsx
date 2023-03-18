@@ -5,6 +5,7 @@ import { useToasty } from "../../../../../context/toastify/ToastContext";
 import { useApi } from "../../../../../hooks/useApi/useApi";
 //import { putUpdateProduct } from "../../../../../api-service/product/productApiService";
 import { putProductById } from "../../../../../apis/productsApiService";
+import { useCustomNavigate } from "../../../../../hooks/useCustomeNavigate/useCustomNavigate";
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
 const ButtonComponent = ({ productIntro, TechnicalData, skus, productId }) => {
@@ -12,8 +13,9 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus, productId }) => {
 
   const { errorToast, successToast } = useToasty();
   const { putApi } = useApi();
+  const { shopNavigate } = useCustomNavigate();
 
-  const backToPriviesPage = () => {};
+  const backToPriviesPage = () => shopNavigate("products");
 
   const isValidate = () => {
     if (isEmpty(productIntro.title, "title")) return false;
@@ -47,7 +49,10 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus, productId }) => {
       setLoading(true);
       let result = await putApi(putProductById(productId, finalData));
       setLoading(false);
-      if (result) successToast("Done success fully");
+      if (result) {
+        successToast("Done success fully");
+        shopNavigate("products");
+      }
     }
   };
   return (
