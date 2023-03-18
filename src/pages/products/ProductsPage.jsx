@@ -23,6 +23,8 @@ import { PageWrapper } from "./ProductsPage-style";
 import PageHeader from "./components/page-header/PageHeader";
 import AddProductComponent from "./components/add-product-component/AddProductComponent";
 import ProductCompnent from "./components/product-component/ProductCompnent";
+import Loading from "../../components/shared/loading/Loading";
+
 const ProductsPage = () => {
   const [products, setProducts] = useState(null);
 
@@ -38,9 +40,14 @@ const ProductsPage = () => {
     getAllProducts();
   }, []);
 
- // console.log("products ", products);
+  // console.log("products ", products);
 
- if(!products) return <h1 style={{color:'white'}}>loading</h1>
+  if (!products)
+    return (
+      <Box w="100%" h="auto" p="0px 40px">
+        <PageWrapper><Loading /></PageWrapper>
+      </Box>
+    );
 
   return (
     <Box w="100%" h="auto" p="0px 40px">
@@ -65,11 +72,11 @@ const ProductsPage = () => {
               </Tr>
             </Thead>
             {products.length > 0 && (
-               <Tbody>
+              <Tbody>
                 {products.map((item, i) => (
                   <ProductCompnent key={i} product={item} />
                 ))}
-             </Tbody>
+              </Tbody>
             )}
           </Table>
         </TableContainer>
