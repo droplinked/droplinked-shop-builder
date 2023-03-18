@@ -35,8 +35,6 @@ const PropertiesComponent = ({ OptionList, setOptionList }) => {
 
   const [variantsType, setVariantType] = useState(INITiAL_VARIANTS);
 
-  console.log("variantsType ", variantsType);
-
   const changeOptionType = (optionId, optionIndex) => {
     let optionName = variantsType.find((vari) => vari._id == optionId).name;
     let optionArray = Array.from(OptionList);
