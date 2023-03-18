@@ -121,7 +121,7 @@ const PropertiesComponent = ({ OptionList, setOptionList }) => {
     <ComponentWrapper>
       <ComponentTitle>Properties</ComponentTitle>
       <Box mb="36px" />
-      <Flex w="100%" alignItems="center" gap="100px" mb="48px">
+      {/* <Flex w="100%" alignItems="center" gap="100px" mb="48px">
         <Text16px400>Required</Text16px400>
 
         <Flex w="calc(100% - 150px)" justifyContent="space-between" h="100%">
@@ -133,7 +133,7 @@ const PropertiesComponent = ({ OptionList, setOptionList }) => {
           <GrayLine />
           <Text14px400>Delivery boxing information</Text14px400>
         </Flex>
-      </Flex>
+      </Flex> */}
 
       <Flex w="100%" alignItems="center" gap="100px">
         <Text16px400>Optional</Text16px400>
