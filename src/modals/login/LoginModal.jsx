@@ -98,19 +98,19 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
         navigate("/email-confirmation");
         return;
       case PROFILE_STATUS.VERIFIED:
-        navigate(`/${shopName}/register/shop-info`);
+        navigate(`/${shopName}/c/register/shop-info`);
         return;
       case PROFILE_STATUS.PROFILE_COMPLETED:
-        navigate(`/${shopName}/register/shop-info`);
+        navigate(`/${shopName}/c/register/shop-info`);
         return;
       case PROFILE_STATUS.SHOP_INFO_COMPLETED:
-        navigate(`/${shopName}/products/`);
+        navigate(`/${shopName}/c/products/`);
         return;
       case PROFILE_STATUS.IMS_TYPE_COMPLETED:
-        navigate(`/${shopName}/products/`);
+        navigate(`/${shopName}/c/products/`);
         return;
       case PROFILE_STATUS.ACTIVE:
-        navigate(`/${shopName}/products/`);
+        navigate(`/${shopName}/c/products/`);
         return;
     }
   };

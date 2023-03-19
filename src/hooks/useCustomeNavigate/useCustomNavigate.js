@@ -8,7 +8,7 @@ export function useCustomNavigate() {
   const { shop } = useProfile();
   const navigate = useNavigate();
 
-  const shopNavigate = (path) => navigate(`/${shop.name}/${path}`);
+  const shopNavigate = (path) => navigate(`/${shop.name}/c/${path}`);
 
   return {
     shopNavigate,

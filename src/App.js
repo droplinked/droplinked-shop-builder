@@ -135,7 +135,7 @@ function App() {
               <Route path="addproduct-template" element={<AddproductTest />} />
             </Route> */}
 
-            <Route path=":shopname" element={<AdminWrapper />}>
+            <Route path=":shopname/c" element={<AdminWrapper />}>
               <Route path="register" element={<RegisterPagesWrapper />}>
                 <Route path="shop-info" element={<RegisterShopInfo />} />
                 <Route path="contact-info" element={<ContactInfo />} />
