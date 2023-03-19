@@ -1,7 +1,8 @@
 .logo-slider {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    gap:120px;
     height: 100px;
     overflow: hidden;
     border:1px solid red;
@@ -10,17 +11,16 @@
   .logo {
     margin: 0 50px;
     opacity: 0;
-    animation: slideIn 5s linear infinite ;
-    border:1px solid blue;
+    animation: slideIn 20s linear infinite ;
   }
   
   @keyframes slideIn {
     from {
       transform: translateX(-100vw);
-      opacity: 0;
+      opacity: 1;
     }
     to {
-      transform: translateX(+100vw);
+      transform: translateX(+50vw);
       opacity: 1;
     }
   }
