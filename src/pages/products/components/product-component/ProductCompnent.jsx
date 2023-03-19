@@ -1,14 +1,12 @@
 import { Tr, Td, Image, Flex, Text } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 
-import { useProfile } from "../../../../hooks/useProfile/useProfile";
+import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 
 const ProductCompnent = ({ product }) => {
   
-  const navigate = useNavigate();
-  const { shop } = useProfile();
+  const { shopNavigate } = useCustomNavigate()
 
-  const clickOnProduct = () => navigate(`/${shop.name}/product/${product._id}`);
+  const clickOnProduct = () => shopNavigate(`product/${product._id}`);
 
   return (
     <Tr cursor="pointer" onClick={clickOnProduct}>
