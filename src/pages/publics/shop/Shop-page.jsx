@@ -9,8 +9,11 @@ import { selectCurrentProfile } from "../../../store/profile/profile.selector";
 import { useApi } from "../../../hooks/useApi/useApi";
 // import { getShopInformationByName } from "../../../api-service/shop/shopApiService";
 // import { getUser } from "../../../apis/userApiService";
-import { getUsersCollections  ,getCollectionPublicByShopname} from "../../../apis/collectionApiService";
-import { getShopInfo } from "../../../apis/shopApiService";
+import {
+  getUsersCollections,
+  getCollectionPublicByShopname,
+} from "../../../apis/collectionApiService";
+import { getShopInfo, getShopPublic } from "../../../apis/shopApiService";
 import { Box, Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -38,12 +41,14 @@ export default function ShopPage() {
   }, [shopname]);
 
   const getShopData = async () => {
-    let result = await getApi(getShopInfo(shopname));
+    let result = await getApi(getShopPublic(shopname));
+    console.log("shop result ", result);
     if (result) setShop(result);
   };
 
   const getCollectionData = async () => {
     let result = await getApi(getCollectionPublicByShopname(shopname));
+    console.log("collection result ", result);
     if (result) setCollections(result);
   };
 
@@ -71,13 +76,18 @@ export default function ShopPage() {
               </Flex>
             </Box>
           ) : (
+            <PublicShopPage
+              shopData={shopData}
+              shopName={shopname}
+              collections={collections}
+            />
 
-            <OwnerShopPage
-            shopData={shopData}
-            shopName={shopname}
-            collections={collections}
-            update={getCollectionData}
-          />
+            //   <OwnerShopPage
+            //   shopData={shopData}
+            //   shopName={shopname}
+            //   collections={collections}
+            //   update={getCollectionData}
+            // />
 
             // <>
             //   {isOwner() ? (
@@ -94,7 +104,7 @@ export default function ShopPage() {
             //       collections={collections}
             //     />
             //   )}
-          //  </>
+            //  </>
           )}
         </ShopPageContainer>
       )}

@@ -7,7 +7,7 @@ import LoadingPage from "./pages/publics/loading/Loading-page";
 //import ShippingPage from "./pages/customer/shipping/Shipping-page";
 import Enquiry from "./pages/publics/enquiry/Enquiry";
 // import ProducerCollection from "./pages/Producer/producer-collection/producer-collection";
-// import UserWrapper from "./pages/user-wrapper/user-wrapper";
+ import UserWrapper from "./pages/user-wrapper/user-wrapper";
 // import Shops from "./pages/affiliate/shops/shops";
 // import AffiliateShop from "./pages/affiliate/shop/shop";
 // import AffiliateProduct from "./pages/affiliate/product/product";
@@ -50,7 +50,7 @@ const AddProductPage = lazy(() =>
 const CollectionMainPage = lazy(() =>
   import("./pages/Producer/collection/Collection-page")
 );
-// const ShopPage = lazy(() => import("./pages/publics/shop/Shop-page"));
+ const ShopPage = lazy(() => import("./pages/publics/shop/Shop-page"));
 // const MerchPage = lazy(() => import("./pages/customer/merch/Merch-page"));
 // const CollectionPage = lazy(() =>
 //   import("./pages/publics/collection/Collection-page")
@@ -147,6 +147,9 @@ function App() {
               <Route path="collections" element={<CollectionMainPage />} />
               <Route path="orders" element={<IncomingOrderPage />} />
               <Route path="rules" element={<RulePage />} />
+            </Route>
+            <Route path=":shopname" element={<UserWrapper />}>
+            <Route index element={<ShopPage />} />
             </Route>
             {/* producer pages */}
             {/* <Route path=":shopname" element={<UserWrapper />}>

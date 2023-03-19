@@ -11,7 +11,7 @@ const UserWrapper = () => {
 
   return (
     <UserWrapperPage>
-        <Sidebar />
+        {/* <Sidebar /> */}
       <PageContainer>
         <Outlet />
       </PageContainer>
