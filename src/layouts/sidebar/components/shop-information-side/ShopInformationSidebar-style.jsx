@@ -9,6 +9,7 @@ export const ShopInformationWrapper = chakra("div", {
     py: { sm: "32px", lg: "56px" },
     borderRadius: "8px",
     mt: "50px",
+    mr:'50px',
   },
 });
 
