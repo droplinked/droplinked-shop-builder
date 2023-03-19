@@ -42,13 +42,11 @@ export default function ShopPage() {
 
   const getShopData = async () => {
     let result = await getApi(getShopPublic(shopname));
-    console.log("shop result ", result);
     if (result) setShop(result);
   };
 
   const getCollectionData = async () => {
     let result = await getApi(getCollectionPublicByShopname(shopname));
-    console.log("collection result ", result);
     if (result) setCollections(result);
   };
 
