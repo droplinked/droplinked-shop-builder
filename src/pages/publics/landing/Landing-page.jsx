@@ -5,6 +5,7 @@ import {
   usePrefersReducedMotion,
   Flex,
   Box,
+  Text,
 } from "@chakra-ui/react";
 
 import {
@@ -24,7 +25,7 @@ import LandingpageImage from "./components/landing-page-image-component";
 import LandingIcons from "./components/landing-icons-component";
 import SignupInput from "./components/singup-input-component";
 import AuthModal from "../../../modals/auth/AuthModal";
-import LogoSlider from "./components/logo-slider/LogoSlider"
+import LogoSlider from "./components/logo-slider/LogoSlider";
 
 const keyframe_leftanimation = keyframes`
 0% {
@@ -54,7 +55,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     if (shop) {
-    //  navigate(`/${shop.name}/products`);
+      //  navigate(`/${shop.name}/products`);
     }
   }, []);
 
@@ -102,6 +103,9 @@ export default function LandingPage() {
       </Flex>
 
       <SpaceBox></SpaceBox>
+      <Flex w="100%" justifyContent="center" mb="36px">
+        <Text color='white' fontSize='36px' fontWeight='700'  >Droplinked web3 partners</Text>
+      </Flex>
 
       <LogoSlider />
 
