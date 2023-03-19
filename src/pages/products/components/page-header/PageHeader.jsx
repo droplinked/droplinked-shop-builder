@@ -6,19 +6,17 @@ import {
   Image,
   Button,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 
-import { useProfile } from "../../../../hooks/useProfile/useProfile";
+import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate"
 
 import searchIcon from "../../../../assest/icon/search-icon.svg";
 
 
 const PageHeader = () => {
 
-  const navigate = useNavigate();
-  const { shop } = useProfile();
+const { shopNavigate } =  useCustomNavigate()
 
-  const navigateToAddProductPage = () => navigate(`/${shop.name}/add-product`);
+  const navigateToAddProductPage = () => shopNavigate(`add-product`);
 
   return (
     <Flex w="100%" justifyContent="space-between" alignItems="center" mb="24px">

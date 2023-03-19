@@ -1,21 +1,22 @@
 import { useMemo } from "react";
 import { Tooltip } from "@chakra-ui/react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-import { useProfile } from "../../../../hooks/useProfile/useProfile";
+import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 import { IconComponent, IconWrapper } from "../../Sidebar-style";
 
 const OptionComponent = ({ icon, label, path }) => {
-  const navigate = useNavigate();
   const location = useLocation();
-  const { shop } = useProfile();
+  const { shopNavigate } = useCustomNavigate();
 
   const clickOnIcon = () => {
     if (path) {
-      navigate(`/${shop.name}/${path}`);
+      shopNavigate(path);
     }
   };
-  const isActive = useMemo(()=>{return location.pathname.includes(path)},[location])
+  const isActive = useMemo(() => {
+    return location.pathname.includes(path);
+  }, [location]);
 
   return (
     <Tooltip
@@ -27,7 +28,7 @@ const OptionComponent = ({ icon, label, path }) => {
       <IconWrapper
         onClick={clickOnIcon}
         borderLeft="4px solid"
-        borderColor={isActive?"primary":'none'}
+        borderColor={isActive ? "primary" : "none"}
       >
         <IconComponent src={icon} />
       </IconWrapper>
