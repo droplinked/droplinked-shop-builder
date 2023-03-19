@@ -21,6 +21,14 @@ const LogoSlider = () => {
         logo2,
         logo3,
         logo4 ,
+        logo1,
+        logo2,
+        logo3,
+        logo4 ,
+        logo1,
+        logo2,
+        logo3,
+        logo4 ,
       ];
     
       return (

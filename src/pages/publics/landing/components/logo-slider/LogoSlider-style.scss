@@ -3,15 +3,15 @@
     align-items: center;
     justify-content: space-around;
     gap:120px;
-    height: 100px;
+    height: 320px;
     overflow: hidden;
-    border:1px solid red;
+    background: linear-gradient(90deg, rgba(38, 146, 116, 0.33) 0%, rgba(20, 20, 20, 0) 100%);
   }
   
   .logo {
     margin: 0 50px;
     opacity: 0;
-    animation: slideIn 20s linear infinite ;
+    animation: slideIn 60s linear infinite ;
   }
   
   @keyframes slideIn {
