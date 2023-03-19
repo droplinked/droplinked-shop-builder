@@ -1,6 +1,5 @@
-import { Box, Flex, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { Box, Flex, FormControl, FormLabel } from "@chakra-ui/react";
 import { useState, useEffect, useReducer } from "react";
-import { useNavigate } from "react-router-dom";
 
 import {
   PageContent,
@@ -8,7 +7,6 @@ import {
   PageContentWrapper,
   Text18px,
   AddAddressButton,
-  SaveButton,
 } from "../../RegisterPages-style";
 import { useApi } from "../../../../hooks/useApi/useApi";
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
@@ -19,6 +17,7 @@ import {
   shopInformationReducer,
   SHOP_REDUCER_TYPES,
 } from "./shop-info-reducer";
+import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 
 import InputComponent from "../../component/input-component/InputComponent";
 import AddressModal from "../../../../modals/address/AddressModal";
@@ -40,9 +39,9 @@ const RegisterShopInfo = () => {
   const [addressList, setAddressList] = useState([]);
 
   const { getApi, putApi } = useApi();
+  const { shopNavigate } = useCustomNavigate()
   const { errorToast } = useToasty();
   const { shop } = useProfile();
-  const navigate = useNavigate();
 
   const toggleAddressModal = () => setShowAddressModal((p) => !p);
 
@@ -103,7 +102,7 @@ const RegisterShopInfo = () => {
     const result = await putApi(putUpdateShop(apiBody));
     setLoading(false);
     if (result) {
-      navigate(`/${shop.name}/register/contact-info`);
+      shopNavigate(`register/contact-info`);
     }
   };
 

@@ -1,7 +1,7 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 
-import { useProfile } from "../../../../hooks/useProfile/useProfile";
+
+import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 
 import plusIcon from "../../../../assest/icon/plus-icon.svg";
 import addProductIcon from "../../../../assest/icon/add-item-green-icon.svg";
@@ -11,10 +11,9 @@ import ruleIcon from "../../../../assest/icon/rulesets-active-icon.svg";
 
 const AddProductComponent = () => {
 
-    const navigate = useNavigate();
-    const { shop } = useProfile();
+    const { shopNavigate} = useCustomNavigate()
   
-    const navigateToAddProductPage = () => navigate(`/${shop.name}/add-product`);
+    const navigateToAddProductPage = () => shopNavigate(`add-product`);
 
   return (
     <Flex

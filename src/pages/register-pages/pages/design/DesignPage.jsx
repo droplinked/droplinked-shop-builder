@@ -1,12 +1,10 @@
 import { Box, Flex, Image, input } from "@chakra-ui/react";
 import { useReducer, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import {
   PageContent,
   PageInformationComponent,
   PageContentWrapper,
-  SaveButton,
   Text18px,
 } from "../../RegisterPages-style";
 import { MainThemeImage } from "./DesignPage-style";
@@ -14,8 +12,8 @@ import { shopDesignReducer, SHOP_REDUCER_TYPES } from "./reducer";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useApi } from "../../../../hooks/useApi/useApi";
 import { putUpdateShop } from "../../../../apis/shopApiService";
-import { useProfile } from "../../../../hooks/useProfile/useProfile";
 import { isValidData } from "./utils";
+import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 
 import InputImage from "./components/input-image/InputImage";
 import InputColor from "./components/input-color/InputColor";
@@ -53,8 +51,7 @@ const DesignPage = () => {
 
   const { errorToast } = useToasty();
   const { putApi } = useApi();
-  const { shop } = useProfile();
-  const navigate = useNavigate();
+  const { shopNavigate } = useCustomNavigate()
 
   const selectTheme = (item) => {
     setSelectedTheme(item);
@@ -109,7 +106,7 @@ const DesignPage = () => {
     const result = await putApi(putUpdateShop(designData));
     setLoading(false);
     if (result) {
-      navigate(`/${shop.name}/products`);
+      shopNavigate(`products`);
     }
   };
 

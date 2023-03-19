@@ -12,6 +12,7 @@ import { useApi } from "../../../../hooks/useApi/useApi";
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
 import { putUpdateShop } from "../../../../apis/shopApiService";
 import { shopContactReducer, SHOP_REDUCER_TYPES } from "./contact-reducer";
+import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 
 import InputComponent from "../../component/input-component/InputComponent";
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
@@ -35,6 +36,7 @@ const ContactInfo = () => {
   const { putApi } = useApi();
   const { shop } = useProfile();
   const navigate = useNavigate();
+  const { shopNavigate } = useCustomNavigate()
 
   const changeWebUrl = (e) =>
     dispatchShopInformation({
@@ -71,7 +73,7 @@ const ContactInfo = () => {
     const result = await putApi(putUpdateShop(apiBody));
     setLoading(false)
     if (result) {
-      navigate(`/${shop.name}/register/design`);
+      shopNavigate(`register/design`);
     }
   };
 
