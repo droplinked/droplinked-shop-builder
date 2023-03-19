@@ -24,6 +24,7 @@ import LandingpageImage from "./components/landing-page-image-component";
 import LandingIcons from "./components/landing-icons-component";
 import SignupInput from "./components/singup-input-component";
 import AuthModal from "../../../modals/auth/AuthModal";
+import LogoSlider from "./components/logo-slider/LogoSlider"
 
 const keyframe_leftanimation = keyframes`
 0% {
@@ -101,6 +102,8 @@ export default function LandingPage() {
       </Flex>
 
       <SpaceBox></SpaceBox>
+
+      <LogoSlider />
 
       <AuthModal
         show={showAuthModal}
