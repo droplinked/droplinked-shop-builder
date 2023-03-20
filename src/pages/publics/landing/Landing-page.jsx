@@ -103,9 +103,10 @@ export default function LandingPage() {
       </Flex>
 
       <SpaceBox></SpaceBox>
-      <Flex w="100%" justifyContent="center" mb="36px">
+      {/* <Flex w="100%" justifyContent="center" mb="36px">
         <Text color='white' fontSize='36px' fontWeight='700'  >Droplinked web3 partners</Text>
-      </Flex>
+      </Flex> */}
+      <Box mb="36px" />
 
       <LogoSlider />
 
