@@ -51,7 +51,7 @@ const CollectionMainPage = lazy(() =>
   import("./pages/Producer/collection/Collection-page")
 );
  const ShopPage = lazy(() => import("./pages/publics/shop/Shop-page"));
-// const MerchPage = lazy(() => import("./pages/customer/merch/Merch-page"));
+ const MerchPage = lazy(() => import("./pages/customer/merch/Merch-page"));
 // const CollectionPage = lazy(() =>
 //   import("./pages/publics/collection/Collection-page")
 // );
@@ -150,6 +150,7 @@ function App() {
             </Route>
             <Route path=":shopname" element={<UserWrapper />}>
             <Route index element={<ShopPage />} />
+            <Route path="merch/:merchId" element={<MerchPage />} />
             </Route>
             {/* producer pages */}
             {/* <Route path=":shopname" element={<UserWrapper />}>

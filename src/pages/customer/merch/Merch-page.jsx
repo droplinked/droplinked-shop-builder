@@ -6,6 +6,9 @@ import { getProduct } from "../../../api/public/Product-api";
 import { MerchpageContainer } from "./Merch-page-style";
 import { Box } from "@chakra-ui/react";
 
+import { useApi } from "../../../hooks/useApi/useApi";
+import { getPublicProductById } from "../../../apis/productsApiService";
+
 import Loading from "../../../components/shared/loading/Loading";
 import DroplinkedMerch from "./droplinked-merch/Droplinked-merch";
 import ShopifyMech from "./shopify-merch/Shopify-merch";
@@ -17,6 +20,7 @@ export default function MerchPage() {
   const [authModal, setAuthModal] = useState(false);
 
   let params = useParams();
+  const { getApi } = useApi()
 
   let merchId = params.merchId;
   let shopname = params.shopname;
@@ -26,9 +30,11 @@ export default function MerchPage() {
   }, []);
 
   const getdata = async (merchId) => {
-    let result = await getProduct(merchId);
-    setProduct(result);
+    let result = await getApi(getPublicProductById(merchId));
+    if(result)setProduct(result);
   };
+
+  console.log('product ' ,product);
 
   const toggleAuthModal = () => setAuthModal((p) => !p);
 

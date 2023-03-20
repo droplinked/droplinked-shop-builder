@@ -34,12 +34,12 @@ const DroplinkedDetail = ({
   //
   // find all options type in product and return array of objects like {{variantID:id , values:[]}}
   const getOptionsList = () => {
-    let optionsId = product.skus[0].options.map((opt) => opt.variantID);
+    let optionsId = product.skuIDs[0].options.map((opt) => opt.variantID);
     let optionsType = [];
     if (optionsId.length > 0) {
       optionsId.forEach((opt) => {
         let values = [];
-        product.skus.map((sku) => {
+        product.skuIDs.map((sku) => {
           let findOption = sku.options.find(
             (current) => current.variantID == opt
           );
@@ -57,7 +57,7 @@ const DroplinkedDetail = ({
     if (optionsList.length == 0) {
       setSelectedSku(product.skus[0]);
     } else {
-      product.skus.forEach((sku) => {
+      product.skuIDs.forEach((sku) => {
         let find = true;
 
         sku.options.forEach((option) => {

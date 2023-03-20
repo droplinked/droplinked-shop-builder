@@ -53,10 +53,9 @@ export const postProduct = (body:any) => {
 
 
   export const getPublicProductById = (productId:number) => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
+    //const token = JSON.parse(localStorage.getItem("token") || "");
     let apiObj = {
       url: `product/public/${productId}`,
-      token: token,
     };
     return { ...apiObj };
   };
