@@ -17,6 +17,7 @@ import {
 } from "./ShopInformationSidebar-style";
 
 const ShopInformationSidebar = ({ ShopData }) => {
+
   return (
     <ShopInformationWrapper>
       <ShopinfoWrapper>
