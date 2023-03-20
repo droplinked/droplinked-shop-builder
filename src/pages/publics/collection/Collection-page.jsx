@@ -3,7 +3,8 @@ import Product from "../../../components/shared/Product/Product";
 
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getCollectionById } from "../../../api-service/collections/collectionApiService";
+//import { getCollectionById } from "../../../api-service/collections/collectionApiService";
+import { getCollectionPublicById } from "../../../apis/collectionApiService";
 import { SHOP_TYPES } from "../../../constant/shop-types";
 import { USER_TYPE } from "../../../constant/user-types";
 import { CollectionPageWrapper, HeaderTitle } from "./Collection-page-style";
@@ -21,9 +22,10 @@ export default function CollectionPage() {
   }, []);
 
   const getCollections = async (id) => {
-    let result = await getApi(getCollectionById(id));
+    let result = await getApi(getCollectionPublicById(id));
     if (result) setCollectin(result);
   };
+  console.log('collections ' , Collection);
 
   const collectionType =
     Collection &&
