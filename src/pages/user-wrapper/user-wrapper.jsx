@@ -7,6 +7,7 @@ import { getShopPublic } from "../../apis/shopApiService";
 
 //import Sidebar from "../../layouts/sidebar/Sidebar"
 import ShopInformationSidebar from "../../layouts/sidebar/components/shop-information-side/ShopInformationSidebar";
+import { CRASHPUNKS_SHOPDATA } from "./crashpunks-information-hardcode";
 
 const UserWrapper = () => {
   const [shopData, setShop] = useState(null);
@@ -15,8 +16,14 @@ const UserWrapper = () => {
   let { shopname } = useParams();
 
   const getShopData = async () => {
-    const result = await getApi(getShopPublic(shopname));
-    if (result) setShop(result);
+
+    if(shopname === 'crashpunks'){
+      setShop(CRASHPUNKS_SHOPDATA);
+    }else{
+      const result = await getApi(getShopPublic(shopname));
+      if (result) setShop(result);
+    }
+    
   };
 
   useEffect(() => {
