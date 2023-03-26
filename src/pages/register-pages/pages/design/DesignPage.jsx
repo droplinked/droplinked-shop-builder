@@ -20,18 +20,19 @@ import InputColor from "./components/input-color/InputColor";
 import InputComponent from "../../component/input-component/InputComponent";
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 
-import theme1Image from "./theme-1.jpg";
+import theme3Image from "./theme-1.jpg";
 import theme2Image from "./theme-2.jpg";
-import theme3Image from "./theme-3.jpg";
+import theme1Image from "./theme-3.jpg";
 
 const INITIAL_SHOP_Design = {
   logo: "",
   headerIcon: "",
   textColor: "#ffffff",
-  theme: "theme-3",
+  theme: "theme-1",
   backgroundText: "",
   backgroundImage: "",
   backgroundImageSecondary: "",
+  backgroundColor: "",
 };
 
 const IMAGES = [
@@ -51,7 +52,7 @@ const DesignPage = () => {
 
   const { errorToast } = useToasty();
   const { putApi } = useApi();
-  const { shopNavigate } = useCustomNavigate()
+  const { shopNavigate } = useCustomNavigate();
 
   const selectTheme = (item) => {
     setSelectedTheme(item);
@@ -96,18 +97,32 @@ const DesignPage = () => {
     });
   };
 
-  const clickSubmit = async () => {
-    if (!isValidData(designData)) {
-      errorToast("Required");
-      return;
-    }
+  const changeBackgroundColor = (e) => {
+    dispatch({
+      type: SHOP_REDUCER_TYPES.SET_BACKGROUND_COLOR,
+      payload: e.target.value,
+    });
+  };
+  const changeBackgroundImageSecondary = (e) => {
+    dispatch({
+      type: SHOP_REDUCER_TYPES.SET_BACKGROUNED_SECONDARY,
+      payload: e.target.value,
+    });
+  };
 
-    setLoading(true);
-    const result = await putApi(putUpdateShop(designData));
-    setLoading(false);
-    if (result) {
-      shopNavigate(`products`);
-    }
+  const clickSubmit = async () => {
+    // if (!isValidData(designData)) {
+    //   errorToast("Required");
+    //   return;
+    // }
+    console.log("designData ", designData);
+
+    // setLoading(true);
+    // const result = await putApi(putUpdateShop(designData));
+    // setLoading(false);
+    // if (result) {
+    //   shopNavigate(`products`);
+    // }
   };
 
   return (
@@ -176,6 +191,13 @@ const DesignPage = () => {
           value={designData.backgroundImage}
         />
         <Box mb="48px" />
+        <InputImage
+          label="Header banner Phone"
+          placeHolder="This image will display at the top of the store page (Phone)."
+          change={changeBackgroundImageSecondary}
+          value={designData.backgroundImageSecondary}
+        />
+        <Box mb="48px" />
         <Flex
           w="100%"
           alignItems="center"
@@ -186,12 +208,19 @@ const DesignPage = () => {
             <InputColor
               value={designData.textColor}
               change={changeTextColor}
-              label="Color background"
+              label="Text color"
             />
           </Box>
-          {/* <Box w="50%">
-            <InputColor label="Color background" />
-          </Box> */}
+          {(designData.theme === "theme-3" ||
+            designData.theme === "theme-4") && (
+            <Box w="50%">
+              <InputColor
+                value={designData.backgroundColor}
+                change={changeBackgroundColor}
+                label="Color background"
+              />
+            </Box>
+          )}
         </Flex>
       </PageContentWrapper>
       <Box mb="36px" />
