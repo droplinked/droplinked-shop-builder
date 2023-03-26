@@ -85,8 +85,8 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
       return;
     } else {
       setShopData(data.shop);
-      navigateUser(status, data.shop.name);
       dispatch(setCurrentUser(data));
+      navigateUser(status, data.shop.name);
       return;
     }
   };

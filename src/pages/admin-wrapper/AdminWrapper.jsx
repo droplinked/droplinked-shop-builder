@@ -1,17 +1,16 @@
 import { Flex, Box } from "@chakra-ui/react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-
 import { useProfile } from "../../hooks/useProfile/useProfile";
 
 import Sidebar from "../../layouts/sidebar/Sidebar";
 
 const AdminWrapper = () => {
-  const { profile } = useProfile();
   const navigate = useNavigate();
+  const { profile } = useProfile();
 
   useEffect(() => {
-   // if (!profile) navigate("/");
+    if (!profile) navigate("/");
   }, [profile]);
 
   return (
