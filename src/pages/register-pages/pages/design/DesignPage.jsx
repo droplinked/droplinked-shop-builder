@@ -111,18 +111,17 @@ const DesignPage = () => {
   };
 
   const clickSubmit = async () => {
-    // if (!isValidData(designData)) {
-    //   errorToast("Required");
-    //   return;
-    // }
-    console.log("designData ", designData);
+    if (!isValidData(designData)) {
+      errorToast("Required");
+      return;
+    }
 
-    // setLoading(true);
-    // const result = await putApi(putUpdateShop(designData));
-    // setLoading(false);
-    // if (result) {
-    //   shopNavigate(`products`);
-    // }
+    setLoading(true);
+    const result = await putApi(putUpdateShop(designData));
+    setLoading(false);
+    if (result) {
+      shopNavigate(`products`);
+    }
   };
 
   return (
@@ -212,7 +211,7 @@ const DesignPage = () => {
             />
           </Box>
           {(designData.theme === "theme-3" ||
-            designData.theme === "theme-4") && (
+            designData.theme === "theme-2") && (
             <Box w="50%">
               <InputColor
                 value={designData.backgroundColor}

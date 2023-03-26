@@ -33,6 +33,7 @@ const InputImage = ({ label, placeHolder, change, value }) => {
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
       file.type !== "image/gif" &&
+      file.type !== "image/svg+xml" &&
       file.type !== "image/jpg"
     ) {
       errorToast("File type not supported");
