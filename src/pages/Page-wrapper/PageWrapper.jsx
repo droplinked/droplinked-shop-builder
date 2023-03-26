@@ -98,8 +98,9 @@ export default function PageWrapper() {
 
   const cleanStorage = () => {
     localStorage.clear();
-    if (shop) window.location.replace(`/${shop.name}/products`);
-    else window.location.replace("/");
+    window.location.replace("/");
+   // if (shop) window.location.replace(`/${shop.name}/products`);
+   // else window.location.replace("/");
   };
 
   return (
