@@ -24,12 +24,12 @@ export const getStatus = (orderStatus) => {
 
 export const getTotalPrice = (order) => {
   let total = 0.0;
-  if (order.type == SHOP_TYPES.SHOPIFY) {
-    order.items.forEach((item) => (total += parseFloat(item.price)));
-  } else {
+  // if (order.type == SHOP_TYPES.SHOPIFY) {
+  //   order.items.forEach((item) => (total += parseFloat(item.price)));
+  // } else {
    // total = parseFloat(order.totalPrice);
     order.items.forEach(item => {
-      total += (parseFloat(item.sku.price) * item.quantity);
+      total += (parseFloat(item.totalPriceItem));
     })
     if (order.shippingPrice && (order.shippingPrice != "Free")) total += parseFloat(order.shippingPrice);
     if (order.totalDiscount) total -= parseFloat(order.totalDiscount);
@@ -41,7 +41,7 @@ export const getTotalPrice = (order) => {
         total += parseFloat(item.product.shippingPrice);
       });
     }
-  }
+ // }
 
   return parseFloat(total).toFixed(2);
 };

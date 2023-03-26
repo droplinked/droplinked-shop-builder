@@ -10,23 +10,26 @@ import { getOrders } from "../../../apis/orderApiService";
 import { sortArrayBaseCreateTime } from "../../../utils/sort.utils/sort.utils";
 
 import Order from "../../../components/shared/Order/Order-component";
+import Loading from "../../../components/shared/loading/Loading";
 import Dropdown from "../../../components/shared/Dropdown/Dropdown-component";
 
 export default function IncomingOrderPage() {
   const [filter, setFilter] = useState("All");
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState(null);
   // const { orders } = useOrder()
- // const navigate = useNavigate();
-  const { getApi } = useApi()
+  // const navigate = useNavigate();
+  const { getApi } = useApi();
   //const isRegisteredProducer = useSelector(selectIsActiveProducer);
 
   const updateOrder = async () => {
-    let result = await getApi(getOrders())
+    let result = await getApi(getOrders());
+    console.log("result ", result);
     if (result) {
       result = sortArrayBaseCreateTime(result);
       setOrders(result);
     }
   };
+  console.log("orders ", orders);
 
   useEffect(() => {
     updateOrder();
@@ -55,6 +58,10 @@ export default function IncomingOrderPage() {
   };
 
   let typesArray = useMemo(() => setTypesArray(), []);
+
+  if (orders === null) {
+    return <Loading />;
+  }
 
   return (
     <Box w="100%" px={{ base: "20px", md: "80px" }}>
@@ -95,7 +102,7 @@ export default function IncomingOrderPage() {
               if (order.status != ORDER_TYPES.WAITING_FOR_CONFIRMATION)
                 return (
                   <Box key={i} mb="30px">
-                    <Order updateOrder={updateOrder}  order={order} />
+                    <Order updateOrder={updateOrder} order={order} />
                   </Box>
                 );
             })}
@@ -105,10 +112,14 @@ export default function IncomingOrderPage() {
             {orders.map((order, i) => {
               if (order.status == ORDER_TYPES.REFUNDED) {
                 if (filter == ORDER_TYPES.CANCELED)
-                  return <Order updateOrder={updateOrder}  key={i} order={order} />;
+                  return (
+                    <Order updateOrder={updateOrder} key={i} order={order} />
+                  );
               } else {
                 if (order.status == filter)
-                  return <Order updateOrder={updateOrder}  key={i} order={order} />;
+                  return (
+                    <Order updateOrder={updateOrder} key={i} order={order} />
+                  );
               }
             })}
           </>

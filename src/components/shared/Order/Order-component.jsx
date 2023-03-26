@@ -38,6 +38,7 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 2s ease infinite`;
 
 export default function Order({ updateOrder, order }) {
+  console.log('order ' , order);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isCustomer = useSelector(selectIsCustomer);
   const navigate = useNavigate();
@@ -48,10 +49,10 @@ export default function Order({ updateOrder, order }) {
     return quantity;
   };
 
-  const imageUrl = (item) =>
-    order.type == SHOP_TYPES.SHOPIFY
-      ? item.image_url
-      : item.product.media[0].url;
+  const imageUrl = (item) => item.product.media[0].url;
+    // order.type == SHOP_TYPES.SHOPIFY
+    //   ? item.image_url
+    //   : item.product.media[0].url;
 
 
   const animationCondition = () => {
@@ -66,17 +67,17 @@ export default function Order({ updateOrder, order }) {
     }
   };
 
-  const paynow = (event) => {
-    event.stopPropagation();
-    //    navigate(`/payment?CurrentOrderId=${order._id}&price=${parseFloat(order.totalPrice).toFixed(2)}`)
-    let payOrder = {
-      _id: order._id,
-      totalPrice: parseFloat(order.totalPrice).toFixed(2),
-    };
+  // const paynow = (event) => {
+  //   event.stopPropagation();
+  //   //    navigate(`/payment?CurrentOrderId=${order._id}&price=${parseFloat(order.totalPrice).toFixed(2)}`)
+  //   let payOrder = {
+  //     _id: order._id,
+  //     totalPrice: parseFloat(order.totalPrice).toFixed(2),
+  //   };
 
-    sessionStorage.setItem("payOrder", JSON.stringify(payOrder));
-    navigate(`/payment`);
-  };
+  //   sessionStorage.setItem("payOrder", JSON.stringify(payOrder));
+  //   navigate(`/payment`);
+  // };
 
   return (
     <OrderWrapper onClick={onOpen}>
@@ -110,17 +111,6 @@ export default function Order({ updateOrder, order }) {
             </OrderStatus>
           </Flex>
           {/* status */}
-          {/* {order.status == ORDER_TYPES.WAITING_FOR_PAYMENT && (
-            <Box
-              pos="absolute"
-              w={{ base: "120px", md: "160px" }}
-              h={{ base: "25px", md: "40px" }}
-              right="0px"
-              bottom="0px"
-            >
-              <BasicButton onClick={paynow}>Pay now</BasicButton>
-            </Box>
-          )} */}
         </Box>
       ) : (
         <Stack>
@@ -135,3 +125,15 @@ export default function Order({ updateOrder, order }) {
     </OrderWrapper>
   );
 }
+
+   {/* {order.status == ORDER_TYPES.WAITING_FOR_PAYMENT && (
+            <Box
+              pos="absolute"
+              w={{ base: "120px", md: "160px" }}
+              h={{ base: "25px", md: "40px" }}
+              right="0px"
+              bottom="0px"
+            >
+              <BasicButton onClick={paynow}>Pay now</BasicButton>
+            </Box>
+          )} */}
