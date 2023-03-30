@@ -55,7 +55,7 @@ const DroplinkedDetail = ({
   // initialSelectedVariant
   const initialSelectedVariant = () => {
     if (optionsList.length == 0) {
-      setSelectedSku(product.skus[0]);
+      setSelectedSku(product.skuIDs[0]);
     } else {
       product.skuIDs.forEach((sku) => {
         let find = true;
