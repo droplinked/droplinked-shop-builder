@@ -10,32 +10,32 @@ import ShopInformationSidebar from "../../layouts/sidebar/components/shop-inform
 import { CRASHPUNKS_SHOPDATA } from "./crashpunks-information-hardcode";
 
 const UserWrapper = () => {
-  const [shopData, setShop] = useState(null);
+ // const [shopData, setShop] = useState(null);
 
-  const { getApi } = useApi();
+  //const { getApi } = useApi();
   let { shopname } = useParams();
 
-  const getShopData = async () => {
+  // const getShopData = async () => {
 
-    if(shopname === 'crashpunks'){
-      setShop(CRASHPUNKS_SHOPDATA);
-    }else{
-      const result = await getApi(getShopPublic(shopname));
-      if (result) setShop(result);
-    }
+  //   if(shopname === 'crashpunks'){
+  //     setShop(CRASHPUNKS_SHOPDATA);
+  //   }else{
+  //     const result = await getApi(getShopPublic(shopname));
+  //     if (result) setShop(result);
+  //   }
     
-  };
+  // };
 
   useEffect(() => {
-    getShopData();
+    window.location = `https://droplinked.io/${shopname}`
   }, []);
 
   return (
     <UserWrapperPage>
-      {shopData && <ShopInformationSidebar ShopData={shopData} />}
+      {/* {shopData && <ShopInformationSidebar ShopData={shopData} />}
       <PageContainer>
         <Outlet />
-      </PageContainer>
+      </PageContainer> */}
     </UserWrapperPage>
   );
 };
