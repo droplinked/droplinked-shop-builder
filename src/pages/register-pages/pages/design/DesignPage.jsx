@@ -20,9 +20,9 @@ import InputColor from "./components/input-color/InputColor";
 import InputComponent from "../../component/input-component/InputComponent";
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 
-import theme3Image from "./theme-1.jpg";
+import theme1Image from "./theme-1.jpg";
 import theme2Image from "./theme-2.jpg";
-import theme1Image from "./theme-3.jpg";
+import theme3Image from "./theme-3.jpg";
 
 const INITIAL_SHOP_Design = {
   logo: "",
@@ -53,7 +53,7 @@ const DesignPage = () => {
   const { errorToast } = useToasty();
   const { putApi } = useApi();
   const { shopNavigate } = useCustomNavigate();
-
+console.log('selectedTheme ',selectedTheme);
   const selectTheme = (item) => {
     setSelectedTheme(item);
     dispatch({
