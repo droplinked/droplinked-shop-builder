@@ -9,10 +9,10 @@ import {
 } from "./address-style";
 
 import { useApi } from "../../../hooks/useApi/useApi";
-import SmallModal from "../../../modals/small/SmallModal";
-import AddressModal from "../../../modals/address/AddressModal";
 import { deleteAddress } from "../../../apis/addressApiService";
 
+import SmallModal from "../../../modals/small/SmallModal";
+import AddressModal from "../../../modals/address/AddressModal";
 import editIcon from "../../../assest/icon/edit-icon.svg";
 import deleteIcon from "../../../assest/icon/delete-icon.svg";
 
@@ -115,6 +115,7 @@ export default function AddressComponent({
         close={toggleAddressModal}
         addressBook={address}
         type={address.addressType}
+        updateAddressList={updateList}
       />
     </>
   );
