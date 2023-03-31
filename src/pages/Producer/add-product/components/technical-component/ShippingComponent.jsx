@@ -1,11 +1,18 @@
-import { Box, Flex } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  Box,
+  Flex,
+} from "@chakra-ui/react";
 
 import { SHIPING_TYPES } from "../../../../../constant/shipping-types";
 import {
   Text16px,
   SelectComponent,
   OptionComponent,
-  InputComponent,
 } from "../../Add-product-style";
 
 const ShippingComponent = ({ TechnicalData, dispatchTechnical }) => {
@@ -17,7 +24,6 @@ const ShippingComponent = ({ TechnicalData, dispatchTechnical }) => {
       type: "updateShippingPrice",
       payload: parseFloat(e.target.value),
     });
-
   return (
     <>
       <Text16px>Shipping</Text16px>
@@ -41,12 +47,51 @@ const ShippingComponent = ({ TechnicalData, dispatchTechnical }) => {
         </SelectComponent>
 
         {TechnicalData.shippingType == SHIPING_TYPES.CUSTOM && (
-          <InputComponent
-            type="number"
-            value={TechnicalData.shippingPrice}
-            placeholder="Shipping price"
-            onChange={changeShippingPrice}
-          />
+          <FormControl w="100%" h="100%">
+            {/* <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2">
+              {label}
+            </FormLabel> */}
+            <InputGroup size="sm" w="100%" h="100%">
+              <InputLeftAddon
+                bg="line"
+                borderColor="subLayer"
+                borderRadius="8px"
+                fontWeight="500"
+                fontSize="16px"
+                color="#fff"
+                children="$"
+                h="100%"
+                minH='100%'
+                p="18px 18px"
+              />
+              <Input
+                h="100%"
+                placeholder="Shipping price"
+                value={TechnicalData.shippingPrice}
+                onChange={changeShippingPrice}
+                type="number"
+                p="18px 18px"
+                background="subLayer"
+                borderRadius="8px"
+                fontSize="20px"
+                fontWeight="500"
+                color="#fff"
+                border="none"
+                _focus={{
+                  border: "none",
+                }}
+                _placeholder={{
+                  color: "#666666",
+                }}
+              />
+              {/* <InputComponent
+                type="number"
+                value={TechnicalData.shippingPrice}
+                placeholder="Shipping price"
+                onChange={changeShippingPrice}
+              /> */}
+            </InputGroup>
+          </FormControl>
         )}
       </Flex>
     </>
