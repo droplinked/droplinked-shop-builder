@@ -6,9 +6,11 @@ import {
   PopoverBody,
   Text,
   Box,
+  useDisclosure 
 } from "@chakra-ui/react";
 
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
+import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 import {
   UserHeaderWrapper,
   UserHeaderIcon,
@@ -20,14 +22,24 @@ import droplinkedIcon from "../../../../assest/image/green-droplinked-logo.svg";
 import shopIconSvg from "../../../../assest/icon/shop-green-icon.svg";
 
 const UserHeader = () => {
+  const { onOpen, onClose, isOpen } = useDisclosure()
+  const { shop, logoutUser } = useProfile();
+  const { shopNavigate } = useCustomNavigate();
 
-  const { shop , logoutUser} = useProfile();
+  const clickOnViewShop = () => {
+    shopNavigate('products')
+    onClose()
+  }
 
   return (
     <UserHeaderWrapper>
       <UserHeaderIcon src={droplinkedIcon} />
 
-      <Popover>
+      <Popover
+       isOpen={isOpen}
+       onOpen={onOpen}
+       onClose={onClose}
+      >
         <PopoverTrigger>
           <Flex alignItems="center" gap="12px" cursor="pointer">
             <ShopnameText>{shop.name}</ShopnameText>
@@ -53,6 +65,7 @@ const UserHeader = () => {
               color="#FFFFFF"
               w="100%"
               textAlign="center"
+              onClick={clickOnViewShop}
             >
               View Shop
             </Text>
