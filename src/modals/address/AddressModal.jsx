@@ -50,7 +50,7 @@ export default function AddressModal({
   const [lastname, setLastname] = useState(
     addressBook ? addressBook.lastName : ""
   );
-  console.log("address book ", addressBook);
+
   // state for show wrror
   const [error, setError] = useState("");
   // state for loading mode

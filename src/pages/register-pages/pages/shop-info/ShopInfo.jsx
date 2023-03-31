@@ -47,7 +47,7 @@ const RegisterShopInfo = () => {
 
   const updateAddressList = async () => {
     let result = await getApi(getAddressList());
-    console.log('result ', result)
+
     if (result && result.length > 0) {
       setAddressList(result);
       dispatchShopInformation({

@@ -23,13 +23,11 @@ export default function IncomingOrderPage() {
 
   const updateOrder = async () => {
     let result = await getApi(getOrders());
-    console.log("result ", result);
     if (result) {
       result = sortArrayBaseCreateTime(result);
       setOrders(result);
     }
   };
-  console.log("orders ", orders);
 
   useEffect(() => {
     updateOrder();

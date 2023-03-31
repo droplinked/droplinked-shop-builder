@@ -24,7 +24,7 @@ import {
 import { useState } from "react";
 
 const ProducerCollection = ({ collection, update }) => {
-  console.log('collectin ' , collection)
+
   const [deleteModal, setDeleteModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [ruleModal, setRuleModal] = useState(false);

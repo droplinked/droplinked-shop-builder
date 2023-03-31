@@ -25,7 +25,6 @@ export default function CollectionPage() {
     let result = await getApi(getCollectionPublicById(id));
     if (result) setCollectin(result);
   };
-  console.log('collections ' , Collection);
 
   const collectionType =
     Collection &&

@@ -7,7 +7,7 @@ const RegisterPagesWrapper = () => {
   const currentPath = useLocation().pathname;
 
   // The current location.
-  console.log(currentPath.includes('shop-info'));
+
 //primary
 //lightGray
   return (

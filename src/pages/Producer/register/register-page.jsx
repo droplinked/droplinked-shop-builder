@@ -98,7 +98,7 @@ const RegisterPage = () => {
     setDisableBtn(true);
 
     let result = await putApi(putUpdateShop(shopInformation));
-    console.log("result , ", result);
+
     if (result) {
       localStorage.setItem("shop", JSON.stringify(result));
       successToast("Shop info successfully updated");

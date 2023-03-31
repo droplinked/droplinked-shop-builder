@@ -1,7 +1,6 @@
 
  export const initialReducer = (OptionList, defaultValue) => {
     let initialSku;
-    console.log('defaultValue ', defaultValue);
     if (defaultValue) {
       let options = []
       if(defaultValue.options){

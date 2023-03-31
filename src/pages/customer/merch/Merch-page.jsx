@@ -34,7 +34,6 @@ export default function MerchPage() {
     if(result)setProduct(result);
   };
 
-  console.log('product ' ,product);
 
   const toggleAuthModal = () => setAuthModal((p) => !p);
 

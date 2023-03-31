@@ -38,7 +38,7 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 2s ease infinite`;
 
 export default function Order({ updateOrder, order }) {
-  console.log('order ' , order);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isCustomer = useSelector(selectIsCustomer);
   const navigate = useNavigate();

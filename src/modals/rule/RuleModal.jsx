@@ -60,7 +60,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const getRuleData = async () => {
     setLoading(true);
     let result = await getApi(getRulesetById(ruleId));
-    console.log(" result post ", result);
+
     if (result) initializeRule(result);
     setLoading(false);
   };
