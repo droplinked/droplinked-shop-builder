@@ -32,7 +32,7 @@ const INITIAL_SHOP_Design = {
   backgroundText: "",
   backgroundImage: "",
   backgroundImageSecondary: "",
-  backgroundColor: "",
+  backgroundColor: "#000000",
 };
 
 const IMAGES = [
@@ -53,7 +53,6 @@ const DesignPage = () => {
   const { errorToast } = useToasty();
   const { putApi } = useApi();
   const { shopNavigate } = useCustomNavigate();
-console.log('selectedTheme ',selectedTheme);
   const selectTheme = (item) => {
     setSelectedTheme(item);
     dispatch({
@@ -103,10 +102,10 @@ console.log('selectedTheme ',selectedTheme);
       payload: e.target.value,
     });
   };
-  const changeBackgroundImageSecondary = (e) => {
+  const changeBackgroundImageSecondary = (image) => {
     dispatch({
       type: SHOP_REDUCER_TYPES.SET_BACKGROUNED_SECONDARY,
-      payload: e.target.value,
+      payload: image,
     });
   };
 
@@ -115,7 +114,6 @@ console.log('selectedTheme ',selectedTheme);
       errorToast("Required");
       return;
     }
-
     setLoading(true);
     const result = await putApi(putUpdateShop(designData));
     setLoading(false);
@@ -210,7 +208,7 @@ console.log('selectedTheme ',selectedTheme);
               label="Text color"
             />
           </Box>
-          {(designData.theme === "theme-3" ||
+          {(designData.theme === "theme-1" ||
             designData.theme === "theme-2") && (
             <Box w="50%">
               <InputColor
