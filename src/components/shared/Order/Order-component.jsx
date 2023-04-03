@@ -84,7 +84,7 @@ export default function Order({ updateOrder, order }) {
         <Box pos="relative">
           {/* date and total price */}
           <Flex justifyContent="space-between">
-            <DateText>Date: {calculateHowTimePassed(order.createdAt)}</DateText>
+            {/* <DateText>Date: {calculateHowTimePassed(order.createdAt)}</DateText> */}
             <OrderId>Order id: {order._id}</OrderId>
           </Flex>
           {/* date and total price */}

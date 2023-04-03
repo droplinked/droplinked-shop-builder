@@ -57,7 +57,7 @@ export const calculateHowTimePassed = (baseTime) => {
   const now = new Date();
   const yourDate = new Date(baseTime);
 
-  const timePassed = now.getTime() - yourDate.getTime();
+  const timePassed = (now.getTime() - yourDate.getTime())-3600000;
 
   const secondsPassed = Math.floor(timePassed / 1000);
   const minutesPassed = Math.floor(secondsPassed / 60);
