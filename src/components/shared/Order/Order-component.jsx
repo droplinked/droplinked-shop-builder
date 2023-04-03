@@ -13,7 +13,7 @@ import { ORDER_TYPES } from "../../../constant/order.types";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { SHOP_TYPES } from "../../../constant/shop-types";
-import { getStatus , getTotalPrice} from "./order-component-utils"
+import { getStatus , getTotalPrice ,calculateHowTimePassed} from "./order-component-utils"
 import {
   selectIsCustomer,
 } from "../../../store/profile/profile.selector";
@@ -54,7 +54,6 @@ export default function Order({ updateOrder, order }) {
     //   ? item.image_url
     //   : item.product.media[0].url;
 
-
   const animationCondition = () => {
     const status = order.status;
 
@@ -85,7 +84,7 @@ export default function Order({ updateOrder, order }) {
         <Box pos="relative">
           {/* date and total price */}
           <Flex justifyContent="space-between">
-            <DateText>Date: {convetToCustomFormat(order.createdAt)}</DateText>
+            <DateText>Date: {calculateHowTimePassed(order.createdAt)}</DateText>
             <OrderId>Order id: {order._id}</OrderId>
           </Flex>
           {/* date and total price */}
