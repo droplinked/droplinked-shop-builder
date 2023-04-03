@@ -31,7 +31,7 @@ export default function OrderModal({updateOrder , order, show, close }) {
   const { successToast, errorToast } = useToasty();
   const { postApi } = useApi()
 
-
+console.log('order ', order);
   const progressClick = async () => {
     let statusType =
       order.status == "WAITING_FOR_CONFIRMATION"
@@ -114,12 +114,12 @@ export default function OrderModal({updateOrder , order, show, close }) {
         </ModalBody>
 
         <ModalFooter>
-          <OrderStatus
+          {/* <OrderStatus
             orderStatus={order.status}
             loading={loadingBtn}
             cancelOnClick={cancelOnClick}
             openProccessModal={openProccessModal}
-          />
+          /> */}
         </ModalFooter>
       </ModalContent>
       {/* process modal */}
