@@ -5,7 +5,7 @@ import { lazy, Suspense } from "react";
 
 import LoadingPage from "./pages/publics/loading/Loading-page";
 //import ShippingPage from "./pages/customer/shipping/Shipping-page";
-import Enquiry from "./pages/publics/enquiry/Enquiry";
+import Enquiry from "./pages/public-pages/enquiry-page/EnquiryPage";
 // import ProducerCollection from "./pages/Producer/producer-collection/producer-collection";
  import UserWrapper from "./pages/user-wrapper/user-wrapper";
 // import Shops from "./pages/affiliate/shops/shops";
