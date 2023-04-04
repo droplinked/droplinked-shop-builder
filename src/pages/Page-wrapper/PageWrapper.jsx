@@ -3,7 +3,6 @@
 
 import { Box } from "@chakra-ui/react";
 import { Outlet, useLocation } from "react-router-dom";
-import { useCart } from "../../context/cart/CartContext";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectIsCustomer } from "../../store/profile/profile.selector";
@@ -20,7 +19,7 @@ import FooterLayout from "../../layouts/footer-layout/FooterLayout";
 import SideBarProvider from "../../context/sidebar/sidebar-context";
 
 export default function PageWrapper() {
-  const { updateCart } = useCart();
+
 
   const isCustomer = useSelector(selectIsCustomer);
 
@@ -58,7 +57,6 @@ export default function PageWrapper() {
   useEffect(async () => {
     let token = JSON.parse(localStorage.getItem("token"));
     if (token != null || token != undefined) {
-      if (isCustomer) updateCart();
       if (!isCustomer) {
         let newShop = await getApi(getUser());
         if (newShop) {

@@ -12,17 +12,14 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "./theme";
 
 import ToastifyProvider from "./context/toastify/ToastContext";
-import CartProvider from "./context/cart/CartContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <ToastifyProvider>
       <Provider store={store}>
-            <CartProvider>
               <ChakraProvider theme={theme}>
                       <App />
               </ChakraProvider>
-            </CartProvider>
       </Provider>
     </ToastifyProvider>
   </React.StrictMode>,
