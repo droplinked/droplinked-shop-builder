@@ -2,7 +2,6 @@ import { useReducer, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { useApi } from "../../../hooks/useApi/useApi";
-import { getProducerProductById } from "../../../api-service/product/productApiService";
 import {
   productIntroReducer,
   INTRO_REDUCER_TYPES,

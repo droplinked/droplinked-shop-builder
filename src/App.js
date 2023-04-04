@@ -12,7 +12,7 @@ import UserWrapper from "./pages/user-wrapper/user-wrapper";
 // import AffiliateShop from "./pages/affiliate/shop/shop";
 // import AffiliateProduct from "./pages/affiliate/product/product";
 // import RequestsPage from "./pages/affiliate/requests/request";
-import EditProductPage from "./pages/Producer/edit-product/EditProductPage";
+import EditProductPage from "./pages/prodcut-pages/edit-product-page/EditProductPage";
 // import AdminPage from "./pages/admin/AdminPage";
 import AdminWrapper from "./pages/admin-wrapper/AdminWrapper";
 import RegisterPagesWrapper from "./pages/register-pages/RegisterPageWrapper";
