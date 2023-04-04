@@ -7,7 +7,7 @@ import {
 import { useState, useEffect } from "react";
 import { useApi } from "../../../../hooks/useApi/useApi";
 import { getAddress } from "../../../../api-service/address/addressApiService";
-import AddressComponent from "../../../../components/shared/Address/address-component";
+import AddressComponent from "../../../../../components/shared/address-component/AddressComponent";
 import AddressModal from "../../../../modals/address/AddressModal";
 import Loading from "../../../../components/shared/loading/Loading";
 

@@ -30,7 +30,7 @@ import InputImage from "../../../../components/shared/InputImage/InputImage";
 import Loading from "../../../../components/shared/loading/Loading";
 import FormInput from "../../../../components/shared/FormInput/FormInput";
 import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
-import AddressComponent from "../../../../components/shared/Address/address-component";
+import AddressComponent from "../../../../components/shared/address-component/AddressComponent";
 import AddressModal from "../../../../modals/address/AddressModal";
 
 const keyframe_startanimation = keyframes`

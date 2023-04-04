@@ -21,7 +21,7 @@ import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCusto
 
 import InputComponent from "../../component/input-component/InputComponent";
 import AddressModal from "../../../../modals/address/AddressModal";
-import AddressComponent from "../../../../components/shared/Address/address-component";
+import AddressComponent from "../../../../components/shared/address-component/AddressComponent";
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 
 const INITIAL_SHOP_INFO = {

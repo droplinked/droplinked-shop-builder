@@ -6,7 +6,7 @@ import {
   Text14,
   LineComponent,
   IconComponent,
-} from "./address-style";
+} from "./AddressComponent-style";
 
 import { useApi } from "../../../hooks/useApi/useApi";
 import { deleteAddress } from "../../../apis/addressApiService";
