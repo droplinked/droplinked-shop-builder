@@ -4,19 +4,18 @@ import {
   IconImage,
   IconText,
   ImageWrapper,
-} from "./landing-icons-style";
+} from "./IconsComponent-style";
 
 //import gatedIcon from "../../../../assest/icon/gated-icon.png";
 
-import gatedIcon from "../../../../assest/icon/gated-icon.svg";
-import listingIcon from "../../../../assest/icon/product-listing-icon.svg";
-import sellsIcon from "../../../../assest/icon/sells-icon.svg";
-import paymentIcon from "../../../../assest/icon/payment-icon.svg";
-import campaginIcon from "../../../../assest/icon/campain-icon.svg";
+import gatedIcon from "../../../../../assest/icon/gated-icon.svg";
+import listingIcon from "../../../../../assest/icon/product-listing-icon.svg";
+import sellsIcon from "../../../../../assest/icon/sells-icon.svg";
+import paymentIcon from "../../../../../assest/icon/payment-icon.svg";
+import campaginIcon from "../../../../../assest/icon/campain-icon.svg";
+import loyalityIcon from "../../../../../assest/icon/loyality-icon.svg";
 
-import loyalityIcon from "../../../../assest/icon/loyality-icon.svg";
-
-const LandingIcons = () => {
+const IconsComponent = () => {
   return (
     <Flex
       w="100%"
@@ -110,4 +109,4 @@ const LandingIcons = () => {
     </Flex>
   );
 };
-export default LandingIcons;
+export default IconsComponent;

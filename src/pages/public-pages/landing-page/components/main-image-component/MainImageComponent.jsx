@@ -1,7 +1,7 @@
 
 import { Box, Image, AspectRatio, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom";
-import mainImage from "../../../../assest/image/landingPageImage.png"
+import mainImage from "../../../../../assest/image/landingPageImage.png"
 
 const keyframe_rightanimation = keyframes`
 0% {
@@ -15,7 +15,7 @@ const keyframe_rightanimation = keyframes`
 `;
 
 
-export default function LandingpageImage() {
+export default function MainImageComponent() {
 
     const prefersReducedMotion = usePrefersReducedMotion();
 

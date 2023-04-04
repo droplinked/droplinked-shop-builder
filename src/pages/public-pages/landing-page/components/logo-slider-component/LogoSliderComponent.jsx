@@ -7,7 +7,7 @@ import logo3 from "./polygon-logo.svg"
 import logo4 from "./skace.logo.svg"
 import logo5 from "./near-logo.svg"
 //Frame 20774
-const LogoSlider = () => {
+const LogoSliderComponent = () => {
 
     const logos = [
         logo1,
@@ -42,4 +42,4 @@ const LogoSlider = () => {
     };
 
 
-export default LogoSlider
+export default LogoSliderComponent

@@ -18,11 +18,11 @@ import {
 import { useProfile } from "../../../hooks/useProfile/useProfile";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import LandingpageImage from "./components/landing-page-image-component";
-import LandingIcons from "./components/landing-icons-component";
-import SignupInput from "./components/singup-input-component";
+import MainImageComponent from "./components/main-image-component/MainImageComponent";
+import IconsComponent from "./components/icons-component/IconsComponent";
+import SignupInputComponent from "./components/signup-input-component/SignupInputComponent";
 import AuthModal from "../../../modals/auth/AuthModal";
-import LogoSlider from "./components/logo-slider/LogoSlider";
+import LogoSliderComponent from "./components/logo-slider-component/LogoSliderComponent";
 
 const keyframe_leftanimation = keyframes`
 0% {
@@ -38,7 +38,7 @@ const keyframe_leftanimation = keyframes`
 export default function LandingPage() {
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  const { profile, shop } = useProfile();
+  const { shop } = useProfile();
   const navigate = useNavigate();
 
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -72,7 +72,7 @@ export default function LandingPage() {
             </TextUp>
 
             <Text2>Earn cash or crypto for sharing collections.</Text2>
-            <SignupInput
+            <SignupInputComponent
               setUsername={setUsername}
               userName={userName}
               toggleSignUp={toggleModal}
@@ -81,16 +81,12 @@ export default function LandingPage() {
         </InputContainrt>
         {/* inputs */}
         {/* image */}
-        <LandingpageImage />
+        <MainImageComponent />
         {/* image */}
       </LandingPageWrapper>
-
       <SpaceBox></SpaceBox>
-
-      <LandingIcons />
-
+      <IconsComponent />
       <SpaceBox></SpaceBox>
-
       <Flex w="100%" justifyContent="center" px={{ base: "20px", md: "80px" }}>
         <Box w={{ base: "100%", md: "400px" }}>
           <BasicButton color="white" click={navigateToEnquiry}>
@@ -98,13 +94,9 @@ export default function LandingPage() {
           </BasicButton>
         </Box>
       </Flex>
-
       <SpaceBox></SpaceBox>
-
       <Box mb="36px" />
-
-      <LogoSlider />
-
+      <LogoSliderComponent />
       <AuthModal
         show={showAuthModal}
         close={toggleModal}

@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { Flex, Image } from "@chakra-ui/react";
-import { useApi } from "../../../../hooks/useApi/useApi"
-import { getIsShopExist } from "../../../../apis/shopApiService";
+import { useApi } from "../../../../../hooks/useApi/useApi"
+import { getIsShopExist } from "../../../../../apis/shopApiService";
 import {
   SignupWrapper,
   DomainText,
   ShopNameInput,
   SignupButton,
   ErrorText,
-} from "./signup-input-style";
+} from "./SignupInputComponent-style";
 
-import BasicButton from "../../../../components/shared/BasicButton/BasicButton"
-import alertIcon from "../../../../assest/icon/alert.png";
+import BasicButton from "../../../../../components/shared/BasicButton/BasicButton"
+import alertIcon from "../../../../../assest/icon/alert.png";
 
-const SignupInput = ({ setUsername, userName, toggleSignUp }) => {
+const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -78,4 +79,4 @@ const SignupInput = ({ setUsername, userName, toggleSignUp }) => {
   );
 };
 
-export default SignupInput;
+export default SignupInputComponent;
