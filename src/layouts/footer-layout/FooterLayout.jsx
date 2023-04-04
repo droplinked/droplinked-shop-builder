@@ -15,7 +15,7 @@ import {
   FooterIcon,
 } from "./Footer-style";
 
-export default function Footer() {
+export default function FooterLayout() {
   return (
     <Box borderTop="1px solid" borderColor='line'>
       <FooterWrapper>

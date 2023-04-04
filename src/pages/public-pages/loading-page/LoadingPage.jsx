@@ -2,7 +2,7 @@ import { Flex, Box } from "@chakra-ui/react"
 
 import Loading from "../../../components/shared/loading/Loading"
 import Header from "../../../layouts/header/Header"
-import Footer from "../../../layouts/footer/Footer";
+import FooterLayout from "../../../layouts/footer-layout/FooterLayout";
 
 const LoadingPage = () => {
     return (
@@ -13,7 +13,7 @@ const LoadingPage = () => {
             >
                 <Loading />
             </Flex>
-            <Footer />
+            <FooterLayout />
         </Box>
     )
 }

@@ -16,7 +16,7 @@ import { getUser } from "../../api-service/user/userApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 
 import Header from "../../layouts/header/Header";
-import Footer from "../../layouts/footer/Footer";
+import FooterLayout from "../../layouts/footer-layout/FooterLayout";
 import SideBarProvider from "../../context/sidebar/sidebar-context";
 
 export default function PageWrapper() {
@@ -126,7 +126,7 @@ export default function PageWrapper() {
         >
           <Outlet />
         </Box>
-        <Footer />
+        <FooterLayout />
       </Box>
     </SideBarProvider>
   );
