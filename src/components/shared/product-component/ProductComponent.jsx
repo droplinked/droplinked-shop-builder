@@ -1,9 +1,9 @@
-import { Box, AspectRatio } from "@chakra-ui/react";
-import { ProductContent, ProductImage, ProductTitle } from "./Product-style";
+import { Box } from "@chakra-ui/react";
+import { ProductContent, ProductImage, ProductTitle } from "./ProductComponent-style";
 import { Link } from "react-router-dom";
 import { USER_TYPE } from "../../../constant/user-types";
 
-export default function Product({ title, imageUrl, id, shopname, type }) {
+export default function ProductComponent({ title, imageUrl, id, shopname, type }) {
   let linkAddress =
     type == USER_TYPE.PRODUCER
       ? `/producer/merch/${id}`

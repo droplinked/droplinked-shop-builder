@@ -1,97 +1,97 @@
-import {
-  Flex,
-  InputGroup,
-  Input,
-  InputRightElement,
-  Button,
-  Spinner,
-  Box,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { importShopifyProducts } from "../../../../api/producer/Product-api";
-import { useToasty } from "../../../../context/toastify/ToastContext";
-import { USER_TYPE } from "../../../../constant/user-types";
+// import {
+//   Flex,
+//   InputGroup,
+//   Input,
+//   InputRightElement,
+//   Button,
+//   Spinner,
+//   Box,
+// } from "@chakra-ui/react";
+// import { useState } from "react";
+// import { importShopifyProducts } from "../../../../api/producer/Product-api";
+// import { useToasty } from "../../../../context/toastify/ToastContext";
+// import { USER_TYPE } from "../../../../constant/user-types";
 
-import Product from "../../../../components/shared/Product/Product";
+// import Product from "../../../../components/shared/Product/Product";
 
-const ShopImsPage = ({ products, update ,filter}) => {
+// const ShopImsPage = ({ products, update ,filter}) => {
 
-  const [domain, setDomain] = useState("");
-  const [loading, setLoadig] = useState(false);
+//   const [domain, setDomain] = useState("");
+//   const [loading, setLoadig] = useState(false);
 
-  const { successToast, errorToast } = useToasty();
+//   const { successToast, errorToast } = useToasty();
 
-  const importDomain = async () => {
-    setLoadig(true);
-    let result = await importShopifyProducts(domain);
-    if (result == true) {
-      successToast("Products added into the IMS");
-      update();
-    } else {
-      errorToast(result);
-    }
-    setLoadig(false);
-  };
+//   const importDomain = async () => {
+//     setLoadig(true);
+//     let result = await importShopifyProducts(domain);
+//     if (result == true) {
+//       successToast("Products added into the IMS");
+//       update();
+//     } else {
+//       errorToast(result);
+//     }
+//     setLoadig(false);
+//   };
 
-  const changeDomain = (e) => setDomain(e.target.value)
+//   const changeDomain = (e) => setDomain(e.target.value)
 
-  return (
-    <Flex
-      w="100%"
-      justifyContent="center"
-      flexDir="column"
-    //  px={{ base: "0px", md: "80px" }}
-      maxW="900px"
-    >
-      {products.length == 0 ? (
-        <InputGroup
-          mt="40px"
-          mx="auto"
-          size="md"
-          maxW={{ base: "auto", md: "350px" }}
-        >
-          <Input
-            pr="4.5rem"
-            placeholder="Shopify domain"
-            border="2px solid"
-            _focus={{ borderColor: "primary" }}
-            onChange={changeDomain}
-            value={domain}
-            color="#fff"
-          />
-          <InputRightElement width="5rem">
-            <Button
-              h="1.75rem"
-              size="sm"
-              bgColor="primary"
-              color="#fff"
-              onClick={importDomain}
-            >
-              {loading == false ? "Import" : <Spinner />}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      ) : (
-        <Flex w="100%" flexWrap="wrap">
-          {products.filter((pr) => pr.shopifyData.title.toLowerCase().includes(filter))
-          .map((product) => (
-            <Box
-              key={product._id}
-              mt="40px"
-              w={{ base: "100%", sm: "50%", md: "33%", lg: "25%" }}
-            >
-              <Product
-                title={product.shopifyData.title}
-                imageUrl={product.shopifyData.images[0].src}
-                id={product._id}
-                type={USER_TYPE.PRODUCER}
-              />
-            </Box>
-          ))}
-        </Flex>
-      )}
-    </Flex>
-  );
-};
+//   return (
+//     <Flex
+//       w="100%"
+//       justifyContent="center"
+//       flexDir="column"
+//     //  px={{ base: "0px", md: "80px" }}
+//       maxW="900px"
+//     >
+//       {products.length == 0 ? (
+//         <InputGroup
+//           mt="40px"
+//           mx="auto"
+//           size="md"
+//           maxW={{ base: "auto", md: "350px" }}
+//         >
+//           <Input
+//             pr="4.5rem"
+//             placeholder="Shopify domain"
+//             border="2px solid"
+//             _focus={{ borderColor: "primary" }}
+//             onChange={changeDomain}
+//             value={domain}
+//             color="#fff"
+//           />
+//           <InputRightElement width="5rem">
+//             <Button
+//               h="1.75rem"
+//               size="sm"
+//               bgColor="primary"
+//               color="#fff"
+//               onClick={importDomain}
+//             >
+//               {loading == false ? "Import" : <Spinner />}
+//             </Button>
+//           </InputRightElement>
+//         </InputGroup>
+//       ) : (
+//         <Flex w="100%" flexWrap="wrap">
+//           {products.filter((pr) => pr.shopifyData.title.toLowerCase().includes(filter))
+//           .map((product) => (
+//             <Box
+//               key={product._id}
+//               mt="40px"
+//               w={{ base: "100%", sm: "50%", md: "33%", lg: "25%" }}
+//             >
+//               <Product
+//                 title={product.shopifyData.title}
+//                 imageUrl={product.shopifyData.images[0].src}
+//                 id={product._id}
+//                 type={USER_TYPE.PRODUCER}
+//               />
+//             </Box>
+//           ))}
+//         </Flex>
+//       )}
+//     </Flex>
+//   );
+// };
 
-export default ShopImsPage;
+// export default ShopImsPage;

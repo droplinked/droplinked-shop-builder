@@ -13,7 +13,7 @@ import { USER_TYPE } from "../../../../../constant/user-types";
 import { selectCurrentProfile } from "../../../../../store/profile/profile.selector";
 
 import SmallModal from "../../../../../modals/small/SmallModal";
-import Product from "../../../../../components/shared/Product/Product";
+import ProductComponent from "../../../../../components/shared/product-component/ProductComponent";
 import CollectionModal from "../../../../../modals/collection/CollectionModal";
 import CollectionHeaderComponent from "./CollectionHeaderComponent";
 import RuleModal from "../../../../../modals/rule/RuleModal";
@@ -73,7 +73,7 @@ const CollectionComponent = ({ collection, update }) => {
                   if (product.type == "SHOPIFY") {
                     return (
                       <Box key={i} w={{ base: "50%", lg: "25%" }} p="3px">
-                        <Product
+                        <ProductComponent
                           shopname={profile.shopName}
                           title={product.shopifyData.title}
                           id={product._id}
@@ -88,7 +88,7 @@ const CollectionComponent = ({ collection, update }) => {
                   } else {
                     return (
                       <Box key={i} w={{ base: "50%", lg: "25%" }} p="3px">
-                        <Product
+                        <ProductComponent
                           shopname={profile.shopName}
                           title={product.title}
                           id={product._id}
