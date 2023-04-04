@@ -47,7 +47,6 @@ const OrderPage = lazy(() =>
   import("./pages/admin-pages/orders-page/OrderPage")
 );
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -56,7 +55,6 @@ function App() {
           <Route path="/enquiry" element={<Enquiry />} />
 
           <Route path="/" element={<PageWrapper />}>
-            {/* without login  */}
             <Route index element={<LandingPage />} />
             <Route path="terms" element={<TermsPage />} />
             <Route path="privacy" element={<PrivacyPage />} />
@@ -72,7 +70,6 @@ function App() {
               path="producer/account-recovery/:token"
               element={<ResetPassPage />}
             />
-            {/* without login  */}
 
             <Route path=":shopname/c" element={<AdminWrapper />}>
               <Route path="register" element={<RegisterPagesWrapper />}>
