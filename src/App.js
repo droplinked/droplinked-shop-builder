@@ -36,8 +36,8 @@ const RegisterPage = lazy(() =>
   import("./pages/Producer/register/register-page")
 );
 
-const EmailVerifyPage = lazy(() =>
-  import("./pages/publics/email-verify/Email-verification-page")
+const VerifyEmailPage = lazy(() =>
+  import("./pages/auth-pages/verify-email-page/Email-verification-page")
 );
 const ResetPassPage = lazy(() =>
   import("./pages/auth-pages/reset-pass-page/ResetPassPage")
@@ -111,7 +111,7 @@ function App() {
             />
             <Route
               path="email-verification/:token"
-              element={<EmailVerifyPage />}
+              element={<VerifyEmailPage />}
             />
             <Route
               path="producer/account-recovery/:token"

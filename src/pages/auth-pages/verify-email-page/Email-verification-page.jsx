@@ -7,7 +7,7 @@ import { useApi } from "../../../hooks/useApi/useApi";
 
 import Loading from "../../../components/shared/loading/Loading";
 
-export default function EmailVerifyPage() {
+export default function VerifyEmailPage() {
   const nav = useNavigate();
   let token = useParams().token;
   
