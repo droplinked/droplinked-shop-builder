@@ -12,7 +12,7 @@ import RegisterShopInfo from "./pages/register-pages/pages/shop-info/ShopInfo";
 import ContactInfo from "./pages/register-pages/pages/contact-info/ContactInfo";
 import DesignPage from "./pages/register-pages/pages/design/DesignPage";
 import ProductsPage from "./pages/prodcut-pages/products-page/ProductsPage";
-import RulePage from "./pages/rules-page/RulesPage";
+import RulePage from "./pages/admin-pages/rules-page/RulesPage";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() =>
@@ -39,7 +39,7 @@ const AddProductPage = lazy(() =>
 );
 
 const CollectionMainPage = lazy(() =>
-  import("./pages/collection-pages/collections-page/CollectionsPage")
+  import("./pages/admin-pages/collections-page/CollectionsPage")
 );
 const ShopPage = lazy(() => import("./pages/public-pages/shop-page/ShopPage"));
 

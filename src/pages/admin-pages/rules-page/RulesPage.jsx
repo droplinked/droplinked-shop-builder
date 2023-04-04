@@ -11,14 +11,14 @@ import {
 import { useState, useEffect } from "react";
 
 import { PageWrapper, NoRuleText } from "./RulesPage-style";
-import { useApi } from "../../hooks/useApi/useApi";
-import { getRulesets } from "../../apis/rulesetApiService";
+import { useApi } from "../../../hooks/useApi/useApi";
+import { getRulesets } from "../../../apis/rulesetApiService";
 
 import SearchComponent from "./components/search-component/SearchComponent";
 import AddRuleComponent from "./components/add-rule-component/AddRuleComponent";
 import RuleComponent from "./components/rule-component/RuleComponent";
 import HeaderComponent from "./components/header-component/HeaderComponent";
-import Loading from "../../components/shared/loading/Loading";
+import Loading from "../../../components/shared/loading/Loading";
 
 const RulePage = () => {
   const [rules, setRules] = useState(null);

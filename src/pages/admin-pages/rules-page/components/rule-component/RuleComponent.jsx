@@ -1,7 +1,7 @@
 import { Td, Tr, Image, Flex, Text } from "@chakra-ui/react";
 
-import discountIcon from "../../../../assest/icon/discount-active-icon.svg";
-import gatedIcon from "../../../../assest/icon/gated-active-icon.svg";
+import discountIcon from "../../../../../assest/icon/discount-active-icon.svg";
+import gatedIcon from "../../../../../assest/icon/gated-active-icon.svg";
 
 const RuleComponent = ({ rule }) => {
   //console.log("rule ", rule);
