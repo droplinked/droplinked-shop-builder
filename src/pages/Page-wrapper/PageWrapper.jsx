@@ -15,7 +15,7 @@ import { setCurrentHiroWallet } from "../../store/hiro-wallet/hiro-wallet.action
 import { getUser } from "../../api-service/user/userApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 
-import Header from "../../layouts/header/Header";
+import HeaderLayout from "../../layouts/header-layout/HeaderLayout";
 import FooterLayout from "../../layouts/footer-layout/FooterLayout";
 import SideBarProvider from "../../context/sidebar/sidebar-context";
 
@@ -114,7 +114,7 @@ export default function PageWrapper() {
         minH="100vh"
         bg="bG"
       >
-        <Header />
+        <HeaderLayout />
         <Box
           w="100%"
           h="100%"

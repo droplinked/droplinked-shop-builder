@@ -16,12 +16,12 @@ import {
   UserHeaderIcon,
   ShopnameText,
   ShopnIcon,
-} from "../../Header-style";
+} from "../../HeaderLayout-style";
 
 import droplinkedIcon from "../../../../assest/image/green-droplinked-logo.svg";
 import shopIconSvg from "../../../../assest/icon/shop-green-icon.svg";
 
-const UserHeader = () => {
+const UserHeaderComponent = () => {
   const { onOpen, onClose, isOpen } = useDisclosure()
   const { shop, logoutUser } = useProfile();
   const { shopNavigate } = useCustomNavigate();
@@ -90,4 +90,4 @@ const UserHeader = () => {
   );
 };
 
-export default UserHeader;
+export default UserHeaderComponent;

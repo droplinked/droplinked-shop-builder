@@ -24,9 +24,6 @@ const TermsPage = lazy(() =>
 const PrivacyPage = lazy(() =>
   import("./pages/public-pages/privacy-page/PrivacyPage")
 );
-const RegisterPage = lazy(() =>
-  import("./pages/Producer/register/register-page")
-);
 const VerifyEmailPage = lazy(() =>
   import("./pages/auth-pages/verify-email-page/Email-verification-page")
 );
@@ -46,10 +43,9 @@ const CollectionMainPage = lazy(() =>
 );
 const ShopPage = lazy(() => import("./pages/public-pages/shop-page/ShopPage"));
 
-const IncomingOrderPage = lazy(() =>
-  import("./pages/Producer/incomin-order/IncomingOrder-page")
+const OrderPage = lazy(() =>
+  import("./pages/admin-pages/orders-page/OrderPage")
 );
-
 
 
 function App() {
@@ -64,7 +60,6 @@ function App() {
             <Route index element={<LandingPage />} />
             <Route path="terms" element={<TermsPage />} />
             <Route path="privacy" element={<PrivacyPage />} />
-            <Route path="register" element={<RegisterPage />} />
             <Route
               path="email-confirmation"
               element={<ThankForRegisterPage />}
@@ -89,7 +84,7 @@ function App() {
               <Route path="add-product" element={<AddProductPage />} />
               <Route path="product/:productId" element={<EditProductPage />} />
               <Route path="collections" element={<CollectionMainPage />} />
-              <Route path="orders" element={<IncomingOrderPage />} />
+              <Route path="orders" element={<OrderPage />} />
               <Route path="rules" element={<RulePage />} />
             </Route>
             <Route path=":shopname" element={<ShopPage />} />

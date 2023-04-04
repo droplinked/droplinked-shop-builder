@@ -1,16 +1,15 @@
-
 import { useProfile } from "../../hooks/useProfile/useProfile";
 
-import Default from "./components/default/Default";
-import UserHeader from "./components/user/UserHeader";
+import DefaultHeaderComponent from "./components/default-header-component/DefaultHeaderComponent";
+import UserHeaderComponent from "./components/user-header-component/UserHeaderComponent";
 
-const Header = () => {
+const HeaderLayout = () => {
   const { profile } = useProfile();
 
-  return <>{profile ? <UserHeader /> : <Default />}</>;
+  return <>{profile ? <UserHeaderComponent /> : <DefaultHeaderComponent />}</>;
 };
 
-export default Header;
+export default HeaderLayout;
 
 // <BurgerIcon
 // src={burger}

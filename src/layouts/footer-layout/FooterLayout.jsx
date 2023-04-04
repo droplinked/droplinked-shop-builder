@@ -13,7 +13,7 @@ import {
   RightSide,
   TermText,
   FooterIcon,
-} from "./Footer-style";
+} from "./FooterLayout-style";
 
 export default function FooterLayout() {
   return (

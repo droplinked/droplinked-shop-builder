@@ -5,14 +5,12 @@ import { useNavigate } from "react-router-dom";
 import {
   HeaderWrapper,
   HeaderTitle,
-  BurgerIcon,
   HeaderButton,
-} from "../../Header-style";
+} from "../../HeaderLayout-style";
 
 import AuthModal from "../../../../modals/auth/AuthModal";
-import burger from "../../../../assest/icon/test-burger-icon.svg";
 
-const Default = () => {
+const DefaultHeaderComponent = () => {
   const [authModal, setAuthModal] = useState(false);
 
   const navigate = useNavigate();
@@ -35,4 +33,4 @@ const Default = () => {
   );
 };
 
-export default Default;
+export default DefaultHeaderComponent;
