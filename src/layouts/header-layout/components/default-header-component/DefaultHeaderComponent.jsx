@@ -8,7 +8,7 @@ import {
   HeaderButton,
 } from "../../HeaderLayout-style";
 
-import AuthModal from "../../../../modals/auth/AuthModal";
+import AuthModal from "../../../../auth-modal/auth/AuthModal";
 
 const DefaultHeaderComponent = () => {
   const [authModal, setAuthModal] = useState(false);
