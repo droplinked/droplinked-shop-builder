@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import { useProfile } from "../../../hooks/useProfile/useProfile";
 
-import Sidebar from "../../../layouts/sidebar/Sidebar";
+import SidebarLayout from "../../../layouts/sidebar-layout/SidebarLayout";
 
 const AdminWrapper = () => {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const AdminWrapper = () => {
         minH="100vh"
         pt="24px"
       >
-        <Sidebar />
+        <SidebarLayout />
       </Box>
       <Box w="100%" h="100%" p="24px">
         <Outlet />

@@ -10,7 +10,7 @@ import rulesetsIcon from "../../assest/icon/rulesets-icon.svg";
 
 import OptionComponent from "./components/option-component/OptionComponent";
 
-const Sidebar = () => {
+const SidebarLayout = () => {
   return (
     <Flex w="100%" h="100%" minH="100%" flexDir="column" gap="18px">
       <OptionComponent icon={ProductsIcon} label="products" path="products" />
@@ -27,4 +27,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarLayout;
