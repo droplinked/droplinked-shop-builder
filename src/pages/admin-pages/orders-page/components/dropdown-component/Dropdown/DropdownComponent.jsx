@@ -2,9 +2,9 @@
 
 // this component get array like this = [ {id:"" , value:""} , {id:"" , value:""} ]
 //  pair id and value in objects
-import { SelectComponent, OptionComponent } from "./dropdown-style";
+import { SelectComponent, OptionComponent } from "./DropdownComponent-style";
 
-export default function Dropdown({
+export default function DropdownComponent({
   change,
   pairArray,
   value,

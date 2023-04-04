@@ -9,7 +9,7 @@ import { sortArrayBaseCreateTime } from "../../../utils/sort.utils/sort.utils";
 
 import Order from "../../../components/shared/Order/Order-component";
 import Loading from "../../../components/shared/loading/Loading";
-import Dropdown from "../../../components/shared/Dropdown/Dropdown-component";
+import DropdownComponent from "./components/dropdown-component/Dropdown/DropdownComponent";
 
 export default function OrderPage() {
   const [filter, setFilter] = useState("All");
@@ -73,7 +73,7 @@ export default function OrderPage() {
         </Text>
         <Flex w="100%" justifyContent="center">
           <Box w={{ base: "100%", md: "40%" }} mb="40px">
-            <Dropdown
+            <DropdownComponent
               value={filter}
               pairArray={typesArray}
               placeholder={filter}
