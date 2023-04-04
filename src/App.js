@@ -43,7 +43,7 @@ const ResetPassPage = lazy(() =>
   import("./pages/auth-pages/reset-pass-page/ResetPassPage")
 );
 const ThankForRegisterPage = lazy(() =>
-  import("./pages/publics/thanks-for-register/ThankForRegister-page")
+  import("./pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage")
 );
 // const InventoryPage = lazy(() => import("./pages/Producer/ims/Inventory-page"));
 // const ViewMerchPage = lazy(() =>

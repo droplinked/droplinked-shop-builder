@@ -10,7 +10,7 @@ import {
   ThankText,
   MessageText,
   EmailText,
-} from "./ThankForRegister-page-style";
+} from "./ThankForRegisterPage-style";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 
