@@ -7,7 +7,7 @@ import LoadingPage from "./pages/publics/loading/Loading-page";
 //import ShippingPage from "./pages/customer/shipping/Shipping-page";
 import Enquiry from "./pages/public-pages/enquiry-page/EnquiryPage";
 // import ProducerCollection from "./pages/Producer/producer-collection/producer-collection";
- import UserWrapper from "./pages/user-wrapper/user-wrapper";
+import UserWrapper from "./pages/user-wrapper/user-wrapper";
 // import Shops from "./pages/affiliate/shops/shops";
 // import AffiliateShop from "./pages/affiliate/shop/shop";
 // import AffiliateProduct from "./pages/affiliate/product/product";
@@ -23,9 +23,15 @@ import ProductsPage from "./pages/products/ProductsPage";
 import RulePage from "./pages/rules-page/RulesPage";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
-const LandingPage = lazy(() => import("./pages/public-pages/landing-page/LandingPage"));
-const TermsPage = lazy(() => import("./pages/public-pages/terms-page/TermsPage"));
-const PrivacyPage = lazy(() => import("./pages/public-pages/privacy-page/PrivacyPage"));
+const LandingPage = lazy(() =>
+  import("./pages/public-pages/landing-page/LandingPage")
+);
+const TermsPage = lazy(() =>
+  import("./pages/public-pages/terms-page/TermsPage")
+);
+const PrivacyPage = lazy(() =>
+  import("./pages/public-pages/privacy-page/PrivacyPage")
+);
 const RegisterPage = lazy(() =>
   import("./pages/Producer/register/register-page")
 );
@@ -33,8 +39,8 @@ const RegisterPage = lazy(() =>
 const EmailVerifyPage = lazy(() =>
   import("./pages/publics/email-verify/Email-verification-page")
 );
-const AccountRecovery = lazy(() =>
-  import("./pages/publics/account-recovery/Account-recovery")
+const ResetPassPage = lazy(() =>
+  import("./pages/auth-pages/reset-pass-page/ResetPassPage")
 );
 const ThankForRegisterPage = lazy(() =>
   import("./pages/publics/thanks-for-register/ThankForRegister-page")
@@ -50,8 +56,8 @@ const AddProductPage = lazy(() =>
 const CollectionMainPage = lazy(() =>
   import("./pages/Producer/collection/Collection-page")
 );
- const ShopPage = lazy(() => import("./pages/publics/shop/Shop-page"));
- const MerchPage = lazy(() => import("./pages/customer/merch/Merch-page"));
+const ShopPage = lazy(() => import("./pages/publics/shop/Shop-page"));
+const MerchPage = lazy(() => import("./pages/customer/merch/Merch-page"));
 const CollectionPage = lazy(() =>
   import("./pages/publics/collection/Collection-page")
 );
@@ -107,10 +113,10 @@ function App() {
               path="email-verification/:token"
               element={<EmailVerifyPage />}
             />
-            {/* <Route
+            <Route
               path="producer/account-recovery/:token"
-              element={<AccountRecovery />}
-            /> */}
+              element={<ResetPassPage />}
+            />
             {/* without login  */}
 
             {/* <Route path="settings" element={<SettingsPage />} />
@@ -149,9 +155,12 @@ function App() {
               <Route path="rules" element={<RulePage />} />
             </Route>
             <Route path=":shopname" element={<UserWrapper />}>
-            <Route index element={<ShopPage />} />
-            <Route path="merch/:merchId" element={<MerchPage />} />
-            <Route path="collection/:collectionId" element={<CollectionPage />} />
+              <Route index element={<ShopPage />} />
+              <Route path="merch/:merchId" element={<MerchPage />} />
+              <Route
+                path="collection/:collectionId"
+                element={<CollectionPage />}
+              />
             </Route>
             {/* producer pages */}
             {/* <Route path=":shopname" element={<UserWrapper />}>

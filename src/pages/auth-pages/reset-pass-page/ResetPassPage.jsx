@@ -1,4 +1,4 @@
-import "./Account-recovery-style.scss";
+import "./ResetPassPage-style.scss";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import FormInput from "../../../components/shared/FormInput/FormInput";
@@ -7,16 +7,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toastValue } from "../../../context/toastify/ToastContext";
 import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { recoveryAccount } from "../../../api/base-user/Auth-api";
 import { postAccountRecovery } from "../../../api-service/auth/authApiService";
 import { useApi } from "../../../hooks/useApi/useApi";
 
-export default function AccountRecovery() {
+export default function ResetPassPage() {
   const [newPass, setNewpass] = useState("");
   const [confirmnewPass, setConfirmNewpass] = useState("");
   const [confirmError, setConfirmError] = useState(false);
   const [btnActivd, setBtnActivd] = useState(false);
-  const { successToast, errorToast } = useContext(toastValue);
+  const { successToast } = useContext(toastValue);
   const { postApi } = useApi();
 
   const {
