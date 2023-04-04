@@ -50,7 +50,7 @@ const ThankForRegisterPage = lazy(() =>
 //   import("./pages/Producer/view-merch/View-merch-page")
 // );
 const AddProductPage = lazy(() =>
-  import("./pages/Producer/add-product/Add-product-page")
+  import("./pages/prodcut-pages/add-product-page/AddProductPage")
 );
 
 const CollectionMainPage = lazy(() =>

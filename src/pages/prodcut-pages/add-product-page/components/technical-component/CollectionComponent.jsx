@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 
 
-import { Text16px } from "../../Add-product-style";
+import { Text16px , CollectionContainer, CollectionItem } from "../../AddProductPage-style";
 import { useApi } from "../../../../../hooks/useApi/useApi";
 //import { getCollections } from "../../../../../api-service/collections/collectionApiService";
 import { getUsersCollections } from "../../../../../apis/collectionApiService";
-import { CollectionContainer, CollectionItem } from "../../Add-product-style";
+
 
 
 const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {

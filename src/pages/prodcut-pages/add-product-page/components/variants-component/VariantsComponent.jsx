@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 
-import { ComponentWrapper, ComponentTitle } from "../../Add-product-style";
+import { ComponentWrapper, ComponentTitle } from "../../AddProductPage-style";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 import SkuForm from "./SkuForm";

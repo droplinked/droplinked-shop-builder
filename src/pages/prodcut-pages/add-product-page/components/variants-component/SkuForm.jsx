@@ -10,7 +10,7 @@ import {
   SelectComponent,
   OptionComponent,
   SmallInput
-} from "../../Add-product-style";
+} from "../../AddProductPage-style";
 import { skuReducer } from "./sku-reducer";
 import { initialReducer } from "./initial-reducer";
 import { useToasty } from "../../../../../context/toastify/ToastContext";

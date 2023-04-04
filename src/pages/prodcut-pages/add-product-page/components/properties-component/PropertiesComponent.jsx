@@ -12,7 +12,7 @@ import {
   OptionComponent,
   ValueInput,
   PlusIcon,
-} from "../../Add-product-style";
+} from "../../AddProductPage-style";
 //import { getVariants } from "../../../../../api-service/product/productApiService";
 import { useApi } from "../../../../../hooks/useApi/useApi";
 

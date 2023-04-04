@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 
-import { ComponentWrapper, ComponentTitle } from "../../Add-product-style"
+import { ComponentWrapper, ComponentTitle } from "../../AddProductPage-style"
 
 import FormInput from "../../../../../components/shared/FormInput/FormInput";
 import InputImagesGroup from "../../../../../components/shared/InputImageGroupe/Input-images-component";

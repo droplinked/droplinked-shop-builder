@@ -13,7 +13,7 @@ import {
   Text16px,
   SelectComponent,
   OptionComponent,
-} from "../../Add-product-style";
+} from "../../AddProductPage-style";
 
 const ShippingComponent = ({ TechnicalData, dispatchTechnical }) => {
   const changeShippingDropdown = (e) =>

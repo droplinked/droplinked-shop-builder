@@ -6,7 +6,7 @@ import {
   DetailWrapper,
   Text16px,
   Line,
-} from "../../Add-product-style";
+} from "../../AddProductPage-style";
 import SkuForm from "./SkuForm";
 
 import editIcon from "../../../../../assest/icon/edit-icon.svg";
