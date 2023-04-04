@@ -1,20 +1,10 @@
+import { createApiReq } from "./api-utils";
 export const getUser = () => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `user`,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`user`, true, null);
 };
 
 export const putUser = (body: any) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `user`,
-    body: body,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`user`, true, body);
 };
 
 export const postUserSignup = (
@@ -22,49 +12,27 @@ export const postUserSignup = (
   password: string,
   shopName: string
 ) => {
-  let apiObj = {
-    url: `user/signup`,
-    body: {
-      email: email,
-      password: password,
-      shopName: shopName,
-    },
+  const body = {
+    email: email,
+    password: password,
+    shopName: shopName,
   };
-  return { ...apiObj };
+
+  return createApiReq(`user/signup`, false, body);
 };
 
 export const postUserForgotPassword = (body: any) => {
-  let apiObj = {
-    url: `user/forgot-password`,
-    body: body,
-  };
-  return { ...apiObj };
+  return createApiReq(`user/forgot-password`, false, body);
 };
 
 export const postUserResendEmail = (email: string) => {
-  let apiObj = {
-    url: `user/resend-email`,
-    body: {
-      email: email,
-    },
-  };
-  return { ...apiObj };
+  return createApiReq(`user/resend-email`, false, { email: email });
 };
 
 export const postUserEmailVerification = (token: string) => {
-  let apiObj = {
-    url: `user/email-verification`,
-    body: {
-      token: token,
-    },
-  };
-  return { ...apiObj };
+  return createApiReq(`user/email-verification`, false, { token: token });
 };
 
 export const putUserRecoveryAccount = (body: any) => {
-  let apiObj = {
-    url: `user/recover-account`,
-    body: body,
-  };
-  return { ...apiObj };
+  return createApiReq(`user/recover-account`, false, body);
 };

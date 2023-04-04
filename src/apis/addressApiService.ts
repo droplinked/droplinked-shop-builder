@@ -1,46 +1,21 @@
+import { createApiReq } from "./api-utils";
+
 export const postCreateAddress = (body: any) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `address-book`,
-    body: body,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq( `address-book` , true , body)
 };
 
 export const getAddressList = () => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `address-book`,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq( `address-book` , true , null)
 };
 
 export const deleteAddress = (addressId: number) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `address-book/${addressId}`,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq( `address-book/${addressId}` , true , null)
 };
 
 export const getAddressById = (addressId: number) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `address-book/${addressId}`,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq( `address-book/${addressId}` , true , null)
 };
 
 export const putUpdateAddress = (addressId: number, body: any) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `address-book/${addressId}`,
-    body: body,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq( `address-book/${addressId}` , true , body)
 };

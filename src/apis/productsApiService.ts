@@ -1,71 +1,29 @@
+import { createApiReq } from "./api-utils";
 
+export const postProduct = (body: any) => {
+  return createApiReq(`product`, true, body);
+};
 
-export const postProduct = (body:any) => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `product`,
-      body:body,
-      token: token,
-    };
-    return { ...apiObj };
-  };
+export const getProduct = () => {
+  return createApiReq(`product`, true, null);
+};
 
+export const getProductById = (productId: number) => {
+  return createApiReq(`product/${productId}`, true, null);
+};
 
-  export const getProduct = () => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `product`,
-      token: token,
-    };
-    return { ...apiObj };
-  };
+export const deleteProductById = (productId: number) => {
+  return createApiReq(`product/${productId}`, true, null);
+};
 
+export const putProductById = (productId: number, body: any) => {
+  return createApiReq(`product/${productId}`, true, null);
+};
 
-  export const getProductById = (productId:number) => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `product/${productId}`,
-      token: token,
-    };
-    return { ...apiObj };
-  };
+export const getPublicProductById = (productId: number) => {
+  return createApiReq(`product/public/${productId}`, false, null);
+};
 
-
-  export const deleteProductById = (productId:number) => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `product/${productId}`,
-      token: token,
-    };
-    return { ...apiObj };
-  };
-
-
-  export const putProductById = (productId:number , body:any) => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `product/${productId}`,
-      body:body,
-      token: token,
-    };
-    return { ...apiObj };
-  };
-
-
-  export const getPublicProductById = (productId:number) => {
-    //const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `product/public/${productId}`,
-    };
-    return { ...apiObj };
-  };
-
-
-  export const postImportShopify = () => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `product/import`,
-      token: token,
-    };
-    return { ...apiObj };
-  };
+export const postImportShopify = () => {
+  return createApiReq(`product/import`, true, null);
+};

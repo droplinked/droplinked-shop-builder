@@ -1,32 +1,17 @@
+import { createApiReq } from "./api-utils";
+
 export const putUpdateShop = (body: any) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `shop`,
-    body: body,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`shop`, true, body);
 };
 
 export const getIsShopExist = (shopName: string) => {
-  let apiObj = {
-    url: `shop/${shopName}`,
-  };
-  return { ...apiObj };
+  return createApiReq( `shop/${shopName}`, false, null);
 };
 
 export const getShopPublic = (shopName: string) => {
-  let apiObj = {
-    url: `shop/public/${shopName}`,
-  };
-  return { ...apiObj };
+  return createApiReq( `shop/public/${shopName}`, false, null);
 };
 
 export const getShopInfo = (shopName: string) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `shop/shopInfo/${shopName}`,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq( `shop/shopInfo/${shopName}`, true, null);
 };

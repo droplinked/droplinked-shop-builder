@@ -1,33 +1,13 @@
+import { createApiReq } from "./api-utils";
 
+export const postRecordCasper = (body: any) => {
+  return createApiReq(`sku/record/casper`, true, body);
+};
 
-export const postRecordCasper = (body:any) => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `sku/record/casper`,
-      body:body,
-      token: token,
-    };
-    return { ...apiObj };
-  };
+export const putRecordCasper = (body: any) => {
+  return createApiReq(`sku/record/casper`, true, body);
+};
 
-
-  export const putRecordCasper = (body:any) => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `sku/record/casper`,
-      body:body,
-      token: token,
-    };
-    return { ...apiObj };
-  };
-
-
-  
-  export const getRecordedSkuCasper = (skuID:number) => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `/sku/record/casper/${skuID}`,
-      token: token,
-    };
-    return { ...apiObj };
-  };
+export const getRecordedSkuCasper = (skuID: number) => {
+  return createApiReq(`/sku/record/casper/${skuID}`, true, null);
+};

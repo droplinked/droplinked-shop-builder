@@ -1,29 +1,14 @@
+import { createApiReq } from "./api-utils";
 
-///notification
 export const getNotifications = () => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `notification`,
-      token: token,
-    };
-    return { ...apiObj };
+    return createApiReq(`notification`, true, null);
   };
 
   export const getNotificationById = (notifId:number) => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `notification/${notifId}`,
-      token: token,
-    };
-    return { ...apiObj };
+    return createApiReq(`notification/${notifId}`, true, null);
   };
 
 
   export const postSeenNotification = (notifId:number) => {
-    const token = JSON.parse(localStorage.getItem("token") || "");
-    let apiObj = {
-      url: `notification/${notifId}`,
-      token: token,
-    };
-    return { ...apiObj };
+    return createApiReq(`notification/${notifId}`, true, null);
   };

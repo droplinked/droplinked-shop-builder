@@ -1,53 +1,25 @@
+import { createApiReq } from "./api-utils";
+
 export const postCreateRuleset = (body: any) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `rule-set`,
-    body: body,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`rule-set`, true, body);
 };
 
 export const getRulesets = () => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `rule-set`,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`rule-set`, true, null);
 };
 
 export const getRulesetById = (ruleId: number) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `rule-set/${ruleId}`,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`rule-set/${ruleId}`, true, null);
 };
 
 export const putUpdateRuleset = (ruleId: number, body: any) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `rule-set/${ruleId}`,
-    body: body,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`rule-set/${ruleId}`, true, body);
 };
 
 export const deleteRulesetById = (ruleId: number) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `rule-set/${ruleId}`,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`rule-set/${ruleId}`, true, null);
 };
 
 export const getRuleSetPublicById = (ruleId: number) => {
-  let apiObj = {
-    url: `rule-set/${ruleId}`,
-  };
-  return { ...apiObj };
+  return createApiReq(`rule-set/${ruleId}`, false, null);
 };

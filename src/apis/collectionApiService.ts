@@ -1,77 +1,42 @@
+import { createApiReq } from "./api-utils";
+
 export const postCreateCollection = (collectionName: string) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `collection`,
-    body: {
-      title: collectionName,
-    },
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`collection`, true, { title: collectionName });
 };
 
 export const getUsersCollections = () => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `collection`,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`collection`, true, null);
 };
 
 export const getCollectionById = (collectionId: number) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `collection/${collectionId}`,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`collection/${collectionId}`, true, null);
 };
 
 export const putUpdateCollection = (
   collectionId: number,
   collectionName: string
 ) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `collection/${collectionId}`,
-    body: {
-      title: collectionName,
-    },
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`collection/${collectionId}`, true, {
+    title: collectionName,
+  });
 };
 
 export const deleteCollection = (collectionId: number) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `collection/${collectionId}`,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`collection/${collectionId}`, true, null);
 };
 
 export const postAddProductToCollection = (collectionId: number, body: any) => {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  let apiObj = {
-    url: `collection/${collectionId}`,
-    body: body,
-    token: token,
-  };
-  return { ...apiObj };
+  return createApiReq(`collection/${collectionId}`, true, body);
 };
 
 export const getCollectionPublicById = (collectionId: number) => {
-  let apiObj = {
-    url: `collection/public/collection/${collectionId}`,
-  };
-  return { ...apiObj };
+  return createApiReq(
+    `collection/public/collection/${collectionId}`,
+    false,
+    null
+  );
 };
 
 export const getCollectionPublicByShopname = (shopName: string) => {
-  let apiObj = {
-    url: `collection/public/${shopName}`,
-  };
-  return { ...apiObj };
+  return createApiReq(`collection/public/${shopName}`, false, null);
 };
