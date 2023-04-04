@@ -6,7 +6,7 @@ import { lazy, Suspense } from "react";
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
 import Enquiry from "./pages/public-pages/enquiry-page/EnquiryPage";
 import EditProductPage from "./pages/prodcut-pages/edit-product-page/EditProductPage";
-import AdminWrapper from "./pages/admin-wrapper/AdminWrapper";
+import AdminWrapper from "./pages/wrappers/admin-wrapper/AdminWrapper";
 import RegisterPagesWrapper from "./pages/register-pages/RegisterPageWrapper";
 import RegisterShopInfo from "./pages/register-pages/pages/shop-info/ShopInfo";
 import ContactInfo from "./pages/register-pages/pages/contact-info/ContactInfo";
