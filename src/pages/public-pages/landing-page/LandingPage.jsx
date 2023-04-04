@@ -5,7 +5,6 @@ import {
   usePrefersReducedMotion,
   Flex,
   Box,
-  Text,
 } from "@chakra-ui/react";
 
 import {
@@ -15,9 +14,7 @@ import {
   Text2,
   TextContainer,
   SpaceBox,
-} from "./Landing-page-style";
-import { useSelector } from "react-redux";
-import { selectCurrentProfile } from "../../../store/profile/profile.selector";
+} from "./LandingPage-style";
 import { useProfile } from "../../../hooks/useProfile/useProfile";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
@@ -103,9 +100,7 @@ export default function LandingPage() {
       </Flex>
 
       <SpaceBox></SpaceBox>
-      {/* <Flex w="100%" justifyContent="center" mb="36px">
-        <Text color='white' fontSize='36px' fontWeight='700'  >Droplinked web3 partners</Text>
-      </Flex> */}
+
       <Box mb="36px" />
 
       <LogoSlider />

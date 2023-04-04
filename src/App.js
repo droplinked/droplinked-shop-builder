@@ -23,7 +23,7 @@ import ProductsPage from "./pages/products/ProductsPage";
 import RulePage from "./pages/rules-page/RulesPage";
 
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
-const LandingPage = lazy(() => import("./pages/publics/landing/Landing-page"));
+const LandingPage = lazy(() => import("./pages/public-pages/landing-page/LandingPage"));
 const TermsPage = lazy(() => import("./pages/publics/terms/Terms-page"));
 const PrivacyPage = lazy(() => import("./pages/publics/privacy/Privacy-page"));
 const RegisterPage = lazy(() =>
