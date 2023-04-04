@@ -24,7 +24,7 @@ import { RuleTypes } from "./rule-type";
 import { useApi } from "../../hooks/useApi/useApi";
 // import deleteIcon from "../../../assest/icon/delete-icon.svg";
 import RuleItem from "./RuleItem";
-import FillInput from "../../components/shared/FillInput/FillInput";
+import FillInputComponent from "./components/FillInputComponent";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import AddRuleComponent from "./AddRuleComponent";
 import Loading from "../../components/shared/loading/Loading";
@@ -151,7 +151,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
           <>
             <ModalHeader>Ruleset</ModalHeader>
 
-            <FillInput
+            <FillInputComponent
               preText={"https://"}
               value={webUrl}
               label="Weburl"

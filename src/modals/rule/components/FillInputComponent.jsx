@@ -1,6 +1,6 @@
 import { Input, Text, Flex, FormLabel ,FormControl} from "@chakra-ui/react";
 
-const FillInput = ({ preText, value, change, placeholder ,label }) => {
+const FillInputComponent = ({ preText, value, change, placeholder ,label }) => {
   return (
     <FormControl w='100%'>
       <FormLabel
@@ -48,4 +48,4 @@ const FillInput = ({ preText, value, change, placeholder ,label }) => {
   );
 };
 
-export default FillInput;
+export default FillInputComponent;
