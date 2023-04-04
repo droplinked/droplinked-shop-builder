@@ -4,19 +4,16 @@
 import { Box } from "@chakra-ui/react";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector ,useDispatch } from "react-redux";
+
 import { selectIsCustomer } from "../../store/profile/profile.selector";
 import { useProfile } from "../../hooks/useProfile/useProfile";
-import { useDispatch } from "react-redux";
 import { setCurrentShop } from "../../store/shop/shop.action";
-// import { userSession } from "../../utils/hirowallet/hirowallet-utils";
-// import { setCurrentHiroWallet } from "../../store/hiro-wallet/hiro-wallet.action";
 import { getUser } from "../../apis/userApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 
 import HeaderLayout from "../../layouts/header-layout/HeaderLayout";
 import FooterLayout from "../../layouts/footer-layout/FooterLayout";
-import SideBarProvider from "../../context/sidebar/sidebar-context";
 
 export default function PageWrapper() {
 
@@ -24,29 +21,11 @@ export default function PageWrapper() {
   const isCustomer = useSelector(selectIsCustomer);
 
   const { getApi } = useApi();
-  const { profile, shop } = useProfile();
+  const { profile } = useProfile();
   const dispatch = useDispatch();
 
   let location = useLocation();
 
-  // const getHiroWalletData = () => {
-  //   if (userSession.isSignInPending()) {
-  //     userSession
-  //       .handlePendingSignIn()
-  //       .then((userData) => {
-  //         window.history.replaceState({}, document.title, "/");
-  //         dispatch(setCurrentHiroWallet(userData));
-  //         //  setUserData(userData);
-  //       })
-  //       .catch((err) => {
-  //         dispatch(setCurrentHiroWallet(undefined));
-  //         //  setUserData(undefined);
-  //       });
-  //   } else if (userSession.isUserSignedIn()) {
-  //     dispatch(setCurrentHiroWallet(userSession.loadUserData()));
-  //     //  setUserData(userSession.loadUserData());
-  //   }
-  // };
 
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem("token"));
@@ -102,7 +81,6 @@ export default function PageWrapper() {
   };
 
   return (
-    <SideBarProvider>
       <Box
         boxSizing="border-box"
         // overflowX="hidden"
@@ -126,6 +104,5 @@ export default function PageWrapper() {
         </Box>
         <FooterLayout />
       </Box>
-    </SideBarProvider>
   );
 }
