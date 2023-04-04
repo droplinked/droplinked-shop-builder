@@ -4,22 +4,16 @@ import { useState } from "react";
 import { useToasty } from "../../context/toastify/ToastContext";
 import { COUNTRIES, US_STATES } from "./address-list-constant";
 import {
-  postAddress,
-  patchAddress,
-} from "../../api-service/address/addressApiService";
-import {
   postCreateAddress,
   putUpdateAddress,
 } from "../../apis/addressApiService";
 import { useApi } from "../../hooks/useApi/useApi";
-import { TopText, SaveButton } from "./AddressModal-style";
+import { TopText } from "./AddressModal-style";
 
-import FormInput from "../../components/shared/FormInput/FormInput";
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import SelectInput from "../../components/shared/SelectInput/SelectInput";
 import SubmitButton from "./components/submit-button/SubmitButton";
-import InputComponent from "./InputComponent";
+import InputComponent from "./InputComponent"
 
 export default function AddressModal({
   show,
@@ -28,7 +22,7 @@ export default function AddressModal({
   close,
 }) {
   // address context functions for add new address or update address
-  const { successToast, errorToast } = useToasty();
+  const { successToast } = useToasty();
   const { postApi, putApi } = useApi();
   // form values states
   // if get address book on props set addressbook value for default or not set '' for default value
@@ -305,8 +299,13 @@ export default function AddressModal({
             change={ChangeLastname}
           />
         </Flex>
-        <SubmitButton width='100%' click={submitForm} disabled={loading} loading={loading} >
-        Save
+        <SubmitButton
+          width="100%"
+          click={submitForm}
+          disabled={loading}
+          loading={loading}
+        >
+          Save
         </SubmitButton>
         {/* <SaveButton w="100%" onClick={submitForm} disabled={loading}>
           Save

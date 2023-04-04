@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 
 import { useToasty } from "../../context/toastify/ToastContext";
-import { postResetPassword } from "../../api-service/auth/authApiService";
+import { postUserForgotPassword } from "../../apis/userApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 import { Title, Detail, BacktoLoginButton } from "./ResetPassModal-style";
 
@@ -21,7 +21,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
       errorToast("The email address is invalid.");
     } else {
       setDisableBtn(true);
-      let result = await postApi(postResetPassword(email));
+      let result = await postApi(postUserForgotPassword(email));
       if (result == null) {
         successToast(`Send an email to : ${email}`);
         close();

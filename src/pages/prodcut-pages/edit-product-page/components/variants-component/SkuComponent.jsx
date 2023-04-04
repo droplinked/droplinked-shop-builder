@@ -9,7 +9,6 @@ import {
 } from "../../EditProductPage-style";
 import SkuForm from "./SkuForm";
 import { useApi } from "../../../../../hooks/useApi/useApi";
-import { deleteRemoveSku } from "../../../../../api-service/product/productApiService";
 
 import editIcon from "../../../../../assest/icon/edit-icon.svg";
 import deleteIcon from "../../../../../assest/icon/delete-icon.svg";
@@ -30,8 +29,8 @@ const SkuComponent = ({
   const toggleRecordModal = () => setShowRecordModal((p) => !p);
 
   const deleteSku = async () => {
-    let result = await deleteApi(deleteRemoveSku(sku._id));
-    if (result) updateProduct();
+    //let result = await deleteApi(deleteRemoveSku(sku._id));
+   // if (result) updateProduct();
   };
 
   const RecordSku = () => {};

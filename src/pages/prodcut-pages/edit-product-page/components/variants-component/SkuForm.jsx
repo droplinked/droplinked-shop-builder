@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer, useMemo } from "react";
+import {  useEffect, useReducer, useMemo } from "react";
 import { Box, Text, Flex } from "@chakra-ui/react";
 
 import {
@@ -13,10 +13,6 @@ import {
 } from "../../EditProductPage-style";
 import { skuReducer } from "./sku-reducer";
 import { useApi } from "../../../../../hooks/useApi/useApi";
-import {
-  postAddSkuToProduct,
-  putUpdateSku,
-} from "../../../../../api-service/product/productApiService";
 import { initialReducer } from "./initial-reducer";
 import { existSameOptions } from "./utils";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
@@ -114,17 +110,17 @@ const SkuForm = ({
     }
     let result;
     if (defaultValue) {
-      result = await patchApi(
-        putUpdateSku(
-          sku._id,
-          sku.externalID,
-          sku.price,
-          sku.quantity,
-          sku.options
-        )
-      );
+      // result = await patchApi(
+      //   putUpdateSku(
+      //     sku._id,
+      //     sku.externalID,
+      //     sku.price,
+      //     sku.quantity,
+      //     sku.options
+      //   )
+      // );
     } else {
-      result = await postApi(postAddSkuToProduct(productId, sku));
+     // result = await postApi(postAddSkuToProduct(productId, sku));
     }
     if (result) {
       updateProduct();

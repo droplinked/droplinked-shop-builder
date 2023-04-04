@@ -12,7 +12,7 @@ import {
   ProductsWrapper,
 } from "./Producer-collection-style";
 import { useToasty } from "../../../context/toastify/ToastContext";
-import { deleteCollection } from "../../../api-service/collections/collectionApiService";
+import { deleteCollection } from "../../../apis/collectionApiService";
 import { Box } from "@chakra-ui/react";
 import { useApi } from "../../../hooks/useApi/useApi";
 import { USER_TYPE } from "../../../constant/user-types";

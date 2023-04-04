@@ -9,7 +9,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { postOrderStatus } from "../../api-service/order/orderApiService"; 
+import { putUpdateOrder } from "../../apis/orderApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 import { ORDER_TYPES } from "../../constant/order.types";
 import { useToasty } from "../../context/toastify/ToastContext";
@@ -29,7 +29,7 @@ export default function OrderModal({updateOrder , order, show, close }) {
   const [cancelOrderModal, setCancelOrderModal] = useState(false);
 
   const { successToast, errorToast } = useToasty();
-  const { postApi } = useApi()
+  const { putApi } = useApi()
 
 
   const progressClick = async () => {
@@ -38,7 +38,7 @@ export default function OrderModal({updateOrder , order, show, close }) {
         ? ORDER_TYPES.PROCESSING
         : ORDER_TYPES.SENT;
     setLoadingBtn(true);
-    let result = await postApi(postOrderStatus(order._id, statusType))
+    let result = await putApi(putUpdateOrder(order._id, statusType))
     setLoadingBtn(false);
     if (result == true) {
       successToast("Status changed successfully");
@@ -51,7 +51,7 @@ export default function OrderModal({updateOrder , order, show, close }) {
 
   const cancelOrder = async () => {
     setLoadingBtn(true);
-    let result = await postApi(postOrderStatus(order._id, ORDER_TYPES.CANCELED));
+    let result = await putApi(putUpdateOrder(order._id, ORDER_TYPES.CANCELED));
     setLoadingBtn(false);
     if (result == true) {
       successToast("You canceled the order");

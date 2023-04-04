@@ -9,9 +9,9 @@ import { selectIsCustomer } from "../../store/profile/profile.selector";
 import { useProfile } from "../../hooks/useProfile/useProfile";
 import { useDispatch } from "react-redux";
 import { setCurrentShop } from "../../store/shop/shop.action";
-import { userSession } from "../../utils/hirowallet/hirowallet-utils";
-import { setCurrentHiroWallet } from "../../store/hiro-wallet/hiro-wallet.action";
-import { getUser } from "../../api-service/user/userApiService";
+// import { userSession } from "../../utils/hirowallet/hirowallet-utils";
+// import { setCurrentHiroWallet } from "../../store/hiro-wallet/hiro-wallet.action";
+import { getUser } from "../../apis/userApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 
 import HeaderLayout from "../../layouts/header-layout/HeaderLayout";
@@ -29,29 +29,29 @@ export default function PageWrapper() {
 
   let location = useLocation();
 
-  const getHiroWalletData = () => {
-    if (userSession.isSignInPending()) {
-      userSession
-        .handlePendingSignIn()
-        .then((userData) => {
-          window.history.replaceState({}, document.title, "/");
-          dispatch(setCurrentHiroWallet(userData));
-          //  setUserData(userData);
-        })
-        .catch((err) => {
-          dispatch(setCurrentHiroWallet(undefined));
-          //  setUserData(undefined);
-        });
-    } else if (userSession.isUserSignedIn()) {
-      dispatch(setCurrentHiroWallet(userSession.loadUserData()));
-      //  setUserData(userSession.loadUserData());
-    }
-  };
+  // const getHiroWalletData = () => {
+  //   if (userSession.isSignInPending()) {
+  //     userSession
+  //       .handlePendingSignIn()
+  //       .then((userData) => {
+  //         window.history.replaceState({}, document.title, "/");
+  //         dispatch(setCurrentHiroWallet(userData));
+  //         //  setUserData(userData);
+  //       })
+  //       .catch((err) => {
+  //         dispatch(setCurrentHiroWallet(undefined));
+  //         //  setUserData(undefined);
+  //       });
+  //   } else if (userSession.isUserSignedIn()) {
+  //     dispatch(setCurrentHiroWallet(userSession.loadUserData()));
+  //     //  setUserData(userSession.loadUserData());
+  //   }
+  // };
 
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem("token"));
     if (token != null || token != undefined) firtsCheck();
-    getHiroWalletData();
+    //getHiroWalletData();
   }, []);
 
   useEffect(async () => {

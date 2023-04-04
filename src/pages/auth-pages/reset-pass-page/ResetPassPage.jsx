@@ -7,7 +7,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toastValue } from "../../../context/toastify/ToastContext";
 import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { postAccountRecovery } from "../../../api-service/auth/authApiService";
+import { putUserRecoveryAccount } from "../../../apis/userApiService";
 import { useApi } from "../../../hooks/useApi/useApi";
 
 export default function ResetPassPage() {
@@ -45,7 +45,7 @@ export default function ResetPassPage() {
     //   newPassword: newPass,
     // };
     // let result = await recoveryAccount(token, newPass);
-    let result = await postApi(postAccountRecovery(token, newPass));
+    let result = await postApi(putUserRecoveryAccount(token, newPass));
     if (result) {
       successToast(
         "Your password has been changed successfully. Please login again."
