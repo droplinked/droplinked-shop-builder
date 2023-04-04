@@ -3,7 +3,7 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
-import LoadingPage from "./pages/publics/loading/Loading-page";
+import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
 //import ShippingPage from "./pages/customer/shipping/Shipping-page";
 import Enquiry from "./pages/public-pages/enquiry-page/EnquiryPage";
 // import ProducerCollection from "./pages/Producer/producer-collection/producer-collection";
