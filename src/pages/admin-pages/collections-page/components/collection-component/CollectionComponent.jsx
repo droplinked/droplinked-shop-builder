@@ -1,42 +1,37 @@
-//import "./Producre-collection-style.scss";
-
-import SmallModal from "../../../modals/small/SmallModal";
-import Product from "../Product/Product";
-import CollectionModal from "../../../modals/collection/CollectionModal";
-import ProducerCollectionHeader from "./producer-collection-header/Producer-collection-header";
-import RuleModal from "../../../modals/rule/RuleModal";
-import AddProduct from "../AddProduct/Add-product-component";
+import { useSelector } from "react-redux";
+import { Box } from "@chakra-ui/react";
+import { useState } from "react";
 
 import {
   ProducerCollectionWrapper,
   ProductsWrapper,
-} from "./Producer-collection-style";
-import { useToasty } from "../../../context/toastify/ToastContext";
-import { deleteCollection } from "../../../apis/collectionApiService";
-import { Box } from "@chakra-ui/react";
-import { useApi } from "../../../hooks/useApi/useApi";
-import { USER_TYPE } from "../../../constant/user-types";
-import { useSelector } from "react-redux";
-import {
-  selectCurrentProfile,
-} from "../../../store/profile/profile.selector";
+} from "./CollectionComponent-style";
+import { useToasty } from "../../../../../context/toastify/ToastContext";
+import { deleteCollection } from "../../../../../apis/collectionApiService";
+import { useApi } from "../../../../../hooks/useApi/useApi";
+import { USER_TYPE } from "../../../../../constant/user-types";
+import { selectCurrentProfile } from "../../../../../store/profile/profile.selector";
 
-import { useState } from "react";
+import SmallModal from "../../../../../modals/small/SmallModal";
+import Product from "../../../../../components/shared/Product/Product";
+import CollectionModal from "../../../../../modals/collection/CollectionModal";
+import CollectionHeaderComponent from "./CollectionHeaderComponent";
+import RuleModal from "../../../../../modals/rule/RuleModal";
+import AddProductComponent from "../add-product-component/AddProductComponent";
 
-const ProducerCollection = ({ collection, update }) => {
-
+const CollectionComponent = ({ collection, update }) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [ruleModal, setRuleModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
-  const { deleteApi } = useApi()
+  const { deleteApi } = useApi();
   const profile = useSelector(selectCurrentProfile);
 
   const clickOnDeleteCollection = async () => {
     setLoading(true);
-    let result = await deleteApi(deleteCollection(collection._id))
+    let result = await deleteApi(deleteCollection(collection._id));
     if (result == true) {
       successToast("Collection deleted successfully");
       update();
@@ -56,7 +51,7 @@ const ProducerCollection = ({ collection, update }) => {
   return (
     <>
       <ProducerCollectionWrapper>
-        <ProducerCollectionHeader
+        <CollectionHeaderComponent
           title={collection.title}
           collectionId={collection._id}
           editOnclick={openEditModal}
@@ -64,9 +59,9 @@ const ProducerCollection = ({ collection, update }) => {
           openRuleModal={openRuleModal}
         />
         <ProductsWrapper>
-          {(!collection.products || collection.products.length == 0) ? (
+          {!collection.products || collection.products.length == 0 ? (
             <Box w={{ base: "50%", lg: "25%" }}>
-              <AddProduct />
+              <AddProductComponent />
             </Box>
           ) : (
             <>
@@ -109,15 +104,16 @@ const ProducerCollection = ({ collection, update }) => {
         </ProductsWrapper>
       </ProducerCollectionWrapper>
 
-       {deleteModal && <SmallModal
+      {deleteModal && (
+        <SmallModal
           text={`Are you sure you want to  delete this collection?`}
           show={deleteModal}
           hide={() => setDeleteModal(false)}
           click={clickOnDeleteCollection}
           loading={loading}
           buttonText={"Delete"}
-        />}
-
+        />
+      )}
 
       <CollectionModal
         show={editModal}
@@ -126,17 +122,15 @@ const ProducerCollection = ({ collection, update }) => {
         update={update}
       />
 
-
-        <RuleModal
+      <RuleModal
         show={ruleModal}
-          close={closeRuleModal}
-          collectionId={collection._id}
-          update={update}
-          ruleId={collection.ruleSetID || undefined}
-        />
-
+        close={closeRuleModal}
+        collectionId={collection._id}
+        update={update}
+        ruleId={collection.ruleSetID || undefined}
+      />
     </>
   );
 };
 
-export default ProducerCollection;
+export default CollectionComponent;

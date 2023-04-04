@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { Flex, Box } from "@chakra-ui/react";
-import { ShopNameText } from "../Producer-collection-style";
-import { HeaderIcon } from "../Producer-collection-style";
 
-import editIcon from "../../../../assest/icon/edit-icon.svg";
-import ruleIcon from "../../../../assest/icon/rule-icon.svg";
+import { HeaderIcon ,ShopNameText } from "./CollectionComponent-style";
 
-const ProducerCollectionHeader = ({
+import editIcon from "../../../../../assest/icon/edit-icon.svg";
+import ruleIcon from "../../../../../assest/icon/rule-icon.svg";
+
+const CollectionHeaderComponent = ({
   title,
   collectionId,
   editOnclick,
@@ -38,4 +38,4 @@ const ProducerCollectionHeader = ({
   );
 };
 
-export default ProducerCollectionHeader;
+export default CollectionHeaderComponent;

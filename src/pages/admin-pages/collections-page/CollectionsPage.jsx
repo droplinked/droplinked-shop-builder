@@ -13,8 +13,8 @@ import {
 
 import Loading from "../../../components/shared/loading/Loading";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import ProducerCollection from "../../../components/shared/ProducerCollection/Producre-collection";
-import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
+import CollectionComponent from "./components/collection-component/CollectionComponent";
+import AddProductComponent from "./components/add-product-component/AddProductComponent";
 import CollectionModal from "../../../modals/collection/CollectionModal";
 
 export default function CollectionsPage() {
@@ -54,14 +54,14 @@ export default function CollectionsPage() {
         <>
           {collections.length <= 0 ? (
             <AddproductWrapper>
-              <AddProduct />
+              <AddProductComponent />
             </AddproductWrapper>
           ) : (
             <>
               {collections.map((collection, i) => {
                 return (
                   <AddproductWrapper key={i}>
-                    <ProducerCollection
+                    <CollectionComponent
                       collection={collection}
                       update={updateCollections}
                     />

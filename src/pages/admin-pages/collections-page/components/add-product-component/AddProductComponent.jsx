@@ -1,8 +1,8 @@
-import { InputProductComponent } from "./Add-product-style";
+import { InputProductComponent } from "./AddProductComponent-style";
 import { AspectRatio, Text, Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-const AddProduct = () => {
+const AddProductComponent = () => {
   const navigate = useNavigate();
 
   const navigateToAddProduct = () => navigate("/producer/add-product");
@@ -23,4 +23,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default AddProductComponent;
