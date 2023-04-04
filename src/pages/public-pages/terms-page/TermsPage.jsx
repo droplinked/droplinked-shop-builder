@@ -1,4 +1,4 @@
-import "./Terms-page-style.scss"
+import "./TermsPage-style.scss"
 import {
 	Link,
 } from 'react-router-dom';

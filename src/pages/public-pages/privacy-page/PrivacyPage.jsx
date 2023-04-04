@@ -1,4 +1,4 @@
-import "../terms/Terms-page-style.scss"
+import "../terms-page/TermsPage-style.scss"
 import { Link } from 'react-router-dom';
 
 export default function PrivacyPage() {
