@@ -28,7 +28,7 @@
     "buffer": "^6.0.3",
     "casper-js-sdk": "^2.10.1",
     "crypto-browserify": "^3.12.0",
-    "framer-motion": "^6.5.1",
+    "framer-motion": "4.1.17",
     "process": "^0.11.10",
     "react": "^17.0.2",
     "react-bootstrap": "^2.2.1",
