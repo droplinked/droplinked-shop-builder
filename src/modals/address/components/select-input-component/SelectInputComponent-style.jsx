@@ -1,6 +1,6 @@
 import { chakra } from "@chakra-ui/react";
 
-export const SelectInputComponent = chakra("input", {
+export const SelectInputComponentWrapper = chakra("input", {
   baseStyle: {
     w:'100%',
     fontWeight: "500",

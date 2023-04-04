@@ -11,7 +11,7 @@ import { useApi } from "../../hooks/useApi/useApi";
 import { TopText } from "./AddressModal-style";
 
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
-import SelectInput from "../../components/shared/SelectInput/SelectInput";
+import SelectInputComponent from "./components/select-input-component/SelectInputComponent";
 import SubmitButton from "./components/submit-button/SubmitButton";
 import InputComponent from "./InputComponent"
 
@@ -215,7 +215,7 @@ export default function AddressModal({
               Country
             </FormLabel>
 
-            <SelectInput
+            <SelectInputComponent
               valueList={COUNTRIES}
               value={country}
               change={ChangeCountry}
@@ -236,7 +236,7 @@ export default function AddressModal({
                 State/province
               </FormLabel>
 
-              <SelectInput
+              <SelectInputComponent
                 valueList={US_STATES}
                 value={state}
                 change={ChangeState}

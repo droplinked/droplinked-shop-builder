@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { Box } from "@chakra-ui/react";
 import {
-  SelectInputComponent,
+  SelectInputComponentWrapper,
   DropDownWrapper,
   DropDownItem,
-} from "./SelectInput-style";
+} from "./SelectInputComponent-style";
 
-const SelectInput = ({ valueList, value, change, placeholder }) => {
+const SelectInputComponent = ({ valueList, value, change, placeholder }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const box = useRef(null);
@@ -25,7 +25,7 @@ const SelectInput = ({ valueList, value, change, placeholder }) => {
 
   return (
     <Box w="100%" ref={box} pos="relative">
-      <SelectInputComponent
+      <SelectInputComponentWrapper
         placeholder={placeholder}
         onChange={changeValue}
         value={value}
@@ -51,7 +51,7 @@ const SelectInput = ({ valueList, value, change, placeholder }) => {
   );
 };
 
-export default SelectInput;
+export default SelectInputComponent;
 
 function useOutsideAlerter(ref, closeDropDown) {
   useEffect(() => {
