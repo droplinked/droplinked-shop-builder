@@ -1,6 +1,6 @@
 import { Tr, Td, Image, Flex, Text } from "@chakra-ui/react";
 
-import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
+import { useCustomNavigate } from "../../../../../hooks/useCustomeNavigate/useCustomNavigate";
 
 const ProductCompnent = ({ product }) => {
   

@@ -1,4 +1,15 @@
-//import "./Collection-page-style.scss";
+import { useSelector } from "react-redux";
+import { useNavigate  } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import { selectCurrentShop } from "../../../store/shop/shop.selector";
+import { getCollectionPublicByShopname } from "../../../apis/collectionApiService"
+import { useApi } from "../../../hooks/useApi/useApi";
+import {
+  CollectionPageWrapper,
+  ButtonWrapper,
+  AddproductWrapper,
+} from "./CollectionsPage-style";
 
 import Loading from "../../../components/shared/loading/Loading";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
@@ -6,23 +17,7 @@ import ProducerCollection from "../../../components/shared/ProducerCollection/Pr
 import AddProduct from "../../../components/shared/AddProduct/Add-product-component";
 import CollectionModal from "../../../modals/collection/CollectionModal";
 
-import { useNavigate  } from "react-router-dom";
-//import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
-import { selectCurrentShop } from "../../../store/shop/shop.selector";
-//import { getCollectionsWithProduct } from "../../../api-service/collections/collectionApiService";
-import { getUsersCollections ,getCollectionPublicByShopname } from "../../../apis/collectionApiService"
-//import { getCollectionsByShopname } from "../../../api-service/collections/collectionApiService";
-import { useApi } from "../../../hooks/useApi/useApi";
-import {
-  CollectionPageWrapper,
-  ButtonWrapper,
-  AddproductWrapper,
-} from "./Collection-page-style";
-import { useSelector } from "react-redux";
-
-
-export default function CollectionMainPage() {
+export default function CollectionsPage() {
   const [Modal, setModal] = useState(false);
   const [collections, setCollections] = useState(null);
 

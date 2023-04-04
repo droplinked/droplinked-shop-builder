@@ -7,10 +7,9 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate"
+import { useCustomNavigate } from "../../../../../hooks/useCustomeNavigate/useCustomNavigate"
 
-import searchIcon from "../../../../assest/icon/search-icon.svg";
-
+import searchIcon from "../../../../../assest/icon/search-icon.svg";
 
 const PageHeader = () => {
 

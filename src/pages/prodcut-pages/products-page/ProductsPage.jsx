@@ -16,14 +16,14 @@ import {
 
 import { useState, useEffect } from "react";
 
-import { useApi } from "../../hooks/useApi/useApi";
-import { getProduct } from "../../apis/productsApiService";
+import { useApi } from "../../../hooks/useApi/useApi";
+import { getProduct } from "../../../apis/productsApiService";
 import { PageWrapper } from "./ProductsPage-style";
 
 import PageHeader from "./components/page-header/PageHeader";
 import AddProductComponent from "./components/add-product-component/AddProductComponent";
 import ProductCompnent from "./components/product-component/ProductCompnent";
-import Loading from "../../components/shared/loading/Loading";
+import Loading from "../../../components/shared/loading/Loading";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState(null);

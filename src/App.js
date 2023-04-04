@@ -54,7 +54,7 @@ const AddProductPage = lazy(() =>
 );
 
 const CollectionMainPage = lazy(() =>
-  import("./pages/Producer/collection/Collection-page")
+  import("./pages/collection-pages/collections-page/CollectionsPage")
 );
 const ShopPage = lazy(() => import("./pages/publics/shop/Shop-page"));
 const MerchPage = lazy(() => import("./pages/customer/merch/Merch-page"));
