@@ -1,3 +1,7 @@
+
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import {
   Text,
   Box,
@@ -7,25 +11,19 @@ import {
   Skeleton,
   keyframes,
 } from "@chakra-ui/react";
-import { convetToCustomFormat } from "../../../utils/date.utils/convertDate";
-import { ORDER_TYPES } from "../../../constant/order.types";
-
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { SHOP_TYPES } from "../../../constant/shop-types";
-import { getStatus , getTotalPrice ,calculateHowTimePassed} from "./order-component-utils"
+import { ORDER_TYPES } from "../../../../../constant/order.types";
+import { getStatus , getTotalPrice } from "./order-component-utils"
 import {
   selectIsCustomer,
-} from "../../../store/profile/profile.selector";
+} from "../../../../../store/profile/profile.selector";
 import {
   OrderWrapper,
-  DateText,
   OrderId,
   QuantityText,
   ProductImage,
   OrderStatus,
-} from "./Order-component-style";
-import OrderModal from "../../../modals/order/OrderModal";
+} from "./OrderComponent-style";
+import OrderModal from "../../../../../modals/order/OrderModal";
 //import BasicButton from "../BasicButton/BasicButton";
 
 const animationKeyframes = keyframes`
@@ -37,7 +35,7 @@ const animationKeyframes = keyframes`
 
 const animation = `${animationKeyframes} 2s ease infinite`;
 
-export default function Order({ updateOrder, order }) {
+export default function OrderComponent({ updateOrder, order }) {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isCustomer = useSelector(selectIsCustomer);

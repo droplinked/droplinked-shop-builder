@@ -7,7 +7,7 @@ import { getOrders } from "../../../apis/orderApiService";
 
 import { sortArrayBaseCreateTime } from "../../../utils/sort.utils/sort.utils";
 
-import Order from "../../../components/shared/Order/Order-component";
+import OrderComponent from "./components/order-component/OrderComponent";
 import Loading from "../../../components/shared/loading/Loading";
 import DropdownComponent from "./components/dropdown-component/Dropdown/DropdownComponent";
 
@@ -90,7 +90,7 @@ export default function OrderPage() {
               if (order.status == ORDER_TYPES.WAITING_FOR_CONFIRMATION)
                 return (
                   <Box key={i} mb="30px">
-                    <Order updateOrder={updateOrder} order={order} />
+                    <OrderComponent updateOrder={updateOrder} order={order} />
                   </Box>
                 );
             })}
@@ -98,7 +98,7 @@ export default function OrderPage() {
               if (order.status != ORDER_TYPES.WAITING_FOR_CONFIRMATION)
                 return (
                   <Box key={i} mb="30px">
-                    <Order updateOrder={updateOrder} order={order} />
+                    <OrderComponent updateOrder={updateOrder} order={order} />
                   </Box>
                 );
             })}
@@ -109,12 +109,12 @@ export default function OrderPage() {
               if (order.status == ORDER_TYPES.REFUNDED) {
                 if (filter == ORDER_TYPES.CANCELED)
                   return (
-                    <Order updateOrder={updateOrder} key={i} order={order} />
+                    <OrderComponent updateOrder={updateOrder} key={i} order={order} />
                   );
               } else {
                 if (order.status == filter)
                   return (
-                    <Order updateOrder={updateOrder} key={i} order={order} />
+                    <OrderComponent updateOrder={updateOrder} key={i} order={order} />
                   );
               }
             })}

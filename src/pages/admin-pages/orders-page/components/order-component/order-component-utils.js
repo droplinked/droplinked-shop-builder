@@ -1,5 +1,4 @@
-import { ORDER_TYPES } from "../../../constant/order.types";
-import { SHOP_TYPES } from "../../../constant/shop-types";
+import { ORDER_TYPES } from "../../../../../constant/order.types";
 
 export const getStatus = (orderStatus) => {
   switch (orderStatus) {
