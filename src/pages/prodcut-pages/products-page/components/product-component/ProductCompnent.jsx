@@ -16,7 +16,7 @@ import { useCustomNavigate } from "../../../../../hooks/useCustomeNavigate/useCu
 
 import moreIcon from "../../../../../assest/icon/more-icon.svg";
 import { useState } from "react";
-import SmallModal from "../../../../../modals/small/SmallModal";
+import SmallModal from "../../../../../modals/small-modal/SmallModal";
 import { useApi } from "../../../../../hooks/useApi/useApi";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 

@@ -11,7 +11,7 @@ import {
 import { useApi } from "../../../hooks/useApi/useApi";
 import { deleteAddress } from "../../../apis/addressApiService";
 
-import SmallModal from "../../../modals/small/SmallModal";
+import SmallModal from "../../../modals/small-modal/SmallModal";
 import AddressModal from "../../../modals/address-modal/AddressModal";
 import editIcon from "../../../assest/icon/edit-icon.svg";
 import deleteIcon from "../../../assest/icon/delete-icon.svg";

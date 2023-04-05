@@ -18,7 +18,7 @@ import { SHOP_TYPES } from "../../constant/shop-types";
 import OrderMerch from "./components/OrderMerch";
 import OrderStatus from "./components/OrderStatus";
 import OrderAddress from "./components/OrderAddress";
-import SmallModal from "../../modals/small/SmallModal";
+import SmallModal from "../../modals/small-modal/SmallModal";
 
 export default function OrderModal({updateOrder , order, show, close }) {
   // this state use for loading stauts

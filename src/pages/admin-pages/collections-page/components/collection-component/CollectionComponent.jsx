@@ -12,7 +12,7 @@ import { useApi } from "../../../../../hooks/useApi/useApi";
 import { USER_TYPE } from "../../../../../constant/user-types";
 import { selectCurrentProfile } from "../../../../../store/profile/profile.selector";
 
-import SmallModal from "../../../../../modals/small/SmallModal";
+import SmallModal from "../../../../../modals/small-modal/SmallModal";
 import ProductComponent from "../../../../../components/shared/product-component/ProductComponent";
 import CollectionModal from "../../../../../modals/collection-modal/CollectionModal";
 import CollectionHeaderComponent from "./CollectionHeaderComponent";
