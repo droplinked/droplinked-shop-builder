@@ -102,7 +102,6 @@ const ProductComponent = ({ product, update }) => {
               </IconButton>
             </PopoverTrigger>
             <PopoverContent
-              zIndex="base"
               _focus={{ outline: "none" }}
               border="none"
               bg="#292929"
