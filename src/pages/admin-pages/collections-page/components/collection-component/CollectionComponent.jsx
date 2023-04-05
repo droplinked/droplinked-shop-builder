@@ -16,7 +16,7 @@ import SmallModal from "../../../../../modals/small/SmallModal";
 import ProductComponent from "../../../../../components/shared/product-component/ProductComponent";
 import CollectionModal from "../../../../../modals/collection-modal/CollectionModal";
 import CollectionHeaderComponent from "./CollectionHeaderComponent";
-import RuleModal from "../../../../../modals/rule/RuleModal";
+import RuleModal from "../../../../../modals/rule-modal/RuleModal";
 import AddProductComponent from "../add-product-component/AddProductComponent";
 
 const CollectionComponent = ({ collection, update }) => {
