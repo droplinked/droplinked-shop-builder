@@ -1,6 +1,6 @@
 import { useState ,useEffect } from "react";
 
-import LoginModal from "../login/LoginModal";
+import LoginModal from "../login-modal/LoginModal";
 import SignupModal from "../signup/SignupModal";
 import ResetPassModal from "../resetpass/ResetPassModal";
 
