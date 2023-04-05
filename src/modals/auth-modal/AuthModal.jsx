@@ -2,7 +2,7 @@ import { useState ,useEffect } from "react";
 
 import LoginModal from "../login-modal/LoginModal";
 import SignupModal from "../signup/SignupModal";
-import ResetPassModal from "../resetpass/ResetPassModal";
+import ResetPassModal from "../reset-pass-modal/ResetPassModal";
 
 const MODAL_TYPE = {
   SIGNIN: "SIGNIN",
