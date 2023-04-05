@@ -14,7 +14,7 @@ import { selectCurrentProfile } from "../../../../../store/profile/profile.selec
 
 import SmallModal from "../../../../../modals/small/SmallModal";
 import ProductComponent from "../../../../../components/shared/product-component/ProductComponent";
-import CollectionModal from "../../../../../modals/collection/CollectionModal";
+import CollectionModal from "../../../../../modals/collection-modal/CollectionModal";
 import CollectionHeaderComponent from "./CollectionHeaderComponent";
 import RuleModal from "../../../../../modals/rule/RuleModal";
 import AddProductComponent from "../add-product-component/AddProductComponent";

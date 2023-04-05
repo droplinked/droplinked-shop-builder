@@ -15,7 +15,7 @@ import Loading from "../../../components/shared/loading/Loading";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import CollectionComponent from "./components/collection-component/CollectionComponent";
 import AddProductComponent from "./components/add-product-component/AddProductComponent";
-import CollectionModal from "../../../modals/collection/CollectionModal";
+import CollectionModal from "../../../modals/collection-modal/CollectionModal";
 
 export default function CollectionsPage() {
   const [Modal, setModal] = useState(false);
