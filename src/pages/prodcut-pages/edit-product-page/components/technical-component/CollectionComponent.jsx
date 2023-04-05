@@ -1,35 +1,45 @@
-import { useState, useEffect } from "react";
-import { Box } from "@chakra-ui/react";
-
+import { useState, useEffect, useCallback } from "react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { useApi } from "../../../../../hooks/useApi/useApi";
-//import { getCollections } from "../../../../../api-service/collections/collectionApiService";
-import { getUsersCollections } from "../../../../../apis/collectionApiService"
+import { getUsersCollections } from "../../../../../apis/collectionApiService";
 import {
   CollectionContainer,
   CollectionItem,
   Text16px,
 } from "../../EditProductPage-style";
 import { TECH_REDUCER_TYPES } from "../../reducer/technical-data-reducer";
+import NewCollectionModal from "../../../../../modals/new-collection-modal/NewCollectionModal";
 
 const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
   const { getApi } = useApi();
 
   const [collectionList, setCollectionList] = useState([]);
-
+  const [shouldUpdateList, setShouldUpdateList] = useState(false);
+  //
+  const [showModal, setShowModal] = useState(false);
+  const toggleNewCollectionModal = () => {
+    setShowModal((prev) => !prev);
+  };
   // get all collection data
-  useEffect(async () => {
-    let result = await getApi(getUsersCollections());
-    if (result){ 
-      setCollectionList(result);
-      selectCollection(result[0]._id)
+  useEffect(() => {
+    async function fetchData() {
+      let result = await getApi(getUsersCollections());
+      if (result) {
+        setCollectionList(result);
+        selectCollection(result[0]._id);
+      }
     }
-  }, []);
+    fetchData();
+  }, [shouldUpdateList]);
 
-  const selectCollection = (collectionId) =>
-    dispatchTechnical({
-      type: TECH_REDUCER_TYPES.CHANGE_COLLECTION,
-      payload: collectionId,
-    });
+  const selectCollection = useCallback(
+    (collectionId) =>
+      dispatchTechnical({
+        type: TECH_REDUCER_TYPES.CHANGE_COLLECTION,
+        payload: collectionId,
+      }),
+    []
+  );
 
   // check this collection is selected
   const isSelected = (collection) => {
@@ -41,19 +51,24 @@ const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
 
   return (
     <>
-      <Text16px>Collection</Text16px>
-      <Box mb="16px" />
-
-      <CollectionContainer>
-        {/* <CollectionItem
-          cursor="default"
-          bg={TechnicalData.productCollectionID == "" ? "primary" : "mainLayer"}
-          color={
-            TechnicalData.productCollectionID == "" ? "primaryDark" : "darkGray"
-          }
+      <NewCollectionModal
+        show={showModal}
+        close={toggleNewCollectionModal}
+        update={() => setShouldUpdateList((prev) => !prev)}
+      />
+      <Flex align="center" justify="space-between">
+        <Text16px>Collection</Text16px>
+        <Button
+          variant="outline"
+          colorScheme="whiteAlpha"
+          borderColor="line"
+          onClick={toggleNewCollectionModal}
         >
-          Select one
-        </CollectionItem> */}
+          New Collection
+        </Button>
+      </Flex>
+      <Box mb="16px" />
+      <CollectionContainer>
         {collectionList.map((collection) => {
           return (
             <CollectionItem
