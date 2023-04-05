@@ -1,7 +1,7 @@
 import { useState ,useEffect } from "react";
 
 import LoginModal from "../login-modal/LoginModal";
-import SignupModal from "../signup/SignupModal";
+import SignupModal from "../signup-modal/SignupModal";
 import ResetPassModal from "../reset-pass-modal/ResetPassModal";
 
 const MODAL_TYPE = {
