@@ -29,9 +29,11 @@ export default function InputFieldComponent({
         size="lg"
         placeholder={placeholder}
       />
-      <Text fontSize="14px" color="#808080">
-        {description}
-      </Text>
+      {description && (
+        <Text fontSize="14px" color="#808080" mt={2}>
+          {description}
+        </Text>
+      )}
     </FormControl>
   );
 }
