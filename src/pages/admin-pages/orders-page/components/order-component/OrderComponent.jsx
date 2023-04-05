@@ -23,7 +23,7 @@ import {
   ProductImage,
   OrderStatus,
 } from "./OrderComponent-style";
-import OrderModal from "../../../../../modals/order/OrderModal";
+import OrderModal from "../../../../../modals/order-modal/OrderModal";
 //import BasicButton from "../BasicButton/BasicButton";
 
 const animationKeyframes = keyframes`
