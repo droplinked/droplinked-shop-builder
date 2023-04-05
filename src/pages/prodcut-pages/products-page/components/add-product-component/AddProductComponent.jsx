@@ -1,19 +1,16 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 
-
 import { useCustomNavigate } from "../../../../../hooks/useCustomeNavigate/useCustomNavigate";
-
+//
 import plusIcon from "../../../../../assest/icon/plus-icon.svg";
-import addProductIcon from "../../../../../assest/icon/add-item-green-icon.svg";
 import variantsIcon from "../../../../../assest/icon/products-active-icon.svg";
 import collectionIcon from "../../../../../assest/icon/collection-active-icon.svg";
-import ruleIcon from "../../../../../assest/icon/rulesets-active-icon.svg";
-
+import tearIcon from "../../../../../assest/icon/tear-icon.svg";
+//
 const AddProductComponent = () => {
+  const { shopNavigate } = useCustomNavigate();
 
-    const { shopNavigate} = useCustomNavigate()
-  
-    const navigateToAddProductPage = () => shopNavigate(`add-product`);
+  const navigateToAddProductPage = () => shopNavigate(`add-product`);
 
   return (
     <Flex
@@ -37,28 +34,11 @@ const AddProductComponent = () => {
         <Image src={plusIcon} h="48px" w="48px" />
         <Box mb="24px" />
         <Text color="#fff" fontWeight="500" fontSize="18px">
-          Add Product
+          New product
         </Text>
       </Flex>
       <Box mb="50px" />
       <Flex w="auto" flexDir="column" alignItems="start">
-        <Flex
-          w="auto"
-          alignItems="center"
-          justifyContent="center"
-          gap="24px"
-          mb="12px"
-        >
-          <Image src={addProductIcon} w="18px" h="18px" />
-          <Text
-            fontFamily="Avenir Next"
-            fontWeight="400"
-            fontSize="14px"
-            color="#C2C2C2"
-          >
-            Interoduce your product
-          </Text>
-        </Flex>
         <Flex
           w="auto"
           alignItems="center"
@@ -73,7 +53,7 @@ const AddProductComponent = () => {
             fontSize="14px"
             color="#C2C2C2"
           >
-            Set your invetory variants and quantities
+            Introduce your product
           </Text>
         </Flex>
         <Flex
@@ -90,7 +70,7 @@ const AddProductComponent = () => {
             fontSize="14px"
             color="#C2C2C2"
           >
-            Set collection
+            Categorize into collection(s)
           </Text>
         </Flex>
         <Flex
@@ -100,14 +80,14 @@ const AddProductComponent = () => {
           gap="24px"
           mb="12px"
         >
-          <Image src={ruleIcon} w="18px" h="18px" />
+          <Image src={tearIcon} w="18px" h="18px" />
           <Text
             fontFamily="Avenir Next"
             fontWeight="400"
             fontSize="14px"
             color="#C2C2C2"
           >
-            Set Crypto based rules for your purchases
+            Record and track earnings and commissions on-chain
           </Text>
         </Flex>
       </Flex>
