@@ -20,7 +20,7 @@ import {
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 
 import InputComponent from "../../component/input-component/InputComponent";
-import AddressModal from "../../../../modals/address/AddressModal";
+import AddressModal from "../../../../modals/address-modal/AddressModal";
 import AddressComponent from "../../../../components/shared/address-component/AddressComponent";
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 
