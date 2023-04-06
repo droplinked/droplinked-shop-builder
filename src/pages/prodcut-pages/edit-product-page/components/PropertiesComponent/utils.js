@@ -59,7 +59,10 @@ export const getOptionsArrayAfterAddValueToOption = (
   optionArray = optionArray.map((opt) => {
     if (opt.index == optionIndex) {
       const optionValues = opt.values;
-      optionValues.push({ index: opt.values.length + 1, value: "" });
+      optionValues.push({
+        index: opt.values[opt.values.length - 1]?.index + 1,
+        value: "",
+      });
       return {
         optionId: opt.optionId,
         optionName: opt.optionName,
@@ -67,6 +70,25 @@ export const getOptionsArrayAfterAddValueToOption = (
         index: opt.index,
       };
     } else return { ...opt };
+  });
+  return optionArray;
+};
+
+export const getOptionsArrayAfterRemoveValueFromOption = (
+  optionIndex,
+  OptionList,
+  optionValueIndex
+) => {
+  let optionArray = Array.from(OptionList);
+
+  optionArray = optionArray.map((opt) => {
+    if (opt.index === optionIndex) {
+      const optionValues = opt.values;
+      const filteredList = optionValues.filter(
+        (optionValue) => optionValue.index !== optionValueIndex
+      );
+      return { ...opt, values: filteredList };
+    } else return true;
   });
   return optionArray;
 };
