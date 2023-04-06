@@ -6,10 +6,19 @@ export default function InputFieldComponent({
   label,
   placeholder,
   description,
+  isRequired,
   ...otherProps
 }) {
   return (
-    <FormControl {...otherProps}>
+    <FormControl
+      sx={{
+        "& .css-1ssjhh": {
+          color: "white",
+        },
+      }}
+      isRequired={isRequired}
+      {...otherProps}
+    >
       {label && (
         <FormLabel htmlFor="input-com" color="white">
           {label}
