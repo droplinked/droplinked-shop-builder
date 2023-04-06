@@ -1,20 +1,15 @@
 import { useState } from "react";
-import { Flex, Text, Image } from "@chakra-ui/react";
+import { Flex, Text, Image, Tr, Td, IconButton } from "@chakra-ui/react";
 
-import {
-  VariantComponentWrapper,
-  DetailWrapper,
-  Text16px,
-  Line,
-} from "../../AddProductPage-style";
+import { Text16px } from "../../AddProductPage-style";
 import SkuForm from "./SkuForm";
 
 import editIcon from "../../../../../assest/icon/edit-icon.svg";
-import deleteIcon from "../../../../../assest/icon/delete-icon.svg";
+import tearIcon from "../../../../../assest/icon/tear-icon.svg";
+import infoIcon from "../../../../../assest/icon/info-icon.svg";
 
 const VariantForm = ({
   sku,
-  skus,
   OptionList,
   deleteSku,
   changeSku,
@@ -23,7 +18,6 @@ const VariantForm = ({
 }) => {
   const [showForm, setShowForm] = useState(false);
   const [showRecordModal, setShowRecordModal] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const toggleForm = () => setShowForm((p) => !p);
   const toggleRecordModal = () => setShowRecordModal((p) => !p);
@@ -52,33 +46,30 @@ const VariantForm = ({
 
   return (
     <>
-      {showForm ? (
-        <SkuForm
-          closeForm={toggleForm}
-          OptionList={OptionList}
-          submitForm={submitForm}
-          defaultValue={sku}
-        />
-      ) : (
-        <VariantComponentWrapper>
-          <DetailWrapper>
-            {sku.options.map((option) => {
-              return (
-                <>
-                  <Text16px>
-                    {option.variantName}: {option.value}
-                  </Text16px>
-                  <Line></Line>
-                </>
-              );
-            })}
-
-            <Text16px>Price: ${sku.price}</Text16px>
-            <Line></Line>
-            <Text16px>Quantity: {sku.quantity}</Text16px>
-            <Line></Line>
-            <Text16px>External ID: {sku.externalID}</Text16px>
-          </DetailWrapper>
+      <Tr
+        sx={{
+          "& td": {
+            borderColor: "line",
+            fontFamily: "Avenir Next",
+            fontWeight: "500",
+            fontSize: "sm",
+            color: "lightGray",
+          },
+        }}
+      >
+        <Td>
+          <Text>{sku.size}</Text>
+        </Td>
+        <Td>
+          <Text>{sku.quantity}</Text>
+        </Td>
+        <Td>
+          <Text>{sku.externalID}</Text>
+        </Td>
+        <Td>
+          <Text>${sku.price}</Text>
+        </Td>
+        <Td>
           <Flex alignItems="center">
             {sku.record ? (
               <Flex
@@ -88,42 +79,48 @@ const VariantForm = ({
                 justifyContent="center"
                 alignItems="center"
                 p="8px 16px"
-                mr="16px"
               >
                 <Text16px>recorded</Text16px>
               </Flex>
             ) : (
-              <Flex
-                w="24px"
-                h="24px"
-                bg="#FEB900"
-                borderRadius="50% 50% 0px 50% "
-                justifyContent="center"
-                alignItems="center"
-                mr="16px"
-                cursor="pointer"
+              <IconButton
+                variant="unstyled"
+                size="sm"
+                _focus={{ border: "none" }}
                 onClick={toggleRecordModal}
               >
-                <Flex w="10px" h="10px" bg="#1C1C1C" borderRadius="50%"></Flex>
-              </Flex>
+                <Image src={tearIcon} w="16px" h="16px" />
+              </IconButton>
             )}
-            <Image
-              onClick={deleteSku}
-              src={deleteIcon}
-              w="24px"
-              h="24px"
-              mr="16px"
-            />
-            <Image onClick={toggleForm} src={editIcon} w="24px" h="24px" />
+            <IconButton
+              variant="unstyled"
+              size="sm"
+              _focus={{ border: "none" }}
+              onClick={toggleForm}
+            >
+              <Image src={editIcon} w="16px" h="16px" />
+            </IconButton>
+            <IconButton
+              variant="unstyled"
+              size="sm"
+              _focus={{ border: "none" }}
+            >
+              <Image src={infoIcon} w="16px" h="16px" />
+            </IconButton>
           </Flex>
+        </Td>
+      </Tr>
 
-          {/* <RecordModal
-            show={showRecordModal}
-            close={toggleRecordModal}
-            submit={RecordSku}
-            loading={loading}
-          /> */}
-        </VariantComponentWrapper>
+      {showForm && (
+        <Td colSpan={5} px={0} border="none">
+          <SkuForm
+            deleteSku={deleteSku}
+            closeForm={toggleForm}
+            OptionList={OptionList}
+            submitForm={submitForm}
+            defaultValue={sku}
+          />
+        </Td>
       )}
     </>
   );

@@ -79,10 +79,10 @@ export const CollectionItem = chakra("div", {
 });
 
 export const SelectComponent = chakra("select", {
-  baseStyle: {
+  baseStyle: ({ bg = "subLayer" }) => ({
     w: "100%",
     d: "flex",
-    backgroundColor: "subLayer",
+    backgroundColor: bg,
     borderRadius: "8px",
     color: "darkGray",
     p: "18px 18px",
@@ -93,7 +93,7 @@ export const SelectComponent = chakra("select", {
       border: "none",
       outline: "none",
     },
-  },
+  }),
 });
 
 export const OptionComponent = chakra("option", {
@@ -247,7 +247,7 @@ export const FieldInput = chakra("input", {
 
 export const SmallInput = chakra("input", {
   baseStyle: {
-    w: "15%",
+    w: "16%",
     fontSize: "20px",
     fontWeight: "500",
     color: "darkGray",

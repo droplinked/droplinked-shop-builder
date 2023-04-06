@@ -65,8 +65,8 @@ const CollectionComponent = ({ collection, update }) => {
             </Box>
           ) : (
             <>
-              {collection.products
-                .filter((product, i) => {
+              {collection?.products
+                ?.filter((product, i) => {
                   if (i < 4) return product;
                 })
                 .map((product, i) => {
@@ -92,7 +92,7 @@ const CollectionComponent = ({ collection, update }) => {
                           shopname={profile.shopName}
                           title={product.title}
                           id={product._id}
-                          imageUrl={product.media[0].url}
+                          imageUrl={product?.media[0]?.url}
                           type={USER_TYPE.CUSTOMER}
                         />
                       </Box>

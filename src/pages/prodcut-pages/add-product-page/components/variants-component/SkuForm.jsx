@@ -1,5 +1,12 @@
-import { useState, useEffect, useReducer, useMemo } from "react";
-import { Box, Text, Flex } from "@chakra-ui/react";
+import { useEffect, useReducer, useMemo } from "react";
+import {
+  Box,
+  Text,
+  Flex,
+  Stack,
+  InputGroup,
+  InputRightElement,
+} from "@chakra-ui/react";
 
 import {
   SkuFormWrapper,
@@ -9,7 +16,7 @@ import {
   GrayLine,
   SelectComponent,
   OptionComponent,
-  SmallInput
+  SmallInput,
 } from "../../AddProductPage-style";
 import { skuReducer } from "./sku-reducer";
 import { initialReducer } from "./initial-reducer";
@@ -17,7 +24,13 @@ import { useToasty } from "../../../../../context/toastify/ToastContext";
 
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
-const SkuForm = ({ closeForm, OptionList, submitForm, defaultValue }) => {
+const SkuForm = ({
+  closeForm,
+  OptionList,
+  submitForm,
+  defaultValue,
+  deleteSku,
+}) => {
   const initial = useMemo(() => initialReducer(OptionList, defaultValue), []);
 
   const [sku, dispatch] = useReducer(skuReducer, initial);
@@ -43,17 +56,8 @@ const SkuForm = ({ closeForm, OptionList, submitForm, defaultValue }) => {
   const changeHeight = (e) =>
     dispatch({ type: "updateHeight", payload: e.target.value });
 
-  const changeOption = (value, optionId) => {
-    let currentOptions = sku.options.map((option) => option);
-    currentOptions = currentOptions.map((option) => {
-      if (option.variantID == optionId) {
-        return { ...option, value: value };
-      } else {
-        return { ...option };
-      }
-    });
-
-    dispatch({ type: "updateOptions", payload: currentOptions });
+  const changeSize = (e) => {
+    dispatch({ type: "updateSize", payload: e.target.value });
   };
 
   const isEmpty = (value, name) => {
@@ -109,82 +113,113 @@ const SkuForm = ({ closeForm, OptionList, submitForm, defaultValue }) => {
 
   return (
     <SkuFormWrapper>
-      <InputWrapper>
-        <ComponentTitle>Price</ComponentTitle>
-        <FieldInput
-          placeholder="Price"
-          type="number"
-          onChange={changePrice}
-          value={sku.price}
-        />
-      </InputWrapper>
-      <Box mb="16px"></Box>
-      <InputWrapper>
-        <ComponentTitle>Quantity</ComponentTitle>
-        <FieldInput
-          placeholder="Quantity"
-          type="number"
-          onChange={changeQuantity}
-          value={sku.quantity}
-        />
-      </InputWrapper>
-      <Box mb="16px"></Box>
-      <InputWrapper>
-        <ComponentTitle>External ID</ComponentTitle>
-        <FieldInput
-          placeholder="External ID"
-          onChange={changeExternalId}
-          value={sku.externalID}
-        />
-      </InputWrapper>
-      <Box mb="16px"></Box>
-      <InputWrapper>
-        <ComponentTitle> Delivery box information</ComponentTitle>
-        <Flex w="70%" alignItems="center">
-          <Flex
-            w="100%"
-            bg="mainLayer"
-            p="8px 24px"
-            borderRadius="8px"
-            justifyContent="space-between"
-            alignItems="center"
-            h="100%"
-          >
-            <SmallInput
-              placeholder="Lenght"
+      <Stack spacing={4}>
+        <InputWrapper>
+          <ComponentTitle>Price</ComponentTitle>
+          <InputGroup width="70%">
+            <FieldInput
+              width="100%"
+              bg="mainLayer"
+              placeholder="Price"
               type="number"
-              onChange={changeLength}
-              value={sku.dimensions.length}
+              onChange={changePrice}
+              value={sku.price}
+              pr="90px"
             />
-            <GrayLine />
-            <SmallInput
-              placeholder="Height"
-              type="number"
-              onChange={changeHeight}
-              value={sku.dimensions.height}
+            <InputRightElement
+              h="100%"
+              width="90px"
+              children={
+                <Flex
+                  px={6}
+                  align="center"
+                  h="100%"
+                  borderLeft="1px solid"
+                  borderColor="line"
+                  color="lightGray"
+                >
+                  ETH
+                </Flex>
+              }
             />
-            <GrayLine />
-            <SmallInput
-              placeholder="Width"
-              type="number"
-              onChange={changeWidth}
-              value={sku.dimensions.width}
-            />
-            <GrayLine />
-            <SmallInput
-              placeholder="Weight"
-              type="number"
-              onChange={changeWeight}
-              value={sku.weight}
-            />
-          </Flex>
-          <Text ml="12px" fontSize="20px" fontWeight="500" color="darkGray">
-            inch/oz
-          </Text>
-        </Flex>
-      </InputWrapper>
+          </InputGroup>
+        </InputWrapper>
 
-      {OptionList.map((option) => {
+        <InputWrapper>
+          <ComponentTitle>Quantity</ComponentTitle>
+          <FieldInput
+            placeholder="Quantity"
+            type="number"
+            onChange={changeQuantity}
+            value={sku.quantity}
+          />
+        </InputWrapper>
+
+        <InputWrapper>
+          <ComponentTitle>External ID</ComponentTitle>
+          <FieldInput
+            placeholder="External ID"
+            onChange={changeExternalId}
+            value={sku.externalID}
+          />
+        </InputWrapper>
+
+        <InputWrapper>
+          <ComponentTitle>Delivery boxing</ComponentTitle>
+          <Flex w="70%" alignItems="center">
+            <Flex
+              w="100%"
+              bg="mainLayer"
+              p="8px 24px"
+              borderRadius="8px"
+              justifyContent="space-between"
+              alignItems="center"
+              h="100%"
+            >
+              <SmallInput
+                placeholder="Length"
+                type="number"
+                onChange={changeLength}
+                value={sku.dimensions.length}
+              />
+              <GrayLine />
+              <SmallInput
+                placeholder="Height"
+                type="number"
+                onChange={changeHeight}
+                value={sku.dimensions.height}
+              />
+              <GrayLine />
+              <SmallInput
+                placeholder="Width"
+                type="number"
+                onChange={changeWidth}
+                value={sku.dimensions.width}
+              />
+              <GrayLine />
+              <SmallInput
+                placeholder="Weight"
+                type="number"
+                onChange={changeWeight}
+                value={sku.weight}
+              />
+            </Flex>
+            <Text ml="12px" fontSize="20px" fontWeight="500" color="darkGray">
+              inch/oz
+            </Text>
+          </Flex>
+        </InputWrapper>
+
+        <InputWrapper>
+          <ComponentTitle>Size</ComponentTitle>
+          <SelectComponent bg="mainLayer" w="70%" onChange={changeSize}>
+            {["xl", "lg", "md", "sm", "xs"].map((item) => (
+              <OptionComponent key={item}>{item}</OptionComponent>
+            ))}
+          </SelectComponent>
+        </InputWrapper>
+      </Stack>
+      {/* {OptionList.map((option) => {
         return (
           <InputWrapper mt="16px" key={option.index}>
             <ComponentTitle>{option.optionName}</ComponentTitle>
@@ -206,13 +241,19 @@ const SkuForm = ({ closeForm, OptionList, submitForm, defaultValue }) => {
             </SelectComponent>
           </InputWrapper>
         );
-      })}
+      })} */}
 
       <Box mb="36px"></Box>
       <Flex justifyContent="space-between">
         <Box w="200px">
-          <BasicButton cancelType={true} click={close}>
-            Close
+          <BasicButton
+            cancelType={true}
+            click={() => {
+              close();
+              deleteSku && deleteSku();
+            }}
+          >
+            Delete
           </BasicButton>
         </Box>
         <Box w="200px">
