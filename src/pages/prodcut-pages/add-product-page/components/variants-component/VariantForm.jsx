@@ -14,7 +14,6 @@ const VariantForm = ({
   deleteSku,
   changeSku,
   // record={RecordSku}
-  update,
 }) => {
   const [showForm, setShowForm] = useState(false);
   const [showRecordModal, setShowRecordModal] = useState(false);

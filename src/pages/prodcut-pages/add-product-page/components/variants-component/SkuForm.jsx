@@ -253,7 +253,7 @@ const SkuForm = ({
               deleteSku && deleteSku();
             }}
           >
-            Delete
+            {deleteSku ? "Delete" : "Close"}
           </BasicButton>
         </Box>
         <Box w="200px">
