@@ -77,6 +77,11 @@ function App() {
                 <Route path="contact-info" element={<ContactInfo />} />
                 <Route path="design" element={<DesignPage />} />
               </Route>
+              <Route path="settings" element={<RegisterPagesWrapper />}>
+                <Route path="shop-info" element={<RegisterShopInfo />} />
+                <Route path="contact-info" element={<ContactInfo />} />
+                <Route path="design" element={<DesignPage />} />
+              </Route>
               <Route path="products" element={<ProductsPage />} />
               <Route path="add-product" element={<AddProductPage />} />
               <Route path="product/:productId" element={<EditProductPage />} />

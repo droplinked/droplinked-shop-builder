@@ -22,7 +22,7 @@ const SidebarLayout = () => {
       <OptionComponent icon={rulesetsIcon} label="ruleset" path='rules' />
       <OptionComponent icon={orderIcon} label="orders" path='orders' />
       <OptionComponent icon={informationIcon} label="informations" />
-      <OptionComponent icon={settingIcon} label="setting" />
+      <OptionComponent icon={settingIcon} label="setting"  path="settings/shop-info" />
     </Flex>
   );
 };
