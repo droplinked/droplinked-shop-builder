@@ -1,23 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 import {
   ComponentWrapper,
   ComponentTitle,
-  Text16px400,
-  Text14px400,
-  GrayLine,
-  OptionFormWrapper,
   SelectComponent,
   OptionComponent,
   ValueInput,
   PlusIcon,
+  MinusIcon,
 } from "../../AddProductPage-style";
 //import { getVariants } from "../../../../../api-service/product/productApiService";
 import { useApi } from "../../../../../hooks/useApi/useApi";
 
 import plus from "../../../../../assest/icon/plus-icon.svg";
+import minus from "../../../../../assest/icon/minusIcon.png";
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+import {
+  getOptionsArrayAfterAddValueToOption,
+  getOptionsArrayAfterRemoveValueFromOption,
+} from "../../../edit-product-page/components/PropertiesComponent/utils";
 
 const INITiAL_VARIANTS = [
   {
@@ -83,20 +85,19 @@ const PropertiesComponent = ({ OptionList, setOptionList }) => {
   };
 
   const addValueToOption = (optionIndex) => {
-    let optionArray = Array.from(OptionList);
+    let optionArray = getOptionsArrayAfterAddValueToOption(
+      OptionList,
+      optionIndex
+    );
+    setOptionList(optionArray);
+  };
 
-    optionArray = optionArray.map((opt) => {
-      if (opt.index == optionIndex) {
-        const optionValues = opt.values;
-        optionValues.push({ index: opt.values.length + 1, value: "" });
-        return {
-          optionId: opt.optionId,
-          optionName: opt.optionName,
-          values: optionValues,
-          index: opt.index,
-        };
-      } else return { ...opt };
-    });
+  const removeValueFromOption = (optionIndex, optionValueIndex) => {
+    let optionArray = getOptionsArrayAfterRemoveValueFromOption(
+      optionIndex,
+      OptionList,
+      optionValueIndex
+    );
     setOptionList(optionArray);
   };
 
@@ -115,103 +116,92 @@ const PropertiesComponent = ({ OptionList, setOptionList }) => {
     <ComponentWrapper>
       <ComponentTitle>Properties</ComponentTitle>
       <Box mb="36px" />
-      {/* <Flex w="100%" alignItems="center" gap="100px" mb="48px">
-        <Text16px400>Required</Text16px400>
 
-        <Flex w="calc(100% - 150px)" justifyContent="space-between" h="100%">
-          <Text14px400>Price</Text14px400>
-          <GrayLine />
-          <Text14px400>Quantity</Text14px400>
-          <GrayLine />
-          <Text14px400>External ID</Text14px400>
-          <GrayLine />
-          <Text14px400>Delivery boxing information</Text14px400>
-        </Flex>
-      </Flex> */}
-
-      <Flex w="100%" alignItems="center" gap="100px">
-        <Text16px400>Optional</Text16px400>
-
-        <Box w="calc(100% - 150px)">
-          {OptionList.map((option) => {
-            return (
-              <OptionFormWrapper key={option.index}>
-                <Flex justifyContent="space-between" alignItems="center">
-                  <ComponentTitle>Property</ComponentTitle>
-                  <Box mr="10%"></Box>
-                  <SelectComponent
-                    onChange={(e) =>
-                      changeOptionType(e.target.value, option.index)
-                    }
-                  >
-                    <OptionComponent selected disabled hidden>
-                      Property
-                    </OptionComponent>
-                    {variantsType.map((variant) => {
-                      return (
-                        <OptionComponent
-                          value={variant._id}
-                          disabled={existVariant(variant._id)}
-                        >
-                          {variant.name}
-                        </OptionComponent>
-                      );
-                    })}
-                  </SelectComponent>
-                </Flex>
-
-                {option.values.map((optionValue) => {
+      {OptionList.map((option) => {
+        return (
+          <Box key={option.index} mt={2}>
+            <Flex justifyContent="space-between" alignItems="center">
+              <ComponentTitle>Property</ComponentTitle>
+              <Box mr="10%"></Box>
+              <SelectComponent
+                onChange={(e) => changeOptionType(e.target.value, option.index)}
+              >
+                <OptionComponent selected disabled hidden>
+                  Property
+                </OptionComponent>
+                {variantsType.map((variant) => {
                   return (
-                    <>
-                      <Box mb="16px"></Box>
-                      <Flex justifyContent="space-between" alignItems="center">
-                        <Text
-                          fontWeight="400"
-                          fontSize="20px"
-                          color="white"
-                          w="100px"
-                        >
-                          Value {optionValue.index}
-                        </Text>
-                        <Box mr="10%"></Box>
-                        <Flex w="100%" alignItems="center">
-                          <ValueInput
-                            placeholder="default"
-                            value={optionValue.value}
-                            onChange={(e) => {
-                              changeOptionValue(
-                                option.index,
-                                optionValue.index,
-                                e.target.value
-                              );
-                            }}
-                          />
-                          {optionValue.index == option.values.length && (
-                            <PlusIcon
-                              src={plus}
-                              onClick={() => {
-                                addValueToOption(option.index);
-                              }}
-                            />
-                          )}
-                        </Flex>
-                      </Flex>
-                    </>
+                    <OptionComponent
+                      key={variant._id}
+                      value={variant._id}
+                      disabled={existVariant(variant._id)}
+                    >
+                      {variant.name}
+                    </OptionComponent>
                   );
                 })}
-              </OptionFormWrapper>
-            );
-          })}
+              </SelectComponent>
+            </Flex>
+            {option.values.map((optionValue) => {
+              return (
+                <Box key={optionValue?.index} mb={4}>
+                  <Box mb="16px"></Box>
+                  <Flex justifyContent="space-between" alignItems="center">
+                    <Text
+                      fontWeight="400"
+                      fontSize="20px"
+                      color="white"
+                      w="100px"
+                    >
+                      Value {optionValue.index}
+                    </Text>
+                    <Box mr="10%"></Box>
+                    <Flex w="100%" alignItems="center">
+                      <ValueInput
+                        placeholder="default"
+                        value={optionValue.value}
+                        onChange={(e) => {
+                          changeOptionValue(
+                            option.index,
+                            optionValue.index,
+                            e.target.value
+                          );
+                        }}
+                      />
 
-          {OptionList.length < 2 && (
-            <Box w="100%">
-              <BasicButton click={addNewOption} cancelType={true}>
-                Add new
-              </BasicButton>
-            </Box>
-          )}
-        </Box>
-      </Flex>
+                      {optionValue.index ===
+                      option.values[option.values.length - 1]?.index ? (
+                        <PlusIcon
+                          src={plus}
+                          onClick={() => {
+                            addValueToOption(option.index);
+                          }}
+                        />
+                      ) : (
+                        <MinusIcon
+                          src={minus}
+                          onClick={() => {
+                            removeValueFromOption(
+                              option.index,
+                              optionValue.index
+                            );
+                          }}
+                        />
+                      )}
+                    </Flex>
+                  </Flex>
+                </Box>
+              );
+            })}
+          </Box>
+        );
+      })}
+
+      {OptionList.length < 2 && (
+        <BasicButton click={addNewOption} cancelType={true} mt={4}>
+          Make new properties
+        </BasicButton>
+      )}
     </ComponentWrapper>
   );
 };

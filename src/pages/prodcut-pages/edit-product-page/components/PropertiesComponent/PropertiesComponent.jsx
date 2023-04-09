@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
-import {
-  ComponentWrapper,
-  ComponentTitle,
-  Text16px400,
-} from "../../EditProductPage-style";
+import { ComponentWrapper, ComponentTitle } from "../../EditProductPage-style";
 //import { getVariants } from "../../../../../api-service/product/productApiService";
 //import { useApi } from "../../../../../hooks/useApi/useApi";
 
@@ -22,20 +18,17 @@ const PropertiesComponent = ({ OptionList, setOptionList }) => {
   useEffect(async () => {
     // let result = await getApi(getVariants());
     // if (result) setVariantType(result.variants);
-    setVariantType(
-      [
-        ({
-          _id: "62a989ab1f2c2bbc5b1e7153",
-          name: "Color",
-        },
-        {
-          _id: "62a989e21f2c2bbc5b1e7154",
-          name: "Size",
-        })
-      ]
-    )
+    setVariantType([
+      ({
+        _id: "62a989ab1f2c2bbc5b1e7153",
+        name: "Color",
+      },
+      {
+        _id: "62a989e21f2c2bbc5b1e7154",
+        name: "Size",
+      }),
+    ]);
   }, []);
-
 
   const addNewOption = () => {
     let currentOption = Array.from(OptionList);
@@ -55,33 +48,23 @@ const PropertiesComponent = ({ OptionList, setOptionList }) => {
       <ComponentTitle>Properties</ComponentTitle>
       <Box mb="36px" />
 
-      {/* <PropertiesTopComponent /> */}
+      {OptionList?.map((option) => {
+        return (
+          <OptionFormComponent
+            key={option.index}
+            option={option}
+            OptionList={OptionList}
+            setOptionList={setOptionList}
+            variantsType={variantsType}
+          />
+        );
+      })}
 
-      <Flex w="100%" alignItems="center" gap="100px">
-        <Text16px400>Optional</Text16px400>
-
-        <Box w="calc(100% - 150px)">
-          {OptionList.map((option) => {
-            return (
-              <OptionFormComponent
-                key={option.index}
-                option={option}
-                OptionList={OptionList}
-                setOptionList={setOptionList}
-                variantsType={variantsType}
-              />
-            );
-          })}
-
-          {OptionList.length < 2 && (
-            <Box w="100%">
-              <BasicButton click={addNewOption} cancelType={true}>
-                Add new
-              </BasicButton>
-            </Box>
-          )}
-        </Box>
-      </Flex>
+      {OptionList?.length < 2 && (
+        <BasicButton click={addNewOption} cancelType={true} mt={4}>
+          Make new properties
+        </BasicButton>
+      )}
     </ComponentWrapper>
   );
 };

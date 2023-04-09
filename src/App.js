@@ -39,7 +39,15 @@ const AddProductPage = lazy(() =>
 );
 
 const CollectionMainPage = lazy(() =>
-  import("./pages/admin-pages/collections-page/CollectionsPage")
+  import(
+    "./pages/admin-pages/collections-pages/collection-page/CollectionsPage"
+  )
+);
+
+const AddCollectionPage = lazy(() =>
+  import(
+    "./pages/admin-pages/collections-pages/add-collection-page/AddCollectionPage"
+  )
 );
 const ShopPage = lazy(() => import("./pages/public-pages/shop-page/ShopPage"));
 
@@ -86,6 +94,7 @@ function App() {
               <Route path="add-product" element={<AddProductPage />} />
               <Route path="product/:productId" element={<EditProductPage />} />
               <Route path="collections" element={<CollectionMainPage />} />
+              <Route path="add-collection" element={<AddCollectionPage />} />
               <Route path="orders" element={<OrderPage />} />
               <Route path="rules" element={<RulePage />} />
             </Route>

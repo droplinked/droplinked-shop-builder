@@ -1,4 +1,4 @@
-import { Box, Flex, FormControl, FormLabel } from "@chakra-ui/react";
+import { Box, Flex, FormControl, FormLabel, Stack } from "@chakra-ui/react";
 import { useState } from "react";
 
 import { useToasty } from "../../context/toastify/ToastContext";
@@ -12,8 +12,8 @@ import { TopText } from "./AddressModal-style";
 
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import SelectInputComponent from "./components/select-input-component/SelectInputComponent";
-import SubmitButton from "./components/submit-button/SubmitButton";
-import InputComponent from "./InputComponent"
+import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
+import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
 export default function AddressModal({
   show,
@@ -22,10 +22,10 @@ export default function AddressModal({
   close,
 }) {
   // address context functions for add new address or update address
-  const { successToast } = useToasty();
+  const { successToast, errorToast } = useToasty();
   const { postApi, putApi } = useApi();
   // form values states
-  // if get address book on props set addressbook value for default or not set '' for default value
+  // if get address book on props set addressBook value for default or not set '' for default value
   const [line1, setLine1] = useState(
     addressBook ? addressBook.addressLine1 : ""
   );
@@ -38,19 +38,13 @@ export default function AddressModal({
   const [city, setCity] = useState(addressBook ? addressBook.city : "");
   const [state, setState] = useState(addressBook ? addressBook.state : "");
   const [zip, setZip] = useState(addressBook ? addressBook.zip : "");
-  const [firstname, setFirstname] = useState(
-    addressBook ? addressBook.firstName : ""
-  );
-  const [lastname, setLastname] = useState(
-    addressBook ? addressBook.lastName : ""
-  );
 
-  // state for show wrror
-  const [error, setError] = useState("");
+  // state for show error
+  const [error, setError] = useState("Please fill all required fields");
   // state for loading mode
   const [loading, setLoading] = useState(false);
 
-  // change state valuse
+  // change state values
   const ChangeLine1 = (e) => {
     setLine1(e.target.value);
     if (error == "line1") setError("");
@@ -80,16 +74,6 @@ export default function AddressModal({
     if (error == "zip") setError("");
   };
 
-  const ChangeFirstname = (e) => {
-    setFirstname(e.target.value);
-    if (error == "First Name") setError("");
-  };
-
-  const ChangeLastname = (e) => {
-    setLastname(e.target.value);
-    if (error == "Last Name") setError("");
-  };
-
   const update = async (formData, addressBookId) => {
     let result = await putApi(putUpdateAddress(addressBookId, formData));
     if (result) {
@@ -103,6 +87,12 @@ export default function AddressModal({
     let result = await postApi(postCreateAddress(formData));
     if (result) {
       successToast("Address added successfully");
+      setLine1("");
+      setLine2("");
+      setCountry("");
+      setCity("");
+      setState("");
+      setZip("");
       if (updateAddressList) updateAddressList();
       return true;
     }
@@ -110,112 +100,87 @@ export default function AddressModal({
     // return result ? true : false;
   };
 
+  // validation form required
+  const validationForm = () => {
+    if (line1 == "") {
+      setError("line1 is Required");
+      return false;
+    } else if (country == "") {
+      setError("country is Required");
+      return false;
+    } else if (city == "") {
+      setError("city is Required");
+      return false;
+    } else if (state == "") {
+      setError("state is Required");
+      return false;
+    } else if (zip == "") {
+      setError("zip is Required");
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   // submit form
   const submitForm = async () => {
     // validate form if has invalid data stop function
     let validation = validationForm();
-    if (!validation) return;
-
-    const formData = {
-      firstName: firstname,
-      lastName: lastname,
-      addressLine1: line1,
-      addressLine2: line2,
-      country: country,
-      city: city,
-      state: state,
-      zip: zip,
-      addressType: "SHOP",
-    };
-
-    setLoading(true);
-
-    let result;
-
-    if (addressBook) {
-      result = await update(formData, addressBook._id);
-    } else {
-      result = await addAddress(formData);
-    }
-    setLoading(false);
-    if (result) close();
-  };
-
-  // validation form required
-  const validationForm = () => {
-    if (line1 == "") {
-      setError("line1");
-      return false;
-    } else if (country == "") {
-      setError("country");
-      return false;
-    } else if (city == "") {
-      setError("city");
-      return false;
-    } else if (state == "") {
-      setError("state");
-      return false;
-    } else if (zip == "") {
-      setError("zip");
-      return false;
-    }
-    //  else if (type == "CUSTOMER") {
-    //   let flag = true;
-    //   if (firstname == "") {
-    //     setError("First Name");
-    //     flag = false;
-    //   }
-    //   if (lastname == "") {
-    //     setError("Last Name");
-    //     flag = false;
-    //   }
-    //   return flag;
-    // }
+    if (!validation) errorToast(error);
     else {
-      return true;
+      const formData = {
+        addressLine1: line1,
+        addressLine2: line2,
+        country,
+        city,
+        state,
+        zip,
+        addressType: "SHOP",
+      };
+
+      setLoading(true);
+
+      let result;
+
+      if (addressBook) {
+        result = await update(formData, addressBook._id);
+      } else {
+        result = await addAddress(formData);
+      }
+      setLoading(false);
+      if (result) close();
     }
   };
 
   return (
     <ModalWrapper show={show} close={close}>
-      <Flex w="100%" justifyContent="center" alignItems="center" mb="36px">
-        <TopText>Address</TopText>
-      </Flex>
-      <Box>
-        <InputComponent
+      <Stack spacing="36px">
+        <Box textAlign="center">
+          <TopText>Source Address</TopText>
+        </Box>
+        <InputFieldComponent
+          isRequired
           label="Address line 1"
-          placeHolder="Number, Street"
-          isRequired={true}
+          placeholder="Number, Street"
           value={line1}
           change={ChangeLine1}
         />
-        <Box mb="36px" />
-        <InputComponent
+        <InputFieldComponent
+          isRequired
           label="Address Line 2"
-          placeHolder="Number, Street"
+          placeholder="Number, Street"
           value={line2}
           change={ChangeLine2}
         />
 
-        <Box mb="36px" />
-        <Flex
-          mb="36px"
-          justifyContent="space-between"
-          alignItems="center"
-          gap="24px"
-        >
-          <FormControl maxW="50%" w="50%">
-            <FormLabel
-              w="100%"
-              htmlFor="input-com"
-              fontWeight="500"
-              fontSize="18px"
-              color="#C2C2C2"
-            >
+        <Flex justifyContent="space-between" alignItems="center" gap="24px">
+          <FormControl isRequired flexGrow="1">
+            <FormLabel htmlFor="input-com" color="white">
               Country
             </FormLabel>
 
             <SelectInputComponent
+              height={12}
               valueList={COUNTRIES}
               value={country}
               change={ChangeCountry}
@@ -225,18 +190,12 @@ export default function AddressModal({
 
           {/* US_STATES */}
           {country == "United States" ? (
-            <FormControl w="50%">
-              <FormLabel
-                w="100%"
-                htmlFor="input-com"
-                fontWeight="500"
-                fontSize="18px"
-                color="#C2C2C2"
-              >
+            <FormControl>
+              <FormLabel htmlFor="input-com" color="white">
                 State/province
               </FormLabel>
-
               <SelectInputComponent
+                height={12}
                 valueList={US_STATES}
                 value={state}
                 change={ChangeState}
@@ -244,73 +203,50 @@ export default function AddressModal({
               />
             </FormControl>
           ) : (
-            <Box w="50%">
-              <InputComponent
-                label="State"
-                isRequired={true}
-                placeHolder="Virginia"
-                value={state}
-                change={(e) => ChangeState(e.target.value)}
-              />
-            </Box>
+            <InputFieldComponent
+              isRequired
+              label="State"
+              placeholder="Virginia"
+              value={state}
+              change={(e) => ChangeState(e.target.value)}
+            />
           )}
         </Flex>
 
-        <Flex
-          mb="36px"
-          justifyContent="space-between"
-          alignItems="center"
-          gap="24px"
-        >
-          <InputComponent
+        <Flex justifyContent="space-between" alignItems="center" gap="24px">
+          <InputFieldComponent
+            isRequired
             label="City"
-            isRequired={true}
-            placeHolder="Blacksburg"
+            placeholder="Blacksburg"
             value={city}
             change={ChangeCity}
           />
-          <InputComponent
-            label="Zip Code*"
-            isRequired={true}
-            placeHolder="15227"
+          <InputFieldComponent
+            isRequired
+            label="Zip Code"
+            placeholder="15227"
             value={zip}
             change={ChangeZip}
           />
         </Flex>
 
-        <Flex
-          mb="36px"
-          justifyContent="space-between"
-          alignItems="center"
-          gap="24px"
-        >
-          <InputComponent
-            label="First Name"
-            isRequired={true}
-            placeHolder="First Name"
-            value={firstname}
-            change={ChangeFirstname}
-          />
-          <InputComponent
-            label="Last Name"
-            isRequired={true}
-            placeHolder="Last Name"
-            value={lastname}
-            change={ChangeLastname}
-          />
+        <Flex justifyContent="space-between">
+          <Box w="40%">
+            <BasicButton click={close} cancelType={true}>
+              Cancel
+            </BasicButton>
+          </Box>
+          <Box w="40%">
+            <BasicButton
+              click={submitForm}
+              disabled={loading}
+              loading={loading}
+            >
+              Save
+            </BasicButton>
+          </Box>
         </Flex>
-        <SubmitButton
-          width="100%"
-          click={submitForm}
-          disabled={loading}
-          loading={loading}
-        >
-          Save
-        </SubmitButton>
-        {/* <SaveButton w="100%" onClick={submitForm} disabled={loading}>
-          Save
-        </SaveButton> */}
-      </Box>
+      </Stack>
     </ModalWrapper>
   );
 }

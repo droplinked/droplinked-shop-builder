@@ -17,7 +17,7 @@ import ProductComponent from "../../../../../components/shared/product-component
 import CollectionModal from "../../../../../modals/collection-modal/CollectionModal";
 import CollectionHeaderComponent from "./CollectionHeaderComponent";
 import RuleModal from "../../../../../modals/rule-modal/RuleModal";
-import AddProductComponent from "../add-product-component/AddProductComponent";
+import AddCollectionComponent from "../add-collection-component/AddCollectionComponent";
 
 const CollectionComponent = ({ collection, update }) => {
   const [deleteModal, setDeleteModal] = useState(false);
@@ -61,12 +61,12 @@ const CollectionComponent = ({ collection, update }) => {
         <ProductsWrapper>
           {!collection.products || collection.products.length == 0 ? (
             <Box w={{ base: "50%", lg: "25%" }}>
-              <AddProductComponent />
+              <AddCollectionComponent />
             </Box>
           ) : (
             <>
-              {collection.products
-                .filter((product, i) => {
+              {collection?.products
+                ?.filter((product, i) => {
                   if (i < 4) return product;
                 })
                 .map((product, i) => {
@@ -92,7 +92,7 @@ const CollectionComponent = ({ collection, update }) => {
                           shopname={profile.shopName}
                           title={product.title}
                           id={product._id}
-                          imageUrl={product.media[0].url}
+                          imageUrl={product?.media[0]?.url}
                           type={USER_TYPE.CUSTOMER}
                         />
                       </Box>

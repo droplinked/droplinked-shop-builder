@@ -1,11 +1,9 @@
 import {
-  RuleModalWrapper,
-  RuleModalCotent,
   ModalHeader,
-  AddRuleButton,
-  TypeSelect,
+  SelectComponent,
+  OptionComponent,
 } from "./RuleModal-style";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Checkbox, Flex, Stack } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
 // import {
@@ -23,11 +21,15 @@ import { useToasty } from "../../context/toastify/ToastContext";
 import { RuleTypes } from "./rule-type";
 import { useApi } from "../../hooks/useApi/useApi";
 // import deleteIcon from "../../../assest/icon/delete-icon.svg";
-import RuleItem from "./RuleItem";
-import FillInputComponent from "./components/FillInputComponent";
+// import RuleItem from "./RuleItem";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
-import AddRuleComponent from "./AddRuleComponent";
-import Loading from "../../components/shared/loading/Loading";
+// import AddRuleComponent from "./AddRuleComponent";
+// import Loading from "../../components/shared/loading/Loading";
+import ModalWrapper from "../modal-wrapper/ModalWrapper";
+// import discountIcon from "../../assest/icon/discount-active-icon.svg";
+// import gatedIcon from "../../assest/icon/gated-active-icon.svg";
+
+import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
@@ -35,7 +37,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const { errorToast, successToast } = useToasty();
   const { getApi, postApi, putApi } = useApi();
   // this state for list of rules
-  const [Rulelist, setRulelist] = useState([]);
+  const [RuleList, setRuleList] = useState([]);
   // this state used for web url address
   const [webUrl, setWebUrl] = useState("");
   //this state used for  rule type
@@ -47,7 +49,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
 
   const changeWebUrl = (e) => setWebUrl(e.target.value);
 
-  const chnageRuleType = (e) => setRuleType(e.target.value);
+  const changeRuleType = (e) => setRuleType(e.target.value);
 
   const toggleRuleModal = () => setAddNewRule((p) => !p);
 
@@ -77,25 +79,25 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
         des: currentRule.description,
       };
     });
-    setRulelist(initialRuleList);
+    setRuleList(initialRuleList);
   };
 
   const deleteRule = (index) => {
-    let newArray = Array.from(Rulelist);
+    let newArray = Array.from(RuleList);
     newArray = newArray.filter((rule, i) => {
       return i != index;
     });
-    setRulelist(newArray);
+    setRuleList(newArray);
   };
 
   const addToRules = (newRule) => {
-    let currentRuleArray = Array.from(Rulelist);
+    let currentRuleArray = Array.from(RuleList);
     currentRuleArray.push(newRule);
-    setRulelist(currentRuleArray);
+    setRuleList(currentRuleArray);
   };
 
   const editRule = (newRule, index) => {
-    let currentRuleArray = Array.from(Rulelist);
+    let currentRuleArray = Array.from(RuleList);
     currentRuleArray = currentRuleArray.map((rule, i) => {
       if (index == i) {
         return { ...newRule };
@@ -103,13 +105,13 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
         return { ...rule };
       }
     });
-    setRulelist(currentRuleArray);
+    setRuleList(currentRuleArray);
   };
 
   const submit = async () => {
     const gated = ruleType == RuleTypes.DISCOUNT ? false : true;
     let rulesArray = [];
-    rulesArray = Rulelist.map((rule) => {
+    rulesArray = RuleList.map((rule) => {
       return {
         addresses: rule.addresses,
         type: "NFT",
@@ -143,74 +145,74 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   if (!show) return null;
 
   return (
-    <RuleModalWrapper>
-      <RuleModalCotent>
-        {loading ? (
-          <Loading />
-        ) : (
-          <>
-            <ModalHeader>Ruleset</ModalHeader>
+    <ModalWrapper show={show} close={close}>
+      <ModalHeader>Make Ruleset</ModalHeader>
+      <Stack spacing={6}>
+        <InputFieldComponent
+          label="Tag Name"
+          placeholder="Ruleset 1"
+          description="description"
+        />
+        <InputFieldComponent
+          label="NFT source domain"
+          placeholder="https://www.opensea.com"
+          description="description"
+        />
+        <Flex gap={2}>
+          <Box width="100%">
+            <Box color="white">Rule type</Box>
 
-            <FillInputComponent
-              preText={"https://"}
-              value={webUrl}
-              label="Weburl"
-              change={changeWebUrl}
-              placeholder={"Your website"}
-            />
-
-            <Box mb="20px"></Box>
-
-            <TypeSelect
+            <SelectComponent
+              width="100%"
+              mt={2}
               value={ruleType}
-              onChange={chnageRuleType}
-              disabled={Rulelist.length > 0}
+              onChange={changeRuleType}
+              disabled={RuleList.length > 0}
             >
-              <option value={RuleTypes.GATED}>Gating</option>
-              <option value={RuleTypes.DISCOUNT}>Discount</option>
-            </TypeSelect>
+              <OptionComponent value={RuleTypes.GATED}>
+                {/* <Image src={discountIcon} w="16px" h="16px" /> */}
+                Gating
+              </OptionComponent>
+              <OptionComponent value={RuleTypes.DISCOUNT}>
+                {/* <Image src={gatedIcon} w="16px" h="16px" /> */}
+                Discount
+              </OptionComponent>
+            </SelectComponent>
+          </Box>
+          <InputFieldComponent
+            label="Offer"
+            placeholder="%20"
+            description="description"
+          />
+        </Flex>
+        <InputFieldComponent
+          textArea
+          label="NFT asset identifiers"
+          placeholder="you can separate nft links with ,"
+        />
 
-            <Box mb="40px"></Box>
+        <InputFieldComponent
+          label="Minimum Requirement"
+          placeholder="4"
+          description="description"
+        />
 
-            {Rulelist.length > 0 &&
-              Rulelist.map((rule, i) => {
-                return (
-                  <RuleItem
-                    rule={rule}
-                    deleteFunc={() => {
-                      deleteRule(i);
-                    }}
-                    isGated={ruleType == RuleTypes.GATED}
-                    editRule={(newRule) => editRule(newRule, i)}
-                  />
-                );
-              })}
+        <Checkbox colorScheme="white" color="white">
+          Save this ruleset
+        </Checkbox>
 
-            {addNewRule ? (
-              <AddRuleComponent
-                close={toggleRuleModal}
-                isGated={ruleType == RuleTypes.GATED}
-                addToRules={addToRules}
-              />
-            ) : (
-              <AddRuleButton onClick={toggleRuleModal}>
-                Add new rule
-              </AddRuleButton>
-            )}
-
-            <Box mb="40px"></Box>
-            <Flex w="100%" justifyContent="space-between">
-              <Box w="200px">
-                <BasicButton click={close}>Cancel</BasicButton>
-              </Box>
-              <Box w="200px">
-                <BasicButton click={submit}>Add</BasicButton>
-              </Box>
-            </Flex>
-          </>
-        )}
-      </RuleModalCotent>
-    </RuleModalWrapper>
+        <Flex w="100%" justifyContent="space-between">
+          <Box w="200px">
+            <BasicButton cancelType click={close}>
+              Cancel
+            </BasicButton>
+          </Box>
+          <Box w="200px">
+            <BasicButton click={submit}>Save</BasicButton>
+          </Box>
+        </Flex>
+      </Stack>
+    </ModalWrapper>
   );
 };
 

@@ -135,76 +135,71 @@ export const GrayLine = chakra("div", {
   },
 });
 
-
-
 export const OptionFormWrapper = chakra("div", {
   baseStyle: {
-   w:'100%',
-   p:'24px 36px' ,
-   bg:'subLayer',
-   mb:'10px',
-   borderRadius:'8px'
+    w: "100%",
+    p: "24px 36px",
+    bg: "subLayer",
+    mb: "10px",
+    borderRadius: "8px",
   },
 });
 
 export const ValueInput = chakra("input", {
   baseStyle: {
-  fontSize:'20px'  ,
-  fontWeight:'500',
-  color:'darkGray' ,
-  p:'15px 24px' ,
-  w:'100%',
-  backgroundColor: "mainLayer",
-  borderRadius: "8px",
-  _placeholder:{
-    color:'darkGray' ,
-  },
-  _focus:{
-    outline:'none'
-  }
+    fontSize: "20px",
+    fontWeight: "500",
+    color: "darkGray",
+    p: "15px 24px",
+    w: "100%",
+    backgroundColor: "subLayer",
+    borderRadius: "8px",
+    _placeholder: {
+      color: "darkGray",
+    },
+    _focus: {
+      outline: "none",
+    },
   },
 });
-
 
 export const PlusIcon = chakra("img", {
   baseStyle: {
-  w:'24px' ,
-  h:'24px' ,
-  mx:'18px' ,
-  cursor:'pointer'
-  }
+    w: "24px",
+    h: "24px",
+    mx: "18px",
+    cursor: "pointer",
+  },
 });
-
 
 export const VariantComponentWrapper = chakra("div", {
   baseStyle: {
     d: "flex",
-    w:'100%',
-    p:'16px 4px',
-    alignItems:'center',
-    borderBottom:'3px solid',
-    borderColor:'line' ,
-    justifyContent:'space-between'
+    w: "100%",
+    p: "16px 4px",
+    alignItems: "center",
+    borderBottom: "3px solid",
+    borderColor: "line",
+    justifyContent: "space-between",
   },
 });
 
 export const DetailWrapper = chakra("div", {
   baseStyle: {
     d: "flex",
-    w:'75%',
-    justifyContent:'space-between'
+    w: "75%",
+    justifyContent: "space-between",
   },
 });
 
 export const Line = chakra("div", {
   baseStyle: {
-    w:'3px' ,
-    bg:'line' ,
-    border:'1px solid' ,
-    borderColor:'line'
+    w: "3px",
+    bg: "line",
+    border: "1px solid",
+    borderColor: "line",
   },
 });
-
 
 export const SkuFormWrapper = chakra("div", {
   baseStyle: {
@@ -223,9 +218,6 @@ export const InputWrapper = chakra("div", {
   },
 });
 
-
-
-
 export const FieldInput = chakra("input", {
   baseStyle: {
     w: "70%",
@@ -234,7 +226,7 @@ export const FieldInput = chakra("input", {
     fontSize: "20px",
     fontWeight: "500",
     borderRadius: "8px",
-    color:'darkGray' ,
+    color: "darkGray",
     _placeholder: {
       color: "darkGray",
     },
@@ -243,18 +235,17 @@ export const FieldInput = chakra("input", {
     },
   },
 });
-
 
 export const SmallInput = chakra("input", {
   baseStyle: {
     w: "15%",
     fontSize: "20px",
     fontWeight: "500",
-    color:'darkGray' ,
-    bg:'mainLayer' ,
-    border:'none',
-    py:'7px' ,
-    outline:'none',
+    color: "darkGray",
+    bg: "mainLayer",
+    border: "none",
+    py: "7px",
+    outline: "none",
     _placeholder: {
       color: "darkGray",
     },
@@ -263,11 +254,3 @@ export const SmallInput = chakra("input", {
     },
   },
 });
-
-
-
-
-
-
-
-

@@ -6,7 +6,13 @@ import {
   DropDownItem,
 } from "./SelectInputComponent-style";
 
-const SelectInputComponent = ({ valueList, value, change, placeholder }) => {
+const SelectInputComponent = ({
+  valueList,
+  value,
+  change,
+  placeholder,
+  height,
+}) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const box = useRef(null);
@@ -26,6 +32,7 @@ const SelectInputComponent = ({ valueList, value, change, placeholder }) => {
   return (
     <Box w="100%" ref={box} pos="relative">
       <SelectInputComponentWrapper
+        height={height}
         placeholder={placeholder}
         onChange={changeValue}
         value={value}

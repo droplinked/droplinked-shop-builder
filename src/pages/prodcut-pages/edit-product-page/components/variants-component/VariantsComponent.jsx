@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Box } from "@chakra-ui/react";
+import {
+  Box,
+  Table,
+  TableContainer,
+  Tbody,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 
 import { ComponentWrapper, ComponentTitle } from "../../EditProductPage-style";
 
@@ -18,18 +26,71 @@ const VariantsComponent = ({ OptionList, skus, productId, updateProduct }) => {
       <ComponentTitle>Variants</ComponentTitle>
       <Box mb="36px" />
 
-      {skus.map((currentSku) => {
-        return (
-          <SkuComponent
-            key={currentSku.index}
-            sku={currentSku}
-            skus={skus}
-            OptionList={OptionList}
-            // record={RecordSku}
-            updateProduct={updateProduct}
-          />
-        );
-      })}
+      {skus?.length && (
+        <TableContainer width="100%" mb="36px">
+          <Table>
+            <Thead borderY="1px solid" borderColor="line">
+              <Tr>
+                {[
+                  {
+                    width: "20%",
+                    label: "Size",
+                  },
+                  {
+                    width: "16%",
+                    label: "Quantity",
+                  },
+                  {
+                    width: "16%",
+                    label: "External ID",
+                  },
+                  {
+                    width: "32%",
+                    label: "Price",
+                  },
+                  {
+                    width: "16%",
+                    label: "Options",
+                  },
+                ].map((item) => (
+                  <Th
+                    py={4}
+                    fontSize="12px"
+                    fontWeight="500"
+                    key={item.label}
+                    w={item.width}
+                    color="lightGray"
+                    border="none"
+                  >
+                    {item.label}
+                  </Th>
+                ))}
+              </Tr>
+            </Thead>
+            {skus.length > 0 && (
+              <Tbody>
+                {skus.map((currentSku) => {
+                  return (
+                    <SkuComponent
+                      updateProduct={updateProduct}
+                      key={currentSku.index}
+                      sku={currentSku}
+                      skus={skus}
+                      OptionList={OptionList}
+                      // deleteSku={() => {
+                      //   deleteSku(currentSku.index);
+                      // }}
+                      // changeSku={changeSku}
+                      // // record={RecordSku}
+                      // update={update}
+                    />
+                  );
+                })}
+              </Tbody>
+            )}
+          </Table>
+        </TableContainer>
+      )}
       {openForm ? (
         <SkuForm
           closeForm={toggleForm}

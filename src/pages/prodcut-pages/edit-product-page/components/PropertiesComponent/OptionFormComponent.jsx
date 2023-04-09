@@ -13,9 +13,12 @@ import {
   checkExistVariant,
   getOptionsArrayAfterChangeOptionValue,
   getOptionsArrayAfterAddValueToOption,
+  getOptionsArrayAfterRemoveValueFromOption,
 } from "./utils";
 
 import plus from "../../../../../assest/icon/plus-icon.svg";
+import minus from "../../../../../assest/icon/minusIcon.png";
+import { MinusIcon } from "../../../add-product-page/AddProductPage-style";
 // this component handles options values and types
 const OptionFormComponent = ({
   option,
@@ -59,18 +62,30 @@ const OptionFormComponent = ({
     setOptionList(optionArray);
   };
 
+  const removeValueFromOption = (optionIndex, optionValueIndex) => {
+    let optionArray = getOptionsArrayAfterRemoveValueFromOption(
+      optionIndex,
+      OptionList,
+      optionValueIndex
+    );
+    setOptionList(optionArray);
+  };
+
   return (
-    <OptionFormWrapper key={option.index}>
+    <Box key={option.index} mt={2}>
       <Flex justifyContent="space-between" alignItems="center">
         <ComponentTitle>Property</ComponentTitle>
         <Box mr="10%"></Box>
         <SelectComponent
           onChange={(e) => changeOptionType(e.target.value, option.index)}
-          value={option.optionId}
         >
-          {variantsType.map((variant) => {
+          <OptionComponent selected disabled hidden>
+            Property
+          </OptionComponent>
+          {variantsType?.map((variant) => {
             return (
               <OptionComponent
+                key={variant._id}
                 value={variant._id}
                 disabled={existVariant(variant._id)}
               >
@@ -81,9 +96,9 @@ const OptionFormComponent = ({
         </SelectComponent>
       </Flex>
 
-      {option.values.map((optionValue) => {
+      {option?.values?.map((optionValue) => {
         return (
-          <>
+          <Box key={optionValue?.index} mb={4}>
             <Box mb="16px"></Box>
             <Flex justifyContent="space-between" alignItems="center">
               <Text fontWeight="400" fontSize="20px" color="white" w="100px">
@@ -102,20 +117,28 @@ const OptionFormComponent = ({
                     );
                   }}
                 />
-                {optionValue.index == option.values.length && (
+                {optionValue.index ===
+                option.values[option.values.length - 1]?.index ? (
                   <PlusIcon
                     src={plus}
                     onClick={() => {
                       addValueToOption(option.index);
                     }}
                   />
+                ) : (
+                  <MinusIcon
+                    src={minus}
+                    onClick={() => {
+                      removeValueFromOption(option.index, optionValue.index);
+                    }}
+                  />
                 )}
               </Flex>
             </Flex>
-          </>
+          </Box>
         );
       })}
-    </OptionFormWrapper>
+    </Box>
   );
 };
 

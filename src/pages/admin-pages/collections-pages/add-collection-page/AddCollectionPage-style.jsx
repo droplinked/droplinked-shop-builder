@@ -17,7 +17,7 @@ export const ComponentWrapper = chakra("div", {
     w: "100%",
     maxW: "1000px",
     bg: "#1c1c1c",
-    p: "50px 60px",
+    p: "24px 60px",
     borderRadius: "8px",
   },
 });
