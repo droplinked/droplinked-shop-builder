@@ -1,6 +1,13 @@
 import { extendTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
+  styles: {
+    global: {
+      ".chakra-form__required-indicator": {
+        color: "#2EC99E !important",
+      },
+    },
+  },
   colors: {
     bG: "#141414",
     subLayer: "#141414",
@@ -15,6 +22,18 @@ export const theme = extendTheme({
     lightGray: "#C2C2C2",
     darkGray: "#666666",
     offText: "#5D5D5D",
+    green: {
+      50: "#edfaf6",
+      100: "#b4ecdc",
+      200: "#6bd9ba",
+      300: "#2bbb93",
+      400: "#26a783",
+      500: "#2EC99E",
+      600: "#1b775d",
+      700: "#165f4b",
+      800: "#12513f",
+      900: "#0d3a2e",
+    },
   },
   breakpoints: {
     sm: "481px",

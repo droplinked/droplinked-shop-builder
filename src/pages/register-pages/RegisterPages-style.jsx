@@ -27,9 +27,9 @@ export const PageInformationComponent = chakra("div", {
     fontSize: "16px",
     fontWeight: "500",
     color: "#fff",
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center'
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
@@ -51,6 +51,15 @@ export const Text18px = chakra("div", {
   },
 });
 
+export const Text20px = chakra("div", {
+  baseStyle: {
+    fontFamily: "Avenir Next",
+    fontWeight: "700",
+    fontSize: "20px",
+    color: "#FFFFFF",
+  },
+});
+
 export const AddAddressButton = chakra("button", {
   baseStyle: {
     w: "100%",
@@ -61,38 +70,36 @@ export const AddAddressButton = chakra("button", {
     fontWeight: "500",
     fontSize: "16px",
     color: "white",
-    border:'1px solid' ,
-    borderColor:'#292929' ,
-    _hover:{
-      bg:'mainLayer'
-    }
+    border: "1px solid",
+    borderColor: "#292929",
+    _hover: {
+      bg: "mainLayer",
+    },
   },
 });
-
 
 export const SaveButton = chakra("button", {
   baseStyle: {
     bg: "primary",
     borderRadius: "8px",
     padding: " 12px 16px",
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     fontFamily: "Avenir Next",
     fontWeight: "500",
     fontSize: "18px",
     color: "#084836",
-    border:'1px solid' ,
-    borderColor:'primary' ,
-    _hover:{
-      bg:'mainLayer',
+    border: "1px solid",
+    borderColor: "primary",
+    _hover: {
+      bg: "mainLayer",
       color: "primary",
     },
-    _disabled:{
-      bg:'#292929',
+    _disabled: {
+      bg: "#292929",
       color: "lightGray",
-      borderColor:'#292929' ,
-    }
+      borderColor: "#292929",
+    },
   },
 });
-

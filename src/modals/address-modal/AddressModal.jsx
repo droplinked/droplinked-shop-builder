@@ -174,12 +174,13 @@ export default function AddressModal({
         />
 
         <Flex justifyContent="space-between" alignItems="center" gap="24px">
-          <FormControl flexGrow="1">
+          <FormControl isRequired flexGrow="1">
             <FormLabel htmlFor="input-com" color="white">
-              Country *
+              Country
             </FormLabel>
 
             <SelectInputComponent
+              height={12}
               valueList={COUNTRIES}
               value={country}
               change={ChangeCountry}
@@ -194,6 +195,7 @@ export default function AddressModal({
                 State/province
               </FormLabel>
               <SelectInputComponent
+                height={12}
                 valueList={US_STATES}
                 value={state}
                 change={ChangeState}
