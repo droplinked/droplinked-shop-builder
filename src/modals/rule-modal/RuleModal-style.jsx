@@ -1,5 +1,34 @@
 import { chakra } from "@chakra-ui/react";
 
+export const SelectComponent = chakra("select", {
+  baseStyle: ({ bg = "subLayer" }) => ({
+    w: "100%",
+    d: "flex",
+    backgroundColor: bg,
+    borderRadius: "8px",
+    color: "darkGray",
+    p: "14px 18px",
+    fontSize: "20px",
+    fontWeight: "500",
+    outline: "none",
+    _focus: {
+      border: "none",
+      outline: "none",
+    },
+  }),
+});
+
+export const OptionComponent = chakra("option", {
+  baseStyle: {
+    w: "100%",
+    bg: "subLayer",
+    color: "darkGray",
+    p: "18px 18px",
+  },
+});
+
+//
+
 export const RuleModalWrapper = chakra("div", {
   baseStyle: {
     position: "fixed",
@@ -137,7 +166,7 @@ export const GreenIcon = chakra("div", {
     color: "subLayer",
     justifyContent: "center",
     alignItems: "center",
-    fontSize: { base: "8px", sm: "10px", md: "12px" , lg:'16px' },
+    fontSize: { base: "8px", sm: "10px", md: "12px", lg: "16px" },
   },
 });
 

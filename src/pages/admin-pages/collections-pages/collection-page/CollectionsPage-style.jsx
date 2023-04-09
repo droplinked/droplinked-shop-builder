@@ -10,22 +10,20 @@ export const CollectionPageWrapper = chakra("div", {
   },
 });
 
-
 export const ButtonWrapper = chakra("div", {
   baseStyle: {
-    mb:'20px' , 
-    w:{base:'100%', md:'25%'},
-    minW:'300px'
+    mb: "20px",
+    w: { base: "100%", md: "25%" },
+    minW: "300px",
   },
 });
 
-export const AddproductWrapper = chakra("div", {
+export const AddProductWrapper = chakra("div", {
   baseStyle: {
-    mb:'20px' , 
-    w:{base:'100%',sm:'100%', md:'100%'},
+    mb: "20px",
+    w: { base: "100%", sm: "100%", md: "100%" },
   },
 });
-
 
 export const HeaderTitle = chakra("p", {
   baseStyle: {
@@ -40,6 +38,15 @@ export const ListedNumber = chakra("p", {
     color: "white",
     fontWeight: "500",
     fontSize: "14px",
+  },
+});
+
+export const PageWrapper = chakra("div", {
+  baseStyle: {
+    w: "100%",
+    bg: "mainLayer",
+    borderRadius: "8px",
+    p: "36px 48px",
   },
 });
 

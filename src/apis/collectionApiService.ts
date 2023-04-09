@@ -37,6 +37,6 @@ export const getCollectionPublicById = (collectionId: number) => {
   );
 };
 
-export const getCollectionPublicByShopname = (shopName: string) => {
+export const getCollectionPublicByShopName = (shopName: string) => {
   return createApiReq(`collection/public/${shopName}`, false, null);
 };
