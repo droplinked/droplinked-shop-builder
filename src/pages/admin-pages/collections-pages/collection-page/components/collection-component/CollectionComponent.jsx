@@ -13,13 +13,15 @@ import {
 import moreIcon from "../../../../../../assest/icon/more-icon.svg";
 import CollectionModal from "../../../../../../modals/collection-modal/CollectionModal";
 import { useState } from "react";
+import RuleModal from "../../../../../../modals/rule-modal/RuleModal";
 
 const CollectionComponent = ({ collection, update }) => {
   //
+  const [ruleModal, setRuleModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-
+  //
+  const toggleRuleModal = () => setRuleModal((prev) => !prev);
   const toggleEditModal = () => setEditModal((prev) => !prev);
-
   //
   return (
     <>
@@ -74,10 +76,25 @@ const CollectionComponent = ({ collection, update }) => {
               >
                 Edit
               </Button>
+              <Button
+                textAlign="start"
+                variant="unstyled"
+                size="xs"
+                onClick={toggleRuleModal}
+              >
+                Ruleset
+              </Button>
             </PopoverContent>
           </Popover>
         </Td>
       </Tr>
+      <RuleModal
+        show={ruleModal}
+        close={toggleRuleModal}
+        collectionId={collection._id}
+        update={update}
+        ruleId={collection.ruleSetID || undefined}
+      />
       <CollectionModal
         show={editModal}
         collection={collection}
