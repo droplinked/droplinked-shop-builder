@@ -1,5 +1,6 @@
-import { Box, Flex } from "@chakra-ui/react";
-import { useReducer, useState } from "react";
+import { Box } from "@chakra-ui/react";
+import { useReducer, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import {
   PageContent,
@@ -10,9 +11,11 @@ import { useApi } from "../../../../hooks/useApi/useApi";
 import { putUpdateShop } from "../../../../apis/shopApiService";
 import { shopContactReducer, SHOP_REDUCER_TYPES } from "./contact-reducer";
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
+import { useProfile } from "../../../../hooks/useProfile/useProfile";
+import { useToasty } from "../../../../context/toastify/ToastContext";
 
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
-import InputLefton from "../../component/input-lefton/InputLefton"; 
+import InputLefton from "../../component/input-lefton/InputLefton";
 
 const INITIAL_SHOP_CONTACT = {
   discordURL: "",
@@ -30,7 +33,28 @@ const ContactInfo = () => {
   const [loading, setLoading] = useState(false);
 
   const { putApi } = useApi();
-  const { shopNavigate } = useCustomNavigate()
+  const { shopNavigate } = useCustomNavigate();
+  const { shop, updateShopData } = useProfile();
+  const { successToast } = useToasty();
+  const currentPath = useLocation().pathname;
+
+  const initializeValues = () => {
+    const obj = {
+      discordURL: shop.discordURL ? shop.discordURL : "",
+      instagramURL: shop.instagramURL ? shop.instagramURL : "",
+      twitterURL: shop.twitterURL ? shop.twitterURL : "",
+      webURL: shop.webURL ? shop.webURL : "",
+    };
+
+    dispatchShopInformation({
+      type: SHOP_REDUCER_TYPES.INITIALIZE,
+      payload: obj,
+    });
+  };
+
+  useEffect(() => {
+    initializeValues();
+  }, [shop]);
 
   const changeWebUrl = (e) =>
     dispatchShopInformation({
@@ -63,11 +87,14 @@ const ContactInfo = () => {
       twitterURL: shopInformation.twitterURL,
       webURL: shopInformation.webURL,
     };
-    setLoading(true)
+    setLoading(true);
     const result = await putApi(putUpdateShop(apiBody));
-    setLoading(false)
+    updateShopData();
+    setLoading(false);
+
     if (result) {
-      shopNavigate(`register/design`);
+      if (currentPath.includes("register")) shopNavigate(`register/design`);
+      else successToast("Updated");
     }
   };
 
@@ -83,7 +110,7 @@ const ContactInfo = () => {
           change={changeWebUrl}
           label="Website"
           placeHolder="mystore.com"
-          children='https://'
+          children="https://"
         />
         <Box mb="52px" />
         <InputLefton
@@ -91,7 +118,7 @@ const ContactInfo = () => {
           change={changeDiscord}
           label="Discord"
           placeHolder="my store"
-          children='https://discord.gg/'
+          children="https://discord.gg/"
         />
         <Box mb="52px" />
         <InputLefton
@@ -99,7 +126,7 @@ const ContactInfo = () => {
           change={changeTwitter}
           label="Twitter"
           placeHolder="my store"
-          children='https://twitter.com/'
+          children="https://twitter.com/"
         />
         <Box mb="52px" />
         <InputLefton
@@ -107,15 +134,13 @@ const ContactInfo = () => {
           change={changeInsagram}
           label="Instagram"
           placeHolder="mystore.com"
-          children='https://www.instagram.com/'
+          children="https://www.instagram.com/"
         />
       </PageContentWrapper>
 
-      <Flex justifyContent="end" w="100%" pt="36px">
-        <SubmitButton width="200px" click={clickOnSave} loading={loading} >
-          Save & next step
-        </SubmitButton>
-      </Flex>
+      <SubmitButton width="200px" click={clickOnSave} loading={loading}>
+        Save & next step
+      </SubmitButton>
     </PageContent>
   );
 };

@@ -1,4 +1,5 @@
 export const SHOP_REDUCER_TYPES = {
+  INITIALIZE: "INITIALIZE",
   CHANGE_WEBURL: "CHANGE_WEBURL",
   CHANGE_INSTAGRAM: "CHANGE_INSTAGRAM",
   CHANGE_TWITTER: "CHANGE_TWITTER",
@@ -7,6 +8,8 @@ export const SHOP_REDUCER_TYPES = {
 
 export function shopContactReducer(state, action) {
   switch (action.type) {
+    case SHOP_REDUCER_TYPES.INITIALIZE:
+      return { ...action.payload  };
     case SHOP_REDUCER_TYPES.CHANGE_WEBURL:
       return { ...state, webURL: action.payload };
     case SHOP_REDUCER_TYPES.CHANGE_INSTAGRAM:
