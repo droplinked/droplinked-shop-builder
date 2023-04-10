@@ -21,8 +21,8 @@ export const postUserSignup = (
   return createApiReq(`user/signup`, false, body);
 };
 
-export const postUserForgotPassword = (body: any) => {
-  return createApiReq(`user/forgot-password`, false, body);
+export const postUserForgotPassword = (email: any) => {
+  return createApiReq(`user/forgot-password`, false, { email: email });
 };
 
 export const postUserResendEmail = (email: string) => {
