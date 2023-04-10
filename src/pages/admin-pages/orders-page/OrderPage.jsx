@@ -22,7 +22,9 @@ export default function OrderPage() {
   const updateOrder = async () => {
     let result = await getApi(getOrders());
     if (result) {
-      result = sortArrayBaseCreateTime(result);
+      result = result.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
       setOrders(result);
     }
   };
@@ -37,23 +39,23 @@ export default function OrderPage() {
     // }
   }, []);
 
-  const setTypesArray = () => {
-    const arr = [
-      { id: "All", value: "All" },
-      {
-        id: ORDER_TYPES.WAITING_FOR_CONFIRMATION,
-        value: "Waiting for confirmation",
-      },
-      { id: ORDER_TYPES.WAITING_FOR_PAYMENT, value: "Waiting for payment" },
-      { id: ORDER_TYPES.PROCESSING, value: "Processing" },
-      { id: ORDER_TYPES.SENT, value: "Sent" },
-      { id: ORDER_TYPES.CANCELED, value: "Canceled" },
-      { id: ORDER_TYPES.REFUNDED, value: "Refunded" },
-    ];
-    return arr;
-  };
+  // const setTypesArray = () => {
+  //   const arr = [
+  //     { id: "All", value: "All" },
+  //     {
+  //       id: ORDER_TYPES.WAITING_FOR_CONFIRMATION,
+  //       value: "Waiting for confirmation",
+  //     },
+  //     { id: ORDER_TYPES.WAITING_FOR_PAYMENT, value: "Waiting for payment" },
+  //     { id: ORDER_TYPES.PROCESSING, value: "Processing" },
+  //     { id: ORDER_TYPES.SENT, value: "Sent" },
+  //     { id: ORDER_TYPES.CANCELED, value: "Canceled" },
+  //     { id: ORDER_TYPES.REFUNDED, value: "Refunded" },
+  //   ];
+  //   return arr;
+  // };
 
-  let typesArray = useMemo(() => setTypesArray(), []);
+  // let typesArray = useMemo(() => setTypesArray(), []);
 
   if (orders === null) {
     return <Loading />;
@@ -71,7 +73,16 @@ export default function OrderPage() {
         >
           Incoming orders
         </Text>
-        <Flex w="100%" justifyContent="center">
+
+        {orders.map((order, i) => {
+          return (
+            <Box key={i} mb="30px">
+              <OrderComponent updateOrder={updateOrder} order={order} />
+            </Box>
+          );
+        })}
+
+        {/* <Flex w="100%" justifyContent="center">
           <Box w={{ base: "100%", md: "40%" }} mb="40px">
             <DropdownComponent
               value={filter}
@@ -82,9 +93,9 @@ export default function OrderPage() {
               }}
             />
           </Box>
-        </Flex>
+        </Flex> */}
 
-        {filter == "All" ? (
+        {/* {filter == "All" ? (
           <>
             {orders.map((order, i) => {
               if (order.status == ORDER_TYPES.WAITING_FOR_CONFIRMATION)
@@ -109,17 +120,25 @@ export default function OrderPage() {
               if (order.status == ORDER_TYPES.REFUNDED) {
                 if (filter == ORDER_TYPES.CANCELED)
                   return (
-                    <OrderComponent updateOrder={updateOrder} key={i} order={order} />
+                    <OrderComponent
+                      updateOrder={updateOrder}
+                      key={i}
+                      order={order}
+                    />
                   );
               } else {
                 if (order.status == filter)
                   return (
-                    <OrderComponent updateOrder={updateOrder} key={i} order={order} />
+                    <OrderComponent
+                      updateOrder={updateOrder}
+                      key={i}
+                      order={order}
+                    />
                   );
               }
             })}
           </>
-        )}
+        )} */}
       </Box>
     </Box>
   );

@@ -22,7 +22,9 @@ import {
   QuantityText,
   ProductImage,
   OrderStatus,
+  DateText
 } from "./OrderComponent-style";
+import { calculateHowTimePassed } from "./order-component-utils";
 import OrderModal from "../../../../../modals/order-modal/OrderModal";
 //import BasicButton from "../BasicButton/BasicButton";
 
@@ -82,7 +84,7 @@ export default function OrderComponent({ updateOrder, order }) {
         <Box pos="relative">
           {/* date and total price */}
           <Flex justifyContent="space-between">
-            {/* <DateText>Date: {calculateHowTimePassed(order.createdAt)}</DateText> */}
+            <DateText>Date: {calculateHowTimePassed(order.createdAt)}</DateText>
             <OrderId>Order id: {order._id}</OrderId>
           </Flex>
           {/* date and total price */}

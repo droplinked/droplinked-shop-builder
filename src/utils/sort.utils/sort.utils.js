@@ -4,7 +4,7 @@
 export const sortArrayBaseCreateTime = (arrayData) => {
   let newArray = arrayData;
   newArray.sort((a, b) => {
-    return Date.parse(b.createdAt) - Date.parse(a.createdAt);
+    return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
   });
   return newArray
 };
