@@ -149,6 +149,7 @@ export default function AddressModal({
       }
       setLoading(false);
       if (result) close();
+      else errorToast("An error has occurred");
     }
   };
 
