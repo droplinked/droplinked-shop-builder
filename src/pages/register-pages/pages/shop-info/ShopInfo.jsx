@@ -1,5 +1,5 @@
-import { Button, Flex, FormControl, FormLabel, Text } from "@chakra-ui/react";
-import { useState, useEffect, useReducer } from "react";
+import { Button, FormControl, FormLabel, Text } from "@chakra-ui/react";
+import { useState, useEffect, useReducer, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
 import {
@@ -20,6 +20,7 @@ import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCusto
 
 import AddressModal from "../../../../modals/address-modal/AddressModal";
 import AddressComponent from "../../../../components/shared/address-component/AddressComponent";
+import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 
 import InputFieldComponent from "../../../../components/shared/input-field-component/InputFieldComponent";
 
@@ -33,21 +34,33 @@ const RegisterShopInfo = () => {
     shopInformationReducer,
     INITIAL_SHOP_INFO
   );
-  
+
   const [loading, setLoading] = useState(false);
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [addressList, setAddressList] = useState([]);
 
   const { getApi, putApi } = useApi();
   const { shopNavigate } = useCustomNavigate();
-  const { errorToast } = useToasty();
-  const { shop } = useProfile();
+  const { successToast } = useToasty();
+  const { shop, updateShopData } = useProfile();
 
+  const currentPath = useLocation().pathname;
 
+  const diableButton = useMemo(() => {
+    if (shopInformation.description.length === 0) {
+      return true;
+    } else if (shopInformation.addressBookID === null) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [shopInformation]);
+
+  //open address modal
   const toggleAddressModal = () => setShowAddressModal((p) => !p);
 
-    // get shop desctiption
-  const updateShopData = () => {
+  // get shop desctiption
+  const getShopData = () => {
     if (shop.description)
       dispatchShopInformation({
         type: SHOP_REDUCER_TYPES.CHANGE_DESCRIPTION,
@@ -73,11 +86,13 @@ const RegisterShopInfo = () => {
     }
   };
 
+  // initialize values
   useEffect(() => {
     updateAddressList();
-    updateShopData();
+    getShopData();
   }, [shop]);
 
+  // change desctiption
   const changeDescription = (e) => {
     if (e.target.value.length < 21)
       dispatchShopInformation({
@@ -86,35 +101,28 @@ const RegisterShopInfo = () => {
       });
   };
 
-  const isValidForm = () => {
-    if (shopInformation.description.length === 0) {
-      return false;
-    } else if (shopInformation.addressBookID === null) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const clickOnSave = async () => {
-    if (shopInformation.description.length === 0) {
-      errorToast("Shop name is required");
-      return;
-    }
-    if (shopInformation.addressBookID === null) {
-      errorToast("Address is required");
-      return;
-    }
-
+  // call api for put data
+  const callApi = async () => {
     const apiBody = {
       description: shopInformation.description,
       addressBookID: shopInformation.addressBookID,
     };
+
     setLoading(true);
     const result = await putApi(putUpdateShop(apiBody));
+    await updateShopData();
     setLoading(false);
+    return result;
+  };
+
+  const clickOnSave = async () => {
+    const result = await callApi();
     if (result) {
-      shopNavigate(`register/contact-info`);
+      if (currentPath.includes("register"))
+        shopNavigate(`register/contact-info`);
+      else {
+        successToast("Updated");
+      }
     }
   };
 
@@ -167,17 +175,13 @@ const RegisterShopInfo = () => {
             />
           )}
         </PageContentWrapper>
-
-        <Flex justifyContent="end" mt={4}>
-          <Button
-            colorScheme="green"
-            onClick={clickOnSave}
-            isDisabled={!isValidForm()}
-            isLoading={loading}
-          >
-            Save & next step
-          </Button>
-        </Flex>
+        <SubmitButton
+          click={clickOnSave}
+          disabled={diableButton}
+          loading={loading}
+        >
+          Save & next step
+        </SubmitButton>
       </PageContent>
 
       <AddressModal
