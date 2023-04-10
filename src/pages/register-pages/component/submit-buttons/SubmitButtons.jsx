@@ -2,7 +2,7 @@ import { Button, Spinner, Flex } from "@chakra-ui/react";
 
 const SubmitButton = ({ children, click, disabled, loading }) => {
   return (
-    <Flex justifyContent="end" w="100%">
+    <Flex justifyContent="end" w="100%" pt='4' >
       <Button
         bg="primary"
         w={{ base: "120px", md: "200px" }}
