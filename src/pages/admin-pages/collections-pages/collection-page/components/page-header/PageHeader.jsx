@@ -7,15 +7,21 @@ import {
   Button,
   Stack,
 } from "@chakra-ui/react";
+import { useState } from "react";
+
+import { useCustomNavigate } from "../../../../../../hooks/useCustomeNavigate/useCustomNavigate";
 
 import searchIcon from "../../../../../../assest/icon/search-icon.svg";
 import downArrowIcon from "../../../../../../assest/icon/down-arrow-icon.svg";
-import { useCustomNavigate } from "../../../../../../hooks/useCustomeNavigate/useCustomNavigate";
-//
-const PageHeader = ({ searchValue, setSearchValue }) => {
+import CollectionModal from "../../../../../../modals/collection-modal/CollectionModal";
+
+const PageHeader = ({ searchValue, setSearchValue , updateCollaction }) => {
+
   const { shopNavigate } = useCustomNavigate();
 
-  const navigateToAddCollectionPage = () => shopNavigate(`add-collection`);
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => setShowModal((p) => !p);
 
   return (
     <Flex w="100%" justifyContent="space-between" alignItems="center" mb="24px">
@@ -74,10 +80,11 @@ const PageHeader = ({ searchValue, setSearchValue }) => {
           bg: "mainLayer",
           color: "primary",
         }}
-        onClick={navigateToAddCollectionPage}
+        onClick={toggleModal}
       >
         Add Collection
       </Button>
+      <CollectionModal show={showModal} close={toggleModal} update={updateCollaction} />
     </Flex>
   );
 };

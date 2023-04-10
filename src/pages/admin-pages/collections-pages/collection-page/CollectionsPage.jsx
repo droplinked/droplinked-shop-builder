@@ -60,7 +60,7 @@ export default function CollectionsPage() {
   return (
     <Box w="100%" h="auto" p="0px 40px">
       <PageWrapper>
-        <PageHeader searchValue={searchValue} setSearchValue={setSearchValue} />
+        <PageHeader searchValue={searchValue} setSearchValue={setSearchValue} updateCollaction={getAllCollections} />
         <TableContainer mb="36px">
           <Table>
             <Thead borderY="1px solid" borderColor="line">
