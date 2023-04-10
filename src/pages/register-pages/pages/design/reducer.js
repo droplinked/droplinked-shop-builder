@@ -1,4 +1,5 @@
 export const SHOP_REDUCER_TYPES = {
+  INITIALIZE: "INITIALIZE",
   SET_LOGO: "SET_LOGO",
   SET_HEADER_ICON: "SET_HEADER_ICON",
   SET_BACKGROUNED_TEXT: "SET_BACKGROUNED_TEXT",
@@ -11,6 +12,8 @@ export const SHOP_REDUCER_TYPES = {
 
 export function shopDesignReducer(state, action) {
   switch (action.type) {
+    case SHOP_REDUCER_TYPES.INITIALIZE:
+      return { ...action.payload };
     case SHOP_REDUCER_TYPES.SET_LOGO:
       return { ...state, logo: action.payload };
     case SHOP_REDUCER_TYPES.SET_HEADER_ICON:

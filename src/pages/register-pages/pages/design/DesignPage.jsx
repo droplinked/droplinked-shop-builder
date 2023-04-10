@@ -1,5 +1,6 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
-import { useReducer, useState } from "react";
+import { useReducer, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import {
   PageContent,
@@ -14,6 +15,7 @@ import { useApi } from "../../../../hooks/useApi/useApi";
 import { putUpdateShop } from "../../../../apis/shopApiService";
 import { isValidData } from "./utils";
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
+import { useProfile } from "../../../../hooks/useProfile/useProfile";
 
 import InputImage from "./components/input-image/InputImage";
 import InputColor from "./components/input-color/InputColor";
@@ -38,7 +40,6 @@ const INITIAL_SHOP_Design = {
 const IMAGES = [
   { img: theme1Image, name: "theme-1" },
   { img: theme2Image, name: "theme-2" },
-  { img: theme3Image, name: "theme-3" },
 ];
 
 const DesignPage = () => {
@@ -50,9 +51,35 @@ const DesignPage = () => {
     INITIAL_SHOP_Design
   );
 
-  const { errorToast } = useToasty();
+  const { errorToast ,successToast } = useToasty();
   const { putApi } = useApi();
+  const { shop, updateShopData } = useProfile();
   const { shopNavigate } = useCustomNavigate();
+  const currentPath = useLocation().pathname;
+
+  const initializeData = () => {
+    const initial_value = {
+      logo: shop.logo ? shop.logo : "",
+      headerIcon: shop.headerIcon ? shop.headerIcon : "",
+      textColor: shop.textColor ? shop.textColor : "#ffffff",
+      theme: shop.theme ? shop.theme : "theme-1",
+      backgroundText: shop.backgroundText ? shop.backgroundText : "",
+      backgroundImage: shop.backgroundImage ? shop.backgroundImage : "",
+      backgroundImageSecondary: shop.backgroundImageSecondary
+        ? shop.backgroundImageSecondary
+        : "",
+      backgroundColor: shop.backgroundColor ? shop.backgroundColor : "#000000",
+    };
+    dispatch({
+      type: SHOP_REDUCER_TYPES.INITIALIZE,
+      payload: initial_value,
+    });
+  };
+
+  useEffect(() => {
+    initializeData();
+  }, [shop]);
+
   const selectTheme = (item) => {
     setSelectedTheme(item);
     dispatch({
@@ -116,9 +143,11 @@ const DesignPage = () => {
     }
     setLoading(true);
     const result = await putApi(putUpdateShop(designData));
+    updateShopData();
     setLoading(false);
     if (result) {
-      shopNavigate(`products`);
+      if (currentPath.includes("register")) shopNavigate(`products`);
+      else successToast("Updated");
     }
   };
 
@@ -221,11 +250,10 @@ const DesignPage = () => {
         </Flex>
       </PageContentWrapper>
       <Box mb="36px" />
-      <Flex justifyContent="end" w="100%">
-        <SubmitButton width="200px" click={clickSubmit} loading={loading}>
-          Save & next step
-        </SubmitButton>
-      </Flex>
+
+      <SubmitButton width="200px" click={clickSubmit} loading={loading}>
+        Save & next step
+      </SubmitButton>
     </PageContent>
   );
 };
