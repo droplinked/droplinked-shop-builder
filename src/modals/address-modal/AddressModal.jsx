@@ -38,6 +38,12 @@ export default function AddressModal({
   const [city, setCity] = useState(addressBook ? addressBook.city : "");
   const [state, setState] = useState(addressBook ? addressBook.state : "");
   const [zip, setZip] = useState(addressBook ? addressBook.zip : "");
+  const [firstname, setFirstname] = useState(
+    addressBook ? addressBook.firstName : ""
+  );
+  const [lastname, setLastname] = useState(
+    addressBook ? addressBook.lastName : ""
+  );
 
   // state for show error
   const [error, setError] = useState("Please fill all required fields");
@@ -45,6 +51,17 @@ export default function AddressModal({
   const [loading, setLoading] = useState(false);
 
   // change state values
+  const ChangeFirstname = (e) => {
+    setFirstname(e.target.value);
+    if (error == "First Name") setError("");
+  };
+
+  const ChangeLastname = (e) => {
+    setLastname(e.target.value);
+    if (error == "Last Name") setError("");
+  };
+
+
   const ChangeLine1 = (e) => {
     setLine1(e.target.value);
     if (error === "line1") setError("");
@@ -129,6 +146,8 @@ export default function AddressModal({
     if (!validation) errorToast(error);
     else {
       const formData = {
+        firstName: firstname,
+        lastName: lastname,  
         addressLine1: line1,
         addressLine2: line2,
         country,
@@ -230,6 +249,27 @@ export default function AddressModal({
             change={ChangeZip}
           />
         </Flex>
+        <Flex
+          mb="36px"
+          justifyContent="space-between"
+          alignItems="center"
+          gap="24px"
+        >
+          <InputFieldComponent
+            label="First Name"
+            isRequired
+            placeholder="First Name"
+            value={firstname}
+            change={ChangeFirstname}
+          />
+          <InputFieldComponent
+            label="Last Name"
+            isRequired
+            placeholder="Last Name"
+            value={lastname}
+            change={ChangeLastname}
+          />
+          </Flex>
 
         <Flex justifyContent="space-between">
           <Box w="40%">
