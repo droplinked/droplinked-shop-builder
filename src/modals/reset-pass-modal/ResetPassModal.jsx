@@ -22,7 +22,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
     } else {
       setDisableBtn(true);
       let result = await postApi(postUserForgotPassword(email));
-      if (result == null) {
+      if (result) {
         successToast(`Send an email to : ${email}`);
         close();
       }
@@ -32,12 +32,13 @@ const ResetPassModal = ({ show, close, switchReset }) => {
 
   const validationEmail = () => {
     // let regx = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/
-    let regx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (regx.test(email)) {
-      return false;
-    } else {
-      return true;
-    }
+    // let regx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    // if (regx.test(email)) {
+    //   return false;
+    // } else {
+    //   return true;
+    // }
+    return false
   };
 
   const ChangeEmail = (e) => setEmail(e.target.value);
