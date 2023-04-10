@@ -17,29 +17,28 @@ export const getTechnicalData = (product) => {
 };
 // returns options data with correct format
 export const getPropertiesData = (product) => {
-  // console.log('product ' , product)
-  // let currentOption = [];
-  // product.skuIDs[0].options.forEach((option, i) => {
-  //   currentOption.push({
-  //     optionId: option.variantID,
-  //     optionName: option.variantName,
-  //     values: [],
-  //     index: i + 1,
-  //   });
-  // });
+  console.log('product ' , product)
+  let currentOption = [];
+  product.skuIDs[0].options.forEach((option, i) => {
+    currentOption.push({
+      optionId: option.variantID,
+      optionName: option.variantName,
+      values: [],
+      index: i + 1,
+    });
+  });
 
-  // currentOption.forEach((option) => {
-  //   option.values = product.skuIDs.map((sku, i) => {
-  //     return {
-  //       index: i + 1,
-  //       value: sku.options.find((opt) => opt.variantID == option.optionId)
-  //         .value,
-  //     };
-  //   });
-  // });
-  // console.log('currentOption ' , currentOption)
- // return currentOption;
- return []
+  currentOption.forEach((option) => {
+    option.values = product.skuIDs.map((sku, i) => {
+      return {
+        index: i + 1,
+        value: sku.options.find((opt) => opt.variantID == option.optionId)
+          .value,
+      };
+    });
+  });
+  console.log('currentOption ' , currentOption)
+ return currentOption;
 };
 // returns skus data with correct format
 export const getSkusData = (product) => {

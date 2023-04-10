@@ -40,7 +40,7 @@ const SkuForm = ({
   const [sku, dispatch] = useReducer(skuReducer, initial);
   const { errorToast } = useToasty();
   const { postApi, patchApi } = useApi();
-
+console.log('OptionList ' ,OptionList);
   useEffect(() => {
     dispatch({ type: "updateSku", payload: initial });
   }, [OptionList]);
@@ -63,19 +63,19 @@ const SkuForm = ({
   const changeSize = (e) => {
     dispatch({ type: "updateSize", payload: e.target.value });
   };
-  //
-  // const changeOption = (value, optionId) => {
-  //   let currentOptions = sku.options.map((option) => option);
-  //   currentOptions = currentOptions.map((option) => {
-  //     if (option.variantID == optionId) {
-  //       return { ...option, value: value };
-  //     } else {
-  //       return { ...option };
-  //     }
-  //   });
 
-  //   dispatch({ type: "updateOptions", payload: currentOptions });
-  // };
+  const changeOption = (value, optionId) => {
+    let currentOptions = sku.options.map((option) => option);
+    currentOptions = currentOptions.map((option) => {
+      if (option.variantID == optionId) {
+        return { ...option, value: value };
+      } else {
+        return { ...option };
+      }
+    });
+
+    dispatch({ type: "updateOptions", payload: currentOptions });
+  };
 
   const isEmpty = (value, name) => {
     if (value.length == 0) {
@@ -245,38 +245,38 @@ const SkuForm = ({
           </Flex>
         </InputWrapper>
 
-        <InputWrapper>
+        {/* <InputWrapper>
           <ComponentTitle>Size</ComponentTitle>
           <SelectComponent bg="mainLayer" w="70%" onChange={changeSize}>
             {["xl", "lg", "md", "sm", "xs"].map((item) => (
               <OptionComponent key={item}>{item}</OptionComponent>
             ))}
           </SelectComponent>
-        </InputWrapper>
+        </InputWrapper> */}
 
-        {/* {OptionList.map((option) => {
-        return (
-          <InputWrapper mt="16px" key={option.index}>
-            <ComponentTitle>{option.optionName}</ComponentTitle>
-            <SelectComponent
-              onChange={(e) => {
-                changeOption(e.target.value, option.optionId);
-              }}
-            >
-              <OptionComponent selected disabled hidden>
-                Select {option.optionName}
-              </OptionComponent>
-              {option.values.map((value) => {
-                return (
-                  <OptionComponent key={value.index} value={value.value}>
-                    {value.value}
-                  </OptionComponent>
-                );
-              })}
-            </SelectComponent>
-          </InputWrapper>
-        );
-      })} */}
+        {OptionList.map((option) => {
+          return (
+            <InputWrapper mt="16px" key={option.index}>
+              <ComponentTitle>{option.optionName}</ComponentTitle>
+              <SelectComponent
+                onChange={(e) => {
+                  changeOption(e.target.value, option.optionId);
+                }}
+              >
+                <OptionComponent selected disabled hidden>
+                  Select {option.optionName}
+                </OptionComponent>
+                {option.values.map((value) => {
+                  return (
+                    <OptionComponent key={value.index} value={value.value}>
+                      {value.value}
+                    </OptionComponent>
+                  );
+                })}
+              </SelectComponent>
+            </InputWrapper>
+          );
+        })}
       </Stack>
       <Box mb="36px"></Box>
       <Flex justifyContent="space-between">

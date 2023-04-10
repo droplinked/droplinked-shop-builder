@@ -27,11 +27,11 @@ export function skuReducer(state, action) {
       };
     case "updateSize":
       return { ...state, size: action.payload };
-    // case "updateOptions":
-    //   return {
-    //     ...state,
-    //     options: action.payload,
-    //   };
+    case "updateOptions":
+      return {
+        ...state,
+        options: action.payload,
+      };
 
     default:
       throw new Error();
