@@ -1,11 +1,6 @@
-import {
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  Text,
-} from "@chakra-ui/react";
+import { Button, Flex, FormControl, FormLabel, Text } from "@chakra-ui/react";
 import { useState, useEffect, useReducer } from "react";
+import { useLocation } from "react-router-dom";
 
 import {
   PageContent,
@@ -38,6 +33,7 @@ const RegisterShopInfo = () => {
     shopInformationReducer,
     INITIAL_SHOP_INFO
   );
+  
   const [loading, setLoading] = useState(false);
   const [showAddressModal, setShowAddressModal] = useState(false);
   const [addressList, setAddressList] = useState([]);
@@ -47,11 +43,21 @@ const RegisterShopInfo = () => {
   const { errorToast } = useToasty();
   const { shop } = useProfile();
 
+
   const toggleAddressModal = () => setShowAddressModal((p) => !p);
 
+    // get shop desctiption
+  const updateShopData = () => {
+    if (shop.description)
+      dispatchShopInformation({
+        type: SHOP_REDUCER_TYPES.CHANGE_DESCRIPTION,
+        payload: shop.description,
+      });
+  };
+
+  // get address
   const updateAddressList = async () => {
     let result = await getApi(getAddressList());
-
     if (result && result.length > 0) {
       setAddressList(result);
       dispatchShopInformation({
@@ -69,6 +75,7 @@ const RegisterShopInfo = () => {
 
   useEffect(() => {
     updateAddressList();
+    updateShopData();
   }, [shop]);
 
   const changeDescription = (e) => {
