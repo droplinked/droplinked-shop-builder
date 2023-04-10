@@ -34,13 +34,13 @@ export default function OrderModal({updateOrder , order, show, close }) {
 
   const progressClick = async () => {
     let statusType =
-      order.status == "WAITING_FOR_CONFIRMATION"
+      order.status === "WAITING_FOR_CONFIRMATION"
         ? ORDER_TYPES.PROCESSING
         : ORDER_TYPES.SENT;
     setLoadingBtn(true);
     let result = await putApi(putUpdateOrder(order._id, statusType))
     setLoadingBtn(false);
-    if (result == true) {
+    if (result === true) {
       successToast("Status changed successfully");
       updateOrder();
     } else {
@@ -53,7 +53,7 @@ export default function OrderModal({updateOrder , order, show, close }) {
     setLoadingBtn(true);
     let result = await putApi(putUpdateOrder(order._id, ORDER_TYPES.CANCELED));
     setLoadingBtn(false);
-    if (result == true) {
+    if (result === true) {
       successToast("You canceled the order");
       updateOrder();
     } else {

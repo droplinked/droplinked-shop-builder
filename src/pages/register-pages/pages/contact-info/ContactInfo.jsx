@@ -1,20 +1,16 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { useReducer, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import {
   PageContent,
   PageInformationComponent,
   PageContentWrapper,
-  SaveButton,
 } from "../../RegisterPages-style";
 import { useApi } from "../../../../hooks/useApi/useApi";
-import { useProfile } from "../../../../hooks/useProfile/useProfile";
 import { putUpdateShop } from "../../../../apis/shopApiService";
 import { shopContactReducer, SHOP_REDUCER_TYPES } from "./contact-reducer";
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 
-import InputComponent from "../../component/input-component/InputComponent";
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 import InputLefton from "../../component/input-lefton/InputLefton"; 
 
@@ -34,8 +30,6 @@ const ContactInfo = () => {
   const [loading, setLoading] = useState(false);
 
   const { putApi } = useApi();
-  const { shop } = useProfile();
-  const navigate = useNavigate();
   const { shopNavigate } = useCustomNavigate()
 
   const changeWebUrl = (e) =>

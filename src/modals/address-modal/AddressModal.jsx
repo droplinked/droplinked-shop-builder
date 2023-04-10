@@ -47,7 +47,7 @@ export default function AddressModal({
   // change state values
   const ChangeLine1 = (e) => {
     setLine1(e.target.value);
-    if (error == "line1") setError("");
+    if (error === "line1") setError("");
   };
 
   const ChangeLine2 = (e) => {
@@ -56,22 +56,22 @@ export default function AddressModal({
 
   const ChangeCountry = (country) => {
     setCountry(country);
-    if (error == "country") setError("");
+    if (error === "country") setError("");
   };
 
   const ChangeCity = (e) => {
     setCity(e.target.value);
-    if (error == "city") setError("");
+    if (error === "city") setError("");
   };
 
   const ChangeState = (thisState) => {
     setState(thisState);
-    if (error == "state") setError("");
+    if (error === "state") setError("");
   };
 
   const ChangeZip = (e) => {
     setZip(e.target.value);
-    if (error == "zip") setError("");
+    if (error === "zip") setError("");
   };
 
   const update = async (formData, addressBookId) => {
@@ -102,19 +102,19 @@ export default function AddressModal({
 
   // validation form required
   const validationForm = () => {
-    if (line1 == "") {
+    if (line1 === "") {
       setError("line1 is Required");
       return false;
-    } else if (country == "") {
+    } else if (country === "") {
       setError("country is Required");
       return false;
-    } else if (city == "") {
+    } else if (city === "") {
       setError("city is Required");
       return false;
-    } else if (state == "") {
+    } else if (state === "") {
       setError("state is Required");
       return false;
-    } else if (zip == "") {
+    } else if (zip === "") {
       setError("zip is Required");
       return false;
     } else {
@@ -190,7 +190,7 @@ export default function AddressModal({
           </FormControl>
 
           {/* US_STATES */}
-          {country == "United States" ? (
+          {country === "United States" ? (
             <FormControl>
               <FormLabel htmlFor="input-com" color="white">
                 State/province

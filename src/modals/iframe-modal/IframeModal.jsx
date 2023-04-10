@@ -16,7 +16,7 @@ const IframeModal = ({show, link, code, close }) => {
 
     // this function set code to clipboard
     const embed = () => {
-        if (showType == "IFRAME") {
+        if (showType === "IFRAME") {
             navigator.clipboard.writeText(code).then(function () {
                 successToast('Copying to clipboard was successful!');
             });
@@ -40,8 +40,8 @@ const IframeModal = ({show, link, code, close }) => {
                 overflow='hidden'
             >
                 <Box
-                    bgColor={(showType == "API") ? "#222" : "#4a4a4a"}
-                    color={(showType == "API") ? "white" : "#222"}
+                    bgColor={(showType === "API") ? "#222" : "#4a4a4a"}
+                    color={(showType === "API") ? "white" : "#222"}
                     borderRadius='8px'
                     w='50%'
                     textAlign='center'
@@ -52,8 +52,8 @@ const IframeModal = ({show, link, code, close }) => {
                 >Using API</Box>
                 <Box
                     transition='0.4s'
-                    bgColor={(showType == "IFRAME") ? "#222" : "#4a4a4a"}
-                    color={(showType == "IFRAME") ? "white" : "#222"}
+                    bgColor={(showType === "IFRAME") ? "#222" : "#4a4a4a"}
+                    color={(showType === "IFRAME") ? "white" : "#222"}
                     borderRadius='8px'
                     py='5px'
                     w='50%'
@@ -65,7 +65,7 @@ const IframeModal = ({show, link, code, close }) => {
             </Flex>
             {/* top buttons */}
             {/* component for show content (ifrmae of url) */}
-            {(showType == "IFRAME")
+            {(showType === "IFRAME")
                 ?
                 <Code
                     whiteSpace='pre-line'

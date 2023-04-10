@@ -29,7 +29,7 @@ export default function FormInput({
           {label}
         </FormLabel>
       )}
-      {type == "textarea" ? (
+      {type === "textarea" ? (
         <Textarea
           id="input-com"
           type={type ? type : "text"}

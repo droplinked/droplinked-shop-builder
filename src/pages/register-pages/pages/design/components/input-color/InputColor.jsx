@@ -1,5 +1,4 @@
 import { Flex, Text, FormLabel, FormControl } from "@chakra-ui/react";
-import { useState, useRef } from "react";
 
 const InputColor = ({ label, value, change }) => {
   return (

@@ -35,7 +35,7 @@ const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
   // check shopname
   const clickSignin = async () => {
     // validation shop name
-    if (userName.trim() == "") {
+    if (userName.trim() === "") {
       setError(ERRORS_TYPE.EMPTY_ERROR);
       return;
     }

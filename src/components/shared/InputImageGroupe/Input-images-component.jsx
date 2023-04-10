@@ -88,7 +88,7 @@ export default function InputImagesGroup({ setState, state }) {
       })}
 
       <ItemImage>
-        {loading == true ? (
+        {loading === true ? (
           <InputAddImage>
             <Loading />
           </InputAddImage>

@@ -68,7 +68,7 @@ export default function AddressComponent({
 
   // if selectAble be true set address id to selected
   const selectAddress = () => {
-    if (selectAble == true) {
+    if (selectAble === true) {
       setSelect(address);
     }
   };

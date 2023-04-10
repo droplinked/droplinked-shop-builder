@@ -55,8 +55,8 @@ const OrderStatus = ({
         </Box>
       ) : (
         <>
-          {orderStatus == ORDER_TYPES.WAITING_FOR_CONFIRMATION ||
-          orderStatus == ORDER_TYPES.PROCESSING ? (
+          {orderStatus === ORDER_TYPES.WAITING_FOR_CONFIRMATION ||
+          orderStatus === ORDER_TYPES.PROCESSING ? (
             <Flex justifyContent="space-between" w="100%">
               <Box w="40%">
                 <BasicButton

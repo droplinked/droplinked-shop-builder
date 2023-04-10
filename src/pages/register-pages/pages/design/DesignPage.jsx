@@ -1,4 +1,4 @@
-import { Box, Flex, Image, input } from "@chakra-ui/react";
+import { Box, Flex, Image } from "@chakra-ui/react";
 import { useReducer, useState } from "react";
 
 import {

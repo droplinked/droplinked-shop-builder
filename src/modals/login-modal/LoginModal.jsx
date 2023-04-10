@@ -35,13 +35,13 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   const changePassword = (e) => setPassword(e.target.value);
 
   const validateForm = () => {
-    if (email == "") {
+    if (email === "") {
       errorToast("Email is required.");
       return false;
-    } else if (password == "") {
+    } else if (password === "") {
       errorToast("Password is required.");
       return false;
-    } else if (isValidEmail(email) == false) {
+    } else if (isValidEmail(email) === false) {
       errorToast("Please enter a valid email address.");
       return false;
     } else {
@@ -56,7 +56,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     //   password: password,
     // };
 
-    if (validateForm() == false) return;
+    if (validateForm() === false) return;
 
     setLoading(true);
     let result = await postApi(postLoginByEmail(email, password));

@@ -10,7 +10,7 @@ const ShopPage = () => {
 
   useEffect(() => {
     window.location = `https://droplinked.io/${shopname}`
-  }, []);
+  }, [shopname]);
 
   return (
     <>

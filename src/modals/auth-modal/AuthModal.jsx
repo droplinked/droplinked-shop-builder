@@ -16,12 +16,12 @@ const AuthModal = ({ show, close ,shopName , type }) => {
 
   const switchModal = () =>
     setModalType(
-      modalType == MODAL_TYPE.SIGNIN ? MODAL_TYPE.SIGNUP : MODAL_TYPE.SIGNIN
+      modalType === MODAL_TYPE.SIGNIN ? MODAL_TYPE.SIGNUP : MODAL_TYPE.SIGNIN
     );
 
     const switchResetModal = () =>
     setModalType(
-      modalType == MODAL_TYPE.SIGNIN ? MODAL_TYPE.RESET : MODAL_TYPE.SIGNIN
+      modalType === MODAL_TYPE.SIGNIN ? MODAL_TYPE.RESET : MODAL_TYPE.SIGNIN
     );
 
     const closeModal = () => {

@@ -5,14 +5,14 @@ import { USER_TYPE } from "../../../constant/user-types";
 
 export default function ProductComponent({ title, imageUrl, id, shopname, type }) {
   let linkAddress =
-    type == USER_TYPE.PRODUCER
+    type === USER_TYPE.PRODUCER
       ? `/producer/merch/${id}`
       : `/${shopname}/merch/${id}`;
 
   const getVideoUrl = () => {
-    if (id == "635aab29783d1c18937c167f")
+    if (id === "635aab29783d1c18937c167f")
       return "https://res.cloudinary.com/djh0wdj3m/video/upload/v1667599059/samurai-shirt_n4nptf.mp4";
-    else if (id == "635aab29783d1c18937c1680")
+    else if (id === "635aab29783d1c18937c1680")
       return "https://upload-droplonked.s3.us-west-2.amazonaws.com/geisha-shirt-3D-sq.mp4";
     else return undefined;
   };

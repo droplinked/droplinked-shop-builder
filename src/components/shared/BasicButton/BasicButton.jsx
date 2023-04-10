@@ -35,7 +35,7 @@ export default function BasicButton({
       disabled={disable || loading}
       {...otherprops}
     >
-      {loading != undefined && loading == true ? (
+      {loading !== undefined && loading === true ? (
         <>
           <Spinner
             thickness="4px"

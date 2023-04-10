@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Flex,
   FormControl,
@@ -70,7 +69,7 @@ const RegisterShopInfo = () => {
 
   useEffect(() => {
     updateAddressList();
-  }, []);
+  }, [shop]);
 
   const changeDescription = (e) => {
     if (e.target.value.length < 21)
@@ -81,9 +80,9 @@ const RegisterShopInfo = () => {
   };
 
   const isValidForm = () => {
-    if (shopInformation.description.length == 0) {
+    if (shopInformation.description.length === 0) {
       return false;
-    } else if (shopInformation.addressBookID == null) {
+    } else if (shopInformation.addressBookID === null) {
       return false;
     } else {
       return true;
@@ -91,11 +90,11 @@ const RegisterShopInfo = () => {
   };
 
   const clickOnSave = async () => {
-    if (shopInformation.description.length == 0) {
+    if (shopInformation.description.length === 0) {
       errorToast("Shop name is required");
       return;
     }
-    if (shopInformation.addressBookID == null) {
+    if (shopInformation.addressBookID === null) {
       errorToast("Address is required");
       return;
     }

@@ -107,8 +107,8 @@ export default function InputImage({ image, setImage }) {
 
       <BackGroundImageWrapper>
         <BackGroundImage
-          bgImage={!image || image == "" ? defaultProfile : image}
-          backgroundSize={!image || image == "" ? "50%" : "cover"}
+          bgImage={!image || image === "" ? defaultProfile : image}
+          backgroundSize={!image || image === "" ? "50%" : "cover"}
         >
           {loading && (
             <Spinner

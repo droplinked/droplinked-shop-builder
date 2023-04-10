@@ -13,20 +13,20 @@ import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
 const CollectionModal = ({show , collection, close, update }) => {
   const [collectionName, setCollectionName] = useState(() => {
-  return  collection == undefined ? "" : collection.title;
+  return  collection === undefined ? "" : collection.title;
   });
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
   const { putApi ,postApi } = useApi()
 
-  const isNewCollection = (collection == undefined) ? true : false
+  const isNewCollection = (collection === undefined) ? true : false
 
   const changeName = (e) => setCollectionName(e.target.value);
 
   const submitForm = async () => {
 
-    if (collectionName == "") {
+    if (collectionName === "") {
       errorToast("Collection name required");
       return;
     }
