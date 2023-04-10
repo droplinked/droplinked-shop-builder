@@ -16,7 +16,7 @@ export default function ResetPassPage() {
   const [confirmError, setConfirmError] = useState(false);
   const [btnActivd, setBtnActivd] = useState(false);
   const { successToast } = useContext(toastValue);
-  const { postApi } = useApi();
+  const { putApi } = useApi();
 
   const {
     register,
@@ -39,13 +39,7 @@ export default function ResetPassPage() {
     }
 
     setBtnActivd(true);
-
-    // const postInfo = {
-    //   accountRecoveryToken: token,
-    //   newPassword: newPass,
-    // };
-    // let result = await recoveryAccount(token, newPass);
-    let result = await postApi(putUserRecoveryAccount(token, newPass));
+    let result = await putApi(putUserRecoveryAccount(token, newPass));
     if (result) {
       successToast(
         "Your password has been changed successfully. Please login again."

@@ -33,6 +33,10 @@ export const postUserEmailVerification = (token: string) => {
   return createApiReq(`user/email-verification`, false, { token: token });
 };
 
-export const putUserRecoveryAccount = (body: any) => {
+export const putUserRecoveryAccount = (token: any, newPass: any) => {
+  const body = {
+    newPassword: newPass,
+    accountRecoveryToken: token,
+  };
   return createApiReq(`user/recover-account`, false, body);
 };
