@@ -123,7 +123,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
       gated: gated,
       rules: rulesArray,
       webUrl: webUrl,
-      type: "ETH",
+      type: chainType,
       redeemedNFTs: [],
     };
     if (ruleId != undefined) {
@@ -159,7 +159,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
 
           <Box mb="20px"></Box>
 
-          <Flex>
+          <Flex gap={3}>
             <TypeSelect
               value={ruleType}
               onChange={changeRuleType}

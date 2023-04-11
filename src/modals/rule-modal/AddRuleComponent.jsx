@@ -46,44 +46,30 @@ const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
       bg="subLayer"
       p={{ base: "10px", md: "20px", lg: "30px" }}
     >
-      <Flex
-        justifyContent="space-between"
-        flexDir={{ base: "column", lg: "row" }}
-      >
-        <Box w={{ base: "100%", lg: "60%" }}>
-          <LableInput>NFT asset identifier</LableInput>
-          <TextareaInput
-            placeholder="NFT asset identifier  (comma seprated , )"
-            value={addressList}
-            onChange={changeAddressList}
+      <LableInput>NFT asset identifier</LableInput>
+      <TextareaInput
+        placeholder="NFT asset identifier  (comma seprated , )"
+        value={addressList}
+        onChange={changeAddressList}
+      />
+      <Box mb={8}></Box>
+      <Flex justifyContent="space-between" gap={2}>
+        {!isGated && (
+          <InputComponent
+            placeholder="Discount"
+            value={discount}
+            onChange={changeDiscount}
+            type="number"
           />
-        </Box>
-        <Box w={{ base: "100%", lg: "30%" }}>
-          {!isGated && (
-            <Flex alignItems="center">
-              <LableInput mr="16px">Discount</LableInput>
-              <InputComponent
-                placeholder="Discount"
-                value={discount}
-                onChange={changeDiscount}
-                type="number"
-              />
-            </Flex>
-          )}
-          <Box mb="20px"></Box>
-          <Flex alignItems="center">
-            <LableInput mr="16px">Counter</LableInput>
-            <InputComponent
-              placeholder="Counter"
-              value={counter}
-              onChange={changeCounter}
-              type="number"
-            />
-          </Flex>
-        </Box>
+        )}
+        <InputComponent
+          placeholder="Counter"
+          value={counter}
+          onChange={changeCounter}
+          type="number"
+        />
       </Flex>
-
-      <Box mb="40px"></Box>
+      <Box mb={8}></Box>
       <LableInput>Tagline</LableInput>
       <InputComponent
         placeholder="Tagline"
