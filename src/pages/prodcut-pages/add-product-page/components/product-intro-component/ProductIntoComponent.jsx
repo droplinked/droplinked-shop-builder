@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { ComponentWrapper, ComponentTitle } from "../../AddProductPage-style"
 
 import FormInput from "../../../../../components/shared/FormInput/FormInput";
-import InputImagesGroup from "../../../../../components/shared/InputImageGroupe/Input-images-component";
+import InputImagesGroup from "../../../components/InputImageGroupe/Input-images-component";
 
 const ProductIntoComponent = ({ productIntro, dispatchIntro }) => {
   const changeTitle = (e) =>

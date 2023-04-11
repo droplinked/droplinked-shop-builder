@@ -1,20 +1,23 @@
-//import "./Input-images-component.scss";
 
 import axios from "axios";
-import dltImg from "../../../assest/icon/icons8-multiply-100.png";
-import uploadImage from "../../../assest/icon/upload-icon.svg";
-import Loading from "../loading/Loading";
-
 import { Image , Box , Text} from "@chakra-ui/react";
 import { useRef, useState } from "react";
-import { useToasty } from "../../../context/toastify/ToastContext";
+
+
+import { useToasty } from "../../../../context/toastify/ToastContext";
 import {
   ImagesInputWrapper,
   ItemImage,
   InputAddImage,
-  AddImageText,
   DeleteIcon,
 } from "./Input-images-style";
+
+
+import dltImg from "../../../../assest/icon/icons8-multiply-100.png";
+import uploadImage from "../../../../assest/icon/upload-icon.svg";
+import Loading from "../../../../components/shared/loading/Loading";
+
+
 
 export default function InputImagesGroup({ setState, state }) {
   const [loading, setLoading] = useState(false);

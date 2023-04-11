@@ -4,7 +4,8 @@ import { ComponentWrapper, ComponentTitle } from "../../EditProductPage-style";
 import { INTRO_REDUCER_TYPES } from "../../reducer/product-intro-reducer";
 
 import FormInput from "../../../../../components/shared/FormInput/FormInput";
-import InputImagesGroup from "../../../../../components/shared/InputImageGroupe/Input-images-component";
+import InputImagesGroup from "../../../components/InputImageGroupe/Input-images-component";
+
 
 // this component shows title and description and images and handle changes
 const ProductIntroComponent = ({ productIntro, dispatchIntro }) => {
