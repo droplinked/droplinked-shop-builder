@@ -8,7 +8,7 @@ import { Title, Detail, BacktoLoginButton } from "./ResetPassModal-style";
 
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
-import FormInput from "../../components/shared/FormInput/FormInput";
+import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
 
 const ResetPassModal = ({ show, close, switchReset }) => {
   const [disableBtn, setDisableBtn] = useState(false);
@@ -52,7 +52,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
           you a link to reset your password.
         </Detail>
         <Box mt="30px"></Box>
-        <FormInput label={"Email"} type={"email"} changeValue={ChangeEmail} />
+        <InputFieldComponent label={"Email"} type={"email"} change={ChangeEmail} />
 
         <Box mt="18px"></Box>
 

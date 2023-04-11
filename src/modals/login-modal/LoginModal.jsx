@@ -1,18 +1,19 @@
-import ModalWrapper from "../modal-wrapper/ModalWrapper";
-import FormInput from "../../components/shared/FormInput/FormInput";
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
-
 import { Box } from "@chakra-ui/react";
-import { Title, BottomText } from "./LoginModal-style";
-import { PROFILE_STATUS } from "../../constant/profile-status-types";
-import { USER_TYPE } from "../../constant/user-types";
-import { useState, useContext } from "react";
-import { toastValue } from "../../context/toastify/ToastContext";
-import { isValidEmail } from "../../utils/validations/emailValidation";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useState, useContext } from "react";
+
+
+import ModalWrapper from "../modal-wrapper/ModalWrapper";
+import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
+import BasicButton from "../../components/shared/BasicButton/BasicButton";
+
+
+import { Title, BottomText } from "./LoginModal-style";
+import { PROFILE_STATUS } from "../../constant/profile-status-types";
+import { toastValue } from "../../context/toastify/ToastContext";
+import { isValidEmail } from "../../utils/validations/emailValidation";
 import { setCurrentUser } from "../../store/profile/profile.action";
-import { setCurrentShop } from "../../store/shop/shop.action";
 import { postLoginByEmail } from "../../apis/authApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 import { useProfile } from "../../hooks/useProfile/useProfile";
@@ -122,17 +123,17 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
           <Title>Login</Title>
 
           <Box w="100%" pt="20px">
-            <FormInput
+            <InputFieldComponent
               value={email}
-              changeValue={changeEmail}
+              change={changeEmail}
               label={"Email"}
               placeholder={"Email"}
             />
             <Box mb="20px"></Box>
 
-            <FormInput
+            <InputFieldComponent
               value={password}
-              changeValue={changePassword}
+              change={changePassword}
               label={"Password"}
               placeholder={"Password"}
               type="password"

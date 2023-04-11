@@ -1,7 +1,7 @@
 import "./ResetPassPage-style.scss";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import FormInput from "../../../components/shared/FormInput/FormInput";
+import InputFieldComponent from "../../../components/shared/input-field-component/InputFieldComponent";
 
 import { useParams, useNavigate } from "react-router-dom";
 import { toastValue } from "../../../context/toastify/ToastContext";
@@ -52,20 +52,20 @@ export default function ResetPassPage() {
     <>
       <div className="recovery-page-wrapper">
         <div className="title">Change your password</div>
-        <FormInput
+        <InputFieldComponent
           type={"password"}
           label={"New Password"}
           value={newPass}
-          changeValue={(e) => {
+          change={(e) => {
             setNewpass(e.target.value);
           }}
         />
         <div className="mt-4">
-          <FormInput
+          <InputFieldComponent
             type={"password"}
             label={"Confirm New Password"}
             value={confirmnewPass}
-            changeValue={changeConfirmPass}
+            change={changeConfirmPass}
           />
         </div>
         {confirmError && (

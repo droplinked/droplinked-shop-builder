@@ -2,7 +2,8 @@ import { Box } from "@chakra-ui/react";
 
 import { ComponentWrapper, ComponentTitle } from "../../AddProductPage-style"
 
-import FormInput from "../../../../../components/shared/FormInput/FormInput";
+
+import InputFieldComponent from "../../../../../components/shared/input-field-component/InputFieldComponent";
 import InputImagesGroup from "../../../components/InputImageGroupe/Input-images-component";
 
 const ProductIntoComponent = ({ productIntro, dispatchIntro }) => {
@@ -17,19 +18,19 @@ const ProductIntoComponent = ({ productIntro, dispatchIntro }) => {
     <ComponentWrapper>
       <ComponentTitle>Introduction</ComponentTitle>
       <Box mb="36px" />
-      <FormInput
+      <InputFieldComponent
         label="Title"
         placeholder="Default"
         value={productIntro.title}
-        changeValue={changeTitle}
+        change={changeTitle}
       />
       <Box mb="40px" />
-      <FormInput
+      <InputFieldComponent
         label="Description"
         placeholder="Default"
-        type="textarea"
+        textArea={true}
         value={productIntro.description}
-        changeValue={changeDesctiption}
+        change={changeDesctiption}
       />
       <Box mb="36px" />
       <InputImagesGroup setState={changeMedia} state={productIntro.media} />

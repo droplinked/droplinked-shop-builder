@@ -4,6 +4,7 @@ import {
   FormLabel,
   Text,
   Textarea,
+
 } from "@chakra-ui/react";
 
 export default function InputFieldComponent({
@@ -14,6 +15,7 @@ export default function InputFieldComponent({
   description,
   isRequired,
   textArea,
+  type,
   ...otherProps
 }) {
   return (
@@ -61,6 +63,7 @@ export default function InputFieldComponent({
           fontSize="14px"
           size="lg"
           placeholder={placeholder}
+          type={type?type:'text'}
         />
       )}
 

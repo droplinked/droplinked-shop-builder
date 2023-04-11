@@ -3,14 +3,13 @@ import { useState, useContext } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 
 import { toastValue } from "../../../context/toastify/ToastContext";
-//import { postProducerSignup } from "../../../api-service/auth/authApiService";
 import { isValidEmail } from "../../../utils/validations/emailValidation";
 import { BottomText } from "../SignupModal-style";
 import { postUserSignup } from "../../../apis/userApiService";
 import { useApi } from "../../../hooks/useApi/useApi";
 
-import FormInput from "../../../components/shared/FormInput/FormInput";
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+import InputFieldComponent from "../../../components/shared/input-field-component/InputFieldComponent";
 
 export default function SignupProducer({ close, shopname, switchToggle }) {
   const { successToast, errorToast } = useContext(toastValue);
@@ -74,32 +73,32 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
   return (
     <Box w="100%" h="100%">
       <Box mb="20px"></Box>
-      <FormInput
+      <InputFieldComponent
         value={email}
-        changeValue={changeEmail}
+        change={changeEmail}
         label={"Email"}
         placeholder={"Email"}
       />
       <Box mb="20px"></Box>
-      <FormInput
+      <InputFieldComponent
         value={password}
-        changeValue={changePass}
+        change={changePass}
         label={"Password"}
         type="password"
         placeholder={"Password"}
       />
       <Box mb="20px"></Box>
-      <FormInput
+      <InputFieldComponent
         value={confirmPassword}
-        changeValue={changeConPass}
+        change={changeConPass}
         label={"Confirm password"}
         type="password"
         placeholder={"Confirm password"}
       />
       <Box mb="20px"></Box>
-      <FormInput
+      <InputFieldComponent
         value={shopName}
-        changeValue={changeShopName}
+        change={changeShopName}
         label={"Username"}
         placeholder={"Username"}
       />

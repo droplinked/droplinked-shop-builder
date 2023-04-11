@@ -8,7 +8,7 @@ import { useApi } from "../../hooks/useApi/useApi";
 import { postCreateCollection , putUpdateCollection} from "../../apis/collectionApiService";
 
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
-import FormInput from "../../components/shared/FormInput/FormInput";
+import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
 const CollectionModal = ({show , collection, close, update }) => {
@@ -60,10 +60,11 @@ const CollectionModal = ({show , collection, close, update }) => {
       <Flex flexDir="column" w="100%" margin="0px auto">
         {/* content */}
         <Box mt="20px"></Box>
-        <FormInput
+        <InputFieldComponent
           label={"Collection name"}
           value={collectionName}
-          changeValue={changeName}
+          change={changeName}
+          placeholder={'Collection name'}
         />
 
         {/* content */}
