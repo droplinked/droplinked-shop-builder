@@ -37,9 +37,9 @@ const SkuForm = ({
 
   const { errorToast } = useToasty();
 
-  console.log('sku ', sku);
-  console.log('OptionList ', OptionList);
-  
+  console.log("sku ", sku);
+  console.log("OptionList ", OptionList);
+
   useEffect(() => {
     dispatch({ type: "updateSku", payload: initial });
   }, [OptionList]);
@@ -222,7 +222,7 @@ const SkuForm = ({
           </Flex>
         </InputWrapper>
 
-        {OptionList.map((option) => {
+        {OptionList?.map((option) => {
           return (
             <InputWrapper mt="16px" key={option.index}>
               <ComponentTitle>{option.optionName}</ComponentTitle>
@@ -234,7 +234,7 @@ const SkuForm = ({
                 <OptionComponent selected disabled hidden>
                   Select {option.optionName}
                 </OptionComponent>
-                {option.values.map((value) => {
+                {option?.values?.map((value) => {
                   return (
                     <OptionComponent key={value.index} value={value.value}>
                       {value.value}
