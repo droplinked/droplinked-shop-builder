@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Box ,Spinner } from '@chakra-ui/react';
 
-function Loading() {
+function LoadingComponent() {
 	return (
 		<Box
 			display='flex'
@@ -15,4 +15,4 @@ function Loading() {
 	);
 }
 
-export default Loading;
+export default LoadingComponent;

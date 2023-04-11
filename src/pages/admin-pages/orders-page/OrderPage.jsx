@@ -8,7 +8,7 @@ import { getOrders } from "../../../apis/orderApiService";
 import { sortArrayBaseCreateTime } from "../../../utils/sort.utils/sort.utils";
 
 import OrderComponent from "./components/order-component/OrderComponent";
-import Loading from "../../../components/shared/loading/Loading";
+import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
 import DropdownComponent from "./components/dropdown-component/Dropdown/DropdownComponent";
 
 export default function OrderPage() {
@@ -58,7 +58,7 @@ export default function OrderPage() {
   // let typesArray = useMemo(() => setTypesArray(), []);
 
   if (orders === null) {
-    return <Loading />;
+    return <LoadingComponent />;
   }
 
   return (

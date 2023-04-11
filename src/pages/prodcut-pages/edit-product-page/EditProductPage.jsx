@@ -24,7 +24,7 @@ import TechnicalComponent from "./components/technical-component/TechnicalCompon
 import PropertiesComponent from "./components/PropertiesComponent/PropertiesComponent";
 import VariantsComponent from "./components/variants-component/VariantsComponent";
 import ButtonComponent from "./components/buttons-component/ButtonComponent";
-import Loading from "../../../components/shared/loading/Loading";
+import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
 
 const EditProductPage = () => {
   // state for keep title and  description and images
@@ -63,7 +63,7 @@ const EditProductPage = () => {
     getProductData();
   }, []);
 
-  if (!productIntro) return <Loading />;
+  if (!productIntro) return <LoadingComponent />;
 
   return (
     <PageWrapper>

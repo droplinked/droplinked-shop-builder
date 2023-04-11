@@ -1,6 +1,6 @@
 import { Flex, Box } from "@chakra-ui/react"
 
-import Loading from "../../../components/shared/loading/Loading"
+import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
 import HeaderLayout from "../../../layouts/header-layout/HeaderLayout"
 import FooterLayout from "../../../layouts/footer-layout/FooterLayout";
 
@@ -11,7 +11,7 @@ const LoadingPage = () => {
             <Flex bgColor="subLayer" w='100%' h='100vh' justifyContent='center' alignItems='center'
                 overflow='hidden'
             >
-                <Loading />
+                <LoadingComponent />
             </Flex>
             <FooterLayout />
         </Box>

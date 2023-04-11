@@ -17,7 +17,7 @@ import { PageWrapper } from "./ProductsPage-style";
 import PageHeader from "./components/page-header/PageHeader";
 import AddProductComponent from "./components/add-product-component/AddProductComponent";
 import ProductComponent from "./components/product-component/ProductCompnent";
-import Loading from "../../../components/shared/loading/Loading";
+import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
 import { matchSorter } from "match-sorter";
 
 const ProductsPage = () => {
@@ -47,7 +47,7 @@ const ProductsPage = () => {
     return (
       <Box w="100%" h="auto" p="0px 40px">
         <PageWrapper>
-          <Loading />
+          <LoadingComponent />
         </PageWrapper>
       </Box>
     );

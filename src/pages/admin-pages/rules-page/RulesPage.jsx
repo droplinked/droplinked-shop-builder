@@ -18,7 +18,7 @@ import SearchComponent from "./components/search-component/SearchComponent";
 import AddRuleComponent from "./components/add-rule-component/AddRuleComponent";
 import RuleComponent from "./components/rule-component/RuleComponent";
 import HeaderComponent from "./components/header-component/HeaderComponent";
-import Loading from "../../../components/shared/loading/Loading";
+import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
 
 const RulePage = () => {
   const [rules, setRules] = useState(null);
@@ -38,7 +38,7 @@ const RulePage = () => {
     return (
       <Box w="100%" h="auto" p="0px 40px">
         <PageWrapper>
-          <Loading />
+          <LoadingComponent />
         </PageWrapper>
       </Box>
     );

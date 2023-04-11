@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import CollectionComponent from "./components/collection-component/CollectionComponent";
 import { matchSorter } from "match-sorter";
-import Loading from "../../../../components/shared/loading/Loading";
+import LoadingComponent from "../../../../components/shared/loading-component/LoadingComponent";
 import { selectCurrentShop } from "../../../../store/shop/shop.selector";
 import { getCollectionPublicByShopName } from "../../../../apis/collectionApiService";
 import { useApi } from "../../../../hooks/useApi/useApi";
@@ -52,7 +52,7 @@ export default function CollectionsPage() {
     return (
       <Box w="100%" h="auto" p="0px 40px">
         <PageWrapper>
-          <Loading />
+          <LoadingComponent />
         </PageWrapper>
       </Box>
     );

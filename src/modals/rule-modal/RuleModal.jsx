@@ -21,7 +21,7 @@ import RuleItem from "./RuleItem";
 import FillInputComponent from "./components/FillInputComponent";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import AddRuleComponent from "./AddRuleComponent";
-import Loading from "../../components/shared/loading/Loading";
+import LoadingComponent from "../../components/shared/loading-component/LoadingComponent";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import { ChainTypes } from "./chain-type";
 
@@ -144,7 +144,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   return (
     <ModalWrapper show={show} close={close}>
       {loading ? (
-        <Loading />
+        <LoadingComponent />
       ) : (
         <>
           <ModalHeader>Ruleset</ModalHeader>

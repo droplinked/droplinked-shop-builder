@@ -15,7 +15,7 @@ import {
 
 import dltImg from "../../../../assest/icon/icons8-multiply-100.png";
 import uploadImage from "../../../../assest/icon/upload-icon.svg";
-import Loading from "../../../../components/shared/loading/Loading";
+import LoadingComponent from "../../../../components/shared/loading-component/LoadingComponent";
 
 
 
@@ -93,7 +93,7 @@ export default function InputImagesGroup({ setState, state }) {
       <ItemImage>
         {loading === true ? (
           <InputAddImage>
-            <Loading />
+            <LoadingComponent />
           </InputAddImage>
         ) : (
           <InputAddImage onClick={openFile}>
