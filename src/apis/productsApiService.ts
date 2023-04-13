@@ -17,7 +17,7 @@ export const deleteProductById = (productId: number) => {
 };
 
 export const putProductById = (productId: number, body: any) => {
-  return createApiReq(`product/${productId}`, true, null);
+  return createApiReq(`product/${productId}`, true, body);
 };
 
 export const getPublicProductById = (productId: number) => {

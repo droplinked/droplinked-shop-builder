@@ -21,12 +21,16 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus, productId }) => {
     if (isEmpty(productIntro.title, "title")) return false;
     if (isEmpty(productIntro.description, "description")) return false;
     if (isEmpty(TechnicalData.productCollectionID, "collection")) return false;
+    if (skus.length === 0) {
+      errorToast(`Sku is required`);
+      return false;
+    }
     return true;
   };
 
   const isEmpty = (value, name) => {
-    if (value == "") {
-      errorToast(`Sku ${name} is required`);
+    if (value === "") {
+      errorToast(`${name} is required`);
       return true;
     }
   };
@@ -53,6 +57,8 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus, productId }) => {
         successToast("Done success fully");
         shopNavigate("products");
       }
+
+      console.log('finalData ' ,finalData);
     }
   };
   return (
