@@ -15,17 +15,21 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
   const { postApi } = useApi();
   const { shopNavigate } = useCustomNavigate();
 
-  const backToPriviesPage = () =>shopNavigate("products");
+  const backToPriviesPage = () => shopNavigate("products");
 
   const isValidate = () => {
     if (isEmpty(productIntro.title, "title")) return false;
     if (isEmpty(productIntro.description, "description")) return false;
     if (isEmpty(TechnicalData.productCollectionID, "collection")) return false;
+    if (skus.length === 0) {
+      errorToast(`Sku is required`);
+      return false;
+    }
     return true;
   };
 
   const isEmpty = (value, name) => {
-    if (value == "") {
+    if (value === "") {
       errorToast(`${name} is required`);
       return true;
     }
@@ -34,7 +38,7 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
   const saveProduct = async () => {
     if (isValidate()) {
       const mediaArray = productIntro.media.map((url, i) => {
-        return { url: url, isMain: i == 0 ? true : false };
+        return { url: url, isMain: i === 0 ? true : false };
       });
       let finalData = Object.assign(
         { ...productIntro, media: mediaArray },
