@@ -1,14 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 import { Box, Button, Flex } from "@chakra-ui/react";
-import { useApi } from "../../../../../hooks/useApi/useApi";
-import { getUsersCollections } from "../../../../../apis/collectionApiService";
+//
+import { useApi } from "hooks/useApi/useApi";
+import { getUsersCollections } from "apis/collectionApiService";
 import {
   CollectionContainer,
   CollectionItem,
   Text16px,
-} from "../../EditProductPage-style";
+} from "../../ProductPages-style";
 import { TECH_REDUCER_TYPES } from "../../reducer/technical-data-reducer";
-import NewCollectionModal from "../../../../../modals/new-collection-modal/NewCollectionModal";
+//
+import NewCollectionModal from "modals/new-collection-modal/NewCollectionModal";
 
 const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
   const { getApi } = useApi();

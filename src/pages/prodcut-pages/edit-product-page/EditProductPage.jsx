@@ -9,7 +9,7 @@ import {
 import {
   productTechReducer,
   TECH_REDUCER_TYPES,
-} from "./reducer/technical-data-reducer";
+} from "../reducer/technical-data-reducer";
 import { PageWrapper } from "./EditProductPage-style";
 import { getPublicProductById } from "apis/productsApiService";
 import {
@@ -20,7 +20,7 @@ import {
 } from "./utils";
 //
 import ProductIntroComponent from "../components/product-intro-conponent/ProductIntroComponent";
-import TechnicalComponent from "./components/technical-component/TechnicalComponent";
+import TechnicalComponent from "../components/technical-component/TechnicalComponent";
 import PropertiesComponent from "./components/PropertiesComponent/PropertiesComponent";
 import VariantsComponent from "./components/variants-component/VariantsComponent";
 import ButtonComponent from "./components/buttons-component/ButtonComponent";

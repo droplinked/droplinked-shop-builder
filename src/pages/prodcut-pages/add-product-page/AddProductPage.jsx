@@ -2,11 +2,11 @@ import { useReducer, useState } from "react";
 //
 import { SHIPING_TYPES } from "constant/shipping-types";
 import { productIntroReducer } from "../reducer/product-intro-reducer";
-import { productTechReducer } from "./reducer/technical-data-reducer";
+import { productTechReducer } from "../reducer/technical-data-reducer";
 import { PageWrapper } from "./AddProductPage-style";
 
 import ProductIntroComponent from "../components/product-intro-conponent/ProductIntroComponent";
-import TechnicalComponent from "./components/technical-component/TechnicalComponent";
+import TechnicalComponent from "../components/technical-component/TechnicalComponent";
 import PropertiesComponent from "./components/properties-component/PropertiesComponent";
 import VariantsComponent from "./components/variants-component/VariantsComponent";
 import ButtonComponent from "./components/buttons-component/ButtonComponent";
