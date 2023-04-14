@@ -1,10 +1,10 @@
 import {
-  Flex,
   InputGroup,
   InputLeftElement,
   Input,
   Image,
   Button,
+  Stack,
 } from "@chakra-ui/react";
 
 import searchIcon from "../../../../../assest/icon/search-icon.svg";
@@ -12,7 +12,7 @@ import downArrowIcon from "../../../../../assest/icon/down-arrow-icon.svg";
 //
 const PageHeader = ({ searchValue, setSearchValue }) => {
   return (
-    <Flex w="100%" alignItems="center" mb="24px" gap={2}>
+    <Stack direction="row" spacing={4} mb="24px">
       <InputGroup w="200px">
         <InputLeftElement
           pointerEvents="none"
@@ -56,7 +56,7 @@ const PageHeader = ({ searchValue, setSearchValue }) => {
         filter
         <Image src={downArrowIcon} />
       </Button>
-    </Flex>
+    </Stack>
   );
 };
 export default PageHeader;
