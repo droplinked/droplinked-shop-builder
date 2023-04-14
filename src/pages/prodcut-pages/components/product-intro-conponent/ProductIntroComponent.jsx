@@ -1,17 +1,27 @@
 import { Box } from "@chakra-ui/react";
 //
-import { ComponentWrapper, ComponentTitle } from "../../AddProductPage-style"
+import { ComponentWrapper, ComponentTitle } from "./ProductIntroComponent-style";
+import { INTRO_REDUCER_TYPES } from "pages/prodcut-pages/reducer/product-intro-reducer";
 //
 import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
-import InputImagesGroup from "../../../components/InputImageGroupe/Input-images-component";
+import InputImagesGroup from "../InputImageGroupe/Input-images-component";
 
-const ProductIntoComponent = ({ productIntro, dispatchIntro }) => {
+
+// this component shows title and description and images and handle changes
+const ProductIntroComponent = ({ productIntro, dispatchIntro }) => {
+
   const changeTitle = (e) =>
-    dispatchIntro({ type: "updateTitle", payload: e.target.value });
+    dispatchIntro({
+      type: INTRO_REDUCER_TYPES.CHANGE_TITLE,
+      payload: e.target.value,
+    });
   const changeDesctiption = (e) =>
-    dispatchIntro({ type: "updateDescription", payload: e.target.value });
+    dispatchIntro({
+      type: INTRO_REDUCER_TYPES.CHANGE_DESCRIPTION,
+      payload: e.target.value,
+    });
   const changeMedia = (images) =>
-  dispatchIntro({ type: "updateMedia", payload: images });
+    dispatchIntro({ type: INTRO_REDUCER_TYPES.CHANGE_MEDIA, payload: images });
 
   return (
     <ComponentWrapper>
@@ -36,4 +46,5 @@ const ProductIntoComponent = ({ productIntro, dispatchIntro }) => {
     </ComponentWrapper>
   );
 };
-export default ProductIntoComponent;
+
+export default ProductIntroComponent;

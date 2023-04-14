@@ -5,7 +5,7 @@ import { useApi } from "hooks/useApi/useApi";
 import {
   productIntroReducer,
   INTRO_REDUCER_TYPES,
-} from "./reducer/product-intro-reducer";
+} from "../reducer/product-intro-reducer";
 import {
   productTechReducer,
   TECH_REDUCER_TYPES,
@@ -19,7 +19,7 @@ import {
   getSkusData,
 } from "./utils";
 //
-import ProductIntroComponent from "./components/product-intro-component/ProductIntroComponent";
+import ProductIntroComponent from "../components/product-intro-conponent/ProductIntroComponent";
 import TechnicalComponent from "./components/technical-component/TechnicalComponent";
 import PropertiesComponent from "./components/PropertiesComponent/PropertiesComponent";
 import VariantsComponent from "./components/variants-component/VariantsComponent";
