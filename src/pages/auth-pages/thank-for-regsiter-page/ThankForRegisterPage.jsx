@@ -1,18 +1,17 @@
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
-
-
-import { useToasty } from "../../../context/toastify/ToastContext";
-import { useApi } from "../../../hooks/useApi/useApi";
-import { postUserResendEmail } from "../../../apis/userApiService";
+//
+import { useToasty } from "context/toastify/ToastContext";
+import { useApi } from "hooks/useApi/useApi";
+import { postUserResendEmail } from "apis/userApiService";
 import {
   ThankPageWrapper,
   ThankText,
   MessageText,
   EmailText,
 } from "./ThankForRegisterPage-style";
-
-import BasicButton from "../../../components/shared/BasicButton/BasicButton";
+//
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 export default function ThankForRegisterPage() {
   // use this state for loading state of button when calling api
@@ -37,7 +36,7 @@ export default function ThankForRegisterPage() {
     <ThankPageWrapper>
       <ThankText>Thank you!</ThankText>
       <MessageText>
-      We have sent a verification email to 
+        We have sent a verification email to
         <EmailText> "{email}"</EmailText>. Check inbox to verify your email.
       </MessageText>
 

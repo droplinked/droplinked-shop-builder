@@ -1,14 +1,13 @@
 import {
   FormControl,
-  FormLabel,
   Input,
   InputGroup,
   InputLeftAddon,
   Box,
   Flex,
 } from "@chakra-ui/react";
-
-import { SHIPING_TYPES } from "../../../../../constant/shipping-types";
+//
+import { SHIPING_TYPES } from "constant/shipping-types";
 import {
   Text16px,
   SelectComponent,

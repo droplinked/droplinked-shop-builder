@@ -1,9 +1,8 @@
 import { Box } from "@chakra-ui/react";
-
+//
 import { ComponentWrapper, ComponentTitle } from "../../AddProductPage-style"
-
-
-import InputFieldComponent from "../../../../../components/shared/input-field-component/InputFieldComponent";
+//
+import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
 import InputImagesGroup from "../../../components/InputImageGroupe/Input-images-component";
 
 const ProductIntoComponent = ({ productIntro, dispatchIntro }) => {

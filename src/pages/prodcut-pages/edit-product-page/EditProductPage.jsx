@@ -1,7 +1,7 @@
 import { useReducer, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-import { useApi } from "../../../hooks/useApi/useApi";
+//
+import { useApi } from "hooks/useApi/useApi";
 import {
   productIntroReducer,
   INTRO_REDUCER_TYPES,
@@ -11,20 +11,20 @@ import {
   TECH_REDUCER_TYPES,
 } from "./reducer/technical-data-reducer";
 import { PageWrapper } from "./EditProductPage-style";
-import { getPublicProductById } from "../../../apis/productsApiService";
+import { getPublicProductById } from "apis/productsApiService";
 import {
   getIntroData,
   getTechnicalData,
   getPropertiesData,
   getSkusData,
 } from "./utils";
-
+//
 import ProductIntroComponent from "./components/product-intro-component/ProductIntroComponent";
 import TechnicalComponent from "./components/technical-component/TechnicalComponent";
 import PropertiesComponent from "./components/PropertiesComponent/PropertiesComponent";
 import VariantsComponent from "./components/variants-component/VariantsComponent";
 import ButtonComponent from "./components/buttons-component/ButtonComponent";
-import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
+import LoadingComponent from "components/shared/loading-component/LoadingComponent";
 
 const EditProductPage = () => {
   // state for keep title and  description and images

@@ -1,11 +1,11 @@
 import { useEffect, useContext } from "react";
-
-import { toastValue } from "../../../context/toastify/ToastContext";
 import { useParams, useNavigate } from "react-router-dom";
-import { postUserEmailVerification } from "../../../apis/userApiService";
-import { useApi } from "../../../hooks/useApi/useApi";
-
-import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
+//
+import { toastValue } from "context/toastify/ToastContext";
+import { postUserEmailVerification } from "apis/userApiService";
+import { useApi } from "hooks/useApi/useApi";
+//
+import LoadingComponent from "components/shared/loading-component/LoadingComponent";
 
 export default function VerifyEmailPage() {
   const nav = useNavigate();

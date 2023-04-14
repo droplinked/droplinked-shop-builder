@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/react";
 
 import { ComponentWrapper, ComponentTitle } from "../../EditProductPage-style";
-//import { getVariants } from "../../../../../api-service/product/productApiService";
-//import { useApi } from "../../../../../hooks/useApi/useApi";
-
-import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
-import PropertiesTopComponent from "./PropertiesTopComponent";
+//
+import BasicButton from "components/shared/BasicButton/BasicButton";
 import OptionFormComponent from "./OptionFormComponent";
 
 // this component handles options types and values

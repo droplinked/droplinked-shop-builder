@@ -2,20 +2,18 @@
 import axios from "axios";
 import { Image , Box , Text} from "@chakra-ui/react";
 import { useRef, useState } from "react";
-
-
-import { useToasty } from "../../../../context/toastify/ToastContext";
+//
+import { useToasty } from "context/toastify/ToastContext";
 import {
   ImagesInputWrapper,
   ItemImage,
   InputAddImage,
   DeleteIcon,
 } from "./Input-images-style";
-
-
-import dltImg from "../../../../assest/icon/icons8-multiply-100.png";
-import uploadImage from "../../../../assest/icon/upload-icon.svg";
-import LoadingComponent from "../../../../components/shared/loading-component/LoadingComponent";
+//
+import dltImg from "assest/icon/icons8-multiply-100.png";
+import uploadImage from "assest/icon/upload-icon.svg";
+import LoadingComponent from "components/shared/loading-component/LoadingComponent";
 
 
 

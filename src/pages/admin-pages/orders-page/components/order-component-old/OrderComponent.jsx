@@ -1,9 +1,6 @@
-
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import {
-  Text,
   Box,
   Flex,
   useDisclosure,
@@ -11,21 +8,21 @@ import {
   Skeleton,
   keyframes,
 } from "@chakra-ui/react";
-import { ORDER_TYPES } from "../../../../../constant/order.types";
-import { getStatus , getTotalPrice } from "./order-component-utils"
-import {
-  selectIsCustomer,
-} from "../../../../../store/profile/profile.selector";
+//
+import { ORDER_TYPES } from "constant/order.types";
+import { getStatus, getTotalPrice } from "./order-component-utils";
+import { selectIsCustomer } from "store/profile/profile.selector";
 import {
   OrderWrapper,
   OrderId,
   QuantityText,
   ProductImage,
   OrderStatus,
-  DateText
+  DateText,
 } from "./OrderComponent-style";
 import { calculateHowTimePassed } from "./order-component-utils";
-import OrderModal from "../../../../../modals/order-modal/OrderModal";
+//
+import OrderModal from "modals/order-modal/OrderModal";
 //import BasicButton from "../BasicButton/BasicButton";
 
 const animationKeyframes = keyframes`
@@ -38,7 +35,6 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 2s ease infinite`;
 
 export default function OrderComponent({ updateOrder, order }) {
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isCustomer = useSelector(selectIsCustomer);
   const navigate = useNavigate();
@@ -50,9 +46,9 @@ export default function OrderComponent({ updateOrder, order }) {
   };
 
   const imageUrl = (item) => item.product.media[0].url;
-    // order.type == SHOP_TYPES.SHOPIFY
-    //   ? item.image_url
-    //   : item.product.media[0].url;
+  // order.type == SHOP_TYPES.SHOPIFY
+  //   ? item.image_url
+  //   : item.product.media[0].url;
 
   const animationCondition = () => {
     const status = order.status;
@@ -119,13 +115,19 @@ export default function OrderComponent({ updateOrder, order }) {
         </Stack>
       )}
       {order.items.length > 0 && (
-        <OrderModal updateOrder={updateOrder} order={order} show={isOpen} close={onClose} />
+        <OrderModal
+          updateOrder={updateOrder}
+          order={order}
+          show={isOpen}
+          close={onClose}
+        />
       )}
     </OrderWrapper>
   );
 }
 
-   {/* {order.status == ORDER_TYPES.WAITING_FOR_PAYMENT && (
+{
+  /* {order.status == ORDER_TYPES.WAITING_FOR_PAYMENT && (
             <Box
               pos="absolute"
               w={{ base: "120px", md: "160px" }}
@@ -135,4 +137,5 @@ export default function OrderComponent({ updateOrder, order }) {
             >
               <BasicButton onClick={paynow}>Pay now</BasicButton>
             </Box>
-          )} */}
+          )} */
+}

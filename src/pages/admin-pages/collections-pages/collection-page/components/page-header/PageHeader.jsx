@@ -8,16 +8,12 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { useState } from "react";
+//
+import searchIcon from "assest/icon/search-icon.svg";
+import downArrowIcon from "assest/icon/down-arrow-icon.svg";
+import CollectionModal from "modals/collection-modal/CollectionModal";
 
-import { useCustomNavigate } from "../../../../../../hooks/useCustomeNavigate/useCustomNavigate";
-
-import searchIcon from "../../../../../../assest/icon/search-icon.svg";
-import downArrowIcon from "../../../../../../assest/icon/down-arrow-icon.svg";
-import CollectionModal from "../../../../../../modals/collection-modal/CollectionModal";
-
-const PageHeader = ({ searchValue, setSearchValue , updateCollaction }) => {
-
-  const { shopNavigate } = useCustomNavigate();
+const PageHeader = ({ searchValue, setSearchValue, updateCollaction }) => {
 
   const [showModal, setShowModal] = useState(false);
 
@@ -84,7 +80,11 @@ const PageHeader = ({ searchValue, setSearchValue , updateCollaction }) => {
       >
         Add Collection
       </Button>
-      <CollectionModal show={showModal} close={toggleModal} update={updateCollaction} />
+      <CollectionModal
+        show={showModal}
+        close={toggleModal}
+        update={updateCollaction}
+      />
     </Flex>
   );
 };

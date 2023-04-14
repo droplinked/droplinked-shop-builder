@@ -1,5 +1,5 @@
-import { useProfile } from "../../hooks/useProfile/useProfile";
-
+import { useProfile } from "hooks/useProfile/useProfile";
+//
 import DefaultHeaderComponent from "./components/default-header-component/DefaultHeaderComponent";
 import UserHeaderComponent from "./components/user-header-component/UserHeaderComponent";
 
