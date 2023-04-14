@@ -1,21 +1,15 @@
-
-
-const existSameOptions = (skus , sku) => {
-    if (sku.options.length == 0) return false;
-    let result = false;
-    let thisSkuOption = sku.options;
-    skus.forEach((currentSku) => {
-      let isSame = true;
-      currentSku.options.forEach((option) => {
-        let find = thisSkuOption.find((op) => op.variantID == option.variantID);
-        if (find.value == "") isSame = false;
-        if (find.value != option.value) isSame = false;
-      });
-      if (isSame) {
-       
-        result = true;
-        return;
-      }
-    });
-    return result;
-  };
+export const existSameOptions = (sku, skus) => {
+  if (sku.options.length === 0) return false;
+  const isSame = skus?.some((skuItem) => {
+    const skuOption = sku.options;
+    const skuItemOption = skuItem.options;
+    const findByVariantName = (variantName, data) => {
+      return data?.find((item) => item.variantName === variantName) ?? null;
+    };
+    return skuOption.every(
+      (opt) =>
+        findByVariantName(opt.variantName, skuItemOption)?.value === opt?.value
+    );
+  });
+  return isSame;
+};

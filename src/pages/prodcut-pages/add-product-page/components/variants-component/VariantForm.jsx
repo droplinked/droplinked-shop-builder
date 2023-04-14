@@ -56,9 +56,16 @@ const VariantForm = ({
           },
         }}
       >
-        <Td>
-          <Text>{sku.size}</Text>
-        </Td>
+        {OptionList?.length &&
+          OptionList?.map((option) => (
+            <Td key={option?.optionName}>
+              <Text>
+                {sku?.options?.find(
+                  (item) => item?.variantName === option?.optionName
+                )?.value ?? "-"}
+              </Text>
+            </Td>
+          ))}
         <Td>
           <Text>{sku.quantity}</Text>
         </Td>
@@ -111,7 +118,7 @@ const VariantForm = ({
       </Tr>
 
       {showForm && (
-        <Td colSpan={5} px={0} border="none">
+        <Td colSpan={10} px={0} border="none">
           <SkuForm
             deleteSku={deleteSku}
             closeForm={toggleForm}
