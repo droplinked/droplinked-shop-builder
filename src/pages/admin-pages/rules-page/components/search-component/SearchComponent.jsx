@@ -1,13 +1,11 @@
 import {
-  Flex,
   InputGroup,
   InputLeftElement,
   Input,
   Image,
-  Button,
 } from "@chakra-ui/react";
-
-import searchIcon from "../../../../../assest/icon/search-icon.svg";
+//
+import searchIcon from "assest/icon/search-icon.svg";
 
 const SearchComponent = () => {
   return (

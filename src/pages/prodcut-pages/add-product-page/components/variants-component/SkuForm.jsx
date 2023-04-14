@@ -7,7 +7,7 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-
+//
 import {
   SkuFormWrapper,
   InputWrapper,
@@ -20,9 +20,9 @@ import {
 } from "../../AddProductPage-style";
 import { skuReducer } from "./sku-reducer";
 import { initialReducer } from "./initial-reducer";
-import { useToasty } from "../../../../../context/toastify/ToastContext";
-
-import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+import { useToasty } from "context/toastify/ToastContext";
+//
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 const SkuForm = ({
   closeForm,

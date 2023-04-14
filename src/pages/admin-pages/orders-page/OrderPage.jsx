@@ -1,18 +1,13 @@
-import { Text, Box, Flex } from "@chakra-ui/react";
-import { ORDER_TYPES } from "../../../constant/order.types";
-import { useApi } from "../../../hooks/useApi/useApi";
-import { useMemo, useState, useEffect } from "react";
-
-import { getOrders } from "../../../apis/orderApiService";
-
-import { sortArrayBaseCreateTime } from "../../../utils/sort.utils/sort.utils";
-
+import { Text, Box } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+//
+import { useApi } from "hooks/useApi/useApi";
+import { getOrders } from "apis/orderApiService";
+//
 import OrderComponent from "./components/order-component/OrderComponent";
-import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
-import DropdownComponent from "./components/dropdown-component/Dropdown/DropdownComponent";
+import LoadingComponent from "components/shared/loading-component/LoadingComponent";
 
 export default function OrderPage() {
-  const [filter, setFilter] = useState("All");
   const [orders, setOrders] = useState(null);
   // const { orders } = useOrder()
   // const navigate = useNavigate();

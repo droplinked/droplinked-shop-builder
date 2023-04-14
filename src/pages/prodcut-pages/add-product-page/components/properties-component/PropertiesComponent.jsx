@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
-
+//
 import {
   ComponentWrapper,
   ComponentTitle,
@@ -10,16 +10,14 @@ import {
   PlusIcon,
   MinusIcon,
 } from "../../AddProductPage-style";
-//import { getVariants } from "../../../../../api-service/product/productApiService";
-import { useApi } from "../../../../../hooks/useApi/useApi";
-
-import plus from "../../../../../assest/icon/plus-icon.svg";
-import minus from "../../../../../assest/icon/minusIcon.png";
-import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 import {
   getOptionsArrayAfterAddValueToOption,
   getOptionsArrayAfterRemoveValueFromOption,
 } from "../../../edit-product-page/components/PropertiesComponent/utils";
+//
+import plus from "assest/icon/plus-icon.svg";
+import minus from "assest/icon/minusIcon.png";
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 const INITiAL_VARIANTS = [
   {

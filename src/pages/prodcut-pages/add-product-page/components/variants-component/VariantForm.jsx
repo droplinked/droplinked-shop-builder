@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Flex, Text, Image, Tr, Td, IconButton } from "@chakra-ui/react";
-
+//
 import { Text16px } from "../../AddProductPage-style";
+//
 import SkuForm from "./SkuForm";
-
-import editIcon from "../../../../../assest/icon/edit-icon.svg";
-import tearIcon from "../../../../../assest/icon/tear-icon.svg";
-import infoIcon from "../../../../../assest/icon/info-icon.svg";
+import editIcon from "assest/icon/edit-icon.svg";
+import tearIcon from "assest/icon/tear-icon.svg";
+import infoIcon from "assest/icon/info-icon.svg";
 
 const VariantForm = ({
   sku,

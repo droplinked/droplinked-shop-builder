@@ -1,6 +1,6 @@
 import { useReducer, useState } from "react";
-
-import { SHIPING_TYPES } from "../../../constant/shipping-types";
+//
+import { SHIPING_TYPES } from "constant/shipping-types";
 import { productIntroReducer } from "./reducer/product-intro-reducer";
 import { productTechReducer } from "./reducer/technical-data-reducer";
 import { PageWrapper } from "./AddProductPage-style";

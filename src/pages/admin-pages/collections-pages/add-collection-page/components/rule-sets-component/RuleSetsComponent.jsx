@@ -11,8 +11,9 @@ import {
   Text,
   Button,
 } from "@chakra-ui/react";
+//
 import RuleComponent from "../rule-component/RuleComponent";
-import RuleModal from "../../../../../../modals/rule-modal/RuleModal";
+import RuleModal from "modals/rule-modal/RuleModal";
 
 function RuleSetsComponent() {
   const [ruleSets, setRuleSets] = useState([]);

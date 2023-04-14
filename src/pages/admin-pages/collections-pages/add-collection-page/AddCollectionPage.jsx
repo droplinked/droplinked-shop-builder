@@ -1,13 +1,16 @@
+// external
 import React from "react";
+import { Box, Button, Flex } from "@chakra-ui/react";
+// internal
 import {
   ComponentTitle,
   ComponentWrapper,
   PageWrapper,
 } from "./AddCollectionPage-style";
-import { Box, Button, Flex } from "@chakra-ui/react";
-import InputFieldComponent from "../../../../components/shared/input-field-component/InputFieldComponent";
+// components
+import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
+import BasicButton from "components/shared/BasicButton/BasicButton";
 import RuleSetsComponent from "./components/rule-sets-component/RuleSetsComponent";
-import BasicButton from "../../../../components/shared/BasicButton/BasicButton";
 
 function AddCollectionPage() {
   return (

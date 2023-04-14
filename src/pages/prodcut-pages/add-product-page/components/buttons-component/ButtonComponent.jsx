@@ -1,12 +1,12 @@
 import { Flex, Box } from "@chakra-ui/react";
 import { useState } from "react";
-
-import { useToasty } from "../../../../../context/toastify/ToastContext";
-import { useApi } from "../../../../../hooks/useApi/useApi";
-import { postProduct } from "../../../../../apis/productsApiService";
-import { useCustomNavigate } from "../../../../../hooks/useCustomeNavigate/useCustomNavigate";
-
-import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+//
+import { useToasty } from "context/toastify/ToastContext";
+import { useApi } from "hooks/useApi/useApi";
+import { postProduct } from "apis/productsApiService";
+import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
+//
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 const ButtonComponent = ({ productIntro, TechnicalData, skus }) => {
   const [loading, setLoading] = useState(false);

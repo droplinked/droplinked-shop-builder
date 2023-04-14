@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
-
+//
 import { ComponentWrapper, ComponentTitle } from "../../AddProductPage-style";
-
+//
 import CollectionComponent from "./CollectionComponent";
 import ShippingComponent from "./ShippingComponent";
 

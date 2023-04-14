@@ -1,19 +1,16 @@
-//import MainHeader from "../../components/layouts/Header/MainHeader"
-//import Footer from "../../components/layouts/Footer/Footer"
-
 import { Box } from "@chakra-ui/react";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector ,useDispatch } from "react-redux";
-
-import { selectIsCustomer } from "../../store/profile/profile.selector";
-import { useProfile } from "../../hooks/useProfile/useProfile";
-import { setCurrentShop } from "../../store/shop/shop.action";
-import { getUser } from "../../apis/userApiService";
-import { useApi } from "../../hooks/useApi/useApi";
-
-import HeaderLayout from "../../layouts/header-layout/HeaderLayout";
-import FooterLayout from "../../layouts/footer-layout/FooterLayout";
+//
+import { selectIsCustomer } from "store/profile/profile.selector";
+import { useProfile } from "hooks/useProfile/useProfile";
+import { setCurrentShop } from "store/shop/shop.action";
+import { getUser } from "apis/userApiService";
+import { useApi } from "hooks/useApi/useApi";
+//
+import HeaderLayout from "layouts/header-layout/HeaderLayout";
+import FooterLayout from "layouts/footer-layout/FooterLayout";
 
 export default function PageWrapper() {
 

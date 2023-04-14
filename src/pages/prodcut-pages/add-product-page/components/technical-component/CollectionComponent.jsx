@@ -1,13 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
 import { Box, Button, Flex } from "@chakra-ui/react";
+//
 import {
   Text16px,
   CollectionContainer,
   CollectionItem,
 } from "../../AddProductPage-style";
-import { useApi } from "../../../../../hooks/useApi/useApi";
-import { getUsersCollections } from "../../../../../apis/collectionApiService";
-import NewCollectionModal from "../../../../../modals/new-collection-modal/NewCollectionModal";
+import { useApi } from "hooks/useApi/useApi";
+import { getUsersCollections } from "apis/collectionApiService";
+//
+import NewCollectionModal from "modals/new-collection-modal/NewCollectionModal";
 
 const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
   const { getApi } = useApi();
