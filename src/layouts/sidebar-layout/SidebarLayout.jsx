@@ -1,12 +1,12 @@
 import { Flex } from "@chakra-ui/react";
 
 //icons
-import ProductsIcon from "../../assest/icon/products-icon.svg";
-import collectionIcon from "../../assest/icon/collection-icon.svg";
-import settingIcon from "../../assest/icon/setting-icon.svg";
-import orderIcon from "../../assest/icon/order-icon.svg";
-import informationIcon from "../../assest/icon/information-icon.svg";
-import rulesetsIcon from "../../assest/icon/rulesets-icon.svg";
+import ProductsIcon from "assest/icon/products-icon.svg";
+import collectionIcon from "assest/icon/collection-icon.svg";
+import settingIcon from "assest/icon/setting-icon.svg";
+import orderIcon from "assest/icon/order-icon.svg";
+import informationIcon from "assest/icon/information-icon.svg";
+import rulesetsIcon from "assest/icon/rulesets-icon.svg";
 
 import OptionComponent from "./components/option-component/OptionComponent";
 
