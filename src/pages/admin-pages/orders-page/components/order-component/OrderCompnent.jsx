@@ -1,5 +1,14 @@
-import { Tr, Td, Text } from "@chakra-ui/react";
+import {
+  Tr,
+  Td,
+  Text,
+  Popover,
+  PopoverTrigger,
+  IconButton,
+  Image,
+} from "@chakra-ui/react";
 import { calculateHowTimePassed, getStatus } from "./order-component-utils";
+import moreIcon from "../../../../../assest/icon/more-icon.svg";
 
 const OrderComponent = ({ order }) => {
   //
@@ -35,7 +44,7 @@ const OrderComponent = ({ order }) => {
         <Td>
           <Text>{getStatus(order.status)}</Text>
         </Td>
-        {/* <Td>
+        <Td>
           <Popover placement="right-start">
             <PopoverTrigger>
               <IconButton
@@ -47,7 +56,7 @@ const OrderComponent = ({ order }) => {
                 <Image src={moreIcon} />
               </IconButton>
             </PopoverTrigger>
-            <PopoverContent
+            {/* <PopoverContent
               _focus={{ outline: "none" }}
               border="none"
               bg="#292929"
@@ -76,9 +85,9 @@ const OrderComponent = ({ order }) => {
                   Delete
                 </Button>
               </Stack>
-            </PopoverContent>
+            </PopoverContent> */}
           </Popover>
-        </Td> */}
+        </Td>
       </Tr>
     </>
   );
