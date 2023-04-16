@@ -1,13 +1,13 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState, useContext } from "react";
 
-
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
+import PasswordInputComponent from "../../components/shared/password-input-component/PasswordInputComponent";
 
+import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
 import { Title, BottomText } from "./LoginModal-style";
 import { PROFILE_STATUS } from "../../constant/profile-status-types";
@@ -117,41 +117,44 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   };
 
   return (
-    <>
-      <ModalWrapper show={show} close={close}>
-        <Box w="100%">
-          <Title>Login</Title>
+    <ModalWrapper show={show} close={close}>
+      <Box w="100%">
+        <Title>Sign in</Title>
+        <Box w="100%" pt="20px">
+          <InputFieldComponent
+            value={email}
+            change={changeEmail}
+            placeholder={"Username"}
+          />
+          <Box mb="16px"></Box>
 
-          <Box w="100%" pt="20px">
-            <InputFieldComponent
-              value={email}
-              change={changeEmail}
-              label={"Email"}
-              placeholder={"Email"}
-            />
-            <Box mb="20px"></Box>
-
-            <InputFieldComponent
-              value={password}
-              change={changePassword}
-              label={"Password"}
-              placeholder={"Password"}
-              type="password"
-            />
-            <Box mb="20px"></Box>
-            <BasicButton click={onSubmit} disable={loading} loading={loading}>
-              Login
-            </BasicButton>
-          </Box>
-          <Box mb="25px"></Box>
-          <BottomText onClick={switchReset}>Forgot password?</BottomText>
-          <Box mb="10px"></Box>
-          <BottomText onClick={switchModal}>
-            Don’t have an account? Register now!
-          </BottomText>
+          <PasswordInputComponent
+            value={password}
+            change={changePassword}
+            placeholder={"Password"}
+          />
+          <Box mb="16px"></Box>
+          <BasicButton click={onSubmit} disable={loading} loading={loading}>
+            Login
+          </BasicButton>
         </Box>
-      </ModalWrapper>
-    </>
+        <Box mb="8px"></Box>
+        <BottomText onClick={switchReset}>
+          Forgot
+          <Box as="span" ml={1} color="green.500">
+            password?
+          </Box>
+        </BottomText>
+        <Box mb="4px"></Box>
+        <BottomText onClick={switchModal}>
+          Don’t have an account?{" "}
+          <Box as="span" mx={1} color="green.500">
+            Sign up
+          </Box>
+          now!
+        </BottomText>
+      </Box>
+    </ModalWrapper>
   );
 };
 

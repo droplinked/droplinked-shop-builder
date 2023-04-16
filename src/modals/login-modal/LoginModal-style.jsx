@@ -13,9 +13,8 @@ export const BottomText = chakra("p", {
   baseStyle: {
     fontWeight: "400",
     fontSize: { base: "12px", md: "14px" },
-    textAlign: "center",
     color: "white",
-    cursor:'pointer',
+    cursor: "pointer",
     _hover: {
       color: "#b3b3b3",
     },
