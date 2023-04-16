@@ -1,14 +1,18 @@
 import {
-  Button,
   Flex,
   FormControl,
   FormHelperText,
   FormLabel,
+  IconButton,
   Input,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { Icon } from "./PasswordInputComponent-style";
+import openEyeIcon from "../../../assest/icon/visible-icon.svg";
+import closeEyeIcon from "../../../assest/icon/invisible-icon.svg";
+//
 function PasswordInputComponent({
   value,
   change,
@@ -56,20 +60,14 @@ function PasswordInputComponent({
             placeholder={placeholder}
             type={show ? "text" : "password"}
           />
-          <InputRightElement>
-            <Button
+          <InputRightElement height="100%">
+            <IconButton
+              variant="link"
               _focus={{ outline: "none" }}
-              variant="unstyled"
               onClick={handleClick}
             >
-              hi
-            </Button>
-            {/* <IconButton
-              // icon={!show ? <GenIcon /> : <GenIcon />}
-              borderRadius="lg"
-              variant="ghost"
-              onClick={handleClick}
-            /> */}
+              <Icon src={show ? closeEyeIcon : openEyeIcon} />
+            </IconButton>
           </InputRightElement>
         </InputGroup>
         {isInvalid && (
