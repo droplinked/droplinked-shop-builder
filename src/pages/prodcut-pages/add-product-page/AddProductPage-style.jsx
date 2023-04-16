@@ -79,8 +79,8 @@ export const CollectionItem = chakra("div", {
 });
 
 export const SelectComponent = chakra("select", {
-  baseStyle: ({ bg = "subLayer" }) => ({
-    w: "100%",
+  baseStyle: ({ bg = "subLayer", w = "100%" }) => ({
+    w: w,
     d: "flex",
     backgroundColor: bg,
     borderRadius: "8px",

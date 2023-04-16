@@ -224,6 +224,8 @@ const SkuForm = ({
             <InputWrapper mt="16px" key={option.index}>
               <ComponentTitle>{option.optionName}</ComponentTitle>
               <SelectComponent
+                w="70%"
+                bg="mainLayer"
                 onChange={(e) => {
                   changeOption(e.target.value, option.optionId);
                 }}
