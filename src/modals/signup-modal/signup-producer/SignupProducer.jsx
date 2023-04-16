@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 
 import { toastValue } from "../../../context/toastify/ToastContext";
 import { isValidEmail } from "../../../utils/validations/emailValidation";
@@ -10,6 +10,7 @@ import { useApi } from "../../../hooks/useApi/useApi";
 
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import InputFieldComponent from "../../../components/shared/input-field-component/InputFieldComponent";
+import PasswordInputComponent from "../../../components/shared/password-input-component/PasswordInputComponent";
 
 export default function SignupProducer({ close, shopname, switchToggle }) {
   const { successToast, errorToast } = useContext(toastValue);
@@ -71,191 +72,34 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
   };
 
   return (
-    <Box w="100%" h="100%">
-      <Box mb="20px"></Box>
-      <InputFieldComponent
-        value={email}
-        change={changeEmail}
-        label={"Email"}
-        placeholder={"Email"}
-      />
-      <Box mb="20px"></Box>
-      <InputFieldComponent
-        value={password}
-        change={changePass}
-        label={"Password"}
-        type="password"
-        placeholder={"Password"}
-      />
-      <Box mb="20px"></Box>
-      <InputFieldComponent
-        value={confirmPassword}
-        change={changeConPass}
-        label={"Confirm password"}
-        type="password"
-        placeholder={"Confirm password"}
-      />
-      <Box mb="20px"></Box>
+    <Stack w="100%" h="100%" spacing="20px">
       <InputFieldComponent
         value={shopName}
         change={changeShopName}
-        label={"Username"}
         placeholder={"Username"}
       />
-      <Box mb="20px"></Box>
+      <InputFieldComponent
+        value={email}
+        change={changeEmail}
+        placeholder={"Email"}
+      />
+      <PasswordInputComponent
+        value={password}
+        change={changePass}
+        placeholder={"Password"}
+      />
+      <PasswordInputComponent
+        value={confirmPassword}
+        change={changeConPass}
+        placeholder={"Confirm password"}
+      />
       <BasicButton click={onSubmit} disabled={loading}>
         Sign up
       </BasicButton>
-      <Box mb="20px"></Box>
-      <Flex mt="20px" w="100%">
-        <BottomText>
-          {" "}
-          By creating an account, you agree to the{" "}
-          <Link onClick={close} to="/terms">
-            Terms & Conditions
-          </Link>{" "}
-          and{" "}
-          <Link onClick={close} to="/privacy">
-            Privacy
-          </Link>
-          .
-        </BottomText>
-      </Flex>
-      <Flex mt="20px" w="100%" onClick={switchToggle}>
-        <BottomText>
-          Already have an account? <a>Login</a>
-        </BottomText>
-      </Flex>
-      {/* <form
-        onSubmit={handleSubmit(onSubmit)}
-        onChange={() => {
-          if (loading) {
-            setLoading(false);
-          }
-        }}
-        style={{ margin: "0px", padding: "0px", maxWidth: "100%" }}
-      >
 
-        <div className="input-label">
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="example@email.com"
-            {...register("email", { required: true })}
-            onChange={() => {
-              setError(null);
-            }}
-          />
-          {errors.email?.type === "required" && (
-            <span className="signup-modal-error">Email is required.</span>
-          )}
-          {(error != null || error != "") && (
-            <span className="signup-modal-error">{error}</span>
-          )}
-        </div>
-
-
-        <div className="input-label">
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="Password"
-            {...register("password", { required: true, minLength: 8 })}
-          />
-          {errors.password?.type === "required" && (
-            <span className="signup-modal-error">Password is required.</span>
-          )}
-          {errors.password?.type === "minLength" && (
-            <span className="signup-modal-error">
-              Password must be at least 8 characters.
-            </span>
-          )}
-        </div>
-
-     
-        <div className="input-label">
-          <label>Confirm password</label>
-          <input
-            type="password"
-            placeholder="Confirm password"
-            {...register("confirmPassword", { required: true, minLength: 8 })}
-          />
-          {errors.confirmPassword?.type === "required" && (
-            <span className="signup-modal-error">Password is required.</span>
-          )}
-          {errors.confirmPassword?.type === "minLength" && (
-            <span className="signup-modal-error">
-              Password must be at least 8 characters.
-            </span>
-          )}
-        </div>
-
-        <div className="input-label">
-          <label>Username</label>
-          <div className="modal-shopname-input">
-            <span>droplinked.com/</span>
-            {shopname == undefined ? (
-              <input
-                type="text"
-                className="modal-shopname-input-inpt"
-                placeholder="Username"
-                {...register("shopname", { required: true })}
-                onChange={() => {
-                  setShopNameError(false);
-                }}
-              />
-            ) : (
-              <input
-                type="text"
-                value={shopname}
-                className="modal-shopname-input-inpt"
-                placeholder="Username"
-                {...register("shopname", { required: true })}
-                onChange={() => {
-                  setShopNameError(false);
-                }}
-              />
-            )}
-          </div>
-          {errors.shopname?.type === "required" && (
-            <span className="signup-modal-error">Username is required.</span>
-          )}
-          {shopNameError && (
-            <span className="signup-modal-error">
-              {
-                "Username can contain letters (a-z), numbers (0-9) and underscores."
-              }
-            </span>
-          )}
-        </div>
-        <button
-          className="sign-up-btn"
-          type="submit"
-          disabled={loading}
-          style={{ backgroundColor: `${loading == true ? "#4A4A4A" : ""}` }}
-        >
-          Sign up
-        </button>
-      </form>
-
-      <div className="text mt-4">
-        <p>
-          By creating an account, you agree to the{" "}
-          <Link onClick={close} to="/terms">
-            Terms & Conditions
-          </Link>{" "}
-          and{" "}
-          <Link onClick={close} to="/privacy">
-            Privacy
-          </Link>
-          .
-        </p>
-      </div>
-      <div className="text mt-2">
-        <p>
-          Already have an account? <a onClick={switchToggle}>Login</a>
-        </p>
-      </div> */}
-    </Box>
+      <BottomText onClick={switchToggle}>
+        Already have an account? <a>Sign in</a> now
+      </BottomText>
+    </Stack>
   );
 }
