@@ -10,12 +10,9 @@ export default function BasicButton({
 }) {
   return (
     <Button
-      w="100%"
-      h="100%"
-      bgColor={cancelType ? "button" : "primary"}
+      bgColor={cancelType ? "#1c1c1c" : "primary"}
       color="white"
-      border={cancelType ? "2px solid button" : "2px solid primary"}
-      fontSize={{ base: "16px", md: "20px" }}
+      border={cancelType ? "2px solid #292929" : "2px solid primary"}
       fontWeight="600"
       borderRadius="8px"
       margin="0px auto"
@@ -33,7 +30,7 @@ export default function BasicButton({
       }}
       onClick={click}
       disabled={disable || loading}
-      {...otherprops}
+      {...otherprops} 
     >
       {loading !== undefined && loading === true ? (
         <>
@@ -42,7 +39,7 @@ export default function BasicButton({
             speed="0.65s"
             emptyColor="white"
             color="primary"
-            size="md"
+            size="xs"
           />
         </>
       ) : (

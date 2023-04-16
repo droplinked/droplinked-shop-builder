@@ -69,8 +69,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   const loginFunction = (data) => {
     //first close modal
     close();
-    console.log("data ", data);
-    const status = data.user.status;
+    const status = process.env.NODE_ENV === 'development' ? "VERIFIED" : data.user.status
 
     // if (data.user.type == USER_TYPE.CUSTOMER) {
     //   dispatch(setCurrentUser(data));
@@ -139,7 +138,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
               type="password"
             />
             <Box mb="20px"></Box>
-            <BasicButton click={onSubmit} disable={loading} loading={loading}>
+            <BasicButton width="100%" click={onSubmit} disable={loading} loading={loading}>
               Login
             </BasicButton>
           </Box>

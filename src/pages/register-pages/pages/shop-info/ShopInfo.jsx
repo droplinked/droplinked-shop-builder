@@ -119,7 +119,7 @@ const RegisterShopInfo = () => {
     const result = await callApi();
     if (result) {
       if (currentPath.includes("register"))
-        shopNavigate(`register/contact-info`);
+        shopNavigate(`register/design`);
       else {
         successToast("Updated");
       }

@@ -5,7 +5,7 @@ import { SideText } from "../../RegisterPages-style";
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 
 const SelectPagesComponent = () => {
-    
+
   const { shopNavigate } = useCustomNavigate();
   const currentPath = useLocation().pathname;
 
@@ -24,20 +24,28 @@ const SelectPagesComponent = () => {
         Shop info
       </SideText>
       <SideText
-        color={currentPath.includes("contact-info") ? "primary" : "lightGray"}
-        onClick={() => {
-          if (isSettings) shopNavigate("settings/contact-info");
-        }}
-      >
-        Contact options
-      </SideText>
-      <SideText
         color={currentPath.includes("design") ? "primary" : "lightGray"}
         onClick={() => {
           if (isSettings) shopNavigate("settings/design");
         }}
       >
         Design template
+      </SideText>
+      <SideText
+        color={currentPath.includes("technical") ? "primary" : "lightGray"}
+        onClick={() => {
+          if (isSettings) shopNavigate("settings/technical");
+        }}
+      >
+        Technical
+      </SideText>
+      <SideText
+        color={currentPath.includes("contact-info") ? "primary" : "lightGray"}
+        onClick={() => {
+          if (isSettings) shopNavigate("settings/contact-info");
+        }}
+      >
+        Contact options
       </SideText>
     </>
   );

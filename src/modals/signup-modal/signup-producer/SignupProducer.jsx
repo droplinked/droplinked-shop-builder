@@ -103,7 +103,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         placeholder={"Username"}
       />
       <Box mb="20px"></Box>
-      <BasicButton click={onSubmit} disabled={loading}>
+      <BasicButton width="100%" click={onSubmit} disabled={loading}>
         Sign up
       </BasicButton>
       <Box mb="20px"></Box>
