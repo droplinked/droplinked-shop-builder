@@ -81,11 +81,9 @@ export default function InputImagesGroup({ setState, state }) {
           <InputAddImage onClick={openFile}>
             <Image src={uploadImage} w="50px" h="50px" />
             <Box mb="24px"></Box>
-            <Text fontSize="18px" color="darkGray">
-              Add 3 images here
+            <Text fontSize="18px" textAlign="center" color="darkGray">
+              Please upload JPG, JPEG, PNG or GIF
             </Text>
-
-            {/* <AddImageText>+ Add image</AddImageText> */}
           </InputAddImage>
         )}
       </ItemImage>
