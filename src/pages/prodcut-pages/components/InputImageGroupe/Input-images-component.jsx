@@ -1,8 +1,6 @@
-
 import axios from "axios";
-import { Image , Box , Text} from "@chakra-ui/react";
+import { Image, Box, Text } from "@chakra-ui/react";
 import { useRef, useState } from "react";
-
 
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import {
@@ -12,12 +10,9 @@ import {
   DeleteIcon,
 } from "./Input-images-style";
 
-
 import dltImg from "../../../../assest/icon/icons8-multiply-100.png";
 import uploadImage from "../../../../assest/icon/upload-icon.svg";
 import LoadingComponent from "../../../../components/shared/loading-component/LoadingComponent";
-
-
 
 export default function InputImagesGroup({ setState, state }) {
   const [loading, setLoading] = useState(false);
@@ -25,9 +20,9 @@ export default function InputImagesGroup({ setState, state }) {
 
   const { successToast, errorToast } = useToasty();
 
-  const openFile = () =>{
-     fileRef.current.click()
-    }
+  const openFile = () => {
+    fileRef.current.click();
+  };
 
   const changeImage = (e) => {
     const file = e.target.files[0];
@@ -77,6 +72,23 @@ export default function InputImagesGroup({ setState, state }) {
 
   return (
     <ImagesInputWrapper>
+      <ItemImage>
+        {loading === true ? (
+          <InputAddImage>
+            <LoadingComponent />
+          </InputAddImage>
+        ) : (
+          <InputAddImage onClick={openFile}>
+            <Image src={uploadImage} w="50px" h="50px" />
+            <Box mb="24px"></Box>
+            <Text fontSize="18px" color="darkGray">
+              Add 3 images here
+            </Text>
+
+            {/* <AddImageText>+ Add image</AddImageText> */}
+          </InputAddImage>
+        )}
+      </ItemImage>
       {state.map((items, i) => {
         return (
           <ItemImage id={i} key={i}>
@@ -90,24 +102,6 @@ export default function InputImagesGroup({ setState, state }) {
         );
       })}
 
-      <ItemImage>
-        {loading === true ? (
-          <InputAddImage>
-            <LoadingComponent />
-          </InputAddImage>
-        ) : (
-          <InputAddImage onClick={openFile}>
-            
-              <Image src={uploadImage} w="50px" h="50px" />
-              <Box mb="24px"></Box>
-              <Text fontSize="18px" color="darkGray">
-                Add 3 images here
-              </Text>
-           
-            {/* <AddImageText>+ Add image</AddImageText> */}
-          </InputAddImage>
-        )}
-      </ItemImage>
       <input
         type="file"
         className="d-none"
