@@ -1,1 +1,1 @@
-export const appDeveloment = true
+export const appDeveloment = typeof window !== "undefined" && window.location.origin !== "https://droplinked.com"
