@@ -42,11 +42,36 @@ export const PageContentWrapper = chakra("div", {
   },
 });
 
+export const StarLabel = chakra("strong", {
+  baseStyle: {
+    color: "#2EC99E"
+  },
+});
+
+export const BlackBox = chakra("div", {
+  baseStyle: {
+    w: "100%",
+    bg: "#141414",
+    borderRadius: "8px",
+    padding: "25px",
+    color: "#FFF"
+  },
+});
+
+
 export const Text18px = chakra("div", {
   baseStyle: {
     fontFamily: "Avenir Next",
     fontWeight: "700",
     fontSize: "18px",
+    color: "#FFFFFF",
+  },
+});
+
+export const TextLabelBold = chakra("div", {
+  baseStyle: {
+    fontWeight: "bold",
+    fontSize: "14px",
     color: "#FFFFFF",
   },
 });

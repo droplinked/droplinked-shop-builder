@@ -51,7 +51,7 @@ const DesignPage = () => {
     INITIAL_SHOP_Design
   );
 
-  const { errorToast ,successToast } = useToasty();
+  const { errorToast, successToast } = useToasty();
   const { putApi } = useApi();
   const { shop, updateShopData } = useProfile();
   const { shopNavigate } = useCustomNavigate();
@@ -146,8 +146,8 @@ const DesignPage = () => {
     updateShopData();
     setLoading(false);
     if (result) {
-      if (currentPath.includes("register")) shopNavigate(`products`);
-      else successToast("Updated");
+      if (!currentPath.includes("register")) successToast("Updated");
+      shopNavigate(`register/technical`);
     }
   };
 
@@ -239,14 +239,14 @@ const DesignPage = () => {
           </Box>
           {(designData.theme === "theme-1" ||
             designData.theme === "theme-2") && (
-            <Box w="50%">
-              <InputColor
-                value={designData.backgroundColor}
-                change={changeBackgroundColor}
-                label="Color background"
-              />
-            </Box>
-          )}
+              <Box w="50%">
+                <InputColor
+                  value={designData.backgroundColor}
+                  change={changeBackgroundColor}
+                  label="Color background"
+                />
+              </Box>
+            )}
         </Flex>
       </PageContentWrapper>
       <Box mb="36px" />
