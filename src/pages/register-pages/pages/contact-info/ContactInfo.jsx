@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { useReducer, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -16,6 +16,7 @@ import { useToasty } from "../../../../context/toastify/ToastContext";
 
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 import InputLefton from "../../component/input-lefton/InputLefton";
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 const INITIAL_SHOP_CONTACT = {
   discordURL: "",
@@ -138,9 +139,13 @@ const ContactInfo = () => {
         />
       </PageContentWrapper>
 
-      <SubmitButton width="200px" click={clickOnSave} loading={loading}>
-        Save & next step
-      </SubmitButton>
+      <Flex justifyContent={"right"} marginTop={8} width={"100%"}>
+        <Box>
+          <BasicButton size="lg" click={clickOnSave} loading={loading}>
+            Save & next step
+          </BasicButton>
+        </Box>
+      </Flex>
     </PageContent>
   );
 };

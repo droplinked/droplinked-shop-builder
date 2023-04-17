@@ -45,7 +45,7 @@ export default function LandingPage() {
 
   const [userName, setUsername] = useState("");
   // loading button
-
+  console.log("process.env.NODE_ENV ", process.env.NODE_ENV);
   const leftsideAnimation = prefersReducedMotion
     ? undefined
     : `${keyframe_leftanimation}  1s linear`;

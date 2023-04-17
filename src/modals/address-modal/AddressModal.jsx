@@ -147,7 +147,7 @@ export default function AddressModal({
     else {
       const formData = {
         firstName: firstname,
-        lastName: lastname,  
+        lastName: lastname,
         addressLine1: line1,
         addressLine2: line2,
         country,
@@ -269,16 +269,17 @@ export default function AddressModal({
             value={lastname}
             change={ChangeLastname}
           />
-          </Flex>
+        </Flex>
 
         <Flex justifyContent="space-between">
           <Box w="40%">
-            <BasicButton click={close} cancelType={true}>
+            <BasicButton width="100%" click={close} cancelType={true}>
               Cancel
             </BasicButton>
           </Box>
           <Box w="40%">
             <BasicButton
+              width="100%"
               click={submitForm}
               disabled={loading}
               loading={loading}

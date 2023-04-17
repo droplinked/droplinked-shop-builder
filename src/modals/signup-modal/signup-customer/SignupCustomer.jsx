@@ -87,7 +87,7 @@ export default function SignupCustomer({ switchToggle, close }) {
         placeholder={"Confirm password"}
       />
       <Box mb="20px"></Box>
-      <BasicButton click={onSubmit} disabled={loading}>
+      <BasicButton width="100%" click={onSubmit} disabled={loading}>
         Sign up
       </BasicButton>
 
