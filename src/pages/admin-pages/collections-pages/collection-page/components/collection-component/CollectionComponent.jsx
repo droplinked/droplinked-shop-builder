@@ -88,13 +88,16 @@ const CollectionComponent = ({ collection, update }) => {
           </Popover>
         </Td>
       </Tr>
-      <RuleModal
-        show={ruleModal}
-        close={toggleRuleModal}
-        collectionId={collection._id}
-        update={update}
-        ruleId={collection.ruleSetID || undefined}
-      />
+      {ruleModal && (
+        <RuleModal
+          show={ruleModal}
+          close={toggleRuleModal}
+          collectionId={collection._id}
+          update={update}
+          ruleId={collection.ruleSetID || undefined}
+        />
+      )}
+
       <CollectionModal
         show={editModal}
         collection={collection}
