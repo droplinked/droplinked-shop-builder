@@ -1,10 +1,11 @@
+//external
 import { Flex, Box } from "@chakra-ui/react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-
-import { useProfile } from "../../../hooks/useProfile/useProfile";
-
-import SidebarLayout from "../../../layouts/sidebar-layout/SidebarLayout";
+// internal
+import { useProfile } from "hooks/useProfile/useProfile";
+//components
+import SidebarLayout from "layouts/sidebar-layout/SidebarLayout";
 
 const AdminWrapper = () => {
   const navigate = useNavigate();

@@ -1,13 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 import { Box, Button, Flex } from "@chakra-ui/react";
+//
+import { useApi } from "hooks/useApi/useApi";
+import { getUsersCollections } from "apis/collectionApiService";
 import {
-  Text16px,
   CollectionContainer,
   CollectionItem,
-} from "../../AddProductPage-style";
-import { useApi } from "../../../../../hooks/useApi/useApi";
-import { getUsersCollections } from "../../../../../apis/collectionApiService";
-import NewCollectionModal from "../../../../../modals/new-collection-modal/NewCollectionModal";
+  Text16px,
+} from "../../ProductPages-style";
+import { TECH_REDUCER_TYPES } from "../../reducer/technical-data-reducer";
+//
+import NewCollectionModal from "modals/new-collection-modal/NewCollectionModal";
 
 const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
   const { getApi } = useApi();
@@ -19,13 +22,7 @@ const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
   const toggleNewCollectionModal = () => {
     setShowModal((prev) => !prev);
   };
-  //
-  const selectCollection = useCallback(
-    (collectionId) =>
-      dispatchTechnical({ type: "updateCollectionId", payload: collectionId }),
-    []
-  );
-
+  // get all collection data
   useEffect(() => {
     async function fetchData() {
       let result = await getApi(getUsersCollections());
@@ -37,6 +34,16 @@ const CollectionComponent = ({ TechnicalData, dispatchTechnical }) => {
     fetchData();
   }, [shouldUpdateList]);
 
+  const selectCollection = useCallback(
+    (collectionId) =>
+      dispatchTechnical({
+        type: TECH_REDUCER_TYPES.CHANGE_COLLECTION,
+        payload: collectionId,
+      }),
+    []
+  );
+
+  // check this collection is selected
   const isSelected = (collection) => {
     return TechnicalData.productCollectionID &&
       collection._id == TechnicalData.productCollectionID

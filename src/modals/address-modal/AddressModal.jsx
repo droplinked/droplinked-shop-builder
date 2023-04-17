@@ -1,19 +1,19 @@
 import { Box, Flex, FormControl, FormLabel, Stack } from "@chakra-ui/react";
 import { useState } from "react";
-
-import { useToasty } from "../../context/toastify/ToastContext";
+//
+import { useToasty } from "context/toastify/ToastContext";
 import { COUNTRIES, US_STATES } from "./address-list-constant";
 import {
   postCreateAddress,
   putUpdateAddress,
-} from "../../apis/addressApiService";
-import { useApi } from "../../hooks/useApi/useApi";
+} from "apis/addressApiService";
+import { useApi } from "hooks/useApi/useApi";
 import { TopText } from "./AddressModal-style";
-
+//
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import SelectInputComponent from "./components/select-input-component/SelectInputComponent";
-import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
+import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 export default function AddressModal({
   show,

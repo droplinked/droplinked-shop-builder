@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { matchSorter } from "match-sorter";
 import { useState, useEffect, useMemo } from "react";
-import { PageWrapper } from "./CollectionsPage-style";
-import AddCollectionComponent from "./components/add-collection-component/AddCollectionComponent";
 import {
   Box,
   Table,
@@ -12,12 +11,16 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+//
+
+import { PageWrapper } from "./CollectionsPage-style";
+import { selectCurrentShop } from "store/shop/shop.selector";
+import { getCollectionPublicByShopName } from "apis/collectionApiService";
+import { useApi } from "hooks/useApi/useApi";
+//
+import AddCollectionComponent from "./components/add-collection-component/AddCollectionComponent";
 import CollectionComponent from "./components/collection-component/CollectionComponent";
-import { matchSorter } from "match-sorter";
-import LoadingComponent from "../../../../components/shared/loading-component/LoadingComponent";
-import { selectCurrentShop } from "../../../../store/shop/shop.selector";
-import { getCollectionPublicByShopName } from "../../../../apis/collectionApiService";
-import { useApi } from "../../../../hooks/useApi/useApi";
+import LoadingComponent from "components/shared/loading-component/LoadingComponent";
 import PageHeader from "./components/page-header/PageHeader";
 
 export default function CollectionsPage() {
@@ -60,7 +63,11 @@ export default function CollectionsPage() {
   return (
     <Box w="100%" h="auto" p="0px 40px">
       <PageWrapper>
-        <PageHeader searchValue={searchValue} setSearchValue={setSearchValue} updateCollaction={getAllCollections} />
+        <PageHeader
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          updateCollaction={getAllCollections}
+        />
         <TableContainer mb="36px">
           <Table>
             <Thead borderY="1px solid" borderColor="line">

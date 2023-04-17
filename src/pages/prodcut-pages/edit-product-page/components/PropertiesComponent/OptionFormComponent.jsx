@@ -15,10 +15,11 @@ import {
   getOptionsArrayAfterAddValueToOption,
   getOptionsArrayAfterRemoveValueFromOption,
 } from "./utils";
-
-import plus from "../../../../../assest/icon/plus-icon.svg";
-import minus from "../../../../../assest/icon/minusIcon.png";
 import { MinusIcon } from "../../../add-product-page/AddProductPage-style";
+//
+import plus from "assest/icon/plus-icon.svg";
+import minus from "assest/icon/minusIcon.png";
+
 // this component handles options values and types
 const OptionFormComponent = ({
   option,

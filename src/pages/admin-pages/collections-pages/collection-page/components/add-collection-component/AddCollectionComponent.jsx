@@ -1,12 +1,12 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
-
-import { useCustomNavigate } from "../../../../../../hooks/useCustomeNavigate/useCustomNavigate";
 //
-import plusIcon from "../../../../../../assest/icon/plus-icon.svg";
-import variantsIcon from "../../../../../../assest/icon/products-active-icon.svg";
-import collectionIcon from "../../../../../../assest/icon/collection-active-icon.svg";
-import addProductIcon from "../../../../../../assest/icon/add-item-green-icon.svg";
-import ruleIcon from "../../../../../../assest/icon/rulesets-active-icon.svg";
+import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
+//
+import plusIcon from "assest/icon/plus-icon.svg";
+import variantsIcon from "assest/icon/products-active-icon.svg";
+import collectionIcon from "assest/icon/collection-active-icon.svg";
+import addProductIcon from "assest/icon/add-item-green-icon.svg";
+import ruleIcon from "assest/icon/rulesets-active-icon.svg";
 //
 const AddCollectionComponent = () => {
   const { shopNavigate } = useCustomNavigate();

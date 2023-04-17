@@ -1,12 +1,12 @@
 import { Box, Flex } from "@chakra-ui/react";
 
-import { SHIPING_TYPES } from "../../../../../constant/shipping-types";
+import { SHIPING_TYPES } from "constant/shipping-types";
 import {
   Text16px,
   SelectComponent,
   OptionComponent,
   InputComponent,
-} from "../../EditProductPage-style";
+} from "../../ProductPages-style";
 import { TECH_REDUCER_TYPES } from "../../reducer/technical-data-reducer";
 
 // this component handles shipping

@@ -1,12 +1,12 @@
 import { Flex, Box } from "@chakra-ui/react";
 import { useState } from "react";
-
-import { useToasty } from "../../../../../context/toastify/ToastContext";
-import { useApi } from "../../../../../hooks/useApi/useApi";
-//import { putUpdateProduct } from "../../../../../api-service/product/productApiService";
-import { putProductById } from "../../../../../apis/productsApiService";
-import { useCustomNavigate } from "../../../../../hooks/useCustomeNavigate/useCustomNavigate";
-import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+//
+import { useToasty } from "context/toastify/ToastContext";
+import { useApi } from "hooks/useApi/useApi";
+import { putProductById } from "apis/productsApiService";
+import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
+//
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 const ButtonComponent = ({ productIntro, TechnicalData, skus, productId }) => {
   const [loading, setLoading] = useState(false);
@@ -21,12 +21,16 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus, productId }) => {
     if (isEmpty(productIntro.title, "title")) return false;
     if (isEmpty(productIntro.description, "description")) return false;
     if (isEmpty(TechnicalData.productCollectionID, "collection")) return false;
+    if (skus.length === 0) {
+      errorToast(`Sku is required`);
+      return false;
+    }
     return true;
   };
 
   const isEmpty = (value, name) => {
-    if (value == "") {
-      errorToast(`Sku ${name} is required`);
+    if (value === "") {
+      errorToast(`${name} is required`);
       return true;
     }
   };
@@ -53,6 +57,8 @@ const ButtonComponent = ({ productIntro, TechnicalData, skus, productId }) => {
         successToast("Done success fully");
         shopNavigate("products");
       }
+
+      console.log('finalData ' ,finalData);
     }
   };
   return (

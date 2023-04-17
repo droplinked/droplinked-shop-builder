@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 
-import plusIcon from "../../../../../assest/icon/plus-icon.svg";
+import plusIcon from "assest/icon/plus-icon.svg";
 
 const AddRuleComponent = () => {
   return (

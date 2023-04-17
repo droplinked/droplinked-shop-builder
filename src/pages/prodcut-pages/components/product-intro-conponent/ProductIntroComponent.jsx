@@ -1,14 +1,15 @@
 import { Box } from "@chakra-ui/react";
-
-import { ComponentWrapper, ComponentTitle } from "../../EditProductPage-style";
-import { INTRO_REDUCER_TYPES } from "../../reducer/product-intro-reducer";
-
-import InputFieldComponent from "../../../../../components/shared/input-field-component/InputFieldComponent";
-import InputImagesGroup from "../../../components/InputImageGroupe/Input-images-component";
+//
+import { ComponentWrapper, ComponentTitle } from "./ProductIntroComponent-style";
+import { INTRO_REDUCER_TYPES } from "pages/prodcut-pages/reducer/product-intro-reducer";
+//
+import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
+import InputImagesGroup from "../InputImageGroupe/Input-images-component";
 
 
 // this component shows title and description and images and handle changes
 const ProductIntroComponent = ({ productIntro, dispatchIntro }) => {
+
   const changeTitle = (e) =>
     dispatchIntro({
       type: INTRO_REDUCER_TYPES.CHANGE_TITLE,

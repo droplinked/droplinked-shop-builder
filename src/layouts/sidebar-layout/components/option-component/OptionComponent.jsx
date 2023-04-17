@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { Tooltip } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
-
-import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
+//
+import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { IconComponent, IconWrapper } from "../../SidebarLayout-style";
 
 const OptionComponent = ({ icon, label, path }) => {

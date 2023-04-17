@@ -8,10 +8,11 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-
+//
 import { ComponentWrapper, ComponentTitle } from "../../AddProductPage-style";
-import { useToasty } from "../../../../../context/toastify/ToastContext";
-import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+import { useToasty } from "context/toastify/ToastContext";
+//
+import BasicButton from "components/shared/BasicButton/BasicButton";
 import SkuForm from "./SkuForm";
 import VariantForm from "./VariantForm";
 

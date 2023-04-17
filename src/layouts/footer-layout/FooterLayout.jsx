@@ -1,9 +1,6 @@
-import footerLogo from "../../assest/icon/Flatlay-Logo.png";
-import telegram from "../../assest/icon/telegram.png";
-import twiter from "../../assest/icon/brand.png";
-
 import { Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+//
 import {
   FooterWrapper,
   FooterBody,
@@ -14,6 +11,10 @@ import {
   TermText,
   FooterIcon,
 } from "./FooterLayout-style";
+//
+import footerLogo from "assest/icon/Flatlay-Logo.png";
+import telegram from "assest/icon/telegram.png";
+import twiter from "assest/icon/brand.png";
 
 export default function FooterLayout() {
   return (
