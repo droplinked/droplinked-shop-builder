@@ -44,6 +44,16 @@ const SkuComponent = ({
           },
         }}
       >
+        {OptionList?.length &&
+          OptionList?.map((option) => (
+            <Td key={option?.optionName}>
+              <Text>
+                {sku?.options?.find(
+                  (item) => item?.variantName === option?.optionName
+                )?.value ?? "-"}
+              </Text>
+            </Td>
+          ))}
         <Td>
           <Text>{sku.size}</Text>
         </Td>
@@ -99,7 +109,7 @@ const SkuComponent = ({
       </Tr>
 
       {showForm && (
-        <Td colSpan={5} px={0} border="none">
+        <Td colSpan={10} px={0} border="none">
           <SkuForm
             deleteSku={deleteSku}
             skus={skus}

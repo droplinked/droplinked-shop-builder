@@ -53,7 +53,7 @@ const VariantsComponent = ({ OptionList, skus, setSkus }) => {
   };
 
   const submitForm = (sku) => {
-    if (existSameOptions(sku)) return false;
+    if (existSameOptions(sku)) errorToast(`There is same sku`);
     let currentSkus = Array.from(skus);
     currentSkus.push({ ...sku, index: currentSkus.length, record: false });
     setSkus(currentSkus);
@@ -61,25 +61,20 @@ const VariantsComponent = ({ OptionList, skus, setSkus }) => {
   };
 
   const existSameOptions = (sku) => {
-    if (sku.options.length == 0) return false;
-    let result = false;
-    let thisSkuOption = sku.options;
-
-    skus.forEach((currentSku) => {
-      let isSame = true;
-      currentSku.options.forEach((option) => {
-        let find = thisSkuOption.find((op) => op.variantID == option.variantID);
-        if (find.value == "") isSame = false;
-        if (find.value != option.value) isSame = false;
-      });
-
-      if (isSame) {
-        errorToast(`There is same sku`);
-        result = true;
-        return;
-      }
+    if (sku.options.length === 0) return false;
+    const isSame = skus?.some((skuItem) => {
+      const skuOption = sku.options;
+      const skuItemOption = skuItem.options;
+      const findByVariantName = (variantName, data) => {
+        return data?.find((item) => item.variantName === variantName) ?? null;
+      };
+      return skuOption.every(
+        (opt) =>
+          findByVariantName(opt.variantName, skuItemOption)?.value ===
+          opt?.value
+      );
     });
-    return result;
+    return isSame;
   };
 
   return (
@@ -92,11 +87,20 @@ const VariantsComponent = ({ OptionList, skus, setSkus }) => {
           <Table>
             <Thead borderY="1px solid" borderColor="line">
               <Tr>
+                {OptionList?.length &&
+                  OptionList?.map((option, index) => (
+                    <Th
+                      py={4}
+                      fontSize="12px"
+                      fontWeight="500"
+                      color="lightGray"
+                      border="none"
+                      key={index}
+                    >
+                      {option?.optionName}
+                    </Th>
+                  ))}
                 {[
-                  {
-                    width: "20%",
-                    label: "Size",
-                  },
                   {
                     width: "16%",
                     label: "Quantity",
@@ -119,7 +123,7 @@ const VariantsComponent = ({ OptionList, skus, setSkus }) => {
                     fontSize="12px"
                     fontWeight="500"
                     key={item.label}
-                    w={item.width}
+                    // w={item.width}
                     color="lightGray"
                     border="none"
                   >

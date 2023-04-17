@@ -5,7 +5,6 @@ import { SideText } from "../../RegisterPages-style";
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 
 const SelectPagesComponent = () => {
-
   const { shopNavigate } = useCustomNavigate();
   const currentPath = useLocation().pathname;
 
@@ -16,6 +15,7 @@ const SelectPagesComponent = () => {
   return (
     <>
       <SideText
+        cursor={isSettings && "pointer"}
         color={currentPath.includes("shop-info") ? "primary" : "lightGray"}
         onClick={() => {
           if (isSettings) shopNavigate("settings/shop-info");

@@ -21,10 +21,10 @@ import {
 import { skuReducer } from "./sku-reducer";
 import { useApi } from "../../../../../hooks/useApi/useApi";
 import { initialReducer } from "./initial-reducer";
-import { existSameOptions } from "./utils";
 import { useToasty } from "../../../../../context/toastify/ToastContext";
 
 import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+import { existSameOptions } from "./utils";
 
 const SkuForm = ({
   closeForm,
@@ -40,7 +40,6 @@ const SkuForm = ({
   const [sku, dispatch] = useReducer(skuReducer, initial);
   const { errorToast } = useToasty();
   const { postApi, patchApi } = useApi();
-console.log('OptionList ' ,OptionList);
   useEffect(() => {
     dispatch({ type: "updateSku", payload: initial });
   }, [OptionList]);
@@ -59,10 +58,6 @@ console.log('OptionList ' ,OptionList);
     dispatch({ type: "updateWidth", payload: e.target.value });
   const changeHeight = (e) =>
     dispatch({ type: "updateHeight", payload: e.target.value });
-
-  const changeSize = (e) => {
-    dispatch({ type: "updateSize", payload: e.target.value });
-  };
 
   const changeOption = (value, optionId) => {
     let currentOptions = sku.options.map((option) => option);
@@ -103,37 +98,21 @@ console.log('OptionList ' ,OptionList);
 
     if (isEmpty(sku.dimensions.height, "height")) return false;
 
-    // let check = true;
-    // sku.options.forEach((option) => {
-    //   if (isEmpty(option.value, option.variantName)) {
-    //     check = false;
-    //     return;
-    //   }
-    // });
+    let check = true;
+    sku.options.forEach((option) => {
+      if (isEmpty(option.value, option.variantName)) {
+        check = false;
+        return;
+      }
+    });
 
-    // return check;
+    return check;
   };
 
   const submitForm = async () => {
     if (!isValidate()) return;
-    if (existSameOptions(skus, sku)) {
-      errorToast(`There is same sku`);
-      return;
-    }
+    if (existSameOptions(sku, skus)) errorToast(`There is same sku`);
     let result;
-    if (defaultValue) {
-      // result = await patchApi(
-      //   putUpdateSku(
-      //     sku._id,
-      //     sku.externalID,
-      //     sku.price,
-      //     sku.quantity,
-      //     sku.options
-      //   )
-      // );
-    } else {
-      // result = await postApi(postAddSkuToProduct(productId, sku));
-    }
     if (result) {
       updateProduct();
       dispatch({ type: "updateSku", payload: initial });
@@ -245,16 +224,7 @@ console.log('OptionList ' ,OptionList);
           </Flex>
         </InputWrapper>
 
-        {/* <InputWrapper>
-          <ComponentTitle>Size</ComponentTitle>
-          <SelectComponent bg="mainLayer" w="70%" onChange={changeSize}>
-            {["xl", "lg", "md", "sm", "xs"].map((item) => (
-              <OptionComponent key={item}>{item}</OptionComponent>
-            ))}
-          </SelectComponent>
-        </InputWrapper> */}
-
-        {OptionList.map((option) => {
+        {OptionList?.map((option) => {
           return (
             <InputWrapper mt="16px" key={option.index}>
               <ComponentTitle>{option.optionName}</ComponentTitle>
@@ -266,7 +236,7 @@ console.log('OptionList ' ,OptionList);
                 <OptionComponent selected disabled hidden>
                   Select {option.optionName}
                 </OptionComponent>
-                {option.values.map((value) => {
+                {option?.values?.map((value) => {
                   return (
                     <OptionComponent key={value.index} value={value.value}>
                       {value.value}

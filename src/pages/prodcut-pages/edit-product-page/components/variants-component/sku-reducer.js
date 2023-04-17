@@ -26,8 +26,6 @@ export function skuReducer(state, action) {
         dimensions: { ...state.dimensions, height: parseFloat(action.payload) },
       };
 
-    case "updateSize":
-      return { ...state, size: action.payload };
     case "updateOptions":
       return {
         ...state,
