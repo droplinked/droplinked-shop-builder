@@ -25,6 +25,7 @@ import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 import theme1Image from "./theme-1.jpg";
 import theme2Image from "./theme-2.jpg";
 import theme3Image from "./theme-3.jpg";
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 const INITIAL_SHOP_Design = {
   logo: "",
@@ -251,9 +252,13 @@ const DesignPage = () => {
       </PageContentWrapper>
       <Box mb="36px" />
 
-      <SubmitButton width="200px" click={clickSubmit} loading={loading}>
-        Save & next step
-      </SubmitButton>
+      <Flex justifyContent={"right"} width={"100%"}>
+        <Box>
+          <BasicButton size="lg" click={clickSubmit} loading={loading}>
+            Save & next step
+          </BasicButton>
+        </Box>
+      </Flex>
     </PageContent>
   );
 };

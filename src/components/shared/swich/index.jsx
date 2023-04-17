@@ -3,10 +3,10 @@ import { Switch, createMultiStyleConfigHelpers, extendTheme } from '@chakra-ui/r
 import React from 'react'
 import classes from './style.module.scss'
 
-function AppSwitch({...args}) {
+function AppSwitch({ ...args }) {
 
     return (
-        <Switch  {...args} size='md' className={classes.switch} colorScheme='green'  />
+        <Switch {...args} size='md' className={classes.switch} colorScheme='green' />
     )
 }
 

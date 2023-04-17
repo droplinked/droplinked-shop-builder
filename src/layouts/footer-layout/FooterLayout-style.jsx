@@ -2,20 +2,22 @@ import { chakra } from "@chakra-ui/react";
 
 export const FooterWrapper = chakra("div", {
   baseStyle: {
-    height: "82px",
     minWidth: "100%",
-    padding: { base: "0px 20px", md: "0px 40px" ,lg:'0px 80px' },
-    backgroundColor: "bG",
+    padding: { base: "30px 20px", md: "70px 40px", lg: '70px 80px' },
+    backgroundColor: "#000",
     display: "flex",
+    justifyContent: "center",
+    color: "#FFF"
   },
 });
 
 export const FooterBody = chakra("div", {
   baseStyle: {
-    width: "100%",
-    margin: "auto 0px",
+    width: "90%",
+    margin: "auto",
     height: "auto",
     display: "flex",
+    alignItems: "baseline",
     flexDir: { base: "column", md: "row" },
     justifyContent: { base: "center", md: "space-between" },
   },
@@ -48,6 +50,7 @@ export const FooterLogo = chakra("img", {
 
 export const RightSide = chakra("div", {
   baseStyle: {
+    width: "30%",
     margin: { base: "12px 0px 0px 0px", md: "auto 0px" },
     display: "flex",
     justifyContent: { base: "center", md: "start" },
@@ -57,22 +60,19 @@ export const RightSide = chakra("div", {
 
 export const TermText = chakra("span", {
   baseStyle: {
-    fontWeight: { base: "500", md: "400" },
-    fontSize: "12px ",
+    fontWeight: "bold",
+    fontSize: "15px",
     lineHeight: "16px",
     textAlign: "right",
-    color: "lightGray",
-    mr: { base: "12px", md: "32px" },
-    mt: "auto",
-    mb: "auto",
+    color: "#808080",
   },
 });
 
 
 
 export const FooterIcon = chakra("img", {
-    baseStyle: {
-      width: { base: "16px", md: "25px" },
-      height: { base: "16px", md: "25px" },
-    },
-  });
+  baseStyle: {
+    width: { base: "16px", md: "25px" },
+    height: { base: "16px", md: "25px" },
+  },
+});

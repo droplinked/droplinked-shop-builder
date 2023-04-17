@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, FormLabel, Text } from "@chakra-ui/react";
 import { useState, useEffect, useReducer, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -23,6 +23,7 @@ import AddressComponent from "../../component/address-component/AddressComponent
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 
 import InputFieldComponent from "../../../../components/shared/input-field-component/InputFieldComponent";
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 const INITIAL_SHOP_INFO = {
   description: "",
@@ -175,13 +176,18 @@ const RegisterShopInfo = () => {
             />
           )}
         </PageContentWrapper>
-        <SubmitButton
-          click={clickOnSave}
-          disabled={diableButton}
-          loading={loading}
-        >
-          Save & next step
-        </SubmitButton>
+        <Flex justifyContent={"right"} marginTop={8} width={"100%"}>
+          <Box>
+            <BasicButton
+              click={clickOnSave}
+              disabled={diableButton}
+              loading={loading}
+              size="lg"
+            >
+              Save & next step
+            </BasicButton>
+          </Box>
+        </Flex>
       </PageContent>
 
       <AddressModal

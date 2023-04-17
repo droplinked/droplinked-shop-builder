@@ -2,7 +2,7 @@ import { PageContent, PageContentWrapper } from 'pages/register-pages/RegisterPa
 import React, { useCallback, useEffect, useState } from 'react'
 import Ims from './parts/ims'
 import Payments from './parts/payment'
-import { Box, VStack } from '@chakra-ui/react'
+import { Box, Flex, VStack } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
 import { useLocation } from 'react-router-dom'
@@ -14,6 +14,7 @@ import SubmitButton from 'pages/register-pages/component/submit-buttons/SubmitBu
 import technicalContext, { technicalContextState } from './context'
 import technicalModel from './model'
 import Wallet from './parts/wallet'
+import BasicButton from 'components/shared/BasicButton/BasicButton'
 
 function Technical() {
   const [Technical, setTechnical] = useState(technicalContextState)
@@ -70,11 +71,13 @@ function Technical() {
             <Ims />
             <Payments />
             <Wallet />
-            <Box>
-              <SubmitButton width="200px" disabled={validate().status} click={clickSubmit}>
-                Save & next step
-              </SubmitButton>
-            </Box>
+            <Flex justifyContent={"right"} width={"100%"}>
+              <Box>
+                <BasicButton size="lg" disabled={validate().status} click={clickSubmit}>
+                  Save & next step
+                </BasicButton>
+              </Box>
+            </Flex>
           </VStack>
         </PageContentWrapper>
       </PageContent>

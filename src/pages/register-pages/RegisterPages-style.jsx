@@ -38,7 +38,7 @@ export const PageContentWrapper = chakra("div", {
     w: "100%",
     bg: "mainLayer",
     borderRadius: "8px",
-    padding: "50px 60px",
+    padding: {base: "50px 20px", md:"50px 60px"},
   },
 });
 
