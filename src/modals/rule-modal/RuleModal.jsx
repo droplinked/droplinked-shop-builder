@@ -66,13 +66,16 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     const requestBody = {
       collectionID: collectionId,
       gated: gated,
-      rules: {
-        addresses: addresses?.split(","),
-        type: chainType,
-        discountPercentage: +discount,
-        nftsCount: +counter,
-        description: tagName,
-      },
+      rules: [
+        {
+          addresses: addresses?.split(","),
+          discountPercentage: +discount,
+          type: "NFT",
+          nftsCount: +counter,
+          description: tagName,
+        },
+      ],
+      type: chainType,
       webUrl: webUrl,
       redeemedNFTs: [],
     };
