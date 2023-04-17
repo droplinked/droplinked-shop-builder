@@ -17,6 +17,7 @@ import { setCurrentUser } from "../../store/profile/profile.action";
 import { postLoginByEmail } from "../../apis/authApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 import { useProfile } from "../../hooks/useProfile/useProfile";
+import { appDeveloment } from "utils/app/variable";
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   // state for disable buttons
@@ -70,7 +71,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     //first close modal
     close();
     
-    const status = process.env.NODE_ENV === 'development' && data.user.status === "NEW" ? "VERIFIED" : data.user.status
+    const status = appDeveloment && data.user.status === "NEW" ? "VERIFIED" : data.user.status
 
     // if (data.user.type == USER_TYPE.CUSTOMER) {
     //   dispatch(setCurrentUser(data));
