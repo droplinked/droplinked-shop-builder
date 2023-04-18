@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { useRef, useState } from "react";
+import { useRef, useState , useMemo } from "react";
 
 import {
   FormControl,
@@ -13,11 +13,19 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useToasty } from "../../../../../../context/toastify/ToastContext";
+import { BANNER_DEFAULT_IMSGES } from "../../default-images";
 
 import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
 
 const InputImage = ({ label, placeHolder, change, value }) => {
   const [loading, setLoading] = useState(false);
+
+  const imageSrc = useMemo(()=>{
+    const imageName = BANNER_DEFAULT_IMSGES.find(
+      (element) => element.banner_src === value
+    );
+    return imageName?imageName.image:value
+  },[value])
 
   const fileRef = useRef(null);
   const { successToast, errorToast } = useToasty();
@@ -76,7 +84,7 @@ const InputImage = ({ label, placeHolder, change, value }) => {
         {placeHolder}
       </Text>
 
-      {value ? (
+      {imageSrc ? (
         <Flex
           w="100%"
           h="200px"
@@ -86,7 +94,7 @@ const InputImage = ({ label, placeHolder, change, value }) => {
           borderRadius="8px"
           bg="subLayer"
         >
-          <Image w="auto" maxH="100%" h="auto" onClick={openFile} src={value} />
+          <Image w="auto" maxH="100%" h="auto" onClick={openFile} src={imageSrc} />
         </Flex>
       ) : (
         <Box

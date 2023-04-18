@@ -21,7 +21,7 @@ export function shopDesignReducer(state, action) {
     case SHOP_REDUCER_TYPES.SET_BACKGROUNED_TEXT:
       return { ...state, backgroundText: action.payload };
     case SHOP_REDUCER_TYPES.SET_BACKGROUNED_BANNER:
-      return { ...state, backgroundImage: action.payload };
+      return { ...state, backgroundImage: action.payload , backgroundImageSecondary: action.payload };
     case SHOP_REDUCER_TYPES.SET_THEME:
       return { ...state, theme: action.payload };
     case SHOP_REDUCER_TYPES.SET_TEXT_COLOR:
