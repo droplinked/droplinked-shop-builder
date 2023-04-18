@@ -94,8 +94,8 @@ const ContactInfo = () => {
     setLoading(false);
 
     if (result) {
-      if (currentPath.includes("register")) shopNavigate(`register/design`);
-      else successToast("Updated");
+       shopNavigate(`products`);
+       successToast("Updated");
     }
   };
 
