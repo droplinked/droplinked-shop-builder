@@ -1,6 +1,5 @@
 // returns intro data with correct format
 export const getIntroData = (product) => {
-
   return {
     title: product.title,
     description: product.description,
@@ -17,7 +16,6 @@ export const getTechnicalData = (product) => {
 };
 // returns options data with correct format
 export const getPropertiesData = (product) => {
-  console.log('product ' , product)
   let currentOption = [];
   product.skuIDs[0].options.forEach((option, i) => {
     currentOption.push({
@@ -37,24 +35,21 @@ export const getPropertiesData = (product) => {
       };
     });
   });
-  console.log('currentOption ' , currentOption)
- return currentOption;
+  return currentOption;
 };
 // returns skus data with correct format
 export const getSkusData = (product) => {
-  console.log('product ' , product)
   let x = product.skuIDs.map((sku) => {
     return {
       _id: sku._id,
       price: sku.price,
       quantity: sku.quantity,
-     // record: sku.record,
-      weight:sku.weight ,
-    //  options:sku.options,
-      dimensions:sku.dimensions,
-      externalID:sku.externalID
+      // record: sku.record,
+      weight: sku.weight,
+      //  options:sku.options,
+      dimensions: sku.dimensions,
+      externalID: sku.externalID,
     };
   });
-  console.log('x ' , x)
-  return x
+  return x;
 };

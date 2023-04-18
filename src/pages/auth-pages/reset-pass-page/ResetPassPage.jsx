@@ -1,14 +1,17 @@
-import "./ResetPassPage-style.scss";
-
-import BasicButton from "../../../components/shared/BasicButton/BasicButton";
-import InputFieldComponent from "../../../components/shared/input-field-component/InputFieldComponent";
-
-import { useParams, useNavigate } from "react-router-dom";
-import { toastValue } from "../../../context/toastify/ToastContext";
 import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { putUserRecoveryAccount } from "../../../apis/userApiService";
-import { useApi } from "../../../hooks/useApi/useApi";
+import { useParams, useNavigate } from "react-router-dom";
+//
+import { toastValue } from "context/toastify/ToastContext";
+import { putUserRecoveryAccount } from "apis/userApiService";
+import { useApi } from "hooks/useApi/useApi";
+//
+import "./ResetPassPage-style.scss";
+//
+import BasicButton from "components/shared/BasicButton/BasicButton";
+import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
+
+
 
 export default function ResetPassPage() {
   const [newPass, setNewpass] = useState("");

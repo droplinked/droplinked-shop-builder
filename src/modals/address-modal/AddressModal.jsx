@@ -1,19 +1,19 @@
 import { Box, Flex, FormControl, FormLabel, Stack } from "@chakra-ui/react";
 import { useState } from "react";
-
-import { useToasty } from "../../context/toastify/ToastContext";
+//
+import { useToasty } from "context/toastify/ToastContext";
 import { COUNTRIES, US_STATES } from "./address-list-constant";
 import {
   postCreateAddress,
   putUpdateAddress,
-} from "../../apis/addressApiService";
-import { useApi } from "../../hooks/useApi/useApi";
+} from "apis/addressApiService";
+import { useApi } from "hooks/useApi/useApi";
 import { TopText } from "./AddressModal-style";
-
+//
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import SelectInputComponent from "./components/select-input-component/SelectInputComponent";
-import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
+import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 export default function AddressModal({
   show,
@@ -147,7 +147,7 @@ export default function AddressModal({
     else {
       const formData = {
         firstName: firstname,
-        lastName: lastname,  
+        lastName: lastname,
         addressLine1: line1,
         addressLine2: line2,
         country,
@@ -269,16 +269,17 @@ export default function AddressModal({
             value={lastname}
             change={ChangeLastname}
           />
-          </Flex>
+        </Flex>
 
         <Flex justifyContent="space-between">
           <Box w="40%">
-            <BasicButton click={close} cancelType={true}>
+            <BasicButton width="100%" click={close} cancelType={true}>
               Cancel
             </BasicButton>
           </Box>
           <Box w="40%">
             <BasicButton
+              width="100%"
               click={submitForm}
               disabled={loading}
               loading={loading}

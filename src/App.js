@@ -2,18 +2,35 @@ import "./App.scss";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
-import Enquiry from "./pages/public-pages/enquiry-page/EnquiryPage";
-import EditProductPage from "./pages/prodcut-pages/edit-product-page/EditProductPage";
-import AdminWrapper from "./pages/wrappers/admin-wrapper/AdminWrapper";
-import RegisterPagesWrapper from "./pages/register-pages/RegisterPageWrapper";
-import RegisterShopInfo from "./pages/register-pages/pages/shop-info/ShopInfo";
-import ContactInfo from "./pages/register-pages/pages/contact-info/ContactInfo";
-import DesignPage from "./pages/register-pages/pages/design/DesignPage";
-import ProductsPage from "./pages/prodcut-pages/products-page/ProductsPage";
-import RulePage from "./pages/admin-pages/rules-page/RulesPage";
-
+const Enquiry = lazy(() =>
+  import("./pages/public-pages/enquiry-page/EnquiryPage")
+);
+const EditProductPage = lazy(() =>
+  import("./pages/prodcut-pages/edit-product-page/EditProductPage")
+);
+const AdminWrapper = lazy(() =>
+  import("./pages/wrappers/admin-wrapper/AdminWrapper")
+);
+const RegisterPagesWrapper = lazy(() =>
+  import("./pages/register-pages/RegisterPageWrapper")
+);
+const RegisterShopInfo = lazy(() =>
+  import("./pages/register-pages/pages/shop-info/ShopInfo")
+);
+const ContactInfo = lazy(() =>
+  import("./pages/register-pages/pages/contact-info/ContactInfo")
+);
+const DesignPage = lazy(() =>
+  import("./pages/register-pages/pages/design/DesignPage")
+);
+const TechnicalPage = lazy(() =>
+  import("./pages/register-pages/pages/technical")
+);
+const ProductsPage = lazy(() =>
+  import("./pages/prodcut-pages/products-page/ProductsPage")
+);
+const RulePage = lazy(() => import("./pages/admin-pages/rules-page/RulesPage"));
 const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
 const LandingPage = lazy(() =>
   import("./pages/public-pages/landing-page/LandingPage")
@@ -33,17 +50,14 @@ const ResetPassPage = lazy(() =>
 const ThankForRegisterPage = lazy(() =>
   import("./pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage")
 );
-
 const AddProductPage = lazy(() =>
   import("./pages/prodcut-pages/add-product-page/AddProductPage")
 );
-
 const CollectionMainPage = lazy(() =>
   import(
     "./pages/admin-pages/collections-pages/collection-page/CollectionsPage"
   )
 );
-
 const AddCollectionPage = lazy(() =>
   import(
     "./pages/admin-pages/collections-pages/add-collection-page/AddCollectionPage"
@@ -84,11 +98,13 @@ function App() {
                 <Route path="shop-info" element={<RegisterShopInfo />} />
                 <Route path="contact-info" element={<ContactInfo />} />
                 <Route path="design" element={<DesignPage />} />
+                <Route path="technical" element={<TechnicalPage />} />
               </Route>
               <Route path="settings" element={<RegisterPagesWrapper />}>
                 <Route path="shop-info" element={<RegisterShopInfo />} />
                 <Route path="contact-info" element={<ContactInfo />} />
                 <Route path="design" element={<DesignPage />} />
+                <Route path="technical" element={<TechnicalPage />} />
               </Route>
               <Route path="products" element={<ProductsPage />} />
               <Route path="add-product" element={<AddProductPage />} />

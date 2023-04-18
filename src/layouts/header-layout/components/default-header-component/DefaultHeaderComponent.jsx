@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-
+//
 import {
   HeaderWrapper,
   HeaderTitle,
   HeaderButton,
 } from "../../HeaderLayout-style";
-
-import AuthModal from "../../../../modals/auth-modal/AuthModal";
+//
+import AuthModal from "modals/auth-modal/AuthModal";
 
 const DefaultHeaderComponent = () => {
   const [authModal, setAuthModal] = useState(false);

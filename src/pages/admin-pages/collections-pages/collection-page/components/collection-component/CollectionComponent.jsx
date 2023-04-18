@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Tr,
   Td,
@@ -9,11 +10,10 @@ import {
   PopoverContent,
   Button,
 } from "@chakra-ui/react";
-
-import moreIcon from "../../../../../../assest/icon/more-icon.svg";
-import CollectionModal from "../../../../../../modals/collection-modal/CollectionModal";
-import { useState } from "react";
-import RuleModal from "../../../../../../modals/rule-modal/RuleModal";
+//
+import moreIcon from "assest/icon/more-icon.svg";
+import CollectionModal from "modals/collection-modal/CollectionModal";
+import RuleModal from "modals/rule-modal/RuleModal";
 
 const CollectionComponent = ({ collection, update }) => {
   //
@@ -88,13 +88,16 @@ const CollectionComponent = ({ collection, update }) => {
           </Popover>
         </Td>
       </Tr>
-      <RuleModal
-        show={ruleModal}
-        close={toggleRuleModal}
-        collectionId={collection._id}
-        update={update}
-        ruleId={collection.ruleSetID || undefined}
-      />
+      {ruleModal && (
+        <RuleModal
+          show={ruleModal}
+          close={toggleRuleModal}
+          collectionId={collection._id}
+          update={update}
+          ruleId={collection.ruleSetID || undefined}
+        />
+      )}
+
       <CollectionModal
         show={editModal}
         collection={collection}

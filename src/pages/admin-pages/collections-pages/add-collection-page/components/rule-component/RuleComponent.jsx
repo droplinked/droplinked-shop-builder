@@ -1,8 +1,9 @@
+// externall
 import React from "react";
 import { Tr, Td, Image, Text, IconButton, Stack } from "@chakra-ui/react";
-
-import editIcon from "../../../../../../assest/icon/edit-icon.svg";
-import infoIcon from "../../../../../../assest/icon/info-icon.svg";
+// internall
+import editIcon from "assest/icon/edit-icon.svg";
+import infoIcon from "assest/icon/info-icon.svg";
 
 function RuleComponent() {
   return (

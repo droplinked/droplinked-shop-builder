@@ -20,6 +20,7 @@ export const ModalContainerWrapper = chakra("div", {
     top: "0",
     width: "100%",
     height: "100%",
+    margin: "0 !important",
     overflow: "auto",
     backgroundColor: "rgba(0, 0, 0, 0.9)",
     padding: { base: "30px 30px 30px 30px", md: "100px 0px 50px 0px" },

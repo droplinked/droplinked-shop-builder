@@ -1,22 +1,22 @@
 import { useSelector } from "react-redux";
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
-
+//
 import {
   ProducerCollectionWrapper,
   ProductsWrapper,
 } from "./CollectionComponent-style";
-import { useToasty } from "../../../../../context/toastify/ToastContext";
-import { deleteCollection } from "../../../../../apis/collectionApiService";
-import { useApi } from "../../../../../hooks/useApi/useApi";
-import { USER_TYPE } from "../../../../../constant/user-types";
-import { selectCurrentProfile } from "../../../../../store/profile/profile.selector";
-
-import SmallModal from "../../../../../modals/small-modal/SmallModal";
-import ProductComponent from "../../../../../components/shared/product-component/ProductComponent";
-import CollectionModal from "../../../../../modals/collection-modal/CollectionModal";
+import { useToasty } from "context/toastify/ToastContext";
+import { deleteCollection } from "apis/collectionApiService";
+import { useApi } from "hooks/useApi/useApi";
+import { USER_TYPE } from "constant/user-types";
+import { selectCurrentProfile } from "store/profile/profile.selector";
+//
+import SmallModal from "modals/small-modal/SmallModal";
+import ProductComponent from "components/shared/product-component/ProductComponent";
+import CollectionModal from "modals/collection-modal/CollectionModal";
 import CollectionHeaderComponent from "./CollectionHeaderComponent";
-import RuleModal from "../../../../../modals/rule-modal/RuleModal";
+import RuleModal from "modals/rule-modal/RuleModal";
 import AddCollectionComponent from "../add-collection-component/AddCollectionComponent";
 
 const CollectionComponent = ({ collection, update }) => {

@@ -1,7 +1,8 @@
 import { Box } from "@chakra-ui/react";
-import { ProductContent, ProductImage, ProductTitle } from "./ProductComponent-style";
 import { Link } from "react-router-dom";
-import { USER_TYPE } from "../../../constant/user-types";
+//
+import { ProductContent, ProductImage, ProductTitle } from "./ProductComponent-style";
+import { USER_TYPE } from "constant/user-types";
 
 export default function ProductComponent({ title, imageUrl, id, shopname, type }) {
   let linkAddress =

@@ -8,18 +8,18 @@ import {
   Box,
   useDisclosure 
 } from "@chakra-ui/react";
-
-import { useProfile } from "../../../../hooks/useProfile/useProfile";
-import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
+//
+import { useProfile } from "hooks/useProfile/useProfile";
+import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import {
   UserHeaderWrapper,
   UserHeaderIcon,
   ShopnameText,
   ShopnIcon,
 } from "../../HeaderLayout-style";
-
-import droplinkedIcon from "../../../../assest/image/green-droplinked-logo.svg";
-import shopIconSvg from "../../../../assest/icon/shop-green-icon.svg";
+//
+import droplinkedIcon from "assest/image/green-droplinked-logo.svg";
+import shopIconSvg from "assest/icon/shop-green-icon.svg";
 
 const UserHeaderComponent = () => {
   const { onOpen, onClose, isOpen } = useDisclosure()

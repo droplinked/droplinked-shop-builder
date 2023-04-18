@@ -20,7 +20,6 @@ const VariantsComponent = ({ OptionList, skus, productId, updateProduct }) => {
   const [openForm, setOpenForm] = useState(false);
 
   const toggleForm = () => setOpenForm((p) => !p);
-
   return (
     <ComponentWrapper>
       <ComponentTitle>Variants</ComponentTitle>
@@ -31,11 +30,20 @@ const VariantsComponent = ({ OptionList, skus, productId, updateProduct }) => {
           <Table>
             <Thead borderY="1px solid" borderColor="line">
               <Tr>
+                {OptionList?.length &&
+                  OptionList?.map((option, index) => (
+                    <Th
+                      py={4}
+                      fontSize="12px"
+                      fontWeight="500"
+                      color="lightGray"
+                      border="none"
+                      key={index}
+                    >
+                      {option?.optionName}
+                    </Th>
+                  ))}
                 {[
-                  {
-                    width: "20%",
-                    label: "Size",
-                  },
                   {
                     width: "16%",
                     label: "Quantity",
@@ -58,7 +66,7 @@ const VariantsComponent = ({ OptionList, skus, productId, updateProduct }) => {
                     fontSize="12px"
                     fontWeight="500"
                     key={item.label}
-                    w={item.width}
+                    // w={item.width}
                     color="lightGray"
                     border="none"
                   >

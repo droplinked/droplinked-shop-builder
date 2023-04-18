@@ -29,11 +29,11 @@ export const InputAddImage = chakra("div", {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    flexDir:'column',
+    flexDir: "column",
     width: "100%",
     height: "100%",
-    bg:'subLayer',
-   // border: "2px solid rgb(173, 173, 173)",
+    bg: "subLayer",
+    // border: "2px solid rgb(173, 173, 173)",
     borderRadius: "8px",
     transition: "0.5s",
     // _hover: {
@@ -51,11 +51,11 @@ export const AddImageText = chakra("p", {
 
 export const DeleteIcon = chakra("img", {
   baseStyle: {
-    width: "34px",
-    height: "34px",
+    width: "40px",
+    height: "40px",
     position: "absolute",
-    left: "-10px ",
-    top: "-10px",
+    right: "10px",
+    top: "10px",
     display: "inline",
   },
 });

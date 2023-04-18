@@ -21,16 +21,18 @@ import InputImage from "./components/input-image/InputImage";
 import InputColor from "./components/input-color/InputColor";
 import InputComponent from "../../component/input-component/InputComponent";
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
+import DesktopBannerComponent from "./components/desktop-banner-component/DesktopBannerComponent";
 
 import theme1Image from "./theme-1.jpg";
 import theme2Image from "./theme-2.jpg";
 import theme3Image from "./theme-3.jpg";
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 const INITIAL_SHOP_Design = {
   logo: "",
   headerIcon: "",
   textColor: "#ffffff",
-  theme: "theme-1",
+  theme: "theme-2",
   backgroundText: "",
   backgroundImage: "",
   backgroundImageSecondary: "",
@@ -38,7 +40,7 @@ const INITIAL_SHOP_Design = {
 };
 
 const IMAGES = [
-  { img: theme1Image, name: "theme-1" },
+  // { img: theme1Image, name: "theme-1" },
   { img: theme2Image, name: "theme-2" },
 ];
 
@@ -51,7 +53,7 @@ const DesignPage = () => {
     INITIAL_SHOP_Design
   );
 
-  const { errorToast ,successToast } = useToasty();
+  const { errorToast, successToast } = useToasty();
   const { putApi } = useApi();
   const { shop, updateShopData } = useProfile();
   const { shopNavigate } = useCustomNavigate();
@@ -61,14 +63,14 @@ const DesignPage = () => {
     const initial_value = {
       logo: shop.logo ? shop.logo : "",
       headerIcon: shop.headerIcon ? shop.headerIcon : "",
-      textColor: shop.textColor ? shop.textColor : "#ffffff",
-      theme: shop.theme ? shop.theme : "theme-1",
+      textColor: shop.textColor ? shop.textColor : "#000",
+      theme: shop.theme ? shop.theme : "theme-2",
       backgroundText: shop.backgroundText ? shop.backgroundText : "",
       backgroundImage: shop.backgroundImage ? shop.backgroundImage : "",
       backgroundImageSecondary: shop.backgroundImageSecondary
         ? shop.backgroundImageSecondary
         : "",
-      backgroundColor: shop.backgroundColor ? shop.backgroundColor : "#000000",
+      backgroundColor: shop.backgroundColor ? shop.backgroundColor : "#fff",
     };
     dispatch({
       type: SHOP_REDUCER_TYPES.INITIALIZE,
@@ -123,10 +125,10 @@ const DesignPage = () => {
     });
   };
 
-  const changeBackgroundColor = (e) => {
+  const changeBackgroundColor = (value) => {
     dispatch({
       type: SHOP_REDUCER_TYPES.SET_BACKGROUND_COLOR,
-      payload: e.target.value,
+      payload: value,
     });
   };
   const changeBackgroundImageSecondary = (image) => {
@@ -146,10 +148,12 @@ const DesignPage = () => {
     updateShopData();
     setLoading(false);
     if (result) {
-      if (currentPath.includes("register")) shopNavigate(`products`);
-      else successToast("Updated");
+      if (!currentPath.includes("register")) successToast("Updated");
+      shopNavigate(`register/technical`);
     }
   };
+
+  console.log('designData.backgroundColor ' , designData.backgroundColor);
 
   return (
     <PageContent>
@@ -209,21 +213,28 @@ const DesignPage = () => {
           change={changeDescription}
           value={designData.backgroundText}
         />
+
         <Box mb="48px" />
+
         <InputImage
           label="Header banner"
           placeHolder="This image will display at the top of the store page."
           change={changeBanner}
           value={designData.backgroundImage}
         />
+        <Box mb="24px" />
+        <DesktopBannerComponent
+          change={changeBanner}
+          value={designData.backgroundImage}
+        />
         <Box mb="48px" />
-        <InputImage
+        {/* <InputImage
           label="Header banner Phone"
           placeHolder="This image will display at the top of the store page (Phone)."
           change={changeBackgroundImageSecondary}
           value={designData.backgroundImageSecondary}
         />
-        <Box mb="48px" />
+        <Box mb="48px" /> */}
         <Flex
           w="100%"
           alignItems="center"
@@ -241,6 +252,7 @@ const DesignPage = () => {
             designData.theme === "theme-2") && (
             <Box w="50%">
               <InputColor
+              banner={designData.backgroundImage}
                 value={designData.backgroundColor}
                 change={changeBackgroundColor}
                 label="Color background"
@@ -251,9 +263,13 @@ const DesignPage = () => {
       </PageContentWrapper>
       <Box mb="36px" />
 
-      <SubmitButton width="200px" click={clickSubmit} loading={loading}>
-        Save & next step
-      </SubmitButton>
+      <Flex justifyContent={"right"} width={"100%"}>
+        <Box>
+          <BasicButton size="lg" click={clickSubmit} loading={loading}>
+            Save & next step
+          </BasicButton>
+        </Box>
+      </Flex>
     </PageContent>
   );
 };

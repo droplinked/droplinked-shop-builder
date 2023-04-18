@@ -1,55 +1,43 @@
-import { ModalHeader, AddRuleButton, TypeSelect } from "./RuleModal-style";
-import { Box, Flex } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
-
-// import {
-//   addRuleset,
-//   getRuleById,
-//   updateRule,
-// } from "../../api/producer/Ruleset-api";
-import {
-  postCreateRuleset,
-  getRulesetById,
-  putUpdateRuleset,
-} from "../../apis/rulesetApiService";
-//import { getRulesById } from "../../api-service/rules/rulesApiService";
-import { useToasty } from "../../context/toastify/ToastContext";
+import { useApi } from "hooks/useApi/useApi";
+import { useEffect, useState } from "react";
 import { RuleTypes } from "./rule-type";
-import { useApi } from "../../hooks/useApi/useApi";
-// import deleteIcon from "../../../assest/icon/delete-icon.svg";
-import RuleItem from "./RuleItem";
-import FillInputComponent from "./components/FillInputComponent";
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
-import AddRuleComponent from "./AddRuleComponent";
-import LoadingComponent from "../../components/shared/loading-component/LoadingComponent";
-import ModalWrapper from "../modal-wrapper/ModalWrapper";
+import {
+  getRulesetById,
+  postCreateRuleset,
+  putUpdateRuleset,
+} from "apis/rulesetApiService";
+import ModalWrapper from "modals/modal-wrapper/ModalWrapper";
+import {
+  ModalHeader,
+  OptionComponent,
+  SelectComponent,
+} from "./RuleModal-style";
+import { Box, Flex, Stack } from "@chakra-ui/react";
+import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
+import BasicButton from "components/shared/BasicButton/BasicButton";
+import LoadingComponent from "components/shared/loading-component/LoadingComponent";
 import { ChainTypes } from "./chain-type";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
-  //
-  const { errorToast, successToast } = useToasty();
   const { getApi, postApi, putApi } = useApi();
-  // this state for list of rules
-  const [Rulelist, setRulelist] = useState([]);
-  // this state used for web url address
   const [webUrl, setWebUrl] = useState("");
-  //this state used for  rule type
+  const [discount, setDiscount] = useState("");
+  const [chainType, setChainType] = useState("");
+  const [tagName, setTagName] = useState("");
+  const [counter, setCounter] = useState("");
+  const [addresses, setAddresses] = useState([]);
   const [ruleType, setRuleType] = useState(RuleTypes.DISCOUNT);
-  //this state used for  chain type
-  const [chainType, setChainType] = useState(ChainTypes.ETH);
-  //this state used add new rule
-  const [addNewRule, setAddNewRule] = useState(false);
-
   const [loading, setLoading] = useState(false);
-
+  //
   const changeWebUrl = (e) => setWebUrl(e.target.value);
-
   const changeRuleType = (e) => setRuleType(e.target.value);
+  const changeDiscount = (e) => setDiscount(e.target.value);
   const changeChainType = (e) => setChainType(e.target.value);
-
-  const toggleRuleModal = () => setAddNewRule((p) => !p);
-
+  const changeTagName = (e) => setTagName(e.target.value);
+  const changeCounter = (e) => setCounter(e.target.value);
+  const changeAddresses = (e) => setAddresses(e.target.value);
+  //
   useEffect(() => {
     if (ruleId != undefined) {
       getRuleData();
@@ -59,82 +47,44 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const getRuleData = async () => {
     setLoading(true);
     let result = await getApi(getRulesetById(ruleId));
-
     if (result) initializeRule(result);
     setLoading(false);
   };
-  //
+
   const initializeRule = (rule) => {
-    setWebUrl(rule.webUrl);
     if (rule.gated) setRuleType(RuleTypes.GATED);
-    let initialRuleList = rule.rules.map((currentRule) => {
-      return {
-        addresses: currentRule.addresses,
-        type: currentRule.type,
-        counter: currentRule.nftsCount ? currentRule.nftsCount : "",
-        discount: currentRule.discountPercentage,
-        des: currentRule.description,
-      };
-    });
-    setRulelist(initialRuleList);
-  };
-
-  const deleteRule = (index) => {
-    let newArray = Array.from(Rulelist);
-    newArray = newArray.filter((rule, i) => {
-      return i != index;
-    });
-    setRulelist(newArray);
-  };
-
-  const addToRules = (newRule) => {
-    let currentRuleArray = Array.from(Rulelist);
-    currentRuleArray.push(newRule);
-    setRulelist(currentRuleArray);
-  };
-
-  const editRule = (newRule, index) => {
-    let currentRuleArray = Array.from(Rulelist);
-    currentRuleArray = currentRuleArray.map((rule, i) => {
-      if (index == i) {
-        return { ...newRule };
-      } else {
-        return { ...rule };
-      }
-    });
-    setRulelist(currentRuleArray);
+    setWebUrl(rule.webUrl);
+    setDiscount(rule.rules?.[0]?.discountPercentage);
+    setChainType(rule.rules?.[0]?.type);
+    setTagName(rule.rules?.[0]?.description);
+    setCounter(rule.rules?.[0]?.nftsCount ? rule.rules?.[0]?.nftsCount : "");
+    setAddresses(rule.rules?.[0]?.addresses.join(","));
   };
 
   const submit = async () => {
     const gated = ruleType == RuleTypes.DISCOUNT ? false : true;
-    let rulesArray = [];
-    rulesArray = Rulelist.map((rule) => {
-      return {
-        addresses: rule.addresses,
-        type: "NFT",
-        nftsCount: rule.counter,
-        discountPercentage: rule.discount ? rule.discount : "",
-        description: rule.des,
-      };
-    });
-
     const requestBody = {
       collectionID: collectionId,
       gated: gated,
-      rules: rulesArray,
-      webUrl: webUrl,
+      rules: [
+        {
+          addresses: addresses?.split(","),
+          discountPercentage: +discount,
+          type: "NFT",
+          nftsCount: +counter,
+          description: tagName,
+        },
+      ],
       type: chainType,
+      webUrl: webUrl,
       redeemedNFTs: [],
     };
-    if (ruleId != undefined) {
+
+    if (ruleId) {
       await putApi(putUpdateRuleset(ruleId, requestBody));
     } else {
       await postApi(postCreateRuleset(requestBody));
     }
-    // let result;
-    // if (ruleId != undefined)
-    //   result =
-    // else result =
     update();
     close();
   };
@@ -143,78 +93,101 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
 
   return (
     <ModalWrapper show={show} close={close}>
+      <ModalHeader>Make Rule</ModalHeader>
       {loading ? (
         <LoadingComponent />
       ) : (
-        <>
-          <ModalHeader>Ruleset</ModalHeader>
-
-          <FillInputComponent
-            preText={"https://"}
-            value={webUrl}
-            label="Weburl"
-            change={changeWebUrl}
-            placeholder={"Your website"}
+        <Stack spacing={6}>
+          <InputFieldComponent
+            label="Tag Name"
+            placeholder="Ruleset 1"
+            description="description"
+            value={tagName}
+            change={changeTagName}
           />
-
-          <Box mb="20px"></Box>
-
-          <Flex gap={3}>
-            <TypeSelect
-              value={ruleType}
-              onChange={changeRuleType}
-              disabled={Rulelist.length > 0}
-            >
-              <option value={RuleTypes.GATED}>Gating</option>
-              <option value={RuleTypes.DISCOUNT}>Discount</option>
-            </TypeSelect>
-            <TypeSelect
+          <InputFieldComponent
+            label="NFT source domain"
+            placeholder="https://www.opensea.com"
+            description="description"
+            value={webUrl}
+            change={changeWebUrl}
+          />
+          <Box width="100%">
+            <Box color="white">Chain Type</Box>
+            <SelectComponent
+              width="100%"
+              mt={2}
               value={chainType}
               onChange={changeChainType}
-              disabled={ChainTypes.length}
+              // disabled={RuleList.length > 0}
             >
-              <option value={ChainTypes.ETH}>ETH</option>
-              <option value={ChainTypes.CASPER}>CASPER</option>
-            </TypeSelect>
+              <OptionComponent value={ChainTypes.ETH}>
+                {/* <Image src={discountIcon} w="16px" h="16px" /> */}
+                ETH
+              </OptionComponent>
+              <OptionComponent value={ChainTypes.CASPER}>
+                {/* <Image src={gatedIcon} w="16px" h="16px" /> */}
+                CASPER
+              </OptionComponent>
+            </SelectComponent>
+          </Box>
+          <Flex gap={2}>
+            <Box width="100%">
+              <Box color="white">Rule type</Box>
+              <SelectComponent
+                width="100%"
+                mt={2}
+                value={ruleType}
+                onChange={changeRuleType}
+                // disabled={RuleList.length > 0}
+              >
+                <OptionComponent value={RuleTypes.GATED}>
+                  {/* <Image src={discountIcon} w="16px" h="16px" /> */}
+                  Gating
+                </OptionComponent>
+                <OptionComponent value={RuleTypes.DISCOUNT}>
+                  {/* <Image src={gatedIcon} w="16px" h="16px" /> */}
+                  Discount
+                </OptionComponent>
+              </SelectComponent>
+            </Box>
+            {ruleType === "DISCOUNT" && (
+              <InputFieldComponent
+                label="Offer"
+                placeholder="%20"
+                value={discount}
+                change={changeDiscount}
+                description="description"
+              />
+            )}
           </Flex>
-          <Box mb="40px"></Box>
+          <InputFieldComponent
+            textArea
+            label="NFT asset identifiers"
+            placeholder="you can separate nft links with ,"
+            value={addresses}
+            change={changeAddresses}
+          />
 
-          {Rulelist.length > 0 &&
-            Rulelist.map((rule, i) => {
-              return (
-                <RuleItem
-                  rule={rule}
-                  deleteFunc={() => {
-                    deleteRule(i);
-                  }}
-                  isGated={ruleType == RuleTypes.GATED}
-                  editRule={(newRule) => editRule(newRule, i)}
-                />
-              );
-            })}
+          <InputFieldComponent
+            label="Minimum Requirement"
+            placeholder="4"
+            description="description"
+            value={counter}
+            change={changeCounter}
+          />
 
-          {addNewRule ? (
-            <AddRuleComponent
-              close={toggleRuleModal}
-              isGated={ruleType == RuleTypes.GATED}
-              addToRules={addToRules}
-            />
-          ) : (
-            <AddRuleButton onClick={toggleRuleModal}>
-              Add new rule
-            </AddRuleButton>
-          )}
-
-          <Box mb="40px"></Box>
           <Flex w="100%" justifyContent="space-between">
             <Box w="200px">
-              <BasicButton click={close}>Cancel</BasicButton>
+              <BasicButton cancelType click={close}>
+                Cancel
+              </BasicButton>
             </Box>
             <Box w="200px">
-              <BasicButton click={submit}>Add</BasicButton>
+              <BasicButton click={submit}>Save</BasicButton>
             </Box>
           </Flex>
-        </>
+        </Stack>
       )}
     </ModalWrapper>
   );
