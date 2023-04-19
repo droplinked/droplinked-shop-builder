@@ -32,7 +32,7 @@ function Technical() {
   const updateState = (key, value) => {
     setTechnical((prev) => ({ ...prev, [key]: value }));
   };
-  console.log("currentPath ", currentPath);
+
   // update Technical as state managment
   useEffect(() => {
     setTechnical({
