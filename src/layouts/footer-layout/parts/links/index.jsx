@@ -1,6 +1,6 @@
-import { Box, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Text, VStack , Link } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
+
 
 function Links() {
   const Sublink = (title) => (
@@ -54,7 +54,7 @@ function Links() {
             <Box>{Header("Company")}</Box>
             <VStack align="stretch" spacing={3}>
               <Box>
-                <Link to="https://www.flatlay.io">{Sublink("Flatlay")}</Link>
+                <Link target='_blank' href="https://www.flatlay.io">{Sublink("Flatlay")}</Link>
               </Box>
             </VStack>
           </VStack>
@@ -62,7 +62,7 @@ function Links() {
             <Box>{Header("Products")}</Box>
             <VStack align="stretch" spacing={3}>
               <Box>
-                <Link to="https://eventdev.droplinked.com">
+                <Link target='_blank' href="https://eventdev.droplinked.com" >
                   {Sublink("Events")}
                 </Link>
               </Box>
