@@ -14,6 +14,7 @@ import { useProfile } from "hooks/useProfile/useProfile";
 import { useApi } from "hooks/useApi/useApi";
 import { putUpdateShop } from "apis/shopApiService";
 import technicalContext, { technicalContextState } from "./context";
+import { appDeveloment } from "utils/app/variable";
 import technicalModel from "./model";
 import Wallet from "./parts/wallet";
 import BasicButton from "components/shared/BasicButton/BasicButton";
@@ -22,7 +23,7 @@ function Technical() {
   const [Technical, setTechnical] = useState(technicalContextState);
 
   const { putApi } = useApi();
-  const { updateShopData , shop  } = useProfile();
+  const { updateShopData, shop } = useProfile();
   const { errorToast, successToast } = useToasty();
   const currentPath = useLocation().pathname;
   const { shopNavigate } = useCustomNavigate();
@@ -31,7 +32,7 @@ function Technical() {
   const updateState = (key, value) => {
     setTechnical((prev) => ({ ...prev, [key]: value }));
   };
-console.log('shop ' , shop);
+  console.log("currentPath ", currentPath);
   // update Technical as state managment
   useEffect(() => {
     setTechnical({
@@ -40,7 +41,6 @@ console.log('shop ' , shop);
   }, [selector]);
 
   const clickSubmit = async () => {
-    
     try {
       if (!validate().data.imsType) {
         throw Error("Required IMS Type");
@@ -59,7 +59,7 @@ console.log('shop ' , shop);
     } catch (error) {
       errorToast(error.message);
     }
- };
+  };
 
   const validate = useCallback(
     () => technicalModel.validate(Technical),
@@ -77,8 +77,12 @@ console.log('shop ' , shop);
         <PageContentWrapper>
           <VStack spacing={10} align="stretch">
             <Ims />
-            <Payments />
-            <Wallet />
+            {appDeveloment && (
+              <>
+                <Payments />
+                <Wallet />
+              </>
+            )}
             <Flex justifyContent={"right"} width={"100%"}>
               <Box>
                 <BasicButton
