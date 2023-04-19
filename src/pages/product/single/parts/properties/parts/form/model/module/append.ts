@@ -9,6 +9,16 @@ export interface IAppendModule {
     items: Array<Iitems>
 }
 
+export interface IcheckLengthProperty {
+    properties: Array<IAppendModule>
+    types: Array<IAppendModule>
+}
+
+export interface loopProperty {
+    state: Array<IAppendModule>
+    action: Function
+}
+
 class AppendModule {
     static mockItem = (): Array<Iitems> => {
         return [
@@ -27,14 +37,17 @@ class AppendModule {
         ]
     }
 
-    public static checkLengthProperty = (data: Array<IAppendModule>) => {
-        return PropertiesFormModel.types().length <= data.length
+    public static checkLengthProperty = ({ types, properties }: IcheckLengthProperty) => {
+        return types.length <= properties.length
     }
 
     // Add new property row
     static appendProperty = (data: Array<any>): Array<IAppendModule> => {
-        if (this.checkLengthProperty(data)) return data
         return [...data, ...this.mock()]
+    }
+
+    static loopProperty = ({ action, state }: loopProperty) => {
+        return state.map<IAppendModule>((el, key) => action(el, key))
     }
 }
 
