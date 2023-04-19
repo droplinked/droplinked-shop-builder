@@ -254,7 +254,11 @@ const DesignPage = () => {
             <Box w="50%">
               <InputColor
                 banner={designData.backgroundImage}
-                value={designData.backgroundColor}
+                value={
+                  BANNER_DEFAULT_IMSGES?.find(
+                    (img) => img.banner_src === designData?.backgroundImage
+                  )?.color ?? designData.backgroundColor
+                }
                 change={changeBackgroundColor}
                 label="Color background"
               />

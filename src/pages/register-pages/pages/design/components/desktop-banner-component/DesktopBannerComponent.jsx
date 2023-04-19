@@ -8,6 +8,11 @@ const DesktopBannerComponent = ({ change, value }) => {
       width="100%"
       overflow="auto"
       gap="15px"
+      sx={{
+        "&::-webkit-scrollbar": {
+          height: "8px !important",
+        },
+      }}
       justifyContent="space-between"
     >
       {BANNER_DEFAULT_IMSGES.map((item) => {
