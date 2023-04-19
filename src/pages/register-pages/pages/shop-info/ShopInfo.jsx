@@ -158,9 +158,9 @@ const RegisterShopInfo = () => {
           />
           <FormControl isRequired mt={16} mb={10}>
             <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2">
-              Source address
+            Shop Address
             </FormLabel>
-            <Text color="#808080">Add source shipping address</Text>
+            <Text color="#808080">The location of you / your physical store / where you store your products.</Text>
           </FormControl>
 
           {!addressList.length ? (
