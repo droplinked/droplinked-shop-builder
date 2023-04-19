@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Flex, Image } from "@chakra-ui/react";
-import { useApi } from "../../../../../hooks/useApi/useApi"
+import { Flex } from "@chakra-ui/react";
+import { useApi } from "../../../../../hooks/useApi/useApi";
 import { getIsShopExist } from "../../../../../apis/shopApiService";
 import {
   SignupWrapper,
@@ -10,15 +10,13 @@ import {
   ErrorText,
 } from "./SignupInputComponent-style";
 
-import BasicButton from "../../../../../components/shared/BasicButton/BasicButton"
-import alertIcon from "../../../../../assest/icon/alert.png";
+import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
 
 const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const { getApi } = useApi()
+  const { getApi } = useApi();
 
   const ERRORS_TYPE = {
     EMPTY_ERROR: "Please enter a name to proceed",
@@ -45,7 +43,7 @@ const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
     }
 
     setLoading(true);
-    let result = await getApi(getIsShopExist(userName))
+    let result = await getApi(getIsShopExist(userName));
     if (result) toggleSignUp();
     setLoading(false);
   };
@@ -63,18 +61,15 @@ const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
           />
         </Flex>
         <Flex w="25%">
-          <SignupButton >
-            <BasicButton loading={loading} click={clickSignin}>Sign up </BasicButton>
+          <SignupButton>
+            <BasicButton loading={loading} click={clickSignin}>
+              Sign up{" "}
+            </BasicButton>
             {/* {loading ? <Spinner color="white" thickness="4px" /> : <>Sign up</>} */}
           </SignupButton>
         </Flex>
       </SignupWrapper>
-      {error && (
-        <Flex h="30px" w="100%" mt={{ base: "12px", md: "0.8vw" }}>
-          <Image w="20px" h="20px" m="auto 0px" src={alertIcon} alt="" />
-          <ErrorText>{error}</ErrorText>
-        </Flex>
-      )}
+      {error && <ErrorText>{error}</ErrorText>}
     </>
   );
 };

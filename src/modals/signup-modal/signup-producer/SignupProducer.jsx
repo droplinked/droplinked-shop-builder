@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { Stack } from "@chakra-ui/react";
 
 import { toastValue } from "../../../context/toastify/ToastContext";
-import { isValidEmail } from "../../../utils/validations/emailValidation";
+import { validateEmail } from "../../../utils/validations/emailValidation";
 import { BottomText } from "../SignupModal-style";
 import { postUserSignup } from "../../../apis/userApiService";
 import { useApi } from "../../../hooks/useApi/useApi";
@@ -44,7 +44,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
       return;
     }
 
-    if (isValidEmail(email) == false) {
+    if (validateEmail(email) === false) {
       errorToast("Please enter a valid email address.");
       return;
     }

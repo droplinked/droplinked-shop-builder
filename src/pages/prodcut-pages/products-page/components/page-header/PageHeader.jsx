@@ -9,12 +9,17 @@ import {
 } from "@chakra-ui/react";
 
 import { useCustomNavigate } from "../../../../../hooks/useCustomeNavigate/useCustomNavigate";
+import { useProfile } from "hooks/useProfile/useProfile";
+import { SHOP_TYPES } from "constant/shop-types";
 
 import searchIcon from "../../../../../assest/icon/search-icon.svg";
 import downArrowIcon from "../../../../../assest/icon/down-arrow-icon.svg";
 //
 const PageHeader = ({ searchValue, setSearchValue }) => {
   const { shopNavigate } = useCustomNavigate();
+  const { shop } = useProfile();
+
+  console.log("shop ", shop);
 
   const navigateToAddProductPage = () => shopNavigate(`add-product`);
 
@@ -66,28 +71,31 @@ const PageHeader = ({ searchValue, setSearchValue }) => {
         </Button>
       </Stack>
       <Stack direction="row" spacing={4}>
-        <Button
-          colorScheme="whiteAlpha"
-          variant="outline"
-          borderRadius="6px"
-          border="1px solid"
-          borderColor="#292929"
-        >
-          Import from Shopify
-        </Button>
-        <Button
-          bg="#2EC99E"
-          borderRadius="6px"
-          border="1px solid"
-          borderColor="primary"
-          _hover={{
-            bg: "mainLayer",
-            color: "primary",
-          }}
-          onClick={navigateToAddProductPage}
-        >
-          Add Product
-        </Button>
+        {shop.imsType === SHOP_TYPES.SHOPIFY ? (
+          <Button
+            colorScheme="whiteAlpha"
+            variant="outline"
+            borderRadius="6px"
+            border="1px solid"
+            borderColor="#292929"
+          >
+            Import from Shopify
+          </Button>
+        ) : (
+          <Button
+            bg="#2EC99E"
+            borderRadius="6px"
+            border="1px solid"
+            borderColor="primary"
+            _hover={{
+              bg: "mainLayer",
+              color: "primary",
+            }}
+            onClick={navigateToAddProductPage}
+          >
+            Add Product
+          </Button>
+        )}
       </Stack>
     </Flex>
   );

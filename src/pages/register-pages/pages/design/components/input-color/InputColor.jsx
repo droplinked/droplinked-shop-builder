@@ -3,17 +3,12 @@ import { useEffect } from "react";
 
 import { BANNER_DEFAULT_IMSGES } from "../../default-images";
 
-
 const InputColor = ({ banner, label, value, change }) => {
   const setCorrectColor = () => {
-
-    
     const imageName = BANNER_DEFAULT_IMSGES.find(
       (element) => element.banner_src === banner
     );
-    console.log('imageName  ' ,BANNER_DEFAULT_IMSGES[0].banner_src === banner);
     if (imageName) {
-   
       switch (imageName.name) {
         case "banner-1":
           change("#7ec9c8");
@@ -32,7 +27,6 @@ const InputColor = ({ banner, label, value, change }) => {
       }
     }
   };
-
 
   useEffect(() => {
     if (banner) setCorrectColor();
@@ -59,7 +53,7 @@ const InputColor = ({ banner, label, value, change }) => {
           }}
           type="color"
           value={value}
-          onChange={(e) => change(e.target.value)}
+          onChange={(e) => change(e?.target?.value)}
         />
 
         <Text

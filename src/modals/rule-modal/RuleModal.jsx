@@ -12,7 +12,7 @@ import {
   OptionComponent,
   SelectComponent,
 } from "./RuleModal-style";
-import { Box, Flex, Stack } from "@chakra-ui/react";
+import { Box, Flex, FormControl, FormLabel, Stack } from "@chakra-ui/react";
 import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import LoadingComponent from "components/shared/loading-component/LoadingComponent";
@@ -21,6 +21,9 @@ import { ChainTypes } from "./chain-type";
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const { getApi, postApi, putApi } = useApi();
+  //
+  const [error, setError] = useState(false);
+  //
   const [webUrl, setWebUrl] = useState("");
   const [discount, setDiscount] = useState("");
   const [chainType, setChainType] = useState("");
@@ -61,32 +64,49 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     setAddresses(rule.rules?.[0]?.addresses.join(","));
   };
 
-  const submit = async () => {
-    const gated = ruleType == RuleTypes.DISCOUNT ? false : true;
-    const requestBody = {
-      collectionID: collectionId,
-      gated: gated,
-      rules: [
-        {
-          addresses: addresses?.split(","),
-          discountPercentage: +discount,
-          type: "NFT",
-          nftsCount: +counter,
-          description: tagName,
-        },
-      ],
-      type: chainType,
-      webUrl: webUrl,
-      redeemedNFTs: [],
-    };
-
-    if (ruleId) {
-      await putApi(putUpdateRuleset(ruleId, requestBody));
-    } else {
-      await postApi(postCreateRuleset(requestBody));
+  const validationForm = () => {
+    if (
+      tagName === "" ||
+      counter === "" ||
+      addresses === "" ||
+      webUrl === "" ||
+      (ruleType === RuleTypes.DISCOUNT && discount === "")
+    ) {
+      return false;
     }
-    update();
-    close();
+    return true;
+  };
+
+  const submit = async () => {
+    let validation = validationForm();
+    if (!validation) setError(true);
+    else {
+      const gated = ruleType == RuleTypes.DISCOUNT ? false : true;
+      const requestBody = {
+        collectionID: collectionId,
+        gated: gated,
+        rules: [
+          {
+            addresses: addresses?.split(","),
+            discountPercentage: +discount,
+            type: "NFT",
+            nftsCount: +counter,
+            description: tagName,
+          },
+        ],
+        type: chainType,
+        webUrl: webUrl,
+        redeemedNFTs: [],
+      };
+
+      if (ruleId) {
+        await putApi(putUpdateRuleset(ruleId, requestBody));
+      } else {
+        await postApi(postCreateRuleset(requestBody));
+      }
+      update();
+      close();
+    }
   };
 
   if (!show) return null;
@@ -99,21 +119,27 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
       ) : (
         <Stack spacing={6}>
           <InputFieldComponent
+            isRequired
+            showError={error}
             label="Tag Name"
+            name="Tag Name"
             placeholder="Ruleset 1"
             description="description"
             value={tagName}
             change={changeTagName}
           />
           <InputFieldComponent
+            isRequired
+            showError={error}
+            name="NFT source domain"
             label="NFT source domain"
             placeholder="https://www.opensea.com"
             description="description"
             value={webUrl}
             change={changeWebUrl}
           />
-          <Box width="100%">
-            <Box color="white">Chain Type</Box>
+          <FormControl isRequired flexGrow="1">
+            <FormLabel color="white">Chain Type</FormLabel>
             <SelectComponent
               width="100%"
               mt={2}
@@ -130,10 +156,10 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                 CASPER
               </OptionComponent>
             </SelectComponent>
-          </Box>
+          </FormControl>
           <Flex gap={2}>
-            <Box width="100%">
-              <Box color="white">Rule type</Box>
+            <FormControl isRequired flexGrow="1">
+              <FormLabel color="white">Rule type</FormLabel>
               <SelectComponent
                 width="100%"
                 mt={2}
@@ -150,9 +176,12 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                   Discount
                 </OptionComponent>
               </SelectComponent>
-            </Box>
+            </FormControl>
             {ruleType === "DISCOUNT" && (
               <InputFieldComponent
+                showError={error}
+                isRequired
+                name="Offer"
                 label="Offer"
                 placeholder="%20"
                 value={discount}
@@ -162,7 +191,10 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
             )}
           </Flex>
           <InputFieldComponent
+            showError={error}
+            isRequired
             textArea
+            name="NFT asset"
             label="NFT asset identifiers"
             placeholder="you can separate nft links with ,"
             value={addresses}
@@ -170,6 +202,9 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
           />
 
           <InputFieldComponent
+            showError={error}
+            isRequired
+            name="Minimum Requirement"
             label="Minimum Requirement"
             placeholder="4"
             description="description"
@@ -179,12 +214,14 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
 
           <Flex w="100%" justifyContent="space-between">
             <Box w="200px">
-              <BasicButton cancelType click={close}>
+              <BasicButton width="100%" cancelType click={close}>
                 Cancel
               </BasicButton>
             </Box>
             <Box w="200px">
-              <BasicButton click={submit}>Save</BasicButton>
+              <BasicButton width="100%" click={submit}>
+                Save
+              </BasicButton>
             </Box>
           </Flex>
         </Stack>

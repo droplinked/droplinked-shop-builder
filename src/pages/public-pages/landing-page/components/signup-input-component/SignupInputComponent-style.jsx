@@ -42,7 +42,7 @@ export const ShopNameInput = chakra("input", {
 
 export const SignupButton = chakra("button", {
   baseStyle: {
-  //  d: "flex",
+    //  d: "flex",
     w: "100%",
     h: { base: "40px", md: "100%" },
     // justifyContent: "center",
@@ -66,7 +66,7 @@ export const ErrorText = chakra("button", {
     pl: "5px",
     fontWeight: "500",
     fontSize: { base: "12px", md: "14px" },
-    color: "#b3b3b3",
+    color: "red",
     lineHeight: "28px",
   },
 });

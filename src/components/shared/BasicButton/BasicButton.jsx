@@ -10,6 +10,8 @@ export default function BasicButton({
 }) {
   return (
     <Button
+      width="100%"
+      height="100%"
       bgColor={cancelType ? "#1c1c1c" : "primary"}
       color="white"
       border={cancelType ? "2px solid #292929" : "2px solid primary"}
@@ -30,7 +32,7 @@ export default function BasicButton({
       }}
       onClick={click}
       disabled={disable || loading}
-      {...otherprops} 
+      {...otherprops}
     >
       {loading !== undefined && loading === true ? (
         <>
