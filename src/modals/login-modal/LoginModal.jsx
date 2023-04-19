@@ -17,6 +17,7 @@ import { postLoginByEmail } from "../../apis/authApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 import { useProfile } from "../../hooks/useProfile/useProfile";
 import { appDeveloment } from "utils/app/variable";
+import { validateEmail } from "utils/validations/emailValidation";
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   //
@@ -38,7 +39,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   const changePassword = (e) => setPassword(e.target.value);
 
   const validateForm = () => {
-    if (email === "" || password === "" || password?.length < 8) {
+    if (email === "" || password === "" || password?.length < 8 ) {
       return false;
     }
     return true;
@@ -46,6 +47,10 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
   // submit form function
   const onSubmit = async () => {
+    if(!validateEmail(email)){
+      errorToast("Please enter a valid email address.");
+      return
+    }
     if (!validateForm()) setError(true);
     else {
       setLoading(true);
