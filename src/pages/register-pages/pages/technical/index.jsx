@@ -22,7 +22,7 @@ function Technical() {
   const [Technical, setTechnical] = useState(technicalContextState);
 
   const { putApi } = useApi();
-  const { updateShopData } = useProfile();
+  const { updateShopData , shop  } = useProfile();
   const { errorToast, successToast } = useToasty();
   const currentPath = useLocation().pathname;
   const { shopNavigate } = useCustomNavigate();
@@ -31,7 +31,7 @@ function Technical() {
   const updateState = (key, value) => {
     setTechnical((prev) => ({ ...prev, [key]: value }));
   };
-
+console.log('shop ' , shop);
   // update Technical as state managment
   useEffect(() => {
     setTechnical({
@@ -40,6 +40,7 @@ function Technical() {
   }, [selector]);
 
   const clickSubmit = async () => {
+    
     try {
       if (!validate().data.imsType) {
         throw Error("Required IMS Type");
@@ -50,7 +51,7 @@ function Technical() {
       if (result) {
         updateShopData();
         if (currentPath.includes("register")) {
-          shopNavigate(`settings/contact-info`);
+          shopNavigate(`register/contact-info`);
         } else {
           successToast("Updated");
         }
@@ -58,7 +59,7 @@ function Technical() {
     } catch (error) {
       errorToast(error.message);
     }
-  };
+ };
 
   const validate = useCallback(
     () => technicalModel.validate(Technical),
@@ -82,7 +83,7 @@ function Technical() {
               <Box>
                 <BasicButton
                   size="lg"
-                  disabled={validate().status}
+                  disabled={validate().status || shop.imsTypeUpdated}
                   click={clickSubmit}
                 >
                   {currentPath.includes("register")
