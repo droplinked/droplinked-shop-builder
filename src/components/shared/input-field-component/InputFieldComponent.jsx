@@ -4,10 +4,12 @@ import {
   FormLabel,
   Text,
   Textarea,
-
+  FormHelperText,
 } from "@chakra-ui/react";
+import { useState } from "react";
 
 export default function InputFieldComponent({
+  name = "",
   value,
   change,
   label,
@@ -16,8 +18,10 @@ export default function InputFieldComponent({
   isRequired,
   textArea,
   type,
+  showError,
   ...otherProps
 }) {
+  const [touched, setTouched] = useState(false);
   return (
     <FormControl
       sx={{
@@ -48,6 +52,7 @@ export default function InputFieldComponent({
           fontSize="14px"
           size="lg"
           placeholder={placeholder}
+          onBlur={() => setTouched(true)}
         />
       ) : (
         <Input
@@ -63,7 +68,8 @@ export default function InputFieldComponent({
           fontSize="14px"
           size="lg"
           placeholder={placeholder}
-          type={type?type:'text'}
+          type={type ? type : "text"}
+          onBlur={() => setTouched(true)}
         />
       )}
 
@@ -71,6 +77,11 @@ export default function InputFieldComponent({
         <Text fontSize="14px" color="#808080" mt={2}>
           {description}
         </Text>
+      )}
+
+      {((isRequired && !value?.length && touched) ||
+        (!value?.length && showError)) && (
+        <FormHelperText color="red">{name} is required</FormHelperText>
       )}
     </FormControl>
   );
