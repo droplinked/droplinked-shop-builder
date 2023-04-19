@@ -1,48 +1,54 @@
-
 import { useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 import { useToasty } from "../../context/toastify/ToastContext";
 //import { updateCollection ,addCollection } from "../../api-service/collections/collectionApiService";
 import { useApi } from "../../hooks/useApi/useApi";
-import { postCreateCollection , putUpdateCollection} from "../../apis/collectionApiService";
+import {
+  postCreateCollection,
+  putUpdateCollection,
+} from "../../apis/collectionApiService";
 
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 
-const CollectionModal = ({show , collection, close, update }) => {
+const CollectionModal = ({ show, collection, close, update }) => {
   const [collectionName, setCollectionName] = useState(() => {
-  return  collection === undefined ? "" : collection.title;
+    return collection === undefined ? "" : collection.title;
   });
   const [loading, setLoading] = useState(false);
 
   const { errorToast, successToast } = useToasty();
-  const { putApi ,postApi } = useApi()
+  const [error, setError] = useState(false);
+  const { putApi, postApi } = useApi();
 
-  const isNewCollection = (collection === undefined) ? true : false
+  const isNewCollection = collection === undefined ? true : false;
 
   const changeName = (e) => setCollectionName(e.target.value);
 
   const submitForm = async () => {
-
     if (collectionName === "") {
-      errorToast("Collection name required");
+      setError(true);
       return;
     }
 
     setLoading(true);
 
     let result;
-    if (isNewCollection) result = await postApi(postCreateCollection(collectionName))
-    else result = await putApi(putUpdateCollection(collection._id, collectionName))
+    if (isNewCollection)
+      result = await postApi(postCreateCollection(collectionName));
+    else
+      result = await putApi(
+        putUpdateCollection(collection._id, collectionName)
+      );
 
     if (result) {
       if (isNewCollection) successToast("New collection added successfully");
       else successToast("Collection updated successfully");
       update();
     }
-    
+
     close();
     setLoading(false);
   };
@@ -61,22 +67,30 @@ const CollectionModal = ({show , collection, close, update }) => {
         {/* content */}
         <Box mt="20px"></Box>
         <InputFieldComponent
+          isRequired
+          showError={error}
+          name="Collection name"
           label={"Collection name"}
           value={collectionName}
           change={changeName}
-          placeholder={'Collection name'}
+          placeholder={"Collection name"}
         />
 
         {/* content */}
         {/* footer */}
         <Flex justifyContent="space-between" mt="20px" w="100%">
           <Box w="40%">
-            <BasicButton click={close} loading={loading} cancelType={true}>
+            <BasicButton
+              width="100%"
+              click={close}
+              loading={loading}
+              cancelType={true}
+            >
               Cancel
             </BasicButton>
           </Box>
           <Box w="40%">
-            <BasicButton click={submitForm} loading={loading}>
+            <BasicButton width="100%" click={submitForm} loading={loading}>
               Submit
             </BasicButton>
           </Box>

@@ -19,8 +19,11 @@ function PasswordInputComponent({
   label,
   placeholder,
   isRequired,
+  showError,
   props,
 }) {
+  //
+  const [touched, setTouched] = useState(false);
   //
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -59,6 +62,7 @@ function PasswordInputComponent({
             size="lg"
             placeholder={placeholder}
             type={show ? "text" : "password"}
+            onBlur={() => setTouched(true)}
           />
           <InputRightElement height="100%">
             <IconButton
@@ -70,7 +74,9 @@ function PasswordInputComponent({
             </IconButton>
           </InputRightElement>
         </InputGroup>
-        {isInvalid && (
+        {(isInvalid ||
+          (isRequired && !value?.length && touched) ||
+          (!value?.length && showError)) && (
           <FormHelperText color="red">
             Password must include at least 8 characters.
           </FormHelperText>
