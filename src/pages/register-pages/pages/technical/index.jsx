@@ -14,6 +14,7 @@ import { useProfile } from "hooks/useProfile/useProfile";
 import { useApi } from "hooks/useApi/useApi";
 import { putUpdateShop } from "apis/shopApiService";
 import technicalContext, { technicalContextState } from "./context";
+import { appDeveloment } from "utils/app/variable";
 import technicalModel from "./model";
 import Wallet from "./parts/wallet";
 import BasicButton from "components/shared/BasicButton/BasicButton";
@@ -22,7 +23,7 @@ function Technical() {
   const [Technical, setTechnical] = useState(technicalContextState);
 
   const { putApi } = useApi();
-  const { updateShopData } = useProfile();
+  const { updateShopData, shop } = useProfile();
   const { errorToast, successToast } = useToasty();
   const currentPath = useLocation().pathname;
   const { shopNavigate } = useCustomNavigate();
@@ -50,7 +51,7 @@ function Technical() {
       if (result) {
         updateShopData();
         if (currentPath.includes("register")) {
-          shopNavigate(`settings/contact-info`);
+          shopNavigate(`register/contact-info`);
         } else {
           successToast("Updated");
         }
@@ -76,13 +77,17 @@ function Technical() {
         <PageContentWrapper>
           <VStack spacing={10} align="stretch">
             <Ims />
-            <Payments />
-            <Wallet />
+            {appDeveloment && (
+              <>
+                <Payments />
+                <Wallet />
+              </>
+            )}
             <Flex justifyContent={"right"} width={"100%"}>
               <Box>
                 <BasicButton
                   size="lg"
-                  disabled={validate().status}
+                  disabled={validate().status || shop.imsTypeUpdated}
                   click={clickSubmit}
                 >
                   {currentPath.includes("register")
