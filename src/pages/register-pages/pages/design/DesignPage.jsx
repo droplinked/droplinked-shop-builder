@@ -27,6 +27,7 @@ import theme1Image from "./theme-1.jpg";
 import theme2Image from "./theme-2.jpg";
 import theme3Image from "./theme-3.jpg";
 import BasicButton from "components/shared/BasicButton/BasicButton";
+import { BANNER_DEFAULT_IMSGES } from "./default-images";
 
 const INITIAL_SHOP_Design = {
   logo: "",
@@ -118,10 +119,10 @@ const DesignPage = () => {
     });
   };
 
-  const changeTextColor = (e) => {
+  const changeTextColor = (value) => {
     dispatch({
       type: SHOP_REDUCER_TYPES.SET_TEXT_COLOR,
-      payload: e.target.value,
+      payload: value,
     });
   };
 
@@ -139,12 +140,20 @@ const DesignPage = () => {
   };
 
   const clickSubmit = async () => {
-    if (!isValidData(designData)) {
+    const finalData = {
+      ...designData,
+      backgroundColor:
+        BANNER_DEFAULT_IMSGES?.find(
+          (img) => img.banner_src === designData?.backgroundImage
+        )?.color ?? designData.backgroundColor,
+    };
+
+    if (!isValidData(finalData)) {
       errorToast("Required");
       return;
     }
     setLoading(true);
-    const result = await putApi(putUpdateShop(designData));
+    const result = await putApi(putUpdateShop(finalData));
     updateShopData();
     setLoading(false);
     if (result) {
@@ -175,6 +184,7 @@ const DesignPage = () => {
           {IMAGES.map((currentObj) => {
             return (
               <Image
+                key={currentObj.img}
                 src={currentObj.img}
                 onClick={() => {
                   selectTheme(currentObj);
@@ -226,13 +236,6 @@ const DesignPage = () => {
           value={designData.backgroundImage}
         />
         <Box mb="48px" />
-        {/* <InputImage
-          label="Header banner Phone"
-          placeHolder="This image will display at the top of the store page (Phone)."
-          change={changeBackgroundImageSecondary}
-          value={designData.backgroundImageSecondary}
-        />
-        <Box mb="48px" /> */}
         <Flex
           w="100%"
           alignItems="center"
