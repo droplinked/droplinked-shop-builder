@@ -1,4 +1,11 @@
-import { Box, Button, Flex, FormControl, FormLabel, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Text,
+} from "@chakra-ui/react";
 import { useState, useEffect, useReducer, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -20,7 +27,6 @@ import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCusto
 
 import AddressModal from "../../../../modals/address-modal/AddressModal";
 import AddressComponent from "../../component/address-component/AddressComponent";
-import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 
 import InputFieldComponent from "../../../../components/shared/input-field-component/InputFieldComponent";
 import BasicButton from "components/shared/BasicButton/BasicButton";
@@ -119,8 +125,7 @@ const RegisterShopInfo = () => {
   const clickOnSave = async () => {
     const result = await callApi();
     if (result) {
-      if (currentPath.includes("register"))
-        shopNavigate(`register/design`);
+      if (currentPath.includes("register")) shopNavigate(`register/design`);
       else {
         successToast("Updated");
       }
@@ -142,6 +147,7 @@ const RegisterShopInfo = () => {
             value={shopInformation.description}
             placeholder="Enter max 20 characters."
             change={changeDescription}
+            name={"store name"}
           />
 
           <InputFieldComponent
@@ -184,7 +190,7 @@ const RegisterShopInfo = () => {
               loading={loading}
               size="lg"
             >
-              Save & next step
+              {currentPath.includes("register") ? "Save & next step" : "Save"}
             </BasicButton>
           </Box>
         </Flex>

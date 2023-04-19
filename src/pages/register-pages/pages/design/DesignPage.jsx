@@ -153,8 +153,6 @@ const DesignPage = () => {
     }
   };
 
-  console.log('designData.backgroundColor ' , designData.backgroundColor);
-
   return (
     <PageContent>
       <PageInformationComponent>
@@ -252,7 +250,7 @@ const DesignPage = () => {
             designData.theme === "theme-2") && (
             <Box w="50%">
               <InputColor
-              banner={designData.backgroundImage}
+                banner={designData.backgroundImage}
                 value={designData.backgroundColor}
                 change={changeBackgroundColor}
                 label="Color background"
@@ -266,7 +264,7 @@ const DesignPage = () => {
       <Flex justifyContent={"right"} width={"100%"}>
         <Box>
           <BasicButton size="lg" click={clickSubmit} loading={loading}>
-            Save & next step
+            {currentPath.includes("register") ? "Save & next step" : "Save"}
           </BasicButton>
         </Box>
       </Flex>
