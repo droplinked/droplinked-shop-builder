@@ -62,7 +62,9 @@ function Links() {
             <Box>{Header("Products")}</Box>
             <VStack align="stretch" spacing={3}>
               <Box>
-                <Link to="">{Sublink("Events")}</Link>
+                <Link to="https://eventdev.droplinked.com">
+                  {Sublink("Events")}
+                </Link>
               </Box>
             </VStack>
           </VStack>
