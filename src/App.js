@@ -3,6 +3,7 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
+
 const Enquiry = lazy(() =>
   import("./pages/public-pages/enquiry-page/EnquiryPage")
 );
@@ -64,6 +65,7 @@ const AddCollectionPage = lazy(() =>
   )
 );
 const ShopPage = lazy(() => import("./pages/public-pages/shop-page/ShopPage"));
+const ProductSingle = lazy(() => import("pages/product/single"));
 
 const OrderPage = lazy(() =>
   import("./pages/admin-pages/orders-page/OrderPage")
@@ -108,6 +110,7 @@ function App() {
               </Route>
               <Route path="products" element={<ProductsPage />} />
               <Route path="add-product" element={<AddProductPage />} />
+              <Route path="add-product-dev" element={<ProductSingle />} />
               <Route path="product/:productId" element={<EditProductPage />} />
               <Route path="collections" element={<CollectionMainPage />} />
               <Route path="add-collection" element={<AddCollectionPage />} />

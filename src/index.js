@@ -12,14 +12,18 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "./theme";
 
 import ToastifyProvider from "./context/toastify/ToastContext";
+import { QueryClient, QueryClientProvider } from "react-query";
+const queryClient = new QueryClient ()
 
 ReactDOM.render(
   <React.StrictMode>
     <ToastifyProvider>
       <Provider store={store}>
-              <ChakraProvider theme={theme}>
-                      <App />
-              </ChakraProvider>
+        <QueryClientProvider client={queryClient}>
+          <ChakraProvider theme={theme}>
+            <App />
+          </ChakraProvider>
+        </QueryClientProvider>
       </Provider>
     </ToastifyProvider>
   </React.StrictMode>,

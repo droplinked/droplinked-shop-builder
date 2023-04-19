@@ -1,6 +1,3 @@
-const { putUpdateShop } = require("apis/shopApiService");
-const { toast } = require("react-toastify");
-
 export default class technicalModel {
     static validate = (Technical) => {
         const data = {
