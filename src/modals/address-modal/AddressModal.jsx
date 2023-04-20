@@ -174,9 +174,6 @@ export default function AddressModal({
           change={ChangeLine1}
         />
         <InputFieldComponent
-          isRequired
-          showError={error}
-          name="Address line 2"
           label="Address Line 2"
           placeholder="Number, Street"
           value={line2}
@@ -228,7 +225,7 @@ export default function AddressModal({
           )}
         </Flex>
 
-        <Flex justifyContent="space-between" alignItems="center" gap="24px">
+        <Flex justifyContent="space-between" gap="24px">
           <InputFieldComponent
             showError={error}
             isRequired
@@ -248,12 +245,7 @@ export default function AddressModal({
             change={ChangeZip}
           />
         </Flex>
-        <Flex
-          mb="36px"
-          justifyContent="space-between"
-          alignItems="center"
-          gap="24px"
-        >
+        <Flex mb="36px" justifyContent="space-between" gap="24px">
           <InputFieldComponent
             showError={error}
             label="First Name"
