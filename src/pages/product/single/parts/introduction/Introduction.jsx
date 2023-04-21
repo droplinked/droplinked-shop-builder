@@ -4,9 +4,11 @@ import { ComponentTitle, ComponentWrapper } from 'pages/prodcut-pages/ProductPag
 import InputImagesGroup from 'pages/prodcut-pages/components/InputImageGroupe/Input-images-component'
 import { VStack } from '@chakra-ui/react'
 import { productContext } from '../../context'
+import introductionClass from './model'
 
 function Introduction() {
     const { state: { title, description, media }, methods: { updateState } } = useContext(productContext)
+    const { refactorImage, defactorImage } = introductionClass
 
     return (
         <ComponentWrapper>
@@ -25,7 +27,7 @@ function Introduction() {
                     value={description}
                     onChange={(e) => updateState("description", e.target.value)}
                 />
-                <InputImagesGroup setState={(images) => updateState("media", images)} state={media} />
+                <InputImagesGroup setState={(images) => updateState("media", refactorImage(images))} state={defactorImage(media)} />
             </VStack>
         </ComponentWrapper>
     )

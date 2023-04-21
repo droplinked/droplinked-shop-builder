@@ -1,54 +1,75 @@
-import { Box, Flex, HStack, InputGroup, InputRightElement, Text, VStack } from '@chakra-ui/react'
+import { Box, HStack, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/shared/BasicButton/BasicButton'
-import { BlackBox } from 'pages/register-pages/RegisterPages-style'
-import React, { useCallback, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import VariantMakeForm from './parts/container'
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify'
-import VariantsFormModal from './model'
+import VariantsFormModel from './model/model'
+import { productContext } from 'pages/product/single/context'
 
-function SkuForm({ close }) {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+function SkuForm({ close, update }) {
+    const { state: { properties, sku }, methods: { updateState }, productID } = useContext(productContext)
+    const { register, handleSubmit, setValue } = useForm();
+    const { makeDataService, validation } = VariantsFormModel
+    const staticFields = ["Price", "Quantity", "External ID", "Delivery boxing"]
 
-    const onSubmit = data => {
-        console.log(VariantsFormModal.makeDataService(data))
+    const onSubmit = async data => {
+        try {
+            await validation(data)
+            const remakeData = makeDataService(data)
+
+            if (update) {
+                updateState("sku", sku.map((el, key) => key === update.key ? remakeData : el))
+            } else {
+                updateState("sku", [...sku, remakeData])
+            }
+
+            close()
+        } catch (error) {
+            toast.error(error?.errors[0]);
+        }
     }
 
-    // toast error message
-    const checkError = useCallback(() => {
-        if (errors && Object.keys(errors).length) toast.error(`${Object.keys(errors)[0]} is required`);
-    }, [errors])
+    // set ids properties for "react-hook-form"
+    useEffect(() => {
+        if (properties.length) properties.map(el => {
+            setValue(`ids[${el.title}]`, el.value, { shouldValidate: false })
+        })
+    }, [properties])
 
+    // Set sku ID when update mode
+    useEffect(() => {
+        if (update && update?.sku?._id && productID) setValue(`_id`, update.sku._id, { shouldValidate: false })
+    }, [update, productID])
 
     return (
-        <BlackBox>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <VStack align={"stretch"} spacing={10}>
-                    <VStack align={"stretch"} spacing={4}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <VStack align={"stretch"} spacing={10}>
+                <VStack align={"stretch"} spacing={4}>
+                    {staticFields.map((el, key) => (
                         <VariantMakeForm
-                            caption="Price"
+                            caption={el}
+                            key={key}
+                            state={update?.sku}
                             form={register}
                         />
+                    ))}
+                    {properties.length && properties.map((el, key) => (
                         <VariantMakeForm
-                            caption="Quantity"
+                            key={key}
+                            property={el}
+                            state={update?.sku}
+                            caption={el.title}
                             form={register}
                         />
-                        <VariantMakeForm
-                            caption="External ID"
-                            form={register}
-                        />
-                        <VariantMakeForm
-                            caption="Delivery boxing"
-                            form={register}
-                        />
-                    </VStack>
-                    <HStack justifyContent={"space-between"}>
-                        <Box><BasicButton onClick={close} cancelType>Close</BasicButton></Box>
-                        <Box><BasicButton onClick={checkError} type="submit">Save Variant</BasicButton></Box>
-                    </HStack>
+                    ))}
                 </VStack>
-            </form>
-        </BlackBox>
+                <HStack justifyContent={"space-between"}>
+                    <Box><BasicButton onClick={close} cancelType>Close</BasicButton></Box>
+                    <Box><BasicButton type="submit">{update ? "Update" : "Add"} Variant</BasicButton></Box>
+                </HStack>
+            </VStack>
+        </form>
     )
 }
 

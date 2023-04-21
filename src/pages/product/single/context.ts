@@ -1,12 +1,8 @@
+import { IproductState } from "apis/product/interfaces";
 import { createContext } from "react";
 
-interface IproductState {
-    title: string
-    description: string
-    productCollectionID: string
-    media: Array<string>
-    shippingPrice: number | string 
-    shippingType: "CUSTOM" | "EASY_POST"
+export interface IpropertiesItems {
+    value: string
 }
 
 export const initialStatesProduct: IproductState = {
@@ -14,12 +10,16 @@ export const initialStatesProduct: IproductState = {
     description: '',
     productCollectionID: '',
     media: [],
-    shippingPrice: '',
-    shippingType: "EASY_POST"
+    priceUnit:"USD",
+    shippingPrice: 0,
+    shippingType: "EASY_POST",
+    properties: [],
+    sku: []
 }
 
 interface IproductContext {
-    state: IproductState
+    state: IproductState,
+    productID: null | string,
     methods: {
         updateState(element: string, value: any): void
     }
@@ -27,6 +27,7 @@ interface IproductContext {
 
 export const productContext = createContext<IproductContext>({
     state: initialStatesProduct,
+    productID: null,
     methods: {
         updateState: () => { }
     }

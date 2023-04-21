@@ -1,6 +1,6 @@
 import { Box, VStack } from '@chakra-ui/react';
 import React from 'react'
-import PropertiesForm from './parts/form';
+import PropertiesForm from './parts/form/PropertiesForm';
 import { ComponentTitle, ComponentWrapper } from 'pages/prodcut-pages/ProductPages-style';
 
 function Properties() {

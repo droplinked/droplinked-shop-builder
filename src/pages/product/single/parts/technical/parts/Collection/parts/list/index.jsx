@@ -7,7 +7,7 @@ import classes from './style.module.scss'
 import { productContext } from 'pages/product/single/context'
 
 function ListCollection() {
-  const { state: { productCollectionID }, methods: { updateState } } = useContext(productContext)
+  const { state: { productCollectionID }, methods: { updateState }, productID } = useContext(productContext)
   const collections = useSelector((state) => state.products.collection)
   const dispatch = useDispatch()
 
@@ -16,8 +16,8 @@ function ListCollection() {
 
   // if state collection is null set first collection
   useEffect(() => {
-    if (collections.list.length && !productCollectionID.length) updateState('productCollectionID', collections.list[0]._id)
-  }, [collections.list])
+    if (collections.list.length && !productID) updateState('productCollectionID', collections.list[0]._id)
+  }, [collections.list, productID])
 
   const isActiveCollection = useCallback((collectionID) => productCollectionID === collectionID, [productCollectionID])
 

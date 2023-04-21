@@ -1,26 +1,18 @@
-import PropertiesFormModel from "../model"
-
-export interface Iitems {
-    value: string
-}
-
-export interface IAppendModule {
-    title: string
-    items: Array<Iitems>
-}
+import { Iproperties, IpropertiesItems } from "apis/product/interfaces"
+import { types } from "../model"
 
 export interface IcheckLengthProperty {
-    properties: Array<IAppendModule>
-    types: Array<IAppendModule>
+    properties: Array<Iproperties>
+    types: Array<Iproperties>
 }
 
 export interface loopProperty {
-    state: Array<IAppendModule>
+    state: Array<Iproperties>
     action: Function
 }
 
 class AppendModule {
-    static mockItem = (): Array<Iitems> => {
+    static mockItem = (): Array<IpropertiesItems> => {
         return [
             {
                 value: ""
@@ -28,10 +20,11 @@ class AppendModule {
         ]
     }
 
-    static mock = (): Array<IAppendModule> => {
+    static mock = (): Array<Iproperties> => {
         return [
             {
                 title: "",
+                value: "",
                 items: this.mockItem()
             }
         ]
@@ -42,12 +35,18 @@ class AppendModule {
     }
 
     // Add new property row
-    static appendProperty = (data: Array<any>): Array<IAppendModule> => {
+    static appendProperty = (data: Array<any>): Array<Iproperties> => {
         return [...data, ...this.mock()]
     }
 
+    // Get name as variable types
+    static getCaption = (value: string): string => {
+        const caption = types.filter(el => el._id === value && el)
+        return caption.length ? caption[0].name : ""
+    }
+
     static loopProperty = ({ action, state }: loopProperty) => {
-        return state.map<IAppendModule>((el, key) => action(el, key))
+        return state.map<Iproperties>((el, key) => action(el, key))
     }
 }
 
