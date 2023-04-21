@@ -38,6 +38,7 @@ const HeaderBannerComponent = ({ addNewImage }) => {
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
       file.type !== "image/gif" &&
+      file.type !== "image/webp" &&
       file.type !== "image/svg+xml" &&
       file.type !== "image/jpg"
     ) {

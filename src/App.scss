@@ -8,17 +8,17 @@
   src: url(./assest/fonts/Avenir-Regular.otf);
 }
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 6px;
   background: #141414;
 }
 ::-webkit-scrollbar-track {
  // box-shadow: inset 0 0 5px black;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #25bb92;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
