@@ -15,11 +15,12 @@ const BannerComponent = () => {
   } = useContext(designContext);
 
   const addNewImage = (imageSrc) => {
-    const newArray = Array.from(images);
+    const newArray = [];
     newArray.push({ banner_src: imageSrc, image: imageSrc });
+    BANNER_DEFAULT_IMSGES.forEach(item =>  newArray.push({...item}))
     setImages(newArray);
   };
-  console.log("images ", images);
+
   return (
     <Box w="100%">
       <HeaderBannerComponent addNewImage={addNewImage} />

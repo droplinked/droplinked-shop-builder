@@ -7,7 +7,7 @@ const ImagesSliderBannerComponent = ({ images }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const {
-    state: { backgroundColor, backgroundImage },
+    state: {  backgroundImage },
     methods: { updateState },
   } = useContext(designContext);
 
