@@ -12,32 +12,45 @@ import { useToasty } from "context/toastify/ToastContext";
 const AdminWrapper = () => {
   const navigate = useNavigate();
   const { profile, shop } = useProfile();
-  const { shopNavigate } = useCustomNavigate()
-  const location = useLocation()
-  const {errorToast} = useToasty()
+  const { shopNavigate } = useCustomNavigate();
+  const location = useLocation();
+  const { errorToast } = useToasty();
 
   const handleRegisterRouting = (shop) => {
-    const shop_info = !shop?.description
-    const design = !shop?.backgroundColor || !shop.backgroundImage || !shop.backgroundImageSecondary || !shop.backgroundText || !shop.headerIcon || !shop.logo || !shop.textColor
-    const technical = !shop?.imsType
-    
-    if(location.pathname.includes("register")) return false
-    if(!shop_info && !design && !technical) return false
+    const shop_info = !shop?.description;
+    const design =
+      !shop?.backgroundColor ||
+      !shop.backgroundImage ||
+      !shop.backgroundImageSecondary ||
+      !shop.headerIcon ||
+      !shop.logo ||
+      !shop.textColor;
+    const technical = !shop?.imsType;
+
+    if (location.pathname.includes("register")) return false;
+    if (!shop_info && !design && !technical) return false;
 
     if (!shop?.description) {
-      shopNavigate("register/shop-info", true)
-    } else if (!shop?.backgroundColor || !shop.backgroundImage || !shop.backgroundImageSecondary || !shop.backgroundText || !shop.headerIcon || !shop.logo || !shop.textColor) {
-      shopNavigate("register/design", true)
-    } else if(!shop?.imsType){
-      shopNavigate("register/technical", true)
+      shopNavigate("register/shop-info", true);
+    } else if (
+      !shop?.backgroundColor ||
+      !shop.backgroundImage ||
+      !shop.backgroundImageSecondary ||
+      !shop.headerIcon ||
+      !shop.logo ||
+      !shop.textColor
+    ) {
+      shopNavigate("register/design", true);
+    } else if (!shop?.imsType) {
+      shopNavigate("register/technical", true);
     }
 
-    errorToast("Please complete register steps")
-  }
+    errorToast("Please complete register steps");
+  };
 
   useEffect(() => {
     if (!profile) navigate("/");
-    if(shop) handleRegisterRouting(shop)
+    if (shop) handleRegisterRouting(shop);
   }, [profile, shop, location]);
 
   return (
