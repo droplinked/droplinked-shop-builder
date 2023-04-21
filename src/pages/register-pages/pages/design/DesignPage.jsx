@@ -8,7 +8,6 @@ import {
   PageContentWrapper,
   Text18px,
 } from "../../RegisterPages-style";
-import { MainThemeImage } from "./DesignPage-style";
 import { shopDesignReducer, SHOP_REDUCER_TYPES } from "./reducer";
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useApi } from "../../../../hooks/useApi/useApi";
@@ -16,16 +15,16 @@ import { putUpdateShop } from "../../../../apis/shopApiService";
 import { isValidData } from "./utils";
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
+import { DesignPageStyles } from "./DesignPage-style";
 
 import InputImage from "./components/input-image/InputImage";
 import InputColor from "./components/input-color/InputColor";
 import InputComponent from "../../component/input-component/InputComponent";
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 import DesktopBannerComponent from "./components/desktop-banner-component/DesktopBannerComponent";
+import darkThemplateImage from "assest/image/dark-theme-image.jpg";
 
-import theme1Image from "./theme-1.jpg";
-import theme2Image from "./theme-2.jpg";
-import theme3Image from "./theme-3.jpg";
+//import theme2Image from "./theme-2.jpg";
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import { BANNER_DEFAULT_IMSGES } from "./default-images";
 
@@ -39,15 +38,14 @@ const INITIAL_SHOP_Design = {
   backgroundImageSecondary: "",
   backgroundColor: "#000000",
 };
-
-const IMAGES = [
-  // { img: theme1Image, name: "theme-1" },
-  { img: theme2Image, name: "theme-2" },
-];
+//
+const IMAGES = [{ img: darkThemplateImage, name: "theme-2" }];
 
 const DesignPage = () => {
   const [selectedTheme, setSelectedTheme] = useState(IMAGES[0]);
   const [loading, setLoading] = useState(false);
+
+  const { MainThemeImage } = DesignPageStyles;
 
   const [designData, dispatch] = useReducer(
     shopDesignReducer,
@@ -171,7 +169,10 @@ const DesignPage = () => {
       <PageContentWrapper>
         <Text18px>Templates</Text18px>
         <Box mb="48px" />
-        <MainThemeImage src={selectedTheme.img} />
+        <Box w="auto" overflow="hidden">
+          <MainThemeImage src={selectedTheme.img} m="2px" />
+        </Box>
+
         <Box mb="48px" />
         <Flex
           w="100%"
