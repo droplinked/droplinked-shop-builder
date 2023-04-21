@@ -20,6 +20,6 @@ export const IconComponent = chakra("img", {
   baseStyle: {
     w: "16px",
     h: "16px",
-    cursor:'pointer'
+   // cursor:'pointer'
   },
 });

@@ -30,7 +30,11 @@ const OptionComponent = ({ icon, label, path }) => {
         borderLeft="4px solid"
         borderColor={isActive ? "primary" : "none"}
       >
-        <IconComponent src={icon} />
+        <IconComponent
+          src={icon}
+           cursor={(label==='informations'?'not-allowed':'pointer')}
+         
+        />
       </IconWrapper>
     </Tooltip>
   );
