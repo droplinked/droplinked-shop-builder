@@ -35,7 +35,7 @@ function Links() {
       spacing={14}
       width={"100%"}
       alignItems={"baseline"}
-      justifyContent={"end"}
+      justifyContent={{base:'center',md:"end"}}
     >
       <Box>
         <VStack align="stretch" spacing={3}>

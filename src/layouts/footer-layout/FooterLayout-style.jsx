@@ -35,7 +35,7 @@ const FooterText = chakra("p", {
 
 const FooterLogo = chakra("img", {
   baseStyle: {
-    width: { base: "138px", md: "200px" },
+    width: '200px',
     height: "auto",
     margin: "auto 0px",
     bg:'linear-gradient(0deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45))'
@@ -55,8 +55,7 @@ const RightSide = chakra("div", {
 const TermText = chakra("span", {
   baseStyle: {
     fontWeight: "bold",
-    fontSize: "15px",
-    lineHeight: "16px",
+    fontSize: "12px",
     textAlign: "right",
     color: "#808080",
   },

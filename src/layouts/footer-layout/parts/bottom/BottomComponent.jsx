@@ -10,10 +10,10 @@ const BottomComponent = () => {
 
   return (
     <Flex
-      flexDirection={{ sm: "column", md: "row" }}
+      flexDirection={{ base: "column", md: "row" }}
       justifyContent={"space-between"}
     >
-      <HStack>
+      <HStack mb={{base:'18px' , md:'0px'}}>
         <Text fontFamily="Avenir Next" fontWeight="500" fontSize="12px" color='lightGray' >
           Powered by
         </Text>

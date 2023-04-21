@@ -4,7 +4,7 @@ import droplinkFull from "assest/image/droplinkFull.svg";
 
 function Description() {
   return (
-    <VStack align="stretch" spacing={5} marginTop={2}>
+    <VStack align="stretch" spacing={5} >
       <Image src={droplinkFull} maxW="210px" h="auto" mb="18px" />
 
       <Text

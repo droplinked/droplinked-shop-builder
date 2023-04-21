@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { footerStyles } from "./FooterLayout-style";
 //
-import footerLogo from "assest/icon/Flatlay-Logo.png";
+
 import Description from "./parts/description";
 import Links from "./parts/links";
 import BottomComponent from "./parts/bottom/BottomComponent";
@@ -20,12 +20,14 @@ export default function FooterLayout() {
     >
       <Flex
         w="100%"
+        flexDir={{base:'column' ,md:'row'}}
         display="flex"
         justifyContent="center"
-        alignItems="center"
-        mb="54px"
+        alignItems={{base:"start",md:"center"}}
+        mb={{base:'86px',md:"54px"}}
       >
         <Description />
+        <Box mb={{base:'86px' , md:'0px'}} />
         <Links />
       </Flex>
       <BottomComponent />
