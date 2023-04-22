@@ -83,7 +83,7 @@ function PropertyItem({ element, keyProperty }) {
                         <Box>
                             <Image
                                 cursor={"pointer"}
-                                onClick={() => checkAppend ? remove(item, element, keyProperty, key) : append(keyProperty)}
+                                onClick={() => checkAppend ? remove(item, element, keyProperty, key) : item.value ? append(keyProperty) : {}}
                                 src={checkAppend ? minusIcon : plusIcon}
                                 w={"20px"}
                                 h={"20px"}
