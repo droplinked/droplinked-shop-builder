@@ -1,29 +1,37 @@
-import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react'
-import React from 'react'
+import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import React from "react";
 import droplinkFull from "assest/image/droplinkFull.svg";
 
 function Description() {
   return (
-    <VStack align="stretch" spacing={5} marginTop={2}>
-      <HStack>
-        <Box><Image src={droplinkFull} /></Box>
-      </HStack>
-      <Box>
-        <Text fontSize={{ sm: "sm", md: "md" }}>
-          Decentralized Registration Of Products
-          <br />
-          Drop your product and dive into your business
-          <br />
-          without any doubt
+    <VStack align="stretch" spacing={5} >
+      <Image src={droplinkFull} maxW="210px" h="auto" mb="18px" />
+
+      <Text
+        fontFamily="Avenir Next"
+        fontSize="12px"
+        fontWeight="500"
+        color="lightGray"
+        mb="18px"
+      >
+        Community driven commerce
+        <Box />
+        Lunch a drop in minutes and unlock the{" "}
+        <Box d={{ base: "block", md: "none" }} /> power of Web3
+      </Text>
+
+      <a href="mailto:Support@droplinked.com">
+        <Text
+          fontFamily="Avenir Next"
+          fontSize="12px"
+          fontWeight="500"
+          color="lightGray"
+        >
+          Support@droplinked.com
         </Text>
-      </Box>
-      <Box>
-        <a href='mailto:Support@droplinked.com'>
-          <Text fontSize={{ sm: "sm", md: "md" }} color={"#FFF"}>Support@droplinked.com</Text>
-        </a>
-      </Box>
+      </a>
     </VStack>
-  )
+  );
 }
 
-export default Description
+export default Description;

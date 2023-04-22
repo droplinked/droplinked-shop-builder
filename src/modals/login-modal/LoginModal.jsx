@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState, useContext } from "react";
@@ -12,14 +12,16 @@ import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import { Title, BottomText } from "./LoginModal-style";
 import { PROFILE_STATUS } from "../../constant/profile-status-types";
 import { toastValue } from "../../context/toastify/ToastContext";
-import { isValidEmail } from "../../utils/validations/emailValidation";
 import { setCurrentUser } from "../../store/profile/profile.action";
 import { postLoginByEmail } from "../../apis/authApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 import { useProfile } from "../../hooks/useProfile/useProfile";
 import { appDeveloment } from "utils/app/variable";
+import { validateEmail } from "utils/validations/emailValidation";
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
+  //
+  const [error, setError] = useState(false);
   // state for disable buttons
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -37,47 +39,37 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   const changePassword = (e) => setPassword(e.target.value);
 
   const validateForm = () => {
-    if (email === "") {
-      errorToast("Email is required.");
+    if (email === "" || password === "" || password?.length < 8 ) {
       return false;
-    } else if (password === "") {
-      errorToast("Password is required.");
-      return false;
-    } else if (isValidEmail(email) === false) {
-      errorToast("Please enter a valid email address.");
-      return false;
-    } else {
-      return true;
     }
+    return true;
   };
 
   // submit form function
   const onSubmit = async () => {
-    // let info = {
-    //   email: email,
-    //   password: password,
-    // };
-
-    if (validateForm() === false) return;
-
-    setLoading(true);
-    let result = await postApi(postLoginByEmail(email, password));
-    setLoading(false);
-    if (result) loginFunction(result);
+    if(!validateEmail(email)){
+      errorToast("Please enter a valid email address.");
+      return
+    }
+    if (!validateForm()) setError(true);
+    else {
+      setLoading(true);
+      let result = await postApi(postLoginByEmail(email, password));
+      setLoading(false);
+      if (result) loginFunction(result);
+    }
   };
 
   // action on user data based on type and status
   const loginFunction = (data) => {
     //first close modal
     close();
-    
-    const status = appDeveloment && data.user.status === "NEW" ? "VERIFIED" : data.user.status
 
-    // if (data.user.type == USER_TYPE.CUSTOMER) {
-    //   dispatch(setCurrentUser(data));
-    //   dispatch(setCurrentShop(data.shop));
-    //   return;
-    // }
+    const status =
+      appDeveloment && data.user.status === "NEW"
+        ? "VERIFIED"
+        : data.user.status;
+
     if (status === PROFILE_STATUS.NEW) {
       localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
       navigateUser(status);
@@ -95,6 +87,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
   // navigate user based on status
   const navigateUser = (status, shopName) => {
+    // eslint-disable-next-line default-case
     switch (status) {
       case PROFILE_STATUS.NEW:
         navigate("/email-confirmation");
@@ -123,6 +116,9 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
         <Title>Sign in</Title>
         <Box w="100%" pt="20px">
           <InputFieldComponent
+            isRequired
+            name="Username"
+            showError={error}
             value={email}
             change={changeEmail}
             placeholder={"Username"}
@@ -130,6 +126,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
           <Box mb="16px"></Box>
 
           <PasswordInputComponent
+            showError={error}
             value={password}
             change={changePassword}
             placeholder={"Password"}

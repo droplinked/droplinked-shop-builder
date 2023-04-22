@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { useRef, useState } from "react";
+import { useRef, useState , useMemo } from "react";
 
 import {
   FormControl,
@@ -14,10 +14,12 @@ import {
 } from "@chakra-ui/react";
 import { useToasty } from "../../../../../../context/toastify/ToastContext";
 
+
 import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
 
 const InputImage = ({ label, placeHolder, change, value }) => {
   const [loading, setLoading] = useState(false);
+
 
   const fileRef = useRef(null);
   const { successToast, errorToast } = useToasty();

@@ -94,8 +94,8 @@ const ContactInfo = () => {
     setLoading(false);
 
     if (result) {
-      if (currentPath.includes("register")) shopNavigate(`register/design`);
-      else successToast("Updated");
+      shopNavigate(`products`);
+      successToast("Updated");
     }
   };
 
@@ -142,7 +142,7 @@ const ContactInfo = () => {
       <Flex justifyContent={"right"} marginTop={8} width={"100%"}>
         <Box>
           <BasicButton size="lg" click={clickOnSave} loading={loading}>
-            Save & next step
+            {currentPath.includes("register") ? "Publish store" : "Save"}
           </BasicButton>
         </Box>
       </Flex>

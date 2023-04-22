@@ -1,52 +1,103 @@
-import { Box, HStack, Text, VStack } from '@chakra-ui/react'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Box, HStack, Text, VStack, Link } from "@chakra-ui/react";
+import React from "react";
 
 function Links() {
-    const Sublink = (title) => <Text fontSize="sm" color={"#FFF"}>{title}</Text>
-    const Header = (title) => <Text fontSize="sm" color="#808080"><strong>{title}</strong></Text>
+  const Sublink = ({ children }) => (
+    <Text
+      fontFamily="Avenir Next"
+      fontWeight="500"
+      fontSize="12px"
+      color="lightGray"
+    >
+      {children}
+    </Text>
+  );
 
-    return (
-        <HStack spacing={14} width={"100%"} alignItems={'baseline'} justifyContent={"space-between"}>
-            <Box>
-                <VStack align="stretch" spacing={3}>
-                    <Box>{Header("Contact Us")}</Box>
-                    <VStack align="stretch" spacing={3}>
-                        <Box><Link to="" >{Sublink("Discord")}</Link></Box>
-                        <Box><a href="https://twitter.com/flatlay" rel="noreferrer" target='_blank'><Text fontSize="sm">{Sublink("Twitter")}</Text></a></Box>
-                        <Box><Link to="" ><Text fontSize="sm">{Sublink("Instagram")}</Text></Link></Box>
-                        <Box><Link to="" ><Text fontSize="sm">{Sublink("LinkedIn")}</Text></Link></Box>
-                    </VStack>
-                </VStack>
-            </Box>
-            <Box>
-                <VStack align="stretch" spacing={3}>
-                    <Box>{Header("Recourses")}</Box>
-                    <VStack align="stretch" spacing={3}>
-                        <Box><Link to="">{Sublink("About us")}</Link></Box>
-                        <Box><Link to="">{Sublink("Help center")}</Link></Box>
-                        <Box><Link to="">{Sublink("FAQ")}</Link></Box>
-                    </VStack>
-                </VStack>
-            </Box>
-            <Box>
-                <VStack align="stretch" spacing={33}>
-                    <VStack align="stretch" spacing={3}>
-                        <Box>{Header("Company")}</Box>
-                        <VStack align="stretch" spacing={3}>
-                            <Box><Link to="">{Sublink("Flatlay")}</Link></Box>
-                        </VStack>
-                    </VStack>
-                    <VStack align="stretch" spacing={3}>
-                        <Box>{Header("Products")}</Box>
-                        <VStack align="stretch" spacing={3}>
-                            <Box><Link to="">{Sublink("Events")}</Link></Box>
-                        </VStack>
-                    </VStack>
-                </VStack>
-            </Box>
-        </HStack>
-    )
+  const Header = ({ children }) => (
+    <Text
+      fontFamily="Avenir Next"
+      fontWeight="bold"
+      fontSize="12px"
+      color="#808080"
+    >
+      {children}
+    </Text>
+  );
+
+  const LinkComponent = ({ children, path }) => (
+    <Link target="_blank" href={path}>
+      {children}
+    </Link>
+  );
+
+  return (
+    <HStack
+      spacing={14}
+      width={"100%"}
+      alignItems={"baseline"}
+      justifyContent={{base:'center',md:"end"}}
+    >
+      <Box>
+        <VStack align="stretch" spacing={3}>
+          <Header>Contact Us</Header>
+
+          <VStack align="stretch" spacing={3}>
+            <LinkComponent path="https://discord.com/channels/1068939465025916959/1088500920406515763">
+              <Sublink>Discord</Sublink>{" "}
+            </LinkComponent>
+
+            <LinkComponent path="https://twitter.com/droplinked">
+              <Sublink>Twitter</Sublink>
+            </LinkComponent>
+
+            <LinkComponent path="https://www.instagram.com/drop_linked">
+              <Sublink>Instagram</Sublink>
+            </LinkComponent>
+
+            <LinkComponent path="https://www.linkedin.com/company/droplinked">
+              <Sublink>LinkedIn</Sublink>
+            </LinkComponent>
+          </VStack>
+        </VStack>
+      </Box>
+      <Box>
+        <VStack align="stretch" spacing={3}>
+          <Header>Recourses</Header>
+          <VStack align="stretch" spacing={3}>
+            <Link
+              target="_blank"
+              href="https://droplinked.gitbook.io/droplinked-commerce-help-center"
+            >
+              <Sublink>Help center</Sublink>
+            </Link>
+            <a
+              href="https://drive.google.com/file/d/1b5cggMs0D94Dl2e92-JIP_NPAMK2pjrr/view?usp=sharing"
+              target="_blank"
+              download
+            >
+              <Sublink>MediaKit.zip</Sublink>
+            </a>
+          </VStack>
+        </VStack>
+      </Box>
+
+      <VStack align="stretch" spacing={33}>
+        <VStack align="stretch" spacing={3}>
+          <Header>Products</Header>
+
+          <VStack align="stretch" spacing={3}>
+            <Link target="_blank" href="https://eventdev.droplinked.com">
+              <Sublink>Events</Sublink>
+            </Link>
+
+            <Link target="_blank" href="https://www.flatlay.io">
+              <Sublink>Flatlay</Sublink>
+            </Link>
+          </VStack>
+        </VStack>
+      </VStack>
+    </HStack>
+  );
 }
 
-export default Links
+export default Links;

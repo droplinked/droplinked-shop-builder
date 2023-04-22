@@ -24,6 +24,7 @@ const SelectPagesComponent = () => {
         Shop info
       </SideText>
       <SideText
+        cursor={isSettings && "pointer"}
         color={currentPath.includes("design") ? "primary" : "lightGray"}
         onClick={() => {
           if (isSettings) shopNavigate("settings/design");
@@ -32,6 +33,7 @@ const SelectPagesComponent = () => {
         Design template
       </SideText>
       <SideText
+        cursor={isSettings && "pointer"}
         color={currentPath.includes("technical") ? "primary" : "lightGray"}
         onClick={() => {
           if (isSettings) shopNavigate("settings/technical");
@@ -40,6 +42,7 @@ const SelectPagesComponent = () => {
         Technical
       </SideText>
       <SideText
+        cursor={isSettings && "pointer"}
         color={currentPath.includes("contact-info") ? "primary" : "lightGray"}
         onClick={() => {
           if (isSettings) shopNavigate("settings/contact-info");

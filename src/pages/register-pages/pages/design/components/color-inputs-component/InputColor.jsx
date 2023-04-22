@@ -22,7 +22,7 @@ const InputColor = ({ label, value, change }) => {
           }}
           type="color"
           value={value}
-          onChange={change}
+          onChange={(e) => change(e?.target?.value)}
         />
 
         <Text
