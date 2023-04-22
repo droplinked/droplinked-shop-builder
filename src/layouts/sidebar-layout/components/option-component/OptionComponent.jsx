@@ -3,21 +3,17 @@ import { Tooltip } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 //
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
+import { useProfile } from "hooks/useProfile/useProfile";
 import { IconComponent, IconWrapper } from "../../SidebarLayout-style";
 
 const OptionComponent = ({ icon, label, path }) => {
   const location = useLocation();
-  const { shopNavigate } = useCustomNavigate();
+  const { shop } = useProfile();
 
-  const clickOnIcon = () => {
-    if (path) {
-      shopNavigate(path);
-    }
-  };
   const isActive = useMemo(() => {
     return location.pathname.includes(path);
   }, [location]);
-
+  console.log("path ", path);
   return (
     <Tooltip
       label={label}
@@ -26,14 +22,17 @@ const OptionComponent = ({ icon, label, path }) => {
       bg="mainLayer"
     >
       <IconWrapper
-        onClick={clickOnIcon}
+        //onClick={clickOnIcon}
         borderLeft="4px solid"
         borderColor={isActive ? "primary" : "none"}
+        _hover={{
+          borderColor: "primary",
+        }}
+        href={path?`/${shop.name}/c/${path}`:null}
       >
         <IconComponent
           src={icon}
-           cursor={(label==='informations'?'not-allowed':'pointer')}
-         
+          cursor={label === "informations" ? "not-allowed" : "pointer"}
         />
       </IconWrapper>
     </Tooltip>

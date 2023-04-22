@@ -5,13 +5,13 @@ export const SidebarWrapper = chakra("div", {
 });
 
 
-export const IconWrapper= chakra("div", {
+export const IconWrapper= chakra("a", {
   baseStyle: {
    w:'100%' ,
    p:'12px 24px' ,
    display:'flex',
    justifyContent:'center',
-   alignItems:'center'
+   alignItems:'center',
   },
 });
 
