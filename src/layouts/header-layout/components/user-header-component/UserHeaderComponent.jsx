@@ -8,6 +8,7 @@ import {
   Box,
   useDisclosure 
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 //
 import { useProfile } from "hooks/useProfile/useProfile";
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
@@ -33,8 +34,9 @@ const UserHeaderComponent = () => {
 
   return (
     <UserHeaderWrapper>
+      <Link to='/'>
       <UserHeaderIcon src={droplinkedIcon} />
-
+      </Link>
       <Popover
        isOpen={isOpen}
        onOpen={onOpen}
