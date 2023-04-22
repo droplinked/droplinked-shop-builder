@@ -54,7 +54,7 @@ const AdminWrapper = () => {
   }, [profile, shop, location]);
 
   return (
-    <Flex w="100%" height="100%" minHeight="100%">
+    <Flex w="100%" height="100%" minHeight="100%" >
       <Box
         w="72px"
         borderRight="1px solid"
@@ -63,10 +63,11 @@ const AdminWrapper = () => {
         h="100%"
         minH="100vh"
         pt="24px"
+        pos='sticky'
       >
         <SidebarLayout />
       </Box>
-      <Box w="100%" h="100%" p="24px">
+      <Box w="100%" h="90vh" p="24px" pb='50px' maxH='90vh' overflowY="scroll"  pos='relative' >
         <Outlet />
       </Box>
     </Flex>
