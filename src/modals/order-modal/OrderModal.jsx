@@ -20,75 +20,79 @@ import OrderStatus from "./components/OrderStatus";
 import OrderAddress from "./components/OrderAddress";
 import SmallModal from "../../modals/small-modal/SmallModal";
 
-export default function OrderModal({updateOrder , order, show, close }) {
-  // this state use for loading stauts
-  const [loadingBtn, setLoadingBtn] = useState(false);
-  // this state use for show proccessModal
-  const [proccessModal, setProccessModal] = useState(false);
-  // this state use for show cancelOrderModal
-  const [cancelOrderModal, setCancelOrderModal] = useState(false);
+import CustomerInformationComponent from "./components/customer-information-component/customerInformationComponent";
 
-  const { successToast, errorToast } = useToasty();
-  const { putApi } = useApi()
+export default function OrderModal({ updateOrder, order, show, close }) {
+  // // this state use for loading stauts
+  // const [loadingBtn, setLoadingBtn] = useState(false);
+  // // this state use for show proccessModal
+  // const [proccessModal, setProccessModal] = useState(false);
+  // // this state use for show cancelOrderModal
+  // const [cancelOrderModal, setCancelOrderModal] = useState(false);
 
+  // const { successToast, errorToast } = useToasty();
+  // const { putApi } = useApi();
 
-  const progressClick = async () => {
-    let statusType =
-      order.status === "WAITING_FOR_CONFIRMATION"
-        ? ORDER_TYPES.PROCESSING
-        : ORDER_TYPES.SENT;
-    setLoadingBtn(true);
-    let result = await putApi(putUpdateOrder(order._id, statusType))
-    setLoadingBtn(false);
-    if (result === true) {
-      successToast("Status changed successfully");
-      updateOrder();
-    } else {
-      errorToast(result);
-    }
-    closeSmallModal();
-  };
+  // const progressClick = async () => {
+  //   let statusType =
+  //     order.status === "WAITING_FOR_CONFIRMATION"
+  //       ? ORDER_TYPES.PROCESSING
+  //       : ORDER_TYPES.SENT;
+  //   setLoadingBtn(true);
+  //   let result = await putApi(putUpdateOrder(order._id, statusType));
+  //   setLoadingBtn(false);
+  //   if (result === true) {
+  //     successToast("Status changed successfully");
+  //     updateOrder();
+  //   } else {
+  //     errorToast(result);
+  //   }
+  //   closeSmallModal();
+  // };
 
-  const cancelOrder = async () => {
-    setLoadingBtn(true);
-    let result = await putApi(putUpdateOrder(order._id, ORDER_TYPES.CANCELED));
-    setLoadingBtn(false);
-    if (result === true) {
-      successToast("You canceled the order");
-      updateOrder();
-    } else {
-      errorToast(result);
-    }
-    closeSmallModal();
-  };
+  // const cancelOrder = async () => {
+  //   setLoadingBtn(true);
+  //   let result = await putApi(putUpdateOrder(order._id, ORDER_TYPES.CANCELED));
+  //   setLoadingBtn(false);
+  //   if (result === true) {
+  //     successToast("You canceled the order");
+  //     updateOrder();
+  //   } else {
+  //     errorToast(result);
+  //   }
+  //   closeSmallModal();
+  // };
 
-  const closeSmallModal = () => {
-    setProccessModal(false);
-    setCancelOrderModal(false);
-  };
+  // const closeSmallModal = () => {
+  //   setProccessModal(false);
+  //   setCancelOrderModal(false);
+  // };
 
-  const cancelOnClick = () => {
-    setCancelOrderModal(true);
-  };
+  // const cancelOnClick = () => {
+  //   setCancelOrderModal(true);
+  // };
 
-  const openProccessModal = () => {
-    setProccessModal(true);
-  };
+  // const openProccessModal = () => {
+  //   setProccessModal(true);
+  // };
 
-  const proccessModalText = () => {
-    switch (order.status) {
-      case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
-        return "Are you sure you want to start processing?";
-      case ORDER_TYPES.PROCESSING:
-        return "Are you sure you want to send this order?";
-    }
-  };
+  // const proccessModalText = () => {
+  //   switch (order.status) {
+  //     case ORDER_TYPES.WAITING_FOR_CONFIRMATION:
+  //       return "Are you sure you want to start processing?";
+  //     case ORDER_TYPES.PROCESSING:
+  //       return "Are you sure you want to send this order?";
+  //   }
+  // };
 
   return (
     <Modal isOpen={show} onClose={close}>
       <ModalOverlay />
       <ModalContent mt="120px" maxW="700px" w="100%" mx="20px" bgColor="#222">
-        <ModalHeader
+        <ModalBody p="60px 80px" borderRadius="8px">
+          <CustomerInformationComponent order={order} />
+        </ModalBody>
+        {/* <ModalHeader
           color="white"
           fontSize="22px"
           fontWeight="600"
@@ -98,12 +102,12 @@ export default function OrderModal({updateOrder , order, show, close }) {
         </ModalHeader>
         <ModalCloseButton color="white" mt="10px" />
         <ModalBody>
-          {/* address component */}
+
           {order.type != SHOP_TYPES.SHOPIFY && (
             <OrderAddress address={order.customerAddressBook} />
           )}
 
-          {/* product list */}
+
           {order.items.map((item, i) => {
             return (
               <Box key={i} mb="20px">
@@ -113,56 +117,26 @@ export default function OrderModal({updateOrder , order, show, close }) {
           })}
         </ModalBody>
 
-        <ModalFooter>
-          {/* <OrderStatus
-            orderStatus={order.status}
-            loading={loadingBtn}
-            cancelOnClick={cancelOnClick}
-            openProccessModal={openProccessModal}
-          /> */}
-        </ModalFooter>
+        <ModalFooter></ModalFooter> */}
       </ModalContent>
-      {/* process modal */}
 
- 
-        <SmallModal
-          show={proccessModal}
-          hide={closeSmallModal}
-          text={proccessModalText()}
-          click={progressClick}
-          loading={loadingBtn}
-          buttonText="Yes"
-        />
-  
-      <SmallModal
-       show={cancelOrderModal}
-       hide={closeSmallModal}
-       text={"Are you sure you want to cancel this order?"}
-       click={cancelOrder}
+      {/* <SmallModal
+        show={proccessModal}
+        hide={closeSmallModal}
+        text={proccessModalText()}
+        click={progressClick}
         loading={loadingBtn}
         buttonText="Yes"
       />
 
-      {/* {proccessModal && (
-          <YesNoModal
-            show={proccessModal}
-            hide={closeSmallModal}
-            text={proccessModalText()}
-            click={progressClick}
-            loading={loadingBtn}
-          />
-        )} */}
-
-      {/* cancel order modal */}
-
-      {/* {cancelOrderModal && (
-        <YesNoModal
-          show={cancelOrderModal}
-          hide={closeSmallModal}
-          text={"Are you sure you want to cancel this order?"}
-          click={cancelOrder}
-        />
-      )} */}
+      <SmallModal
+        show={cancelOrderModal}
+        hide={closeSmallModal}
+        text={"Are you sure you want to cancel this order?"}
+        click={cancelOrder}
+        loading={loadingBtn}
+        buttonText="Yes"
+      /> */}
     </Modal>
   );
 }
