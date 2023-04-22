@@ -68,8 +68,9 @@ const UserHeaderComponent = () => {
               w="100%"
               textAlign="center"
               onClick={clickOnViewShop}
+              cursor='pointer'
             >
-              View Shop
+              Dashboard
             </Text>
             <Box mb="20px" />
             <Text
@@ -82,6 +83,7 @@ const UserHeaderComponent = () => {
               textAlign="center"
               cursor="pointer"
               onClick={logoutUser}
+              cursor='pointer'
             >
               Logout
             </Text>
