@@ -1,6 +1,6 @@
 import { Box, HStack, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/shared/BasicButton/BasicButton'
-import React, { useContext, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
 import VariantMakeForm from './parts/container'
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify'
@@ -10,23 +10,31 @@ import { productContext } from 'pages/product/single/context'
 function SkuForm({ close, update }) {
     const { state: { properties, sku }, methods: { updateState }, productID } = useContext(productContext)
     const { register, handleSubmit, setValue } = useForm();
-    const { makeDataService, validation } = VariantsFormModel
+    const { makeDataService, validation, duplicateCheck, findKeySku } = VariantsFormModel
     const staticFields = ["Price", "Quantity", "External ID", "Delivery boxing"]
 
-    const onSubmit = async data => {
+    const onSubmit = async formData => {
         try {
-            await validation(data)
-            const remakeData = makeDataService(data)
+            await validation({
+                formData,
+                skues: sku
+            })
+            const remakeData = makeDataService(formData)
+            await duplicateCheck({
+                params: remakeData,
+                skues: sku,
+                ...update && { skuKey: getKey() }
+            })
 
             if (update) {
-                updateState("sku", sku.map((el, key) => key === update.key ? remakeData : el))
+                updateState("sku", sku.map((el, key) => key === getKey() ? remakeData : el))
             } else {
                 updateState("sku", [...sku, remakeData])
             }
 
             close()
         } catch (error) {
-            toast.error(error?.errors[0]);
+            toast.error(error?.errors ? error?.errors[0] : error);
         }
     }
 
@@ -39,8 +47,15 @@ function SkuForm({ close, update }) {
 
     // Set sku ID when update mode
     useEffect(() => {
-        if (update && update?.sku?._id && productID) setValue(`_id`, update.sku._id, { shouldValidate: false })
+        if (update && update?._id && productID) setValue(`_id`, update._id, { shouldValidate: false })
     }, [update, productID])
+
+    const getKey = useCallback(() => {
+        return findKeySku({
+            sku: update,
+            skues: sku
+        })
+    }, [sku, update])
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -50,7 +65,7 @@ function SkuForm({ close, update }) {
                         <VariantMakeForm
                             caption={el}
                             key={key}
-                            state={update?.sku}
+                            state={update}
                             form={register}
                         />
                     ))}
@@ -58,7 +73,7 @@ function SkuForm({ close, update }) {
                         <VariantMakeForm
                             key={key}
                             property={el}
-                            state={update?.sku}
+                            state={update}
                             caption={el.title}
                             form={register}
                         />

@@ -4,7 +4,7 @@ import AppendModule from '../../model/module/append'
 import PropertiesFormModel from '../../model/model'
 import propertiesFormContext from '../../context'
 
-function PropertyButton({ state, types }) {
+function PropertyButton({ state, types, skues }) {
     const { updateState } = useContext(propertiesFormContext)
     const { appendHandle } = PropertiesFormModel
 
@@ -22,11 +22,13 @@ function PropertyButton({ state, types }) {
         })
     }, [state, types])
 
+    const checkExistSku = useMemo(() => skues.length, [skues])
+
     return (
         <>
-            {!checkLengthProperty && (
-                <BasicButton click={append} cancelType>Make New Properties</BasicButton>
-            )}
+            {!checkLengthProperty ? (
+                <BasicButton click={append} disable={checkExistSku} cancelType>Make New Properties</BasicButton>
+            ) : ''}
         </>
     )
 }

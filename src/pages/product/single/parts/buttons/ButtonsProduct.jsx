@@ -6,33 +6,33 @@ import ButtonsProductClass from './model'
 import { toast } from 'react-toastify'
 import { useMutation } from 'react-query'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
-import { productServices, productUpdateServices } from 'apis/product/productServices'
+import { productServices, productUpdateServices, skuUpdateByIdServices } from 'apis/product/productServices'
 
 function ButtonsProduct() {
     const create = useMutation((params) => productServices(params))
     const update = useMutation((params) => productUpdateServices(params))
+    const updateSku = useMutation((params) => skuUpdateByIdServices(params))
     const { state, productID } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
     const { validate } = ButtonsProductClass
 
     const submit = useCallback(async () => {
         try {
-            const query = productID ? update.mutate : create.mutate
+            const query = productID ? update.mutateAsync : create.mutateAsync
             await validate(state)
-            query(
-                productID ? { productID, params: state } : state,
-                {
-                    onSuccess: () => {
-                        toast.success(`Product ${productID ? "update" : "created"} success`)
-                        shopNavigate("products")
-                    }
-                }
-            )
+            await query(productID ? { productID, params: state } : state)
+            if (productID) await updateSkues(state.sku) // Update skues
+
+            toast.success(`Product ${productID ? "update" : "created"} success`)
+            if (!productID) shopNavigate("products")
         } catch (error) {
-            toast.error(error.errors[0])
+            toast.error(error.errors ? error.errors[0] : "Somthing wrong")
         }
     }, [state, productID])
 
+    const updateSkues = useCallback((skues) => {
+        return Promise.all(skues.filter(el => el._id).map(el => updateSku.mutateAsync({ skuID: el._id, params: el })))
+    }, [])
 
     return (
         <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
@@ -41,7 +41,7 @@ function ButtonsProduct() {
                 <BasicButton
                     width="100%"
                     size="md"
-                    loading={productID ? update.isLoading : create.isLoading}
+                    loading={productID ? update.isLoading || updateSku.isLoading : create.isLoading}
                     onClick={submit}
                 >
                     {productID ? "Update" : "Save"}

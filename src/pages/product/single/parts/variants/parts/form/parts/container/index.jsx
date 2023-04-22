@@ -68,7 +68,7 @@ function VariantMakeForm({ caption, form, property, state }) {
                         {...form("externalID")}
                         defaultValue={state?.externalID}
                         placeholder="External ID"
-                        type="number"
+                        type="text"
                     />
                 )
 

@@ -7,7 +7,7 @@ interface IdefaultValueProperty {
 
 export default class VariantMakeFormModel {
     static defaultValueProperty = ({ caption, property }: IdefaultValueProperty) => {
-        const value = property.filter(el => caption === el.variantName)
+        const value = property ? property.filter(el => caption === el.variantName) : []
 
         return value.length ? value[0].value : ""
     }

@@ -1,5 +1,9 @@
 import { Isku } from "apis/product/interfaces"
-import { ImakeDataService } from "../model"
+
+interface dataSync {
+    data1: Isku
+    data2: Isku
+}
 
 export default class dataFactoryModule {
     static makeProperties = (properties: Array<any>, ids: Array<any>) => {
@@ -10,5 +14,19 @@ export default class dataFactoryModule {
                 variantName: el,
             }
         })
+    }
+
+    static dataSync = (data: Isku): Isku => {
+        return {
+            _id: "",
+            dimensions: data.dimensions,
+            externalID: data.externalID,
+            index: data.index,
+            options: data.options,
+            price: data.price,
+            quantity: data.quantity,
+            record: data.record,
+            weight: data.weight
+        }
     }
 }

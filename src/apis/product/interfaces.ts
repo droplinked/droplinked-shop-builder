@@ -49,4 +49,9 @@ export interface IproductByIdServices {
 export interface IproductUpdateServices {
     productID: string
     params: IproductState
-} 
+}
+
+export interface IskuUpdateByIdServices {
+    skuID: string
+    params: Isku
+}

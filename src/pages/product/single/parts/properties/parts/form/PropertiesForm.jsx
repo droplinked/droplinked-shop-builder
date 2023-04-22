@@ -9,7 +9,7 @@ import propertiesFormContext from './context';
 import { productContext } from 'pages/product/single/context';
 
 function PropertiesForm() {
-    const { state: { properties }, methods: { updateState },productID } = useContext(productContext)
+    const { state: { properties, sku }, methods: { updateState }, productID } = useContext(productContext)
     const [State, setState] = useState([])
     const { addProperty, makeData } = PropertiesFormModel
 
@@ -52,7 +52,7 @@ function PropertiesForm() {
                     </VStack>
                 )) : null}
 
-                <Box><PropertyButton state={State} types={types} /></Box>
+                <Box><PropertyButton state={State} types={types} skues={sku} /></Box>
             </VStack>
         </propertiesFormContext.Provider>
     )

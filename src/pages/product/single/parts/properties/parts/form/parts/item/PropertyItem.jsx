@@ -1,14 +1,20 @@
-import { Box, HStack, Image, Text } from '@chakra-ui/react'
+import { Box, HStack, Image, Text, useDisclosure } from '@chakra-ui/react'
 import { ValueInput } from 'pages/prodcut-pages/ProductPages-style'
-import React, { useCallback, useContext } from 'react'
-import PropertiesFormModel from '../../model/model'
+import React, { useCallback, useContext, useState } from 'react'
 import plusIcon from "assest/icon/plus-icon.svg";
 import minusIcon from "assest/icon/minusIcon.png";
 import propertiesFormContext from '../../context';
+import { productContext } from 'pages/product/single/context';
+import { toast } from 'react-toastify';
+import propertyItemModel from './model/model';
+import SkuTableModal from 'pages/product/single/parts/variants/parts/table/parts/modal/SkuTableModal';
 
 function PropertyItem({ element, keyProperty }) {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [SkuData, setSkuData] = useState(null)
+    const { state: { sku } } = useContext(productContext)
     const { updateState } = useContext(propertiesFormContext)
-    const { appendPropertyItem, addPropertyItem, removePropertyItem } = PropertiesFormModel
+    const { appendPropertyItem, addPropertyItem, removePropertyItem, checkUsedPropertyItem } = propertyItemModel
 
     const append = useCallback((keyProperty) => {
         updateState(prev => appendPropertyItem({
@@ -17,22 +23,48 @@ function PropertyItem({ element, keyProperty }) {
         }))
     }, [updateState])
 
-    const remove = useCallback((keyProperty, keyItem) => {
-        updateState(prev => removePropertyItem({
-            state: prev,
-            keyItem,
-            keyProperty
-        }))
-    }, [updateState])
+    // Check used item in skues
+    const checkItem = (item, element) => {
+        return checkUsedPropertyItem({
+            skues: sku,
+            item: {
+                value: item.value,
+                variantID: element.value
+            }
+        })
+    }
 
-    const set = useCallback((value, index, keyProperty) => {
-        updateState(prev => addPropertyItem({
-            state: prev,
-            index,
-            keyProperty,
-            value
-        }))
-    }, [updateState])
+    const remove = useCallback(async (item, element, keyProperty, keyItem) => {
+        try {
+            await checkItem(item, element)
+            updateState(prev => removePropertyItem({ state: prev, keyItem, keyProperty }))
+        } catch (error) {
+            toast.error("This item used in skues")
+        }
+    }, [updateState, sku])
+
+    const set = useCallback(async (item, element, value, index, keyProperty) => {
+        try {
+            await checkItem(item, element)
+            updateState(prev => addPropertyItem({ state: prev, index, keyProperty, value }))
+        } catch (error) {
+            setSkuData(error)
+            toast.error(
+                <>
+                    This item use {" "}
+                    <button
+                        onClick={() => {
+                            setSkuData(error)
+                            onOpen()
+                        }}
+                    >
+                        <Text color={"#25bb92"}><strong>this</strong></Text>
+                    </button>{" "}
+                    sku
+                </>
+                , { toastId: "SkuUsed" })
+        }
+    }, [updateState, sku])
 
     return (
         <>
@@ -45,13 +77,13 @@ function PropertyItem({ element, keyProperty }) {
                             <ValueInput
                                 placeholder="default"
                                 value={item.value}
-                                onChange={(e) => set(e.target.value, key, keyProperty)}
+                                onChange={(e) => set(item, element, e.target.value, key, keyProperty)}
                             />
                         </Box>
                         <Box>
                             <Image
                                 cursor={"pointer"}
-                                onClick={() => checkAppend ? remove(keyProperty, key) : append(keyProperty)}
+                                onClick={() => checkAppend ? remove(item, element, keyProperty, key) : append(keyProperty)}
                                 src={checkAppend ? minusIcon : plusIcon}
                                 w={"20px"}
                                 h={"20px"}
@@ -60,6 +92,7 @@ function PropertyItem({ element, keyProperty }) {
                     </HStack>
                 )
             })}
+            <SkuTableModal close={onClose} open={SkuData && isOpen} skuData={SkuData} />
         </>
     )
 }

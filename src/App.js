@@ -111,6 +111,7 @@ function App() {
               <Route path="products" element={<ProductsPage />} />
               <Route path="add-product" element={<ProductSingle />} />
               <Route path="product/:productId" element={<ProductSingle />} />
+              <Route path="product-re/:productId" element={<EditProductPage />} />
               <Route path="collections" element={<CollectionMainPage />} />
               <Route path="add-collection" element={<AddCollectionPage />} />
               <Route path="orders" element={<OrderPage />} />
