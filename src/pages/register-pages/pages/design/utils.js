@@ -5,6 +5,8 @@ export const isValidData = (shopData) => {
     result = false;
   } else if (shopData.headerIcon.length === 0) {
     result = false;
+  } else if (shopData.backgroundText.length === 0) {
+    result = false;
   } else if (shopData.logo.length === 0) {
     result = false;
   } else if (shopData.theme === "theme-2" && shopData.backgroundColor === "") {
