@@ -7,11 +7,19 @@ import {
   IconButton,
   Image,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { calculateHowTimePassed, getStatus } from "./order-component-utils";
 import moreIcon from "../../../../../assest/icon/more-icon.svg";
 
-const OrderComponent = ({ order }) => {
+
+import OrderModal from "modals/order-modal/OrderModal";
+
+const OrderComponent = ({ order, update }) => {
+  const [showModal , setShowModal]=useState(false)
+
+  const toggleModal = () => setShowModal(p => !p)
   //
+  console.log('order ' , order);
   return (
     <>
       <Tr
@@ -24,6 +32,8 @@ const OrderComponent = ({ order }) => {
             color: "#C2C2C2",
           },
         }}
+        cursor='pointer'
+        onClick={toggleModal}
       >
         <Td>
           <Text>{order._id}</Text>
@@ -42,10 +52,10 @@ const OrderComponent = ({ order }) => {
           <Text>{order?.items?.length}</Text>
         </Td>
         <Td>
-          <Text>{getStatus(order.status)}</Text>
+          <Text>{order?.status}</Text>
         </Td>
         <Td>
-          <Popover placement="right-start">
+          {/* <Popover placement="right-start">
             <PopoverTrigger>
               <IconButton
                 size="sm"
@@ -56,7 +66,18 @@ const OrderComponent = ({ order }) => {
                 <Image src={moreIcon} />
               </IconButton>
             </PopoverTrigger>
-            {/* <PopoverContent
+          </Popover> */}
+        </Td>
+      </Tr>
+      <OrderModal order={order} show={showModal} close={toggleModal} updateOrder={update} />
+    </>
+  );
+};
+
+export default OrderComponent;
+
+
+        {/* <PopoverContent
               _focus={{ outline: "none" }}
               border="none"
               bg="#292929"
@@ -86,11 +107,3 @@ const OrderComponent = ({ order }) => {
                 </Button>
               </Stack>
             </PopoverContent> */}
-          </Popover>
-        </Td>
-      </Tr>
-    </>
-  );
-};
-
-export default OrderComponent;
