@@ -1,4 +1,6 @@
+import { useApi } from "hooks/useApi/useApi";
 import { createApiReq } from "./api-utils";
+import axiosInstance from "./axiosConfig";
 
 export const postCreateCollection = (collectionName: string) => {
   return createApiReq(`collection`, true, { title: collectionName });

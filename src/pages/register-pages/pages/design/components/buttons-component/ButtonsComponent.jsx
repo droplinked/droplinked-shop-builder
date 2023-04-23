@@ -11,6 +11,7 @@ import { putUpdateShop } from "apis/shopApiService";
 import { isValidData } from "../../utils";
 
 import BasicButton from "components/shared/BasicButton/BasicButton";
+import DesignRegisterMdel from "./model";
 
 const ButtonsComponent = () => {
 
@@ -21,21 +22,22 @@ const ButtonsComponent = () => {
   const { errorToast, successToast } = useToasty();
   const { putApi } = useApi();
   const { updateShopData } = useProfile();
-
+  const { validation } = DesignRegisterMdel
   const currentPath = useLocation().pathname;
 
   const clickSubmit = async () => {
-    if (!isValidData(state)) {
-      errorToast("Required");
-      return;
-    }
-    setLoading(true);
-    const result = await putApi(putUpdateShop(state));
-    updateShopData();
-    setLoading(false);
-    if (result) {
-      if (currentPath.includes("register")) shopNavigate(`register/technical`);
-      successToast("Updated");
+    try {
+      await validation(state)
+      setLoading(true);
+      const result = await putApi(putUpdateShop(state));
+      updateShopData();
+      setLoading(false);
+      if (result) {
+        if (currentPath.includes("register")) shopNavigate(`register/technical`);
+        successToast("Updated");
+      }
+    } catch (error) {
+      errorToast(error?.errors ? error.errors[0] : "Somthing wrong");
     }
   };
 

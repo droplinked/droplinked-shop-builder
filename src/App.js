@@ -3,6 +3,8 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
+import NotFound from "pages/404/404";
+
 const Enquiry = lazy(() =>
   import("./pages/public-pages/enquiry-page/EnquiryPage")
 );
@@ -64,6 +66,7 @@ const AddCollectionPage = lazy(() =>
   )
 );
 const ShopPage = lazy(() => import("./pages/public-pages/shop-page/ShopPage"));
+const ProductSingle = lazy(() => import("pages/product/single"));
 
 const OrderPage = lazy(() =>
   import("./pages/admin-pages/orders-page/OrderPage")
@@ -107,14 +110,15 @@ function App() {
                 <Route path="technical" element={<TechnicalPage />} />
               </Route>
               <Route path="products" element={<ProductsPage />} />
-              <Route path="add-product" element={<AddProductPage />} />
-              <Route path="product/:productId" element={<EditProductPage />} />
+              <Route path="add-product" element={<ProductSingle />} />
+              <Route path="product/:productId" element={<ProductSingle />} />
               <Route path="collections" element={<CollectionMainPage />} />
               <Route path="add-collection" element={<AddCollectionPage />} />
               <Route path="orders" element={<OrderPage />} />
               <Route path="rules" element={<RulePage />} />
             </Route>
             <Route path=":shopname" element={<ShopPage />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </Suspense>

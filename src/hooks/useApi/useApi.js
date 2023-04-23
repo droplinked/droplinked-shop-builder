@@ -1,9 +1,7 @@
 import axios from "axios";
 //
 import { useToasty } from "context/toastify/ToastContext";
-
-
-const BASE_URL = process.env.REACT_APP_BASE_API_URL
+import { BASE_URL } from "utils/app/variable";
 
 export function useApi() {
   const { errorToast } = useToasty();
