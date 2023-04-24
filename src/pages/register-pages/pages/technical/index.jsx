@@ -20,6 +20,7 @@ import Wallet from "./parts/wallet";
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import AppCard from "components/shared/card/AppCard";
 
+// technical
 function Technical() {
   const [Technical, setTechnical] = useState(technicalContextState);
 
