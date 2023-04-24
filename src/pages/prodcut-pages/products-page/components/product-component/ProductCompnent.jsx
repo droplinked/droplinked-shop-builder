@@ -11,16 +11,13 @@ import {
   Stack,
   Button,
 } from "@chakra-ui/react";
-
-import { useCustomNavigate } from "../../../../../hooks/useCustomeNavigate/useCustomNavigate";
-
+import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import moreIcon from "../../../../../assest/icon/more-icon.svg";
 import { useState } from "react";
-import SmallModal from "../../../../../modals/small-modal/SmallModal";
-import { useApi } from "../../../../../hooks/useApi/useApi";
-import { useToasty } from "../../../../../context/toastify/ToastContext";
-
-import { deleteProductById } from "../../../../../apis/productsApiService";
+import SmallModal from "modals/small-modal/SmallModal";
+import { useApi } from "hooks/useApi/useApi";
+import { useToasty } from "context/toastify/ToastContext";
+import { deleteProductById } from "lib/apis/productsApiService";
 
 const ProductComponent = ({ product, update }) => {
   const [loading, setLoading] = useState(false);

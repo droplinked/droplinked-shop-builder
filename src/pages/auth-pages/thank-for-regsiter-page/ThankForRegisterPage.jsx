@@ -1,9 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
-//
 import { useToasty } from "context/toastify/ToastContext";
 import { useApi } from "hooks/useApi/useApi";
-import { postUserResendEmail } from "apis/userApiService";
 import {
   ThankPageWrapper,
   ThankText,
@@ -12,6 +10,7 @@ import {
 } from "./ThankForRegisterPage-style";
 //
 import BasicButton from "components/shared/BasicButton/BasicButton";
+import { postUserResendEmail } from "lib/apis/userApiService";
 
 export default function ThankForRegisterPage() {
   // use this state for loading state of button when calling api

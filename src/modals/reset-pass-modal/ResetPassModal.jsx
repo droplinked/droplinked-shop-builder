@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 
 import { useToasty } from "../../context/toastify/ToastContext";
-import { postUserForgotPassword } from "../../apis/userApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 import { Title, Detail, BacktoLoginButton } from "./ResetPassModal-style";
 
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
+import { postUserForgotPassword } from "lib/apis/userApiService";
 
 const ResetPassModal = ({ show, close, switchReset }) => {
   const [disableBtn, setDisableBtn] = useState(false);

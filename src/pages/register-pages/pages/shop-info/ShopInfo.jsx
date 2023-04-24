@@ -16,9 +16,7 @@ import {
 } from "../../RegisterPages-style";
 import { useApi } from "../../../../hooks/useApi/useApi";
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
-import { getAddressList } from "../../../../apis/addressApiService";
 import { useToasty } from "../../../../context/toastify/ToastContext";
-import { putUpdateShop } from "../../../../apis/shopApiService";
 import {
   shopInformationReducer,
   SHOP_REDUCER_TYPES,
@@ -30,6 +28,9 @@ import AddressComponent from "../../component/address-component/AddressComponent
 
 import InputFieldComponent from "../../../../components/shared/input-field-component/InputFieldComponent";
 import BasicButton from "components/shared/BasicButton/BasicButton";
+import AppCard from "components/shared/card/AppCard";
+import { getAddressList } from "lib/apis/addressApiService";
+import { putUpdateShop } from "lib/apis/shopApiService";
 
 const INITIAL_SHOP_INFO = {
   description: "",
@@ -131,11 +132,11 @@ const RegisterShopInfo = () => {
       }
     }
   };
-
+  
   return (
     <>
       <PageContent>
-        <PageContentWrapper>
+        <AppCard>
           <Text20px>Store info</Text20px>
           <Text fontSize="sm" color="lightGray">
             Name your store and provide the shipping address(es) for your orders
@@ -181,7 +182,7 @@ const RegisterShopInfo = () => {
               updateList={updateAddressList}
             />
           )}
-        </PageContentWrapper>
+        </AppCard>
         <Flex justifyContent={"right"} marginTop={8} width={"100%"}>
           <Box>
             <BasicButton

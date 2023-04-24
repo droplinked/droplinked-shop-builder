@@ -1,19 +1,21 @@
 import React, { useContext } from 'react'
 import InputFieldComponent from 'components/shared/input-field-component/InputFieldComponent'
-import { ComponentTitle, ComponentWrapper } from 'pages/prodcut-pages/ProductPages-style'
+import { ComponentTitle } from 'pages/prodcut-pages/ProductPages-style'
 import InputImagesGroup from 'pages/prodcut-pages/components/InputImageGroupe/Input-images-component'
 import { VStack } from '@chakra-ui/react'
 import { productContext } from '../../context'
 import introductionClass from './model'
+import AppCard from 'components/shared/card/AppCard'
+import { CardTitle } from 'components/shared/card/component-style'
 
 function Introduction() {
     const { state: { title, description, media }, methods: { updateState } } = useContext(productContext)
     const { refactorImage, defactorImage } = introductionClass
 
     return (
-        <ComponentWrapper>
+        <AppCard mini>
             <VStack spacing={10} align={"center"}>
-                <ComponentTitle width={"100%"}>Introduction</ComponentTitle>
+                <CardTitle width={"100%"}>Introduction</CardTitle>
                 <InputFieldComponent
                     label="Title"
                     placeholder="Default"
@@ -29,7 +31,7 @@ function Introduction() {
                 />
                 <InputImagesGroup setState={(images) => updateState("media", refactorImage(images))} state={defactorImage(media)} />
             </VStack>
-        </ComponentWrapper>
+        </AppCard>
     )
 }
 

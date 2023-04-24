@@ -2,22 +2,19 @@ import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState, useContext } from "react";
-
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
 import PasswordInputComponent from "../../components/shared/password-input-component/PasswordInputComponent";
-
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
-
 import { Title, BottomText } from "./LoginModal-style";
 import { PROFILE_STATUS } from "../../constant/profile-status-types";
 import { toastValue } from "../../context/toastify/ToastContext";
-import { setCurrentUser } from "../../store/profile/profile.action";
-import { postLoginByEmail } from "../../apis/authApiService";
 import { useApi } from "../../hooks/useApi/useApi";
 import { useProfile } from "../../hooks/useProfile/useProfile";
-import { appDeveloment } from "utils/app/variable";
-import { validateEmail } from "utils/validations/emailValidation";
+import { validateEmail } from "lib/utils/validations/emailValidation";
+import { postLoginByEmail } from "lib/apis/authApiService";
+import { setCurrentUser } from "lib/store/profile/profile.action";
+import { appDeveloment } from "lib/utils/app/variable";
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   //

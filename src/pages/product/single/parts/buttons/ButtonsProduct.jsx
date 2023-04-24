@@ -6,7 +6,7 @@ import ButtonsProductClass from './model'
 import { toast } from 'react-toastify'
 import { useMutation } from 'react-query'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
-import { productServices, productUpdateServices, skuUpdateByIdServices } from 'apis/product/productServices'
+import { productServices, productUpdateServices, skuUpdateByIdServices } from 'lib/apis/product/productServices'
 
 function ButtonsProduct() {
     const create = useMutation((params) => productServices(params))

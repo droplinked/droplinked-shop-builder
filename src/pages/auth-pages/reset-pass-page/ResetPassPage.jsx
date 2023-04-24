@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 //
 import { toastValue } from "context/toastify/ToastContext";
-import { putUserRecoveryAccount } from "apis/userApiService";
+import { putUserRecoveryAccount } from "lib/apis/userApiService";
 import { useApi } from "hooks/useApi/useApi";
 //
 import "./ResetPassPage-style.scss";

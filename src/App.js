@@ -3,16 +3,15 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
-import NotFound from "pages/404/404";
-
+//
+const MainLayout = lazy(() =>
+  import("layouts/main/mainLayout")
+);
+const NotFound = lazy(() =>
+  import("pages/404/404")
+);
 const Enquiry = lazy(() =>
   import("./pages/public-pages/enquiry-page/EnquiryPage")
-);
-const EditProductPage = lazy(() =>
-  import("./pages/prodcut-pages/edit-product-page/EditProductPage")
-);
-const AdminWrapper = lazy(() =>
-  import("./pages/wrappers/admin-wrapper/AdminWrapper")
 );
 const RegisterPagesWrapper = lazy(() =>
   import("./pages/register-pages/RegisterPageWrapper")
@@ -33,7 +32,7 @@ const ProductsPage = lazy(() =>
   import("./pages/prodcut-pages/products-page/ProductsPage")
 );
 const RulePage = lazy(() => import("./pages/admin-pages/rules-page/RulesPage"));
-const PageWrapper = lazy(() => import("./pages/Page-wrapper/PageWrapper"));
+const DashboardLayout = lazy(() => import("layouts/dashboard/DashboardLayout"));
 const LandingPage = lazy(() =>
   import("./pages/public-pages/landing-page/LandingPage")
 );
@@ -51,9 +50,6 @@ const ResetPassPage = lazy(() =>
 );
 const ThankForRegisterPage = lazy(() =>
   import("./pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage")
-);
-const AddProductPage = lazy(() =>
-  import("./pages/prodcut-pages/add-product-page/AddProductPage")
 );
 const CollectionMainPage = lazy(() =>
   import(
@@ -77,52 +73,42 @@ function App() {
     <BrowserRouter>
       <Suspense fallback={<LoadingPage />}>
         <Routes>
-          <Route path="/enquiry" element={<Enquiry />} />
 
-          <Route path="/" element={<PageWrapper />}>
+          <Route path="/" element={<MainLayout />}>
+            <Route path="/enquiry" element={<Enquiry />} />
             <Route index element={<LandingPage />} />
             <Route path="terms" element={<TermsPage />} />
             <Route path="privacy" element={<PrivacyPage />} />
-            <Route
-              path="email-confirmation"
-              element={<ThankForRegisterPage />}
-            />
-            <Route
-              path="email-verification/:token"
-              element={<VerifyEmailPage />}
-            />
-            <Route
-              path="producer/account-recovery/:token"
-              element={<ResetPassPage />}
-            />
-
-            <Route path=":shopname/c" element={<AdminWrapper />}>
-              <Route path="register" element={<RegisterPagesWrapper />}>
-                <Route path="shop-info" element={<RegisterShopInfo />} />
-                <Route path="contact-info" element={<ContactInfo />} />
-                <Route path="design" element={<DesignPage />} />
-                <Route path="technical" element={<TechnicalPage />} />
-              </Route>
-              <Route path="settings" element={<RegisterPagesWrapper />}>
-                <Route path="shop-info" element={<RegisterShopInfo />} />
-                <Route path="contact-info" element={<ContactInfo />} />
-                <Route path="design" element={<DesignPage />} />
-                <Route path="technical" element={<TechnicalPage />} />
-              </Route>
-              <Route path="products" element={<ProductsPage />} />
-              <Route path="add-product" element={<ProductSingle />} />
-              <Route path="product/:productId" element={<ProductSingle />} />
-              <Route path="collections" element={<CollectionMainPage />} />
-              <Route path="add-collection" element={<AddCollectionPage />} />
-              <Route path="orders" element={<OrderPage />} />
-              <Route path="rules" element={<RulePage />} />
-            </Route>
-            <Route path=":shopname" element={<ShopPage />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="email-confirmation" element={<ThankForRegisterPage />} />
+            <Route path="email-verification/:token" element={<VerifyEmailPage />} />
+            <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
           </Route>
+
+          <Route path=":shopname/c" element={<DashboardLayout />}>
+            <Route path="register" element={<RegisterPagesWrapper />}>
+              <Route path="shop-info" element={<RegisterShopInfo />} />
+              <Route path="contact-info" element={<ContactInfo />} />
+              <Route path="design" element={<DesignPage />} />
+              <Route path="technical" element={<TechnicalPage />} />
+            </Route>
+            <Route path="settings" element={<RegisterPagesWrapper />}>
+              <Route path="shop-info" element={<RegisterShopInfo />} />
+              <Route path="contact-info" element={<ContactInfo />} />
+              <Route path="design" element={<DesignPage />} />
+              <Route path="technical" element={<TechnicalPage />} />
+            </Route>
+            <Route path="products" element={<ProductsPage />} />
+            <Route path="add-product" element={<ProductSingle />} />
+            <Route path="product/:productId" element={<ProductSingle />} />
+            <Route path="collections" element={<CollectionMainPage />} />
+            <Route path="add-collection" element={<AddCollectionPage />} />
+            <Route path="orders" element={<OrderPage />} />
+            <Route path="rules" element={<RulePage />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 

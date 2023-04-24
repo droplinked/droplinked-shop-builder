@@ -1,7 +1,7 @@
 import axios from "axios";
 //
 import { useToasty } from "context/toastify/ToastContext";
-import { BASE_URL } from "utils/app/variable";
+import { BASE_URL } from "lib/utils/app/variable";
 
 export function useApi() {
   const { errorToast } = useToasty();

@@ -7,8 +7,7 @@ import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { useToasty } from "context/toastify/ToastContext";
 import { useApi } from "hooks/useApi/useApi";
 import { useProfile } from "hooks/useProfile/useProfile";
-import { putUpdateShop } from "apis/shopApiService";
-import { isValidData } from "../../utils";
+import { putUpdateShop } from "lib/apis/shopApiService";
 
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import DesignRegisterMdel from "./model";
