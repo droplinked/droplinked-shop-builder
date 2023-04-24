@@ -12,12 +12,13 @@ import { useLocation } from "react-router-dom";
 import { useToasty } from "context/toastify/ToastContext";
 import { useProfile } from "hooks/useProfile/useProfile";
 import { useApi } from "hooks/useApi/useApi";
-import { putUpdateShop } from "apis/shopApiService";
+import { putUpdateShop } from "lib/apis/shopApiService";
 import technicalContext, { technicalContextState } from "./context";
 import { appDeveloment } from "utils/app/variable";
 import technicalModel from "./model";
 import Wallet from "./parts/wallet";
 import BasicButton from "components/shared/BasicButton/BasicButton";
+import AppCard from "components/shared/card/AppCard";
 
 function Technical() {
   const [Technical, setTechnical] = useState(technicalContextState);
@@ -74,7 +75,7 @@ function Technical() {
       }}
     >
       <PageContent>
-        <PageContentWrapper>
+        <AppCard>
           <VStack spacing={10} align="stretch">
             <Ims />
             {appDeveloment && (
@@ -97,7 +98,7 @@ function Technical() {
               </Box>
             </Flex>
           </VStack>
-        </PageContentWrapper>
+        </AppCard>
       </PageContent>
     </technicalContext.Provider>
   );

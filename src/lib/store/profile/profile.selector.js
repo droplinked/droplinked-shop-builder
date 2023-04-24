@@ -1,4 +1,4 @@
-import { PROFILE_STATUS } from "../../constant/profile-status-types";
+import { PROFILE_STATUS } from "constant/profile-status-types";
 
 export const selectCurrentProfile = (state) => state.profile.currentProfile;
 

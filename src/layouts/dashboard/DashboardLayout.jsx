@@ -2,16 +2,15 @@ import { Box, HStack, VStack } from "@chakra-ui/react";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-//
-import { selectIsCustomer } from "store/profile/profile.selector";
 import { useProfile } from "hooks/useProfile/useProfile";
-import { setCurrentShop } from "store/shop/shop.action";
-import { getUser } from "apis/userApiService";
-import { useApi } from "hooks/useApi/useApi";
+import { setCurrentShop } from "lib/store/shop/shop.action";
 import HeaderLayout from "./parts/header/HeaderLayout";
 import FooterLayout from "./parts/footer/FooterLayout";
 import LayoutWrapper from "./parts/wrraper/wrraper";
 import SidebarLayout from "./parts/sidebar/SidebarLayout";
+import { useApi } from "hooks/useApi/useApi";
+import { getUser } from "lib/apis/userApiService";
+import { selectIsCustomer } from "lib/store/profile/profile.selector";
 //
 
 export default function DashboardLayout() {
@@ -65,7 +64,7 @@ export default function DashboardLayout() {
       <HeaderLayout />
       <HStack alignItems={"start"}>
         <Box w="72px"><SidebarLayout /></Box>
-        <Box width={"100%"} minH={"80vh"} borderLeft="1px solid" borderColor={"line"} paddingTop={10} paddingBottom={10}>
+        <Box width={"100%"} minH={"80vh"} padding={10} borderLeft="1px solid" borderColor={"line"} paddingTop={10} paddingBottom={10}>
           <LayoutWrapper><Outlet /></LayoutWrapper>
         </Box>
       </HStack>

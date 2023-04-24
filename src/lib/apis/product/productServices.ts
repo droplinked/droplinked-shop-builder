@@ -1,4 +1,4 @@
-import axiosInstance from "apis/axiosConfig"
+import axiosInstance from "../axiosConfig"
 import { IproductByIdServices, IproductState, IproductUpdateServices, IskuUpdateByIdServices } from "./interfaces"
 
 export const productServices = (params: IproductState) => {

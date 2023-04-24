@@ -9,13 +9,12 @@ import {
 } from "@chakra-ui/react";
 import { useApi } from "../../../hooks/useApi/useApi";
 import { useMemo, useState, useEffect } from "react";
-
-import { getOrders } from "../../../apis/orderApiService";
-
 import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
 import PageHeader from "./components/page-header/PageHeader";
 import { matchSorter } from "match-sorter";
 import OrderComponent from "./components/order-component/OrderCompnent";
+import AppCard from "components/shared/card/AppCard";
+import { getOrders } from "lib/apis/orderApiService";
 
 export default function OrderPage() {
   //
@@ -54,7 +53,7 @@ export default function OrderPage() {
   }
 
   return (
-    <Box w="100%" h="auto" p="0px 40px">
+    <AppCard>
       <PageHeader searchValue={searchValue} setSearchValue={setSearchValue} />
       <TableContainer mb="36px">
         <Table>
@@ -104,6 +103,6 @@ export default function OrderPage() {
           )}
         </Table>
       </TableContainer>
-    </Box>
+    </AppCard>
   );
 }

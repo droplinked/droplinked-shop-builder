@@ -1,4 +1,4 @@
-import axiosInstance from "apis/axiosConfig";
+import axiosInstance from "../axiosConfig";
 import { IcreateCollectionService } from "./interfaces";
 
 export const collectionService = async () => {

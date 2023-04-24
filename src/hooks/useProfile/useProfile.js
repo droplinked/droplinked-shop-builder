@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectCurrentProfile } from "../../store/profile/profile.selector";
-import { selectCurrentShop } from "../../store/shop/shop.selector";
-import { setCurrentShop } from "../../store/shop/shop.action";
-import { setClear } from "../../store/profile/profile.action";
-import { useApi } from "../useApi/useApi";
-import { getUser } from "../../apis/userApiService";
+import { selectCurrentProfile } from "lib/store/profile/profile.selector";
+import { selectCurrentShop } from "lib/store/shop/shop.selector";
+import { setCurrentShop } from "lib/store/shop/shop.action";
+import { setClear } from "lib/store/profile/profile.action";
+import { getUser } from "lib/apis/userApiService";
+import { useApi } from "hooks/useApi/useApi";
 
 //this hook have been used for handle shop and user data
 export function useProfile() {

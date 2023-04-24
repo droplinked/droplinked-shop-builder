@@ -1,14 +1,8 @@
 import { useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
-
 import { useToasty } from "../../context/toastify/ToastContext";
-//import { updateCollection ,addCollection } from "../../api-service/collections/collectionApiService";
 import { useApi } from "../../hooks/useApi/useApi";
-import {
-  postCreateCollection,
-  putUpdateCollection,
-} from "../../apis/collectionApiService";
-
+import { postCreateCollection, putUpdateCollection } from "lib/apis/collectionApiService";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";

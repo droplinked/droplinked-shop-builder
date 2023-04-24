@@ -9,13 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect, useMemo } from "react";
 import { useApi } from "../../../hooks/useApi/useApi";
-import { getProduct } from "../../../apis/productsApiService";
 import PageHeader from "./components/page-header/PageHeader";
 import AddProductComponent from "./components/add-product-component/AddProductComponent";
 import ProductComponent from "./components/product-component/ProductCompnent";
 import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
 import { matchSorter } from "match-sorter";
 import AppCard from "components/shared/card/AppCard";
+import { getProduct } from "lib/apis/productsApiService";
 
 const ProductsPage = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -50,60 +50,59 @@ const ProductsPage = () => {
     );
 
   return (
-    <Box w="100%" h="auto" p="0px 40px">
-      <AppCard>
-        <PageHeader searchValue={searchValue} setSearchValue={setSearchValue} />
-        <TableContainer mb="36px">
-          <Table>
-            <Thead borderY="1px solid" borderColor="line">
-              <Tr>
-                {[
-                  {
-                    width: "35%",
-                    label: "Products",
-                  },
-                  {
-                    width: "35%",
-                    label: "Collections",
-                  },
-                  {
-                    width: "15%",
-                    label: "Status",
-                  },
-                  {
-                    width: "15%",
-                    label: "Inventory status",
-                  },
-                ].map((item) => (
-                  <Th
-                    py={4}
-                    fontSize="12px"
-                    key={item.label}
-                    w={item.width}
-                    color="white"
-                    border="none"
-                  >
-                    {item.label}
-                  </Th>
-                ))}
-              </Tr>
-            </Thead>
-            {tableData.length > 0 && (
-              <Tbody>
-                {tableData.map((item, i) => (
-                  <ProductComponent
-                    key={i}
-                    product={item}
-                    update={getAllProducts}
-                  />
-                ))}
-              </Tbody>
-            )}
-          </Table>
-        </TableContainer>
-        {tableData.length <= 0 && <AddProductComponent />}
-      </AppCard>
-    </Box>
+
+    <AppCard>
+      <PageHeader searchValue={searchValue} setSearchValue={setSearchValue} />
+      <TableContainer mb="36px">
+        <Table>
+          <Thead borderY="1px solid" borderColor="line">
+            <Tr>
+              {[
+                {
+                  width: "35%",
+                  label: "Products",
+                },
+                {
+                  width: "35%",
+                  label: "Collections",
+                },
+                {
+                  width: "15%",
+                  label: "Status",
+                },
+                {
+                  width: "15%",
+                  label: "Inventory status",
+                },
+              ].map((item) => (
+                <Th
+                  py={4}
+                  fontSize="12px"
+                  key={item.label}
+                  w={item.width}
+                  color="white"
+                  border="none"
+                >
+                  {item.label}
+                </Th>
+              ))}
+            </Tr>
+          </Thead>
+          {tableData.length > 0 && (
+            <Tbody>
+              {tableData.map((item, i) => (
+                <ProductComponent
+                  key={i}
+                  product={item}
+                  update={getAllProducts}
+                />
+              ))}
+            </Tbody>
+          )}
+        </Table>
+      </TableContainer>
+      {tableData.length <= 0 && <AddProductComponent />}
+    </AppCard>
   );
 };
 

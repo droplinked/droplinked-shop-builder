@@ -8,7 +8,7 @@ import Variants from './parts/variants/Variants'
 import ButtonsProduct from './parts/buttons/ButtonsProduct'
 import { useParams } from 'react-router-dom'
 import { useMutation } from 'react-query'
-import { productByIdServices } from 'apis/product/productServices'
+import { productByIdServices } from 'lib/apis/product/productServices'
 import ProductSingleModel from './model/model'
 
 function ProductSingle() {

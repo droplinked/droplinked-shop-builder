@@ -5,7 +5,7 @@ import {
   getRulesetById,
   postCreateRuleset,
   putUpdateRuleset,
-} from "apis/rulesetApiService";
+} from "lib/apis/rulesetApiService";
 import ModalWrapper from "modals/modal-wrapper/ModalWrapper";
 import {
   ModalHeader,

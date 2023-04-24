@@ -12,14 +12,12 @@ import {
 import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useState } from "react";
 import { IconComponent } from "./AddressComponent-style";
-
-import { useApi } from "../../../../hooks/useApi/useApi";
-import { deleteAddress } from "../../../../apis/addressApiService";
-
 import SmallModal from "../../../../modals/small-modal/SmallModal";
 import AddressModal from "../../../../modals/address-modal/AddressModal";
 import editIcon from "../../../../assest/icon/edit-icon.svg";
 import deleteIcon from "../../../../assest/icon/delete-icon.svg";
+import { useApi } from "hooks/useApi/useApi";
+import { deleteAddress } from "lib/apis/addressApiService";
 
 // (address) formta in props {
 //      addressLine1: string

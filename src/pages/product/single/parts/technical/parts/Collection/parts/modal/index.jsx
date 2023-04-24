@@ -5,10 +5,10 @@ import React, { useState } from 'react'
 import roundedQuestionMark from "assest/icon/rounded-question-mark-icon.svg";
 import BasicButton from 'components/shared/BasicButton/BasicButton';
 import { useMutation } from 'react-query';
-import { createCollectionService } from 'apis/collection/services';
+import { createCollectionService } from 'lib/apis/collection/services';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { fetchCollection } from 'store/features/product/collection';
+import { fetchCollection } from 'lib/store/features/product/collection';
 
 function ModalCollection({ open, close }) {
     const [Name, setName] = useState("")

@@ -6,14 +6,15 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 //
-import { PageWrapper, NoRuleText } from "./RulesPage-style";
+import { NoRuleText } from "./RulesPage-style";
 import { useApi } from "hooks/useApi/useApi";
-import { getRulesets } from "apis/rulesetApiService";
 //
 import SearchComponent from "./components/search-component/SearchComponent";
 import RuleComponent from "./components/rule-component/RuleComponent";
 import HeaderComponent from "./components/header-component/HeaderComponent";
 import LoadingComponent from "components/shared/loading-component/LoadingComponent";
+import AppCard from "components/shared/card/AppCard";
+import { getRulesets } from "lib/apis/rulesetApiService";
 
 const RulePage = () => {
   const [rules, setRules] = useState(null);
@@ -32,35 +33,33 @@ const RulePage = () => {
   if (!rules) {
     return (
       <Box w="100%" h="auto" p="0px 40px">
-        <PageWrapper>
+        <AppCard>
           <LoadingComponent />
-        </PageWrapper>
+        </AppCard>
       </Box>
     );
   }
 
   return (
-    <Box w="100%" h="auto" p="0px 40px">
-      <PageWrapper>
-        <SearchComponent />
-        <Box mb="36px" />
-        {rules.length <= 0 ? (
-          <NoRuleText>No ruleset</NoRuleText>
-        ) : (
-          <TableContainer mb="36px">
-            <Table>
-              <HeaderComponent />
+    <AppCard>
+      <SearchComponent />
+      <Box mb="36px" />
+      {rules.length <= 0 ? (
+        <NoRuleText>No ruleset</NoRuleText>
+      ) : (
+        <TableContainer mb="36px">
+          <Table>
+            <HeaderComponent />
 
-              <Tbody>
-                {rules.map((rule) => {
-                return  <RuleComponent rule={rule} />;
-                })}
-              </Tbody>
-            </Table>
-          </TableContainer>
-        )}
-      </PageWrapper>
-    </Box>
+            <Tbody>
+              {rules.map((rule) => {
+                return <RuleComponent rule={rule} />;
+              })}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      )}
+    </AppCard>
   );
 };
 

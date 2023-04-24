@@ -1,5 +1,5 @@
-import SHOP_ACTION_TYPES from "./shop.types";
 import { createAction } from "../reducer-utils";
+import SHOP_ACTION_TYPES from "./shop.types";
 
 export const setCurrentShop = (data) => {
   localStorage.setItem("shop", JSON.stringify(data));

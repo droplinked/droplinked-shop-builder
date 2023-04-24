@@ -13,12 +13,6 @@ const NotFound = lazy(() =>
 const Enquiry = lazy(() =>
   import("./pages/public-pages/enquiry-page/EnquiryPage")
 );
-const EditProductPage = lazy(() =>
-  import("./pages/prodcut-pages/edit-product-page/EditProductPage")
-);
-const AdminWrapper = lazy(() =>
-  import("./pages/wrappers/admin-wrapper/AdminWrapper")
-);
 const RegisterPagesWrapper = lazy(() =>
   import("./pages/register-pages/RegisterPageWrapper")
 );
@@ -57,9 +51,6 @@ const ResetPassPage = lazy(() =>
 const ThankForRegisterPage = lazy(() =>
   import("./pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage")
 );
-const AddProductPage = lazy(() =>
-  import("./pages/prodcut-pages/add-product-page/AddProductPage")
-);
 const CollectionMainPage = lazy(() =>
   import(
     "./pages/admin-pages/collections-pages/collection-page/CollectionsPage"
@@ -82,9 +73,9 @@ function App() {
     <BrowserRouter>
       <Suspense fallback={<LoadingPage />}>
         <Routes>
-          <Route path="/enquiry" element={<Enquiry />} />
 
           <Route path="/" element={<MainLayout />}>
+            <Route path="/enquiry" element={<Enquiry />} />
             <Route index element={<LandingPage />} />
             <Route path="terms" element={<TermsPage />} />
             <Route path="privacy" element={<PrivacyPage />} />
@@ -114,8 +105,6 @@ function App() {
             <Route path="orders" element={<OrderPage />} />
             <Route path="rules" element={<RulePage />} />
           </Route>
-
-          <Route path=":shopname" element={<ShopPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
