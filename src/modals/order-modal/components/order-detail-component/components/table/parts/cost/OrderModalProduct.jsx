@@ -8,7 +8,7 @@ function OrderDetailCost() {
 
   const totalPrice = useMemo(() => {
     let total = order?.items?.reduce(
-      (sum, product) => sum + (product?.totalPriceItem*product?.quantity),
+      (sum, product) => sum + product?.totalPriceItem,
       0
     );
 

@@ -6,6 +6,10 @@ import OrderModalProduct from './parts/product/OrderModalProduct';
 function OrderDetailTable() {
     const { order } = useContext(orderModalContext)
 
+    const pricePerItem = (item) => {
+       return parseFloat(item?.totalPriceItem / item?.quantity ).toFixed(2)
+    }
+
     return (
         <AppTable
             rows={order.items ? order.items.map(el => {
@@ -26,7 +30,7 @@ function OrderDetailTable() {
                         value: "---"
                     },
                     price : {
-                        value: `$${el?.totalPriceItem.toFixed(2)}`
+                        value: `$${pricePerItem(el)}`
                     }
                 }
             }) : []}
