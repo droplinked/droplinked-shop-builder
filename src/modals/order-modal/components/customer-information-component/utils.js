@@ -1,29 +1,21 @@
-
-
 export const convertCustomerInformation = (order) => {
-    if(!order) return null
-    let array = [];
-    array.push({
+  if (!order || !order.customerAddressBook) return null
+
+  const { firstName, lastName, addressLine1, city, state, country, zip } = order.customerAddressBook
+  
+  return [
+    {
       name: "Customer",
-      data:
-        order?.customerAddressBook?.firstName +
-        " " +
-        order?.customerAddressBook?.lastName,
-    });
-    array.push({ name: "Email", data: order?.customerEmail });
-    array.push({
+      data: `${firstName} ${lastName}`
+    },
+    {
+      name: "Email",
+      data: order?.customerEmail
+    },
+    {
       name: "Address",
-      data:
-        order?.customerAddressBook?.addressLine1 +
-        " ," +
-        order?.customerAddressBook?.city +
-        " ," +
-        order?.customerAddressBook?.state +
-        " ," +
-        order?.customerAddressBook?.country +
-        " ," +
-        order?.customerAddressBook?.zip,
-    });
-    array.push({ name: "Email", data: order?.customerEmail });
-    return array;
+      data: `${addressLine1} ${city} ${state} ${country} ${zip} `
+    }
+  ]
+
 }

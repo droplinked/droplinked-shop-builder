@@ -5,7 +5,7 @@ import {
   getRulesetById,
   postCreateRuleset,
   putUpdateRuleset,
-} from "apis/rulesetApiService";
+} from "lib/apis/rulesetApiService";
 import ModalWrapper from "modals/modal-wrapper/ModalWrapper";
 import {
   ModalHeader,
@@ -70,6 +70,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
       counter === "" ||
       addresses === "" ||
       webUrl === "" ||
+      chainType === "" ||
       (ruleType === RuleTypes.DISCOUNT && discount === "")
     ) {
       return false;
@@ -89,12 +90,11 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
           {
             addresses: addresses?.split(","),
             discountPercentage: +discount,
-            type: "NFT",
+            type: chainType,
             nftsCount: +counter,
             description: tagName,
           },
         ],
-        type: chainType,
         webUrl: webUrl,
         redeemedNFTs: [],
       };
@@ -145,16 +145,11 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
               mt={2}
               value={chainType}
               onChange={changeChainType}
-              // disabled={RuleList.length > 0}
+            // disabled={RuleList.length > 0}
             >
-              <OptionComponent value={ChainTypes.ETH}>
-                {/* <Image src={discountIcon} w="16px" h="16px" /> */}
-                ETH
-              </OptionComponent>
-              <OptionComponent value={ChainTypes.CASPER}>
-                {/* <Image src={gatedIcon} w="16px" h="16px" /> */}
-                CASPER
-              </OptionComponent>
+              {Object.keys(ChainTypes).map((el, key) => (
+                <OptionComponent key={key} value={ChainTypes[el]}>{el}</OptionComponent>
+              ))}
             </SelectComponent>
           </FormControl>
           <Flex gap={2}>
@@ -165,7 +160,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                 mt={2}
                 value={ruleType}
                 onChange={changeRuleType}
-                // disabled={RuleList.length > 0}
+              // disabled={RuleList.length > 0}
               >
                 <OptionComponent value={RuleTypes.GATED}>
                   {/* <Image src={discountIcon} w="16px" h="16px" /> */}

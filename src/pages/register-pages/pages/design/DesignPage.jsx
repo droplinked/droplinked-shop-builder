@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, Image, VStack } from "@chakra-ui/react";
 import { useState, useEffect, useCallback } from "react";
 
 import {
@@ -21,6 +21,8 @@ import ColorInputsComponent from "./components/color-inputs-component/ColorInput
 
 import { designContext, initialStatesDesign } from "./design-context";
 import { refactorDesignData } from "./utils";
+import AppCard from "components/shared/card/AppCard";
+import { CardTitle } from "components/shared/card/component-style";
 
 //
 const IMAGES = [{ img: darkThemplateImage, name: "theme-2" }];
@@ -51,56 +53,58 @@ const DesignPage = () => {
       }}
     >
       <PageContent>
-        <PageInformationComponent>
-          Pick an editable template and customize it with your brand logo,
-          title, header banner, etc.
-        </PageInformationComponent>
-        <PageContentWrapper>
-          <Text18px>Templates</Text18px>
-          <Box mb="48px" />
-          <Box w="auto" overflow="hidden">
-            <MainThemeImage src={selectedTheme.img} m="2px" />
-          </Box>
+        <VStack>
+          <AppCard>
+            Pick an editable template and customize it with your brand logo,
+            title, header banner, etc.
+          </AppCard>
+          <AppCard>
+            <CardTitle>Templates</CardTitle>
+            <Box mb="48px" />
+            <Box w="auto" overflow="hidden">
+              <MainThemeImage src={selectedTheme.img} m="2px" />
+            </Box>
 
-          <Box mb="48px" />
-          <Flex
-            w="100%"
-            maxW="100%"
-            overflow="hidden"
-            gap="24px"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            {IMAGES.map((currentObj) => {
-              return (
-                <Image
-                  key={currentObj.img}
-                  src={currentObj.img}
-                  // onClick={() => {
-                  //   selectTheme(currentObj);
-                  // }}
-                  w="30%"
-                  h="154px"
-                  borderRadius="8px"
-                  cursor="pointer"
-                />
-              );
-            })}
-          </Flex>
-          <Box mb="104px" />
-          <Text18px>Details</Text18px>
-          <Box mb="48px" />
-          <IconsComponent />
+            <Box mb="48px" />
+            <Flex
+              w="100%"
+              maxW="100%"
+              overflow="hidden"
+              gap="24px"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              {IMAGES.map((currentObj) => {
+                return (
+                  <Image
+                    key={currentObj.img}
+                    src={currentObj.img}
+                    // onClick={() => {
+                    //   selectTheme(currentObj);
+                    // }}
+                    w="30%"
+                    h="154px"
+                    borderRadius="8px"
+                    cursor="pointer"
+                  />
+                );
+              })}
+            </Flex>
+            <Box mb="104px" />
+            <Text18px>Details</Text18px>
+            <Box mb="48px" />
+            <IconsComponent />
 
-          <Box mb="48px" />
-          <HeaderTitleComponent />
+            <Box mb="48px" />
+            <HeaderTitleComponent />
 
-          <Box mb="48px" />
-          <BannerComponent />
+            <Box mb="48px" />
+            <BannerComponent />
 
-          <Box mb="48px" />
-          <ColorInputsComponent />
-        </PageContentWrapper>
+            <Box mb="48px" />
+            <ColorInputsComponent />
+          </AppCard>
+        </VStack>
         <Box mb="36px" />
 
         <ButtonsComponent />

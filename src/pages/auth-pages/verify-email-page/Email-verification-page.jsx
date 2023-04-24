@@ -2,7 +2,7 @@ import { useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 //
 import { toastValue } from "context/toastify/ToastContext";
-import { postUserEmailVerification } from "apis/userApiService";
+import { postUserEmailVerification } from "lib/apis/userApiService";
 import { useApi } from "hooks/useApi/useApi";
 //
 import LoadingComponent from "components/shared/loading-component/LoadingComponent";

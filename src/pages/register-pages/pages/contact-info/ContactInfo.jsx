@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, VStack } from "@chakra-ui/react";
 import { useReducer, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -8,7 +8,6 @@ import {
   PageContentWrapper,
 } from "../../RegisterPages-style";
 import { useApi } from "../../../../hooks/useApi/useApi";
-import { putUpdateShop } from "../../../../apis/shopApiService";
 import { shopContactReducer, SHOP_REDUCER_TYPES } from "./contact-reducer";
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
@@ -17,6 +16,8 @@ import { useToasty } from "../../../../context/toastify/ToastContext";
 import SubmitButton from "../../component/submit-buttons/SubmitButtons";
 import InputLefton from "../../component/input-lefton/InputLefton";
 import BasicButton from "components/shared/BasicButton/BasicButton";
+import AppCard from "components/shared/card/AppCard";
+import { putUpdateShop } from "lib/apis/shopApiService";
 
 const INITIAL_SHOP_CONTACT = {
   discordURL: "",
@@ -101,43 +102,45 @@ const ContactInfo = () => {
 
   return (
     <PageContent>
-      <PageInformationComponent>
-        Add social media links on your store to help customers find you easily
-        across multiple platforms.
-      </PageInformationComponent>
-      <PageContentWrapper>
-        <InputLefton
-          value={shopInformation.webURL}
-          change={changeWebUrl}
-          label="Website"
-          placeHolder="mystore.com"
-          children="https://"
-        />
-        <Box mb="52px" />
-        <InputLefton
-          value={shopInformation.discordURL}
-          change={changeDiscord}
-          label="Discord"
-          placeHolder="my store"
-          children="https://discord.gg/"
-        />
-        <Box mb="52px" />
-        <InputLefton
-          value={shopInformation.twitterURL}
-          change={changeTwitter}
-          label="Twitter"
-          placeHolder="my store"
-          children="https://twitter.com/"
-        />
-        <Box mb="52px" />
-        <InputLefton
-          value={shopInformation.instagramURL}
-          change={changeInsagram}
-          label="Instagram"
-          placeHolder="mystore.com"
-          children="https://www.instagram.com/"
-        />
-      </PageContentWrapper>
+      <VStack align={"stretch"}>
+        <AppCard>
+          Add social media links on your store to help customers find you easily
+          across multiple platforms.
+        </AppCard>
+        <AppCard>
+          <InputLefton
+            value={shopInformation.webURL}
+            change={changeWebUrl}
+            label="Website"
+            placeHolder="mystore.com"
+            children="https://"
+          />
+          <Box mb="52px" />
+          <InputLefton
+            value={shopInformation.discordURL}
+            change={changeDiscord}
+            label="Discord"
+            placeHolder="my store"
+            children="https://discord.gg/"
+          />
+          <Box mb="52px" />
+          <InputLefton
+            value={shopInformation.twitterURL}
+            change={changeTwitter}
+            label="Twitter"
+            placeHolder="my store"
+            children="https://twitter.com/"
+          />
+          <Box mb="52px" />
+          <InputLefton
+            value={shopInformation.instagramURL}
+            change={changeInsagram}
+            label="Instagram"
+            placeHolder="mystore.com"
+            children="https://www.instagram.com/"
+          />
+        </AppCard>
+      </VStack>
 
       <Flex justifyContent={"right"} marginTop={8} width={"100%"}>
         <Box>

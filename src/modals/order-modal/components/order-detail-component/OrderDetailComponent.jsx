@@ -1,33 +1,35 @@
 import {
   Box,
   Text,
-  TableContainer,
-  Table,
-  Tbody,
-  Tr,
-  Td,
+  VStack
 } from "@chakra-ui/react";
+import OrderDetailTable from "./components/table/OrderDetailTable";
+import OrderDetailCost from "./components/table/parts/cost/OrderModalProduct";
+import OrderDetailPayment from "./components/table/parts/payment/OrderModalProduct";
 
-import ItemsComponent from "./components/items-component/ItemsComponent";
-const OrderDetailComponent = ({ order }) => {
+const OrderDetailComponent = () => {
+
   return (
-    <Box w="100%">
-      <Text
-        fontFamily="Avenir Next"
-        fontWeight="700"
-        fontSize="18px"
-        color="lightGray"
-        w="100%"
-        textAlign="center"
-        mb="36px"
-      >
-        Order Details
-      </Text>
+    <VStack align={"stretch"} color={"#FFF"}>
+      <Box>
+        <Text
+          fontFamily="Avenir Next"
+          fontWeight="700"
+          fontSize="18px"
+          color="lightGray"
+          textAlign="center"
+          mb="36px"
+        >
+          Order Details
+        </Text>
+      </Box>
+      <VStack align={"stretch"} spacing={10}>
+        <Box><OrderDetailTable /></Box>
+        <Box><OrderDetailCost /></Box>
+        <Box><OrderDetailPayment /></Box>
+      </VStack>
 
-     {order?.items.length > 0 && <ItemsComponent items={order.items} /> } 
-     <Box w="36px" />
-     
-    </Box>
+    </VStack>
   );
 };
 

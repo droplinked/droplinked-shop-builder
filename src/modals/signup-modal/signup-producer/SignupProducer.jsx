@@ -1,16 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { Stack } from "@chakra-ui/react";
-
 import { toastValue } from "../../../context/toastify/ToastContext";
 import { validateEmail } from "../../../utils/validations/emailValidation";
 import { BottomText } from "../SignupModal-style";
-import { postUserSignup } from "../../../apis/userApiService";
 import { useApi } from "../../../hooks/useApi/useApi";
-
 import BasicButton from "../../../components/shared/BasicButton/BasicButton";
 import InputFieldComponent from "../../../components/shared/input-field-component/InputFieldComponent";
 import PasswordInputComponent from "../../../components/shared/password-input-component/PasswordInputComponent";
+import { postUserSignup } from "lib/apis/userApiService";
 
 export default function SignupProducer({ close, shopname, switchToggle }) {
   const { successToast, errorToast } = useContext(toastValue);

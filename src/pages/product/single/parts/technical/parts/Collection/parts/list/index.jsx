@@ -2,7 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import { BlackBox } from 'pages/register-pages/RegisterPages-style'
 import React, { useCallback, useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCollection } from 'store/features/product/collection'
+import { fetchCollection } from 'lib/store/features/product/collection'
 import classes from './style.module.scss'
 import { productContext } from 'pages/product/single/context'
 

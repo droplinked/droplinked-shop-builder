@@ -7,12 +7,12 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 import { Provider } from "react-redux";
-import { store } from './store/store';
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "./theme";
 
 import ToastifyProvider from "./context/toastify/ToastContext";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { store } from "lib/store/store";
 const queryClient = new QueryClient ()
 
 ReactDOM.render(

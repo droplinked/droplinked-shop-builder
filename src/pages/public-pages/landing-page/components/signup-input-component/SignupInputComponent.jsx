@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Flex } from "@chakra-ui/react";
-import { useApi } from "../../../../../hooks/useApi/useApi";
-import { getIsShopExist } from "../../../../../apis/shopApiService";
 import {
   SignupWrapper,
   DomainText,
@@ -9,8 +7,11 @@ import {
   SignupButton,
   ErrorText,
 } from "./SignupInputComponent-style";
+import BasicButton from "components/shared/BasicButton/BasicButton";
+import { getIsShopExist } from "lib/apis/shopApiService";
+import { useApi } from "hooks/useApi/useApi";
 
-import BasicButton from "../../../../../components/shared/BasicButton/BasicButton";
+
 
 const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
   const [loading, setLoading] = useState(false);
