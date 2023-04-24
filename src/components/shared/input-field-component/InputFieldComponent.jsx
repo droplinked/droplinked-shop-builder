@@ -81,7 +81,7 @@ export default function InputFieldComponent({
 
       {((isRequired && !value?.length && touched) ||
         (!value?.length && showError)) && (
-        <FormHelperText color="red">{name} is required</FormHelperText>
+        <FormHelperText color="#ff6464">{name} is required</FormHelperText>
       )}
     </FormControl>
   );

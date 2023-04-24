@@ -5,7 +5,7 @@ export const SidebarWrapper = chakra("div", {
 });
 
 
-export const IconWrapper= chakra("a", {
+export const IconWrapper= chakra("div", {
   baseStyle: {
    w:'100%' ,
    p:'12px 24px' ,

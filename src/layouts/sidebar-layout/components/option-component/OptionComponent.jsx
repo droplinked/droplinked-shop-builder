@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Tooltip } from "@chakra-ui/react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 //
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "hooks/useProfile/useProfile";
@@ -21,20 +21,20 @@ const OptionComponent = ({ icon, label, path }) => {
       borderRadius="8px"
       bg="mainLayer"
     >
-      <IconWrapper
-        //onClick={clickOnIcon}
-        borderLeft="4px solid"
-        borderColor={isActive ? "primary" : "none"}
-        _hover={{
-          borderColor: "primary",
-        }}
-        href={path?`/${shop.name}/c/${path}`:null}
-      >
-        <IconComponent
-          src={icon}
-          cursor={label === "informations" ? "not-allowed" : "pointer"}
-        />
-      </IconWrapper>
+      <Link to={path ? `/${shop.name}/c/${path}` : ""}>
+        <IconWrapper
+          borderLeft="4px solid"
+          borderColor={isActive ? "primary" : "none"}
+          _hover={{
+            borderColor: "primary",
+          }}
+        >
+          <IconComponent
+            src={icon}
+            cursor={label === "informations" ? "not-allowed" : "pointer"}
+          />
+        </IconWrapper>
+      </Link>
     </Tooltip>
   );
 };

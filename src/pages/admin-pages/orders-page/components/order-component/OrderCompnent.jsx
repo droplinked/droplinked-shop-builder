@@ -1,25 +1,17 @@
 import {
   Tr,
   Td,
-  Text,
-  Popover,
-  PopoverTrigger,
-  IconButton,
-  Image,
+  Text
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { calculateHowTimePassed, getStatus } from "./order-component-utils";
-import moreIcon from "../../../../../assest/icon/more-icon.svg";
-
+import { calculateHowTimePassed } from "./order-component-utils";
 
 import OrderModal from "modals/order-modal/OrderModal";
 
 const OrderComponent = ({ order, update }) => {
-  const [showModal , setShowModal]=useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const toggleModal = () => setShowModal(p => !p)
-  //
-  console.log('order ' , order);
   return (
     <>
       <Tr
@@ -77,7 +69,7 @@ const OrderComponent = ({ order, update }) => {
 export default OrderComponent;
 
 
-        {/* <PopoverContent
+{/* <PopoverContent
               _focus={{ outline: "none" }}
               border="none"
               bg="#292929"
