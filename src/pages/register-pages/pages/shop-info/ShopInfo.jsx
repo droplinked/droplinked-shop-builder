@@ -132,7 +132,7 @@ const RegisterShopInfo = () => {
       }
     }
   };
-
+  
   return (
     <>
       <PageContent>

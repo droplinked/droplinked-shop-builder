@@ -10,7 +10,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { useToasty } from "../../../../context/toastify/ToastContext";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { IconComponent } from "./AddressComponent-style";
 import SmallModal from "../../../../modals/small-modal/SmallModal";
 import AddressModal from "../../../../modals/address-modal/AddressModal";
@@ -18,6 +18,7 @@ import editIcon from "../../../../assest/icon/edit-icon.svg";
 import deleteIcon from "../../../../assest/icon/delete-icon.svg";
 import { useApi } from "hooks/useApi/useApi";
 import { deleteAddress } from "lib/apis/addressApiService";
+import { useLocation } from "react-router-dom";
 
 // (address) formta in props {
 //      addressLine1: string
@@ -53,6 +54,7 @@ export default function AddressComponent({
   const [showAddressModal, setShowAddressModal] = useState(false);
   // state for open and close delete modal
   const [deleteModal, setDeleteModal] = useState(false);
+  const currentPath = useLocation().pathname;
 
   const { successToast } = useToasty();
   const { deleteApi } = useApi();
@@ -81,6 +83,11 @@ export default function AddressComponent({
   const closeDeleteModal = () => setDeleteModal(false);
 
   const toggleAddressModal = () => setShowAddressModal((p) => !p);
+
+  const isSettings = useMemo(() => {
+    return currentPath.includes("settings");
+  }, [currentPath]);
+  
 
   return (
     <>
@@ -147,7 +154,7 @@ export default function AddressComponent({
               <Td>
                 <Flex alignItems="center" justifyContent="space-around">
                   <IconComponent src={editIcon} onClick={toggleAddressModal} />
-                  <IconComponent src={deleteIcon} onClick={showDeleteModal} />
+                  {!isSettings && <IconComponent src={deleteIcon} onClick={showDeleteModal} />}
                 </Flex>
               </Td>
             </Tr>
