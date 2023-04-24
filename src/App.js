@@ -3,7 +3,7 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
-
+//
 const MainLayout = lazy(() =>
   import("layouts/main/mainLayout")
 );
