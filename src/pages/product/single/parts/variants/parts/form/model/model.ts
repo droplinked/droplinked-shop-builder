@@ -1,6 +1,6 @@
 import { number, object, string } from 'yup';
 import dataFactoryModule from './modules/dataFactory';
-import { Isku } from 'apis/product/interfaces';
+import { Isku } from 'lib/apis/product/interfaces';
 import SkuFormValidationModule from './modules/validation';
 
 export interface ImakeDataService {

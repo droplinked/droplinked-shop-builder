@@ -1,4 +1,4 @@
-import { Iproperties } from "apis/product/interfaces";
+import { Iproperties } from "lib/apis/product/interfaces";
 import AppendModule from "../../parts/properties/parts/form/model/module/append";
 
 export default class propertyFactor {
