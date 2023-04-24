@@ -77,7 +77,7 @@ const CollectionModal = ({ show, collection, close, update }) => {
             <BasicButton
               width="100%"
               click={close}
-              loading={loading}
+              disable={loading}
               cancelType={true}
             >
               Cancel

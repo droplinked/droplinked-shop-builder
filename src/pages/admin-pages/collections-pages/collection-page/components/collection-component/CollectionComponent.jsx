@@ -9,13 +9,19 @@ import {
   PopoverTrigger,
   PopoverContent,
   Button,
+  useMenuState,
+  useDisclosure,
 } from "@chakra-ui/react";
 //
 import moreIcon from "assest/icon/more-icon.svg";
 import CollectionModal from "modals/collection-modal/CollectionModal";
 import RuleModal from "modals/rule-modal/RuleModal";
+import DeleteCollection from "./parts/delete/DeleteModalCollection";
+import DeleteModalCollection from "./parts/delete/DeleteModalCollection";
 
 const CollectionComponent = ({ collection, update }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   //
   const [ruleModal, setRuleModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
@@ -84,6 +90,15 @@ const CollectionComponent = ({ collection, update }) => {
               >
                 Ruleset
               </Button>
+              <Button
+                textAlign="start"
+                variant="unstyled"
+                size="xs"
+                onClick={onOpen}
+              >
+                Delete
+              </Button>
+              <DeleteCollection />
             </PopoverContent>
           </Popover>
         </Td>
@@ -104,6 +119,8 @@ const CollectionComponent = ({ collection, update }) => {
         close={toggleEditModal}
         update={update}
       />
+
+      <DeleteModalCollection close={onClose} open={isOpen} collectionID={collection._id} onSuccess={update} />
     </>
   );
 };

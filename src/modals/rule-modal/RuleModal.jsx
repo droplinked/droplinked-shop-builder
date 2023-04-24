@@ -17,6 +17,7 @@ import InputFieldComponent from "components/shared/input-field-component/InputFi
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import LoadingComponent from "components/shared/loading-component/LoadingComponent";
 import { ChainTypes } from "./chain-type";
+import { toast } from "react-toastify";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
@@ -26,7 +27,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   //
   const [webUrl, setWebUrl] = useState("");
   const [discount, setDiscount] = useState("");
-  const [chainType, setChainType] = useState("");
+  const [chainType, setChainType] = useState("ETH");
   const [tagName, setTagName] = useState("");
   const [counter, setCounter] = useState("");
   const [addresses, setAddresses] = useState([]);
@@ -80,6 +81,10 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
 
   const submit = async () => {
     let validation = validationForm();
+    let query = {}
+    let success = ""
+    console.log("chainType", chainType);
+    console.log("validation", !validation);
     if (!validation) setError(true);
     else {
       const gated = ruleType == RuleTypes.DISCOUNT ? false : true;
@@ -90,22 +95,31 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
           {
             addresses: addresses?.split(","),
             discountPercentage: +discount,
-            type: chainType,
             nftsCount: +counter,
+            type: chainType,
             description: tagName,
           },
         ],
+        type: chainType,
         webUrl: webUrl,
         redeemedNFTs: [],
       };
 
       if (ruleId) {
-        await putApi(putUpdateRuleset(ruleId, requestBody));
+        query = await putApi(putUpdateRuleset(ruleId, requestBody));
+        success = "Rule update"
       } else {
-        await postApi(postCreateRuleset(requestBody));
+        query = await postApi(postCreateRuleset(requestBody));
+        success = "Rule created"
       }
-      update();
-      close();
+
+      if (query) {
+        update();
+        close();
+        toast.success(success)
+      } else {
+        toast.error("Somthing wrong")
+      }
     }
   };
 

@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { IcreateCollectionService } from "./interfaces";
+import { IcreateCollectionService, IdeleteCollectionService } from "./interfaces";
 
 export const collectionService = async () => {
     const response = await axiosInstance.get("collection")
@@ -8,4 +8,8 @@ export const collectionService = async () => {
 
 export const createCollectionService = (params: IcreateCollectionService) => {
     return axiosInstance.post("collection", params)
+};
+
+export const deleteCollectionService = ({ collectionID }: IdeleteCollectionService) => {
+    return axiosInstance.delete(`collection/${collectionID}`)
 };
