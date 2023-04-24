@@ -1,20 +1,20 @@
-import { Box } from "@chakra-ui/react";
+import { Box, HStack, VStack } from "@chakra-ui/react";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { useSelector ,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 //
 import { selectIsCustomer } from "store/profile/profile.selector";
 import { useProfile } from "hooks/useProfile/useProfile";
 import { setCurrentShop } from "store/shop/shop.action";
 import { getUser } from "apis/userApiService";
 import { useApi } from "hooks/useApi/useApi";
+import HeaderLayout from "./parts/header/HeaderLayout";
+import FooterLayout from "./parts/footer/FooterLayout";
+import LayoutWrapper from "./parts/wrraper/wrraper";
+import SidebarLayout from "./parts/sidebar/SidebarLayout";
 //
-import HeaderLayout from "layouts/header-layout/HeaderLayout";
-import FooterLayout from "layouts/footer-layout/FooterLayout";
 
-export default function PageWrapper() {
-
-
+export default function DashboardLayout() {
   const isCustomer = useSelector(selectIsCustomer);
 
   const { getApi } = useApi();
@@ -23,11 +23,9 @@ export default function PageWrapper() {
 
   let location = useLocation();
 
-
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem("token"));
-    if (token != null || token != undefined) firtsCheck();
-    //getHiroWalletData();
+    if (token != null || token != undefined) lastSeen()
   }, []);
 
   useEffect(async () => {
@@ -46,19 +44,6 @@ export default function PageWrapper() {
     window.scrollTo(0, 0);
   }, [location]);
 
-  const firtsCheck = async () => {
-    lastSeen();
-    checkJWT();
-  };
-
-  const checkJWT = async () => {
-    // let result = await isJwtValid();
-    // if (!result) {
-    //   cleanStorage();
-    //   return;
-    // }
-  };
-
   const lastSeen = () => {
     // delete localstorage after 8 hour
     const loginTime = JSON.parse(localStorage.getItem("login-time"));
@@ -73,33 +58,18 @@ export default function PageWrapper() {
   const cleanStorage = () => {
     localStorage.clear();
     window.location.replace("/");
-   // if (shop) window.location.replace(`/${shop.name}/products`);
-   // else window.location.replace("/");
   };
 
   return (
-      <Box
-        boxSizing="border-box"
-        // overflowX="hidden"
-        maxW="100vw"
-        w="100%"
-        h="100%"
-        minH="100vh"
-        bg="bG"
-      >
-        <HeaderLayout />
-        <Box
-          w="100%"
-          h="100%"
-          minH="calc( 100vh - 180px )"
-          bgColor="bG"
-          m="0px"
-          p="0px"
-          overflowX="hidden"
-        >
-          <Outlet />
+    <VStack align={"stretch"} bgColor={"bG"} spacing={0}>
+      <HeaderLayout />
+      <HStack alignItems={"start"}>
+        <Box w="72px"><SidebarLayout /></Box>
+        <Box width={"100%"} minH={"80vh"} borderLeft="1px solid" borderColor={"line"} paddingTop={10} paddingBottom={10}>
+          <LayoutWrapper><Outlet /></LayoutWrapper>
         </Box>
-        <FooterLayout />
-      </Box>
+      </HStack>
+      <FooterLayout />
+    </VStack >
   );
 }

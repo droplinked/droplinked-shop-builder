@@ -7,18 +7,15 @@ import {
   Th,
   TableContainer,
 } from "@chakra-ui/react";
-
 import { useState, useEffect, useMemo } from "react";
-
 import { useApi } from "../../../hooks/useApi/useApi";
 import { getProduct } from "../../../apis/productsApiService";
-import { PageWrapper } from "./ProductsPage-style";
-
 import PageHeader from "./components/page-header/PageHeader";
 import AddProductComponent from "./components/add-product-component/AddProductComponent";
 import ProductComponent from "./components/product-component/ProductCompnent";
 import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
 import { matchSorter } from "match-sorter";
+import AppCard from "components/shared/card/AppCard";
 
 const ProductsPage = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -46,15 +43,15 @@ const ProductsPage = () => {
   if (!products)
     return (
       <Box w="100%" h="auto" p="0px 40px">
-        <PageWrapper>
+        <AppCard>
           <LoadingComponent />
-        </PageWrapper>
+        </AppCard>
       </Box>
     );
 
   return (
     <Box w="100%" h="auto" p="0px 40px">
-      <PageWrapper>
+      <AppCard>
         <PageHeader searchValue={searchValue} setSearchValue={setSearchValue} />
         <TableContainer mb="36px">
           <Table>
@@ -105,7 +102,7 @@ const ProductsPage = () => {
           </Table>
         </TableContainer>
         {tableData.length <= 0 && <AddProductComponent />}
-      </PageWrapper>
+      </AppCard>
     </Box>
   );
 };

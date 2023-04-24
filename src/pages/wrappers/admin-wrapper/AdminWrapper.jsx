@@ -5,9 +5,9 @@ import { useEffect } from "react";
 // internal
 import { useProfile } from "hooks/useProfile/useProfile";
 //components
-import SidebarLayout from "layouts/sidebar-layout/SidebarLayout";
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { useToasty } from "context/toastify/ToastContext";
+import SidebarLayout from "layouts/dashboard/parts/sidebar/SidebarLayout";
 
 const AdminWrapper = () => {
   const navigate = useNavigate();
