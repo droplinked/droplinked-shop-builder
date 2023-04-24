@@ -1,4 +1,4 @@
-import { IproductState } from "apis/product/interfaces";
+import { IproductState } from "lib/apis/product/interfaces";
 import { createContext } from "react";
 
 export interface IpropertiesItems {

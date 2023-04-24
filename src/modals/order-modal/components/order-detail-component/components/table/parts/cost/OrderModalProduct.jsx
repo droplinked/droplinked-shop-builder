@@ -1,4 +1,5 @@
 import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react'
+import { appDeveloment } from 'lib/utils/app/variable'
 import orderModalContext from 'modals/order-modal/context'
 import React, { useCallback, useContext } from 'react'
 
@@ -21,14 +22,14 @@ function OrderDetailCost() {
       <HStack justifyContent={"space-between"}>
         <HStack>
           <Text {...textTypes.typeA}>Discount:</Text>
-          <Text {...textTypes.typeB}>Ruleset, offer code</Text>
+          <Text {...textTypes.typeB}>{appDeveloment ? "Ruleset, offer code" : ""}</Text>
         </HStack>
         <Box>$ 10.00</Box>
       </HStack>
       <HStack justifyContent={"space-between"}>
         <HStack>
           <Text {...textTypes.typeA}>Shipping:</Text>
-          <Text {...textTypes.typeB}>Express shipping</Text>
+          <Text {...textTypes.typeB}>{appDeveloment ? "Express shipping" : ""}</Text>
         </HStack>
         <Box>
           <Text>$ {order?.shippingPrice}</Text>
@@ -38,7 +39,7 @@ function OrderDetailCost() {
         <HStack>
           <Text fontSize={{ base: "sm", sm: "md" }} fontWeight={"extrabold"}>Order Tax</Text>
         </HStack>
-        <Box>$ 10.00</Box>
+        <Box>$ 0</Box>
       </HStack>
       <HStack justifyContent={"space-between"}>
         <HStack>

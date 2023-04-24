@@ -1,4 +1,4 @@
-import { IskuOption } from "apis/product/interfaces";
+import { IskuOption } from "lib/apis/product/interfaces";
 
 interface IdefaultValueProperty {
     property: Array<IskuOption>

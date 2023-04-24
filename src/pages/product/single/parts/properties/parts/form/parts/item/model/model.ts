@@ -1,4 +1,4 @@
-import { Iproperties, IpropertiesItems } from "apis/product/interfaces"
+import { Iproperties, IpropertiesItems } from "lib/apis/product/interfaces"
 import AppendModule from "../../../model/module/append"
 import itemModule, { IcheckRemoveItem } from "./module/item"
 import { IaddProperty } from "../../../model/model"

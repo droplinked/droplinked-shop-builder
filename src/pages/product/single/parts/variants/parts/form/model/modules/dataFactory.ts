@@ -1,4 +1,4 @@
-import { Isku } from "apis/product/interfaces"
+import { Isku } from "lib/apis/product/interfaces"
 
 interface dataSync {
     data1: Isku
