@@ -68,7 +68,7 @@ function PropertyItem({ element, keyProperty }) {
 
     return (
         <>
-            {element.value.length && element.items.map((item, key) => {
+            {element.value.length ? element.items.map((item, key) => {
                 const checkAppend = typeof element.items[key + 1] !== "undefined"
                 return (
                     <HStack key={key}>
@@ -91,7 +91,7 @@ function PropertyItem({ element, keyProperty }) {
                         </Box>
                     </HStack>
                 )
-            })}
+            }) : null}
             <SkuTableModal close={onClose} open={SkuData && isOpen} skuData={SkuData} />
         </>
     )

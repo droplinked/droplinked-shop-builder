@@ -1,5 +1,5 @@
 // import { Iproperties, IpropertiesItems } from "pages/product/single/context"
-import { Iproperties, IpropertiesItems } from "apis/product/interfaces"
+import { Iproperties, IpropertiesItems } from "lib/apis/product/interfaces"
 import AppendModule from "./module/append"
 
 interface ItypesAvailable {

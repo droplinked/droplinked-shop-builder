@@ -26,7 +26,7 @@ const OrderDetailComponent = () => {
       <VStack align={"stretch"} spacing={10}>
         <Box><OrderDetailTable /></Box>
         <Box><OrderDetailCost /></Box>
-        <Box><OrderDetailPayment /></Box>
+        {/* <Box><OrderDetailPayment /></Box> */}
       </VStack>
 
     </VStack>

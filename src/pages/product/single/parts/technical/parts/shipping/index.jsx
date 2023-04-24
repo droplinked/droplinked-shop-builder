@@ -23,7 +23,7 @@ function Shipping() {
                         type="number"
                         placeholder="Shipping price"
                         value={shippingPrice}
-                        onChange={(e) => updateState("shippingPrice", e.target.value ? parseFloat(e.target.value) : '')}
+                        onChange={(e) => parseInt(e.target.value) >= 0 && updateState("shippingPrice", e.target.value ? parseFloat(e.target.value) : '')}
                     />
                 )}
             </HStack>
