@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 //
 
-import { selectCurrentShop } from "store/shop/shop.selector";
+import { selectCurrentShop } from "lib/store/shop/shop.selector";
 import { useApi } from "hooks/useApi/useApi";
 //
 import AddCollectionComponent from "./components/add-collection-component/AddCollectionComponent";

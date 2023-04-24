@@ -11,10 +11,10 @@ import { PROFILE_STATUS } from "../../constant/profile-status-types";
 import { toastValue } from "../../context/toastify/ToastContext";
 import { useApi } from "../../hooks/useApi/useApi";
 import { useProfile } from "../../hooks/useProfile/useProfile";
-import { appDeveloment } from "utils/app/variable";
-import { validateEmail } from "utils/validations/emailValidation";
+import { validateEmail } from "lib/utils/validations/emailValidation";
 import { postLoginByEmail } from "lib/apis/authApiService";
 import { setCurrentUser } from "lib/store/profile/profile.action";
+import { appDeveloment } from "lib/utils/app/variable";
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   //

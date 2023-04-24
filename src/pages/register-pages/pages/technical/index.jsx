@@ -14,12 +14,13 @@ import { useProfile } from "hooks/useProfile/useProfile";
 import { useApi } from "hooks/useApi/useApi";
 import { putUpdateShop } from "lib/apis/shopApiService";
 import technicalContext, { technicalContextState } from "./context";
-import { appDeveloment } from "utils/app/variable";
+import { appDeveloment } from "lib/utils/app/variable";
 import technicalModel from "./model";
 import Wallet from "./parts/wallet";
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import AppCard from "components/shared/card/AppCard";
 
+// technical
 function Technical() {
   const [Technical, setTechnical] = useState(technicalContextState);
 
