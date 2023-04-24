@@ -12,7 +12,7 @@ import orderModalContext from "modals/order-modal/context";
 const CustomerInformationComponent = () => {
   const { order } = useContext(orderModalContext)
   const data_array = useMemo(() => convertCustomerInformation(order), [order]);
-
+console.log('order ' , order);
   return (
     <>
       {data_array ? (

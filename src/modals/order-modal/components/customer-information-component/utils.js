@@ -10,7 +10,7 @@ export const convertCustomerInformation = (order) => {
     },
     {
       name: "Email",
-      data: order?.customerEmail
+      data: order?.customerEmail ? order?.customerEmail : "-"
     },
     {
       name: "Address",
