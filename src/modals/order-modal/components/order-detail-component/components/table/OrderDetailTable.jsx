@@ -26,7 +26,7 @@ function OrderDetailTable() {
                         value: "---"
                     },
                     price : {
-                        value: "$10.000"
+                        value: `$${el?.totalPriceItem.toFixed(2)}`
                     }
                 }
             }) : []}

@@ -1,4 +1,4 @@
-import { Isku } from "apis/product/interfaces"
+import { Isku } from "lib/apis/product/interfaces"
 
 export interface IcheckRemoveItem {
     skues: Array<Isku>

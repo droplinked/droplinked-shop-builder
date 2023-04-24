@@ -1,6 +1,6 @@
 import { string } from "yup";
 import { IvalidationFormSku } from "../model";
-import { Isku } from "apis/product/interfaces";
+import { Isku } from "lib/apis/product/interfaces";
 
 export default class SkuFormValidationModule {
 

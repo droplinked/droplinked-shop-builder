@@ -1,4 +1,4 @@
-import { Iproperties, IpropertiesItems } from "apis/product/interfaces"
+import { Iproperties, IpropertiesItems } from "lib/apis/product/interfaces"
 import { types } from "../model"
 
 export interface IcheckLengthProperty {

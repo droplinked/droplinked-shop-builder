@@ -1,4 +1,4 @@
-import { IproductState } from 'apis/product/interfaces'
+import { IproductState } from 'lib/apis/product/interfaces'
 import { object, string, array } from 'yup'
 
 export default class ButtonsProductClass {
