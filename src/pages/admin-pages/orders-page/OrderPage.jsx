@@ -6,6 +6,8 @@ import {
   Tr,
   Th,
   Tbody,
+  Flex,
+  Text,
 } from "@chakra-ui/react";
 import { useApi } from "../../../hooks/useApi/useApi";
 import { useMemo, useState, useEffect } from "react";
@@ -94,13 +96,21 @@ export default function OrderPage() {
               ))}
             </Tr>
           </Thead>
-          {tableData.length > 0 && (
+          {tableData.length ? (
             <Tbody>
               {tableData.map((item, i) => (
                 <OrderComponent key={i} order={item} update={getAllOrders} />
               ))}
             </Tbody>
-          )}
+          ) :
+            <tr>
+              <td colSpan={5}>
+                <Flex justifyContent={"center"} marginTop={85}>
+                  <Text fontSize={"x-large"} color="#666">Order empty</Text>
+                </Flex>
+              </td>
+            </tr>
+          }
         </Table>
       </TableContainer>
     </AppCard>

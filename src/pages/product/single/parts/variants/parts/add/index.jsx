@@ -1,10 +1,13 @@
 import { Box, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/shared/BasicButton/BasicButton'
-import React, { useState } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import SkuForm from '../form'
 import { BlackBox } from 'pages/register-pages/RegisterPages-style'
+import { productContext } from 'pages/product/single/context'
+import { toast } from 'react-toastify'
 
 function AddVariants() {
+    const { state: { properties, sku } } = useContext(productContext)
     const [AddMode, setAddMode] = useState(false)
 
     return (
@@ -14,7 +17,7 @@ function AddVariants() {
                     <SkuForm close={() => setAddMode(false)} />
                 </BlackBox>
             ) : (
-                <Box onClick={() => setAddMode(true)}><BasicButton cancelType>Add Variants</BasicButton></Box>
+                <Box onClick={() => setAddMode(true)}><BasicButton disable={!properties.length && sku.length} cancelType>Add Variants</BasicButton></Box>
             )}
         </VStack>
     )

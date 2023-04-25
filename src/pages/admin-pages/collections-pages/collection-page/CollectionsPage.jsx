@@ -115,7 +115,10 @@ export default function CollectionsPage() {
           )}
         </Table>
       </TableContainer>
-      {tableData.length <= 0 && <AddCollectionComponent />}
+      {tableData.length <= 0 && <AddCollectionComponent update={() => {
+        setSearchValue("")
+        getAllCollections()
+      }} />}
     </AppCard>
   );
 }
