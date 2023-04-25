@@ -9,7 +9,7 @@ module.exports = function override(config, env) {
 		util: require.resolve("util/"),
 		fs: false
 	}
-	config.resolve.extensions = [...config.resolve.extensions, '.ts', '.js']
+	config.resolve.extensions = [...config.resolve.extensions, '.ts', '.js', '.tsx']
 	config.plugins = [
 		...config.plugins,
 		new webpack.ProvidePlugin({

@@ -32,7 +32,7 @@ export default function ThankForRegisterPage() {
   };
 
   return (
-    <ThankPageWrapper>
+    <ThankPageWrapper minHeight={"50vh"} paddingTop={50}>
       <ThankText>Thank you!</ThankText>
       <MessageText>
         We have sent a verification email to

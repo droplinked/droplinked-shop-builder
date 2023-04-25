@@ -47,6 +47,7 @@
     "redux-logger": "^3.0.6",
     "stream": "npm:stream-browserify@^3.0.0",
     "stream-browserify": "^3.0.0",
+    "swiper": "^9.2.4",
     "typescript": "^4.9.4",
     "util": "^0.12.4",
     "web-vitals": "^2.1.4",

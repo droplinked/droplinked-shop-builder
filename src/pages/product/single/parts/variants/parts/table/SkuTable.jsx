@@ -1,22 +1,33 @@
 import AppTable from 'components/shared/table/AppTable'
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import SkuTableModal from './parts/modal/SkuTableModal'
 import { Box, HStack, Image, useDisclosure } from '@chakra-ui/react'
 import editIcon from "assest/icon/edit-icon.svg";
 import tearIcon from "assest/icon/tear-icon.svg";
 import infoIcon from "assest/icon/info-icon.svg";
+import deleteIcon from "assest/icon/delete-icon.svg";
 import SkuTableModel from './model';
+import { productContext } from 'pages/product/single/context';
+import { toast } from 'react-toastify';
 
 function SkuTable({ sku }) {
+    const { methods: { updateState }, productID } = useContext(productContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [SkuData, setSkuData] = useState(null)
 
     const { getRows } = SkuTableModel
 
+    // Delete sku
+    const DeleteSku = useCallback((key) => {
+        const remove = sku.filter((el, index) => index !== key && el)
+        updateState("sku", remove)
+        toast.info("Skue delete")
+    }, [sku])
+
     const rows = useMemo(() => {
         if (!sku.length) return null
 
-        return sku.map((el) => {
+        return sku.map((el, key) => {
 
             return {
                 ...getRows(el),
@@ -32,6 +43,11 @@ function SkuTable({ sku }) {
                                 }} />
                             </Box>
                             <Box><Image src={infoIcon} width={"16px"} height={"16px"} cursor={"pointer"} /></Box>
+                            {!productID ?
+                                <Box>
+                                    <Image onClick={() => DeleteSku(key)} src={deleteIcon} width={"16px"} height={"16px"} cursor={"pointer"} />
+                                </Box>
+                                : null}
                         </HStack>
                     )
                 }
