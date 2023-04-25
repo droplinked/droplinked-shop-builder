@@ -1,8 +1,8 @@
 import { Flex, Box } from "@chakra-ui/react"
+import FooterLayout from "layouts/main/parts/footer/FooterLayout";
+import HeaderLayout from "layouts/main/parts/header/HeaderLayout";
 
 import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
-import HeaderLayout from "layouts/dashboard/parts/header/HeaderLayout";
-import FooterLayout from "layouts/dashboard/parts/footer/FooterLayout";
 
 const LoadingPage = () => {
     return (

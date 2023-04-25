@@ -74,38 +74,41 @@ function App() {
       <Suspense fallback={<LoadingPage />}>
         <Routes>
 
-          <Route path="/" element={<MainLayout />}>
-            <Route path="/enquiry" element={<Enquiry />} />
-            <Route index element={<LandingPage />} />
-            <Route path="terms" element={<TermsPage />} />
-            <Route path="privacy" element={<PrivacyPage />} />
-            <Route path="email-confirmation" element={<ThankForRegisterPage />} />
-            <Route path="email-verification/:token" element={<VerifyEmailPage />} />
-            <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
-          </Route>
+          <Route element={<MainLayout />}>
+            <Route path="/">
+              <Route index element={<LandingPage />} />
+              <Route path="/enquiry" element={<Enquiry />} />
+              <Route path="terms" element={<TermsPage />} />
+              <Route path="privacy" element={<PrivacyPage />} />
+              <Route path="email-confirmation" element={<ThankForRegisterPage />} />
+              <Route path="email-verification/:token" element={<VerifyEmailPage />} />
+              <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
+            </Route>
 
-          <Route path=":shopname/c" element={<DashboardLayout />}>
-            <Route path="register" element={<RegisterPagesWrapper />}>
-              <Route path="shop-info" element={<RegisterShopInfo />} />
-              <Route path="contact-info" element={<ContactInfo />} />
-              <Route path="design" element={<DesignPage />} />
-              <Route path="technical" element={<TechnicalPage />} />
+            <Route path=":shopname/c" element={<DashboardLayout />}>
+              <Route path="register" element={<RegisterPagesWrapper />}>
+                <Route path="shop-info" element={<RegisterShopInfo />} />
+                <Route path="contact-info" element={<ContactInfo />} />
+                <Route path="design" element={<DesignPage />} />
+                <Route path="technical" element={<TechnicalPage />} />
+              </Route>
+              <Route path="settings" element={<RegisterPagesWrapper />}>
+                <Route path="shop-info" element={<RegisterShopInfo />} />
+                <Route path="contact-info" element={<ContactInfo />} />
+                <Route path="design" element={<DesignPage />} />
+                <Route path="technical" element={<TechnicalPage />} />
+              </Route>
+              <Route path="products" element={<ProductsPage />} />
+              <Route path="add-product" element={<ProductSingle />} />
+              <Route path="product/:productId" element={<ProductSingle />} />
+              <Route path="collections" element={<CollectionMainPage />} />
+              <Route path="add-collection" element={<AddCollectionPage />} />
+              <Route path="orders" element={<OrderPage />} />
+              <Route path="rules" element={<RulePage />} />
             </Route>
-            <Route path="settings" element={<RegisterPagesWrapper />}>
-              <Route path="shop-info" element={<RegisterShopInfo />} />
-              <Route path="contact-info" element={<ContactInfo />} />
-              <Route path="design" element={<DesignPage />} />
-              <Route path="technical" element={<TechnicalPage />} />
-            </Route>
-            <Route path="products" element={<ProductsPage />} />
-            <Route path="add-product" element={<ProductSingle />} />
-            <Route path="product/:productId" element={<ProductSingle />} />
-            <Route path="collections" element={<CollectionMainPage />} />
-            <Route path="add-collection" element={<AddCollectionPage />} />
-            <Route path="orders" element={<OrderPage />} />
-            <Route path="rules" element={<RulePage />} />
+            <Route path=":shopname" element={<ShopPage />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </BrowserRouter >

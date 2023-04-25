@@ -4,14 +4,10 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useProfile } from "hooks/useProfile/useProfile";
 import { setCurrentShop } from "lib/store/shop/shop.action";
-import HeaderLayout from "./parts/header/HeaderLayout";
-import FooterLayout from "./parts/footer/FooterLayout";
-import LayoutWrapper from "./parts/wrraper/wrraper";
 import SidebarLayout from "./parts/sidebar/SidebarLayout";
 import { useApi } from "hooks/useApi/useApi";
 import { getUser } from "lib/apis/userApiService";
 import { selectIsCustomer } from "lib/store/profile/profile.selector";
-//
 
 export default function DashboardLayout() {
   const isCustomer = useSelector(selectIsCustomer);
@@ -61,14 +57,12 @@ export default function DashboardLayout() {
 
   return (
     <VStack align={"stretch"} bgColor={"bG"} spacing={0}>
-      <HeaderLayout />
       <HStack alignItems={"start"}>
         <Box w="72px"><SidebarLayout /></Box>
         <Box width={"100%"} minH={"80vh"} padding={10} borderLeft="1px solid" borderColor={"line"} paddingTop={10} paddingBottom={10}>
-          <LayoutWrapper><Outlet /></LayoutWrapper>
+          <Outlet />
         </Box>
       </HStack>
-      <FooterLayout />
     </VStack >
   );
 }
