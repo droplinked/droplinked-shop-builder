@@ -9,41 +9,38 @@ import ImagesSliderBannerComponent from "./components/images-slider-banner-compo
 import { useLocation } from "react-router-dom";
 
 const BannerComponent = () => {
-  const { state: { backgroundColor, backgroundImage } } = useContext(designContext);
+  const {
+    state: { backgroundColor, backgroundImage },
+  } = useContext(designContext);
   const [images, setImages] = useState(BANNER_DEFAULT_IMSGES);
-  const [LoadImage, setLoadImage] = useState(false)
+  const [LoadImage, setLoadImage] = useState(false);
   const location = useLocation().pathname;
 
-  const addNewImage = (imageSrc) => setImages(prev => ([{ banner_src: imageSrc, image: imageSrc }, ...prev]));
+  const addNewImage = (imageSrc) =>
+    setImages((prev) => [{ banner_src: imageSrc, image: imageSrc }, ...prev]);
 
-  // Append image saved to images list for mode setting 
+  // Append image saved to images list for mode setting
   useEffect(() => {
     if (location.includes("settings") && backgroundImage && !LoadImage) {
-      addNewImage(backgroundImage)
-      setLoadImage(true)
+      addNewImage(backgroundImage);
+      setLoadImage(true);
     }
-  }, [location, backgroundImage])
+  }, [location, backgroundImage]);
 
   return (
     <Box w="100%">
       <HeaderBannerComponent addNewImage={addNewImage} />
-      <Box w="100%" h="200px" pos="relative" overflow="hidden" mb="18px">
-        <Box
-          pos="absolute"
-          h="100%"
-          w="50%"
-          maxW="50%"
-          left="0px"
-          bg={backgroundColor}
-          boxShadow={`50px 2px 60px 60px ${backgroundColor}`}
-          zIndex={3}
-        />
+      <Box w="100%" h="200px" pos="relative" overflow="hidden" mb="18px" borderRadius='8px'   bg={backgroundColor}>        
+
         <Image
+          p="4px"
           src={backgroundImage}
           w="auto"
-          h="100%"
+          h="auto"
+          maxH="100%"
           pos="absolute"
           right="0px"
+          zIndex={6}
         />
       </Box>
       <ImagesSliderBannerComponent images={images} />

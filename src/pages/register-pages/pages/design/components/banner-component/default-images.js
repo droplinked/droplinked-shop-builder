@@ -1,37 +1,51 @@
 export const BANNER_DEFAULT_IMSGES = [
+  // {
+  //   banner_src:
+  //     "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/ebba73a3085094f3869e1283affc850fae6a021b89b9b28cba8beb9f9aabf91c.jpg_or.jpg",
+  //   image:
+  //     "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/ebba73a3085094f3869e1283affc850fae6a021b89b9b28cba8beb9f9aabf91c.jpg",
+  //   color: "#27262B",
+  // },
   {
     banner_src:
-      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/f7feb4656e8a1cd866bb0d3408e82197a119ab202958a2777dc7fca61cb937b1.jpg_or.jpg",
+      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/91b9390f2d29012f8920c49444f30fd815c8ae033cc2894707cc011042fcd41c.png_or.png",
     image:
-      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/f7feb4656e8a1cd866bb0d3408e82197a119ab202958a2777dc7fca61cb937b1.jpg",
-    color: "#7ec9c8",
+      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/91b9390f2d29012f8920c49444f30fd815c8ae033cc2894707cc011042fcd41c.png",
+    color: "#27262B",
   },
   {
     banner_src:
-      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/447c78669dd6f328eb804a849d724aaed40151a8534071e21ce81a9d17e5575e.jpg_or.jpg",
+      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/4e72d49e4de6b50c66be928360af0f78442299d11af80751c51d8dfcf14dd9bf.png_or.png",
     image:
-      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/447c78669dd6f328eb804a849d724aaed40151a8534071e21ce81a9d17e5575e.jpg",
-    color: "#d9d9dd",
+      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/4e72d49e4de6b50c66be928360af0f78442299d11af80751c51d8dfcf14dd9bf.png",
+    color: "#27262B",
   },
   {
     banner_src:
-      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/32f35e8e174a78f5070143ef5a3731887925c4890e7a08180c9c0a8a089a8f8b.jpg_or.jpg",
+      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/97d61d7fb0fd493c15267dfe912dbd418beb119eddb607fd5f543dd8386815b1.png_or.png",
     image:
-      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/32f35e8e174a78f5070143ef5a3731887925c4890e7a08180c9c0a8a089a8f8b.jpg",
-    color: "#e9eaec",
+      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/97d61d7fb0fd493c15267dfe912dbd418beb119eddb607fd5f543dd8386815b1.png",
+    color: "#27262B",
   },
   {
     banner_src:
-      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/f670f08be0faf779aef337705e9aa1ecff91cfc0f8135126bcd5e4119988ec96.jpg_or.jpg",
+      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/6615ad35af266a1107ce8aae97442c4d4774cf42989f7f32b417c418f0a4fcdd.png_or.png",
     image:
-      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/f670f08be0faf779aef337705e9aa1ecff91cfc0f8135126bcd5e4119988ec96.jpg",
-    color: "#010101",
+      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/6615ad35af266a1107ce8aae97442c4d4774cf42989f7f32b417c418f0a4fcdd.png",
+    color: "#27262B",
   },
+  // {
+  //   banner_src:
+  //     "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/f35f00f43ffb339c7fb83c305fdad245793afea2220f08a758a43070831e043b.png_or.png",
+  //   image:
+  //     "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/f35f00f43ffb339c7fb83c305fdad245793afea2220f08a758a43070831e043b.png",
+  //   color: "#27262B",
+  // },
   {
     banner_src:
-      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/ec29ce163e85633ba345e8b651693164ba4cfe30838b6d60eb9937d5b4236f2d.jpg_or.jpg",
+      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/ca99d11b41ee8bc01492b27bd1b74b54d6932a755fca77e29fb2f6d8a92b3bd9.png_or.png",
     image:
-      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/ec29ce163e85633ba345e8b651693164ba4cfe30838b6d60eb9937d5b4236f2d.jpg",
-    color: "#e6ad04",
+      "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/ca99d11b41ee8bc01492b27bd1b74b54d6932a755fca77e29fb2f6d8a92b3bd9.png",
+    color: "#27262B",
   },
 ];
