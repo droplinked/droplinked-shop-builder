@@ -11,9 +11,9 @@ function NotFound() {
           <Image src="/assets/images/404.svg" width={{ xs: "80%", sm: "50%" }} alt="droplinked" />
         </Box>
         <VStack align="stretch" color={"#FFF"} spacing={0}>
-          <Box><Text fontSize={"100px"} color={"#2EC99E"}><strong>404</strong></Text></Box>
-          <Box><Text fontSize={"3xl"}>Oops!</Text></Box>
-          <Box><Text fontSize={"2xl"}>Page Not Found</Text></Box>
+          <Box><Text fontSize={"100px"} color={"#2EC99E"} fontFamily="aven" fontWeight={"bold"}>404</Text></Box>
+          <Box><Text fontSize={"3xl"} fontFamily="aven" fontWeight={"bold"}>Oops!</Text></Box>
+          <Box><Text fontSize={"2xl"} fontFamily="aven" fontWeight={"bold"}>Page Not Found</Text></Box>
           <Box paddingTop={6}>
             Sorry, the page you are looking for doesn't exist or has been removed. Please recheck the URL or return to the home page.
           </Box>
