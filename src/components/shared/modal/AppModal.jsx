@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from '@chakra-ui/react'
+import { Modal, ModalBody, ModalContent, ModalOverlay } from '@chakra-ui/react'
 import React from 'react'
 
 function AppModal({ open, close, children, contentProps, ...params }) {
@@ -8,11 +8,11 @@ function AppModal({ open, close, children, contentProps, ...params }) {
             onClose={close}
             motionPreset='slideInBottom'
             isCentered
-            scrollBehavior="inside"
+            scrollBehavior="outside"
             {...params}
         >
             <ModalOverlay bg={"rgba(0,0,0,.9)"} />
-            <ModalContent bg="#222" padding={"20px 0"} {...contentProps}>
+            <ModalContent bg="#1c1c1c" padding={"20px 0"} {...contentProps}>
                 <ModalBody>
                     {children}
                 </ModalBody>

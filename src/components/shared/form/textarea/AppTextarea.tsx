@@ -1,21 +1,21 @@
-import { Input, InputProps, VStack } from '@chakra-ui/react'
+import { Input, Textarea, TextareaProps, VStack } from '@chakra-ui/react'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from 'react'
 import ErrorLabel from '../errorLabel/errorLabel'
 import FieldLabel from '../fieldLabel/FieldLabel'
 import FormModel, { IAppForm } from '../FormModel'
 
-type combine = IAppForm & InputProps
+type combine = IAppForm & TextareaProps
 
 interface Iprops extends combine { }
 
-function AppInput(props: Iprops) {
+function AppTextarea(props: Iprops) {
   const { error, name, label } = props
 
   return (
     <VStack align={"stretch"} width="100%" spacing={1}>
       <FieldLabel isRequired={props.isRequired} label={label} />
-      <Input
+      <Textarea
         style={{ boxShadow: "unset" }}
         isInvalid={error ? true : false}
         placeholder={capitalizeFirstLetter(name)}
@@ -27,4 +27,4 @@ function AppInput(props: Iprops) {
   )
 }
 
-export default AppInput
+export default AppTextarea
