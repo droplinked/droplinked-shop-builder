@@ -12,8 +12,7 @@ export interface ImakeDataService {
     quantity: string
     weight: string
     width: string
-    properties: Array<any>
-    ids: Array<any>
+    [propsName:string]: any
 }
 
 interface IduplicateCheck {
@@ -32,31 +31,18 @@ export interface IvalidationFormSku {
     skues: Array<Isku>,
 }
 
+export interface IinitialFormikVariantForm {
+    properties: Array<any>
+    update?: Isku
+}
+
 class VariantsFormModel {
     private static dataFactory = dataFactoryModule
     private static validationModule = SkuFormValidationModule
 
-    // Validation sku form
-    static validation = (params: IvalidationFormSku) => {
-        const { formData } = params
-
-        const valid = (field: string) => number().min(1, `${field} is discorrect`).required().typeError(`${field} is discorrect`)
-
-        let schema = object({
-            weight: valid("Weight"),
-            width: valid("Width"),
-            height: valid("Height"),
-            length: valid("Length"),
-            quantity: valid("Quantity"),
-            price: valid("Price"),
-            ... this.validationModule.propertyValidation(params)
-        });
-        return schema.validate({ ...formData, ...formData.properties });
-
-    }
-
     // Make data for service "post product"
-    static makeDataService = ({ externalID, height, length, price, quantity, weight, width, properties, ids, _id }: ImakeDataService): Isku => {
+    static makeDataService = (props: ImakeDataService): Isku => {
+        const { externalID, height, length, price, quantity, weight, width, properties, ids, _id } = props
         return {
             dimensions: {
                 height: parseFloat(height),
@@ -65,7 +51,7 @@ class VariantsFormModel {
             },
             externalID: externalID,
             index: 0,
-            options: properties && ids ? this.dataFactory.makeProperties(properties, ids) : [],
+            options: this.dataFactory.makeProperties(props),
             price: parseFloat(price),
             record: false,
             weight: parseFloat(weight),
@@ -92,6 +78,13 @@ class VariantsFormModel {
 
     static findKeySku = ({ sku, skues }: IfindKeySku) => {
         return skues.findIndex((el, key) => JSON.stringify(el) === JSON.stringify(sku))
+    }
+
+    static initialFormik = (props: IinitialFormikVariantForm) => {
+        return {
+            values : this.validationModule.initialProperties(props),
+            schema : this.validationModule.schema(props)
+        }
     }
 }
 

@@ -9,6 +9,7 @@ import deleteIcon from "assest/icon/delete-icon.svg";
 import SkuTableModel from './model';
 import { productContext } from 'pages/product/single/context';
 import { toast } from 'react-toastify';
+import SkeletonProduct from '../../../skeleton/SkeletonProduct';
 
 function SkuTable({ sku }) {
     const { methods: { updateState }, productID } = useContext(productContext)
@@ -58,7 +59,9 @@ function SkuTable({ sku }) {
     return (
         <>
             <SkuTableModal open={isOpen} close={onClose} skuData={SkuData} />
-            {rows && <AppTable rows={rows} />}
+            <SkeletonProduct>
+                {rows && <AppTable rows={rows} />}
+            </SkeletonProduct>
         </>
     )
 }

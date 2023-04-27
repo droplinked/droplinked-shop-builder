@@ -10,7 +10,7 @@ function SkuTableModal({ open, close, skuData }) {
             close={close}
             contentProps={{
                 maxWidth: "95%",
-                width: "700px",
+                width: "800px",
                 bg: "#111"
             }}
         >

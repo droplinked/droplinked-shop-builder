@@ -12,15 +12,21 @@ import { productByIdServices } from 'lib/apis/product/productServices'
 import ProductSingleModel from './model/model'
 
 function ProductSingle() {
-    const { mutate } = useMutation((params) => productByIdServices(params))
+    const { mutate, isLoading } = useMutation((params) => productByIdServices(params))
     const params = useParams()
     const [State, setState] = useState(initialStatesProduct)
     const { refactorData } = ProductSingleModel
+    const productId = params?.productId
 
     const updateState = useCallback((element, value) => {
         if ([typeof element, typeof value].includes("undefined")) return false
         setState(prev => ({ ...prev, [element]: value }))
     }, [])
+
+    useEffect(() => {
+        console.log(State);
+    }, [State])
+
 
     // Fetch product for edit
     useEffect(() => {
@@ -33,24 +39,25 @@ function ProductSingle() {
                     onSuccess: (res) => res.data.statusCode === 200 && res.data?.data && setState(refactorData(res.data.data))
                 }
             )
-}
+        }
     }, [params])
 
-return (
-    <productContext.Provider value={{
-        state: State,
-        methods: { updateState },
-        productID: params?.productId
-    }}>
-        <VStack spacing={5}>
-            <Introduction />
-            <TechnicalProduct />
-            <Properties />
-            <Variants />
-            <ButtonsProduct />
-        </VStack>
-    </productContext.Provider>
-)
+    return (
+        <productContext.Provider value={{
+            state: State,
+            methods: { updateState },
+            productID: productId,
+            loading: productId ? !isLoading : true
+        }}>
+            <VStack spacing={5}>
+                <Introduction />
+                <TechnicalProduct />
+                <Properties />
+                <Variants />
+                <ButtonsProduct />
+            </VStack>
+        </productContext.Provider>
+    )
 }
 
 export default ProductSingle

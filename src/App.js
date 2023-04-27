@@ -1,8 +1,10 @@
 import "./App.scss";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
+import { useProfile } from "hooks/useProfile/useProfile";
+
 //
 const MainLayout = lazy(() =>
   import("layouts/main/mainLayout")
@@ -69,6 +71,8 @@ const OrderPage = lazy(() =>
 );
 
 function App() {
+  const { profile } = useProfile();
+
   return (
     <BrowserRouter>
       <Suspense fallback={<LoadingPage />}>
@@ -85,7 +89,7 @@ function App() {
               <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
             </Route>
 
-            <Route path=":shopname/c" element={<DashboardLayout />}>
+            <Route path=":shopname/c" element={profile ? <DashboardLayout /> : <Navigate replace to={"/"} />}>
               <Route path="register" element={<RegisterPagesWrapper />}>
                 <Route path="shop-info" element={<RegisterShopInfo />} />
                 <Route path="contact-info" element={<ContactInfo />} />

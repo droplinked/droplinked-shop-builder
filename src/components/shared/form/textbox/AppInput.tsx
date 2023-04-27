@@ -1,16 +1,20 @@
-import { Input, InputProps, Text, VStack } from '@chakra-ui/react'
+import { Box, HStack, Input, InputProps, Text, VStack } from '@chakra-ui/react'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from 'react'
+import ErrorLabel from '../errorLabel/errorLabel'
+import FieldLabel from '../fieldLabel/FieldLabel'
 
 interface Iprops extends InputProps {
-  error: string
-  [propName:string]: any
+  error?: string
+  label?: string
+  name: string
 }
 
 function AppInput(props: Iprops) {
-
+  const { error, name, label } = props
   const style: InputProps = {
     borderColor: "#141414",
-    errorBorderColor:"red.300",
+    errorBorderColor: "red.200",
     backgroundColor: "#141414",
     padding: "15px",
     fontSize: "14px",
@@ -22,15 +26,18 @@ function AppInput(props: Iprops) {
       borderColor: "none"
     }
   }
-  
+
   return (
-    <VStack align={"stretch"} spacing={0}>
+    <VStack align={"stretch"} width="100%" spacing={1}>
+      <FieldLabel isRequired={props.isRequired} label={label} />
       <Input
-        isInvalid={props?.error ? true : false}
+        style={{ boxShadow: "unset" }}
+        isInvalid={error ? true : false}
+        placeholder={capitalizeFirstLetter(name)}
         {...style}
         {...props}
       />
-      {props?.error && <Text position={"relative"} left={4} fontSize={"15px"} color='red.300'>{props.error}</Text>}
+      <ErrorLabel message={error} />
     </VStack>
   )
 }
