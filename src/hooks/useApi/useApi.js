@@ -3,6 +3,16 @@ import axios from "axios";
 import { useToasty } from "context/toastify/ToastContext";
 import { BASE_URL } from "lib/utils/app/variable";
 
+const handleError = (statusCode) => {
+  switch (statusCode) {
+    case 401:
+      window.location.replace("/")
+
+    default:
+      break;
+  }
+}
+
 export function useApi() {
   const { errorToast } = useToasty();
 
@@ -22,6 +32,7 @@ export function useApi() {
     } catch (err) {
       if (err.response) {
         errorToast(err.response.data.message);
+        handleError(err.response.data.statusCode)
       } else {
         errorToast(err.message);
       }
@@ -45,6 +56,7 @@ export function useApi() {
     } catch (err) {
       if (err.response) {
         errorToast(err.response.data.message);
+        handleError(err.response.data.statusCode)
       } else {
         errorToast(err.message);
       }
@@ -65,6 +77,7 @@ export function useApi() {
     } catch (err) {
       if (err.response) {
         errorToast(err.response.data.message);
+        handleError(err.response.data.statusCode)
       } else {
         errorToast(err.message);
       }
@@ -85,6 +98,7 @@ export function useApi() {
     } catch (err) {
       if (err.response) {
         errorToast(err.response.data.message);
+        handleError(err.response.data.statusCode)
       } else {
         errorToast(err.message);
       }

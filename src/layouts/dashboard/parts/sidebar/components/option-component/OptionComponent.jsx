@@ -13,7 +13,7 @@ const OptionComponent = ({ icon, label, path }) => {
   const isActive = useMemo(() => {
     return location.pathname.includes(path);
   }, [location]);
-  console.log("path ", path);
+
   return (
     <Tooltip
       label={label}
@@ -21,7 +21,7 @@ const OptionComponent = ({ icon, label, path }) => {
       borderRadius="8px"
       bg="mainLayer"
     >
-      <Link to={path ? `/${shop.name}/c/${path}` : ""}>
+      <Link to={path ? `/${shop?.name}/c/${path}` : ""}>
         <IconWrapper
           borderLeft="4px solid"
           borderColor={isActive ? "primary" : "none"}
