@@ -1,29 +1,13 @@
 import { useState } from "react";
 import { Flex } from "@chakra-ui/react";
-import {
-  SignupWrapper,
-  DomainText,
-  ShopNameInput,
-  SignupButton,
-  ErrorText,
-} from "./SignupInputComponent-style";
+import { SignupWrapper, DomainText, ShopNameInput, ErrorText } from "./SignupInputComponent-style";
 import BasicButton from "components/shared/BasicButton/BasicButton";
-import { getIsShopExist } from "lib/apis/shopApiService";
-import { useApi } from "hooks/useApi/useApi";
-
-
+import { useMutation } from "react-query";
+import { shopService } from "lib/apis/shop/shopServices";
 
 const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
-  const [loading, setLoading] = useState(false);
+  const { mutateAsync, isLoading } = useMutation((params) => shopService(params))
   const [error, setError] = useState(null);
-
-  const { getApi } = useApi();
-
-  const ERRORS_TYPE = {
-    EMPTY_ERROR: "Please enter a name to proceed",
-    VALIDATION_ERROR:
-      "Usernames may contain letters (a-z), numbers (0-9) and special characters",
-  };
 
   // onchange signup input
   const changeInputValue = (e) => {
@@ -33,20 +17,14 @@ const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
 
   // check shopname
   const clickSignin = async () => {
-    // validation shop name
-    if (userName.trim() === "") {
-      setError(ERRORS_TYPE.EMPTY_ERROR);
-      return;
+    try {
+      if (!userName.length) throw Error("Please enter a name to proceed")
+      if (!/^[A-Za-z0-9_]*$/.test(userName)) throw Error("Usernames may contain letters (a-z), numbers (0-9) and special characters")
+      await mutateAsync({ shopName: userName })
+      toggleSignUp()
+    } catch (error) {
+      setError(error?.response ? error.response.data.message : error.message)
     }
-    if (!/^[A-Za-z0-9_]*$/.test(userName)) {
-      setError(ERRORS_TYPE.VALIDATION_ERROR);
-      return;
-    }
-
-    setLoading(true);
-    let result = await getApi(getIsShopExist(userName));
-    if (result) toggleSignUp();
-    setLoading(false);
   };
 
   return (
@@ -62,8 +40,7 @@ const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
           />
         </Flex>
         <Flex w="25%">
-            <BasicButton size="lg" width="100%" loading={loading} click={clickSignin}>Sign up </BasicButton>
-            {/* {loading ? <Spinner color="white" thickness="4px" /> : <>Sign up</>} */}
+          <BasicButton size="lg" width="100%" loading={isLoading} click={clickSignin}>Sign up </BasicButton>
         </Flex>
       </SignupWrapper>
       {error && <ErrorText>{error}</ErrorText>}

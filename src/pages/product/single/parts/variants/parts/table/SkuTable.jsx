@@ -1,6 +1,6 @@
 import AppTable from 'components/shared/table/AppTable'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
-import SkuTableModal from './parts/modal/SkuTableModal'
+import SkuTableModal from './parts/skuModal/SkuTableModal'
 import { Box, HStack, Image, useDisclosure } from '@chakra-ui/react'
 import editIcon from "assest/icon/edit-icon.svg";
 import tearIcon from "assest/icon/tear-icon.svg";
@@ -10,10 +10,12 @@ import SkuTableModel from './model';
 import { productContext } from 'pages/product/single/context';
 import { toast } from 'react-toastify';
 import SkeletonProduct from '../../../skeleton/SkeletonProduct';
+import RecordModal from './parts/recordModal/RecordModal';
 
 function SkuTable({ sku }) {
     const { methods: { updateState }, productID } = useContext(productContext)
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const skuModal = useDisclosure()
+    const recordModal = useDisclosure()
     const [SkuData, setSkuData] = useState(null)
 
     const { getRows } = SkuTableModel
@@ -40,7 +42,7 @@ function SkuTable({ sku }) {
                             <Box>
                                 <Image src={editIcon} width={"16px"} height={"16px"} cursor={"pointer"} onClick={() => {
                                     setSkuData(el)
-                                    onOpen()
+                                    skuModal.onOpen()
                                 }} />
                             </Box>
                             <Box><Image src={infoIcon} width={"16px"} height={"16px"} cursor={"pointer"} /></Box>
@@ -58,7 +60,8 @@ function SkuTable({ sku }) {
 
     return (
         <>
-            <SkuTableModal open={isOpen} close={onClose} skuData={SkuData} />
+            <SkuTableModal open={skuModal.isOpen} close={skuModal.onClose} skuData={SkuData} />
+            <RecordModal open={recordModal.isOpen} close={recordModal.onClose} skuData={SkuData} />
             <SkeletonProduct>
                 {rows && <AppTable rows={rows} />}
             </SkeletonProduct>

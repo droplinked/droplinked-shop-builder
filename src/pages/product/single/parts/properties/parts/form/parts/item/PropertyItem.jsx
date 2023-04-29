@@ -7,7 +7,7 @@ import propertiesFormContext from '../../context';
 import { productContext } from 'pages/product/single/context';
 import { toast } from 'react-toastify';
 import propertyItemModel from './model/model';
-import SkuTableModal from 'pages/product/single/parts/variants/parts/table/parts/modal/SkuTableModal';
+import SkuTableModal from 'pages/product/single/parts/variants/parts/table/parts/skuModal/SkuTableModal';
 
 function PropertyItem({ element, keyProperty }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
