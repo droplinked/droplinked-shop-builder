@@ -40,7 +40,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
   return (
     <Formik
       initialValues={{
-        username: '',
+        username: shopname || '',
         email: '',
         password: '',
         repassword: '',
@@ -55,6 +55,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
             <AppInput
               error={errors.username}
               name="username"
+              isReadOnly={shopname && shopname.length}
               onChange={(e) => setFieldValue("username", e.target.value)}
               value={values.username}
             />

@@ -1,14 +1,17 @@
-import { Box, Button, Spinner } from "@chakra-ui/react";
+import { Box, Button, ButtonProps, Spinner } from "@chakra-ui/react";
+import React from "react";
 
-export default function BasicButton({
-  children,
-  click,
-  loading,
-  disable,
-  cancelType,
-  ...otherprops
-}) {
-
+interface IProps {
+  children: any
+  click?: any
+  loading?: any
+  disable?: boolean
+  cancelType?: boolean
+  [propsName:string] : any
+}
+export default function BasicButton(props: IProps) {
+  const { children, click, loading, disable, cancelType } = props
+  
   return (
     <Button
       width="100%"
@@ -32,7 +35,7 @@ export default function BasicButton({
       }}
       onClick={click}
       disabled={disable || loading}
-      {...otherprops}
+      {...props}
     >
       {loading !== undefined && loading === true ? (
         <>

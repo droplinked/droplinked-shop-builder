@@ -29,6 +29,8 @@ function AppSelectBox(props: Iprops) {
                     isInvalid={error ? true : false}
                     placeholder={capitalizeFirstLetter(name)}
                     {...FormModel.styleProps()}
+                    size="lg"
+                    iconSize={"30px"}
                     padding={0}
                     {...props}
                 >

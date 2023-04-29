@@ -1,7 +1,14 @@
-import { Modal, ModalBody, ModalContent, ModalOverlay } from '@chakra-ui/react'
+import { Modal, ModalBody, ModalContent, ModalOverlay, StyleProps } from '@chakra-ui/react'
 import React from 'react'
 
-function AppModal({ open, close, children, contentProps, ...params }) {
+interface IProps {
+    open: boolean
+    close: any
+    contentProps?: StyleProps
+    [props: string]: any
+}
+function AppModal(props: IProps) {
+    const { open, close, contentProps } = props
     return (
         <Modal
             isOpen={open}
@@ -9,12 +16,12 @@ function AppModal({ open, close, children, contentProps, ...params }) {
             motionPreset='slideInBottom'
             isCentered
             scrollBehavior="outside"
-            {...params}
+            {...props}
         >
             <ModalOverlay bg={"rgba(0,0,0,.9)"} />
             <ModalContent bg="#1c1c1c" padding={"20px 0"} {...contentProps}>
                 <ModalBody>
-                    {children}
+                    {props?.children}
                 </ModalBody>
             </ModalContent>
         </Modal>

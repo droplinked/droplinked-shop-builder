@@ -1,31 +1,17 @@
 import AppTable from 'components/shared/table/AppTable'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import SkuTableModal from './parts/skuModal/SkuTableModal'
-import { Box, HStack, Image, useDisclosure } from '@chakra-ui/react'
-import editIcon from "assest/icon/edit-icon.svg";
-import tearIcon from "assest/icon/tear-icon.svg";
-import infoIcon from "assest/icon/info-icon.svg";
-import deleteIcon from "assest/icon/delete-icon.svg";
+import { Box, Flex, HStack, Image, Text, useDisclosure } from '@chakra-ui/react'
 import SkuTableModel from './model';
 import { productContext } from 'pages/product/single/context';
 import { toast } from 'react-toastify';
 import SkeletonProduct from '../../../skeleton/SkeletonProduct';
-import RecordModal from './parts/recordModal/RecordModal';
+import SkuTableOptions from './parts/options/SkuTableOptions';
 
-function SkuTable({ sku }) {
-    const { methods: { updateState }, productID } = useContext(productContext)
-    const skuModal = useDisclosure()
-    const recordModal = useDisclosure()
-    const [SkuData, setSkuData] = useState(null)
+function SkuTable() {
+    const { state: { sku } } = useContext(productContext)
 
     const { getRows } = SkuTableModel
-
-    // Delete sku
-    const DeleteSku = useCallback((key) => {
-        const remove = sku.filter((el, index) => index !== key && el)
-        updateState("sku", remove)
-        toast.info("Skue delete")
-    }, [sku])
 
     const rows = useMemo(() => {
         if (!sku.length) return null
@@ -37,21 +23,14 @@ function SkuTable({ sku }) {
                 controls: {
                     caption: "",
                     value: (
-                        <HStack width={"100%"} spacing={5} justifyContent={"center"}>
-                            <Box><Image src={tearIcon} width={"16px"} height={"16px"} cursor={"pointer"} /></Box>
-                            <Box>
-                                <Image src={editIcon} width={"16px"} height={"16px"} cursor={"pointer"} onClick={() => {
-                                    setSkuData(el)
-                                    skuModal.onOpen()
-                                }} />
-                            </Box>
-                            <Box><Image src={infoIcon} width={"16px"} height={"16px"} cursor={"pointer"} /></Box>
-                            {!productID ?
-                                <Box>
-                                    <Image onClick={() => DeleteSku(key)} src={deleteIcon} width={"16px"} height={"16px"} cursor={"pointer"} />
-                                </Box>
-                                : null}
-                        </HStack>
+                        <>
+                            {
+                                el?.record ?
+                                    <Flex justifyContent={"center"}><Text backgroundColor={"#000"} borderRadius="100px" fontSize={"xs"} padding="4px 20px">Record</Text></Flex>
+                                    :
+                                    <SkuTableOptions element={el} elementKey={key} />
+                            }
+                        </>
                     )
                 }
             }
@@ -60,8 +39,6 @@ function SkuTable({ sku }) {
 
     return (
         <>
-            <SkuTableModal open={skuModal.isOpen} close={skuModal.onClose} skuData={SkuData} />
-            <RecordModal open={recordModal.isOpen} close={recordModal.onClose} skuData={SkuData} />
             <SkeletonProduct>
                 {rows && <AppTable rows={rows} />}
             </SkeletonProduct>
