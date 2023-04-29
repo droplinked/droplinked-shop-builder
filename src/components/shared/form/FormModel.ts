@@ -4,6 +4,7 @@ export interface IAppForm {
     error?: string
     label?: string
     name: string
+    loading?: boolean
 }
 
 export default class FormModel {

@@ -21,13 +21,15 @@ import ruleModelContext from "./context";
 import TextboxRule from "./components/textbox/TextboxRule";
 import SelectRule from "./components/select/SelectRule";
 import { useMutation } from "react-query";
-import { getRuleService } from "lib/apis/rule/ruleServices";
+import { createRuleService, getRuleService, updateRuleService } from "lib/apis/rule/ruleServices";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const [State, setState] = useState(null)
   const getRule = useMutation((params) => getRuleService(params))
-  const { postApi, putApi } = useApi();
+  const createRule = useMutation((params) => createRuleService(params))
+  const updateRule = useMutation((params) => updateRuleService(params))
+  const { putApi } = useApi();
 
   useEffect(() => {
     if (ruleId) getRule.mutate({ ruleID: ruleId })
@@ -58,9 +60,9 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
         redeemedNFTs: [],
       };
       if (ruleId) {
-        await putApi(putUpdateRuleset(ruleId, requestBody));
+        await updateRule.mutateAsync({ ruleID: ruleId, data: requestBody })
       } else {
-        await postApi(postCreateRuleset(requestBody));
+        await createRule.mutateAsync(requestBody)
       }
       update();
       close();
@@ -82,7 +84,6 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
 
   if (!show) return null;
 
-  console.log("rule", ruleId);
   return (
     <AppModal
       open={show}
@@ -110,7 +111,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
         >
 
           {({ errors, values, setFieldValue }) => (
-            <ruleModelContext.Provider value={{ errors, values, setFieldValue }}>
+            <ruleModelContext.Provider value={{ errors, values, setFieldValue, loading: ruleId ? !getRule.isLoading : true }}>
               <Form>
                 <VStack width={"100%"} align="stretch" spacing={8}>
                   <Box>
@@ -124,6 +125,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                       element={"chain"}
                       placeholder="Select chain"
                       label={"Chain Type"}
+                      loading={!getRule.isLoading}
                       items={Object.keys(ChainTypes).map((el) => {
                         return {
                           value: el,
@@ -138,6 +140,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                         element={"rule"}
                         placeholder="Select rule"
                         label={"Rule Type"}
+                        loading={!getRule.isLoading}
                         items={Object.keys(RuleTypes).map((el) => {
                           return {
                             value: el,
@@ -146,7 +149,6 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                         })}
                       />
                     </Box>
-                    {console.log("adad", Boolean(values.rule))}
                     {values.rule === RuleTypes.DISCOUNT && (
                       <Box width={"100%"}>
                         <TextboxRule element={"discount"} placeholder="%20" label={"Offer"} />
@@ -160,6 +162,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                       label="NFT asset identifiers"
                       onChange={(e) => setFieldValue("address", e.target.value)}
                       value={values.address}
+                      loading={!getRule.isLoading}
                       error={errors.address}
                       isRequired
                     />
@@ -169,7 +172,14 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                   </Box>
                   <HStack justifyContent={"space-between"}>
                     <Box width={"35%"}><BasicButton width={"100%"} cancelType>Cancel</BasicButton></Box>
-                    <Box width={"35%"}><BasicButton width={"100%"} type="submit">Save</BasicButton></Box>
+                    <Box width={"35%"}>
+                      <BasicButton
+                        width={"100%"}
+                        loading={createRule.isLoading || getRule.isLoading || updateRule.isLoading}
+                        type="submit">
+                        Save
+                      </BasicButton>
+                    </Box>
                   </HStack>
                 </VStack>
               </Form>

@@ -19,8 +19,6 @@ const PageHeader = ({ searchValue, setSearchValue }) => {
   const { shopNavigate } = useCustomNavigate();
   const { shop } = useProfile();
 
-  console.log("shop ", shop);
-
   const navigateToAddProductPage = () => shopNavigate(`add-product`);
 
   return (

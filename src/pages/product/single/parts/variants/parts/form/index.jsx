@@ -16,9 +16,7 @@ function SkuForm({ close, update }) {
     const onSubmit = async formData => {
         try {
             if (update) formData["_id"] = update._id
-            console.log("formData", formData);
             const remakeData = makeDataService(formData)
-            console.log("remakeData", remakeData);
             await duplicateCheck({
                 params: remakeData,
                 skues: sku,

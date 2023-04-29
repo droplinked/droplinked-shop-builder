@@ -23,11 +23,6 @@ function ProductSingle() {
         setState(prev => ({ ...prev, [element]: value }))
     }, [])
 
-    useEffect(() => {
-        console.log(State);
-    }, [State])
-
-
     // Fetch product for edit
     useEffect(() => {
         if (params?.productId) {
