@@ -1,4 +1,4 @@
-import { Button, Spinner } from "@chakra-ui/react";
+import { Box, Button, Spinner } from "@chakra-ui/react";
 
 export default function BasicButton({
   children,
@@ -8,6 +8,7 @@ export default function BasicButton({
   cancelType,
   ...otherprops
 }) {
+
   return (
     <Button
       width="100%"
@@ -37,15 +38,15 @@ export default function BasicButton({
         <>
           <Spinner
             thickness="4px"
+            position={"absolute"}
             speed="0.65s"
             emptyColor="white"
             color="primary"
             size="xs"
           />
         </>
-      ) : (
-        <>{children}</>
-      )}
+      ) : null}
+      <Box {...loading && { color: "transparent" }}>{children}</Box>
     </Button>
   );
 }
