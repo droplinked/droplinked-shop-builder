@@ -34,7 +34,7 @@ export default function BasicButton(props: IProps) {
         borderColor: "#363636",
       }}
       onClick={click}
-      disabled={disable || loading}
+      isDisabled={disable || loading}
       {...props}
     >
       {loading !== undefined && loading === true ? (
