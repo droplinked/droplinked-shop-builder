@@ -1,13 +1,14 @@
 import { Modal, ModalBody, ModalContent, ModalOverlay, StyleProps } from '@chakra-ui/react'
 import React from 'react'
 
-interface IProps {
+export interface IAppModal {
     open: boolean
     close: any
     contentProps?: StyleProps
     [props: string]: any
 }
-function AppModal(props: IProps) {
+
+function AppModal(props: IAppModal) {
     const { open, close, contentProps } = props
     return (
         <Modal

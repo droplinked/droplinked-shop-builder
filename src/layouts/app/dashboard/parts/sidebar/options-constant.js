@@ -21,7 +21,7 @@ export const OPTIONS = [
         icon:orderIcon, label:'orders' ,path:'orders'
     },
     {
-        icon:informationIcon, label:'informations' 
+        icon:informationIcon, label:'affiliate', path: "affiliate" 
     },
     {
         icon:settingIcon, label:'setting' ,path:'settings/shop-info'

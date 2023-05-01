@@ -1,0 +1,18 @@
+import { Box, VStack } from '@chakra-ui/react'
+import AppCard from 'components/shared/card/AppCard'
+import React from 'react'
+import ShopsFilter from './parts/filter/ShopsFilter'
+import ShopsList from './parts/list/ShopsList'
+
+function Shops() {
+  return (
+    <AppCard>
+      <VStack align={"stretch"} spacing={7}>
+        <Box><ShopsFilter /></Box>
+        <Box paddingTop={50}><ShopsList /></Box>
+      </VStack>
+    </AppCard>
+  )
+}
+
+export default Shops

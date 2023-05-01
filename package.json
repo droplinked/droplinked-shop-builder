@@ -92,6 +92,7 @@
     ]
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "react-app-rewired": "^2.2.1",
     "sass": "^1.54.9",
     "sass-loader": "^13.0.2",

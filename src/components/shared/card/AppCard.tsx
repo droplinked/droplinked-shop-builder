@@ -1,7 +1,13 @@
 import { Box, chakra, useStyleConfig } from "@chakra-ui/react";
 import React from 'react'
 
-function AppCard({ children, mini, ...params }) {
+interface IProps {
+  mini?: boolean
+  [prop: string]: any
+}
+
+function AppCard(props: IProps) {
+  const { mini } = props
   const styles = {
     w: "100%",
     bg: "mainLayer",
@@ -12,7 +18,7 @@ function AppCard({ children, mini, ...params }) {
   }
 
   return (
-    <Box {...styles}>{children}</Box>
+    <Box {...styles}>{props.children}</Box>
   )
 }
 
