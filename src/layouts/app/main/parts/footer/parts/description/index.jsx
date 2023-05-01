@@ -4,7 +4,11 @@ import droplinkFull from "assest/image/droplinkFull.svg";
 
 function Description() {
   return (
-    <VStack align="stretch" spacing={5} >
+    <VStack
+      align="stretch"
+      spacing={5}
+      w="max-content"
+    >
       <Image src={droplinkFull} maxW="210px" h="auto" mb="18px" />
 
       <Text
@@ -13,11 +17,11 @@ function Description() {
         fontWeight="500"
         color="lightGray"
         mb="18px"
+        w='max-content'
       >
         Community driven commerce
-        <Box />
-        Lunch a drop in minutes and unlock the{" "}
-        <Box d={{ base: "block", md: "none" }} /> power of Web3
+        <br />
+        Launch a drop in minutes & unlock the power of web3.
       </Text>
 
       <a href="mailto:Support@droplinked.com">
