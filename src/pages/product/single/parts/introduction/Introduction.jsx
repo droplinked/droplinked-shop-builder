@@ -7,32 +7,31 @@ import introductionClass from './model'
 import AppCard from 'components/shared/card/AppCard'
 import { CardTitle } from 'components/shared/card/component-style'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
+import AppInput from 'components/shared/form/textbox/AppInput'
 
 function Introduction() {
-    const { state: { title, description, media }, methods: { updateState } } = useContext(productContext)
+    const { state: { title, description, media }, methods: { updateState }, loading } = useContext(productContext)
     const { refactorImage, defactorImage } = introductionClass
 
     return (
         <AppCard mini>
             <VStack spacing={10} align={"stretch"}>
                 <CardTitle width={"100%"}>Introduction</CardTitle>
-                <SkeletonProduct width={"100%"}>
-                    <InputFieldComponent
-                        label="Title"
-                        placeholder="Default"
-                        value={title}
-                        onChange={(e) => updateState("title", e.target.value)}
-                    />
-                </SkeletonProduct>
-                <SkeletonProduct>
-                    <InputFieldComponent
-                        label="Description"
-                        placeholder="Default"
-                        textArea={true}
-                        value={description}
-                        onChange={(e) => updateState("description", e.target.value)}
-                    />
-                </SkeletonProduct>
+                <AppInput
+                    label="Title"
+                    loading={loading}
+                    placeholder="Default"
+                    value={title}
+                    onChange={(e) => updateState("title", e.target.value)}
+                />
+                <AppInput
+                    label="Description"
+                    placeholder="Default"
+                    loading={loading}
+                    textArea={true}
+                    value={description}
+                    onChange={(e) => updateState("description", e.target.value)}
+                />
                 <SkeletonProduct width={"30%"} height={"200px"}>
                     <InputImagesGroup setState={(images) => updateState("media", refactorImage(images))} state={defactorImage(media)} />
                 </SkeletonProduct>

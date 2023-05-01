@@ -36,7 +36,7 @@ function ButtonsProduct() {
 
     return (
         <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
-            <Box width={"150px"}><BasicButton width="100%" size="md" cancelType>Cancel</BasicButton></Box>
+            <Box width={"150px"}><BasicButton onClick={() => shopNavigate("products")} width="100%" size="md" cancelType>Cancel</BasicButton></Box>
             <Box width={"150px"}>
                 <BasicButton
                     width="100%"

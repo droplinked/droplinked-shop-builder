@@ -13,7 +13,7 @@ function Variants() {
     <AppCard mini>
       <VStack width={"100%"} spacing={10} align={"stretch"}>
         <Box><ComponentTitle>Variants</ComponentTitle></Box>
-        {sku.length && <Box><SkuTable sku={sku} /></Box>}
+        {sku.length && <Box><SkuTable /></Box>}
         <Box><AddVariants /></Box>
       </VStack>
     </AppCard>

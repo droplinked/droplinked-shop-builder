@@ -5,9 +5,8 @@ import { lazy, Suspense } from "react";
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
 import { useProfile } from "hooks/useProfile/useProfile";
 
-//
 const MainLayout = lazy(() =>
-  import("layouts/main/mainLayout")
+  import("layouts/app/main/mainLayout")
 );
 const NotFound = lazy(() =>
   import("pages/404/404")
@@ -34,7 +33,7 @@ const ProductsPage = lazy(() =>
   import("./pages/prodcut-pages/products-page/ProductsPage")
 );
 const RulePage = lazy(() => import("./pages/admin-pages/rules-page/RulesPage"));
-const DashboardLayout = lazy(() => import("layouts/dashboard/DashboardLayout"));
+const DashboardLayout = lazy(() => import("layouts/app/dashboard/DashboardLayout"));
 const LandingPage = lazy(() =>
   import("./pages/public-pages/landing-page/LandingPage")
 );
@@ -69,6 +68,16 @@ const ProductSingle = lazy(() => import("pages/product/single"));
 const OrderPage = lazy(() =>
   import("./pages/admin-pages/orders-page/OrderPage")
 );
+
+const AffiliateLayout = lazy(() =>
+  import("layouts/pages/affiliate/AffiliateLayout")
+);
+
+const Shops = lazy(() => import("pages/affiliate/shops/Shops"))
+const Shop = lazy(() => import("pages/affiliate/shopSingle/Shop"))
+const ShopProduct = lazy(() => import("pages/affiliate/product/ShopProduct"))
+const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
+const Notifications = lazy(() => import("pages/affiliate/notifications/Notifications"))
 
 function App() {
   const { profile } = useProfile();
@@ -109,6 +118,18 @@ function App() {
               <Route path="add-collection" element={<AddCollectionPage />} />
               <Route path="orders" element={<OrderPage />} />
               <Route path="rules" element={<RulePage />} />
+              <Route path="affiliate" element={<AffiliateLayout />}>
+                <Route index element={<Shops />} />
+                <Route path="shops">
+                  <Route index element={<Shops />} />
+                  <Route path=":shopName">
+                    <Route index element={<Shop />} />
+                    <Route path=":productID" element={<ShopProduct />} />
+                  </Route>
+                </Route>
+                <Route path="requests" element={<Requests />} />
+                <Route path="notifications" element={<Notifications />} />
+              </Route>
             </Route>
             <Route path=":shopname" element={<ShopPage />} />
             <Route path="*" element={<NotFound />} />
