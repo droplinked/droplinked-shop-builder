@@ -1,6 +1,5 @@
-import { Box, Flex, HStack, VStack } from '@chakra-ui/react'
+import { Box, Flex, VStack } from '@chakra-ui/react'
 import { faker } from '@faker-js/faker'
-import AppBadge from 'components/shared/badge/AppBadge'
 import BasicButton from 'components/shared/BasicButton/BasicButton'
 import AffiliateDetailCard from 'pages/affiliate/parts/detail/affiliateDetailCard'
 import ShopsProfile from 'pages/affiliate/parts/pofile/ShopsProfile'
@@ -10,7 +9,7 @@ function NotificationsList() {
     return (
         <VStack align={"stretch"}>
             {[1, 1, 1, 1, 1].map((el, key) => (
-                <Flex key={key} borderTop="1px solid #262626" padding={"20px 0"}>
+                <Flex key={key} gap={3} borderTop="1px solid #262626" padding={"20px 0"}>
                     <Box width={"20%"}>
                         <ShopsProfile
                             avatar={faker.image.avatar()}
@@ -40,10 +39,10 @@ function NotificationsList() {
                             earning='12 ETH'
                         />
                     </Box>
-                    <Box width={"10%"}>
-                        <VStack>
-                            <Box><BasicButton width="150px">Accept</BasicButton></Box>
-                            <Box><BasicButton width="150px" cancelType>Deny</BasicButton></Box>
+                    <Box width={["15%", "10%"]}>
+                        <VStack align={"stretch"}>
+                            <Box><BasicButton width="100%" maxWidth="150px">Accept</BasicButton></Box>
+                            <Box><BasicButton width="100%" maxWidth="150px" cancelType>Deny</BasicButton></Box>
                         </VStack>
                     </Box>
                 </Flex>

@@ -5,7 +5,7 @@ import React from 'react'
 
 function ShopsProduct() {
     return (
-        <Flex gap={5} height="100%">
+        <Flex gap={[3,5]} height="100%">
             {[1, 1, 1, 1].map((el, key) => (
                 <Box key={key} width="25%">
                     <AffiliateProduct image={faker.image.image()} title={faker.commerce.productName()} />

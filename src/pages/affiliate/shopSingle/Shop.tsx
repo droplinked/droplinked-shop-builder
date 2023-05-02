@@ -21,7 +21,7 @@ function Shop() {
                     <Box><ShopsFilter /></Box>
                     <Flex flexWrap={"wrap"} gap="2%" rowGap={7}>
                         {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((el, key) => (
-                            <Box width={"15%"}>
+                            <Box width={["23.5%","15%"]}>
                                 <AffiliateProduct key={key} image={faker.image.image()} title={faker.commerce.productName()} />
                             </Box>
                         ))}

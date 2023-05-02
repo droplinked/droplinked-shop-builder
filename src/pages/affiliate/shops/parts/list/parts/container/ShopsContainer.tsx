@@ -7,8 +7,8 @@ import { faker } from '@faker-js/faker'
 
 function ShopsContainer() {
     return (
-        <Flex gap={5} borderTop={"1px solid #262626"} padding={"25px 0"}>
-            <Box width={"17%"} paddingRight={10} borderRight={"1px solid #262626"}>
+        <Flex gap={[3,5]} borderTop={"1px solid #262626"} padding={"25px 0"}>
+            <Box width={"17%"} paddingRight={[3, 10]} borderRight={"1px solid #262626"}>
                 <ShopsProfile
                     avatar={faker.image.avatar()}
                     title={faker.commerce.productName()}
