@@ -71,7 +71,7 @@ const InputImage = ({ label, placeHolder, change, value }) => {
       <Text
         fontFamily="Avenir Next"
         fontWeight="500"
-        fontSsize="16px"
+        fontSize="16px"
         color="#808080"
         mb="12px"
       >
@@ -114,7 +114,7 @@ const InputImage = ({ label, placeHolder, change, value }) => {
               <Text
                 fontFamily="Avenir Next"
                 fontWeight="400"
-                fontSsize="16px"
+                fontSize="16px"
                 color="#808080"
               >
                 Upload a JPEG, JPG, or PNG file as the brand logo

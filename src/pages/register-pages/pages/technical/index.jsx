@@ -94,7 +94,7 @@ function Technical() {
                 >
                   {currentPath.includes("register")
                     ? "Save & next step"
-                    : "Save"}
+                    : "Update"}
                 </BasicButton>
               </Box>
             </Flex>

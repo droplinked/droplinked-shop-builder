@@ -76,7 +76,7 @@ const HeaderBannerComponent = ({ addNewImage }) => {
         <Text
           fontFamily="Avenir Next"
           fontWeight="500"
-          fontSsize="16px"
+          fontSize="16px"
           color="#808080"
           mb="12px"
         >
