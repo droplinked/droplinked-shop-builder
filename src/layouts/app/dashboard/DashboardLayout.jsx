@@ -3,17 +3,20 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useProfile } from "hooks/useProfile/useProfile";
+import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { setCurrentShop } from "lib/store/shop/shop.action";
 import SidebarLayout from "./parts/sidebar/SidebarLayout";
 import { useApi } from "hooks/useApi/useApi";
 import { getUser } from "lib/apis/userApiService";
 import { selectIsCustomer } from "lib/store/profile/profile.selector";
+import DashboardModel from "./model/DashboardModel";
 
 export default function DashboardLayout() {
   const isCustomer = useSelector(selectIsCustomer);
 
   const { getApi } = useApi();
-  const { profile } = useProfile();
+  const { profile, shop } = useProfile();
+  const { shopNavigate } = useCustomNavigate();
   const dispatch = useDispatch();
 
   let location = useLocation();
@@ -39,6 +42,13 @@ export default function DashboardLayout() {
     window.scrollTo(0, 0);
   }, [location]);
 
+  useEffect(() => {
+    if (profile && shop) {
+      const registerGate = DashboardModel.checkPermission({ shop })
+      if (registerGate) DashboardModel.registerGate({ to: registerGate, redirect: shopNavigate, pathname: location.pathname })
+    }
+  }, [shop, profile, location]);
+
   const lastSeen = () => {
     // delete localstorage after 8 hour
     const loginTime = JSON.parse(localStorage.getItem("login-time"));
@@ -58,7 +68,7 @@ export default function DashboardLayout() {
   return (
     <VStack align={"stretch"} bgColor={"bG"} spacing={0}>
       <HStack alignItems={"start"}>
-        <Box w="72px"><SidebarLayout /></Box>
+        {shop && !DashboardModel.checkPermission({ shop }) ? <Box w="72px"><SidebarLayout /></Box> : null}
         <Box width={"100%"} minH={"80vh"} padding={10} borderLeft="1px solid" borderColor={"line"} paddingTop={10} paddingBottom={10}>
           <Outlet />
         </Box>
