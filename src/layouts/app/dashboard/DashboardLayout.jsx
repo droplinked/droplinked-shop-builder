@@ -44,8 +44,8 @@ export default function DashboardLayout() {
 
   useEffect(() => {
     if (profile && shop) {
-      const registerGate = DashboardModel.checkPermission({ shop })
-      if (registerGate) DashboardModel.registerGate({ to: registerGate, redirect: shopNavigate, pathname: location.pathname })
+      const checkPermission = DashboardModel.checkPermission({ shop })
+      if (checkPermission) DashboardModel.registerGate({ to: checkPermission, redirect: shopNavigate, pathname: location.pathname })
     }
   }, [shop, profile, location]);
 
