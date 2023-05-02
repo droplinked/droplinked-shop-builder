@@ -20,7 +20,9 @@ interface IProps {
 function AffiliateDetailCard({ decript, earning, image, options, price, title }: IProps) {
     return (
         <Flex alignItems={"center"} gap={7}>
-            <Box width={["50%", "30%"]} maxWidth="230px"><AppImage src={image} borderRadius="8px" /></Box>
+            <Box width={["50%", "30%"]} maxWidth="230px">
+                <AppImage src={image} borderRadius="8px" />
+            </Box>
             <Box>
                 <VStack align={"stretch"} spacing={[1, 2]}>
                     <Box><Text fontSize={["sm", "md"]} fontFamily="aven">{title}</Text></Box>
