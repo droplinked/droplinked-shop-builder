@@ -17,7 +17,7 @@ function Links() {
     <Text
       fontFamily="Avenir Next"
       fontWeight="bold"
-      fontSize="12px"
+      fontSize="14px"
       color="#808080"
     >
       {children}
@@ -62,7 +62,7 @@ function Links() {
       </Box>
       <Box>
         <VStack align="stretch" spacing={3}>
-          <Header>Recourses</Header>
+          <Header>Resources</Header>
           <VStack align="stretch" spacing={3}>
             <Link
               target="_blank"
@@ -75,7 +75,7 @@ function Links() {
               target="_blank"
               download
             >
-              <Sublink>MediaKit.zip</Sublink>
+              <Sublink>Media kit</Sublink>
             </a>
           </VStack>
         </VStack>
