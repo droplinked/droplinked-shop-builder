@@ -1,7 +1,7 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { Box, HStack, Image, useDisclosure } from '@chakra-ui/react'
 import { productContext } from 'pages/product/single/context'
-import RecordModal from '../recordModal/RecordModal'
+import RecordModal, { IRecordModalProduct } from '../recordModal/RecordModal'
 import SkuTableModal from '../skuModal/SkuTableModal'
 import editIcon from "assest/icon/edit-icon.svg";
 import tearIcon from "assest/icon/tear-icon.svg";
@@ -9,6 +9,7 @@ import infoIcon from "assest/icon/info-icon.svg";
 import deleteIcon from "assest/icon/delete-icon.svg";
 import { toast } from 'react-toastify'
 import { Isku } from 'lib/apis/product/interfaces'
+import introductionClass from 'pages/product/single/parts/introduction/model'
 
 interface IProps {
     element: Isku
@@ -16,18 +17,28 @@ interface IProps {
 }
 
 function SkuTableOptions({ element, elementKey }: IProps) {
-    const { state: { sku }, methods: { updateState }, productID } = useContext(productContext)
+    const { state, methods: { updateState }, productID } = useContext(productContext)
     const skuModal = useDisclosure()
     const recordModal = useDisclosure()
     const [SkuData, setSkuData] = useState(null)
 
     // Delete sku
     const DeleteSku = useCallback((key: number) => {
-        const remove = sku.filter((el, index) => index !== key && el)
+        const remove = state.sku.filter((el, index) => index !== key && el)
         updateState("sku", remove)
         toast.info("Skue delete")
-    }, [sku])
+    }, [state.sku])
 
+    // make data for "Record Modal"
+    const RecordModalData = useMemo((): IRecordModalProduct => {
+        return {
+            title: state.title,
+            description: state.description,
+            media: introductionClass.defactorImage(introductionClass.refactorImage(state.media)),
+            shippingType: state.shippingType,
+            sku: element
+        }
+    }, [element, state])
 
     return (
         <>
@@ -58,7 +69,7 @@ function SkuTableOptions({ element, elementKey }: IProps) {
                 </>
             </HStack>
             <SkuTableModal open={skuModal.isOpen} close={skuModal.onClose} skuData={SkuData} />
-            <RecordModal open={SkuData && recordModal.isOpen} skuID={SkuData?._id} close={recordModal.onClose} />
+            <RecordModal open={SkuData && recordModal.isOpen} product={RecordModalData} close={recordModal.onClose} />
         </>
     )
 }

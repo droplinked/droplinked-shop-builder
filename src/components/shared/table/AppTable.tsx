@@ -1,7 +1,8 @@
+import { Text } from '@chakra-ui/react'
 import React from 'react'
 import classes from './style.module.scss'
 
-interface Irows {
+export interface ITableRows {
     [props: string]: {
         caption?: string
         value: any
@@ -9,15 +10,15 @@ interface Irows {
     }
 }
 
-interface IProps {
+export interface IAppTable {
     vertical?: boolean
-    rows?: Array<Irows> | Irows
+    rows?: Array<ITableRows> | ITableRows
 }
 
-function AppTable({ rows, vertical }: IProps) {
+function AppTable({ rows, vertical }: IAppTable) {
     return (
         <>
-            {rows ? (
+            {rows && rows.length ? (
                 <>
                     {vertical ? (
                         <table className={classes.table}>
@@ -33,7 +34,11 @@ function AppTable({ rows, vertical }: IProps) {
                     ) : rows instanceof Array ? (
                         <table className={classes.table}>
                             <thead>
-                                {Object.keys(rows[0]).map((el, key) => <th key={key}>{typeof rows[0][el].caption !== "undefined" ? rows[0][el].caption : el}</th>)}
+                                {Object.keys(rows[0]).map((el, key) =>
+                                    <th key={key}>
+                                        <Text fontFamily={"aven"}>{typeof rows[0][el].caption !== "undefined" ? rows[0][el].caption : el}</Text>
+                                    </th>
+                                )}
                             </thead>
                             <tbody>
                                 {rows.map((el, key) =>
