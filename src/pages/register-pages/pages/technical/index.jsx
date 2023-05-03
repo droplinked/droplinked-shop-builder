@@ -89,12 +89,12 @@ function Technical() {
               <Box>
                 <BasicButton
                   size="lg"
-                  disabled={validate().status || shop.imsTypeUpdated}
+                  disabled={!validate().data.imsType && !shop.imsTypeUpdated}
                   click={clickSubmit}
                 >
                   {currentPath.includes("register")
                     ? "Save & next step"
-                    : "Save"}
+                    : "Update"}
                 </BasicButton>
               </Box>
             </Flex>

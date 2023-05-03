@@ -44,7 +44,7 @@ const ButtonsComponent = () => {
     <Flex justifyContent={"right"} width={"100%"}>
       <Box>
         <BasicButton size="lg" click={clickSubmit} loading={loading}>
-          {currentPath.includes("register") ? "Save & next step" : "Save"}
+          {currentPath.includes("register") ? "Save & next step" : "Update"}
         </BasicButton>
       </Box>
     </Flex>

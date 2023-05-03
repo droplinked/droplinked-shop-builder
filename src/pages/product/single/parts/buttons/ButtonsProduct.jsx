@@ -24,7 +24,7 @@ function ButtonsProduct() {
             if (productID) await updateSkues(state.sku) // Update skues
 
             toast.success(`Product ${productID ? "update" : "created"} success`)
-            if (!productID) shopNavigate("products")
+            shopNavigate("products")
         } catch (error) {
             toast.error(error.errors ? error.errors[0] : "Somthing wrong")
         }
