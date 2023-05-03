@@ -8,11 +8,21 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { productContext } from 'pages/product/single/context'
 import RecordModalModule from './recordModel'
+import { toast } from 'react-toastify'
+import { Isku } from 'lib/apis/product/interfaces'
+
+export interface IRecordModalProduct {
+    title: string
+    description: string
+    shippingType: string
+    media: Array<string>
+    sku: Isku
+}
 
 interface Iprops {
     open: boolean
     close: Function
-    skuID: string
+    product: IRecordModalProduct
 }
 
 interface IRecordSubmit {
@@ -20,18 +30,39 @@ interface IRecordSubmit {
     commission: number
 }
 
-function RecordModal({ close, open, skuID }: Iprops) {
+function RecordModal({ close, open, product }: Iprops) {
     const { state: { sku }, methods: { updateState }, productID } = useContext(productContext)
-    const { refactorSkues } = RecordModalModule
+    const { refactorSkues, openCasperWallet, casperRecord } = RecordModalModule
 
-    const onSubmit = useCallback((data: IRecordSubmit) => {
-        const updateSku = refactorSkues({
-            id: skuID,
+    const updateSku = useCallback(() => {
+        const refactor = refactorSkues({
+            id: product.sku._id,
             skues: sku
         })
-        updateState("sku", updateSku)
+        console.log("refactor", refactor);
+        updateState("sku", refactor)
         close()
-    }, [skuID, sku])
+        toast.success("Sku record successful")
+    }, [product])
+
+    const onSubmit = useCallback(async (data: IRecordSubmit) => {
+        try {
+            if (data.blockchain === "CASPER") {
+                const CasperWallet = await openCasperWallet()
+                await casperRecord({
+                    sku: product.sku,
+                    publicKey: CasperWallet.publicKey,
+                    product_title: product.title,
+                    price: product.sku.price,
+                    amount: product.sku.quantity,
+                    comission: data.commission
+                })
+                updateSku()
+            }
+        } catch (error) {
+            toast.error("Somthing wrong please contact support");
+        }
+    }, [product, sku])
 
     const formSchema = Yup.object().shape({
         blockchain: Yup.string().required('Required'),

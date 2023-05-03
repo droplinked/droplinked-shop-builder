@@ -1,7 +1,11 @@
 import axiosInstance from "../axiosConfig"
 import { IproductByIdServices, IproductState, IproductUpdateServices, IskuUpdateByIdServices } from "./interfaces"
 
-export const productServices = (params: IproductState) => {
+export const productServices = () => {
+    return axiosInstance.get("product")
+}
+
+export const productCreateServices = (params: IproductState) => {
     return axiosInstance.post("product", params)
 }
 
