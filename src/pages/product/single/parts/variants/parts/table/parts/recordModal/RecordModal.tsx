@@ -8,6 +8,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { productContext } from 'pages/product/single/context'
 import RecordModalModule from './recordModel'
+import { record_merch } from 'lib/utils/blockchain/casper/recordMatch'
 
 interface Iprops {
     open: boolean
@@ -24,13 +25,18 @@ function RecordModal({ close, open, skuID }: Iprops) {
     const { state: { sku }, methods: { updateState }, productID } = useContext(productContext)
     const { refactorSkues } = RecordModalModule
 
-    const onSubmit = useCallback((data: IRecordSubmit) => {
+    const onSubmit = useCallback(async (data: IRecordSubmit) => {
         const updateSku = refactorSkues({
             id: skuID,
             skues: sku
         })
         updateState("sku", updateSku)
-        close()
+        try {
+            await record_merch(212, 2, 2, 2, 2, 2)
+        } catch (error) {
+            
+        }
+        // close()
     }, [skuID, sku])
 
     const formSchema = Yup.object().shape({
