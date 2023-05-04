@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/shared/BasicButton/BasicButton'
 import AppSelectBox from 'components/shared/form/select/AppSelectBox'
@@ -37,6 +37,7 @@ function RecordModal({ close, open, product }: Iprops) {
     const { state: { sku } } = useContext(productContext)
     const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
     const { openCasperWallet, casperRecord } = RecordModalModule
+    const [Loading, setLoading] = useState(false)
 
     const updateSku = useCallback(() => {
         close()
@@ -45,6 +46,7 @@ function RecordModal({ close, open, product }: Iprops) {
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
+            setLoading(true)
             if (data.blockchain === "CASPER") {
                 const CasperWallet = await openCasperWallet()
                 const record = await casperRecord({
@@ -55,7 +57,9 @@ function RecordModal({ close, open, product }: Iprops) {
                     amount: product.sku.quantity,
                     comission: data.commission
                 })
-                if (!record.deployHash) throw Error();
+                console.log(record);
+                
+                if (!record.deployHash) throw Error("Desploy hash empty");
                 await mutateAsync({
                     deploy_hash: record.deployHash,
                     skuID: product.sku._id
@@ -64,7 +68,9 @@ function RecordModal({ close, open, product }: Iprops) {
                 })
             }
         } catch (error) {
+            console.log(error);
             toast.error("Somthing wrong please contact support");
+            setLoading(false)
         }
     }, [product, sku])
 
@@ -128,7 +134,7 @@ function RecordModal({ close, open, product }: Iprops) {
                                 </HStack>
                                 <HStack justifyContent={"space-between"}>
                                     <Box width={"25%"}><BasicButton cancelType click={close}>Cancel</BasicButton></Box>
-                                    <Box width={"25%"}><BasicButton type="submit">Save</BasicButton></Box>
+                                    <Box width={"25%"}><BasicButton type="submit" loading={Loading}>Save</BasicButton></Box>
                                 </HStack>
                             </VStack>
                         </Box>
