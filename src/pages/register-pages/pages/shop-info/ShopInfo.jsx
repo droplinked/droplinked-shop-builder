@@ -191,7 +191,7 @@ const RegisterShopInfo = () => {
               loading={loading}
               size="lg"
             >
-              {currentPath.includes("register") ? "Save & next step" : "Save"}
+              {currentPath.includes("register") ? "Save & next step" : "Update"}
             </BasicButton>
           </Box>
         </Flex>

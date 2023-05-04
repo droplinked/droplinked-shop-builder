@@ -3,58 +3,37 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState, useContext } from "react";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
-import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
-import PasswordInputComponent from "../../components/shared/password-input-component/PasswordInputComponent";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import { Title, BottomText } from "./LoginModal-style";
 import { PROFILE_STATUS } from "../../constant/profile-status-types";
 import { toastValue } from "../../context/toastify/ToastContext";
 import { useApi } from "../../hooks/useApi/useApi";
 import { useProfile } from "../../hooks/useProfile/useProfile";
-import { validateEmail } from "lib/utils/validations/emailValidation";
 import { postLoginByEmail } from "lib/apis/authApiService";
 import { setCurrentUser } from "lib/store/profile/profile.action";
 import { appDeveloment } from "lib/utils/app/variable";
+import AppInput from "components/shared/form/textbox/AppInput";
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
-  //
-  const [error, setError] = useState(false);
   // state for disable buttons
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   // hooks
-
   const { postApi } = useApi();
   const { setShopData } = useProfile();
   const { errorToast } = useContext(toastValue);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const changeEmail = (e) => setEmail(e.target.value);
-  const changePassword = (e) => setPassword(e.target.value);
-
-  const validateForm = () => {
-    if (email === "" || password === "" || password?.length < 8 ) {
-      return false;
-    }
-    return true;
-  };
-
   // submit form function
-  const onSubmit = async () => {
-    if(!validateEmail(email)){
-      errorToast("Please enter a valid email address.");
-      return
-    }
-    if (!validateForm()) setError(true);
-    else {
-      setLoading(true);
-      let result = await postApi(postLoginByEmail(email, password));
-      setLoading(false);
-      if (result) loginFunction(result);
-    }
+  const onSubmit = async (data) => {
+    const { email, password } = data
+    setLoading(true);
+    let result = await postApi(postLoginByEmail(email, password));
+    setLoading(false);
+    if (result) loginFunction(result);
   };
 
   // action on user data based on type and status
@@ -107,48 +86,66 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     }
   };
 
+  const formSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required('Required'),
+    password: Yup.string().required('Required'),
+  });
+
   return (
     <ModalWrapper show={show} close={close}>
-      <Box w="100%">
-        <Title>Sign in</Title>
-        <Box w="100%" pt="20px">
-          <InputFieldComponent
-            isRequired
-            name="Username"
-            showError={error}
-            value={email}
-            change={changeEmail}
-            placeholder={"Username"}
-          />
-          <Box mb="16px"></Box>
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+        }}
+        validateOnChange={false}
+        validationSchema={formSchema}
+        onSubmit={onSubmit}
+      >
 
-          <PasswordInputComponent
-            showError={error}
-            value={password}
-            change={changePassword}
-            placeholder={"Password"}
-          />
-          <Box mb="16px"></Box>
-          <BasicButton click={onSubmit} disable={loading} loading={loading}>
-            Login
-          </BasicButton>
-        </Box>
-        <Box mb="8px"></Box>
-        <BottomText onClick={switchReset}>
-          Forgot
-          <Box as="span" ml={1} color="green.500">
-            password?
-          </Box>
-        </BottomText>
-        <Box mb="4px"></Box>
-        <BottomText onClick={switchModal}>
-          Don’t have an account?{" "}
-          <Box as="span" mx={1} color="green.500">
-            Sign up
-          </Box>
-          now!
-        </BottomText>
-      </Box>
+        {({ errors, values, setFieldValue }) => (
+          <Form>
+            <Box w="100%">
+              <Title>Sign in</Title>
+              <Box w="100%" pt="20px">
+                <AppInput
+                  error={errors.email}
+                  name="email"
+                  onChange={(e) => setFieldValue("email", e.target.value)}
+                  value={values.email}
+                />
+                <Box mb="16px"></Box>
+                <AppInput
+                  type="password"
+                  name="password"
+                  error={errors.password}
+                  onChange={(e) => setFieldValue("password", e.target.value)}
+                  value={values.password}
+                />
+                <Box mb="16px"></Box>
+                <BasicButton type="submit" disable={loading} loading={loading}>
+                  Login
+                </BasicButton>
+              </Box>
+              <Box mb="8px"></Box>
+              <BottomText onClick={switchReset}>
+                Forgot
+                <Box as="span" ml={1} color="green.500">
+                  password?
+                </Box>
+              </BottomText>
+              <Box mb="4px"></Box>
+              <BottomText onClick={switchModal}>
+                Don’t have an account?{" "}
+                <Box as="span" mx={1} color="green.500">
+                  Sign up
+                </Box>
+                now!
+              </BottomText>
+            </Box>
+          </Form>
+        )}
+      </Formik>
     </ModalWrapper>
   );
 };

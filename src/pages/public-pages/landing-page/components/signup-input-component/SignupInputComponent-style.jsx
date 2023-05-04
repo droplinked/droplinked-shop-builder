@@ -65,8 +65,8 @@ export const ErrorText = chakra("button", {
     m: "auto 0px",
     pl: "5px",
     fontWeight: "500",
-    fontSize: { base: "12px", md: "14px" },
-    color: "red",
+    fontSize: { base: "13px", md: "15px" },
+    color: "red.400",
     lineHeight: "28px",
   },
 });

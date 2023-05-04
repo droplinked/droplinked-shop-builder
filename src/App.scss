@@ -7,6 +7,19 @@
   font-family: "Avenir Next";
   src: url(./assest/fonts/Avenir-Regular.otf);
 }
+
+@font-face {
+  font-family: "aven";
+  font-weight: bold;
+  src: url(./assest/fonts/AvenirNextLTPro-Bold.otf);
+}
+
+@font-face {
+  font-family: "aven";
+  font-weight: normal;
+  src: url(./assest/fonts/Avenir-SemiBold.otf);
+}
+
 ::-webkit-scrollbar {
   width: 2px;
   background: #141414;

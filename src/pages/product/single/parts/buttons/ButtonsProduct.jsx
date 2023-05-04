@@ -6,10 +6,10 @@ import ButtonsProductClass from './model'
 import { toast } from 'react-toastify'
 import { useMutation } from 'react-query'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
-import { productServices, productUpdateServices, skuUpdateByIdServices } from 'lib/apis/product/productServices'
+import { productCreateServices, productUpdateServices, skuUpdateByIdServices } from 'lib/apis/product/productServices'
 
 function ButtonsProduct() {
-    const create = useMutation((params) => productServices(params))
+    const create = useMutation((params) => productCreateServices(params))
     const update = useMutation((params) => productUpdateServices(params))
     const updateSku = useMutation((params) => skuUpdateByIdServices(params))
     const { state, productID } = useContext(productContext)
@@ -24,7 +24,7 @@ function ButtonsProduct() {
             if (productID) await updateSkues(state.sku) // Update skues
 
             toast.success(`Product ${productID ? "update" : "created"} success`)
-            if (!productID) shopNavigate("products")
+            shopNavigate("products")
         } catch (error) {
             toast.error(error.errors ? error.errors[0] : "Somthing wrong")
         }
@@ -36,7 +36,7 @@ function ButtonsProduct() {
 
     return (
         <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
-            <Box width={"150px"}><BasicButton width="100%" size="md" cancelType>Cancel</BasicButton></Box>
+            <Box width={"150px"}><BasicButton onClick={() => shopNavigate("products")} width="100%" size="md" cancelType>Cancel</BasicButton></Box>
             <Box width={"150px"}>
                 <BasicButton
                     width="100%"

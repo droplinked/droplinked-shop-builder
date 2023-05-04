@@ -1,6 +1,7 @@
-import { Box, HStack, Text, VStack, useDisclosure } from '@chakra-ui/react'
+import { Box, HStack, Text, VStack, useDisclosure, Skeleton } from '@chakra-ui/react'
 import BasicButton from 'components/shared/BasicButton/BasicButton'
 import React from 'react'
+import SkeletonProduct from '../../../skeleton/SkeletonProduct'
 
 import ListCollection from './parts/list'
 import ModalCollection from './parts/modal'
@@ -16,13 +17,17 @@ function Collection() {
                         <Text fontSize={"16px"} color="#FFF">Collection</Text>
                     </Box>
                     <Box>
-                        <BasicButton onClick={onOpen} cancelType color="#777">New Collection</BasicButton>
+                        <SkeletonProduct>
+                            <BasicButton onClick={onOpen} cancelType color="#777">New Collection</BasicButton>
+                        </SkeletonProduct>
                         <ModalCollection open={isOpen} close={onClose} />
                     </Box>
                 </HStack>
             </Box>
             <Box>
-                <ListCollection />
+                <SkeletonProduct>
+                    <ListCollection />
+                </SkeletonProduct>
             </Box>
         </VStack>
     )

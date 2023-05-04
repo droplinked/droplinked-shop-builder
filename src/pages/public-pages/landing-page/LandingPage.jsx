@@ -44,7 +44,6 @@ export default function LandingPage() {
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   const [userName, setUsername] = useState("");
-  
   // loading button
   const leftsideAnimation = prefersReducedMotion
     ? undefined

@@ -22,7 +22,8 @@ interface IproductContext {
     productID: null | string,
     methods: {
         updateState(element: string, value: any): void
-    }
+    },
+    loading: boolean
 }
 
 export const productContext = createContext<IproductContext>({
@@ -30,5 +31,6 @@ export const productContext = createContext<IproductContext>({
     productID: null,
     methods: {
         updateState: () => { }
-    }
+    },
+    loading: false
 })

@@ -2,240 +2,192 @@ import { useApi } from "hooks/useApi/useApi";
 import { useEffect, useState } from "react";
 import { RuleTypes } from "./rule-type";
 import {
-  getRulesetById,
   postCreateRuleset,
   putUpdateRuleset,
 } from "lib/apis/rulesetApiService";
-import ModalWrapper from "modals/modal-wrapper/ModalWrapper";
 import {
   ModalHeader,
-  OptionComponent,
-  SelectComponent,
 } from "./RuleModal-style";
-import { Box, Flex, FormControl, FormLabel, Stack } from "@chakra-ui/react";
-import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
+import { Box, HStack, VStack } from "@chakra-ui/react";
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import LoadingComponent from "components/shared/loading-component/LoadingComponent";
 import { ChainTypes } from "./chain-type";
 import { toast } from "react-toastify";
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import AppModal from "components/shared/modal/AppModal";
+import AppTextarea from "components/shared/form/textarea/AppTextarea";
+import ruleModelContext from "./context";
+import TextboxRule from "./components/textbox/TextboxRule";
+import SelectRule from "./components/select/SelectRule";
+import { useMutation } from "react-query";
+import { createRuleService, getRuleService, updateRuleService } from "lib/apis/rule/ruleServices";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
-  const { getApi, postApi, putApi } = useApi();
-  //
-  const [error, setError] = useState(false);
-  //
-  const [webUrl, setWebUrl] = useState("");
-  const [discount, setDiscount] = useState("");
-  const [chainType, setChainType] = useState("ETH");
-  const [tagName, setTagName] = useState("");
-  const [counter, setCounter] = useState("");
-  const [addresses, setAddresses] = useState([]);
-  const [ruleType, setRuleType] = useState(RuleTypes.DISCOUNT);
-  const [loading, setLoading] = useState(false);
-  //
-  const changeWebUrl = (e) => setWebUrl(e.target.value);
-  const changeRuleType = (e) => setRuleType(e.target.value);
-  const changeDiscount = (e) => setDiscount(e.target.value);
-  const changeChainType = (e) => setChainType(e.target.value);
-  const changeTagName = (e) => setTagName(e.target.value);
-  const changeCounter = (e) => setCounter(e.target.value);
-  const changeAddresses = (e) => setAddresses(e.target.value);
-  //
+  const [State, setState] = useState(null)
+  const getRule = useMutation((params) => getRuleService(params))
+  const createRule = useMutation((params) => createRuleService(params))
+  const updateRule = useMutation((params) => updateRuleService(params))
+  const { putApi } = useApi();
+
   useEffect(() => {
-    if (ruleId != undefined) {
-      getRuleData();
-    }
-  }, []);
+    if (ruleId) getRule.mutate({ ruleID: ruleId })
+  }, [ruleId])
 
-  const getRuleData = async () => {
-    setLoading(true);
-    let result = await getApi(getRulesetById(ruleId));
-    if (result) initializeRule(result);
-    setLoading(false);
-  };
 
-  const initializeRule = (rule) => {
-    if (rule.gated) setRuleType(RuleTypes.GATED);
-    setWebUrl(rule.webUrl);
-    setDiscount(rule.rules?.[0]?.discountPercentage);
-    setChainType(rule.rules?.[0]?.type);
-    setTagName(rule.rules?.[0]?.description);
-    setCounter(rule.rules?.[0]?.nftsCount ? rule.rules?.[0]?.nftsCount : "");
-    setAddresses(rule.rules?.[0]?.addresses.join(","));
-  };
+  useEffect(() => {
+    if (getRule.data) setState(getRule.data.data.data)
+  }, [getRule])
 
-  const validationForm = () => {
-    if (
-      tagName === "" ||
-      counter === "" ||
-      addresses === "" ||
-      webUrl === "" ||
-      chainType === "" ||
-      (ruleType === RuleTypes.DISCOUNT && discount === "")
-    ) {
-      return false;
-    }
-    return true;
-  };
-
-  const submit = async () => {
-    let validation = validationForm();
-    let query = {}
-    let success = ""
-    console.log("chainType", chainType);
-    console.log("validation", !validation);
-    if (!validation) setError(true);
-    else {
-      const gated = ruleType == RuleTypes.DISCOUNT ? false : true;
+  const submit = async (data) => {
+    const { tag, weburl, chain, rule, discount, address, counter } = data
+    try {
       const requestBody = {
         collectionID: collectionId,
-        gated: gated,
+        gated: rule === RuleTypes.DISCOUNT,
         rules: [
           {
-            addresses: addresses?.split(","),
+            addresses: address?.split(","),
             discountPercentage: +discount,
             nftsCount: +counter,
-            type: chainType,
-            description: tagName,
+            type: chain,
+            description: tag,
           },
         ],
-        type: chainType,
-        webUrl: webUrl,
+        type: chain,
+        webUrl: weburl,
         redeemedNFTs: [],
       };
-
       if (ruleId) {
-        query = await putApi(putUpdateRuleset(ruleId, requestBody));
-        success = "Rule update"
+        await updateRule.mutateAsync({ ruleID: ruleId, data: requestBody })
       } else {
-        query = await postApi(postCreateRuleset(requestBody));
-        success = "Rule created"
+        await createRule.mutateAsync(requestBody)
       }
-
-      if (query) {
-        update();
-        close();
-        toast.success(success)
-      } else {
-        toast.error("Somthing wrong")
-      }
+      update();
+      close();
+      toast.success(`Rule ${ruleId ? "update" : "created"}`)
+    } catch (error) {
+      toast.error("Somthing wrong")
     }
   };
+
+  const formSchema = Yup.object().shape({
+    tag: Yup.string().required('Required'),
+    weburl: Yup.string().required('Required'),
+    chain: Yup.string().required('Required'),
+    rule: Yup.string().required('Required'),
+    discount: Yup.number().typeError("Please correct value").required('Required'),
+    address: Yup.string().required('Required'),
+    counter: Yup.number().typeError("Please correct value").required('Required'),
+  });
 
   if (!show) return null;
 
   return (
-    <ModalWrapper show={show} close={close}>
+    <AppModal
+      open={show}
+      close={close}
+      contentProps={{ maxWidth: "700px", width: "95%", padding: "40px" }}
+    >
       <ModalHeader>Make Rule</ModalHeader>
-      {loading ? (
+      {false ? (
         <LoadingComponent />
       ) : (
-        <Stack spacing={6}>
-          <InputFieldComponent
-            isRequired
-            showError={error}
-            label="Tag Name"
-            name="Tag Name"
-            placeholder="Ruleset 1"
-            description="description"
-            value={tagName}
-            change={changeTagName}
-          />
-          <InputFieldComponent
-            isRequired
-            showError={error}
-            name="NFT source domain"
-            label="NFT source domain"
-            placeholder="https://www.opensea.com"
-            description="description"
-            value={webUrl}
-            change={changeWebUrl}
-          />
-          <FormControl isRequired flexGrow="1">
-            <FormLabel color="white">Chain Type</FormLabel>
-            <SelectComponent
-              width="100%"
-              mt={2}
-              value={chainType}
-              onChange={changeChainType}
-            // disabled={RuleList.length > 0}
-            >
-              {Object.keys(ChainTypes).map((el, key) => (
-                <OptionComponent key={key} value={ChainTypes[el]}>{el}</OptionComponent>
-              ))}
-            </SelectComponent>
-          </FormControl>
-          <Flex gap={2}>
-            <FormControl isRequired flexGrow="1">
-              <FormLabel color="white">Rule type</FormLabel>
-              <SelectComponent
-                width="100%"
-                mt={2}
-                value={ruleType}
-                onChange={changeRuleType}
-              // disabled={RuleList.length > 0}
-              >
-                <OptionComponent value={RuleTypes.GATED}>
-                  {/* <Image src={discountIcon} w="16px" h="16px" /> */}
-                  Gating
-                </OptionComponent>
-                <OptionComponent value={RuleTypes.DISCOUNT}>
-                  {/* <Image src={gatedIcon} w="16px" h="16px" /> */}
-                  Discount
-                </OptionComponent>
-              </SelectComponent>
-            </FormControl>
-            {ruleType === "DISCOUNT" && (
-              <InputFieldComponent
-                showError={error}
-                isRequired
-                name="Offer"
-                label="Offer"
-                placeholder="%20"
-                value={discount}
-                change={changeDiscount}
-                description="description"
-              />
-            )}
-          </Flex>
-          <InputFieldComponent
-            showError={error}
-            isRequired
-            textArea
-            name="NFT asset"
-            label="NFT asset identifiers"
-            placeholder="you can separate nft links with ,"
-            value={addresses}
-            change={changeAddresses}
-          />
+        <Formik
+          initialValues={{
+            tag: State ? State?.rules ? State?.rules[0].description : '' : '',
+            weburl: State ? State?.webUrl : '',
+            chain: State ? State?.type : 'ETH',
+            rule: State ? State?.gated ? RuleTypes.DISCOUNT : RuleTypes.GATED : true,
+            discount: State ? State?.rules ? State?.rules[0].discountPercentage : 0 : 0,
+            address: State ? State?.rules ? State?.rules[0].addresses[0] : '' : '',
+            counter: State ? State?.rules ? State?.rules[0].nftsCount : '' : ''
+          }}
+          enableReinitialize
+          validateOnChange={false}
+          validationSchema={formSchema}
+          onSubmit={submit}
+        >
 
-          <InputFieldComponent
-            showError={error}
-            isRequired
-            name="Minimum Requirement"
-            label="Minimum Requirement"
-            placeholder="4"
-            description="description"
-            value={counter}
-            change={changeCounter}
-          />
-
-          <Flex w="100%" justifyContent="space-between">
-            <Box w="200px">
-              <BasicButton width="100%" cancelType click={close}>
-                Cancel
-              </BasicButton>
-            </Box>
-            <Box w="200px">
-              <BasicButton width="100%" click={submit}>
-                Save
-              </BasicButton>
-            </Box>
-          </Flex>
-        </Stack>
+          {({ errors, values, setFieldValue }) => (
+            <ruleModelContext.Provider value={{ errors, values, setFieldValue, loading: ruleId ? !getRule.isLoading : true }}>
+              <Form>
+                <VStack width={"100%"} align="stretch" spacing={8}>
+                  <Box>
+                    <TextboxRule element={"tag"} placeholder="tag" label={"Tag name"} />
+                  </Box>
+                  <Box>
+                    <TextboxRule element={"weburl"} placeholder="url ..." label={"NFT source domain"} />
+                  </Box>
+                  <Box>
+                    <SelectRule
+                      element={"chain"}
+                      placeholder="Select chain"
+                      label={"Chain Type"}
+                      loading={!getRule.isLoading}
+                      items={Object.keys(ChainTypes).map((el) => {
+                        return {
+                          value: el,
+                          caption: el
+                        }
+                      })}
+                    />
+                  </Box>
+                  <HStack alignItems={"baseline"}>
+                    <Box width={"100%"}>
+                      <SelectRule
+                        element={"rule"}
+                        placeholder="Select rule"
+                        label={"Rule Type"}
+                        loading={!getRule.isLoading}
+                        items={Object.keys(RuleTypes).map((el) => {
+                          return {
+                            value: el,
+                            caption: el
+                          }
+                        })}
+                      />
+                    </Box>
+                    {values.rule === RuleTypes.DISCOUNT && (
+                      <Box width={"100%"}>
+                        <TextboxRule element={"discount"} placeholder="%20" label={"Offer"} />
+                      </Box>
+                    )}
+                  </HStack>
+                  <Box>
+                    <AppTextarea
+                      name="address"
+                      placeholder="you can separate nft links with ,"
+                      label="NFT asset identifiers"
+                      onChange={(e) => setFieldValue("address", e.target.value)}
+                      value={values.address}
+                      loading={!getRule.isLoading}
+                      error={errors.address}
+                      isRequired
+                    />
+                  </Box>
+                  <Box width={"100%"}>
+                    <TextboxRule element={"counter"} placeholder="number ..." label={"Minimum Requirement"} />
+                  </Box>
+                  <HStack justifyContent={"space-between"}>
+                    <Box width={"35%"}><BasicButton width={"100%"} cancelType>Cancel</BasicButton></Box>
+                    <Box width={"35%"}>
+                      <BasicButton
+                        width={"100%"}
+                        loading={createRule.isLoading || getRule.isLoading || updateRule.isLoading}
+                        type="submit">
+                        Save
+                      </BasicButton>
+                    </Box>
+                  </HStack>
+                </VStack>
+              </Form>
+            </ruleModelContext.Provider>
+          )}
+        </Formik>
       )}
-    </ModalWrapper>
+    </AppModal>
   );
 };
 

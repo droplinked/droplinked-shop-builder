@@ -7,6 +7,7 @@ import PropertyOptions from './parts/options/PropertyOptions';
 import PropertyButton from './parts/button/PropertyButton';
 import propertiesFormContext from './context';
 import { productContext } from 'pages/product/single/context';
+import SkeletonProduct from '../../../skeleton/SkeletonProduct';
 
 function PropertiesForm() {
     const { state: { properties, sku }, methods: { updateState }, productID } = useContext(productContext)
@@ -36,24 +37,26 @@ function PropertiesForm() {
             state: State,
             updateState: setState
         }}>
-            <VStack align={"stretch"} spacing={10}>
-                {State.length ? State.map((el, keyProperty) => (
-                    <VStack align={"stretch"} key={keyProperty} width={"100%"}>
-                        <HStack>
-                            <Box width={"20%"}><Text fontSize={"larger"} color={"#FFF"}>Property</Text></Box>
-                            <Box width={"80%"}>
-                                <SelectComponent value={el.value} onChange={(e) => create(e.target.value, keyProperty)}>
-                                    <OptionComponent value={""} disabled hidden selected>Property</OptionComponent>
-                                    <PropertyOptions element={el} types={types} />
-                                </SelectComponent>
-                            </Box>
-                        </HStack>
-                        <PropertyItem element={el} keyProperty={keyProperty} />
-                    </VStack>
-                )) : null}
+            <SkeletonProduct>
+                <VStack align={"stretch"} spacing={10}>
+                    {State.length ? State.map((el, keyProperty) => (
+                        <VStack align={"stretch"} key={keyProperty} width={"100%"}>
+                            <HStack>
+                                <Box width={"20%"}><Text fontSize={"larger"} color={"#FFF"}>Property</Text></Box>
+                                <Box width={"80%"}>
+                                    <SelectComponent value={el.value} onChange={(e) => create(e.target.value, keyProperty)}>
+                                        <OptionComponent value={""} disabled hidden selected>Property</OptionComponent>
+                                        <PropertyOptions element={el} types={types} />
+                                    </SelectComponent>
+                                </Box>
+                            </HStack>
+                            <PropertyItem element={el} keyProperty={keyProperty} />
+                        </VStack>
+                    )) : null}
 
-                <Box><PropertyButton state={State} types={types} skues={sku} /></Box>
-            </VStack>
+                    <Box><PropertyButton state={State} types={types} skues={sku} /></Box>
+                </VStack>
+            </SkeletonProduct>
         </propertiesFormContext.Provider>
     )
 }

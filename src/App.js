@@ -1,11 +1,12 @@
 import "./App.scss";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
-//
+import { useProfile } from "hooks/useProfile/useProfile";
+
 const MainLayout = lazy(() =>
-  import("layouts/main/mainLayout")
+  import("layouts/app/main/mainLayout")
 );
 const NotFound = lazy(() =>
   import("pages/404/404")
@@ -32,7 +33,7 @@ const ProductsPage = lazy(() =>
   import("./pages/prodcut-pages/products-page/ProductsPage")
 );
 const RulePage = lazy(() => import("./pages/admin-pages/rules-page/RulesPage"));
-const DashboardLayout = lazy(() => import("layouts/dashboard/DashboardLayout"));
+const DashboardLayout = lazy(() => import("layouts/app/dashboard/DashboardLayout"));
 const LandingPage = lazy(() =>
   import("./pages/public-pages/landing-page/LandingPage")
 );
@@ -68,7 +69,20 @@ const OrderPage = lazy(() =>
   import("./pages/admin-pages/orders-page/OrderPage")
 );
 
+const AffiliateLayout = lazy(() =>
+  import("layouts/pages/affiliate/AffiliateLayout")
+);
+
+const Shops = lazy(() => import("pages/affiliate/shops/Shops"))
+const Shop = lazy(() => import("pages/affiliate/shopSingle/Shop"))
+const ShopProduct = lazy(() => import("pages/affiliate/product/ShopProduct"))
+const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
+const Notifications = lazy(() => import("pages/affiliate/notifications/Notifications"))
+const Products = lazy(() => import("pages/product/list/products"))
+
 function App() {
+  const { profile } = useProfile();
+
   return (
     <BrowserRouter>
       <Suspense fallback={<LoadingPage />}>
@@ -85,7 +99,7 @@ function App() {
               <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
             </Route>
 
-            <Route path=":shopname/c" element={<DashboardLayout />}>
+            <Route path=":shopname/c" element={profile ? <DashboardLayout /> : <Navigate replace to={"/"} />}>
               <Route path="register" element={<RegisterPagesWrapper />}>
                 <Route path="shop-info" element={<RegisterShopInfo />} />
                 <Route path="contact-info" element={<ContactInfo />} />
@@ -99,12 +113,25 @@ function App() {
                 <Route path="technical" element={<TechnicalPage />} />
               </Route>
               <Route path="products" element={<ProductsPage />} />
+              <Route path="products-dev" element={<Products />} />
               <Route path="add-product" element={<ProductSingle />} />
               <Route path="product/:productId" element={<ProductSingle />} />
               <Route path="collections" element={<CollectionMainPage />} />
               <Route path="add-collection" element={<AddCollectionPage />} />
               <Route path="orders" element={<OrderPage />} />
               <Route path="rules" element={<RulePage />} />
+              <Route path="affiliate" element={<AffiliateLayout />}>
+                <Route index element={<Shops />} />
+                <Route path="shops">
+                  <Route index element={<Shops />} />
+                  <Route path=":shopName">
+                    <Route index element={<Shop />} />
+                    <Route path=":productID" element={<ShopProduct />} />
+                  </Route>
+                </Route>
+                <Route path="requests" element={<Requests />} />
+                <Route path="notifications" element={<Notifications />} />
+              </Route>
             </Route>
             <Route path=":shopname" element={<ShopPage />} />
             <Route path="*" element={<NotFound />} />

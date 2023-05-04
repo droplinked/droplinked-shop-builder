@@ -1,19 +1,20 @@
-import { Isku } from "lib/apis/product/interfaces"
-
-interface dataSync {
-    data1: Isku
-    data2: Isku
-}
+import { Isku, IskuOption } from "lib/apis/product/interfaces"
+import { types } from "pages/product/single/parts/properties/parts/form/model/model";
 
 export default class dataFactoryModule {
-    static makeProperties = (properties: Array<any>, ids: Array<any>) => {
-        return Object.keys(properties).map(el => {
-            return {
-                value: properties[el],
-                variantID: ids[el],
-                variantName: el,
+    static makeProperties = (props: Object): Array<IskuOption> => {
+        const propertyKeyes = types.map(el => el.name)
+        let result = []
+        Object.keys(props).forEach(el => {
+            if (propertyKeyes.includes(el)) {
+                result.push({
+                    value: props[el],
+                    variantID: types.filter(type => type.name === el && type)[0]._id,
+                    variantName: el,
+                })
             }
         })
+        return result
     }
 
     static dataSync = (data: Isku): Isku => {

@@ -23,7 +23,7 @@ const FieldInput = chakra("input", {
     baseStyle: {
         w: "70%",
         bg: "mainLayer",
-        p: "15px 24px",
+        p: "10px 13px",
         fontSize: "20px",
         fontWeight: "500",
         borderRadius: "8px",

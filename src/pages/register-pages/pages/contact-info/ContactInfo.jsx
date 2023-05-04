@@ -145,7 +145,7 @@ const ContactInfo = () => {
       <Flex justifyContent={"right"} marginTop={8} width={"100%"}>
         <Box>
           <BasicButton size="lg" click={clickOnSave} loading={loading}>
-            {currentPath.includes("register") ? "Publish store" : "Save"}
+            {currentPath.includes("register") ? "Publish store" : "Update"}
           </BasicButton>
         </Box>
       </Flex>

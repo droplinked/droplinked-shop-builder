@@ -5,10 +5,10 @@ export const axiosInstance = axios.create({
     baseURL: BASE_URL,
 });
 
-const token = JSON.parse(localStorage.getItem("token"))
 
 axiosInstance.interceptors.request.use(
     function (config) {
+        const token = JSON.parse(localStorage.getItem("token"))
         config.headers = {
             'Authorization': `Bearer ${token}`,
         }

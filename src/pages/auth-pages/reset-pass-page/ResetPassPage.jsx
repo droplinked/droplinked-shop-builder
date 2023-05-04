@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 //
 import { toastValue } from "context/toastify/ToastContext";
@@ -20,12 +19,6 @@ export default function ResetPassPage() {
   const [btnActivd, setBtnActivd] = useState(false);
   const { successToast } = useContext(toastValue);
   const { putApi } = useApi();
-
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
 
   let navigate = useNavigate();
   let token = useParams().token;
