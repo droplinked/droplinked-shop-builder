@@ -6,6 +6,8 @@ import orderIcon from "assest/icon/order-icon.svg";
 import informationIcon from "assest/icon/information-icon.svg";
 import rulesetsIcon from "assest/icon/rulesets-icon.svg";
 
+import { appDeveloment } from "lib/utils/app/variable";
+
 
 export const OPTIONS = [
     {
@@ -21,7 +23,7 @@ export const OPTIONS = [
         icon:orderIcon, label:'orders' ,path:'orders'
     },
     {
-        icon:informationIcon, label:'affiliate', path: "affiliate" 
+        icon:informationIcon, label:'affiliate', path: appDeveloment?"affiliate":'products' 
     },
     {
         icon:settingIcon, label:'setting' ,path:'settings/shop-info'
