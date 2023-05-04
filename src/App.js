@@ -113,7 +113,7 @@ function App() {
                 <Route path="technical" element={<TechnicalPage />} />
               </Route>
               <Route path="products" element={<ProductsPage />} />
-              {/* <Route path="products-dev" element={<Products />} /> */}
+              <Route path="products-dev" element={<Products />} />
               <Route path="add-product" element={<ProductSingle />} />
               <Route path="product/:productId" element={<ProductSingle />} />
               <Route path="collections" element={<CollectionMainPage />} />

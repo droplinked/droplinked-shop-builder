@@ -51,8 +51,11 @@ export default class RecordModalModule {
                     product_title: product_title,
                     price: price * 100,
                     amount: amount * 100,
-                    comission: comission
+                    comission: comission * 100
                 }
+
+                console.log(data);
+                
 
                 const record = await record_merch(
                     data.sku_properties,
