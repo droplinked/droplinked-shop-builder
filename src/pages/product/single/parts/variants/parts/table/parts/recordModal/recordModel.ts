@@ -2,11 +2,6 @@ import { Isku } from "lib/apis/product/interfaces"
 import { casper_wallet_login, isCapseWalletExtentionInstalled } from "lib/utils/blockchain/casper/casperWallet"
 import { record_merch } from "lib/utils/blockchain/casper/recordMatch"
 
-interface IRefactorSkues {
-    skues: Array<Isku>
-    id: string
-}
-
 export interface IRecordCasper {
     sku: Isku
     publicKey: string
@@ -22,14 +17,12 @@ interface IopenCasperWallet {
     signature: string
 }
 
-export default class RecordModalModule {
-    static refactorSkues = ({ id, skues }: IRefactorSkues): Array<Isku> => {
-        return skues.map<Isku>(el => ({
-            ...el,
-            record: el._id === id ? true : el.record
-        }))
-    }
+interface IcasperRecord {
+    deploy: any
+    deployHash: string | undefined
+}
 
+export default class RecordModalModule {
     static openCasperWallet = (): Promise<IopenCasperWallet> => {
         return new Promise<IopenCasperWallet>((resolve, reject) => {
             if (isCapseWalletExtentionInstalled()) {
@@ -48,7 +41,7 @@ export default class RecordModalModule {
     };
 
     static casperRecord = async ({ amount, comission, price, product_title, publicKey, sku }: IRecordCasper) => {
-        return new Promise(async (resolve, reject) => {
+        return new Promise<IcasperRecord>(async (resolve, reject) => {
             try {
                 const data = {
                     sku_properties: sku,

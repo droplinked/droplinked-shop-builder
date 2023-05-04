@@ -10,6 +10,9 @@ import { productContext } from 'pages/product/single/context'
 import RecordModalModule from './recordModel'
 import { toast } from 'react-toastify'
 import { Isku } from 'lib/apis/product/interfaces'
+import { useMutation } from 'react-query'
+import { recordCasperService } from 'lib/apis/sku/services'
+import { IrecordCasperService } from 'lib/apis/sku/interfaces'
 
 export interface IRecordModalProduct {
     title: string
@@ -31,16 +34,11 @@ interface IRecordSubmit {
 }
 
 function RecordModal({ close, open, product }: Iprops) {
-    const { state: { sku }, methods: { updateState }, productID } = useContext(productContext)
-    const { refactorSkues, openCasperWallet, casperRecord } = RecordModalModule
+    const { state: { sku } } = useContext(productContext)
+    const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
+    const { openCasperWallet, casperRecord } = RecordModalModule
 
     const updateSku = useCallback(() => {
-        const refactor = refactorSkues({
-            id: product.sku._id,
-            skues: sku
-        })
-        console.log("refactor", refactor);
-        updateState("sku", refactor)
         close()
         toast.success("Sku record successful")
     }, [product])
@@ -49,7 +47,7 @@ function RecordModal({ close, open, product }: Iprops) {
         try {
             if (data.blockchain === "CASPER") {
                 const CasperWallet = await openCasperWallet()
-                await casperRecord({
+                const record = await casperRecord({
                     sku: product.sku,
                     publicKey: CasperWallet.publicKey,
                     product_title: product.title,
@@ -57,7 +55,13 @@ function RecordModal({ close, open, product }: Iprops) {
                     amount: product.sku.quantity,
                     comission: data.commission
                 })
-                updateSku()
+                if (!record.deployHash) throw Error();
+                await mutateAsync({
+                    deploy_hash: record.deployHash,
+                    skuID: product.sku._id
+                }, {
+                    onSuccess: () => updateSku()
+                })
             }
         } catch (error) {
             toast.error("Somthing wrong please contact support");
@@ -66,7 +70,7 @@ function RecordModal({ close, open, product }: Iprops) {
 
     const formSchema = Yup.object().shape({
         blockchain: Yup.string().required('Required'),
-        commission: Yup.number().min(.1).typeError("Please enter number").required('Required'),
+        commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
     });
 
     return (
