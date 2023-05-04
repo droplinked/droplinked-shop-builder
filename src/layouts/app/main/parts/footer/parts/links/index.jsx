@@ -86,7 +86,7 @@ function Links() {
           <Header>Products</Header>
 
           <VStack align="stretch" spacing={3}>
-            <Link target="_blank" href="https://eventdev.droplinked.com">
+            <Link target="_blank" href="https://events.droplinked.com">
               <Sublink>Events</Sublink>
             </Link>
 
