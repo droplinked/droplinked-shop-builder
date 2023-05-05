@@ -35,7 +35,7 @@ async function record_merch(sku_properties , account_information, product_title 
     named_args.push(new NamedArg("metadata" , new CLString(`{ "name" : "${product_title}" , "token_uri" : "${IPFSHASH}" , "checksum" : "${checksum}"}`)));
     named_args.push(new NamedArg("price" , new CLU256(price)));
     named_args.push(new NamedArg("amount" , new CLU64(amount)));
-    named_args.push(new NamedArg("comission", new CLU8(comission)));
+    named_args.push(new NamedArg("comission", new CLU64(comission)));
     let recipient = CLPublicKey.fromHex(producer_public_key).toAccountHash();
     named_args.push(new NamedArg("recipient" , new CLKey(new CLAccountHash(recipient))));
     let runtime_args = RuntimeArgs.fromNamedArgs(named_args);
