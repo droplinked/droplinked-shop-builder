@@ -1,4 +1,3 @@
-//import {CasperServiceByJsonRPC } from 'casper-js-sdk'
 import { CLPublicKey, CasperWalletEventTypes } from "casper-js-sdk";
 let casperWalletInstance;
 export let account_information;
@@ -33,6 +32,7 @@ let get_account_information = async function (publicKey) {
 }
 export async function casper_login(on_connected) {
     let called = false;
+    await getCasperWalletInstance().requestConnection();
     if (await getCasperWalletInstance().isConnected()) {
         if (!called) {
             called = true;
@@ -55,5 +55,6 @@ export async function casper_login(on_connected) {
         }
     };
     window.addEventListener(CasperWalletEventTypes.Connected, handleConnected);
-    on_connected(await get_account_information(await getCasperWalletInstance().getActivePublicKey()));
+    if (!called)
+        on_connected(await get_account_information(await getCasperWalletInstance().getActivePublicKey()));
 }

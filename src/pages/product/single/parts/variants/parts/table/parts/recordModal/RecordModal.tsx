@@ -44,6 +44,11 @@ function RecordModal({ close, open, product }: Iprops) {
         toast.success("Sku record successful")
     }, [product])
 
+    useEffect(() => {
+        setLoading(false)
+    }, [open])
+
+
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
             setLoading(true)
@@ -58,7 +63,7 @@ function RecordModal({ close, open, product }: Iprops) {
                     comission: data.commission
                 })
                 console.log(record);
-                
+
                 if (!record.deployHash) throw Error("Desploy hash empty");
                 await mutateAsync({
                     deploy_hash: record.deployHash,
@@ -82,7 +87,7 @@ function RecordModal({ close, open, product }: Iprops) {
     return (
         <AppModal
             open={open}
-            close={close}
+            close={() => !Loading ? close : {}}
             size={"2xl"}
             contentProps={{
                 padding: "30px"
@@ -133,7 +138,7 @@ function RecordModal({ close, open, product }: Iprops) {
                                     </Box>
                                 </HStack>
                                 <HStack justifyContent={"space-between"}>
-                                    <Box width={"25%"}><BasicButton cancelType click={close}>Cancel</BasicButton></Box>
+                                    <Box width={"25%"}><BasicButton cancelType click={() => !Loading ? close() : {}}>Cancel</BasicButton></Box>
                                     <Box width={"25%"}><BasicButton type="submit" loading={Loading}>Save</BasicButton></Box>
                                 </HStack>
                             </VStack>
