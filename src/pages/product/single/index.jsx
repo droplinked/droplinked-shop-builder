@@ -41,11 +41,7 @@ function ProductSingle() {
     useEffect(async () => {
         if (params?.productId) setState(await fetch())
     }, [params])
-
-    useEffect(() => {
-        console.log(State);
-    }, [State])
-
+    
     return (
         <productContext.Provider value={{
             state: State,

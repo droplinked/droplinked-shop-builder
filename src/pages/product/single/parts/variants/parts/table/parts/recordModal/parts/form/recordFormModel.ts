@@ -3,12 +3,10 @@ import { casper_wallet_login, isCapseWalletExtentionInstalled } from "lib/utils/
 import { record_merch } from "lib/utils/blockchain/casper/recordMatch"
 
 export interface IRecordCasper {
-    sku: Isku
+    product: any
     publicKey: string
-    product_title: string
-    price: number
-    amount: number
-    comission: number
+    commission: number,
+    sku: Isku
 }
 
 interface IopenCasperWallet {
@@ -24,15 +22,19 @@ interface IcasperRecord {
 
 export default class RecordModalModule {
     static openCasperWallet = (): Promise<IopenCasperWallet> => {
-        return new Promise<IopenCasperWallet>((resolve, reject) => {
+        return new Promise<IopenCasperWallet>(async (resolve, reject) => {
             if (isCapseWalletExtentionInstalled()) {
-                casper_wallet_login(async (account_info) => {
-                    resolve({
-                        account_hash: account_info.account_hash,
-                        publicKey: account_info.publicKey,
-                        signature: account_info.signature
-                    })
-                });
+                try {
+                    await casper_wallet_login(async (account_info) => {
+                        resolve({
+                            account_hash: account_info.account_hash,
+                            publicKey: account_info.publicKey,
+                            signature: account_info.signature
+                        })
+                    });
+                } catch (error) {
+                    reject(error);
+                }
             } else {
                 window.open("https://www.casperwallet.io", "_blank");
                 reject("Please install casper wallet")
@@ -40,7 +42,7 @@ export default class RecordModalModule {
         })
     };
 
-    static casperRecord = async ({ amount, comission, price, product_title, publicKey, sku }: IRecordCasper) => {
+    static casperRecord = async ({ commission, product, publicKey, sku }: IRecordCasper) => {
         return new Promise<IcasperRecord>(async (resolve, reject) => {
             try {
                 const data = {
@@ -48,14 +50,14 @@ export default class RecordModalModule {
                     account_information: {
                         publicKey: publicKey,
                     },
-                    product_title: product_title,
-                    price: price * 100,
-                    amount: amount * 100,
-                    comission: comission * 100
+                    product_title: product.title,
+                    price: product.sku.price * 100,
+                    amount: product.sku.quantity * 100,
+                    comission: commission * 100
                 }
 
                 console.log(data);
-                
+
 
                 const record = await record_merch(
                     data.sku_properties,

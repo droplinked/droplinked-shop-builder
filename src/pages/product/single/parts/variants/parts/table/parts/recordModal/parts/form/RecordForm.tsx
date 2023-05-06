@@ -51,15 +51,11 @@ function RecordForm({ close, open, product }: Iprops) {
                 const CasperWallet = await openCasperWallet()
                 updateState("loading", true)
                 const record = await casperRecord({
-                    sku: product.sku,
+                    commission: data.commission,
+                    product,
                     publicKey: CasperWallet.publicKey,
-                    product_title: product.title,
-                    price: product.sku.price,
-                    amount: product.sku.quantity,
-                    comission: data.commission
+                    sku: product.sku
                 })
-                console.log(record);
-
                 if (!record.deployHash) throw Error("Desploy hash empty");
                 await mutateAsync({
                     deploy_hash: record.deployHash,
@@ -71,9 +67,13 @@ function RecordForm({ close, open, product }: Iprops) {
                     }
                 })
             }
-        } catch (error) {
-            console.log(error);
-            toast.error("Somthing wrong please contact support");
+        } catch (error) {            
+            if (error?.message) {
+                if(error?.message.includes("The first argument")) return updateState("loading", false)
+                toast.error(error?.message);
+            } else {
+                toast.error("Somthing wrong please contact support");
+            }
             updateState("loading", false)
         }
     }, [product, sku])
