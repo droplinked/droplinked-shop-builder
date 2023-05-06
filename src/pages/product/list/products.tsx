@@ -4,6 +4,7 @@ import { productServices } from 'lib/apis/product/productServices'
 import React, { useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import ProductListModel from './model'
+import ProductEmpty from './parts/empty/ProductEmpty'
 
 function Products() {
     const { mutate, isLoading } = useMutation(() => productServices())
@@ -46,6 +47,7 @@ function Products() {
                 }
             ]}
             rows={States.rows}
+            empty={<ProductEmpty />}
         />
     )
 }

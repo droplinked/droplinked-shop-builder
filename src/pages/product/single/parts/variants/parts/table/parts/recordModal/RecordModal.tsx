@@ -51,9 +51,9 @@ function RecordModal({ close, open, product }: Iprops) {
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
-            setLoading(true)
             if (data.blockchain === "CASPER") {
                 const CasperWallet = await openCasperWallet()
+                setLoading(true)
                 const record = await casperRecord({
                     sku: product.sku,
                     publicKey: CasperWallet.publicKey,
