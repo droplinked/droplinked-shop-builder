@@ -1,10 +1,11 @@
 import { number, object, string } from 'yup';
 import dataFactoryModule from './modules/dataFactory';
-import { Isku } from 'lib/apis/product/interfaces';
+import { IrecordData, Isku } from 'lib/apis/product/interfaces';
 import SkuFormValidationModule from './modules/validation';
 
 export interface ImakeDataService {
     _id?: string
+    recordData?: IrecordData
     externalID: string
     height: string
     length: string
@@ -12,7 +13,7 @@ export interface ImakeDataService {
     quantity: string
     weight: string
     width: string
-    [propsName:string]: any
+    [propsName: string]: any
 }
 
 interface IduplicateCheck {
@@ -42,7 +43,7 @@ class VariantsFormModel {
 
     // Make data for service "post product"
     static makeDataService = (props: ImakeDataService): Isku => {
-        const { externalID, height, length, price, quantity, weight, width, properties, ids, _id } = props
+        const { externalID, height, length, price, quantity, weight, width, _id, recordData } = props
         return {
             dimensions: {
                 height: parseFloat(height),
@@ -56,7 +57,8 @@ class VariantsFormModel {
             record: false,
             weight: parseFloat(weight),
             quantity: parseFloat(quantity),
-            ..._id && { _id }
+            ..._id && { _id },
+            ...recordData && { recordData },
         }
     }
 
@@ -82,8 +84,8 @@ class VariantsFormModel {
 
     static initialFormik = (props: IinitialFormikVariantForm) => {
         return {
-            values : this.validationModule.initialProperties(props),
-            schema : this.validationModule.schema(props)
+            values: this.validationModule.initialProperties(props),
+            schema: this.validationModule.schema(props)
         }
     }
 }

@@ -27,7 +27,7 @@ function TextBoxVariantForm(props: Iprops) {
                 border={"1px solid"}
                 borderColor={form.errors[field] ? "red.200" : "transparent"}
                 top={tiny ? 1 : 0}
-                type="number"
+                type={field === "externalID" ? "text" : "number"}
             />
         )
     }, [form, tiny])

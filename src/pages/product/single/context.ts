@@ -10,7 +10,7 @@ export const initialStatesProduct: IproductState = {
     description: '',
     productCollectionID: '',
     media: [],
-    priceUnit:"USD",
+    priceUnit: "USD",
     shippingPrice: 0,
     shippingType: "EASY_POST",
     properties: [],
@@ -22,6 +22,7 @@ interface IproductContext {
     productID: null | string,
     methods: {
         updateState(element: string, value: any): void
+        fetch: Function
     },
     loading: boolean
 }
@@ -30,7 +31,8 @@ export const productContext = createContext<IproductContext>({
     state: initialStatesProduct,
     productID: null,
     methods: {
-        updateState: () => { }
+        updateState: () => { },
+        fetch: () => { }
     },
-    loading: false
+    loading: false,
 })

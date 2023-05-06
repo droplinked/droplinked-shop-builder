@@ -26,6 +26,12 @@ export interface IskuOption {
     variantName: string
 }
 
+export interface IrecordData {
+    _id: string
+    status: "NOT_RECORDED" | "RECORDED" | "PENDING"
+    recordNetwork: string
+}
+
 export interface Isku {
     _id?: string
     dimensions: {
@@ -40,6 +46,7 @@ export interface Isku {
     quantity: number
     record: Boolean
     weight: number
+    recordData?: IrecordData
 }
 
 export interface IproductByIdServices {
