@@ -14,13 +14,15 @@ import introductionClass from 'pages/product/single/parts/introduction/model'
 interface IProps {
     element: Isku
     elementKey: number
+    updateSku: Function
+    modals: {
+        editModal: any
+        recordMoal: any
+    }
 }
 
-function SkuTableOptions({ element, elementKey }: IProps) {
+function SkuTableOptions({ element, elementKey, updateSku, modals: { editModal, recordMoal } }: IProps) {
     const { state, methods: { updateState }, productID } = useContext(productContext)
-    const skuModal = useDisclosure()
-    const recordModal = useDisclosure()
-    const [SkuData, setSkuData] = useState(null)
 
     // Delete sku
     const DeleteSku = useCallback((key: number) => {
@@ -30,7 +32,7 @@ function SkuTableOptions({ element, elementKey }: IProps) {
     }, [state.sku])
 
     // make data for "Record Modal"
-    const RecordModalData = useMemo((): IRecordModalProduct => {
+    const RecordModalData = useCallback((): IRecordModalProduct => {
         return {
             title: state.title,
             description: state.description,
@@ -48,16 +50,16 @@ function SkuTableOptions({ element, elementKey }: IProps) {
                         <Box>
                             <Image
                                 onClick={() => {
-                                    recordModal.onOpen()
-                                    setSkuData(element)
+                                    recordMoal()
+                                    updateSku(RecordModalData())
                                 }}
                                 src={tearIcon} width={"16px"} height={"16px"} cursor={"pointer"} />
                         </Box>
                     )}
                     <Box>
                         <Image src={editIcon} width={"16px"} height={"16px"} cursor={"pointer"} onClick={() => {
-                            setSkuData(element)
-                            skuModal.onOpen()
+                            updateSku(element)
+                            editModal()
                         }} />
                     </Box>
                     <Box><Image src={infoIcon} width={"16px"} height={"16px"} cursor={"pointer"} /></Box>
@@ -68,8 +70,6 @@ function SkuTableOptions({ element, elementKey }: IProps) {
                         : null}
                 </>
             </HStack>
-            <SkuTableModal open={skuModal.isOpen} close={skuModal.onClose} skuData={SkuData} />
-            <RecordModal open={SkuData && recordModal.isOpen} product={RecordModalData} close={recordModal.onClose} />
         </>
     )
 }

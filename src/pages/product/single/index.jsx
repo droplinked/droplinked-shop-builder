@@ -24,25 +24,30 @@ function ProductSingle() {
     }, [])
 
     // Fetch product for edit
-    useEffect(() => {
-        if (params?.productId) {
+    const fetch = useCallback(() => {
+        return new Promise((resolve, reject) => {
             mutate(
                 {
                     productID: params?.productId
                 },
                 {
-                    onSuccess: (res) => res.data.statusCode === 200 && res.data?.data && setState(refactorData(res.data.data))
+                    onSuccess: (res) => res.data.statusCode === 200 && res.data?.data ? resolve(refactorData(res.data.data)) : reject("Cant find this product"),
+                    onError: (err) => { reject(err) }
                 }
             )
-        }
+        })
     }, [params])
 
+    useEffect(async () => {
+        if (params?.productId) setState(await fetch())
+    }, [params])
+    
     return (
         <productContext.Provider value={{
             state: State,
-            methods: { updateState },
+            methods: { updateState, fetch },
             productID: productId,
-            loading: productId ? !isLoading : true
+            loading: productId ? !isLoading : true,
         }}>
             <VStack spacing={5}>
                 <Introduction />

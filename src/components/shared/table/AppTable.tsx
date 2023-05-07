@@ -1,5 +1,6 @@
 import { Text } from '@chakra-ui/react'
 import React from 'react'
+import EmptyTable from './parts/empty/EmptyTable'
 import classes from './style.module.scss'
 
 export interface ITableRows {
@@ -13,9 +14,10 @@ export interface ITableRows {
 export interface IAppTable {
     vertical?: boolean
     rows?: Array<ITableRows> | ITableRows
+    empty?: any
 }
 
-function AppTable({ rows, vertical }: IAppTable) {
+function AppTable({ rows, vertical, empty }: IAppTable) {
     return (
         <>
             {rows && rows.length ? (
@@ -52,7 +54,7 @@ function AppTable({ rows, vertical }: IAppTable) {
                         </table>
                     ) : null}
                 </>
-            ) : null}
+            ) : empty || "empty"}
         </>
     )
 }

@@ -34,7 +34,8 @@ export default class ProductSingleModel {
                     price: el?.price,
                     quantity: el?.quantity,
                     record: false,
-                    weight: el?.weight
+                    weight: el?.weight,
+                    recordData : el?.recordData
                 }
             })
         }

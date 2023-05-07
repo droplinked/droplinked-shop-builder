@@ -14,7 +14,7 @@ interface IProps extends mergeType {
     loading: boolean
 }
 
-function AppDataGrid({ filters, rows, buttons, loading }: IProps) {
+function AppDataGrid({ filters, rows, buttons, loading,empty }: IProps) {
     return (
         <AppCard>
             <VStack align={"stretch"} spacing={6}>
@@ -22,7 +22,7 @@ function AppDataGrid({ filters, rows, buttons, loading }: IProps) {
                     <Box><FiltersDatagrid item={filters} /></Box>
                     {buttons && <DatagridButtons buttons={buttons} />}
                 </Flex>
-                {loading ? <Box textAlign={"center"}><AppLoading /></Box> : <Box><AppTable rows={rows} /></Box>}
+                {loading ? <Box textAlign={"center"}><AppLoading /></Box> : <Box><AppTable empty={empty} rows={rows} /></Box>}
             </VStack>
         </AppCard >
     )

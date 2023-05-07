@@ -38,6 +38,10 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
   // action on user data based on type and status
   const loginFunction = (data) => {
+    
+    // check customer
+    if(data.user.type !== "PRODUCER") return errorToast("This account cant login");
+
     //first close modal
     close();
 

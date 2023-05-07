@@ -27,40 +27,47 @@ let get_account_information = async function (publicKey) {
     };
 };
 export async function casper_wallet_login(on_connected) {
-    let called = false;
-    if (await getCasperWalletInstance().isConnected()) {
-        if (!called) {
-            called = true;
+    return new Promise(async (resolve, reject) => {
+        try {
+            let called = false;
+            if (await getCasperWalletInstance().isConnected()) {
+                if (!called) {
+                    called = true;
+                    on_connected(
+                        await get_account_information(
+                            await getCasperWalletInstance().getActivePublicKey()
+                        )
+                    );
+                }
+                return;
+            }
+            await getCasperWalletInstance().requestConnection();
+            const handleConnected = async (event) => {
+                try {
+                    const action = JSON.parse(event.detail);
+                    if (action.activeKey) {
+                        if (!called) {
+                            called = true;
+                            on_connected(await get_account_information(action.activeKey));
+                        }
+                    }
+                } catch (err) {
+                    console.log("cancelled login");
+                    console.log(err);
+                }
+            };
+            let CasperWalletEventTypes = window.CasperWalletEventTypes
+            window.addEventListener(CasperWalletEventTypes.Connected, handleConnected);
             on_connected(
                 await get_account_information(
                     await getCasperWalletInstance().getActivePublicKey()
                 )
             );
+            resolve(true)
+        } catch (error) {
+            reject(error)
         }
-        return;
-    }
-    await getCasperWalletInstance().requestConnection();
-    const handleConnected = async (event) => {
-        try {
-            const action = JSON.parse(event.detail);
-            if (action.activeKey) {
-                if (!called) {
-                    called = true;
-                    on_connected(await get_account_information(action.activeKey));
-                }
-            }
-        } catch (err) {
-            console.log("cancelled login");
-            console.log(err);
-        }
-    };
-    let CasperWalletEventTypes = window.CasperWalletEventTypes
-    window.addEventListener(CasperWalletEventTypes.Connected, handleConnected);
-    on_connected(
-        await get_account_information(
-            await getCasperWalletInstance().getActivePublicKey()
-        )
-    );
+    })
 }
 export const isCapseWalletExtentionInstalled = () => {
     let result;
