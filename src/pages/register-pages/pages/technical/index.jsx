@@ -2,7 +2,7 @@ import {
   PageContent,
   PageContentWrapper,
 } from "pages/register-pages/RegisterPages-style";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Ims from "./parts/ims";
 import Payments from "./parts/payment";
 import { Box, Flex, VStack } from "@chakra-ui/react";
@@ -19,9 +19,12 @@ import technicalModel from "./model";
 import Wallet from "./parts/wallet";
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import AppCard from "components/shared/card/AppCard";
+import { useMutation } from "react-query";
+import { paymentMethodsService, paymentPublicService } from "lib/apis/shop/shopServices";
 
 // technical
 function Technical() {
+  const { mutateAsync } = useMutation((params) => paymentCreateService(params))
   const [Technical, setTechnical] = useState(technicalContextState);
 
   const { putApi } = useApi();
@@ -35,20 +38,27 @@ function Technical() {
     setTechnical((prev) => ({ ...prev, [key]: value }));
   };
 
-  // update Technical as state managment
+  const paymentCreate = useCallback(async () => {
+    return await mutateAsync(
+      {
+        type: title,
+        destinationAddress: State.value,
+        isActive: !State.lock
+      }
+    )
+  }, [])
+
+  // update imsType as state managment
   useEffect(() => {
-    setTechnical({
-      imsType: selector?.shop?.currentShop?.imsType || "",
-    });
+    updateState("imsType", selector?.shop?.currentShop?.imsType || "")
   }, [selector]);
 
-  const clickSubmit = async () => {
+  const clickSubmit = useCallback(async () => {
     try {
-      if (!validate().data.imsType) {
-        throw Error("Required IMS Type");
-      }
+      if (!Technical.imsType) throw Error("Required IMS Type")
 
       const result = await putApi(putUpdateShop(Technical));
+      await paymentCreate()
 
       if (result) {
         updateShopData();
@@ -61,12 +71,9 @@ function Technical() {
     } catch (error) {
       errorToast(error.message);
     }
-  };
+  }, [Technical])
 
-  const validate = useCallback(
-    () => technicalModel.validate(Technical),
-    [Technical]
-  );
+  const checkPayment = useMemo(() => technicalModel.checkPaymentMethod(Technical.payments), [Technical.payments])
 
   return (
     <technicalContext.Provider
@@ -79,9 +86,9 @@ function Technical() {
         <AppCard>
           <VStack spacing={10} align="stretch">
             <Ims />
+            <Payments />
             {appDeveloment && (
               <>
-                <Payments />
                 <Wallet />
               </>
             )}
@@ -89,7 +96,7 @@ function Technical() {
               <Box>
                 <BasicButton
                   size="lg"
-                  disabled={!validate().data.imsType && !shop.imsTypeUpdated}
+                  disabled={!Technical.imsType || !checkPayment}
                   click={clickSubmit}
                 >
                   {currentPath.includes("register")

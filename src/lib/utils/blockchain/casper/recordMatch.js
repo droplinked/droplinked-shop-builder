@@ -31,7 +31,7 @@ async function record_merch(sku_properties, account_information, product_title, 
             let gasPrice = 8 * 1000000000;
             const ttl = 1800000;
             let deployParams = new DeployUtil.DeployParams(publicKey, casper_consts.network, 1, ttl);
-            let contract_hash_string = casper_consts.contract_hash;
+            let contract_hash_string = await casper_consts.contract_hash;
             let contract_byte_array = Contracts.contractHashToByteArray(contract_hash_string);
             let named_args = [];
             named_args.push(new NamedArg("metadata", new CLString(`{ "name" : "${product_title}" , "token_uri" : "${IPFSHASH}" , "checksum" : "${checksum}"}`)));
