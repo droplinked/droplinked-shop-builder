@@ -1,7 +1,8 @@
 const { createContext } = require("react");
 
 export const technicalContextState = {
-    imsType: ''
+    imsType: '',
+    payments: []
 }
 
 const technicalContext = createContext({

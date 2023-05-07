@@ -1,9 +1,33 @@
 import { Box, Text, VStack } from '@chakra-ui/react'
+import { paymentMethodsService, paymentPublicService } from 'lib/apis/shop/shopServices';
 import { BlackBox, StarLabel, Text18px } from 'pages/register-pages/RegisterPages-style'
-import React from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
+import { useMutation } from 'react-query';
+import technicalContext from '../../context';
+import technicalPaymentsModel from './model';
 import ContainerPayment from './parts/container';
 
 function Payments() {
+    const { state: { payments }, updateState } = useContext(technicalContext)
+    const paymentPublic = useMutation((params) => paymentPublicService(params))
+    const paymentMethods = useMutation((params) => paymentMethodsService(params))
+
+    // Fetch payments method
+    useEffect(() => {
+        paymentMethods.mutate()
+        paymentPublic.mutate()
+    }, [])
+
+    // update payment methods
+    useEffect(() => {
+        const pPublic = paymentPublic.data?.data?.data
+        const pMethods = paymentMethods.data?.data?.data
+        if (pPublic && pMethods) updateState("payments", technicalPaymentsModel.makePayments({
+            paymentMethods: pMethods,
+            paymentPublic: pPublic
+        }))
+    }, [paymentMethods.data, paymentPublic.data]);
+
     return (
         <VStack
             spacing={3}
@@ -19,17 +43,15 @@ function Payments() {
             </Box>
             <VStack align='stretch' spacing={3}>
                 <VStack spacing={2} align={"stretch"}>
-
-                    <BlackBox padding={3}>
-                        <ContainerPayment title={"STX Payment"} />
-                    </BlackBox>
-                    <BlackBox padding={3}>
-                        <ContainerPayment title={"STX Payment"} value={"3423432"} />
-                    </BlackBox>
-                    <BlackBox padding={3}>
-                        <ContainerPayment title={"STX Payment"} value={"3423432"} locked />
-                    </BlackBox>
-
+                    {payments && payments.map((el, key) => (
+                        <BlackBox key={key} padding={3}>
+                            <ContainerPayment
+                                title={el.type}
+                                locked={el.isActive}
+                                value={el.destinationAddress}
+                            />
+                        </BlackBox>
+                    ))}
                 </VStack>
             </VStack>
         </VStack>

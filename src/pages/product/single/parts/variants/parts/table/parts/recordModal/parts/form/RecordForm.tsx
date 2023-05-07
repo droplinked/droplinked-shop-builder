@@ -59,7 +59,8 @@ function RecordForm({ close, open, product }: Iprops) {
                 if (!record.deployHash) throw Error("Desploy hash empty");
                 await mutateAsync({
                     deploy_hash: record.deployHash,
-                    skuID: product.sku._id
+                    skuID: product.sku._id,
+                    commission: data.commission * 100
                 }, {
                     onSuccess: async () => {
                         await updateSku()
