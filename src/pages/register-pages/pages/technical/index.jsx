@@ -20,7 +20,7 @@ import Wallet from "./parts/wallet";
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import AppCard from "components/shared/card/AppCard";
 import { useMutation } from "react-query";
-import { paymentMethodsService, paymentPublicService } from "lib/apis/shop/shopServices";
+import { paymentCreateService, paymentMethodsService, paymentPublicService } from "lib/apis/shop/shopServices";
 
 // technical
 function Technical() {
@@ -39,13 +39,13 @@ function Technical() {
   };
 
   const paymentCreate = useCallback(async () => {
-    return await mutateAsync(
-      {
-        type: title,
-        destinationAddress: State.value,
-        isActive: !State.lock
-      }
-    )
+    // return await mutateAsync(
+    //   {
+    //     type: title,
+    //     destinationAddress: State.value,
+    //     isActive: !State.lock
+    //   }
+    // )
   }, [])
 
   // update imsType as state managment
