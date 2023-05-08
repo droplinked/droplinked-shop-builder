@@ -9,7 +9,7 @@ function Shops() {
     <AppCard>
       <VStack align={"stretch"} spacing={7}>
         <Box><ShopsFilter /></Box>
-        <Box paddingTop={50}><ShopsList /></Box>
+        <Box><ShopsList /></Box>
       </VStack>
     </AppCard>
   )

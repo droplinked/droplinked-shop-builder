@@ -4,20 +4,28 @@ import ShopsMore from './parts/more/ShopsMore'
 import ShopsProfile from '../../../../../parts/pofile/ShopsProfile'
 import ShopsProduct from './parts/products/ShopsProduct'
 import { faker } from '@faker-js/faker'
+import { shopsContainerContext } from './context'
 
-function ShopsContainer() {
+interface Iprops {
+    shop: any
+}
+
+function ShopsContainer({ shop }: Iprops) {
     return (
-        <Flex gap={[3,5]} borderTop={"1px solid #262626"} padding={"25px 0"}>
-            <Box width={"17%"} paddingRight={[3, 10]} borderRight={"1px solid #262626"}>
-                <ShopsProfile
-                    avatar={faker.image.avatar()}
-                    title={faker.commerce.productName()}
-                    desciption={faker.commerce.productDescription()}
-                />
-            </Box>
-            <Box width={"68%"}><ShopsProduct /></Box>
-            <Box width={"15%"}><ShopsMore /></Box>
-        </Flex>
+        <shopsContainerContext.Provider value={{ shop }}>
+            <Flex gap={[3, 5]} borderTop={"1px solid #262626"} padding={"25px 0"}>
+                <Box width={"17%"} paddingRight={[3, 10]} borderRight={"1px solid #262626"}>
+                    <ShopsProfile
+                        avatar={shop?.logo}
+                        title={shop?.name}
+                        desciption={shop?.description}
+                        shopname={shop?.name}
+                    />
+                </Box>
+                <Box width={"68%"}><ShopsProduct /></Box>
+                <Box width={"15%"}><ShopsMore /></Box>
+            </Flex>
+        </shopsContainerContext.Provider>
     )
 }
 
