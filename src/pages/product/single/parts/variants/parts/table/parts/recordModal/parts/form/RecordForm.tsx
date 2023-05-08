@@ -60,7 +60,7 @@ function RecordForm({ close, open, product }: Iprops) {
                 await mutateAsync({
                     deploy_hash: record.deployHash,
                     skuID: product.sku._id,
-                    commission: Number(data.commission)
+                    commision: Number(data.commission)
                 }, {
                     onSuccess: async () => {
                         await updateSku()
