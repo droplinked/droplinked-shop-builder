@@ -18,12 +18,12 @@ export default function DashboardLayout() {
   const { profile, shop } = useProfile();
   const { shopNavigate } = useCustomNavigate();
   const dispatch = useDispatch();
-
   let location = useLocation();
 
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem("token"));
     if (token != null || token != undefined) lastSeen()
+    
   }, []);
 
   useEffect(async () => {

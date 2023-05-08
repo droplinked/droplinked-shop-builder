@@ -7,7 +7,8 @@ export const technicalContextState = {
 
 const technicalContext = createContext({
     state: technicalContextState,
-    updateState: () => { }
+    updateState: () => { },
+    updatePayment: () => { }
 })
 
 export default technicalContext

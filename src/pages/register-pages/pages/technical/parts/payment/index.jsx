@@ -1,4 +1,5 @@
-import { Box, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, Text, VStack } from '@chakra-ui/react'
+import AppLoading from 'components/shared/loading/AppLoading';
 import { paymentMethodsService, paymentPublicService } from 'lib/apis/shop/shopServices';
 import { BlackBox, StarLabel, Text18px } from 'pages/register-pages/RegisterPages-style'
 import React, { useCallback, useContext, useEffect } from 'react'
@@ -6,6 +7,7 @@ import { useMutation } from 'react-query';
 import technicalContext from '../../context';
 import technicalPaymentsModel from './model';
 import ContainerPayment from './parts/container';
+import PaymentsLoading from './parts/loading/PaymentsLoading';
 
 function Payments() {
     const { state: { payments }, updateState } = useContext(technicalContext)
@@ -43,7 +45,7 @@ function Payments() {
             </Box>
             <VStack align='stretch' spacing={3}>
                 <VStack spacing={2} align={"stretch"}>
-                    {payments && payments.map((el, key) => (
+                    {paymentPublic.isLoading || paymentMethods.isLoading ? <PaymentsLoading /> : payments && payments.map((el, key) => (
                         <BlackBox key={key} padding={3}>
                             <ContainerPayment
                                 title={el.type}

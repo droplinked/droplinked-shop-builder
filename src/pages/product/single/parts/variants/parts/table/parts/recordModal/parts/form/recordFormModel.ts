@@ -56,9 +56,6 @@ export default class RecordModalModule {
                     comission: commission * 100
                 }
 
-                console.log(data);
-
-
                 const record = await record_merch(
                     data.sku_properties,
                     data.account_information,

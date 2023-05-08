@@ -21,6 +21,6 @@ export class statuesModule {
 
     technical = () => {
         const shop = this.shop
-        return !Boolean(shop.imsType) && "register/technical"
+        return !Boolean(shop.imsType && shop.paymentMethods.length) && "register/technical"
     }
 }
