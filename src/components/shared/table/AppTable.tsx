@@ -18,9 +18,10 @@ export interface IAppTable {
 }
 
 function AppTable({ rows, vertical, empty }: IAppTable) {
+    const checkRows = vertical ? Object.keys(rows).length : rows.length
     return (
         <>
-            {rows && rows.length ? (
+            {rows && checkRows ? (
                 <>
                     {vertical ? (
                         <table className={classes.table}>

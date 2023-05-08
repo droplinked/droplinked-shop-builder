@@ -1,34 +1,32 @@
 import AppTable from 'components/shared/table/AppTable'
-import React from 'react'
+import React, { useContext } from 'react'
+import RequestProductModel from '../../../../model'
+import { ModalRequestContext } from '../../context'
 
 function RequestSpecs() {
+  const { sku } = useContext(ModalRequestContext)
   return (
     <>
       <AppTable vertical rows={{
+        ...RequestProductModel.makeOptions(sku.options),
         requestQuantity: {
           caption: "Request Quantity",
-          value: 100
-        },
-        Size: {
-          value: "medium"
-        },
-        color: {
-          value: "red"
+          value: sku.quantity
         },
         PackageSize: {
           caption: "Package size",
-          value: "23 x 24 x 232 cm3"
+          value: `${sku.dimensions.length} x ${sku.dimensions.height} x ${sku.dimensions.width}`
         },
         Weight: {
           caption: "Weight",
-          value: "2323 kg"
+          value: sku.weight
         },
         ExternalID: {
           caption: "External ID",
-          value: "324239 kg"
+          value: sku.externalID
         },
         Price: {
-          value: "$5.60"
+          value: sku.price
         },
       }} />
     </>

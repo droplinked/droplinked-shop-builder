@@ -8,9 +8,10 @@ interface Iprops {
   avatar: string
   title: string
   desciption?: string
+  shopname: string
 }
 
-function ShopsProfile({ avatar, title, desciption }: Iprops) {
+function ShopsProfile({ avatar, title, desciption, shopname }: Iprops) {
   const { shop } = useProfile()
   const social = [
     {
@@ -20,11 +21,11 @@ function ShopsProfile({ avatar, title, desciption }: Iprops) {
   ]
 
   return (
-    <Link to={`/${shop.name}/c/affiliate/shops/shopname`}>
+    <Link to={`/${shop.name}/c/affiliate/shops/${shopname}`}>
       <VStack align={"stretch"}>
         <Box><Image src={avatar} borderRadius="100px" width="36px" height="36px" /></Box>
-        <Box><Text fontSize={["md","lg"]} color="#2EC99E" fontFamily={"aven"} fontWeight="bold">{title}</Text></Box>
-        {desciption && <Box><Text fontSize={["xs","sm"]} color="#C2C2C2">{desciption}</Text></Box>}
+        <Box><Text fontSize={["md", "lg"]} color="#2EC99E" fontFamily={"aven"} fontWeight="bold">{title}</Text></Box>
+        {desciption && <Box><Text fontSize={["xs", "sm"]} color="#C2C2C2">{desciption}</Text></Box>}
       </VStack>
     </Link>
   )

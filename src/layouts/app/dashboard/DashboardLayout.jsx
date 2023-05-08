@@ -23,7 +23,6 @@ export default function DashboardLayout() {
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem("token"));
     if (token != null || token != undefined) lastSeen()
-    
   }, []);
 
   useEffect(async () => {
