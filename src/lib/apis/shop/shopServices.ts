@@ -13,8 +13,8 @@ export const paymentMethodsService = () => {
     return axiosInstance.get(`shop/payment-methods`)
 }
 
-export const paymentCreateService = (params: IpaymentCreateService) => {
+export const paymentCreateService = (params: Array<IpaymentCreateService>) => {
     return axiosInstance.post(`shop/payment-methods`,{
-        methods: [params]
+        methods: params
     })
 }

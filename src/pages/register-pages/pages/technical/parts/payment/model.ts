@@ -23,7 +23,7 @@ export default class technicalPaymentsModel {
             return {
                 type: el,
                 destinationAddress: findElement ? findElement.destinationAddress || null : null,
-                isActive: findElement ? findElement.isActive || false : null
+                isActive: findElement ? findElement.isActive || false : false
             }
         })
 

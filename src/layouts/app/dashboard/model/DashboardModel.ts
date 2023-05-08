@@ -22,7 +22,7 @@ export default class DashboardModel {
     }
 
     static registerGate = ({ to, redirect, pathname }: IregisterGate) => {
-        if(pathname.includes("register")) return false
+        if (pathname.includes("register")) return false
         const checkPath = pathname.includes(to) // check current path
         if (!checkPath) redirect(to)
         toast.info("Please complete register", { toastId: "Permission" })
