@@ -1,15 +1,13 @@
 import { VStack } from '@chakra-ui/react'
 import React, { useCallback, useEffect, useState } from 'react'
-import Introduction from './parts/introduction/Introduction'
-import TechnicalProduct from './parts/technical/TechnicalProduct'
 import { initialStatesProduct, productContext } from './context'
-import Properties from './parts/properties/Properties'
-import Variants from './parts/variants/Variants'
 import ButtonsProduct from './parts/buttons/ButtonsProduct'
 import { useParams } from 'react-router-dom'
 import { useMutation } from 'react-query'
 import { productByIdServices } from 'lib/apis/product/productServices'
 import ProductSingleModel from './model/model'
+import General from './parts/general/General'
+import Variant from './parts/variant/Variant'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params) => productByIdServices(params))
@@ -41,7 +39,7 @@ function ProductSingle() {
     useEffect(async () => {
         if (params?.productId) setState(await fetch())
     }, [params])
-    
+
     return (
         <productContext.Provider value={{
             state: State,
@@ -50,10 +48,8 @@ function ProductSingle() {
             loading: productId ? !isLoading : true,
         }}>
             <VStack spacing={5}>
-                <Introduction />
-                <TechnicalProduct />
-                <Properties />
-                <Variants />
+                <General />
+                <Variant />
                 <ButtonsProduct />
             </VStack>
         </productContext.Provider>

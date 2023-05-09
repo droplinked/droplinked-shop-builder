@@ -1,6 +1,6 @@
 import { IproductState } from "lib/apis/product/interfaces";
+import AppendModule from "../parts/modules/properties/parts/form/model/module/append";
 import propertyFactor from "./modules/property";
-import AppendModule from "../parts/properties/parts/form/model/module/append";
 
 export default class ProductSingleModel {
     private static property = propertyFactor

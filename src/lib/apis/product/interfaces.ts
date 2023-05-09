@@ -30,6 +30,7 @@ export interface IrecordData {
     _id: string
     status: "NOT_RECORDED" | "RECORDED" | "PENDING"
     recordNetwork: string
+    casperData?: any
 }
 
 export interface Isku {

@@ -8,7 +8,7 @@ function ShopsProduct() {
     const { shop } = useContext(shopsContainerContext)
     return (
         <Flex gap={[3, 5]} height="100%">
-            {shop?.products && shop?.products.length && shop?.products.map((el: any, key: number) => (
+            {shop?.products && shop?.products.length && shop?.products.slice(0,4).map((el: any, key: number) => (
                 <Box key={key} width="25%">
                     <AffiliateProduct link={`${shop?.name}/${el?._id}`} image={el.media && el.media[0].url} title={el?.title} />
                 </Box>

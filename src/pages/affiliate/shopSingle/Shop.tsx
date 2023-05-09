@@ -6,6 +6,7 @@ import React, { useEffect } from 'react'
 import { useMutation } from 'react-query'
 import { useParams } from 'react-router-dom'
 import AffiliateProduct from '../parts/product/AffiliateProduct'
+import SocialAffliate from '../parts/social/SocialAffliate'
 import ShopsFilter from '../shops/parts/filter/ShopsFilter'
 import SingleShopSkeleton from './parts/skeleton/SingleShopSkeleton'
 
@@ -27,6 +28,7 @@ function Shop() {
                             <Box><Image src={shop?.logo} width="100px" height={"100px"} borderRadius={"100%"} /></Box>
                             <Box><Text fontFamily={"aven"} color="#2EC99E" fontSize={"2xl"}>{shop?.name}</Text></Box>
                             {/* <Box><Text color="#FFF" fontSize={"1xl"}>{faker.company.catchPhrase()}</Text></Box> */}
+                            <SocialAffliate facebook="" instagram={shop?.instagramURL} pintrest="" snapchat="" twitter={shop?.twitterURL} size={20} />
                         </VStack>
                     </AppCard>
 
