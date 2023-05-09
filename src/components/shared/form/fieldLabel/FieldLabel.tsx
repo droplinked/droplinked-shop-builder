@@ -1,6 +1,7 @@
 import { Box, HStack, Text } from '@chakra-ui/react'
 import AppSkeleton from 'components/shared/skeleton/AppSkeleton'
 import React from 'react'
+import FieldLabelReuired from './parts/required/FieldLabelReuired'
 
 interface Iprops {
     label: string
@@ -16,7 +17,7 @@ function FieldLabel({ isRequired, label, loading }: Iprops) {
                     <AppSkeleton isLoaded={loading}>
                         <HStack>
                             <Text fontSize={"large"} color={"#FFF"}>{label}</Text>
-                            {isRequired && <Text fontSize={"medium"} color="#2EC99E">*</Text>}
+                            {isRequired && <FieldLabelReuired />}
                         </HStack>
                     </AppSkeleton>
                 </Box>
