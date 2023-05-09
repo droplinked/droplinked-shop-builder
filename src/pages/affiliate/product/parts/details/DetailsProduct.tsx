@@ -9,7 +9,6 @@ function DetailsProduct() {
     return (
         <VStack align={"stretch"}>
             <Box><Text fontFamily={"aven"} fontSize={"3xl"}>{product?.title}</Text></Box>
-            <Box><Text fontSize={"4xl"}>${product?.shippingPrice}</Text></Box>
             <HStack>
                 <Box><Image src={casper} width="20px" /></Box>
                 <Box><Text>Dopped on <Text display={"inline-block"} fontFamily={"aven"}>Casper</Text> blockchain</Text></Box>
