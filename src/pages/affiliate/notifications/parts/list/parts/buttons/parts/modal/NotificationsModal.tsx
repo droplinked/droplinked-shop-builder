@@ -1,35 +1,42 @@
 import { Text } from '@chakra-ui/react'
 import AppDialog, { IAppDialog } from 'components/shared/dialog'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from 'react'
+import requestInterfaces from '../../interfaces'
 
 interface Iprops {
     close: Function
     open: boolean
-    accept: Boolean | null
+    status: requestInterfaces.IRequestStatus
+    approveClick: Function
+    loading: boolean
 }
 
-function NotificationsModal({ close, open, accept }: Iprops) {
+function NotificationsModal({ close, open, status, approveClick, loading }: Iprops) {
     return (
         <AppDialog
-            close={close}
+            close={() => { }}
             open={open}
             text={(
                 <Text>
-                    You are Confirming permission to co-sell this product, Are you sure you want to <Text display={"inline"} fontFamily={"aven"} fontWeight="bold">{accept ? "Accept" : "Deny"}</Text> this request?
+                    You are Confirming permission to co-sell this product, Are you sure you want to <Text display={"inline"} fontFamily={"aven"} fontWeight="bold">{typeof status === "string" ? capitalizeFirstLetter(status) : ""}</Text> this request?
                 </Text>
             )}
             title={"Are you sure?"}
             buttons={[
                 {
                     children: "Cancel",
-                    onClick: () => { },
+                    onClick: () => close(),
                     buttonProps: {
                         cancelType: true
                     }
                 },
                 {
-                    children: accept ? "Accept" : "Deny",
-                    onClick: () => { },
+                    children: capitalizeFirstLetter(status),
+                    onClick: approveClick,
+                    buttonProps: {
+                        loading: loading
+                    }
                 }
             ]}
         />

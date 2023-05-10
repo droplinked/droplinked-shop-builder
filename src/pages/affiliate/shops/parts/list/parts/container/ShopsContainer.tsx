@@ -20,6 +20,13 @@ function ShopsContainer({ shop }: Iprops) {
                         title={shop?.name}
                         desciption={shop?.description}
                         shopname={shop?.name}
+                        social={{
+                            facebook: "",
+                            instagram: shop.instagramURL,
+                            pintrest: "",
+                            snapchat: "",
+                            twitter: shop.twitterURL,
+                        }}
                     />
                 </Box>
                 <Box width={"68%"}><ShopsProduct /></Box>

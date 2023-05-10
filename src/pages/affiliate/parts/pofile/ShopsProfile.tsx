@@ -2,17 +2,19 @@ import { Box, Image, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useProfile } from 'hooks/useProfile/useProfile';
-import SocialAffliate from '../social/SocialAffliate';
+import SocialAffliate, { ISocialAffliate } from '../social/SocialAffliate';
 
 interface Iprops {
   avatar: string
   title: string
   desciption?: string
   shopname: string
+  social: ISocialAffliate
 }
 
-function ShopsProfile({ avatar, title, desciption, shopname }: Iprops) {
+function ShopsProfile({ avatar, title, desciption, shopname, social }: Iprops) {
   const { shop } = useProfile()
+  const { facebook, instagram, pintrest, snapchat, twitter } = social
 
   return (
     <VStack align={"stretch"} spacing={3}>
@@ -23,7 +25,7 @@ function ShopsProfile({ avatar, title, desciption, shopname }: Iprops) {
           {desciption && <Box><Text fontSize={["xs", "sm"]} color="#C2C2C2">{desciption}</Text></Box>}
         </VStack>
       </Link>
-      <SocialAffliate facebook="" instagram={shop?.instagramURL} pintrest="" snapchat="" twitter={shop?.twitterURL} />
+      <SocialAffliate facebook={facebook} instagram={instagram} pintrest={pintrest} snapchat={snapchat} twitter={twitter} />
     </VStack>
   )
 }

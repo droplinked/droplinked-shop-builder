@@ -13,7 +13,7 @@ export let approve_request = async function(request_id, account_info){
     let gasPrice = 8941000000;
     const ttl = 1800000;
     let deployParams = new DeployUtil.DeployParams(publicKey, casper_consts.network , 1 , ttl);
-    let contract_hash_string = casper_consts.contract_hash;
+    let contract_hash_string = await casper_consts.contract_hash;
     let contract_byte_array = Contracts.contractHashToByteArray(contract_hash_string);
     let named_args = [];
     named_args.push(new NamedArg("request_id" , new CLU64(request_id)));
