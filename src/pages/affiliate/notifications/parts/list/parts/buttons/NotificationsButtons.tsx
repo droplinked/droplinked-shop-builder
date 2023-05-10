@@ -6,7 +6,7 @@ import NotificationsModal from './parts/modal/NotificationsModal'
 function NotificationsButtons() {
     const modal = useDisclosure()
     const [Accept, setAccept] = useState<Boolean | null>(null)
-
+ 
     return (
         <>
             <VStack align={"stretch"}>
@@ -15,8 +15,8 @@ function NotificationsButtons() {
                         width="100%"
                         maxWidth="150px"
                         click={() => {
-                            modal.onOpen()
                             setAccept(true)
+                            modal.onOpen()
                         }}
                     >
                         Accept
@@ -26,8 +26,8 @@ function NotificationsButtons() {
                     <BasicButton
                         width="100%"
                         click={() => {
-                            modal.onOpen()
                             setAccept(false)
+                            modal.onOpen()
                         }}
                         maxWidth="150px"
                         cancelType

@@ -3,12 +3,12 @@ import AppDialog, { IAppDialog } from 'components/shared/dialog'
 import React from 'react'
 
 interface Iprops {
-    close : Function
-    open:boolean
-    accept : Boolean | null
+    close: Function
+    open: boolean
+    accept: Boolean | null
 }
 
-function NotificationsModal({close, open,accept}:Iprops) {
+function NotificationsModal({ close, open, accept }: Iprops) {
     return (
         <AppDialog
             close={close}
