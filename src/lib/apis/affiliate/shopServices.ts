@@ -16,3 +16,7 @@ export const acceptRejectRequestService = (params: IacceptRejectRequestService) 
 export const cancelRequestService = (params: IcancelRequestService) => {
     return axiosInstance.post(`affiliate/casper/request/accept-reject`, params)
 }
+
+export const publisherRequestService = () => {
+    return axiosInstance.get(`affiliate/publisher/requests`)
+}
