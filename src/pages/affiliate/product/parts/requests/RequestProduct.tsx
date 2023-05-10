@@ -8,7 +8,7 @@ import { ShopProductContext } from '../../context'
 import RequestProductModel from './model'
 
 function RequestProduct() {
-    const { product } = useContext(ShopProductContext)
+    const { product, shop } = useContext(ShopProductContext)
     const [Sku, setSku] = useState(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -51,7 +51,7 @@ function RequestProduct() {
                     }
                 }))}
             />
-            <ModalRequest product={product} sku={Sku} open={isOpen} close={onClose} />
+            <ModalRequest product={product} sku={Sku} open={isOpen} shop={shop} close={onClose} />
             {/* <RequestDetail /> */}
         </>
     )
