@@ -1,15 +1,15 @@
 import { Box, Button, ButtonProps, Spinner } from "@chakra-ui/react";
 import React from "react";
 
-interface IProps {
-  children: any
+export interface IBasicButton {
+  children?: any
   click?: any
   loading?: any
   disable?: boolean
   cancelType?: boolean
   [propsName:string] : any
 }
-export default function BasicButton(props: IProps) {
+export default function BasicButton(props: IBasicButton) {
   const { children, click, loading, disable, cancelType } = props
   
   return (

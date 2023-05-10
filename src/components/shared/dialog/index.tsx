@@ -1,9 +1,23 @@
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
-import BasicButton from 'components/shared/BasicButton/BasicButton'
+import BasicButton, { IBasicButton } from 'components/shared/BasicButton/BasicButton'
 import ModalWrapper from 'modals/modal-wrapper/ModalWrapper'
 import React from 'react'
 
-function AppDialog({ open, close, text, title, buttons }) {
+interface IButtons {
+    children: any,
+    onClick: Function
+    buttonProps?: IBasicButton
+}
+
+export interface IAppDialog {
+    open: boolean
+    close: Function
+    text: any
+    title: string
+    buttons: Array<IButtons>
+}
+
+function AppDialog({ open, close, text, title, buttons }: IAppDialog) {
     return (
         <ModalWrapper show={open} close={close}>
             <VStack color="#FFF" align="stretch" spacing={6}>
@@ -15,9 +29,9 @@ function AppDialog({ open, close, text, title, buttons }) {
                         {text}
                     </Text>
                 </Box>
-                <HStack justifyContent="space-between">
-                    {buttons && buttons.map((el, key) => (
-                        <Box key={key}><BasicButton size="lg" width="150px" onClick={() => {
+                <HStack justifyContent={buttons.length === 1 ? "center" : "space-between"}>
+                    {buttons && buttons.map((el: IButtons, key) => (
+                        <Box key={key}><BasicButton size="md" width="150px" onClick={() => {
                             el.onClick()
                             close()
                         }} {...el.buttonProps}>{el.children}</BasicButton></Box>

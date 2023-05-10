@@ -4,6 +4,7 @@ import BasicButton from 'components/shared/BasicButton/BasicButton'
 import AffiliateDetailCard from 'pages/affiliate/parts/detail/affiliateDetailCard'
 import ShopsProfile from 'pages/affiliate/parts/pofile/ShopsProfile'
 import React from 'react'
+import NotificationsButtons from './parts/buttons/NotificationsButtons'
 
 function NotificationsList() {
     return (
@@ -12,6 +13,7 @@ function NotificationsList() {
                 <Flex key={key} gap={3} borderTop="1px solid #262626" padding={"20px 0"}>
                     <Box width={"20%"}>
                         <ShopsProfile
+                            shopname=''
                             avatar={faker.image.avatar()}
                             title={faker.commerce.productName()}
                         />
@@ -39,12 +41,7 @@ function NotificationsList() {
                             earning='12 ETH'
                         />
                     </Box>
-                    <Box width={["15%", "10%"]}>
-                        <VStack align={"stretch"}>
-                            <Box><BasicButton width="100%" maxWidth="150px">Accept</BasicButton></Box>
-                            <Box><BasicButton width="100%" maxWidth="150px" cancelType>Deny</BasicButton></Box>
-                        </VStack>
-                    </Box>
+                    <Box width={["15%", "10%"]}><NotificationsButtons /></Box>
                 </Flex>
             ))}
         </VStack>
