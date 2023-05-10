@@ -10,9 +10,11 @@ interface IModalRequestContext {
         values: any
         [props: string]: any
     }
+    loading: boolean
 }
 export const ModalRequestContext = createContext<IModalRequestContext>({
     product: null,
     sku: null,
-    formik: null
+    formik: null,
+    loading: false
 })

@@ -3,13 +3,13 @@ import BasicButton from 'components/shared/BasicButton/BasicButton'
 import React, { useContext } from 'react'
 import { ModalRequestContext } from '../../context'
 
-function RequestModalButtons({close}) {
-  const { formik } = useContext(ModalRequestContext)
+function RequestModalButtons({ close }) {
+  const { formik, loading } = useContext(ModalRequestContext)
 
   return (
     <HStack justifyContent={"space-between"}>
-      <Box><BasicButton cancelType click={close}>Cancel</BasicButton></Box>
-      <Box><BasicButton click={() => formik.submitForm()}>send Request</BasicButton></Box>
+      <Box><BasicButton cancelType disable={loading} click={close}>Cancel</BasicButton></Box>
+      <Box><BasicButton loading={loading} click={() => formik.submitForm()}>send Request</BasicButton></Box>
     </HStack>
   )
 }
