@@ -9,7 +9,7 @@ function RequestButtons() {
     const buttons = useMemo(() => {
         switch (shop?.status) {
             case "PENDING":
-                return <RequestListButton status={"accept"} value="Accept" />
+                return  <AppBadge text={shop?.status} colorScheme="yellow" />
             case "ACCEPTED":
                 return <RequestListButton status={"reject"} value="Deny" cancelType />
             default:
