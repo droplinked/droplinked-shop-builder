@@ -1,5 +1,5 @@
-//import {CasperServiceByJsonRPC } from 'casper-js-sdk'
-import { CLPublicKey } from "casper-js-sdk";
+
+import { CLPublicKey, CasperWalletEventTypes } from "casper-js-sdk";
 //let CasperWalletEventTypes = window.CasperWalletEventTypes;
 let casperWalletInstance;
 export let account_information;
@@ -30,14 +30,11 @@ export async function casper_wallet_login(on_connected) {
     return new Promise(async (resolve, reject) => {
         try {
             let called = false;
+            await getCasperWalletInstance().requestConnection();
             if (await getCasperWalletInstance().isConnected()) {
                 if (!called) {
                     called = true;
-                    on_connected(
-                        await get_account_information(
-                            await getCasperWalletInstance().getActivePublicKey()
-                        )
-                    );
+                    on_connected(await get_account_information(await getCasperWalletInstance().getActivePublicKey()));
                 }
                 return;
             }
@@ -52,17 +49,12 @@ export async function casper_wallet_login(on_connected) {
                         }
                     }
                 } catch (err) {
-                    console.log("cancelled login");
                     console.log(err);
                 }
             };
-            let CasperWalletEventTypes = window.CasperWalletEventTypes
             window.addEventListener(CasperWalletEventTypes.Connected, handleConnected);
-            on_connected(
-                await get_account_information(
-                    await getCasperWalletInstance().getActivePublicKey()
-                )
-            );
+            if (!called)
+                on_connected(await get_account_information(await getCasperWalletInstance().getActivePublicKey()));
             resolve(true)
         } catch (error) {
             reject(error)
