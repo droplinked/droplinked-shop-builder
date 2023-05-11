@@ -6,7 +6,7 @@ import pintrestIcon from "assest/icon/pintrest.svg";
 import snapchatIcon from "assest/icon/snapchat.svg";
 import instagramIcon from "assest/icon/instagram.svg";
 
-interface IProps {
+export interface ISocialAffliate {
     instagram: string
     snapchat: string
     pintrest: string
@@ -15,7 +15,7 @@ interface IProps {
     size?: number
 }
 
-function SocialAffliate({ facebook, instagram, pintrest, snapchat, twitter, size }: IProps) {
+function SocialAffliate({ facebook, instagram, pintrest, snapchat, twitter, size }: ISocialAffliate) {
     const social = [
         {
             icon: instagramIcon,

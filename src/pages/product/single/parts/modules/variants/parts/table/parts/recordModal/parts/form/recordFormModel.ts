@@ -9,7 +9,7 @@ export interface IRecordCasper {
     sku: Isku
 }
 
-interface IopenCasperWallet {
+export interface IopenCasperWallet {
     account_hash: string
     publicKey: string
     signature: string
