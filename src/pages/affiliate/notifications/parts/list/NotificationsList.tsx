@@ -38,6 +38,7 @@ function NotificationsList() {
                                         }}
                                     />
                                 </Box>
+                                
                                 <Box width={"70%"}>
                                     <AffiliateDetailCard
                                         image={product?.media && product.media[0].url}
@@ -46,7 +47,7 @@ function NotificationsList() {
                                         options={[
                                             {
                                                 caption: "Quantity",
-                                                value: sku.quantity
+                                                value: sku?.quantity
                                             },
                                             {
                                                 caption: "Commision",
