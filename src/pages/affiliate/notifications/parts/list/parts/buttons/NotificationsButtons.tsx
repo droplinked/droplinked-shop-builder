@@ -13,7 +13,7 @@ import { requestsButtonsContext } from './context'
 import RequestButtons from './parts/buttons/RequestButtons'
 
 
-function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
+function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {    
     const { mutateAsync } = useMutation((params: IacceptRejectRequestService) => acceptRejectRequestService(params))
     const modal = useDisclosure()
     const { approveRequest, disapproveRequest } = requestsButtonsModel
@@ -28,10 +28,10 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
         try {
             setLoading(true)
             const casperWallet = await RecordModalModule.openCasperWallet()
-            const requestID = shop?.casperData?.details?.request_id
+            const requestID = shop?._id
             const data = { shop, casperWallet }
             const request = States.status === "accept" ? await approveRequest(data) : await disapproveRequest(data)
-
+            
             await mutateAsync({
                 deploy_hash: request.deployHash,
                 requestID: requestID,
