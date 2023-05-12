@@ -46,7 +46,7 @@ function NotificationsList() {
                                         options={[
                                             {
                                                 caption: "Quantity",
-                                                value: sku.quantity
+                                                value: sku?.quantity
                                             },
                                             {
                                                 caption: "Commision",
