@@ -129,8 +129,8 @@ function RecordForm({ close, open, product }: Iprops) {
                                 </Box>
                             </HStack>
                             <HStack justifyContent={"space-between"}>
-                                <Box width={"25%"}><BasicButton cancelType click={() => !loading ? close() : {}}>Cancel</BasicButton></Box>
-                                <Box width={"25%"}><BasicButton type="submit" loading={loading}>Drop</BasicButton></Box>
+                                <Box width={"25%"}><BasicButton variant='outline' onClick={() => !loading ? close() : {}}>Cancel</BasicButton></Box>
+                                <Box width={"25%"}><BasicButton type="submit" isLoading={loading}>Drop</BasicButton></Box>
                             </HStack>
                         </VStack>
                     </Box>

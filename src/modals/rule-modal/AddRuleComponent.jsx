@@ -79,12 +79,12 @@ const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
       <Box mb="40px"></Box>
       <Flex justifyContent="space-between">
         <Box w={{ base: "100px", md: "200px" }}>
-          <BasicButton click={close} cancelType={true}>
+          <BasicButton onClick={close} variant={"outline"}>
             Cancel
           </BasicButton>
         </Box>
         <Box w={{ base: "100px", md: "200px" }}>
-          <BasicButton click={submitForm}>Save</BasicButton>
+          <BasicButton onClick={submitForm}>Save</BasicButton>
         </Box>
       </Flex>
     </Box>

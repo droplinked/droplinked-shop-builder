@@ -54,6 +54,10 @@ export interface IproductByIdServices {
     productID: string
 }
 
+export interface IproductDeleteServices {
+    productID: string
+}
+
 export interface IproductUpdateServices {
     productID: string
     params: IproductState

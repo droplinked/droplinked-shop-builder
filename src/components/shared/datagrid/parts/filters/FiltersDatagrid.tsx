@@ -7,7 +7,7 @@ function FiltersDatagrid({ item }: IMenuesDatagrid) {
     return (
         <HStack spacing={8}>
             <Box><SearchDatagrid /></Box>
-            <Box><SortDatagrid item={item} /></Box>
+            {item && <Box><SortDatagrid item={item} /></Box>}
         </HStack>
     )
 }

@@ -1,5 +1,7 @@
 import { Box, Flex, Text, VStack } from '@chakra-ui/react'
+import FieldLabel from 'components/shared/form/fieldLabel/FieldLabel';
 import AppLoading from 'components/shared/loading/AppLoading';
+import AppTypography from 'components/shared/typography/AppTypography';
 import { paymentMethodsService, paymentPublicService } from 'lib/apis/shop/shopServices';
 import { BlackBox, StarLabel, Text18px } from 'pages/register-pages/RegisterPages-style'
 import React, { useCallback, useContext, useEffect } from 'react'
@@ -32,16 +34,16 @@ function Payments() {
 
     return (
         <VStack
-            spacing={3}
+            spacing={2}
             align='stretch'
         >
             <Box>
-                <Text18px>Payment Method <StarLabel>*</StarLabel></Text18px>
+                <FieldLabel label='Payment Method' isRequired />
             </Box>
             <Box>
-                <Text fontSize="sm" color="lightGray">
+                <AppTypography size="14px" color="#C2C2C2">
                     Activate the payment methods and choose your target wallet for each of them
-                </Text>
+                </AppTypography>
             </Box>
             <VStack align='stretch' spacing={3}>
                 <VStack spacing={2} align={"stretch"}>

@@ -88,7 +88,7 @@ export default function LandingPage() {
       <SpaceBox></SpaceBox>
       <Flex w="100%" justifyContent="center" px={{ base: "20px", md: "80px" }}>
         <Box w={{ base: "100%", md: "400px" }}>
-          <BasicButton color="white" click={navigateToEnquiry}>
+          <BasicButton color="white" onClick={navigateToEnquiry}>
             Enquire to learn more
           </BasicButton>
         </Box>

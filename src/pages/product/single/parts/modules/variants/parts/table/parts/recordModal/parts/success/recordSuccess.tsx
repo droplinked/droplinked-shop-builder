@@ -10,7 +10,7 @@ function RecordSuccess({close}) {
         <VStack align={"stretch"} spacing={3}>
             <Box textAlign={"center"}><Text fontSize={"larger"} margin="12px 0" fontFamily="aven" color={"green.400"}>Sku record successful</Text></Box>
             <Box><Text color={"#FFF"} whiteSpace={"pre-wrap"} fontSize={"md"} fontFamily="aven" textAlign={"center"}>{hashkey}</Text></Box>
-            <Box paddingTop={6}><BasicButton click={close} cancelType>Close</BasicButton></Box>
+            <Box paddingTop={6}><BasicButton onClick={close} variant="outline">Close</BasicButton></Box>
         </VStack>
     )
 }

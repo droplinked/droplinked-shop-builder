@@ -1,4 +1,5 @@
 import { Box, HStack, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import AppTypography from 'components/shared/typography/AppTypography'
 import React from 'react'
 
 export interface IIMenuesDatagridItems {
@@ -18,7 +19,7 @@ function MenuesDatagrid({ item }: IMenuesDatagrid) {
             {item.map((el: IIMenuesDatagridItems, key) => (
                 <Box key={key}>
                     <Menu isLazy>
-                        <MenuButton fontSize={"sm"}>{el.title}</MenuButton>
+                        <MenuButton fontSize={"sm"}><AppTypography size='12px'>{el.title}</AppTypography></MenuButton>
                         <MenuList backgroundColor={"#1a1a1a"} borderColor="#2f2f2f" fontSize={"sm"}>
                             {el.list.map((item, key) => (
                                 <MenuItem key={key} background={"none !important"}>{item.title}</MenuItem>

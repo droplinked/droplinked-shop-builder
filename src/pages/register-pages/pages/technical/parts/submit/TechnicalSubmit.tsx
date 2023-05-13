@@ -41,7 +41,7 @@ function TechnicalSubmit() {
         }
     }, [payments, imsType])
     return (
-        <BasicButton size="lg" disabled={!imsType || !checkPayment} click={clickSubmit} loading={isLoading}>
+        <BasicButton sizes="large" isDisabled={!imsType || !checkPayment} onClick={clickSubmit} isLoading={isLoading}>
             {currentPath.includes("register")
                 ? "Save & next step"
                 : "Update"}

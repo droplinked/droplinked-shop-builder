@@ -15,9 +15,10 @@ function RequestListButton({ status, value, cancelType }: Iprops) {
     return (
         <BasicButton
             width="100%"
+            minWidth={"100%"}
             maxWidth="150px"
-            cancelType={cancelType}
-            click={() => {
+            variant={"outline"}
+            onClick={() => {
                 setStates((prev: requestInterfaces.IStates) => ({ ...prev, status }))
                 modal.open()
             }}

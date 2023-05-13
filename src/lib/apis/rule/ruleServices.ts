@@ -1,6 +1,10 @@
 import axiosInstance from "../axiosConfig"
 import { IcreateRuleService, IgetRuleService, IupdateRuleService } from "./interfaces"
 
+export const ruleService = () => {
+    return axiosInstance.get(`rule-set`)
+}
+
 export const getRuleService = ({ ruleID }: IgetRuleService) => {
     return axiosInstance.get(`rule-set/${ruleID}`)
 }

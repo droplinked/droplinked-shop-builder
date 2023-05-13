@@ -14,7 +14,7 @@ export default class FormModel {
             errorBorderColor: "red.200",
             backgroundColor: "#141414",
             padding: "22px 17px",
-            fontSize: "15px",
+            fontSize: "14px",
             fontWeight:"bold",
             color: "#808080",
             _focus: {

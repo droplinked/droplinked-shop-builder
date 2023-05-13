@@ -208,10 +208,10 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
           <Box mb="40px"></Box>
           <Flex w="100%" justifyContent="space-between">
             <Box w="200px">
-              <BasicButton click={close}>Cancel</BasicButton>
+              <BasicButton onClick={close}>Cancel</BasicButton>
             </Box>
             <Box w="200px">
-              <BasicButton click={submit}>Add</BasicButton>
+              <BasicButton onClick={submit}>Add</BasicButton>
             </Box>
           </Flex>
         </>

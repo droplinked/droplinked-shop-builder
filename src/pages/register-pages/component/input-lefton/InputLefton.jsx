@@ -1,10 +1,13 @@
 import {
+  Flex,
   FormControl,
   FormLabel,
   Input,
   InputGroup,
   InputLeftAddon,
 } from "@chakra-ui/react";
+import FieldLabel from "components/shared/form/fieldLabel/FieldLabel";
+import AppInput from "components/shared/form/textbox/AppInput";
 
 const InputLefton = ({
   isRequired,
@@ -17,38 +20,25 @@ const InputLefton = ({
 }) => {
   return (
     <FormControl isRequired={isRequired} w="100%">
-      <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2">
-        {label}
-      </FormLabel>
-      <InputGroup size="sm">
+      <FieldLabel color="#C2C2C2" label={label} />
+      <Flex marginTop={2}>
         <InputLeftAddon
           bg="line"
           borderColor="subLayer"
-          borderRadius="8px"
-          fontWeight="500"
-          fontSize="16px"
+          borderRadius="8px 0 0 8px"
+          fontSize="14px"
+          padding={3}
           color={color ? color : "#fff"}
           children={children}
         />
-        <Input
+        <AppInput
+          name=""
           placeholder={placeHolder}
+          borderRadius={"0 8px 8px 0"}
           value={value}
           onChange={change}
-          padding="0px 12px"
-          background="subLayer"
-          borderRadius="8px"
-          fontWeight="500"
-          fontSize="16px"
-          color={color ? color : "#fff"}
-          border="none"
-          _focus={{
-            border: "none",
-          }}
-          _placeholder={{
-            color: "#666666",
-          }}
         />
-      </InputGroup>
+      </Flex>
     </FormControl>
   );
 };

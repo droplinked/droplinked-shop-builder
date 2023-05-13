@@ -23,6 +23,7 @@ import { designContext, initialStatesDesign } from "./design-context";
 import { refactorDesignData } from "./utils";
 import AppCard from "components/shared/card/AppCard";
 import { CardTitle } from "components/shared/card/component-style";
+import AppTypography from "components/shared/typography/AppTypography";
 
 //
 const IMAGES = [{ img: darkThemplateImage, name: "theme-2" }];
@@ -55,8 +56,10 @@ const DesignPage = () => {
       <PageContent>
         <VStack>
           <AppCard>
-            Pick an editable template and customize it with your brand logo,
-            title, header banner, etc.
+            <AppTypography size="14px">
+              Pick an editable template and customize it with your brand logo,
+              title, header banner, etc.
+            </AppTypography>
           </AppCard>
           <AppCard>
             <CardTitle>Templates</CardTitle>

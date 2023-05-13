@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { collectionService } from 'lib/apis/collection/services'
 
-export const fetchCollection = createAsyncThunk("collection/fetchCollection", collectionService)
+export const fetchCollection = createAsyncThunk("collection/fetchCollection", async () => {
+    const response = await collectionService()
+    return response.data
+})
 
 export const collectionSlice = createSlice(({
     name: 'collection',

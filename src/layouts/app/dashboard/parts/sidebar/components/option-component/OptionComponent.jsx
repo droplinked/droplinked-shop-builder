@@ -23,13 +23,14 @@ const OptionComponent = ({ icon, label, path }) => {
     >
       <Link to={path ? `/${shop?.name}/c/${path}` : ""}>
         <IconWrapper
-          borderLeft="4px solid"
+          borderLeft="4px solid transparent"
           borderColor={isActive ? "primary" : "none"}
           _hover={{
             borderColor: "primary",
           }}
         >
           <IconComponent
+            style={isActive ? {filter: "contrast(160%)"} : {}}
             src={icon}
             cursor={label === "informations" ? "not-allowed" : "pointer"}
           />

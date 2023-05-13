@@ -27,7 +27,7 @@ function PropertyButton({ state, types, skues }) {
     return (
         <>
             {!checkLengthProperty ? (
-                <BasicButton click={append} disable={checkExistSku} cancelType>Make New Properties</BasicButton>
+                <BasicButton onClick={append} isDisabled={checkExistSku} width="100%" variant="outline">Make New Properties</BasicButton>
             ) : ''}
         </>
     )

@@ -1,9 +1,9 @@
 import { Box, Flex, InputRightElement, Text, VStack } from '@chakra-ui/react'
-import VariantMakeFormStyles from '../../styles-component'
 import React, { useContext, useMemo } from 'react'
 import { InputGroup } from 'react-bootstrap'
 import variontFormContext from '../../../../context'
 import ErrorLabel from 'components/shared/form/errorLabel/errorLabel'
+import AppInput from 'components/shared/form/textbox/AppInput'
 
 interface Iprops {
     field: string
@@ -12,18 +12,20 @@ interface Iprops {
 
 function TextBoxVariantForm(props: Iprops) {
     const { field, tiny } = props
-    const { FieldInput, TinyInput } = VariantMakeFormStyles
 
     const { form } = useContext(variontFormContext)
 
     const textbox = useMemo(() => {
         return (
-            <FieldInput bg="mainLayer"
+            <AppInput
                 width={"100%"}
+                name={field}
                 value={form.values[field]}
-                onChange={(e) => form.setFieldValue(field, e.target.value)}
+                onChange={(e: any) => form.setFieldValue(field, e.target.value)}
                 {...props}
                 position="relative"
+                fontSize={"14px"}
+                style={{ backgroundColor: "#1c1c1c" }}
                 border={"1px solid"}
                 borderColor={form.errors[field] ? "red.200" : "transparent"}
                 top={tiny ? 1 : 0}

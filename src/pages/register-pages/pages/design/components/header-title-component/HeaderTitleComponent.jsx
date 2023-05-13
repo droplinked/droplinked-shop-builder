@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { designContext } from "../../design-context";
 //
 import InputComponent from "../../../../component/input-component/InputComponent";
+import AppInput from "components/shared/form/textbox/AppInput";
 
 const HeaderTitleComponent = () => {
   const {
@@ -11,11 +12,11 @@ const HeaderTitleComponent = () => {
   } = useContext(designContext);
 
   return (
-    <InputComponent
+    <AppInput
       label="Header title"
       placeHolder="Write a catchy title for the header"
-      isRequired={true}
-      change={(e) => {
+      isRequired
+      onChange={(e) => {
         updateState("backgroundText", e.target.value);
       }}
       value={backgroundText}

@@ -30,7 +30,7 @@ function ShopsContainer({ shop }: Iprops) {
                     />
                 </Box>
                 <Box width={"68%"}><ShopsProduct /></Box>
-                <Box width={"15%"}><ShopsMore /></Box>
+                {shop.products.length >= 4 && <Box width={"15%"}><ShopsMore /></Box>}
             </Flex>
         </shopsContainerContext.Provider>
     )

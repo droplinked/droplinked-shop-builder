@@ -74,13 +74,14 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
             />
             <AppInput
               type="password"
+              placeholder="Confirm password"
               name="repassword"
               error={errors.repassword}
               onChange={(e) => setFieldValue("repassword", e.target.value)}
               value={values.repassword}
             />
 
-            <BasicButton type="submit" disabled={loading}>
+            <BasicButton type="submit" isDisabled={loading}>
               Sign up
             </BasicButton>
 

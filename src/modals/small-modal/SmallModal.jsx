@@ -13,7 +13,7 @@ import {
     Flex
 } from '@chakra-ui/react'
 
-export default function SmallModal({ show, hide, text, click, header, loading ,buttonText }) {
+export default function SmallModal({ show, hide, text, click, header, loading, buttonText }) {
 
     return (
         <>
@@ -21,7 +21,7 @@ export default function SmallModal({ show, hide, text, click, header, loading ,b
                 <ModalOverlay />
                 <ModalContent bgColor="#222">
                     <ModalHeader color="white">{header}</ModalHeader>
-                   
+
                     <ModalBody
                         fontWeight='600'
                         fontSize={{ base: "16px", md: '20px' }}
@@ -34,12 +34,12 @@ export default function SmallModal({ show, hide, text, click, header, loading ,b
                                 <BasicButton
                                     bgColor="#4d4d4d"
                                     onClick={hide}
-                                    disable={loading}
-                                    cancelType={true}
+                                    isDisabled={loading}
+                                    variant={"outline"}
                                 > Cancel</BasicButton>
                             </Box>
                             <Box w='40%'>
-                                <BasicButton loading={loading} onClick={click}>{buttonText}</BasicButton>
+                                <BasicButton isLoading={loading} onClick={click}>{buttonText}</BasicButton>
                             </Box>
                         </Flex>
                     </ModalFooter>

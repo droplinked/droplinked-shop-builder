@@ -1,6 +1,7 @@
 import { Text } from '@chakra-ui/react'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from 'react'
-import EmptyTable from './parts/empty/EmptyTable'
+import AppTypography from '../typography/AppTypography'
 import classes from './style.module.scss'
 
 export interface ITableRows {
@@ -39,7 +40,9 @@ function AppTable({ rows, vertical, empty }: IAppTable) {
                             <thead>
                                 {Object.keys(rows[0]).map((el, key) =>
                                     <th key={key}>
-                                        <Text fontFamily={"aven"}>{typeof rows[0][el].caption !== "undefined" ? rows[0][el].caption : el}</Text>
+                                        <AppTypography size='12px' weight='bolder'>
+                                            {typeof rows[0][el].caption !== "undefined" ? capitalizeFirstLetter(rows[0][el].caption) : capitalizeFirstLetter(el)}
+                                        </AppTypography>
                                     </th>
                                 )}
                             </thead>

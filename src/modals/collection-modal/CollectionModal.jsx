@@ -76,15 +76,15 @@ const CollectionModal = ({ show, collection, close, update }) => {
           <Box w="40%">
             <BasicButton
               width="100%"
-              click={close}
-              disable={loading}
-              cancelType={true}
+              onClick={close}
+              isDisabled={loading}
+              variant={"outline"}
             >
               Cancel
             </BasicButton>
           </Box>
           <Box w="40%">
-            <BasicButton width="100%" click={submitForm} loading={loading}>
+            <BasicButton width="100%" onClick={submitForm} isLoading={loading}>
               Submit
             </BasicButton>
           </Box>

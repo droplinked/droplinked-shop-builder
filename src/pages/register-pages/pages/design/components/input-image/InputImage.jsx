@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { useRef, useState , useMemo } from "react";
+import { useRef, useState, useMemo } from "react";
 
 import {
   FormControl,
@@ -16,6 +16,8 @@ import { useToasty } from "../../../../../../context/toastify/ToastContext";
 
 
 import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
+import AppTypography from "components/shared/typography/AppTypography";
+import FieldLabel from "components/shared/form/fieldLabel/FieldLabel";
 
 const InputImage = ({ label, placeHolder, change, value }) => {
   const [loading, setLoading] = useState(false);
@@ -65,18 +67,8 @@ const InputImage = ({ label, placeHolder, change, value }) => {
 
   return (
     <FormControl isRequired w="100%">
-      <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2" mb="12px">
-        {label}
-      </FormLabel>
-      <Text
-        fontFamily="Avenir Next"
-        fontWeight="500"
-        fontSize="16px"
-        color="#808080"
-        mb="12px"
-      >
-        {placeHolder}
-      </Text>
+      <FieldLabel isRequired label={label} color={"#C2C2C2"} />
+      <AppTypography fontSize="14px" color="#808080" margin={"5px 0"}>{placeHolder}</AppTypography>
 
       {value ? (
         <Flex

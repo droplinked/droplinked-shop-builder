@@ -8,8 +8,8 @@ function RequestModalButtons({ close }) {
 
   return (
     <HStack justifyContent={"space-between"}>
-      <Box><BasicButton cancelType disable={loading} click={close}>Cancel</BasicButton></Box>
-      <Box><BasicButton loading={loading} click={() => formik.submitForm()}>send Request</BasicButton></Box>
+      <Box><BasicButton variant='outline' isDisabled={loading} onClick={close}>Cancel</BasicButton></Box>
+      <Box><BasicButton isLoading={loading} onClick={() => formik.submitForm()}>send Request</BasicButton></Box>
     </HStack>
   )
 }

@@ -12,7 +12,7 @@ interface IButtons {
 export interface IAppDialog {
     open: boolean
     close: Function
-    text: any
+    text?: any
     title: string
     buttons: Array<IButtons>
 }
@@ -24,14 +24,16 @@ function AppDialog({ open, close, text, title, buttons }: IAppDialog) {
                 <Box textAlign="center">
                     <Text fontSize='3xl' color={"#FEB900"}><strong>{title}</strong></Text>
                 </Box>
-                <Box textAlign="center">
-                    <Text fontSize='xl' color={"#C2C2C2"}>
-                        {text}
-                    </Text>
-                </Box>
+                {text && (
+                    <Box textAlign="center">
+                        <Text fontSize='xl' color={"#C2C2C2"}>
+                            {text}
+                        </Text>
+                    </Box>
+                )}
                 <HStack justifyContent={buttons.length === 1 ? "center" : "space-between"}>
                     {buttons && buttons.map((el: IButtons, key) => (
-                        <Box key={key}><BasicButton size="md" width="150px" onClick={() => {
+                        <Box key={key}><BasicButton onClick={() => {
                             el.onClick()
                             close()
                         }} {...el.buttonProps}>{el.children}</BasicButton></Box>

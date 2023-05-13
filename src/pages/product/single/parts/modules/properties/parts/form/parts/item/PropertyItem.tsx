@@ -1,5 +1,4 @@
 import { Box, HStack, Image, Text, useDisclosure } from '@chakra-ui/react'
-import { ValueInput } from 'pages/prodcut-pages/ProductPages-style'
 import React, { useCallback, useContext, useState } from 'react'
 import plusIcon from "assest/icon/plus-icon.svg";
 import minusIcon from "assest/icon/minusIcon.png";
@@ -8,6 +7,8 @@ import { productContext } from 'pages/product/single/context';
 import { toast } from 'react-toastify';
 import propertyItemModel from './model/model';
 import SkuTableModal from 'pages/product/single/parts/modules/variants/parts/table/parts/skuModal/SkuTableModal';
+import AppInput from 'components/shared/form/textbox/AppInput';
+import AppTypography from 'components/shared/typography/AppTypography';
 
 function PropertyItem({ element, keyProperty }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -72,9 +73,10 @@ function PropertyItem({ element, keyProperty }) {
                 const checkAppend = typeof element.items[key + 1] !== "undefined"
                 return (
                     <HStack key={key}>
-                        <Box width={"20%"}><Text fontSize={"larger"} color={"#FFF"}>Value {key + 1}</Text></Box>
+                        <Box width={"20%"}><AppTypography size='14px' color={"#FFF"}>{`Value ${key + 1}`}</AppTypography></Box>
                         <Box width={"77%"}>
-                            <ValueInput
+                            <AppInput
+                                name=''
                                 placeholder="default"
                                 value={item.value}
                                 onChange={(e) => set(item, element, e.target.value, key, keyProperty)}
