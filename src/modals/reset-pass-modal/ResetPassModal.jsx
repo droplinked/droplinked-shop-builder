@@ -56,7 +56,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
 
         <Box mt="18px"></Box>
 
-        <BasicButton click={SubmitForm} loading={disableBtn}>
+        <BasicButton onClick={SubmitForm} isLoading={disableBtn}>
           Reset password
         </BasicButton>
 

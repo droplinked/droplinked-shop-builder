@@ -19,7 +19,7 @@ function SearchDatagrid() {
                 _focus={{borderColor: "none"}}
                 fontFamily="Avenir Next"
                 fontWeight="400"
-                fontSize="sm"
+                fontSize="12px"
                 color="#C2C2C2"
                 placeholder="search"
                 onChange={(e) => {}}

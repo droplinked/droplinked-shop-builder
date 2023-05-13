@@ -10,7 +10,7 @@ import AppLoading from '../loading/AppLoading'
 type mergeType = IDatagridButtons & IAppTable
 
 interface IProps extends mergeType {
-    filters: Array<IIMenuesDatagridItems>
+    filters?: Array<IIMenuesDatagridItems>
     loading: boolean
 }
 

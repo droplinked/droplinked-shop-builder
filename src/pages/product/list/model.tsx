@@ -3,8 +3,12 @@ import React from "react"
 import ControlsListProduct from "./parts/controls/Controls"
 import ImageListProduct from "./parts/image/ImageListProduct"
 
+interface IrefactorData {
+    data: any
+    fetch: Function
+}
 export default class ProductListModel {
-    static refactorData = (data: any): Array<ITableRows> => {
+    static refactorData = ({ data, fetch }: IrefactorData): Array<ITableRows> => {
         return data.map((el: any): ITableRows => ({
             image: {
                 caption: "Products",
@@ -13,16 +17,13 @@ export default class ProductListModel {
             collections: {
                 value: el.productCollectionID.title
             },
-            status: {
-                value: "No status"
-            },
             inventory: {
                 caption: "Inventory status",
                 value: "---"
             },
             controls: {
                 caption: "",
-                value: <ControlsListProduct productID={el._id} />
+                value: <ControlsListProduct productID={el._id} fetch={fetch} />
             }
         }))
     }

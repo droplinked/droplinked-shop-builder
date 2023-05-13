@@ -6,6 +6,7 @@ import MetaMask from "assest/icon/MetaMask.svg";
 import moreIcon from "assest/icon/more-icon.svg";
 import BasicButton from 'components/shared/BasicButton/BasicButton';
 import WalletModal from './parts/modal';
+import FieldLabel from 'components/shared/form/fieldLabel/FieldLabel';
 
 function Wallet() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -17,7 +18,7 @@ function Wallet() {
                 align='stretch'
             >
                 <Box>
-                    <Text18px>Connected Wallets <StarLabel>*</StarLabel></Text18px>
+                    <FieldLabel label='Connected Wallets' isRequired />
                 </Box>
                 <HStack justifyContent="space-between" spacing={5} alignItems="center">
                     <Box>
@@ -26,7 +27,7 @@ function Wallet() {
                         </Text>
                     </Box>
                     <Box>
-                        <BasicButton cancelType click={onOpen} size="md">Connect Wallet</BasicButton>
+                        <BasicButton variant='outline' onClick={onOpen} sizes="medium">Connect Wallet</BasicButton>
                     </Box>
                 </HStack>
                 <Box>

@@ -36,12 +36,10 @@ function ButtonsProduct() {
 
     return (
         <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
-            <Box width={"150px"}><BasicButton onClick={() => shopNavigate("products")} width="100%" size="md" cancelType>Cancel</BasicButton></Box>
-            <Box width={"150px"}>
+            <Box><BasicButton onClick={() => shopNavigate("products")} variant='outline'>Cancel</BasicButton></Box>
+            <Box>
                 <BasicButton
-                    width="100%"
-                    size="md"
-                    loading={productID ? update.isLoading || updateSku.isLoading : create.isLoading}
+                    isLoading={productID ? update.isLoading || updateSku.isLoading : create.isLoading}
                     onClick={submit}
                 >
                     {productID ? "Update" : "Save"}

@@ -100,8 +100,8 @@ const IframeModal = ({show, link, code, close }) => {
                 h='35px'
                 justifyContent='space-between'
             >
-                <Box w={{ base: '100px', md: '150px' }}><BasicButton bgColor='#4A4A4A' fontSize={{ base: '14px', md: "16px" }} click={close} cancelType={true}>Cancel</BasicButton></Box>
-                <Box w={{ base: '100px', md: '150px' }}><BasicButton fontSize={{ base: '14px', md: "16px" }} click={embed} >Click to copy</BasicButton></Box>
+                <Box w={{ base: '100px', md: '150px' }}><BasicButton bgColor='#4A4A4A' fontSize={{ base: '14px', md: "16px" }} onClick={close} cancelType={true}>Cancel</BasicButton></Box>
+                <Box w={{ base: '100px', md: '150px' }}><BasicButton fontSize={{ base: '14px', md: "16px" }} onClick={embed} >Click to copy</BasicButton></Box>
             </Flex>
             {/* botom buttons */}
         </ModalWrapper>

@@ -1,7 +1,8 @@
 import { Box, HStack, Text, VStack, useDisclosure, Skeleton } from '@chakra-ui/react'
 import BasicButton from 'components/shared/BasicButton/BasicButton'
 import FieldLabel from 'components/shared/form/fieldLabel/FieldLabel'
-import { ProductSingleStyles } from 'pages/product/single/style-component'
+import AppTypography from 'components/shared/typography/AppTypography'
+
 import React from 'react'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
 import ListCollection from './parts/list'
@@ -16,13 +17,13 @@ function Collection() {
                 <HStack justifyContent={"space-between"}>
                     <VStack align={"stretch"}>
                         <FieldLabel isRequired label='Collections' />
-                        <ProductSingleStyles.descript>
+                        <AppTypography size='14px'>
                             Organize your products into collections to offer discounts or gated access. Learn more
-                        </ProductSingleStyles.descript>
+                        </AppTypography>
                     </VStack>
                     <Box>
                         <SkeletonProduct>
-                            <BasicButton onClick={onOpen} cancelType color="#777">New Collection</BasicButton>
+                            <BasicButton onClick={onOpen} variant="outline">New Collection</BasicButton>
                         </SkeletonProduct>
                         <ModalCollection open={isOpen} close={onClose} />
                     </Box>

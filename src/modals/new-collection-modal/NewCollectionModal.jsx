@@ -61,12 +61,12 @@ const NewCollectionModal = ({ show, close, update }) => {
         </Flex>
         <Flex justifyContent="space-between" w="100%">
           <Box w="40%">
-            <BasicButton click={close} cancelType={true}>
+            <BasicButton onClick={close} variant={"outline"}>
               Cancel
             </BasicButton>
           </Box>
           <Box w="40%">
-            <BasicButton click={submitForm} loading={loading}>
+            <BasicButton onClick={submitForm} isLoading={loading}>
               Save
             </BasicButton>
           </Box>

@@ -1,7 +1,7 @@
 import AppDataGrid from 'components/shared/datagrid/DataGrid'
 import { useProfile } from 'hooks/useProfile/useProfile'
 import { productServices } from 'lib/apis/product/productServices'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import ProductListModel from './model'
 import ProductEmpty from './parts/empty/ProductEmpty'
@@ -14,31 +14,23 @@ function Products() {
     const { shop } = useProfile()
 
     // fetch data and refactor
-    useEffect(() => {
+    const fetch = useCallback(() => {
         mutate(null, {
             onSuccess: (res) => {
-                setStates(prev => ({ ...prev, rows: ProductListModel.refactorData(res.data.data) }))
+                setStates(prev => ({
+                    ...prev, rows: ProductListModel.refactorData({
+                        data: res.data.data,
+                        fetch
+                    })
+                }))
             }
         })
-    }, [mutate])
+    }, [])
+
+    useEffect(() => fetch(), [mutate])
 
     return (
         <AppDataGrid
-            filters={[
-                {
-                    title: "sort",
-                    list: [
-                        {
-                            title: "asc",
-                            onClick: () => { }
-                        },
-                        {
-                            title: "desc",
-                            onClick: () => { }
-                        }
-                    ]
-                }
-            ]}
             loading={isLoading}
             buttons={[
                 {

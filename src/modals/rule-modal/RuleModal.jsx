@@ -41,7 +41,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   }, [getRule])
 
   const submit = async (data) => {
-    const { tag, weburl, chain, rule, discount, address, counter } = data
+    const { tag, weburl, chain, rule, discount, address, requirement } = data
     try {
       const requestBody = {
         collectionID: collectionId,
@@ -50,7 +50,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
           {
             addresses: address?.split(","),
             discountPercentage: +discount,
-            nftsCount: +counter,
+            nftsCount: +requirement,
             type: chain,
             description: tag,
           },
@@ -79,7 +79,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     rule: Yup.string().required('Required'),
     discount: Yup.number().typeError("Please correct value").required('Required'),
     address: Yup.string().required('Required'),
-    counter: Yup.number().typeError("Please correct value").required('Required'),
+    requirement: Yup.number().min(1).max(99).typeError("Please correct value").required('Required'),
   });
 
   if (!show) return null;
@@ -102,7 +102,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
             rule: State ? State?.gated ? RuleTypes.DISCOUNT : RuleTypes.GATED : true,
             discount: State ? State?.rules ? State?.rules[0].discountPercentage : 0 : 0,
             address: State ? State?.rules ? State?.rules[0].addresses[0] : '' : '',
-            counter: State ? State?.rules ? State?.rules[0].nftsCount : '' : ''
+            requirement: State ? State?.rules ? State?.rules[0].nftsCount : '' : ''
           }}
           enableReinitialize
           validateOnChange={false}
@@ -168,14 +168,14 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                     />
                   </Box>
                   <Box width={"100%"}>
-                    <TextboxRule element={"counter"} placeholder="number ..." label={"Minimum Requirement"} />
+                    <TextboxRule element={"requirement"} placeholder="number ..." label={"Minimum Requirement"} />
                   </Box>
                   <HStack justifyContent={"space-between"}>
-                    <Box width={"35%"}><BasicButton width={"100%"} cancelType>Cancel</BasicButton></Box>
+                    <Box width={"35%"}><BasicButton width={"100%"} onClick={close} variant="outline">Cancel</BasicButton></Box>
                     <Box width={"35%"}>
                       <BasicButton
                         width={"100%"}
-                        loading={createRule.isLoading || getRule.isLoading || updateRule.isLoading}
+                        isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading}
                         type="submit">
                         Save
                       </BasicButton>

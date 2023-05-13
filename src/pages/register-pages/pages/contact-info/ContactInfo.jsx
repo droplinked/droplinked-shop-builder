@@ -18,6 +18,7 @@ import InputLefton from "../../component/input-lefton/InputLefton";
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import AppCard from "components/shared/card/AppCard";
 import { putUpdateShop } from "lib/apis/shopApiService";
+import AppTypography from "components/shared/typography/AppTypography";
 
 const INITIAL_SHOP_CONTACT = {
   discordURL: "",
@@ -95,7 +96,7 @@ const ContactInfo = () => {
     setLoading(false);
 
     if (result) {
-      shopNavigate(`products`);
+      if (currentPath.includes("register")) shopNavigate(`products`);
       successToast("Updated");
     }
   };
@@ -104,8 +105,10 @@ const ContactInfo = () => {
     <PageContent>
       <VStack align={"stretch"}>
         <AppCard>
-          Add social media links on your store to help customers find you easily
-          across multiple platforms.
+          <AppTypography size="14px">
+            Add social media links on your store to help customers find you easily
+            across multiple platforms.
+          </AppTypography>
         </AppCard>
         <AppCard>
           <InputLefton
@@ -144,7 +147,7 @@ const ContactInfo = () => {
 
       <Flex justifyContent={"right"} marginTop={8} width={"100%"}>
         <Box>
-          <BasicButton size="lg" click={clickOnSave} loading={loading}>
+          <BasicButton sizes="large" onClick={clickOnSave} isLoading={loading}>
             {currentPath.includes("register") ? "Publish store" : "Update"}
           </BasicButton>
         </Box>

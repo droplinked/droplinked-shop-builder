@@ -17,7 +17,7 @@ function AddVariants() {
                     <SkuForm close={() => setAddMode(false)} />
                 </BlackBox>
             ) : (
-                <Box onClick={() => setAddMode(true)}><BasicButton disable={!properties.length && sku.length} cancelType>Add Variants</BasicButton></Box>
+                <Box onClick={() => setAddMode(true)}><BasicButton isDisabled={!properties.length && sku.length} width="100%" variant="outline">Add Variants</BasicButton></Box>
             )}
         </VStack>
     )

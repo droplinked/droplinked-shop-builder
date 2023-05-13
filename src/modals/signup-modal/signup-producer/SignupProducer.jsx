@@ -80,7 +80,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
               value={values.repassword}
             />
 
-            <BasicButton type="submit" disabled={loading}>
+            <BasicButton type="submit" isDisabled={loading}>
               Sign up
             </BasicButton>
 

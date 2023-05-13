@@ -51,8 +51,8 @@ function ModalCollection({ open, close }) {
                     </Box>
                 </HStack>
                 <HStack justifyContent="space-between">
-                    <Box width={"30%"}><BasicButton width="100%" size="md" cancelType onClick={close}>Cancel</BasicButton></Box>
-                    <Box width={"30%"}><BasicButton width="100%" size="md" loading={isLoading} onClick={CreateCollection}>Save</BasicButton></Box>
+                    <Box width={"30%"}><BasicButton width="100%" sizes="medium" variant='outline' onClick={close}>Cancel</BasicButton></Box>
+                    <Box width={"30%"}><BasicButton width="100%" sizes="medium" isLoading={isLoading} onClick={CreateCollection}>Save</BasicButton></Box>
                 </HStack>
             </VStack>
         </ModalWrapper>

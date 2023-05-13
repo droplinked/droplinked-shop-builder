@@ -1,43 +1,37 @@
-import { Box, Button, ButtonProps, Spinner } from "@chakra-ui/react";
-import React from "react";
+import { Box, Button, ButtonProps, Spinner, StyleProps } from "@chakra-ui/react";
+import React, { useMemo } from "react";
+import AppTypography from "../typography/AppTypography";
+import BasicButtonModel, { sizesButton } from "./model/BasicButtonModel";
+import { BasicButtonStylesTypes } from "./model/modules/styles";
 
-export interface IBasicButton {
+export interface IBasicButton extends ButtonProps {
   children?: any
-  click?: any
-  loading?: any
-  disable?: boolean
-  cancelType?: boolean
-  [propsName:string] : any
+  sizes?: sizesButton
+  variant?: BasicButtonStylesTypes
 }
 export default function BasicButton(props: IBasicButton) {
-  const { children, click, loading, disable, cancelType } = props
-  
+  const { children, sizes, variant } = props
+  const { sizesHandel, stylesHandel } = BasicButtonModel
+
+  const style = useMemo((): StyleProps => {
+    return {
+      ...sizesHandel(sizes).button,
+      ...stylesHandel({ variant })
+    }
+  }, [sizes, variant])
+
   return (
     <Button
-      width="100%"
-      bgColor={cancelType ? "#1c1c1c" : "primary"}
-      color="white"
-      border={cancelType ? "2px solid #292929" : "2px solid primary"}
-      fontWeight="600"
-      borderRadius="8px"
-      margin="0px auto"
-      p={{ base: "12px 20px 9px 20px", md: "12px 20px" }}
-      outline="none"
-      _hover={{
-        borderColor: cancelType ? "button" : "primary",
-        bgColor: cancelType ? "button" : "button",
-        color: cancelType ? "offText" : "primary",
-      }}
+      {...style}
+
       _disabled={{
         bgColor: "button",
         color: "offText",
         borderColor: "#363636",
       }}
-      onClick={click}
-      isDisabled={disable || loading}
       {...props}
     >
-      {loading !== undefined && loading === true ? (
+      {props.isLoading !== undefined && props.isLoading === true ? (
         <>
           <Spinner
             thickness="4px"
@@ -49,7 +43,7 @@ export default function BasicButton(props: IBasicButton) {
           />
         </>
       ) : null}
-      <Box {...loading && { color: "transparent" }}>{children}</Box>
+      <Box {...props.isLoading && { color: "transparent" }}><AppTypography size={sizesHandel(sizes).text}>{children}</AppTypography></Box>
     </Button>
   );
 }

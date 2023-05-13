@@ -40,7 +40,7 @@ export default function ThankForRegisterPage() {
       </MessageText>
 
       <Box w={{ sm: "150px", md: "200px" }}>
-        <BasicButton click={resend} loading={loading}>
+        <BasicButton onClick={resend} isLoading={loading}>
           Resend the link
         </BasicButton>
       </Box>

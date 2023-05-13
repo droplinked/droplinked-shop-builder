@@ -87,8 +87,8 @@ function SkuForm({ close, update }) {
                                 ))}
                             </VStack>
                             <HStack justifyContent={"space-between"}>
-                                <Box><BasicButton onClick={close} cancelType>Close</BasicButton></Box>
-                                <Box><BasicButton type="submit">{update ? "Update" : "Add"} Variant</BasicButton></Box>
+                                <Box><BasicButton onClick={close} variant="outline">Back</BasicButton></Box>
+                                <Box><BasicButton type="submit">Save</BasicButton></Box>
                             </HStack>
                         </VStack>
                     </variontFormContext.Provider>

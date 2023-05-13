@@ -267,16 +267,16 @@ export default function AddressModal({
 
         <Flex justifyContent="space-between">
           <Box w="40%">
-            <BasicButton width="100%" click={close} cancelType={true}>
+            <BasicButton width="100%" onClick={close} variant={"outline"}>
               Cancel
             </BasicButton>
           </Box>
           <Box w="40%">
             <BasicButton
               width="100%"
-              click={submitForm}
-              disabled={loading}
-              loading={loading}
+              onClick={submitForm}
+              isDisabled={loading}
+              isLoading={loading}
             >
               Save
             </BasicButton>

@@ -9,16 +9,18 @@ import FormModel, { IAppForm } from '../FormModel'
 interface IAppSelectBoxItems {
     value: string | number | null
     caption: string
+    [prop: string]: any
 }
 
 type combine = IAppForm & SelectProps
 
 interface Iprops extends combine {
     items: Array<IAppSelectBoxItems>
+    optionDefault?: string
 }
 
 function AppSelectBox(props: Iprops) {
-    const { error, name, label, items, loading } = props
+    const { error, name, label, items, loading, optionDefault } = props
 
     return (
         <VStack align={"stretch"} width="100%" spacing={1}>
@@ -34,8 +36,9 @@ function AppSelectBox(props: Iprops) {
                     padding={0}
                     {...props}
                 >
+                    {optionDefault && <option value={""} disabled selected>{optionDefault}</option>}
                     {items.map((e, key) => (
-                        <option key={key} value={e.value}>{e.caption}</option>
+                        <option key={key} {...e}>{e.caption}</option>
                     ))}
                 </Select>
             </AppSkeleton>

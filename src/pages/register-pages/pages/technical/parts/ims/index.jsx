@@ -5,6 +5,8 @@ import BasicButton from 'components/shared/BasicButton/BasicButton'
 import technicalContext from '../../context'
 import AppDialog from 'components/shared/dialog'
 import { useToasty } from 'context/toastify/ToastContext'
+import FieldLabel from 'components/shared/form/fieldLabel/FieldLabel'
+import AppTypography from 'components/shared/typography/AppTypography'
 
 function Ims(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -15,21 +17,21 @@ function Ims(props) {
     return (
         <>
             <VStack
-                spacing={3}
+                spacing={2}
                 align='stretch'
             >
                 <Box>
-                    <Text18px>IMS Type <StarLabel>*</StarLabel></Text18px>
+                    <FieldLabel label='IMS Type' isRequired />
                 </Box>
                 <Box>
-                    <Text fontSize="sm" color="lightGray">
+                    <AppTypography size="14px" color="#C2C2C2">
                         {imsType ? (
                             <>
                                 <strong>{imsType}</strong>: You can add and manage your products right from you droplinked dashboard
                             </>
                         ) : "Choose your integrated management system to manage your products"}
 
-                    </Text>
+                    </AppTypography>
                 </Box>
                 {!imsType && (
                     <BlackBox>
@@ -68,7 +70,7 @@ function Ims(props) {
                                     <BasicButton onClick={() => {
                                         if (!RadioGroupValue.length) return errorToast("Please choose type")
                                         onOpen()
-                                    }} width="120px" size='sm'>Save</BasicButton>
+                                    }} sizes='small'>Save</BasicButton>
                                 </Box>
                             </VStack>
                         </RadioGroup>

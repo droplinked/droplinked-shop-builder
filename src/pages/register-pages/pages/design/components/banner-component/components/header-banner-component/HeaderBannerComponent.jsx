@@ -12,6 +12,8 @@ import {
 import { useState, useRef } from "react";
 //
 import { useToasty } from "context/toastify/ToastContext";
+import AppTypography from "components/shared/typography/AppTypography";
+import FieldLabel from "components/shared/form/fieldLabel/FieldLabel";
 
 const HeaderBannerComponent = ({ addNewImage }) => {
   const [loading, setLoading] = useState(false);
@@ -69,19 +71,9 @@ const HeaderBannerComponent = ({ addNewImage }) => {
 
   return (
     <Flex w="100%" justifyContent="space-between" alignItems="center">
-      <FormControl isRequired w="100%">
-        <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2" mb="12px">
-          Header banner
-        </FormLabel>
-        <Text
-          fontFamily="Avenir Next"
-          fontWeight="500"
-          fontSize="16px"
-          color="#808080"
-          mb="12px"
-        >
-          This image will display at the top of the store page.
-        </Text>
+      <FormControl isRequired w="100%" marginBottom={3}>
+        <FieldLabel color="#C2C2C2" label="Header banner" isRequired />
+        <AppTypography size="14px" color="#C2C2C2" marginTop={1}>This image will display at the top of the store page.</AppTypography>
       </FormControl>
       <Button
         bg="transparent"

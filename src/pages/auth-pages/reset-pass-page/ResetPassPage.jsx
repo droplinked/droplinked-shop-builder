@@ -68,7 +68,7 @@ export default function ResetPassPage() {
           <p className="error">{`Password and confirm password don't match.`}</p>
         )}
         <div className="mt-4">
-          <BasicButton click={changePassword} disabled={btnActivd}>
+          <BasicButton onClick={changePassword} isDisabled={btnActivd}>
             Change my password
           </BasicButton>
         </div>
