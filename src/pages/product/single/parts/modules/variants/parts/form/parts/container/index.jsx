@@ -21,6 +21,7 @@ function VariantMakeForm({ caption, property }) {
                             value={form.values[caption]}
                             placeholder='Select option'
                             style={{ backgroundColor: "#1c1c1c" }}
+                            
                             items={property.items.map(el => ({
                                 value: el.value,
                                 caption: el.value

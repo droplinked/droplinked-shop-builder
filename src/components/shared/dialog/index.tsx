@@ -33,7 +33,7 @@ function AppDialog({ open, close, text, title, buttons }: IAppDialog) {
                 )}
                 <HStack justifyContent={buttons.length === 1 ? "center" : "space-between"}>
                     {buttons && buttons.map((el: IButtons, key) => (
-                        <Box key={key}><BasicButton sizes='medium' onClick={() => {
+                        <Box key={key}><BasicButton onClick={() => {
                             el.onClick()
                             close()
                         }} {...el.buttonProps}>{el.children}</BasicButton></Box>

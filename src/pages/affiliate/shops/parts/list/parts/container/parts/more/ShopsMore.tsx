@@ -1,4 +1,5 @@
 import { Box, Text, VStack } from '@chakra-ui/react'
+import AppTypography from 'components/shared/typography/AppTypography'
 import { useProfile } from 'hooks/useProfile/useProfile'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
@@ -12,8 +13,8 @@ function ShopsMore() {
     <Link to={`/${shop.name}/c/affiliate/shops/${shopsContext.shop?.name}`}>
       <VStack backgroundColor={"#000"} borderRadius="8px" alignItems={"center"} position="relative" justifyContent="center" height="100%">
         <VStack height={"fit-content"} color="#808080">
-          <Box><Text fontSize={"4xl"}>+4</Text></Box>
-          <Box position={"absolute"} bottom={5} width="100px" textAlign={"center"}><Text>see more products</Text></Box>
+          <Box><AppTypography size='24px'>+4</AppTypography></Box>
+          <Box position={"absolute"} bottom={5} width="100px" textAlign={"center"}><AppTypography size='14px'>see more products</AppTypography></Box>
         </VStack>
       </VStack>
     </Link>

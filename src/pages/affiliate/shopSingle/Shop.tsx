@@ -1,5 +1,6 @@
 import { Box, Flex, Image, Text, VStack } from '@chakra-ui/react'
 import AppCard from 'components/shared/card/AppCard'
+import AppTypography from 'components/shared/typography/AppTypography'
 import { IrecordedShopService } from 'lib/apis/shop/interfaces'
 import { recordedShopService } from 'lib/apis/shop/shopServices'
 import React, { useEffect } from 'react'
@@ -25,10 +26,10 @@ function Shop() {
                 <VStack align={"stretch"}>
                     <AppCard>
                         <VStack spacing={4}>
-                            <Box><Image src={shop?.logo} width="100px" height={"100px"} borderRadius={"100%"} /></Box>
-                            <Box><Text fontFamily={"aven"} color="#2EC99E" fontSize={"2xl"}>{shop?.name}</Text></Box>
+                            <Box><Image src={shop?.logo} width="80px" height={"80px"} borderRadius={"100%"} /></Box>
+                            <Box><AppTypography color="#2EC99E" size='24px' weight='bolder'>{shop?.name}</AppTypography></Box>
                             {/* <Box><Text color="#FFF" fontSize={"1xl"}>{faker.company.catchPhrase()}</Text></Box> */}
-                            <SocialAffliate facebook="" instagram={shop?.instagramURL} pintrest="" snapchat="" twitter={shop?.twitterURL} size={20} />
+                            <SocialAffliate facebook="" instagram={shop?.instagramURL} pintrest="" snapchat="" twitter={shop?.twitterURL} size={16} />
                         </VStack>
                     </AppCard>
 

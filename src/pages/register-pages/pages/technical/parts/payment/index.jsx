@@ -26,7 +26,6 @@ function Payments() {
     useEffect(() => {
         const pPublic = paymentPublic.data?.data?.data
         const pMethods = paymentMethods.data?.data?.data
-        console.log(pMethods);
         if (pPublic && pMethods) updateState("payments", technicalPaymentsModel.makePayments({
             paymentMethods: pMethods,
             paymentPublic: pPublic

@@ -40,7 +40,7 @@ const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
           />
         </Flex>
         <Flex w="25%">
-          <BasicButton sizes="large" width="100%" isLoading={isLoading} onClick={clickSignin}>Sign up </BasicButton>
+          <BasicButton sizes="large" width="100%" minWidth={"100%"} isLoading={isLoading} onClick={clickSignin}>Sign up </BasicButton>
         </Flex>
       </SignupWrapper>
       {error && <ErrorText>{error}</ErrorText>}

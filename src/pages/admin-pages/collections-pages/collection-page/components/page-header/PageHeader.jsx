@@ -12,6 +12,7 @@ import { useState } from "react";
 import searchIcon from "assest/icon/search-icon.svg";
 import downArrowIcon from "assest/icon/down-arrow-icon.svg";
 import CollectionModal from "modals/collection-modal/CollectionModal";
+import BasicButton from "components/shared/BasicButton/BasicButton";
 
 const PageHeader = ({ searchValue, setSearchValue, updateCollaction }) => {
 
@@ -41,45 +42,13 @@ const PageHeader = ({ searchValue, setSearchValue, updateCollaction }) => {
             onChange={(e) => setSearchValue(e.target.value)}
           />
         </InputGroup>
-        <Button
-          _focus={{ outline: "none" }}
-          variant="unstyled"
-          color="lightGray"
-          display="flex"
-          fontSize="sm"
-          alignItems="center"
-          gap={2}
-        >
-          sort by date
-          <Image src={downArrowIcon} />
-        </Button>
-        <Button
-          _focus={{ outline: "none" }}
-          variant="unstyled"
-          color="lightGray"
-          fontSize="sm"
-          display="flex"
-          alignItems="center"
-          gap={2}
-        >
-          filter
-          <Image src={downArrowIcon} />
-        </Button>
       </Stack>
 
-      <Button
-        bg="#2EC99E"
-        borderRadius="6px"
-        border="1px solid"
-        borderColor="primary"
-        _hover={{
-          bg: "mainLayer",
-          color: "primary",
-        }}
+      <BasicButton
         onClick={toggleModal}
       >
         Add Collection
-      </Button>
+      </BasicButton>
       <CollectionModal
         show={showModal}
         close={toggleModal}

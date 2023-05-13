@@ -1,5 +1,5 @@
 import { Box, ButtonProps } from '@chakra-ui/react'
-import BasicButton from 'components/shared/BasicButton/BasicButton'
+import BasicButton, { IBasicButton } from 'components/shared/BasicButton/BasicButton'
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -8,7 +8,7 @@ export interface IDatagridButtons {
         caption: string
         onClick?: Function
         to?: string
-        buttonProps?: ButtonProps
+        buttonProps?: IBasicButton
     }>
 }
 

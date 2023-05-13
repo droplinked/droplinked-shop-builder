@@ -23,7 +23,6 @@ export default function BasicButton(props: IBasicButton) {
   return (
     <Button
       {...style}
-
       _disabled={{
         bgColor: "button",
         color: "offText",

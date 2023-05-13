@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 import { useToasty } from "../../context/toastify/ToastContext";
 import { useApi } from "../../hooks/useApi/useApi";
@@ -9,6 +9,8 @@ import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
 import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
 import { postUserForgotPassword } from "lib/apis/userApiService";
+import AppTypography from "components/shared/typography/AppTypography";
+import AppInput from "components/shared/form/textbox/AppInput";
 
 const ResetPassModal = ({ show, close, switchReset }) => {
   const [disableBtn, setDisableBtn] = useState(false);
@@ -46,19 +48,17 @@ const ResetPassModal = ({ show, close, switchReset }) => {
   return (
     <ModalWrapper show={show} close={close}>
       <Box>
-        <Title>Reset your password</Title>
-        <Detail>
+        <Flex justifyContent={"center"}><AppTypography size="18px" weight="bolder" color={"#FFF"}>Reset your password</AppTypography></Flex>
+        <AppTypography size="14px" color={"#FFF"} marginTop={6}>
           Enter the email address associated with your account and we'll send
           you a link to reset your password.
-        </Detail>
+        </AppTypography>
         <Box mt="30px"></Box>
-        <InputFieldComponent label={"Email"} type={"email"} change={ChangeEmail} />
+        <AppInput name="email" isRequired label={"Email"} type={"email"} change={ChangeEmail} />
 
         <Box mt="18px"></Box>
 
-        <BasicButton onClick={SubmitForm} isLoading={disableBtn}>
-          Reset password
-        </BasicButton>
+        <BasicButton minWidth={"100%"} onClick={SubmitForm} isLoading={disableBtn}>Reset password</BasicButton>
 
         <BacktoLoginButton onClick={switchReset} cancelType={true}>
           Back to login

@@ -139,7 +139,7 @@ const ContactInfo = () => {
             value={shopInformation.instagramURL}
             change={changeInsagram}
             label="Instagram"
-            placeHolder="mystore.com"
+            placeHolder="mystore"
             children="https://www.instagram.com/"
           />
         </AppCard>

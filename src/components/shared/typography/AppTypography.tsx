@@ -1,11 +1,11 @@
 import { Text, TextProps } from '@chakra-ui/react'
 import React from 'react'
 
-type size = "10px" | "12px" | "14px" | "16px" | "18px"
+type size = "10px" | "12px" | "14px" | "16px" | "18px" | "22px" | "24px"
 type weight = "normal" | "bold" | "bolder"
 
 interface Iprops extends TextProps {
-  children?: string
+  children?: any
   size: size
   weight?: weight
 }
