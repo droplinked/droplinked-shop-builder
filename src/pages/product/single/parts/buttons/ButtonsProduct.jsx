@@ -42,7 +42,7 @@ function ButtonsProduct() {
                     isLoading={productID ? update.isLoading || updateSku.isLoading : create.isLoading}
                     onClick={submit}
                 >
-                    {productID ? "Update" : "Save"}
+                    Publish
                 </BasicButton>
             </Box>
         </HStack>
