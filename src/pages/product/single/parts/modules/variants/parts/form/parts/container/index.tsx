@@ -1,6 +1,5 @@
-import { Box, HStack, Select, Text, VStack } from '@chakra-ui/react'
+import { Box, HStack, Text, VStack } from '@chakra-ui/react'
 import React, { useContext, useMemo } from 'react'
-import classes from './style.module.scss'
 import TextBoxVariantForm from './parts/textbox/textBoxVariantForm'
 import variontFormContext from '../../context'
 import ErrorLabel from 'components/shared/form/errorLabel/errorLabel'
@@ -19,10 +18,9 @@ function VariantMakeForm({ caption, property }) {
                             name={caption}
                             onChange={(e) => form.setFieldValue(caption, e.target.value)}
                             value={form.values[caption]}
-                            placeholder='Select option'
                             style={{ backgroundColor: "#1c1c1c" }}
-                            
-                            items={property.items.map(el => ({
+                            {...!form.values[caption] && { placeholder: "Select Property" }}
+                            items={property.items.map((el: any) => ({
                                 value: el.value,
                                 caption: el.value
                             }))}
@@ -37,13 +35,13 @@ function VariantMakeForm({ caption, property }) {
 
         switch (caption) {
             case "Price":
-                return <TextBoxVariantForm placeholder="Price" field={"price"} />
+                return <TextBoxVariantForm field={"price"} />
 
             case "Quantity":
-                return <TextBoxVariantForm placeholder="Quantity" field={"quantity"} />
+                return <TextBoxVariantForm field={"quantity"} />
 
             case "External ID":
-                return <TextBoxVariantForm placeholder="External ID" field={"externalID"} />
+                return <TextBoxVariantForm field={"externalID"} />
 
             case "Delivery boxing":
                 return (
@@ -55,14 +53,13 @@ function VariantMakeForm({ caption, property }) {
                                 borderRadius="8px"
                                 justifyContent="space-between"
                                 alignItems="center"
-                                spa
                             >
-                                <TextBoxVariantForm placeholder="Length" tiny field={"length"} />
-                                <TextBoxVariantForm placeholder="Height" tiny field={"height"} />
-                                <TextBoxVariantForm placeholder="Width" tiny field={"width"} />
-                                <TextBoxVariantForm placeholder="Weight" tiny field={"weight"} />
+                                <TextBoxVariantForm tiny field={"length"} />
+                                <TextBoxVariantForm tiny field={"height"} />
+                                <TextBoxVariantForm tiny field={"width"} />
+                                <TextBoxVariantForm tiny field={"weight"} />
                             </HStack>
-                            <Text ml="12px" fontSize="14px" fontWeight="500" tiny color="darkGray">
+                            <Text ml="12px" fontSize="14px" fontWeight="500" color="darkGray">
                                 inch/oz
                             </Text>
                         </HStack>

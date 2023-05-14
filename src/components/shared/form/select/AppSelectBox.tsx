@@ -1,10 +1,10 @@
 import { SelectProps, Select, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/shared/skeleton/AppSkeleton'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from 'react'
 import ErrorLabel from '../errorLabel/errorLabel'
 import FieldLabel from '../fieldLabel/FieldLabel'
 import FormModel, { IAppForm } from '../FormModel'
+import classes from './style.module.scss'
 
 interface IAppSelectBoxItems {
     value: string | number | null
@@ -16,11 +16,10 @@ type combine = IAppForm & SelectProps
 
 interface Iprops extends combine {
     items: Array<IAppSelectBoxItems>
-    optionDefault?: string
 }
 
 function AppSelectBox(props: Iprops) {
-    const { error, name, label, items, loading, optionDefault } = props
+    const { error, label, items, loading } = props
 
     return (
         <VStack align={"stretch"} width="100%" spacing={1}>
@@ -29,14 +28,13 @@ function AppSelectBox(props: Iprops) {
                 <Select
                     style={{ boxShadow: "unset" }}
                     isInvalid={error ? true : false}
-                    placeholder={capitalizeFirstLetter(name)}
                     {...FormModel.styleProps()}
                     size="lg"
                     iconSize={"30px"}
                     padding={0}
+                    className={classes.selectbox}
                     {...props}
                 >
-                    {optionDefault && <option value={""} disabled selected>{optionDefault}</option>}
                     {items.map((e, key) => (
                         <option key={key} {...e}>{e.caption}</option>
                     ))}

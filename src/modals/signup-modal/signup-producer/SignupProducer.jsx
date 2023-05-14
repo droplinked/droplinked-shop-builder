@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
-import { Stack } from "@chakra-ui/react";
+import { useState, useContext, useCallback } from "react";
+import { Box, Stack } from "@chakra-ui/react";
 import { toastValue } from "../../../context/toastify/ToastContext";
 import { BottomText } from "../SignupModal-style";
 import { useApi } from "../../../hooks/useApi/useApi";
@@ -9,12 +9,23 @@ import { postUserSignup } from "lib/apis/userApiService";
 import AppInput from "components/shared/form/textbox/AppInput";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import AppIcons from "assest/icon/Appicons";
+import ShowPassword from "./parts/showPassword/ShowPassword";
 
 export default function SignupProducer({ close, shopname, switchToggle }) {
   const { successToast, errorToast } = useContext(toastValue);
-  const [loading, setLoading] = useState(false);
+  const [States, setStates] = useState({
+    loading: false,
+    show: {
+      password: false,
+      repassword: false
+    }
+  })
   const { postApi } = useApi();
   let navigate = useNavigate();
+
+  const setLoading = useCallback((value) => setStates(prev => ({ ...prev, loading: value })), [])
+  const toggleShowField = useCallback((field) => setStates(prev => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), [])
 
   const onSubmit = async (data) => {
     const { email, password, username } = data
@@ -65,23 +76,29 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
               onChange={(e) => setFieldValue("email", e.target.value)}
               value={values.email}
             />
-            <AppInput
-              type="password"
-              name="password"
-              error={errors.password}
-              onChange={(e) => setFieldValue("password", e.target.value)}
-              value={values.password}
-            />
-            <AppInput
-              type="password"
-              placeholder="Confirm password"
-              name="repassword"
-              error={errors.repassword}
-              onChange={(e) => setFieldValue("repassword", e.target.value)}
-              value={values.repassword}
-            />
+            <Box position={"relative"}>
+              <AppInput
+                type={States.show.password ? "text" : "password"}
+                name="password"
+                error={errors.password}
+                onChange={(e) => setFieldValue("password", e.target.value)}
+                value={values.password}
+              />
+              <ShowPassword showed={States.show.password} onClick={() => toggleShowField("password")} />
+            </Box>
+            <Box position={"relative"}>
+              <AppInput
+                type={States.show.repassword ? "text" : "password"}
+                placeholder="Confirm password"
+                name="repassword"
+                error={errors.repassword}
+                onChange={(e) => setFieldValue("repassword", e.target.value)}
+                value={values.repassword}
+              />
+              <ShowPassword showed={States.show.repassword} onClick={() => toggleShowField("repassword")} />
+            </Box>
 
-            <BasicButton type="submit" isDisabled={loading}>
+            <BasicButton type="submit" isDisabled={States.loading}>
               Sign up
             </BasicButton>
 

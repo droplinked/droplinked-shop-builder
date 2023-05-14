@@ -14,7 +14,7 @@ const HeaderTitleComponent = () => {
   return (
     <AppInput
       label="Header title"
-      placeHolder="Write a catchy title for the header"
+      placeholder="Write a catchy title for the header"
       isRequired
       onChange={(e) => {
         updateState("backgroundText", e.target.value);

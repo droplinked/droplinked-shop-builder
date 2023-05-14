@@ -15,8 +15,11 @@ export default class FormModel {
             backgroundColor: "#141414",
             padding: "22px 17px",
             fontSize: "14px",
-            fontWeight:"bold",
+            fontWeight: "bold",
             color: "#808080",
+            _placeholder: {
+                color: "#808080"
+            },
             _focus: {
                 borderColor: "none"
             },

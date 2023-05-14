@@ -9,7 +9,7 @@ import { Formik, Form } from 'formik';
 import variontFormContext from './context';
 
 function SkuForm({ close, update }) {
-    const { state: { properties, sku }, methods: { updateState }, productID } = useContext(productContext)
+    const { state: { properties, sku }, methods: { updateState } } = useContext(productContext)
     const { makeDataService, duplicateCheck, findKeySku, initialFormik } = VariantsFormModel
     const staticFields = ["Price", "Quantity", "External ID", "Delivery boxing"]
 

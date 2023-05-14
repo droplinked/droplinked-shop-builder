@@ -70,7 +70,7 @@ function Ims(props) {
                                     <BasicButton onClick={() => {
                                         if (!RadioGroupValue.length) return errorToast("Please choose type")
                                         onOpen()
-                                    }} sizes='small'>Save</BasicButton>
+                                    }} sizes='medium'>Save</BasicButton>
                                 </Box>
                             </VStack>
                         </RadioGroup>
