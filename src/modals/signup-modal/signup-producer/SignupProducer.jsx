@@ -11,6 +11,8 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import AppIcons from "assest/icon/Appicons";
 import ShowPassword from "./parts/showPassword/ShowPassword";
+import AppErrors from "lib/utils/statics/errors/errors";
+import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
 
 export default function SignupProducer({ close, shopname, switchToggle }) {
   const { successToast, errorToast } = useContext(toastValue);
@@ -42,10 +44,10 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
   };
 
   const formSchema = Yup.object().shape({
-    username: Yup.string().matches(/^[A-Za-z0-9_]*$/, "Username can contain letters (a-z), numbers (0-9) and underscores.").required('Required'),
-    email: Yup.string().email('Invalid email').required('Required'),
-    password: Yup.string().min(8, "Your password must be at least 8 characters.").required('Required'),
-    repassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required')
+    username: Yup.string().matches(usernameRegex, "Username can contain letters (a-z), numbers (0-9) and underscores.").required('Required'),
+    email: Yup.string().email(AppErrors.signin.invalid_email_address).required('Required'),
+    password: Yup.string().matches(passwordRegex, AppErrors.signup.password_requirements_not_met).required('Required'),
+    repassword: Yup.string().oneOf([Yup.ref('password'), null], AppErrors.signup.when_the_password_and_confirmed).required('Required')
   });
 
   return (
