@@ -28,7 +28,7 @@ const ColorInputsComponent = () => {
         />
       </Box>
 
-      <Box w="50%">
+      {/* <Box w="50%">
         <InputColor
           value={backgroundColor}
           change={(value) => {
@@ -36,7 +36,7 @@ const ColorInputsComponent = () => {
           }}
           label="Color background"
         />
-      </Box>
+      </Box> */}
     </Flex>
   );
 };
