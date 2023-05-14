@@ -18,8 +18,9 @@ import { useToasty } from "../../../../../../context/toastify/ToastContext";
 import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
 import AppTypography from "components/shared/typography/AppTypography";
 import FieldLabel from "components/shared/form/fieldLabel/FieldLabel";
+import AppErrors from "lib/utils/statics/errors/errors";
 
-const InputImage = ({ label, placeHolder, change, value }) => {
+const InputImage = ({ label, placeHolder, change, value, maxSize }) => {
   const [loading, setLoading] = useState(false);
 
 
@@ -28,11 +29,8 @@ const InputImage = ({ label, placeHolder, change, value }) => {
 
   const changeImage = (e) => {
     const file = e.target.files[0];
-
-    // if (file.size > 500000) {
-    //   errorToast("File size exceeded (max: 500 kb)");
-    //   return;
-    // }
+    const maxFileSizeInBytes = 5 * 1024 * 1024; // 5 MB in bytes
+    if (maxSize && file.size > maxSize) return errorToast(AppErrors.store.size_limit);
     if (
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
@@ -94,6 +92,7 @@ const InputImage = ({ label, placeHolder, change, value }) => {
           borderRadius="8px"
           cursor="pointer"
           onClick={openFile}
+          padding={6}
         >
           {loading ? (
             <Box p="30px">

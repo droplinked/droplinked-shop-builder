@@ -15,6 +15,7 @@ import { appDeveloment } from "lib/utils/app/variable";
 import AppInput from "components/shared/form/textbox/AppInput";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import AppErrors from "lib/utils/statics/errors/errors";
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   // state for disable buttons
@@ -38,9 +39,9 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
   // action on user data based on type and status
   const loginFunction = (data) => {
-    
+
     // check customer
-    if(data.user.type !== "PRODUCER") return errorToast("This account cant login");
+    if (data.user.type !== "PRODUCER") return errorToast("This account cant login");
 
     //first close modal
     close();
@@ -91,7 +92,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   };
 
   const formSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Required'),
+    email: Yup.string().email(AppErrors.signin.invalid_email_address).required('Required'),
     password: Yup.string().required('Required'),
   });
 

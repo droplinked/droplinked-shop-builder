@@ -36,7 +36,9 @@ function ContainerPayment({ title, value, locked }) {
               {locked ? (
                 <>
                   <Box><Image src={MetaMask} w="16px" h="16px" /></Box>
-                  <Box position={"relative"} top={.9}><Text fontSize="sm" color="lightGray">{value}</Text></Box>
+                  <Box position={"relative"} top={.9}>
+                    <input type="text" className={classes.textbox} value={value} readOnly />
+                  </Box>
                   <Box onClick={() => updatePayments("isActive", false)} cursor={"pointer"}><Image src={editIcon} w="16px" h="16px" /></Box>
                 </>
               ) : (

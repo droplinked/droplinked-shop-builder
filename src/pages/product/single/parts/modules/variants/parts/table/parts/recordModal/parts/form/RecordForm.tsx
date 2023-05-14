@@ -110,6 +110,7 @@ function RecordForm({ close, open, product }: Iprops) {
                                     <AppSelectBox
                                         items={[{ value: "CASPER", caption: "Casper" }]}
                                         name="blockchain"
+                                        placeholder='Select blockchain'
                                         error={errors.blockchain}
                                         onChange={(e) => setFieldValue("blockchain", e.target.value)}
                                         value={values.blockchain}
