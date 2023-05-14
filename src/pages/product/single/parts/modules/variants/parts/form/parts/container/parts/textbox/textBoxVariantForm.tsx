@@ -7,7 +7,7 @@ import AppInput from 'components/shared/form/textbox/AppInput'
 
 interface Iprops {
     field: string
-    tiny: boolean
+    tiny?: boolean
 }
 
 function TextBoxVariantForm(props: Iprops) {

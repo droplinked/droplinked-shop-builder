@@ -1,0 +1,14 @@
+@import "assest/style/colors";
+
+.icon {
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    &.active {
+        path {
+            fill: $primary
+        }
+    }
+}

@@ -1,10 +1,9 @@
 import { useMemo } from "react";
-import { Tooltip } from "@chakra-ui/react";
+import { Box, Tooltip } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
-//
-import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "hooks/useProfile/useProfile";
-import { IconComponent, IconWrapper } from "../../SidebarLayout-style";
+import { IconWrapper } from "../../SidebarLayout-style";
+import classes from './style.module.scss'
 
 const OptionComponent = ({ icon, label, path }) => {
   const location = useLocation();
@@ -29,11 +28,12 @@ const OptionComponent = ({ icon, label, path }) => {
             borderColor: "primary",
           }}
         >
-          <IconComponent
-            style={isActive ? {filter: "contrast(160%)"} : {}}
+          <Box className={`${classes.icon} ${isActive ? classes.active : ""}`}>{icon}</Box>
+          {/* <IconComponent
+            style={isActive ? { filter: "contrast(160%)" } : {}}
             src={icon}
             cursor={label === "informations" ? "not-allowed" : "pointer"}
-          />
+          /> */}
         </IconWrapper>
       </Link>
     </Tooltip>
