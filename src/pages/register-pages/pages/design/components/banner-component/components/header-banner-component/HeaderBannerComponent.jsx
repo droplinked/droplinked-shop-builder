@@ -14,6 +14,8 @@ import { useState, useRef } from "react";
 import { useToasty } from "context/toastify/ToastContext";
 import AppTypography from "components/shared/typography/AppTypography";
 import FieldLabel from "components/shared/form/fieldLabel/FieldLabel";
+import { toMb } from "lib/utils/heper/helpers";
+import AppErrors from "lib/utils/statics/errors/errors";
 
 const HeaderBannerComponent = ({ addNewImage }) => {
   const [loading, setLoading] = useState(false);
@@ -32,10 +34,10 @@ const HeaderBannerComponent = ({ addNewImage }) => {
   const changeImage = (e) => {
     const file = e.target.files[0];
 
-    // if (file.size > 500000) {
-    //   errorToast("File size exceeded (max: 500 kb)");
-    //   return;
-    // }
+    if (file.size > toMb({ value: 5 })) {
+      errorToast(AppErrors.store.header_banner_size_limit);
+      return;
+    }
     if (
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
@@ -44,7 +46,7 @@ const HeaderBannerComponent = ({ addNewImage }) => {
       file.type !== "image/svg+xml" &&
       file.type !== "image/jpg"
     ) {
-      errorToast("File type not supported");
+      errorToast(AppErrors.product.product_image_type_not_supported);
       return;
     }
 

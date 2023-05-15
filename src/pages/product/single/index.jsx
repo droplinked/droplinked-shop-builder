@@ -8,11 +8,13 @@ import { productByIdServices } from 'lib/apis/product/productServices'
 import ProductSingleModel from './model/model'
 import General from './parts/general/General'
 import Variant from './parts/variant/Variant'
+import { useProfile } from 'hooks/useProfile/useProfile'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params) => productByIdServices(params))
     const params = useParams()
     const [State, setState] = useState(initialStatesProduct)
+    const { shop } = useProfile()
     const { refactorData } = ProductSingleModel
     const productId = params?.productId
 
@@ -26,7 +28,8 @@ function ProductSingle() {
         return new Promise((resolve, reject) => {
             mutate(
                 {
-                    productID: params?.productId
+                    productID: params?.productId,
+                    shopname: shop.name
                 },
                 {
                     onSuccess: (res) => res.data.statusCode === 200 && res.data?.data ? resolve(refactorData(res.data.data)) : reject("Cant find this product"),

@@ -10,7 +10,7 @@ import tearIcon from "../../../../../assest/icon/tear-icon.svg";
 const AddProductComponent = () => {
   const { shopNavigate } = useCustomNavigate();
 
-  const navigateToAddProductPage = () => shopNavigate(`add-product`);
+  const navigateToAddProductPage = () => shopNavigate(`products/create`);
 
   return (
     <Flex

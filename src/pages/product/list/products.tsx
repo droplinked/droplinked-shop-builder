@@ -35,7 +35,7 @@ function Products() {
             buttons={[
                 {
                     caption: "Add Product",
-                    to: `/${shop.name}/c/add-product`
+                    to: `/${shop.name}/c/products/create`
                 }
             ]}
             rows={States.rows}

@@ -7,6 +7,7 @@ import DescriptionProduct from '../modules/description/DescriptionProduct'
 import ProductImages from '../modules/images/ProductImages'
 import ShippingProduct from '../modules/shipping/ShippingProduct'
 import AppCard from 'components/shared/card/AppCard'
+
 function General() {
     return (
         <AppCard mini>

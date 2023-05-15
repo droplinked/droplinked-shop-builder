@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import { useMutation } from 'react-query'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
 import { productCreateServices, productUpdateServices, skuUpdateByIdServices } from 'lib/apis/product/productServices'
+import AppErrors from 'lib/utils/statics/errors/errors'
 
 function ButtonsProduct() {
     const create = useMutation((params) => productCreateServices(params))
@@ -23,7 +24,7 @@ function ButtonsProduct() {
             await query(productID ? { productID, params: state } : state)
             if (productID) await updateSkues(state.sku) // Update skues
 
-            toast.success(`Product ${productID ? "update" : "created"} success`)
+            toast.success(AppErrors.product.your_product_added_successfully)
             shopNavigate("products")
         } catch (error) {
             toast.error(error.errors ? error.errors[0] : "Somthing wrong")

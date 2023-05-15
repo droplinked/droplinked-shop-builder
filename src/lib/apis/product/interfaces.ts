@@ -52,6 +52,7 @@ export interface Isku {
 
 export interface IproductByIdServices {
     productID: string
+    shopname: string
 }
 
 export interface IproductDeleteServices {

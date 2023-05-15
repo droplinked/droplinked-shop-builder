@@ -19,7 +19,7 @@ const PageHeader = ({ searchValue, setSearchValue }) => {
   const { shopNavigate } = useCustomNavigate();
   const { shop } = useProfile();
 
-  const navigateToAddProductPage = () => shopNavigate(`add-product`);
+  const navigateToAddProductPage = () => shopNavigate(`products/create`);
 
   return (
     <Flex w="100%" justifyContent="space-between" alignItems="center" mb="24px">

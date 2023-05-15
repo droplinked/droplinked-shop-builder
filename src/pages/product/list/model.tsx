@@ -23,7 +23,7 @@ export default class ProductListModel {
             },
             controls: {
                 caption: "",
-                value: <ControlsListProduct productID={el._id} fetch={fetch} />
+                value: <ControlsListProduct product={el} productID={el._id} fetch={fetch} />
             }
         }))
     }

@@ -12,7 +12,7 @@ function ProductEmpty() {
             <EmptyTable
                 add={{
                     caption: "New product",
-                    onClick: () => shopNavigate("add-product")
+                    onClick: () => shopNavigate("products/create")
                 }}
                 list={[
                     {

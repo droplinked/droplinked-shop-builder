@@ -1,7 +1,5 @@
 import axios from "axios";
-
-import { useRef, useState, useMemo } from "react";
-
+import { useRef, useState } from "react";
 import {
   FormControl,
   FormLabel,
@@ -13,24 +11,30 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useToasty } from "../../../../../../context/toastify/ToastContext";
-
-
 import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
 import AppTypography from "components/shared/typography/AppTypography";
 import FieldLabel from "components/shared/form/fieldLabel/FieldLabel";
 import AppErrors from "lib/utils/statics/errors/errors";
+import React from "react";
+import { Isize_limit } from "lib/utils/statics/errors/modules/store";
+import { toMb } from "lib/utils/heper/helpers";
 
-const InputImage = ({ label, placeHolder, change, value, maxSize }) => {
+interface IProps {
+  label?: string
+  placeHolder?: string
+  change: Function
+  value?: string
+  maxSize?: Isize_limit
+}
+
+const InputImage = ({ label, placeHolder, change, value, maxSize }: IProps) => {
   const [loading, setLoading] = useState(false);
-
-
   const fileRef = useRef(null);
   const { successToast, errorToast } = useToasty();
 
-  const changeImage = (e) => {
+  const changeImage = (e: any) => {
     const file = e.target.files[0];
-    const maxFileSizeInBytes = 5 * 1024 * 1024; // 5 MB in bytes
-    if (maxSize && file.size > maxSize) return errorToast(AppErrors.store.size_limit);
+    if (maxSize && file.size > toMb({ value: parseInt(maxSize.size) })) return errorToast(AppErrors.store.size_limit({ fieldName: maxSize.fieldName, size: `${maxSize.size}MB` }));
     if (
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
@@ -38,7 +42,7 @@ const InputImage = ({ label, placeHolder, change, value, maxSize }) => {
       file.type !== "image/svg+xml" &&
       file.type !== "image/jpg"
     ) {
-      errorToast("File type not supported");
+      errorToast(AppErrors.product.product_image_type_not_supported);
       return;
     }
 
@@ -66,7 +70,7 @@ const InputImage = ({ label, placeHolder, change, value, maxSize }) => {
   return (
     <FormControl isRequired w="100%">
       <FieldLabel isRequired label={label} color={"#C2C2C2"} />
-      <AppTypography fontSize="14px" color="#808080" margin={"5px 0"}>{placeHolder}</AppTypography>
+      <AppTypography size="14px" color="#808080" margin={"5px 0"}>{placeHolder}</AppTypography>
 
       {value ? (
         <Flex

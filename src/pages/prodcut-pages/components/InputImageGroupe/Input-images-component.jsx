@@ -13,6 +13,7 @@ import {
 import dltImg from "assest/icon/icons8-multiply-100.png";
 import uploadImage from "assest/icon/upload-icon.svg";
 import LoadingComponent from "components/shared/loading-component/LoadingComponent";
+import AppErrors from "lib/utils/statics/errors/errors";
 
 export default function InputImagesGroup({ setState, state }) {
   const [loading, setLoading] = useState(false);
@@ -27,7 +28,7 @@ export default function InputImagesGroup({ setState, state }) {
   const changeImage = (e) => {
     const file = e.target.files[0];
     if (file.size > 500000) {
-      errorToast("File size exceeded (Max: 500 kb)");
+      errorToast(AppErrors.store.size_limit({ fieldName: "Product", size: "5MB" }));
       setLoading(false);
       return;
     }
@@ -37,7 +38,7 @@ export default function InputImagesGroup({ setState, state }) {
       file.type !== "image/gif" &&
       file.type !== "image/jpg"
     ) {
-      errorToast("File type not supported");
+      errorToast(AppErrors.product.product_image_type_not_supported);
       setLoading(false);
       return;
     }
