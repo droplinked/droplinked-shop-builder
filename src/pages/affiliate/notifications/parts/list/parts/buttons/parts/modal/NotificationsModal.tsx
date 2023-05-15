@@ -28,14 +28,14 @@ function NotificationsModal({ close, open, status, approveClick, loading }: Ipro
                     children: "Cancel",
                     onClick: () => close(),
                     buttonProps: {
-                        cancelType: true
+                        variant: "outline"
                     }
                 },
                 {
                     children: capitalizeFirstLetter(status),
                     onClick: approveClick,
                     buttonProps: {
-                        loading: loading
+                        isLoading: loading
                     }
                 }
             ]}

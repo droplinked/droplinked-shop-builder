@@ -1,3 +1,4 @@
+import collectionErrors from "./modules/collection";
 import productErrors from "./modules/product";
 import signinErrors from "./modules/signin";
 import signupErrors from "./modules/signup";
@@ -8,6 +9,7 @@ const AppErrors = {
     signin: signinErrors,
     store: storeErrors,
     product: productErrors,
+    collection: collectionErrors,
 }
 
 export default AppErrors

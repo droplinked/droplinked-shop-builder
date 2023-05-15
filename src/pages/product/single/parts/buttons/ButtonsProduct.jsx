@@ -24,7 +24,7 @@ function ButtonsProduct() {
             await query(productID ? { productID, params: state } : state)
             if (productID) await updateSkues(state.sku) // Update skues
 
-            toast.success(AppErrors.product.your_product_added_successfully)
+            toast.success(AppErrors.product.your_product_published)
             shopNavigate("products")
         } catch (error) {
             toast.error(error.errors ? error.errors[0] : "Somthing wrong")

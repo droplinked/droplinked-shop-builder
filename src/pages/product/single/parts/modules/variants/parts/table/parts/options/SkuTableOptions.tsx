@@ -10,6 +10,7 @@ import deleteIcon from "assest/icon/delete-icon.svg";
 import { toast } from 'react-toastify'
 import { Isku } from 'lib/apis/product/interfaces'
 import introductionClass from 'pages/product/single/parts/general/model'
+import AppErrors from 'lib/utils/statics/errors/errors'
 
 interface IProps {
     element: Isku
@@ -28,7 +29,7 @@ function SkuTableOptions({ element, elementKey, updateSku, modals: { editModal, 
     const DeleteSku = useCallback((key: number) => {
         const remove = state.sku.filter((el, index) => index !== key && el)
         updateState("sku", remove)
-        toast.info("Skue delete")
+        toast.info(AppErrors.product.variant_has_been_deleted)
     }, [state.sku])
 
     // make data for "Record Modal"

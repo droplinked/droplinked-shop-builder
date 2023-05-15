@@ -8,7 +8,7 @@ function ImageListProduct({ product }) {
     const { shop } = useProfile()
 
     return (
-        <Link to={`/${shop.name}/c/product/${product._id}`}>
+        <Link to={`/${shop.name}/c/products/${product._id}`}>
             <HStack width={"250px"} color="#FFF">
                 <Box width={"50px"}><AppImage src={product.media && product.media[0].url} /></Box>
                 <Box><Text>{product.title}</Text></Box>

@@ -12,19 +12,20 @@ function DeleteModalCollection({ open, close, collectionID, onSuccess }) {
         <AppDialog
             open={open}
             close={() => { }}
-            title="Sure delete collection ?"
+            title="Confirm Collection Deletion"
+            text={"Are you sure you want to delete this collection? You will no longer have access to this collection."}
             buttons={[
                 {
                     children: "Cancel",
                     onClick: () => close(),
                     buttonProps: {
-                        cancelType: true
+                        variant: "outline"
                     }
                 },
                 {
-                    children: "Yes i sure",
+                    children: "Delete Collection",
                     buttonProps: {
-                        loading: isLoading
+                        isLoading: isLoading
                     },
                     onClick: () => {
                         mutate({ collectionID }, {

@@ -21,7 +21,7 @@ import CollectionComponent from "./components/collection-component/CollectionCom
 import LoadingComponent from "components/shared/loading-component/LoadingComponent";
 import PageHeader from "./components/page-header/PageHeader";
 import AppCard from "components/shared/card/AppCard";
-import { getCollectionPublicByShopName } from "lib/apis/collectionApiService";
+import { getCollectionPublicByShopName, getUsersCollections } from "lib/apis/collectionApiService";
 
 export default function CollectionsPage() {
   const [searchValue, setSearchValue] = useState("");
@@ -36,7 +36,7 @@ export default function CollectionsPage() {
   if (token == null) navigate("/");
 
   const getAllCollections = async () => {
-    let result = await getApi(getCollectionPublicByShopName(shop.name));
+    let result = await getApi(getUsersCollections());
     if (result) setCollections(result);
   };
 
