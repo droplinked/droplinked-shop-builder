@@ -6,6 +6,8 @@ import { postCreateCollection, putUpdateCollection } from "lib/apis/collectionAp
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
 import BasicButton from "../../components/shared/BasicButton/BasicButton";
+import AppInput from "components/shared/form/textbox/AppInput";
+import AppErrors from "lib/utils/statics/errors/errors";
 
 const CollectionModal = ({ show, collection, close, update }) => {
   const [collectionName, setCollectionName] = useState(() => {
@@ -38,8 +40,10 @@ const CollectionModal = ({ show, collection, close, update }) => {
       );
 
     if (result) {
+      setError(false)
+      setCollectionName(null)
       if (isNewCollection) successToast("New collection added successfully");
-      else successToast("Collection updated successfully");
+      else successToast(AppErrors.collection.update_Collection_name);
       update();
     }
 
@@ -60,14 +64,14 @@ const CollectionModal = ({ show, collection, close, update }) => {
       <Flex flexDir="column" w="100%" margin="0px auto">
         {/* content */}
         <Box mt="20px"></Box>
-        <InputFieldComponent
-          isRequired
-          showError={error}
-          name="Collection name"
-          label={"Collection name"}
+        <AppInput
+          name="name"
           value={collectionName}
-          change={changeName}
+          onChange={changeName}
+          isRequired
+          label={"Collection name"}
           placeholder={"Collection name"}
+          error={error && AppErrors.collection.collection_name_doesnt_fill_out}
         />
 
         {/* content */}

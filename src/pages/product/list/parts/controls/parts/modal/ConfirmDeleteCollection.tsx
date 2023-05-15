@@ -18,7 +18,7 @@ function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
         <AppDialog
             open={open}
             close={() => { }}
-            title="Sure delete Collection ?"
+            title="Confirm Product Deletion ?"
             buttons={[
                 {
                     children: "Cancel",
@@ -28,12 +28,12 @@ function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
                     }
                 },
                 {
-                    children: "Yes i sure",
+                    children: "Delete Product",
                     buttonProps: { isLoading },
                     onClick: () => {
                         mutate({ productID }, {
                             onSuccess: () => {
-                                toast.success("Delete Collection")
+                                toast.success("Delete product")
                                 fetch()
                                 close()
                             },

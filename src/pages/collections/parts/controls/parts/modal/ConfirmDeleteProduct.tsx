@@ -18,7 +18,8 @@ function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
         <AppDialog
             open={open}
             close={() => { }}
-            title="Sure delete Product ?"
+            title="Confirm Collection Deletion"
+            text={"Are you sure you want to delete this collection? You will no longer have access to this collection."}
             buttons={[
                 {
                     children: "Cancel",
@@ -28,7 +29,7 @@ function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
                     }
                 },
                 {
-                    children: "Yes i sure",
+                    children: "Delete Collection",
                     buttonProps: { isLoading },
                     onClick: () => {
                         mutate({ productID }, {

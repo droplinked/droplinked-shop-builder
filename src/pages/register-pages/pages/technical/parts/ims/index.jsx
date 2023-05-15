@@ -92,7 +92,7 @@ function Ims(props) {
                         children: "Cancel",
                         onClick: () => setRadioGroup(''),
                         buttonProps: {
-                            cancelType: true
+                            variant: "outline"
                         }
                     },
                     {
