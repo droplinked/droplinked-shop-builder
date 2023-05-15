@@ -1,4 +1,5 @@
 import { Flex } from "@chakra-ui/react";
+import { toMb } from "lib/utils/heper/helpers";
 import { useContext } from "react";
 //
 import { designContext } from "../../design-context";
@@ -23,6 +24,10 @@ const IconsComponent = () => {
         placeHolder="This image will display on the left side of the store page."
         value={logo}
         change={(value) => updateState("logo", value)}
+        maxSize={{
+          fieldName: "Size",
+          size: 5
+        }}
       />
 
       <InputImage

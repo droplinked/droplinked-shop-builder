@@ -114,9 +114,11 @@ function App() {
                 <Route path="design" element={<DesignPage />} />
                 <Route path="technical" element={<TechnicalPage />} />
               </Route>
-              <Route path="products" element={<Products />} />
-              <Route path="add-product" element={<ProductSingle />} />
-              <Route path="product/:productId" element={<ProductSingle />} />
+              <Route path="products">
+                <Route index element={<Products />} />
+                <Route path="create" element={<ProductSingle />} />
+                <Route path=":productId" element={<ProductSingle />} />
+              </Route>
               <Route path="collections" element={<CollectionMainPage />} />
               <Route path="add-collection" element={<AddCollectionPage />} />
               <Route path="orders" element={<OrderPage />} />

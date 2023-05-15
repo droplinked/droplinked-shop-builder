@@ -27,6 +27,16 @@ export default function BasicButton(props: IBasicButton) {
         bgColor: "button",
         color: "offText",
         borderColor: "#363636",
+        _active: {
+          background: "#363636"
+        },
+        _hover: {
+          background: "#363636",
+          border: "unset"
+        }
+      }}
+      _active={{
+        background: "unset"
       }}
       {...props}
     >

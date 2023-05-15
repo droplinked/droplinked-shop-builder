@@ -19,6 +19,8 @@ import BasicButton from "components/shared/BasicButton/BasicButton";
 import AppCard from "components/shared/card/AppCard";
 import { putUpdateShop } from "lib/apis/shopApiService";
 import AppTypography from "components/shared/typography/AppTypography";
+import { toast } from "react-toastify";
+import AppErrors from "lib/utils/statics/errors/errors";
 
 const INITIAL_SHOP_CONTACT = {
   discordURL: "",
@@ -96,7 +98,10 @@ const ContactInfo = () => {
     setLoading(false);
 
     if (result) {
-      if (currentPath.includes("register")) shopNavigate(`products`);
+      if (currentPath.includes("register")) {
+        shopNavigate(`products`);
+        toast.success(AppErrors.store.when_user_publishes__store)
+      }
       successToast("Updated");
     }
   };

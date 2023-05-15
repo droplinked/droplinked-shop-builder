@@ -4,7 +4,7 @@ import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { useDisclosure } from '@chakra-ui/react';
 import ConfirmDeleteProduct from './parts/modal/ConfirmDeleteCollection';
 
-function ControlsListProduct({ productID, fetch }) {
+function ControlsListProduct({ productID, product, fetch }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { shopNavigate } = useCustomNavigate()
     return (
@@ -12,7 +12,7 @@ function ControlsListProduct({ productID, fetch }) {
             <PopOverMenu items={[
                 {
                     caption: "Edit",
-                    onClick: () => shopNavigate(`product/${productID}`)
+                    onClick: () => shopNavigate(`products/${productID}`)
                 },
                 {
                     caption: "Delete",

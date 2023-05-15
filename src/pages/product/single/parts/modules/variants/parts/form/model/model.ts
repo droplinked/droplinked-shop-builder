@@ -1,6 +1,7 @@
 import dataFactoryModule from './modules/dataFactory';
 import { IrecordData, Isku } from 'lib/apis/product/interfaces';
 import SkuFormValidationModule from './modules/validation';
+import AppErrors from 'lib/utils/statics/errors/errors';
 
 export interface ImakeDataService {
     _id?: string
@@ -72,7 +73,7 @@ class VariantsFormModel {
             if (!check) {
                 resolve(true)
             } else {
-                reject("This sku exist")
+                reject(AppErrors.product.there_is_the_same_sku)
             }
         })
     }

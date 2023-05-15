@@ -4,6 +4,7 @@ import { InputGroup } from 'react-bootstrap'
 import variontFormContext from '../../../../context'
 import ErrorLabel from 'components/shared/form/errorLabel/errorLabel'
 import AppInput from 'components/shared/form/textbox/AppInput'
+import AppTypography from 'components/shared/typography/AppTypography'
 
 interface Iprops {
     field: string
@@ -36,15 +37,14 @@ function TextBoxVariantForm(props: Iprops) {
 
     return (
         <VStack align={"stretch"}>
-            <Box>
-                {field === "Price" ? (
-                    <InputGroup>
+            <Box position={"relative"}>
+                {field === "price" ? (
+                    <>
                         {textbox}
-                        <InputRightElement h="100%" width="10%" children={
-                            <Flex px={6} align="center" h="100%" borderLeft="1px solid" borderColor="line" color="lightGray">ETH</Flex>
-                        }
-                        />
-                    </InputGroup>
+                        <Flex position={"absolute"} top={0} bottom={0} margin="auto" right={0} height="90%" borderLeft="1px solid" padding={"15px 15px 10px 15px"} borderColor="line" alignItems={"center"}>
+                            <AppTypography size='14px'>USD</AppTypography>
+                        </Flex>
+                    </>
                 ) : textbox}
             </Box>
             {form.errors[field] && !tiny ? <Box><ErrorLabel message={form.errors[field]} /> </Box> : null}

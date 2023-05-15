@@ -1,4 +1,5 @@
 import { IproductState } from 'lib/apis/product/interfaces'
+import AppErrors from 'lib/utils/statics/errors/errors'
 import { object, string, array, number } from 'yup'
 
 export default class ButtonsProductClass {
@@ -7,9 +8,9 @@ export default class ButtonsProductClass {
             try {
                 const schema = object({
                     ...state.shippingType === "CUSTOM" && { shippingPrice: number().min(1, "Shipping Cost not valid").required("Shipping Cost is required") },
-                    sku: array().min(1, "Please enter variant").required(),
-                    media: array().min(1, "Please choose at least one image").required(),
-                    description: string().required(),
+                    sku: array().min(1, AppErrors.product.sku_not_added).required(),
+                    media: array().min(1, AppErrors.product.product_image_required).required(),
+                    description: string().max(250, AppErrors.product.product_description_too_long).required(),
                     title: string().required(),
                 })
 
