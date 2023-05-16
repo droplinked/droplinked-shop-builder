@@ -21,7 +21,7 @@ function CollectionsEmpty() {
                     },
                     {
                         icon: collectionIcon,
-                        label: "Categorize into collection(s)"
+                        label: "Categorize into a collection"
                     },
                     {
                         icon: tearIcon,

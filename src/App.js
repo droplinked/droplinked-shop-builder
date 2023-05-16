@@ -119,7 +119,7 @@ function App() {
                 <Route path="create" element={<ProductSingle />} />
                 <Route path=":productId" element={<ProductSingle />} />
               </Route>
-              <Route path="collections" element={<Collections />} />
+              <Route path="collections" element={<CollectionMainPage />} />
               <Route path="add-collection" element={<AddCollectionPage />} />
               <Route path="orders" element={<OrderPage />} />
               <Route path="rules" element={<Rules />} />
