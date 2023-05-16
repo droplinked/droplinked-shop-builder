@@ -19,7 +19,7 @@ function ShopProduct() {
   const shop = shopService.data?.data?.data ? shopService.data?.data?.data[0] : null
 
   // Get product
-  useEffect(() => mutate({ productID: params.productID, shopname: params.shopName }), [params.productID, params.shopName])
+  useEffect(() => mutate({ productID: params.productID }), [params.productID])
 
   // Get shop
   useEffect(() => shopService.mutate({ shopName: params.shopName }), [params.shopName])
