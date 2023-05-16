@@ -1,13 +1,11 @@
 import React from 'react'
 import PopOverMenu from 'components/shared/PopoverMenu/PopOverMenu'
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
-import { useMutation } from 'react-query';
-import { productDeleteServices } from 'lib/apis/product/productServices';
-import { IproductDeleteServices } from 'lib/apis/product/interfaces';
 import { useDisclosure } from '@chakra-ui/react';
-import ConfirmDeleteProduct from './parts/modal/ConfirmDeleteProduct';
+import ConfirmDeleteCollection from './parts/modal/ConfirmDeleteCollection';
+import RuleModal from 'modals/rule-modal/RuleModal';
 
-function ControlsListProduct({ productID, fetch }) {
+function ControlsListCollection({ collectionID, fetch }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { shopNavigate } = useCustomNavigate()
     return (
@@ -15,16 +13,21 @@ function ControlsListProduct({ productID, fetch }) {
             <PopOverMenu items={[
                 {
                     caption: "Edit",
-                    onClick: () => shopNavigate(`product/${productID}`)
+                    onClick: () => shopNavigate(`product/${collectionID}`)
+                },
+                {
+                    caption: "Ruleset",
+                    onClick: onOpen
                 },
                 {
                     caption: "Delete",
                     onClick: onOpen
                 }
             ]} />
-            <ConfirmDeleteProduct close={onClose} open={isOpen} productID={productID} fetch={fetch} />
+            <ConfirmDeleteCollection close={onClose} open={isOpen} collectionID={collectionID} fetch={fetch} />
+            {/* <RuleModal /> */}
         </>
     )
 }
 
-export default ControlsListProduct
+export default ControlsListCollection

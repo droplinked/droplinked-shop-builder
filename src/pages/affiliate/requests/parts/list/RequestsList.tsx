@@ -1,10 +1,12 @@
 import { Box, Flex, VStack } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
 import AppBadge from "components/shared/badge/AppBadge";
+import AppEmptyPage from "components/shared/empty/AppEmptyPage";
 import { publisherRequestService } from "lib/apis/affiliate/shopServices";
 import AffiliateDetailCard from "pages/affiliate/parts/detail/affiliateDetailCard";
 import React, { useEffect } from "react";
 import { useMutation } from "react-query";
+import RequestSkeleton from "../skeleton/RequestSkeleton";
 
 function RequestsList() {
   const { mutate, isLoading, data } = useMutation(() =>
@@ -15,39 +17,38 @@ function RequestsList() {
 
   return (
     <VStack align={"stretch"}>
-      {data?.data?.data
-        ? data?.data?.data.map((el, key) => (
-            <Flex
-              key={key}
-              justifyContent={"space-between"}
-              borderTop="1px solid #262626"
-              padding={"20px 0"}
-            >
-              <Box>
-                <AffiliateDetailCard
-                  image={el?.publisherShop[0].logo}
-                  title={el?.product[0]?.title}
-                  decript={el?.product[0]?.description}
-                  options={[
-                    {
-                      caption: "Quantity",
-                      value: el?.sku[0]?.quantity,
-                    },
-                    {
-                      caption: "Commision",
-                      value: "  -  ",
-                    },
-                  ]}
-                  price={`$${el?.sku[0]?.price}   `}
-                  earning=" - "
-                />
-              </Box>
-              <Box>
-                <AppBadge text={el?.status} />
-              </Box>
-            </Flex>
-          ))
-        : ""}
+      {isLoading ? <RequestSkeleton /> : data?.data?.data.length ? data?.data?.data.map((el, key) => (
+        <Flex
+          key={key}
+          justifyContent={"space-between"}
+          borderTop="1px solid #262626"
+          padding={"20px 0"}
+        >
+          <Box width={"70%"}>
+            <AffiliateDetailCard
+              image={el?.publisherShop[0].logo}
+              title={el?.product[0]?.title}
+              decript={el?.productCollection[0]?.title}
+              options={[
+                {
+                  caption: "Quantity",
+                  value: el?.sku[0]?.quantity,
+                },
+                {
+                  caption: "Commision",
+                  value: el?.commision,
+                },
+              ]}
+              price={`${el?.sku[0]?.price} ${el?.product[0]?.priceUnit}`}
+              earning={`${el?.earning} ${el?.sku[0].recordData?.currency}`}
+            />
+          </Box>
+          <Box>
+            <AppBadge text={el?.status} />
+          </Box>
+        </Flex>
+      ))
+        : <AppEmptyPage title="No requests to display at the moment." />}
     </VStack>
   );
 }
