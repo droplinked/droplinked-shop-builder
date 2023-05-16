@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import AppModal from 'components/shared/modal/AppModal'
 import { Isku } from 'lib/apis/product/interfaces'
 import RecordForm from './parts/form/RecordForm'
 import recordContext, { recordStates } from './context'
 import RecordSuccess from './parts/success/recordSuccess'
+import { productContext } from 'pages/product/single/context'
 
 export interface IRecordModalProduct {
     title: string
@@ -20,13 +21,16 @@ interface Iprops {
 }
 
 function RecordModal({ close, open, product }: Iprops) {
+    const { methods } = useContext(productContext)
     const [State, setState] = useState(recordStates)
 
     // Close Modal
-    const closeModal = useCallback(()=>{
+    const closeModal = useCallback(async () => {
+        const skues = await methods.fetch()
+        methods.updateState("sku", skues.sku)
         setState(recordStates)
         close()
-    },[])
+    }, [])
 
     return (
         <recordContext.Provider value={{
@@ -35,13 +39,13 @@ function RecordModal({ close, open, product }: Iprops) {
         }}>
             <AppModal
                 open={open}
-                close={() => !State.loading ? closeModal() : {}}
+                close={() => !State.loading && !State.hashkey ? closeModal() : {}}
                 size={"2xl"}
                 contentProps={{
                     padding: "30px"
                 }}
             >
-                {State.hashkey ? <RecordSuccess close={closeModal} /> : <RecordForm close={closeModal} open={open} product={product} />}
+                {State.hashkey ? <RecordSuccess close={closeModal} /> : <RecordForm close={closeModal} product={product} />}
             </AppModal>
         </recordContext.Provider>
     )

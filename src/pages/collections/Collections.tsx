@@ -1,17 +1,18 @@
-import { useProfile } from 'hooks/useProfile/useProfile'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import CollectionsModel from './model'
 import AppDataGrid from 'components/shared/datagrid/DataGrid'
 import CollectionsEmpty from './parts/empty/CollectionsEmpty'
 import { collectionService } from 'lib/apis/collection/services'
+import CollectionCreate from './parts/create/CollectionCreate'
+import { useDisclosure } from '@chakra-ui/react'
 
 function Collections() {
+    const { isOpen, onClose, onOpen } = useDisclosure()
     const { mutate, isLoading } = useMutation(() => collectionService())
     const [States, setStates] = useState({
         rows: []
     })
-    const { shop } = useProfile()
 
     // fetch data and refactor
     const fetch = useCallback(() => {
@@ -30,17 +31,20 @@ function Collections() {
     useEffect(() => fetch(), [mutate])
 
     return (
-        <AppDataGrid
-            loading={isLoading}
-            buttons={[
-                {
-                    caption: "Add Collection",
-                    to: `/${shop.name}/c/add-product`
-                }
-            ]}
-            rows={States.rows}
-            empty={<CollectionsEmpty />}
-        />
+        <>
+            <AppDataGrid
+                loading={isLoading}
+                buttons={[
+                    {
+                        caption: "Add Collection",
+                        onClick: onOpen
+                    }
+                ]}
+                rows={States.rows}
+                empty={<CollectionsEmpty />}
+            />
+            <CollectionCreate close={onClose} refetch={fetch} open={isOpen} />
+        </>
     )
 }
 

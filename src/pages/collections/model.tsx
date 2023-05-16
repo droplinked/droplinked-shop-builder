@@ -20,7 +20,7 @@ export default class CollectionsModel {
                     width: "70px"
                 },
                 caption: "",
-                value: <ControlsListCollection collectionID={el._id} fetch={fetch} />
+                value: <ControlsListCollection collection={el} fetch={fetch} />
             }
         }))
     }
