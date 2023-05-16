@@ -14,4 +14,5 @@ export interface IrecordedShopService {
 
 export interface IproductService {
     productID: string
+    shopname: string
 }

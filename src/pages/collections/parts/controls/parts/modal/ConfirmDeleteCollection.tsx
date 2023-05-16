@@ -1,6 +1,6 @@
 import AppDialog from 'components/shared/dialog'
-import { IproductDeleteServices } from 'lib/apis/product/interfaces'
-import { productDeleteServices } from 'lib/apis/product/productServices'
+import { IdeleteCollectionService } from 'lib/apis/collection/interfaces'
+import { deleteCollectionService } from 'lib/apis/collection/services'
 import React from 'react'
 import { useMutation } from 'react-query'
 import { toast } from 'react-toastify'
@@ -9,10 +9,10 @@ interface IProps {
     open: boolean
     close: Function
     fetch: Function
-    productID: string
+    collectionID: string
 }
-function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
-    const { mutate, isLoading } = useMutation((params: IproductDeleteServices) => productDeleteServices(params))
+function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
+    const { mutate, isLoading } = useMutation((params: IdeleteCollectionService) => deleteCollectionService(params))
 
     return (
         <AppDialog
@@ -32,9 +32,9 @@ function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
                     children: "Delete Collection",
                     buttonProps: { isLoading },
                     onClick: () => {
-                        mutate({ productID }, {
+                        mutate({ collectionID }, {
                             onSuccess: () => {
-                                toast.success("Delete Product")
+                                toast.success("Delete Collection")
                                 fetch()
                                 close()
                             },
@@ -47,4 +47,4 @@ function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
     )
 }
 
-export default ConfirmDeleteProduct
+export default ConfirmDeleteCollection

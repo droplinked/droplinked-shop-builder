@@ -1,5 +1,6 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
 import { faker } from '@faker-js/faker'
+import AppEmptyPage from 'components/shared/empty/AppEmptyPage'
 import { producerRequestService } from 'lib/apis/affiliate/shopServices'
 import AffiliateDetailCard from 'pages/affiliate/parts/detail/affiliateDetailCard'
 import ShopsProfile from 'pages/affiliate/parts/pofile/ShopsProfile'
@@ -15,9 +16,9 @@ function NotificationsList() {
 
     return (
         <>
-            {isLoading ? <NotificationsSkeleton /> : (
+            {isLoading ? <NotificationsSkeleton /> : data?.data?.data.length ? (
                 <VStack align={"stretch"}>
-                    {data?.data?.data && data?.data?.data.map((el, key) => {
+                    {data?.data?.data.map((el: any, key: number) => {
                         const element = el?.publisherShop[0]
                         const product = el?.product[0]
                         const sku = el?.sku[0]
@@ -42,7 +43,7 @@ function NotificationsList() {
                                     <AffiliateDetailCard
                                         image={product?.media && product.media[0].url}
                                         title={product?.title}
-                                        decript={faker.company.name()}
+                                        decript={el?.productCollection[0].title}
                                         options={[
                                             {
                                                 caption: "Quantity",
@@ -54,7 +55,7 @@ function NotificationsList() {
                                             },
                                         ]}
                                         price={`${sku.price} ${product.priceUnit}`}
-                                        earning='12 ETH'
+                                        earning={`${el?.earning} ${sku?.recordData?.currency}`}
                                     />
                                 </Box>
                                 <Box width={["15%", "10%"]}><NotificationsButtons refetch={() => mutate()} shop={el} /></Box>
@@ -62,7 +63,7 @@ function NotificationsList() {
                         )
                     })}
                 </VStack>
-            )
+            ) : <AppEmptyPage title="No requests to display at the moment. Check back later" />
             }
         </>
     )

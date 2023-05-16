@@ -1,6 +1,6 @@
 import { ITableRows } from "components/shared/table/AppTable"
 import React from "react"
-import ControlsListCollection from "../product/list/parts/controls/Controls"
+import ControlsListCollection from "./parts/controls/Controls"
 
 interface IrefactorData {
     data: any

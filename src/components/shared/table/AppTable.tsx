@@ -58,7 +58,7 @@ function AppTable({ rows, vertical, empty }: IAppTable) {
                         </table>
                     ) : null}
                 </>
-            ) : empty || "empty"}
+            ) : empty || ""}
         </>
     )
 }
