@@ -24,7 +24,6 @@ export interface IRecordModalProduct {
 }
 
 interface Iprops {
-    open: boolean
     close: Function
     product: IRecordModalProduct
 }
@@ -34,16 +33,11 @@ interface IRecordSubmit {
     commission: number
 }
 
-function RecordForm({ close, open, product }: Iprops) {
-    const { state: { sku }, methods } = useContext(productContext)
+function RecordForm({ close, product }: Iprops) {
+    const { state: { sku } } = useContext(productContext)
     const { updateState, state: { loading } } = useContext(recordContext)
     const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
     const { openCasperWallet, casperRecord } = RecordModalModule
-
-    const updateSku = useCallback(async () => {
-        const skues = await methods.fetch()
-        methods.updateState("sku", skues.sku)
-    }, [])
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
@@ -63,14 +57,13 @@ function RecordForm({ close, open, product }: Iprops) {
                     commision: Number(data.commission)
                 }, {
                     onSuccess: async () => {
-                        await updateSku()
                         updateState("hashkey", record.deployHash)
                     }
                 })
             }
-        } catch (error) {            
+        } catch (error) {
             if (error?.message) {
-                if(error?.message.includes("The first argument")) return updateState("loading", false)
+                if (error?.message.includes("The first argument")) return updateState("loading", false)
                 toast.error(error?.message);
             } else {
                 toast.error("Somthing wrong please contact support");

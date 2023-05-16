@@ -1,5 +1,4 @@
 import { Box, VStack } from '@chakra-ui/react'
-import { ComponentTitle } from 'pages/prodcut-pages/ProductPages-style'
 import React, { useContext } from 'react'
 import AddVariants from './parts/add'
 import SkuTable from './parts/table/SkuTable'

@@ -1,13 +1,7 @@
 import { useApi } from "hooks/useApi/useApi";
 import { useEffect, useState } from "react";
 import { RuleTypes } from "./rule-type";
-import {
-  postCreateRuleset,
-  putUpdateRuleset,
-} from "lib/apis/rulesetApiService";
-import {
-  ModalHeader,
-} from "./RuleModal-style";
+import { ModalHeader } from "./RuleModal-style";
 import { Box, HStack, VStack } from "@chakra-ui/react";
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import LoadingComponent from "components/shared/loading-component/LoadingComponent";
