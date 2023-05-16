@@ -35,7 +35,7 @@ async function record_merch(sku_properties, account_information, product_title, 
             let contract_byte_array = Contracts.contractHashToByteArray(contract_hash_string);
             let named_args = [];
             named_args.push(new NamedArg("metadata", new CLString(`{ "name" : "${product_title}" , "token_uri" : "${IPFSHASH}" , "checksum" : "${checksum}"}`)));
-            named_args.push(new NamedArg("price", new CLU256(price)));
+            named_args.push(new NamedArg("price", new CLU64(price)));
             named_args.push(new NamedArg("amount", new CLU64(amount)));
             named_args.push(new NamedArg("comission", new CLU64(comission)));
             let recipient = CLPublicKey.fromHex(producer_public_key).toAccountHash();
