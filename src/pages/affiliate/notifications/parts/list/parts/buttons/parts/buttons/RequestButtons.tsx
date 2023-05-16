@@ -11,7 +11,7 @@ function RequestButtons() {
             case "PENDING":
                 return <RequestListButton status={"accept"} value="Accept" />
             case "ACCEPTED":
-                return <RequestListButton status={"reject"} value="Deny" cancelType />
+                return <RequestListButton status={"reject"} value="Deny" />
             default:
                 return <AppBadge text={shop?.status} colorScheme={["REJECTED", "CANCELED"].includes(shop?.status) ? "red" : "green"} />
         }

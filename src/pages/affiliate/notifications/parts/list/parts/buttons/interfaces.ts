@@ -5,6 +5,7 @@ namespace requestInterfaces {
     export interface IStates {
         status: IRequestStatus
         loading: boolean
+        deployHash:string
     }
 
     export interface Iprops {

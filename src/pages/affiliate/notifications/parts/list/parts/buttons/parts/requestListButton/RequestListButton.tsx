@@ -6,10 +6,9 @@ import requestInterfaces from '../../interfaces'
 interface Iprops {
     status: requestInterfaces.IApproveStatus
     value: string
-    cancelType?: boolean
 }
 
-function RequestListButton({ status, value, cancelType }: Iprops) {
+function RequestListButton({ status, value }: Iprops) {
     const { modal, methods: { setStates } } = useContext(requestsButtonsContext)
 
     return (
@@ -17,7 +16,6 @@ function RequestListButton({ status, value, cancelType }: Iprops) {
             width="100%"
             minWidth={"100%"}
             maxWidth="150px"
-            variant={"outline"}
             onClick={() => {
                 setStates((prev: requestInterfaces.IStates) => ({ ...prev, status }))
                 modal.open()
