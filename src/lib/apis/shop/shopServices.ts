@@ -28,5 +28,5 @@ export const recordedShopService = ({ shopName }: IrecordedShopService) => {
 }
 
 export const productService = ({ productID, shopname }: IproductService) => {
-    return axiosInstance.get(`product/${productID}?recorded=true&shopname=${shopname}`)
+    return axiosInstance.get(`product/${productID}?recorded=true`)
 }
