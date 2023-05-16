@@ -41,9 +41,9 @@ function NotificationsList() {
                                 </Box>
                                 <Box width={"70%"}>
                                     <AffiliateDetailCard
-                                        image={product?.media && product.media[0].url}
+                                        image={product?.media && product?.media[0].url}
                                         title={product?.title}
-                                        decript={el?.productCollection[0].title}
+                                        decript={el?.productCollection[0]?.title}
                                         options={[
                                             {
                                                 caption: "Quantity",
@@ -54,7 +54,7 @@ function NotificationsList() {
                                                 value: sku?.recordData?.commision
                                             },
                                         ]}
-                                        price={`${sku.price} ${product.priceUnit}`}
+                                        price={`${sku?.price} ${product?.priceUnit}`}
                                         earning={`${el?.earning} ${sku?.recordData?.currency}`}
                                     />
                                 </Box>

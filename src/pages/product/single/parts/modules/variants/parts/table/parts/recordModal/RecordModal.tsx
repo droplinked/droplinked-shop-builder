@@ -1,10 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import AppModal from 'components/shared/modal/AppModal'
 import { Isku } from 'lib/apis/product/interfaces'
 import RecordForm from './parts/form/RecordForm'
 import recordContext, { recordStates } from './context'
-import RecordSuccess from './parts/success/recordSuccess'
 import { productContext } from 'pages/product/single/context'
+import HashKey from 'components/shared/hashKey/HashKey'
 
 export interface IRecordModalProduct {
     title: string
@@ -45,7 +45,7 @@ function RecordModal({ close, open, product }: Iprops) {
                     padding: "30px"
                 }}
             >
-                {State.hashkey ? <RecordSuccess close={closeModal} /> : <RecordForm close={closeModal} product={product} />}
+                {State.hashkey ? <HashKey text="Sku record successful" hashkey={State.hashkey} close={closeModal} /> : <RecordForm close={closeModal} product={product} />}
             </AppModal>
         </recordContext.Provider>
     )
