@@ -37,6 +37,7 @@ export default class requestsButtonsModel {
                 signature: casperWallet.signature
             }
         }
+        
         return await disapprove_request(approved_id, amount, publisher_account_hash, account_info)
     }
 } 

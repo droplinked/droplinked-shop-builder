@@ -1,7 +1,7 @@
 import { Text } from '@chakra-ui/react'
 import AppDialog, { IAppDialog } from 'components/shared/dialog'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
-import React from 'react'
+import React, { useMemo } from 'react'
 import requestInterfaces from '../../interfaces'
 
 interface Iprops {
@@ -13,16 +13,19 @@ interface Iprops {
 }
 
 function NotificationsModal({ close, open, status, approveClick, loading }: Iprops) {
+    
+    const label = useMemo(() => typeof status === "string" ? capitalizeFirstLetter(status) : "", [status])
+
     return (
         <AppDialog
             close={() => { }}
             open={open}
             text={(
                 <Text>
-                    You are Confirming permission to co-sell this product, Are you sure you want to <Text display={"inline"} fontFamily={"aven"} fontWeight="bold">{typeof status === "string" ? capitalizeFirstLetter(status) : ""}</Text> this request?
+                    You are Confirming permission to co-sell this product, Are you sure you want to <Text display={"inline"} fontFamily={"aven"} fontWeight="bold">{label}</Text> this request?
                 </Text>
             )}
-            title={"Are you sure?"}
+            title={`Are you sure you want to ${label} this product request?`}
             buttons={[
                 {
                     children: "Cancel",
