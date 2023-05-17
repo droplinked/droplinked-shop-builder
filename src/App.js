@@ -81,6 +81,7 @@ const Notifications = lazy(() => import("pages/affiliate/notifications/Notificat
 const Products = lazy(() => import("pages/product/list/products"))
 const Collections = lazy(() => import("pages/collections/Collections"))
 const Rules = lazy(() => import("pages/rules/Rules"))
+const Orders = lazy(() => import("pages/orders/Orders"))
 
 function App() {
   const { profile } = useProfile();
@@ -119,9 +120,9 @@ function App() {
                 <Route path="create" element={<ProductSingle />} />
                 <Route path=":productId" element={<ProductSingle />} />
               </Route>
-              <Route path="collections" element={<CollectionMainPage />} />
+              <Route path="collections" element={<Collections />} />
               <Route path="add-collection" element={<AddCollectionPage />} />
-              <Route path="orders" element={<OrderPage />} />
+              <Route path="orders" element={<Orders />} />
               <Route path="rules" element={<Rules />} />
               <Route path="affiliate" element={<AffiliateLayout />}>
                 <Route index element={<Shops />} />

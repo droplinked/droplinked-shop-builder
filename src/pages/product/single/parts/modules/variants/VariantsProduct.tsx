@@ -15,7 +15,7 @@ function VariantsProduct() {
         <Box>
           <ProductPageTitle
             title='Product Variants'
-            description='Enter product price, quantity, external ID and package size'
+            description='Add variant and define the values.'
           />
         </Box>
         {sku.length && <Box><SkuTable /></Box>}

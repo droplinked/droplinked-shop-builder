@@ -15,13 +15,13 @@ function ButtonsProduct() {
     const updateSku = useMutation((params) => skuUpdateByIdServices(params))
     const { state, productID } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
-    const { validate } = ButtonsProductClass
+    const { validate, makeDataUpdate, makeskuUpdate } = ButtonsProductClass
 
     const submit = useCallback(async () => {
         try {
             const query = productID ? update.mutateAsync : create.mutateAsync
             await validate(state)
-            await query(productID ? { productID, params: state } : state)
+            await query(productID ? { productID, params: makeDataUpdate({ state }) } : state)
             if (productID) await updateSkues(state.sku) // Update skues
 
             toast.success(AppErrors.product.your_product_published)
@@ -32,7 +32,7 @@ function ButtonsProduct() {
     }, [state, productID])
 
     const updateSkues = useCallback((skues) => {
-        return Promise.all(skues.filter(el => el._id).map(el => updateSku.mutateAsync({ skuID: el._id, params: el })))
+        return Promise.all(skues.filter(el => el._id).map(el => updateSku.mutateAsync({ skuID: el._id, params: makeskuUpdate({ sku: el }) })))
     }, [])
 
     return (

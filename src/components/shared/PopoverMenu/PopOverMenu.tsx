@@ -17,8 +17,8 @@ function PopOverMenu({ items }: Iprops) {
       </MenuButton>
       <MenuList minWidth={"auto"} backgroundColor={"#292929"} border="none">
         {items.map((el, key) => (
-          <MenuItem key={key} background={"none !important"}>
-            <Text onClick={() => el.onClick()} fontSize="sm">{el.caption}</Text>
+          <MenuItem key={key} onClick={() => el.onClick()} background={"none !important"}>
+            <Text fontSize="sm">{el.caption}</Text>
           </MenuItem>
         ))}
       </MenuList>

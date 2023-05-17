@@ -18,7 +18,7 @@ function Collection() {
                     <VStack align={"stretch"}>
                         <FieldLabel isRequired label='Collections' />
                         <AppTypography size='14px'>
-                            Organize your products into collections to offer discounts or gated access. Learn more
+                            Organize your products into a collection to offer discounts or gated access. Learn more
                         </AppTypography>
                     </VStack>
                     <Box>

@@ -61,7 +61,7 @@ const OrderComponent = ({ order, update }) => {
           </Popover> */}
         </Td>
       </Tr>
-      <OrderModal order={order} show={showModal} close={toggleModal} updateOrder={update} />
+      <OrderModal order={order} show={showModal} close={toggleModal} />
     </>
   );
 };
