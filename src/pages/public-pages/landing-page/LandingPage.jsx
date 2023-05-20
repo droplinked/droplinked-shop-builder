@@ -61,7 +61,7 @@ export default function LandingPage() {
 
   return (
     <Box pt="50px" pb="100px">
-      <LandingPageWrapper>
+      <LandingPageWrapper overflowX={"hidden"}>
         {/* inputs */}
         <InputContainrt>
           <TextContainer animation={leftsideAnimation}>
@@ -87,11 +87,9 @@ export default function LandingPage() {
       <IconsComponent />
       <SpaceBox></SpaceBox>
       <Flex w="100%" justifyContent="center" px={{ base: "20px", md: "80px" }}>
-        <Box w={{ base: "100%", md: "400px" }}>
-          <BasicButton color="white" onClick={navigateToEnquiry}>
-            Enquire to learn more
-          </BasicButton>
-        </Box>
+        <BasicButton color="white" onClick={navigateToEnquiry}>
+          Enquire to learn more
+        </BasicButton>
       </Flex>
       <SpaceBox></SpaceBox>
       <Box mb="36px" />

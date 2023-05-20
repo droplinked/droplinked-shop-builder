@@ -1,3 +1,4 @@
+import affiliateErrors from "./modules/affiliate";
 import collectionErrors from "./modules/collection";
 import productErrors from "./modules/product";
 import signinErrors from "./modules/signin";
@@ -10,6 +11,7 @@ const AppErrors = {
     store: storeErrors,
     product: productErrors,
     collection: collectionErrors,
+    affiliate: affiliateErrors,
 }
 
 export default AppErrors

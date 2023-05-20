@@ -1,6 +1,7 @@
 import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import plusIcon from "assest/icon/plus-icon.svg";
+import classes from './style.module.scss'
 
 interface IEmptyTable {
     add: {
@@ -30,8 +31,8 @@ function EmptyTable({ add, list }: IEmptyTable) {
             </VStack>
             <VStack width={"100%"} maxWidth={"400px"} align={"stretch"} spacing={3}>
                 {list.map((el, key) => (
-                    <HStack key={key}>
-                        <Image src={el.icon} w="18px" h="18px" />
+                    <HStack key={key} className={classes.item}>
+                        {el.icon}
                         <Text fontFamily="Avenir Next" fontWeight="400" fontSize="14px" color="#C2C2C2">{el.label}</Text>
                     </HStack>
                 ))}

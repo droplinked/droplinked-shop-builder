@@ -33,6 +33,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
 
     const submit = useCallback(async () => {
         try {
+            
             setLoading(true)
             const casperWallet = await RecordModalModule.openCasperWallet()
             const requestID = shop?._id

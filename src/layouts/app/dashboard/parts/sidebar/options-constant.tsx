@@ -4,21 +4,21 @@ import React from "react";
 
 export const OPTIONS = [
     {
-        icon: <AppIcons.productsIcon />, label: 'products', path: 'products'
+        icon: <AppIcons.productsIcon />, label: 'Products', path: 'products'
     },
     {
-        icon: <AppIcons.collectionIcon />, label: 'collections', path: 'collections'
+        icon: <AppIcons.collectionIcon />, label: 'Collections', path: 'collections'
     },
     {
-        icon: <AppIcons.rulesetsIcon />, label: 'ruleset', path: 'rules'
+        icon: <AppIcons.rulesetsIcon />, label: 'Rulesets', path: 'rules'
     },
     {
-        icon: <AppIcons.orderIcon />, label: 'orders', path: 'orders'
+        icon: <AppIcons.orderIcon />, label: 'Orders', path: 'orders'
     },
     {
-        icon: <AppIcons.informationIcon />, label: 'affiliate', path: appDeveloment ? "affiliate" : 'products'
+        icon: <AppIcons.informationIcon />, label: 'Affiliate', path: appDeveloment ? "affiliate" : 'products'
     },
     {
-        icon: <AppIcons.settingIcon />, label: 'setting', path: 'settings/shop-info'
+        icon: <AppIcons.settingIcon />, label: 'Settings', path: 'settings/shop-info'
     },
 ]

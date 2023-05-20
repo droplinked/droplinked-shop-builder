@@ -1,6 +1,14 @@
-import { IproductState } from 'lib/apis/product/interfaces'
+import { IproductState, Isku } from 'lib/apis/product/interfaces'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { object, string, array, number } from 'yup'
+
+interface ImakeDataUpdate {
+    state: IproductState
+}
+
+interface ImakeskuUpdate {
+    sku: Isku
+}
 
 export default class ButtonsProductClass {
     static validate = (state: IproductState) => {
@@ -20,5 +28,24 @@ export default class ButtonsProductClass {
                 reject(error)
             }
         })
+    }
+
+    static makeDataUpdate = ({ state }: ImakeDataUpdate) => {
+        return {
+            "title": state.title,
+            "description": state.description,
+            "priceUnit": state.priceUnit,
+            "productCollectionID": state.productCollectionID,
+            "media": state.media
+        }
+    }
+
+    static makeskuUpdate = ({ sku }: ImakeskuUpdate) => {
+        return {
+            "quantity": sku.quantity,
+            "price": sku.price,
+            "externalID": sku.externalID,
+            "dimensions": sku.dimensions,
+        }
     }
 }

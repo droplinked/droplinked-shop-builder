@@ -8,6 +8,7 @@ import { useContext, useMemo } from "react";
 
 import { convertCustomerInformation } from "./utils";
 import orderModalContext from "modals/order-modal/context";
+import AppTypography from "components/shared/typography/AppTypography";
 
 const CustomerInformationComponent = () => {
   const { order } = useContext(orderModalContext)
@@ -17,29 +18,22 @@ const CustomerInformationComponent = () => {
     <>
       {data_array ? (
         <VStack align={"stretch"}>
-          <Box textAlign={"center"}>
-            <Text
-              fontFamily="Avenir Next"
-              fontWeight="700"
-              fontSize="18px"
-              color="lightGray"
-              mb="36px"
-            >
-              Customer info
-            </Text>
+          <Box textAlign={"center"} marginBottom={7}>
+            <AppTypography size="18px" color={"#FFF"} weight="bolder">Customer info</AppTypography>
           </Box>
 
-          <VStack align={"stretch"}>
+          <VStack align={"stretch"} spacing={4}>
             {data_array.map((item, key) => (
               <HStack key={key} color={"lightGray"}>
-                <Box width={{ base: "40%", sm: "20%" }}><Text fontSize={{ base: "sm", sm: "md" }}>{item.name}</Text></Box>
-                <Box width={{ base: "60%", sm: "80%" }}><Text fontSize={{ base: "sm", sm: "md" }}>{item.data}</Text></Box>
+                <Box width={{ base: "40%", sm: "20%" }}><AppTypography size="12px">{item.name}</AppTypography></Box>
+                <Box width={{ base: "60%", sm: "80%" }}><AppTypography size="12px">{item.data}</AppTypography></Box>
               </HStack>
             ))}
           </VStack>
 
         </VStack>
-      ) : null}
+      ) : null
+      }
     </>
   );
 };

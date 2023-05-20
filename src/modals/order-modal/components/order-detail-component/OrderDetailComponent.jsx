@@ -1,28 +1,20 @@
 import {
   Box,
+  Flex,
   Text,
   VStack
 } from "@chakra-ui/react";
+import AppTypography from "components/shared/typography/AppTypography";
 import OrderDetailTable from "./components/table/OrderDetailTable";
 import OrderDetailCost from "./components/table/parts/cost/OrderModalProduct";
-import OrderDetailPayment from "./components/table/parts/payment/OrderModalProduct";
 
 const OrderDetailComponent = () => {
 
   return (
     <VStack align={"stretch"} color={"#FFF"}>
-      <Box>
-        <Text
-          fontFamily="Avenir Next"
-          fontWeight="700"
-          fontSize="18px"
-          color="lightGray"
-          textAlign="center"
-          mb="36px"
-        >
-          Order Details
-        </Text>
-      </Box>
+      <Flex justifyContent={"center"} marginBottom={7}>
+        <AppTypography size="18px" color={"#FFF"} weight="bolder">Order Details</AppTypography>
+      </Flex>
       <VStack align={"stretch"} spacing={10}>
         <Box><OrderDetailTable /></Box>
         <Box><OrderDetailCost /></Box>

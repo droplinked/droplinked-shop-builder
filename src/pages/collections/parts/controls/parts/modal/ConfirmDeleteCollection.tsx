@@ -1,6 +1,7 @@
 import AppDialog from 'components/shared/dialog'
 import { IdeleteCollectionService } from 'lib/apis/collection/interfaces'
 import { deleteCollectionService } from 'lib/apis/collection/services'
+import AppErrors from 'lib/utils/statics/errors/errors'
 import React from 'react'
 import { useMutation } from 'react-query'
 import { toast } from 'react-toastify'
@@ -34,7 +35,7 @@ function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
                     onClick: () => {
                         mutate({ collectionID }, {
                             onSuccess: () => {
-                                toast.success("Delete Collection")
+                                toast.success(AppErrors.collection.delete_Collection)
                                 fetch()
                                 close()
                             },

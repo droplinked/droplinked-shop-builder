@@ -70,7 +70,7 @@ const AddProductComponent = () => {
             fontSize="14px"
             color="#C2C2C2"
           >
-            Categorize into collection(s)
+            Categorize into a collection
           </Text>
         </Flex>
         <Flex

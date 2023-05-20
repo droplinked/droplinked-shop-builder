@@ -41,7 +41,7 @@ function Collections() {
                     }
                 ]}
                 rows={States.rows}
-                empty={<CollectionsEmpty />}
+                empty={<CollectionsEmpty openModal={onOpen} />}
             />
             <CollectionCreate close={onClose} refetch={fetch} open={isOpen} />
         </>

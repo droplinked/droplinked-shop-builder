@@ -63,7 +63,7 @@ function NotificationsList() {
                         )
                     })}
                 </VStack>
-            ) : <AppEmptyPage title="No requests to display at the moment. Check back later" />
+            ) : <AppEmptyPage title="No Notifications Yet!" />
             }
         </>
     )

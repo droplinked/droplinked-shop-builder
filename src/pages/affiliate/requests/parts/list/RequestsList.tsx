@@ -48,7 +48,7 @@ function RequestsList() {
           </Box>
         </Flex>
       ))
-        : <AppEmptyPage title="No requests to display at the moment." />}
+        : <AppEmptyPage title="No requests to display at the moment!" />}
     </VStack>
   );
 }
