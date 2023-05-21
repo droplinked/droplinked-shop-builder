@@ -2,7 +2,6 @@ import axios from "axios";
 import { useRef, useState } from "react";
 import {
   FormControl,
-  FormLabel,
   Input,
   Text,
   Box,
@@ -10,7 +9,6 @@ import {
   Flex,
   Spinner,
 } from "@chakra-ui/react";
-import { useToasty } from "../../../../../../context/toastify/ToastContext";
 import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
 import AppTypography from "common/typography/AppTypography";
 import FieldLabel from "common/form/fieldLabel/FieldLabel";
@@ -18,6 +16,7 @@ import AppErrors from "lib/utils/statics/errors/errors";
 import React from "react";
 import { Isize_limit } from "lib/utils/statics/errors/modules/store";
 import { toMb } from "lib/utils/heper/helpers";
+import { toast } from "react-toastify";
 
 interface IProps {
   label?: string
@@ -30,11 +29,10 @@ interface IProps {
 const InputImage = ({ label, placeHolder, change, value, maxSize }: IProps) => {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
-  const { successToast, errorToast } = useToasty();
 
   const changeImage = (e: any) => {
     const file = e.target.files[0];
-    if (maxSize && file.size > toMb({ value: parseInt(maxSize.size) })) return errorToast(AppErrors.store.size_limit({ fieldName: maxSize.fieldName, size: `${maxSize.size}MB` }));
+    if (maxSize && file.size > toMb({ value: parseInt(maxSize.size) })) return toast.error(AppErrors.store.size_limit({ fieldName: maxSize.fieldName, size: `${maxSize.size}MB` }));
     if (
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
@@ -42,7 +40,7 @@ const InputImage = ({ label, placeHolder, change, value, maxSize }: IProps) => {
       file.type !== "image/svg+xml" &&
       file.type !== "image/jpg"
     ) {
-      errorToast(AppErrors.product.product_image_type_not_supported);
+      toast.error(AppErrors.product.product_image_type_not_supported);
       return;
     }
 
@@ -53,11 +51,11 @@ const InputImage = ({ label, placeHolder, change, value, maxSize }: IProps) => {
       .post("https://cdn.droplinked.com/upload", formData)
       .then((e) => {
         setLoading(false);
-        successToast("The image uploaded");
+        toast.success("The image uploaded");
         change(e.data.original);
       })
       .catch((e) => {
-        errorToast(e.response.data.message);
+        toast.error(e.response.data.message);
         setLoading(false);
         return;
       });

@@ -1,28 +1,22 @@
 import axios from "axios";
-
 import {
   Flex,
   FormControl,
-  FormLabel,
-  Text,
   Button,
   Spinner,
   Input,
 } from "@chakra-ui/react";
 import { useState, useRef } from "react";
-//
-import { useToasty } from "context/toastify/ToastContext";
 import AppTypography from "common/typography/AppTypography";
 import FieldLabel from "common/form/fieldLabel/FieldLabel";
 import { toMb } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
+import { toast } from "react-toastify";
 
 const HeaderBannerComponent = ({ addNewImage }) => {
   const [loading, setLoading] = useState(false);
 
   const fileRef = useRef(null);
-
-  const { successToast, errorToast } = useToasty();
 
   // const imageSrc = useMemo(()=>{
   //   const imageName = BANNER_DEFAULT_IMSGES.find(
@@ -35,7 +29,7 @@ const HeaderBannerComponent = ({ addNewImage }) => {
     const file = e.target.files[0];
 
     if (file.size > toMb({ value: 5 })) {
-      errorToast(AppErrors.store.header_banner_size_limit);
+      toast.error(AppErrors.store.header_banner_size_limit);
       return;
     }
     if (
@@ -46,7 +40,7 @@ const HeaderBannerComponent = ({ addNewImage }) => {
       file.type !== "image/svg+xml" &&
       file.type !== "image/jpg"
     ) {
-      errorToast(AppErrors.product.product_image_type_not_supported);
+      toast.error(AppErrors.product.product_image_type_not_supported);
       return;
     }
 
@@ -57,11 +51,11 @@ const HeaderBannerComponent = ({ addNewImage }) => {
       .post("https://cdn.droplinked.com/upload", formData)
       .then((e) => {
         setLoading(false);
-        successToast("The image uploaded");
+        toast.success("The image uploaded");
         addNewImage(e.data.original);
       })
       .catch((e) => {
-        errorToast(e.response.data.message);
+        toast.error(e.response.data.message);
         setLoading(false);
         return;
       });

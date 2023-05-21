@@ -1,31 +1,27 @@
 import { useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
-
-import { useToasty } from "../../context/toastify/ToastContext";
 import { useApi } from "../../hooks/useApi/useApi";
-import { Title, Detail, BacktoLoginButton } from "./ResetPassModal-style";
-
+import { BacktoLoginButton } from "./ResetPassModal-style";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import BasicButton from "../../common/BasicButton/BasicButton";
-import InputFieldComponent from "../../common/input-field-component/InputFieldComponent";
 import { postUserForgotPassword } from "lib/apis/userApiService";
 import AppTypography from "common/typography/AppTypography";
 import AppInput from "common/form/textbox/AppInput";
+import { toast } from "react-toastify";
 
 const ResetPassModal = ({ show, close, switchReset }) => {
   const [disableBtn, setDisableBtn] = useState(false);
   const [email, setEmail] = useState("");
-  const { successToast, errorToast } = useToasty();
   const { postApi } = useApi();
 
   const SubmitForm = async () => {
     if (validationEmail()) {
-      errorToast("The email address is invalid.");
+      toast.error("The email address is invalid.");
     } else {
       setDisableBtn(true);
       let result = await postApi(postUserForgotPassword(email));
       if (result) {
-        successToast(`Send an email to : ${email}`);
+        toast.success(`Send an email to : ${email}`);
         close();
       }
       setDisableBtn(false);

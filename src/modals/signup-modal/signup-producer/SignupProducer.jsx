@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useContext, useCallback } from "react";
 import { Box, Stack } from "@chakra-ui/react";
-import { toastValue } from "../../../context/toastify/ToastContext";
 import { BottomText } from "../SignupModal-style";
 import { useApi } from "../../../hooks/useApi/useApi";
 import BasicButton from "../../../common/BasicButton/BasicButton";
@@ -9,13 +8,12 @@ import { postUserSignup } from "lib/apis/userApiService";
 import AppInput from "common/form/textbox/AppInput";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import AppIcons from "assest/icon/Appicons";
 import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppErrors from "lib/utils/statics/errors/errors";
 import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
+import { toast } from "react-toastify";
 
 export default function SignupProducer({ close, shopname, switchToggle }) {
-  const { successToast, errorToast } = useContext(toastValue);
   const [States, setStates] = useState({
     loading: false,
     show: {
@@ -37,7 +35,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
 
     if (result) {
       localStorage.setItem("registerEmail", JSON.stringify(email));
-      successToast("Account successfully created");
+      toast.success("Account successfully created");
       close();
       navigate("/email-confirmation");
     }

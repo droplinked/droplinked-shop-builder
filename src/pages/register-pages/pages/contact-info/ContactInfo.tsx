@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
-import { useToasty } from "../../../../context/toastify/ToastContext";
 import AppTypography from "common/typography/AppTypography";
 import { toast } from "react-toastify";
 import AppErrors from "lib/utils/statics/errors/errors";
@@ -16,7 +15,6 @@ import BasicButton from "common/BasicButton/BasicButton";
 const ContactInfo = () => {
   const { shopNavigate } = useCustomNavigate();
   const { shop, setShopData: { update, loading } } = useProfile();
-  const { successToast } = useToasty();
   const currentPath = useLocation().pathname;
 
   const onSubmit = useCallback(async (params: IshopSocial) => {
@@ -26,7 +24,7 @@ const ContactInfo = () => {
         shopNavigate(`products`);
         toast.success(AppErrors.store.when_user_publishes__store)
       } else {
-        successToast(AppErrors.store.has_been_updated("Contact options"));
+        toast.success(AppErrors.store.has_been_updated("Contact options"));
       }
     } catch (error) {
       toast.error(error?.message)

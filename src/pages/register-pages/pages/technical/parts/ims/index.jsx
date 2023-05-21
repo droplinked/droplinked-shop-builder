@@ -4,14 +4,13 @@ import React, { useContext, useState } from 'react'
 import BasicButton from 'common/BasicButton/BasicButton'
 import technicalContext from '../../context'
 import AppDialog from 'common/dialog'
-import { useToasty } from 'context/toastify/ToastContext'
 import FieldLabel from 'common/form/fieldLabel/FieldLabel'
 import AppTypography from 'common/typography/AppTypography'
+import { toast } from 'react-toastify'
 
 function Ims(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [RadioGroupValue, setRadioGroup] = useState('')
-    const { errorToast } = useToasty()
     const { updateState, state: { imsType } } = useContext(technicalContext)
 
     return (
@@ -68,7 +67,7 @@ function Ims(props) {
                                 </Box>
                                 <Box dir='rtl'>
                                     <BasicButton onClick={() => {
-                                        if (!RadioGroupValue.length) return errorToast("Please choose type")
+                                        if (!RadioGroupValue.length) return toast.error("Please choose type")
                                         onOpen()
                                     }} sizes='medium'>Save</BasicButton>
                                 </Box>

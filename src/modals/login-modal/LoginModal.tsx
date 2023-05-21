@@ -1,11 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import React, { useContext } from "react";
+import React from "react";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import BasicButton from "../../common/BasicButton/BasicButton";
 import { Title, BottomText } from "./LoginModal-style";
-import { PROFILE_STATUS } from "../../constant/profile-status-types";
-import { toastValue } from "../../context/toastify/ToastContext";
 import { appDeveloment } from "lib/utils/app/variable";
 import AppInput from "common/form/textbox/AppInput";
 import { Formik, Form } from 'formik';
@@ -22,7 +20,6 @@ interface Iform {
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   const { login, loading } = useStore(useAppStore)
-  const { errorToast } = useContext(toastValue);
   const navigate = useNavigate();
 
   // submit form function
@@ -38,7 +35,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   // action on user data based on type and status
   const loginFunction = (data: any) => {
     // check customer
-    if (data.user.type !== "PRODUCER") return errorToast("This account cant login");
+    if (data.user.type !== "PRODUCER") return toast.error("This account cant login");
 
     //first close modal
     close();
@@ -48,11 +45,11 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
         ? "VERIFIED"
         : data.user.status;
 
-    if (status === PROFILE_STATUS.NEW) {
+    if (status === "NEW") {
       localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
       navigateUser(status, data.shop.name);
       return;
-    } else if (status === PROFILE_STATUS.DELETED) {
+    } else if (status === "DELETED") {
       errorToast("This account has been deleted");
       return;
     } else {
@@ -65,22 +62,22 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   const navigateUser = (status: string, shopName: string) => {
     // eslint-disable-next-line default-case
     switch (status) {
-      case PROFILE_STATUS.NEW:
+      case "NEW":
         navigate("/email-confirmation");
         return;
-      case PROFILE_STATUS.VERIFIED:
+      case "VERIFIED":
         navigate(`/${shopName}/c/register/shop-info`);
         return;
-      case PROFILE_STATUS.PROFILE_COMPLETED:
+      case "PROFILE_COMPLETED":
         navigate(`/${shopName}/c/register/shop-info`);
         return;
-      case PROFILE_STATUS.SHOP_INFO_COMPLETED:
+      case "SHOP_INFO_COMPLETED":
         navigate(`/${shopName}/c/products/`);
         return;
-      case PROFILE_STATUS.IMS_TYPE_COMPLETED:
+      case "IMS_TYPE_COMPLETED":
         navigate(`/${shopName}/c/products/`);
         return;
-      case PROFILE_STATUS.ACTIVE:
+      case "ACTIVE":
         navigate(`/${shopName}/c/products/`);
         return;
     }

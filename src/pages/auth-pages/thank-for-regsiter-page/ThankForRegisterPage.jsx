@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
-import { useToasty } from "context/toastify/ToastContext";
 import { useApi } from "hooks/useApi/useApi";
 import {
   ThankPageWrapper,
@@ -11,12 +10,12 @@ import {
 //
 import BasicButton from "common/BasicButton/BasicButton";
 import { postUserResendEmail } from "lib/apis/userApiService";
+import { toast } from "react-toastify";
 
 export default function ThankForRegisterPage() {
   // use this state for loading state of button when calling api
   const [loading, setLoading] = useState(false);
 
-  const { successToast } = useToasty();
   const { postApi } = useApi();
 
   // get email from localhost for show register email in text
@@ -28,7 +27,7 @@ export default function ThankForRegisterPage() {
     let result = await postApi(postUserResendEmail(email));
     setLoading(false);
     // if get error from api
-    if (result) successToast("A new link was sent to your email");
+    if (result) toast.success("A new link was sent to your email");
   };
 
   return (

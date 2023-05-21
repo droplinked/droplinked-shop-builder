@@ -1,7 +1,6 @@
 import axios from "axios";
-//
-import { useToasty } from "context/toastify/ToastContext";
 import { BASE_URL } from "lib/utils/app/variable";
+import { toast } from "react-toastify";
 
 const handleError = (statusCode) => {
   switch (statusCode) {
@@ -14,7 +13,6 @@ const handleError = (statusCode) => {
 }
 
 export function useApi() {
-  const { errorToast } = useToasty();
 
   const postApi = async ({ url, token, body }) => {
     try {
@@ -31,10 +29,10 @@ export function useApi() {
       return res.data.data;
     } catch (err) {
       if (err.response) {
-        errorToast(err.response.data.message);
+        toast.error(err.response.data.message);
         handleError(err.response.data.statusCode)
       } else {
-        errorToast(err.message);
+        toast.error(err.message);
       }
       return false;
     }
@@ -55,10 +53,10 @@ export function useApi() {
       return res.data.data;
     } catch (err) {
       if (err.response) {
-        errorToast(err.response.data.message);
+        toast.error(err.response.data.message);
         handleError(err.response.data.statusCode)
       } else {
-        errorToast(err.message);
+        toast.error(err.message);
       }
       return false;
     }
@@ -76,10 +74,10 @@ export function useApi() {
       return res.data.data;
     } catch (err) {
       if (err.response) {
-        errorToast(err.response.data.message);
+        toast.error(err.response.data.message);
         handleError(err.response.data.statusCode)
       } else {
-        errorToast(err.message);
+        toast.error(err.message);
       }
       return false;
     }
@@ -97,10 +95,10 @@ export function useApi() {
       return res.data.data;
     } catch (err) {
       if (err.response) {
-        errorToast(err.response.data.message);
+        toast.error(err.response.data.message);
         handleError(err.response.data.statusCode)
       } else {
-        errorToast(err.message);
+        toast.error(err.message);
       }
       return false;
     }
