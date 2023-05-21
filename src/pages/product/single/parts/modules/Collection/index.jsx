@@ -2,20 +2,18 @@ import { Box, HStack, Text, VStack, useDisclosure, Skeleton } from '@chakra-ui/r
 import BasicButton from 'components/shared/BasicButton/BasicButton'
 import FieldLabel from 'components/shared/form/fieldLabel/FieldLabel'
 import AppTypography from 'components/shared/typography/AppTypography'
-import { fetchCollection } from 'lib/store/features/product/collection'
+import { collectionService } from 'lib/apis/collection/services'
 import CollectionCreate from 'pages/collections/parts/create/CollectionCreate'
-
-import React, { useCallback } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useMutation } from 'react-query'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
 import ListCollection from './parts/list'
-import ModalCollection from './parts/modal'
 
 function Collection() {
+    const { mutate, data, isLoading } = useMutation(() => collectionService())
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const dispatch = useDispatch()
 
-    const CreateCollection = useCallback(() => dispatch(fetchCollection()), [])
+    useEffect(() => mutate(), []) // get collection from service
 
     return (
         <VStack width={"100%"} spacing={4} align={"stretch"}>
@@ -31,14 +29,14 @@ function Collection() {
                         <SkeletonProduct>
                             <BasicButton onClick={onOpen} variant="outline">New Collection</BasicButton>
                         </SkeletonProduct>
-                        <CollectionCreate close={onClose} refetch={CreateCollection} open={isOpen} />
+                        <CollectionCreate close={onClose} refetch={mutate} open={isOpen} />
                         {/* <ModalCollection open={isOpen} close={onClose} /> */}
                     </Box>
                 </HStack>
             </Box>
             <Box>
                 <SkeletonProduct>
-                    <ListCollection />
+                    <ListCollection isLoading={isLoading} collections={data?.data?.data} />
                 </SkeletonProduct>
             </Box>
         </VStack>

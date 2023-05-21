@@ -27,7 +27,7 @@ function ButtonsProduct() {
             toast.success(AppErrors.product.your_product_published)
             shopNavigate("products")
         } catch (error) {
-            toast.error(error.errors ? error.errors[0] : "Somthing wrong")
+            toast.error(error.errors ? error.errors[0] : "Oops! Something went wrong")
         }
     }, [state, productID])
 

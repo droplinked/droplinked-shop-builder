@@ -65,7 +65,7 @@ function RecordForm({ close, product }: Iprops) {
                 if (error?.message.includes("The first argument")) return updateState("loading", false)
                 toast.error(error?.message);
             } else {
-                toast.error("Somthing wrong please contact support");
+                toast.error("Oops! Something went wrong please contact support");
             }
             updateState("loading", false)
         }

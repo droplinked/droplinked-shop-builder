@@ -41,7 +41,7 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
             close()
             refetch()
         } catch (error) {
-            toast.error("Somthing wrong")
+            toast.error("Oops! Something went wrong")
         }
     }, [collection])
 

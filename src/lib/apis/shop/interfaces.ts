@@ -2,6 +2,10 @@ export interface IshopService {
     shopName: string
 }
 
+export interface IshopInfoService {
+    shopName: string
+}
+
 export interface IpaymentCreateService {
     type: string
     destinationAddress: string
@@ -14,4 +18,27 @@ export interface IrecordedShopService {
 
 export interface IproductService {
     productID: string
+}
+
+export interface IshopSocial {
+    discordURL?: string
+    instagramURL?: string
+    twitterURL?: string
+    webURL?: string
+}
+
+export interface IshopUpdateService extends IshopSocial {
+    description?: string
+    logo?: string
+    addressBookID?: string
+    shopifyDomain?: string
+    headerIcon?: string
+    textColor?: string
+    backgroundColor?: string
+    theme?: string
+    backgroundText?: string
+    backgroundImage?: string
+    backgroundImageSecondary?: string
+    infoEmail?: string
+    imsType?: string
 }

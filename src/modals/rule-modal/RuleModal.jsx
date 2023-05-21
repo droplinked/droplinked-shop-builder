@@ -62,7 +62,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
       close();
       toast.success(`Rule ${ruleId ? "update" : "created"}`)
     } catch (error) {
-      toast.error("Somthing wrong")
+      toast.error("Oops! Something went wrong")
     }
   };
 

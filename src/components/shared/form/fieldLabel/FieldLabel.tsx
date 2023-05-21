@@ -4,14 +4,14 @@ import AppTypography from 'components/shared/typography/AppTypography'
 import React from 'react'
 import FieldLabelReuired from './parts/required/FieldLabelReuired'
 
-interface Iprops {
+export interface IFieldLabel {
     label: string
-    isRequired: boolean
+    isRequired?: boolean
     loading?: boolean
     color?: string
 }
 
-function FieldLabel({ isRequired, label, loading, color }: Iprops) {
+function FieldLabel({ isRequired, label, loading, color }: IFieldLabel) {
     return (
         <>
             {label && (

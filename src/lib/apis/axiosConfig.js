@@ -1,4 +1,5 @@
 import axios from "axios";
+import AppStorage from "lib/utils/app/sessions";
 import { BASE_URL } from "lib/utils/app/variable";
 
 export const axiosInstance = axios.create({
@@ -8,7 +9,7 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     function (config) {
-        const token = JSON.parse(localStorage.getItem("token"))
+        const token = AppStorage.accessToken()
         config.headers = {
             'Authorization': `Bearer ${token}`,
         }

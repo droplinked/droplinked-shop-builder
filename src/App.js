@@ -1,9 +1,9 @@
 import "./App.scss";
-
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
 import { useProfile } from "hooks/useProfile/useProfile";
+import AppSession from "lib/utils/app/sessions";
 
 const MainLayout = lazy(() =>
   import("layouts/app/main/mainLayout")
@@ -84,8 +84,6 @@ const Rules = lazy(() => import("pages/rules/Rules"))
 const Orders = lazy(() => import("pages/orders/Orders"))
 
 function App() {
-  const { profile } = useProfile();
-
   return (
     <BrowserRouter>
       <Suspense fallback={<LoadingPage />}>
@@ -102,7 +100,7 @@ function App() {
               <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
             </Route>
 
-            <Route path=":shopname/c" element={profile ? <DashboardLayout /> : <Navigate replace to={"/"} />}>
+            <Route path=":shopname/c" element={<DashboardLayout />}>
               <Route path="register" element={<RegisterPagesWrapper />}>
                 <Route path="shop-info" element={<RegisterShopInfo />} />
                 <Route path="contact-info" element={<ContactInfo />} />

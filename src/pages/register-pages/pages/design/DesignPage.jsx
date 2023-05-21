@@ -53,7 +53,7 @@ const DesignPage = () => {
         methods: { updateState },
       }}
     >
-      <PageContent>
+      <VStack align={"stretch"}>
         <VStack>
           <AppCard>
             <AppTypography size="14px">
@@ -108,10 +108,9 @@ const DesignPage = () => {
             <ColorInputsComponent />
           </AppCard>
         </VStack>
-        <Box mb="36px" />
 
         <ButtonsComponent />
-      </PageContent>
+      </VStack>
     </designContext.Provider>
   );
 };

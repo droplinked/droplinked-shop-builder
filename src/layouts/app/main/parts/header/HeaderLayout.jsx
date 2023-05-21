@@ -22,16 +22,25 @@ import {
 import droplinkedIcon from "assest/image/green-droplinked-logo.svg";
 import shopIconSvg from "assest/icon/shop-green-icon.svg";
 import HeaderLogin from "./parts/login/HeaderLogin";
+import useAppStore from "lib/stores/app/appStore";
+import { useStore } from "zustand";
+import AppStorage from "lib/utils/app/sessions";
+import { useCallback } from "react";
 
 const HeaderLayout = () => {
+  const { shop, clearShop } = useStore(useAppStore)
   const { onOpen, onClose, isOpen } = useDisclosure()
-  const { shop, logoutUser } = useProfile();
   const { shopNavigate } = useCustomNavigate();
 
-  const clickOnViewShop = () => {
+  const clickOnViewShop = useCallback(() => {
     shopNavigate('products')
     onClose()
-  }
+  }, [])
+
+  const logout = useCallback(() => {
+    clearShop()
+    onClose()
+  })
 
   return (
     <UserHeaderWrapper>
@@ -84,7 +93,7 @@ const HeaderLayout = () => {
                 w="100%"
                 textAlign="center"
                 cursor="pointer"
-                onClick={logoutUser}
+                onClick={logout}
               >
                 Logout
               </Text>

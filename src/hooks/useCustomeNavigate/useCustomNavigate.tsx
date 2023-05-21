@@ -15,19 +15,19 @@ export function useCustomNavigate() {
   const navigate = useNavigate();
   const location = useLocation()
 
-  const shopNavigate = (path, checkCurrentPath = false) => {
-    const route = `/${shop.name}/c/${path}`
+  const shopNavigate = (path: string, checkCurrentPath = false) => {
+    const route = `/${shop?.name}/c/${path}`
     const check = checkCurrentPath ? route !== location.pathname : true
     if (check) navigate(route);
   }
 
   const redirectToIo = ({ productID, shopName }: IredirectToShop) => {
     if (productID) {
-      return `${SHOP_URL}/${shop.name}/product/${productID}`
+      return `${SHOP_URL}/${shop?.name}/product/${productID}`
     } else if (shopName) {
       return `${SHOP_URL}/${shopName}`
     } else {
-      return `${SHOP_URL}/${shop.name}`
+      return `${SHOP_URL}/${shop?.name}`
     }
   }
 

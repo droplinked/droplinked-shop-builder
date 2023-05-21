@@ -39,7 +39,7 @@ function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
                                 fetch()
                                 close()
                             },
-                            onError: async () => toast.error("Somthing wrong")
+                            onError: async () => toast.error("Oops! Something went wrong")
                         })
                     }
                 }

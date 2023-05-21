@@ -8,7 +8,7 @@ export interface IAppForm {
 }
 
 export default class FormModel {
-    static styleProps = () => {
+    static baseStyleProps = () => {
         return {
             borderColor: "#141414",
             errorBorderColor: "red.200",
@@ -17,6 +17,11 @@ export default class FormModel {
             fontSize: "14px",
             fontWeight: "bold",
             color: "#808080",
+        }
+    }
+    static styleProps = () => {
+        return {
+            ...this.baseStyleProps(),
             _placeholder: {
                 color: "#808080"
             },

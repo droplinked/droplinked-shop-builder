@@ -13,7 +13,6 @@ import {
 } from "@chakra-ui/react";
 //
 
-import { selectCurrentShop } from "lib/store/shop/shop.selector";
 import { useApi } from "hooks/useApi/useApi";
 //
 import AddCollectionComponent from "./components/add-collection-component/AddCollectionComponent";
@@ -21,14 +20,13 @@ import CollectionComponent from "./components/collection-component/CollectionCom
 import LoadingComponent from "components/shared/loading-component/LoadingComponent";
 import PageHeader from "./components/page-header/PageHeader";
 import AppCard from "components/shared/card/AppCard";
-import { getCollectionPublicByShopName, getUsersCollections } from "lib/apis/collectionApiService";
+import { getUsersCollections } from "lib/apis/collectionApiService";
 
 export default function CollectionsPage() {
   const [searchValue, setSearchValue] = useState("");
   const [collections, setCollections] = useState(null);
 
   const navigate = useNavigate();
-  const shop = useSelector(selectCurrentShop);
   const { getApi } = useApi();
 
   const token = JSON.parse(localStorage.getItem("token"));

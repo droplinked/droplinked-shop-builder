@@ -1,0 +1,66 @@
+import { Box, HStack, useDisclosure, VStack } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import BasicButton from 'components/shared/BasicButton/BasicButton'
+import AppTable from 'components/shared/table/AppTable'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import DeleteAddress from './delete/DeleteAddress'
+import AddressModal from './modal/AddressModal'
+
+interface Iprops {
+    addressService: any
+}
+
+function ShopInfoAddress({ addressService }: Iprops) {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [AddressID, setAddressID] = useState(null)
+    const isRegister = useLocation().pathname.includes("register")
+    const address = addressService?.data?.data?.data
+
+    // Open modal edit mode
+    const editModal = useCallback((addressID: string) => {
+        setAddressID(addressID)
+        onOpen()
+    }, [])
+
+    useEffect(() => setAddressID(null), [addressService.data])
+
+
+    const rows = useMemo(() => {
+        return address ? address.map((el: any) => ({
+            State: {
+                value: `${el.country}, ${el.state}`
+            },
+            Address: {
+                value: `${el.country}, ${el.city}`
+            },
+            zipcode: {
+                caption: "Zip-code",
+                value: `${el.zip}`
+            },
+            Options: {
+                value: (
+                    <HStack spacing={4}>
+                        <AppIcons.editIcon style={{ cursor: "pointer" }} onClick={() => editModal(el._id)} width="16px" height="16px" />
+                        {isRegister && <DeleteAddress addressID={el._id} addressRefetch={() => addressService.mutate()} />}
+                    </HStack>
+                )
+            },
+        })) : []
+    }, [address])
+
+
+    return (
+        <VStack align={"stretch"}>
+            <AppTable rows={rows} />
+            {isOpen && <AddressModal close={onClose} addressID={AddressID} onSuccess={addressService.mutate} open={isOpen} />}
+            {isRegister && !address?.length && !addressService.isLoading ? (
+                <Box>
+                    <BasicButton width={"100%"} onClick={onOpen} variant='outline'>Add new address</BasicButton>
+                </Box>
+            ) : null}
+        </VStack>
+    )
+}
+
+export default ShopInfoAddress

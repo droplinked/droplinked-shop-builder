@@ -34,7 +34,7 @@ function DeleteModalCollection({ open, close, collectionID, onSuccess }) {
                                 onSuccess()
                                 close()
                             },
-                            onError: () => toast.error("Somthing wrong")
+                            onError: () => toast.error("Oops! Something went wrong")
                         })
                     }
                 }

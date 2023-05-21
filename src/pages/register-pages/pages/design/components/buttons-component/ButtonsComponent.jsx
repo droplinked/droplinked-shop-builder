@@ -1,42 +1,34 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Flex, Box } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
-
 import { designContext } from "../../design-context";
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { useToasty } from "context/toastify/ToastContext";
-import { useApi } from "hooks/useApi/useApi";
 import { useProfile } from "hooks/useProfile/useProfile";
-import { putUpdateShop } from "lib/apis/shopApiService";
-
 import BasicButton from "components/shared/BasicButton/BasicButton";
 import DesignRegisterMdel from "./model";
+import AppErrors from "lib/utils/statics/errors/errors";
 
 const ButtonsComponent = () => {
-
-  const [loading, setLoading] = useState(false);
 
   const { state } = useContext(designContext);
   const { shopNavigate } = useCustomNavigate();
   const { errorToast, successToast } = useToasty();
-  const { putApi } = useApi();
-  const { updateShopData } = useProfile();
+  const { setShopData: { loading, update } } = useProfile();
   const { validation } = DesignRegisterMdel
   const currentPath = useLocation().pathname;
 
   const clickSubmit = async () => {
     try {
       await validation(state)
-      setLoading(true);
-      const result = await putApi(putUpdateShop(state));
-      updateShopData();
-      setLoading(false);
-      if (result) {
-        if (currentPath.includes("register")) shopNavigate(`register/technical`);
-        successToast("Updated");
+      await update(state)
+      if (currentPath.includes("register")) {
+        shopNavigate(`register/technical`)
+      } else {
+        successToast(AppErrors.store.has_been_updated("Store design"))
       }
     } catch (error) {
-      errorToast(error?.errors ? error.errors[0] : "Somthing wrong");
+      errorToast(error?.errors ? error.errors[0] : "Oops! Something went wrong");
     }
   };
 
@@ -44,7 +36,7 @@ const ButtonsComponent = () => {
     <Flex justifyContent={"right"} width={"100%"}>
       <Box>
         <BasicButton sizes="large" onClick={clickSubmit} isLoading={loading}>
-          {currentPath.includes("register") ? "Save & next step" : "Update"}
+          {currentPath.includes("register") ? "Next" : "Update"}
         </BasicButton>
       </Box>
     </Flex>

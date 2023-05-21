@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IpaymentCreateService, IproductService, IrecordedShopService, IshopService } from "./interfaces"
+import { IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopService, IshopUpdateService } from "./interfaces"
 
 export const shopService = ({ shopName }: IshopService) => {
     return axiosInstance.get(`shop/${shopName}`)
@@ -29,4 +29,12 @@ export const recordedShopService = ({ shopName }: IrecordedShopService) => {
 
 export const productService = ({ productID }: IproductService) => {
     return axiosInstance.get(`product/${productID}?recorded=true`)
+}
+
+export const shopInfoService = ({ shopName }: IshopInfoService) => {
+    return axiosInstance.get(`shop/shopInfo/${shopName}`)
+}
+
+export const shopUpdateService = (params: IshopUpdateService) => {
+    return axiosInstance.put(`shop`, params)
 }

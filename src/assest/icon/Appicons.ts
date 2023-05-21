@@ -9,6 +9,8 @@ import { ReactComponent as visibleIcon } from './visible-icon.svg'
 import { ReactComponent as addIcon } from './add.svg'
 import { ReactComponent as variantsIcon } from './products-active-icon.svg'
 import { ReactComponent as ruleIcon } from './rulesets-active-icon.svg'
+import { ReactComponent as editIcon } from './edit-icon.svg'
+import { ReactComponent as deleteIcon } from './delete-icon.svg'
 
 const AppIcons = {
   productsIcon,
@@ -21,6 +23,8 @@ const AppIcons = {
   visibleIcon,
   addIcon,
   variantsIcon,
-  ruleIcon
+  ruleIcon,
+  editIcon,
+  deleteIcon
 }
 export default AppIcons
