@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { designContext } from "../../design-context";
 //
 import InputComponent from "../../../../component/input-component/InputComponent";
-import AppInput from "components/shared/form/textbox/AppInput";
+import AppInput from "common/form/textbox/AppInput";
 
 const HeaderTitleComponent = () => {
   const {

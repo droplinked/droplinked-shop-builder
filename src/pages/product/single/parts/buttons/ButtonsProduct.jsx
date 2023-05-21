@@ -1,5 +1,5 @@
 import { Box, HStack } from '@chakra-ui/react'
-import BasicButton from 'components/shared/BasicButton/BasicButton'
+import BasicButton from 'common/BasicButton/BasicButton'
 import React, { useCallback, useContext } from 'react'
 import { productContext } from '../../context'
 import ButtonsProductClass from './model'

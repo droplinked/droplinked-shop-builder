@@ -4,7 +4,7 @@ import AddVariants from './parts/add'
 import SkuTable from './parts/table/SkuTable'
 import { productContext } from 'pages/product/single/context'
 import ProductPageTitle from '../title/ProductPageTitle'
-import AppSkeleton from 'components/shared/skeleton/AppSkeleton'
+import AppSkeleton from 'common/skeleton/AppSkeleton'
 
 function VariantsProduct() {
   const { state: { sku }, loading } = useContext(productContext)

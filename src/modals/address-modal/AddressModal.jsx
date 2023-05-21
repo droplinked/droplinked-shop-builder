@@ -15,8 +15,8 @@ import { TopText } from "./AddressModal-style";
 //
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import SelectInputComponent from "./components/select-input-component/SelectInputComponent";
-import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
-import BasicButton from "components/shared/BasicButton/BasicButton";
+import InputFieldComponent from "common/input-field-component/InputFieldComponent";
+import BasicButton from "common/BasicButton/BasicButton";
 import { postCreateAddress, putUpdateAddress } from "lib/apis/addressApiService";
 
 export default function AddressModal({

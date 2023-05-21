@@ -12,8 +12,8 @@ import {
 import { useState, useRef } from "react";
 //
 import { useToasty } from "context/toastify/ToastContext";
-import AppTypography from "components/shared/typography/AppTypography";
-import FieldLabel from "components/shared/form/fieldLabel/FieldLabel";
+import AppTypography from "common/typography/AppTypography";
+import FieldLabel from "common/form/fieldLabel/FieldLabel";
 import { toMb } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
 

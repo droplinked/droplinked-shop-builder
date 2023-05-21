@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Flex } from "@chakra-ui/react";
 import { SignupWrapper, DomainText, ShopNameInput, ErrorText } from "./SignupInputComponent-style";
-import BasicButton from "components/shared/BasicButton/BasicButton";
+import BasicButton from "common/BasicButton/BasicButton";
 import { useMutation } from "react-query";
 import { shopService } from "lib/apis/shop/shopServices";
 

@@ -12,7 +12,7 @@ import {
 //
 import dltImg from "assest/icon/icons8-multiply-100.png";
 import uploadImage from "assest/icon/upload-icon.svg";
-import LoadingComponent from "components/shared/loading-component/LoadingComponent";
+import LoadingComponent from "common/loading-component/LoadingComponent";
 import AppErrors from "lib/utils/statics/errors/errors";
 
 export default function InputImagesGroup({ setState, state }) {

@@ -1,5 +1,5 @@
 import { VStack } from '@chakra-ui/react'
-import AppCard from 'components/shared/card/AppCard'
+import AppCard from 'common/card/AppCard'
 import React from 'react'
 import Properties from '../modules/properties/Properties'
 import ProductPageTitle from '../modules/title/ProductPageTitle'

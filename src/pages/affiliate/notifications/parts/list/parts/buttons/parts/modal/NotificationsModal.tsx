@@ -1,5 +1,5 @@
 import { Text } from '@chakra-ui/react'
-import AppDialog, { IAppDialog } from 'components/shared/dialog'
+import AppDialog, { IAppDialog } from 'common/dialog'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useMemo } from 'react'
 import requestInterfaces from '../../interfaces'

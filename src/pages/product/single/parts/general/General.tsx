@@ -6,7 +6,7 @@ import ProductName from '../modules/name/ProductName'
 import DescriptionProduct from '../modules/description/DescriptionProduct'
 import ProductImages from '../modules/images/ProductImages'
 import ShippingProduct from '../modules/shipping/ShippingProduct'
-import AppCard from 'components/shared/card/AppCard'
+import AppCard from 'common/card/AppCard'
 
 function General() {
     return (

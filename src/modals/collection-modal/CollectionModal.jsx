@@ -4,9 +4,9 @@ import { useToasty } from "../../context/toastify/ToastContext";
 import { useApi } from "../../hooks/useApi/useApi";
 import { postCreateCollection, putUpdateCollection } from "lib/apis/collectionApiService";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
-import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
-import AppInput from "components/shared/form/textbox/AppInput";
+import InputFieldComponent from "../../common/input-field-component/InputFieldComponent";
+import BasicButton from "../../common/BasicButton/BasicButton";
+import AppInput from "common/form/textbox/AppInput";
 import AppErrors from "lib/utils/statics/errors/errors";
 
 const CollectionModal = ({ show, collection, close, update }) => {

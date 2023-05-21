@@ -1,4 +1,4 @@
-import BasicButton from 'components/shared/BasicButton/BasicButton'
+import BasicButton from 'common/BasicButton/BasicButton'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
 import { useProfile } from 'hooks/useProfile/useProfile';
 import { IpaymentCreateService } from 'lib/apis/shop/interfaces';

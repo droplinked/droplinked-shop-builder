@@ -1,9 +1,9 @@
 import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react'
-import InputFieldComponent from 'components/shared/input-field-component/InputFieldComponent'
+import InputFieldComponent from 'common/input-field-component/InputFieldComponent'
 import ModalWrapper from 'modals/modal-wrapper/ModalWrapper'
 import React, { useState } from 'react'
 import roundedQuestionMark from "assest/icon/rounded-question-mark-icon.svg";
-import BasicButton from 'components/shared/BasicButton/BasicButton';
+import BasicButton from 'common/BasicButton/BasicButton';
 import { useMutation } from 'react-query';
 import { createCollectionService } from 'lib/apis/collection/services';
 import { toast } from 'react-toastify';

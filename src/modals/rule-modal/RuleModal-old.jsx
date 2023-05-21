@@ -19,9 +19,9 @@ import { useApi } from "../../hooks/useApi/useApi";
 // import deleteIcon from "../../../assest/icon/delete-icon.svg";
 import RuleItem from "./RuleItem";
 import FillInputComponent from "./components/FillInputComponent";
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
+import BasicButton from "../../common/BasicButton/BasicButton";
 import AddRuleComponent from "./AddRuleComponent";
-import LoadingComponent from "../../components/shared/loading-component/LoadingComponent";
+import LoadingComponent from "../../common/loading-component/LoadingComponent";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import { ChainTypes } from "./chain-type";
 

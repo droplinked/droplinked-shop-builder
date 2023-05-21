@@ -1,6 +1,6 @@
 import { Box, Flex, HStack, Text, VStack } from '@chakra-ui/react'
 import { faker } from '@faker-js/faker'
-import AppImage from 'components/shared/image/AppImage'
+import AppImage from 'common/image/AppImage'
 import React from 'react'
 
 interface options {

@@ -1,13 +1,13 @@
 import { useProfile } from 'hooks/useProfile/useProfile'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
-import AppDataGrid from 'components/shared/datagrid/DataGrid'
-import { ITableRows } from 'components/shared/table/AppTable'
+import AppDataGrid from 'common/datagrid/DataGrid'
+import { ITableRows } from 'common/table/AppTable'
 import { ruleService } from 'lib/apis/rule/ruleServices'
 import discountIcon from "assest/icon/discount-active-icon.svg";
 import gatedIcon from "assest/icon/gated-active-icon.svg";
 import { Box, HStack, Image } from '@chakra-ui/react'
-import AppTypography from 'components/shared/typography/AppTypography'
+import AppTypography from 'common/typography/AppTypography'
 
 interface IStates {
     rows: Array<ITableRows>

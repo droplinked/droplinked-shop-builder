@@ -3,15 +3,15 @@ import { useLocation } from "react-router-dom";
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
 import { useToasty } from "../../../../context/toastify/ToastContext";
-import AppTypography from "components/shared/typography/AppTypography";
+import AppTypography from "common/typography/AppTypography";
 import { toast } from "react-toastify";
 import AppErrors from "lib/utils/statics/errors/errors";
 import { Form, Formik } from "formik";
 import { Box, Flex, VStack } from "@chakra-ui/react";
-import AppCard from "components/shared/card/AppCard";
+import AppCard from "common/card/AppCard";
 import InputLefton from "pages/register-pages/component/input-lefton/InputLefton";
 import { IshopSocial } from "lib/apis/shop/interfaces";
-import BasicButton from "components/shared/BasicButton/BasicButton";
+import BasicButton from "common/BasicButton/BasicButton";
 
 const ContactInfo = () => {
   const { shopNavigate } = useCustomNavigate();

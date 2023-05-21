@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { SkeletonProps } from '@chakra-ui/react'
-import AppSkeleton from 'components/shared/skeleton/AppSkeleton'
+import AppSkeleton from 'common/skeleton/AppSkeleton'
 import { productContext } from 'pages/product/single/context'
 
 interface Iprops extends SkeletonProps {

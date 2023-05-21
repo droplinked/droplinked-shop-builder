@@ -1,7 +1,7 @@
 import { Box, Flex, VStack } from "@chakra-ui/react";
 import { faker } from "@faker-js/faker";
-import AppBadge from "components/shared/badge/AppBadge";
-import AppEmptyPage from "components/shared/empty/AppEmptyPage";
+import AppBadge from "common/badge/AppBadge";
+import AppEmptyPage from "common/empty/AppEmptyPage";
 import { publisherRequestService } from "lib/apis/affiliate/shopServices";
 import AffiliateDetailCard from "pages/affiliate/parts/detail/affiliateDetailCard";
 import React, { useEffect } from "react";

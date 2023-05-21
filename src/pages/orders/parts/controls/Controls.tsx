@@ -1,5 +1,5 @@
 import React from 'react'
-import PopOverMenu from 'components/shared/PopoverMenu/PopOverMenu'
+import PopOverMenu from 'common/PopoverMenu/PopOverMenu'
 import { useDisclosure } from '@chakra-ui/react';
 import OrderModal from 'modals/order-modal/OrderModal';
 

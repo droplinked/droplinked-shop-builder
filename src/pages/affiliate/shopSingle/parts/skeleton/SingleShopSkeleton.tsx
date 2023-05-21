@@ -1,5 +1,5 @@
 import { Box, VStack } from '@chakra-ui/react'
-import AppSkeleton from 'components/shared/skeleton/AppSkeleton'
+import AppSkeleton from 'common/skeleton/AppSkeleton'
 import React from 'react'
 
 function SingleShopSkeleton() {

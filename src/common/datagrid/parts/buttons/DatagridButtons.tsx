@@ -1,5 +1,5 @@
 import { Box, ButtonProps } from '@chakra-ui/react'
-import BasicButton, { IBasicButton } from 'components/shared/BasicButton/BasicButton'
+import BasicButton, { IBasicButton } from 'common/BasicButton/BasicButton'
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 

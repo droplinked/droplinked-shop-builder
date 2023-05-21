@@ -1,4 +1,4 @@
-import FiltersDatagrid from 'components/shared/datagrid/parts/filters/FiltersDatagrid'
+import FiltersDatagrid from 'common/datagrid/parts/filters/FiltersDatagrid'
 import React from 'react'
 
 function ShopsFilter() {

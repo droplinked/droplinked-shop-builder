@@ -1,4 +1,4 @@
-import EmptyTable from 'components/shared/table/parts/empty/EmptyTable'
+import EmptyTable from 'common/table/parts/empty/EmptyTable'
 import React from 'react'
 import AppIcons from 'assest/icon/Appicons';
 

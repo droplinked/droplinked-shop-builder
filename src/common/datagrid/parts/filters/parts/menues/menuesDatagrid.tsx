@@ -1,5 +1,5 @@
 import { Box, HStack, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
-import AppTypography from 'components/shared/typography/AppTypography'
+import AppTypography from 'common/typography/AppTypography'
 import React from 'react'
 
 export interface IIMenuesDatagridItems {

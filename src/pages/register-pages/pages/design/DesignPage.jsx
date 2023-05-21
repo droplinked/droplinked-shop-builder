@@ -21,9 +21,9 @@ import ColorInputsComponent from "./components/color-inputs-component/ColorInput
 
 import { designContext, initialStatesDesign } from "./design-context";
 import { refactorDesignData } from "./utils";
-import AppCard from "components/shared/card/AppCard";
-import { CardTitle } from "components/shared/card/component-style";
-import AppTypography from "components/shared/typography/AppTypography";
+import AppCard from "common/card/AppCard";
+import { CardTitle } from "common/card/component-style";
+import AppTypography from "common/typography/AppTypography";
 
 //
 const IMAGES = [{ img: darkThemplateImage, name: "theme-2" }];

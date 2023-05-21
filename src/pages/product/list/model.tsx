@@ -1,4 +1,4 @@
-import { ITableRows } from "components/shared/table/AppTable"
+import { ITableRows } from "common/table/AppTable"
 import React from "react"
 import ControlsListProduct from "./parts/controls/Controls"
 import ImageListProduct from "./parts/image/ImageListProduct"

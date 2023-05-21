@@ -4,7 +4,7 @@ import { Flex, Code, Box } from "@chakra-ui/react"
 import { useToasty } from "../../context/toastify/ToastContext"
 import { useState } from "react"
 
-import BasicButton from "../../components/shared/BasicButton/BasicButton"
+import BasicButton from "../../common/BasicButton/BasicButton"
 import ModalWrapper from "../modal-wrapper/ModalWrapper"
 
 const IframeModal = ({show, link, code, close }) => {

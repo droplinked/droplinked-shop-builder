@@ -1,5 +1,5 @@
 import { Box, Flex, Text, VStack } from '@chakra-ui/react'
-import BasicButton from 'components/shared/BasicButton/BasicButton'
+import BasicButton from 'common/BasicButton/BasicButton'
 import React from 'react'
 
 interface Iprops {

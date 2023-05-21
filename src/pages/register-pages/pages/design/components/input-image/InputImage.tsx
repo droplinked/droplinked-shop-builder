@@ -12,8 +12,8 @@ import {
 } from "@chakra-ui/react";
 import { useToasty } from "../../../../../../context/toastify/ToastContext";
 import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
-import AppTypography from "components/shared/typography/AppTypography";
-import FieldLabel from "components/shared/form/fieldLabel/FieldLabel";
+import AppTypography from "common/typography/AppTypography";
+import FieldLabel from "common/form/fieldLabel/FieldLabel";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React from "react";
 import { Isize_limit } from "lib/utils/statics/errors/modules/store";

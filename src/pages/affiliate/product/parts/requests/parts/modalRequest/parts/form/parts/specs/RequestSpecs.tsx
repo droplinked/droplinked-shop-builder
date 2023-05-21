@@ -1,4 +1,4 @@
-import AppTable from 'components/shared/table/AppTable'
+import AppTable from 'common/table/AppTable'
 import RequestProductModel from 'pages/affiliate/product/parts/requests/model'
 import React, { useContext } from 'react'
 import { ModalRequestContext } from '../../context'

@@ -3,7 +3,7 @@ import SignupProducer from "./signup-producer/SignupProducer";
 
 import { Flex, Stack } from "@chakra-ui/react";
 import { Title } from "./SignupModal-style";
-import AppTypography from "components/shared/typography/AppTypography";
+import AppTypography from "common/typography/AppTypography";
 
 const SignupModal = ({ show, close, switchModal, shopName }) => {
   return (

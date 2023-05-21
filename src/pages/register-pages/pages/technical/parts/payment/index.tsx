@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Box, VStack } from '@chakra-ui/react'
-import FieldLabel from 'components/shared/form/fieldLabel/FieldLabel';
-import AppTypography from 'components/shared/typography/AppTypography';
+import FieldLabel from 'common/form/fieldLabel/FieldLabel';
+import AppTypography from 'common/typography/AppTypography';
 import { paymentPublicService } from 'lib/apis/shop/shopServices';
 import { BlackBox } from 'pages/register-pages/RegisterPages-style'
 import { useMutation } from 'react-query';

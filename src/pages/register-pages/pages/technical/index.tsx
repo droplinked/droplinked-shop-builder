@@ -7,7 +7,7 @@ import technicalContext, { technicalContextState } from "./context";
 import { appDeveloment } from "lib/utils/app/variable";
 import technicalModel from "./model";
 import Wallet from "./parts/wallet";
-import AppCard from "components/shared/card/AppCard";
+import AppCard from "common/card/AppCard";
 import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
 import { useProfile } from "hooks/useProfile/useProfile";
 import { paymentMethodsService } from "lib/apis/shop/shopServices";

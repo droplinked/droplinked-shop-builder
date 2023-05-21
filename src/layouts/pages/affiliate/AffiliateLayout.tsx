@@ -1,5 +1,5 @@
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
-import AppTypography from 'components/shared/typography/AppTypography';
+import AppTypography from 'common/typography/AppTypography';
 import React from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import AffiliateModel from './AffiliateModel';

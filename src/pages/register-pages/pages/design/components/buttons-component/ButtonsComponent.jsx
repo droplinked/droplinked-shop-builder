@@ -5,7 +5,7 @@ import { designContext } from "../../design-context";
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { useToasty } from "context/toastify/ToastContext";
 import { useProfile } from "hooks/useProfile/useProfile";
-import BasicButton from "components/shared/BasicButton/BasicButton";
+import BasicButton from "common/BasicButton/BasicButton";
 import DesignRegisterMdel from "./model";
 import AppErrors from "lib/utils/statics/errors/errors";
 

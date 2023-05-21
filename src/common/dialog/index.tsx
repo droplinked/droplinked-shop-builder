@@ -1,5 +1,5 @@
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
-import BasicButton, { IBasicButton } from 'components/shared/BasicButton/BasicButton'
+import BasicButton, { IBasicButton } from 'common/BasicButton/BasicButton'
 import ModalWrapper from 'modals/modal-wrapper/ModalWrapper'
 import React from 'react'
 import AppTypography from '../typography/AppTypography'

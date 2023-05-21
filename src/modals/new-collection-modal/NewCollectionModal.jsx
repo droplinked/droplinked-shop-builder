@@ -4,8 +4,8 @@ import { useToasty } from "../../context/toastify/ToastContext";
 import { useApi } from "../../hooks/useApi/useApi";
 import { postCreateCollection } from "../../apis/collectionApiService";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
-import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
+import BasicButton from "../../common/BasicButton/BasicButton";
+import InputFieldComponent from "../../common/input-field-component/InputFieldComponent";
 import roundedQuestionMark from "../../assest/icon/rounded-question-mark-icon.svg";
 //
 const NewCollectionModal = ({ show, close, update }) => {

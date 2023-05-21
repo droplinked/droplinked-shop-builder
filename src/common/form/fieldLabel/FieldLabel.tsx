@@ -1,6 +1,6 @@
 import { Box, HStack, Text, TextProps } from '@chakra-ui/react'
-import AppSkeleton from 'components/shared/skeleton/AppSkeleton'
-import AppTypography from 'components/shared/typography/AppTypography'
+import AppSkeleton from 'common/skeleton/AppSkeleton'
+import AppTypography from 'common/typography/AppTypography'
 import React from 'react'
 import FieldLabelReuired from './parts/required/FieldLabelReuired'
 

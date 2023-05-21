@@ -1,5 +1,5 @@
-import AppSelectBox from 'components/shared/form/select/AppSelectBox'
-import AppInput from 'components/shared/form/textbox/AppInput'
+import AppSelectBox from 'common/form/select/AppSelectBox'
+import AppInput from 'common/form/textbox/AppInput'
 import ruleModelContext from 'modals/rule-modal/context'
 import React, { useContext } from 'react'
 

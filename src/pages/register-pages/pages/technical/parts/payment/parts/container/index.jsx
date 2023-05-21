@@ -2,7 +2,7 @@ import { Box, HStack, Image, Text } from '@chakra-ui/react'
 import { PageContentWrapper, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useCallback, useContext } from 'react'
 import classes from './style.module.scss'
-import AppSwitch from 'components/shared/swich'
+import AppSwitch from 'common/swich'
 import editIcon from "assest/icon/edit-icon.svg";
 import MetaMask from "assest/icon/MetaMask.svg";
 import SaveIcon from "assest/icon/frame20783.svg";

@@ -1,6 +1,6 @@
 
 
-import BasicButton from '../../components/shared/BasicButton/BasicButton'
+import BasicButton from '../../common/BasicButton/BasicButton'
 
 import {
     Modal,

@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { ComponentWrapper, ComponentTitle } from "./ProductIntroComponent-style";
 import { INTRO_REDUCER_TYPES } from "pages/prodcut-pages/reducer/product-intro-reducer";
 //
-import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
+import InputFieldComponent from "common/input-field-component/InputFieldComponent";
 import InputImagesGroup from "../InputImageGroupe/Input-images-component";
 
 

@@ -9,7 +9,7 @@ import {
   EmailText,
 } from "./ThankForRegisterPage-style";
 //
-import BasicButton from "components/shared/BasicButton/BasicButton";
+import BasicButton from "common/BasicButton/BasicButton";
 import { postUserResendEmail } from "lib/apis/userApiService";
 
 export default function ThankForRegisterPage() {

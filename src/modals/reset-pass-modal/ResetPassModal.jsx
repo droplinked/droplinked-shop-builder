@@ -6,11 +6,11 @@ import { useApi } from "../../hooks/useApi/useApi";
 import { Title, Detail, BacktoLoginButton } from "./ResetPassModal-style";
 
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
-import InputFieldComponent from "../../components/shared/input-field-component/InputFieldComponent";
+import BasicButton from "../../common/BasicButton/BasicButton";
+import InputFieldComponent from "../../common/input-field-component/InputFieldComponent";
 import { postUserForgotPassword } from "lib/apis/userApiService";
-import AppTypography from "components/shared/typography/AppTypography";
-import AppInput from "components/shared/form/textbox/AppInput";
+import AppTypography from "common/typography/AppTypography";
+import AppInput from "common/form/textbox/AppInput";
 
 const ResetPassModal = ({ show, close, switchReset }) => {
   const [disableBtn, setDisableBtn] = useState(false);

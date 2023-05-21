@@ -1,6 +1,6 @@
 import React from 'react'
 import SkuForm from '../../../form'
-import AppModal from 'components/shared/modal/AppModal'
+import AppModal from 'common/modal/AppModal'
 import { Box } from '@chakra-ui/react'
 
 function SkuTableModal({ open, close, skuData }) {

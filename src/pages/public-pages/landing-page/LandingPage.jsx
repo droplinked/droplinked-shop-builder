@@ -17,7 +17,7 @@ import {
 } from "./LandingPage-style";
 import { useProfile } from "hooks/useProfile/useProfile";
 //
-import BasicButton from "components/shared/BasicButton/BasicButton";
+import BasicButton from "common/BasicButton/BasicButton";
 import MainImageComponent from "./components/main-image-component/MainImageComponent";
 import IconsComponent from "./components/icons-component/IconsComponent";
 import SignupInputComponent from "./components/signup-input-component/SignupInputComponent";

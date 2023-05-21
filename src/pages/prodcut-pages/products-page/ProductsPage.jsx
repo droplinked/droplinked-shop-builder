@@ -12,9 +12,9 @@ import { useApi } from "../../../hooks/useApi/useApi";
 import PageHeader from "./components/page-header/PageHeader";
 import AddProductComponent from "./components/add-product-component/AddProductComponent";
 import ProductComponent from "./components/product-component/ProductCompnent";
-import LoadingComponent from "../../../components/shared/loading-component/LoadingComponent";
+import LoadingComponent from "../../../common/loading-component/LoadingComponent";
 import { matchSorter } from "match-sorter";
-import AppCard from "components/shared/card/AppCard";
+import AppCard from "common/card/AppCard";
 import { getProduct } from "lib/apis/productsApiService";
 
 const ProductsPage = () => {

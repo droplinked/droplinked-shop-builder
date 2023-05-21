@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { productContext } from 'pages/product/single/context'
-import AppSelectBox from 'components/shared/form/select/AppSelectBox'
+import AppSelectBox from 'common/form/select/AppSelectBox'
 
 interface IProps {
   collections: any

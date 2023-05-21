@@ -1,12 +1,12 @@
 import { Box, Radio, RadioGroup, Text, VStack, useDisclosure } from '@chakra-ui/react'
 import { BlackBox, PageContentWrapper, StarLabel, Text18px, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useContext, useState } from 'react'
-import BasicButton from 'components/shared/BasicButton/BasicButton'
+import BasicButton from 'common/BasicButton/BasicButton'
 import technicalContext from '../../context'
-import AppDialog from 'components/shared/dialog'
+import AppDialog from 'common/dialog'
 import { useToasty } from 'context/toastify/ToastContext'
-import FieldLabel from 'components/shared/form/fieldLabel/FieldLabel'
-import AppTypography from 'components/shared/typography/AppTypography'
+import FieldLabel from 'common/form/fieldLabel/FieldLabel'
+import AppTypography from 'common/typography/AppTypography'
 
 function Ims(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()

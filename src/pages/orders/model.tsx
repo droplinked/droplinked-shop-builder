@@ -1,5 +1,5 @@
 import React from "react"
-import { ITableRows } from "components/shared/table/AppTable"
+import { ITableRows } from "common/table/AppTable"
 import ControlsListOrder from "./parts/controls/Controls"
 import { convertToStandardFormat } from "lib/utils/date.utils/convertDate";
 

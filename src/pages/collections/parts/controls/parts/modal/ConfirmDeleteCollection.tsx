@@ -1,4 +1,4 @@
-import AppDialog from 'components/shared/dialog'
+import AppDialog from 'common/dialog'
 import { IdeleteCollectionService } from 'lib/apis/collection/interfaces'
 import { deleteCollectionService } from 'lib/apis/collection/services'
 import AppErrors from 'lib/utils/statics/errors/errors'

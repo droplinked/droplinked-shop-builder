@@ -7,8 +7,8 @@ import { useApi } from "hooks/useApi/useApi";
 //
 import "./ResetPassPage-style.scss";
 //
-import BasicButton from "components/shared/BasicButton/BasicButton";
-import InputFieldComponent from "components/shared/input-field-component/InputFieldComponent";
+import BasicButton from "common/BasicButton/BasicButton";
+import InputFieldComponent from "common/input-field-component/InputFieldComponent";
 
 
 

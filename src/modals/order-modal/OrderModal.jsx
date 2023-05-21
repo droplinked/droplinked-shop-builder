@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import AppModal from "components/shared/modal/AppModal";
+import AppModal from "common/modal/AppModal";
 import CustomerInformationComponent from "./components/customer-information-component/customerInformationComponent";
 import OrderDetailComponent from "./components/order-detail-component/OrderDetailComponent";
 import orderModalContext from "./context";

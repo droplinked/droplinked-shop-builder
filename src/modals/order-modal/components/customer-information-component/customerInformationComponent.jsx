@@ -8,7 +8,7 @@ import { useContext, useMemo } from "react";
 
 import { convertCustomerInformation } from "./utils";
 import orderModalContext from "modals/order-modal/context";
-import AppTypography from "components/shared/typography/AppTypography";
+import AppTypography from "common/typography/AppTypography";
 
 const CustomerInformationComponent = () => {
   const { order } = useContext(orderModalContext)

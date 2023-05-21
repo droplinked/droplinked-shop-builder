@@ -1,4 +1,4 @@
-import AppTable from 'components/shared/table/AppTable'
+import AppTable from 'common/table/AppTable'
 import orderModalContext from 'modals/order-modal/context'
 import React, { useContext } from 'react'
 import OrderModalProduct from './parts/product/OrderModalProduct';

@@ -1,4 +1,4 @@
-import EmptyTable from 'components/shared/table/parts/empty/EmptyTable'
+import EmptyTable from 'common/table/parts/empty/EmptyTable'
 import React from 'react'
 import variantsIcon from "assest/icon/products-active-icon.svg";
 import collectionIcon from "assest/icon/collection-active-icon.svg";

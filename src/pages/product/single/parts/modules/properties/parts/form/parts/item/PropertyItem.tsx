@@ -7,8 +7,8 @@ import { productContext } from 'pages/product/single/context';
 import { toast } from 'react-toastify';
 import propertyItemModel from './model/model';
 import SkuTableModal from 'pages/product/single/parts/modules/variants/parts/table/parts/skuModal/SkuTableModal';
-import AppInput from 'components/shared/form/textbox/AppInput';
-import AppTypography from 'components/shared/typography/AppTypography';
+import AppInput from 'common/form/textbox/AppInput';
+import AppTypography from 'common/typography/AppTypography';
 
 function PropertyItem({ element, keyProperty }) {
     const { isOpen, onOpen, onClose } = useDisclosure()

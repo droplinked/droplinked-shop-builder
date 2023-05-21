@@ -1,4 +1,4 @@
-import AppInput from 'components/shared/form/textbox/AppInput'
+import AppInput from 'common/form/textbox/AppInput'
 import ruleModelContext from 'modals/rule-modal/context'
 import React, { useContext } from 'react'
 

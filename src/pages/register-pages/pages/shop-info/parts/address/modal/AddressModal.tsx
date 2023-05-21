@@ -1,9 +1,9 @@
 import { Box, Flex, VStack } from '@chakra-ui/react';
-import BasicButton from 'components/shared/BasicButton/BasicButton';
-import AppDropDown from 'components/shared/form/dropdown/AppDropDown';
-import AppInput from 'components/shared/form/textbox/AppInput';
-import AppModal, { IAppModal } from 'components/shared/modal/AppModal'
-import AppTypography from 'components/shared/typography/AppTypography';
+import BasicButton from 'common/BasicButton/BasicButton';
+import AppDropDown from 'common/form/dropdown/AppDropDown';
+import AppInput from 'common/form/textbox/AppInput';
+import AppModal, { IAppModal } from 'common/modal/AppModal'
+import AppTypography from 'common/typography/AppTypography';
 import { Form, Formik } from 'formik'
 import { useProfile } from 'hooks/useProfile/useProfile';
 import { addressByIdService, createAddressService, updateAddressService } from 'lib/apis/address/addressServices';

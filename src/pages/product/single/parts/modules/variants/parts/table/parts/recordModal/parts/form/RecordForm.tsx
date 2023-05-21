@@ -1,8 +1,8 @@
 import React, { useCallback, useContext } from 'react'
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
-import BasicButton from 'components/shared/BasicButton/BasicButton'
-import AppSelectBox from 'components/shared/form/select/AppSelectBox'
-import AppInput from 'components/shared/form/textbox/AppInput'
+import BasicButton from 'common/BasicButton/BasicButton'
+import AppSelectBox from 'common/form/select/AppSelectBox'
+import AppInput from 'common/form/textbox/AppInput'
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { productContext } from 'pages/product/single/context'

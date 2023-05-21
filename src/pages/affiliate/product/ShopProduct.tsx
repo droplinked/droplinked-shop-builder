@@ -1,5 +1,5 @@
 import { Box, Flex, Text, VStack } from '@chakra-ui/react'
-import AppCard from 'components/shared/card/AppCard'
+import AppCard from 'common/card/AppCard'
 import { IproductService, IrecordedShopService } from 'lib/apis/shop/interfaces'
 import { productService, recordedShopService } from 'lib/apis/shop/shopServices'
 import React, { useEffect } from 'react'

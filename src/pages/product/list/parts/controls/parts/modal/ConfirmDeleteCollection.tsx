@@ -1,4 +1,4 @@
-import AppDialog from 'components/shared/dialog'
+import AppDialog from 'common/dialog'
 import { IproductDeleteServices } from 'lib/apis/product/interfaces'
 import { productDeleteServices } from 'lib/apis/product/productServices'
 import React from 'react'

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import OrdersModel from './model'
-import AppDataGrid from 'components/shared/datagrid/DataGrid'
+import AppDataGrid from 'common/datagrid/DataGrid'
 import { ordersServices } from 'lib/apis/orders/orderServices'
 
 function Orders() {

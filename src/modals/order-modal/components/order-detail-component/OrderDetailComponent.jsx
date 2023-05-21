@@ -4,7 +4,7 @@ import {
   Text,
   VStack
 } from "@chakra-ui/react";
-import AppTypography from "components/shared/typography/AppTypography";
+import AppTypography from "common/typography/AppTypography";
 import OrderDetailTable from "./components/table/OrderDetailTable";
 import OrderDetailCost from "./components/table/parts/cost/OrderModalProduct";
 

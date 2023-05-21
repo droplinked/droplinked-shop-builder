@@ -1,5 +1,5 @@
 import { Box, HStack, VStack } from '@chakra-ui/react'
-import BasicButton from 'components/shared/BasicButton/BasicButton'
+import BasicButton from 'common/BasicButton/BasicButton'
 import React, { useCallback, useContext, useEffect, useMemo } from 'react'
 import VariantMakeForm from './parts/container'
 import { toast } from 'react-toastify'

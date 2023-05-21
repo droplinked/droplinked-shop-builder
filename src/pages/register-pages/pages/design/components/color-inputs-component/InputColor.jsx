@@ -1,5 +1,5 @@
 import { Flex, Text, FormLabel, FormControl } from "@chakra-ui/react";
-import FieldLabel from "components/shared/form/fieldLabel/FieldLabel";
+import FieldLabel from "common/form/fieldLabel/FieldLabel";
 
 const InputColor = ({ label, value, change }) => {
   return (

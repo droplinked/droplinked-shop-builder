@@ -5,7 +5,7 @@ import { toastValue } from "context/toastify/ToastContext";
 import { postUserEmailVerification } from "lib/apis/userApiService";
 import { useApi } from "hooks/useApi/useApi";
 //
-import LoadingComponent from "components/shared/loading-component/LoadingComponent";
+import LoadingComponent from "common/loading-component/LoadingComponent";
 
 export default function VerifyEmailPage() {
   const nav = useNavigate();

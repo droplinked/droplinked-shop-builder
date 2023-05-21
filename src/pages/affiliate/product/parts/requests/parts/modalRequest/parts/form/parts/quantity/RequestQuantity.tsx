@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
-import AppInput from 'components/shared/form/textbox/AppInput'
+import AppInput from 'common/form/textbox/AppInput'
 import React, { useContext } from 'react'
 import { ModalRequestContext } from '../../context'
 

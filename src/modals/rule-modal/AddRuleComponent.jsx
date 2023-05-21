@@ -3,7 +3,7 @@ import { Box, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { convertAddressToArray, convertArrayToAddress } from "./rule-utils";
 
-import BasicButton from "../../components/shared/BasicButton/BasicButton";
+import BasicButton from "../../common/BasicButton/BasicButton";
 
 const AddRuleComponent = ({ rule, addToRules, isGated, close }) => {
   const [addressList, setAddressList] = useState("");

@@ -1,4 +1,4 @@
-import AppTable from 'components/shared/table/AppTable'
+import AppTable from 'common/table/AppTable'
 import React, { useContext, useMemo, useState } from 'react'
 import { Flex, Text, useDisclosure } from '@chakra-ui/react'
 import SkuTableModel from './model';

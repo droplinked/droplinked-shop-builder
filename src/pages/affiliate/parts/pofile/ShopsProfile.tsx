@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useProfile } from 'hooks/useProfile/useProfile';
 import SocialAffliate, { ISocialAffliate } from '../social/SocialAffliate';
-import AppTypography from 'components/shared/typography/AppTypography';
+import AppTypography from 'common/typography/AppTypography';
 
 interface Iprops {
   avatar: string

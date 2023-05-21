@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import CollectionsModel from './model'
-import AppDataGrid from 'components/shared/datagrid/DataGrid'
+import AppDataGrid from 'common/datagrid/DataGrid'
 import CollectionsEmpty from './parts/empty/CollectionsEmpty'
 import { collectionService } from 'lib/apis/collection/services'
 import CollectionCreate from './parts/create/CollectionCreate'

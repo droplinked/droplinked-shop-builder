@@ -1,4 +1,4 @@
-import AppDataGrid from 'components/shared/datagrid/DataGrid'
+import AppDataGrid from 'common/datagrid/DataGrid'
 import { useProfile } from 'hooks/useProfile/useProfile'
 import { productServices } from 'lib/apis/product/productServices'
 import React, { useCallback, useEffect, useState } from 'react'
