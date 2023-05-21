@@ -2,8 +2,6 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
-import { useProfile } from "hooks/useProfile/useProfile";
-import AppSession from "lib/utils/app/sessions";
 
 const MainLayout = lazy(() =>
   import("layouts/app/main/mainLayout")
@@ -29,10 +27,6 @@ const DesignPage = lazy(() =>
 const TechnicalPage = lazy(() =>
   import("./pages/register-pages/pages/technical")
 );
-const ProductsPage = lazy(() =>
-  import("./pages/prodcut-pages/products-page/ProductsPage")
-);
-const RulePage = lazy(() => import("./pages/admin-pages/rules-page/RulesPage"));
 const DashboardLayout = lazy(() => import("layouts/app/dashboard/DashboardLayout"));
 const LandingPage = lazy(() =>
   import("./pages/public-pages/landing-page/LandingPage")
@@ -52,23 +46,9 @@ const ResetPassPage = lazy(() =>
 const ThankForRegisterPage = lazy(() =>
   import("./pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage")
 );
-const CollectionMainPage = lazy(() =>
-  import(
-    "./pages/admin-pages/collections-pages/collection-page/CollectionsPage"
-  )
-);
-const AddCollectionPage = lazy(() =>
-  import(
-    "./pages/admin-pages/collections-pages/add-collection-page/AddCollectionPage"
-  )
-);
+
 const ShopPage = lazy(() => import("./pages/public-pages/shop-page/ShopPage"));
 const ProductSingle = lazy(() => import("pages/product/single"));
-
-const OrderPage = lazy(() =>
-  import("./pages/admin-pages/orders-page/OrderPage")
-);
-
 const AffiliateLayout = lazy(() =>
   import("layouts/pages/affiliate/AffiliateLayout")
 );
@@ -119,7 +99,6 @@ function App() {
                 <Route path=":productId" element={<ProductSingle />} />
               </Route>
               <Route path="collections" element={<Collections />} />
-              <Route path="add-collection" element={<AddCollectionPage />} />
               <Route path="orders" element={<Orders />} />
               <Route path="rules" element={<Rules />} />
               <Route path="affiliate" element={<AffiliateLayout />}>
