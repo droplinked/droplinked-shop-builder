@@ -17,10 +17,11 @@ function AppModal(props: IAppModal) {
             motionPreset='slideInBottom'
             isCentered
             scrollBehavior="outside"
+            size={props?.size || "lg"}
             {...props}
         >
             <ModalOverlay bg={"rgba(0,0,0,.9)"} />
-            <ModalContent bg="#1c1c1c" padding={"20px 0"} {...contentProps}>
+            <ModalContent bg="#1c1c1c" padding={"25px 10px"} {...contentProps}>
                 <ModalBody>
                     {props?.children}
                 </ModalBody>

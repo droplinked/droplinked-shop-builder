@@ -1,15 +1,16 @@
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
-import ModalWrapper from 'modals/modal-wrapper/ModalWrapper'
 import React from 'react'
 import walletModalClass from './model';
 import { BlackBox } from 'pages/register-pages/RegisterPages-style';
+import AppModal from 'common/modal/AppModal';
+import AppTypography from 'common/typography/AppTypography';
 
 function WalletModal({ open, close }) {
     return (
-        <ModalWrapper show={open} close={close}>
+        <AppModal open={open} close={close}>
             <VStack color="#FFF" align="stretch" spacing={8}>
                 <Box textAlign="center">
-                    <Text fontSize='2xl'><strong>Choose Your Wallet</strong></Text>
+                    <AppTypography size='18px' weight='bolder'>Choose Your Wallet</AppTypography>
                 </Box>
                 <VStack align="stretch" spacing={4}>
                     {walletModalClass.listWallet().map((el, key) => (
@@ -22,7 +23,7 @@ function WalletModal({ open, close }) {
                     ))}
                 </VStack>
             </VStack>
-        </ModalWrapper>
+        </AppModal>
     )
 }
 

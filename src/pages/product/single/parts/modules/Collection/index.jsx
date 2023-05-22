@@ -30,7 +30,6 @@ function Collection() {
                             <BasicButton onClick={onOpen} variant="outline">New Collection</BasicButton>
                         </SkeletonProduct>
                         <CollectionCreate close={onClose} refetch={mutate} open={isOpen} />
-                        {/* <ModalCollection open={isOpen} close={onClose} /> */}
                     </Box>
                 </HStack>
             </Box>

@@ -1,6 +1,6 @@
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
 import BasicButton, { IBasicButton } from 'common/BasicButton/BasicButton'
-import ModalWrapper from 'modals/modal-wrapper/ModalWrapper'
+import AppModal from 'common/modal/AppModal'
 import React from 'react'
 import AppTypography from '../typography/AppTypography'
 
@@ -20,7 +20,7 @@ export interface IAppDialog {
 
 function AppDialog({ open, close, text, title, buttons }: IAppDialog) {
     return (
-        <ModalWrapper show={open} close={close}>
+        <AppModal open={open} close={close} size="lg">
             <VStack color="#FFF" align="stretch" spacing={6}>
                 <Box textAlign="center">
                     <AppTypography size='20px' weight='bolder' color={"#FEB900"}>{title}</AppTypography>
@@ -41,7 +41,7 @@ function AppDialog({ open, close, text, title, buttons }: IAppDialog) {
                     ))}
                 </HStack>
             </VStack>
-        </ModalWrapper>
+        </AppModal>
     )
 }
 

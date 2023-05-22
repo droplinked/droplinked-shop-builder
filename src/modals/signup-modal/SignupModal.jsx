@@ -1,13 +1,11 @@
-import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import SignupProducer from "./signup-producer/SignupProducer";
-
 import { Flex, Stack } from "@chakra-ui/react";
-import { Title } from "./SignupModal-style";
 import AppTypography from "common/typography/AppTypography";
+import AppModal from "common/modal/AppModal";
 
 const SignupModal = ({ show, close, switchModal, shopName }) => {
   return (
-    <ModalWrapper close={close} show={show}>
+    <AppModal open={show} close={close} contentProps={{ padding: "50px 30px" }}>
       <Stack w="100%" h="100%" spacing="20px">
         <Flex justifyContent={"center"} marginBottom={5}>
           <AppTypography size="18px" color={"#FFF"} weight="bolder">Sign Up</AppTypography>
@@ -18,7 +16,7 @@ const SignupModal = ({ show, close, switchModal, shopName }) => {
           switchToggle={switchModal}
         />
       </Stack>
-    </ModalWrapper>
+    </AppModal>
   );
 };
 

@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { useApi } from "../../hooks/useApi/useApi";
 import { BacktoLoginButton } from "./ResetPassModal-style";
-import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import BasicButton from "../../common/BasicButton/BasicButton";
 import { postUserForgotPassword } from "lib/apis/userApiService";
 import AppTypography from "common/typography/AppTypography";
 import AppInput from "common/form/textbox/AppInput";
 import useAppToast from "hooks/toast/useToast";
+import AppModal from "common/modal/AppModal";
 
 const ResetPassModal = ({ show, close, switchReset }) => {
   const [disableBtn, setDisableBtn] = useState(false);
@@ -43,7 +43,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
   const ChangeEmail = (e) => setEmail(e.target.value);
 
   return (
-    <ModalWrapper show={show} close={close}>
+    <AppModal open={show} close={close} contentProps={{padding:"50px 30px"}}>
       <Box>
         <Flex justifyContent={"center"}><AppTypography size="18px" weight="bolder" color={"#FFF"}>Reset your password</AppTypography></Flex>
         <AppTypography size="14px" color={"#FFF"} marginTop={6}>
@@ -61,7 +61,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
           Back to login
         </BacktoLoginButton>
       </Box>
-    </ModalWrapper>
+    </AppModal>
   );
 };
 

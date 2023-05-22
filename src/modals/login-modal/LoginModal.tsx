@@ -1,7 +1,6 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import BasicButton from "../../common/BasicButton/BasicButton";
 import { Title, BottomText } from "./LoginModal-style";
 import { appDeveloment } from "lib/utils/app/variable";
@@ -10,9 +9,10 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import AppErrors from "lib/utils/statics/errors/errors";
 import { useStore } from "zustand";
-import { toast } from "react-toastify";
 import useAppStore from "lib/stores/app/appStore";
 import useAppToast from "hooks/toast/useToast";
+import AppModal from "common/modal/AppModal";
+import AppTypography from "common/typography/AppTypography";
 
 interface Iform {
   email: string
@@ -37,7 +37,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   // action on user data based on type and status
   const loginFunction = (data: any) => {
     // check customer
-    if (data.user.type !== "PRODUCER") return showToast("This account cant login","error");
+    if (data.user.type !== "PRODUCER") return showToast("This account cant login", "error");
 
     //first close modal
     close();
@@ -91,7 +91,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   });
 
   return (
-    <ModalWrapper show={show} close={close}>
+    <AppModal open={show} contentProps={{ padding: "50px 30px" }} close={close}>
       <Formik
         initialValues={{
           email: '',
@@ -105,7 +105,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
         {({ errors, values, setFieldValue }) => (
           <Form>
             <Box w="100%">
-              <Title>Sign in</Title>
+              <Flex justifyContent={"center"}><AppTypography size="18px" weight="bolder" color={"#FFF"}>Sign in</AppTypography></Flex>
               <Box w="100%" pt="20px">
                 <AppInput
                   error={errors.email ? errors.email.toString() : ""}
@@ -145,7 +145,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
           </Form>
         )}
       </Formik>
-    </ModalWrapper>
+    </AppModal>
   );
 };
 

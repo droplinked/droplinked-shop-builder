@@ -25,7 +25,6 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const updateRule = useMutation((params: IupdateRuleService) => updateRuleService(params))
   const { showToast } = useAppToast()
 
-
   useEffect(() => {
     if (ruleId) getRule.mutate({ ruleID: ruleId })
   }, [ruleId])
