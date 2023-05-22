@@ -1,4 +1,3 @@
-import { OptionComponent } from 'modals/rule-modal/RuleModal-style'
 import React, { useCallback, useContext } from 'react'
 import PropertiesFormModel from '../../model/model'
 import propertiesFormContext from '../../context'

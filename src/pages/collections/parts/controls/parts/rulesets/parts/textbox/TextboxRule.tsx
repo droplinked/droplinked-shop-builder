@@ -1,6 +1,6 @@
 import AppInput from 'common/form/textbox/AppInput'
-import ruleModelContext from 'modals/rule-modal/context'
 import React, { useContext } from 'react'
+import ruleModelContext from '../../context'
 
 function TextboxRule({ element, ...props }) {
     const { errors, setFieldValue, values, loading } = useContext(ruleModelContext)

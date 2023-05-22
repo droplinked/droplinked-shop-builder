@@ -1,7 +1,6 @@
 import AppSelectBox from 'common/form/select/AppSelectBox'
-import AppInput from 'common/form/textbox/AppInput'
-import ruleModelContext from 'modals/rule-modal/context'
 import React, { useContext } from 'react'
+import ruleModelContext from '../../context'
 
 function SelectRule({ element, items, ...props }) {
     const { errors, setFieldValue, values } = useContext(ruleModelContext)

@@ -1,16 +1,14 @@
 import React from 'react'
 import PopOverMenu from 'common/PopoverMenu/PopOverMenu'
-import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { useDisclosure } from '@chakra-ui/react';
-import ConfirmDeleteCollection from './parts/modal/ConfirmDeleteCollection';
-import RuleModal from 'modals/rule-modal/RuleModal';
+import ConfirmDeleteCollection from './parts/delete/ConfirmDeleteCollection';
+import RuleModal from './parts/rulesets/RuleModal';
 import CollectionCreate from '../create/CollectionCreate';
 
 function ControlsListCollection({ collection, fetch }) {
     const deleteModal = useDisclosure()
     const ruleModal = useDisclosure()
     const editModal = useDisclosure()
-    const { shopNavigate } = useCustomNavigate()
 
     return (
         <>

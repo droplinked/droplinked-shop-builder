@@ -1,10 +1,10 @@
 import { Box, VStack } from '@chakra-ui/react'
-import InputImagesGroup from 'pages/prodcut-pages/components/InputImageGroupe/Input-images-component'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'
 import introductionClass from '../../general/model'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
 import ProductPageTitle from '../title/ProductPageTitle'
+import InputImagesGroup from './parts/Input-images-component/InputImageGroupe/Input-images-component'
 
 function ProductImages() {
     const { state: { media }, methods: { updateState } } = useContext(productContext)

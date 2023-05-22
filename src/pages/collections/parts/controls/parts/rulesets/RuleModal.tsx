@@ -1,27 +1,28 @@
-import { useEffect, useState } from "react";
-import { RuleTypes } from "./rule-type";
-import { ModalHeader } from "./RuleModal-style";
+import React, { useEffect, useState } from "react";
 import { Box, HStack, VStack } from "@chakra-ui/react";
 import BasicButton from "common/BasicButton/BasicButton";
 import LoadingComponent from "common/loading-component/LoadingComponent";
-import { ChainTypes } from "./chain-type";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import AppModal from "common/modal/AppModal";
 import AppTextarea from "common/form/textarea/AppTextarea";
 import ruleModelContext from "./context";
-import TextboxRule from "./components/textbox/TextboxRule";
-import SelectRule from "./components/select/SelectRule";
+import TextboxRule from "./parts/textbox/TextboxRule";
+import SelectRule from "./parts/select/SelectRule";
 import { useMutation } from "react-query";
 import { createRuleService, getRuleService, updateRuleService } from "lib/apis/rule/ruleServices";
 import useAppToast from "hooks/toast/useToast";
+import { RuleTypes } from "./RuleModel";
+import { IcreateRuleService, IgetRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
+import AppTypography from "common/typography/AppTypography";
+import { ChainTypes } from "lib/utils/statics/chainTypes";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const [State, setState] = useState(null)
-  const getRule = useMutation((params) => getRuleService(params))
-  const createRule = useMutation((params) => createRuleService(params))
-  const updateRule = useMutation((params) => updateRuleService(params))
+  const getRule = useMutation((params: IgetRuleService) => getRuleService(params))
+  const createRule = useMutation((params: IcreateRuleService) => createRuleService(params))
+  const updateRule = useMutation((params: IupdateRuleService) => updateRuleService(params))
   const { showToast } = useAppToast()
 
 
@@ -37,7 +38,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const submit = async (data) => {
     const { tag, weburl, chain, rule, discount, address, requirement } = data
     try {
-      const requestBody = {
+      const requestBody: IcreateRuleService = {
         collectionID: collectionId,
         gated: rule === RuleTypes.DISCOUNT,
         rules: [
@@ -84,7 +85,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
       close={close}
       contentProps={{ maxWidth: "700px", width: "95%", padding: "40px" }}
     >
-      <ModalHeader>Make Rule</ModalHeader>
+      <AppTypography size="18px" weight="bolder">Make Rule</AppTypography>
       {false ? (
         <LoadingComponent />
       ) : (
@@ -157,7 +158,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                       onChange={(e) => setFieldValue("address", e.target.value)}
                       value={values.address}
                       loading={!getRule.isLoading}
-                      error={errors.address}
+                      error={errors.address ? errors.address.toString() : ""}
                       isRequired
                     />
                   </Box>
