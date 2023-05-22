@@ -4,7 +4,6 @@ import plusIcon from "assest/icon/plus-icon.svg";
 import minusIcon from "assest/icon/minusIcon.png";
 import propertiesFormContext from '../../context';
 import { productContext } from 'pages/product/single/context';
-import { toast } from 'react-toastify';
 import propertyItemModel from './model/model';
 import SkuTableModal from 'pages/product/single/parts/modules/variants/parts/table/parts/skuModal/SkuTableModal';
 import AppInput from 'common/form/textbox/AppInput';

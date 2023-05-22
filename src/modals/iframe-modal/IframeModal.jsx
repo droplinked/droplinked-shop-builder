@@ -1,28 +1,25 @@
-//  use this component for show collection iframe code  in snipped modal 
-//  or collection Api url 
 import { Flex, Code, Box } from "@chakra-ui/react"
-import { useToasty } from "../../context/toastify/ToastContext"
 import { useState } from "react"
-
 import BasicButton from "../../common/BasicButton/BasicButton"
 import ModalWrapper from "../modal-wrapper/ModalWrapper"
+import useAppToast from "hooks/toast/useToast"
 
-const IframeModal = ({show, link, code, close }) => {
+const IframeModal = ({ show, link, code, close }) => {
 
     // use this state for switch between api and iframe component
     const [showType, setShowType] = useState("IFRAME")
 
-    const { successToast } = useToasty()
+    const { showToast } = useAppToast()
 
     // this function set code to clipboard
     const embed = () => {
         if (showType === "IFRAME") {
             navigator.clipboard.writeText(code).then(function () {
-                successToast('Copying to clipboard was successful!');
+                showToast('Copying to clipboard was successful!', "success");
             });
         } else {
             navigator.clipboard.writeText(link).then(function () {
-                successToast('Copying to clipboard was successful!');
+                showToast('Copying to clipboard was successful!', "success");
             });
         }
     }

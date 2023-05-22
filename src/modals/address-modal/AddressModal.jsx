@@ -8,7 +8,6 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 //
-import { useToasty } from "context/toastify/ToastContext";
 import { COUNTRIES, US_STATES } from "./address-list-constant";
 import { useApi } from "hooks/useApi/useApi";
 import { TopText } from "./AddressModal-style";

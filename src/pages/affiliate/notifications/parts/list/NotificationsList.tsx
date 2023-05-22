@@ -1,5 +1,4 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
-import { faker } from '@faker-js/faker'
 import AppEmptyPage from 'common/empty/AppEmptyPage'
 import { producerRequestService } from 'lib/apis/affiliate/shopServices'
 import AffiliateDetailCard from 'pages/affiliate/parts/detail/affiliateDetailCard'

@@ -8,6 +8,7 @@ import discountIcon from "assest/icon/discount-active-icon.svg";
 import gatedIcon from "assest/icon/gated-active-icon.svg";
 import { Box, HStack, Image } from '@chakra-ui/react'
 import AppTypography from 'common/typography/AppTypography'
+import AppEmptyPage from 'common/empty/AppEmptyPage'
 
 interface IStates {
     rows: Array<ITableRows>
@@ -53,6 +54,7 @@ function Rules() {
         <AppDataGrid
             loading={isLoading}
             rows={States.rows}
+            empty={<AppEmptyPage title="No rulesets available yet!" />}
         />
     )
 }

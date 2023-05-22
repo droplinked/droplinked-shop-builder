@@ -4,7 +4,6 @@ import { IproductDeleteServices } from 'lib/apis/product/interfaces'
 import { productDeleteServices } from 'lib/apis/product/productServices'
 import React from 'react'
 import { useMutation } from 'react-query'
-import { toast } from 'react-toastify'
 
 interface IProps {
     open: boolean

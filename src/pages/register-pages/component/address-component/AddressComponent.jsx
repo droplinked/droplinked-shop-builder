@@ -9,7 +9,6 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { useToasty } from "../../../../context/toastify/ToastContext";
 import { useMemo, useState } from "react";
 import { IconComponent } from "./AddressComponent-style";
 import SmallModal from "../../../../modals/small-modal/SmallModal";
@@ -19,6 +18,7 @@ import deleteIcon from "../../../../assest/icon/delete-icon.svg";
 import { useApi } from "hooks/useApi/useApi";
 import { deleteAddress } from "lib/apis/addressApiService";
 import { useLocation } from "react-router-dom";
+import useAppToast from "hooks/toast/useToast";
 
 // (address) formta in props {
 //      addressLine1: string
@@ -56,7 +56,7 @@ export default function AddressComponent({
   const [deleteModal, setDeleteModal] = useState(false);
   const currentPath = useLocation().pathname;
 
-  const { successToast } = useToasty();
+  const { showToast } = useAppToast()
   const { deleteApi } = useApi();
 
   // delete button only show if deleteable be true
@@ -64,7 +64,7 @@ export default function AddressComponent({
     setDisableBtn(true);
     let result = await deleteApi(deleteAddress(address._id));
     if (result) {
-      successToast("Address deleted successfully");
+      showToast("Address deleted successfully","success");
       updateList();
     }
     setDisableBtn(false);

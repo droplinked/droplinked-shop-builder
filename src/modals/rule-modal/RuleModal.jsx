@@ -5,7 +5,6 @@ import { Box, HStack, VStack } from "@chakra-ui/react";
 import BasicButton from "common/BasicButton/BasicButton";
 import LoadingComponent from "common/loading-component/LoadingComponent";
 import { ChainTypes } from "./chain-type";
-import { toast } from "react-toastify";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import AppModal from "common/modal/AppModal";

@@ -11,7 +11,6 @@ import dltImg from "assest/icon/icons8-multiply-100.png";
 import uploadImage from "assest/icon/upload-icon.svg";
 import LoadingComponent from "common/loading-component/LoadingComponent";
 import AppErrors from "lib/utils/statics/errors/errors";
-import { toast } from "react-toastify";
 import useAppToast from "hooks/toast/useToast";
 
 export default function InputImagesGroup({ setState, state }) {

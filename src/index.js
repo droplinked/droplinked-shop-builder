@@ -15,7 +15,7 @@ ReactDOM.render(
   <React.StrictMode>
     <AppToastify />
     <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
+      <ChakraProvider theme={theme} >
         <App />
       </ChakraProvider>
     </QueryClientProvider>

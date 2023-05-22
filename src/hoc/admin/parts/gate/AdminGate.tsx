@@ -1,7 +1,7 @@
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
 import { useProfile } from 'hooks/useProfile/useProfile';
 import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import DashboardGateModel from './model/DashboardGateModel';
 
 function AdminGate({ children }) {
@@ -19,7 +19,7 @@ function AdminGate({ children }) {
 
     return (
         <>
-            {shop ? children : "login"}
+            {shop ? children : <Navigate to={"/"} />}
         </>
     )
 }

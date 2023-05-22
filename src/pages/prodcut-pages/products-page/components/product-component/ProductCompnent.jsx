@@ -16,8 +16,8 @@ import moreIcon from "../../../../../assest/icon/more-icon.svg";
 import { useState } from "react";
 import SmallModal from "modals/small-modal/SmallModal";
 import { useApi } from "hooks/useApi/useApi";
-import { useToasty } from "context/toastify/ToastContext";
 import { deleteProductById } from "lib/apis/productsApiService";
+import useAppToast from "hooks/toast/useToast";
 
 const ProductComponent = ({ product, update }) => {
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ const ProductComponent = ({ product, update }) => {
 
   const { shopNavigate } = useCustomNavigate();
   const { deleteApi } = useApi();
-  const { errorToast, successToast } = useToasty();
+  const { showToast } = useAppToast()
 
   const navigateToEditProductPage = () =>
     shopNavigate(`product/${product._id}`);
@@ -39,10 +39,10 @@ const ProductComponent = ({ product, update }) => {
     setLoading(true);
     let result = await deleteApi(deleteProductById(productId));
     if (result?.acknowledged === true) {
-      successToast("Product deleted successfully");
+      showToast("Product deleted successfully", "success");
       update();
     } else {
-      errorToast(result);
+      showToast(result, "error");
     }
     setLoading(false);
     toggleModal();

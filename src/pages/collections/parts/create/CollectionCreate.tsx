@@ -10,7 +10,6 @@ import { createCollectionService, updateCollectionService } from 'lib/apis/colle
 import AppErrors from 'lib/utils/statics/errors/errors'
 import React, { useCallback } from 'react'
 import { useMutation } from 'react-query'
-import { toast } from 'react-toastify'
 import * as Yup from 'yup';
 
 interface IProps {

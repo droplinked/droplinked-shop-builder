@@ -5,7 +5,7 @@ import AppTable, { IAppTable } from '../table/AppTable'
 import FiltersDatagrid from 'common/datagrid/parts/filters/FiltersDatagrid'
 import { IIMenuesDatagridItems } from 'common/datagrid/parts/filters/parts/menues/menuesDatagrid'
 import DatagridButtons, { IDatagridButtons } from './parts/buttons/DatagridButtons'
-import AppLoading from '../loading/AppLoading'
+import DatagridSkeleton from './parts/skeleton/DatagridSkeleton'
 
 type mergeType = IDatagridButtons & IAppTable
 
@@ -14,7 +14,7 @@ interface IProps extends mergeType {
     loading: boolean
 }
 
-function AppDataGrid({ filters, rows, buttons, loading,empty }: IProps) {
+function AppDataGrid({ filters, rows, buttons, loading, empty }: IProps) {
     return (
         <AppCard>
             <VStack align={"stretch"} spacing={6}>
@@ -22,7 +22,7 @@ function AppDataGrid({ filters, rows, buttons, loading,empty }: IProps) {
                     <Box><FiltersDatagrid item={filters} /></Box>
                     {buttons && <DatagridButtons buttons={buttons} />}
                 </Flex>
-                {loading ? <Box textAlign={"center"}><AppLoading /></Box> : <Box><AppTable empty={empty} rows={rows} /></Box>}
+                {loading ? <DatagridSkeleton /> : <Box><AppTable empty={empty} rows={rows} /></Box>}
             </VStack>
         </AppCard >
     )
