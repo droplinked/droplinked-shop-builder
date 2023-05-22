@@ -1,6 +1,5 @@
+import React from "react";
 import { Flex } from "@chakra-ui/react";
-
-
 import OptionComponent from "./components/option-component/OptionComponent";
 import { OPTIONS } from "./options-constant";
 
@@ -19,4 +18,4 @@ const SidebarLayout = () => {
   );
 };
 
-export default SidebarLayout;
+export default SidebarLayout

@@ -1,4 +1,4 @@
-import { Box, HStack, Text, VStack, useDisclosure, Skeleton } from '@chakra-ui/react'
+import { Box, HStack, VStack, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'common/BasicButton/BasicButton'
 import FieldLabel from 'common/form/fieldLabel/FieldLabel'
 import AppTypography from 'common/typography/AppTypography'
