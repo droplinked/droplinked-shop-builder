@@ -6,17 +6,15 @@ import roundedQuestionMark from "assest/icon/rounded-question-mark-icon.svg";
 import BasicButton from 'common/BasicButton/BasicButton';
 import { useMutation } from 'react-query';
 import { createCollectionService } from 'lib/apis/collection/services';
-import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
-import { fetchCollection } from 'lib/store/features/product/collection';
+import useAppToast from 'hooks/toast/useToast';
 
 function ModalCollection({ open, close }) {
     const [Name, setName] = useState("")
     const { mutate, isLoading } = useMutation((params) => createCollectionService(params))
-    const dispatch = useDispatch()
+    const { showToast } = useAppToast()
 
     const CreateCollection = () => {
-        if (!Name.length) return toast.error("Please enter collection name")
+        if (!Name.length) return showToast("Please enter collection name", "error")
 
         mutate(
             {
@@ -24,8 +22,7 @@ function ModalCollection({ open, close }) {
             },
             {
                 onSuccess: () => {
-                    toast.success("Collection created")
-                    dispatch(fetchCollection()) // fetch and update collection from service
+                    showToast("Collection created", "success")
                     close()
                 }
             }

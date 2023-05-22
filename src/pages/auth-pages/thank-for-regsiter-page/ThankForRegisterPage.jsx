@@ -7,14 +7,14 @@ import {
   MessageText,
   EmailText,
 } from "./ThankForRegisterPage-style";
-//
 import BasicButton from "common/BasicButton/BasicButton";
 import { postUserResendEmail } from "lib/apis/userApiService";
-import { toast } from "react-toastify";
+import useAppToast from "hooks/toast/useToast";
 
 export default function ThankForRegisterPage() {
   // use this state for loading state of button when calling api
   const [loading, setLoading] = useState(false);
+  const { showToast } = useAppToast()
 
   const { postApi } = useApi();
 
@@ -27,7 +27,7 @@ export default function ThankForRegisterPage() {
     let result = await postApi(postUserResendEmail(email));
     setLoading(false);
     // if get error from api
-    if (result) toast.success("A new link was sent to your email");
+    if (result) showToast("A new link was sent to your email", "success");
   };
 
   return (

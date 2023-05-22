@@ -1,17 +1,18 @@
 import { Box, Radio, RadioGroup, Text, VStack, useDisclosure } from '@chakra-ui/react'
-import { BlackBox, PageContentWrapper, StarLabel, Text18px, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
+import { BlackBox, PageContentWrapper, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useContext, useState } from 'react'
 import BasicButton from 'common/BasicButton/BasicButton'
 import technicalContext from '../../context'
 import AppDialog from 'common/dialog'
 import FieldLabel from 'common/form/fieldLabel/FieldLabel'
 import AppTypography from 'common/typography/AppTypography'
-import { toast } from 'react-toastify'
+import useAppToast from 'hooks/toast/useToast'
 
 function Ims(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [RadioGroupValue, setRadioGroup] = useState('')
     const { updateState, state: { imsType } } = useContext(technicalContext)
+    const { showToast } = useAppToast()
 
     return (
         <>
@@ -67,7 +68,7 @@ function Ims(props) {
                                 </Box>
                                 <Box dir='rtl'>
                                     <BasicButton onClick={() => {
-                                        if (!RadioGroupValue.length) return toast.error("Please choose type")
+                                        if (!RadioGroupValue.length) return showToast("Please choose type", "error")
                                         onOpen()
                                     }} sizes='medium'>Save</BasicButton>
                                 </Box>

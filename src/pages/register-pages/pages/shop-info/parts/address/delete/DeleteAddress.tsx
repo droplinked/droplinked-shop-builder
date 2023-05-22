@@ -1,11 +1,11 @@
 import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppDialog from 'common/dialog'
+import useAppToast from 'hooks/toast/useToast'
 import { deleteAddressService } from 'lib/apis/address/addressServices'
 import { IdeleteAddressService } from 'lib/apis/address/interfaces'
 import React, { useCallback } from 'react'
 import { useMutation } from 'react-query'
-import { toast } from 'react-toastify'
 
 interface IProps {
     addressRefetch: Function
@@ -15,6 +15,7 @@ interface IProps {
 function DeleteAddress({ addressID, addressRefetch }: IProps) {
     const { mutateAsync, isLoading } = useMutation((params: IdeleteAddressService) => deleteAddressService(params))
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { showToast } = useAppToast()
 
     // Delete address
     const deleted = useCallback(async (addressID: string) => {
@@ -22,7 +23,7 @@ function DeleteAddress({ addressID, addressRefetch }: IProps) {
             await mutateAsync({ addressID })
             addressRefetch()
         } catch (error) {
-            toast.error(error?.response?.data?.message)
+            showToast(error?.response?.data?.message, "error")
         }
     }, [])
 

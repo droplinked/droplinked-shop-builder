@@ -18,6 +18,7 @@ import SelectInputComponent from "./components/select-input-component/SelectInpu
 import InputFieldComponent from "common/input-field-component/InputFieldComponent";
 import BasicButton from "common/BasicButton/BasicButton";
 import { postCreateAddress, putUpdateAddress } from "lib/apis/addressApiService";
+import useAppToast from "hooks/toast/useToast";
 
 export default function AddressModal({
   show,
@@ -26,7 +27,7 @@ export default function AddressModal({
   close,
 }) {
   // address context functions for add new address or update address
-  const { successToast, errorToast } = useToasty();
+  const { showToast } = useAppToast();
   const { postApi, putApi } = useApi();
   // form values states
   // if get address book on props set addressBook value for default or not set '' for default value
@@ -90,7 +91,7 @@ export default function AddressModal({
   const update = async (formData, addressBookId) => {
     let result = await putApi(putUpdateAddress(addressBookId, formData));
     if (result) {
-      successToast("Address updated successfully");
+      showToast("Address updated successfully", "success");
       if (updateAddressList) updateAddressList();
       return true;
     }
@@ -99,7 +100,7 @@ export default function AddressModal({
   const addAddress = async (formData) => {
     let result = await postApi(postCreateAddress(formData));
     if (result) {
-      successToast("Address added successfully");
+      showToast("Address added successfully", "success");
       setLine1("");
       setLine2("");
       setCountry("");

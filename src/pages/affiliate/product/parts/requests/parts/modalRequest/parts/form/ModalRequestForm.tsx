@@ -1,5 +1,6 @@
 import { Box, VStack } from '@chakra-ui/react'
 import { Form, Formik } from 'formik'
+import useAppToast from 'hooks/toast/useToast'
 import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
 import { casperRequestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'
@@ -26,6 +27,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
     const { mutateAsync } = useMutation((params: IcasperRequestService) => casperRequestService(params))
     const { formSchema, publish_request } = ModalRequestModel
     const { openCasperWallet } = RecordModalModule
+    const { showToast } = useAppToast()
     const [Loading, setLoading] = useState(false)
 
     const onSubmit = useCallback(async (values: IRequestModelValues) => {
@@ -44,7 +46,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
             setLoading(false)
             setHahskey(publish.deployHash)
         } catch (error) {
-            if (error?.message && !error?.message.includes("The first argument")) toast.error(error.message)
+            if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
             setLoading(false)
         }
     }, [sku, product, shop])

@@ -1,4 +1,3 @@
-import { useApi } from "hooks/useApi/useApi";
 import { useEffect, useState } from "react";
 import { RuleTypes } from "./rule-type";
 import { ModalHeader } from "./RuleModal-style";
@@ -16,6 +15,7 @@ import TextboxRule from "./components/textbox/TextboxRule";
 import SelectRule from "./components/select/SelectRule";
 import { useMutation } from "react-query";
 import { createRuleService, getRuleService, updateRuleService } from "lib/apis/rule/ruleServices";
+import useAppToast from "hooks/toast/useToast";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
@@ -23,7 +23,8 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const getRule = useMutation((params) => getRuleService(params))
   const createRule = useMutation((params) => createRuleService(params))
   const updateRule = useMutation((params) => updateRuleService(params))
-  const { putApi } = useApi();
+  const { showToast } = useAppToast()
+
 
   useEffect(() => {
     if (ruleId) getRule.mutate({ ruleID: ruleId })
@@ -60,9 +61,9 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
       }
       update();
       close();
-      toast.success(`Rule ${ruleId ? "update" : "created"}`)
+      showToast(`Rule ${ruleId ? "update" : "created"}`, "success")
     } catch (error) {
-      toast.error("Oops! Something went wrong")
+      showToast("Oops! Something went wrong", "error")
     }
   };
 

@@ -16,7 +16,7 @@ import AppErrors from "lib/utils/statics/errors/errors";
 import React from "react";
 import { Isize_limit } from "lib/utils/statics/errors/modules/store";
 import { toMb } from "lib/utils/heper/helpers";
-import { toast } from "react-toastify";
+import useAppToast from "hooks/toast/useToast";
 
 interface IProps {
   label?: string
@@ -29,10 +29,11 @@ interface IProps {
 const InputImage = ({ label, placeHolder, change, value, maxSize }: IProps) => {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
+  const { showToast } = useAppToast()
 
   const changeImage = (e: any) => {
     const file = e.target.files[0];
-    if (maxSize && file.size > toMb({ value: parseInt(maxSize.size) })) return toast.error(AppErrors.store.size_limit({ fieldName: maxSize.fieldName, size: `${maxSize.size}MB` }));
+    if (maxSize && file.size > toMb({ value: parseInt(maxSize.size) })) return showToast(AppErrors.store.size_limit({ fieldName: maxSize.fieldName, size: `${maxSize.size}MB` }), "error");
     if (
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
@@ -40,7 +41,7 @@ const InputImage = ({ label, placeHolder, change, value, maxSize }: IProps) => {
       file.type !== "image/svg+xml" &&
       file.type !== "image/jpg"
     ) {
-      toast.error(AppErrors.product.product_image_type_not_supported);
+      showToast(AppErrors.product.product_image_type_not_supported, "error");
       return;
     }
 
@@ -51,11 +52,11 @@ const InputImage = ({ label, placeHolder, change, value, maxSize }: IProps) => {
       .post("https://cdn.droplinked.com/upload", formData)
       .then((e) => {
         setLoading(false);
-        toast.success("The image uploaded");
+        showToast("The image uploaded", "success");
         change(e.data.original);
       })
       .catch((e) => {
-        toast.error(e.response.data.message);
+        showToast(e.response.data.message, "error");
         setLoading(false);
         return;
       });

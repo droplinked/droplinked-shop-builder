@@ -5,20 +5,21 @@ import { postUserEmailVerification } from "lib/apis/userApiService";
 import { useApi } from "hooks/useApi/useApi";
 //
 import LoadingComponent from "common/loading-component/LoadingComponent";
-import { toast } from "react-toastify";
+import useAppToast from "hooks/toast/useToast";
 
 export default function VerifyEmailPage() {
-  const nav = useNavigate();
-  let token = useParams().token;
-  
-  const { postApi } = useApi();
+  const nav = useNavigate()
+  let token = useParams().token
+  const { showToast } = useAppToast()
+
+  const { postApi } = useApi()
 
   useEffect(() => {
     const verify = async () => {
       let result = await postApi(postUserEmailVerification(token));
       if (result) {
         nav("/?modal=login");
-        toast.success("Your email has been verified, please login");
+        showToast("Your email has been verified, please login", "success");
       } else {
         nav("/");
       }

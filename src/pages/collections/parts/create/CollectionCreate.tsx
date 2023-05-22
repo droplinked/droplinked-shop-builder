@@ -4,6 +4,7 @@ import AppInput from 'common/form/textbox/AppInput'
 import AppModal from 'common/modal/AppModal'
 import AppTypography from 'common/typography/AppTypography'
 import { Form, Formik } from 'formik'
+import useAppToast from 'hooks/toast/useToast'
 import { IcreateCollectionService, IupdateCollectionService } from 'lib/apis/collection/interfaces'
 import { createCollectionService, updateCollectionService } from 'lib/apis/collection/services'
 import AppErrors from 'lib/utils/statics/errors/errors'
@@ -26,6 +27,7 @@ interface Iform {
 function CollectionCreate({ close, open, collection, refetch }: IProps) {
     const createService = useMutation((params: IcreateCollectionService) => createCollectionService(params))
     const updateService = useMutation((params: IupdateCollectionService) => updateCollectionService(params))
+    const { showToast } = useAppToast()
 
     // submit form function
     const onSubmit = useCallback(async (data: Iform) => {
@@ -33,15 +35,15 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
             const { title } = data
             if (collection) {
                 await updateService.mutateAsync({ title, collectionID: collection._id })
-                toast.success(AppErrors.collection.update_Collection_name)
+                showToast(AppErrors.collection.update_Collection_name, "success")
             } else {
                 await createService.mutateAsync({ title })
-                toast.success(AppErrors.collection.create_Collection_name)
+                showToast(AppErrors.collection.create_Collection_name, "success")
             }
             close()
             refetch()
         } catch (error) {
-            toast.error("Oops! Something went wrong")
+            showToast("Oops! Something went wrong", "error")
         }
     }, [collection])
 

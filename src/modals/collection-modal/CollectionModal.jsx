@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { useToasty } from "../../context/toastify/ToastContext";
 import { useApi } from "../../hooks/useApi/useApi";
 import { postCreateCollection, putUpdateCollection } from "lib/apis/collectionApiService";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
-import InputFieldComponent from "../../common/input-field-component/InputFieldComponent";
 import BasicButton from "../../common/BasicButton/BasicButton";
 import AppInput from "common/form/textbox/AppInput";
 import AppErrors from "lib/utils/statics/errors/errors";
+import useAppToast from "hooks/toast/useToast";
 
 const CollectionModal = ({ show, collection, close, update }) => {
   const [collectionName, setCollectionName] = useState(() => {
@@ -15,7 +14,7 @@ const CollectionModal = ({ show, collection, close, update }) => {
   });
   const [loading, setLoading] = useState(false);
 
-  const { errorToast, successToast } = useToasty();
+  const { showToast } = useAppToast();
   const [error, setError] = useState(false);
   const { putApi, postApi } = useApi();
 
@@ -42,8 +41,8 @@ const CollectionModal = ({ show, collection, close, update }) => {
     if (result) {
       setError(false)
       setCollectionName(null)
-      if (isNewCollection) successToast("New collection added successfully");
-      else successToast(AppErrors.collection.update_Collection_name);
+      if (isNewCollection) showToast("New collection added successfully", "success");
+      else showToast(AppErrors.collection.update_Collection_name, "success");
       update();
     }
 

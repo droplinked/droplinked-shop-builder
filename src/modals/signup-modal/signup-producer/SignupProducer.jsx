@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useContext, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Box, Stack } from "@chakra-ui/react";
 import { BottomText } from "../SignupModal-style";
 import { useApi } from "../../../hooks/useApi/useApi";
@@ -11,7 +11,7 @@ import * as Yup from 'yup';
 import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppErrors from "lib/utils/statics/errors/errors";
 import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
-import { toast } from "react-toastify";
+import useAppToast from "hooks/toast/useToast";
 
 export default function SignupProducer({ close, shopname, switchToggle }) {
   const [States, setStates] = useState({
@@ -23,6 +23,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
   })
   const { postApi } = useApi();
   let navigate = useNavigate();
+  const { showToast } = useAppToast();
 
   const setLoading = useCallback((value) => setStates(prev => ({ ...prev, loading: value })), [])
   const toggleShowField = useCallback((field) => setStates(prev => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), [])
@@ -35,7 +36,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
 
     if (result) {
       localStorage.setItem("registerEmail", JSON.stringify(email));
-      toast.success("Account successfully created");
+      showToast("Account successfully created", "success");
       close();
       navigate("/email-confirmation");
     }

@@ -12,6 +12,7 @@ import AppErrors from "lib/utils/statics/errors/errors";
 import { useStore } from "zustand";
 import { toast } from "react-toastify";
 import useAppStore from "lib/stores/app/appStore";
+import useAppToast from "hooks/toast/useToast";
 
 interface Iform {
   email: string
@@ -21,6 +22,7 @@ interface Iform {
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   const { login, loading } = useStore(useAppStore)
   const navigate = useNavigate();
+  const { showToast } = useAppToast()
 
   // submit form function
   const onSubmit = async (data: Iform) => {
@@ -28,14 +30,14 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
       let result = await login(data)
       if (result) loginFunction(result);
     } catch (error) {
-      toast.error(error.message);
+      showToast(error.message, "error");
     }
   };
 
   // action on user data based on type and status
   const loginFunction = (data: any) => {
     // check customer
-    if (data.user.type !== "PRODUCER") return toast.error("This account cant login");
+    if (data.user.type !== "PRODUCER") return showToast("This account cant login","error");
 
     //first close modal
     close();
@@ -50,7 +52,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
       navigateUser(status, data.shop.name);
       return;
     } else if (status === "DELETED") {
-      errorToast("This account has been deleted");
+      showToast("This account has been deleted", "error");
       return;
     } else {
       navigateUser(status, data.shop.name);

@@ -1,21 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
-
-import { useToasty } from "../../../context/toastify/ToastContext";
-//import { customerSignup } from "../../../api/base-user/Auth-api";
 import { BottomText } from "../SignupModal-style";
 import { useDispatch } from "react-redux";
 import { postSignupCustomer } from "../../../api-service/auth/authApiService";
 import { useApi } from "../../../hooks/useApi/useApi";
-
 import { setCurrentUser } from "../../../store/profile/profile.action";
-
 import BasicButton from "../../../common/BasicButton/BasicButton";
 import InputFieldComponent from "../../../common/input-field-component/InputFieldComponent";
+import useAppToast from "hooks/toast/useToast";
 
 export default function SignupCustomer({ switchToggle, close }) {
-  const { errorToast, successToast } = useToasty();
+  const { showToast } = useAppToast();
   const dispatch = useDispatch();
   const { postApi } = useApi();
 
@@ -30,22 +26,20 @@ export default function SignupCustomer({ switchToggle, close }) {
 
   const onSubmit = async () => {
     if (password !== confirmPassword) {
-      errorToast("Passwords do not match, please re-enter");
+      showToast("Passwords do not match, please re-enter", "error");
       return;
     }
 
     if (validationEmail(email)) {
-      errorToast("Please enter a valid email address.");
+      showToast("Please enter a valid email address.", "error");
       return;
     }
 
-    //let accountInfo = { email: email, password: password };
     setLoading(true);
 
-    // let result = await customerSignup(accountInfo, errorToast);
     let result = await postApi(postSignupCustomer(email, password));
     if (result) {
-      successToast("Account successfully created");
+      showToast("Account successfully created", "success");
       close();
       dispatch(setCurrentUser(result));
     }

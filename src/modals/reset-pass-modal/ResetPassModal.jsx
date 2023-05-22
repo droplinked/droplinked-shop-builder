@@ -7,21 +7,22 @@ import BasicButton from "../../common/BasicButton/BasicButton";
 import { postUserForgotPassword } from "lib/apis/userApiService";
 import AppTypography from "common/typography/AppTypography";
 import AppInput from "common/form/textbox/AppInput";
-import { toast } from "react-toastify";
+import useAppToast from "hooks/toast/useToast";
 
 const ResetPassModal = ({ show, close, switchReset }) => {
   const [disableBtn, setDisableBtn] = useState(false);
   const [email, setEmail] = useState("");
   const { postApi } = useApi();
+  const { showToast } = useAppToast();
 
   const SubmitForm = async () => {
     if (validationEmail()) {
-      toast.error("The email address is invalid.");
+      showToast("The email address is invalid.", "error");
     } else {
       setDisableBtn(true);
       let result = await postApi(postUserForgotPassword(email));
       if (result) {
-        toast.success(`Send an email to : ${email}`);
+        showToast(`Send an email to : ${email}`, "success");
         close();
       }
       setDisableBtn(false);

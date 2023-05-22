@@ -1,4 +1,4 @@
-import { Box, HStack, Image, Text } from '@chakra-ui/react'
+import { Box, HStack, Image } from '@chakra-ui/react'
 import { PageContentWrapper, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useCallback, useContext } from 'react'
 import classes from './style.module.scss'
@@ -7,15 +7,16 @@ import editIcon from "assest/icon/edit-icon.svg";
 import MetaMask from "assest/icon/MetaMask.svg";
 import SaveIcon from "assest/icon/frame20783.svg";
 import saveIconGreen from "assest/icon/saveIconGreen.svg";
-import { toast } from 'react-toastify'
 import technicalContext from 'pages/register-pages/pages/technical/context'
+import useAppToast from 'hooks/toast/useToast'
 
 function ContainerPayment({ title, value, locked }) {
   const { updatePayment } = useContext(technicalContext)
+  const { showToast } = useAppToast()
 
   const lockHandle = useCallback((e) => {
     const check = e.target.checked
-    if (title !== "STRIPE" && check && !value) return toast.error("Please enter wallet")
+    if (title !== "STRIPE" && check && !value) return showToast("Please enter wallet", "error")
     updatePayments("isActive", !locked)
   }, [value, title, locked])
 

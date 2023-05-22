@@ -1,10 +1,10 @@
 import AppDialog from 'common/dialog'
+import useAppToast from 'hooks/toast/useToast'
 import { IdeleteCollectionService } from 'lib/apis/collection/interfaces'
 import { deleteCollectionService } from 'lib/apis/collection/services'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import React from 'react'
 import { useMutation } from 'react-query'
-import { toast } from 'react-toastify'
 
 interface IProps {
     open: boolean
@@ -14,6 +14,7 @@ interface IProps {
 }
 function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
     const { mutate, isLoading } = useMutation((params: IdeleteCollectionService) => deleteCollectionService(params))
+    const { showToast } = useAppToast()
 
     return (
         <AppDialog
@@ -35,11 +36,11 @@ function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
                     onClick: () => {
                         mutate({ collectionID }, {
                             onSuccess: () => {
-                                toast.success(AppErrors.collection.delete_Collection)
+                                showToast(AppErrors.collection.delete_Collection, "success")
                                 fetch()
                                 close()
                             },
-                            onError: async () => toast.error("Oops! Something went wrong")
+                            onError: async () => showToast("Oops! Something went wrong", "error")
                         })
                     }
                 }

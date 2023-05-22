@@ -7,12 +7,12 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { productContext } from 'pages/product/single/context'
 import RecordModalModule from './recordFormModel'
-import { toast } from 'react-toastify'
 import { Isku } from 'lib/apis/product/interfaces'
 import { useMutation } from 'react-query'
 import { recordCasperService } from 'lib/apis/sku/services'
 import { IrecordCasperService } from 'lib/apis/sku/interfaces'
 import recordContext from '../../context'
+import useAppToast from 'hooks/toast/useToast'
 
 export interface IRecordModalProduct {
     title: string
@@ -37,6 +37,7 @@ function RecordForm({ close, product }: Iprops) {
     const { updateState, state: { loading } } = useContext(recordContext)
     const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
     const { openCasperWallet, casperRecord } = RecordModalModule
+    const { showToast } = useAppToast()
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
@@ -63,9 +64,9 @@ function RecordForm({ close, product }: Iprops) {
         } catch (error) {
             if (error?.message) {
                 if (error?.message.includes("The first argument")) return updateState("loading", false)
-                toast.error(error?.message);
+                showToast(error?.message, "error");
             } else {
-                toast.error("Oops! Something went wrong please contact support");
+                showToast("Oops! Something went wrong please contact support", "error");
             }
             updateState("loading", false)
         }

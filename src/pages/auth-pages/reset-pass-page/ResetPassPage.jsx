@@ -1,16 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-//
 import { putUserRecoveryAccount } from "lib/apis/userApiService";
 import { useApi } from "hooks/useApi/useApi";
-//
 import "./ResetPassPage-style.scss";
-//
 import BasicButton from "common/BasicButton/BasicButton";
 import InputFieldComponent from "common/input-field-component/InputFieldComponent";
-import { toast } from "react-toastify";
-
-
+import useAppToast from "hooks/toast/useToast";
 
 export default function ResetPassPage() {
   const [newPass, setNewpass] = useState("");
@@ -18,6 +13,7 @@ export default function ResetPassPage() {
   const [confirmError, setConfirmError] = useState(false);
   const [btnActivd, setBtnActivd] = useState(false);
   const { putApi } = useApi();
+  const { showToast } = useAppToast()
 
   let navigate = useNavigate();
   let token = useParams().token;
@@ -36,9 +32,7 @@ export default function ResetPassPage() {
     setBtnActivd(true);
     let result = await putApi(putUserRecoveryAccount(token, newPass));
     if (result) {
-      toast.success(
-        "Your password has been changed successfully. Please login again."
-      );
+      showToast("Your password has been changed successfully. Please login again.", "success");
       navigate("/?modal=login");
     } else navigate("/");
   };

@@ -9,6 +9,7 @@ import propertyItemModel from './model/model';
 import SkuTableModal from 'pages/product/single/parts/modules/variants/parts/table/parts/skuModal/SkuTableModal';
 import AppInput from 'common/form/textbox/AppInput';
 import AppTypography from 'common/typography/AppTypography';
+import useAppToast from 'hooks/toast/useToast';
 
 function PropertyItem({ element, keyProperty }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -16,6 +17,7 @@ function PropertyItem({ element, keyProperty }) {
     const { state: { sku } } = useContext(productContext)
     const { updateState } = useContext(propertiesFormContext)
     const { appendPropertyItem, addPropertyItem, removePropertyItem, checkUsedPropertyItem } = propertyItemModel
+    const { showToast } = useAppToast()
 
     const append = useCallback((keyProperty) => {
         updateState(prev => appendPropertyItem({
@@ -40,7 +42,7 @@ function PropertyItem({ element, keyProperty }) {
             await checkItem(item, element)
             updateState(prev => removePropertyItem({ state: prev, keyItem, keyProperty }))
         } catch (error) {
-            toast.error("This item used in skues")
+            showToast("This item used in skues", "error")
         }
     }, [updateState, sku])
 
@@ -50,7 +52,7 @@ function PropertyItem({ element, keyProperty }) {
             updateState(prev => addPropertyItem({ state: prev, index, keyProperty, value }))
         } catch (error) {
             setSkuData(error)
-            toast.error(
+            showToast(
                 <>
                     This item use {" "}
                     <button
@@ -63,7 +65,7 @@ function PropertyItem({ element, keyProperty }) {
                     </button>{" "}
                     sku
                 </>
-                , { toastId: "SkuUsed" })
+                , "error", { toastId: "SkuUsed" })
         }
     }, [updateState, sku])
 

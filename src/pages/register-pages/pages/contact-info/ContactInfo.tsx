@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
 import AppTypography from "common/typography/AppTypography";
-import { toast } from "react-toastify";
 import AppErrors from "lib/utils/statics/errors/errors";
 import { Form, Formik } from "formik";
 import { Box, Flex, VStack } from "@chakra-ui/react";
@@ -11,23 +10,25 @@ import AppCard from "common/card/AppCard";
 import InputLefton from "pages/register-pages/component/input-lefton/InputLefton";
 import { IshopSocial } from "lib/apis/shop/interfaces";
 import BasicButton from "common/BasicButton/BasicButton";
+import useAppToast from "hooks/toast/useToast";
 
 const ContactInfo = () => {
   const { shopNavigate } = useCustomNavigate();
   const { shop, setShopData: { update, loading } } = useProfile();
   const currentPath = useLocation().pathname;
+  const { showToast } = useAppToast()
 
   const onSubmit = useCallback(async (params: IshopSocial) => {
     try {
       await update(params)
       if (currentPath.includes("register")) {
         shopNavigate(`products`);
-        toast.success(AppErrors.store.when_user_publishes__store)
+        showToast(AppErrors.store.when_user_publishes__store, "success")
       } else {
-        toast.success(AppErrors.store.has_been_updated("Contact options"));
+        showToast(AppErrors.store.has_been_updated("Contact options"), "success");
       }
     } catch (error) {
-      toast.error(error?.message)
+      showToast(error?.message, "error")
     }
   }, [])
 

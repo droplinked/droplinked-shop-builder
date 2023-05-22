@@ -12,10 +12,12 @@ import uploadImage from "assest/icon/upload-icon.svg";
 import LoadingComponent from "common/loading-component/LoadingComponent";
 import AppErrors from "lib/utils/statics/errors/errors";
 import { toast } from "react-toastify";
+import useAppToast from "hooks/toast/useToast";
 
 export default function InputImagesGroup({ setState, state }) {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
+  const { showToast } = useAppToast()
 
   const openFile = () => {
     fileRef.current.click();
@@ -24,7 +26,7 @@ export default function InputImagesGroup({ setState, state }) {
   const changeImage = (e) => {
     const file = e.target.files[0];
     if (file.size > 500000) {
-      toast.error(AppErrors.store.size_limit({ fieldName: "Product", size: "5MB" }));
+      showToast(AppErrors.store.size_limit({ fieldName: "Product", size: "5MB" }), "error");
       setLoading(false);
       return;
     }
@@ -34,7 +36,7 @@ export default function InputImagesGroup({ setState, state }) {
       file.type !== "image/gif" &&
       file.type !== "image/jpg"
     ) {
-      toast.error(AppErrors.product.product_image_type_not_supported);
+      showToast(AppErrors.product.product_image_type_not_supported, "error");
       setLoading(false);
       return;
     }
@@ -51,12 +53,12 @@ export default function InputImagesGroup({ setState, state }) {
         }
         imgArr.push(e.data.standard);
         setState(imgArr);
-        toast.success(e.data.message);
+        showToast(e.data.message, "success");
         setLoading(false);
         return;
       })
       .catch((e) => {
-        toast.error(e.response.data.message);
+        showToast(e.response.data.message, "error");
         setLoading(false);
         return;
       });

@@ -5,13 +5,13 @@ import AppInput from 'common/form/textbox/AppInput';
 import AppModal, { IAppModal } from 'common/modal/AppModal'
 import AppTypography from 'common/typography/AppTypography';
 import { Form, Formik } from 'formik'
+import useAppToast from 'hooks/toast/useToast';
 import { useProfile } from 'hooks/useProfile/useProfile';
 import { addressByIdService, createAddressService, updateAddressService } from 'lib/apis/address/addressServices';
 import { IaddressByIdService, IcreateAddressService, IupdateAddressService } from 'lib/apis/address/interfaces';
 import { countries_statics } from 'lib/utils/statics/countries';
 import React, { useCallback, useEffect } from 'react'
 import { useMutation } from 'react-query';
-import { toast } from 'react-toastify';
 import AddressModalModel from './AddressModalModel';
 
 interface Iprops extends IAppModal {
@@ -27,7 +27,7 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
     const { updateShopData } = useProfile()
     const { initialValues, formSchema } = AddressModalModel
     const loading = !Boolean(addressID && fetchService.isLoading)
-    
+    const { showToast } = useAppToast()
 
     const onSubmit = useCallback(async (params: IcreateAddressService) => {
         try {
@@ -38,10 +38,10 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
             }
             if (onSuccess) onSuccess()
             updateShopData()
-            toast.success("Address create")
+            showToast("Address create", "success")
             close()
         } catch (error) {
-            toast.error(error?.response?.data?.message);
+            showToast(error?.response?.data?.message, "error");
         }
     }, [onSuccess, addressID])
 

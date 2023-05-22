@@ -7,7 +7,7 @@ import { useProfile } from "hooks/useProfile/useProfile";
 import BasicButton from "common/BasicButton/BasicButton";
 import DesignRegisterMdel from "./model";
 import AppErrors from "lib/utils/statics/errors/errors";
-import { toast } from "react-toastify";
+import useAppToast from "hooks/toast/useToast";
 
 const ButtonsComponent = () => {
 
@@ -15,7 +15,8 @@ const ButtonsComponent = () => {
   const { shopNavigate } = useCustomNavigate();
   const { setShopData: { loading, update } } = useProfile();
   const { validation } = DesignRegisterMdel
-  const currentPath = useLocation().pathname;
+  const currentPath = useLocation().pathname
+  const { showToast } = useAppToast()
 
   const clickSubmit = async () => {
     try {
@@ -24,10 +25,10 @@ const ButtonsComponent = () => {
       if (currentPath.includes("register")) {
         shopNavigate(`register/technical`)
       } else {
-        toast.success(AppErrors.store.has_been_updated("Store design"))
+        showToast(AppErrors.store.has_been_updated("Store design"), "success")
       }
     } catch (error) {
-      toast.error(error?.errors ? error.errors[0] : "Oops! Something went wrong");
+      showToast(error?.errors ? error.errors[0] : "Oops! Something went wrong", "error");
     }
   };
 

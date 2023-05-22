@@ -5,18 +5,19 @@ import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import RecordModalModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel'
 import React, { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
-import { toast } from 'react-toastify'
 import NotificationsModal from './parts/modal/NotificationsModal'
 import requestsButtonsModel from './model'
 import requestInterfaces from './interfaces'
 import { requestsButtonsContext } from './context'
 import RequestButtons from './parts/buttons/RequestButtons'
 import ModalHashkey from './parts/hashkey/ModalHashkey'
+import useAppToast from 'hooks/toast/useToast'
 
 function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
     const { mutateAsync } = useMutation((params: IacceptRejectRequestService) => acceptRejectRequestService(params))
     const modal = useDisclosure()
     const modalHashKey = useDisclosure()
+    const { showToast } = useAppToast()
     const { approveRequest, disapproveRequest } = requestsButtonsModel
     const [States, setStates] = useState<requestInterfaces.IStates>({
         status: null,
@@ -33,7 +34,6 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
 
     const submit = useCallback(async () => {
         try {
-            
             setLoading(true)
             const casperWallet = await RecordModalModule.openCasperWallet()
             const requestID = shop?._id
@@ -47,8 +47,8 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             })
             setLoading(false)
             modal.onClose()
-            toast.success(`Request status change ${capitalizeFirstLetter(States.status)}`)
-            
+            showToast(`Request status change ${capitalizeFirstLetter(States.status)}`, "success")
+
             if (States.status === "accept") {
                 modalHashKey.onOpen()
                 setStates(prev => ({ ...prev, deployHash: request.deployHash }))
@@ -57,7 +57,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             }
         } catch (error) {
             setLoading(false)
-            if (error?.message && !error?.message.includes("The first argument")) toast.error(error.message)
+            if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
         }
     }, [States.status, shop, refetch, modal])
 

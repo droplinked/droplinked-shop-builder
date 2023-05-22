@@ -8,6 +8,7 @@ import { useMutation } from 'react-query'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
 import { productCreateServices, productUpdateServices, skuUpdateByIdServices } from 'lib/apis/product/productServices'
 import AppErrors from 'lib/utils/statics/errors/errors'
+import useAppToast from 'hooks/toast/useToast'
 
 function ButtonsProduct() {
     const create = useMutation((params) => productCreateServices(params))
@@ -16,6 +17,7 @@ function ButtonsProduct() {
     const { state, productID } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
     const { validate, makeDataUpdate, makeskuUpdate } = ButtonsProductClass
+    const { showToast } = useAppToast()
 
     const submit = useCallback(async () => {
         try {
@@ -24,10 +26,10 @@ function ButtonsProduct() {
             await query(productID ? { productID, params: makeDataUpdate({ state }) } : state)
             if (productID) await updateSkues(state.sku) // Update skues
 
-            toast.success(AppErrors.product.your_product_published)
+            showToast(AppErrors.product.your_product_published, "success")
             shopNavigate("products")
         } catch (error) {
-            toast.error(error.errors ? error.errors[0] : "Oops! Something went wrong")
+            showToast(error.errors ? error.errors[0] : "Oops! Something went wrong", "error")
         }
     }, [state, productID])
 

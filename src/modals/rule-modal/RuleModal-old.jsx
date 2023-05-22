@@ -1,22 +1,13 @@
 import { ModalHeader, AddRuleButton, TypeSelect } from "./RuleModal-style";
 import { Box, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-
-// import {
-//   addRuleset,
-//   getRuleById,
-//   updateRule,
-// } from "../../api/producer/Ruleset-api";
 import {
   postCreateRuleset,
   getRulesetById,
   putUpdateRuleset,
 } from "../../apis/rulesetApiService";
-//import { getRulesById } from "../../api-service/rules/rulesApiService";
-import { useToasty } from "../../context/toastify/ToastContext";
 import { RuleTypes } from "./rule-type";
 import { useApi } from "../../hooks/useApi/useApi";
-// import deleteIcon from "../../../assest/icon/delete-icon.svg";
 import RuleItem from "./RuleItem";
 import FillInputComponent from "./components/FillInputComponent";
 import BasicButton from "../../common/BasicButton/BasicButton";
@@ -27,8 +18,7 @@ import { ChainTypes } from "./chain-type";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
-  //
-  const { errorToast, successToast } = useToasty();
+
   const { getApi, postApi, putApi } = useApi();
   // this state for list of rules
   const [Rulelist, setRulelist] = useState([]);

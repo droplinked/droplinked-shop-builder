@@ -1,24 +1,23 @@
 import { useState } from "react";
 import { Box, Flex, Image, Stack, Text } from "@chakra-ui/react";
-import { useToasty } from "../../context/toastify/ToastContext";
 import { useApi } from "../../hooks/useApi/useApi";
 import { postCreateCollection } from "../../apis/collectionApiService";
 import ModalWrapper from "../modal-wrapper/ModalWrapper";
 import BasicButton from "../../common/BasicButton/BasicButton";
 import InputFieldComponent from "../../common/input-field-component/InputFieldComponent";
 import roundedQuestionMark from "../../assest/icon/rounded-question-mark-icon.svg";
-//
+import useAppToast from "hooks/toast/useToast";
+
 const NewCollectionModal = ({ show, close, update }) => {
-  //
+
   const [collectionName, setCollectionName] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const { errorToast, successToast } = useToasty();
+  const { showToast } = useAppToast();
   const { postApi } = useApi();
 
   const submitForm = async () => {
     if (collectionName === "") {
-      errorToast("Collection name required");
+      showToast("Collection name required", "error");
       return;
     }
     setLoading(true);
@@ -27,7 +26,7 @@ const NewCollectionModal = ({ show, close, update }) => {
     result = await postApi(postCreateCollection(collectionName));
 
     if (result) {
-      successToast("New collection added successfully");
+      showToast("New collection added successfully", "success");
       update();
       setCollectionName("");
     }

@@ -1,12 +1,10 @@
 import BasicButton from 'common/BasicButton/BasicButton'
+import useAppToast from 'hooks/toast/useToast'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
 import { useProfile } from 'hooks/useProfile/useProfile'
-import useAppStore from 'lib/stores/app/appStore'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import React, { useCallback, useMemo } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { useStore } from 'zustand'
+import { useLocation } from 'react-router-dom'
 import { IstatesShopInfo } from '../../ShopInfo'
 
 interface IProps {
@@ -17,6 +15,7 @@ function ShopInfoSubmit({ States }: IProps) {
     const { setShopData: { update, loading } } = useProfile()
     const { shopNavigate } = useCustomNavigate();
     const isRegister = useLocation().pathname.includes("register")
+    const { showToast } = useAppToast()
 
     const submit = useCallback(async () => {
         try {
@@ -25,10 +24,10 @@ function ShopInfoSubmit({ States }: IProps) {
             if (isRegister) {
                 shopNavigate(`register/design`);
             } else {
-                toast.success(AppErrors.store.has_been_updated("Store info"))
+                showToast(AppErrors.store.has_been_updated("Store info"), "success")
             }
         } catch (error) {
-            toast.error(error?.message)
+            showToast(error?.message, "error")
         }
     }, [States, isRegister])
 

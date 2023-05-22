@@ -1,17 +1,18 @@
 import { Box, HStack, VStack } from '@chakra-ui/react'
 import BasicButton from 'common/BasicButton/BasicButton'
-import React, { useCallback, useContext, useEffect, useMemo } from 'react'
+import React, { useCallback, useContext, useMemo } from 'react'
 import VariantMakeForm from './parts/container'
-import { toast } from 'react-toastify'
 import VariantsFormModel from './model/model'
 import { productContext } from 'pages/product/single/context'
 import { Formik, Form } from 'formik';
 import variontFormContext from './context';
+import useAppToast from 'hooks/toast/useToast'
 
 function SkuForm({ close, update }) {
     const { state: { properties, sku }, methods: { updateState } } = useContext(productContext)
     const { makeDataService, duplicateCheck, findKeySku, initialFormik } = VariantsFormModel
     const staticFields = ["Price", "Quantity", "External ID", "Delivery boxing"]
+    const { showToast } = useAppToast()
 
     const onSubmit = async formData => {
         try {
@@ -31,7 +32,7 @@ function SkuForm({ close, update }) {
 
             close()
         } catch (error) {
-            toast.error(error?.errors ? error?.errors[0] : error);
+            showToast(error?.errors ? error?.errors[0] : error, "error");
         }
     }
 

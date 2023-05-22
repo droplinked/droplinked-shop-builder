@@ -11,10 +11,11 @@ import AppTypography from "common/typography/AppTypography";
 import FieldLabel from "common/form/fieldLabel/FieldLabel";
 import { toMb } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
-import { toast } from "react-toastify";
+import useAppToast from "hooks/toast/useToast";
 
 const HeaderBannerComponent = ({ addNewImage }) => {
   const [loading, setLoading] = useState(false);
+  const { showToast } = useAppToast()
 
   const fileRef = useRef(null);
 
@@ -29,7 +30,7 @@ const HeaderBannerComponent = ({ addNewImage }) => {
     const file = e.target.files[0];
 
     if (file.size > toMb({ value: 5 })) {
-      toast.error(AppErrors.store.header_banner_size_limit);
+      showToast(AppErrors.store.header_banner_size_limit, "error");
       return;
     }
     if (
@@ -40,7 +41,7 @@ const HeaderBannerComponent = ({ addNewImage }) => {
       file.type !== "image/svg+xml" &&
       file.type !== "image/jpg"
     ) {
-      toast.error(AppErrors.product.product_image_type_not_supported);
+      showToast(AppErrors.product.product_image_type_not_supported, "error");
       return;
     }
 
@@ -51,11 +52,11 @@ const HeaderBannerComponent = ({ addNewImage }) => {
       .post("https://cdn.droplinked.com/upload", formData)
       .then((e) => {
         setLoading(false);
-        toast.success("The image uploaded");
+        showToast("The image uploaded", "success");
         addNewImage(e.data.original);
       })
       .catch((e) => {
-        toast.error(e.response.data.message);
+        showToast(e.response.data.message, "error");
         setLoading(false);
         return;
       });

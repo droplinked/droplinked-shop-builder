@@ -1,4 +1,5 @@
 import BasicButton from 'common/BasicButton/BasicButton'
+import useAppToast from 'hooks/toast/useToast';
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
 import { useProfile } from 'hooks/useProfile/useProfile';
 import { IpaymentCreateService } from 'lib/apis/shop/interfaces';
@@ -7,7 +8,6 @@ import AppErrors from 'lib/utils/statics/errors/errors';
 import React, { useCallback, useContext, useMemo } from 'react'
 import { useMutation } from 'react-query';
 import { useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import technicalContext from '../../context';
 import technicalModel from '../../model';
 import TechnicalSubmitModel from './TechnicalSubmitModel';
@@ -21,6 +21,7 @@ function TechnicalSubmit() {
     const { shopNavigate } = useCustomNavigate()
     const { refactor } = TechnicalSubmitModel
     const isRegister = currentPath.includes("register")
+    const { showToast } = useAppToast()
 
     const checkPayment = useMemo(() => checkPaymentMethod(payments), [payments])
 
@@ -31,10 +32,10 @@ function TechnicalSubmit() {
                 update({ imsType })
                 shopNavigate(`register/contact-info`);
             } else {
-                toast.success(AppErrors.store.has_been_updated("Payment options"));
+                showToast(AppErrors.store.has_been_updated("Payment options"), "success");
             }
         } catch (error) {
-            toast.error(error.message);
+            showToast(error.message, "error");
         }
     }, [payments, imsType, userPayments])
     return (

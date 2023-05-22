@@ -1,16 +1,15 @@
-import React, { useCallback, useContext, useMemo, useState } from 'react'
-import { Box, HStack, Image, useDisclosure } from '@chakra-ui/react'
+import React, { useCallback, useContext } from 'react'
+import { Box, HStack, Image } from '@chakra-ui/react'
 import { productContext } from 'pages/product/single/context'
-import RecordModal, { IRecordModalProduct } from '../recordModal/RecordModal'
-import SkuTableModal from '../skuModal/SkuTableModal'
+import { IRecordModalProduct } from '../recordModal/RecordModal'
 import editIcon from "assest/icon/edit-icon.svg";
 import tearIcon from "assest/icon/tear-icon.svg";
 import infoIcon from "assest/icon/info-icon.svg";
 import deleteIcon from "assest/icon/delete-icon.svg";
-import { toast } from 'react-toastify'
 import { Isku } from 'lib/apis/product/interfaces'
 import introductionClass from 'pages/product/single/parts/general/model'
 import AppErrors from 'lib/utils/statics/errors/errors'
+import useAppToast from 'hooks/toast/useToast'
 
 interface IProps {
     element: Isku
@@ -24,12 +23,13 @@ interface IProps {
 
 function SkuTableOptions({ element, elementKey, updateSku, modals: { editModal, recordMoal } }: IProps) {
     const { state, methods: { updateState }, productID } = useContext(productContext)
+    const { showToast } = useAppToast()
 
     // Delete sku
     const DeleteSku = useCallback((key: number) => {
         const remove = state.sku.filter((el, index) => index !== key && el)
         updateState("sku", remove)
-        toast.info(AppErrors.product.variant_has_been_deleted)
+        showToast(AppErrors.product.variant_has_been_deleted, "info")
     }, [state.sku])
 
     // make data for "Record Modal"

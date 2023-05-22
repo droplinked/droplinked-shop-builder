@@ -1,4 +1,5 @@
 import AppDialog from 'common/dialog'
+import useAppToast from 'hooks/toast/useToast'
 import { IproductDeleteServices } from 'lib/apis/product/interfaces'
 import { productDeleteServices } from 'lib/apis/product/productServices'
 import React from 'react'
@@ -13,6 +14,7 @@ interface IProps {
 }
 function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
     const { mutate, isLoading } = useMutation((params: IproductDeleteServices) => productDeleteServices(params))
+    const { showToast } = useAppToast()
 
     return (
         <AppDialog
@@ -33,11 +35,11 @@ function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
                     onClick: () => {
                         mutate({ productID }, {
                             onSuccess: () => {
-                                toast.success("Delete product")
+                                showToast("Delete product", "success")
                                 fetch()
                                 close()
                             },
-                            onError: async () => toast.error("Oops! Something went wrong")
+                            onError: async () => showToast("Oops! Something went wrong", "error")
                         })
                     }
                 }
