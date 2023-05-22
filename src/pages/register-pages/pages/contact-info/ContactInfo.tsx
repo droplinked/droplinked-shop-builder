@@ -36,10 +36,10 @@ const ContactInfo = () => {
     <AppCard mini>
       <Formik
         initialValues={{
-          discordURL: shop.discordURL ? shop.discordURL : "",
-          instagramURL: shop.instagramURL ? shop.instagramURL : "",
-          twitterURL: shop.twitterURL ? shop.twitterURL : "",
-          webURL: shop.webURL ? shop.webURL : "",
+          discordURL: shop?.discordURL ? shop.discordURL : "",
+          instagramURL: shop?.instagramURL ? shop.instagramURL : "",
+          twitterURL: shop?.twitterURL ? shop.twitterURL : "",
+          webURL: shop?.webURL ? shop.webURL : "",
         }}
         enableReinitialize
         validateOnChange={false}

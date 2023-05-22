@@ -38,13 +38,15 @@ function AppTable({ rows, vertical, empty }: IAppTable) {
                     ) : rows instanceof Array ? (
                         <table className={classes.table}>
                             <thead>
-                                {Object.keys(rows[0]).map((el, key) =>
-                                    <th key={key}>
-                                        <AppTypography size='12px' weight='bolder'>
-                                            {typeof rows[0][el].caption !== "undefined" ? capitalizeFirstLetter(rows[0][el].caption) : capitalizeFirstLetter(el)}
-                                        </AppTypography>
-                                    </th>
-                                )}
+                                <tr>
+                                    {Object.keys(rows[0]).map((el, key) =>
+                                        <th key={key}>
+                                            <AppTypography size='12px' weight='bolder'>
+                                                {typeof rows[0][el].caption !== "undefined" ? capitalizeFirstLetter(rows[0][el].caption) : capitalizeFirstLetter(el)}
+                                            </AppTypography>
+                                        </th>
+                                    )}
+                                </tr>
                             </thead>
                             <tbody>
                                 {rows.map((el, key) =>

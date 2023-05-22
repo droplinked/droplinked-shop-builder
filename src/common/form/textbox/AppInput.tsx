@@ -23,6 +23,7 @@ function AppInput(props: Iprops) {
           placeholder={capitalizeFirstLetter(name)}
           {...FormModel.styleProps()}
           {...props}
+          value={props?.value || ""}
         />
       </AppSkeleton>
       <ErrorLabel message={error} />

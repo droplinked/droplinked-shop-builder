@@ -1,7 +1,16 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import LoadingPage from "./pages/public-pages/loading-page/LoadingPage";
+import DashboardLayout from "layouts/app/dashboard/DashboardLayout";
+import Products from "pages/product/list/products";
+import Collections from "pages/collections/Collections";
+import Orders from "pages/orders/Orders";
+import Rules from "pages/rules/Rules";
+import RegisterPagesWrapper from "./pages/register-pages/RegisterPageWrapper";
+import AffiliateLayout from "layouts/pages/affiliate/AffiliateLayout";
+import Shops from "pages/affiliate/shops/Shops";
+import RegisterShopInfo from "./pages/register-pages/pages/shop-info/ShopInfo";
 
 const MainLayout = lazy(() =>
   import("layouts/app/main/mainLayout")
@@ -12,12 +21,6 @@ const NotFound = lazy(() =>
 const Enquiry = lazy(() =>
   import("./pages/public-pages/enquiry-page/EnquiryPage")
 );
-const RegisterPagesWrapper = lazy(() =>
-  import("./pages/register-pages/RegisterPageWrapper")
-);
-const RegisterShopInfo = lazy(() =>
-  import("./pages/register-pages/pages/shop-info/ShopInfo")
-);
 const ContactInfo = lazy(() =>
   import("./pages/register-pages/pages/contact-info/ContactInfo")
 );
@@ -27,7 +30,6 @@ const DesignPage = lazy(() =>
 const TechnicalPage = lazy(() =>
   import("./pages/register-pages/pages/technical")
 );
-const DashboardLayout = lazy(() => import("layouts/app/dashboard/DashboardLayout"));
 const LandingPage = lazy(() =>
   import("./pages/public-pages/landing-page/LandingPage")
 );
@@ -49,19 +51,10 @@ const ThankForRegisterPage = lazy(() =>
 
 const ShopPage = lazy(() => import("./pages/public-pages/shop-page/ShopPage"));
 const ProductSingle = lazy(() => import("pages/product/single"));
-const AffiliateLayout = lazy(() =>
-  import("layouts/pages/affiliate/AffiliateLayout")
-);
-
-const Shops = lazy(() => import("pages/affiliate/shops/Shops"))
 const Shop = lazy(() => import("pages/affiliate/shopSingle/Shop"))
 const ShopProduct = lazy(() => import("pages/affiliate/product/ShopProduct"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
 const Notifications = lazy(() => import("pages/affiliate/notifications/Notifications"))
-const Products = lazy(() => import("pages/product/list/products"))
-const Collections = lazy(() => import("pages/collections/Collections"))
-const Rules = lazy(() => import("pages/rules/Rules"))
-const Orders = lazy(() => import("pages/orders/Orders"))
 
 function App() {
   return (
