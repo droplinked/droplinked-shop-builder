@@ -1,26 +1,24 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-//
-import { postUserEmailVerification } from "lib/apis/userApiService";
-import { useApi } from "hooks/useApi/useApi";
-//
 import LoadingComponent from "common/loading-component/LoadingComponent";
 import useAppToast from "hooks/toast/useToast";
+import { useMutation } from "react-query";
+import { emailVerifyService } from "lib/apis/user/services";
+import { IemailVerifyService } from "lib/apis/user/interfaces";
 
 export default function VerifyEmailPage() {
+  const { mutateAsync } = useMutation((params: IemailVerifyService) => emailVerifyService(params))
   const nav = useNavigate()
   let token = useParams().token
   const { showToast } = useAppToast()
 
-  const { postApi } = useApi()
-
   useEffect(() => {
     const verify = async () => {
-      let result = await postApi(postUserEmailVerification(token));
-      if (result) {
+      try {
+        await mutateAsync({ token })
         nav("/?modal=login");
         showToast("Your email has been verified, please login", "success");
-      } else {
+      } catch (error) {
         nav("/");
       }
     };

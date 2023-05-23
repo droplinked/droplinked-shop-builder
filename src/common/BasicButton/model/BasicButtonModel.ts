@@ -23,6 +23,8 @@ export default class BasicButtonModel {
                 return this.styles.solid()
             case "outline":
                 return this.styles.outline()
+            case "link":
+                return this.styles.link()
             default:
                 return this.styles.solid()
         }

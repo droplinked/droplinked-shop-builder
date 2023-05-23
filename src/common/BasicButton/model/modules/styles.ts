@@ -28,4 +28,16 @@ export default class BasicButtonStyles {
         }
     }
 
+    static link = (): ButtonProps => {
+        return {
+            color: "#FFF",
+            bgColor: "none",
+            border: "none !important",
+            _hover: {
+                bgColor: "unset",
+                color: "#offText",
+            }
+        }
+    }
+
 }
