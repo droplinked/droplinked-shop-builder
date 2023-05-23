@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { useState } from "react";
-import { useApi } from "hooks/useApi/useApi";
+import React, { useState } from "react";
 import {
   ThankPageWrapper,
   ThankText,
@@ -8,26 +7,32 @@ import {
   EmailText,
 } from "./ThankForRegisterPage-style";
 import BasicButton from "common/BasicButton/BasicButton";
-import { postUserResendEmail } from "lib/apis/userApiService";
 import useAppToast from "hooks/toast/useToast";
+import { useMutation } from "react-query";
+import { resendEmailService } from "lib/apis/user/services";
+import { IresendEmailService } from "lib/apis/user/interfaces";
 
 export default function ThankForRegisterPage() {
+  const { mutateAsync } = useMutation((params: IresendEmailService) => resendEmailService(params))
   // use this state for loading state of button when calling api
   const [loading, setLoading] = useState(false);
   const { showToast } = useAppToast()
-
-  const { postApi } = useApi();
 
   // get email from localhost for show register email in text
   let email = JSON.parse(localStorage.getItem("registerEmail"));
 
   const resend = async () => {
-    // call resent email api
-    setLoading(true);
-    let result = await postApi(postUserResendEmail(email));
-    setLoading(false);
-    // if get error from api
-    if (result) showToast("A new link was sent to your email", "success");
+    try {
+      // call resent email api
+      setLoading(true);
+      await mutateAsync({ email })
+      setLoading(false);
+      // if get error from api
+      showToast("A new link was sent to your email", "success");
+    } catch (error) {
+      showToast(error?.response?.data?.message[0], "error");
+      setLoading(false);
+    }
   };
 
   return (

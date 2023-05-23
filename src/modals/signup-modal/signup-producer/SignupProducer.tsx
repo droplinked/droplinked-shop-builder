@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { Box, Stack } from "@chakra-ui/react";
 import { BottomText } from "../SignupModal-style";
-import { useApi } from "../../../hooks/useApi/useApi";
 import BasicButton from "../../../common/BasicButton/BasicButton";
-import { postUserSignup } from "lib/apis/userApiService";
 import AppInput from "common/form/textbox/AppInput";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -12,33 +10,33 @@ import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppErrors from "lib/utils/statics/errors/errors";
 import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
 import useAppToast from "hooks/toast/useToast";
+import { useMutation } from "react-query";
+import { signupService } from "lib/apis/user/services";
+import { IsignupService } from "lib/apis/user/interfaces";
 
 export default function SignupProducer({ close, shopname, switchToggle }) {
+  const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params))
   const [States, setStates] = useState({
-    loading: false,
     show: {
       password: false,
       repassword: false
     }
   })
-  const { postApi } = useApi();
   let navigate = useNavigate();
   const { showToast } = useAppToast();
 
-  const setLoading = useCallback((value) => setStates(prev => ({ ...prev, loading: value })), [])
-  const toggleShowField = useCallback((field) => setStates(prev => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), [])
+  const toggleShowField = useCallback((field: any) => setStates(prev => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), [])
 
-  const onSubmit = async (data) => {
-    const { email, password, username } = data
-    setLoading(true);
-    let result = await postApi(postUserSignup(email, password, username));
-    setLoading(false);
-
-    if (result) {
+  const onSubmit = async (data: any) => {
+    try {
+      const { email, password, username } = data
+      await mutateAsync({ email, password, shopName: username });
       localStorage.setItem("registerEmail", JSON.stringify(email));
       showToast("Account successfully created", "success");
       close();
       navigate("/email-confirmation");
+    } catch (error) {
+      showToast(error?.response?.data?.message, "error")
     }
   };
 
@@ -65,14 +63,14 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         <Form>
           <Stack w="100%" h="100%" spacing="20px">
             <AppInput
-              error={errors.username}
+              error={errors?.username ? errors.username.toString() : ""}
               name="username"
               isReadOnly={shopname && shopname.length}
               onChange={(e) => setFieldValue("username", e.target.value)}
               value={values.username}
             />
             <AppInput
-              error={errors.email}
+              error={errors?.email ? errors.email.toString() : ""}
               name="email"
               onChange={(e) => setFieldValue("email", e.target.value)}
               value={values.email}
@@ -81,7 +79,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
               <AppInput
                 type={States.show.password ? "text" : "password"}
                 name="password"
-                error={errors.password}
+                error={errors?.password ? errors.password.toString() : ""}
                 onChange={(e) => setFieldValue("password", e.target.value)}
                 value={values.password}
               />
@@ -92,14 +90,14 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
                 type={States.show.repassword ? "text" : "password"}
                 placeholder="Confirm password"
                 name="repassword"
-                error={errors.repassword}
+                error={errors?.repassword ? errors.repassword.toString() : ""}
                 onChange={(e) => setFieldValue("repassword", e.target.value)}
                 value={values.repassword}
               />
               <ShowPassword showed={States.show.repassword} onClick={() => toggleShowField("repassword")} />
             </Box>
 
-            <BasicButton type="submit" isDisabled={States.loading}>
+            <BasicButton type="submit" isDisabled={isLoading}>
               Sign up
             </BasicButton>
 
