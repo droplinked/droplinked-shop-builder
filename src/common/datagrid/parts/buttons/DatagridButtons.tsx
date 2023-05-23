@@ -18,8 +18,8 @@ function DatagridButtons({ buttons }: IDatagridButtons) {
             {buttons.map((el, key) => {
                 const Tag = el.to ? Link : Fragment
                 return (
-                    <Tag {...el.to && { to: el.to }}>
-                        <BasicButton key={key} {...el.onClick && { onClick: () => el.onClick() }} {...el.buttonProps}>{el.caption}</BasicButton>
+                    <Tag key={key} {...el.to && { to: el.to }}>
+                        <BasicButton {...el.onClick && { onClick: () => el.onClick() }} {...el.buttonProps}>{el.caption}</BasicButton>
                     </Tag>
                 )
             })}
