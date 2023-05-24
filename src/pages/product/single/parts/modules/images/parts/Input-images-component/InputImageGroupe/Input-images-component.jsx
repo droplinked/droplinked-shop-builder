@@ -12,6 +12,7 @@ import uploadImage from "assest/icon/upload-icon.svg";
 import LoadingComponent from "common/loading-component/LoadingComponent";
 import AppErrors from "lib/utils/statics/errors/errors";
 import useAppToast from "hooks/toast/useToast";
+import { toMb } from "lib/utils/heper/helpers";
 
 export default function InputImagesGroup({ setState, state }) {
   const [loading, setLoading] = useState(false);
@@ -24,7 +25,7 @@ export default function InputImagesGroup({ setState, state }) {
 
   const changeImage = (e) => {
     const file = e.target.files[0];
-    if (file.size > 500000) {
+    if (file.size > toMb({ value: 5 })) {
       showToast(AppErrors.store.size_limit({ fieldName: "Product", size: "5MB" }), "error");
       setLoading(false);
       return;
@@ -33,6 +34,7 @@ export default function InputImagesGroup({ setState, state }) {
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
       file.type !== "image/gif" &&
+      file.type !== "image/webp" &&
       file.type !== "image/jpg"
     ) {
       showToast(AppErrors.product.product_image_type_not_supported, "error");
