@@ -87,6 +87,8 @@ const InputImage = ({ label, placeHolder, change, value, maxSize }: IProps) => {
         <Box
           w="100%"
           bg="subLayer"
+          h="200px"
+          maxH="200px"
           py="24px"
           display="flex"
           flexDir="column"

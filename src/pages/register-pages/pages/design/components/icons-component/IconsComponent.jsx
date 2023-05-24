@@ -15,7 +15,7 @@ const IconsComponent = () => {
   return (
     <Flex
       w="100%"
-      alignItems="center"
+      alignItems="baseline"
       justifyContent="space-between"
       gap="24px"
     >

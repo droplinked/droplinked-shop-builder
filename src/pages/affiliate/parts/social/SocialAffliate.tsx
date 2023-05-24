@@ -1,10 +1,6 @@
-import { Box, HStack, Image } from '@chakra-ui/react'
-import React from 'react'
-import facebookIcon from "assest/icon/facebook.svg";
-import twitterIcon from "assest/icon/twitter.svg";
-import pintrestIcon from "assest/icon/pintrest.svg";
-import snapchatIcon from "assest/icon/snapchat.svg";
-import instagramIcon from "assest/icon/instagram.svg";
+import { Box, HStack } from '@chakra-ui/react'
+import React, { useMemo } from 'react'
+import AppIcons from 'assest/icon/Appicons';
 
 export interface ISocialAffliate {
     instagram: string
@@ -16,25 +12,34 @@ export interface ISocialAffliate {
 }
 
 function SocialAffliate({ facebook, instagram, pintrest, snapchat, twitter, size }: ISocialAffliate) {
+
+    const sized = useMemo(() => {
+        if (!size) return {}
+        return {
+            width: `${size ? size : 17}px`,
+            height: `${size ? size : 17}px`
+        }
+    }, [size])
+
     const social = [
         {
-            icon: instagramIcon,
+            icon: <AppIcons.instagramIcon {...sized} />,
             link: instagram
         },
         {
-            icon: snapchatIcon,
+            icon: <AppIcons.snapchatIcon {...sized} />,
             link: snapchat
         },
         {
-            icon: pintrestIcon,
+            icon: <AppIcons.pintrestIcon {...sized} />,
             link: pintrest
         },
         {
-            icon: twitterIcon,
+            icon: <AppIcons.twitterIcon {...sized} />,
             link: twitter
         },
         {
-            icon: facebookIcon,
+            icon: <AppIcons.facebookIcon {...sized} />,
             link: facebook
         }
     ]
@@ -43,7 +48,7 @@ function SocialAffliate({ facebook, instagram, pintrest, snapchat, twitter, size
             {social.map((el, key) => (
                 <Box key={key}>
                     <a href={el.link} target={"_blank"}>
-                        <Image src={el.icon} width={`${size ? size : 17}px`} height={`${size ? size : 17}px`} />
+                        {el.icon}
                     </a>
                 </Box>
             ))}

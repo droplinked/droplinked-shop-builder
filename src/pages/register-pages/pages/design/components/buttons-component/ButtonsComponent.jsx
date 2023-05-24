@@ -10,19 +10,19 @@ import AppErrors from "lib/utils/statics/errors/errors";
 import useAppToast from "hooks/toast/useToast";
 
 const ButtonsComponent = () => {
-
   const { state } = useContext(designContext);
   const { shopNavigate } = useCustomNavigate();
   const { setShopData: { loading, update } } = useProfile();
   const { validation } = DesignRegisterMdel
   const currentPath = useLocation().pathname
   const { showToast } = useAppToast()
+  const isRegister = currentPath.includes("register")
 
   const clickSubmit = async () => {
     try {
       await validation(state)
       await update(state)
-      if (currentPath.includes("register")) {
+      if (isRegister) {
         shopNavigate(`register/technical`)
       } else {
         showToast(AppErrors.store.has_been_updated("Store design"), "success")
@@ -33,10 +33,15 @@ const ButtonsComponent = () => {
   };
 
   return (
-    <Flex justifyContent={"right"} width={"100%"}>
+    <Flex justifyContent={isRegister ? "space-between" : "right"} width={"100%"}>
+      {isRegister && (
+        <Box>
+          <BasicButton variant="outline" onClick={() => shopNavigate(`register/shop-info`)}>Back</BasicButton>
+        </Box>
+      )}
       <Box>
         <BasicButton sizes="large" onClick={clickSubmit} isLoading={loading}>
-          {currentPath.includes("register") ? "Next" : "Update"}
+          {isRegister ? "Next" : "Update"}
         </BasicButton>
       </Box>
     </Flex>

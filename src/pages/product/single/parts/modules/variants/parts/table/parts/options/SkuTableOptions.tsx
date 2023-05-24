@@ -2,14 +2,12 @@ import React, { useCallback, useContext } from 'react'
 import { Box, HStack, Image } from '@chakra-ui/react'
 import { productContext } from 'pages/product/single/context'
 import { IRecordModalProduct } from '../recordModal/RecordModal'
-import editIcon from "assest/icon/edit-icon.svg";
-import tearIcon from "assest/icon/tear-icon.svg";
-import infoIcon from "assest/icon/info-icon.svg";
 import deleteIcon from "assest/icon/delete-icon.svg";
 import { Isku } from 'lib/apis/product/interfaces'
 import introductionClass from 'pages/product/single/parts/general/model'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import useAppToast from 'hooks/toast/useToast'
+import AppIcons from 'assest/icon/Appicons';
 
 interface IProps {
     element: Isku
@@ -49,21 +47,21 @@ function SkuTableOptions({ element, elementKey, updateSku, modals: { editModal, 
                 <>
                     {productID && (
                         <Box>
-                            <Image
+                            <AppIcons.tearIcon
                                 onClick={() => {
                                     recordMoal()
                                     updateSku(RecordModalData())
                                 }}
-                                src={tearIcon} width={"16px"} height={"16px"} cursor={"pointer"} />
+                                width={"16px"} height={"16px"} cursor={"pointer"} />
                         </Box>
                     )}
                     <Box>
-                        <Image src={editIcon} width={"16px"} height={"16px"} cursor={"pointer"} onClick={() => {
+                        <AppIcons.editIcon width={"16px"} height={"16px"} cursor={"pointer"} onClick={() => {
                             updateSku(element)
                             editModal()
                         }} />
                     </Box>
-                    <Box><Image src={infoIcon} width={"16px"} height={"16px"} cursor={"pointer"} /></Box>
+                    <Box><AppIcons.infoIcon width={"16px"} height={"16px"} cursor={"pointer"} /></Box>
                     {!productID ?
                         <Box>
                             <Image onClick={() => DeleteSku(elementKey)} src={deleteIcon} width={"16px"} height={"16px"} cursor={"pointer"} />

@@ -1,3 +1,4 @@
+import { Box, Flex } from '@chakra-ui/react';
 import BasicButton from 'common/BasicButton/BasicButton'
 import useAppToast from 'hooks/toast/useToast';
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
@@ -39,11 +40,20 @@ function TechnicalSubmit() {
         }
     }, [payments, imsType, userPayments])
     return (
-        <BasicButton sizes="large" isDisabled={!imsType || !checkPayment} onClick={clickSubmit} isLoading={isLoading || loading}>
-            {isRegister
-                ? "Next"
-                : "Update"}
-        </BasicButton>
+        <Flex justifyContent={isRegister ? "space-between" : "right"} width={"100%"}>
+            {isRegister && (
+                <Box>
+                    <BasicButton variant="outline" onClick={() => shopNavigate(`register/design`)}>Back</BasicButton>
+                </Box>
+            )}
+            <Box>
+                <BasicButton sizes="large" isDisabled={!imsType || !checkPayment} onClick={clickSubmit} isLoading={isLoading || loading}>
+                    {isRegister
+                        ? "Next"
+                        : "Update"}
+                </BasicButton>
+            </Box>
+        </Flex>
     )
 }
 

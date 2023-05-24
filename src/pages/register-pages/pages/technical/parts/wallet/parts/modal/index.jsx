@@ -16,7 +16,7 @@ function WalletModal({ open, close }) {
                     {walletModalClass.listWallet().map((el, key) => (
                         <BlackBox padding={5} key={key} cursor="pointer" onClick={close}>
                             <HStack spacing={2}>
-                                <Box><img src={el.icon} alt={el.title} /></Box>
+                                <Box>{el.icon}</Box>
                                 <Box><Text fontSize='1xl'>{el.title}</Text></Box>
                             </HStack>
                         </BlackBox>

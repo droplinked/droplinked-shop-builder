@@ -16,9 +16,7 @@ function Payments() {
     const { makePayments } = technicalPaymentsModel
 
     // Fetch payments method
-    useEffect(() => {
-        paymentPublic.mutate()
-    }, [])
+    useEffect(() => paymentPublic.mutate(), [])
 
     // update payment methods
     useEffect(() => {
@@ -30,10 +28,7 @@ function Payments() {
     }, [userPayments, paymentPublic.data]);
 
     return (
-        <VStack
-            spacing={2}
-            align='stretch'
-        >
+        <VStack spacing={2} align='stretch'>
             <Box>
                 <FieldLabel label='Payment Method' isRequired />
             </Box>
