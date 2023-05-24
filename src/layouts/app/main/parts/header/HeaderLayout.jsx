@@ -20,12 +20,11 @@ import {
 } from "./HeaderLayout-style";
 //
 import droplinkedIcon from "assest/image/green-droplinked-logo.svg";
-import shopIconSvg from "assest/icon/shop-green-icon.svg";
 import HeaderLogin from "./parts/login/HeaderLogin";
 import useAppStore from "lib/stores/app/appStore";
 import { useStore } from "zustand";
-import AppStorage from "lib/utils/app/sessions";
 import { useCallback } from "react";
+import AppIcons from "assest/icon/Appicons";
 
 const HeaderLayout = () => {
   const { shop, clearShop } = useStore(useAppStore)
@@ -56,7 +55,7 @@ const HeaderLayout = () => {
           <PopoverTrigger>
             <Flex alignItems="center" gap="12px" cursor="pointer">
               <ShopnameText>{shop?.name}</ShopnameText>
-              <ShopnIcon src={shopIconSvg} />
+              <AppIcons.shopIcon />
             </Flex>
           </PopoverTrigger>
           <PopoverContent

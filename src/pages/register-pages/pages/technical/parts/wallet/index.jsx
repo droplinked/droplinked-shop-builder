@@ -7,6 +7,7 @@ import moreIcon from "assest/icon/more-icon.svg";
 import BasicButton from 'common/BasicButton/BasicButton';
 import WalletModal from './parts/modal';
 import FieldLabel from 'common/form/fieldLabel/FieldLabel';
+import AppIcons from 'assest/icon/Appicons';
 
 function Wallet() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -40,7 +41,7 @@ function Wallet() {
                             <tr>
                                 <td>
                                     <HStack>
-                                        <Box><Image src={MetaMask} w="22px" h="22px" /></Box>
+                                        <Box><AppIcons.metaMaskIcon width="22px" height="22px" /></Box>
                                         <Box position="relative" top={1}>
                                             <Text fontSize="sm" color="lightGray">
                                                 R343FH...R343FH

@@ -1,6 +1,6 @@
 import React from 'react'
-import moreIcon from 'assest/icon/more-icon.svg'
 import { Image, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
 
 interface Iprops {
   items: Array<{
@@ -13,7 +13,7 @@ function PopOverMenu({ items }: Iprops) {
   return (
     <Menu matchWidth>
       <MenuButton position={"relative"} top={1}>
-        <Image src={moreIcon} width="15px" />
+        <AppIcons.moreIcon width="15px" />
       </MenuButton>
       <MenuList minWidth={"auto"} backgroundColor={"#292929"} border="none">
         {items.map((el, key) => (

@@ -1,20 +1,17 @@
-import { Box, HStack, Image } from '@chakra-ui/react'
+import { Box, HStack } from '@chakra-ui/react'
 import { PageContentWrapper, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useCallback, useContext } from 'react'
 import classes from './style.module.scss'
 import AppSwitch from 'common/swich'
-import editIcon from "assest/icon/edit-icon.svg";
-import MetaMask from "assest/icon/MetaMask.svg";
-import SaveIcon from "assest/icon/frame20783.svg";
-import saveIconGreen from "assest/icon/saveIconGreen.svg";
 import technicalContext from 'pages/register-pages/pages/technical/context'
 import useAppToast from 'hooks/toast/useToast'
+import AppIcons from 'assest/icon/Appicons'
 
 function ContainerPayment({ title, value, locked }) {
   const { updatePayment } = useContext(technicalContext)
   const { showToast } = useAppToast()
 
-  const lockHandle = useCallback((e) => {
+  const lockHandle = useCallback((e: any) => {
     const check = e.target.checked
     if (title !== "STRIPE" && check && !value) return showToast("Please enter wallet", "error")
     updatePayments("isActive", !locked)
@@ -36,11 +33,11 @@ function ContainerPayment({ title, value, locked }) {
             <HStack alignItems="center" spacing={4}>
               {locked ? (
                 <>
-                  <Box><Image src={MetaMask} w="16px" h="16px" /></Box>
+                  <Box><AppIcons.metaMaskIcon width="16px" height="16px" /></Box>
                   <Box position={"relative"} top={.9}>
                     <input type="text" className={classes.textbox} value={value} readOnly />
                   </Box>
-                  <Box onClick={() => updatePayments("isActive", false)} cursor={"pointer"}><Image src={editIcon} w="16px" h="16px" /></Box>
+                  <Box onClick={() => updatePayments("isActive", false)} cursor={"pointer"}><AppIcons.editIcon width="16px" height="16px" /></Box>
                 </>
               ) : (
                 <>
@@ -53,7 +50,7 @@ function ContainerPayment({ title, value, locked }) {
                       value={value}
                     />
                   </Box>
-                  <Box><Image src={value ? saveIconGreen : SaveIcon} w="16px" h="16px" /></Box>
+                  <Box><AppIcons.saveIcon className={value ? classes.active : ""} width="16px" height="16px" /></Box>
                 </>
               )}
             </HStack>

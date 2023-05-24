@@ -38,7 +38,7 @@ function Shop() {
                             <Box><ShopsFilter /></Box>
                             <Flex flexWrap={"wrap"} gap="2%" rowGap={7}>
                                 {shop?.products && shop.products.map((el: any, key: number) => (
-                                    <Box width={["23.5%", "15%"]}>
+                                    <Box key={key} width={["23.5%", "15%"]}>
                                         <AffiliateProduct link={`${shop?.name}/${el?._id}`} image={el.media && el.media[0].url} title={el?.title} />
                                     </Box>
                                 ))}

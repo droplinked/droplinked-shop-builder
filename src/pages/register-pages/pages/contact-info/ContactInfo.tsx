@@ -17,6 +17,7 @@ const ContactInfo = () => {
   const { shop, setShopData: { update, loading } } = useProfile();
   const currentPath = useLocation().pathname;
   const { showToast } = useAppToast()
+  const isRegister = currentPath.includes("register")
 
   const onSubmit = useCallback(async (params: IshopSocial) => {
     try {
@@ -33,73 +34,76 @@ const ContactInfo = () => {
   }, [])
 
   return (
-    <AppCard mini>
-      <Formik
-        initialValues={{
-          discordURL: shop?.discordURL ? shop.discordURL : "",
-          instagramURL: shop?.instagramURL ? shop.instagramURL : "",
-          twitterURL: shop?.twitterURL ? shop.twitterURL : "",
-          webURL: shop?.webURL ? shop.webURL : "",
-        }}
-        enableReinitialize
-        validateOnChange={false}
-        onSubmit={onSubmit}
-      >
-        {({ errors, values, setFieldValue }) => (
-          <Form>
-            <VStack align={"stretch"}>
-              <AppCard>
-                <AppTypography size="14px">
-                  Add social media links on your store to help customers find you easily
-                  across multiple platforms.
-                </AppTypography>
-              </AppCard>
-              <AppCard>
-                <InputLefton
-                  value={values.webURL}
-                  change={(e: any) => setFieldValue("webURL", e.target.value)}
-                  label="Website"
-                  placeHolder="mystore.com"
-                  children="https://"
-                />
-                <Box mb="52px" />
-                <InputLefton
-                  value={values.discordURL}
-                  change={(e: any) => setFieldValue("discordURL", e.target.value)}
-                  label="Discord"
-                  placeHolder="my store"
-                  children="https://discord.gg/"
-                />
-                <Box mb="52px" />
-                <InputLefton
-                  value={values.twitterURL}
-                  change={(e: any) => setFieldValue("twitterURL", e.target.value)}
-                  label="Twitter"
-                  placeHolder="my store"
-                  children="https://twitter.com/"
-                />
-                <Box mb="52px" />
-                <InputLefton
-                  value={values.instagramURL}
-                  change={(e: any) => setFieldValue("instagramURL", e.target.value)}
-                  label="Instagram"
-                  placeHolder="mystore"
-                  children="https://www.instagram.com/"
-                />
-              </AppCard>
-            </VStack>
+    <Formik
+      initialValues={{
+        discordURL: shop?.discordURL ? shop.discordURL : "",
+        instagramURL: shop?.instagramURL ? shop.instagramURL : "",
+        twitterURL: shop?.twitterURL ? shop.twitterURL : "",
+        webURL: shop?.webURL ? shop.webURL : "",
+      }}
+      enableReinitialize
+      validateOnChange={false}
+      onSubmit={onSubmit}
+    >
+      {({ errors, values, setFieldValue }) => (
+        <Form>
+          <VStack align={"stretch"}>
+            <AppCard>
+              <AppTypography size="14px">
+                Add social media links on your store to help customers find you easily
+                across multiple platforms.
+              </AppTypography>
+            </AppCard>
+            <AppCard>
+              <InputLefton
+                value={values.webURL}
+                change={(e: any) => setFieldValue("webURL", e.target.value)}
+                label="Website"
+                placeHolder="mystore.com"
+                children="https://"
+              />
+              <Box mb="52px" />
+              <InputLefton
+                value={values.discordURL}
+                change={(e: any) => setFieldValue("discordURL", e.target.value)}
+                label="Discord"
+                placeHolder="my store"
+                children="https://discord.gg/"
+              />
+              <Box mb="52px" />
+              <InputLefton
+                value={values.twitterURL}
+                change={(e: any) => setFieldValue("twitterURL", e.target.value)}
+                label="Twitter"
+                placeHolder="my store"
+                children="https://twitter.com/"
+              />
+              <Box mb="52px" />
+              <InputLefton
+                value={values.instagramURL}
+                change={(e: any) => setFieldValue("instagramURL", e.target.value)}
+                label="Instagram"
+                placeHolder="mystore"
+                children="https://www.instagram.com/"
+              />
+            </AppCard>
+          </VStack>
 
-            <Flex justifyContent={"right"} marginTop={8} width={"100%"}>
+          <Flex justifyContent={isRegister ? "space-between" : "right"} width={"100%"}>
+            {isRegister && (
               <Box>
-                <BasicButton sizes="large" type="submit" isLoading={loading}>
-                  {currentPath.includes("register") ? "Publish store" : "Update"}
-                </BasicButton>
+                <BasicButton variant="outline" onClick={() => shopNavigate(`register/technical`)}>Back</BasicButton>
               </Box>
-            </Flex>
-          </Form>
-        )}
-      </Formik>
-    </AppCard>
+            )}
+            <Box>
+              <BasicButton sizes="large" type="submit" isLoading={loading}>
+                {isRegister ? "Publish store" : "Update"}
+              </BasicButton>
+            </Box>
+          </Flex>
+        </Form>
+      )}
+    </Formik>
   );
 };
 export default ContactInfo;

@@ -97,10 +97,10 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
                                 </Flex>
                                 <Flex gap={7}>
                                     <Box width={"50%"}>
-                                        <AppInput loading={loading} name='fistname' value={values.firstName} onChange={(e: any) => setFieldValue('firstName', e.target.value)} label='First Name' isRequired />
+                                        <AppInput loading={loading} name='First name' value={values.firstName} onChange={(e: any) => setFieldValue('firstName', e.target.value)} label='First Name' isRequired />
                                     </Box>
                                     <Box width={"50%"}>
-                                        <AppInput loading={loading} name='lastname' value={values.lastName} onChange={(e: any) => setFieldValue('lastName', e.target.value)} label='Last Name' isRequired />
+                                        <AppInput loading={loading} name='Last name' value={values.lastName} onChange={(e: any) => setFieldValue('lastName', e.target.value)} label='Last Name' isRequired />
                                     </Box>
                                 </Flex>
                                 <Flex gap={7}>

@@ -1,36 +1,36 @@
-import casper from "assest/icon/casper.svg";
-import CasperWallet from "assest/icon/CasperWallet.svg";
-import MetaMask from "assest/icon/MetaMask.svg";
-import NEARWallet from "assest/icon/NEARWallet.svg";
-import UnstoppableDomains from "assest/icon/UnstoppableDomains.svg";
-import WalletConnect from "assest/icon/WalletConnect.svg";
+import AppIcons from "assest/icon/Appicons";
 
 export default class walletModalClass {
     static listWallet = () => {
+        const size = {
+            width: "24px",
+            height: "24px",
+        }
+
         return [
             {
                 title: "Casper Signer",
-                icon: casper
+                icon: <AppIcons.casperIcon {...size} />
             },
             {
                 title: "Casper Wallet",
-                icon: CasperWallet
+                icon: <AppIcons.casperWalletIcon {...size} />
             },
             {
                 title: "Wallet Connect",
-                icon: WalletConnect
+                icon: <AppIcons.walletConnectIcon {...size} />
             },
             {
                 title: "MetaMask",
-                icon: MetaMask
+                icon: <AppIcons.metaMaskIcon {...size} />
             },
             {
                 title: "NEAR Wallet",
-                icon: NEARWallet
+                icon: <AppIcons.nearWalletIcon {...size} />
             },
             {
                 title: "Unstoppable Domains",
-                icon: UnstoppableDomains
+                icon: <AppIcons.unstoppableDomainsIcon {...size} />
             }
         ]
     }

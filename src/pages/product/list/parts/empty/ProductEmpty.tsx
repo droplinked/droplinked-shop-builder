@@ -1,9 +1,7 @@
 import EmptyTable from 'common/table/parts/empty/EmptyTable'
 import React from 'react'
-import variantsIcon from "assest/icon/products-active-icon.svg";
-import collectionIcon from "assest/icon/collection-active-icon.svg";
-import tearIcon from "assest/icon/tear-icon.svg";
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
+import AppIcons from 'assest/icon/Appicons';
 
 function ProductEmpty() {
     const { shopNavigate } = useCustomNavigate()
@@ -16,16 +14,16 @@ function ProductEmpty() {
                 }}
                 list={[
                     {
-                        icon: variantsIcon,
-                        label: "Introduce your product"
+                        icon: <AppIcons.variantsIcon />,
+                        label: "Add your physical and digital products "
                     },
                     {
-                        icon: collectionIcon,
-                        label: "Categorize into a collection"
+                        icon: <AppIcons.manageIcon />,
+                        label: "Track and manage inventory"
                     },
                     {
-                        icon: tearIcon,
-                        label: "Record and track earnings and commissions on-chain"
+                        icon: <AppIcons.tearIcon />,
+                        label: "Decentralize earnings and commissions on-chain"
                     }
                 ]}
             />

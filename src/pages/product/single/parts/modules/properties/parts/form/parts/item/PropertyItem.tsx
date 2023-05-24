@@ -1,7 +1,5 @@
-import { Box, HStack, Image, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, HStack, Text, useDisclosure } from '@chakra-ui/react'
 import React, { useCallback, useContext, useState } from 'react'
-import plusIcon from "assest/icon/plus-icon.svg";
-import minusIcon from "assest/icon/minusIcon.png";
 import propertiesFormContext from '../../context';
 import { productContext } from 'pages/product/single/context';
 import propertyItemModel from './model/model';
@@ -9,6 +7,7 @@ import SkuTableModal from 'pages/product/single/parts/modules/variants/parts/tab
 import AppInput from 'common/form/textbox/AppInput';
 import AppTypography from 'common/typography/AppTypography';
 import useAppToast from 'hooks/toast/useToast';
+import AppIcons from 'assest/icon/Appicons';
 
 function PropertyItem({ element, keyProperty }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -84,13 +83,12 @@ function PropertyItem({ element, keyProperty }) {
                             />
                         </Box>
                         <Box>
-                            <Image
-                                cursor={"pointer"}
+                            <Box
+                                cursor="pointer"
                                 onClick={() => checkAppend ? remove(item, element, keyProperty, key) : item.value ? append(keyProperty) : {}}
-                                src={checkAppend ? minusIcon : plusIcon}
-                                w={"20px"}
-                                h={"20px"}
-                            />
+                            >
+                                {checkAppend ? <AppIcons.minusIcon width={"20px"} height="20px" /> : <AppIcons.plusIcon width={"20px"} height="20px" />}
+                            </Box>
                         </Box>
                     </HStack>
                 )

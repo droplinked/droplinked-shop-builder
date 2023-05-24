@@ -56,12 +56,6 @@ const DesignPage = () => {
       <VStack align={"stretch"}>
         <VStack>
           <AppCard>
-            <AppTypography size="14px">
-              Pick an editable template and customize it with your brand logo,
-              title, header banner, etc.
-            </AppTypography>
-          </AppCard>
-          <AppCard>
             <CardTitle>Templates</CardTitle>
             <Box mb="48px" />
             <Box w="auto" overflow="hidden">
