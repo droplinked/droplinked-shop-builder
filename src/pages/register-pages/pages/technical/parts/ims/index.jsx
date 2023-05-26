@@ -7,74 +7,71 @@ import AppDialog from 'common/dialog'
 import FieldLabel from 'common/form/fieldLabel/FieldLabel'
 import AppTypography from 'common/typography/AppTypography'
 import useAppToast from 'hooks/toast/useToast'
+import AppCard from 'common/card/AppCard'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 
-function Ims(props) {
+function Ims() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [RadioGroupValue, setRadioGroup] = useState('')
     const { updateState, state: { imsType } } = useContext(technicalContext)
     const { showToast } = useAppToast()
 
     return (
-        <>
-            <VStack
-                spacing={2}
-                align='stretch'
-            >
-                <Box>
-                    <FieldLabel label='IMS Type' isRequired />
-                </Box>
-                <Box>
-                    <AppTypography size="14px" color="#C2C2C2">
-                        {imsType ? (
-                            <>
-                                <strong>{imsType}</strong>: You can add and manage your products right from you droplinked dashboard
-                            </>
-                        ) : "Choose your integrated management system to manage your products"}
+        <AppCard>
+            <VStack spacing={5} align='stretch'>
+                <VStack align={"stretch"}>
+                    <Box><FieldLabel label='IMS Type' textProps={{ size: "18px", weight: "bolder" }} isRequired /></Box>
+                    <Box>
+                        <AppTypography size="14px" color="#C2C2C2">
+                            {imsType ? (
+                                <>
+                                    <AppTypography size='14px' weight='bolder' display={"inline"}>{capitalizeFirstLetter(imsType)}</AppTypography>: You can add and manage your products right from you droplinked dashboard
+                                </>
+                            ) : "Choose your Inventory Management System (IMS) to manage your products."}
 
-                    </AppTypography>
-                </Box>
+                        </AppTypography>
+                    </Box>
+                </VStack>
                 {!imsType && (
-                    <BlackBox>
-                        <RadioGroup
-                            value={RadioGroupValue}
-                            onChange={(value) => {
-                                setRadioGroup(value)
-                            }}
-                        >
-                            <VStack align='stretch' spacing={3}>
-                                <Box>
-                                    <PageContentWrapper padding={5}>
-                                        <Radio size='md' value='DROPLINKED' alignItems="flex-start" colorScheme='green'>
-                                            <VStack align='stretch' paddingLeft={2} spacing={2}>
-                                                <TextLabelBold>Droplinked</TextLabelBold>
-                                                <Text fontSize="sm" color="lightGray">
-                                                    You can add and manage your products right from you droplinked dashboard
-                                                </Text>
-                                            </VStack>
-                                        </Radio>
-                                    </PageContentWrapper>
-                                </Box>
-                                <Box>
-                                    <PageContentWrapper padding={5}>
-                                        <Radio size='md' value='SHOPIFY' alignItems="flex-start" colorScheme='green'>
-                                            <VStack align='stretch' paddingLeft={2} spacing={2}>
-                                                <TextLabelBold>Shopify</TextLabelBold>
-                                                <Text fontSize="sm" color="lightGray">
-                                                    You can add and manage your products through shopify, and then import the changes to your droplinked store
-                                                </Text>
-                                            </VStack>
-                                        </Radio>
-                                    </PageContentWrapper>
-                                </Box>
-                                <Box dir='rtl'>
-                                    <BasicButton onClick={() => {
-                                        if (!RadioGroupValue.length) return showToast("Please choose type", "error")
-                                        onOpen()
-                                    }} sizes='medium'>Save</BasicButton>
-                                </Box>
-                            </VStack>
-                        </RadioGroup>
-                    </BlackBox>
+                    <RadioGroup
+                        value={RadioGroupValue}
+                        onChange={(value) => {
+                            setRadioGroup(value)
+                        }}
+                    >
+                        <VStack align='stretch' spacing={2}>
+                            <Box>
+                                <BlackBox padding={5}>
+                                    <Radio size='md' value='DROPLINKED' alignItems="flex-start" colorScheme='green'>
+                                        <VStack align='stretch' paddingLeft={2} spacing={2}>
+                                            <TextLabelBold>Droplinked</TextLabelBold>
+                                            <Text fontSize="sm" color="lightGray">
+                                                You can add and manage your products right from you droplinked dashboard
+                                            </Text>
+                                        </VStack>
+                                    </Radio>
+                                </BlackBox>
+                            </Box>
+                            <Box>
+                                <BlackBox padding={5}>
+                                    <Radio size='md' value='SHOPIFY' alignItems="flex-start" colorScheme='green'>
+                                        <VStack align='stretch' paddingLeft={2} spacing={2}>
+                                            <TextLabelBold>Shopify</TextLabelBold>
+                                            <Text fontSize="sm" color="lightGray">
+                                                You can add and manage your products through shopify, and then import the changes to your droplinked store
+                                            </Text>
+                                        </VStack>
+                                    </Radio>
+                                </BlackBox>
+                            </Box>
+                            <Box dir='rtl'>
+                                <BasicButton onClick={() => {
+                                    if (!RadioGroupValue.length) return showToast("Please choose type", "error")
+                                    onOpen()
+                                }} sizes='medium'>Save</BasicButton>
+                            </Box>
+                        </VStack>
+                    </RadioGroup>
                 )}
             </VStack>
 
@@ -101,7 +98,7 @@ function Ims(props) {
                     }
                 ]}
             />
-        </>
+        </AppCard>
     )
 }
 

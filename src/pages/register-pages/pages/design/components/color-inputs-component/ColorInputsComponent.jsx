@@ -24,7 +24,7 @@ const ColorInputsComponent = () => {
           change={(value) => {
             updateState("textColor", value);
           }}
-          label="Text color"
+          label="Hero Section Color"
         />
       </Box>
 

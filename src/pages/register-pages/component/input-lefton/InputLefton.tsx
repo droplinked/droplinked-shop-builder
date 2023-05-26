@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import FieldLabel from "common/form/fieldLabel/FieldLabel";
 import AppInput from "common/form/textbox/AppInput";
+import AppTypography from "common/typography/AppTypography";
 
 interface Iprops {
   isRequired?: boolean
@@ -23,7 +24,7 @@ interface Iprops {
 const InputLefton = ({ isRequired, label, placeHolder, value, change, color, children, }: Iprops) => {
   return (
     <FormControl isRequired={isRequired} w="100%">
-      <FieldLabel color="#C2C2C2" label={label} />
+      <AppTypography size="16px" color="#C2C2C2">{label}</AppTypography>
       <Flex marginTop={2}>
         <InputLeftAddon
           bg="line"

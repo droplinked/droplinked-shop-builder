@@ -8,19 +8,15 @@ import BasicButton from 'common/BasicButton/BasicButton';
 import WalletModal from './parts/modal';
 import FieldLabel from 'common/form/fieldLabel/FieldLabel';
 import AppIcons from 'assest/icon/Appicons';
+import AppCard from 'common/card/AppCard';
 
 function Wallet() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <>
-            <VStack
-                spacing={3}
-                align='stretch'
-            >
-                <Box>
-                    <FieldLabel label='Connected Wallets' isRequired />
-                </Box>
+        <AppCard>
+            <VStack spacing={3} align='stretch'>
+                <Box><FieldLabel label='Connected Wallets' textProps={{ size: "18px", weight: "bolder" }} isRequired /></Box>
                 <HStack justifyContent="space-between" spacing={5} alignItems="center">
                     <Box>
                         <Text fontSize="sm" color="lightGray">
@@ -67,7 +63,7 @@ function Wallet() {
                 </Box>
             </VStack>
             <WalletModal close={onClose} open={isOpen} />
-        </>
+        </AppCard>
     )
 }
 

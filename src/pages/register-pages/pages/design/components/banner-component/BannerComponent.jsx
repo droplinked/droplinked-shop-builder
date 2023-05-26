@@ -29,9 +29,7 @@ const BannerComponent = () => {
 
   return (
     <Box w="100%">
-      <HeaderBannerComponent addNewImage={addNewImage} />
-      <Box w="100%" h="200px" pos="relative" overflow="hidden" mb="18px" borderRadius='8px'   bg={backgroundColor}>        
-
+      <Box w="100%" h="200px" pos="relative" overflow="hidden" mb="18px" borderRadius='8px' bg={backgroundColor}>
         <Image
           p="4px"
           src={backgroundImage}
@@ -43,6 +41,7 @@ const BannerComponent = () => {
           zIndex={6}
         />
       </Box>
+      <HeaderBannerComponent addNewImage={addNewImage} />
       <ImagesSliderBannerComponent images={images} />
     </Box>
   );

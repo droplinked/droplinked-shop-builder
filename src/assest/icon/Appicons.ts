@@ -32,6 +32,8 @@ import { ReactComponent as minusIcon } from './image2vector.svg'
 import { ReactComponent as tearIcon } from './tear-icon.svg'
 import { ReactComponent as infoIcon } from './info-icon.svg'
 import { ReactComponent as manageIcon } from './manage.svg'
+import { ReactComponent as activeIcon } from './active.svg'
+import { ReactComponent as copyIcon } from './copy.svg'
 
 const AppIcons = {
   productsIcon,
@@ -68,5 +70,7 @@ const AppIcons = {
   tearIcon,
   infoIcon,
   manageIcon,
+  activeIcon,
+  copyIcon
 }
 export default AppIcons

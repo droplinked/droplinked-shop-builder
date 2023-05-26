@@ -4,7 +4,7 @@ import FieldLabel from "common/form/fieldLabel/FieldLabel";
 const InputColor = ({ label, value, change }) => {
   return (
     <FormControl isRequired w="100%">
-      <FieldLabel color="#C2C2C2" isRequired label={label} />
+      <FieldLabel color="#C2C2C2" label={label} />
       <Flex
         w="100%"
         bg="subLayer"

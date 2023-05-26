@@ -40,4 +40,16 @@ export default class BasicButtonStyles {
         }
     }
 
+    static ghost = (): ButtonProps => {
+        return {
+            color: "#FFF",
+            bgColor: "#292929",
+            border: "none !important",
+            _hover: {
+                bgColor: "#292929",
+                color: "#FFF",
+            }
+        }
+    }
+
 }

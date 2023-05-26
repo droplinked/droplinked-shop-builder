@@ -1,6 +1,6 @@
 import { Box, HStack, Text, TextProps } from '@chakra-ui/react'
 import AppSkeleton from 'common/skeleton/AppSkeleton'
-import AppTypography from 'common/typography/AppTypography'
+import AppTypography, { IAppTypography } from 'common/typography/AppTypography'
 import React from 'react'
 import FieldLabelReuired from './parts/required/FieldLabelReuired'
 
@@ -9,16 +9,17 @@ export interface IFieldLabel {
     isRequired?: boolean
     loading?: boolean
     color?: string
+    textProps?: IAppTypography
 }
 
-function FieldLabel({ isRequired, label, loading, color }: IFieldLabel) {
+function FieldLabel({ isRequired, label, loading, color,textProps }: IFieldLabel) {
     return (
         <>
             {label && (
                 <Box width={"fit-content"}>
                     <AppSkeleton isLoaded={loading}>
                         <HStack>
-                            <AppTypography size='16px' color={"#FFF" || color}>{label}</AppTypography>
+                            <AppTypography size='16px' color={"#FFF" || color} {...textProps}>{label}</AppTypography>
                             {isRequired && <FieldLabelReuired />}
                         </HStack>
                     </AppSkeleton>

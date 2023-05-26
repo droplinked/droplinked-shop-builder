@@ -69,7 +69,7 @@ const HeaderBannerComponent = ({ addNewImage }) => {
   return (
     <Flex w="100%" justifyContent="space-between" alignItems="center">
       <FormControl isRequired w="100%" marginBottom={3}>
-        <FieldLabel color="#C2C2C2" label="Header banner" isRequired />
+        <FieldLabel label="Hero Image" textProps={{ size: "18px", weight: "bolder" }} isRequired />
         <AppTypography size="14px" color="#C2C2C2" marginTop={1}>This image will display at the top of the store page.</AppTypography>
       </FormControl>
       <Button

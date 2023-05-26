@@ -50,14 +50,12 @@ function Technical() {
   return (
     <technicalContext.Provider value={{ state: Technical, updateState, updatePayment, userPayments }}>
       <PageContent>
-        <AppCard>
-          <VStack spacing={10} align="stretch">
-            <Ims />
-            <Payments />
-            {appDeveloment && <Wallet />}
-            <TechnicalSubmit />
-          </VStack>
-        </AppCard>
+        <VStack spacing={4} align="stretch">
+          <Ims />
+          <Payments />
+          {appDeveloment && <Wallet />}
+          <TechnicalSubmit />
+        </VStack>
       </PageContent>
     </technicalContext.Provider>
   );

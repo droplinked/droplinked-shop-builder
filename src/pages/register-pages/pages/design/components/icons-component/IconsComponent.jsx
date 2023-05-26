@@ -20,8 +20,8 @@ const IconsComponent = () => {
       gap="24px"
     >
       <InputImage
-        label="Logo"
-        placeHolder="This image will display on the left side of the store page."
+        label="Site logo"
+        placeHolder="Site logo appears at the top left of the page."
         value={logo}
         change={(value) => updateState("logo", value)}
         maxSize={{
@@ -31,8 +31,8 @@ const IconsComponent = () => {
       />
 
       <InputImage
-        label="Header logo"
-        placeHolder="This image will display at the upper left corner of the store page."
+        label="Profile logo"
+        placeHolder="Profile logo appears at the left side of the page."
         value={headerIcon}
         change={(value) => updateState("headerIcon", value)}
       />

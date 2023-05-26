@@ -16,7 +16,7 @@ export class statuesModule {
 
     designTemplate = () => {
         const shop = this.shop
-        return !Boolean(shop.backgroundImage && shop.backgroundImageSecondary && shop.headerIcon && shop.backgroundText) && "register/design"
+        return !Boolean(shop.backgroundImage && shop.backgroundImageSecondary && shop.headerIcon) && "register/design"
     }
 
     technical = () => {

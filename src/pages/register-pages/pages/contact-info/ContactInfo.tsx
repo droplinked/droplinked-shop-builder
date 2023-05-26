@@ -11,6 +11,7 @@ import InputLefton from "pages/register-pages/component/input-lefton/InputLefton
 import { IshopSocial } from "lib/apis/shop/interfaces";
 import BasicButton from "common/BasicButton/BasicButton";
 import useAppToast from "hooks/toast/useToast";
+import FieldLabel from "common/form/fieldLabel/FieldLabel";
 
 const ContactInfo = () => {
   const { shopNavigate } = useCustomNavigate();
@@ -49,12 +50,14 @@ const ContactInfo = () => {
         <Form>
           <VStack align={"stretch"}>
             <AppCard>
-              <AppTypography size="14px">
-                Add social media links on your store to help customers find you easily
-                across multiple platforms.
-              </AppTypography>
-            </AppCard>
-            <AppCard>
+              <VStack align={"stretch"} marginBottom={8}>
+                <Box><FieldLabel label='Social Media Links' textProps={{ size: "18px", weight: "bolder" }} /></Box>
+                <Box>
+                  <AppTypography size="14px" color="#C2C2C2">
+                    Add your social media links on your store to help customers find you easily across multiple platforms.
+                  </AppTypography>
+                </Box>
+              </VStack>
               <InputLefton
                 value={values.webURL}
                 change={(e: any) => setFieldValue("webURL", e.target.value)}
@@ -62,7 +65,7 @@ const ContactInfo = () => {
                 placeHolder="mystore.com"
                 children="https://"
               />
-              <Box mb="52px" />
+              <Box mb="32px" />
               <InputLefton
                 value={values.discordURL}
                 change={(e: any) => setFieldValue("discordURL", e.target.value)}
@@ -70,7 +73,7 @@ const ContactInfo = () => {
                 placeHolder="my store"
                 children="https://discord.gg/"
               />
-              <Box mb="52px" />
+              <Box mb="32px" />
               <InputLefton
                 value={values.twitterURL}
                 change={(e: any) => setFieldValue("twitterURL", e.target.value)}
@@ -78,7 +81,7 @@ const ContactInfo = () => {
                 placeHolder="my store"
                 children="https://twitter.com/"
               />
-              <Box mb="52px" />
+              <Box mb="32px" />
               <InputLefton
                 value={values.instagramURL}
                 change={(e: any) => setFieldValue("instagramURL", e.target.value)}

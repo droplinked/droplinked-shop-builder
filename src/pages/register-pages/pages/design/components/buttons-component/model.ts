@@ -15,7 +15,6 @@ export default class DesignRegisterMdel {
             backgroundColor: string().required(),
             textColor: string().required(),
             backgroundImage: string().required("Header banner is required"),
-            backgroundText: string().required("Header title is required"),
             headerIcon: string().required("Header logo is required"),
             logo: string().required(),
         })

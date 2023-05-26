@@ -1,8 +1,5 @@
 import { useContext } from "react";
-//
 import { designContext } from "../../design-context";
-//
-import InputComponent from "../../../../component/input-component/InputComponent";
 import AppInput from "common/form/textbox/AppInput";
 
 const HeaderTitleComponent = () => {
@@ -13,9 +10,8 @@ const HeaderTitleComponent = () => {
 
   return (
     <AppInput
-      label="Header title"
+      label="Hero Text"
       placeholder="Write a catchy title for the header"
-      isRequired
       onChange={(e) => {
         updateState("backgroundText", e.target.value);
       }}

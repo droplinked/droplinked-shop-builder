@@ -4,13 +4,13 @@ import React from 'react'
 type size = "10px" | "12px" | "14px" | "16px" | "18px" | "20px" | "22px" | "24px"
 type weight = "normal" | "bold" | "bolder"
 
-interface Iprops extends TextProps {
+export interface IAppTypography extends TextProps {
   children?: any
   size: size
   weight?: weight
 }
 
-function AppTypography(props: Iprops) {
+function AppTypography(props: IAppTypography) {
   const { children, size, weight } = props
   return (
     <Text
