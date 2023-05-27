@@ -49,7 +49,7 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
     useEffect(() => addressID && fetchService.mutate({ addressID }), [addressID, open])
 
     return (
-        <AppModal close={close} open={open} contentProps={{ padding: 8 }} size="2xl">
+        <AppModal close={close} title="Address Information" open={open} contentProps={{ padding: 8 }} size="2xl">
             <>
                 <Formik
                     initialValues={initialValues({ address })}
@@ -61,9 +61,6 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
                     {({ errors, values, setFieldValue }) => (
                         <Form>
                             <VStack align={"stretch"} spacing={8}>
-                                <Flex justifyContent={"center"}>
-                                    <AppTypography size='18px' color={"#FFF"} weight='bolder'>Address Information</AppTypography>
-                                </Flex>
                                 <Box>
                                     <AppInput loading={loading} name='address' value={values.addressLine1} error={errors.addressLine1} onChange={(e: any) => setFieldValue('addressLine1', e.target.value)} label='Address line 1' isRequired />
                                 </Box>
