@@ -11,7 +11,7 @@ import TextboxRule from "./parts/textbox/TextboxRule";
 import SelectRule from "./parts/select/SelectRule";
 import { useMutation } from "react-query";
 import { createRuleService, getRuleService, updateRuleService } from "lib/apis/rule/ruleServices";
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 import { RuleTypes } from "./RuleModel";
 import { IcreateRuleService, IgetRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
 import AppTypography from 'components/common/typography/AppTypography';

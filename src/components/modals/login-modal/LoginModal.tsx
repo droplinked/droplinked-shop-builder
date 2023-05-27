@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import AppErrors from "lib/utils/statics/errors/errors";
 import { useStore } from "zustand";
 import useAppStore from "lib/stores/app/appStore";
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 import AppModal from "components/common/modal/AppModal";
 import AppTypography from "components/common/typography/AppTypography";
 import BasicButton from "components/common/BasicButton/BasicButton";

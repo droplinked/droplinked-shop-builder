@@ -2,7 +2,7 @@ import React from "react";
 import { Flex, VStack } from "@chakra-ui/react";
 import AppTypography from 'components/common/typography/AppTypography';
 import AppInput from 'components/common/form/textbox/AppInput';
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 import AppModal from 'components/common/modal/AppModal';
 import { useMutation } from "react-query";
 import { forgetPasswordService } from "lib/apis/user/services";

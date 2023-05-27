@@ -3,7 +3,7 @@ import React from 'react'
 import casper from "assest/icon/casper.svg";
 import { Link } from 'react-router-dom';
 import AppImage from 'components/common/image/AppImage';
-import { useProfile } from 'hooks/useProfile/useProfile';
+import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import AppTypography from 'components/common/typography/AppTypography';
 
 interface Iprops {

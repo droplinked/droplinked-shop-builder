@@ -6,7 +6,7 @@ import VariantsFormModel from './model/model'
 import { productContext } from 'pages/product/single/context'
 import { Formik, Form } from 'formik';
 import variontFormContext from './context';
-import useAppToast from 'hooks/toast/useToast'
+import useAppToast from 'functions/hooks/toast/useToast'
 
 function SkuForm({ close, update }) {
     const { state: { properties, sku }, methods: { updateState } } = useContext(productContext)

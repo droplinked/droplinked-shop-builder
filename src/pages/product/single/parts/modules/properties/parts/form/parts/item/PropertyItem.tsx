@@ -6,7 +6,7 @@ import propertyItemModel from './model/model';
 import SkuTableModal from 'pages/product/single/parts/modules/variants/parts/table/parts/skuModal/SkuTableModal';
 import AppInput from 'components/common/form/textbox/AppInput';
 import AppTypography from 'components/common/typography/AppTypography';
-import useAppToast from 'hooks/toast/useToast';
+import useAppToast from 'functions/hooks/toast/useToast';
 import AppIcons from 'assest/icon/Appicons';
 
 function PropertyItem({ element, keyProperty }) {

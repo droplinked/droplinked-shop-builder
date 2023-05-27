@@ -15,7 +15,7 @@ import {
   TextContainer,
   SpaceBox,
 } from "./LandingPage-style";
-import { useProfile } from "hooks/useProfile/useProfile";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 //
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import MainImageComponent from "./components/main-image-component/MainImageComponent";

@@ -9,16 +9,12 @@ import {
   useDisclosure
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-//
-import { useProfile } from "hooks/useProfile/useProfile";
-import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import {
   UserHeaderWrapper,
   UserHeaderIcon,
   ShopnameText,
-  ShopnIcon,
 } from "./HeaderLayout-style";
-//
 import droplinkedIcon from "assest/image/green-droplinked-logo.svg";
 import HeaderLogin from "./parts/login/HeaderLogin";
 import useAppStore from "lib/stores/app/appStore";

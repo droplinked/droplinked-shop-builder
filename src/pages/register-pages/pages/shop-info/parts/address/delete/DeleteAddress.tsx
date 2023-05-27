@@ -1,7 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppDialog from 'components/common/dialog'
-import useAppToast from 'hooks/toast/useToast'
+import useAppToast from 'functions/hooks/toast/useToast'
 import { deleteAddressService } from 'lib/apis/address/addressServices'
 import { IdeleteAddressService } from 'lib/apis/address/interfaces'
 import React, { useCallback } from 'react'

@@ -7,7 +7,7 @@ import {
   EmailText,
 } from "./ThankForRegisterPage-style";
 import BasicButton from 'components/common/BasicButton/BasicButton';
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 import { useMutation } from "react-query";
 import { resendEmailService } from "lib/apis/user/services";
 import { IresendEmailService } from "lib/apis/user/interfaces";

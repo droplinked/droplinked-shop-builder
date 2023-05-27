@@ -1,13 +1,13 @@
-import { useCallback, useContext } from "react";
+import { useContext } from "react";
 import { Flex, Box } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { designContext } from "../../design-context";
-import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
-import { useProfile } from "hooks/useProfile/useProfile";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import DesignRegisterMdel from "./model";
 import AppErrors from "lib/utils/statics/errors/errors";
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 
 const ButtonsComponent = () => {
   const { state, methods: { resetState } } = useContext(designContext);

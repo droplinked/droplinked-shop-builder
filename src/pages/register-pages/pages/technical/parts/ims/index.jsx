@@ -6,7 +6,7 @@ import technicalContext from '../../context'
 import AppDialog from 'components/common/dialog'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTypography from 'components/common/typography/AppTypography'
-import useAppToast from 'hooks/toast/useToast'
+import useAppToast from 'functions/hooks/toast/useToast'
 import AppCard from 'components/common/card/AppCard'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 

@@ -16,7 +16,7 @@ import AppErrors from "lib/utils/statics/errors/errors";
 import React from "react";
 import { Isize_limit } from "lib/utils/statics/errors/modules/store";
 import { toMb } from "lib/utils/heper/helpers";
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 
 interface IProps {
   label?: string

@@ -4,7 +4,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react'
 import classes from './style.module.scss'
 import AppSwitch from 'components/common/swich'
 import technicalContext from 'pages/register-pages/pages/technical/context'
-import useAppToast from 'hooks/toast/useToast'
+import useAppToast from 'functions/hooks/toast/useToast'
 import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 

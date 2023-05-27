@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppErrors from "lib/utils/statics/errors/errors";
 import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 import { useMutation } from "react-query";
 import { signupService } from "lib/apis/user/services";
 import { IsignupService } from "lib/apis/user/interfaces";

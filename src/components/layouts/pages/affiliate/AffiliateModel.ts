@@ -1,4 +1,4 @@
-import { useProfile } from "hooks/useProfile/useProfile";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 
 export default class AffiliateModel {
     static links = () => {

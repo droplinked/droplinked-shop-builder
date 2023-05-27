@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ResetPassPage-style.scss";
 import BasicButton from 'components/common/BasicButton/BasicButton';
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 import AppCard from 'components/common/card/AppCard';
 import { Flex, VStack } from "@chakra-ui/react";
 import AppInput from 'components/common/form/textbox/AppInput';

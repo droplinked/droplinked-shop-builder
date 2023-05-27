@@ -1,8 +1,8 @@
 import React from 'react'
 import { Box, HStack, Text } from '@chakra-ui/react';
 import AppImage from 'components/common/image/AppImage';
-import { useProfile } from 'hooks/useProfile/useProfile';
-import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
+import { useProfile } from 'functions/hooks/useProfile/useProfile';
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
 
 function ImageListProduct({ product }) {
     const { shop } = useProfile()

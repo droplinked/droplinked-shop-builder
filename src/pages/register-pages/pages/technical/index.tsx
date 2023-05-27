@@ -2,17 +2,16 @@ import { PageContent } from "pages/register-pages/RegisterPages-style";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Ims from "./parts/ims";
 import Payments from "./parts/payment";
-import { Box, Flex, VStack } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react";
 import technicalContext, { technicalContextState } from "./context";
 import { appDeveloment } from "lib/utils/app/variable";
 import technicalModel from "./model";
 import Wallet from "./parts/wallet";
 import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
-import { useProfile } from "hooks/useProfile/useProfile";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { paymentMethodsService } from "lib/apis/shop/shopServices";
 import { useMutation } from "react-query";
 import { useLocation } from "react-router-dom";
-import AppCard from "components/common/card/AppCard";
 
 function Technical() {
   const userPaymentsService = useMutation(() => paymentMethodsService())

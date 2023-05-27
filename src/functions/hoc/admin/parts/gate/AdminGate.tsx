@@ -1,5 +1,5 @@
-import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
-import { useProfile } from 'hooks/useProfile/useProfile';
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
+import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import React, { useEffect } from 'react'
 import { Navigate, useLocation } from 'react-router-dom';
 import DashboardGateModel from './model/DashboardGateModel';

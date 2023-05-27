@@ -11,7 +11,7 @@ import AppTypography from 'components/common/typography/AppTypography';
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import { toMb } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 
 const HeaderBannerComponent = ({ addNewImage }) => {
   const [loading, setLoading] = useState(false);

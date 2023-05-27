@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Box, Tooltip } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
-import { useProfile } from "hooks/useProfile/useProfile";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { IconWrapper } from "../../SidebarLayout-style";
 import classes from './style.module.scss'
 

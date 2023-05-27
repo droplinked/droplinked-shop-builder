@@ -1,6 +1,6 @@
 import { Box, VStack } from '@chakra-ui/react'
 import { Form, Formik } from 'formik'
-import useAppToast from 'hooks/toast/useToast'
+import useAppToast from 'functions/hooks/toast/useToast'
 import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
 import { casperRequestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'

@@ -5,8 +5,8 @@ import AppInput from 'components/common/form/textbox/AppInput';
 import AppModal, { IAppModal } from 'components/common/modal/AppModal'
 import AppTypography from 'components/common/typography/AppTypography';
 import { Form, Formik } from 'formik'
-import useAppToast from 'hooks/toast/useToast';
-import { useProfile } from 'hooks/useProfile/useProfile';
+import useAppToast from 'functions/hooks/toast/useToast';
+import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { addressByIdService, createAddressService, updateAddressService } from 'lib/apis/address/addressServices';
 import { IaddressByIdService, IcreateAddressService, IupdateAddressService } from 'lib/apis/address/interfaces';
 import { countries_statics } from 'lib/utils/statics/countries';

@@ -1,6 +1,5 @@
 import { Box, VStack } from "@chakra-ui/react";
 import { useState, useEffect, useCallback } from "react";
-import { useProfile } from "../../../../hooks/useProfile/useProfile";
 import ButtonsComponent from "./components/buttons-component/ButtonsComponent";
 import IconsComponent from "./components/icons-component/IconsComponent";
 import HeaderTitleComponent from "./components/header-title-component/HeaderTitleComponent";
@@ -10,6 +9,7 @@ import { designContext, initialStatesDesign } from "./design-context";
 import { refactorDesignData } from "./utils";
 import TemplateStore from "./components/template/TemplateStore";
 import AppCard from "components/common/card/AppCard";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 
 const DesignPage = () => {
   const [designState, setDesignState] = useState(initialStatesDesign);
