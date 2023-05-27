@@ -79,11 +79,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   if (!show) return null;
 
   return (
-    <AppModal
-      open={show}
-      close={close}
-    >
-      <AppTypography size="18px" weight="bolder">Make Rule</AppTypography>
+    <AppModal open={show} close={close} title="Make Rule" size="2xl">
       {false ? (
         <LoadingComponent />
       ) : (

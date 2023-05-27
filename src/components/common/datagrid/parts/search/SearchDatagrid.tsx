@@ -1,8 +1,12 @@
-import { Image, Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
+import { Image, Input, InputGroup, InputLeftElement, InputProps } from '@chakra-ui/react'
 import React from 'react'
 import searchIcon from "assest/icon/search-icon.svg";
 
-function SearchDatagrid() {
+export interface ISearchDatagrid {
+    onChange(e: any): void
+}
+
+function SearchDatagrid({ onChange }: ISearchDatagrid) {
     return (
         <InputGroup w="200px">
             <InputLeftElement
@@ -14,15 +18,15 @@ function SearchDatagrid() {
                 borderRadius="24px"
                 border="1px solid"
                 borderColor="line"
-                _placeholder={{color: "#C2C2C2", opacity:"1"}}
-                _hover={{borderColor: "none"}}
-                _focus={{borderColor: "none"}}
+                _placeholder={{ color: "#C2C2C2", opacity: "1" }}
+                _hover={{ borderColor: "none" }}
+                _focus={{ borderColor: "none" }}
                 fontFamily="Avenir Next"
                 fontWeight="400"
                 fontSize="12px"
                 color="#C2C2C2"
                 placeholder="search"
-                onChange={(e) => {}}
+                onChange={onChange}
             />
         </InputGroup>
     )

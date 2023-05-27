@@ -2,5 +2,6 @@ export const ChainTypes = {
     ETH: "ETH",
     CASPER: "CASPER",
     UNSTOPPABLEDOMAIN: "UNSTOPPABLEDOMAIN",
+    NEAR: "NEAR",
   };
   

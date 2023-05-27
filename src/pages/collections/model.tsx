@@ -5,23 +5,30 @@ import ControlsListCollection from "./parts/controls/Controls"
 interface IrefactorData {
     data: any
     fetch: Function
+    search: string
 }
 export default class CollectionsModel {
-    static refactorData = ({ data, fetch }: IrefactorData): Array<ITableRows> => {
-        return data.map((el: any): ITableRows => ({
-            Collection: {
-                value: el.title
+
+    private static makeData = (element: any, fetch: any) => ({
+        Collection: {
+            value: element.title
+        },
+        Products: {
+            value: element?.products?.[0]?.title || "-"
+        },
+        controls: {
+            props: {
+                width: "70px"
             },
-            Products: {
-                value: el?.products?.[0]?.title || "-"
-            },
-            controls: {
-                props:{
-                    width: "70px"
-                },
-                caption: "",
-                value: <ControlsListCollection collection={el} fetch={fetch} />
-            }
-        }))
+            caption: "",
+            value: <ControlsListCollection collection={element} fetch={fetch} />
+        }
+    })
+
+
+    static refactorData = ({ data, fetch, search }: IrefactorData): Array<ITableRows> => {
+        search = search && search.toLowerCase()
+        const products = search ? data.filter((el: any) => el.title.toLowerCase().includes(search)) : data
+        return products.map((el: any): ITableRows => this.makeData(el, fetch))
     }
 }
