@@ -2,9 +2,9 @@ import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import casper from "assest/icon/casper.svg";
 import { Link } from 'react-router-dom';
-import AppImage from 'common/image/AppImage';
+import AppImage from 'components/common/image/AppImage';
 import { useProfile } from 'hooks/useProfile/useProfile';
-import AppTypography from 'common/typography/AppTypography';
+import AppTypography from 'components/common/typography/AppTypography';
 
 interface Iprops {
     image: string

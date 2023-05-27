@@ -1,15 +1,15 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
-import AppCard from 'common/card/AppCard'
-import FieldLabel from 'common/form/fieldLabel/FieldLabel'
-import AppInput from 'common/form/textbox/AppInput'
-import AppTypography from 'common/typography/AppTypography'
+import AppCard from 'components/common/card/AppCard'
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
+import AppInput from 'components/common/form/textbox/AppInput'
+import AppTypography from 'components/common/typography/AppTypography'
 import { addressBookService } from 'lib/apis/address/addressServices'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
 import ShopInfoAddress from './parts/address/shopInfoAddress'
 import ShopInfoSubmit from './parts/submit/ShopInfoSubmit'
 import { useProfile } from "hooks/useProfile/useProfile"
-import ClipboardText from 'common/clipboardText/ClipboardText'
+import ClipboardText from 'components/common/clipboardText/ClipboardText'
 
 export interface IstatesShopInfo {
   description: string,

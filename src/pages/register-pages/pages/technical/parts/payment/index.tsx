@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Box, VStack } from '@chakra-ui/react'
-import FieldLabel from 'common/form/fieldLabel/FieldLabel';
-import AppTypography from 'common/typography/AppTypography';
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
+import AppTypography from 'components/common/typography/AppTypography';
 import { paymentPublicService } from 'lib/apis/shop/shopServices';
 import { BlackBox } from 'pages/register-pages/RegisterPages-style'
 import { useMutation } from 'react-query';
@@ -9,7 +9,7 @@ import technicalContext from '../../context';
 import technicalPaymentsModel from './model';
 import ContainerPayment from './parts/container';
 import PaymentsLoading from './parts/loading/PaymentsLoading';
-import AppCard from 'common/card/AppCard';
+import AppCard from 'components/common/card/AppCard';
 
 function Payments() {
     const { state: { payments }, userPayments, updateState } = useContext(technicalContext)

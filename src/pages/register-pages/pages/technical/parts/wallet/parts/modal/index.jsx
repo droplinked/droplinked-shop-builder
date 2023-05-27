@@ -2,8 +2,8 @@ import { Box, HStack, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import walletModalClass from './model';
 import { BlackBox } from 'pages/register-pages/RegisterPages-style';
-import AppModal from 'common/modal/AppModal';
-import AppTypography from 'common/typography/AppTypography';
+import AppModal from 'components/common/modal/AppModal';
+import AppTypography from 'components/common/typography/AppTypography';
 
 function WalletModal({ open, close }) {
     return (

@@ -1,4 +1,4 @@
-import BasicButton from 'common/BasicButton/BasicButton'
+import BasicButton from 'components/common/BasicButton/BasicButton'
 import React, { useContext } from 'react'
 import { requestsButtonsContext } from '../../context'
 import requestInterfaces from '../../interfaces'

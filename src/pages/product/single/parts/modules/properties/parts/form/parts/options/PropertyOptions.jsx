@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from 'react'
 import PropertiesFormModel from '../../model/model'
 import propertiesFormContext from '../../context'
-import AppSelectBox from 'common/form/select/AppSelectBox'
+import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import { typesProperties } from 'lib/utils/statics/types'
 
 function PropertyOptions({ element, onChange, value }) {

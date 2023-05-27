@@ -1,4 +1,4 @@
-import AppDialog from 'common/dialog'
+import AppDialog from 'components/common/dialog'
 import useAppToast from 'hooks/toast/useToast'
 import { IproductDeleteServices } from 'lib/apis/product/interfaces'
 import { productDeleteServices } from 'lib/apis/product/productServices'

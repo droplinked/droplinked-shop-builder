@@ -1,13 +1,13 @@
 import { Box, Radio, RadioGroup, Text, VStack, useDisclosure } from '@chakra-ui/react'
 import { BlackBox, PageContentWrapper, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useContext, useState } from 'react'
-import BasicButton from 'common/BasicButton/BasicButton'
+import BasicButton from 'components/common/BasicButton/BasicButton'
 import technicalContext from '../../context'
-import AppDialog from 'common/dialog'
-import FieldLabel from 'common/form/fieldLabel/FieldLabel'
-import AppTypography from 'common/typography/AppTypography'
+import AppDialog from 'components/common/dialog'
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
+import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'hooks/toast/useToast'
-import AppCard from 'common/card/AppCard'
+import AppCard from 'components/common/card/AppCard'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 
 function Ims() {

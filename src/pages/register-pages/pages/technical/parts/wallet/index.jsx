@@ -4,11 +4,11 @@ import React from 'react'
 import classes from './style.module.scss'
 import MetaMask from "assest/icon/MetaMask.svg";
 import moreIcon from "assest/icon/more-icon.svg";
-import BasicButton from 'common/BasicButton/BasicButton';
+import BasicButton from 'components/common/BasicButton/BasicButton';
 import WalletModal from './parts/modal';
-import FieldLabel from 'common/form/fieldLabel/FieldLabel';
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import AppIcons from 'assest/icon/Appicons';
-import AppCard from 'common/card/AppCard';
+import AppCard from 'components/common/card/AppCard';
 
 function Wallet() {
     const { isOpen, onOpen, onClose } = useDisclosure()

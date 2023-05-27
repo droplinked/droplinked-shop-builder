@@ -1,18 +1,18 @@
 import { Routes, Route } from "react-router-dom";
 import React, { lazy, Suspense } from "react";
 import LoadingPage from "pages/public-pages/loading-page/LoadingPage";
-import DashboardLayout from "layouts/app/dashboard/DashboardLayout";
+import DashboardLayout from "components/layouts/app/dashboard/DashboardLayout";
 import Products from "pages/product/list/products";
 import Collections from "pages/collections/Collections";
 import Orders from "pages/orders/Orders";
 import Rules from "pages/rules/Rules";
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper";
-import AffiliateLayout from "layouts/pages/affiliate/AffiliateLayout";
+import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout";
 import Shops from "pages/affiliate/shops/Shops";
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo";
 
 const MainLayout = lazy(() =>
-  import("layouts/app/main/mainLayout")
+  import("components/layouts/app/main/mainLayout")
 );
 const NotFound = lazy(() =>
   import("pages/404/404")

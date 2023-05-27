@@ -1,5 +1,5 @@
 import { Box, Text, VStack } from '@chakra-ui/react'
-import AppTypography from 'common/typography/AppTypography'
+import AppTypography from 'components/common/typography/AppTypography'
 import { useProfile } from 'hooks/useProfile/useProfile'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'

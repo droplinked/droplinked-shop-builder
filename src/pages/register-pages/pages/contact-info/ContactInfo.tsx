@@ -2,16 +2,16 @@ import React, { useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "../../../../hooks/useProfile/useProfile";
-import AppTypography from "common/typography/AppTypography";
+import AppTypography from 'components/common/typography/AppTypography';
 import AppErrors from "lib/utils/statics/errors/errors";
 import { Form, Formik } from "formik";
 import { Box, Flex, VStack } from "@chakra-ui/react";
-import AppCard from "common/card/AppCard";
+import AppCard from 'components/common/card/AppCard';
 import InputLefton from "pages/register-pages/component/input-lefton/InputLefton";
 import { IshopSocial } from "lib/apis/shop/interfaces";
-import BasicButton from "common/BasicButton/BasicButton";
+import BasicButton from 'components/common/BasicButton/BasicButton';
 import useAppToast from "hooks/toast/useToast";
-import FieldLabel from "common/form/fieldLabel/FieldLabel";
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 
 const ContactInfo = () => {
   const { shopNavigate } = useCustomNavigate();

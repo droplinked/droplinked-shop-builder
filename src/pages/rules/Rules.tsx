@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
-import AppDataGrid from 'common/datagrid/DataGrid'
-import { ITableRows } from 'common/table/AppTable'
+import AppDataGrid from 'components/common/datagrid/DataGrid'
+import { ITableRows } from 'components/common/table/AppTable'
 import { ruleService } from 'lib/apis/rule/ruleServices'
 import { Box, HStack, Image } from '@chakra-ui/react'
-import AppTypography from 'common/typography/AppTypography'
-import AppEmptyPage from 'common/empty/AppEmptyPage'
+import AppTypography from 'components/common/typography/AppTypography'
+import AppEmptyPage from 'components/common/empty/AppEmptyPage'
 import AppIcons from 'assest/icon/Appicons'
 
 interface IStates {

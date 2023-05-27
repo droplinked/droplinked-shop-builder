@@ -1,4 +1,4 @@
-import AppBadge from 'common/badge/AppBadge'
+import AppBadge from 'components/common/badge/AppBadge'
 import React, { useContext, useMemo } from 'react'
 import { requestsButtonsContext } from '../../context'
 import RequestListButton from '../requestListButton/RequestListButton'

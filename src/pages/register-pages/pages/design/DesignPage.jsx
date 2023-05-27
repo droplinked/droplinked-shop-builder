@@ -8,8 +8,8 @@ import BannerComponent from "./components/banner-component/BannerComponent";
 import ColorInputsComponent from "./components/color-inputs-component/ColorInputsComponent";
 import { designContext, initialStatesDesign } from "./design-context";
 import { refactorDesignData } from "./utils";
-import AppCard from "common/card/AppCard";
 import TemplateStore from "./components/template/TemplateStore";
+import AppCard from "components/common/card/AppCard";
 
 const DesignPage = () => {
   const [designState, setDesignState] = useState(initialStatesDesign);

@@ -1,6 +1,6 @@
 import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react'
 import casper from "assest/icon/casper.svg";
-import AppTypography from 'common/typography/AppTypography';
+import AppTypography from 'components/common/typography/AppTypography';
 import React, { useContext } from 'react'
 import { ShopProductContext } from '../../context';
 

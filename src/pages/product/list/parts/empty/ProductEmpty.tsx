@@ -1,4 +1,4 @@
-import EmptyTable from 'common/table/parts/empty/EmptyTable'
+import EmptyTable from 'components/common/table/parts/empty/EmptyTable'
 import React from 'react'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
 import AppIcons from 'assest/icon/Appicons';

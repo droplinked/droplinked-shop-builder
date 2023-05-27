@@ -1,5 +1,5 @@
 import React from 'react'
-import PopOverMenu from 'common/PopoverMenu/PopOverMenu'
+import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu'
 import { useDisclosure } from '@chakra-ui/react';
 import ConfirmDeleteCollection from './parts/delete/ConfirmDeleteCollection';
 import RuleModal from './parts/rulesets/RuleModal';

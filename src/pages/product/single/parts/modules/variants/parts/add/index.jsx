@@ -1,5 +1,5 @@
 import { Box, VStack } from '@chakra-ui/react'
-import BasicButton from 'common/BasicButton/BasicButton'
+import BasicButton from 'components/common/BasicButton/BasicButton'
 import React, { useContext, useState } from 'react'
 import SkuForm from '../form'
 import { BlackBox } from 'pages/register-pages/RegisterPages-style'

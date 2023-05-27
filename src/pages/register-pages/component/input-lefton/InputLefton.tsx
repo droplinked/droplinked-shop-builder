@@ -7,9 +7,9 @@ import {
   InputGroup,
   InputLeftAddon,
 } from "@chakra-ui/react";
-import FieldLabel from "common/form/fieldLabel/FieldLabel";
-import AppInput from "common/form/textbox/AppInput";
-import AppTypography from "common/typography/AppTypography";
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
+import AppInput from 'components/common/form/textbox/AppInput';
+import AppTypography from 'components/common/typography/AppTypography';
 
 interface Iprops {
   isRequired?: boolean

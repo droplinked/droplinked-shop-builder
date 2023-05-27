@@ -1,5 +1,5 @@
 import React from 'react'
-import PopOverMenu from 'common/PopoverMenu/PopOverMenu'
+import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu'
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { useDisclosure } from '@chakra-ui/react';
 import ConfirmDeleteProduct from './parts/modal/ConfirmDeleteCollection';

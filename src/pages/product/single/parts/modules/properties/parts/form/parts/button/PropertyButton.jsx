@@ -1,4 +1,4 @@
-import BasicButton from 'common/BasicButton/BasicButton'
+import BasicButton from 'components/common/BasicButton/BasicButton'
 import React, { useCallback, useContext, useMemo } from 'react'
 import AppendModule from '../../model/module/append'
 import PropertiesFormModel from '../../model/model'

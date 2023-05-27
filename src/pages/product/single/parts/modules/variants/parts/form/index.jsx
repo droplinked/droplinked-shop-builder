@@ -1,5 +1,5 @@
 import { Box, HStack, VStack } from '@chakra-ui/react'
-import BasicButton from 'common/BasicButton/BasicButton'
+import BasicButton from 'components/common/BasicButton/BasicButton'
 import React, { useCallback, useContext, useMemo } from 'react'
 import VariantMakeForm from './parts/container'
 import VariantsFormModel from './model/model'

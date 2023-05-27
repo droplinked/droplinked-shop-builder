@@ -7,8 +7,8 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useState, useRef } from "react";
-import AppTypography from "common/typography/AppTypography";
-import FieldLabel from "common/form/fieldLabel/FieldLabel";
+import AppTypography from 'components/common/typography/AppTypography';
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import { toMb } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
 import useAppToast from "hooks/toast/useToast";

@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { designContext } from "../../design-context";
 import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
 import { useProfile } from "hooks/useProfile/useProfile";
-import BasicButton from "common/BasicButton/BasicButton";
+import BasicButton from 'components/common/BasicButton/BasicButton';
 import DesignRegisterMdel from "./model";
 import AppErrors from "lib/utils/statics/errors/errors";
 import useAppToast from "hooks/toast/useToast";

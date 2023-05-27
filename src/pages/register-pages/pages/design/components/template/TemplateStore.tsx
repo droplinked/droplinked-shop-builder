@@ -1,6 +1,6 @@
 import { Flex, FormControl, Image, VStack } from '@chakra-ui/react'
-import FieldLabel from 'common/form/fieldLabel/FieldLabel';
-import AppTypography from 'common/typography/AppTypography';
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
+import AppTypography from 'components/common/typography/AppTypography';
 import { TemplatedStore } from 'lib/utils/statics/templated';
 import React from 'react'
 import ActiveBox from '../../parts/active/ActiveBox';

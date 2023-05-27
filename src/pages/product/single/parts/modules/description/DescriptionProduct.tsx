@@ -1,5 +1,5 @@
 import { VStack } from '@chakra-ui/react'
-import AppTextarea from 'common/form/textarea/AppTextarea'
+import AppTextarea from 'components/common/form/textarea/AppTextarea'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'

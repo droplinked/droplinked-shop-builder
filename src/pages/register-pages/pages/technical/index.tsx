@@ -7,12 +7,12 @@ import technicalContext, { technicalContextState } from "./context";
 import { appDeveloment } from "lib/utils/app/variable";
 import technicalModel from "./model";
 import Wallet from "./parts/wallet";
-import AppCard from "common/card/AppCard";
 import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
 import { useProfile } from "hooks/useProfile/useProfile";
 import { paymentMethodsService } from "lib/apis/shop/shopServices";
 import { useMutation } from "react-query";
 import { useLocation } from "react-router-dom";
+import AppCard from "components/common/card/AppCard";
 
 function Technical() {
   const userPaymentsService = useMutation(() => paymentMethodsService())

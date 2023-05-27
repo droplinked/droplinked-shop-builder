@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { designContext } from "../../design-context";
-import AppInput from "common/form/textbox/AppInput";
+import AppInput from 'components/common/form/textbox/AppInput';
 
 const HeaderTitleComponent = () => {
   const {

@@ -1,9 +1,9 @@
 import { Box, HStack, useDisclosure } from '@chakra-ui/react'
-import BasicButton from 'common/BasicButton/BasicButton'
-import AppTable from 'common/table/AppTable'
+import BasicButton from 'components/common/BasicButton/BasicButton'
+import AppTable from 'components/common/table/AppTable'
 import React, { useContext, useState } from 'react'
 import ModalRequest from './parts/modalRequest/ModalRequest'
-import PopOverMenu from 'common/PopoverMenu/PopOverMenu'
+import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu'
 import { ShopProductContext } from '../../context'
 import RequestProductModel from './model'
 

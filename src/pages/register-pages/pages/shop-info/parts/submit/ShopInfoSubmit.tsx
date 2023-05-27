@@ -1,4 +1,4 @@
-import BasicButton from 'common/BasicButton/BasicButton'
+import BasicButton from 'components/common/BasicButton/BasicButton'
 import useAppToast from 'hooks/toast/useToast'
 import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
 import { useProfile } from 'hooks/useProfile/useProfile'

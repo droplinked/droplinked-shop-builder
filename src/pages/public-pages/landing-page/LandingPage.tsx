@@ -17,11 +17,11 @@ import {
 } from "./LandingPage-style";
 import { useProfile } from "hooks/useProfile/useProfile";
 //
-import BasicButton from "common/BasicButton/BasicButton";
+import BasicButton from 'components/common/BasicButton/BasicButton';
 import MainImageComponent from "./components/main-image-component/MainImageComponent";
 import IconsComponent from "./components/icons-component/IconsComponent";
 import SignupInputComponent from "./components/signup-input-component/SignupInputComponent";
-import AuthModal from "modals/auth-modal/AuthModal";
+import AuthModal from "components/modals/auth-modal/AuthModal";
 import LogoSliderComponent from "./components/logo-slider-component/LogoSliderComponent";
 
 const keyframe_leftanimation = keyframes`

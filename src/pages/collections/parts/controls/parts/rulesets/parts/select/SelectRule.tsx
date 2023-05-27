@@ -1,4 +1,4 @@
-import AppSelectBox from 'common/form/select/AppSelectBox'
+import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import React, { useContext } from 'react'
 import ruleModelContext from '../../context'
 

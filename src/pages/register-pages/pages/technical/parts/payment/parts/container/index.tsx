@@ -2,11 +2,11 @@ import { Box, HStack } from '@chakra-ui/react'
 import { PageContentWrapper, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import classes from './style.module.scss'
-import AppSwitch from 'common/swich'
+import AppSwitch from 'components/common/swich'
 import technicalContext from 'pages/register-pages/pages/technical/context'
 import useAppToast from 'hooks/toast/useToast'
 import AppIcons from 'assest/icon/Appicons'
-import BasicButton from 'common/BasicButton/BasicButton'
+import BasicButton from 'components/common/BasicButton/BasicButton'
 
 function ContainerPayment({ title, value, locked }) {
   

@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import OrdersModel from './model'
-import AppDataGrid from 'common/datagrid/DataGrid'
+import AppDataGrid from 'components/common/datagrid/DataGrid'
 import { ordersServices } from 'lib/apis/orders/orderServices'
-import AppEmptyPage from 'common/empty/AppEmptyPage'
+import AppEmptyPage from 'components/common/empty/AppEmptyPage'
 
 function Orders() {
     const { mutate, isLoading } = useMutation(() => ordersServices())
