@@ -1,5 +1,4 @@
 import { Flex } from "@chakra-ui/react";
-import { toMb } from "lib/utils/heper/helpers";
 import { useContext } from "react";
 //
 import { designContext } from "../../design-context";

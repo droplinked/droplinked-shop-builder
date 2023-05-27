@@ -2,12 +2,8 @@ import React from "react";
 import {
   Flex,
   FormControl,
-  FormLabel,
-  Input,
-  InputGroup,
   InputLeftAddon,
 } from "@chakra-ui/react";
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import AppInput from 'components/common/form/textbox/AppInput';
 import AppTypography from 'components/common/typography/AppTypography';
 

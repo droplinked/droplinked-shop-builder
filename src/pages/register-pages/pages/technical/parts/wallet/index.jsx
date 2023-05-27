@@ -1,8 +1,6 @@
 import { Box, HStack, Image, Menu, MenuButton, MenuItem, MenuList, Text, VStack, useDisclosure } from '@chakra-ui/react'
-import { StarLabel, Text18px } from 'pages/register-pages/RegisterPages-style'
 import React from 'react'
 import classes from './style.module.scss'
-import MetaMask from "assest/icon/MetaMask.svg";
 import moreIcon from "assest/icon/more-icon.svg";
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import WalletModal from './parts/modal';
