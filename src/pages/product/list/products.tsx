@@ -1,5 +1,5 @@
-import AppDataGrid from 'common/datagrid/DataGrid'
-import { useProfile } from 'hooks/useProfile/useProfile'
+import AppDataGrid from 'components/common/datagrid/DataGrid'
+import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { productServices } from 'lib/apis/product/productServices'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'

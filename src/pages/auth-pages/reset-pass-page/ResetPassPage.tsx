@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ResetPassPage-style.scss";
-import BasicButton from "common/BasicButton/BasicButton";
-import useAppToast from "hooks/toast/useToast";
-import AppCard from "common/card/AppCard";
+import BasicButton from 'components/common/BasicButton/BasicButton';
+import useAppToast from "functions/hooks/toast/useToast";
+import AppCard from 'components/common/card/AppCard';
 import { Flex, VStack } from "@chakra-ui/react";
-import AppInput from "common/form/textbox/AppInput";
-import AppTypography from "common/typography/AppTypography";
+import AppInput from 'components/common/form/textbox/AppInput';
+import AppTypography from 'components/common/typography/AppTypography';
 import { useMutation } from "react-query";
 import { IchangePasswordService } from "lib/apis/user/interfaces";
 import { changePasswordService } from "lib/apis/user/services";

@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useState } from 'react'
-import AppModal from 'common/modal/AppModal'
+import AppModal from 'components/common/modal/AppModal'
 import { Isku } from 'lib/apis/product/interfaces'
 import RecordForm from './parts/form/RecordForm'
 import recordContext, { recordStates } from './context'
 import { productContext } from 'pages/product/single/context'
-import HashKey from 'common/hashKey/HashKey'
+import HashKey from 'components/common/hashKey/HashKey'
 
 export interface IRecordModalProduct {
     title: string

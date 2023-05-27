@@ -1,5 +1,5 @@
-import AppDialog from 'common/dialog'
-import useAppToast from 'hooks/toast/useToast'
+import AppDialog from 'components/common/dialog'
+import useAppToast from 'functions/hooks/toast/useToast'
 import { IdeleteCollectionService } from 'lib/apis/collection/interfaces'
 import { deleteCollectionService } from 'lib/apis/collection/services'
 import AppErrors from 'lib/utils/statics/errors/errors'

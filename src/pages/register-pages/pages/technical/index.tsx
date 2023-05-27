@@ -2,14 +2,13 @@ import { PageContent } from "pages/register-pages/RegisterPages-style";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Ims from "./parts/ims";
 import Payments from "./parts/payment";
-import { Box, Flex, VStack } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react";
 import technicalContext, { technicalContextState } from "./context";
 import { appDeveloment } from "lib/utils/app/variable";
 import technicalModel from "./model";
 import Wallet from "./parts/wallet";
-import AppCard from "common/card/AppCard";
 import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
-import { useProfile } from "hooks/useProfile/useProfile";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { paymentMethodsService } from "lib/apis/shop/shopServices";
 import { useMutation } from "react-query";
 import { useLocation } from "react-router-dom";
@@ -50,14 +49,12 @@ function Technical() {
   return (
     <technicalContext.Provider value={{ state: Technical, updateState, updatePayment, userPayments }}>
       <PageContent>
-        <AppCard>
-          <VStack spacing={10} align="stretch">
-            <Ims />
-            <Payments />
-            {appDeveloment && <Wallet />}
-            <TechnicalSubmit />
-          </VStack>
-        </AppCard>
+        <VStack spacing={4} align="stretch">
+          <Ims />
+          <Payments />
+          {appDeveloment && <Wallet />}
+          <TechnicalSubmit />
+        </VStack>
       </PageContent>
     </technicalContext.Provider>
   );

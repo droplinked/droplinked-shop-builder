@@ -6,7 +6,7 @@ import deleteIcon from "assest/icon/delete-icon.svg";
 import { Isku } from 'lib/apis/product/interfaces'
 import introductionClass from 'pages/product/single/parts/general/model'
 import AppErrors from 'lib/utils/statics/errors/errors'
-import useAppToast from 'hooks/toast/useToast'
+import useAppToast from 'functions/hooks/toast/useToast'
 import AppIcons from 'assest/icon/Appicons';
 
 interface IProps {

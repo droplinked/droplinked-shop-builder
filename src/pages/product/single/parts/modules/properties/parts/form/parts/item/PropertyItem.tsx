@@ -4,9 +4,9 @@ import propertiesFormContext from '../../context';
 import { productContext } from 'pages/product/single/context';
 import propertyItemModel from './model/model';
 import SkuTableModal from 'pages/product/single/parts/modules/variants/parts/table/parts/skuModal/SkuTableModal';
-import AppInput from 'common/form/textbox/AppInput';
-import AppTypography from 'common/typography/AppTypography';
-import useAppToast from 'hooks/toast/useToast';
+import AppInput from 'components/common/form/textbox/AppInput';
+import AppTypography from 'components/common/typography/AppTypography';
+import useAppToast from 'functions/hooks/toast/useToast';
 import AppIcons from 'assest/icon/Appicons';
 
 function PropertyItem({ element, keyProperty }) {

@@ -1,5 +1,5 @@
 import { Box, Flex, HStack, Image, Text, VStack } from '@chakra-ui/react'
-import BasicButton from 'common/BasicButton/BasicButton'
+import BasicButton from 'components/common/BasicButton/BasicButton'
 import React from 'react'
 import { Link } from 'react-router-dom'
 

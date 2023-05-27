@@ -1,5 +1,5 @@
 import { Box, Flex, Image, VStack } from '@chakra-ui/react'
-import AppImage from 'common/image/AppImage'
+import AppImage from 'components/common/image/AppImage'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

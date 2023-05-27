@@ -10,13 +10,13 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import uploadIcon from "../../../../../../assest/icon/upload-icon.svg";
-import AppTypography from "common/typography/AppTypography";
-import FieldLabel from "common/form/fieldLabel/FieldLabel";
+import AppTypography from "components/common/typography/AppTypography";
+import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React from "react";
 import { Isize_limit } from "lib/utils/statics/errors/modules/store";
 import { toMb } from "lib/utils/heper/helpers";
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 
 interface IProps {
   label?: string

@@ -1,8 +1,8 @@
 import { Box, HStack, VStack } from '@chakra-ui/react'
-import { CardTitle } from 'common/card/component-style'
-import FieldLabel from 'common/form/fieldLabel/FieldLabel'
-import FieldLabelReuired from 'common/form/fieldLabel/parts/required/FieldLabelReuired'
-import AppTypography from 'common/typography/AppTypography'
+import { CardTitle } from 'components/common/card/component-style'
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
+import FieldLabelReuired from 'components/common/form/fieldLabel/parts/required/FieldLabelReuired'
+import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 
 interface IProps {

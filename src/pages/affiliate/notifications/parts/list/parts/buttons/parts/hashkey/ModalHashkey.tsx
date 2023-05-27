@@ -1,5 +1,5 @@
-import HashKey from 'common/hashKey/HashKey'
-import AppModal from 'common/modal/AppModal'
+import HashKey from 'components/common/hashKey/HashKey'
+import AppModal from 'components/common/modal/AppModal'
 import React from 'react'
 
 interface Iprops {

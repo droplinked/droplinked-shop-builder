@@ -1,12 +1,12 @@
 import { Box, Flex, VStack } from '@chakra-ui/react';
-import BasicButton from 'common/BasicButton/BasicButton';
-import AppDropDown from 'common/form/dropdown/AppDropDown';
-import AppInput from 'common/form/textbox/AppInput';
-import AppModal, { IAppModal } from 'common/modal/AppModal'
-import AppTypography from 'common/typography/AppTypography';
+import BasicButton from 'components/common/BasicButton/BasicButton';
+import AppDropDown from 'components/common/form/dropdown/AppDropDown';
+import AppInput from 'components/common/form/textbox/AppInput';
+import AppModal, { IAppModal } from 'components/common/modal/AppModal'
+import AppTypography from 'components/common/typography/AppTypography';
 import { Form, Formik } from 'formik'
-import useAppToast from 'hooks/toast/useToast';
-import { useProfile } from 'hooks/useProfile/useProfile';
+import useAppToast from 'functions/hooks/toast/useToast';
+import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { addressByIdService, createAddressService, updateAddressService } from 'lib/apis/address/addressServices';
 import { IaddressByIdService, IcreateAddressService, IupdateAddressService } from 'lib/apis/address/interfaces';
 import { countries_statics } from 'lib/utils/statics/countries';
@@ -49,7 +49,7 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
     useEffect(() => addressID && fetchService.mutate({ addressID }), [addressID, open])
 
     return (
-        <AppModal close={close} open={open} contentProps={{ padding: 8 }} size="2xl">
+        <AppModal close={close} title="Address Information" open={open} contentProps={{ padding: 8 }} size="2xl">
             <>
                 <Formik
                     initialValues={initialValues({ address })}
@@ -61,9 +61,6 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
                     {({ errors, values, setFieldValue }) => (
                         <Form>
                             <VStack align={"stretch"} spacing={8}>
-                                <Flex justifyContent={"center"}>
-                                    <AppTypography size='18px' color={"#FFF"} weight='bolder'>Address Information</AppTypography>
-                                </Flex>
                                 <Box>
                                     <AppInput loading={loading} name='address' value={values.addressLine1} error={errors.addressLine1} onChange={(e: any) => setFieldValue('addressLine1', e.target.value)} label='Address line 1' isRequired />
                                 </Box>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import LoadingComponent from "common/loading-component/LoadingComponent";
-import useAppToast from "hooks/toast/useToast";
+import LoadingComponent from 'components/common/loading-component/LoadingComponent';
+import useAppToast from "functions/hooks/toast/useToast";
 import { useMutation } from "react-query";
 import { emailVerifyService } from "lib/apis/user/services";
 import { IemailVerifyService } from "lib/apis/user/interfaces";

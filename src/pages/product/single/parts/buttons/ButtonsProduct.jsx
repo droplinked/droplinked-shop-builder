@@ -1,13 +1,13 @@
 import { Box, HStack } from '@chakra-ui/react'
-import BasicButton from 'common/BasicButton/BasicButton'
+import BasicButton from 'components/common/BasicButton/BasicButton'
 import React, { useCallback, useContext } from 'react'
 import { productContext } from '../../context'
 import ButtonsProductClass from './model'
 import { useMutation } from 'react-query'
-import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate'
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { productCreateServices, productUpdateServices, skuUpdateByIdServices } from 'lib/apis/product/productServices'
 import AppErrors from 'lib/utils/statics/errors/errors'
-import useAppToast from 'hooks/toast/useToast'
+import useAppToast from 'functions/hooks/toast/useToast'
 
 function ButtonsProduct() {
     const create = useMutation((params) => productCreateServices(params))

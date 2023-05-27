@@ -2,15 +2,15 @@ import { useContext } from "react";
 import { Flex, Box } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { designContext } from "../../design-context";
-import { useCustomNavigate } from "hooks/useCustomeNavigate/useCustomNavigate";
-import { useProfile } from "hooks/useProfile/useProfile";
-import BasicButton from "common/BasicButton/BasicButton";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
+import BasicButton from 'components/common/BasicButton/BasicButton';
 import DesignRegisterMdel from "./model";
 import AppErrors from "lib/utils/statics/errors/errors";
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 
 const ButtonsComponent = () => {
-  const { state } = useContext(designContext);
+  const { state, methods: { resetState } } = useContext(designContext);
   const { shopNavigate } = useCustomNavigate();
   const { setShopData: { loading, update } } = useProfile();
   const { validation } = DesignRegisterMdel
@@ -39,11 +39,12 @@ const ButtonsComponent = () => {
           <BasicButton variant="outline" onClick={() => shopNavigate(`register/shop-info`)}>Back</BasicButton>
         </Box>
       )}
-      <Box>
+      <Flex gap={4}>
+        {isRegister && <BasicButton sizes="large" variant="ghost" onClick={resetState}>Reset</BasicButton>}
         <BasicButton sizes="large" onClick={clickSubmit} isLoading={loading}>
           {isRegister ? "Next" : "Update"}
         </BasicButton>
-      </Box>
+      </Flex>
     </Flex>
   );
 };

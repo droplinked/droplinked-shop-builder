@@ -1,8 +1,8 @@
 import { Box, Flex } from '@chakra-ui/react';
-import BasicButton from 'common/BasicButton/BasicButton'
-import useAppToast from 'hooks/toast/useToast';
-import { useCustomNavigate } from 'hooks/useCustomeNavigate/useCustomNavigate';
-import { useProfile } from 'hooks/useProfile/useProfile';
+import BasicButton from 'components/common/BasicButton/BasicButton'
+import useAppToast from 'functions/hooks/toast/useToast';
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
+import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { IpaymentCreateService } from 'lib/apis/shop/interfaces';
 import { paymentCreateService } from 'lib/apis/shop/shopServices';
 import AppErrors from 'lib/utils/statics/errors/errors';

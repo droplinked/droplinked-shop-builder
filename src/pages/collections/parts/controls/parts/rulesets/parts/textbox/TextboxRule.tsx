@@ -1,4 +1,4 @@
-import AppInput from 'common/form/textbox/AppInput'
+import AppInput from 'components/common/form/textbox/AppInput'
 import React, { useContext } from 'react'
 import ruleModelContext from '../../context'
 

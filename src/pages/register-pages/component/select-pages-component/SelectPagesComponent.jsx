@@ -1,8 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
-
-import { SideText } from "../../RegisterPages-style";
-import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import { SideText } from "pages/register-pages/RegisterPages-style";
 
 const SelectPagesComponent = () => {
   const { shopNavigate } = useCustomNavigate();

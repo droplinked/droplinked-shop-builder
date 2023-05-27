@@ -8,7 +8,7 @@ import propertiesFormContext from './context';
 import { productContext } from 'pages/product/single/context';
 import SkeletonProduct from '../../../skeleton/SkeletonProduct';
 import { typesProperties } from 'lib/utils/statics/types';
-import AppTypography from 'common/typography/AppTypography';
+import AppTypography from 'components/common/typography/AppTypography';
 
 function PropertiesForm() {
     const { state: { properties, sku }, methods: { updateState }, productID } = useContext(productContext)

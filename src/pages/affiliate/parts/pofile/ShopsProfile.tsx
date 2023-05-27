@@ -1,9 +1,9 @@
 import { Box, Image, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { useProfile } from 'hooks/useProfile/useProfile';
+import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import SocialAffliate, { ISocialAffliate } from '../social/SocialAffliate';
-import AppTypography from 'common/typography/AppTypography';
+import AppTypography from 'components/common/typography/AppTypography';
 
 interface Iprops {
   avatar: string

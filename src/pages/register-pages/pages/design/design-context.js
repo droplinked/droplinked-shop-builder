@@ -15,5 +15,6 @@ export const designContext = createContext({
   state: initialStatesDesign,
   methods: {
     updateState: () => {},
+    resetState: () => {},
   }
 });

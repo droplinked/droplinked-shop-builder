@@ -1,6 +1,6 @@
 import { Box, VStack } from '@chakra-ui/react'
-import HashKey from 'common/hashKey/HashKey'
-import AppModal, { IAppModal } from 'common/modal/AppModal'
+import HashKey from 'components/common/hashKey/HashKey'
+import AppModal, { IAppModal } from 'components/common/modal/AppModal'
 import { Form, Formik } from 'formik'
 import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
 import { casperRequestService } from 'lib/apis/affiliate/shopServices'

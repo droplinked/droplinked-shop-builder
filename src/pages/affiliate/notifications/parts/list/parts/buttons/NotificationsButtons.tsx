@@ -11,7 +11,7 @@ import requestInterfaces from './interfaces'
 import { requestsButtonsContext } from './context'
 import RequestButtons from './parts/buttons/RequestButtons'
 import ModalHashkey from './parts/hashkey/ModalHashkey'
-import useAppToast from 'hooks/toast/useToast'
+import useAppToast from 'functions/hooks/toast/useToast'
 
 function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
     const { mutateAsync } = useMutation((params: IacceptRejectRequestService) => acceptRejectRequestService(params))

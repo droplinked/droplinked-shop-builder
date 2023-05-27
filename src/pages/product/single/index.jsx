@@ -8,7 +8,7 @@ import { productByIdServices } from 'lib/apis/product/productServices'
 import ProductSingleModel from './model/model'
 import General from './parts/general/General'
 import Variant from './parts/variant/Variant'
-import { useProfile } from 'hooks/useProfile/useProfile'
+import { useProfile } from 'functions/hooks/useProfile/useProfile'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params) => productByIdServices(params))

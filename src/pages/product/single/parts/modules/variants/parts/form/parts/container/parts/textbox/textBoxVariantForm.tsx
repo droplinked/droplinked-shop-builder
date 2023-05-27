@@ -2,9 +2,9 @@ import { Box, Flex, InputRightElement, Text, VStack } from '@chakra-ui/react'
 import React, { useContext, useMemo } from 'react'
 import { InputGroup } from 'react-bootstrap'
 import variontFormContext from '../../../../context'
-import ErrorLabel from 'common/form/errorLabel/errorLabel'
-import AppInput from 'common/form/textbox/AppInput'
-import AppTypography from 'common/typography/AppTypography'
+import ErrorLabel from 'components/common/form/errorLabel/errorLabel'
+import AppInput from 'components/common/form/textbox/AppInput'
+import AppTypography from 'components/common/typography/AppTypography'
 
 interface Iprops {
     field: string

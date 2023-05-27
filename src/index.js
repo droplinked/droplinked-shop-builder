@@ -8,12 +8,10 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "./theme";
 import { QueryClient, QueryClientProvider } from "react-query";
-import AppToastify from "common/toastify/AppToastify";
 const queryClient = new QueryClient()
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppToastify />
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme} >
         <App />

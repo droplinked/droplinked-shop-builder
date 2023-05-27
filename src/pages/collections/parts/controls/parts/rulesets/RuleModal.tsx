@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Box, HStack, VStack } from "@chakra-ui/react";
-import BasicButton from "common/BasicButton/BasicButton";
-import LoadingComponent from "common/loading-component/LoadingComponent";
+import BasicButton from 'components/common/BasicButton/BasicButton';
+import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import AppModal from "common/modal/AppModal";
-import AppTextarea from "common/form/textarea/AppTextarea";
+import AppModal from 'components/common/modal/AppModal';
+import AppTextarea from 'components/common/form/textarea/AppTextarea';
 import ruleModelContext from "./context";
 import TextboxRule from "./parts/textbox/TextboxRule";
 import SelectRule from "./parts/select/SelectRule";
 import { useMutation } from "react-query";
 import { createRuleService, getRuleService, updateRuleService } from "lib/apis/rule/ruleServices";
-import useAppToast from "hooks/toast/useToast";
+import useAppToast from "functions/hooks/toast/useToast";
 import { RuleTypes } from "./RuleModel";
 import { IcreateRuleService, IgetRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
-import AppTypography from "common/typography/AppTypography";
+import AppTypography from 'components/common/typography/AppTypography';
 import { ChainTypes } from "lib/utils/statics/chainTypes";
 
 // this modal use for add new rule or edit exsiting rule
@@ -82,7 +82,6 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     <AppModal
       open={show}
       close={close}
-      contentProps={{ maxWidth: "700px", width: "95%", padding: "40px" }}
     >
       <AppTypography size="18px" weight="bolder">Make Rule</AppTypography>
       {false ? (

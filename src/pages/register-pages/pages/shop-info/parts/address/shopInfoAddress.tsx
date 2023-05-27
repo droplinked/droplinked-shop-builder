@@ -1,7 +1,9 @@
-import { Box, HStack, useDisclosure, VStack } from '@chakra-ui/react'
+import { Box, Flex, HStack, useDisclosure, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
-import BasicButton from 'common/BasicButton/BasicButton'
-import AppTable from 'common/table/AppTable'
+import BasicButton from 'components/common/BasicButton/BasicButton'
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
+import AppTable from 'components/common/table/AppTable'
+import AppTypography from 'components/common/typography/AppTypography'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import DeleteAddress from './delete/DeleteAddress'
@@ -52,13 +54,17 @@ function ShopInfoAddress({ addressService }: Iprops) {
 
     return (
         <VStack align={"stretch"}>
+            <Box><FieldLabel textProps={{ size: "18px", weight: "bolder" }} isRequired label='Store Address' /></Box>
+            <Flex justifyContent={"space-between"} alignItems="baseline">
+                <AppTypography size='14px' color={"#C2C2C2"}>Add the physical location of your store or the place where your products are stored.</AppTypography>
+                {isRegister && !address?.length && !addressService.isLoading ? (
+                    <Box>
+                        <BasicButton sizes={"medium"} width={"100%"} onClick={onOpen} marginBottom={1} variant='outline'>Add new address</BasicButton>
+                    </Box>
+                ) : null}
+            </Flex>
             <AppTable rows={rows} />
             {isOpen && <AddressModal close={onClose} addressID={AddressID} onSuccess={addressService.mutate} open={isOpen} />}
-            {isRegister && !address?.length && !addressService.isLoading ? (
-                <Box>
-                    <BasicButton width={"100%"} onClick={onOpen} variant='outline'>Add new address</BasicButton>
-                </Box>
-            ) : null}
         </VStack>
     )
 }
