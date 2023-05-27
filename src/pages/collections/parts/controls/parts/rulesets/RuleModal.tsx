@@ -82,7 +82,6 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     <AppModal
       open={show}
       close={close}
-      contentProps={{ maxWidth: "700px", width: "95%", padding: "40px" }}
     >
       <AppTypography size="18px" weight="bolder">Make Rule</AppTypography>
       {false ? (

@@ -7,11 +7,8 @@ import AppTypography from 'components/common/typography/AppTypography';
 
 function WalletModal({ open, close }) {
     return (
-        <AppModal open={open} close={close}>
+        <AppModal open={open} close={close} title='Choose Your Wallet'>
             <VStack color="#FFF" align="stretch" spacing={8}>
-                <Box textAlign="center">
-                    <AppTypography size='18px' weight='bolder'>Choose Your Wallet</AppTypography>
-                </Box>
                 <VStack align="stretch" spacing={4}>
                     {walletModalClass.listWallet().map((el, key) => (
                         <BlackBox padding={5} key={key} cursor="pointer" onClick={close}>

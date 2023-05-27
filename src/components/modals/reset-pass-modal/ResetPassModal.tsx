@@ -31,7 +31,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
   });
 
   return (
-    <AppModal open={show} close={close} contentProps={{ padding: "50px 30px" }}>
+    <AppModal open={show} close={close} title="Reset your password">
       <Formik
         initialValues={{
           email: '',
@@ -43,10 +43,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
         {({ errors, values, setFieldValue }) => (
           <Form>
             <VStack align={"stretch"} spacing={4}>
-              <Flex justifyContent={"center"}>
-                <AppTypography size="18px" weight="bolder" color={"#FFF"}>Reset your password</AppTypography>
-              </Flex>
-              <AppTypography size="14px" color={"#FFF"} marginTop={6}>
+              <AppTypography size="14px" color={"#FFF"}>
                 Enter the email address associated with your account and we'll send
                 you a link to reset your password.
               </AppTypography>

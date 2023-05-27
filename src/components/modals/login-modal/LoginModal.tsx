@@ -91,7 +91,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
   });
 
   return (
-    <AppModal open={show} contentProps={{ padding: "50px 30px" }} close={close}>
+    <AppModal open={show} title="Sign in" close={close}>
       <Formik
         initialValues={{
           email: '',
@@ -105,8 +105,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
         {({ errors, values, setFieldValue }) => (
           <Form>
             <Box w="100%">
-              <Flex justifyContent={"center"}><AppTypography size="18px" weight="bolder" color={"#FFF"}>Sign in</AppTypography></Flex>
-              <Box w="100%" pt="20px">
+              <Box w="100%">
                 <AppInput
                   error={errors.email ? errors.email.toString() : ""}
                   name="email"
