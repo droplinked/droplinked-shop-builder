@@ -5,6 +5,7 @@ export interface IproductState {
     priceUnit: string
     media: Array<string>
     shippingPrice: number
+    product_type: "NORMAL"
     shippingType: "CUSTOM" | "EASY_POST"
     properties: Array<Iproperties>
     sku: Array<Isku>
@@ -61,7 +62,7 @@ export interface IproductDeleteServices {
 
 export interface IproductUpdateServices {
     productID: string
-    params: IproductState
+    params: any
 }
 
 export interface IskuUpdateByIdServices {
