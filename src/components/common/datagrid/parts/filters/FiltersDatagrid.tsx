@@ -1,13 +1,35 @@
-import { Box, HStack } from '@chakra-ui/react'
+import { Box, HStack, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import SearchDatagrid from './parts/search/SearchDatagrid'
-import SortDatagrid, { IMenuesDatagrid } from './parts/menues/menuesDatagrid'
 
-function FiltersDatagrid({ item }: IMenuesDatagrid) {
+export interface IFiltersDatagridItems {
+    title: string
+    list: Array<{
+        title: string
+        onClick: Function
+    }>
+}
+
+export interface IFiltersDatagrid {
+    item: Array<IFiltersDatagridItems>
+}
+
+function FiltersDatagrid({ item }: IFiltersDatagrid) {
+
     return (
         <HStack spacing={8}>
-            <Box><SearchDatagrid /></Box>
-            {item && <Box><SortDatagrid item={item} /></Box>}
+            {item.map((el: IFiltersDatagridItems, key) => (
+                <Box key={key}>
+                    <Menu isLazy>
+                        <MenuButton fontSize={"sm"}><AppTypography size='12px'>{el.title}</AppTypography></MenuButton>
+                        <MenuList backgroundColor={"#1a1a1a"} borderColor="#2f2f2f" fontSize={"sm"}>
+                            {el.list.map((item, key) => (
+                                <MenuItem key={key} background={"none !important"}>{item.title}</MenuItem>
+                            ))}
+                        </MenuList>
+                    </Menu>
+                </Box>
+            ))}
         </HStack>
     )
 }

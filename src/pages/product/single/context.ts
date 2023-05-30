@@ -12,6 +12,7 @@ export const initialStatesProduct: IproductState = {
     media: [],
     priceUnit: "USD",
     shippingPrice: 0,
+    product_type: "NORMAL",
     shippingType: "EASY_POST",
     properties: [],
     sku: []

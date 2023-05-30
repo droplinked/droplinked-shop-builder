@@ -5,6 +5,7 @@ import { convertToStandardFormat } from "lib/utils/date.utils/convertDate";
 
 interface IrefactorData {
     data: any
+    search: string
 }
 export default class OrdersModel {
 
@@ -31,27 +32,31 @@ export default class OrdersModel {
         }
     };
 
-    static refactorData = ({ data }: IrefactorData): Array<ITableRows> => {
-        return data.map((el: any): ITableRows => ({
-            Code: {
-                value: el?._id
-            },
-            Customer: {
-                value: `${el?.customerAddressBook?.firstName} ${el?.customerAddressBook?.lastName}`
-            },
-            Date: {
-                value: this.calculateHowTimePassed(el?.createdAt)
-            },
-            Items: {
-                value: el?.items?.length
-            },
-            Status: {
-                value: el?.status
-            },
-            options: {
-                caption: "",
-                value: <ControlsListOrder order={el} />
-            }
-        }))
+    static makeData = (element: any) => ({
+        Code: {
+            value: element?._id
+        },
+        Customer: {
+            value: `${element?.customerAddressBook?.firstName} ${element?.customerAddressBook?.lastName}`
+        },
+        Date: {
+            value: this.calculateHowTimePassed(element?.createdAt)
+        },
+        Items: {
+            value: element?.items?.length
+        },
+        Status: {
+            value: element?.status
+        },
+        options: {
+            caption: "",
+            value: <ControlsListOrder order={element} />
+        }
+    })
+
+    static refactorData = ({ data,search }: IrefactorData): Array<ITableRows> => {
+        search = search && search.toLowerCase()
+        const products = search ? data.filter((el: any) => el._id.toLowerCase().includes(search)) : data
+        return products.map((el: any): ITableRows => this.makeData(el))
     }
 }

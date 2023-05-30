@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
 import CollectionsModel from './model'
 import AppDataGrid from 'components/common/datagrid/DataGrid'
@@ -9,26 +9,23 @@ import { useDisclosure } from '@chakra-ui/react'
 
 function Collections() {
     const { isOpen, onClose, onOpen } = useDisclosure()
-    const { mutate, isLoading } = useMutation(() => collectionService())
+    const { mutate, isLoading,data } = useMutation(() => collectionService())
     const [States, setStates] = useState({
-        rows: []
+        search: null
     })
 
-    // fetch data and refactor
-    const fetch = useCallback(() => {
-        mutate(null, {
-            onSuccess: (res) => {
-                setStates(prev => ({
-                    ...prev, rows: CollectionsModel.refactorData({
-                        data: res.data.data,
-                        fetch
-                    })
-                }))
-            }
-        })
-    }, [])
+    const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
 
-    useEffect(() => fetch(), [mutate])
+    useEffect(() => mutate(), [mutate])
+
+    // Handle search and without search
+    const rows = useMemo(() => {
+        return data ? CollectionsModel.refactorData({
+            data: data.data.data,
+            fetch: mutate,
+            search: States.search
+        }) : []
+    }, [States.search, data])
 
     return (
         <>
@@ -40,7 +37,8 @@ function Collections() {
                         onClick: onOpen
                     }
                 ]}
-                rows={States.rows}
+                rows={rows}
+                search={{ onChange: (e) => setSearch(e.target.value) }}
                 empty={<CollectionsEmpty openModal={onOpen} />}
             />
             <CollectionCreate close={onClose} refetch={fetch} open={isOpen} />
