@@ -6,6 +6,7 @@ export interface IproductState {
     media: Array<string>
     shippingPrice: number
     product_type: "NORMAL"
+    publish_product: boolean
     shippingType: "CUSTOM" | "EASY_POST"
     properties: Array<Iproperties>
     sku: Array<Isku>

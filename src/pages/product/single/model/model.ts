@@ -35,9 +35,11 @@ export default class ProductSingleModel {
                     quantity: el?.quantity,
                     record: false,
                     weight: el?.weight,
-                    recordData : el?.recordData
+                    recordData: el?.recordData
                 }
-            })
+            }),
+            product_type: data?.product_type,
+            publish_product: data?.publish_status && typeof data?.publish_status === "string" ? data?.publish_status !== "DRAFTED" : data?.publish_status
         }
     }
 } 
