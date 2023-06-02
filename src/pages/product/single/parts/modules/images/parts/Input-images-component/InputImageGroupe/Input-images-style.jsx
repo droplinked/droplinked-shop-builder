@@ -20,7 +20,6 @@ export const ItemImage = chakra("div", {
     justifyContent: "center",
     alignitems: "center",
     borderRadius: "8px",
-    aspectRatio: "1 / 1",
   },
 });
 

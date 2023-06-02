@@ -16,7 +16,11 @@ export const initialStatesProduct: IproductState = {
     publish_product: true,
     shippingType: "EASY_POST",
     properties: [],
-    sku: []
+    sku: [],
+    prodviderID: "DLW",
+    pod_blank_product_id: null,
+    artwork: null,
+    m2m_positions: []
 }
 
 interface IproductContext {

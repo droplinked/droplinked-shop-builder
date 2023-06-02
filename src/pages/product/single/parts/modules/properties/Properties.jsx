@@ -8,9 +8,11 @@ function Properties() {
   return (
     <VStack align={"stretch"} spacing={4}>
       <ProductPageTitle
-          title='Product Properties'
-          description='Provide size, color, or both'
-        />
+        head
+        isReuired
+        title='Product Properties'
+        description='Add at least one property to enable all variant fields.'
+      />
       <PropertiesForm />
     </VStack>
   )

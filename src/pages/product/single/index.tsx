@@ -9,16 +9,21 @@ import ProductSingleModel from './model/model'
 import General from './parts/general/General'
 import Variant from './parts/variant/Variant'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
+import ProductCollapse from './parts/modules/collapse/ProductCollapse'
+import { IproductByIdServices } from 'lib/apis/product/interfaces'
+import ShippingProduct from './parts/modules/shipping/ShippingProduct'
+import ProductPodDesign from './parts/podDesign/ProductPodDesign'
+import CollectionProduct from './parts/collection/CollectionProduct'
 
 function ProductSingle() {
-    const { mutate, isLoading } = useMutation((params) => productByIdServices(params))
+    const { mutate, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
     const params = useParams()
     const [State, setState] = useState(initialStatesProduct)
     const { shop } = useProfile()
     const { refactorData } = ProductSingleModel
     const productId = params?.productId
 
-    const updateState = useCallback((element, value) => {
+    const updateState = useCallback((element: any, value: any) => {
         if ([typeof element, typeof value].includes("undefined")) return false
         setState(prev => ({ ...prev, [element]: value }))
     }, [])
@@ -39,9 +44,13 @@ function ProductSingle() {
         })
     }, [params])
 
-    useEffect(async () => {
-        if (params?.productId) setState(await fetch())
+    useEffect(() => {
+        if (params?.productId) fetch().then((res: any) => setState(res))
     }, [params])
+
+    useEffect(() => {
+        console.log(State);
+    }, [State])
 
     return (
         <productContext.Provider value={{
@@ -52,6 +61,9 @@ function ProductSingle() {
         }}>
             <VStack spacing={5}>
                 <General />
+                <ProductPodDesign />
+                <ShippingProduct />
+                <CollectionProduct />
                 <Variant />
                 <ButtonsProduct />
             </VStack>

@@ -5,11 +5,15 @@ export interface IproductState {
     priceUnit: string
     media: Array<string>
     shippingPrice: number
-    product_type: "NORMAL"
+    product_type: "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
     publish_product: boolean
     shippingType: "CUSTOM" | "EASY_POST"
     properties: Array<Iproperties>
     sku: Array<Isku>
+    prodviderID: string
+    pod_blank_product_id: string
+    artwork: string
+    m2m_positions: Array<string>
 }
 
 export interface IpropertiesItems {

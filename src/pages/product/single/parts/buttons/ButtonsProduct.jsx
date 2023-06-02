@@ -40,22 +40,23 @@ function ButtonsProduct() {
 
     return (
         <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
-            <Box><BasicButton onClick={() => shopNavigate("products")} variant='outline'>Cancel</BasicButton></Box>
-            <Flex gap={4}>
+            <Box>
                 <BasicButton
                     isLoading={productID ? update.isLoading || updateSku.isLoading : create.isLoading}
-                    variant={'ghost'}
+                    variant={'outline'}
                     onClick={() => submit(true)}
                 >
-                    Draft
+                    Save as draft
                 </BasicButton>
+            </Box>
+            <Box>
                 <BasicButton
                     isLoading={productID ? update.isLoading || updateSku.isLoading : create.isLoading}
-                    onClick={()=> submit(false)}
+                    onClick={() => submit(false)}
                 >
-                    Publish
+                    Publish Product
                 </BasicButton>
-            </Flex>
+            </Box>
         </HStack>
     )
 }

@@ -21,7 +21,7 @@ function ProductPageTitle({ description, title, head, isReuired }: IProps) {
                     {isReuired && <FieldLabelReuired fontSize={"larger"} fontFamily="aven" fontWeight={"bold"} />}
                 </HStack>
             </Box>
-            <AppTypography size='14px'>{description}</AppTypography>
+            <AppTypography size='14px' color={"#C2C2C2"}>{description}</AppTypography>
         </VStack>
     )
 }

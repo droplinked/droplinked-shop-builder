@@ -24,3 +24,7 @@ export const productByIdServices = ({ productID, shopname }: IproductByIdService
 export const skuUpdateByIdServices = ({ skuID, params }: IskuUpdateByIdServices) => {
     return axiosInstance.put(`sku/${skuID}`, params)
 }
+
+export const printPositionsServices = () => {
+    return axiosInstance.get(`product/public/print-positions`)
+}
