@@ -9,6 +9,7 @@ import AppErrors from 'lib/utils/statics/errors/errors'
 import useAppToast from 'functions/hooks/toast/useToast'
 import ButtonsProductClass from './model/ButtonProductModel'
 
+// prdocut page
 function ButtonsProduct() {
     const create = useMutation((params) => productCreateServices(params))
     const update = useMutation((params) => productUpdateServices(params))
