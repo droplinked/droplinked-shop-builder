@@ -48,6 +48,11 @@ const ThankForRegisterPage = lazy(() =>
   import("pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage")
 );
 
+const TestPage = lazy(() =>
+  import("pages/test/TestPage")
+);
+
+
 const ShopPage = lazy(() => import("pages/public-pages/shop-page/ShopPage"));
 const ProductSingle = lazy(() => import("pages/product/single"));
 const Shop = lazy(() => import("pages/affiliate/shopSingle/Shop"))
@@ -68,6 +73,7 @@ function AppRoutes() {
               <Route path="email-confirmation" element={<ThankForRegisterPage />} />
               <Route path="email-verification/:token" element={<VerifyEmailPage />} />
               <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
+              <Route path="/secret-test" element={<TestPage />} />
             </Route>
 
             <Route path=":shopname/c" element={<DashboardLayout />}>
