@@ -37,6 +37,8 @@ export default class propertyItemModel {
 
     // Set item for property
     static addPropertyItem = ({ state, value, index, keyProperty }: IaddItem): Array<Iproperties> => {
+        console.log(state);
+        
         return this.append.loopProperty({
             state,
             action: (el: Iproperties, key: number) => {

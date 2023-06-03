@@ -20,7 +20,7 @@ function ProductType() {
     return (
         <Box position={"relative"}>
             <AppSelectBox
-                label="POD Provider"
+                label="Product Type"
                 name="product_type"
                 items={items}
                 isRequired

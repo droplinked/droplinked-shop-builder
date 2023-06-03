@@ -20,6 +20,7 @@ function PropertyOptions({ element, onChange, value }) {
         <>
             <AppSelectBox
                 name={element.title}
+                backgroundColor="#1C1C1C"
                 onChange={onChange}
                 value={value}
                 {...!value && { placeholder: "property" }}

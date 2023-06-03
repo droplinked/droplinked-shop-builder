@@ -24,7 +24,7 @@ function ProductCollapse({ children, description, title }: IProps) {
           <Box><ProductPageTitle head isReuired title={title} description={description} /></Box>
           <Box><AppIcons.arrowDown style={{ transition: ".3s", ...Show && { transform: "rotate(180deg)" } }} /></Box>
         </Flex>
-        {Show && <Box>{children}</Box>}
+        <Box display={Show ? "block" : "none"}>{children}</Box>
       </VStack>
     </AppCard>
   )

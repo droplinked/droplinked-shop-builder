@@ -22,12 +22,11 @@ function PropertyButton({ state, types, skues }) {
         })
     }, [state, types])
 
-    const checkExistSku = useMemo(() => skues.length, [skues])
 
     return (
         <>
             {!checkLengthProperty ? (
-                <BasicButton onClick={append} isDisabled={checkExistSku} width="100%" variant="outline">Make New Properties</BasicButton>
+                <BasicButton onClick={append} sizes="medium">Make New Properties</BasicButton>
             ) : ''}
         </>
     )

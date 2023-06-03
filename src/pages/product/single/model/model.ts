@@ -43,7 +43,8 @@ export default class ProductSingleModel {
             pod_blank_product_id: data?.product_type,
             prodviderID: data?.prodviderID,
             artwork: data?.artwork,
-            m2m_positions:data?.m2m_positions
+            m2m_positions: data?.m2m_positions,
+            artwork_position: data?.artwork_position
         }
     }
 } 

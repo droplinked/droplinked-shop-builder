@@ -1,0 +1,48 @@
+import { Input, InputProps } from '@chakra-ui/react'
+import { productContext } from 'pages/product/single/context'
+import React, { useCallback, useContext } from 'react'
+
+interface IProps extends InputProps {
+    value: any
+    name: string
+    index: number
+}
+
+function FieldsSkuTable(props: IProps) {
+    const { state: { sku }, methods: { updateState } } = useContext(productContext)
+    const { name, index, value } = props
+
+    const updateSku = useCallback((e: any) => {
+        const value = parseInt(e.target.value)
+        const isDimensions = ["height", "length", "width"].includes(name)
+        const refactor = sku.map((el, key) => (key === index ? {
+            ...el,
+            ...isDimensions ? {
+                dimensions: {
+                    ...el.dimensions,
+                    [name]: value
+                }
+            } : { [name]: value }
+        } : el))
+        updateState("sku", refactor)
+    }, [sku, index, name])
+
+    return (
+        <Input
+            type="text"
+            variant={"unstyled"}
+            value={value || 0}
+            background="#141414"
+            border={"none"}
+            outline="none"
+            width="auto"
+            maxWidth={"70px"}
+            padding="3px"
+            color="#FFF"
+            onChange={updateSku}
+            {...props}
+        />
+    )
+}
+
+export default FieldsSkuTable

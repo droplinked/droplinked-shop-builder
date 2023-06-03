@@ -1,3 +1,4 @@
+export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
 export interface IproductState {
     title: string
     description: string
@@ -5,7 +6,7 @@ export interface IproductState {
     priceUnit: string
     media: Array<string>
     shippingPrice: number
-    product_type: "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
+    product_type: product_type
     publish_product: boolean
     shippingType: "CUSTOM" | "EASY_POST"
     properties: Array<Iproperties>
@@ -14,6 +15,7 @@ export interface IproductState {
     pod_blank_product_id: string
     artwork: string
     m2m_positions: Array<string>
+    artwork_position: string
 }
 
 export interface IpropertiesItems {

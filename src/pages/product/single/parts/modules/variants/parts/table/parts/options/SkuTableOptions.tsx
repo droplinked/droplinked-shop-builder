@@ -2,11 +2,8 @@ import React, { useCallback, useContext } from 'react'
 import { Box, HStack, Image } from '@chakra-ui/react'
 import { productContext } from 'pages/product/single/context'
 import { IRecordModalProduct } from '../recordModal/RecordModal'
-import deleteIcon from "assest/icon/delete-icon.svg";
 import { Isku } from 'lib/apis/product/interfaces'
 import introductionClass from 'pages/product/single/parts/general/model'
-import AppErrors from 'lib/utils/statics/errors/errors'
-import useAppToast from 'functions/hooks/toast/useToast'
 import AppIcons from 'assest/icon/Appicons';
 
 interface IProps {
@@ -21,14 +18,6 @@ interface IProps {
 
 function SkuTableOptions({ element, elementKey, updateSku, modals: { editModal, recordMoal } }: IProps) {
     const { state, methods: { updateState }, productID } = useContext(productContext)
-    const { showToast } = useAppToast()
-
-    // Delete sku
-    const DeleteSku = useCallback((key: number) => {
-        const remove = state.sku.filter((el, index) => index !== key && el)
-        updateState("sku", remove)
-        showToast(AppErrors.product.variant_has_been_deleted, "info")
-    }, [state.sku])
 
     // make data for "Record Modal"
     const RecordModalData = useCallback((): IRecordModalProduct => {
@@ -55,18 +44,6 @@ function SkuTableOptions({ element, elementKey, updateSku, modals: { editModal, 
                                 width={"16px"} height={"16px"} cursor={"pointer"} />
                         </Box>
                     )}
-                    <Box>
-                        <AppIcons.editIcon width={"16px"} height={"16px"} cursor={"pointer"} onClick={() => {
-                            updateSku(element)
-                            editModal()
-                        }} />
-                    </Box>
-                    <Box><AppIcons.infoIcon width={"16px"} height={"16px"} cursor={"pointer"} /></Box>
-                    {!productID ?
-                        <Box>
-                            <Image onClick={() => DeleteSku(elementKey)} src={deleteIcon} width={"16px"} height={"16px"} cursor={"pointer"} />
-                        </Box>
-                        : null}
                 </>
             </HStack>
         </>
