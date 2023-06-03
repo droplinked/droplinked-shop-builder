@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Image, Box, Text } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import { Image, Box, Text, Flex } from "@chakra-ui/react";
+import React, { useRef, useState } from "react";
 import {
   ImagesInputWrapper,
   ItemImage,
@@ -14,7 +14,13 @@ import AppErrors from "lib/utils/statics/errors/errors";
 import useAppToast from "functions/hooks/toast/useToast";
 import { toMb } from "lib/utils/heper/helpers";
 
-export default function InputImagesGroup({ setState, state }) {
+interface IProps {
+  setState: any
+  state: any
+  vertical?: boolean
+}
+
+export default function InputImagesGroup({ setState, state, vertical }: IProps) {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
   const { showToast } = useAppToast()
@@ -72,11 +78,18 @@ export default function InputImagesGroup({ setState, state }) {
 
   return (
     <ImagesInputWrapper>
-      <ItemImage>
+      <ItemImage {...vertical ? { width: "auto", height: "auto", bg: "subLayer", padding: "15px" } : { style: { aspectRatio: "1 / 1", } }}>
         {loading === true ? (
           <InputAddImage>
             <LoadingComponent />
           </InputAddImage>
+        ) : vertical ? (
+          <Flex gap={3} onClick={openFile} alignItems="center">
+            <Image src={uploadImage} w="24px" h="24px" />
+            <Text fontSize="14px" textAlign="center" color="darkGray">
+              Please upload JPG, JPEG, PNG or GIF
+            </Text>
+          </Flex>
         ) : (
           <InputAddImage onClick={openFile}>
             <Image src={uploadImage} w="50px" h="50px" />

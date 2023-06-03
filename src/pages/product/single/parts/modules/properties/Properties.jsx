@@ -7,10 +7,6 @@ function Properties() {
 
   return (
     <VStack align={"stretch"} spacing={4}>
-      <ProductPageTitle
-          title='Product Properties'
-          description='Provide size, color, or both'
-        />
       <PropertiesForm />
     </VStack>
   )

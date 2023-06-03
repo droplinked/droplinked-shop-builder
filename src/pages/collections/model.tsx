@@ -28,7 +28,7 @@ export default class CollectionsModel {
 
     static refactorData = ({ data, fetch, search }: IrefactorData): Array<ITableRows> => {
         search = search && search.toLowerCase()
-        const products = search ? data.filter((el: any) => el.title.toLowerCase().includes(search)) : data
+        const products = search ? data.filter((el: any) => el?.title && el.title.toLowerCase().includes(search)) : data
         return products.map((el: any): ITableRows => this.makeData(el, fetch))
     }
 }

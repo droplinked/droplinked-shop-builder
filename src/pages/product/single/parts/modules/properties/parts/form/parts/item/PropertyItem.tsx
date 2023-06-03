@@ -1,5 +1,5 @@
-import { Box, HStack, Text, useDisclosure } from '@chakra-ui/react'
-import React, { useCallback, useContext, useState } from 'react'
+import { background, Box, Flex, HStack, Input, Text, useDisclosure } from '@chakra-ui/react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import propertiesFormContext from '../../context';
 import { productContext } from 'pages/product/single/context';
 import propertyItemModel from './model/model';
@@ -12,10 +12,12 @@ import AppIcons from 'assest/icon/Appicons';
 function PropertyItem({ element, keyProperty }) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [SkuData, setSkuData] = useState(null)
-    const { state: { sku } } = useContext(productContext)
+    const { state: { sku }, methods } = useContext(productContext)
     const { updateState } = useContext(propertiesFormContext)
     const { appendPropertyItem, addPropertyItem, removePropertyItem, checkUsedPropertyItem } = propertyItemModel
     const { showToast } = useAppToast()
+    const [Value, setValue] = useState("")
+    const inputRef = useRef<any>()
 
     const append = useCallback((keyProperty) => {
         updateState(prev => appendPropertyItem({
@@ -36,65 +38,58 @@ function PropertyItem({ element, keyProperty }) {
     }
 
     const remove = useCallback(async (item, element, keyProperty, keyItem) => {
-        try {
-            await checkItem(item, element)
-            updateState(prev => removePropertyItem({ state: prev, keyItem, keyProperty }))
-        } catch (error) {
-            showToast("This item used in skues", "error")
-        }
+        updateState(prev => removePropertyItem({ state: prev, keyItem, keyProperty }))
     }, [updateState, sku])
 
     const set = useCallback(async (item, element, value, index, keyProperty) => {
         try {
             await checkItem(item, element)
             updateState(prev => addPropertyItem({ state: prev, index, keyProperty, value }))
+            setValue("")
         } catch (error) {
             setSkuData(error)
-            showToast(
-                <>
-                    This item use {" "}
-                    <button
-                        onClick={() => {
-                            setSkuData(error)
-                            onOpen()
-                        }}
-                    >
-                        <Text color={"#25bb92"}><strong>this</strong></Text>
-                    </button>{" "}
-                    sku
-                </>
-                , "error", { toastId: "SkuUsed" })
+            showToast("This sku exist", "error", { toastId: "SkuUsed" })
         }
     }, [updateState, sku])
 
+    const onSubmit = useCallback((e: any, item: any, key: any) => {
+        e.preventDefault()
+        append(keyProperty)
+        set(item, element, Value, key, keyProperty)
+    }, [Value])
+
     return (
-        <>
+        <Flex justifyContent={"left"} flexWrap="wrap" backgroundColor="#1C1C1C" padding={2} minHeight="48px" gap={3} alignContent="center" width="100%" cursor={"text"} onClick={() => inputRef.current.focus()}>
             {element.value.length ? element.items.map((item, key) => {
-                const checkAppend = typeof element.items[key + 1] !== "undefined"
                 return (
-                    <HStack key={key}>
-                        <Box width={"20%"}><AppTypography size='14px' color={"#FFF"}>{`Value ${key + 1}`}</AppTypography></Box>
-                        <Box width={"77%"}>
-                            <AppInput
-                                name=''
-                                placeholder="default"
-                                value={item.value}
-                                onChange={(e) => set(item, element, e.target.value, key, keyProperty)}
-                            />
-                        </Box>
-                        <Box>
-                            <Box
-                                cursor="pointer"
-                                onClick={() => checkAppend ? remove(item, element, keyProperty, key) : item.value ? append(keyProperty) : {}}
-                            >
-                                {checkAppend ? <AppIcons.minusIcon width={"20px"} height="20px" /> : <AppIcons.plusIcon width={"20px"} height="20px" />}
-                            </Box>
-                        </Box>
-                    </HStack>
+                    <>
+                        {item.value && (
+                            <Flex key={key} alignItems="center" gap={2} color={"#FFF"} padding={"6px 15px"} backgroundColor="#141414">
+                                <AppTypography size='14px'>{item.value}</AppTypography>
+                                <AppIcons.close style={{ cursor: "pointer" }} onClick={() => remove(item, element, keyProperty, key)} width={"10px"} height="10px" />
+                            </Flex>
+                        )}
+                    </>
                 )
             }) : null}
+            <Box>
+                <form onSubmit={(e) => onSubmit(e, [], element.items ? element.items.length : 0)}>
+                    <Input
+                        type={"text"}
+                        padding={1}
+                        ref={inputRef}
+                        value={Value}
+                        placeholder="enter property"
+                        background="none"
+                        color={"#FFF"}
+                        outline="none"
+                        variant={"unstyled"}
+                        onChange={(e) => setValue(e.target.value)}
+                    />
+                </form>
+            </Box>
             <SkuTableModal close={onClose} open={SkuData && isOpen} skuData={SkuData} />
-        </>
+        </Flex>
     )
 }
 

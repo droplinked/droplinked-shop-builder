@@ -13,9 +13,15 @@ export const initialStatesProduct: IproductState = {
     priceUnit: "USD",
     shippingPrice: 0,
     product_type: "NORMAL",
+    publish_product: true,
     shippingType: "EASY_POST",
     properties: [],
-    sku: []
+    sku: [],
+    prodviderID: "DLW",
+    pod_blank_product_id: null,
+    artwork: null,
+    m2m_positions: [],
+    artwork_position:"front-center"
 }
 
 interface IproductContext {

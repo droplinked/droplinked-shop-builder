@@ -11,7 +11,7 @@ function ImageListProduct({ product }) {
     return (
         <a href={redirectToIo({ productID: product._id })} target="_blank">
             <HStack width={"250px"} color="#FFF">
-                <Box width={"50px"}><AppImage src={product.media && product.media[0].url} /></Box>
+                <Box width={"50px"}><AppImage src={product?.media && product?.media.length && product.media[0].url} /></Box>
                 <Box><Text>{product.title}</Text></Box>
             </HStack>
         </a>
