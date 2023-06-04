@@ -1,4 +1,5 @@
 import { Input, InputProps } from '@chakra-ui/react'
+import { floatNumberRegex } from 'lib/utils/heper/regex'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext } from 'react'
 
@@ -13,19 +14,22 @@ function FieldsSkuTable(props: IProps) {
     const { name, index, value } = props
 
     const updateSku = useCallback((e: any) => {
-        const value = parseInt(e.target.value)
+        let inputvalue: any = e.target.value
+        
+        if (!["externalID"].includes(name)) inputvalue = floatNumberRegex.test(inputvalue) ? inputvalue : value
+
         const isDimensions = ["height", "length", "width"].includes(name)
         const refactor = sku.map((el, key) => (key === index ? {
             ...el,
             ...isDimensions ? {
                 dimensions: {
                     ...el.dimensions,
-                    [name]: value
+                    [name]: inputvalue
                 }
-            } : { [name]: value }
+            } : { [name]: inputvalue }
         } : el))
         updateState("sku", refactor)
-    }, [sku, index, name])
+    }, [sku, index, name, value])
 
     return (
         <Input

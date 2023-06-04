@@ -21,11 +21,21 @@ export const initialStatesProduct: IproductState = {
     pod_blank_product_id: null,
     artwork: null,
     m2m_positions: [],
-    artwork_position:"FRONT_CENTER"
+    artwork_position: "FRONT_CENTER"
+}
+
+export interface IproductStore {
+    variants: any
 }
 
 interface IproductContext {
     state: IproductState,
+    store: {
+        state: IproductStore
+        methods: {
+            update(storeName: any, data: any): void
+        }
+    }
     productID: null | string,
     methods: {
         updateState(element: string, value: any): void
@@ -37,6 +47,14 @@ interface IproductContext {
 export const productContext = createContext<IproductContext>({
     state: initialStatesProduct,
     productID: null,
+    store: {
+        state: {
+            variants: []
+        },
+        methods: {
+            update: () => { }
+        }
+    },
     methods: {
         updateState: () => { },
         fetch: () => { }

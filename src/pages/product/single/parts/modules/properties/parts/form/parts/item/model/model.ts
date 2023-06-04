@@ -1,6 +1,5 @@
 import { Iproperties, IpropertiesItems } from "lib/apis/product/interfaces"
 import AppendModule from "../../../model/module/append"
-import itemModule, { IcheckRemoveItem } from "./module/item"
 import { IaddProperty } from "../../../model/model"
 
 interface IremoveItem {
@@ -18,9 +17,13 @@ interface IaddItem extends IaddProperty {
     keyProperty: number
 }
 
+interface IcheckUsedPropertyItem {
+    propertyValue: string
+    properties: Array<Iproperties>
+}
+
 export default class propertyItemModel {
     private static append = AppendModule
-    private static itemModule = itemModule
 
     // Append new row item to property
     static appendPropertyItem = ({ state, keyProperty }: IappendPropertyItem) => {
@@ -53,7 +56,7 @@ export default class propertyItemModel {
     }
 
     // Remove item property
-    static removePropertyItem = ({ valueItem, keyProperty, state }: IremoveItem): Array<Iproperties> => {        
+    static removePropertyItem = ({ valueItem, keyProperty, state }: IremoveItem): Array<Iproperties> => {
         return this.append.loopProperty({
             state,
             action: (el: Iproperties, key: number) => {
@@ -68,10 +71,10 @@ export default class propertyItemModel {
     }
 
     // Check this item use in property
-    static checkUsedPropertyItem = (params: IcheckRemoveItem) => {
+    static checkUsedPropertyItem = ({ properties, propertyValue }: IcheckUsedPropertyItem) => {        
         return new Promise((resolve, reject) => {
-            const check = this.itemModule.check(params)
-            if (check && params.item.value.toLocaleString().length) {
+            const check = properties.find(el => el.items.find(item => item.value === propertyValue))
+            if (check) {
                 reject(check)
             } else {
                 resolve(true)

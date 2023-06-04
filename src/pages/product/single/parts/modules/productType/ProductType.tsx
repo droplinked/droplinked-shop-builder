@@ -12,6 +12,9 @@ function ProductType() {
 
     useEffect(() => mutate({ prodviderID }), [prodviderID])
 
+    // Set default pod_blank_product_id 
+    useEffect(() => items && items.length && updateState("pod_blank_product_id", items[0].value), [data])
+
     const items = useMemo(() => data?.data?.data ? data?.data?.data.map((el: any) => ({
         caption: el.category,
         value: el._id
@@ -23,6 +26,7 @@ function ProductType() {
                 label="Product Type"
                 name="product_type"
                 items={items}
+                placeholder="Select..."
                 isRequired
                 loading={loading}
                 value={pod_blank_product_id}

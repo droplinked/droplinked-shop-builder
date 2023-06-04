@@ -4,7 +4,7 @@ import AppendModule from '../../model/module/append'
 import PropertiesFormModel from '../../model/model'
 import propertiesFormContext from '../../context'
 
-function PropertyButton({ state, types, skues }) {
+function PropertyButton({ state, types }) {
     const { updateState } = useContext(propertiesFormContext)
     const { appendHandle } = PropertiesFormModel
 

@@ -4,12 +4,16 @@ const propertiesFormState = []
 
 interface IpropertiesFormContext {
     state: Array<any>,
-    updateState(...params:any): void 
+    updateState(...params: any): void
+    set: Function
+    remove: Function
 }
 
 const propertiesFormContext = createContext<IpropertiesFormContext>({
     state: propertiesFormState,
-    updateState: () => {}
+    updateState: () => { }
+    set: () => { }
+    remove: () => { }
 })
 
 export default propertiesFormContext
