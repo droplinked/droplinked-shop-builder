@@ -12,7 +12,7 @@ interface IaddSku {
 }
 
 function VariantsProduct() {
-  const { state: { sku, properties }, methods: { updateState }, loading, productID } = useContext(productContext)
+  const { state: { sku, properties, product_type }, methods: { updateState }, loading, productID, store: { state: { variants } } } = useContext(productContext)
   const { refactor } = VariantsProductModel
 
   const addSku = useCallback(({ properties }: IaddSku) => {
@@ -21,12 +21,12 @@ function VariantsProduct() {
       items: el.items.filter(item => item.value)
     }))
 
-    updateState("sku", refactor({ properties, skues: sku }))
-  }, [sku])
+    updateState("sku", refactor({ properties, skues: sku, variants, product_type }))
+  }, [sku, variants, product_type])
 
   useEffect(() => {
     addSku({ properties })
-  }, [properties, productID])
+  }, [properties, productID, product_type])
 
   return (
     <AppSkeleton isLoaded={loading}>

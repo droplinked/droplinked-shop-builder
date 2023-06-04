@@ -1,8 +1,15 @@
-import { Iproperties, Isku, IskuOption } from "lib/apis/product/interfaces"
+import { Iproperties, Isku, IskuOption, product_type } from "lib/apis/product/interfaces"
+
+interface IcheckAvailable {
+    variants: any
+    options: Array<IskuOption>
+}
 
 interface Irefactor {
     properties: Array<Iproperties>
     skues: Array<Isku>
+    product_type: product_type
+    variants: any
 }
 
 interface IfindByOptionSku {
@@ -16,7 +23,17 @@ export default class VariantsProductModel {
         return skues.find(el => JSON.stringify(el.options) === JSON.stringify(options))
     }
 
-    static refactor = ({ properties, skues }: Irefactor) => {
+    static checkAvailable = ({ options, variants }: IcheckAvailable) => {
+        const blank_options = variants?.blank_options
+        if (blank_options && blank_options[0]) {
+            const getVariant = blank_options[0][options[0].value]
+            const sizes = getVariant?.sizes
+            return sizes && sizes.includes(options[1].value)
+        }
+        return false
+    }
+
+    static refactor = ({ properties, skues, variants, product_type }: Irefactor) => {
         const data: Isku = {
             externalID: "",
             index: 0,
@@ -50,7 +67,7 @@ export default class VariantsProductModel {
                             }
                         ]
                         const sku = this.findByOptionSku({ options, skues })
-
+                        if (product_type === "PRINT_ON_DEMAND" && options.length > 1) this.checkAvailable({ options, variants })
                         result.push({
                             ...sku || data, options
                         });
@@ -64,6 +81,7 @@ export default class VariantsProductModel {
                         }
                     ]
                     const sku = this.findByOptionSku({ options, skues })
+                    if (product_type === "PRINT_ON_DEMAND" && options.length > 1) this.checkAvailable({ options, variants })
                     result.push({
                         ...sku || data, options
                     });

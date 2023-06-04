@@ -1,12 +1,12 @@
 import { Box, Flex, Input } from '@chakra-ui/react'
 import React, { useCallback, useContext, useRef, useState } from 'react'
-import propertiesFormContext from '../../context';
 import propertyItemModel from './model/model';
 import AppTypography from 'components/common/typography/AppTypography';
 import AppIcons from 'assest/icon/Appicons';
+import propertiesFormContext from '../../../../context';
 
 function PropertyItem({ element, keyProperty }) {
-    const { updateState } = useContext(propertiesFormContext)
+    const { updateState, set, remove } = useContext(propertiesFormContext)
     const { appendPropertyItem } = propertyItemModel
     const [Value, setValue] = useState("")
     const inputRef = useRef<any>()
@@ -21,7 +21,14 @@ function PropertyItem({ element, keyProperty }) {
     const onSubmit = useCallback((e: any, item: any, key: any) => {
         e.preventDefault()
         append(keyProperty)
-        set(Value, key, keyProperty)
+        console.log();
+
+        set({
+            item: {
+                value: Value,
+                variantID: element.value
+            }
+        })
         setValue("")
     }, [Value])
 
@@ -33,7 +40,7 @@ function PropertyItem({ element, keyProperty }) {
                         {item.value && (
                             <Flex key={key} alignItems="center" gap={2} color={"#FFF"} padding={"6px 15px"} backgroundColor="#141414">
                                 <AppTypography size='14px'>{item.value}</AppTypography>
-                                <AppIcons.close style={{ cursor: "pointer" }} onClick={() => remove(item, keyProperty)} width={"10px"} height="10px" />
+                                <AppIcons.close style={{ cursor: "pointer" }} onClick={() => remove(item.value, keyProperty)} width={"10px"} height="10px" />
                             </Flex>
                         )}
                     </>

@@ -35,10 +35,10 @@ export default class SkuTableModel {
                     value: <FieldsSkuTable index={key} value={sku.quantity} name={"quantity"} />
                 }
             },
+            externalID: {
+                value: <FieldsSkuTable index={key} value={sku.externalID} name={"externalID"} />
+            },
             ...product_type === "NORMAL" && {
-                externalID: {
-                    value: <FieldsSkuTable index={key} value={sku.externalID} name={"externalID"} />
-                },
                 Packaging: {
                     value: (
                         <Flex gap={2} alignItems="center">

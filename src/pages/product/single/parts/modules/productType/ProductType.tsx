@@ -30,7 +30,11 @@ function ProductType() {
                 isRequired
                 loading={loading}
                 value={pod_blank_product_id}
-                onChange={(e) => updateState("pod_blank_product_id", e.target.value)}
+                onChange={(e) => {
+                    updateState("pod_blank_product_id", e.target.value)
+                    updateState("sku", [])
+                    updateState("properties", [])
+                }}
             />
         </Box>
     )
