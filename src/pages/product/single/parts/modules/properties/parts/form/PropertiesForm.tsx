@@ -20,7 +20,7 @@ function PropertiesForm() {
     // Update properties product
     useEffect(() => {
         const data = makeData(State)
-        if (data.length) updateState("properties", data)
+        updateState("properties", data)
     }, [State, updateState])
 
     // Update properties when update mode

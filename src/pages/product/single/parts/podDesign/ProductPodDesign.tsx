@@ -2,10 +2,10 @@ import { VStack } from '@chakra-ui/react'
 import React, { useContext } from 'react'
 import ProductCollapse from '../modules/collapse/ProductCollapse'
 import ProductArtwork from '../modules/artwork/ProductImages'
-import ProductImages from '../modules/images/ProductImages'
 import ProductType from '../modules/productType/ProductType'
 import ProductMintToMerge from '../modules/mintToMerge/ProductMintToMerge'
 import { productContext } from '../../context'
+import ProductMockup from '../modules/mockup/ProductMockup'
 
 function ProductPodDesign() {
     const { state: { product_type } } = useContext(productContext)
@@ -17,7 +17,7 @@ function ProductPodDesign() {
                     <VStack spacing={10} align={"stretch"}>
                         <ProductType />
                         <ProductArtwork />
-                        <ProductImages />
+                        <ProductMockup />
                         <ProductMintToMerge />
                     </VStack>
                 </ProductCollapse>

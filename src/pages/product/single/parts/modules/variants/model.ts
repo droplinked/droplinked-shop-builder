@@ -1,7 +1,22 @@
-import { Iproperties, Isku } from "lib/apis/product/interfaces"
+import { Iproperties, Isku, IskuOption } from "lib/apis/product/interfaces"
+
+interface Irefactor {
+    properties: Array<Iproperties>
+    skues: Array<Isku>
+}
+
+interface IfindByOptionSku {
+    options: Array<IskuOption>
+    skues: Array<Isku>
+}
+
 
 export default class VariantsProductModel {
-    static refactor = (properties: Array<Iproperties>,) => {
+    static findByOptionSku = ({ options, skues }: IfindByOptionSku) => {
+        return skues.find(el => JSON.stringify(el.options) === JSON.stringify(options))
+    }
+
+    static refactor = ({ properties, skues }: Irefactor) => {
         const data: Isku = {
             externalID: "",
             index: 0,
@@ -22,32 +37,35 @@ export default class VariantsProductModel {
             properties[0].items.map(node => {
                 if (properties[1]) {
                     properties[1].items.map(items => {
-                        result.push({
-                            ...data,
-                            options: [
-                                {
-                                    value: node.value,
-                                    variantID: properties[0].value,
-                                    variantName: properties[0].title
-                                },
-                                {
-                                    value: items.value,
-                                    variantID: properties[0].value,
-                                    variantName: properties[0].title
-                                }
-                            ]
-                        });
-                    })
-                } else {
-                    result.push({
-                        ...data,
-                        options: [
+                        const options = [
                             {
                                 value: node.value,
                                 variantID: properties[0].value,
                                 variantName: properties[0].title
+                            },
+                            {
+                                value: items.value,
+                                variantID: properties[1].value,
+                                variantName: properties[1].title
                             }
-                        ],
+                        ]
+                        const sku = this.findByOptionSku({ options, skues })
+
+                        result.push({
+                            ...sku || data, options
+                        });
+                    })
+                } else {
+                    const options = [
+                        {
+                            value: node.value,
+                            variantID: properties[0].value,
+                            variantName: properties[0].title
+                        }
+                    ]
+                    const sku = this.findByOptionSku({ options, skues })
+                    result.push({
+                        ...sku || data, options
                     });
                 }
             })

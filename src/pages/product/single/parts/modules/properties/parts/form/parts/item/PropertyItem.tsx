@@ -38,7 +38,8 @@ function PropertyItem({ element, keyProperty }) {
     }
 
     const remove = useCallback(async (item, element, keyProperty, keyItem) => {
-        updateState(prev => removePropertyItem({ state: prev, keyItem, keyProperty }))
+
+        updateState(prev => removePropertyItem({ state: prev, valueItem: item.value, keyProperty }))
     }, [updateState, sku])
 
     const set = useCallback(async (item, element, value, index, keyProperty) => {

@@ -49,7 +49,7 @@ function ProductSingle() {
     }, [params])
 
     useEffect(() => {
-        console.log(State);
+        // console.log(State);
     }, [State])
 
     return (

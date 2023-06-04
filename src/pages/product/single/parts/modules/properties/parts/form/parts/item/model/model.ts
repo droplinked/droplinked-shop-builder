@@ -5,7 +5,7 @@ import { IaddProperty } from "../../../model/model"
 
 interface IremoveItem {
     state: Array<Iproperties>
-    keyItem: number
+    valueItem: string
     keyProperty: number
 }
 
@@ -37,8 +37,6 @@ export default class propertyItemModel {
 
     // Set item for property
     static addPropertyItem = ({ state, value, index, keyProperty }: IaddItem): Array<Iproperties> => {
-        console.log(state);
-        
         return this.append.loopProperty({
             state,
             action: (el: Iproperties, key: number) => {
@@ -55,14 +53,14 @@ export default class propertyItemModel {
     }
 
     // Remove item property
-    static removePropertyItem = ({ keyItem, keyProperty, state }: IremoveItem): Array<Iproperties> => {
+    static removePropertyItem = ({ valueItem, keyProperty, state }: IremoveItem): Array<Iproperties> => {        
         return this.append.loopProperty({
             state,
             action: (el: Iproperties, key: number) => {
                 return {
                     ...el,
                     items: keyProperty === key ? el.items.filter((item, index) => {
-                        if (keyItem !== index) return item
+                        if (valueItem !== item.value) return item
                     }) : el.items
                 }
             }
@@ -80,4 +78,6 @@ export default class propertyItemModel {
             }
         })
     }
+
+
 }
