@@ -4,25 +4,25 @@ import propertyItemModel from './model/model';
 import AppTypography from 'components/common/typography/AppTypography';
 import AppIcons from 'assest/icon/Appicons';
 import propertiesFormContext from '../../../../context';
+import { productContext } from 'pages/product/single/context';
 
 function PropertyItem({ element, keyProperty }) {
-    const { updateState, set, remove } = useContext(propertiesFormContext)
+    const { state: { properties }, methods: { updateState } } = useContext(productContext)
+    const { set, remove } = useContext(propertiesFormContext)
     const { appendPropertyItem } = propertyItemModel
     const [Value, setValue] = useState("")
     const inputRef = useRef<any>()
 
     const append = useCallback((keyProperty) => {
-        updateState(prev => appendPropertyItem({
-            state: prev,
+        updateState("properties", appendPropertyItem({
+            state: properties,
             keyProperty
         }))
-    }, [updateState])
+    }, [properties])
 
     const onSubmit = useCallback((e: any, item: any, key: any) => {
         e.preventDefault()
         append(keyProperty)
-        console.log();
-
         set({
             item: {
                 value: Value,

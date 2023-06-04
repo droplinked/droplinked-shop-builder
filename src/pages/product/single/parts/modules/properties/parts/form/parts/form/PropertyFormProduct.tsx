@@ -1,6 +1,7 @@
 import { Box, Flex, HStack, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { typesProperties } from 'lib/utils/statics/types'
+import { productContext } from 'pages/product/single/context'
 import SkeletonProduct from 'pages/product/single/parts/modules/skeleton/SkeletonProduct'
 import ProductPageTitle from 'pages/product/single/parts/modules/title/ProductPageTitle'
 import React, { useCallback, useContext } from 'react'
@@ -11,17 +12,17 @@ import PropertyItem from './parts/item/PropertyItem'
 import PropertyOptions from './parts/options/PropertyOptions'
 
 function PropertyFormProduct() {
-    const { state, updateState } = useContext(propertiesFormContext)
+    const { state: { properties }, methods: { updateState } } = useContext(productContext)
     const { addProperty } = PropertiesFormModel
 
     // Create new property  
     const create = useCallback((value: any, key: number) => {
-        updateState(prev => addProperty({
-            state: prev,
+        updateState("properties", addProperty({
+            state: properties,
             index: key,
             value
         }))
-    }, [])
+    }, [properties])
 
     return (
         <>
@@ -32,11 +33,11 @@ function PropertyFormProduct() {
                     title='Product Properties'
                     description='Add at least one property to enable all variant fields.'
                 />
-                <PropertyButton state={state} types={typesProperties} />
+                <PropertyButton state={properties} types={typesProperties} />
             </Flex>
             <SkeletonProduct>
                 <VStack align={"stretch"} spacing={3}>
-                    {state.length ? state.map((el, keyProperty) => (
+                    {properties.length ? properties.map((el, keyProperty) => (
                         <VStack background={"#141414"} spacing={4} borderRadius="8px" padding={4} align={"stretch"} key={keyProperty} width={"100%"}>
                             <HStack>
                                 <Box width={"20%"}><AppTypography size="14px" color="#FFF">Property</AppTypography></Box>

@@ -10,13 +10,13 @@ import { PODPropertiesModel } from './PODProperties_model'
 import classes from './style.module.scss'
 
 function PODProperties() {
-    const { state: { product_type, properties, pod_blank_product_id }, methods, store: { state: { variants } } } = useContext(productContext)
-    const { updateState, set, remove, state } = useContext(propertiesFormContext)
+    const { state: { product_type, properties, pod_blank_product_id }, methods: { updateState }, store: { state: { variants } } } = useContext(productContext)
+    const { set, remove } = useContext(propertiesFormContext)
     const { getProperties } = PODPropertiesModel
     const [Toggle, setToggle] = useState(false)
 
     useEffect(() => {
-        if (!properties.length && !state.length && product_type == "PRINT_ON_DEMAND") {
+        if (!properties.length && !properties.length && product_type == "PRINT_ON_DEMAND") {
             const properties = [
                 {
                     "value": "62a989ab1f2c2bbc5b1e7153",
@@ -29,10 +29,9 @@ function PODProperties() {
                     "items": []
                 },
             ]
-            updateState(properties)
-            methods.updateState("properties", properties)
+            updateState("properties", properties)
         }
-    }, [product_type, state, properties])
+    }, [product_type, properties])
 
 
     const makeproperties = useMemo(() => {
@@ -102,7 +101,7 @@ function PODProperties() {
                                         cursor="pointer"
                                         background="#1C1C1C"
                                         className={`${checkItem(el) ? classes.active : ""} ${classes.box}`}
-                                        >
+                                    >
                                         {el}
                                     </Box>
                                 ))}

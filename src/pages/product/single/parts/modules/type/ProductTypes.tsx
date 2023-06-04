@@ -10,8 +10,10 @@ function ProductTypes() {
 
     const changeProductType = useCallback((value: string) => {
         updateState("product_type", product_type === value ? "NORMAL" : value)
-        updateState("sku", [])
-        // updateState("properties", [])
+        if (value === "PRINT_ON_DEMAND") {
+            updateState("sku", [])
+            updateState("properties", [])
+        }
     }, [product_type])
 
     return (

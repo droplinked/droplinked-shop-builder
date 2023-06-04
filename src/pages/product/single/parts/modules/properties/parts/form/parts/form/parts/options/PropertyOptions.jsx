@@ -3,18 +3,19 @@ import PropertiesFormModel from '../../../../model/model'
 import propertiesFormContext from '../../../../context'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import { typesProperties } from 'lib/utils/statics/types'
+import { productContext } from 'pages/product/single/context'
 
 function PropertyOptions({ element, onChange, value }) {
-    const { state } = useContext(propertiesFormContext)
+    const { state: { properties } } = useContext(productContext)
     const { typesAvailable } = PropertiesFormModel
 
     const typesSelected = useCallback((propertyValue, typeID) => {
         return typesAvailable({
-            state,
+            state: properties,
             typeID,
             propertyValue
         })
-    }, [state, typesProperties])
+    }, [properties, typesProperties])
 
     return (
         <>
