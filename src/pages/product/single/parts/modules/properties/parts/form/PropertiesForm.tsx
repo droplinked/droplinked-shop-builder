@@ -21,20 +21,22 @@ function PropertiesForm() {
         })
     }, [properties])
 
-    const setState = (data:any) => updateState("properties", data)
+    const setState = (data: any) => updateState("properties", data)
 
     const remove = useCallback(async (valueItem, keyProperty) => {
-        updateState("properties",removePropertyItem({ state: properties, valueItem, keyProperty }))
-    }, [properties, sku])
+        if (productID) return false
+        updateState("properties", removePropertyItem({ state: properties, valueItem, keyProperty }))
+    }, [properties, sku, productID])
 
     const set = useCallback(async ({ item }: IaddPropertyItem) => {
+        if (productID) return false
         try {
             await checkItem(item.value)
-            updateState("properties",addPropertyItem({ item, properties }))
+            updateState("properties", addPropertyItem({ item, properties }))
         } catch (error) {
             showToast("This property exist", "error", { toastId: "SkuUsed" })
         }
-    }, [updateState, sku, properties])
+    }, [updateState, sku, properties, productID])
 
     return (
         <propertiesFormContext.Provider value={{

@@ -8,12 +8,12 @@ import { useMutation, useQuery } from 'react-query'
 
 function ProductType() {
     const { mutate, data } = useMutation((params: IproviderIDService) => providerIDService(params))
-    const { state: { prodviderID, pod_blank_product_id }, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { prodviderID, product_type, pod_blank_product_id }, productID, methods: { updateState }, loading } = useContext(productContext)
 
     useEffect(() => mutate({ prodviderID }), [prodviderID])
 
     // Set default pod_blank_product_id 
-    useEffect(() => items && items.length && updateState("pod_blank_product_id", items[0].value), [data])
+    useEffect(() => !productID && items && items.length && updateState("pod_blank_product_id", items[0].value), [data,productID])
 
     const items = useMemo(() => data?.data?.data ? data?.data?.data.map((el: any) => ({
         caption: el.category,
@@ -25,6 +25,7 @@ function ProductType() {
             <AppSelectBox
                 label="Product Type"
                 name="product_type"
+                isDisabled={Boolean(productID)}
                 items={items}
                 placeholder="Select..."
                 isRequired
@@ -32,8 +33,24 @@ function ProductType() {
                 value={pod_blank_product_id}
                 onChange={(e) => {
                     updateState("pod_blank_product_id", e.target.value)
-                    updateState("sku", [])
-                    updateState("properties", [])
+                    if (product_type === "PRINT_ON_DEMAND") {
+                        updateState("sku", [])
+                        updateState("properties", [
+                            {
+                                "value": "62a989ab1f2c2bbc5b1e7153",
+                                "title": "Color",
+                                "items": []
+                            },
+                            {
+                                "value": "62a989e21f2c2bbc5b1e7154",
+                                "title": "Size",
+                                "items": []
+                            }
+                        ])
+                    } else {
+                        updateState("sku", [])
+                        updateState("properties", [])
+                    }
                 }}
             />
         </Box>

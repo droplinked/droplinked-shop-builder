@@ -5,10 +5,10 @@ import PropertiesForm from './parts/form/PropertiesForm';
 import { productContext } from 'pages/product/single/context';
 
 function Properties() {
-  const { state: { product_type } } = useContext(productContext)
+  const { productID } = useContext(productContext)
 
   return (
-    <VStack align={"stretch"} spacing={4}>
+    <VStack align={"stretch"} spacing={4} {...productID && { opacity: ".7" }}>
       <PropertiesForm />
     </VStack>
   )

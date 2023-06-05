@@ -7,7 +7,7 @@ import propertiesFormContext from '../../../../context';
 import { productContext } from 'pages/product/single/context';
 
 function PropertyItem({ element, keyProperty }) {
-    const { state: { properties }, methods: { updateState } } = useContext(productContext)
+    const { state: { properties }, methods: { updateState }, productID } = useContext(productContext)
     const { set, remove } = useContext(propertiesFormContext)
     const { appendPropertyItem } = propertyItemModel
     const [Value, setValue] = useState("")
@@ -33,7 +33,7 @@ function PropertyItem({ element, keyProperty }) {
     }, [Value])
 
     return (
-        <Flex justifyContent={"left"} flexWrap="wrap" backgroundColor="#1C1C1C" padding={2} minHeight="48px" gap={3} alignContent="center" width="100%" cursor={"text"} onClick={() => inputRef.current.focus()}>
+        <Flex justifyContent={"left"} flexWrap="wrap" backgroundColor="#1C1C1C" padding={2} minHeight="48px" gap={3} alignContent="center" width="100%" cursor={productID ? "auto" : "text"} onClick={() => inputRef.current.focus()}>
             {element.value.length ? element.items.map((item, key) => {
                 return (
                     <>
@@ -46,22 +46,24 @@ function PropertyItem({ element, keyProperty }) {
                     </>
                 )
             }) : null}
-            <Box>
-                <form onSubmit={(e) => onSubmit(e, [], element.items ? element.items.length : 0)}>
-                    <Input
-                        type={"text"}
-                        padding={1}
-                        ref={inputRef}
-                        value={Value}
-                        placeholder="enter property"
-                        background="none"
-                        color={"#FFF"}
-                        outline="none"
-                        variant={"unstyled"}
-                        onChange={(e) => setValue(e.target.value)}
-                    />
-                </form>
-            </Box>
+            {!productID ? (
+                <Box>
+                    <form onSubmit={(e) => onSubmit(e, [], element.items ? element.items.length : 0)}>
+                        <Input
+                            type={"text"}
+                            padding={1}
+                            ref={inputRef}
+                            value={Value}
+                            placeholder="enter property"
+                            background="none"
+                            color={"#FFF"}
+                            outline="none"
+                            variant={"unstyled"}
+                            onChange={(e) => setValue(e.target.value)}
+                        />
+                    </form>
+                </Box>
+            ) : null}
         </Flex>
     )
 }

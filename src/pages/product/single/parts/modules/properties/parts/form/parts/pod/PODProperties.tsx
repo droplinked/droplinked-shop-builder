@@ -10,29 +10,10 @@ import { PODPropertiesModel } from './PODProperties_model'
 import classes from './style.module.scss'
 
 function PODProperties() {
-    const { state: { product_type, properties, pod_blank_product_id }, methods: { updateState }, store: { state: { variants } } } = useContext(productContext)
+    const { state: { product_type, properties, pod_blank_product_id }, productID, methods: { updateState }, store: { state: { variants } } } = useContext(productContext)
     const { set, remove } = useContext(propertiesFormContext)
     const { getProperties } = PODPropertiesModel
     const [Toggle, setToggle] = useState(false)
-
-    useEffect(() => {
-        if (!properties.length && !properties.length && product_type == "PRINT_ON_DEMAND") {
-            const properties = [
-                {
-                    "value": "62a989ab1f2c2bbc5b1e7153",
-                    "title": "Color",
-                    "items": []
-                },
-                {
-                    "value": "62a989e21f2c2bbc5b1e7154",
-                    "title": "Size",
-                    "items": []
-                },
-            ]
-            updateState("properties", properties)
-        }
-    }, [product_type, properties])
-
 
     const makeproperties = useMemo(() => {
         const blank_options = variants?.blank_options
@@ -45,6 +26,7 @@ function PODProperties() {
     }, [properties])
 
     const addProperty = useCallback((value: string, model: string) => {
+        if (productID) return false
         const getVariantID = typesProperties.find(el => el.name === model)
         if (checkItem(value)) {
             remove(value, model === "Color" ? 0 : 1)
@@ -56,7 +38,7 @@ function PODProperties() {
                 }
             })
         }
-    }, [properties])
+    }, [properties, productID])
 
     return (
         <VStack align={"stretch"}>
@@ -80,7 +62,8 @@ function PODProperties() {
                                     borderRadius="100%"
                                     onClick={() => addProperty(el.name, "Color")}
                                     width="32px"
-                                    height="32px" cursor="pointer"
+                                    height="32px"
+                                    cursor={productID ? "auto" : "pointer"}
                                     background={el.code}
                                     className={`${checkItem(el.name) ? classes.active : ""} ${classes.box}`}
                                 >
@@ -98,7 +81,7 @@ function PODProperties() {
                                         borderRadius="28px"
                                         onClick={() => addProperty(el, "Size")}
                                         padding="6px 16px"
-                                        cursor="pointer"
+                                        cursor={productID ? "auto" : "pointer"}
                                         background="#1C1C1C"
                                         className={`${checkItem(el) ? classes.active : ""} ${classes.box}`}
                                     >

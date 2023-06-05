@@ -48,11 +48,12 @@ export default class VariantsProductModel {
                 width: 0
             }
         }
+        console.log("properties", properties);
 
         let result = []
         if (properties.length) {
             properties[0].items.map(node => {
-                if (properties[1]) {
+                if (properties[1] && properties[1].items.length) {
                     properties[1].items.map(items => {
                         const options = [
                             {
@@ -88,6 +89,8 @@ export default class VariantsProductModel {
                 }
             })
         }
+        console.log("result", result);
+
         return result
     }
 }

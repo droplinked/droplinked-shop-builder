@@ -12,7 +12,7 @@ import PropertyItem from './parts/item/PropertyItem'
 import PropertyOptions from './parts/options/PropertyOptions'
 
 function PropertyFormProduct() {
-    const { state: { properties }, methods: { updateState } } = useContext(productContext)
+    const { state: { properties }, methods: { updateState },productID } = useContext(productContext)
     const { addProperty } = PropertiesFormModel
 
     // Create new property  
@@ -33,7 +33,7 @@ function PropertyFormProduct() {
                     title='Product Properties'
                     description='Add at least one property to enable all variant fields.'
                 />
-                <PropertyButton state={properties} types={typesProperties} />
+                {!productID ? <PropertyButton state={properties} types={typesProperties} /> : null}
             </Flex>
             <SkeletonProduct>
                 <VStack align={"stretch"} spacing={3}>

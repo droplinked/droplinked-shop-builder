@@ -23,7 +23,7 @@ function AppSelectBox(props: Iprops) {
 
     return (
         <VStack align={"stretch"} width="100%" spacing={1}>
-            <FieldLabel loading={loading} isRequired={props.isRequired} label={label} />
+            <FieldLabel textProps={{ opacity: props.isDisabled ? ".4" : "", size: "16px" }} loading={loading} isRequired={props.isRequired} label={label} />
             <AppSkeleton isLoaded={loading}>
                 <Select
                     style={{ boxShadow: "unset" }}

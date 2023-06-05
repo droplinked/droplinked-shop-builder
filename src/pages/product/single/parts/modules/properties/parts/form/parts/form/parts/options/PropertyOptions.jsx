@@ -6,7 +6,7 @@ import { typesProperties } from 'lib/utils/statics/types'
 import { productContext } from 'pages/product/single/context'
 
 function PropertyOptions({ element, onChange, value }) {
-    const { state: { properties } } = useContext(productContext)
+    const { state: { properties },productID } = useContext(productContext)
     const { typesAvailable } = PropertiesFormModel
 
     const typesSelected = useCallback((propertyValue, typeID) => {
@@ -22,6 +22,7 @@ function PropertyOptions({ element, onChange, value }) {
             <AppSelectBox
                 name={element.title}
                 backgroundColor="#1C1C1C"
+                isDisabled={Boolean(productID)}
                 onChange={onChange}
                 value={value}
                 {...!value && { placeholder: "property" }}

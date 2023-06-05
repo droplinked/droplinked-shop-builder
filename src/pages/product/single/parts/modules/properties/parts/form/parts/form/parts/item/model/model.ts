@@ -49,8 +49,6 @@ export default class propertyItemModel {
     static addPropertyItem = ({ item, properties }: IaddProperty): Array<Iproperties> => {
         const property = properties.find(el => el.value === item.variantID)
         let result = []
-        console.log("properties", properties);
-
         properties.forEach(element => {
             result.push({
                 ...element,
@@ -64,8 +62,6 @@ export default class propertyItemModel {
 
     // Remove item property
     static removePropertyItem = ({ valueItem, keyProperty, state }: IremoveItem): Array<Iproperties> => {
-        console.log("ad", { valueItem, keyProperty, state });
-
         return this.append.loopProperty({
             state,
             action: (el: Iproperties, key: number) => {
