@@ -8,6 +8,7 @@ import { productCreateServices, productUpdateServices, skuUpdateByIdServices } f
 import AppErrors from 'lib/utils/statics/errors/errors'
 import useAppToast from 'functions/hooks/toast/useToast'
 import ButtonsProductClass from './model/ButtonProductModel'
+import MakeDataProductModel from './model/modules/MakeDataProduct'
 
 // prdocut page
 function ButtonsProduct() {
@@ -25,7 +26,7 @@ function ButtonsProduct() {
             await validate({ state, draft })
             const formData = makeData({ state, draft, productID })
             const query = await service(productID ? { productID, params: formData } : formData)
-            if (productID) await updateSkues(state.sku) // Update skues
+            if (productID) await updateSkues(MakeDataProductModel.refactorSku({ skues: state.sku })) // Update skues
 
             showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")
             shopNavigate(draft ? `products/${query.data?.data._id}` : "products")
