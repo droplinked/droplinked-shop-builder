@@ -8,12 +8,12 @@ import { useMutation, useQuery } from 'react-query'
 
 function ProductType() {
     const { mutate, data } = useMutation((params: IproviderIDService) => providerIDService(params))
-    const { state: { prodviderID, product_type, pod_blank_product_id }, productID, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { prodviderID, product_type, pod_blank_product_id, publish_product }, productID, methods: { updateState }, loading } = useContext(productContext)
 
     useEffect(() => mutate({ prodviderID }), [prodviderID])
 
     // Set default pod_blank_product_id 
-    useEffect(() => !productID && items && items.length && updateState("pod_blank_product_id", items[0].value), [data,productID])
+    useEffect(() => !pod_blank_product_id && items && items.length && updateState("pod_blank_product_id", items[0].value), [data, pod_blank_product_id])
 
     const items = useMemo(() => data?.data?.data ? data?.data?.data.map((el: any) => ({
         caption: el.category,
@@ -25,7 +25,7 @@ function ProductType() {
             <AppSelectBox
                 label="Product Type"
                 name="product_type"
-                isDisabled={Boolean(productID)}
+                isDisabled={Boolean(productID) && publish_product}
                 items={items}
                 placeholder="Select..."
                 isRequired

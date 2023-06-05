@@ -30,7 +30,7 @@ function ButtonsProduct() {
             showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")
             shopNavigate(draft ? `products/${query.data?.data._id}` : "products")
         } catch (error) {
-            showToast(error.errors ? error.errors[0] : "Oops! Something went wrong", "error")
+            showToast(error.errors ? error.errors[0] : error?.message ? error.message : "Oops! Something went wrong", "error")
         }
     }, [state, productID])
 

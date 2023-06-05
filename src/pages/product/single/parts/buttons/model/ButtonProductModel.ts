@@ -2,6 +2,7 @@ import { IproductState, Isku } from 'lib/apis/product/interfaces'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { object, string, array, number } from 'yup'
 import MakeDataProductModel from './modules/MakeDataProduct'
+import ProductValidateModel from './modules/validate'
 
 interface ImakeData {
     state: IproductState
@@ -20,10 +21,19 @@ interface Ivalidate {
 
 export default class ButtonsProductClass {
     private static makemodel = MakeDataProductModel
+    private static skumodel = ProductValidateModel
 
     static validate = ({ state, draft }: Ivalidate) => {
         return new Promise(async (resolve, reject) => {
             try {
+
+                // Check skues
+                if (state.sku.length && this.skumodel.skues({ skues: state.sku })) {
+                    let error = new Error();
+                    error.message = "Please enter external IDs for all SKUs"
+                    throw error
+                }
+
                 const schema = object({
                     ...!draft && {
                         ...state.shippingType === "CUSTOM" && { shippingPrice: number().min(1, "Shipping Cost not valid").required("Shipping Cost is required") },

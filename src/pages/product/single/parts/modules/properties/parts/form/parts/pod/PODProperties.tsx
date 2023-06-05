@@ -10,7 +10,7 @@ import { PODPropertiesModel } from './PODProperties_model'
 import classes from './style.module.scss'
 
 function PODProperties() {
-    const { state: { product_type, properties, pod_blank_product_id }, productID, methods: { updateState }, store: { state: { variants } } } = useContext(productContext)
+    const { state: { properties, pod_blank_product_id, publish_product }, productID, methods: { updateState }, store: { state: { variants } } } = useContext(productContext)
     const { set, remove } = useContext(propertiesFormContext)
     const { getProperties } = PODPropertiesModel
     const [Toggle, setToggle] = useState(false)
@@ -26,7 +26,7 @@ function PODProperties() {
     }, [properties])
 
     const addProperty = useCallback((value: string, model: string) => {
-        if (productID) return false
+        if (productID && publish_product) return false
         const getVariantID = typesProperties.find(el => el.name === model)
         if (checkItem(value)) {
             remove(value, model === "Color" ? 0 : 1)
@@ -38,7 +38,7 @@ function PODProperties() {
                 }
             })
         }
-    }, [properties, productID])
+    }, [properties, productID, publish_product])
 
     return (
         <VStack align={"stretch"}>
@@ -49,7 +49,23 @@ function PODProperties() {
                     title='Product Properties'
                     description='Add at least one property to enable all variant fields.'
                 />
-                <BasicButton onClick={() => setToggle(prev => !prev)} variant='outline' sizes='medium'>Manage</BasicButton>
+                <BasicButton onClick={() => {
+                    if (!properties.length) {
+                        updateState("properties", [
+                            {
+                                "value": "62a989ab1f2c2bbc5b1e7153",
+                                "title": "Color",
+                                "items": []
+                            },
+                            {
+                                "value": "62a989e21f2c2bbc5b1e7154",
+                                "title": "Size",
+                                "items": []
+                            }
+                        ])
+                    }
+                    setToggle(prev => !prev)
+                }} variant='outline' sizes='medium'>Manage</BasicButton>
             </Flex>
             {Toggle && makeproperties && (
                 <VStack color={"#FFF"} background={"#141414"} spacing={4} borderRadius="8px" padding={4} align={"stretch"} width={"100%"}>
@@ -63,7 +79,7 @@ function PODProperties() {
                                     onClick={() => addProperty(el.name, "Color")}
                                     width="32px"
                                     height="32px"
-                                    cursor={productID ? "auto" : "pointer"}
+                                    cursor={productID && publish_product ? "auto" : "pointer"}
                                     background={el.code}
                                     className={`${checkItem(el.name) ? classes.active : ""} ${classes.box}`}
                                 >
@@ -81,7 +97,7 @@ function PODProperties() {
                                         borderRadius="28px"
                                         onClick={() => addProperty(el, "Size")}
                                         padding="6px 16px"
-                                        cursor={productID ? "auto" : "pointer"}
+                                        cursor={productID && publish_product ? "auto" : "pointer"}
                                         background="#1C1C1C"
                                         className={`${checkItem(el) ? classes.active : ""} ${classes.box}`}
                                     >

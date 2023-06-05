@@ -8,7 +8,7 @@ import PropertyFormProduct from './parts/form/PropertyFormProduct';
 import PODProperties from './parts/pod/PODProperties';
 
 function PropertiesForm() {
-    const { state: { properties, product_type, sku }, methods: { updateState }, productID } = useContext(productContext)
+    const { state: { properties, product_type, sku, publish_product }, methods: { updateState }, productID } = useContext(productContext)
     const { makeData } = PropertiesFormModel
     const { showToast } = useAppToast()
     const { addPropertyItem, removePropertyItem, checkUsedPropertyItem } = propertyItemModel
@@ -21,22 +21,20 @@ function PropertiesForm() {
         })
     }, [properties])
 
-    const setState = (data: any) => updateState("properties", data)
-
     const remove = useCallback(async (valueItem, keyProperty) => {
-        if (productID) return false
+        if (productID && publish_product) return false
         updateState("properties", removePropertyItem({ state: properties, valueItem, keyProperty }))
-    }, [properties, sku, productID])
+    }, [properties, sku, productID, publish_product])
 
     const set = useCallback(async ({ item }: IaddPropertyItem) => {
-        if (productID) return false
+        if (productID && publish_product) return false
         try {
             await checkItem(item.value)
             updateState("properties", addPropertyItem({ item, properties }))
         } catch (error) {
             showToast("This property exist", "error", { toastId: "SkuUsed" })
         }
-    }, [updateState, sku, properties, productID])
+    }, [updateState, sku, properties, productID, publish_product])
 
     return (
         <propertiesFormContext.Provider value={{
