@@ -9,7 +9,7 @@ function ShippingProduct() {
 
     return (
         <>
-            {product_type !== "DIGITAL" && <ProductCollapse title='Shipping' description='Select a shipping method to deliver your product.'>
+            {product_type === "NORMAL" && <ProductCollapse title='Shipping' description='Select a shipping method to deliver your product.'>
                 <VStack spacing={10} align={"stretch"}>
                     <Shipping />
                 </VStack>
