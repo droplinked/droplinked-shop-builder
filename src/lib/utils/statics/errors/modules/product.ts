@@ -7,6 +7,7 @@ const productErrors = {
     your_product_published: "The product has been published successfully!",
     your_product_draft: "The product has been draft successfully!",
     variant_has_been_deleted: "Variant has been deleted",
+    artwork_should_be_provided: "artwork should be provided to publish product",
 }
 
 export default productErrors

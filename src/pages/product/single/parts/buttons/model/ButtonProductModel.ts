@@ -39,6 +39,9 @@ export default class ButtonsProductClass {
                         ...state.shippingType === "CUSTOM" && { shippingPrice: number().min(1, "Shipping Cost not valid").required("Shipping Cost is required") },
                         sku: array().min(1, AppErrors.product.sku_not_added).required(),
                         media: array().min(1, AppErrors.product.product_image_required).required(),
+                        ...state.product_type === "PRINT_ON_DEMAND" && {
+                            artwork: string().required(AppErrors.product.artwork_should_be_provided),
+                        }
                     },
                     description: string().max(250, AppErrors.product.product_description_too_long).required(),
                     title: string().required(),
@@ -54,13 +57,16 @@ export default class ButtonsProductClass {
 
     static makeData = ({ state, draft, productID }: ImakeData) => {
         const updateData = (publish_product: boolean) => this.makemodel.update({ state: { ...state, publish_product } })
-        return draft ? productID ? updateData(false) : { ...state, publish_product: false } : productID ? updateData(true) : { ...state, publish_product: true }
+        const data = { ...state, sku: MakeDataProductModel.refactorSku({ skues: state.sku }) }
+
+        return draft ? productID ? updateData(false) : { ...data, publish_product: false } : productID ? updateData(true) : { ...data, publish_product: true }
     }
 
     static makeskuUpdate = ({ sku }: ImakeskuUpdate) => {
         return {
             "quantity": sku.quantity,
             "price": sku.price,
+            "weight": sku.weight,
             "externalID": sku.externalID,
             "dimensions": sku.dimensions,
         }
