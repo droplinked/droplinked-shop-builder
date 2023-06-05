@@ -1,26 +1,28 @@
 import React, { useCallback, useContext } from 'react'
-import PropertiesFormModel from '../../model/model'
-import propertiesFormContext from '../../context'
+import PropertiesFormModel from '../../../../model/model'
+import propertiesFormContext from '../../../../context'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import { typesProperties } from 'lib/utils/statics/types'
+import { productContext } from 'pages/product/single/context'
 
 function PropertyOptions({ element, onChange, value }) {
-    const { state } = useContext(propertiesFormContext)
+    const { state: { properties },productID } = useContext(productContext)
     const { typesAvailable } = PropertiesFormModel
 
     const typesSelected = useCallback((propertyValue, typeID) => {
         return typesAvailable({
-            state,
+            state: properties,
             typeID,
             propertyValue
         })
-    }, [state, typesProperties])
+    }, [properties, typesProperties])
 
     return (
         <>
             <AppSelectBox
                 name={element.title}
                 backgroundColor="#1C1C1C"
+                isDisabled={Boolean(productID)}
                 onChange={onChange}
                 value={value}
                 {...!value && { placeholder: "property" }}

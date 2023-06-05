@@ -1,15 +1,14 @@
 import { createContext } from "react";
-
-const propertiesFormState = []
+import { IaddPropertyItem } from "./parts/form/parts/item/model/model";
 
 interface IpropertiesFormContext {
-    state: Array<any>,
-    updateState(...params:any): void 
+    set(props: IaddPropertyItem): void
+    remove: Function
 }
 
 const propertiesFormContext = createContext<IpropertiesFormContext>({
-    state: propertiesFormState,
-    updateState: () => {}
+    set: () => { },
+    remove: () => { }
 })
 
 export default propertiesFormContext

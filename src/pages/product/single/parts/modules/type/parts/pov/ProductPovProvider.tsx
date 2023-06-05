@@ -12,7 +12,7 @@ function ProductPovProvider() {
         queryKey: "PovProvider",
         queryFn: providersService,
     })
-    const { state: { prodviderID }, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { prodviderID }, productID, methods: { updateState }, loading } = useContext(productContext)
 
     const items = useMemo(() => data?.data?.data ? data?.data?.data.map((el: any) => ({
         caption: el,
@@ -22,6 +22,7 @@ function ProductPovProvider() {
     return (
         <Box position={"relative"}>
             <AppSelectBox
+                isDisabled={Boolean(productID)}
                 label="POD Provider"
                 name="podProvider"
                 items={items}

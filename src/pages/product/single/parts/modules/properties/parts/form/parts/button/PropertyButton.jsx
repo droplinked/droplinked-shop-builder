@@ -3,25 +3,25 @@ import React, { useCallback, useContext, useMemo } from 'react'
 import AppendModule from '../../model/module/append'
 import PropertiesFormModel from '../../model/model'
 import propertiesFormContext from '../../context'
+import { productContext } from 'pages/product/single/context'
 
-function PropertyButton({ state, types, skues }) {
-    const { updateState } = useContext(propertiesFormContext)
+function PropertyButton({ state, types }) {
+    const { state: { properties }, methods: { updateState } } = useContext(productContext)
     const { appendHandle } = PropertiesFormModel
 
     const append = useCallback(() => {
-        updateState(prev => appendHandle({
-            state: prev,
+        updateState("properties", appendHandle({
+            state: properties,
             types
         }))
-    }, [])
+    }, [properties])
 
     const checkLengthProperty = useMemo(() => {
         return AppendModule.checkLengthProperty({
-            properties: state,
+            properties,
             types
         })
-    }, [state, types])
-
+    }, [properties, types])
 
     return (
         <>

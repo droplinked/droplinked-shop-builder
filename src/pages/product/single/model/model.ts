@@ -40,8 +40,8 @@ export default class ProductSingleModel {
             }),
             product_type: data?.product_type,
             publish_product: data?.publish_status && typeof data?.publish_status === "string" ? data?.publish_status !== "DRAFTED" : data?.publish_status,
-            pod_blank_product_id: data?.product_type,
-            prodviderID: data?.prodviderID,
+            pod_blank_product_id: data?.pod_blank_product_id,
+            prodviderID: data?.prodviderID || "DLW",
             artwork: data?.artwork,
             m2m_positions: data?.m2m_positions,
             artwork_position: data?.artwork_position

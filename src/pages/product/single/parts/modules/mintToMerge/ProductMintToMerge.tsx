@@ -4,7 +4,7 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import { printPositionsServices } from 'lib/apis/product/productServices'
 import { productContext } from 'pages/product/single/context'
-import React, { useCallback, useContext, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useQuery } from 'react-query'
 import shirtBack from 'assest/image/positions/back.svg'
 import shirtCenter from 'assest/image/positions/center.svg'
@@ -18,8 +18,8 @@ function ProductMintToMerge() {
 
     const icons = {
         FRONT_CENTER: shirtCenter,
-        FRONT_TOP_LEFT: shirtLeft,
-        FRONT_TOP_RIGHT: shirtRight,
+        FRONT_LEFT_CHEST: shirtLeft,
+        FRONT_RIGHT_CHEST: shirtRight,
         BACK_CENTER: shirtBack,
     }
 
@@ -36,6 +36,11 @@ function ProductMintToMerge() {
         if (!checked) updateState("m2m_positions", [])
         setCheckBox(e.target.checked)
     }, [])
+
+    useEffect(() => {
+        if(m2m_positions.length) setCheckBox(true)
+    }, [m2m_positions])
+    
 
     return (
         <VStack align={"stretch"} spacing={4}>
