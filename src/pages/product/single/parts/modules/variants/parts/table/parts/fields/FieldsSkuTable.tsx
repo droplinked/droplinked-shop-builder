@@ -39,6 +39,7 @@ function FieldsSkuTable(props: IProps) {
             background="#141414"
             border={"none"}
             outline="none"
+            _disabled={{opacity: ".3"}}
             width="auto"
             maxWidth={"70px"}
             padding="3px"

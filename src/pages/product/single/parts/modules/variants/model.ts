@@ -68,10 +68,11 @@ export default class VariantsProductModel {
                             }
                         ]
                         const sku = this.findByOptionSku({ options, skues })
-                        if (product_type === "PRINT_ON_DEMAND" && options.length > 1) this.checkAvailable({ options, variants })
+                        // if ((product_type === "PRINT_ON_DEMAND" && this.checkAvailable({ options, variants }) || ["DIGITAL", "NORMAL"].includes(product_type)) && options.length > 1) 
                         result.push({
                             ...sku || data, options
                         });
+
                     })
                 } else {
                     const options = [
@@ -82,7 +83,6 @@ export default class VariantsProductModel {
                         }
                     ]
                     const sku = this.findByOptionSku({ options, skues })
-                    if (product_type === "PRINT_ON_DEMAND" && options.length > 1) this.checkAvailable({ options, variants })
                     result.push({
                         ...sku || data, options
                     });
