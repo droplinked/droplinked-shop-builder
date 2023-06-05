@@ -48,7 +48,6 @@ export default class VariantsProductModel {
                 width: 0
             }
         }
-        console.log("properties", properties);
 
         let result = []
         if (properties.length) {
@@ -89,7 +88,6 @@ export default class VariantsProductModel {
                 }
             })
         }
-        console.log("result", result);
 
         return result
     }
