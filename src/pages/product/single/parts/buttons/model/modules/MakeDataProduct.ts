@@ -13,6 +13,7 @@ export default class MakeDataProductModel {
             "productCollectionID": state.productCollectionID,
             "media": state.media,
             "publish_product": state.publish_product,
+            "product_type": state.product_type,
             "m2m_positions": state.m2m_positions,
             "artwork": state.artwork,
             "sku": state.sku.filter(el => !el._id)

@@ -6,35 +6,19 @@ import React, { useCallback, useContext, useEffect } from 'react'
 import ProductPovProvider from './parts/pov/ProductPovProvider'
 
 function ProductTypes() {
-    const { state: { product_type }, productID, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { product_type ,publish_product}, productID, methods: { updateState }, loading } = useContext(productContext)
 
     const changeProductType = useCallback((value: string) => {
         updateState("product_type", product_type === value ? "NORMAL" : value)
-        if (value === "PRINT_ON_DEMAND") {
-            updateState("sku", [])
-            updateState("properties", [
-                {
-                    "value": "62a989ab1f2c2bbc5b1e7153",
-                    "title": "Color",
-                    "items": []
-                },
-                {
-                    "value": "62a989e21f2c2bbc5b1e7154",
-                    "title": "Size",
-                    "items": []
-                }
-            ])
-        } else {
-            updateState("sku", [])
-            updateState("properties", [])
-        }
+        updateState("sku", [])
+        updateState("properties", [])
     }, [product_type])
 
     return (
         <VStack align={"stretch"} spacing={7}>
             <Box>
                 <AppSkeleton isLoaded={loading} width={"70%"}>
-                    <Checkbox size='md' isDisabled={Boolean(productID)} isChecked={product_type === "PRINT_ON_DEMAND"} alignItems="flex-start" colorScheme='green' onChange={() => changeProductType("PRINT_ON_DEMAND")}>
+                    <Checkbox size='md' isDisabled={Boolean(productID) && publish_product} isChecked={product_type === "PRINT_ON_DEMAND"} alignItems="flex-start" colorScheme='green' onChange={() => changeProductType("PRINT_ON_DEMAND")}>
                         <VStack align='stretch' paddingLeft={2} spacing={1}>
                             <AppTypography size='14px' weight='bolder'>Print On Demand</AppTypography>
                             <AppTypography size="14px" color="lightGray">
@@ -48,7 +32,7 @@ function ProductTypes() {
             {product_type === "PRINT_ON_DEMAND" && <Box><ProductPovProvider /></Box>}
             <Box>
                 <AppSkeleton isLoaded={loading}>
-                    <Checkbox size='md' isDisabled={Boolean(productID)} isChecked={product_type === "DIGITAL"} alignItems="flex-start" colorScheme='green' onChange={() => changeProductType("DIGITAL")}>
+                    <Checkbox size='md' isDisabled={Boolean(productID) && publish_product} isChecked={product_type === "DIGITAL"} alignItems="flex-start" colorScheme='green' onChange={() => changeProductType("DIGITAL")}>
                         <VStack align='stretch' paddingLeft={2} spacing={1}>
                             <AppTypography size='14px' weight='bolder'>Digital Product</AppTypography>
                             <AppTypography size="14px" color="lightGray">

@@ -7,7 +7,7 @@ import propertiesFormContext from '../../../../context';
 import { productContext } from 'pages/product/single/context';
 
 function PropertyItem({ element, keyProperty }) {
-    const { state: { properties }, methods: { updateState }, productID } = useContext(productContext)
+    const { state: { properties, publish_product }, methods: { updateState }, productID } = useContext(productContext)
     const { set, remove } = useContext(propertiesFormContext)
     const { appendPropertyItem } = propertyItemModel
     const [Value, setValue] = useState("")
@@ -33,7 +33,7 @@ function PropertyItem({ element, keyProperty }) {
     }, [Value])
 
     return (
-        <Flex justifyContent={"left"} flexWrap="wrap" backgroundColor="#1C1C1C" padding={2} minHeight="48px" gap={3} alignContent="center" width="100%" cursor={productID ? "auto" : "text"} onClick={() => inputRef.current.focus()}>
+        <Flex justifyContent={"left"} flexWrap="wrap" backgroundColor="#1C1C1C" padding={2} minHeight="48px" gap={3} alignContent="center" width="100%" cursor={productID && publish_product ? "auto" : "text"} onClick={() => inputRef.current.focus()}>
             {element.value.length ? element.items.map((item, key) => {
                 return (
                     <>
@@ -46,7 +46,7 @@ function PropertyItem({ element, keyProperty }) {
                     </>
                 )
             }) : null}
-            {!productID ? (
+            {productID && publish_product ? null : (
                 <Box>
                     <form onSubmit={(e) => onSubmit(e, [], element.items ? element.items.length : 0)}>
                         <Input
@@ -63,7 +63,7 @@ function PropertyItem({ element, keyProperty }) {
                         />
                     </form>
                 </Box>
-            ) : null}
+            )}
         </Flex>
     )
 }
