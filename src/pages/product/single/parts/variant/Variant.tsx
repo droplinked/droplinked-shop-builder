@@ -11,7 +11,7 @@ function Variant() {
   return (
     <>
       {(product_type === "PRINT_ON_DEMAND" && pod_blank_product_id) || ["DIGITAL", "NORMAL"].includes(product_type) ? (
-        <ProductCollapse title='Variants' description="Select the product variation of your choice to include it in your store's inventory.">
+        <ProductCollapse title='Variants' description="Create product properties to use in product variations.">
           <VStack align={"stretch"} spacing={10}>
             <Properties />
             <VariantsProduct />
