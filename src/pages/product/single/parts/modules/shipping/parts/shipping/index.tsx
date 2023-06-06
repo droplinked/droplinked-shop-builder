@@ -25,7 +25,7 @@ function Shipping() {
                                         <VStack align='stretch' paddingLeft={2} spacing={2}>
                                             <TextLabelBold>Self Managed</TextLabelBold>
                                             <Text fontSize="sm" color="lightGray">
-                                                Order will be managed by ma. <a href='' target={"_blank"}>Learn more</a>
+                                                You will handle shipping operations internally.
                                             </Text>
                                         </VStack>
                                     </Radio>
@@ -39,7 +39,7 @@ function Shipping() {
                                         <VStack align='stretch' paddingLeft={2} spacing={2}>
                                             <TextLabelBold>EASY Post</TextLabelBold>
                                             <Text fontSize="sm" color="lightGray">
-                                                EASY post will help you to deliver your product in the safe and fastest way possible.
+                                                EASY Post takes responsibility to deliver your customer orders. <a style={{ color: "#2EC99E" }} href='' target={"_blank"}>Learn more</a>
                                             </Text>
                                         </VStack>
                                     </Radio>

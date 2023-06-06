@@ -83,8 +83,8 @@ function ProductSingle() {
                     <General />
                     <ProductPodDesign />
                     <ShippingProduct />
-                    <CollectionProduct />
                     <Variant />
+                    <CollectionProduct />
                     <ButtonsProduct />
                 </VStack>
             </ProductStore>

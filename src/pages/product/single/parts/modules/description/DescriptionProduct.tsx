@@ -20,7 +20,7 @@ function DescriptionProduct() {
                 error={description.length > 250 && AppErrors.product.product_description_too_long}
                 minHeight={200}
                 maxLength={limitCharacter}
-                placeholder="Default"
+                placeholder="Stylish, and Comfortable Long Sleeve T-Shirt..."
                 loading={loading}
                 value={description}
                 onChange={(e) => updateState("description", e.target.value)}

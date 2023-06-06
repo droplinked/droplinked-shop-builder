@@ -21,13 +21,13 @@ function Collection() {
                 <HStack justifyContent={"space-between"}>
                     <VStack align={"stretch"}>
                         <FieldLabel isRequired label='Collections' />
-                        <AppTypography size='14px'>
-                            Organize your products into a collection to offer discounts or gated access. Learn more
+                        <AppTypography color="#808080" size='14px'>
+                            Select a collection or create a new one to publish the product.
                         </AppTypography>
                     </VStack>
                     <Box>
                         <SkeletonProduct>
-                            <BasicButton onClick={onOpen} variant="outline">New Collection</BasicButton>
+                            <BasicButton onClick={onOpen} sizes="medium" variant="outline">New Collection</BasicButton>
                         </SkeletonProduct>
                         <CollectionCreate close={onClose} refetch={mutate} open={isOpen} />
                     </Box>
