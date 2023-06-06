@@ -11,6 +11,7 @@ function RequestQuantity() {
       <Box width={"100%"}>
         <AppInput
           error={formik.errors.quantity}
+          value={formik.values.quantity}
           onChange={(e) => formik.setFieldValue("quantity", e.target.value)}
           name="quantity"
         />
