@@ -5,7 +5,7 @@ import Collection from '../modules/Collection'
 
 function CollectionProduct() {
     return (
-        <ProductCollapse title='Collection' description='Organize the product into a collection to set exclusive discount or access.'>
+        <ProductCollapse title='Product Collection' description='Organize the product into a collection to set exclusive discount or access.'>
             <VStack spacing={10} align={"stretch"}>
                 <Collection />
             </VStack>

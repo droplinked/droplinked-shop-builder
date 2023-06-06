@@ -20,7 +20,7 @@ function Collection() {
             <Box>
                 <HStack justifyContent={"space-between"}>
                     <VStack align={"stretch"}>
-                        <FieldLabel isRequired label='Product Collection' />
+                        <FieldLabel isRequired label='Collections' />
                         <AppTypography color="#808080" size='14px'>
                             Select a collection or create a new one to publish the product.
                         </AppTypography>

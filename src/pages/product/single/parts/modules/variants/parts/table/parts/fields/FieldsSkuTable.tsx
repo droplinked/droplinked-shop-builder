@@ -43,7 +43,7 @@ function FieldsSkuTable(props: IProps) {
             width="auto"
             maxWidth={"70px"}
             padding="3px"
-            color="#FFF"
+            color="#808080"
             onChange={updateSku}
             {...props}
         />
