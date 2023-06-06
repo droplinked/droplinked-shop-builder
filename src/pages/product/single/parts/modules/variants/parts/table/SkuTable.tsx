@@ -53,7 +53,7 @@ function SkuTable() {
                 {rows && <AppTable rows={rows} />}
             </SkeletonProduct>
             <SkuTableModal open={editModal.isOpen} close={editModal.onClose} skuData={Sku} />
-            <RecordModal open={Sku && recordModal.isOpen} product={Sku} close={recordModal.onClose} />
+            {/* <RecordModal open={Sku && recordModal.isOpen} product={Sku} close={recordModal.onClose} /> */}
         </>
     )
 }

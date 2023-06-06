@@ -17,7 +17,7 @@ function ProductImages() {
                     <ProductPageTitle
                         title={product_type === "NORMAL" ? 'Product Images' : 'Product preview'}
                         isReuired
-                        description={product_type === "NORMAL" ? 'Upload images of the digital product.' : 'Upload static images of your product.'}
+                        description={product_type === "NORMAL" ? 'Upload static images of your product.' : 'Upload images of the digital product.'}
                     />
                     <Box>
                         <SkeletonProduct width={"30%"} height={"200px"}>
