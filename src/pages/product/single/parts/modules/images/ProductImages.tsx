@@ -15,9 +15,9 @@ function ProductImages() {
             {["DIGITAL", "NORMAL"].includes(product_type) && (
                 <VStack align={"stretch"}>
                     <ProductPageTitle
-                        title='Product preview'
+                        title={product_type === "NORMAL" ? 'Product Images' : 'Product preview'}
                         isReuired
-                        description='Upload images of the digital product.'
+                        description={product_type === "NORMAL" ? 'Upload images of the digital product.' : 'Upload static images of your product.'}
                     />
                     <Box>
                         <SkeletonProduct width={"30%"} height={"200px"}>

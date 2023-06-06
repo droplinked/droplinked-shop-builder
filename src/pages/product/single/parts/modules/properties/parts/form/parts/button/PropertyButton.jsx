@@ -26,7 +26,7 @@ function PropertyButton({ state, types }) {
     return (
         <>
             {!checkLengthProperty ? (
-                <BasicButton onClick={append} sizes="medium">Make New Properties</BasicButton>
+                <BasicButton onClick={append} sizes="medium">Add Property</BasicButton>
             ) : ''}
         </>
     )

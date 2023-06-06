@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { productContext } from 'pages/product/single/context'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
+import { Box, Flex } from '@chakra-ui/react'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 
 interface IProps {
   collections: any
@@ -16,16 +18,23 @@ function ListCollection({ collections, isLoading }: IProps) {
   }, [collections, productID])
 
   return (
-    <AppSelectBox
-      items={collections && collections.length ? collections.map(el => ({
-        value: el._id,
-        caption: el.title
-      })) : []}
-      loading={!isLoading}
-      value={productCollectionID}
-      onChange={(e) => updateState('productCollectionID', e.target.value)}
-      name="collection"
-    />
+    <AppSkeleton isLoaded={!isLoading}>
+      <Flex backgroundColor="#141414" padding={6} flexWrap="wrap" alignItems="baseline" minHeight="180px">
+        {collections && collections.length ? collections.map((el: any, key: number) => (
+          <Box
+            key={key}
+            onClick={() => updateState('productCollectionID', el._id)}
+            backgroundColor={el._id === productCollectionID ? "#2EC99E" : "#1C1C1C"}
+            color={el._id === productCollectionID ? "#084836" : "#808080"}
+            padding="6px 16px"
+            borderRadius="100px"
+            cursor="pointer"
+          >
+            {el.title}
+          </Box>
+        )) : null}
+      </Flex>
+    </AppSkeleton>
   )
 }
 
