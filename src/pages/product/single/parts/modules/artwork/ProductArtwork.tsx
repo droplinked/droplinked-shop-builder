@@ -1,10 +1,8 @@
-import { Box, Flex, VStack } from '@chakra-ui/react'
-import BasicButton from 'components/common/BasicButton/BasicButton'
+import { Flex, VStack } from '@chakra-ui/react'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'
 import ProductPageTitle from '../title/ProductPageTitle'
 import ArtworkImage from './parts/image/ArtworkImage'
-import ProductMintToMerge from '../mintToMerge/ProductMintToMerge'
 import AppTypography from 'components/common/typography/AppTypography'
 
 function ProductArtwork() {
