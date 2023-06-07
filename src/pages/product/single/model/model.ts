@@ -1,5 +1,5 @@
 import { IproductState } from "lib/apis/product/interfaces";
-import AppendModule from "../parts/modules/properties/parts/form/model/module/append";
+import AppendModule from "../parts/modules/properties/model/module/append";
 import propertyFactor from "./modules/property";
 
 export default class ProductSingleModel {

@@ -1,13 +1,14 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
-import PropertiesFormModel from './model/model';
-import propertiesFormContext from './context';
+import { VStack } from '@chakra-ui/react';
+import React, { useCallback, useContext } from 'react'
 import { productContext } from 'pages/product/single/context';
+import PropertiesFormModel from './model/model';
 import useAppToast from 'functions/hooks/toast/useToast';
 import propertyItemModel, { IaddPropertyItem } from './parts/form/parts/item/model/model';
+import propertiesFormContext from './context'
 import PropertyFormProduct from './parts/form/PropertyFormProduct';
 import PODProperties from './parts/pod/PODProperties';
 
-function PropertiesForm() {
+function Properties() {
     const { state: { properties, product_type, sku, publish_product }, methods: { updateState }, productID } = useContext(productContext)
     const { makeData } = PropertiesFormModel
     const { showToast } = useAppToast()
@@ -46,4 +47,4 @@ function PropertiesForm() {
     )
 }
 
-export default PropertiesForm
+export default Properties
