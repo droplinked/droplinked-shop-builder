@@ -20,8 +20,10 @@ export const initialStatesProduct: IproductState = {
     prodviderID: "DLW",
     pod_blank_product_id: null,
     artwork: null,
+    artwork2: null,
     m2m_positions: [],
-    artwork_position: "FRONT_CENTER"
+    artwork_position: "FRONT_CENTER",
+    artwork2_position: "BACK_CENTER"
 }
 
 export interface IproductStore {

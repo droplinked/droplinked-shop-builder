@@ -43,8 +43,10 @@ export default class ProductSingleModel {
             pod_blank_product_id: data?.pod_blank_product_id,
             prodviderID: data?.prodviderID || "DLW",
             artwork: data?.artwork,
+            artwork2: data?.artwork2,
             m2m_positions: data?.m2m_positions,
-            artwork_position: data?.artwork_position
+            artwork_position: data?.artwork_position,
+            artwork2_position: data?.artwork2_position
         }
     }
 } 
