@@ -21,7 +21,7 @@ function Collection() {
                 <HStack justifyContent={"space-between"}>
                     <VStack align={"stretch"}>
                         <FieldLabel isRequired label='Collections' />
-                        <AppTypography color="#808080" size='14px'>
+                        <AppTypography color="#C2C2C2" size='14px'>
                             Select a collection or create a new one to publish the product.
                         </AppTypography>
                     </VStack>
