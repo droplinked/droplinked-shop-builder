@@ -14,8 +14,10 @@ export interface IproductState {
     prodviderID: string
     pod_blank_product_id: string
     artwork: string
-    m2m_positions: Array<string>
+    artwork2: string
     artwork_position: string
+    artwork2_position: string
+    m2m_positions: Array<string>
 }
 
 export interface IpropertiesItems {

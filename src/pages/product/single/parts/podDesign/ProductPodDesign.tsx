@@ -1,11 +1,11 @@
 import { VStack } from '@chakra-ui/react'
 import React, { useContext } from 'react'
 import ProductCollapse from '../modules/collapse/ProductCollapse'
-import ProductArtwork from '../modules/artwork/ProductImages'
 import ProductType from '../modules/productType/ProductType'
-import ProductMintToMerge from '../modules/mintToMerge/ProductMintToMerge'
 import { productContext } from '../../context'
 import ProductMockup from '../modules/mockup/ProductMockup'
+import ProductArtwork from '../modules/artwork/ProductArtwork'
+import ProductMintToMerge from '../modules/mintToMerge/ProductMintToMerge'
 
 function ProductPodDesign() {
     const { state: { product_type } } = useContext(productContext)
