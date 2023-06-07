@@ -47,7 +47,7 @@ function ButtonsProduct() {
                     variant={'outline'}
                     onClick={() => submit(true)}
                 >
-                    Save as draft
+                    Save as Draft
                 </BasicButton>
             </Box>
             <Box>

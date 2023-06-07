@@ -8,7 +8,7 @@ import React, { useContext, useMemo } from 'react'
 import { useMutation, useQuery } from 'react-query'
 
 function ProductPovProvider() {
-    const { data } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: "PovProvider",
         queryFn: providersService,
     })
@@ -27,7 +27,7 @@ function ProductPovProvider() {
                 name="podProvider"
                 items={items}
                 isRequired
-                loading={loading}
+                loading={loading || !isLoading}
                 value={prodviderID}
                 onChange={(e) => updateState("prodviderID", e.target.value)}
             />

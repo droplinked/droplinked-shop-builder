@@ -54,9 +54,9 @@ function PropertyItem({ element, keyProperty }) {
                             padding={1}
                             ref={inputRef}
                             value={Value}
-                            placeholder="enter property"
+                            placeholder="Type value and press enter"
                             background="none"
-                            color={"#FFF"}
+                            color="#FFF"
                             outline="none"
                             variant={"unstyled"}
                             onChange={(e) => setValue(e.target.value)}
