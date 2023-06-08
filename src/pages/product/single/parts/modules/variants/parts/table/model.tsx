@@ -18,7 +18,7 @@ export default class SkuTableModel {
                 props: {
                     width: "20%"
                 },
-                value: `${sku?.options[0]?.value}${sku?.options[1] ? "-" + sku?.options[1]?.value : ""}`
+                value: sku.options.map(el => el.value).join("-")
             },
             price: {
                 props: {
@@ -31,10 +31,8 @@ export default class SkuTableModel {
                     </Flex>
                 )
             },
-            ...product_type !== "DIGITAL" && {
-                quantity: {
-                    value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"quantity"} />
-                }
+            quantity: {
+                value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"quantity"} />
             },
             externalID: {
                 caption: "external ID",

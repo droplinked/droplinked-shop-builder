@@ -20,8 +20,9 @@ function PropertyItem({ element, keyProperty }) {
         }))
     }, [properties])
 
-    const onSubmit = useCallback((e: any, item: any, key: any) => {
+    const onSubmit = useCallback((e: any) => {
         e.preventDefault()
+        if(!Value.length) return false
         append(keyProperty)
         set({
             item: {
@@ -48,7 +49,7 @@ function PropertyItem({ element, keyProperty }) {
             }) : null}
             {productID && publish_product ? null : (
                 <Box>
-                    <form onSubmit={(e) => onSubmit(e, [], element.items ? element.items.length : 0)}>
+                    <form onSubmit={onSubmit}>
                         <Input
                             type={"text"}
                             padding={1}
@@ -56,6 +57,7 @@ function PropertyItem({ element, keyProperty }) {
                             value={Value}
                             placeholder="Type value and press enter"
                             background="none"
+                            minWidth="210px"
                             color="#FFF"
                             outline="none"
                             variant={"unstyled"}

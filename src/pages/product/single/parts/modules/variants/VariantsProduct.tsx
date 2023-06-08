@@ -4,8 +4,8 @@ import SkuTable from './parts/table/SkuTable'
 import { productContext } from 'pages/product/single/context'
 import ProductPageTitle from '../title/ProductPageTitle'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { Iproperties, Isku } from "lib/apis/product/interfaces";
-import VariantsProductModel from './model'
+import { Iproperties } from "lib/apis/product/interfaces";
+import VariantsProductModel from './model/model'
 
 interface IaddSku {
   properties: Array<Iproperties>
@@ -13,16 +13,15 @@ interface IaddSku {
 
 function VariantsProduct() {
   const { state: { sku, properties, product_type }, methods: { updateState }, loading, productID, store: { state: { variants } } } = useContext(productContext)
-  const { refactor } = VariantsProductModel
+  const { makeData } = VariantsProductModel
 
   const addSku = useCallback(({ properties }: IaddSku) => {
-    properties = properties.filter(el => el.items.length).map(el => ({
-      ...el,
-      items: el.items.filter(item => item.value)
-    }))
-
-    updateState("sku", refactor({ properties, skues: sku, variants, product_type }))
-  }, [sku, variants, product_type,])
+    const makedata = makeData({
+      properties: properties.filter(el => el.title.length && el.items.length),
+      skues: sku
+    })
+    updateState("sku", makedata)
+  }, [sku, variants, product_type])
 
   useEffect(() => {
     addSku({ properties })

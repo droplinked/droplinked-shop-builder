@@ -63,9 +63,9 @@ function ProductSingle() {
         if (params?.productId) fetch().then((res: any) => setState(prev => ({ ...prev, params: res })))
     }, [params])
 
-    useEffect(() => {
-        // console.log(State);
-    }, [State])
+    // useEffect(() => {
+    //     console.log(State);
+    // }, [State])
 
     return (
         <productContext.Provider value={{
