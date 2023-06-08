@@ -54,7 +54,7 @@ export interface Isku {
     index: number
     options: Array<IskuOption>
     price: number
-    quantity: number
+    quantity: string
     record: Boolean
     weight: number
     recordData?: IrecordData

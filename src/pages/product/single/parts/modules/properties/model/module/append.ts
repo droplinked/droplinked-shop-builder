@@ -25,7 +25,7 @@ class AppendModule {
             {
                 title: "",
                 value: "",
-                items: this.mockItem()
+                items: []
             }
         ]
     }

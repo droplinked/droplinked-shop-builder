@@ -2,7 +2,6 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import React, { useCallback, useContext, useMemo } from 'react'
 import AppendModule from '../../model/module/append'
 import PropertiesFormModel from '../../model/model'
-import propertiesFormContext from '../../context'
 import { productContext } from 'pages/product/single/context'
 
 function PropertyButton({ state, types }) {
@@ -26,7 +25,7 @@ function PropertyButton({ state, types }) {
     return (
         <>
             {!checkLengthProperty ? (
-                <BasicButton onClick={append} sizes="medium">Add Property</BasicButton>
+                <BasicButton onClick={append} sizes="medium">Create Property</BasicButton>
             ) : ''}
         </>
     )

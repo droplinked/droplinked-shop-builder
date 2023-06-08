@@ -26,11 +26,10 @@ export default class ButtonsProductClass {
     static validate = ({ state, draft }: Ivalidate) => {
         return new Promise(async (resolve, reject) => {
             try {
-
-                // Check skues
+                // Check skue externals IDs
                 if (state.sku.length && this.skumodel.skues({ skues: state.sku })) {
                     let error = new Error();
-                    error.message = "Please enter external IDs for all SKUs"
+                    error.message = "Please enter External IDs and Quantity for all SKUs"
                     throw error
                 }
 
