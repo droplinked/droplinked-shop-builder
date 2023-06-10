@@ -20,7 +20,7 @@ const SelectPagesComponent = () => {
           if (isSettings) shopNavigate("settings/shop-info");
         }}
       >
-        Store info
+        Store Info
       </SideText>
       <SideText
         cursor={isSettings && "pointer"}
@@ -29,7 +29,7 @@ const SelectPagesComponent = () => {
           if (isSettings) shopNavigate("settings/design");
         }}
       >
-        Store design
+        Store Design
       </SideText>
       <SideText
         cursor={isSettings && "pointer"}
@@ -38,7 +38,7 @@ const SelectPagesComponent = () => {
           if (isSettings) shopNavigate("settings/technical");
         }}
       >
-        Payment options
+        Payment Options
       </SideText>
       <SideText
         cursor={isSettings && "pointer"}
@@ -47,7 +47,7 @@ const SelectPagesComponent = () => {
           if (isSettings) shopNavigate("settings/contact-info");
         }}
       >
-        Contact options
+        Social Links
       </SideText>
     </>
   );

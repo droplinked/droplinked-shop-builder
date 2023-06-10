@@ -10,6 +10,7 @@ import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { addressByIdService, createAddressService, updateAddressService } from 'lib/apis/address/addressServices';
 import { IaddressByIdService, IcreateAddressService, IupdateAddressService } from 'lib/apis/address/interfaces';
 import { countries_statics } from 'lib/utils/statics/countries';
+import AppErrors from 'lib/utils/statics/errors/errors';
 import React, { useCallback, useEffect } from 'react'
 import { useMutation } from 'react-query';
 import AddressModalModel from './AddressModalModel';
@@ -38,7 +39,7 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
             }
             if (onSuccess) onSuccess()
             updateShopData()
-            showToast("Address create", "success")
+            showToast(addressID ? AppErrors.store.store_address__been_updated : AppErrors.store.store_address_added_successfully, "success")
             close()
         } catch (error) {
             showToast(error?.response?.data?.message, "error");

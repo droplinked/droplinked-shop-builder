@@ -96,7 +96,6 @@ function AppRoutes() {
               </Route>
               <Route path="collections" element={<Collections />} />
               <Route path="orders" element={<Orders />} />
-              <Route path="rules" element={<Rules />} />
               <Route path="affiliate" element={<AffiliateLayout />}>
                 <Route index element={<Shops />} />
                 <Route path="shops">

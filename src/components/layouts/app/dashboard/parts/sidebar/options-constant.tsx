@@ -10,9 +10,6 @@ export const OPTIONS = [
         icon: <AppIcons.collectionIcon />, label: 'Collections', path: 'collections'
     },
     {
-        icon: <AppIcons.rulesetsIcon />, label: 'Rulesets', path: 'rules'
-    },
-    {
         icon: <AppIcons.orderIcon />, label: 'Orders', path: 'orders'
     },
     {

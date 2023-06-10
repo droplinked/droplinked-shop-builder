@@ -34,6 +34,10 @@ const IconsComponent = () => {
         placeHolder="Profile logo appears at the left side of the page."
         value={headerIcon}
         change={(value) => updateState("headerIcon", value)}
+        maxSize={{
+          fieldName: "Size",
+          size: 5
+        }}
       />
     </Flex>
   );
