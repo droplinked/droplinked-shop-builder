@@ -1,5 +1,5 @@
 import { Box, Image } from "@chakra-ui/react";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import { designContext } from "../../design-context";
 import { BANNER_DEFAULT_IMSGES } from "./default-images";
@@ -9,15 +9,12 @@ import ImagesSliderBannerComponent from "./components/images-slider-banner-compo
 import { useLocation } from "react-router-dom";
 
 const BannerComponent = () => {
-  const {
-    state: { backgroundColor, backgroundImage },
-  } = useContext(designContext);
+  const { state: { backgroundColor, backgroundImage } } = useContext(designContext);
   const [images, setImages] = useState(BANNER_DEFAULT_IMSGES);
   const [LoadImage, setLoadImage] = useState(false);
   const location = useLocation().pathname;
 
-  const addNewImage = (imageSrc) =>
-    setImages((prev) => [{ banner_src: imageSrc, image: imageSrc }, ...prev]);
+  const addNewImage = (imageSrc) => setImages((prev) => [{ banner_src: imageSrc, image: imageSrc }, ...prev]);
 
   // Append image saved to images list for mode setting
   useEffect(() => {
@@ -26,6 +23,9 @@ const BannerComponent = () => {
       setLoadImage(true);
     }
   }, [location, backgroundImage]);
+
+  // Cache all image banner
+  useEffect(() => BANNER_DEFAULT_IMSGES.map(el => fetch(el.banner_src)), [BANNER_DEFAULT_IMSGES])
 
   return (
     <Box w="100%">

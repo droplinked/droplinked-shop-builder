@@ -110,10 +110,11 @@ const InputImage = ({ label, placeHolder, change, value, maxSize }: IProps) => {
               <Text
                 fontFamily="Avenir Next"
                 fontWeight="400"
-                fontSize="16px"
+                textAlign="center"
+                fontSize="14px"
                 color="#808080"
               >
-                Upload a JPEG, JPG, or PNG file as the brand logo
+                Upload an JPG, JPEG, PNG or SVG file <br />(5 MB max)
               </Text>
             </>
           )}

@@ -34,7 +34,7 @@ function Payments() {
                 <Box><FieldLabel label='Payment Method' textProps={{ size: "18px", weight: "bolder" }} isRequired /></Box>
                 <Box>
                     <AppTypography size="14px" color="#C2C2C2">
-                        Activate the payment methods and choose your target wallet for each of them
+                        Activate the payment methods and add target wallet for each of them.
                     </AppTypography>
                 </Box>
                 <VStack align='stretch' spacing={3}>

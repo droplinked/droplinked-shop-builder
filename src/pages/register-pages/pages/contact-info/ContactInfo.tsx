@@ -70,7 +70,7 @@ const ContactInfo = () => {
                 value={values.discordURL}
                 change={(e: any) => setFieldValue("discordURL", e.target.value)}
                 label="Discord"
-                placeHolder="my store"
+                placeHolder="username"
                 children="https://discord.gg/"
               />
               <Box mb="32px" />
@@ -78,7 +78,7 @@ const ContactInfo = () => {
                 value={values.twitterURL}
                 change={(e: any) => setFieldValue("twitterURL", e.target.value)}
                 label="Twitter"
-                placeHolder="my store"
+                placeHolder="username"
                 children="https://twitter.com/"
               />
               <Box mb="32px" />
@@ -86,7 +86,7 @@ const ContactInfo = () => {
                 value={values.instagramURL}
                 change={(e: any) => setFieldValue("instagramURL", e.target.value)}
                 label="Instagram"
-                placeHolder="mystore"
+                placeHolder="username"
                 children="https://www.instagram.com/"
               />
             </AppCard>

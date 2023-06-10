@@ -41,7 +41,7 @@ function RegisterShopInfo() {
       <AppCard>
         <VStack align={"stretch"} color="#FFF" spacing={7}>
           <VStack align={"stretch"}>
-            <Box><AppTypography size='18px' weight='bolder'>Store info</AppTypography></Box>
+            <Box><AppTypography size='18px' weight='bolder'>Store URL</AppTypography></Box>
             <Flex justifyContent={"space-between"}>
               <AppTypography size='16px' color={"#C2C2C2"}>{userStore}</AppTypography>
               <ClipboardText text={userStore} />
