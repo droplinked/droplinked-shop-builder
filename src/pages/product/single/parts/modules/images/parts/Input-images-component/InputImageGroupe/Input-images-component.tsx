@@ -18,9 +18,10 @@ interface IProps {
   setState: any
   state: any
   vertical?: boolean
+  message?: string
 }
 
-export default function InputImagesGroup({ setState, state, vertical }: IProps) {
+export default function InputImagesGroup({ setState, state, vertical, message }: IProps) {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
   const { showToast } = useAppToast()
@@ -39,7 +40,6 @@ export default function InputImagesGroup({ setState, state, vertical }: IProps) 
     if (
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
-      file.type !== "image/gif" &&
       file.type !== "image/webp" &&
       file.type !== "image/jpg"
     ) {
@@ -60,7 +60,7 @@ export default function InputImagesGroup({ setState, state, vertical }: IProps) 
         }
         imgArr.push(e.data.standard);
         setState(imgArr);
-        showToast(e.data.message, "success");
+        showToast(message ? message : e.data.message, "success");
         setLoading(false);
         return;
       })
@@ -94,7 +94,7 @@ export default function InputImagesGroup({ setState, state, vertical }: IProps) 
           <InputAddImage onClick={openFile}>
             <Image src={uploadImage} w="50px" h="50px" />
             <Box mb="24px"></Box>
-            <Text fontSize="18px" textAlign="center" color="darkGray">
+            <Text fontSize="16px" textAlign="center" color="darkGray">
               Please upload JPG, JPEG, PNG
             </Text>
           </InputAddImage>

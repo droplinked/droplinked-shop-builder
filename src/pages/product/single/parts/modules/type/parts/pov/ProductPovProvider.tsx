@@ -27,7 +27,7 @@ function ProductPovProvider() {
                 name="podProvider"
                 items={items}
                 isRequired
-                loading={loading || !isLoading}
+                loading={loading && !isLoading}
                 value={prodviderID}
                 onChange={(e) => updateState("prodviderID", e.target.value)}
             />

@@ -88,7 +88,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
             <Box position={"relative"}>
               <AppInput
                 type={States.show.repassword ? "text" : "password"}
-                placeholder="Confirm password"
+                placeholder="Confirm Password"
                 name="repassword"
                 error={errors?.repassword ? errors.repassword.toString() : ""}
                 onChange={(e) => setFieldValue("repassword", e.target.value)}

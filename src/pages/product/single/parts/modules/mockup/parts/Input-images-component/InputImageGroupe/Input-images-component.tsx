@@ -39,7 +39,6 @@ export default function InputImagesGroup({ setState, state, vertical }: IProps) 
     if (
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
-      file.type !== "image/gif" &&
       file.type !== "image/webp" &&
       file.type !== "image/jpg"
     ) {
@@ -87,15 +86,15 @@ export default function InputImagesGroup({ setState, state, vertical }: IProps) 
           <Flex gap={3} onClick={openFile} alignItems="center">
             <Image src={uploadImage} w="24px" h="24px" />
             <Text fontSize="14px" textAlign="center" color="darkGray">
-              Please upload JPG, JPEG, PNG or GIF
+              Upload JPG, JPEG, PNG (Max 5 MB)
             </Text>
           </Flex>
         ) : (
           <InputAddImage onClick={openFile}>
             <Image src={uploadImage} w="50px" h="50px" />
             <Box mb="24px"></Box>
-            <Text fontSize="18px" textAlign="center" color="darkGray">
-              Please upload JPG, JPEG, PNG or GIF
+            <Text fontSize="14px" textAlign="center" color="darkGray">
+              Upload JPG, JPEG, PNG<br />(Max 5 MB)
             </Text>
           </InputAddImage>
         )}
