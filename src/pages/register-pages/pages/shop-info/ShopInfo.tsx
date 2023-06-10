@@ -9,6 +9,7 @@ import ShopInfoAddress from './parts/address/shopInfoAddress'
 import ShopInfoSubmit from './parts/submit/ShopInfoSubmit'
 import { useProfile } from "functions/hooks/useProfile/useProfile"
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 
 export interface IstatesShopInfo {
   description: string,
@@ -48,11 +49,12 @@ function RegisterShopInfo() {
             </Flex>
           </VStack>
           <VStack align={"stretch"}>
-            <Box>
-              <AppInput name='name' label='Store Name' value={States.description} onChange={(e: any) => updateStates("description", e.target.value)} placeholder='e.g., droplinked' isRequired />
-            </Box>
-            <Box>
+            <VStack align={"stretch"}>
+              <FieldLabel label='Store Name' isRequired />
               <AppTypography size='14px' color={"rgb(128, 128, 128)"}>Enter your store name.(max 20 characters)</AppTypography>
+            </VStack>
+            <Box>
+              <AppInput name='name' maxLength={20} value={States.description} onChange={(e: any) => updateStates("description", e.target.value)} placeholder='e.g., droplinked' isRequired />
             </Box>
           </VStack>
         </VStack>

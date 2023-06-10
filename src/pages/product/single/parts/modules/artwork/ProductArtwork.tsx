@@ -18,11 +18,11 @@ function ProductArtwork() {
             <Flex gap={10}>
                 <VStack align="stretch" width="50%">
                     <AppTypography size='12px' color="#C2C2C2">Front Artwork</AppTypography>
-                    <ArtworkImage artwork={artwork} updateState={(data: any) => updateState("artwork", data)} />
+                    <ArtworkImage artwork={artwork} field="artwork" updateState={(data: any) => updateState("artwork", data)} />
                 </VStack>
                 <VStack align="stretch" width="50%">
                     <AppTypography size='12px' color="#C2C2C2">Back Artwork</AppTypography>
-                    <ArtworkImage artwork={artwork2} updateState={(data: any) => updateState("artwork2", data)} />
+                    <ArtworkImage artwork={artwork2} field="artwork2" updateState={(data: any) => updateState("artwork2", data)} />
                 </VStack>
             </Flex>
         </VStack>

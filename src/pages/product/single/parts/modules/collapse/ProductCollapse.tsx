@@ -10,10 +10,11 @@ interface IProps {
   children: any
   title: string
   description: string
+  show?: boolean
 }
 
-function ProductCollapse({ children, description, title }: IProps) {
-  const [Show, setShow] = useState(false)
+function ProductCollapse({ children, description, title, show = false }: IProps) {
+  const [Show, setShow] = useState(show)
 
   const toggle = useCallback(() => setShow(prev => !prev), [])
 

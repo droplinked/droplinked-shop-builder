@@ -7,7 +7,7 @@ import React, { useContext, useEffect, useMemo } from 'react'
 import { useMutation, useQuery } from 'react-query'
 
 function ProductType() {
-    const { mutate, data } = useMutation((params: IproviderIDService) => providerIDService(params))
+    const { mutate, data, isLoading } = useMutation((params: IproviderIDService) => providerIDService(params))
     const { state: { prodviderID, product_type, pod_blank_product_id, publish_product }, productID, methods: { updateState }, loading } = useContext(productContext)
 
     useEffect(() => mutate({ prodviderID }), [prodviderID])
@@ -19,6 +19,7 @@ function ProductType() {
         caption: el.category,
         value: el._id
     })) : [], [data])
+    console.log("isLoading", isLoading);
 
     return (
         <Box position={"relative"}>
@@ -29,7 +30,7 @@ function ProductType() {
                 items={items}
                 placeholder="Select..."
                 isRequired
-                loading={loading}
+                loading={loading && !isLoading}
                 value={pod_blank_product_id}
                 onChange={(e) => {
                     updateState("pod_blank_product_id", e.target.value)

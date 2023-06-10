@@ -2,6 +2,7 @@ import { Box, Flex, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
+import AppErrors from 'lib/utils/statics/errors/errors'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import InputImagesGroup from '../../../images/parts/Input-images-component/InputImageGroupe/Input-images-component'
@@ -10,10 +11,11 @@ import ProductPageTitle from '../../../title/ProductPageTitle'
 
 interface IProps {
     artwork: string
+    field: "artwork" | "artwork2"
     updateState(data: any): void
 }
 
-function ArtworkImage({ artwork, updateState }: IProps) {
+function ArtworkImage({ artwork, field,updateState }: IProps) {
     const [FileSize, setFileSize] = useState("")
 
     useEffect(() => artwork && getSizeImage(artwork), [artwork])
@@ -43,7 +45,7 @@ function ArtworkImage({ artwork, updateState }: IProps) {
                     </Flex>
                 ) : (
                     <SkeletonProduct width={"30%"} height={"200px"}>
-                        <InputImagesGroup vertical setState={(images: any) => updateState(images[0])} state={[]} />
+                        <InputImagesGroup vertical message={AppErrors.product[field === "artwork" ? "front_artwork_uploaded_successfully" : "back_artwork_uploaded_successfully"]} setState={(images: any) => updateState(images[0])} state={[]} />
                     </SkeletonProduct>
                 )}
             </Box>
