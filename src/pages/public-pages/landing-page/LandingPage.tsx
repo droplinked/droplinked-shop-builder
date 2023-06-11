@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import {
   keyframes,
   usePrefersReducedMotion,
@@ -23,6 +23,7 @@ import IconsComponent from "./components/icons-component/IconsComponent";
 import SignupInputComponent from "./components/signup-input-component/SignupInputComponent";
 import AuthModal from "components/modals/auth-modal/AuthModal";
 import LogoSliderComponent from "./components/logo-slider-component/LogoSliderComponent";
+import AppStorage from "lib/utils/app/sessions";
 
 const keyframe_leftanimation = keyframes`
 0% {
@@ -60,46 +61,50 @@ export default function LandingPage() {
   const navigateToEnquiry = () => navigate("/enquiry");
 
   return (
-    <Box pt="50px" pb="100px">
-      <LandingPageWrapper overflowX={"hidden"}>
-        {/* inputs */}
-        <InputContainrt>
-          <TextContainer animation={leftsideAnimation}>
-            <TextUp>
-              Community <br />
-              driven commerce
-            </TextUp>
+    <>
+      {AppStorage.accessToken ? <Navigate to={`${shop?.name}/c/products`} /> : (
+        <Box pt="50px" pb="100px">
+          <LandingPageWrapper overflowX={"hidden"}>
+            {/* inputs */}
+            <InputContainrt>
+              <TextContainer animation={leftsideAnimation}>
+                <TextUp>
+                  Community <br />
+                  driven commerce
+                </TextUp>
 
-            <Text2>Earn cash or crypto for sharing collections.</Text2>
-            <SignupInputComponent
-              setUsername={setUsername}
-              userName={userName}
-              toggleSignUp={toggleModal}
-            />
-          </TextContainer>
-        </InputContainrt>
-        {/* inputs */}
-        {/* image */}
-        <MainImageComponent />
-        {/* image */}
-      </LandingPageWrapper>
-      <SpaceBox></SpaceBox>
-      <IconsComponent />
-      <SpaceBox></SpaceBox>
-      <Flex w="100%" justifyContent="center" px={{ base: "20px", md: "80px" }}>
-        <BasicButton color="white" onClick={navigateToEnquiry}>
-          Enquire to learn more
-        </BasicButton>
-      </Flex>
-      <SpaceBox></SpaceBox>
-      <Box mb="36px" />
-      <LogoSliderComponent />
-      <AuthModal
-        show={showAuthModal}
-        close={toggleModal}
-        shopName={userName}
-        type="SIGNUP"
-      />
-    </Box>
+                <Text2>Earn cash or crypto for sharing collections.</Text2>
+                <SignupInputComponent
+                  setUsername={setUsername}
+                  userName={userName}
+                  toggleSignUp={toggleModal}
+                />
+              </TextContainer>
+            </InputContainrt>
+            {/* inputs */}
+            {/* image */}
+            <MainImageComponent />
+            {/* image */}
+          </LandingPageWrapper>
+          <SpaceBox></SpaceBox>
+          <IconsComponent />
+          <SpaceBox></SpaceBox>
+          <Flex w="100%" justifyContent="center" px={{ base: "20px", md: "80px" }}>
+            <BasicButton color="white" onClick={navigateToEnquiry}>
+              Enquire to learn more
+            </BasicButton>
+          </Flex>
+          <SpaceBox></SpaceBox>
+          <Box mb="36px" />
+          <LogoSliderComponent />
+          <AuthModal
+            show={showAuthModal}
+            close={toggleModal}
+            shopName={userName}
+            type="SIGNUP"
+          />
+        </Box>
+      )}
+    </>
   );
 }

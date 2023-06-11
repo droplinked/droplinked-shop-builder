@@ -8,7 +8,8 @@ const storeErrors = {
     when_user_publishes__store: "Your store has been published successfully!",
     store_address_added_successfully: "Store address has been added successfully!",
     store_address__been_updated: "Store address has been updated!",
-    has_been_updated: (target: string) => `${target} has been updated`
+    has_been_updated: (target: string) => `${target} has been updated`,
+    upload: (field: string) => `${field} has been uploaded successfully!`,
 }
 
 export default storeErrors

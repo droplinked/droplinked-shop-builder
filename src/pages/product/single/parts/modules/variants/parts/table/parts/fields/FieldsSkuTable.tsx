@@ -38,6 +38,7 @@ function FieldsSkuTable(props: IProps) {
             value={value || 0}
             background="#141414"
             border={"none"}
+            disabled={name === "cost"}
             outline="none"
             _disabled={{opacity: ".3"}}
             width="auto"

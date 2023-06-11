@@ -33,7 +33,7 @@ function Collections() {
                 loading={isLoading}
                 buttons={[
                     {
-                        caption: "Add Collection",
+                        caption: "Create Collection",
                         onClick: onOpen
                     }
                 ]}
@@ -41,7 +41,7 @@ function Collections() {
                 search={{ onChange: (e) => setSearch(e.target.value) }}
                 empty={<CollectionsEmpty openModal={onOpen} />}
             />
-            <CollectionCreate close={onClose} refetch={fetch} open={isOpen} />
+            <CollectionCreate close={onClose} refetch={mutate} open={isOpen} />
         </>
     )
 }

@@ -21,6 +21,7 @@ export default class SkuTableModel {
                 value: sku.options.map(el => el.value).join("-")
             },
             price: {
+                caption: product_type === "PRINT_ON_DEMAND" ? "Retail Price" :  "Price",
                 props: {
                     width: "20%"
                 },
@@ -31,14 +32,22 @@ export default class SkuTableModel {
                     </Flex>
                 )
             },
-            quantity: {
-                value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"quantity"} />
+            ...product_type !== "PRINT_ON_DEMAND" && {
+                quantity: {
+                    value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"quantity"} />
+                },
             },
-            externalID: {
-                caption: "external ID",
-                value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.externalID} name={"externalID"} />
+            ...product_type === "PRINT_ON_DEMAND" && {
+                cost: {
+                    caption: "Product Cost",
+                    value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"cost"} />
+                },
             },
             ...product_type === "NORMAL" && {
+                externalID: {
+                    caption: "External ID",
+                    value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.externalID} name={"externalID"} />
+                },
                 Packaging: {
                     caption: "Packaging Size",
                     value: (

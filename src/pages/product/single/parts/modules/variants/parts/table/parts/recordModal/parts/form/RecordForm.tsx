@@ -13,6 +13,7 @@ import { recordCasperService } from 'lib/apis/sku/services'
 import { IrecordCasperService } from 'lib/apis/sku/interfaces'
 import recordContext from '../../context'
 import useAppToast from 'functions/hooks/toast/useToast'
+import AppTypography from 'components/common/typography/AppTypography'
 
 export interface IRecordModalProduct {
     title: string
@@ -94,34 +95,31 @@ function RecordForm({ close, product }: Iprops) {
                             <Box textAlign={"center"}><Text fontSize={"larger"} margin="12px 0" fontFamily="aven" color={"#FEB900"}>Warning !</Text></Box>
                             <Box textAlign={"center"}>
                                 <Text color="#C2C2C2" fontSize={"lg"}>
-                                    Once your product variant is recorded on a blockchain network, it becomes immutable and <Text color={"#FFF"} fontFamily={"aven"} display="inline-block">cannot be edited</Text>. Please ensure that all details of your product are accurate before recording it.
+                                    Once your product variant is recorded on a blockchain network, it becomes immutable, and <Text color={"#FFF"} fontFamily={"aven"} display="inline">neither the variants nor properties can be edited.</Text> Please ensure that all details of your product are accurate before recording it.
                                 </Text>
                             </Box>
-                            <HStack>
-                                <Box width={"35%"}><Text fontSize={"lg"}>Blockchain Network</Text></Box>
-                                <Box width={"65%"}>
-                                    <AppSelectBox
-                                        items={[{ value: "CASPER", caption: "Casper" }]}
-                                        name="blockchain"
-                                        placeholder='Select blockchain'
-                                        error={errors.blockchain}
-                                        onChange={(e) => setFieldValue("blockchain", e.target.value)}
-                                        value={values.blockchain}
-                                    />
-                                </Box>
-                            </HStack>
-                            <HStack>
-                                <Box width={"35%"}><Text fontSize={"lg"}>Commission</Text></Box>
-                                <Box width={"65%"}>
-                                    <AppInput
-                                        name="blockchain"
-                                        placeholder='%25'
-                                        error={errors.commission}
-                                        onChange={(e) => setFieldValue("commission", e.target.value)}
-                                        value={values.commission || ""}
-                                    />
-                                </Box>
-                            </HStack>
+                            <Box>
+                                <AppSelectBox
+                                    items={[{ value: "CASPER", caption: "Casper" }]}
+                                    name="blockchain"
+                                    label='Blockchain Network'
+                                    placeholder='Select Blockchain'
+                                    error={errors.blockchain}
+                                    onChange={(e) => setFieldValue("blockchain", e.target.value)}
+                                    value={values.blockchain}
+                                />
+                            </Box>
+                            <VStack align="stretch">
+                                <AppInput
+                                    name="blockchain"
+                                    placeholder='%25'
+                                    label='Commision'
+                                    error={errors.commission}
+                                    onChange={(e) => setFieldValue("commission", e.target.value)}
+                                    value={values.commission || ""}
+                                />
+                                <AppTypography size='14px' weight='bolder' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography size='14px' weight='bolder' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
+                            </VStack>
                             <HStack justifyContent={"space-between"}>
                                 <Box width={"25%"}><BasicButton variant='outline' onClick={() => !loading ? close() : {}}>Cancel</BasicButton></Box>
                                 <Box width={"25%"}><BasicButton type="submit" isLoading={loading}>Drop</BasicButton></Box>

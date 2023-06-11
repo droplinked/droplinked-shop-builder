@@ -12,10 +12,10 @@ interface IrefactorData {
 export default class ProductListModel {
     private static makeData = (element: any, fetch: any) => ({
         image: {
-            caption: "Products",
+            caption: "Name",
             value: <ImageListProduct product={element} />
         },
-        collections: {
+        collection: {
             value: element?.productCollectionID?.title
         },
         inventory: {

@@ -1,6 +1,6 @@
 export const capitalizeFirstLetter = (value: string) => {
     if (!value) return ""
-    return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+    return value.split(" ").map(el => el.charAt(0).toUpperCase() + el.slice(1).toLowerCase()).join(" ")
 }
 
 interface ItoMb {
