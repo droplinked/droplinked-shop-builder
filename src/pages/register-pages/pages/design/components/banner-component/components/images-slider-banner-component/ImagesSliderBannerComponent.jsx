@@ -3,6 +3,7 @@ import { Flex, Image } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { designContext } from "pages/register-pages/pages/design/design-context";
 import "swiper/css";
+import ActiveBox from "pages/register-pages/pages/design/parts/active/ActiveBox";
 
 const ImagesSliderBannerComponent = ({ images }) => {
 
@@ -23,20 +24,15 @@ const ImagesSliderBannerComponent = ({ images }) => {
       <Swiper spaceBetween={10} slidesPerView={4.7} lazyPreloadPrevNext >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <Image
-              width={"100%"}
-              src={image.image}
-              borderRadius="4px"
-              border={
-                backgroundImage === image.banner_src
-                  ? "4px solid #2EC99E"
-                  : "none"
-              }
-              onClick={() => {
-                selectImage(image);
-              }}
-              cursor="pointer"
-            />
+            <ActiveBox props={{ width: "100%", borderRadius: "4px" }} active={backgroundImage === image.banner_src}>
+              <Image
+                width={"100%"}
+                src={image.image}
+                borderRadius="4px"
+                onClick={() => selectImage(image)}
+                cursor="pointer"
+              />
+            </ActiveBox>
           </SwiperSlide>
         ))}
       </Swiper>

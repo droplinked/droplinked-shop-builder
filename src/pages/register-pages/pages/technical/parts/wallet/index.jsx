@@ -1,24 +1,20 @@
 import { Box, HStack, Image, Menu, MenuButton, MenuItem, MenuList, Text, VStack, useDisclosure } from '@chakra-ui/react'
-import { StarLabel, Text18px } from 'pages/register-pages/RegisterPages-style'
 import React from 'react'
 import classes from './style.module.scss'
-import MetaMask from "assest/icon/MetaMask.svg";
 import moreIcon from "assest/icon/more-icon.svg";
-import BasicButton from 'components/shared/BasicButton/BasicButton';
+import BasicButton from 'components/common/BasicButton/BasicButton';
 import WalletModal from './parts/modal';
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
+import AppIcons from 'assest/icon/Appicons';
+import AppCard from 'components/common/card/AppCard';
 
 function Wallet() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <>
-            <VStack
-                spacing={3}
-                align='stretch'
-            >
-                <Box>
-                    <Text18px>Connected Wallets <StarLabel>*</StarLabel></Text18px>
-                </Box>
+        <AppCard>
+            <VStack spacing={3} align='stretch'>
+                <Box><FieldLabel label='Connected Wallets' textProps={{ size: "18px", weight: "bolder" }} isRequired /></Box>
                 <HStack justifyContent="space-between" spacing={5} alignItems="center">
                     <Box>
                         <Text fontSize="sm" color="lightGray">
@@ -26,7 +22,7 @@ function Wallet() {
                         </Text>
                     </Box>
                     <Box>
-                        <BasicButton cancelType click={onOpen} size="md">Connect Wallet</BasicButton>
+                        <BasicButton variant='outline' onClick={onOpen} sizes="medium">Connect Wallet</BasicButton>
                     </Box>
                 </HStack>
                 <Box>
@@ -39,7 +35,7 @@ function Wallet() {
                             <tr>
                                 <td>
                                     <HStack>
-                                        <Box><Image src={MetaMask} w="22px" h="22px" /></Box>
+                                        <Box><AppIcons.metaMaskIcon width="22px" height="22px" /></Box>
                                         <Box position="relative" top={1}>
                                             <Text fontSize="sm" color="lightGray">
                                                 R343FH...R343FH
@@ -65,7 +61,7 @@ function Wallet() {
                 </Box>
             </VStack>
             <WalletModal close={onClose} open={isOpen} />
-        </>
+        </AppCard>
     )
 }
 

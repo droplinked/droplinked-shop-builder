@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Flex } from "@chakra-ui/react";
 import { SignupWrapper, DomainText, ShopNameInput, ErrorText } from "./SignupInputComponent-style";
-import BasicButton from "components/shared/BasicButton/BasicButton";
+import BasicButton from 'components/common/BasicButton/BasicButton';
 import { useMutation } from "react-query";
 import { shopService } from "lib/apis/shop/shopServices";
 
@@ -40,7 +40,7 @@ const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
           />
         </Flex>
         <Flex w="25%">
-          <BasicButton size="lg" width="100%" loading={isLoading} click={clickSignin}>Sign up </BasicButton>
+          <BasicButton sizes="large" width="100%" minWidth={"100%"} isLoading={isLoading} onClick={clickSignin}>Sign up </BasicButton>
         </Flex>
       </SignupWrapper>
       {error && <ErrorText>{error}</ErrorText>}

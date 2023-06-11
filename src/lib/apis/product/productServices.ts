@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IproductByIdServices, IproductState, IproductUpdateServices, IskuUpdateByIdServices } from "./interfaces"
+import { IproductByIdServices, IproductDeleteServices, IproductState, IproductUpdateServices, IskuUpdateByIdServices } from "./interfaces"
 
 export const productServices = () => {
     return axiosInstance.get("product")
@@ -13,10 +13,18 @@ export const productUpdateServices = ({ productID, params }: IproductUpdateServi
     return axiosInstance.put(`product/${productID}`, params)
 }
 
-export const productByIdServices = ({ productID }: IproductByIdServices) => {
-    return axiosInstance.get(`product/public/${productID}`)
+export const productDeleteServices = ({ productID }: IproductDeleteServices) => {
+    return axiosInstance.delete(`product/${productID}`)
+}
+
+export const productByIdServices = ({ productID, shopname }: IproductByIdServices) => {
+    return axiosInstance.get(`product/public/${productID}?shopname=${shopname}`)
 }
 
 export const skuUpdateByIdServices = ({ skuID, params }: IskuUpdateByIdServices) => {
     return axiosInstance.put(`sku/${skuID}`, params)
+}
+
+export const printPositionsServices = () => {
+    return axiosInstance.get(`product/public/print-positions`)
 }

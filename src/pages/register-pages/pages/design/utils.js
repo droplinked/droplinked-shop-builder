@@ -29,6 +29,6 @@ export const refactorDesignData = (data) => {
     backgroundImageSecondary: data.backgroundImageSecondary
       ? data.backgroundImageSecondary
       : "",
-    backgroundColor: data.backgroundColor ? data.backgroundColor : "#fff",
+    backgroundColor: data.backgroundColor ? data.backgroundColor : "#ffffff",
   };
 };

@@ -1,5 +1,5 @@
 import { Iproperties } from "lib/apis/product/interfaces";
-import AppendModule from "../../parts/properties/parts/form/model/module/append";
+import AppendModule from "../../parts/modules/properties/model/module/append";
 
 export default class propertyFactor {
     static refactor = (items: Array<any>): Array<Iproperties> => {

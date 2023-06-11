@@ -1,4 +1,5 @@
 import { CasperClient, CasperServiceByJsonRPC } from 'casper-js-sdk'
+import { get_contract_hash } from './helper';
 export const apiUrl = "https://apiv2.droplinked.com/http-req?method=post&url=http://188.40.47.161";
 export const metadata_uref = "metadatas";//"uref-2cff9bd7ac5b27970f6288c6651721db5b855cca899cc02aa7ac1ea6a086273b-007";
 export const request_objects_uref = "request_objects";//"uref-c4ab070d45a603116974847996a8c89d8dfbe57a8ce2beb0aff2cd3b7650c186-007";
@@ -11,7 +12,7 @@ export const publishers_approved_dict_uref = "publishers_approved";//"uref-a7706
 export const publishers_rejected_dict_uref = "publisher_rejects";//"uref-afaf40e70e5055284ccf6bb34ef71ff1a448d64329112f34096a9d3b2ab774b6-007";
 export const approved_dict_uref = "approved";//"uref-db339a021027e81aa65425482e233403b6522c5def929f69abf59ff00f50535b-007";
 export const token_id_by_metadata_hash = "token_id_by_hash";//"uref-cbf612eb59083565cb6a666a86a1f0cd4c33b5b378c48f845f81a57ecfbfcb43-007";
-export const contract_hash = "95bcad805a0be5a807110fa6d8ea11f9bcc91d6175b19ce81a242739f7f3d8f2";
+export const contract_hash = get_contract_hash();
 export const network = "casper-test";
 export const casperService = new CasperServiceByJsonRPC(apiUrl + ":7777/rpc");
 export const casperClient = new CasperClient(apiUrl + ":7777/rpc");

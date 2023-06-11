@@ -1,6 +1,14 @@
+@import "assest/style/colors";
+
 .textbox {
     background: #1C1C1C;
     border: none;
     font-size: .85rem;
     outline: none;
+}
+
+.active {
+    path {
+        fill: $primary;
+    }
 }

@@ -5,11 +5,13 @@ import SelectPagesComponent from "./component/select-pages-component/SelectPages
 
 const RegisterPagesWrapper = () => {
   return (
-    <Flex w="100%" position="relative" justifyContent="center">
-      <Box position="absolute" left="0px" top="0px">
+    <Flex w="100%">
+      <Box width={"200px"}>
         <SelectPagesComponent />
       </Box>
-      <Outlet />
+      <Flex width={"100%"} justifyContent="center" paddingRight={[0, "13%"]}>
+        <Box width={"90%"} maxWidth="800px" ><Outlet /></Box>
+      </Flex>
     </Flex>
   );
 };

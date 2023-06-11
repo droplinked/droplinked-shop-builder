@@ -1,8 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
-
-import { SideText } from "../../RegisterPages-style";
-import { useCustomNavigate } from "../../../../hooks/useCustomeNavigate/useCustomNavigate";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import { SideText } from "pages/register-pages/RegisterPages-style";
 
 const SelectPagesComponent = () => {
   const { shopNavigate } = useCustomNavigate();
@@ -21,7 +20,7 @@ const SelectPagesComponent = () => {
           if (isSettings) shopNavigate("settings/shop-info");
         }}
       >
-        Shop info
+        Store Info
       </SideText>
       <SideText
         cursor={isSettings && "pointer"}
@@ -30,7 +29,7 @@ const SelectPagesComponent = () => {
           if (isSettings) shopNavigate("settings/design");
         }}
       >
-        Design template
+        Store Design
       </SideText>
       <SideText
         cursor={isSettings && "pointer"}
@@ -39,7 +38,7 @@ const SelectPagesComponent = () => {
           if (isSettings) shopNavigate("settings/technical");
         }}
       >
-        Technical
+        Payment Options
       </SideText>
       <SideText
         cursor={isSettings && "pointer"}
@@ -48,7 +47,7 @@ const SelectPagesComponent = () => {
           if (isSettings) shopNavigate("settings/contact-info");
         }}
       >
-        Contact options
+        Social Links
       </SideText>
     </>
   );

@@ -1,4 +1,6 @@
-import FiltersDatagrid from 'components/shared/datagrid/parts/filters/FiltersDatagrid'
+import { HStack } from '@chakra-ui/react'
+import FiltersDatagrid from 'components/common/datagrid/parts/filters/FiltersDatagrid'
+import SearchDatagrid from 'components/common/datagrid/parts/search/SearchDatagrid'
 import React from 'react'
 
 function ShopsFilter() {
@@ -32,7 +34,10 @@ function ShopsFilter() {
     ]
 
     return (
-        <FiltersDatagrid item={filters} />
+        <HStack spacing={7}>
+            <SearchDatagrid />
+            <FiltersDatagrid item={filters} />
+        </HStack>
     )
 }
 

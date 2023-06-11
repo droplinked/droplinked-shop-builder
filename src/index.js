@@ -5,27 +5,18 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-
-import { Provider } from "react-redux";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "./theme";
-
-import ToastifyProvider from "./context/toastify/ToastContext";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { store } from "lib/store/store";
-const queryClient = new QueryClient ()
+const queryClient = new QueryClient()
 
 ReactDOM.render(
   <React.StrictMode>
-    <ToastifyProvider>
-      <Provider store={store}>
-        <QueryClientProvider client={queryClient}>
-          <ChakraProvider theme={theme}>
-            <App />
-          </ChakraProvider>
-        </QueryClientProvider>
-      </Provider>
-    </ToastifyProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme} >
+        <App />
+      </ChakraProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

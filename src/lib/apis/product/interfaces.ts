@@ -1,3 +1,4 @@
+export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
 export interface IproductState {
     title: string
     description: string
@@ -5,9 +6,18 @@ export interface IproductState {
     priceUnit: string
     media: Array<string>
     shippingPrice: number
+    product_type: product_type
+    publish_product: boolean
     shippingType: "CUSTOM" | "EASY_POST"
     properties: Array<Iproperties>
     sku: Array<Isku>
+    prodviderID: string
+    pod_blank_product_id: string
+    artwork: string
+    artwork2: string
+    artwork_position: string
+    artwork2_position: string
+    m2m_positions: Array<string>
 }
 
 export interface IpropertiesItems {
@@ -26,6 +36,13 @@ export interface IskuOption {
     variantName: string
 }
 
+export interface IrecordData {
+    _id: string
+    status: "NOT_RECORDED" | "RECORDED" | "PENDING"
+    recordNetwork: string
+    casperData?: any
+}
+
 export interface Isku {
     _id?: string
     dimensions: {
@@ -37,18 +54,24 @@ export interface Isku {
     index: number
     options: Array<IskuOption>
     price: number
-    quantity: number
+    quantity: string
     record: Boolean
     weight: number
+    recordData?: IrecordData
 }
 
 export interface IproductByIdServices {
+    productID: string
+    shopname: string
+}
+
+export interface IproductDeleteServices {
     productID: string
 }
 
 export interface IproductUpdateServices {
     productID: string
-    params: IproductState
+    params: any
 }
 
 export interface IskuUpdateByIdServices {

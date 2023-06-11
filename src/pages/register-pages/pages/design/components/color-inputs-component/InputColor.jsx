@@ -1,11 +1,10 @@
 import { Flex, Text, FormLabel, FormControl } from "@chakra-ui/react";
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 
 const InputColor = ({ label, value, change }) => {
   return (
     <FormControl isRequired w="100%">
-      <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2" mb="12px">
-        {label}
-      </FormLabel>
+      <FieldLabel color="#C2C2C2" label={label} />
       <Flex
         w="100%"
         bg="subLayer"

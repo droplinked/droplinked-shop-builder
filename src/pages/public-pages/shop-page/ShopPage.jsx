@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { Box } from "@chakra-ui/react";
-import LoadingComponent from "components/shared/loading-component/LoadingComponent"; 
+import LoadingComponent from 'components/common/loading-component/LoadingComponent'; 
 
 const ShopPage = () => {
   let { shopname } = useParams();

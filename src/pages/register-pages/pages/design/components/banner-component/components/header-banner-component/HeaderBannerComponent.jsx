@@ -1,39 +1,32 @@
 import axios from "axios";
-
 import {
   Flex,
   FormControl,
-  FormLabel,
-  Text,
   Button,
   Spinner,
   Input,
 } from "@chakra-ui/react";
 import { useState, useRef } from "react";
-//
-import { useToasty } from "context/toastify/ToastContext";
+import AppTypography from 'components/common/typography/AppTypography';
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
+import { toMb } from "lib/utils/heper/helpers";
+import AppErrors from "lib/utils/statics/errors/errors";
+import useAppToast from "functions/hooks/toast/useToast";
+import BasicButton from "components/common/BasicButton/BasicButton";
 
 const HeaderBannerComponent = ({ addNewImage }) => {
   const [loading, setLoading] = useState(false);
+  const { showToast } = useAppToast()
 
   const fileRef = useRef(null);
-
-  const { successToast, errorToast } = useToasty();
-
-  // const imageSrc = useMemo(()=>{
-  //   const imageName = BANNER_DEFAULT_IMSGES.find(
-  //     (element) => element.banner_src === value
-  //   );
-  //   return imageName?imageName.image:value
-  // },[value])
 
   const changeImage = (e) => {
     const file = e.target.files[0];
 
-    // if (file.size > 500000) {
-    //   errorToast("File size exceeded (max: 500 kb)");
-    //   return;
-    // }
+    if (file.size > toMb({ value: 5 })) {
+      showToast(AppErrors.store.header_banner_size_limit, "error");
+      return;
+    }
     if (
       file.type !== "image/jpeg" &&
       file.type !== "image/png" &&
@@ -42,7 +35,7 @@ const HeaderBannerComponent = ({ addNewImage }) => {
       file.type !== "image/svg+xml" &&
       file.type !== "image/jpg"
     ) {
-      errorToast("File type not supported");
+      showToast(AppErrors.product.product_image_type_not_supported, "error");
       return;
     }
 
@@ -53,11 +46,11 @@ const HeaderBannerComponent = ({ addNewImage }) => {
       .post("https://cdn.droplinked.com/upload", formData)
       .then((e) => {
         setLoading(false);
-        successToast("The image uploaded");
+        showToast("The image uploaded", "success");
         addNewImage(e.data.original);
       })
       .catch((e) => {
-        errorToast(e.response.data.message);
+        showToast(e.response.data.message, "error");
         setLoading(false);
         return;
       });
@@ -69,33 +62,18 @@ const HeaderBannerComponent = ({ addNewImage }) => {
 
   return (
     <Flex w="100%" justifyContent="space-between" alignItems="center">
-      <FormControl isRequired w="100%">
-        <FormLabel fontWeight="500" fontSize="18px" color="#C2C2C2" mb="12px">
-          Header banner
-        </FormLabel>
-        <Text
-          fontFamily="Avenir Next"
-          fontWeight="500"
-          fontSize="16px"
-          color="#808080"
-          mb="12px"
-        >
-          This image will display at the top of the store page.
-        </Text>
+      <FormControl isRequired w="100%" marginBottom={3}>
+        <FieldLabel label="Hero Image" textProps={{ size: "18px", weight: "bolder" }} isRequired />
+        <AppTypography size="14px" color="#C2C2C2" marginTop={1}>Select one of the pre-designed images or upload a transparent PNG file up to 5MB.</AppTypography>
       </FormControl>
-      <Button
-        bg="transparent"
-        padding="12px 24px"
-        border="2px solid #292929"
-        color="#C2C2C2"
-        fontFamily="Avenir Next"
-        fontWeight="500"
-        fontSize="12px"
+      <BasicButton
+        variant="outline"
+        sizes="medium"
         disabled={loading}
         onClick={openFile}
       >
-        {loading ? <Spinner color="white" /> : "Upload Banner"}
-      </Button>
+        {loading ? <Spinner color="white" /> : "Upload"}
+      </BasicButton>
       <Input display="none" type="file" ref={fileRef} onChange={changeImage} />
     </Flex>
   );

@@ -8,8 +8,8 @@ export interface IcreateRuleService {
     rules: [
         {
             addresses: any
-            discountPercentage: string
-            nftsCount: string
+            discountPercentage: number
+            nftsCount: number
             type: string
             description: string
         },
@@ -20,6 +20,6 @@ export interface IcreateRuleService {
 }
 
 export interface IupdateRuleService {
-    ruleID : string
-    data : IcreateRuleService
+    ruleID: string
+    data: IcreateRuleService
 }

@@ -1,6 +1,6 @@
 import { IproductState } from "lib/apis/product/interfaces";
+import AppendModule from "../parts/modules/properties/model/module/append";
 import propertyFactor from "./modules/property";
-import AppendModule from "../parts/properties/parts/form/model/module/append";
 
 export default class ProductSingleModel {
     private static property = propertyFactor
@@ -34,9 +34,19 @@ export default class ProductSingleModel {
                     price: el?.price,
                     quantity: el?.quantity,
                     record: false,
-                    weight: el?.weight
+                    weight: el?.weight,
+                    recordData: el?.recordData
                 }
-            })
+            }),
+            product_type: data?.product_type,
+            publish_product: data?.publish_status && typeof data?.publish_status === "string" ? data?.publish_status !== "DRAFTED" : data?.publish_status,
+            pod_blank_product_id: data?.pod_blank_product_id,
+            prodviderID: data?.prodviderID || "DLW",
+            artwork: data?.artwork,
+            artwork2: data?.artwork2,
+            m2m_positions: data?.m2m_positions,
+            artwork_position: data?.artwork_position,
+            artwork2_position: data?.artwork2_position
         }
     }
 } 

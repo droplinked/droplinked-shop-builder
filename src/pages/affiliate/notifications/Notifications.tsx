@@ -1,5 +1,5 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
-import AppCard from 'components/shared/card/AppCard'
+import AppCard from 'components/common/card/AppCard'
 import React from 'react'
 import ShopsFilter from '../shops/parts/filter/ShopsFilter'
 import NotificationsList from './parts/list/NotificationsList'
