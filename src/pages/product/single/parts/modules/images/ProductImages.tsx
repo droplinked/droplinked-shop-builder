@@ -1,4 +1,5 @@
 import { Box, VStack } from '@chakra-ui/react'
+import AppErrors from 'lib/utils/statics/errors/errors'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'
 import introductionClass from '../../general/model'
@@ -21,7 +22,7 @@ function ProductImages() {
                     />
                     <Box>
                         <SkeletonProduct width={"30%"} height={"200px"}>
-                            <InputImagesGroup setState={(images: any) => updateState("media", refactorImage(images))} state={defactorImage(media)} />
+                            <InputImagesGroup message={AppErrors.store.upload("The product image")} setState={(images: any) => updateState("media", refactorImage(images))} state={defactorImage(media)} />
                         </SkeletonProduct>
                     </Box>
                 </VStack>

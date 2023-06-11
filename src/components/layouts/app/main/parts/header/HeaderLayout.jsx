@@ -39,7 +39,7 @@ const HeaderLayout = () => {
 
   return (
     <UserHeaderWrapper>
-      <Link to='/'>
+      <Link to={`${shop?.name}/c/products`}>
         <UserHeaderIcon src={droplinkedIcon} />
       </Link>
       {shop ? (

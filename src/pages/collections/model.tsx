@@ -10,7 +10,7 @@ interface IrefactorData {
 export default class CollectionsModel {
 
     private static makeData = (element: any, fetch: any) => ({
-        Collection: {
+        title: {
             value: element.title
         },
         Products: {

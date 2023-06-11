@@ -51,7 +51,7 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
     });
 
     return (
-        <AppModal close={close} open={open} size="2xl" contentProps={{ padding: "50px 30px" }}>
+        <AppModal close={close} open={open} size="2xl" title='Create Collection' contentProps={{ padding: "50px 30px" }}>
             <Formik
                 initialValues={{
                     title: collection ? collection.title : '',
@@ -65,20 +65,14 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
                 {({ errors, values, setFieldValue }) => (
                     <Form>
                         <VStack spacing={5} align={"stretch"} color="#FFF">
-                            <Box textAlign={"center"}><AppTypography size='22px' weight='bolder'>Make Collection</AppTypography></Box>
-                            <Box>
-                                <AppTypography size='18px' textAlign={"center"}>
-                                    After adding your product, visit the collection page to <AppTypography size='18px' weight='bolder' display={"inline-block"}>complete the collection creating process</AppTypography> and set the discount or gating rulesets
-                                </AppTypography>
-                            </Box>
                             <Box>
                                 <AppInput
                                     name="name"
                                     value={values.title}
                                     onChange={(e: any) => setFieldValue("title", e.target.value)}
                                     isRequired
-                                    label={"Collection name"}
-                                    placeholder={"Collection name"}
+                                    label="Collection Title"
+                                    placeholder="Summer Collection"
                                     error={errors.title ? errors.title.toString() : ""}
                                 />
                             </Box>

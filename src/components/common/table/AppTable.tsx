@@ -42,7 +42,7 @@ function AppTable({ rows, vertical, empty }: IAppTable) {
                                     {Object.keys(rows[0]).map((el, key) =>
                                         <th key={key}>
                                             <AppTypography textTransform="none" size='14px' weight='bold'>
-                                                {typeof rows[0][el].caption !== "undefined" ? capitalizeFirstLetter(rows[0][el].caption) : capitalizeFirstLetter(el)}
+                                                {typeof rows[0][el].caption !== "undefined" ? rows[0][el].caption : capitalizeFirstLetter(el)}
                                             </AppTypography>
                                         </th>
                                     )}

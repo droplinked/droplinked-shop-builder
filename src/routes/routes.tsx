@@ -62,58 +62,58 @@ const Notifications = lazy(() => import("pages/affiliate/notifications/Notificat
 
 function AppRoutes() {
   return (
-      <Suspense fallback={<LoadingPage />}>
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/">
-              <Route index element={<LandingPage />} />
-              <Route path="/enquiry" element={<Enquiry />} />
-              <Route path="terms" element={<TermsPage />} />
-              <Route path="privacy" element={<PrivacyPage />} />
-              <Route path="email-confirmation" element={<ThankForRegisterPage />} />
-              <Route path="email-verification/:token" element={<VerifyEmailPage />} />
-              <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
-              <Route path="/secret-test" element={<TestPage />} />
-            </Route>
-
-            <Route path=":shopname/c" element={<DashboardLayout />}>
-              <Route path="register" element={<RegisterPagesWrapper />}>
-                <Route path="shop-info" element={<RegisterShopInfo />} />
-                <Route path="contact-info" element={<ContactInfo />} />
-                <Route path="design" element={<DesignPage />} />
-                <Route path="technical" element={<TechnicalPage />} />
-              </Route>
-              <Route path="settings" element={<RegisterPagesWrapper />}>
-                <Route path="shop-info" element={<RegisterShopInfo />} />
-                <Route path="contact-info" element={<ContactInfo />} />
-                <Route path="design" element={<DesignPage />} />
-                <Route path="technical" element={<TechnicalPage />} />
-              </Route>
-              <Route path="products">
-                <Route index element={<Products />} />
-                <Route path="create" element={<ProductSingle />} />
-                <Route path=":productId" element={<ProductSingle />} />
-              </Route>
-              <Route path="collections" element={<Collections />} />
-              <Route path="orders" element={<Orders />} />
-              <Route path="affiliate" element={<AffiliateLayout />}>
-                <Route index element={<Shops />} />
-                <Route path="shops">
-                  <Route index element={<Shops />} />
-                  <Route path=":shopName">
-                    <Route index element={<Shop />} />
-                    <Route path=":productID" element={<ShopProduct />} />
-                  </Route>
-                </Route>
-                <Route path="requests" element={<Requests />} />
-                <Route path="notifications" element={<Notifications />} />
-              </Route>
-            </Route>
-            <Route path=":shopname" element={<ShopPage />} />
-            <Route path="*" element={<NotFound />} />
+    <Suspense fallback={<LoadingPage />}>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/">
+            <Route index element={<LandingPage />} />
+            <Route path="/enquiry" element={<Enquiry />} />
+            <Route path="terms" element={<TermsPage />} />
+            <Route path="privacy" element={<PrivacyPage />} />
+            <Route path="email-confirmation" element={<ThankForRegisterPage />} />
+            <Route path="email-verification/:token" element={<VerifyEmailPage />} />
+            <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
+            <Route path="/secret-test" element={<TestPage />} />
           </Route>
-        </Routes>
-      </Suspense>
+
+          <Route path=":shopname/c" element={<DashboardLayout />}>
+            <Route path="register" element={<RegisterPagesWrapper />}>
+              <Route path="shop-info" element={<RegisterShopInfo />} />
+              <Route path="contact-info" element={<ContactInfo />} />
+              <Route path="design" element={<DesignPage />} />
+              <Route path="technical" element={<TechnicalPage />} />
+            </Route>
+            <Route path="settings" element={<RegisterPagesWrapper />}>
+              <Route path="shop-info" element={<RegisterShopInfo />} />
+              <Route path="contact-info" element={<ContactInfo />} />
+              <Route path="design" element={<DesignPage />} />
+              <Route path="technical" element={<TechnicalPage />} />
+            </Route>
+            <Route path="products">
+              <Route index element={<Products />} />
+              <Route path="create" element={<ProductSingle />} />
+              <Route path=":productId" element={<ProductSingle />} />
+            </Route>
+            <Route path="collections" element={<Collections />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="affiliate" element={<AffiliateLayout />}>
+              <Route index element={<Shops />} />
+              <Route path="shops">
+                <Route index element={<Shops />} />
+                <Route path=":shopName">
+                  <Route index element={<Shop />} />
+                  <Route path=":productID" element={<ShopProduct />} />
+                </Route>
+              </Route>
+              <Route path="requests" element={<Requests />} />
+              <Route path="notifications" element={<Notifications />} />
+            </Route>
+          </Route>
+          <Route path=":shopname" element={<ShopPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 

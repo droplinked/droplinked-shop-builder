@@ -27,7 +27,7 @@ export default class ButtonsProductClass {
         return new Promise(async (resolve, reject) => {
             try {
                 // Check skue externals IDs
-                if (state.sku.length && this.skumodel.skues({ skues: state.sku })) {
+                if (state.sku.length && state.product_type === "NORMAL" && this.skumodel.skues({ skues: state.sku })) {
                     let error = new Error();
                     error.message = "Please enter External IDs and Quantity for all SKUs"
                     throw error
@@ -37,7 +37,7 @@ export default class ButtonsProductClass {
                     ...!draft && {
                         ...state.shippingType === "CUSTOM" && { shippingPrice: number().min(1, "Shipping Cost not valid").required("Shipping Cost is required") },
                         sku: array().min(1, AppErrors.product.sku_not_added).required(),
-                        media: array().min(1, AppErrors.product.product_image_required).required(),
+                        media: array().min(1, AppErrors.product[state.product_type === "PRINT_ON_DEMAND" ? "mockup_image_required" : "product_image_required"]).required(),
                         ...state.product_type === "PRINT_ON_DEMAND" && {
                             artwork: string().required(AppErrors.product.artwork_should_be_provided),
                         }
