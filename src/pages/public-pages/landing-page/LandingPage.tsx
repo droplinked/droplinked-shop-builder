@@ -62,7 +62,7 @@ export default function LandingPage() {
 
   return (
     <>
-      {AppStorage.accessToken ? <Navigate to={`${shop?.name}/c/products`} /> : (
+      {AppStorage.accessToken() ? <Navigate to={`${shop?.name}/c/products`} /> : (
         <Box pt="50px" pb="100px">
           <LandingPageWrapper overflowX={"hidden"}>
             {/* inputs */}
