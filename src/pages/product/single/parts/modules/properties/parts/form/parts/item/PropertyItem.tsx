@@ -22,7 +22,7 @@ function PropertyItem({ element, keyProperty }) {
 
     const onSubmit = useCallback((e: any) => {
         e.preventDefault()
-        if(!Value.length) return false
+        if (!Value.length) return false
         append(keyProperty)
         set({
             item: {
@@ -57,6 +57,7 @@ function PropertyItem({ element, keyProperty }) {
                             value={Value}
                             placeholder="Type value and press enter"
                             background="none"
+                            _placeholder={{ color: "#888" }}
                             minWidth="210px"
                             color="#FFF"
                             outline="none"

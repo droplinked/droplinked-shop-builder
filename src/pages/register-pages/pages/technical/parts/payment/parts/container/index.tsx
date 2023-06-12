@@ -9,34 +9,57 @@ import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 
 function ContainerPayment({ title, value, locked }) {
-  
+
   // Check active
   useEffect(() => locked && setActive(true), [title, value, locked])
 
   const { updatePayment } = useContext(technicalContext)
   const [active, setActive] = useState(false)
+  const [Switch, setSwitch] = useState(locked)
   const { showToast } = useAppToast()
 
-  const activeMethod = useCallback((value?: boolean) => updatePayments("isActive", value || !locked), [locked])
+  const activeMethod = useCallback((value?: boolean) => updatePayments("isActive", value), [])
 
   const save = useCallback(() => {
     if (title !== "STRIPE" && active && !value) return showToast("Please enter wallet", "error")
-    activeMethod()
+    activeMethod(true)
   }, [value, title, locked, active])
 
   const activeHandle = useCallback((e: any) => {
     const checked = e.target.checked
+    setSwitch(checked)
     if (title === "STRIPE") activeMethod(checked)
-    else if (!checked) activeMethod(false)
-    setActive(checked)
-  }, [active, title])
+    if (!checked) activeMethod(false)
+  }, [title])
 
   const updatePayments = useCallback((key, value) => updatePayment(key, value, title), [title])
+
+  const getIcon = useCallback((icon: string) => {
+    let styles = { width: "16px", height: "16px" }
+    switch (icon) {
+      case "CASPER":
+        return <AppIcons.casperIcon style={styles} />
+      case "NAER":
+        return <AppIcons.nearWalletIcon style={styles} />
+      case "STACKS":
+        return <AppIcons.stacks style={styles} />
+
+      default:
+        return ""
+    }
+  }, [])
+
+  const edit = useCallback(() => {
+    activeMethod(false)
+    setSwitch(true)
+  }, [])
+
 
   return (
     <HStack justifyContent="space-between">
       <HStack>
-        <Box position={"relative"} bottom={1.9}><AppSwitch isChecked={active} onChange={activeHandle} /></Box>
+
+        <Box position={"relative"} bottom={1.9}><AppSwitch isChecked={Switch} onChange={activeHandle} /></Box>
         <Box><TextLabelBold>{title}</TextLabelBold></Box>
       </HStack>
       {title !== "STRIPE" ? (
@@ -45,11 +68,11 @@ function ContainerPayment({ title, value, locked }) {
             <HStack alignItems="center" spacing={4}>
               {locked ? (
                 <>
-                  <Box><AppIcons.metaMaskIcon width="16px" height="16px" /></Box>
+                  <Box>{getIcon(title)}</Box>
                   <Box position={"relative"} top={.9}>
                     <input type="text" className={classes.textbox} value={value} readOnly />
                   </Box>
-                  <Box onClick={() => updatePayments("isActive", false)} cursor={"pointer"}><AppIcons.editIcon width="16px" height="16px" /></Box>
+                  <Box onClick={edit} cursor={"pointer"}><AppIcons.editIcon width="16px" height="16px" /></Box>
                 </>
               ) : (
                 <>
@@ -57,13 +80,13 @@ function ContainerPayment({ title, value, locked }) {
                     <input
                       type="text"
                       className={classes.textbox}
-                      readOnly={!active}
+                      readOnly={!Switch}
                       onChange={(e) => updatePayments("destinationAddress", e.target.value)}
                       placeholder='Target wallet pubic key'
                       value={value}
                     />
                   </Box>
-                  <Box><BasicButton sizes='medium' minWidth={"50px"} disabled={!active} onClick={save}>Save</BasicButton></Box>
+                  <Box><BasicButton sizes='medium' minWidth={"50px"} disabled={!Switch} onClick={save}>Save</BasicButton></Box>
                 </>
               )}
             </HStack>

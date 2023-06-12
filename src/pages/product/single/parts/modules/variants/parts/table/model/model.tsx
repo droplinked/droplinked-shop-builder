@@ -2,16 +2,21 @@ import { Flex } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import { Isku, product_type } from "lib/apis/product/interfaces";
 import React from "react";
-import FieldsSkuTable from "./parts/fields/FieldsSkuTable";
+import FieldsSkuTable from "../parts/fields/FieldsSkuTable";
+import ProductSkuesTable from "./modules/table";
 
 interface IgetRows {
     sku: Isku
     product_type: product_type
     key: number
+    variants: any
 }
 
 export default class SkuTableModel {
-    static getRows = ({ product_type, sku, key }: IgetRows) => {
+    private static table = ProductSkuesTable
+    static getRows = ({ product_type, sku, key, variants }: IgetRows) => {
+        console.log("variants", variants);
+
         const checkRecord = sku?.recordData && sku.recordData.status !== "NOT_RECORDED"
         return {
             Variant: {
@@ -21,7 +26,7 @@ export default class SkuTableModel {
                 value: sku.options.map(el => el.value).join("-")
             },
             price: {
-                caption: product_type === "PRINT_ON_DEMAND" ? "Retail Price" :  "Price",
+                caption: product_type === "PRINT_ON_DEMAND" ? "Retail Price" : "Price",
                 props: {
                     width: "20%"
                 },
@@ -40,7 +45,7 @@ export default class SkuTableModel {
             ...product_type === "PRINT_ON_DEMAND" && {
                 cost: {
                     caption: "Product Cost",
-                    value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"cost"} />
+                    value: variants ? <AppTypography size="12px">{this.table.variants({ variants, states: [] })}</AppTypography> : 0
                 },
             },
             ...product_type === "NORMAL" && {

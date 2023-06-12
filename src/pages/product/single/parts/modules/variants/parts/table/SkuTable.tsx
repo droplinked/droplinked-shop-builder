@@ -1,7 +1,7 @@
 import AppTable from 'components/common/table/AppTable'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { Flex, Text, useDisclosure } from '@chakra-ui/react'
-import SkuTableModel from './model';
+import SkuTableModel from './model/model';
 import { productContext } from 'pages/product/single/context';
 import SkeletonProduct from '../../../skeleton/SkeletonProduct';
 import SkuTableOptions from './parts/options/SkuTableOptions';
@@ -9,7 +9,7 @@ import RecordModal from './parts/recordModal/RecordModal';
 import SkuTableModal from './parts/skuModal/SkuTableModal';
 
 function SkuTable() {
-    const { state: { sku, product_type } } = useContext(productContext)
+    const { state: { sku, product_type }, store: { state: { variants } } } = useContext(productContext)
     const [Sku, setSku] = useState(null)
     const { getRows } = SkuTableModel
     const recordModal = useDisclosure()
@@ -21,7 +21,7 @@ function SkuTable() {
         return sku.map((el, key) => {
 
             return {
-                ...getRows({ sku: el, product_type, key }),
+                ...getRows({ sku: el, product_type, key, variants }),
                 controls: {
                     caption: "",
                     value: (
@@ -45,7 +45,7 @@ function SkuTable() {
                 }
             }
         })
-    }, [sku, product_type])
+    }, [sku, product_type, variants])
 
     return (
         <>

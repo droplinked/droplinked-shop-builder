@@ -8,7 +8,7 @@ import ProductImages from '../modules/images/ProductImages'
 
 function General() {
     return (
-        <ProductCollapse show title='General information' description='Provide product details.'>
+        <ProductCollapse show title='General Information' description='Provide product details.'>
             <VStack spacing={10} align={"stretch"}>
                 <ProductName />
                 <DescriptionProduct />
