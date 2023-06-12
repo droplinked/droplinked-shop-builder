@@ -9,19 +9,19 @@ import RecordModal from './parts/recordModal/RecordModal';
 import SkuTableModal from './parts/skuModal/SkuTableModal';
 
 function SkuTable() {
-    const { state: { sku, product_type }, store: { state: { variants } } } = useContext(productContext)
+    const { state, store: { state: { variants } } } = useContext(productContext)
     const [Sku, setSku] = useState(null)
     const { getRows } = SkuTableModel
     const recordModal = useDisclosure()
     const editModal = useDisclosure()
 
     const rows = useMemo(() => {
-        if (!sku.length) return null
+        if (!state.sku.length) return null
 
-        return sku.map((el, key) => {
+        return state.sku.map((el, key) => {
 
             return {
-                ...getRows({ sku: el, product_type, key, variants }),
+                ...getRows({ sku: el, state, key, variants, }),
                 controls: {
                     caption: "",
                     value: (
@@ -45,7 +45,7 @@ function SkuTable() {
                 }
             }
         })
-    }, [sku, product_type, variants])
+    }, [state.sku, state.artwork, state.artwork2, state.m2m_positions, state.product_type, variants])
 
     return (
         <>

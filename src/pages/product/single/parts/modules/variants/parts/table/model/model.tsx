@@ -1,23 +1,22 @@
 import { Flex } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
-import { Isku, product_type } from "lib/apis/product/interfaces";
+import { Isku, IproductState } from "lib/apis/product/interfaces";
 import React from "react";
 import FieldsSkuTable from "../parts/fields/FieldsSkuTable";
 import ProductSkuesTable from "./modules/table";
 
 interface IgetRows {
     sku: Isku
-    product_type: product_type
+    state: IproductState
     key: number
     variants: any
 }
 
 export default class SkuTableModel {
     private static table = ProductSkuesTable
-    static getRows = ({ product_type, sku, key, variants }: IgetRows) => {
-        console.log("variants", variants);
-
+    static getRows = ({ state, sku, key, variants }: IgetRows) => {
         const checkRecord = sku?.recordData && sku.recordData.status !== "NOT_RECORDED"
+        const product_type = state.product_type
         return {
             Variant: {
                 props: {
@@ -45,7 +44,7 @@ export default class SkuTableModel {
             ...product_type === "PRINT_ON_DEMAND" && {
                 cost: {
                     caption: "Product Cost",
-                    value: variants ? <AppTypography size="12px">{this.table.variants({ variants, states: [] })}</AppTypography> : 0
+                    value: variants ? <AppTypography size="12px">{this.table.variants({ variants, state })}</AppTypography> : 0
                 },
             },
             ...product_type === "NORMAL" && {

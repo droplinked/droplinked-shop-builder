@@ -27,17 +27,25 @@ export default class ButtonsProductClass {
         return new Promise(async (resolve, reject) => {
             try {
                 // Check skue externals IDs
+                let error = new Error();
                 if (state.sku.length && state.product_type === "NORMAL" && this.skumodel.skues({ skues: state.sku })) {
-                    let error = new Error();
                     error.message = "Please enter Quantity for all SKUs"
                     throw error
                 }
 
-                if (!draft && state.product_type === "PRINT_ON_DEMAND" && ((!state.artwork && !state.artwork2) && !state.m2m_positions.length)) {
-                    let error = new Error();
-                    error.message = "Please enter Artwork or pick mint to merch"
-                    throw error
+                if (!draft) {
+                    if (state.product_type === "PRINT_ON_DEMAND" && ((!state.artwork && !state.artwork2) && !state.m2m_positions.length)) {
+                        error.message = "Please enter Artwork or pick mint to merch"
+                        throw error
+                    } else if (state.sku.find(el => !el.price)) {
+                        error.message = "Please enter Price for all SKUs"
+                        throw error
+                    } else if (state.product_type === "NORMAL" && state.sku.find(el => !el.dimensions.height || !el.dimensions.width || !el.dimensions.length)) {
+                        error.message = "Please enter packaging size property for all SKUs"
+                        throw error
+                    }
                 }
+
 
                 const schema = object({
                     ...!draft && {
@@ -60,7 +68,6 @@ export default class ButtonsProductClass {
     static makeData = ({ state, draft, productID }: ImakeData) => {
         const updateData = (publish_product: boolean) => this.makemodel.update({ state: { ...state, publish_product } })
         const data = { ...state, sku: MakeDataProductModel.refactorSku({ skues: state.sku }) }
-
         return draft ? productID ? updateData(false) : { ...data, publish_product: false } : productID ? updateData(true) : { ...data, publish_product: true }
     }
 

@@ -13,13 +13,13 @@ export default class MakeDataProductModel {
         return skues.map((el: any) => ({
             ...el,
             dimensions: {
-                height: parseInt(el.dimensions.height),
-                length: parseInt(el.dimensions.length),
-                width: parseInt(el.dimensions.width),
+                height: parseInt(el?.dimensions?.height) || 0,
+                length: parseInt(el?.dimensions?.length) || 0,
+                width: parseInt(el?.dimensions?.width) || 0,
             },
-            price: parseFloat(el.price),
-            weight: parseFloat(el.weight),
-            quantity: parseInt(el.quantity)
+            price: parseFloat(el?.price),
+            weight: parseFloat(el?.weight),
+            quantity: parseInt(el?.quantity)
         }))
     }
 
