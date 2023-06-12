@@ -26,10 +26,12 @@ export default class FormModel {
                 color: "#808080"
             },
             _focus: {
-                borderColor: "none"
+                borderColor: "none",
+                backgroundColor: "#141414",
             },
             _hover: {
-                borderColor: "none"
+                borderColor: "none",
+                backgroundColor: "#141414",
             }
         }
     }

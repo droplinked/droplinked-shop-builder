@@ -32,8 +32,8 @@ function ProductType() {
                 value={pod_blank_product_id}
                 onChange={(e) => {
                     updateState("pod_blank_product_id", e.target.value)
+                    updateState("sku", [])
                     if (product_type === "PRINT_ON_DEMAND") {
-                        updateState("sku", [])
                         updateState("properties", [
                             {
                                 "value": "62a989ab1f2c2bbc5b1e7153",

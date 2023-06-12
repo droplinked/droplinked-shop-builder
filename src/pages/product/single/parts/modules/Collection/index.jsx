@@ -1,4 +1,5 @@
 import { Box, HStack, VStack, useDisclosure } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTypography from 'components/common/typography/AppTypography'
@@ -38,6 +39,10 @@ function Collection() {
                     <ListCollection isLoading={isLoading} collections={data?.data?.data} />
                 </SkeletonProduct>
             </Box>
+            <HStack alignItems="center">
+                <AppIcons.info />
+                <AppTypography color="#757575" size='14px'>NFT gating features and ruleset management are in the Collections page. <a style={{ color: "#25BB92", textDecoration: "underline" }} target={"_blank"}>Learn more</a></AppTypography>
+            </HStack>
         </VStack>
     )
 }

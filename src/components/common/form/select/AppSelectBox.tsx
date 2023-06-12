@@ -36,7 +36,7 @@ function AppSelectBox(props: Iprops) {
                     {...props}
                 >
                     {items.map((e, key) => (
-                        <option key={key} {...e}>{e.caption}</option>
+                        <option style={{background:"#141414"}} key={key} {...e}>{e.caption}</option>
                     ))}
                 </Select>
             </AppSkeleton>

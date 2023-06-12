@@ -36,6 +36,8 @@ import { ReactComponent as activeIcon } from './active.svg'
 import { ReactComponent as copyIcon } from './copy.svg'
 import { ReactComponent as arrowDown } from './arrowDown.svg'
 import { ReactComponent as close } from './close.svg'
+import { ReactComponent as stacks } from './stacks-stx-logo.svg'
+import { ReactComponent as info } from './info.svg'
 
 const AppIcons = {
   productsIcon,
@@ -75,6 +77,8 @@ const AppIcons = {
   activeIcon,
   copyIcon,
   arrowDown,
-  close
+  close,
+  stacks,
+  info
 }
 export default AppIcons

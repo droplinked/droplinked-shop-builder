@@ -42,13 +42,15 @@ function ButtonsProduct() {
     return (
         <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
             <Box>
-                <BasicButton
-                    isLoading={productID ? update.isLoading || updateSku.isLoading : create.isLoading}
-                    variant={'outline'}
-                    onClick={() => submit(true)}
-                >
-                    Save as Draft
-                </BasicButton>
+                {!state.publish_product && (
+                    <BasicButton
+                        isLoading={productID ? update.isLoading || updateSku.isLoading : create.isLoading}
+                        variant={'outline'}
+                        onClick={() => submit(true)}
+                    >
+                        Save as Draft
+                    </BasicButton>
+                )}
             </Box>
             <Box>
                 <BasicButton

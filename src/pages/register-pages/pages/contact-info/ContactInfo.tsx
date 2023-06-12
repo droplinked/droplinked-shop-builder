@@ -92,7 +92,7 @@ const ContactInfo = () => {
             </AppCard>
           </VStack>
 
-          <Flex justifyContent={isRegister ? "space-between" : "right"} width={"100%"}>
+          <Flex justifyContent={isRegister ? "space-between" : "right"} width="100%" marginTop={8}>
             {isRegister && (
               <Box>
                 <BasicButton variant="outline" onClick={() => shopNavigate(`register/technical`)}>Back</BasicButton>
