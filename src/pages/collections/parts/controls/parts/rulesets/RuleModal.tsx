@@ -39,7 +39,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     try {
       const requestBody: IcreateRuleService = {
         collectionID: collectionId,
-        gated: rule === RuleTypes.DISCOUNT,
+        gated: rule === RuleTypes.GATED,
         rules: [
           {
             addresses: address?.split(","),
@@ -88,7 +88,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
             tag: State ? State?.rules ? State?.rules[0].description : '' : '',
             weburl: State ? State?.webUrl : '',
             chain: State ? State?.type : 'ETH',
-            rule: State ? State?.gated ? RuleTypes.DISCOUNT : RuleTypes.GATED : true,
+            rule: State ? State?.gated ? RuleTypes.GATED : RuleTypes.DISCOUNT : true,
             discount: State ? State?.rules ? State?.rules[0].discountPercentage : 0 : 0,
             address: State ? State?.rules ? State?.rules[0].addresses[0] : '' : '',
             requirement: State ? State?.rules ? State?.rules[0].nftsCount : '' : ''
