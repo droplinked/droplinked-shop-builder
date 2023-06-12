@@ -5,6 +5,7 @@ import React from 'react'
 import ErrorLabel from '../errorLabel/errorLabel'
 import FieldLabel from '../fieldLabel/FieldLabel'
 import FormModel, { IAppForm } from '../FormModel'
+import classes from './style.module.scss'
 
 type combine = IAppForm & InputProps
 
@@ -16,7 +17,7 @@ function AppInput(props: Iprops) {
   return (
     <VStack align={"stretch"} width="100%" spacing={1}>
       <FieldLabel loading={loading} isRequired={props.isRequired} label={label} />
-      <AppSkeleton isLoaded={loading}>
+      <AppSkeleton isLoaded={loading} className={classes.input}>
         <Input
           style={{ boxShadow: "unset" }}
           isInvalid={error ? true : false}

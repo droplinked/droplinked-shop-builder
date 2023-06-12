@@ -7,7 +7,7 @@ interface Iskues {
 export default class ProductValidateModel {
     static skues = ({ skues }: Iskues) => {
         return skues.find(sku => {
-            return !sku.externalID || parseInt(sku.quantity) <= 0
+            return parseInt(sku.quantity) <= 0
         })
     }
 }

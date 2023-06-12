@@ -16,7 +16,7 @@ function FieldsSkuTable(props: IProps) {
     const updateSku = useCallback((e: any) => {
         let inputvalue: any = e.target.value
         
-        if (!["externalID"].includes(name)) inputvalue = floatNumberRegex.test(inputvalue) ? inputvalue : value
+        if (!["externalID"].includes(name) && inputvalue) inputvalue = floatNumberRegex.test(inputvalue) ? inputvalue : value
 
         const isDimensions = ["height", "length", "width"].includes(name)
         const refactor = sku.map((el, key) => (key === index ? {
