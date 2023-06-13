@@ -18,6 +18,7 @@ function ProductPositions({ update, state, posistion }: IProps) {
         queryFn: printPositionsServices,
         queryKey: "positions_query",
         cacheTime: 60 * 60 * 1000,
+        refetchOnWindowFocus: false
     })
 
     const icons = {

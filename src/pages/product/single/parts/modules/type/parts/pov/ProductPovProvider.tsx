@@ -11,6 +11,7 @@ function ProductPovProvider() {
     const { data, isLoading } = useQuery({
         queryKey: "PovProvider",
         queryFn: providersService,
+        refetchOnWindowFocus: false
     })
     const { state: { prodviderID, publish_product }, productID, methods: { updateState }, loading } = useContext(productContext)
 
