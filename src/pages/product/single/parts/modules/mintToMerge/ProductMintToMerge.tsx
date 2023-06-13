@@ -6,22 +6,11 @@ import { printPositionsServices } from 'lib/apis/product/productServices'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useQuery } from 'react-query'
-import shirtBack from 'assest/image/positions/back.svg'
-import shirtCenter from 'assest/image/positions/center.svg'
-import shirtLeft from 'assest/image/positions/left.svg'
-import shirtRight from 'assest/image/positions/right.svg'
+import ProductPositions from '../positions/ProductPositions'
 
 function ProductMintToMerge() {
     const [CheckBox, setCheckBox] = useState(false)
-    const { data } = useQuery({ queryFn: printPositionsServices })
     const { state: { m2m_positions }, methods: { updateState }, loading } = useContext(productContext)
-
-    const icons = {
-        FRONT_CENTER: shirtCenter,
-        FRONT_LEFT_CHEST: shirtLeft,
-        FRONT_RIGHT_CHEST: shirtRight,
-        BACK_CENTER: shirtBack,
-    }
 
     const checkActive = useCallback((postion: string) => m2m_positions.includes(postion), [m2m_positions])
 
@@ -38,9 +27,9 @@ function ProductMintToMerge() {
     }, [])
 
     useEffect(() => {
-        if(m2m_positions.length) setCheckBox(true)
+        if (m2m_positions.length) setCheckBox(true)
     }, [m2m_positions])
-    
+
 
     return (
         <VStack align={"stretch"} spacing={4}>
@@ -56,22 +45,8 @@ function ProductMintToMerge() {
                     </Checkbox>
                 </AppSkeleton>
             </Box>
-            {CheckBox && (
-                <Flex gap={3}>
-                    {data?.data?.data && data.data.data.map((el: any, key: number) => (
-                        <Box key={key} style={{ border: `3px solid ${checkActive(el) ? "#2EC99E" : "transparent"}`, borderRadius: "8px" }}>
-                            <Image
-                                onClick={() => updatePosition(el)}
-                                src={icons[el]}
-                                cursor="pointer"
-                                width="58px"
-                                height="58px"
-                            />
-                        </Box>
-                    ))}
-                </Flex>
-            )
-            }
+
+            {CheckBox && <ProductPositions update={updatePosition} state={m2m_positions} />}
         </VStack >
     )
 }
