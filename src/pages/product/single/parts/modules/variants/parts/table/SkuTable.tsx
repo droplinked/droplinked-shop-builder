@@ -23,7 +23,10 @@ function SkuTable() {
             return {
                 ...getRows({ sku: el, state, key, variants, }),
                 controls: {
-                    caption: "",
+                    caption: "Drop",
+                    props: {
+                        style: { textAlign: "center" }
+                    },
                     value: (
                         <>
                             {

@@ -36,6 +36,10 @@ export default class SkuTableModel {
                     </Flex>
                 )
             },
+            externalID: {
+                caption: "External ID",
+                value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.externalID} name={"externalID"} />
+            },
             ...product_type !== "PRINT_ON_DEMAND" && {
                 quantity: {
                     value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"quantity"} />
@@ -48,10 +52,6 @@ export default class SkuTableModel {
                 },
             },
             ...product_type === "NORMAL" && {
-                externalID: {
-                    caption: "External ID",
-                    value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.externalID} name={"externalID"} />
-                },
                 Packaging: {
                     caption: "Packaging Size",
                     value: (
