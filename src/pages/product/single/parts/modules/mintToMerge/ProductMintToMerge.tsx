@@ -1,11 +1,9 @@
-import { Box, Checkbox, Flex, Image, VStack } from '@chakra-ui/react'
+import { Box, Checkbox, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
-import { printPositionsServices } from 'lib/apis/product/productServices'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { useQuery } from 'react-query'
 import ProductPositions from '../positions/ProductPositions'
 
 function ProductMintToMerge() {
