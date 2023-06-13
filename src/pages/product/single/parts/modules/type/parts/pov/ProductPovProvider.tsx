@@ -1,16 +1,15 @@
 import { Box } from '@chakra-ui/react'
-import AppLimitCharacter from 'components/common/form/limitCharacter/AppLimitCharacter'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
-import AppInput from 'components/common/form/textbox/AppInput'
 import { providersService } from 'lib/apis/pod/services'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext, useMemo } from 'react'
-import { useMutation, useQuery } from 'react-query'
+import { useQuery } from 'react-query'
 
 function ProductPovProvider() {
     const { data, isLoading } = useQuery({
         queryKey: "PovProvider",
         queryFn: providersService,
+        refetchOnWindowFocus: false
     })
     const { state: { prodviderID, publish_product }, productID, methods: { updateState }, loading } = useContext(productContext)
 
