@@ -16,6 +16,7 @@ import { RuleTypes } from "./RuleModel";
 import { IcreateRuleService, IgetRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
 import AppTypography from 'components/common/typography/AppTypography';
 import { ChainTypes } from "lib/utils/statics/chainTypes";
+import RulesetAddress from "./parts/address/RulesetAddress";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
@@ -29,7 +30,6 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     if (ruleId) getRule.mutate({ ruleID: ruleId })
   }, [ruleId])
 
-
   useEffect(() => {
     if (getRule.data) setState(getRule.data.data.data)
   }, [getRule])
@@ -42,7 +42,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
         gated: rule === RuleTypes.GATED,
         rules: [
           {
-            addresses: address?.split(","),
+            addresses: address,
             discountPercentage: +discount,
             nftsCount: +requirement,
             type: chain,
@@ -72,7 +72,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     chain: Yup.string().required('Required'),
     rule: Yup.string().required('Required'),
     discount: Yup.number().typeError("Please correct value").required('Required'),
-    address: Yup.string().required('Required'),
+    address: Yup.array().min(1, "Required").required("Required"),
     requirement: Yup.number().min(1).max(99).typeError("Please correct value").required('Required'),
   });
 
@@ -90,7 +90,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
             chain: State ? State?.type : 'ETH',
             rule: State ? State?.gated ? RuleTypes.GATED : RuleTypes.DISCOUNT : true,
             discount: State ? State?.rules ? State?.rules[0].discountPercentage : 0 : 0,
-            address: State ? State?.rules ? State?.rules[0].addresses[0] : '' : '',
+            address: State ? State?.rules ? State?.rules[0].addresses : [] : [],
             requirement: State ? State?.rules ? State?.rules[0].nftsCount : '' : ''
           }}
           enableReinitialize
@@ -99,23 +99,37 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
           onSubmit={submit}
         >
 
-          {({ errors, values, setFieldValue }) => (
+          {({ errors, values, setFieldValue, submitForm }) => (
             <ruleModelContext.Provider value={{ errors, values, setFieldValue, loading: ruleId ? !getRule.isLoading : true }}>
-              <Form>
-                <VStack width={"100%"} align="stretch" spacing={8}>
-                  <Box>
-                    <TextboxRule element={"tag"} placeholder="tag" label={"NFT Gating Message"} />
-                  </Box>
-                  <Box>
-                    <TextboxRule element={"weburl"} placeholder="url ..." label={"NFT info URL"} />
-                  </Box>
-                  <Box>
+              <VStack width={"100%"} align="stretch" spacing={8}>
+                <Box>
+                  <TextboxRule element={"tag"} placeholder="tag" label={"NFT Gating Message"} />
+                </Box>
+                <Box>
+                  <TextboxRule element={"weburl"} placeholder="url ..." label={"NFT info URL"} />
+                </Box>
+                <Box>
+                  <SelectRule
+                    element={"chain"}
+                    placeholder="Select chain"
+                    label={"Chain Type"}
+                    loading={!getRule.isLoading}
+                    items={Object.keys(ChainTypes).map((el) => {
+                      return {
+                        value: el,
+                        caption: el
+                      }
+                    })}
+                  />
+                </Box>
+                <HStack alignItems={"baseline"}>
+                  <Box width={"100%"}>
                     <SelectRule
-                      element={"chain"}
-                      placeholder="Select chain"
-                      label={"Chain Type"}
+                      element={"rule"}
+                      placeholder="Select rule"
+                      label={"Rule Type"}
                       loading={!getRule.isLoading}
-                      items={Object.keys(ChainTypes).map((el) => {
+                      items={Object.keys(RuleTypes).map((el) => {
                         return {
                           value: el,
                           caption: el
@@ -123,55 +137,32 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                       })}
                     />
                   </Box>
-                  <HStack alignItems={"baseline"}>
+                  {values.rule === RuleTypes.DISCOUNT && (
                     <Box width={"100%"}>
-                      <SelectRule
-                        element={"rule"}
-                        placeholder="Select rule"
-                        label={"Rule Type"}
-                        loading={!getRule.isLoading}
-                        items={Object.keys(RuleTypes).map((el) => {
-                          return {
-                            value: el,
-                            caption: el
-                          }
-                        })}
-                      />
+                      <TextboxRule element={"discount"} placeholder="%20" label={"Offer"} />
                     </Box>
-                    {values.rule === RuleTypes.DISCOUNT && (
-                      <Box width={"100%"}>
-                        <TextboxRule element={"discount"} placeholder="%20" label={"Offer"} />
-                      </Box>
-                    )}
-                  </HStack>
-                  <Box>
-                    <AppTextarea
-                      name="address"
-                      placeholder="you can separate nft links with ,"
-                      label="NFT asset identifiers"
-                      onChange={(e) => setFieldValue("address", e.target.value)}
-                      value={values.address}
-                      loading={!getRule.isLoading}
-                      error={errors.address ? errors.address.toString() : ""}
-                      isRequired
-                    />
+                  )}
+                </HStack>
+                <Box>
+                  <RulesetAddress />
+                </Box>
+                <Box width={"100%"}>
+                  <TextboxRule element={"requirement"} placeholder="number ..." label={"Minimum Requirement"} />
+                </Box>
+                <HStack justifyContent={"space-between"}>
+                  <Box width={"35%"}><BasicButton width={"100%"} onClick={close} variant="outline">Cancel</BasicButton></Box>
+                  <Box width={"35%"}>
+                    <BasicButton
+                      width={"100%"}
+                      isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading}
+                      type="submit"
+                      onClick={submitForm}
+                    >
+                      Save
+                    </BasicButton>
                   </Box>
-                  <Box width={"100%"}>
-                    <TextboxRule element={"requirement"} placeholder="number ..." label={"Minimum Requirement"} />
-                  </Box>
-                  <HStack justifyContent={"space-between"}>
-                    <Box width={"35%"}><BasicButton width={"100%"} onClick={close} variant="outline">Cancel</BasicButton></Box>
-                    <Box width={"35%"}>
-                      <BasicButton
-                        width={"100%"}
-                        isLoading={createRule.isLoading || getRule.isLoading || updateRule.isLoading}
-                        type="submit">
-                        Save
-                      </BasicButton>
-                    </Box>
-                  </HStack>
-                </VStack>
-              </Form>
+                </HStack>
+              </VStack>
             </ruleModelContext.Provider>
           )}
         </Formik>
