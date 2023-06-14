@@ -4,6 +4,7 @@ import { EditorState } from 'draft-js';
 import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'
 import { useState } from 'react';
+import { Editor } from 'react-draft-wysiwyg';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 function DescriptionProduct() {
@@ -20,7 +21,7 @@ function DescriptionProduct() {
                 wrapperClassName="wrapperClassName"
                 editorClassName="editorClassName"
                 onEditorStateChange={update}
-            />; */}
+            /> */}
 
             <AppTextarea
                 label="Description"

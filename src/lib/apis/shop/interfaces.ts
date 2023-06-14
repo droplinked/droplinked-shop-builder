@@ -20,7 +20,6 @@ export interface IproductService {
     productID: string
 }
 
-
 export interface IshopSocial {
     discordURL?: string
     instagramURL?: string
