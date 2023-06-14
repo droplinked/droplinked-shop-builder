@@ -104,10 +104,10 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
               <Form>
                 <VStack width={"100%"} align="stretch" spacing={8}>
                   <Box>
-                    <TextboxRule element={"tag"} placeholder="tag" label={"Tag name"} />
+                    <TextboxRule element={"tag"} placeholder="tag" label={"NFT Gating Message"} />
                   </Box>
                   <Box>
-                    <TextboxRule element={"weburl"} placeholder="url ..." label={"NFT source domain"} />
+                    <TextboxRule element={"weburl"} placeholder="url ..." label={"NFT info URL"} />
                   </Box>
                   <Box>
                     <SelectRule
