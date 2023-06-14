@@ -11,25 +11,21 @@ function CollectionsEmpty({ openModal }: IProps) {
         <>
             <EmptyTable
                 add={{
-                    caption: "Add Collection",
+                    caption: "New Collection",
                     onClick: () => openModal()
                 }}
                 list={[
                     {
                         icon: <AppIcons.addIcon />,
-                        label: "Introduce your collection"
-                    },
-                    {
-                        icon: <AppIcons.variantsIcon />,
-                        label: "Set your inventory variants and quantities"
-                    },
-                    {
-                        icon: <AppIcons.collectionIcon />,
-                        label: "Set collection"
+                        label: "Create collections to categorize your products"
                     },
                     {
                         icon: <AppIcons.ruleIcon />,
-                        label: "Set Crypto based rules for your purchases"
+                        label: "Set exclusive discounts or access to product collections"
+                    },
+                    {
+                        icon: <AppIcons.collectionIcon />,
+                        label: "Manage and organize all collections in one place"
                     }
                 ]}
             />
