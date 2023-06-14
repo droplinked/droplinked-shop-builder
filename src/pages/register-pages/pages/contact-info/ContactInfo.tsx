@@ -41,6 +41,9 @@ const ContactInfo = () => {
         instagramURL: shop?.instagramURL ? shop.instagramURL : "",
         twitterURL: shop?.twitterURL ? shop.twitterURL : "",
         webURL: shop?.webURL ? shop.webURL : "",
+        linkedinURL: shop?.linkedinURL ? shop.linkedinURL : "",
+        tiktokURL: shop?.tiktokURL ? shop.tiktokURL : "",
+        facebookURL: shop?.facebookURL ? shop.facebookURL : "",
       }}
       enableReinitialize
       validateOnChange={false}
@@ -88,6 +91,30 @@ const ContactInfo = () => {
                 label="Instagram"
                 placeHolder="username"
                 children="https://www.instagram.com/"
+              />
+              <Box mb="32px" />
+              <InputLefton
+                value={values.linkedinURL}
+                change={(e: any) => setFieldValue("linkedinURL", e.target.value)}
+                label="Linkedin"
+                placeHolder="username"
+                children="https://www.linkedin.com/"
+              />
+              <Box mb="32px" />
+              <InputLefton
+                value={values.tiktokURL}
+                change={(e: any) => setFieldValue("tiktokURL", e.target.value)}
+                label="Tiktok"
+                placeHolder="username"
+                children="https://www.tiktok.com/"
+              />
+              <Box mb="32px" />
+              <InputLefton
+                value={values.facebookURL}
+                change={(e: any) => setFieldValue("facebookURL", e.target.value)}
+                label="Facebook"
+                placeHolder="username"
+                children="https://www.facebook.com/"
               />
             </AppCard>
           </VStack>
