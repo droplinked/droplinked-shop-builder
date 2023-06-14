@@ -39,11 +39,11 @@ function RulesetAddress() {
     }, [values])
 
     return (
-        <form onSubmit={submit} style={{ display: "block", cursor: "text" }} onClick={() => inputRef.current.focus()}>
+        <form onSubmit={submit}>
             <VStack align={"stretch"} spacing={1}>
                 <FieldLabel label='NFT asset identifiers' isRequired loading={loading} />
-                <AppSkeleton isLoaded={loading}>
-                    <Flex backgroundColor="#141414" flexWrap="wrap" alignItems="center" minHeight="48px" gap={2} padding="17px">
+                <AppSkeleton isLoaded={loading} >
+                    <Flex backgroundColor="#141414" style={{ cursor: "text" }} onClick={() => inputRef.current.focus()} flexWrap="wrap" alignItems="center" minHeight="48px" gap={2} padding="17px">
                         {values.address.length ? values.address.map(el => (
                             <HStack backgroundColor="#1c1c1c" padding="4px 10px" borderRadius="4px">
                                 <AppTypography size='14px' color="#777">{el}</AppTypography>
