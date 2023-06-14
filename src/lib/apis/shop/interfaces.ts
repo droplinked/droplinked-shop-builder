@@ -25,6 +25,9 @@ export interface IshopSocial {
     instagramURL?: string
     twitterURL?: string
     webURL?: string
+    linkedinURL?: string
+    tiktokURL?: string
+    facebookURL?: string
 }
 
 export interface IshopUpdateService extends IshopSocial {

@@ -29,9 +29,9 @@ function EmptyTable({ add, list }: IEmptyTable) {
                 <Box><Image src={plusIcon} h="48px" w="48px" /></Box>
                 <Box><Text fontWeight="500" fontSize="18px">{add.caption}</Text></Box>
             </VStack>
-            <VStack width={"100%"} maxWidth={"400px"} align={"stretch"} spacing={3}>
+            <VStack align={"stretch"} spacing={3}>
                 {list.map((el, key) => (
-                    <HStack key={key} className={classes.item}>
+                    <HStack key={key} spacing={5} className={classes.item}>
                         {el.icon}
                         <Text fontFamily="Avenir Next" fontWeight="400" fontSize="14px" color="#C2C2C2">{el.label}</Text>
                     </HStack>

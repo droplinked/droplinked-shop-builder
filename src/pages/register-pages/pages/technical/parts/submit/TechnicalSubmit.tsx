@@ -33,7 +33,7 @@ function TechnicalSubmit() {
                 update({ imsType })
                 shopNavigate(`register/contact-info`);
             } else {
-                showToast(AppErrors.store.has_been_updated("Payment options"), "success");
+                showToast(AppErrors.store.payment_options_have_been_updated, "success");
             }
         } catch (error) {
             showToast(error.message, "error");

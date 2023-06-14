@@ -25,7 +25,7 @@ function SearchDatagrid({ onChange }: ISearchDatagrid) {
                 fontWeight="400"
                 fontSize="12px"
                 color="#C2C2C2"
-                placeholder="search"
+                placeholder="Search"
                 onChange={onChange}
             />
         </InputGroup>

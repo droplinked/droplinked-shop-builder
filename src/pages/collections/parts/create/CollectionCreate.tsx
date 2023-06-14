@@ -78,7 +78,7 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
                             </Box>
                             <HStack justifyContent={"space-between"}>
                                 <Box><BasicButton variant='outline' onClick={() => close()}>Cancel</BasicButton></Box>
-                                <Box><BasicButton type='submit' isLoading={createService.isLoading || updateService.isLoading}>Submit</BasicButton></Box>
+                                <Box><BasicButton type='submit' isLoading={createService.isLoading || updateService.isLoading}>Create</BasicButton></Box>
                             </HStack>
                         </VStack>
                     </Form>
