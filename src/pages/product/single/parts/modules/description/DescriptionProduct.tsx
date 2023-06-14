@@ -1,39 +1,33 @@
-import { Box } from '@chakra-ui/react'
-import AppTextarea from 'components/common/form/textarea/AppTextarea'
-import { EditorState } from 'draft-js';
+import { Box, VStack } from '@chakra-ui/react'
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'
-import { useState } from 'react';
-import { Editor } from 'react-draft-wysiwyg';
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import classes from './style.module.scss'
 
 function DescriptionProduct() {
     const { state: { description }, methods: { updateState }, loading } = useContext(productContext)
-    const [editorState, setEditorState] = useState(EditorState.createEmpty())
-    
-    const update = (text:any) => setEditorState(text)
 
     return (
-        <Box position={"relative"}>
-            {/* <Editor
-                editorState={editorState}
-                toolbarClassName="toolbarClassName"
-                wrapperClassName="wrapperClassName"
-                editorClassName="editorClassName"
-                onEditorStateChange={update}
-            /> */}
-
-            <AppTextarea
-                label="Description"
-                isRequired
-                name="description"
-                minHeight={200}
-                placeholder="Stylish, and Comfortable Long Sleeve T-Shirt..."
-                loading={loading}
-                value={description}
-                onChange={(e) => updateState("description", e.target.value)}
-            />
-        </Box>
+        <VStack align="stretch" position={"relative"}>
+            <FieldLabel label='Description' isRequired />
+            <Box className={classes.editor}>
+                <ReactQuill
+                    theme="snow"
+                    value={description}
+                    onChange={(e: any) => updateState("description", e)}
+                    placeholder="Stylish, and Comfortable Long Sleeve T-Shirt..."
+                    modules={{
+                        toolbar: [
+                            ['bold', 'italic', 'underline'],
+                            ['blockquote'],
+                            [{ 'align': [] }],
+                            [{ 'size': [] }]]
+                    }}
+                />
+            </Box>
+        </VStack>
     )
 }
 
