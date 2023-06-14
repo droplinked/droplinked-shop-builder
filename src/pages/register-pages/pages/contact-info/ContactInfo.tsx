@@ -27,7 +27,7 @@ const ContactInfo = () => {
         shopNavigate(`products`);
         showToast(AppErrors.store.when_user_publishes__store, "success")
       } else {
-        showToast(AppErrors.store.has_been_updated("Contact options"), "success");
+        showToast(AppErrors.store.social_links_have_been_updated, "success");
       }
     } catch (error) {
       showToast(error?.message, "error")
