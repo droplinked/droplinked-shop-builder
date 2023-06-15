@@ -1,25 +1,33 @@
-import { Box, VStack } from '@chakra-ui/react'
-import AppLimitCharacter from 'components/common/form/limitCharacter/AppLimitCharacter'
+import { Box } from '@chakra-ui/react'
 import AppTextarea from 'components/common/form/textarea/AppTextarea'
-import AppTypography from 'components/common/typography/AppTypography'
-import AppErrors from 'lib/utils/statics/errors/errors'
+import { EditorState } from 'draft-js';
 import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'
+import { useState } from 'react';
+import { Editor } from 'react-draft-wysiwyg';
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 function DescriptionProduct() {
     const { state: { description }, methods: { updateState }, loading } = useContext(productContext)
-    const limitCharacter = 250
+    const [editorState, setEditorState] = useState(EditorState.createEmpty())
+    
+    const update = (text:any) => setEditorState(text)
 
     return (
         <Box position={"relative"}>
-            <AppLimitCharacter limit={limitCharacter} value={description} />
+            {/* <Editor
+                editorState={editorState}
+                toolbarClassName="toolbarClassName"
+                wrapperClassName="wrapperClassName"
+                editorClassName="editorClassName"
+                onEditorStateChange={update}
+            /> */}
+
             <AppTextarea
                 label="Description"
                 isRequired
                 name="description"
-                error={description.length > 250 && AppErrors.product.product_description_too_long}
                 minHeight={200}
-                maxLength={limitCharacter}
                 placeholder="Stylish, and Comfortable Long Sleeve T-Shirt..."
                 loading={loading}
                 value={description}

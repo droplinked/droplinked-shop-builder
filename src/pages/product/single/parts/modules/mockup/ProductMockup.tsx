@@ -21,7 +21,7 @@ function ProductMockup() {
                     <ProductPageTitle
                         title='Mockups'
                         isReuired
-                        description='Upload mockups of the POD product or use the 3D model to create it'
+                        description='Upload mockups of the POD product or use the 3D model to create it.'
                     />
                     <BasicButton sizes='medium' onClick={onOpen}>Create 3D Model</BasicButton>
                 </Flex>

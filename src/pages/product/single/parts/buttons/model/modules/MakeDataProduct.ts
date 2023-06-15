@@ -35,6 +35,8 @@ export default class MakeDataProductModel {
             "m2m_positions": state.m2m_positions,
             "artwork": state.artwork,
             "artwork2": state.artwork2,
+            "artwork_position": state.artwork_position,
+            "artwork2_position": state.artwork2_position,
             "sku": state.sku.filter(el => !el._id)
         }
     }

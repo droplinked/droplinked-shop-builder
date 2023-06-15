@@ -53,7 +53,7 @@ export default class ButtonsProductClass {
                         sku: array().min(1, AppErrors.product.sku_not_added).required(),
                         media: array().min(1, AppErrors.product[state.product_type === "PRINT_ON_DEMAND" ? "mockup_image_required" : "product_image_required"]).required(),
                     },
-                    description: string().max(250, AppErrors.product.product_description_too_long).required(),
+                    description: string().required(),
                     title: string().required(),
                 })
 
