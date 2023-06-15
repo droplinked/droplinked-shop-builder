@@ -19,7 +19,7 @@ const IconsComponent = () => {
       gap="24px"
     >
       <InputImage
-        label="Site logo"
+        label="Site Logo"
         placeHolder="Site logo appears at the top left of the page."
         value={logo}
         change={(value) => updateState("logo", value)}
@@ -30,7 +30,7 @@ const IconsComponent = () => {
       />
 
       <InputImage
-        label="Profile logo"
+        label="Profile Logo"
         placeHolder="Profile logo appears at the left side of the page."
         value={headerIcon}
         change={(value) => updateState("headerIcon", value)}

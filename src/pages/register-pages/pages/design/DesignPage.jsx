@@ -10,6 +10,7 @@ import { refactorDesignData } from "./utils";
 import TemplateStore from "./components/template/TemplateStore";
 import AppCard from "components/common/card/AppCard";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
+import SectionTextComponent from "./components/section-text-component/SectionTextComponent";
 
 const DesignPage = () => {
   const [designState, setDesignState] = useState(initialStatesDesign);
@@ -45,6 +46,9 @@ const DesignPage = () => {
 
           <Box mb="48px" />
           <HeaderTitleComponent />
+          
+          <Box mb="48px" />
+          <SectionTextComponent />
 
           <Box mb="48px" />
           <ColorInputsComponent />

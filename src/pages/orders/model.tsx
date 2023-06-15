@@ -34,18 +34,21 @@ export default class OrdersModel {
 
     static makeData = (element: any) => ({
         Code: {
+            caption: "Order ID",
             value: element?._id
         },
         Customer: {
             value: `${element?.customerAddressBook?.firstName} ${element?.customerAddressBook?.lastName}`
         },
         Date: {
+            caption: "Date Created",
             value: this.calculateHowTimePassed(element?.createdAt)
         },
-        Items: {
+        Quantity: {
             value: element?.items?.length
         },
         Status: {
+            caption: "Delivery Status",
             value: element?.status
         },
         options: {
