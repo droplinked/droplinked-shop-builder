@@ -9,6 +9,7 @@ export const initialStatesDesign = {
   backgroundImage: "",
   backgroundImageSecondary: "",
   backgroundColor: "#fff",
+  productSectionText: "",
 };
 
 export const designContext = createContext({
