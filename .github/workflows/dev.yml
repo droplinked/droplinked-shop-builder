@@ -1,0 +1,28 @@
+name: s3-depl
+env:
+  CI: false
+  
+on:
+  push:
+    branches:
+      - dev  
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - name: Copy the env variables
+        run:  echo "${{ vars.ENV_FILE }}" > .env
+      - name: Build React App
+        run: npm install && npm run build 
+      - name: Deploy app build to S3 bucket
+        run: aws s3 sync ./build s3://dev.droplinked.com --delete
+      - name: Invalidate cache
+        run: aws cloudfront create-invalidation --distribution-id=E3PIZD83SAETAX --paths "/*"
