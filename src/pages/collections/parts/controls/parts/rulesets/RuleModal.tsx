@@ -17,6 +17,7 @@ import { IcreateRuleService, IgetRuleService, IupdateRuleService } from "lib/api
 import AppTypography from 'components/common/typography/AppTypography';
 import { ChainTypes } from "lib/utils/statics/chainTypes";
 import RulesetAddress from "./parts/address/RulesetAddress";
+import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
@@ -102,9 +103,13 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
           {({ errors, values, setFieldValue, submitForm }) => (
             <ruleModelContext.Provider value={{ errors, values, setFieldValue, loading: ruleId ? !getRule.isLoading : true }}>
               <VStack width={"100%"} align="stretch" spacing={8}>
-                <Box>
-                  <TextboxRule element={"tag"} placeholder="tag" label={"NFT Gating Message"} />
-                </Box>
+                <VStack align="stretch" spacing={1}>
+                  <VStack align="stretch" spacing={1}>
+                    <FieldLabel label="NFT Gating Message" isRequired />
+                    <AppTypography size="14px" color="#C2C2C2">Enter a message for the NFT holders that will be shown in the gating modal.</AppTypography>
+                  </VStack>
+                  <TextboxRule element={"tag"} placeholder="tag" />
+                </VStack>
                 <Box>
                   <TextboxRule element={"weburl"} placeholder="url ..." label={"NFT info URL"} />
                 </Box>
