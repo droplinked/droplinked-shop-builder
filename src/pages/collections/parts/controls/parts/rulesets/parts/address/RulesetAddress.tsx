@@ -44,7 +44,7 @@ function RulesetAddress() {
             <VStack align={"stretch"} spacing={1}>
                 <VStack align="stretch" spacing={1}>
                     <FieldLabel label='NFT Contract Address' isRequired loading={loading} />
-                    <AppTypography size="14px" color="#C2C2C2">Provide NFT contract addresses and separate them with enter. <a style={{ color: "#2EC99E" }} target="_blank">Learn more</a></AppTypography>
+                    <AppTypography size="12px" color="#9C9C9C">Provide NFT contract addresses and separate them with enter. <a style={{ color: "#2EC99E" }} target="_blank">Learn more</a></AppTypography>
                 </VStack>
                 <AppSkeleton isLoaded={loading} >
                     <Flex backgroundColor="#141414" style={{ cursor: "text", ...errors?.address && { border: "1px solid #FEB2B2" } }} borderRadius="8px" onClick={() => inputRef.current.focus()} flexWrap="wrap" alignItems="center" minHeight="48px" gap={2} padding="17px">
