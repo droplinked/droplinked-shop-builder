@@ -81,7 +81,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   if (!show) return null;
 
   return (
-    <AppModal open={show} close={close} title="Make Rule" size="2xl">
+    <AppModal open={show} isCentered={false} close={close} title="Make Rule" size="2xl">
       {false ? (
         <LoadingComponent />
       ) : (
@@ -107,22 +107,22 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                 <VStack align="stretch" spacing={1}>
                   <VStack align="stretch" spacing={1}>
                     <FieldLabel label="NFT Gating Message" isRequired />
-                    <AppTypography size="14px" color="#C2C2C2">Enter a message for the NFT holders that will be shown in the gating modal.</AppTypography>
+                    <AppTypography size="12px" color="#9C9C9C">Enter a message for the NFT holders that will be shown in the gating modal.</AppTypography>
                   </VStack>
                   <TextboxRule element={"tag"} placeholder="e.g., Exclusive offer unlocked by the ownership of specific NFT" />
                 </VStack>
                 <Box><RulesetType /></Box>
                 <VStack align="stretch" spacing={1}>
                   <VStack align="stretch" spacing={1}>
-                    <FieldLabel label="NFT info URL" isRequired />
-                    <AppTypography size="14px" color="#C2C2C2">Add the link to provide more information about the nft or marketplace.</AppTypography>
+                    <FieldLabel label="NFT Info URL" isRequired />
+                    <AppTypography size="12px" color="#9C9C9C">Add the link to provide more Information about the NFT or marketplace.</AppTypography>
                   </VStack>
                   <TextboxRule element={"weburl"} placeholder="e.g., https://www.opensea.com" />
                 </VStack>
                 <VStack align="stretch" spacing={1}>
                   <VStack align="stretch" spacing={1}>
                     <FieldLabel label="Blockchain Network" isRequired />
-                    <AppTypography size="14px" color="#C2C2C2">Select a blockchain network to validate the ownership of the required NFTs</AppTypography>
+                    <AppTypography size="12px" color="#9C9C9C">Select a blockchain network to validate the ownership of the Required NFTs.</AppTypography>
                   </VStack>
                   <SelectRule
                     element={"chain"}
@@ -141,10 +141,10 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                 </Box>
                 <VStack align="stretch" spacing={1}>
                   <VStack align="stretch" spacing={1}>
-                    <FieldLabel label='Minimum NFT required' isRequired />
-                    <AppTypography size="14px" color="#C2C2C2">Specify the minimum amount of NFTs required to pass the ruleset.</AppTypography>
+                    <FieldLabel label='Minimum NFT Required' isRequired />
+                    <AppTypography size="12px" color="#9C9C9C">Specify the minimum amount of NFTs required to pass the ruleset.</AppTypography>
                   </VStack>
-                  <TextboxRule element={"requirement"} placeholder="number ..." />
+                  <TextboxRule element={"requirement"} placeholder="e.g, 5" />
                 </VStack>
                 <HStack justifyContent={"space-between"}>
                   <Box width={"35%"}><BasicButton width={"100%"} onClick={close} variant="outline">Cancel</BasicButton></Box>
