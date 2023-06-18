@@ -12,8 +12,8 @@ const SectionTextComponent = () => {
   return (
     <VStack align="stretch">
       <AppInput
-        placeholder=""
-        label="Product section text"
+        placeholder="Outfits for Summer"
+        label="Products Section Text"
         onChange={(e) => {
           updateState("productSectionText", e.target.value);
         }}
