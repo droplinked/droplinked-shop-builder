@@ -42,7 +42,8 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
             showToast(addressID ? AppErrors.store.store_address__been_updated : AppErrors.store.store_address_added_successfully, "success")
             close()
         } catch (error) {
-            showToast(error?.response?.data?.message, "error");
+            const err = error?.response?.data
+            showToast(err && err?.statusCode && err?.statusCode === 422 ? "Cant verify address" : "Oops! Something went wrong", "error");
         }
     }, [onSuccess, addressID])
 
