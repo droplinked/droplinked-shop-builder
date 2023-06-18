@@ -19,7 +19,7 @@ export default class ProductListModel {
             value: element?.productCollectionID?.title
         },
         inventory: {
-            caption: "Inventory status",
+            caption: "Inventory Status",
             value: "---"
         },
         status: {

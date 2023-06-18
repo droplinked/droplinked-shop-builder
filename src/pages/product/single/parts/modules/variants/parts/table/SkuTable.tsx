@@ -9,7 +9,7 @@ import RecordModal from './parts/recordModal/RecordModal';
 import SkuTableModal from './parts/skuModal/SkuTableModal';
 
 function SkuTable() {
-    const { state, store: { state: { variants } } } = useContext(productContext)
+    const { state, store: { state: { variants } }, productID } = useContext(productContext)
     const [Sku, setSku] = useState(null)
     const { getRows } = SkuTableModel
     const recordModal = useDisclosure()
@@ -22,7 +22,7 @@ function SkuTable() {
 
             return {
                 ...getRows({ sku: el, state, key, variants, }),
-                ...state.publish_product && {
+                ...state.publish_product && productID && {
                     controls: {
                         caption: "Drop",
                         props: {

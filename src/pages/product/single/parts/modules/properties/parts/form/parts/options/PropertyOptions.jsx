@@ -21,7 +21,7 @@ function PropertyOptions({ element, onChange, value }) {
         <>
             <AppSelectBox
                 name={element.title}
-                backgroundColor="#1C1C1C"
+                backgroundColor="#1C1C1C !important"
                 isDisabled={Boolean(productID) && publish_product}
                 onChange={onChange}
                 value={value}

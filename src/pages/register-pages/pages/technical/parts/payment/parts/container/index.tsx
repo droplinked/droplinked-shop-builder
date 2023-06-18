@@ -43,6 +43,8 @@ function ContainerPayment({ title, value, locked }) {
         return <AppIcons.nearWalletIcon style={styles} />
       case "STACKS":
         return <AppIcons.stacks style={styles} />
+      case "STRIPE":
+        return <AppIcons.stripe width="30px" height="30px" />
 
       default:
         return ""
@@ -58,7 +60,6 @@ function ContainerPayment({ title, value, locked }) {
   return (
     <HStack justifyContent="space-between">
       <HStack>
-
         <Box position={"relative"} bottom={1.9}><AppSwitch isChecked={Switch} onChange={activeHandle} /></Box>
         <Box><TextLabelBold>{title}</TextLabelBold></Box>
       </HStack>
@@ -92,7 +93,7 @@ function ContainerPayment({ title, value, locked }) {
             </HStack>
           </PageContentWrapper>
         </HStack>
-      ) : null}
+      ) : Switch ? <Box>{getIcon("STRIPE")}</Box> : null}
     </HStack>
   )
 }
