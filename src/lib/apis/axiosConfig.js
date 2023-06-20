@@ -18,13 +18,15 @@ axiosInstance.interceptors.request.use(
     function (error) {
         return Promise.reject(error);
     }
-);
-
-axiosInstance.interceptors.response.use(
-    function (res) {
-        return res;
-    },
-    function (error) {
+    );
+    
+    axiosInstance.interceptors.response.use(
+        function (res) {
+            return res;
+        },
+        function (error) {
+        const statusCode = error?.response?.status
+        if(statusCode && statusCode === 401) AppStorage.clearStorage()
         return Promise.reject(error);
     }
 );

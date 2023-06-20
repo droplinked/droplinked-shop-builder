@@ -54,10 +54,11 @@ export interface Isku {
     index: number
     options: Array<IskuOption>
     price: number
-    quantity: string
+    quantity: string | number
     record: Boolean
     weight: number
     recordData?: IrecordData
+    unlimited?: boolean
 }
 
 export interface IproductByIdServices {
