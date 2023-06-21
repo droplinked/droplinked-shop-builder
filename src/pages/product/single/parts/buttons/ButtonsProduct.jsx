@@ -1,6 +1,6 @@
 import { Box, Flex, HStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { productContext } from '../../context'
 import { useMutation } from 'react-query'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
@@ -15,6 +15,7 @@ function ButtonsProduct() {
     const create = useMutation((params) => productCreateServices(params))
     const update = useMutation((params) => productUpdateServices(params))
     const updateSku = useMutation((params) => skuUpdateByIdServices(params))
+    const [TargetButton, setTargetButton] = useState('')
     const { state, productID } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
     const { validate, makeData, makeskuUpdate } = ButtonsProductClass
@@ -24,6 +25,7 @@ function ButtonsProduct() {
         try {
             const service = productID ? update.mutateAsync : create.mutateAsync
             await validate({ state, draft })
+            setTargetButton(draft ? "draft" : "create")
             const formData = makeData({ state, draft, productID })
             const query = await service(productID ? { productID, params: formData } : formData)
             if (productID) await updateSkues(MakeDataProductModel.refactorSku({ skues: state.sku })) // Update skues
@@ -44,7 +46,7 @@ function ButtonsProduct() {
             <Box>
                 {!state.publish_product || !productID ? (
                     <BasicButton
-                        isLoading={productID ? update.isLoading || updateSku.isLoading : create.isLoading}
+                        isLoading={TargetButton === "draft" ? productID ? update.isLoading || updateSku.isLoading : create.isLoading : false}
                         variant={'outline'}
                         onClick={() => submit(true)}
                     >
@@ -54,7 +56,7 @@ function ButtonsProduct() {
             </Box>
             <Box>
                 <BasicButton
-                    isLoading={productID ? update.isLoading || updateSku.isLoading : create.isLoading}
+                    isLoading={TargetButton === "create" ? productID ? update.isLoading || updateSku.isLoading : create.isLoading : false}
                     onClick={() => submit(false)}
                 >
                     {productID && state.publish_product ? "Update Product" : "Publish Product"}

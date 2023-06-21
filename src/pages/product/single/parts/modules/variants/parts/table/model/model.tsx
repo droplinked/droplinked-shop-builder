@@ -3,6 +3,7 @@ import AppTypography from "components/common/typography/AppTypography";
 import { Isku, IproductState } from "lib/apis/product/interfaces";
 import React from "react";
 import FieldsSkuTable from "../parts/fields/FieldsSkuTable";
+import VariantsUnlimited from "../parts/unlimited/VariantsUnlimited";
 import ProductSkuesTable from "./modules/table";
 
 interface IgetRows {
@@ -17,6 +18,7 @@ export default class SkuTableModel {
     static getRows = ({ state, sku, key, variants }: IgetRows) => {
         const checkRecord = sku?.recordData && sku.recordData.status !== "NOT_RECORDED"
         const product_type = state.product_type
+
         return {
             Variant: {
                 props: {
@@ -42,7 +44,12 @@ export default class SkuTableModel {
             },
             ...product_type !== "PRINT_ON_DEMAND" && {
                 quantity: {
-                    value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"quantity"} />
+                    value: <FieldsSkuTable isDisabled={checkRecord || sku.unlimited} index={key} value={sku.quantity} name={"quantity"} />
+                },
+            },
+            ...product_type === "DIGITAL" && {
+                Unlimited: {
+                    value: <VariantsUnlimited isDisabled={checkRecord} index={key} value={sku.unlimited} name={"unlimited"} />
                 },
             },
             ...product_type === "PRINT_ON_DEMAND" && {

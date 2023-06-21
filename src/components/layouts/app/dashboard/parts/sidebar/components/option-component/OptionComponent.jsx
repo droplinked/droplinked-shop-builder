@@ -10,8 +10,9 @@ const OptionComponent = ({ icon, label, path }) => {
   const { shop } = useProfile();
 
   const isActive = useMemo(() => {
-    return location.pathname.includes(path);
-  }, [location]);
+    const currentPath = path.split('/')[0]
+    return location.pathname.split('/').find(el => el.toLowerCase() === currentPath.toLowerCase())
+  }, [location, path]);
 
   return (
     <Tooltip

@@ -19,7 +19,7 @@ function ListCollection({ collections, isLoading }: IProps) {
 
   return (
     <AppSkeleton isLoaded={!isLoading}>
-      <Flex backgroundColor="#141414" padding={6} flexWrap="wrap" alignItems="baseline" minHeight="180px">
+      <Flex backgroundColor="#141414" padding={6} gap={3} flexWrap="wrap" alignItems="baseline" minHeight="180px">
         {collections && collections.length ? collections.map((el: any, key: number) => (
           <Box
             key={key}

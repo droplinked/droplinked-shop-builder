@@ -1,5 +1,5 @@
 import { Box, Flex, Input } from '@chakra-ui/react'
-import React, { useCallback, useContext, useRef, useState } from 'react'
+import React, { useCallback, useContext, useMemo, useRef, useState } from 'react'
 import propertyItemModel from './model/model';
 import AppTypography from 'components/common/typography/AppTypography';
 import AppIcons from 'assest/icon/Appicons';
@@ -12,6 +12,7 @@ function PropertyItem({ element, keyProperty }) {
     const { appendPropertyItem } = propertyItemModel
     const [Value, setValue] = useState("")
     const inputRef = useRef<any>()
+    const updateMode = useMemo(() => productID && publish_product, [productID && publish_product])
 
     const append = useCallback((keyProperty) => {
         updateState("properties", appendPropertyItem({
@@ -34,20 +35,20 @@ function PropertyItem({ element, keyProperty }) {
     }, [Value])
 
     return (
-        <Flex justifyContent={"left"} flexWrap="wrap" backgroundColor="#1C1C1C" padding={2} minHeight="48px" gap={3} alignContent="center" width="100%" cursor={productID && publish_product ? "auto" : "text"} onClick={() => inputRef.current.focus()}>
+        <Flex justifyContent={"left"} flexWrap="wrap" backgroundColor="#1C1C1C" padding={2} minHeight="48px" gap={3} alignContent="center" width="100%" cursor={updateMode ? "auto" : "text"} onClick={() => updateMode ? {} : inputRef.current.focus()}>
             {element.value.length ? element.items.map((item, key) => {
                 return (
                     <>
                         {item.value && (
                             <Flex key={key} alignItems="center" gap={2} color={"#FFF"} padding={"6px 15px"} backgroundColor="#141414">
                                 <AppTypography size='14px'>{item.value}</AppTypography>
-                                <AppIcons.close style={{ cursor: "pointer" }} onClick={() => remove(item.value, keyProperty)} width={"10px"} height="10px" />
+                                {updateMode ? null : <AppIcons.close style={{ cursor: "pointer" }} onClick={() => remove(item.value, keyProperty)} width={"10px"} height="10px" />}
                             </Flex>
                         )}
                     </>
                 )
             }) : null}
-            {productID && publish_product ? null : (
+            {updateMode ? null : (
                 <Box>
                     <form onSubmit={onSubmit}>
                         <Input

@@ -22,7 +22,7 @@ function PODProperties() {
     }, [variants])
 
     const checkItem = useCallback((name: string) => {
-        return properties.find(eel => eel.items.find(e => e.value === name))
+        return properties.find(el => el.items.find(e => e.value.toLowerCase() === name.toLowerCase()))
     }, [properties])
 
     const addProperty = useCallback((value: string, model: string) => {
@@ -90,7 +90,7 @@ function PODProperties() {
                     <Flex>
                         <Box width={"20%"}><AppTypography size="14px" color="#FFF">Sizes</AppTypography></Box>
                         <Box width={"80%"}>
-                            <Flex width={"80%"} flexWrap="wrap" gap={3}>
+                            <Flex width={"80%"} flexWrap="wrap" gap={4}>
                                 {makeproperties.sizes.map((el, key) => (
                                     <Box
                                         key={key}

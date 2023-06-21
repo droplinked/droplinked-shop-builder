@@ -24,8 +24,10 @@
                 padding: 0;
 
                 &::before {
-                    color: #777;
+                    color: #5a5a5a;
                     left: 0;
+                    font-style: normal;
+                    font-size: .85rem;
                 }
             }
         }
