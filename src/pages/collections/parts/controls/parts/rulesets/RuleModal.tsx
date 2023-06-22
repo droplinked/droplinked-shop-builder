@@ -81,7 +81,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   if (!show) return null;
 
   return (
-    <AppModal open={show} isCentered={false} close={close} title="Make Rule" size="2xl">
+    <AppModal open={show} isCentered={false} close={close} title="Create Ruleset" size="2xl">
       {false ? (
         <LoadingComponent />
       ) : (
@@ -115,7 +115,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                 <VStack align="stretch" spacing={1}>
                   <VStack align="stretch" spacing={1}>
                     <FieldLabel label="NFT Info URL" isRequired />
-                    <AppTypography size="12px" color="#9C9C9C">Add the link to provide more Information about the NFT or marketplace.</AppTypography>
+                    <AppTypography size="12px" color="#9C9C9C">Add the link to provide more information about the NFT or marketplace.</AppTypography>
                   </VStack>
                   <TextboxRule element={"weburl"} placeholder="e.g., https://www.opensea.com" />
                 </VStack>

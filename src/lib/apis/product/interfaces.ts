@@ -58,7 +58,6 @@ export interface Isku {
     record: Boolean
     weight: number
     recordData?: IrecordData
-    unlimited?: boolean
 }
 
 export interface IproductByIdServices {
