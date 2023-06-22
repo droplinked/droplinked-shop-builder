@@ -26,15 +26,16 @@ export default class ButtonsProductClass {
     static validate = ({ state, draft }: Ivalidate) => {
         return new Promise(async (resolve, reject) => {
             try {
-                // Check skue externals IDs
                 let error = new Error();
-                if (state.sku.length && state.product_type === "NORMAL" && this.skumodel.skues({ skues: state.sku })) {
-                    error.message = "Please enter Quantity for all SKUs"
-                    throw error
-                }
-
+                
                 if (!draft) {
-                    if (state.product_type === "PRINT_ON_DEMAND" && ((!state.artwork && !state.artwork2) && !state.m2m_positions.length)) {
+                    if (!state?.sku) {
+                        error.message = "Please enter sku"
+                        throw error
+                    } else if(state.sku.length && state.product_type === "NORMAL" && this.skumodel.skues({ skues: state.sku })) {
+                        error.message = "Please enter Quantity for all SKUs"
+                        throw error
+                    } else if (state.product_type === "PRINT_ON_DEMAND" && ((!state.artwork && !state.artwork2) && !state.m2m_positions.length)) {
                         error.message = "Please enter Artwork or pick mint to merch"
                         throw error
                     } else if (state.sku.find(el => !el.price)) {
