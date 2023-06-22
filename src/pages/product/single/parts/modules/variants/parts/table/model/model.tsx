@@ -44,18 +44,13 @@ export default class SkuTableModel {
             },
             ...product_type !== "PRINT_ON_DEMAND" && {
                 quantity: {
-                    value: <FieldsSkuTable isDisabled={checkRecord || sku.unlimited} index={key} value={sku.quantity} name={"quantity"} />
-                },
-            },
-            ...product_type === "DIGITAL" && {
-                Unlimited: {
-                    value: <VariantsUnlimited isDisabled={checkRecord} index={key} value={sku.unlimited} name={"unlimited"} />
+                    value: product_type === "DIGITAL" ? <VariantsUnlimited isDisabled={checkRecord} index={key} value={sku.quantity} name={"unlimited"} /> : <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.quantity} name={"quantity"} />
                 },
             },
             ...product_type === "PRINT_ON_DEMAND" && {
                 cost: {
                     caption: "Product Cost",
-                    value: variants ? <AppTypography size="12px">{this.table.variants({ variants, state })}</AppTypography> : 0
+                    value: variants ? <AppTypography size="12px">{this.table.variants({ variants, state })} USD</AppTypography> : 0
                 },
             },
             ...product_type === "NORMAL" && {

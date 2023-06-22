@@ -25,7 +25,7 @@ function PropertyOptions({ element, onChange, value }) {
                 isDisabled={Boolean(productID) && publish_product}
                 onChange={onChange}
                 value={value}
-                {...!value && { placeholder: "property" }}
+                {...!value && { placeholder: "Select property" }}
                 items={typesProperties.map((el) => ({
                     value: el._id,
                     caption: el.name,

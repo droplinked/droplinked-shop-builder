@@ -31,7 +31,7 @@ function ButtonsProduct() {
             if (productID) await updateSkues(MakeDataProductModel.refactorSku({ skues: state.sku })) // Update skues
 
             showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")
-            shopNavigate(draft ? `products/${query.data?.data._id}` : "products")
+            shopNavigate("products")
         } catch (error) {
             showToast(error.errors ? error.errors[0] : error?.message ? error.message : "Oops! Something went wrong", "error")
         }

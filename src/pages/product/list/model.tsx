@@ -10,26 +10,29 @@ interface IrefactorData {
     search: string
 }
 export default class ProductListModel {
-    private static makeData = (element: any, fetch: any) => ({
-        image: {
-            caption: "Name",
-            value: <ImageListProduct product={element} />
-        },
-        collection: {
-            value: element?.productCollectionID?.title
-        },
-        inventory: {
-            caption: "Inventory Status",
-            value: "---"
-        },
-        status: {
-            value: capitalizeFirstLetter(element?.publish_status)
-        },
-        controls: {
-            caption: "",
-            value: <ControlsListProduct product={element} productID={element._id} fetch={fetch} />
+    private static makeData = (element: any, fetch: any) => {
+        const publish_status = element?.publish_status
+        return {
+            image: {
+                caption: "Name",
+                value: <ImageListProduct product={element} />
+            },
+            collection: {
+                value: element?.productCollectionID?.title
+            },
+            inventory: {
+                caption: "Inventory Status",
+                value: "---"
+            },
+            status: {
+                value: publish_status === "PUBLISHED" ? "Published" : "Draft"
+            },
+            controls: {
+                caption: "",
+                value: <ControlsListProduct product={element} productID={element._id} fetch={fetch} />
+            }
         }
-    })
+    }
 
     static refactorData = ({ data, fetch, search }: IrefactorData): Array<ITableRows> => {
         search = search && search.toLowerCase()
