@@ -14,9 +14,10 @@ export function useCustomNavigate() {
   const { shop } = useProfile();
   const navigate = useNavigate();
   const location = useLocation()
+  const shopRoute = `/${shop?.name}/c`
 
   const shopNavigate = (path: string, checkCurrentPath = false) => {
-    const route = `/${shop?.name}/c/${path}`
+    const route = shopRoute + "/" + path
     const check = checkCurrentPath ? route !== location.pathname : true
     if (check) navigate(route);
   }
@@ -33,6 +34,7 @@ export function useCustomNavigate() {
 
   return {
     shopNavigate,
+    shopRoute,
     redirectToIo
   };
 }

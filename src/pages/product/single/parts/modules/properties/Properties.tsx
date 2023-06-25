@@ -29,10 +29,10 @@ function Properties() {
 
     const set = useCallback(async ({ item }: IaddPropertyItem) => {
         if (productID && publish_product) return false
-        try {
+        try {            
             await checkItem(item.value)
             updateState("properties", addPropertyItem({ item, properties }))
-        } catch (error) {
+        } catch (error) {            
             showToast("This property exist", "error", { toastId: "SkuUsed" })
         }
     }, [updateState, sku, properties, productID, publish_product])

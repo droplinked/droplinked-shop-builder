@@ -79,6 +79,21 @@ const HeaderLayout = () => {
                 Dashboard
               </Text>
               <Box mb="20px" />
+              <a href={`https://droplinked.io/${shop?.name}`} onClick={onClose} target="_blank">
+                <Text
+                  fontFamily="Avenir Next"
+                  fontStyle="normal"
+                  fontWeight="500"
+                  fontSize="14px"
+                  color="#FFFFFF"
+                  w="100%"
+                  textAlign="center"
+                  cursor="pointer"
+                >
+                  View shop
+                </Text>
+              </a>
+              <Box mb="20px" />
               <Text
                 fontFamily="Avenir Next"
                 fontStyle="normal"

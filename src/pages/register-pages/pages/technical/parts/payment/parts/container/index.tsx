@@ -64,26 +64,27 @@ function ContainerPayment({ title, value, locked }) {
         <Box><TextLabelBold>{title}</TextLabelBold></Box>
       </HStack>
       {title !== "STRIPE" ? (
-        <HStack>
+        <HStack width={"60%"}>
           <PageContentWrapper padding={3}>
             <HStack alignItems="center" spacing={4}>
               {locked ? (
                 <>
                   <Box>{getIcon(title)}</Box>
-                  <Box position={"relative"} top={.9}>
-                    <input type="text" className={classes.textbox} value={value} readOnly />
+                  <Box position={"relative"} width="100%" top={.9}>
+                    <input type="text" style={{ width: "100%" }} className={classes.textbox} value={value} readOnly />
                   </Box>
                   <Box onClick={edit} cursor={"pointer"}><AppIcons.editIcon width="16px" height="16px" /></Box>
                 </>
               ) : (
                 <>
-                  <Box position={"relative"} top={.9}>
+                  <Box position={"relative"} width="100%" top={.9}>
                     <input
+                      style={{ width: "100%" }}
                       type="text"
                       className={classes.textbox}
                       readOnly={!Switch}
                       onChange={(e) => updatePayments("destinationAddress", e.target.value)}
-                      placeholder='Target wallet public key'
+                      placeholder='Please write Public wallet address'
                       value={value}
                     />
                   </Box>

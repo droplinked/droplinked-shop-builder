@@ -48,11 +48,12 @@ export default class propertyItemModel {
     // Set item for property
     static addPropertyItem = ({ item, properties }: IaddProperty): Array<Iproperties> => {
         const property = properties.find(el => el.value === item.variantID)
+        
         let result = []
         properties.forEach(element => {
             result.push({
                 ...element,
-                items: element.value === property.value ? [...element.items, {
+                items: property && element.value === property.value ? [...element.items, {
                     value: item.value
                 }] : element.items
             })

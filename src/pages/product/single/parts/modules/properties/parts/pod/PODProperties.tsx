@@ -40,6 +40,26 @@ function PODProperties() {
         }
     }, [properties, productID, publish_product])
 
+    const createProperty = useCallback(() => {
+        const getItems = (property: string) => properties.find(el => el.title === property)
+
+        if (properties.length !== 2) {
+            updateState("properties", [
+                {
+                    "value": "62a989ab1f2c2bbc5b1e7153",
+                    "title": "Color",
+                    "items": getItems("Color") ? getItems("Color").items : []
+                },
+                {
+                    "value": "62a989e21f2c2bbc5b1e7154",
+                    "title": "Size",
+                    "items": getItems("Size") ? getItems("Size").items : []
+                }
+            ])
+        }
+        setToggle(prev => !prev)
+    }, [properties])
+
     return (
         <VStack align={"stretch"}>
             <Flex justifyContent={"space-between"}>
@@ -49,23 +69,7 @@ function PODProperties() {
                     title='Product Properties'
                     description='Add at least one property to enable all variant fields.'
                 />
-                <BasicButton onClick={() => {
-                    if (!properties.length) {
-                        updateState("properties", [
-                            {
-                                "value": "62a989ab1f2c2bbc5b1e7153",
-                                "title": "Color",
-                                "items": []
-                            },
-                            {
-                                "value": "62a989e21f2c2bbc5b1e7154",
-                                "title": "Size",
-                                "items": []
-                            }
-                        ])
-                    }
-                    setToggle(prev => !prev)
-                }} variant='outline' sizes='medium'>Manage</BasicButton>
+                <BasicButton onClick={createProperty} variant='outline' sizes='medium'>Manage</BasicButton>
             </Flex>
             {Toggle && makeproperties && (
                 <VStack color={"#FFF"} background={"#141414"} spacing={4} borderRadius="8px" padding={4} align={"stretch"} width={"100%"}>

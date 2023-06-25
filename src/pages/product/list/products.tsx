@@ -9,7 +9,10 @@ import ProductEmpty from './parts/empty/ProductEmpty'
 function Products() {
     const { mutate, isLoading, data } = useMutation(() => productServices())
     const [States, setStates] = useState({
-        search: null
+        search: null,
+        filters: {
+            collection: false
+        }
     })
     const { shop } = useProfile()
 
@@ -36,6 +39,17 @@ function Products() {
                 }
             ]}
             rows={rows}
+            filters={[
+                {
+                    title: "Sort",
+                    list: [
+                        {
+                            title: "Collection",
+                            onClick: () => setStates(prev => ({ ...prev, filters: { ...prev.filters, collection: !prev.filters.collection } }))
+                        }
+                    ]
+                }
+            ]}
             search={{ onChange: (e) => setSearch(e.target.value) }}
             empty={<ProductEmpty />}
         />

@@ -6,10 +6,10 @@ import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomN
 
 function ImageListProduct({ product }) {
     const { shop } = useProfile()
-    const { redirectToIo } = useCustomNavigate()
+    const { shopRoute } = useCustomNavigate()
 
     return (
-        <a href={redirectToIo({ productID: product._id })} target="_blank">
+        <a href={`${shopRoute}/products/${product._id}`} target="_blank">
             <HStack width={"250px"} color="#FFF">
                 <Box width={"50px"}><AppImage src={product?.media && product?.media.length && product.media[0].url} /></Box>
                 <Box><Text>{product.title}</Text></Box>

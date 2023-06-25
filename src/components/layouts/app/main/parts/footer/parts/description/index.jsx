@@ -1,6 +1,7 @@
 import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import droplinkFull from "assest/image/droplinkFull.svg";
+import AppTypography from "components/common/typography/AppTypography";
 
 function Description() {
   return (
@@ -19,7 +20,7 @@ function Description() {
         mb="18px"
         w='max-content'
       >
-        Community driven commerce
+        <AppTypography size="12px" weight="bolder" display={"inline-block"}>Community driven commerce</AppTypography>
         <br />
         Launch a drop in minutes & unlock the power of web3.
       </Text>
