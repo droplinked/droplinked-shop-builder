@@ -31,7 +31,7 @@ function ProductMockup() {
                     </SkeletonProduct>
                 </Box>
             </VStack>
-            <ProductIframe open={isOpen} close={onClose} />
+            {isOpen && <ProductIframe open={isOpen} close={onClose} />}
         </>
     )
 }
