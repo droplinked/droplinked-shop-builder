@@ -27,7 +27,7 @@ function ButtonsProduct() {
             await validate({ state, draft })
             setTargetButton(draft ? "draft" : "create")
             const formData = makeData({ state, draft, productID })
-            const query = await service(productID ? { productID, params: formData } : formData)
+            await service(productID ? { productID, params: formData } : formData)
             if (productID) await updateSkues(MakeDataProductModel.refactorSku({ skues: state.sku })) // Update skues
 
             showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")

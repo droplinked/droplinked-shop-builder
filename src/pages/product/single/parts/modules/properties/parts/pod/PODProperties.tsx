@@ -1,17 +1,14 @@
-import { Box, Button, Flex, VStack } from '@chakra-ui/react'
+import { Box, Flex, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
-import { typesProperties } from 'lib/utils/statics/types'
 import { productContext } from 'pages/product/single/context'
 import ProductPageTitle from 'pages/product/single/parts/modules/title/ProductPageTitle'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import propertiesFormContext from '../../context'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
+import PropertyItem from '../item/PropertyItem'
 import { PODPropertiesModel } from './PODProperties_model'
-import classes from './style.module.scss'
 
 function PODProperties() {
     const { state: { properties, pod_blank_product_id, publish_product }, productID, methods: { updateState }, store: { state: { variants } } } = useContext(productContext)
-    const { set, remove } = useContext(propertiesFormContext)
     const { getProperties } = PODPropertiesModel
     const [Toggle, setToggle] = useState(false)
 
@@ -21,24 +18,6 @@ function PODProperties() {
         return getProperties({ pod_blank_product_id, providers: blank_options[0] })
     }, [variants])
 
-    const checkItem = useCallback((name: string) => {
-        return properties.find(el => el.items.find(e => e.value.toLowerCase() === name.toLowerCase()))
-    }, [properties])
-
-    const addProperty = useCallback((value: string, model: string) => {
-        if (productID && publish_product) return false
-        const getVariantID = typesProperties.find(el => el.name === model)
-        if (checkItem(value)) {
-            remove(value, model === "Color" ? 0 : 1)
-        } else {
-            set({
-                item: {
-                    value,
-                    variantID: getVariantID._id
-                }
-            })
-        }
-    }, [properties, productID, publish_product])
 
     const createProperty = useCallback(() => {
         const getItems = (property: string) => properties.find(el => el.title === property)
@@ -77,17 +56,7 @@ function PODProperties() {
                         <Box width={"20%"}><AppTypography size="14px" color="#FFF">Colors</AppTypography></Box>
                         <Flex width={"80%"} flexWrap="wrap" gap={3}>
                             {makeproperties.colors.map((el, key) => (
-                                <Box
-                                    key={key}
-                                    borderRadius="100%"
-                                    onClick={() => addProperty(el.name, "Color")}
-                                    width="32px"
-                                    height="32px"
-                                    cursor={productID && publish_product ? "auto" : "pointer"}
-                                    background={el.code}
-                                    className={`${checkItem(el.name) ? classes.active : ""} ${classes.box}`}
-                                >
-                                </Box>
+                                <PropertyItem key={key} type="Color" name={el.name} hex={el.code} />
                             ))}
                         </Flex>
                     </Flex>
@@ -96,17 +65,7 @@ function PODProperties() {
                         <Box width={"80%"}>
                             <Flex width={"80%"} flexWrap="wrap" gap={4}>
                                 {makeproperties.sizes.map((el, key) => (
-                                    <Box
-                                        key={key}
-                                        borderRadius="28px"
-                                        onClick={() => addProperty(el, "Size")}
-                                        padding="6px 16px"
-                                        cursor={productID && publish_product ? "auto" : "pointer"}
-                                        background="#1C1C1C"
-                                        className={`${checkItem(el) ? classes.active : ""} ${classes.box}`}
-                                    >
-                                        {el}
-                                    </Box>
+                                    <PropertyItem key={key} type="Size" name={el} />
                                 ))}
                             </Flex>
                         </Box>
