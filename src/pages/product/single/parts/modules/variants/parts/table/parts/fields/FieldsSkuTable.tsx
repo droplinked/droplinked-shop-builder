@@ -15,7 +15,7 @@ function FieldsSkuTable(props: IProps) {
     const { name, index, value, isDisabled } = props
 
     const updateSku = useCallback((e: any) => {
-        let inputvalue: any = e.target.value
+        let inputvalue: any = e.target.value        
 
         if (!["externalID"].includes(name) && inputvalue) inputvalue = floatNumberRegex.test(inputvalue) ? inputvalue : value
 

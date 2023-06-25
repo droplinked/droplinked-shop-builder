@@ -1,5 +1,6 @@
 import { IproductState, Isku } from 'lib/apis/product/interfaces'
 import AppErrors from 'lib/utils/statics/errors/errors'
+import { typesProperties } from 'lib/utils/statics/types'
 import { object, string, array, number } from 'yup'
 import MakeDataProductModel from './modules/MakeDataProduct'
 import ProductValidateModel from './modules/validate'
@@ -27,16 +28,19 @@ export default class ButtonsProductClass {
         return new Promise(async (resolve, reject) => {
             try {
                 let error = new Error();
-                
+
                 if (!draft) {
                     if (!state?.sku) {
                         error.message = "Please enter sku"
                         throw error
-                    } else if(state.sku.length && state.product_type === "NORMAL" && this.skumodel.skues({ skues: state.sku })) {
+                    } else if (state.sku.length && state.product_type === "NORMAL" && this.skumodel.skues({ skues: state.sku })) {
                         error.message = "Please enter Quantity for all SKUs"
                         throw error
                     } else if (state.product_type === "PRINT_ON_DEMAND" && ((!state.artwork && !state.artwork2) && !state.m2m_positions.length)) {
                         error.message = "Please enter Artwork or pick mint to merch"
+                        throw error
+                    } else if (state.product_type === "PRINT_ON_DEMAND" && !this.skumodel.checkExistAllPropperty({ properties: state.properties })) {
+                        error.message = `Please enter all property (${typesProperties.map(el => el.name).join(', ')})`
                         throw error
                     } else if (state.sku.find(el => !el.price)) {
                         error.message = "Please enter Price for all SKUs"

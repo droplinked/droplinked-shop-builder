@@ -1,17 +1,25 @@
 import { Box, Flex, HStack, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
+import { variantOptionsService } from 'lib/apis/variant/services'
 import { typesProperties } from 'lib/utils/statics/types'
 import { productContext } from 'pages/product/single/context'
 import SkeletonProduct from 'pages/product/single/parts/modules/skeleton/SkeletonProduct'
 import ProductPageTitle from 'pages/product/single/parts/modules/title/ProductPageTitle'
 import React, { useCallback, useContext } from 'react'
+import { useQuery } from 'react-query'
 import propertiesFormContext from '../../context'
 import PropertiesFormModel from '../../model/model'
 import PropertyButton from '../button/PropertyButton'
-import PropertyItem from './parts/item/PropertyItem'
+import PropertyItem from '../item/PropertyItem'
 import PropertyOptions from './parts/options/PropertyOptions'
 
 function PropertyFormProduct() {
+    const { data } = useQuery({
+        queryFn: variantOptionsService,
+        queryKey: "product_properties",
+        cacheTime: 60 * 60 * 1000,
+        refetchOnWindowFocus: false
+    })
     const { state: { properties, publish_product }, methods: { updateState }, productID } = useContext(productContext)
     const { addProperty } = PropertiesFormModel
 
@@ -23,6 +31,12 @@ function PropertyFormProduct() {
             value
         }))
     }, [properties])
+
+    const getProperties = useCallback((title: string) => {
+        const datas = data?.data?.data
+        if (!datas) return []
+        return title === "Color" ? datas?.colors : datas?.sizes
+    }, [data])
 
     return (
         <>
@@ -48,7 +62,16 @@ function PropertyFormProduct() {
                             {el.value && (
                                 <HStack>
                                     <Box width={"20%"}><AppTypography size="14px" color="#FFF">Values</AppTypography></Box>
-                                    <Box width={"80%"}><PropertyItem element={el} keyProperty={keyProperty} /></Box>
+                                    <Flex width={"80%"} flexWrap="wrap" gap={3}>
+                                        {getProperties(el.title) && getProperties(el.title)?.values && getProperties(el.title)?.values.map((item: any, key: number) => (
+                                            <PropertyItem
+                                                key={key}
+                                                type={el.title === "Color" ? "Color" : "Size"}
+                                                name={item.caption}
+                                                {...el.title === 'Color' && { hex: item.value }}
+                                            />
+                                        ))}
+                                    </Flex>
                                 </HStack>
                             )}
                         </VStack>

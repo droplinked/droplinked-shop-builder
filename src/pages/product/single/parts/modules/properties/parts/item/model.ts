@@ -1,10 +1,9 @@
 import { Iproperties, IpropertiesItems } from "lib/apis/product/interfaces"
-import AppendModule from "../../../../../model/module/append"
+import AppendModule from "../../model/module/append"
 
 interface IremoveItem {
     state: Array<Iproperties>
     valueItem: string
-    keyProperty: number
 }
 
 interface IappendPropertyItem {
@@ -48,11 +47,12 @@ export default class propertyItemModel {
     // Set item for property
     static addPropertyItem = ({ item, properties }: IaddProperty): Array<Iproperties> => {
         const property = properties.find(el => el.value === item.variantID)
+
         let result = []
         properties.forEach(element => {
             result.push({
                 ...element,
-                items: element.value === property.value ? [...element.items, {
+                items: property && element.value === property.value ? [...element.items, {
                     value: item.value
                 }] : element.items
             })
@@ -61,15 +61,13 @@ export default class propertyItemModel {
     }
 
     // Remove item property
-    static removePropertyItem = ({ valueItem, keyProperty, state }: IremoveItem): Array<Iproperties> => {
+    static removePropertyItem = ({ valueItem, state }: IremoveItem): Array<Iproperties> => {
         return this.append.loopProperty({
             state,
             action: (el: Iproperties, key: number) => {
                 return {
                     ...el,
-                    items: keyProperty === key ? el.items.filter((item, index) => {
-                        if (valueItem !== item.value) return item
-                    }) : el.items
+                    items: el.items.filter(item => item.value !== valueItem)
                 }
             }
         })

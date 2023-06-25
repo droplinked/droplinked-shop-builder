@@ -27,7 +27,7 @@ function ProductPositions({ update, state, posistion }: IProps) {
         FRONT_RIGHT_CHEST: shirtRight,
         BACK_CENTER: shirtBack,
     }
-
+    
     return (
         <Flex gap={3}>
             {data?.data?.data && data.data.data.filter((el:string) => posistion ? posistion === "back" ? !el.search("BACK") : el.search("BACK_") : true).map((el: any, key: number) => (
