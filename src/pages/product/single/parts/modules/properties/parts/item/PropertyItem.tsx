@@ -11,7 +11,7 @@ interface IProps {
     hex?: string
 }
 function PropertyItem({ type, name, hex }: IProps) {
-    const { state: { properties, pod_blank_product_id, publish_product }, productID, methods: { updateState }, store: { state: { variants } } } = useContext(productContext)
+    const { state: { properties, publish_product }, productID } = useContext(productContext)
     const { set, remove } = useContext(propertiesFormContext)
 
     const checkItem = useCallback((name: string) => {
@@ -21,7 +21,7 @@ function PropertyItem({ type, name, hex }: IProps) {
     const addProperty = useCallback((value: string) => {
         if (productID && publish_product) return false
         const getVariantID = typesProperties.find(el => el.name.toLowerCase() === type.toLowerCase())
-        
+
         if (checkItem(value)) {
             remove(value)
         } else {
@@ -62,7 +62,7 @@ function PropertyItem({ type, name, hex }: IProps) {
             default:
                 return <></>
         }
-    }, [type,properties])
+    }, [type, properties])
 
     return getContainer
 }

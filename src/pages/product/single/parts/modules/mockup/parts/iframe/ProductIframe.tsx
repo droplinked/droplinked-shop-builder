@@ -31,11 +31,14 @@ function ProductIframe({ close, open }: IProps) {
 
     useEffect(() => {
         window.addEventListener('message', (event) => {
-            if (event.origin === url) {
-                console.log('event in parrent ', event);
-                console.log('Message received from iframe:', event.data);
+            console.log("event", event);
+            if (event.data.type === "imageUrls") {
+              const frontImageUrl = event.data.payload.front;
+              const backImageUrl = event.data.payload.back;
+      
+              console.log('frontImageUrl', frontImageUrl);
+              console.log('backImageUrl', backImageUrl);
             }
-
         });
     }, [])
 

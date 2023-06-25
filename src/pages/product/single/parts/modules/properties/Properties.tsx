@@ -27,7 +27,7 @@ function Properties() {
         updateState("properties", removePropertyItem({ state: properties, valueItem }))
     }, [properties, sku, productID, publish_product])
 
-    const set = useCallback(async ({ item }: IaddPropertyItem) => {
+    const set = useCallback(async ({ item }: IaddPropertyItem) => {        
         if (productID && publish_product) return false
         try {
             await checkItem(item.value)
