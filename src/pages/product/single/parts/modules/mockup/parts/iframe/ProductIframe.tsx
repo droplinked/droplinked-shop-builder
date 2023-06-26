@@ -10,15 +10,18 @@ interface IProps {
 function ProductIframe({ close, open }: IProps) {
     const { state: { artwork, artwork2, artwork2_position, artwork_position, pod_blank_product_id, media } } = useContext(productContext)
     const url = "https://designer.droplinked.io?"
-    const element = useRef<any>(null)
-
-    const craftMedia = useCallback((payload: any) => {
-        introductionClass.refactorImage([...introductionClass.defactorImage(media), ...payload])
+    const iframeElement = useRef<any>(null)
+    
+    const eventMessage = useCallback((event: any) => {
+        if (event.data.type === "imageUrls") {
+            introductionClass.refactorImage([...introductionClass.defactorImage(media), ...event.data.payload])
+        }
     }, [media])
 
-    useEffect(() => {        
+
+    useEffect(() => {
         if (open) setTimeout(() => {
-            element.current.contentWindow.postMessage({
+            iframeElement.current.contentWindow.postMessage({
                 pod_blank_product_id,
                 artwork: {
                     back: {
@@ -35,11 +38,8 @@ function ProductIframe({ close, open }: IProps) {
     }, [open])
 
     useEffect(() => {
-        window.addEventListener('message', (event) => {
-            if (event.data.type === "imageUrls") {
-                craftMedia(event.data.payload)
-            }
-        });
+        window.addEventListener('message', eventMessage)
+        return () => window.removeEventListener('message', eventMessage)
     }, [])
 
     return (
@@ -47,7 +47,7 @@ function ProductIframe({ close, open }: IProps) {
             <iframe
                 style={{ width: "100%", height: "100%" }}
                 src={url}
-                ref={element}
+                ref={iframeElement}
                 title="Module"
             ></iframe>
         </AppModal>

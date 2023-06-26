@@ -39,6 +39,7 @@ export default class MakeDataProductModel {
             "artwork2_position": state.artwork2_position,
             "sku": state.sku.filter(el => !el._id),
             "pod_blank_product_id": state.pod_blank_product_id,
+            "thumb": state.thumb,
         }
     }
 }

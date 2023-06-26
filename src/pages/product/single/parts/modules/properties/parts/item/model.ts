@@ -61,13 +61,13 @@ export default class propertyItemModel {
     }
 
     // Remove item property
-    static removePropertyItem = ({ valueItem, state }: IremoveItem): Array<Iproperties> => {
+    static removePropertyItem = ({ valueItem, state }: IremoveItem): Array<Iproperties> => {        
         return this.append.loopProperty({
             state,
             action: (el: Iproperties, key: number) => {
                 return {
                     ...el,
-                    items: el.items.filter(item => item.value !== valueItem)
+                    items: el.items.filter(item => item.value.toLowerCase() !== valueItem.toLowerCase())
                 }
             }
         })
