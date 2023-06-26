@@ -1,17 +1,22 @@
 import AppModal from 'components/common/modal/AppModal'
 import { productContext } from 'pages/product/single/context'
-import React, { useContext, useEffect, useRef } from 'react'
+import introductionClass from 'pages/product/single/parts/general/model'
+import React, { useCallback, useContext, useEffect, useRef } from 'react'
 
 interface IProps {
     close: Function
     open: boolean
 }
 function ProductIframe({ close, open }: IProps) {
-    const { state: { artwork, artwork2, artwork2_position, artwork_position, pod_blank_product_id } } = useContext(productContext)
+    const { state: { artwork, artwork2, artwork2_position, artwork_position, pod_blank_product_id, media } } = useContext(productContext)
     const url = "https://designer.droplinked.io?"
     const element = useRef<any>(null)
 
-    useEffect(() => {
+    const craftMedia = useCallback((payload: any) => {
+        introductionClass.refactorImage([...introductionClass.defactorImage(media), ...payload])
+    }, [media])
+
+    useEffect(() => {        
         if (open) setTimeout(() => {
             element.current.contentWindow.postMessage({
                 pod_blank_product_id,
@@ -31,18 +36,11 @@ function ProductIframe({ close, open }: IProps) {
 
     useEffect(() => {
         window.addEventListener('message', (event) => {
-            console.log("event", event);
             if (event.data.type === "imageUrls") {
-              const frontImageUrl = event.data.payload.front;
-              const backImageUrl = event.data.payload.back;
-      
-              console.log('frontImageUrl', frontImageUrl);
-              console.log('backImageUrl', backImageUrl);
+                craftMedia(event.data.payload)
             }
         });
     }, [])
-
-
 
     return (
         <AppModal contentProps={{ width: "100%", maxWidth: "95%", height: "90%" }} close={close} open={open}>
