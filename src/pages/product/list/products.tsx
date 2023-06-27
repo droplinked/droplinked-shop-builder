@@ -23,7 +23,7 @@ function Products() {
     // Handle search and without search
     const rows = useMemo(() => {
         return data ? ProductListModel.refactorData({
-            data: data.data.data,
+            data: data.data.data.data,
             fetch: mutate,
             search: States.search
         }) : []
