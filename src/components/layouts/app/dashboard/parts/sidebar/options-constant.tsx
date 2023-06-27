@@ -13,7 +13,7 @@ export const OPTIONS = [
         icon: <AppIcons.orderIcon />, label: 'Orders', path: 'orders'
     },
     {
-        icon: <AppIcons.informationIcon />, label: 'Affiliate', path: appDeveloment ? "affiliate" : 'products'
+        icon: <AppIcons.informationIcon />, label: 'Affiliate', path: 'affiliate'
     },
     {
         icon: <AppIcons.settingIcon />, label: 'Settings', path: 'settings/shop-info'
