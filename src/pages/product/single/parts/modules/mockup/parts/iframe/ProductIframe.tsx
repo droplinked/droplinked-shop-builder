@@ -11,15 +11,16 @@ function ProductIframe({ close, open }: IProps) {
     const { state: { artwork, artwork2, artwork2_position, artwork_position, pod_blank_product_id, media } } = useContext(productContext)
     const url = "https://designer.droplinked.io?"
     const iframeElement = useRef<any>(null)
-    
+
     const eventMessage = useCallback((event: any) => {
         console.log(event.data);
-        
+
         if (event.data.type === "imageUrls") {
+            const payload = event.data.payload
             console.log(introductionClass.defactorImage(media));
-            console.log(event.data.payload);
-            
-            // introductionClass.refactorImage([...introductionClass.defactorImage(media), ...event.data.payload])
+            console.log(Object.keys(payload).map(el => payload[el]));
+
+            introductionClass.refactorImage([...introductionClass.defactorImage(media), ...Object.keys(payload).map(el => payload[el])])
         }
     }, [media])
 
