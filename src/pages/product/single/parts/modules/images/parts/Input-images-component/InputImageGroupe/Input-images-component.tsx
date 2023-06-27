@@ -19,9 +19,10 @@ interface IProps {
   state: any
   vertical?: boolean
   message?: string
+  onSuccess?: Function
 }
 
-export default function InputImagesGroup({ setState, state, vertical, message }: IProps) {
+export default function InputImagesGroup({ setState, state, vertical, message, onSuccess }: IProps) {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
   const { showToast } = useAppToast()
@@ -59,6 +60,7 @@ export default function InputImagesGroup({ setState, state, vertical, message }:
           imgArr.push(state[i]);
         }
         imgArr.push(e.data.standard);
+        if (onSuccess) onSuccess(e.data)
         setState(imgArr);
         showToast(message ? message : e.data.message, "success");
         setLoading(false);
@@ -87,7 +89,7 @@ export default function InputImagesGroup({ setState, state, vertical, message }:
           <Flex gap={3} onClick={openFile} alignItems="center">
             <Image src={uploadImage} w="24px" h="24px" />
             <Text fontSize="14px" textAlign="center" color="darkGray">
-            Upload JPG, JPEG, PNG (Max 5 MB)
+              Upload JPG, JPEG, PNG (Max 5 MB)
             </Text>
           </Flex>
         ) : (
@@ -95,7 +97,7 @@ export default function InputImagesGroup({ setState, state, vertical, message }:
             <Image src={uploadImage} w="50px" h="50px" />
             <Box mb="24px"></Box>
             <Text fontSize="16px" textAlign="center" color="darkGray">
-            Upload JPG, JPEG, PNG<br />(Max 5 MB)
+              Upload JPG, JPEG, PNG<br />(Max 5 MB)
             </Text>
           </InputAddImage>
         )}

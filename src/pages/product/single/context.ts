@@ -23,7 +23,8 @@ export const initialStatesProduct: IproductState = {
     artwork2: null,
     m2m_positions: [],
     artwork_position: "FRONT_CENTER",
-    artwork2_position: "BACK_CENTER"
+    artwork2_position: "BACK_CENTER",
+    thumb: ""
 }
 
 export interface IproductStore {

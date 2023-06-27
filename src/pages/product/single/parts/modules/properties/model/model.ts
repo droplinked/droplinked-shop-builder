@@ -51,13 +51,14 @@ export default class PropertiesFormModel {
 
     // Set new property
     static addProperty = ({ state, value, index }: IaddProperty): Array<Iproperties> => {
+        const propertiesLenght = state.length > 1
         return this.append.loopProperty({
             state,
             action: (el: Iproperties, key: number) => {
                 return {
                     value: key === index ? value : el.value,
                     title: key === index ? this.append.getCaption(value) : this.append.getCaption(el.value),
-                    items: el.items
+                    items: propertiesLenght ? el.items : []
                 }
             }
         })

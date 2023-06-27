@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IaddPropertyItem } from "./parts/form/parts/item/model/model";
+import { IaddPropertyItem } from "./parts/item/model";
 
 interface IpropertiesFormContext {
     set(props: IaddPropertyItem): void

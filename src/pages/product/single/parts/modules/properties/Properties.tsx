@@ -1,16 +1,13 @@
-import { VStack } from '@chakra-ui/react';
 import React, { useCallback, useContext } from 'react'
 import { productContext } from 'pages/product/single/context';
-import PropertiesFormModel from './model/model';
 import useAppToast from 'functions/hooks/toast/useToast';
-import propertyItemModel, { IaddPropertyItem } from './parts/form/parts/item/model/model';
+import propertyItemModel, { IaddPropertyItem } from './parts/item/model';
 import propertiesFormContext from './context'
 import PropertyFormProduct from './parts/form/PropertyFormProduct';
 import PODProperties from './parts/pod/PODProperties';
 
 function Properties() {
     const { state: { properties, product_type, sku, publish_product }, methods: { updateState }, productID } = useContext(productContext)
-    const { makeData } = PropertiesFormModel
     const { showToast } = useAppToast()
     const { addPropertyItem, removePropertyItem, checkUsedPropertyItem } = propertyItemModel
 
@@ -22,12 +19,12 @@ function Properties() {
         })
     }, [properties])
 
-    const remove = useCallback(async (valueItem, keyProperty) => {
+    const remove = useCallback(async (valueItem: string) => {
         if (productID && publish_product) return false
-        updateState("properties", removePropertyItem({ state: properties, valueItem, keyProperty }))
+        updateState("properties", removePropertyItem({ state: properties, valueItem }))
     }, [properties, sku, productID, publish_product])
 
-    const set = useCallback(async ({ item }: IaddPropertyItem) => {
+    const set = useCallback(async ({ item }: IaddPropertyItem) => {        
         if (productID && publish_product) return false
         try {
             await checkItem(item.value)

@@ -19,6 +19,7 @@ import { ChainTypes } from "lib/utils/statics/chainTypes";
 import RulesetAddress from "./parts/address/RulesetAddress";
 import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
 import RulesetType from "./parts/type/RulesetType";
+import AppErrors from "lib/utils/statics/errors/errors";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
@@ -62,7 +63,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
       }
       update();
       close();
-      showToast(`Rule ${ruleId ? "update" : "created"}`, "success")
+      showToast(AppErrors.collection[ruleId ? "ruleset_update" : "ruleset_create"] , "success")
     } catch (error) {
       showToast("Oops! Something went wrong", "error")
     }
