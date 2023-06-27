@@ -8,7 +8,7 @@ interface IProps {
     open: boolean
 }
 function ProductIframe({ close, open }: IProps) {
-    const { state: { artwork, artwork2, artwork2_position, artwork_position, pod_blank_product_id, media } } = useContext(productContext)
+    const { state: { artwork, artwork2, artwork2_position, artwork_position, pod_blank_product_id, media }, methods: { updateState } } = useContext(productContext)
     const url = "https://designer.droplinked.io?"
     const iframeElement = useRef<any>(null)
 
@@ -20,7 +20,8 @@ function ProductIframe({ close, open }: IProps) {
             console.log(introductionClass.defactorImage(media));
             console.log(Object.keys(payload).map(el => payload[el]));
 
-            introductionClass.refactorImage([...introductionClass.defactorImage(media), ...Object.keys(payload).map(el => payload[el])])
+            updateState("media", introductionClass.refactorImage([...introductionClass.defactorImage(media), ...Object.keys(payload).map(el => payload[el])]));
+
         }
     }, [media])
 
