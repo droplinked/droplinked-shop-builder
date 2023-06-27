@@ -13,8 +13,13 @@ function ProductIframe({ close, open }: IProps) {
     const iframeElement = useRef<any>(null)
     
     const eventMessage = useCallback((event: any) => {
+        console.log(event.data);
+        
         if (event.data.type === "imageUrls") {
-            introductionClass.refactorImage([...introductionClass.defactorImage(media), ...event.data.payload])
+            console.log(introductionClass.defactorImage(media));
+            console.log(event.data.payload);
+            
+            // introductionClass.refactorImage([...introductionClass.defactorImage(media), ...event.data.payload])
         }
     }, [media])
 
