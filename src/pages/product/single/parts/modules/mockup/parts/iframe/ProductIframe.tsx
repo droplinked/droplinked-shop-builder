@@ -45,7 +45,7 @@ function ProductIframe({ close, open }: IProps) {
     }, [])
 
     return (
-        <AppModal contentProps={{ width: "100%", maxWidth: "95%", height: "90%" }} close={close} open={open}>
+        <AppModal contentProps={{ width: "95%", maxWidth: "800px", height: "600px",maxHeight: "90%" }} close={close} open={open}>
             <iframe
                 style={{ width: "100%", height: "100%" }}
                 src={url}
