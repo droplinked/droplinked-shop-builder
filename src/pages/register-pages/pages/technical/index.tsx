@@ -51,7 +51,7 @@ function Technical() {
       <PageContent>
         <VStack spacing={4} align="stretch">
           <Ims />
-          <Payments />
+          {Technical.imsType !== "SHOPIFY" && <Payments />}
           {appDeveloment && <Wallet />}
           <TechnicalSubmit />
         </VStack>
