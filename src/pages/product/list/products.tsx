@@ -21,7 +21,7 @@ function Products() {
     })
     const { shop } = useProfile()
 
-    useEffect(() => mutate({ limit: 3, page: page }), [mutate, page])
+    useEffect(() => mutate({ limit: 10, page: page }), [mutate, page])
 
     const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
 
