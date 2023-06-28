@@ -6,6 +6,7 @@ import DatagridButtons, { IDatagridButtons } from './parts/buttons/DatagridButto
 import DatagridSkeleton from './parts/skeleton/DatagridSkeleton'
 import SearchDatagrid, { ISearchDatagrid } from './parts/search/SearchDatagrid'
 import FiltersDatagrid, { IFiltersDatagridItems } from './parts/filters/FiltersDatagrid'
+import Pagination, { IPagination } from './parts/pagination/Pagination'
 
 type mergeType = IDatagridButtons & IAppTable
 
@@ -13,10 +14,11 @@ export interface IdataGrid extends mergeType {
     filters?: Array<IFiltersDatagridItems>
     loading: boolean
     search?: ISearchDatagrid
+    pagination?: IPagination
 }
 
 
-function AppDataGrid({ filters, rows, buttons, loading, empty, search }: IdataGrid) {
+function AppDataGrid({ filters, rows, buttons, loading, empty, search, pagination }: IdataGrid) {
     return (
         <AppCard>
             <VStack align={"stretch"} spacing={6}>
@@ -28,6 +30,7 @@ function AppDataGrid({ filters, rows, buttons, loading, empty, search }: IdataGr
                     {buttons && <DatagridButtons buttons={buttons} />}
                 </Flex>
                 {loading ? <DatagridSkeleton /> : <Box><AppTable empty={empty} rows={rows} /></Box>}
+                {pagination && <Pagination {...pagination} />}
             </VStack>
         </AppCard >
     )
