@@ -1,8 +1,8 @@
 import axiosInstance from "../axiosConfig"
 import { IproductByIdServices, IproductDeleteServices, IproductList, IproductState, IproductUpdateServices, IskuUpdateByIdServices } from "./interfaces"
 
-export const productServices = ({ page, limit }: IproductList) => {
-    return axiosInstance.get(`product?page=${page}&limit=${limit}`)
+export const productServices = ({ page, limit, filter }: IproductList) => {
+    return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}`: ''}`)
 }
 
 export const productCreateServices = (params: IproductState) => {
