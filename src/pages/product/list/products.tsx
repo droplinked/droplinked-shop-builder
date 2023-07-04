@@ -1,33 +1,57 @@
 import AppDataGrid from 'components/common/datagrid/DataGrid'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
+import { IproductList } from 'lib/apis/product/interfaces'
 import { productServices } from 'lib/apis/product/productServices'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import ProductListModel from './model'
 import ProductEmpty from './parts/empty/ProductEmpty'
+import { collectionService } from 'lib/apis/collection/services'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 
 function Products() {
-    const { mutate, isLoading, data } = useMutation(() => productServices())
+    const collections = useMutation(() => collectionService())
+    const { mutate, isLoading, data } = useMutation((params: IproductList) => productServices(params))
+    const [searchParams] = useSearchParams()
+    const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1
+    const products = useMemo(() => data?.data?.data, [data])
+    const location = useLocation()
+    const navigate = useNavigate()
     const [States, setStates] = useState({
+        filters: '',
         search: null,
-        filters: {
-            collection: false
-        }
+
     })
     const { shop } = useProfile()
 
-    useEffect(() => mutate(), [mutate])
+    useEffect(() => collections.mutate(), [])
+    useEffect(() => {
+        const filter = searchParams.get("filter")
+        mutate({ limit: 10, page: page, ...filter && { filter } })
+    }, [mutate, page, searchParams])
 
     const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
 
     // Handle search and without search
     const rows = useMemo(() => {
         return data ? ProductListModel.refactorData({
-            data: data.data.data,
+            data: products?.data,
             fetch: mutate,
             search: States.search
         }) : []
-    }, [States.search, data])
+    }, [States.search, products])
+
+    const updateFilters = useCallback((key: string, value: string) => {
+        const filter = `${key}:${value}`
+        if (searchParams.get("filter") === filter) {
+            searchParams.delete("filter")
+        } else {
+            searchParams.set("filter", filter)
+            searchParams.set("page", "1")
+        }
+        navigate(`${location.pathname}?${searchParams.toString()}`)
+    }, [searchParams, location])
 
     return (
         <AppDataGrid
@@ -41,17 +65,33 @@ function Products() {
             rows={rows}
             filters={[
                 {
-                    title: "Sort",
-                    list: [
+                    title: "Collections",
+                    list: collections.data?.data?.data ? collections.data?.data?.data.map(el => (
                         {
-                            title: "Collection",
-                            onClick: () => setStates(prev => ({ ...prev, filters: { ...prev.filters, collection: !prev.filters.collection } }))
+                            title: el?.title,
+                            onClick: () => updateFilters("productCollectionID", el?._id),
+                            isActive: searchParams.get("filter") === `productCollectionID:${el?._id}`
                         }
-                    ]
+                    )) : []
+                },
+                {
+                    title: "Status",
+                    list: ["PUBLISHED", "DRAFTED"].map(el => ({
+                        title: capitalizeFirstLetter(el),
+                        onClick: () => updateFilters("publish_status", el),
+                        isActive: searchParams.get("filter") === `publish_status:${el}`
+                    }
+                    ))
                 }
             ]}
             search={{ onChange: (e) => setSearch(e.target.value) }}
             empty={<ProductEmpty />}
+            pagination={{
+                lastPage: products?.totalPages ? parseInt(products?.totalPages) : 1,
+                current: page,
+                nextPage: products?.hasNextPage || false,
+                prevPage: products?.hasPreviousPage || false
+            }}
         />
     )
 }

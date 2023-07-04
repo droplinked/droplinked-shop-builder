@@ -1,3 +1,9 @@
+export interface IproductList {
+    page: number
+    limit: number
+    filter?: string
+}
+
 export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
 export interface IproductState {
     title: string

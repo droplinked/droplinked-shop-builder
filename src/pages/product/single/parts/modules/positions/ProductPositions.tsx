@@ -23,8 +23,8 @@ function ProductPositions({ update, state, posistion }: IProps) {
 
     const icons = {
         FRONT_CENTER: shirtCenter,
-        FRONT_LEFT_CHEST: shirtLeft,
-        FRONT_RIGHT_CHEST: shirtRight,
+        FRONT_RIGHT_CHEST: shirtLeft,
+        FRONT_LEFT_CHEST: shirtRight,
         BACK_CENTER: shirtBack,
     }
     
