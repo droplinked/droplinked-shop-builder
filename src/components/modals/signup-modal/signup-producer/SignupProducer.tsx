@@ -36,7 +36,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
       close();
       navigate("/email-confirmation");
     } catch (error) {
-      showToast(error?.response?.data?.message, "error")
+      showToast(error?.response?.data?.data?.message, "error")
     }
   };
 
@@ -56,9 +56,9 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         repassword: '',
       }}
       validationSchema={formSchema}
+      validateOnChange={false}
       onSubmit={onSubmit}
     >
-
       {({ errors, values, setFieldValue }) => (
         <Form>
           <Stack w="100%" h="100%" spacing="20px">
@@ -97,7 +97,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
               <ShowPassword showed={States.show.repassword} onClick={() => toggleShowField("repassword")} />
             </Box>
 
-            <BasicButton type="submit" isDisabled={isLoading}>
+            <BasicButton type="submit" isLoading={isLoading}>
               Sign up
             </BasicButton>
 

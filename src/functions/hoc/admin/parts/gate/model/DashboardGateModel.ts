@@ -1,5 +1,3 @@
-import AppErrors from "lib/utils/statics/errors/errors";
-import { toast } from "react-toastify";
 import { statuesModule } from "./modules/statues";
 
 interface IcheckPermission {
@@ -25,6 +23,5 @@ export default class DashboardGateModel {
         if (pathname.includes("register")) return false
         const checkPath = pathname.includes(to) // check current path
         if (!checkPath) redirect(to)
-        toast.info(AppErrors.signup.users_want_to_navigate_to_the_pages, { toastId: "Permission" })
     }
 }
