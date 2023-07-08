@@ -24,7 +24,7 @@ function RegisterShopInfo() {
     addressBookID: null
   })
   const address = addressService.data?.data?.data
-  const userStore = useMemo(() => 'https://droplinked.com/' + shop.name, [shop])
+  const userStore = useMemo(() => 'https://droplinked.io/' + shop.name, [shop])
 
   const updateStates = useCallback((key: string, value: string) => setStates((prev: IstatesShopInfo) => ({ ...prev, [key]: value })), [])
 

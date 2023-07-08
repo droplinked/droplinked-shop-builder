@@ -23,7 +23,7 @@ const SignupInputComponent = ({ setUsername, userName, toggleSignUp }) => {
       await mutateAsync({ shopName: userName })
       toggleSignUp()
     } catch (error) {
-      setError(error?.response ? error.response.data.message : error.message)
+      setError(error?.response ? error?.response?.data?.data?.message : error.message)
     }
   };
 

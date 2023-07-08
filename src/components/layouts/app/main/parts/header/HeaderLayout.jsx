@@ -47,6 +47,7 @@ const HeaderLayout = () => {
           isOpen={isOpen}
           onOpen={onOpen}
           onClose={onClose}
+          variant="unstyle"
         >
           <PopoverTrigger>
             <Flex alignItems="center" gap="12px" cursor="pointer">
@@ -56,13 +57,14 @@ const HeaderLayout = () => {
           </PopoverTrigger>
           <PopoverContent
             bg="#292929"
+            variant="unstyle"
             borderRadius="8px"
             p="16px 36px"
             h="auto"
             w="auto"
-            border="0px"
-            outline="none"
-            shadow="none"
+            border="none !important"
+            outline="none !important"
+            shadow="none !important"
           >
             <PopoverBody>
               <Text
