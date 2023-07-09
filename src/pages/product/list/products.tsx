@@ -25,10 +25,14 @@ function Products() {
     })
     const { shop } = useProfile()
 
-    useEffect(() => collections.mutate(), [])
-    useEffect(() => {
+    const fetchProductList = () => {
         const filter = searchParams.get("filter")
         mutate({ limit: 10, page: page, ...filter && { filter } })
+    }
+
+    useEffect(() => collections.mutate(), [])
+    useEffect(() => {
+        fetchProductList()
     }, [mutate, page, searchParams])
 
     const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
@@ -37,7 +41,7 @@ function Products() {
     const rows = useMemo(() => {
         return data ? ProductListModel.refactorData({
             data: products?.data,
-            fetch: mutate,
+            fetch: fetchProductList,
             search: States.search
         }) : []
     }, [States.search, products])
