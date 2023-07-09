@@ -91,7 +91,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
             tag: State ? State?.rules ? State?.rules[0].description : '' : '',
             weburl: State ? State?.webUrl : '',
             chain: State ? State?.type : 'ETH',
-            rule: State ? State?.gated ? RuleTypes.GATED : RuleTypes.DISCOUNT : true,
+            rule: State ? State?.gated ? RuleTypes.GATED : RuleTypes.DISCOUNT : RuleTypes.GATED,
             discount: State ? State?.rules ? State?.rules[0].discountPercentage : 0 : 0,
             address: State ? State?.rules ? State?.rules[0].addresses : [] : [],
             requirement: State ? State?.rules ? State?.rules[0].nftsCount : '' : ''
