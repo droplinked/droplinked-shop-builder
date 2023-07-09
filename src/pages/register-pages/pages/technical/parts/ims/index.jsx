@@ -54,7 +54,7 @@ function Ims() {
                             </Box>
                             <Box>
                                 <BlackBox padding={5}>
-                                    <Radio size='md' value='SHOPIFY' alignItems="flex-start" colorScheme='green'>
+                                    <Radio isDisabled size='md' value='SHOPIFY' alignItems="flex-start" colorScheme='green'>
                                         <VStack align='stretch' paddingLeft={2} spacing={2}>
                                             <TextLabelBold>Shopify</TextLabelBold>
                                             <Text fontSize="sm" color="lightGray">

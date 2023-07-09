@@ -24,7 +24,8 @@ export interface IproductState {
     artwork_position: string
     artwork2_position: string
     m2m_positions: Array<string>
-    thumb: string
+    thumb: string,
+    m2m_services?: Array<string>
 }
 
 export interface IpropertiesItems {

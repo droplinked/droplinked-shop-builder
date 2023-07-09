@@ -3,13 +3,11 @@ import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppDropDown from 'components/common/form/dropdown/AppDropDown';
 import AppInput from 'components/common/form/textbox/AppInput';
 import AppModal, { IAppModal } from 'components/common/modal/AppModal'
-import AppTypography from 'components/common/typography/AppTypography';
 import { Form, Formik } from 'formik'
 import useAppToast from 'functions/hooks/toast/useToast';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
-import { addressByIdService, createAddressService, updateAddressService } from 'lib/apis/address/addressServices';
-import { IaddressByIdService, IcreateAddressService, IupdateAddressService } from 'lib/apis/address/interfaces';
-import { countries_statics } from 'lib/utils/statics/countries';
+import { addressByIdService, allCountriesService, citiesService, createAddressService, statesService, updateAddressService } from 'lib/apis/address/addressServices';
+import { IaddressByIdService, IcitiesService, IcreateAddressService, IsatatesService, IupdateAddressService } from 'lib/apis/address/interfaces';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import React, { useCallback, useEffect } from 'react'
 import { useMutation } from 'react-query';
@@ -24,6 +22,9 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
     const fetchService = useMutation((params: IaddressByIdService) => addressByIdService(params))
     const createService = useMutation((params: IcreateAddressService) => createAddressService(params))
     const updateService = useMutation((params: IupdateAddressService) => updateAddressService(params))
+    const countryService = useMutation(() => allCountriesService())
+    const states = useMutation((params: IsatatesService) => statesService(params))
+    const cities = useMutation((params: IcitiesService) => citiesService(params))
     const address = fetchService.data ? fetchService.data.data?.data : null
     const { updateShopData } = useProfile()
     const { initialValues, formSchema } = AddressModalModel
@@ -32,11 +33,9 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
 
     const onSubmit = useCallback(async (params: IcreateAddressService) => {
         try {
-            if (addressID) {
-                await updateService.mutateAsync({ addressID, params })
-            } else {
-                await createService.mutateAsync(params)
-            }
+            if (addressID) await updateService.mutateAsync({ addressID, params })
+            else await createService.mutateAsync(params)
+
             if (onSuccess) onSuccess()
             updateShopData()
             showToast(addressID ? AppErrors.store.store_address__been_updated : AppErrors.store.store_address_added_successfully, "success")
@@ -48,7 +47,23 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
     }, [onSuccess, addressID])
 
     // Fetch address by ID
-    useEffect(() => addressID && fetchService.mutate({ addressID }), [addressID, open])
+    useEffect(() => {
+        if (addressID) {
+            fetchService.mutate({ addressID }, {
+                onSuccess: (res) => {
+                    const data = res?.data?.data
+                    getStates({ country_name: data?.country })
+                    getCities({ country_name: data?.country, state_name: data?.state })
+                }
+            })
+
+        }
+    }, [addressID, open])
+
+    useEffect(() => countryService.mutate(), [])
+
+    const getStates = useCallback(({ country_name }: IsatatesService) => states.mutate({ country_name }), [])
+    const getCities = useCallback(({ country_name, state_name }: IcitiesService) => cities.mutate({ state_name, country_name }), [])
 
     return (
         <AppModal close={close} title="Address Information" open={open} contentProps={{ padding: 8 }} size="2xl">
@@ -78,17 +93,44 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
                                             isRequired
                                             loading={loading}
                                             error={errors.country}
-                                            options={countries_statics}
-                                            onChange={(e: any) => setFieldValue("country", e.value)}
+                                            options={countryService.data?.data?.data?.countries ? countryService.data?.data?.data?.countries.map(el => ({ value: el.name, label: el.name })) : []}
+                                            onChange={(e: any) => {
+                                                setFieldValue("country", e.value)
+                                                setFieldValue("state", null)
+                                                setFieldValue("city", null)
+                                                getStates({ country_name: e.value })
+                                            }}
                                         />
                                     </Box>
                                     <Box width={"50%"}>
-                                        <AppInput loading={loading} name='state' value={values.state} error={errors.state} onChange={(e: any) => setFieldValue('state', e.target.value)} label='State' isRequired />
+                                        <AppDropDown
+                                            label={"State"}
+                                            name="State"
+                                            {...values.state && { value: { label: values.state, value: values.state } }}
+                                            isRequired
+                                            loading={states.isLoading ? !states.isLoading : loading}
+                                            error={errors.state}
+                                            options={states.data?.data?.data?.states ? states.data?.data?.data?.states.map(el => ({ value: el.name, label: el.name })) : [{ value: values.state, label: values.state }]}
+                                            onChange={(e: any) => {
+                                                setFieldValue("state", e.value)
+                                                setFieldValue("city", null)
+                                                getCities({ country_name: values.country, state_name: e.value })
+                                            }}
+                                        />
                                     </Box>
                                 </Flex>
                                 <Flex gap={7}>
                                     <Box width={"50%"}>
-                                        <AppInput loading={loading} name='city' value={values.city} error={errors.city} onChange={(e: any) => setFieldValue('city', e.target.value)} label='City' isRequired />
+                                        <AppDropDown
+                                            label={"City"}
+                                            name="city"
+                                            {...values.city && { value: { label: values.city, value: values.city } }}
+                                            isRequired
+                                            loading={cities.isLoading ? !cities.isLoading : loading}
+                                            error={errors.city}
+                                            options={cities.data?.data?.data?.cities ? cities.data?.data?.data?.cities.map(el => ({ value: el.name, label: el.name })) : [{ value: values.city, label: values.city }]}
+                                            onChange={(e: any) => setFieldValue("city", e.value)}
+                                        />
                                     </Box>
                                     <Box width={"50%"}>
                                         <AppInput loading={loading} name='zipcode' value={values.zip} error={errors.zip} onChange={(e: any) => setFieldValue('zip', e.target.value)} label='Zip Code' isRequired />

@@ -24,7 +24,8 @@ export const initialStatesProduct: IproductState = {
     m2m_positions: [],
     artwork_position: "FRONT_CENTER",
     artwork2_position: "BACK_CENTER",
-    thumb: ""
+    thumb: "",
+    m2m_services: []
 }
 
 export interface IproductStore {
