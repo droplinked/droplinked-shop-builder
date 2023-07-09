@@ -39,6 +39,7 @@ import { ReactComponent as close } from './close.svg'
 import { ReactComponent as stacks } from './stacks-stx-logo.svg'
 import { ReactComponent as info } from './info.svg'
 import { ReactComponent as stripe } from './stripe.svg'
+import { ReactComponent as file } from './file.svg'
 
 const AppIcons = {
   productsIcon,
@@ -81,6 +82,7 @@ const AppIcons = {
   close,
   stacks,
   info,
-  stripe
+  stripe,
+  file
 }
 export default AppIcons

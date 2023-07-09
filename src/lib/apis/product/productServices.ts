@@ -28,3 +28,7 @@ export const skuUpdateByIdServices = ({ skuID, params }: IskuUpdateByIdServices)
 export const printPositionsServices = () => {
     return axiosInstance.get(`product/public/print-positions`)
 }
+
+export const printServicesServices = () => {
+    return axiosInstance.get(`product/public/print-services`)
+}
