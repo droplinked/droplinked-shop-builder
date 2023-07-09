@@ -47,7 +47,8 @@ export default class ProductSingleModel {
             m2m_positions: data?.m2m_positions,
             artwork_position: data?.artwork_position,
             artwork2_position: data?.artwork2_position,
-            thumb: data?.thumb
+            thumb: data?.thumb,
+            m2m_services: data?.m2m_services || []
         }
     }
 } 

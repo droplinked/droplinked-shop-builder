@@ -15,7 +15,7 @@ interface IProps {
     updateState(data: any): void
 }
 
-function ArtworkImage({ artwork, field,updateState }: IProps) {
+function ArtworkImage({ artwork, field, updateState }: IProps) {
     const [FileSize, setFileSize] = useState("")
 
     useEffect(() => artwork && getSizeImage(artwork), [artwork])
@@ -45,7 +45,7 @@ function ArtworkImage({ artwork, field,updateState }: IProps) {
                     </Flex>
                 ) : (
                     <SkeletonProduct width={"30%"} height={"200px"}>
-                        <InputImagesGroup vertical message={AppErrors.product[field === "artwork" ? "front_artwork_uploaded_successfully" : "back_artwork_uploaded_successfully"]} setState={(images: any) => updateState(images[0])} state={[]} />
+                        <InputImagesGroup vertical size='original' message={AppErrors.product[field === "artwork" ? "front_artwork_uploaded_successfully" : "back_artwork_uploaded_successfully"]} setState={(images: any) => updateState(images)} state={[]} />
                     </SkeletonProduct>
                 )}
             </Box>

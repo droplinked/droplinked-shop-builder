@@ -5,6 +5,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import ProductPositions from '../positions/ProductPositions'
+import ProductM2m from './parts/m2m/ProductM2m'
 
 function ProductMintToMerge() {
     const [CheckBox, setCheckBox] = useState(false)
@@ -44,7 +45,14 @@ function ProductMintToMerge() {
                 </AppSkeleton>
             </Box>
 
-            {CheckBox && <ProductPositions update={updatePosition} state={m2m_positions} />}
+            {CheckBox && (
+                <VStack align="stretch" backgroundColor="#141414" borderRadius="8px" padding="20px 25px" spacing={4}>
+                    <AppTypography size='14px'>Customers Position Options</AppTypography>
+                    <ProductPositions update={updatePosition} state={m2m_positions} />
+                    <AppTypography size='14px'>Customers Wallet Options</AppTypography>
+                    <ProductM2m />
+                </VStack>
+            )}
         </VStack >
     )
 }

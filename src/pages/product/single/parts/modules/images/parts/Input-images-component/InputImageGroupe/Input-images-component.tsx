@@ -20,9 +20,10 @@ interface IProps {
   vertical?: boolean
   message?: string
   onSuccess?: Function
+  size?: "small" | "original" | "standard"
 }
 
-export default function InputImagesGroup({ setState, state, vertical, message, onSuccess }: IProps) {
+export default function InputImagesGroup({ setState, state, vertical, message, onSuccess, size = "standard" }: IProps) {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
   const { showToast } = useAppToast()
@@ -59,7 +60,7 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
         for (let i = 0; i < state.length; i++) {
           imgArr.push(state[i]);
         }
-        imgArr.push(e.data.standard);
+        imgArr.push(e.data[size]);
         if (onSuccess) onSuccess(e.data)
         setState(imgArr);
         showToast(message ? message : e.data.message, "success");
