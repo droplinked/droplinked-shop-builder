@@ -19,7 +19,8 @@ function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
         <AppDialog
             open={open}
             close={() => { }}
-            title="Confirm Product Deletion ?"
+            title="Delete Product"
+            text='Are you sure you want to delete this product? You will no longer have access to this product.'
             buttons={[
                 {
                     children: "Cancel",
@@ -29,7 +30,7 @@ function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
                     }
                 },
                 {
-                    children: "Delete Product",
+                    children: "Delete",
                     buttonProps: { isLoading },
                     onClick: () => {
                         mutate({ productID }, {

@@ -40,12 +40,12 @@ function ArtworkImage({ artwork, field, updateState }: IProps) {
                             <AppTypography size='14px'>{FileSize} KB</AppTypography>
                         </Flex>
                         <Box>
-                            {artwork && <BasicButton variant='outline' sizes='medium' onClick={() => updateState(null)}>Edit Artwork</BasicButton>}
+                            {artwork && <BasicButton variant='outline' sizes='medium' onClick={() => updateState(null)}>Remove</BasicButton>}
                         </Box>
                     </Flex>
                 ) : (
                     <SkeletonProduct width={"30%"} height={"200px"}>
-                        <InputImagesGroup vertical size='original' message={AppErrors.product[field === "artwork" ? "front_artwork_uploaded_successfully" : "back_artwork_uploaded_successfully"]} setState={(images: any) => updateState(images)} state={[]} />
+                        <InputImagesGroup vertical size='original' message={AppErrors.product[field === "artwork" ? "front_artwork_uploaded_successfully" : "back_artwork_uploaded_successfully"]} setState={(images: any) => updateState(images[0])} state={[]} />
                     </SkeletonProduct>
                 )}
             </Box>
