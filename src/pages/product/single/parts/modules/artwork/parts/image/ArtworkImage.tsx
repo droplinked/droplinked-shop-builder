@@ -40,7 +40,7 @@ function ArtworkImage({ artwork, field, updateState }: IProps) {
                             <AppTypography size='14px'>{FileSize} KB</AppTypography>
                         </Flex>
                         <Box>
-                            {artwork && <BasicButton variant='outline' sizes='medium' onClick={() => updateState(null)}>Edit Artwork</BasicButton>}
+                            {artwork && <BasicButton variant='outline' sizes='medium' onClick={() => updateState(null)}>Remove</BasicButton>}
                         </Box>
                     </Flex>
                 ) : (
