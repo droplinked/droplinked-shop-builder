@@ -91,7 +91,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
             tag: State ? State?.rules ? State?.rules[0].description : '' : '',
             weburl: State ? State?.webUrl : '',
             chain: State ? State?.type : 'ETH',
-            rule: State ? State?.gated ? RuleTypes.GATED : RuleTypes.DISCOUNT : true,
+            rule: State ? State?.gated ? RuleTypes.GATED : RuleTypes.DISCOUNT : RuleTypes.GATED,
             discount: State ? State?.rules ? State?.rules[0].discountPercentage : 0 : 0,
             address: State ? State?.rules ? State?.rules[0].addresses : [] : [],
             requirement: State ? State?.rules ? State?.rules[0].nftsCount : '' : ''
@@ -145,7 +145,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                     <FieldLabel label='Minimum NFT Required' isRequired />
                     <AppTypography size="12px" color="#9C9C9C">Specify the minimum amount of NFTs required to pass the ruleset.</AppTypography>
                   </VStack>
-                  <TextboxRule element={"requirement"} placeholder="e.g, 5" />
+                  <TextboxRule element={"requirement"} placeholder="e.g., 5" />
                 </VStack>
                 <HStack justifyContent={"space-between"}>
                   <Box width={"35%"}><BasicButton width={"100%"} onClick={close} variant="outline">Cancel</BasicButton></Box>

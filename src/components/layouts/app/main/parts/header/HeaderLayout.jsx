@@ -6,7 +6,7 @@ import {
   PopoverBody,
   Text,
   Box,
-  useDisclosure
+  useDisclosure,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
@@ -23,19 +23,19 @@ import { useCallback } from "react";
 import AppIcons from "assest/icon/Appicons";
 
 const HeaderLayout = () => {
-  const { shop, clearShop } = useStore(useAppStore)
-  const { onOpen, onClose, isOpen } = useDisclosure()
+  const { shop, clearShop } = useStore(useAppStore);
+  const { onOpen, onClose, isOpen } = useDisclosure();
   const { shopNavigate } = useCustomNavigate();
 
   const clickOnViewShop = useCallback(() => {
-    shopNavigate('products')
-    onClose()
-  }, [])
+    shopNavigate("products");
+    onClose();
+  }, []);
 
   const logout = useCallback(() => {
-    clearShop()
-    onClose()
-  })
+    clearShop();
+    onClose();
+  });
 
   return (
     <UserHeaderWrapper>
@@ -76,12 +76,16 @@ const HeaderLayout = () => {
                 w="100%"
                 textAlign="center"
                 onClick={clickOnViewShop}
-                cursor='pointer'
+                cursor="pointer"
               >
                 Dashboard
               </Text>
               <Box mb="20px" />
-              <a href={`https://droplinked.io/${shop?.name}`} onClick={onClose} target="_blank">
+              <a
+                href={`https://droplinked.io/${shop?.name}`}
+                onClick={onClose}
+                target="_blank"
+              >
                 <Text
                   fontFamily="Avenir Next"
                   fontStyle="normal"
@@ -92,7 +96,7 @@ const HeaderLayout = () => {
                   textAlign="center"
                   cursor="pointer"
                 >
-                  View shop
+                  View Store
                 </Text>
               </a>
               <Box mb="20px" />
@@ -112,7 +116,9 @@ const HeaderLayout = () => {
             </PopoverBody>
           </PopoverContent>
         </Popover>
-      ) : <HeaderLogin />}
+      ) : (
+        <HeaderLogin />
+      )}
     </UserHeaderWrapper>
   );
 };
