@@ -19,12 +19,12 @@ function ProductArtwork() {
             <Flex gap={10}>
                 <VStack align="stretch" width="50%">
                     <AppTypography size='12px' color="#C2C2C2">Front Artwork</AppTypography>
-                    <ArtworkImage artwork={artwork} field="artwork" updateState={(data: any) => updateState("artwork", data)} />
+                    <ArtworkImage artwork={artwork} field="artwork" updateState={(data: any) => updateState("artwork", data[0])} />
                     {artwork && <ProductPositions posistion='front' update={(data: string) => updateState("artwork_position", data)} state={[artwork_position]} />}
                 </VStack>
                 <VStack align="stretch" width="50%">
                     <AppTypography size='12px' color="#C2C2C2">Back Artwork</AppTypography>
-                    <ArtworkImage artwork={artwork2} field="artwork2" updateState={(data: any) => updateState("artwork2", data)} />
+                    <ArtworkImage artwork={artwork2} field="artwork2" updateState={(data: any) => updateState("artwork2", data[0])} />
                     {artwork2 && <ProductPositions posistion='back' update={(data: string) => updateState("artwork2_position", data)} state={[artwork2_position]} />}
                 </VStack>
             </Flex>
