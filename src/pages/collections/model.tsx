@@ -14,7 +14,7 @@ export default class CollectionsModel {
             value: element.title
         },
         Products: {
-            value: element?.products?.[0]?.title || "-"
+            value: element.productCount || "-"
         },
         controls: {
             props: {

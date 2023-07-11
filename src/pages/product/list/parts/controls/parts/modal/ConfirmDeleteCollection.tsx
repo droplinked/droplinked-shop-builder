@@ -35,7 +35,7 @@ function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
                     onClick: () => {
                         mutate({ productID }, {
                             onSuccess: () => {
-                                showToast("Delete product", "success")
+                                showToast("The product has been deleted!", "success")
                                 fetch()
                                 close()
                             },
