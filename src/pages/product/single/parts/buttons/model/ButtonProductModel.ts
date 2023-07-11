@@ -30,17 +30,11 @@ export default class ButtonsProductClass {
                 let error = new Error();
 
                 if (!draft) {
-                    if (!state?.sku) {
+                    if (!state.sku.length) {
                         error.message = "Please enter sku"
                         throw error
                     } else if (state.sku.length && state.product_type === "NORMAL" && this.skumodel.skues({ skues: state.sku })) {
                         error.message = "Please enter Quantity for all SKUs"
-                        throw error
-                    } else if (state.product_type === "PRINT_ON_DEMAND" && ((!state.artwork && !state.artwork2) && !state.m2m_positions.length)) {
-                        error.message = "Please enter Artwork or pick mint to merch"
-                        throw error
-                    } else if (state.product_type === "PRINT_ON_DEMAND" && !this.skumodel.checkExistAllPropperty({ properties: state.properties })) {
-                        error.message = `Please enter all property (${typesProperties.map(el => el.name).join(', ')})`
                         throw error
                     } else if (state.sku.find(el => !el.price)) {
                         error.message = "Please enter Price for all SKUs"
@@ -48,9 +42,16 @@ export default class ButtonsProductClass {
                     } else if (state.product_type === "NORMAL" && state.sku.find(el => !el.dimensions.height || !el.dimensions.width || !el.dimensions.length)) {
                         error.message = "Please enter packaging size property for all SKUs"
                         throw error
+                    } else if (state.m2m_positions.length && !state.m2m_services.length) {
+                        error.message = "please choose customers wallet options"
+                        throw error
                     }
                 }
 
+                if (state.product_type === "PRINT_ON_DEMAND" && state.sku.length && !this.skumodel.checkExistAllPropperty({ properties: state.properties })) {
+                    error.message = `Please enter all property (${typesProperties.map(el => el.name).join(', ')})`
+                    throw error
+                }
 
                 const schema = object({
                     ...!draft && {
