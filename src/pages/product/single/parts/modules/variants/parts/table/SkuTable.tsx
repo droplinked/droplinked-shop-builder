@@ -14,7 +14,7 @@ function SkuTable() {
     const { getRows } = SkuTableModel
     const recordModal = useDisclosure()
     const editModal = useDisclosure()
-
+    
     const rows = useMemo(() => {
         if (!state.sku.length) return null
 

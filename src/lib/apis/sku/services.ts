@@ -1,6 +1,10 @@
 import axiosInstance from "../axiosConfig";
 import { IrecordCasperService } from "./interfaces";
 
-export const recordCasperService = (props: IrecordCasperService) => {
-    return axiosInstance.post(`sku/record/casper`, props)
+export const supportedChainsService = () => {
+    return axiosInstance.get(`sku/record/supported-chains`)
+}
+
+export const recordCasperService = ({ chain, params }: IrecordCasperService) => {
+    return axiosInstance.post(`sku/record/${chain}`, params)
 }
