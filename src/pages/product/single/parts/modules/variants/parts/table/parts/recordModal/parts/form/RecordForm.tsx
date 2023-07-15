@@ -8,12 +8,15 @@ import * as Yup from 'yup';
 import { productContext } from 'pages/product/single/context'
 import RecordModalModule from './recordFormModel'
 import { Isku } from 'lib/apis/product/interfaces'
-import { useMutation } from 'react-query'
-import { recordCasperService } from 'lib/apis/sku/services'
+import { useMutation, useQuery } from 'react-query'
+import { recordCasperService, supportedChainsService } from 'lib/apis/sku/services'
 import { IrecordCasperService } from 'lib/apis/sku/interfaces'
 import recordContext from '../../context'
 import useAppToast from 'functions/hooks/toast/useToast'
 import AppTypography from 'components/common/typography/AppTypography'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
+import { useAccount, useAuth, useOpenContractCall } from '@micro-stacks/react'
 
 export interface IRecordModalProduct {
     title: string
@@ -34,13 +37,39 @@ interface IRecordSubmit {
 }
 
 function RecordForm({ close, product }: Iprops) {
-    const { state: { sku } } = useContext(productContext)
+    const { state: { sku }, productID } = useContext(productContext)
+
+    const chains = useQuery({
+        queryFn: supportedChainsService,
+        queryKey: "supported_chains",
+        cacheTime: 60 * 60 * 1000,
+        refetchOnWindowFocus: false
+    })
     const { updateState, state: { loading } } = useContext(recordContext)
     const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
     const { openCasperWallet, casperRecord } = RecordModalModule
+    const { isSignedIn, signOut, openAuthRequest } = useAuth()
     const { showToast } = useAppToast()
+    const { stxAddress } = useAccount()
+    const { openContractCall, isRequestPending } = useOpenContractCall()
+
+    const deploy = useCallback((data: IRecordSubmit, deployHash: string) => {
+        return mutateAsync({
+            chain: data.blockchain,
+            params: {
+                deploy_hash: deployHash,
+                skuID: product.sku._id,
+                commision: Number(data.commission)
+            }
+        }, {
+            onSuccess: async () => {
+                updateState("hashkey", deployHash)
+            }
+        })
+    }, [product])
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
+
         try {
             if (data.blockchain === "CASPER") {
                 const CasperWallet = await openCasperWallet()
@@ -52,15 +81,30 @@ function RecordForm({ close, product }: Iprops) {
                     sku: product.sku
                 })
                 if (!record.deployHash) throw Error("Desploy hash empty");
-                await mutateAsync({
-                    deploy_hash: record.deployHash,
-                    skuID: product.sku._id,
-                    commision: Number(data.commission)
-                }, {
-                    onSuccess: async () => {
-                        updateState("hashkey", record.deployHash)
+                deploy(data, record.deployHash)
+            } else if (data.blockchain === "STACKS") {
+                if (!isSignedIn) {
+                    try {
+                        await openAuthRequest()
+                    } catch (error) {
+                        window.open("https://www.xverse.app", "_blank");
+                        throw new Error("Please install xverse wallet")
+                    }
+                }
+
+                const query = await stacksRecord({
+                    isRequestPending,
+                    openContractCall,
+                    params: {
+                        price: product.sku.price * 100,
+                        amount: product.sku.quantity,
+                        commission: data.commission,
+                        productID: productID,
+                        creator: stxAddress,
+                        uri: "record"
                     }
                 })
+                if (query) deploy(data, query.txId)
             }
         } catch (error) {
             if (error?.message) {
@@ -71,7 +115,7 @@ function RecordForm({ close, product }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, sku])
+    }, [product, sku, stxAddress, isSignedIn, productID])
 
     const formSchema = Yup.object().shape({
         blockchain: Yup.string().required('Required'),
@@ -100,9 +144,10 @@ function RecordForm({ close, product }: Iprops) {
                             </Box>
                             <Box>
                                 <AppSelectBox
-                                    items={[{ value: "CASPER", caption: "Casper" }]}
+                                    items={chains.data ? chains.data?.data?.data.map((el: any) => ({ value: el, caption: capitalizeFirstLetter(el) })) : []}
                                     name="blockchain"
                                     label='Blockchain Network'
+                                    loading={!chains.isLoading}
                                     placeholder='Select Blockchain'
                                     error={errors.blockchain}
                                     onChange={(e) => setFieldValue("blockchain", e.target.value)}
