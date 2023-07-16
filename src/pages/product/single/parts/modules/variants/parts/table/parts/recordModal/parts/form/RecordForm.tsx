@@ -16,7 +16,8 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import AppTypography from 'components/common/typography/AppTypography'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
-import { useAccount, useAuth, useOpenContractCall } from '@micro-stacks/react'
+import { useAccount, useOpenContractCall } from '@micro-stacks/react'
+import useStack from 'functions/hooks/stack/useStack'
 
 export interface IRecordModalProduct {
     title: string
@@ -48,7 +49,7 @@ function RecordForm({ close, product }: Iprops) {
     const { updateState, state: { loading } } = useContext(recordContext)
     const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
     const { openCasperWallet, casperRecord } = RecordModalModule
-    const { isSignedIn, signOut, openAuthRequest } = useAuth()
+    const { login } = useStack()
     const { showToast } = useAppToast()
     const { stxAddress } = useAccount()
     const { openContractCall, isRequestPending } = useOpenContractCall()
@@ -69,7 +70,6 @@ function RecordForm({ close, product }: Iprops) {
     }, [product])
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
-
         try {
             if (data.blockchain === "CASPER") {
                 const CasperWallet = await openCasperWallet()
@@ -83,15 +83,7 @@ function RecordForm({ close, product }: Iprops) {
                 if (!record.deployHash) throw Error("Desploy hash empty");
                 deploy(data, record.deployHash)
             } else if (data.blockchain === "STACKS") {
-                if (!isSignedIn) {
-                    try {
-                        await openAuthRequest()
-                    } catch (error) {
-                        window.open("https://www.xverse.app", "_blank");
-                        throw new Error("Please install xverse wallet")
-                    }
-                }
-
+                await login()
                 const query = await stacksRecord({
                     isRequestPending,
                     openContractCall,
@@ -115,7 +107,7 @@ function RecordForm({ close, product }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, sku, stxAddress, isSignedIn, productID])
+    }, [product, sku, stxAddress, productID])
 
     const formSchema = Yup.object().shape({
         blockchain: Yup.string().required('Required'),
