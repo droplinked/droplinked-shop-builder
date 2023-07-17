@@ -10,6 +10,8 @@ interface Iprops {
     shop: any
 }
 
+//ShopsContainer
+
 function ShopsContainer({ shop }: Iprops) {
     return (
         <shopsContainerContext.Provider value={{ shop }}>
