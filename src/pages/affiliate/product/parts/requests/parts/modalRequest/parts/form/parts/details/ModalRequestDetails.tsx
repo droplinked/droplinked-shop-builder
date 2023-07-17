@@ -5,6 +5,7 @@ import casper from "assest/icon/casper.svg";
 import React, { useContext } from 'react'
 import { ModalReqDetailsStyles } from './style-component';
 import { ModalRequestContext } from '../../context';
+import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
 
 function ModalRequestDetails() {
     const { product, sku } = useContext(ModalRequestContext)
@@ -21,7 +22,7 @@ function ModalRequestDetails() {
                     <Box><LabelText>Your Earning: ${sku?.recordData?.casperData?.details?.amount}</LabelText></Box>
                     <Box paddingTop={1}>
                         <HStack>
-                            <Box><Image src={casper} width="16px" /></Box>
+                            <Box><IconBlockchain blockchain={sku?.recordData?.recordNetwork} props={{ width: "16px" }} /></Box>
                             <Box><Text fontSize={"sm"}>Casper</Text></Box>
                         </HStack>
                     </Box>

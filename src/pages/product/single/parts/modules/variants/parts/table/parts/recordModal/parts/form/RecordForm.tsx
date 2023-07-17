@@ -16,7 +16,7 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import AppTypography from 'components/common/typography/AppTypography'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
-import { useAccount, useOpenContractCall } from '@micro-stacks/react'
+import { useAccount } from '@micro-stacks/react'
 import useStack from 'functions/hooks/stack/useStack'
 
 export interface IRecordModalProduct {
@@ -49,10 +49,8 @@ function RecordForm({ close, product }: Iprops) {
     const { updateState, state: { loading } } = useContext(recordContext)
     const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
     const { openCasperWallet, casperRecord } = RecordModalModule
-    const { login } = useStack()
+    const { login, isRequestPending, openContractCall, stxAddress } = useStack()
     const { showToast } = useAppToast()
-    const { stxAddress } = useAccount()
-    const { openContractCall, isRequestPending } = useOpenContractCall()
 
     const deploy = useCallback((data: IRecordSubmit, deployHash: string) => {
         return mutateAsync({

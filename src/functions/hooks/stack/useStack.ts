@@ -1,13 +1,15 @@
-import { useAuth } from '@micro-stacks/react'
+import { useAccount, useAuth, useOpenContractCall } from '@micro-stacks/react'
 import React, { useCallback } from 'react'
 
 function useStack() {
     const { isSignedIn, openAuthRequest } = useAuth()
+    const { openContractCall, isRequestPending } = useOpenContractCall()
+    const { stxAddress } = useAccount()
 
     const login = useCallback(async () => {
         if (!isSignedIn) {
             try {
-                await openAuthRequest()
+                return await openAuthRequest()
             } catch (error) {
                 window.open("https://www.xverse.app", "_blank")
                 throw new Error("Please install xverse wallet")
@@ -16,7 +18,10 @@ function useStack() {
     }, [isSignedIn, openAuthRequest])
 
     return {
-        login
+        login,
+        openContractCall,
+        isRequestPending,
+        stxAddress
     }
 }
 
