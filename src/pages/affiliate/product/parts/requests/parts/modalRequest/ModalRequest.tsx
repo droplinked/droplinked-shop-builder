@@ -18,17 +18,17 @@ function ModalRequest({ close, open, product, sku, shop }: IProps) {
     const [HashKeyState, setHashkey] = useState(null)
 
     const setHahskey = useCallback((value: string) => setHashkey(value), [])
-    
+
     useEffect(() => {
-      return () => {
-        setHashkey(null)
-      }
+        return () => {
+            setHashkey(null)
+        }
     }, [open])
-    
+
     return (
         <AppModal close={() => { }} open={open} contentProps={{ padding: "60px" }} size="3xl">
             {HashKeyState ? (
-                <HashKey text='Request sended' close={close} hashkey={HashKeyState} />
+                <HashKey blockchain={sku?.recordData?.recordNetwork} text='Request sended' close={close} hashkey={HashKeyState} />
             ) : (
                 <ModalRequestForm product={product} shop={shop} sku={sku} close={close} setHahskey={setHahskey} />
             )}

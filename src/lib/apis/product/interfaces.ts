@@ -47,8 +47,9 @@ export interface IskuOption {
 export interface IrecordData {
     _id: string
     status: "NOT_RECORDED" | "RECORDED" | "PENDING"
-    recordNetwork: string
+    recordNetwork: any
     casperData?: any
+    stacksData?: any
 }
 
 export interface Isku {

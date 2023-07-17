@@ -1,5 +1,6 @@
 import { principalCV, stringAsciiCV, uintCV } from "@stacks/transactions"
 import { appDeveloment } from "lib/utils/app/variable"
+import { configStacks } from "./_constans"
 
 interface IstacksRecord {
     params: {
@@ -21,8 +22,7 @@ export const stacksRecord = ({ isRequestPending, openContractCall, params }: Ist
         try {
             if (isRequestPending) return rej(false)
             const data = await openContractCall({
-                contractAddress: appDeveloment ? process.env.REACT_APP_CONTRACT_ADDRESS_STACKS_TESTNET : process.env.REACT_APP_CONTRACT_ADDRESS_STACKS_MAINNET,
-                contractName: process.env.REACT_APP_CONTRACT_NAME_STACK,
+                ...configStacks,
                 functionName: 'create',
                 functionArgs: [
                     uintCV(amount),
