@@ -98,6 +98,8 @@ function RecordForm({ close, product }: Iprops) {
                 })
                 if (query) deploy(data, query.txId)
             }
+
+            updateState("blockchain", data.blockchain)
         } catch (error) {
             if (error?.message) {
                 if (error?.message.includes("The first argument")) return updateState("loading", false)
