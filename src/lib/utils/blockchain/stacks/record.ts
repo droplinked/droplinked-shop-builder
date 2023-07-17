@@ -22,7 +22,7 @@ export const stacksRecord = ({ isRequestPending, openContractCall, params }: Ist
             if (isRequestPending) return rej(false)
             const data = await openContractCall({
                 contractAddress: appDeveloment ? process.env.REACT_APP_CONTRACT_ADDRESS_STACKS_TESTNET : process.env.REACT_APP_CONTRACT_ADDRESS_STACKS_MAINNET,
-                contractName: 'droplinked-contract-v100',
+                contractName: process.env.REACT_APP_CONTRACT_NAME_STACK,
                 functionName: 'create',
                 functionArgs: [
                     uintCV(amount),
