@@ -3,14 +3,11 @@ import React from 'react'
 import ShopsMore from './parts/more/ShopsMore'
 import ShopsProfile from '../../../../../parts/pofile/ShopsProfile'
 import ShopsProduct from './parts/products/ShopsProduct'
-import { faker } from '@faker-js/faker'
 import { shopsContainerContext } from './context'
 
 interface Iprops {
     shop: any
 }
-
-//ShopsContainer
 
 function ShopsContainer({ shop }: Iprops) {
     return (
