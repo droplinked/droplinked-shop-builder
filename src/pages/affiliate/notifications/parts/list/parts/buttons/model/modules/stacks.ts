@@ -6,7 +6,7 @@ interface Iapprove {
     isRequestPending: any
     openContractCall: any
     params: {
-        id: number
+        id: string
         publisher: string
     }
 }

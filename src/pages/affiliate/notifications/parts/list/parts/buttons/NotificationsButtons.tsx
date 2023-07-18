@@ -34,11 +34,14 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
         refetch()
     }, [])
 
-    const deploy = useCallback((deploy_hash: string) => {
+    const deploy = useCallback((deploy_hash: string, chain: string) => {
         return mutateAsync({
-            deploy_hash,
-            requestID: shop?._id,
-            status: States.status === "accept" ? "ACCEPTED" : "REJECTED"
+            chain,
+            params: {
+                deploy_hash,
+                requestID: shop?._id,
+                status: States.status === "accept" ? "ACCEPTED" : "REJECTED"
+            }
         })
     }, [States.status, shop])
 
@@ -47,7 +50,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             const blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
             let deploy_hash = ''
-
+            
             switch (blockchain) {
                 case "CASPER":
                     const casperWallet = await RecordModalModule.openCasperWallet()
@@ -55,11 +58,14 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                     const request = States.status === "accept" ? await casper.approveRequest(data) : await casper.disapproveRequest(data)
                     deploy_hash = request.deployHash
                 case "STACKS":
+                    const stackData = shop?.sku[0]?.recordData?.stacksData?.details
+                    console.log(stackData);
+
                     await login()
-                    // stacks.approve({ isRequestPending, openContractCall, params: { id: "", publisher: stxAddress } })
+                    stacks.approve({ isRequestPending, openContractCall, params: { id: "sad", publisher: stxAddress } })
             }
 
-            deploy(deploy_hash)
+            deploy(deploy_hash, blockchain)
             setLoading(false)
             modal.onClose()
             showToast(`Request status change ${capitalizeFirstLetter(States.status)}`, "success")

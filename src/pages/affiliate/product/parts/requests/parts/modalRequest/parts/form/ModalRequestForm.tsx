@@ -3,7 +3,7 @@ import { Form, Formik } from 'formik'
 import useStack from 'functions/hooks/stack/useStack'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
-import { casperRequestService } from 'lib/apis/affiliate/shopServices'
+import { requestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'
 import stacksRequest from 'lib/utils/blockchain/stacks/request'
 import RecordModalModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel'
@@ -25,20 +25,23 @@ interface IProps {
 }
 
 function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
-    const { mutateAsync } = useMutation((params: IcasperRequestService) => casperRequestService(params))
+    const { mutateAsync } = useMutation((params: IcasperRequestService) => requestService(params))
     const { formSchema, publish_request } = ModalRequestModel
     const { openCasperWallet } = RecordModalModule
     const { showToast } = useAppToast()
     const { login, isRequestPending, openContractCall, stxAddress } = useStack()
     const [Loading, setLoading] = useState(false)
 
-    const requestService = useCallback(async (deployHash: string, quantity: number) => {
+    const request = useCallback(async (deployHash: string, quantity: number, chain: string) => {
         return mutateAsync({
-            productID: product._id,
-            deploy_hash: deployHash,
-            quantity,
-            skuID: sku._id,
-            shopID: shop._id
+            chain,
+            params: {
+                productID: product._id,
+                deploy_hash: deployHash,
+                quantity,
+                skuID: sku._id,
+                shopID: shop._id
+            }
         })
     }, [product, sku])
 
@@ -53,7 +56,6 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
             if (blockchain === "CASPER") {
                 const casperWallet = await openCasperWallet()
                 const publish = await publish_request({ casperWallet, quantity, sku })
-                await requestService(publish.deployHash, quantity)
                 deployHash = publish.deployHash
             } else if (blockchain === "STACKS" && stackData) {
                 await login()
@@ -71,7 +73,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
             }
 
             if (deployHash) {
-                await requestService(deployHash, quantity)
+                await request(deployHash, quantity, blockchain)
                 setHahskey(deployHash)
                 setLoading(false)
             }

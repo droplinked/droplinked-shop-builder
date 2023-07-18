@@ -20,6 +20,9 @@ export default class casperApprove {
                 signature: casperWallet.signature
             }
         }
+        console.log(shop);
+        console.log(request_id, account_info);
+        
         return await approve_request(request_id, account_info)
     }
 
@@ -36,6 +39,11 @@ export default class casperApprove {
                 signature: casperWallet.signature
             }
         }
+        console.log("shop", shop);
+        console.log("approved_id", approved_id);
+        console.log("amount", amount);
+        console.log("publisher_account_hash", publisher_account_hash);
+        console.log("account_info", account_info);
 
         return await disapprove_request(approved_id, amount, publisher_account_hash, account_info)
     }
