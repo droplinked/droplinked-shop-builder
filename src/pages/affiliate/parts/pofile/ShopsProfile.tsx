@@ -15,7 +15,6 @@ interface Iprops {
 
 function ShopsProfile({ avatar, title, desciption, shopname, social }: Iprops) {
   const { shop } = useProfile()
-  const { facebook, instagram, pintrest, snapchat, twitter } = social
 
   return (
     <VStack align={"stretch"} spacing={3}>
@@ -26,7 +25,7 @@ function ShopsProfile({ avatar, title, desciption, shopname, social }: Iprops) {
           {desciption && <Box><AppTypography size='12px' color="#C2C2C2">{desciption}</AppTypography></Box>}
         </VStack>
       </Link>
-      <SocialAffliate facebook={facebook} instagram={instagram} pintrest={pintrest} snapchat={snapchat} twitter={twitter} />
+      <SocialAffliate social={social} />
     </VStack>
   )
 }

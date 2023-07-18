@@ -9,7 +9,7 @@ import AppTextarea from 'components/common/form/textarea/AppTextarea';
 import ruleModelContext from "./context";
 import TextboxRule from "./parts/textbox/TextboxRule";
 import SelectRule from "./parts/select/SelectRule";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { createRuleService, getRuleService, updateRuleService } from "lib/apis/rule/ruleServices";
 import useAppToast from "functions/hooks/toast/useToast";
 import { RuleTypes } from "./RuleModel";
@@ -20,6 +20,8 @@ import RulesetAddress from "./parts/address/RulesetAddress";
 import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
 import RulesetType from "./parts/type/RulesetType";
 import AppErrors from "lib/utils/statics/errors/errors";
+import { chainsService } from "lib/apis/blockchain/ruleServices";
+import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
@@ -27,6 +29,13 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const getRule = useMutation((params: IgetRuleService) => getRuleService(params))
   const createRule = useMutation((params: IcreateRuleService) => createRuleService(params))
   const updateRule = useMutation((params: IupdateRuleService) => updateRuleService(params))
+  const chains = useQuery({
+    queryFn: chainsService,
+    queryKey: "chains_query",
+    cacheTime: 60 * 60 * 1000,
+    refetchOnWindowFocus: false
+  })
+
   const { showToast } = useAppToast()
 
   useEffect(() => {
@@ -63,7 +72,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
       }
       update();
       close();
-      showToast(AppErrors.collection[ruleId ? "ruleset_update" : "ruleset_create"] , "success")
+      showToast(AppErrors.collection[ruleId ? "ruleset_update" : "ruleset_create"], "success")
     } catch (error) {
       showToast("Oops! Something went wrong", "error")
     }
@@ -128,13 +137,13 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                   <SelectRule
                     element={"chain"}
                     placeholder="Select chain"
-                    loading={!getRule.isLoading}
-                    items={Object.keys(ChainTypes).map((el) => {
+                    loading={!getRule.isLoading && !chains.isLoading}
+                    items={chains.data ? chains.data?.data?.data.map((el) => {
                       return {
                         value: el,
-                        caption: el
+                        caption: capitalizeFirstLetter(el)
                       }
-                    })}
+                    }) : []}
                   />
                 </VStack>
                 <Box>

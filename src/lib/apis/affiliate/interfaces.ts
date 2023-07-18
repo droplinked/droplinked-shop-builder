@@ -13,8 +13,3 @@ export interface IacceptRejectRequestService {
     requestID: string
     status: IApproveRequestService
 }
-
-export interface IcancelRequestService {
-    deploy_hash: string
-    requestID: string
-}

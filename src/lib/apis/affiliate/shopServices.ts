@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IacceptRejectRequestService, IcancelRequestService, IcasperRequestService } from "./interfaces"
+import { IacceptRejectRequestService, IcasperRequestService } from "./interfaces"
 
 export const casperRequestService = (props: IcasperRequestService) => {
     return axiosInstance.post(`affiliate/casper/request`, props)
@@ -10,10 +10,6 @@ export const producerRequestService = () => {
 }
 
 export const acceptRejectRequestService = (params: IacceptRejectRequestService) => {
-    return axiosInstance.post(`affiliate/casper/request/accept-reject`, params)
-}
-
-export const cancelRequestService = (params: IcancelRequestService) => {
     return axiosInstance.post(`affiliate/casper/request/accept-reject`, params)
 }
 

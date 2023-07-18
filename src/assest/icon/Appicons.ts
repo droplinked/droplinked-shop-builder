@@ -40,6 +40,8 @@ import { ReactComponent as stacks } from './stacks-stx-logo.svg'
 import { ReactComponent as info } from './info.svg'
 import { ReactComponent as stripe } from './stripe.svg'
 import { ReactComponent as file } from './file.svg'
+import { ReactComponent as discord } from './discord.svg'
+import { ReactComponent as web } from './web.svg'
 
 const AppIcons = {
   productsIcon,
@@ -83,6 +85,8 @@ const AppIcons = {
   stacks,
   info,
   stripe,
-  file
+  file,
+  discord,
+  web
 }
 export default AppIcons
