@@ -46,16 +46,15 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
         const blockchain = sku?.recordData?.recordNetwork
         const quantity = parseInt(values.quantity)
         const stackData = sku?.recordData?.stacksData?.details
-
+        let deployHash = ""
 
         try {
+            setLoading(true)
             if (blockchain === "CASPER") {
                 const casperWallet = await openCasperWallet()
-                setLoading(true)
                 const publish = await publish_request({ casperWallet, quantity, sku })
                 await requestService(publish.deployHash, quantity)
-                setLoading(false)
-                setHahskey(publish.deployHash)
+                deployHash = publish.deployHash
             } else if (blockchain === "STACKS" && stackData) {
                 await login()
                 const request = await stacksRequest({
@@ -68,12 +67,17 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                         publisher: stxAddress
                     }
                 })
-                await requestService(request.txId, quantity)
-                if (request) setHahskey(request.txId)
+                if (request) deployHash = request.txId
+            }
+
+            if (deployHash) {
+                await requestService(deployHash, quantity)
+                setHahskey(deployHash)
+                setLoading(false)
             }
         } catch (error) {
-            if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
             setLoading(false)
+            if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
         }
     }, [sku, product, shop])
 
@@ -93,7 +97,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                             <Box><ModalRequestDetails /></Box>
                             <Box><RequestSpecs /></Box>
                             <Box><RequestQuantity /></Box>
-                            <Box><RequestModalButtons close={Loading ? () => { } : close} /></Box>
+                            <Box><RequestModalButtons close={close} /></Box>
                         </VStack>
                     </Form>
                 </ModalRequestContext.Provider>

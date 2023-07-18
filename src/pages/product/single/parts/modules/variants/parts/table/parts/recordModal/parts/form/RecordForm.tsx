@@ -16,7 +16,6 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import AppTypography from 'components/common/typography/AppTypography'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
-import { useAccount } from '@micro-stacks/react'
 import useStack from 'functions/hooks/stack/useStack'
 
 export interface IRecordModalProduct {
@@ -39,7 +38,6 @@ interface IRecordSubmit {
 
 function RecordForm({ close, product }: Iprops) {
     const { state: { sku }, productID } = useContext(productContext)
-
     const chains = useQuery({
         queryFn: supportedChainsService,
         queryKey: "supported_chains",
@@ -69,9 +67,9 @@ function RecordForm({ close, product }: Iprops) {
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
+            updateState("loading", true)
             if (data.blockchain === "CASPER") {
                 const CasperWallet = await openCasperWallet()
-                updateState("loading", true)
                 const record = await casperRecord({
                     commission: data.commission,
                     product,
@@ -96,7 +94,7 @@ function RecordForm({ close, product }: Iprops) {
                 })
                 if (query) deploy(data, query.txId)
             }
-
+            updateState("loading", false)
             updateState("blockchain", data.blockchain)
         } catch (error) {
             if (error?.message) {
@@ -158,7 +156,7 @@ function RecordForm({ close, product }: Iprops) {
                                 <AppTypography size='14px' weight='bolder' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography size='14px' weight='bolder' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
                             </VStack>
                             <HStack justifyContent={"space-between"}>
-                                <Box width={"25%"}><BasicButton variant='outline' onClick={() => !loading ? close() : {}}>Cancel</BasicButton></Box>
+                                <Box width={"25%"}><BasicButton variant='outline' onClick={() => close()}>Cancel</BasicButton></Box>
                                 <Box width={"25%"}><BasicButton type="submit" isLoading={loading}>Drop</BasicButton></Box>
                             </HStack>
                         </VStack>

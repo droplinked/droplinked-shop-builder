@@ -30,11 +30,13 @@ function NotificationsList() {
                                         avatar={element.logo}
                                         title={element.name}
                                         social={{
-                                            facebook: "",
-                                            instagram: element.instagramURL,
-                                            pintrest: "",
-                                            snapchat: "",
-                                            twitter: element.twitterURL,
+                                            facebook: element?.facebookURL,
+                                            instagram: element?.instagramURL,
+                                            tiktok: element?.tiktokURL,
+                                            discord: element?.discordURL,
+                                            linkedin: element?.linkedinURL,
+                                            twitter: element?.twitterURL,
+                                            web: element?.webURL,
                                         }}
                                     />
                                 </Box>

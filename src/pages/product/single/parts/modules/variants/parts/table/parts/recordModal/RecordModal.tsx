@@ -35,7 +35,7 @@ function RecordModal({ close, open, product }: Iprops) {
     return (
         <recordContext.Provider value={{
             state: State,
-            updateState: (key: string, value: string) => setState(prev => ({ ...prev, [key]: value }))
+            updateState: (key: string, value: string) => setState(prev => ({ ...prev, [key]: value })),
         }}>
             <AppModal
                 open={open}

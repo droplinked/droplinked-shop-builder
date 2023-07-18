@@ -1,14 +1,13 @@
 import { approve_request } from "lib/utils/blockchain/casper/casper_wallet_approve_request"
 import { disapprove_request } from "lib/utils/blockchain/casper/casper_wallet_disapprove_request"
 import RecordModalModule, { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel"
-import requestInterfaces from "./interfaces"
 
 interface Iapprove {
     shop: any
     casperWallet: IopenCasperWallet
 }
 
-export default class requestsButtonsModel {
+export default class casperApprove {
 
     // Approve request
     static approveRequest = async ({ shop }: Iapprove) => {
@@ -37,7 +36,8 @@ export default class requestsButtonsModel {
                 signature: casperWallet.signature
             }
         }
-        
+
         return await disapprove_request(approved_id, amount, publisher_account_hash, account_info)
     }
-} 
+
+}
