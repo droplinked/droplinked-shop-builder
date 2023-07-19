@@ -20,18 +20,18 @@ export interface IProps {
 function SocialAffliate({ social, size }: IProps) {
 
     const sized = useMemo(() => {
-        if (!size) return {}
         return {
             width: `${size ? size : 17}px`,
-            height: `${size ? size : 17}px`
+            height: `${size ? size : 17}px`,
+            opacity: ".7"
         }
     }, [size])
 
     const icons = {
         instagram: <AppIcons.instagramIcon {...sized} />,
         discord: <AppIcons.discord {...sized} />,
-        tiktok: <AppIcons.instagramIcon {...sized} />,
-        linkedin: <AppIcons.instagramIcon {...sized} />,
+        tiktok: <AppIcons.tiktok {...sized} />,
+        linkedin: <AppIcons.linkedin {...sized} />,
         twitter: <AppIcons.twitterIcon {...sized} />,
         facebook: <AppIcons.facebookIcon {...sized} />,
         web: <AppIcons.web {...sized} />,

@@ -29,7 +29,15 @@ function Shop() {
                             <Box><Image src={shop?.logo} width="80px" height={"80px"} borderRadius={"100%"} /></Box>
                             <Box><AppTypography color="#2EC99E" size='24px' weight='bolder'>{shop?.name}</AppTypography></Box>
                             {/* <Box><Text color="#FFF" fontSize={"1xl"}>{faker.company.catchPhrase()}</Text></Box> */}
-                            <SocialAffliate facebook="" instagram={shop?.instagramURL} pintrest="" snapchat="" twitter={shop?.twitterURL} size={16} />
+                            <SocialAffliate social={{
+                                facebook: shop?.facebookURL,
+                                instagram: shop?.instagramURL,
+                                tiktok: shop?.tiktokURL,
+                                discord: shop?.discordURL,
+                                linkedin: shop?.linkedinURL,
+                                twitter: shop?.twitterURL,
+                                web: shop?.webURL,
+                            }} size={16} />
                         </VStack>
                     </AppCard>
 
