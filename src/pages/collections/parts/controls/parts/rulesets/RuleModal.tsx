@@ -2,25 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Box, HStack, VStack } from "@chakra-ui/react";
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import AppModal from 'components/common/modal/AppModal';
-import AppTextarea from 'components/common/form/textarea/AppTextarea';
 import ruleModelContext from "./context";
 import TextboxRule from "./parts/textbox/TextboxRule";
 import SelectRule from "./parts/select/SelectRule";
 import { useMutation, useQuery } from "react-query";
-import { createRuleService, getRuleService, updateRuleService } from "lib/apis/rule/ruleServices";
+import { createRuleService, getRuleService, rulesetChainsService, updateRuleService } from "lib/apis/rule/ruleServices";
 import useAppToast from "functions/hooks/toast/useToast";
 import { RuleTypes } from "./RuleModel";
 import { IcreateRuleService, IgetRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
 import AppTypography from 'components/common/typography/AppTypography';
-import { ChainTypes } from "lib/utils/statics/chainTypes";
 import RulesetAddress from "./parts/address/RulesetAddress";
 import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
 import RulesetType from "./parts/type/RulesetType";
 import AppErrors from "lib/utils/statics/errors/errors";
-import { chainsService } from "lib/apis/blockchain/ruleServices";
 import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 
 // this modal use for add new rule or edit exsiting rule
@@ -30,7 +27,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const createRule = useMutation((params: IcreateRuleService) => createRuleService(params))
   const updateRule = useMutation((params: IupdateRuleService) => updateRuleService(params))
   const chains = useQuery({
-    queryFn: chainsService,
+    queryFn: rulesetChainsService,
     queryKey: "chains_query",
     cacheTime: 60 * 60 * 1000,
     refetchOnWindowFocus: false

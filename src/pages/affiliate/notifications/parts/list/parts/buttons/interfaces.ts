@@ -5,7 +5,8 @@ namespace requestInterfaces {
     export interface IStates {
         status: IRequestStatus
         loading: boolean
-        deployHash:string
+        deployHash: string
+        blockchain: string
     }
 
     export interface Iprops {

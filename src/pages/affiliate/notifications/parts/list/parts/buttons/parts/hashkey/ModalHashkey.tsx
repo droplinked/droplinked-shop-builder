@@ -6,12 +6,13 @@ interface Iprops {
     close: Function
     open: boolean
     hashKey: string
+    blockchain: string
 }
 
-function ModalHashkey({ close, open, hashKey }: Iprops) {
+function ModalHashkey({ close, open, hashKey, blockchain }: Iprops) {
     return (
         <AppModal close={() => { }} open={open}>
-            <HashKey close={close} hashkey={hashKey} text="Accept successful" />
+            <HashKey blockchain={blockchain} close={close} hashkey={hashKey} text="Accept successful" />
         </AppModal>
     )
 }
