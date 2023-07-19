@@ -1,3 +1,4 @@
+import { Flex } from '@chakra-ui/react'
 import AppModal from 'components/common/modal/AppModal'
 import { productContext } from 'pages/product/single/context'
 import introductionClass from 'pages/product/single/parts/general/model'
@@ -45,9 +46,9 @@ function ProductIframe({ close, open }: IProps) {
     }, [])
 
     return (
-        <AppModal contentProps={{ width: "95%", maxWidth: "800px", height: "90%", maxHeight: "600px" }} close={close} open={open}>
+        <AppModal contentProps={{ width: "95%", maxWidth: "800px", padding: 0, height: "90%", maxHeight: "570px" }} close={close} open={open}>
             <iframe
-                style={{ width: "100%", height: "100%" }}
+                style={{ width: "100%", height: "100%", position: "relative", top: "40px" }}
                 src={url}
                 ref={iframeElement}
                 title="Module"
