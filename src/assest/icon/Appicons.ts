@@ -42,6 +42,8 @@ import { ReactComponent as stripe } from './stripe.svg'
 import { ReactComponent as file } from './file.svg'
 import { ReactComponent as discord } from './discord.svg'
 import { ReactComponent as web } from './web.svg'
+import { ReactComponent as linkedin } from './linkedin.svg'
+import { ReactComponent as tiktok } from './tiktok.svg'
 
 const AppIcons = {
   productsIcon,
@@ -87,6 +89,8 @@ const AppIcons = {
   stripe,
   file,
   discord,
-  web
+  web,
+  linkedin,
+  tiktok
 }
 export default AppIcons

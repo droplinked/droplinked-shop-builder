@@ -47,10 +47,13 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
 
     const submit = useCallback(async () => {
         try {
+            console.log(shop);
+            return false
+
             const blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
             let deploy_hash = ''
-            
+
             switch (blockchain) {
                 case "CASPER":
                     const casperWallet = await RecordModalModule.openCasperWallet()
@@ -88,7 +91,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             <NotificationsModal
                 status={States.status}
                 loading={States.loading}
-                close={States.loading ? () => { } : modal.onClose}
+                close={modal.onClose}
                 approveClick={submit}
                 open={modal.isOpen}
             />
