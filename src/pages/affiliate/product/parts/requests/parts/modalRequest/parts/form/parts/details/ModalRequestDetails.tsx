@@ -11,7 +11,6 @@ import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
 function ModalRequestDetails() {
     const { product, sku } = useContext(ModalRequestContext)
     const { LabelText } = ModalReqDetailsStyles
-    console.log(sku);
 
     return (
         <Flex gap={5} alignItems="center">

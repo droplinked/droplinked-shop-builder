@@ -23,7 +23,8 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
     const [States, setStates] = useState<requestInterfaces.IStates>({
         status: null,
         loading: false,
-        deployHash: null
+        deployHash: null,
+        blockchain: null
     })
     const { login, isRequestPending, openContractCall, stxAddress } = useStack()
 
@@ -46,39 +47,34 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
     }, [States.status, shop])
 
     const submit = useCallback(async () => {
+        // console.log(shop);
+        // return false
         try {
-            console.log(shop);
-            return false
-
             const blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
             let deploy_hash = ''
 
-            switch (blockchain) {
-                case "CASPER":
-                    const casperWallet = await RecordModalModule.openCasperWallet()
-                    const data = { shop, casperWallet }
-                    const request = States.status === "accept" ? await casper.approveRequest(data) : await casper.disapproveRequest(data)
-                    deploy_hash = request.deployHash
-                case "STACKS":
-                    const stackData = shop?.sku[0]?.recordData?.stacksData?.details
-                    console.log(stackData);
-
-                    await login()
-                    stacks.approve({ isRequestPending, openContractCall, params: { id: "sad", publisher: stxAddress } })
+            if (blockchain === "CASPER") {
+                const casperWallet = await RecordModalModule.openCasperWallet()
+                const data = { shop, casperWallet }
+                const request = States.status === "accept" ? await casper.approveRequest(data) : await casper.disapproveRequest(data)
+                deploy_hash = request.deployHash
+            } else if (blockchain === "STACKS") {
+                await login()
+                stacks.approve({ isRequestPending, openContractCall, params: { id: shop?.casperData?.details?.approved_id, publisher: stxAddress } })
             }
-
-            deploy(deploy_hash, blockchain)
-            setLoading(false)
-            modal.onClose()
-            showToast(`Request status change ${capitalizeFirstLetter(States.status)}`, "success")
+            await deploy(deploy_hash, blockchain)
 
             if (States.status === "accept") {
                 modalHashKey.onOpen()
-                setStates(prev => ({ ...prev, deployHash: deploy_hash }))
+                setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
             } else {
                 refetch()
             }
+
+            setLoading(false)
+            modal.onClose()
+            showToast(`Request status change ${capitalizeFirstLetter(States.status)}`, "success")
         } catch (error) {
             setLoading(false)
             if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
@@ -95,7 +91,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                 approveClick={submit}
                 open={modal.isOpen}
             />
-            <ModalHashkey close={closeModalHashkey} hashKey={States.deployHash} open={modalHashKey.isOpen} />
+            <ModalHashkey close={closeModalHashkey} blockchain={States.blockchain} hashKey={States.deployHash} open={modalHashKey.isOpen} />
         </requestsButtonsContext.Provider>
     )
 }

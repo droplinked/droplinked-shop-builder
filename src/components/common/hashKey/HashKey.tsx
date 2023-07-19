@@ -7,13 +7,13 @@ import ClipboardText from '../clipboardText/ClipboardText'
 import IconBlockchain from '../iconBlockchain/IconBlockchain'
 import AppTypography from '../typography/AppTypography'
 
-export type blockchainTypes = "STACKS" | "CASPER"
+export type blockchainTypes = string
 
 interface Iprops {
     close: Function
     text: string
     hashkey: string
-    blockchain: blockchainTypes
+    blockchain: string
 }
 
 function HashKey({ close, hashkey, text, blockchain }: Iprops) {
@@ -36,7 +36,7 @@ function HashKey({ close, hashkey, text, blockchain }: Iprops) {
             <Flex justifyContent="space-between" alignItems="center" border="1px solid #2f2f2f" padding="20px" borderRadius="10px">
                 <Box>
                     <a href={getLink} style={{ outline: "none" }} target="_blank">
-                        <AppTypography color={"#C2C2C2"} size='14px' textDecoration="underline">{getLink.substr(0, 60)}</AppTypography>
+                        <AppTypography color={"#C2C2C2"} size='14px' textDecoration="underline">{getLink.substr(0, 60)}...</AppTypography>
                     </a>
                 </Box>
                 <Box><ClipboardText text={getLink} /></Box>

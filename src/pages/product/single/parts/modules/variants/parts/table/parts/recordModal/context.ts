@@ -1,10 +1,9 @@
-import { blockchainTypes } from "components/common/hashKey/HashKey";
 import { createContext } from "react";
 
 interface IState {
     loading: boolean
     hashkey: string | null
-    blockchain: blockchainTypes
+    blockchain: string
 }
 
 interface IrecordContext {
