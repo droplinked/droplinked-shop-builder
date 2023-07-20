@@ -9,7 +9,7 @@ import ProductM2m from './parts/m2m/ProductM2m'
 
 function ProductMintToMerge() {
     const [CheckBox, setCheckBox] = useState(false)
-    const { state: { m2m_positions }, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { m2m_positions }, store: { state: { variants } }, methods: { updateState }, loading } = useContext(productContext)
 
     const checkActive = useCallback((postion: string) => m2m_positions.includes(postion), [m2m_positions])
 
@@ -29,6 +29,8 @@ function ProductMintToMerge() {
         if (m2m_positions.length) setCheckBox(true)
     }, [m2m_positions])
 
+    const getPositions = useMemo(() => variants && variants?.print_possible_location ? variants?.print_possible_location.reduce((el, current) => [...el, ...current]) : [], [variants])
+
 
     return (
         <VStack align={"stretch"} spacing={4}>
@@ -45,14 +47,14 @@ function ProductMintToMerge() {
                 </AppSkeleton>
             </Box>
 
-            {CheckBox && (
+            {CheckBox && variants ? (
                 <VStack align="stretch" backgroundColor="#141414" borderRadius="8px" padding="20px 25px" spacing={4}>
                     <AppTypography size='14px'>Customers Position Options</AppTypography>
-                    <ProductPositions update={updatePosition} state={m2m_positions} />
+                    <ProductPositions positions={getPositions} update={updatePosition} state={m2m_positions} />
                     <AppTypography size='14px'>Customers Wallet Options</AppTypography>
                     <ProductM2m />
                 </VStack>
-            )}
+            ) : null}
         </VStack >
     )
 }
