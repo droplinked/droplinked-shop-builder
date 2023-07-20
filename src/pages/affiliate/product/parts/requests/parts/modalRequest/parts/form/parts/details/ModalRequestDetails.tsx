@@ -1,7 +1,5 @@
-import { Box, Flex, HStack, Image, Text, VStack } from '@chakra-ui/react'
-import { faker } from '@faker-js/faker'
+import { Box, Flex, HStack, Text, VStack } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
-import casper from "assest/icon/casper.svg";
 import React, { useContext } from 'react'
 import { ModalReqDetailsStyles } from './style-component';
 import { ModalRequestContext } from '../../context';

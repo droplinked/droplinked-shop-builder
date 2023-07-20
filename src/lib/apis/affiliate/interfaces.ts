@@ -14,7 +14,7 @@ export type IApproveRequestService = "ACCEPTED" | "REJECTED"
 export interface IacceptRejectRequestService {
     chain: string
     params: {
-        deploy_hash: string
+        deploy_hash?: string
         requestID: string
         status: IApproveRequestService
     }

@@ -48,7 +48,6 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
     const onSubmit = useCallback(async (values: IRequestModelValues) => {
         const blockchain = sku?.recordData?.recordNetwork
         const quantity = parseInt(values.quantity)
-        const stackData = sku?.recordData?.stacksData?.details
         let deployHash = ""
 
         try {
@@ -57,15 +56,15 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                 const casperWallet = await openCasperWallet()
                 const publish = await publish_request({ casperWallet, quantity, sku })
                 deployHash = publish.deployHash
-            } else if (blockchain === "STACKS" && stackData) {
+            } else if (blockchain === "STACKS") {
                 await login()
                 const request = await stacksRequest({
                     isRequestPending,
                     openContractCall,
                     params: {
                         amount: quantity,
-                        commission: stackData?.commision,
-                        id: parseInt(stackData?.token_id),
+                        commission: sku?.recordData?.data?.detail?.commision,
+                        id: parseInt(sku?.recordData?.data?.detail?.token_id),
                         publisher: stxAddress
                     }
                 })

@@ -11,6 +11,8 @@ function useStack() {
             try {
                 return await openAuthRequest()
             } catch (error) {
+                console.log(error);
+                
                 window.open("https://www.xverse.app", "_blank")
                 throw new Error("Please install xverse wallet")
             }

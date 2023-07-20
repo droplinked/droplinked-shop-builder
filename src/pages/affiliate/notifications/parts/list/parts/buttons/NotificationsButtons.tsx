@@ -39,7 +39,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
         return mutateAsync({
             chain,
             params: {
-                deploy_hash,
+                ...deploy_hash && { deploy_hash },
                 requestID: shop?._id,
                 status: States.status === "accept" ? "ACCEPTED" : "REJECTED"
             }
@@ -47,28 +47,26 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
     }, [States.status, shop])
 
     const submit = useCallback(async () => {
-        // console.log(shop);
-        // return false
         try {
             const blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
             let deploy_hash = ''
 
-            if (blockchain === "CASPER") {
-                const casperWallet = await RecordModalModule.openCasperWallet()
-                const data = { shop, casperWallet }
-                const request = States.status === "accept" ? await casper.approveRequest(data) : await casper.disapproveRequest(data)
-                deploy_hash = request.deployHash
-            } else if (blockchain === "STACKS") {
-                await login()
-                stacks.approve({ isRequestPending, openContractCall, params: { id: shop?.casperData?.details?.approved_id, publisher: stxAddress } })
-            }
-            await deploy(deploy_hash, blockchain)
-
             if (States.status === "accept") {
+                if (blockchain === "CASPER") {
+                    const casperWallet = await RecordModalModule.openCasperWallet()
+                    const data = { shop, casperWallet }
+                    const request = await casper.approveRequest(data)
+                    deploy_hash = request.deployHash
+                } else if (blockchain === "STACKS") {
+                    await login()
+                    stacks.approve({ isRequestPending, openContractCall, params: { id: shop.sku[0].recordData?.casperData?.details?.token_id, publisher: stxAddress } })
+                }
+                await deploy(deploy_hash, blockchain)
                 modalHashKey.onOpen()
                 setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
             } else {
+                await deploy(null, blockchain)
                 refetch()
             }
 
