@@ -67,9 +67,9 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                 setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
             } else {
                 await deploy(null, blockchain)
-                refetch()
             }
 
+            refetch()
             setLoading(false)
             modal.onClose()
             showToast(`Request status change ${capitalizeFirstLetter(States.status)}`, "success")

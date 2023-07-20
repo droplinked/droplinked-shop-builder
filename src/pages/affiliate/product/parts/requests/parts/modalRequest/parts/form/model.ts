@@ -31,7 +31,6 @@ export default class ModalRequestModel {
                 signature: casperWallet.signature
             },
         }
-        console.log("data", data);
 
         return await publish_request(data.holder_id, data.amount, data.producer_public_key, data.account_info)
     }

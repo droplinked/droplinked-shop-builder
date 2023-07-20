@@ -44,6 +44,12 @@ function ProductType() {
                     onChange={(e) => {
                         updateState("pod_blank_product_id", e.target.value)
                         updateState("sku", [])
+                        updateState("artwork", null)
+                        updateState("artwork2", null)
+                        updateState("artwork_position", null)
+                        updateState("artwork2_position", null)
+                        updateState("m2m_services", [])
+                        updateState("m2m_positions", [])
                         if (product_type === "PRINT_ON_DEMAND") {
                             updateState("properties", [
                                 {
