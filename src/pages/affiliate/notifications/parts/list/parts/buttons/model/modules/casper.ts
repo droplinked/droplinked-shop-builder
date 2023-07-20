@@ -20,27 +20,9 @@ export default class casperApprove {
                 signature: casperWallet.signature
             }
         }
-      
-        
+
+
         return await approve_request(request_id, account_info)
-    }
-
-    // Disapprove request
-    static disapproveRequest = async ({ shop }: Iapprove) => {
-        const casperWallet = await RecordModalModule.openCasperWallet()
-        const { approved_id, account_info, amount, publisher_account_hash } = {
-            approved_id: shop?.casperData?.details?.approved_id,
-            amount: parseFloat(shop?.casperData?.details?.amount),
-            publisher_account_hash: shop?.casperData?.details?.publisher,
-            account_info: {
-                publicKey: casperWallet.publicKey,
-                account_hash: casperWallet.account_hash,
-                signature: casperWallet.signature
-            }
-        }
-     
-
-        return await disapprove_request(approved_id, amount, publisher_account_hash, account_info)
     }
 
 }

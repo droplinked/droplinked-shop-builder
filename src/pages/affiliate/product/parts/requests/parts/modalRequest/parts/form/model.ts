@@ -20,18 +20,19 @@ export default class ModalRequestModel {
         });
     }
 
-    static publish_request = async ({ casperWallet, quantity, sku }: IPublishRequest) => {
+    static publish_request = async ({ casperWallet, quantity, sku }: IPublishRequest) => {        
         const data = {
-            holder_id: parseInt(sku?.recordData?.casperData?.details?.holder_id),
+            holder_id: parseInt(sku?.recordData?.data?.details?.holder_id),
             amount: quantity,
-            producer_public_key: sku?.recordData?.casperData?.details?.recipient,
+            producer_public_key: sku?.recordData?.data?.details?.recipient,
             account_info: {
                 publicKey: casperWallet.publicKey,
                 account_hash: casperWallet.account_hash,
                 signature: casperWallet.signature
             },
         }
-        
+        console.log("data", data);
+
         return await publish_request(data.holder_id, data.amount, data.producer_public_key, data.account_info)
     }
 }

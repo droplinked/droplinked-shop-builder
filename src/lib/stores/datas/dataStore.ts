@@ -1,25 +1,29 @@
-import { IauthLoginService } from 'lib/apis/auth/interfaces'
-import { authLoginService } from 'lib/apis/auth/services'
-import { IshopInfoService, IshopUpdateService } from 'lib/apis/shop/interfaces'
-import { shopInfoService, shopUpdateService } from 'lib/apis/shop/shopServices'
-import AppStorage from 'lib/utils/app/sessions'
 import { appDeveloment } from 'lib/utils/app/variable'
 import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
+import { devtools } from 'zustand/middleware'
+import dataStoreModel from './model'
 
 interface Iitem {
-    data: Array<string>,
-    fetch: boolean
+    data: Array<any>,
+    fetch: Function
+    loaded: boolean
+    isLoading: boolean
 }
 
 export interface IDataStore {
     collection: Iitem
 }
 
+// Call methods as model
+const { getCollections } = dataStoreModel
+
+// Initial states
 const states = (set: any): IDataStore => ({
     collection: {
         data: [],
-        fetch: false
+        fetch: () => getCollections(set),
+        loaded: false,
+        isLoading: false
     },
 })
 

@@ -16,6 +16,7 @@ function RequestListButton({ status, value }: Iprops) {
             width="100%"
             minWidth={"100%"}
             maxWidth="150px"
+            variant={status === "reject" ? 'outline' : 'solid'}
             onClick={() => {
                 setStates((prev: requestInterfaces.IStates) => ({ ...prev, status }))
                 modal.open()
