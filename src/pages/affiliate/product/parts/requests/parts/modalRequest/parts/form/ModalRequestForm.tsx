@@ -63,8 +63,8 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                     openContractCall,
                     params: {
                         amount: quantity,
-                        commission: sku?.recordData?.data?.detail?.commision,
-                        id: parseInt(sku?.recordData?.data?.detail?.token_id),
+                        commission: sku?.recordData?.data?.details?.commision,
+                        id: parseInt(sku?.recordData?.data?.details?.token_id),
                         publisher: stxAddress
                     }
                 })
