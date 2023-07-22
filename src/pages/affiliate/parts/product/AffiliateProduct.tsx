@@ -6,6 +6,7 @@ import AppImage from 'components/common/image/AppImage';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import AppTypography from 'components/common/typography/AppTypography';
 import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
 
 interface Iprops {
     image: string
@@ -23,7 +24,7 @@ function AffiliateProduct({ image, title, link, blockchain }: Iprops) {
                 <Box><AppTypography size='12px'>{title}</AppTypography></Box>
                 <HStack position={"absolute"} bottom={4}>
                     <IconBlockchain blockchain={blockchain} props={{ width: "20px" }} />
-                    <Text fontSize={"sm"}>Casper</Text>
+                    <Text fontSize={"sm"}>{capitalizeFirstLetter(blockchain)}</Text>
                 </HStack>
             </VStack>
         </Link>

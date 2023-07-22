@@ -7,11 +7,12 @@ import { useMutation } from 'react-query'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import ProductListModel from './model'
 import ProductEmpty from './parts/empty/ProductEmpty'
-import { collectionService } from 'lib/apis/collection/services'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import { useStore } from 'zustand'
+import useDataStore from 'lib/stores/datas/dataStore'
 
 function Products() {
-    const collections = useMutation(() => collectionService())
+    const { collection } = useStore(useDataStore)
     const { mutate, isLoading, data } = useMutation((params: IproductList) => productServices(params))
     const [searchParams] = useSearchParams()
     const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1
@@ -19,9 +20,7 @@ function Products() {
     const location = useLocation()
     const navigate = useNavigate()
     const [States, setStates] = useState({
-        filters: '',
         search: null,
-
     })
     const { shop } = useProfile()
 
@@ -30,7 +29,6 @@ function Products() {
         mutate({ limit: 10, page: page, ...filter && { filter } })
     }, [page, searchParams])
 
-    useEffect(() => collections.mutate(), [])
     useEffect(() => fetch(), [mutate, page, searchParams])
 
     const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
@@ -68,7 +66,7 @@ function Products() {
             filters={[
                 {
                     title: "Collections",
-                    list: collections.data?.data?.data ? collections.data?.data?.data.map(el => (
+                    list: collection.data ? collection.data.map(el => (
                         {
                             title: el?.title,
                             onClick: () => updateFilters("productCollectionID", el?._id),

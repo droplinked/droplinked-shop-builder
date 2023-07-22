@@ -63,9 +63,9 @@ function ProductSingle() {
         if (params?.productId) fetch().then((res: any) => setState(prev => ({ ...prev, params: res })))
     }, [params])
 
-    // useEffect(() => {
-    //     console.log(State.params.m2m_services);
-    // }, [State])
+    useEffect(() => {
+        console.log(State.params);
+    }, [State])
 
     return (
         <productContext.Provider value={{

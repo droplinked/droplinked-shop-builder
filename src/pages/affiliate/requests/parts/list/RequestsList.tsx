@@ -16,7 +16,7 @@ function RequestsList() {
 
   return (
     <VStack align={"stretch"}>
-      {isLoading ? <RequestSkeleton /> : data?.data?.data.length ? data?.data?.data.map((el, key) => (
+      {isLoading ? <RequestSkeleton /> : data?.data?.data.length ? data?.data?.data.map((el: any, key: number) => (
         <Flex
           key={key}
           justifyContent={"space-between"}
@@ -25,7 +25,7 @@ function RequestsList() {
         >
           <Box width={"70%"}>
             <AffiliateDetailCard
-              image={el?.publisherShop[0].logo}
+              image={el?.product[0]?.media[0]?.url}
               title={el?.product[0]?.title}
               decript={el?.productCollection[0]?.title}
               options={[

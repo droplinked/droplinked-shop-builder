@@ -60,16 +60,22 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                     deploy_hash = request.deployHash
                 } else if (blockchain === "STACKS") {
                     await login()
-                    stacks.approve({ isRequestPending, openContractCall, params: { id: shop.sku[0].recordData?.casperData?.details?.token_id, publisher: stxAddress } })
+                    console.log({ id: shop?.recordData?.details?.request_id, publisher: shop?.publisher });
+
+                    const request = await stacks.approve({ isRequestPending, openContractCall, params: { id: shop?.recordData?.details?.request_id, publisher: shop?.recordData?.details?.publisher } })
+                    deploy_hash = request.txId
                 }
-                await deploy(deploy_hash, blockchain)
-                modalHashKey.onOpen()
-                setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
+
+                if (deploy_hash) {
+                    await deploy(deploy_hash, blockchain)
+                    modalHashKey.onOpen()
+                    setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
+                }
             } else {
                 await deploy(null, blockchain)
+                refetch()
             }
 
-            refetch()
             setLoading(false)
             modal.onClose()
             showToast(`Request status change ${capitalizeFirstLetter(States.status)}`, "success")

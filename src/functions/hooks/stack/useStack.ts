@@ -12,7 +12,7 @@ function useStack() {
                 return await openAuthRequest()
             } catch (error) {                
                 window.open("https://www.xverse.app", "_blank")
-                throw new Error("Please install xverse wallet")
+                throw new Error("Please install xverse/hiro wallet")
             }
         }
     }, [isSignedIn, openAuthRequest])

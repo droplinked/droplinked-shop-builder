@@ -7,9 +7,8 @@ function AdminProvider({ children }) {
 
   // Initial data state managment
   useEffect(() => {
-    // if (!collection.loaded) collection.fetch()
+    if (!collection.loaded) collection.fetch()
   }, [collection])
-
 
   return children
 }
