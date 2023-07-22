@@ -60,8 +60,6 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                     deploy_hash = request.deployHash
                 } else if (blockchain === "STACKS") {
                     await login()
-                    console.log({ id: shop?.recordData?.details?.request_id, publisher: shop?.publisher });
-
                     const request = await stacks.approve({ isRequestPending, openContractCall, params: { id: shop?.recordData?.details?.request_id, publisher: shop?.recordData?.details?.publisher } })
                     deploy_hash = request.txId
                 }
