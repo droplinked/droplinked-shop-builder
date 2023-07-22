@@ -14,6 +14,7 @@ import ShippingProduct from './parts/modules/shipping/ShippingProduct'
 import ProductPodDesign from './parts/podDesign/ProductPodDesign'
 import CollectionProduct from './parts/collection/CollectionProduct'
 import ProductStore from './parts/store/ProductStore'
+import DigitalLinks from './parts/digital/DigitalLinks'
 
 interface Istate {
     params: IproductState
@@ -82,6 +83,7 @@ function ProductSingle() {
                 <VStack spacing={5}>
                     <General />
                     <ProductPodDesign />
+                    <DigitalLinks />
                     <ShippingProduct />
                     <Variant />
                     <CollectionProduct />
