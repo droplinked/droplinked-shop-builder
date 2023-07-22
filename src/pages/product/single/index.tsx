@@ -64,7 +64,7 @@ function ProductSingle() {
     }, [params])
 
     // useEffect(() => {
-    //     console.log(State.params.m2m_services);
+    //     console.log(State.params);
     // }, [State])
 
     return (

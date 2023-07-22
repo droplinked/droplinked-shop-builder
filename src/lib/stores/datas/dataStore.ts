@@ -7,7 +7,7 @@ interface Iitem {
     data: Array<any>,
     fetch: Function
     loaded: boolean
-    isLoading: boolean
+    isError: boolean
 }
 
 export interface IDataStore {
@@ -18,12 +18,12 @@ export interface IDataStore {
 const { getCollections } = dataStoreModel
 
 // Initial states
-const states = (set: any): IDataStore => ({
+const states = (set: any, get: any): IDataStore => ({
     collection: {
         data: [],
-        fetch: () => getCollections(set),
+        fetch: () => getCollections(set, get().collection),
         loaded: false,
-        isLoading: false
+        isError: false
     },
 })
 

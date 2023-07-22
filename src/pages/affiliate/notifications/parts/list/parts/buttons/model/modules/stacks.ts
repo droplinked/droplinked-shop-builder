@@ -19,7 +19,7 @@ export default class stacksApprove {
         if (isRequestPending) return
 
         try {
-            await openContractCall({
+            return await openContractCall({
                 ...configStacks,
                 functionName: 'accept-request',
                 functionArgs: [uintCV(id), principalCV(publisher)],
@@ -28,10 +28,5 @@ export default class stacksApprove {
             throw new Error(error)
         }
     }
-
-    // Disapprove request
-    // static disapprove = async ({ shop }: Iapprove) => {
-
-    // }
 
 }

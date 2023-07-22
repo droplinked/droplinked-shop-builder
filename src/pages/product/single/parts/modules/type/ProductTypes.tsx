@@ -32,7 +32,7 @@ function ProductTypes() {
             {product_type === "PRINT_ON_DEMAND" && <Box><ProductPovProvider /></Box>}
             <Box>
                 <AppSkeleton isLoaded={loading}>
-                    <Checkbox size='md' isDisabled={Boolean(productID) && publish_product} isChecked={product_type === "DIGITAL"} alignItems="flex-start" colorScheme='green' onChange={() => changeProductType("DIGITAL")}>
+                    <Checkbox size='md' isDisabled={true || Boolean(productID) && publish_product} isChecked={product_type === "DIGITAL"} alignItems="flex-start" colorScheme='green' onChange={() => changeProductType("DIGITAL")}>
                         <VStack align='stretch' paddingLeft={2} spacing={1}>
                             <AppTypography size='14px' weight='bolder'>Digital Product</AppTypography>
                             <AppTypography size="14px" color="lightGray">

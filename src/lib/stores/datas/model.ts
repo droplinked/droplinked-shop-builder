@@ -7,26 +7,19 @@ interface IsetLoading {
 }
 
 export default class dataStoreModel {
-    static setLoading = ({ model, set, status }: IsetLoading) => set({
-        [model]: {
-            isLoading: status
-        }
-    })
-
-    static getCollections = async (set: any) => {
+    static getCollections = async (set: any, collections: any) => {
         try {
-            this.setLoading({ model: "collection", set, status: true })
             const data = await collectionService()
             set({
                 collection: {
+                    ...collections,
                     data: data.data?.data,
                     loaded: true,
-                    isLoading: false
+                    isError: false
                 }
             })
         } catch (error) {
-            this.setLoading({ model: "collection", set, status: false })
-            console.log(error);
+            set({ collection: { isError: true } })
         }
     }
 }
