@@ -6,8 +6,7 @@ import CollectionsEmpty from './parts/empty/CollectionsEmpty'
 import { collectionService } from 'lib/apis/collection/services'
 import CollectionCreate from './parts/create/CollectionCreate'
 import { useDisclosure } from '@chakra-ui/react'
-import { useStore } from 'zustand'
-import useDataStore from 'lib/stores/datas/dataStore'
+import useHookStore from 'functions/hooks/store/useHookStore'
 
 function Collections() {
     const { isOpen, onClose, onOpen } = useDisclosure()
@@ -15,7 +14,7 @@ function Collections() {
     const [States, setStates] = useState({
         search: null
     })
-    const { collection } = useStore(useDataStore)
+    const { data: { collection } } = useHookStore()
 
     const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
 

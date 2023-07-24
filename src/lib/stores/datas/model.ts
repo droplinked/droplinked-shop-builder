@@ -1,4 +1,5 @@
 import { collectionService } from "lib/apis/collection/services";
+import { IDataStore } from "./dataStore";
 
 interface IsetLoading {
     set: any
@@ -7,19 +8,19 @@ interface IsetLoading {
 }
 
 export default class dataStoreModel {
-    static getCollections = async (set: any, collections: any) => {
+    static getCollections = async (set: any) => {
         try {
             const data = await collectionService()
-            set({
+            set((state: IDataStore) => ({
                 collection: {
-                    ...collections,
+                    ...state.collection,
                     data: data.data?.data,
                     loaded: true,
                     isError: false
                 }
-            })
+            }))
         } catch (error) {
-            set({ collection: { isError: true } })
+            set((state: IDataStore) => ({ collection: { ...state.collection, isError: true } }))
         }
     }
 }

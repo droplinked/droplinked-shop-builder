@@ -8,12 +8,11 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import ProductListModel from './model'
 import ProductEmpty from './parts/empty/ProductEmpty'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
-import { useStore } from 'zustand'
-import useDataStore from 'lib/stores/datas/dataStore'
+import useHookStore from 'functions/hooks/store/useHookStore'
 
 function Products() {
-    const { collection } = useStore(useDataStore)
-    const { mutate, isLoading, data } = useMutation((params: IproductList) => productServices(params))
+    const { data: { collection } } = useHookStore()
+        const { mutate, isLoading, data } = useMutation((params: IproductList) => productServices(params))
     const [searchParams] = useSearchParams()
     const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1
     const products = useMemo(() => data?.data?.data, [data])

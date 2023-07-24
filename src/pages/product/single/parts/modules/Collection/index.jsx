@@ -3,18 +3,15 @@ import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTypography from 'components/common/typography/AppTypography'
-import { collectionService } from 'lib/apis/collection/services'
-import useDataStore from 'lib/stores/datas/dataStore'
+import useHookStore from 'functions/hooks/store/useHookStore'
 import CollectionCreate from 'pages/collections/parts/create/CollectionCreate'
-import React, { useEffect } from 'react'
-import { useMutation } from 'react-query'
-import { useStore } from 'zustand'
+import React from 'react'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
 import ListCollection from './parts/list'
 
 function Collection() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { collection: { fetch } } = useStore(useDataStore)
+    const { data: { collection: { fetch } } } = useHookStore()
 
     return (
         <VStack width={"100%"} spacing={4} align={"stretch"}>

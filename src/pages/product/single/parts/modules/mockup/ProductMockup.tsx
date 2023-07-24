@@ -10,7 +10,7 @@ import ProductPageTitle from '../title/ProductPageTitle'
 import ProductIframe from './parts/iframe/ProductIframe'
 
 function ProductMockup() {
-    const { state: { media, thumb }, methods: { updateState } } = useContext(productContext)
+    const { state: { media, thumb }, methods: { updateState }, store: { state: { variants } } } = useContext(productContext)
     const { refactorImage, defactorImage } = introductionClass
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -23,7 +23,7 @@ function ProductMockup() {
                         isReuired
                         description='Upload mockups of the POD product or use the 3D model to create it.'
                     />
-                    <BasicButton sizes='medium' onClick={onOpen}>Create 3D Model</BasicButton>
+                    {variants?.graphic_url && <BasicButton sizes='medium' onClick={onOpen}>Create 3D Model</BasicButton>}
                 </Flex>
                 <Box>
                     <SkeletonProduct width={"30%"} height={"200px"}>
