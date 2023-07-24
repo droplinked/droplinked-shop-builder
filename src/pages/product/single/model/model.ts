@@ -35,7 +35,8 @@ export default class ProductSingleModel {
                     quantity: el?.quantity,
                     record: false,
                     weight: el?.weight,
-                    recordData: el?.recordData
+                    recordData: el?.recordData,
+                    image: el?.image
                 }
             }),
             product_type: data?.product_type,

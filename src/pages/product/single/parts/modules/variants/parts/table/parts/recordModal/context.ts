@@ -3,6 +3,7 @@ import { createContext } from "react";
 interface IState {
     loading: boolean
     hashkey: string | null
+    blockchain: string
 }
 
 interface IrecordContext {
@@ -12,7 +13,8 @@ interface IrecordContext {
 
 export const recordStates: IState = {
     hashkey: null,
-    loading: false
+    loading: false,
+    blockchain: null
 }
 
 const recordContext = createContext<IrecordContext>({

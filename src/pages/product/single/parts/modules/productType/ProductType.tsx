@@ -29,7 +29,7 @@ function ProductType() {
             setDetails(type)
         }
     }, [pod_blank_product_id, data])
-    
+
     return (
         <VStack align="stretch">
             <Box position={"relative"}>
@@ -44,6 +44,12 @@ function ProductType() {
                     onChange={(e) => {
                         updateState("pod_blank_product_id", e.target.value)
                         updateState("sku", [])
+                        updateState("artwork", null)
+                        updateState("artwork2", null)
+                        updateState("artwork_position", null)
+                        updateState("artwork2_position", null)
+                        updateState("m2m_services", [])
+                        updateState("m2m_positions", [])
                         if (product_type === "PRINT_ON_DEMAND") {
                             updateState("properties", [
                                 {
@@ -66,10 +72,10 @@ function ProductType() {
             </Box>
             {Details && (
                 <Flex gap={3} padding="20px" borderRadius="8px" backgroundColor="#171717">
-                    <Box>
-                        <AppImage width="170px" src={Details?.image} />
+                    <Box width="fit-content">
+                        <AppImage width="80px" height="100px" src={Details?.image} />
                     </Box>
-                    <VStack align="stretch" color="#777">
+                    <VStack width="100%" align="stretch" color="#777">
                         <AppTypography size='14px'>{Details?.description}</AppTypography>
                         <AppTypography size='14px'>{Details?.fabric_comp}</AppTypography>
                     </VStack>

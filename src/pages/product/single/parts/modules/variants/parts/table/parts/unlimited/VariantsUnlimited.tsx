@@ -27,7 +27,7 @@ function VariantsUnlimited({ index, isDisabled, name, value }: IProps) {
 
     const rows = useMemo(() => {
         let html = []
-        for (let index = 1; index < 21; index++) {
+        for (let index = 0; index < 21; index++) {
             html.push(item(index))
         }
         return html
@@ -58,7 +58,7 @@ function VariantsUnlimited({ index, isDisabled, name, value }: IProps) {
                 width="100%"
                 padding="3px"
                 color="#808080"
-                onChange={(e) => e.target.value && parseInt(e.target.value) > 0 && updateSku(parseInt(e.target.value))}
+                onChange={(e) => e.target.value && parseInt(e.target.value) >= 0 && updateSku(parseInt(e.target.value))}
             />
             {isOpen && (
                 <VStack align="stretch" zIndex={1} maxHeight="200px" top={8} right={0} left={0} overflow="auto" spacing={0} position="absolute" backgroundColor="#272728" borderRadius="5px" color="#FFF" width="100%">

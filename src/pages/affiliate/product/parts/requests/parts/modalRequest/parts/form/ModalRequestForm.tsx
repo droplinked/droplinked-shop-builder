@@ -1,9 +1,11 @@
 import { Box, VStack } from '@chakra-ui/react'
 import { Form, Formik } from 'formik'
+import useStack from 'functions/hooks/stack/useStack'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
-import { casperRequestService } from 'lib/apis/affiliate/shopServices'
+import { requestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'
+import stacksRequest from 'lib/utils/blockchain/stacks/request'
 import RecordModalModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel'
 import React, { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
@@ -23,30 +25,60 @@ interface IProps {
 }
 
 function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
-    const { mutateAsync } = useMutation((params: IcasperRequestService) => casperRequestService(params))
+    const { mutateAsync } = useMutation((params: IcasperRequestService) => requestService(params))
     const { formSchema, publish_request } = ModalRequestModel
     const { openCasperWallet } = RecordModalModule
     const { showToast } = useAppToast()
+    const { login, isRequestPending, openContractCall, stxAddress } = useStack()
     const [Loading, setLoading] = useState(false)
 
-    const onSubmit = useCallback(async (values: IRequestModelValues) => {
-        try {
-            const casperWallet = await openCasperWallet()
-            setLoading(true)
-            const quantity = parseInt(values.quantity)
-            const publish = await publish_request({ casperWallet, quantity, sku })
-            await mutateAsync({
+    const request = useCallback(async (deployHash: string, quantity: number, chain: string) => {
+        return mutateAsync({
+            chain,
+            params: {
                 productID: product._id,
-                deploy_hash: publish.deployHash,
+                deploy_hash: deployHash,
                 quantity,
                 skuID: sku._id,
                 shopID: shop._id
-            })
-            setLoading(false)
-            setHahskey(publish.deployHash)
+            }
+        })
+    }, [product, sku])
+
+    const onSubmit = useCallback(async (values: IRequestModelValues) => {
+        const blockchain = sku?.recordData?.recordNetwork
+        const quantity = parseInt(values.quantity)
+        let deployHash = ""
+
+        try {
+            setLoading(true)
+            if (blockchain === "CASPER") {
+                const casperWallet = await openCasperWallet()
+                const publish = await publish_request({ casperWallet, quantity, sku })
+                deployHash = publish.deployHash
+            } else if (blockchain === "STACKS") {
+                await login()
+                const request = await stacksRequest({
+                    isRequestPending,
+                    openContractCall,
+                    params: {
+                        amount: quantity,
+                        commission: sku?.recordData?.data?.details?.commision,
+                        id: parseInt(sku?.recordData?.data?.details?.token_id),
+                        publisher: stxAddress
+                    }
+                })
+                if (request) deployHash = request.txId
+            }
+
+            if (deployHash) {
+                await request(deployHash, quantity, blockchain)
+                setHahskey(deployHash)
+                setLoading(false)
+            }
         } catch (error) {
-            if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
             setLoading(false)
+            if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
         }
     }, [sku, product, shop])
 
@@ -66,7 +98,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                             <Box><ModalRequestDetails /></Box>
                             <Box><RequestSpecs /></Box>
                             <Box><RequestQuantity /></Box>
-                            <Box><RequestModalButtons close={Loading ? () => { } : close} /></Box>
+                            <Box><RequestModalButtons close={close} /></Box>
                         </VStack>
                     </Form>
                 </ModalRequestContext.Provider>

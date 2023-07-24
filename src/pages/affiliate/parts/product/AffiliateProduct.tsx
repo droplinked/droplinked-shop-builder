@@ -5,23 +5,26 @@ import { Link } from 'react-router-dom';
 import AppImage from 'components/common/image/AppImage';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import AppTypography from 'components/common/typography/AppTypography';
+import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
 
 interface Iprops {
     image: string
     title: string
     link: string
+    blockchain: any
 }
 
-function AffiliateProduct({ image, title, link }: Iprops) {
+function AffiliateProduct({ image, title, link, blockchain }: Iprops) {
     const { shop } = useProfile()
     return (
         <Link to={`/${shop.name}/c/affiliate/shops/${link}`}>
             <VStack align={"stretch"} backgroundColor={"#000"} height="100%" position={"relative"} color='#FFF' borderRadius="8px" padding={5} paddingBottom={61} spacing={4}>
                 <Box><AppImage src={image} width="100%" /></Box>
-                <Box ><AppTypography size='12px'>{title}</AppTypography></Box>
+                <Box><AppTypography size='12px'>{title}</AppTypography></Box>
                 <HStack position={"absolute"} bottom={4}>
-                    <Image src={casper} width="20px" />
-                    <Text fontSize={"sm"}>Casper</Text>
+                    <IconBlockchain blockchain={blockchain} props={{ width: "20px" }} />
+                    <Text fontSize={"sm"}>{capitalizeFirstLetter(blockchain)}</Text>
                 </HStack>
             </VStack>
         </Link>

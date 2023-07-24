@@ -8,9 +8,8 @@ const productErrors = {
     your_product_published: "The product has been published successfully!",
     your_product_draft: "The product has been drafted successfully!",
     variant_has_been_deleted: "Variant has been deleted",
-    artwork_should_be_provided: "artwork should be provided to publish product",
-    front_artwork_uploaded_successfully: "Front artwork has been uploaded successfully!",
-    back_artwork_uploaded_successfully: "Back artwork has been uploaded successfully!",
+    artwork_should_be_provided: "Artwork should be provided to publish product",
+    artwork_uploaded_successfully: "Artwork has been uploaded successfully!",
 }
 
 export default productErrors

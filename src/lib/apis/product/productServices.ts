@@ -1,8 +1,8 @@
 import axiosInstance from "../axiosConfig"
-import { IproductByIdServices, IproductDeleteServices, IproductList, IproductState, IproductUpdateServices, IskuUpdateByIdServices } from "./interfaces"
+import { IproductByIdServices, IproductDeleteServices, IproductList, IproductState, IproductUpdateServices } from "./interfaces"
 
 export const productServices = ({ page, limit, filter }: IproductList) => {
-    return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}`: ''}`)
+    return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ''}`)
 }
 
 export const productCreateServices = (params: IproductState) => {
@@ -19,14 +19,6 @@ export const productDeleteServices = ({ productID }: IproductDeleteServices) => 
 
 export const productByIdServices = ({ productID, shopname }: IproductByIdServices) => {
     return axiosInstance.get(`product/public/${productID}?shopname=${shopname}`)
-}
-
-export const skuUpdateByIdServices = ({ skuID, params }: IskuUpdateByIdServices) => {
-    return axiosInstance.put(`sku/${skuID}`, params)
-}
-
-export const printPositionsServices = () => {
-    return axiosInstance.get(`product/public/print-positions`)
 }
 
 export const printServicesServices = () => {

@@ -14,6 +14,7 @@ import ShippingProduct from './parts/modules/shipping/ShippingProduct'
 import ProductPodDesign from './parts/podDesign/ProductPodDesign'
 import CollectionProduct from './parts/collection/CollectionProduct'
 import ProductStore from './parts/store/ProductStore'
+import DigitalLinks from './parts/digital/DigitalLinks'
 
 interface Istate {
     params: IproductState
@@ -63,9 +64,9 @@ function ProductSingle() {
         if (params?.productId) fetch().then((res: any) => setState(prev => ({ ...prev, params: res })))
     }, [params])
 
-    // useEffect(() => {
-    //     console.log(State.params.m2m_services);
-    // }, [State])
+    useEffect(() => {
+        console.log(State.params);
+    }, [State])
 
     return (
         <productContext.Provider value={{
@@ -82,6 +83,7 @@ function ProductSingle() {
                 <VStack spacing={5}>
                     <General />
                     <ProductPodDesign />
+                    <DigitalLinks />
                     <ShippingProduct />
                     <Variant />
                     <CollectionProduct />

@@ -1,23 +1,23 @@
+import { Box, VStack } from '@chakra-ui/react'
 import AppBadge from 'components/common/badge/AppBadge'
-import React, { useContext, useMemo } from 'react'
+import React, { useContext } from 'react'
 import { requestsButtonsContext } from '../../context'
 import RequestListButton from '../requestListButton/RequestListButton'
 
 function RequestButtons() {
     const { shop } = useContext(requestsButtonsContext)
 
-    const buttons = useMemo(() => {
-        switch (shop?.status) {
-            case "PENDING":
-                return <RequestListButton status={"accept"} value="Accept" />
-            case "ACCEPTED":
-                return <RequestListButton status={"reject"} value="Deny" />
-            default:
-                return <AppBadge text={shop?.status} colorScheme={["REJECTED", "CANCELED"].includes(shop?.status) ? "red" : "green"} />
-        }
-    }, [shop?.status])
+    return (
+        <VStack align="stretch" textAlign="center">
+            {shop?.status === "PENDING" ? (
+                <>
+                    <Box><RequestListButton status={"accept"} value="Accept" /></Box>
+                    <Box><RequestListButton status={"reject"} value="Deny" /></Box>
+                </>
+            ) : <AppBadge text={shop?.status} colorScheme={["REJECTED", "CANCELED"].includes(shop?.status) ? "red" : "green"} />}
 
-    return buttons
+        </VStack>
+    )
 }
 
 export default RequestButtons

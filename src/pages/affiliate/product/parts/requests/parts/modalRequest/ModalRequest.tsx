@@ -1,9 +1,5 @@
-import { Box, VStack } from '@chakra-ui/react'
 import HashKey from 'components/common/hashKey/HashKey'
 import AppModal, { IAppModal } from 'components/common/modal/AppModal'
-import { Form, Formik } from 'formik'
-import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
-import { casperRequestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'
 import React, { useCallback, useEffect, useState } from 'react'
 import ModalRequestForm from './parts/form/ModalRequestForm'
@@ -18,17 +14,17 @@ function ModalRequest({ close, open, product, sku, shop }: IProps) {
     const [HashKeyState, setHashkey] = useState(null)
 
     const setHahskey = useCallback((value: string) => setHashkey(value), [])
-    
+
     useEffect(() => {
-      return () => {
-        setHashkey(null)
-      }
+        return () => {
+            setHashkey(null)
+        }
     }, [open])
-    
+
     return (
         <AppModal close={() => { }} open={open} contentProps={{ padding: "60px" }} size="3xl">
             {HashKeyState ? (
-                <HashKey text='Request sended' close={close} hashkey={HashKeyState} />
+                <HashKey blockchain={sku?.recordData?.recordNetwork} text='Request sended' close={close} hashkey={HashKeyState} />
             ) : (
                 <ModalRequestForm product={product} shop={shop} sku={sku} close={close} setHahskey={setHahskey} />
             )}

@@ -47,8 +47,8 @@ export interface IskuOption {
 export interface IrecordData {
     _id: string
     status: "NOT_RECORDED" | "RECORDED" | "PENDING"
-    recordNetwork: string
-    casperData?: any
+    recordNetwork: any
+    data?: any
 }
 
 export interface Isku {
@@ -66,6 +66,7 @@ export interface Isku {
     record: Boolean
     weight: number
     recordData?: IrecordData
+    image?: string
 }
 
 export interface IproductByIdServices {
@@ -80,9 +81,4 @@ export interface IproductDeleteServices {
 export interface IproductUpdateServices {
     productID: string
     params: any
-}
-
-export interface IskuUpdateByIdServices {
-    skuID: string
-    params: Isku
 }

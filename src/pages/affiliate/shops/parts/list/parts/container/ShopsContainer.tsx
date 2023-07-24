@@ -3,7 +3,6 @@ import React from 'react'
 import ShopsMore from './parts/more/ShopsMore'
 import ShopsProfile from '../../../../../parts/pofile/ShopsProfile'
 import ShopsProduct from './parts/products/ShopsProduct'
-import { faker } from '@faker-js/faker'
 import { shopsContainerContext } from './context'
 
 interface Iprops {
@@ -21,11 +20,13 @@ function ShopsContainer({ shop }: Iprops) {
                         desciption={shop?.description}
                         shopname={shop?.name}
                         social={{
-                            facebook: "",
-                            instagram: shop.instagramURL,
-                            pintrest: "",
-                            snapchat: "",
-                            twitter: shop.twitterURL,
+                            facebook: shop?.facebookURL,
+                            instagram: shop?.instagramURL,
+                            tiktok: shop?.tiktokURL,
+                            discord: shop?.discordURL,
+                            linkedin: shop?.linkedinURL,
+                            twitter: shop?.twitterURL,
+                            web: shop?.webURL,
                         }}
                     />
                 </Box>

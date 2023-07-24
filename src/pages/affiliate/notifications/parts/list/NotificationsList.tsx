@@ -1,6 +1,7 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
 import AppEmptyPage from 'components/common/empty/AppEmptyPage'
 import { producerRequestService } from 'lib/apis/affiliate/shopServices'
+import { appDeveloment } from 'lib/utils/app/variable'
 import AffiliateDetailCard from 'pages/affiliate/parts/detail/affiliateDetailCard'
 import ShopsProfile from 'pages/affiliate/parts/pofile/ShopsProfile'
 import React, { useEffect } from 'react'
@@ -27,14 +28,17 @@ function NotificationsList() {
                                 <Box width={"20%"}>
                                     <ShopsProfile
                                         shopname=''
+                                        link={`https://${appDeveloment ? 'dev' : ''}.droplinked.io/${element.name}`}
                                         avatar={element.logo}
                                         title={element.name}
                                         social={{
-                                            facebook: "",
-                                            instagram: element.instagramURL,
-                                            pintrest: "",
-                                            snapchat: "",
-                                            twitter: element.twitterURL,
+                                            facebook: element?.facebookURL,
+                                            instagram: element?.instagramURL,
+                                            tiktok: element?.tiktokURL,
+                                            discord: element?.discordURL,
+                                            linkedin: element?.linkedinURL,
+                                            twitter: element?.twitterURL,
+                                            web: element?.webURL,
                                         }}
                                     />
                                 </Box>

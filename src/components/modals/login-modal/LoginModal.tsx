@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import { BottomText } from "./LoginModal-style";
@@ -7,12 +7,10 @@ import AppInput from "components/common/form/textbox/AppInput";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import AppErrors from "lib/utils/statics/errors/errors";
-import { useStore } from "zustand";
-import useAppStore from "lib/stores/app/appStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import AppModal from "components/common/modal/AppModal";
-import AppTypography from "components/common/typography/AppTypography";
 import BasicButton from "components/common/BasicButton/BasicButton";
+import useHookStore from "functions/hooks/store/useHookStore";
 
 interface Iform {
   email: string
@@ -20,7 +18,7 @@ interface Iform {
 }
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
-  const { login, loading } = useStore(useAppStore)
+  const { app: { login, loading } } = useHookStore()
   const navigate = useNavigate();
   const { showToast } = useAppToast()
 
@@ -30,7 +28,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
       let result = await login(data)
       if (result) loginFunction(result);
     } catch (error) {
-      showToast(error.message, "error");
+      showToast(error?.statusCode === 406 ? "Incorrect login information" : error.message, "error");
     }
   };
 

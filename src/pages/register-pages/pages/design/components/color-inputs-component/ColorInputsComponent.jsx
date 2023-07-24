@@ -20,9 +20,9 @@ const ColorInputsComponent = () => {
     >
       <Box w="50%">
         <InputColor
-          value={textColor}
+          value={backgroundColor}
           change={(value) => {
-            updateState("textColor", value);
+            updateState("backgroundColor", value);
           }}
           label="Hero Section Color"
         />

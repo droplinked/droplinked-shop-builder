@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import AppModal from 'components/common/modal/AppModal'
 import { Isku } from 'lib/apis/product/interfaces'
 import RecordForm from './parts/form/RecordForm'
@@ -35,7 +35,7 @@ function RecordModal({ close, open, product }: Iprops) {
     return (
         <recordContext.Provider value={{
             state: State,
-            updateState: (key: string, value: string) => setState(prev => ({ ...prev, [key]: value }))
+            updateState: (key: string, value: string) => setState(prev => ({ ...prev, [key]: value })),
         }}>
             <AppModal
                 open={open}
@@ -45,7 +45,7 @@ function RecordModal({ close, open, product }: Iprops) {
                     padding: "30px"
                 }}
             >
-                {State.hashkey ? <HashKey text="Sku record successful" hashkey={State.hashkey} close={closeModal} /> : <RecordForm close={closeModal} product={product} />}
+                {State.hashkey ? <HashKey text="Sku record successful" blockchain={State.blockchain} hashkey={State.hashkey} close={closeModal} /> : <RecordForm close={closeModal} product={product} />}
             </AppModal>
         </recordContext.Provider>
     )

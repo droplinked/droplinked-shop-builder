@@ -1,26 +1,26 @@
 import React, { useContext, useEffect } from 'react'
 import { productContext } from 'pages/product/single/context'
-import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import { Box, Flex } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
+import useHookStore from 'functions/hooks/store/useHookStore'
 
 interface IProps {
-  collections: any
   isLoading: boolean
 }
 
-function ListCollection({ collections, isLoading }: IProps) {
+function ListCollection({ isLoading }: IProps) {
   const { state: { productCollectionID }, methods: { updateState }, productID } = useContext(productContext)
+  const { data: { collection: { data } } } = useHookStore()
 
   // if state collection is null set first collection
   useEffect(() => {
-    if (collections && collections.length && !productID) updateState('productCollectionID', collections[0]._id)
-  }, [collections, productID])
+    if (data && data.length && !productID) updateState('productCollectionID', data[0]._id)
+  }, [data, productID])
 
   return (
     <AppSkeleton isLoaded={!isLoading}>
       <Flex backgroundColor="#141414" padding={6} gap={3} flexWrap="wrap" alignItems="baseline" minHeight="180px">
-        {collections && collections.length ? collections.map((el: any, key: number) => (
+        {data && data.length ? data.map((el: any, key: number) => (
           <Box
             key={key}
             onClick={() => updateState('productCollectionID', el._id)}
