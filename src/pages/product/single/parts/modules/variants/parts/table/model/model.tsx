@@ -2,6 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
 import { Isku, IproductState } from "lib/apis/product/interfaces";
 import React from "react";
+import CoverSku from "../parts/cover/CoverSku";
 import FieldsSkuTable from "../parts/fields/FieldsSkuTable";
 import VariantsUnlimited from "../parts/unlimited/VariantsUnlimited";
 import ProductSkuesTable from "./modules/table";
@@ -74,6 +75,9 @@ export default class SkuTableModel {
                         </Flex>
                     )
                 },
+            },
+            Cover: {
+                value: <CoverSku index={key} image={sku.image} />
             },
         }
     }

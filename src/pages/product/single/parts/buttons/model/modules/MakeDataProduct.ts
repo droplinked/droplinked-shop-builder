@@ -19,7 +19,8 @@ export default class MakeDataProductModel {
             },
             price: parseFloat(el?.price),
             weight: parseFloat(el?.weight),
-            quantity: parseInt(el?.quantity)
+            quantity: parseInt(el?.quantity),
+            image: el?.image
         }))
     }
 

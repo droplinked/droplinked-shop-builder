@@ -1,10 +1,10 @@
-import { Box, Flex, HStack } from '@chakra-ui/react'
+import { Box, HStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import React, { useCallback, useContext, useState } from 'react'
 import { productContext } from '../../context'
 import { useMutation } from 'react-query'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
-import { productCreateServices, productUpdateServices, skuUpdateByIdServices } from 'lib/apis/product/productServices'
+import { productCreateServices, productUpdateServices } from 'lib/apis/product/productServices'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import useAppToast from 'functions/hooks/toast/useToast'
 import ButtonsProductClass from './model/ButtonProductModel'
@@ -14,7 +14,6 @@ import MakeDataProductModel from './model/modules/MakeDataProduct'
 function ButtonsProduct() {
     const create = useMutation((params) => productCreateServices(params))
     const update = useMutation((params) => productUpdateServices(params))
-    const updateSku = useMutation((params) => skuUpdateByIdServices(params))
     const [TargetButton, setTargetButton] = useState('')
     const { state, productID } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
@@ -28,7 +27,6 @@ function ButtonsProduct() {
             setTargetButton(draft ? "draft" : "create")
             const formData = makeData({ state, draft, productID })
             await service(productID ? { productID, params: formData } : formData)
-            if (productID) await updateSkues(MakeDataProductModel.refactorSku({ skues: state.sku })) // Update skues
 
             showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")
             shopNavigate("products")
@@ -37,16 +35,12 @@ function ButtonsProduct() {
         }
     }, [state, productID])
 
-    const updateSkues = useCallback((skues) => {
-        return Promise.all(skues.filter(el => el._id).map(el => updateSku.mutateAsync({ skuID: el._id, params: makeskuUpdate({ sku: el }) })))
-    }, [])
-
     return (
         <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
             <Box>
                 {!state.publish_product || !productID ? (
                     <BasicButton
-                        isLoading={TargetButton === "draft" ? productID ? update.isLoading || updateSku.isLoading : create.isLoading : false}
+                        isLoading={TargetButton === "draft" ? productID ? update.isLoading : create.isLoading : false}
                         variant={'outline'}
                         onClick={() => submit(true)}
                     >
@@ -56,7 +50,7 @@ function ButtonsProduct() {
             </Box>
             <Box>
                 <BasicButton
-                    isLoading={TargetButton === "create" ? productID ? update.isLoading || updateSku.isLoading : create.isLoading : false}
+                    isLoading={TargetButton === "create" ? productID ? update.isLoading : create.isLoading : false}
                     onClick={() => submit(false)}
                 >
                     {productID && state.publish_product ? "Update Product" : "Publish Product"}
