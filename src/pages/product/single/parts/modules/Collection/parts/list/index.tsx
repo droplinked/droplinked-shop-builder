@@ -1,10 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { productContext } from 'pages/product/single/context'
-import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import { Box, Flex } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { useStore } from 'zustand'
-import useDataStore from 'lib/stores/datas/dataStore'
+import useHookStore from 'functions/hooks/store/useHookStore'
 
 interface IProps {
   isLoading: boolean
@@ -12,8 +10,8 @@ interface IProps {
 
 function ListCollection({ isLoading }: IProps) {
   const { state: { productCollectionID }, methods: { updateState }, productID } = useContext(productContext)
-  const { collection: { data } } = useStore(useDataStore)
-  
+  const { data: { collection: { data } } } = useHookStore()
+
   // if state collection is null set first collection
   useEffect(() => {
     if (data && data.length && !productID) updateState('productCollectionID', data[0]._id)

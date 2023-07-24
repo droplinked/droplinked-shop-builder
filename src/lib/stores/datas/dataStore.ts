@@ -18,10 +18,10 @@ export interface IDataStore {
 const { getCollections } = dataStoreModel
 
 // Initial states
-const states = (set: any, get: any): IDataStore => ({
+const states = (set: any): IDataStore => ({
     collection: {
         data: [],
-        fetch: () => getCollections(set, get().collection),
+        fetch: () => getCollections(set),
         loaded: false,
         isError: false
     },

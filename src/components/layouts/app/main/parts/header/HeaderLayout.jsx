@@ -17,13 +17,12 @@ import {
 } from "./HeaderLayout-style";
 import droplinkedIcon from "assest/image/green-droplinked-logo.svg";
 import HeaderLogin from "./parts/login/HeaderLogin";
-import useAppStore from "lib/stores/app/appStore";
-import { useStore } from "zustand";
 import { useCallback } from "react";
 import AppIcons from "assest/icon/Appicons";
+import useHookStore from "functions/hooks/store/useHookStore";
 
 const HeaderLayout = () => {
-  const { shop, clearShop } = useStore(useAppStore);
+  const { app: { shop, clearShop } } = useHookStore();
   const { onOpen, onClose, isOpen } = useDisclosure();
   const { shopNavigate } = useCustomNavigate();
 

@@ -1,9 +1,8 @@
-import useDataStore from 'lib/stores/datas/dataStore'
+import useHookStore from 'functions/hooks/store/useHookStore'
 import React, { useEffect } from 'react'
-import { useStore } from 'zustand'
 
 function AdminProvider({ children }) {
-  const { collection } = useStore(useDataStore)
+  const { data: { collection } } = useHookStore()
 
   // Initial data state managment
   useEffect(() => {
