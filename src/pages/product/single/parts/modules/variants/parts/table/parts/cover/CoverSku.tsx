@@ -1,6 +1,7 @@
 import { useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppImage from 'components/common/image/AppImage'
+import AppTooltip from 'components/common/tooltip/AppTooltip'
 import React from 'react'
 import CoversModal from './parts/modal/CoversModal'
 
@@ -23,7 +24,9 @@ function CoverSku({ index, image }: ICoverSku) {
             {image ? (
                 <AppImage src={image} onClick={onOpen} {...attr} />
             ) : (
-                <AppIcons.cover onClick={onOpen} {...attr} />
+                <AppTooltip label="Choose variant cover amung the product images">
+                    <AppIcons.cover onClick={onOpen} {...attr} />
+                </AppTooltip>
             )}
             {isOpen && <CoversModal image={image} index={index} close={onClose} open={true} />}
         </>

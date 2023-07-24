@@ -14,7 +14,7 @@ function SkuTable() {
     const { getRows } = SkuTableModel
     const recordModal = useDisclosure()
     const editModal = useDisclosure()
-    
+
     const rows = useMemo(() => {
         if (!state.sku.length) return null
 
@@ -22,31 +22,29 @@ function SkuTable() {
 
             return {
                 ...getRows({ sku: el, state, key, variants, }),
-                ...state.publish_product && productID && {
-                    controls: {
-                        caption: "Drop",
-                        props: {
-                            style: { textAlign: "center" }
-                        },
-                        value: (
-                            <>
-                                {
-                                    el?.recordData && el.recordData.status !== "NOT_RECORDED" ?
-                                        <Flex justifyContent={"center"}><Text backgroundColor={"#000"} borderRadius="100px" fontSize={"xs"} padding="4px 20px">{el?.recordData.status}</Text></Flex>
-                                        :
-                                        <SkuTableOptions
-                                            element={el}
-                                            updateSku={(sku: any) => setSku(sku)}
-                                            elementKey={key}
-                                            modals={{
-                                                editModal: editModal.onOpen,
-                                                recordMoal: recordModal.onOpen
-                                            }}
-                                        />
-                                }
-                            </>
-                        )
-                    }
+                controls: {
+                    caption: "Drop",
+                    props: {
+                        style: { textAlign: "center" }
+                    },
+                    value: (
+                        <>
+                            {
+                                el?.recordData && el.recordData.status !== "NOT_RECORDED" ?
+                                    <Flex justifyContent={"center"}><Text backgroundColor={"#000"} borderRadius="100px" fontSize={"xs"} padding="4px 20px">{el?.recordData.status}</Text></Flex>
+                                    :
+                                    <SkuTableOptions
+                                        element={el}
+                                        updateSku={(sku: any) => setSku(sku)}
+                                        elementKey={key}
+                                        modals={{
+                                            editModal: editModal.onOpen,
+                                            recordMoal: recordModal.onOpen
+                                        }}
+                                    />
+                            }
+                        </>
+                    )
                 }
             }
         })
