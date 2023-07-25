@@ -16,6 +16,8 @@ function ProductIframe({ close, open }: IProps) {
     const eventMessage = useCallback((event: any) => {
         if (event.data.type === "imageUrls") {
             const payload = event.data.payload
+            console.log(event.data.payload);
+            
             updateState("media", introductionClass.refactorImage([...introductionClass.defactorImage(media), ...Object.keys(payload).map(el => payload[el])]));
             close()
         }
