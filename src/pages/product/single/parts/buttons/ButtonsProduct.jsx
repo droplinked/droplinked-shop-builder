@@ -31,7 +31,8 @@ function ButtonsProduct() {
             showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")
             shopNavigate("products")
         } catch (error) {
-            showToast(error.errors ? error.errors[0] : error?.message ? error.message : "Oops! Something went wrong", "error")
+            console.log("sadas", );
+            showToast(error?.response?.data?.data?.message ? error?.response?.data?.data?.message : error?.message ? error.message : "Oops! Something went wrong", "error")
         }
     }, [state, productID])
 
