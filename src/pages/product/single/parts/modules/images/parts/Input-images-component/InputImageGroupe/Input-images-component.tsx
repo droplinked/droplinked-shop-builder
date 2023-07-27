@@ -21,7 +21,7 @@ interface IProps {
   message?: string
   onSuccess?: Function
   size?: "small" | "original" | "standard"
-  clearThumb:()=>void
+  clearThumb?:()=>void
 }
 
 export default function InputImagesGroup({ setState, state, vertical, message, onSuccess, size = "standard", clearThumb }: IProps) {
@@ -77,7 +77,7 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
 
   const deleteImg = (e) => {
     let newArr = state.filter((url) => url != e);
-    if(newArr.length === 0)clearThumb()
+    if(newArr.length === 0 && clearThumb)clearThumb()
     setState(newArr);
   };
 

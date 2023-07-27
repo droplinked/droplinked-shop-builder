@@ -31,7 +31,9 @@ function ProductMockup() {
                             message={AppErrors.store.upload("Mockup")}
                             onSuccess={(images: any) => !thumb.length && images?.small && updateState("thumb", images?.small)}
                             setState={(images: any) => updateState("media", refactorImage(images))}
-                            state={defactorImage(media)} />
+                            state={defactorImage(media)}
+                            clearThumb={()=>{updateState("thumb", '')}}
+                            />
                     </SkeletonProduct>
                 </Box>
             </VStack>
