@@ -56,7 +56,6 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         repassword: '',
       }}
       validationSchema={formSchema}
-      validateOnChange={false}
       onSubmit={onSubmit}
     >
       {({ errors, values, setFieldValue }) => (
