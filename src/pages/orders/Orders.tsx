@@ -20,8 +20,6 @@ function Orders() {
         mutate({ page })
     }, [page, searchParams])
 
-    console.log('data', data);
-
     useEffect(() => fetch(), [mutate, page])
 
     const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
