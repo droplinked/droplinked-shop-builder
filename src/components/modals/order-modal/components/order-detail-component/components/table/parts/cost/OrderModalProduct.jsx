@@ -6,16 +6,6 @@ import React, { useCallback, useContext, useMemo } from "react";
 function OrderDetailCost() {
   const { order } = useContext(orderModalContext);
 
-  const totalPrice = useMemo(() => {
-    let total = order?.items?.reduce(
-      (sum, product) => sum + product?.totalPriceItem,
-      0
-    );
-
-    total += parseFloat(order?.shippingPrice);
-    return total.toFixed(2);
-  }, [order]);
-
   const textTypes = {
     typeA: {
       fontSize: { base: "sm", sm: "md" },
@@ -36,10 +26,18 @@ function OrderDetailCost() {
         </HStack>
         <Box>$ 0.00</Box>
       </HStack> */}
+      
+      {/* <HStack justifyContent={"space-between"}>
+        <HStack>
+          <Text {...textTypes.typeA}>Discount:</Text>
+        </HStack>
+        <Box>
+          <Text>$ {order?.shippingPrice}</Text>
+        </Box>
+      </HStack> */}
       <HStack justifyContent={"space-between"}>
         <HStack>
           <Text {...textTypes.typeA}>Shipping:</Text>
-          {/* <Text {...textTypes.typeB}>{appDeveloment ? "Express shipping" : ""}</Text> */}
         </HStack>
         <Box>
           <Text>$ {order?.shippingPrice}</Text>
@@ -51,7 +49,7 @@ function OrderDetailCost() {
             Order Tax:
           </Text>
         </HStack>
-        <Box>$ 0.00</Box>
+        <Box>${order?.taxAmount}</Box>
       </HStack>
       <HStack justifyContent={"space-between"}>
         <HStack>
@@ -61,7 +59,7 @@ function OrderDetailCost() {
         </HStack>
         <Box>
           <Text fontSize={{ base: "sm", sm: "2xl" }} fontWeight={"extrabold"}>
-            $ {totalPrice}
+            $ {order?.totalPriceCart}
           </Text>
         </Box>
       </HStack>

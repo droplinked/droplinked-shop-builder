@@ -24,10 +24,10 @@ function OrderDetailTable() {
                         value: el?.quantity
                     },
                     color: {
-                        value: "---"
+                        value: el?.color || "---"
                     },
                     size: {
-                        value: "---"
+                        value: el?.size || "---"
                     },
                     price : {
                         value: `$${pricePerItem(el)}`

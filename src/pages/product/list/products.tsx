@@ -12,7 +12,7 @@ import useHookStore from 'functions/hooks/store/useHookStore'
 
 function Products() {
     const { data: { collection } } = useHookStore()
-        const { mutate, isLoading, data } = useMutation((params: IproductList) => productServices(params))
+    const { mutate, isLoading, data } = useMutation((params: IproductList) => productServices(params))
     const [searchParams] = useSearchParams()
     const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1
     const products = useMemo(() => data?.data?.data, [data])
