@@ -26,15 +26,18 @@ function OrderDetailCost() {
         </HStack>
         <Box>$ 0.00</Box>
       </HStack> */}
-      
-      {/* <HStack justifyContent={"space-between"}>
-        <HStack>
-          <Text {...textTypes.typeA}>Discount:</Text>
+
+      {order?.totalDiscountAmount ? (
+        <HStack justifyContent={"space-between"}>
+          <HStack>
+            <Text {...textTypes.typeA}>Discount:</Text>
+          </HStack>
+          <Box>
+            <Text>$ {order?.totalDiscountAmount}</Text>
+          </Box>
         </HStack>
-        <Box>
-          <Text>$ {order?.shippingPrice}</Text>
-        </Box>
-      </HStack> */}
+      ) : null}
+
       <HStack justifyContent={"space-between"}>
         <HStack>
           <Text {...textTypes.typeA}>Shipping:</Text>
