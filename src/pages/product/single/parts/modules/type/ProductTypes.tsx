@@ -12,6 +12,7 @@ function ProductTypes() {
     const changeProductType = useCallback((value: string) => {
         updateState("product_type", product_type === value ? "NORMAL" : value)
         updateState("sku", [])
+        updateState("shippingType", "EASY_POST")
         updateState("properties", [])
     }, [product_type])
 
