@@ -1,4 +1,5 @@
 import { Box, VStack } from '@chakra-ui/react'
+import AppUploadImage from 'components/common/upload/image/AppUploadImage'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext, useEffect } from 'react'
@@ -22,6 +23,10 @@ function ProductImages() {
                     />
                     <Box>
                         <SkeletonProduct width={"30%"} height={"200px"}>
+                            <AppUploadImage
+                                values={defactorImage(media)}
+                                onChange={(images) => updateState("media", refactorImage([...media, images.standard]))}
+                            />
                             <InputImagesGroup
                                 message={AppErrors.store.upload("The product image")}
                                 onSuccess={(images: any) => !thumb.length && images?.small && updateState("thumb", images?.small)}
