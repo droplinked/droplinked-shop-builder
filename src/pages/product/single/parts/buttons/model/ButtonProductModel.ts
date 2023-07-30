@@ -75,9 +75,14 @@ export default class ButtonsProductClass {
     }
 
     static makeData = ({ state, draft, productID }: ImakeData) => {
+
+        // Check PRINT_ON_DEMAND
+        if (state.product_type === "PRINT_ON_DEMAND") state.shippingType = "DLW"
+
         const updateData = (publish_product: boolean) => this.makemodel.update({ state: { ...state, publish_product } })
         const data = { ...state, sku: MakeDataProductModel.refactorSku({ skues: state.sku }) }
         return draft ? productID ? updateData(false) : { ...data, publish_product: false } : productID ? updateData(true) : { ...data, publish_product: true }
+
     }
 
     static makeskuUpdate = ({ sku }: ImakeskuUpdate) => {
