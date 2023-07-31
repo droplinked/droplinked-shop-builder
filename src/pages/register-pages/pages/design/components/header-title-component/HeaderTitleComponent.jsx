@@ -15,7 +15,7 @@ const HeaderTitleComponent = () => {
     <VStack align="stretch">
       <VStack align="stretch" spacing={1}>
         <AppTypography size="16px">Hero Text</AppTypography>
-        <AppTypography size="14px" color="#808080" marginTop={1}>Write a catchy text about your store.</AppTypography>
+        <AppTypography size="14px" color="#808080" marginTop={1}>Please enter a catchy slogan for your store.</AppTypography>
       </VStack>
       <AppInput
         placeholder="Be Smart, Get Comfy"
