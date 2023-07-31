@@ -18,7 +18,8 @@ function VariantsProduct() {
   const addSku = useCallback(({ properties }: IaddSku) => {
     const makedata = makeData({
       properties: properties.filter(el => el.title.length && el.items.length),
-      skues: sku
+      skues: sku,
+      product_type
     })
     updateState("sku", makedata)
   }, [sku, variants, product_type])
