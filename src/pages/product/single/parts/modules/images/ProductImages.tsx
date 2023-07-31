@@ -8,32 +8,35 @@ import SkeletonProduct from '../skeleton/SkeletonProduct'
 import ProductPageTitle from '../title/ProductPageTitle'
 
 function ProductImages() {
-    const { state: { media, product_type, thumb }, methods: { updateState } } = useContext(productContext)
-    const { refactorImage, defactorImage } = introductionClass
+  const {
+    state: { media, product_type, thumb },
+    methods: { updateState },
+  } = useContext(productContext);
+  const { refactorImage, defactorImage } = introductionClass;
 
-    return (
-        <>
-            {["DIGITAL", "NORMAL"].includes(product_type) && (
-                <VStack align={"stretch"}>
-                    <ProductPageTitle
-                        isReuired
-                        title={product_type === "NORMAL" ? 'Product Images' : 'Product Preview'}
-                        description={product_type === "NORMAL" ? 'Upload static images of your product.' : 'Upload images of the digital product.'}
-                    />
-                    <Box>
-                        <SkeletonProduct width={"30%"} height={"200px"}>
-                            <AppUploadImage
-                                values={defactorImage(media)}
-                                toast={AppErrors.store.upload("The product image")}
-                                onSuccess={(images: any) => updateState("thumb", images?.small)}
-                                onChange={(images: any) => updateState("media", refactorImage(images))}
-                            />
-                        </SkeletonProduct>
-                    </Box>
-                </VStack>
-            )}
-        </>
-    )
+  return (
+    <>
+      {["DIGITAL", "NORMAL"].includes(product_type) && (
+        <VStack align={"stretch"}>
+          <ProductPageTitle
+            isReuired
+            title={product_type === "NORMAL" ? 'Product Images' : 'Product Preview'}
+            description={product_type === "NORMAL" ? 'Upload static images of your product.' : 'Upload images of the digital product.'}
+          />
+          <Box>
+            <SkeletonProduct width={"30%"} height={"200px"}>
+              <AppUploadImage
+                values={defactorImage(media)}
+                toast={AppErrors.store.upload("The product image")}
+                onSuccess={(images: any) => updateState("thumb", images?.small)}
+                onChange={(images: any) => updateState("media", refactorImage(images))}
+              />
+            </SkeletonProduct>
+          </Box>
+        </VStack>
+      )}
+    </>
+  )
 }
 
-export default ProductImages
+export default ProductImages;
