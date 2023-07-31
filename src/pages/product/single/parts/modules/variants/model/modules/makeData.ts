@@ -1,4 +1,4 @@
-import { Iproperties, Isku } from "lib/apis/product/interfaces"
+import { Iproperties, Isku, product_type } from "lib/apis/product/interfaces"
 import VariantsRefactorModel from "./refactor"
 
 interface Isort {
@@ -12,6 +12,7 @@ interface ImakePropertyItem {
 interface IgetOptions {
     skues: Array<Isku>
     properties: Array<Iproperties>
+    product_type: product_type
 }
 
 export default class VariantsMakeDataModel {
@@ -24,14 +25,14 @@ export default class VariantsMakeDataModel {
         }, null)
     }
 
-    static getOptions = ({properties,skues}:IgetOptions): Array<Isku> => {
+    static getOptions = ({ properties, skues, product_type }: IgetOptions): Array<Isku> => {
         const arr: any = [];
         const data: Isku = {
             externalID: "",
             index: 0,
             options: [],
             price: 0,
-            quantity: 0,
+            quantity: product_type === "PRINT_ON_DEMAND" ? -1 : 0,
             record: false,
             weight: 0,
             dimensions: {
