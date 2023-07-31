@@ -2,7 +2,7 @@ import axios from 'axios';
 import useAppToast from 'functions/hooks/toast/useToast';
 import React, { useCallback, useRef } from 'react'
 import { useMutation } from 'react-query';
-import appUploadImageContext from './context';
+import appUploadImageContext, { ImodeUploadImage } from './context';
 import UploadImageModel from './model';
 import DefaultHoverBox from './parts/default/DefaultHoverBox';
 
@@ -12,9 +12,10 @@ interface IProps {
     onSuccess?: Function
     toast?: string
     size?: "small" | "original" | "standard"
+    mode?: ImodeUploadImage
 }
 
-function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess }: IProps) {
+function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess, mode = "multi" }: IProps) {
     const { mutateAsync, isLoading } = useMutation((formData: any) => axios.post("https://cdn.droplinked.com/upload", formData))
     const fileRef = useRef(null);
     const { showToast } = useAppToast()
@@ -45,7 +46,8 @@ function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess 
             values,
             openFile: () => fileRef.current.click(),
             deleted,
-            isLoading
+            isLoading,
+            mode
         }}>
             <DefaultHoverBox />
             <input type="file" className="d-none" ref={fileRef} onChange={create} />
