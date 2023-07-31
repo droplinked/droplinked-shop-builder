@@ -30,9 +30,8 @@ function ProductPositions({ update, state, positions }: IProps) {
         <Box key={key}>
           <Image
             style={{
-              border: `3px solid ${
-                state.includes(el) ? "#2EC99E" : "transparent"
-              }`,
+              border: `3px solid ${state.includes(el) ? "#2EC99E" : "transparent"
+                }`,
               borderRadius: "8px",
             }}
             onClick={() => update(el)}

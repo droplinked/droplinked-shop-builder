@@ -9,6 +9,28 @@ import React, { useContext } from 'react'
 function Shipping() {
     const { state: { shippingPrice, shippingType }, methods: { updateState }, loading } = useContext(productContext)
 
+    const shippings = [
+        {
+            title: 'Self Managed',
+            value: 'CUSTOM',
+            description: 'You will handle shipping operations internally.'
+        },
+        {
+            title: 'EASY Post',
+            value: 'EASY_POST',
+            description: (
+                <>
+                    EASY Post takes responsibility to deliver your customer orders. <a style={{ color: "#2EC99E" }} href='' target={"_blank"}>Learn more</a>
+                </>
+            )
+        },
+        {
+            title: 'DLW',
+            value: 'DLW',
+            description: 'Only select this method if you have contacted us for custom production.'
+        },
+    ]
+
     return (
         <VStack align={"stretch"} width={"100%"} spacing={8}>
             <VStack align={"stretch"}>
@@ -18,34 +40,20 @@ function Shipping() {
                     onChange={(value) => updateState('shippingType', value)}
                 >
                     <VStack align={"stretch"}>
-                        <Box>
-                            <AppSkeleton isLoaded={loading}>
-                                <BlackBox padding={5}>
-                                    <Radio size='md' value='CUSTOM' alignItems="flex-start" colorScheme='green'>
-                                        <VStack align='stretch' paddingLeft={2} spacing={2}>
-                                            <TextLabelBold>Self Managed</TextLabelBold>
-                                            <Text fontSize="sm" color="lightGray">
-                                                You will handle shipping operations internally.
-                                            </Text>
-                                        </VStack>
-                                    </Radio>
-                                </BlackBox>
-                            </AppSkeleton>
-                        </Box>
-                        <Box>
-                            <AppSkeleton isLoaded={loading}>
-                                <BlackBox padding={5}>
-                                    <Radio size='md' value='EASY_POST' alignItems="flex-start" colorScheme='green'>
-                                        <VStack align='stretch' paddingLeft={2} spacing={2}>
-                                            <TextLabelBold>EASY Post</TextLabelBold>
-                                            <Text fontSize="sm" color="lightGray">
-                                                EASY Post takes responsibility to deliver your customer orders. <a style={{ color: "#2EC99E" }} href='' target={"_blank"}>Learn more</a>
-                                            </Text>
-                                        </VStack>
-                                    </Radio>
-                                </BlackBox>
-                            </AppSkeleton>
-                        </Box>
+                        {shippings.map((el, key) => (
+                            <Box key={key}>
+                                <AppSkeleton isLoaded={loading}>
+                                    <BlackBox padding={5}>
+                                        <Radio size='md' value={el.value} alignItems="flex-start" colorScheme='green'>
+                                            <VStack align='stretch' paddingLeft={2} spacing={2}>
+                                                <TextLabelBold>{el.title}</TextLabelBold>
+                                                <Text fontSize="sm" color="lightGray">{el.description}</Text>
+                                            </VStack>
+                                        </Radio>
+                                    </BlackBox>
+                                </AppSkeleton>
+                            </Box>
+                        ))}
                     </VStack>
                 </RadioGroup>
             </VStack>

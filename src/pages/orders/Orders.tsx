@@ -4,21 +4,32 @@ import OrdersModel from './model'
 import AppDataGrid from 'components/common/datagrid/DataGrid'
 import { ordersServices } from 'lib/apis/orders/orderServices'
 import AppEmptyPage from 'components/common/empty/AppEmptyPage'
+import { useSearchParams } from 'react-router-dom'
+import { IordersServices } from 'lib/apis/orders/interfaces'
 
 function Orders() {
-    const { mutate, isLoading,data } = useMutation(() => ordersServices())
+    const { mutate, isLoading, data } = useMutation((params: IordersServices) => ordersServices(params))
     const [States, setStates] = useState({
         search: null
     })
 
-    useEffect(() => mutate(), [mutate])
+    const [searchParams] = useSearchParams()
+    const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1
+
+    const fetch = useCallback(() => {
+        mutate({ page })
+    }, [page, searchParams])
+
+    useEffect(() => fetch(), [mutate, page])
 
     const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
 
     // Handle search and without search
     const rows = useMemo(() => {
+        console.log("data",data);
+        
         return data ? OrdersModel.refactorData({
-            data: data.data.data,
+            data: data.data.data?.data,
             search: States.search
         }) : []
     }, [States.search, data])

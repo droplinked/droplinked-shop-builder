@@ -1,7 +1,6 @@
-name: main-s3cf-deploy
+name: s3-depl
 env:
   CI: false
-  
   
 on:
   push:
