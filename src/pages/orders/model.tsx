@@ -48,7 +48,7 @@ export default class OrdersModel {
             value: element?.items?.length
         },
         Status: {
-            caption: "Delivery Status",
+            caption: "Status",
             value: element?.status
         },
         options: {
