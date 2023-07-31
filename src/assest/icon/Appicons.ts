@@ -45,6 +45,7 @@ import { ReactComponent as web } from './web.svg'
 import { ReactComponent as linkedin } from './linkedin.svg'
 import { ReactComponent as tiktok } from './tiktok.svg'
 import { ReactComponent as cover } from './cover.svg'
+import { ReactComponent as upload } from './upload-icon.svg'
 
 const AppIcons = {
   productsIcon,
@@ -93,6 +94,7 @@ const AppIcons = {
   web,
   linkedin,
   tiktok,
-  cover
+  cover,
+  upload
 }
 export default AppIcons
