@@ -6,10 +6,7 @@ import { useContext } from "react";
 import { designContext } from "../../design-context";
 
 const IconsComponent = () => {
-  const {
-    state: { logo, headerIcon },
-    methods: { updateState },
-  } = useContext(designContext);
+  const { state: { logo, headerIcon }, methods: { updateState } } = useContext(designContext);
 
   return (
     <Flex
@@ -24,6 +21,7 @@ const IconsComponent = () => {
         <Box>
           <AppUploadImage
             values={logo}
+            mode="single"
             onChange={(images) => updateState("logo", images)}
           />
         </Box>
@@ -35,6 +33,7 @@ const IconsComponent = () => {
         <Box>
           <AppUploadImage
             values={headerIcon}
+            mode="single"
             onChange={(images) => updateState("headerIcon", images)}
           />
         </Box>
