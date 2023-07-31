@@ -1,5 +1,6 @@
 import { Box, Flex, useDisclosure, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
+import AppUploadImage from 'components/common/upload/image/AppUploadImage'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext, useEffect } from 'react'
@@ -27,11 +28,11 @@ function ProductMockup() {
                 </Flex>
                 <Box>
                     <SkeletonProduct width={"30%"} height={"200px"}>
-                        <InputImagesGroup
-                            message={AppErrors.store.upload("Mockup")}
-                            onSuccess={(images: any) => !thumb.length && images?.small && updateState("thumb", images?.small)}
-                            setState={(images: any) => updateState("media", refactorImage(images))}
-                            state={defactorImage(media)} />
+                        <AppUploadImage
+                            toast={AppErrors.store.upload("Mockup")}
+                            onSuccess={(images: any) => updateState("thumb", images?.small)}
+                            onChange={(images: any) => updateState("media", refactorImage(images))}
+                            values={defactorImage(media)} />
                     </SkeletonProduct>
                 </Box>
             </VStack>

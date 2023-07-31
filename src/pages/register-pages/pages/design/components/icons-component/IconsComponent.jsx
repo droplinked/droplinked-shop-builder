@@ -1,9 +1,9 @@
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex, VStack } from "@chakra-ui/react";
+import FieldLabelReuired from "components/common/form/fieldLabel/parts/required/FieldLabelReuired";
+import AppTypography from "components/common/typography/AppTypography";
+import AppUploadImage from "components/common/upload/image/AppUploadImage";
 import { useContext } from "react";
-//
 import { designContext } from "../../design-context";
-//
-import InputImage from "../input-image/InputImage";
 
 const IconsComponent = () => {
   const {
@@ -18,27 +18,27 @@ const IconsComponent = () => {
       justifyContent="space-between"
       gap="24px"
     >
-      <InputImage
-        label="Site Logo"
-        placeHolder="Site logo appears at the top left of the page."
-        value={logo}
-        change={(value) => updateState("logo", value)}
-        maxSize={{
-          fieldName: "Size",
-          size: 5
-        }}
-      />
+      <VStack align="stretch" width="50%">
+        <AppTypography size="18px" display="flex" alignItems="center" gap={2}>Site Logo <FieldLabelReuired /></AppTypography>
+        <AppTypography size="14px" color="#808080">Site logo appears at the top left of the page</AppTypography>
+        <Box>
+          <AppUploadImage
+            values={logo}
+            onChange={(images) => updateState("logo", images)}
+          />
+        </Box>
+      </VStack>
 
-      <InputImage
-        label="Profile Logo"
-        placeHolder="Profile logo appears at the left side of the page."
-        value={headerIcon}
-        change={(value) => updateState("headerIcon", value)}
-        maxSize={{
-          fieldName: "Size",
-          size: 5
-        }}
-      />
+      <VStack align="stretch" width="50%">
+        <AppTypography size="18px" display="flex" alignItems="center" gap={2}>Profile Logo<FieldLabelReuired /></AppTypography>
+        <AppTypography size="14px" color="#808080">Profile logo appears at the left side of the page.</AppTypography>
+        <Box>
+          <AppUploadImage
+            values={headerIcon}
+            onChange={(images) => updateState("headerIcon", images)}
+          />
+        </Box>
+      </VStack>
     </Flex>
   );
 };
