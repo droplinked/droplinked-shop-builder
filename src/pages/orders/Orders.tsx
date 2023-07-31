@@ -12,6 +12,7 @@ function Orders() {
     const [States, setStates] = useState({
         search: null
     })
+    const orders = useMemo(() => data?.data?.data, [data])
 
     const [searchParams] = useSearchParams()
     const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1
@@ -26,14 +27,13 @@ function Orders() {
 
     // Handle search and without search
     const rows = useMemo(() => {
-        console.log("data",data);
-        
+        console.log("data", data);
+
         return data ? OrdersModel.refactorData({
             data: data.data.data?.data,
             search: States.search
         }) : []
     }, [States.search, data])
-
 
     return (
         <>
@@ -42,6 +42,12 @@ function Orders() {
                 rows={rows}
                 search={{ onChange: (e) => setSearch(e.target.value) }}
                 empty={<AppEmptyPage title="No orders available yet!" />}
+                pagination={{
+                    lastPage: orders?.totalPages ? parseInt(orders?.totalPages) : 1,
+                    current: page,
+                    nextPage: orders?.hasNextPage || false,
+                    prevPage: orders?.hasPreviousPage || false
+                }}
             />
         </>
     )
