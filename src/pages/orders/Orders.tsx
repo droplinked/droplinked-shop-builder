@@ -26,8 +26,10 @@ function Orders() {
 
     // Handle search and without search
     const rows = useMemo(() => {
+        console.log("data",data);
+        
         return data ? OrdersModel.refactorData({
-            data: data.data.data,
+            data: data.data.data?.data,
             search: States.search
         }) : []
     }, [States.search, data])
