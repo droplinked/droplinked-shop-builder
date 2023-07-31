@@ -33,7 +33,7 @@ function OrderDetailCost() {
             <Text {...textTypes.typeA}>Discount:</Text>
           </HStack>
           <Box>
-            <Text>$ {order?.totalDiscountAmount}</Text>
+            <Text>$ {order?.totalDiscountAmount ? order?.totalDiscountAmount.toFixed(2) : ''}</Text>
           </Box>
         </HStack>
       ) : null}
@@ -43,7 +43,7 @@ function OrderDetailCost() {
           <Text {...textTypes.typeA}>Shipping:</Text>
         </HStack>
         <Box>
-          <Text>$ {order?.shippingPrice}</Text>
+          <Text>$ {order?.shippingPrice ? parseInt(order?.shippingPrice).toFixed(2) : ''}</Text>
         </Box>
       </HStack>
       <HStack justifyContent={"space-between"}>
@@ -52,7 +52,7 @@ function OrderDetailCost() {
             Order Tax:
           </Text>
         </HStack>
-        <Box>${order?.taxAmount}</Box>
+        <Box>${order?.taxAmount ? order?.taxAmount.toFixed(2) : ''}</Box>
       </HStack>
       <HStack justifyContent={"space-between"}>
         <HStack>
@@ -62,7 +62,7 @@ function OrderDetailCost() {
         </HStack>
         <Box>
           <Text fontSize={{ base: "sm", sm: "2xl" }} fontWeight={"extrabold"}>
-            $ {order?.totalPriceCart}
+            $ {order?.totalPriceCart ? order?.totalPriceCart.toFixed(2) : ''}
           </Text>
         </Box>
       </HStack>
