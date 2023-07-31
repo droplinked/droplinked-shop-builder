@@ -7,13 +7,13 @@ import appUploadImageContext from '../../context'
 import UploadImagesList from './parts/list/UploadImagesList'
 
 function DefaultHoverBox() {
-    const { openFile, isLoading, values } = useContext(appUploadImageContext)
+    const { openFile, isLoading, values, mode } = useContext(appUploadImageContext)
 
-    const checkSingleImage = useMemo(() => typeof values === "string" && values.length, [values])
+    const checkSingleImage = useMemo(() => mode === "single" && values.length, [values])
 
     return (
         <Flex gap={4}>
-            <Box width={checkSingleImage ? "100%" : "300px"}>
+            <Box width={mode === "multi" ? "300px" : "100%"}>
                 <Flex
                     onClick={() => openFile()}
                     justifyContent="center"
@@ -37,7 +37,7 @@ function DefaultHoverBox() {
                     </VStack>
                 </Flex>
             </Box>
-            {!checkSingleImage && <Box width="100%"><UploadImagesList /></Box>}
+            {mode === "multi" && <Box width="100%"><UploadImagesList /></Box>}
         </Flex>
     )
 }
