@@ -84,7 +84,7 @@ function ContainerPayment({ title, value, locked }) {
                       className={classes.textbox}
                       readOnly={!Switch}
                       onChange={(e) => updatePayments("destinationAddress", e.target.value)}
-                      placeholder='Please write Public wallet address'
+                      placeholder='Please enter wallet address.'
                       value={value}
                     />
                   </Box>
