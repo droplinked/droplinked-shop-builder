@@ -22,6 +22,7 @@ const IconsComponent = () => {
           <AppUploadImage
             values={logo}
             mode="single"
+            size="original"
             onChange={(images) => updateState("logo", images)}
           />
         </Box>
@@ -34,6 +35,7 @@ const IconsComponent = () => {
           <AppUploadImage
             values={headerIcon}
             mode="single"
+            size="original"
             onChange={(images) => updateState("headerIcon", images)}
           />
         </Box>
