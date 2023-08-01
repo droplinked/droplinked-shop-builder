@@ -9,7 +9,7 @@ import UploadImagesList from './parts/list/UploadImagesList'
 function DefaultHoverBox() {
     const { openFile, isLoading, values, mode } = useContext(appUploadImageContext)
 
-    const checkSingleImage = useMemo(() => mode === "single" && values.length, [values])
+    const checkSingleImage = useMemo(() => mode === "single" && values && values.length, [values])
 
     return (
         <Flex gap={4}>
@@ -21,24 +21,28 @@ function DefaultHoverBox() {
                     cursor="pointer"
                     padding="30px 10px"
                     backgroundColor="#141414"
-                    backgroundImage={!isLoading && checkSingleImage ? values : null}
-                    backgroundSize="auto 90%"
-                    backgroundRepeat="no-repeat"
-                    backgroundPosition="center"
+                    height="200px"
                 >
                     {isLoading && <Box position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)"><LoadingComponent /></Box>}
-                    <VStack textAlign="center" align="stretch" visibility={isLoading || checkSingleImage ? "hidden" : "visible"}>
-                        <Flex justifyContent="center"><AppIcons.upload width="50px" /></Flex>
-                        <AppTypography size='16px' color="#666">
-                            Upload JPG, JPEG, PNG
-                            <br />
-                            (Max 5 MB)
-                        </AppTypography>
-                    </VStack>
+                    {!isLoading && checkSingleImage ? (
+                        <Flex width="100%" justifyContent="center"><Image position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)" src={values} maxWidth="90%" maxHeight="90%" /></Flex>
+                    ) : (
+                        <VStack textAlign="center" align="stretch" visibility={isLoading || checkSingleImage ? "hidden" : "visible"}>
+                            <>
+                                <Flex justifyContent="center"><AppIcons.upload width="50px" /></Flex>
+                                <AppTypography size='16px' color="#666">
+                                    Upload JPG, JPEG, PNG
+                                    <br />
+                                    (Max 5 MB)
+                                </AppTypography>
+                            </>
+                        </VStack>
+                    )}
                 </Flex>
-            </Box>
-            {mode === "multi" && <Box width="100%"><UploadImagesList /></Box>}
-        </Flex>
+            </Box >
+            {mode === "multi" && <Box width="100%"><UploadImagesList /></Box>
+            }
+        </Flex >
     )
 }
 
