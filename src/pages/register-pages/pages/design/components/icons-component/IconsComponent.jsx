@@ -20,9 +20,10 @@ const IconsComponent = () => {
         <AppTypography size="14px" color="#808080">Site logo appears at the top left of the page</AppTypography>
         <Box>
           <AppUploadImage
-            values={logo}
+            values={headerIcon}
             mode="single"
-            onChange={(images) => updateState("logo", images)}
+            size="original"
+            onChange={(images) => updateState("headerIcon", images)}
           />
         </Box>
       </VStack>
@@ -32,9 +33,10 @@ const IconsComponent = () => {
         <AppTypography size="14px" color="#808080">Profile logo appears at the left side of the page.</AppTypography>
         <Box>
           <AppUploadImage
-            values={headerIcon}
+            values={logo}
             mode="single"
-            onChange={(images) => updateState("headerIcon", images)}
+            size="original"
+            onChange={(images) => updateState("logo", images)}
           />
         </Box>
       </VStack>
