@@ -29,6 +29,7 @@ function ProductMockup() {
                 <Box>
                     <SkeletonProduct width={"30%"} height={"200px"}>
                         <AppUploadImage
+                            size='original'
                             toast={AppErrors.store.upload("Mockup")}
                             onSuccess={(images: any) => updateState("thumb", images?.small)}
                             onChange={(images: any) => updateState("media", refactorImage(images))}
