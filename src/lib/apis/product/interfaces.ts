@@ -30,6 +30,7 @@ export interface IproductState {
 
 export interface IpropertiesItems {
     value: string
+    caption: string
 }
 
 export interface Iproperties {
@@ -41,7 +42,8 @@ export interface Iproperties {
 export interface IskuOption {
     value: string
     variantID: string
-    variantName: string
+    variantName: string,
+    caption: string
 }
 
 export interface IrecordData {

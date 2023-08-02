@@ -15,7 +15,10 @@ export default class propertyFactor {
                         value: element.variantID
                     }
                 }
-                properties[element.variantID]["items"][element.value] = { value: element.value }
+                properties[element.variantID]["items"][element.value] = { 
+                    value: element.value,
+                    caption: element.caption
+                 }
             });
 
         });
@@ -26,7 +29,8 @@ export default class propertyFactor {
                 ...properties[el],
                 items: Object.keys(items).map(el => {
                     return {
-                        value: items[el].value
+                        value: items[el].value,
+                        caption: items[el].caption,
                     }
                 })
             }

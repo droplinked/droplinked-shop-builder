@@ -13,7 +13,7 @@ import PropertyItem from '../item/PropertyItem'
 import PropertyOptions from './parts/options/PropertyOptions'
 
 function PropertyFormProduct() {
-    const { data,isLoading } = useQuery({
+    const { data, isLoading } = useQuery({
         queryFn: variantOptionsService,
         queryKey: "product_properties",
         cacheTime: 60 * 60 * 1000,
@@ -36,7 +36,7 @@ function PropertyFormProduct() {
         if (!datas) return []
         return title === "Color" ? datas?.colors : datas?.sizes
     }, [data])
-    
+
     return (
         <>
             <Flex justifyContent={"space-between"}>
@@ -66,7 +66,7 @@ function PropertyFormProduct() {
                                             <PropertyItem
                                                 key={key}
                                                 type={el.title === "Color" ? "Color" : "Size"}
-                                                name={item.caption}
+                                                item={item}
                                                 {...el.title === 'Color' && { hex: item.value }}
                                             />
                                         ))}

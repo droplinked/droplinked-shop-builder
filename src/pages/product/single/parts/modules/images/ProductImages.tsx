@@ -27,6 +27,7 @@ function ProductImages() {
             <SkeletonProduct width={"30%"} height={"200px"}>
               <AppUploadImage
                 values={defactorImage(media)}
+                size="original"
                 toast={AppErrors.store.upload("The product image")}
                 onSuccess={(images: any) => updateState("thumb", images?.small)}
                 onChange={(images: any) => updateState("media", refactorImage(images))}

@@ -28,7 +28,8 @@ export default class ProductSingleModel {
                         return {
                             value: option.value,
                             variantID: option.variantID,
-                            variantName: AppendModule.getCaption(option.variantID)
+                            variantName: AppendModule.getCaption(option.variantID),
+                            caption: option.caption
                         }
                     }),
                     price: el?.price,
