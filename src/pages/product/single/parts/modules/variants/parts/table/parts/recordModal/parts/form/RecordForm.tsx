@@ -93,6 +93,9 @@ function RecordForm({ close, product }: Iprops) {
                     }
                 })
                 if (query) deploy(data, query.txId)
+            } else if (data.blockchain === "POLYGON") {
+                console.log("asdads");
+                
             }
             updateState("loading", false)
             updateState("blockchain", data.blockchain)

@@ -38,7 +38,7 @@ function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess,
     const deleted = useCallback((name: string) => {
         if (typeof values !== "object") return false
         onChange(values.filter(el => el !== name))
-        showToast("Delete image successful", "success")
+        showToast("Image has been deleted successfully", "success")
     }, [values, onChange])
 
     return (
