@@ -11,11 +11,11 @@ function UploadImagesList() {
             {values.length && typeof values === "object" ? (
                 <SimpleGrid columns={4} spacing={4}>
                     {values.map((el: any, key: number) => (
-                        <Flex key={key} position="relative" alignItems="baseline" justifyContent="center">
+                        <Flex key={key} position="relative" border="1px solid #313131" borderRadius="8px" alignItems="center" height="200px" justifyContent="center">
                             <Box position="absolute" top={2} right={2}>
                                 <AppIcons.close cursor="pointer" onClick={() => deleted(el)} width="16px" height="16px" />
                             </Box>
-                            <Image src={el} width="100%" borderRadius="8px" />
+                            <Image src={el} maxWidth="75%" maxHeight="75%" borderRadius="8px" />
                         </Flex>
                     ))}
                 </SimpleGrid>
