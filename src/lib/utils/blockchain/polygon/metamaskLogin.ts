@@ -1,4 +1,5 @@
 import { Buffer } from "buffer";
+import { appDeveloment } from "lib/utils/app/variable";
 /**
  * 
  * @returns {boolean} true if Metamask is installed on the browser otherwise false
@@ -40,19 +41,34 @@ export async function getBalance(address: string): Promise<number> {
  * @param network The network to switch to (mainnet or testnet)
  * @returns {Promise<{address : string, network : "testnet" | "mainnet", signature : string,}>} the address, network and signature
  */
-export async function PolygonLogin(network: "testnet" | "mainnet" = "testnet"): Promise<{
+export async function PolygonLogin(): Promise<{
     address: string,
     network: "testnet" | "mainnet",
     signature: string,
 }> {
+    const network = appDeveloment ? "testnet" : "mainnet"
     if (!isMetamaskInstalled()) {
-        throw Error("Wallet is not installed");
+        throw ("Wallet is not installed");
     }
     if (!await isWalletConnected()) {
         await requestAccounts();
     }
     let address = (await getAccounts())[0];
     let chainId = await (window as any).ethereum.request({ method: 'eth_chainId' });
+
+    try {
+        await (window as any).ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [{
+                chainName: 'Mumbai Testnet',
+                chainId: '0x13881',
+                nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' },
+                rpcUrls: ['https://rpc-mumbai.maticvigil.com/']
+            }]
+        });
+    } catch (err) {
+
+    }
 
     // If it was on mainnet and network was set to testnet
     if (Number(chainId) == 137 && network == "testnet") {
