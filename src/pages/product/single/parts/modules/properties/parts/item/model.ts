@@ -16,6 +16,7 @@ export interface IaddPropertyItem {
     item: {
         variantID: string
         value: string
+        caption: string
     }
 }
 
@@ -53,7 +54,8 @@ export default class propertyItemModel {
             result.push({
                 ...element,
                 items: property && element.value === property.value ? [...element.items, {
-                    value: item.value
+                    value: item.value,
+                    caption: item.caption
                 }] : element.items
             })
         });
@@ -61,7 +63,7 @@ export default class propertyItemModel {
     }
 
     // Remove item property
-    static removePropertyItem = ({ valueItem, state }: IremoveItem): Array<Iproperties> => {        
+    static removePropertyItem = ({ valueItem, state }: IremoveItem): Array<Iproperties> => {
         return this.append.loopProperty({
             state,
             action: (el: Iproperties, key: number) => {

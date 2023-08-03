@@ -28,6 +28,7 @@ function ProductImages() {
               <AppUploadImage
                 size='original'
                 values={defactorImage(media)}
+                size="original"
                 toast={AppErrors.store.upload("The product image")}
                 onSuccess={(images: any) => updateState("thumb", images?.small)}
                 onChange={(images: any) => updateState("media", refactorImage(images))}
