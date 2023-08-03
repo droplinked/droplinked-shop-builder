@@ -17,6 +17,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
 import useStack from 'functions/hooks/stack/useStack'
+import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
 
 export interface IRecordModalProduct {
     title: string
@@ -93,10 +94,13 @@ function RecordForm({ close, product }: Iprops) {
                     }
                 })
                 if (query) deploy(data, query.txId)
+            } else if (data.blockchain === "POLYGON") {
+                await PolygonLogin('testnet')
             }
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
         } catch (error) {
+            console.log(error)
             if (error?.message) {
                 if (error?.message.includes("The first argument")) return updateState("loading", false)
                 showToast(error?.message, "error");
