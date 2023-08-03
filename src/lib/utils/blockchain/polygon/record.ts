@@ -1,9 +1,9 @@
-import { NFTStorage } from "nft.storage";
-import { ethers } from 'ethers';
-import { getContractABI, getContractAddress } from './polygonConstants'
-async function uploadToIPFS(metadata: any, apiKey: string) {
-    const client = new NFTStorage({ token: apiKey });
-    if (typeof (metadata) == typeof ({}) || typeof (metadata) == typeof ([])) {
+import {NFTStorage} from "nft.storage";
+import {ethers} from 'ethers';
+import {getContractABI, getContractAddress} from './polygonConstants'
+async function uploadToIPFS(metadata: any, apiKey : string) {
+    const client = new NFTStorage({ token : apiKey});
+    if (typeof(metadata) == typeof({}) || typeof(metadata) == typeof([])){
         metadata = JSON.stringify(metadata);
     }
     const ipfs_hash = await client.storeBlob(new Blob([metadata]));
@@ -24,26 +24,25 @@ async function uploadToIPFS(metadata: any, apiKey: string) {
  * @throws "Address does not match signer address" If the address passed does not match the signer address
  * @throws "Transaction Rejected" If the transaction is rejected by the user
  */
-export async function record_merch(sku_properties: any, address: string, product_title: string, discription: string, image_url: string, price: number, amount: number, comission: number) {
-    const apiKey = process.env.REACT_APP_RECORD_MATCH_POLYGON
+export async function record_merch(sku_properties : any, address : string, product_title : string, discription : string, image_url : string , price : number , amount : number, comission : number, apiKey : string){
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    if ((await signer.getAddress()).toLocaleLowerCase() != address.toLocaleLowerCase()) {
-        throw Error("Address does not match signer address")
+    if((await signer.getAddress()).toLocaleLowerCase() != address.toLocaleLowerCase()){
+        throw "Address does not match signer address";
     }
     const contract = new ethers.Contract(await getContractAddress(), await getContractABI(), signer);
     let metadata = {
-        "name": product_title,
-        "description": discription,
-        "image": image_url,
-        "properties": sku_properties
+        "name" : product_title,
+        "description" : discription,
+        "image" : image_url,
+        "properties" : sku_properties
     }
-    let ipfs_hash = await uploadToIPFS(metadata, apiKey);
-    try {
-        let tx = await contract.mint(`ipfs://${ipfs_hash}`, price, comission, amount);
+    let ipfs_hash = await uploadToIPFS(metadata,apiKey);
+    try{
+        let tx = await contract.mint(`ipfs://${ipfs_hash}`,price,comission, amount);
         return tx.hash;
-    } catch (e) {
-        if (e.code.toString() == "ACTION_REJECTED") {
+    }catch(e){
+        if (e.code.toString() == "ACTION_REJECTED"){
             throw "Transaction Rejected";
         }
         throw e;
