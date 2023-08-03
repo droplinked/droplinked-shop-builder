@@ -15,6 +15,7 @@ function ProductMockup() {
     const { refactorImage, defactorImage } = introductionClass
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+
     return (
         <>
             <VStack align={"stretch"}>
@@ -31,7 +32,7 @@ function ProductMockup() {
                         <AppUploadImage
                             size='original'
                             toast={AppErrors.store.upload("Mockup")}
-                            onSuccess={(images: any) => updateState("thumb", images?.small)}
+                            onSuccess={(images: any) => !thumb.length && images?.small && updateState("thumb", images?.small)}
                             onChange={(images: any) => updateState("media", refactorImage(images))}
                             values={defactorImage(media)} />
                     </SkeletonProduct>

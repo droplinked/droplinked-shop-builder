@@ -10,12 +10,13 @@ interface IProps {
     values: Array<string> | string
     onChange: Function
     onSuccess?: Function
+    onDelete?: Function
     toast?: string
     size?: "small" | "original" | "standard"
     mode?: ImodeUploadImage
 }
 
-function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess, mode = "multi" }: IProps) {
+function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess, mode = "multi", onDelete }: IProps) {
     const { mutateAsync, isLoading } = useMutation((formData: any) => axios.post("https://cdn.droplinked.com/upload", formData))
     const fileRef = useRef(null);
     const { showToast } = useAppToast()
@@ -38,6 +39,7 @@ function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess,
     const deleted = useCallback((name: string) => {
         if (typeof values !== "object") return false
         onChange(values.filter(el => el !== name))
+        if (onDelete) onDelete()
         showToast("Image has been deleted successfully", "success")
     }, [values, onChange])
 

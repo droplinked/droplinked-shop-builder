@@ -8,10 +8,7 @@ import SkeletonProduct from '../skeleton/SkeletonProduct'
 import ProductPageTitle from '../title/ProductPageTitle'
 
 function ProductImages() {
-  const {
-    state: { media, product_type, thumb },
-    methods: { updateState },
-  } = useContext(productContext);
+  const { state: { media, product_type, thumb }, methods: { updateState } } = useContext(productContext);
   const { refactorImage, defactorImage } = introductionClass;
 
   return (
@@ -30,7 +27,7 @@ function ProductImages() {
                 values={defactorImage(media)}
                 size="original"
                 toast={AppErrors.store.upload("The product image")}
-                onSuccess={(images: any) => updateState("thumb", images?.small)}
+                onSuccess={(images: any) => !thumb.length && images?.small && updateState("thumb", images?.small)}
                 onChange={(images: any) => updateState("media", refactorImage(images))}
               />
             </SkeletonProduct>

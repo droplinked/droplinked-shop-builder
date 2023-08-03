@@ -68,6 +68,8 @@ function ProductSingle() {
     //     console.log(State.params);
     // }, [State])
 
+
+
     return (
         <productContext.Provider value={{
             state: State.params,
