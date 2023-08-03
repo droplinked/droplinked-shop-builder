@@ -24,6 +24,8 @@ function HashKey({ close, hashkey, text, blockchain }: Iprops) {
                 return `https://${appDeveloment ? "testnet." : ""}cspr.live/deploy/${hashkey}`
             case "STACKS":
                 return `https://explorer.hiro.so/txid/${hashkey}?chain=${appDeveloment ? "testnet" : "mainnet"}`
+            case "POLYGON":
+                return `https://${appDeveloment ? "mumbai." : ""}polygonscan.com/tx/${hashkey}`
             default:
                 return ""
         }

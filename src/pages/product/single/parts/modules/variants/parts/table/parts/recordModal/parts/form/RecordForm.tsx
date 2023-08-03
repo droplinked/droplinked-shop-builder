@@ -18,12 +18,13 @@ import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
 import useStack from 'functions/hooks/stack/useStack'
 import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
+import { record_merch } from 'lib/utils/blockchain/polygon/record'
 
 export interface IRecordModalProduct {
     title: string
     description: string
     shippingType: string
-    media: Array<string>
+    media: Array<any>
     sku: Isku
 }
 
@@ -69,10 +70,11 @@ function RecordForm({ close, product }: Iprops) {
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
             updateState("loading", true)
+            const commission = data.commission
             if (data.blockchain === "CASPER") {
                 const CasperWallet = await openCasperWallet()
                 const record = await casperRecord({
-                    commission: data.commission,
+                    commission,
                     product,
                     publicKey: CasperWallet.publicKey,
                     sku: product.sku
@@ -87,7 +89,7 @@ function RecordForm({ close, product }: Iprops) {
                     params: {
                         price: product.sku.price * 100,
                         amount: product.sku.quantity,
-                        commission: data.commission,
+                        commission,
                         productID: productID,
                         creator: stxAddress,
                         uri: "record"
@@ -95,12 +97,13 @@ function RecordForm({ close, product }: Iprops) {
                 })
                 if (query) deploy(data, query.txId)
             } else if (data.blockchain === "POLYGON") {
-                await PolygonLogin('testnet')
+                const login = await PolygonLogin()
+                const record = await record_merch(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price, product.sku.quantity, commission)
+                if (record) deploy(data, record)
             }
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
         } catch (error) {
-            console.log(error)
             if (error?.message) {
                 if (error?.message.includes("The first argument")) return updateState("loading", false)
                 showToast(error?.message, "error");
