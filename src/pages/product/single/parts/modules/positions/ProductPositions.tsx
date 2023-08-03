@@ -7,6 +7,7 @@ import shirtLeft from "assest/image/positions/left.svg";
 import shirtRight from "assest/image/positions/right.svg";
 import pantLeft from "assest/image/positions/pent-left.svg";
 import pantRight from "assest/image/positions/pent-right.svg";
+import backNeck from "assest/image/positions/back-neck.svg";
 
 interface IProps {
   update(element: string): void;
@@ -22,6 +23,7 @@ function ProductPositions({ update, state, positions }: IProps) {
     BACK_CENTER: shirtBack,
     LEFT_LEG_FRONT: pantLeft,
     RIGHT_LEG_FRONT: pantRight,
+    BACK_NECK: backNeck,
   };
 
   return (
