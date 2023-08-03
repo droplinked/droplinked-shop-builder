@@ -1,6 +1,5 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import React from "react";
-import { useQuery } from "react-query";
 import shirtBack from "assest/image/positions/back.svg";
 import shirtCenter from "assest/image/positions/center.svg";
 import shirtLeft from "assest/image/positions/left.svg";
