@@ -27,6 +27,7 @@ function ProductImages() {
                 values={defactorImage(media)}
                 toast={AppErrors.store.upload("The product image")}
                 onSuccess={(images: any) => !thumb.length && images?.small && updateState("thumb", images?.small)}
+                onDelete={(images: any) => !images.length && updateState("thumb", "")}
                 onChange={(images: any) => updateState("media", refactorImage(images))}
               />
             </SkeletonProduct>
