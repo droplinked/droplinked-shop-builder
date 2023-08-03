@@ -26,6 +26,7 @@ function ProductImages() {
           <Box>
             <SkeletonProduct width={"30%"} height={"200px"}>
               <AppUploadImage
+                size='original'
                 values={defactorImage(media)}
                 size="original"
                 toast={AppErrors.store.upload("The product image")}
