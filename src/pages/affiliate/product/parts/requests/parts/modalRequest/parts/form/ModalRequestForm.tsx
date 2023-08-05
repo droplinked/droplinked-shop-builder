@@ -5,6 +5,7 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
 import { requestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'
+import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
 import stacksRequest from 'lib/utils/blockchain/stacks/request'
 import RecordModalModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel'
 import React, { useCallback, useState } from 'react'
@@ -69,6 +70,9 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                     }
                 })
                 if (request) deployHash = request.txId
+            } else if (blockchain === "POLYGON") {
+                const login = await PolygonLogin()
+                
             }
 
             if (deployHash) {
