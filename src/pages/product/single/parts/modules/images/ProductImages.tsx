@@ -25,7 +25,6 @@ function ProductImages() {
               <AppUploadImage
                 size='original'
                 values={defactorImage(media)}
-                size="original"
                 toast={AppErrors.store.upload("The product image")}
                 onSuccess={(images: any) => !thumb.length && images?.small && updateState("thumb", images?.small)}
                 onDelete={(images: any) => !images.length && updateState("thumb", "")}
