@@ -14,6 +14,8 @@ function IconBlockchain({ blockchain, props }: IProps) {
                 return <AppIcons.casperIcon {...props} />
             case "STACKS":
                 return <AppIcons.stacks {...props} />
+            case "POLYGON":
+                return <AppIcons.polygon {...props} />
             default:
                 return null
         }

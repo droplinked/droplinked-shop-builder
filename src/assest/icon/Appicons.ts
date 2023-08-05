@@ -46,6 +46,7 @@ import { ReactComponent as linkedin } from './linkedin.svg'
 import { ReactComponent as tiktok } from './tiktok.svg'
 import { ReactComponent as cover } from './cover.svg'
 import { ReactComponent as upload } from './upload-icon.svg'
+import { ReactComponent as polygon } from './polygon-matic-logo.svg'
 
 const AppIcons = {
   productsIcon,
@@ -95,6 +96,7 @@ const AppIcons = {
   linkedin,
   tiktok,
   cover,
-  upload
+  upload,
+  polygon
 }
 export default AppIcons
