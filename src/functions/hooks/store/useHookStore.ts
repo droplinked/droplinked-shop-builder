@@ -7,9 +7,15 @@ function useHookStore() {
     const app = useStore(useAppStore)
     const data = useStore(useDataStore)
 
+    const clearStore = () => {
+        app.reset()
+        data.reset()
+    }
+
     return {
         app,
-        data
+        data,
+        clearStore
     }
 }
 

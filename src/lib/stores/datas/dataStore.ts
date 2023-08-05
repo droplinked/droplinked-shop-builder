@@ -12,19 +12,29 @@ interface Iitem {
 
 export interface IDataStore {
     collection: Iitem
+    reset: Function
 }
 
 // Call methods as model
 const { getCollections } = dataStoreModel
 
-// Initial states
-const states = (set: any): IDataStore => ({
+const data = (set: any) => ({
     collection: {
         data: [],
         fetch: () => getCollections(set),
         loaded: false,
         isError: false
-    },
+    }
+})
+
+// Initial states
+const states = (set: any): IDataStore => ({
+    collection: data(set).collection,
+    reset: () => {
+        set({
+            collection: data(set).collection
+        })
+    }
 })
 
 export const appStorePersistName = "dataStore"
