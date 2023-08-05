@@ -18,7 +18,7 @@ import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
 import useStack from 'functions/hooks/stack/useStack'
 import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
-import { record_merch } from 'lib/utils/blockchain/polygon/record'
+import { record_merch_polygon } from 'lib/utils/blockchain/polygon/record'
 
 export interface IRecordModalProduct {
     title: string
@@ -98,8 +98,8 @@ function RecordForm({ close, product }: Iprops) {
                 if (query) deploy(data, query.txId)
             } else if (data.blockchain === "POLYGON") {
                 const login = await PolygonLogin()
-                // const record = await record_merch(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price, product.sku.quantity, commission, process.env.REACT_APP_RECORD_MATCH_POLYGON)
-                // if (record) deploy(data, record)
+                const record = await record_merch_polygon(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price, product.sku.quantity, commission, process.env.REACT_APP_RECORD_MATCH_POLYGON)
+                if (record) deploy(data, record)
             }
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
