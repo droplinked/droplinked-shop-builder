@@ -40,7 +40,9 @@ export async function record_merch_polygon(sku_properties: any, address: string,
     }
     let ipfs_hash = await uploadToIPFS(metadata, apiKey);
     try {
-        let tx = await contract.mint(`ipfs://${ipfs_hash}`, price, comission, amount);
+        let tx = await contract.mint(`ipfs://${ipfs_hash}`, price, comission, amount, {
+            gasLimit: 3000000
+        });
         return tx.hash;
     } catch (e) {
         if (e.code.toString() == "ACTION_REJECTED") {
