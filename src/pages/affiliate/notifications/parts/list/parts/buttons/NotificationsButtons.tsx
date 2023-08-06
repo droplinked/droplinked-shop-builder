@@ -13,6 +13,8 @@ import RequestButtons from './parts/buttons/RequestButtons'
 import ModalHashkey from './parts/hashkey/ModalHashkey'
 import useAppToast from 'functions/hooks/toast/useToast'
 import useStack from 'functions/hooks/stack/useStack'
+import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
+import { approve_request_polygon } from 'lib/utils/blockchain/polygon/approve'
 
 function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
     const { mutateAsync } = useMutation((params: IacceptRejectRequestService) => acceptRejectRequestService(params))
@@ -51,7 +53,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             const blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
             let deploy_hash = ''
-
+            const requestID = shop?.recordData?.details?.request_id
             if (States.status === "accept") {
                 if (blockchain === "CASPER") {
                     const casperWallet = await RecordModalModule.openCasperWallet()
@@ -60,8 +62,13 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                     deploy_hash = request.deployHash
                 } else if (blockchain === "STACKS") {
                     await login()
-                    const request = await stacks.approve({ isRequestPending, openContractCall, params: { id: shop?.recordData?.details?.request_id, publisher: shop?.recordData?.details?.publisher } })
+                    const request = await stacks.approve({ isRequestPending, openContractCall, params: { id: requestID, publisher: shop?.recordData?.details?.publisher } })
                     deploy_hash = request.txId
+                } else if (blockchain === "POLYGON") {
+                    await PolygonLogin()
+                    const accept = await approve_request_polygon(shop?.recordData?.details?.publisher, requestID)
+                    console.log(accept);
+                    
                 }
 
                 if (deploy_hash) {
