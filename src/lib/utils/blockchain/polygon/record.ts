@@ -24,7 +24,7 @@ async function uploadToIPFS(metadata: any, apiKey: string) {
  * @throws "Address does not match signer address" If the address passed does not match the signer address
  * @throws "Transaction Rejected" If the transaction is rejected by the user
  */
-export async function record_merch_polygon(sku_properties: any, address: string, product_title: string, discription: string, image_url: string, price: number, amount: number, comission: number) {
+export async function record_merch_polygon(sku_properties: any, address: string, product_title: string, discription: string, image_url: string, price: number, amount: number | string, comission: number) {
     const apiKey = process.env.REACT_APP_RECORD_MATCH_POLYGON
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
