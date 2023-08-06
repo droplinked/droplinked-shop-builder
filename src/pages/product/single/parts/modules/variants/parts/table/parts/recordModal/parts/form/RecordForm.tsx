@@ -39,7 +39,7 @@ interface IRecordSubmit {
 }
 
 function RecordForm({ close, product }: Iprops) {
-    const { state: { sku }, productID } = useContext(productContext)
+    const { state: { sku, product_type }, productID } = useContext(productContext)
     const chains = useQuery({
         queryFn: supportedChainsService,
         queryKey: "supported_chains",
@@ -98,7 +98,7 @@ function RecordForm({ close, product }: Iprops) {
                 if (query) deploy(data, query.txId)
             } else if (data.blockchain === "POLYGON") {
                 const login = await PolygonLogin()
-                const record = await record_merch_polygon(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price, product.sku.quantity, commission)
+                const record = await record_merch_polygon(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price, product_type === "PRINT_ON_DEMAND" ? 2 ^ 256 - 1 : product.sku.quantity, commission)
                 if (record) deploy(data, record)
             }
             updateState("loading", false)
@@ -112,7 +112,7 @@ function RecordForm({ close, product }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, sku, stxAddress, productID])
+    }, [product, sku, stxAddress, productID, product_type])
 
     const formSchema = Yup.object().shape({
         blockchain: Yup.string().required('Required'),

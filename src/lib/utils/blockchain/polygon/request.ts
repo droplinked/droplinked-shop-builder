@@ -15,7 +15,9 @@ export let publish_request_polygon = async function(address: string, producer_ac
     }
     const contract = new ethers.Contract(await getContractAddress(), await getContractABI(), signer);
     try{
-        let tx = await contract.publish_request(producer_account_address,token_id);
+        let tx = await contract.publish_request(producer_account_address,token_id,{
+            gasLimit : 3000000
+        });
         return tx.hash;
     }catch(e){
         if (e.code.toString() == "ACTION_REJECTED"){

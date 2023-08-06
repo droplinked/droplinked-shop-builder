@@ -24,7 +24,6 @@ export const convertCustomerInformation = (order) => {
 
 export const convertOrderInformation = (order) => {
   if (!order || !order.customerAddressBook) return null
-  console.log(order);
   return [
     {
       name: "Order ID",
