@@ -98,7 +98,7 @@ function RecordForm({ close, product }: Iprops) {
                 if (query) deploy(data, query.txId)
             } else if (data.blockchain === "POLYGON") {
                 const login = await PolygonLogin()
-                const record = await record_merch_polygon(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price, product.sku.quantity, commission, process.env.REACT_APP_RECORD_MATCH_POLYGON)
+                const record = await record_merch_polygon(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price, product.sku.quantity, commission)
                 if (record) deploy(data, record)
             }
             updateState("loading", false)
