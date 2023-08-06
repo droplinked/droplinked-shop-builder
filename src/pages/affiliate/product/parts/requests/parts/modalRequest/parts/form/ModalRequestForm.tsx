@@ -6,6 +6,7 @@ import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
 import { requestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'
 import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
+import { publish_request_polygon } from 'lib/utils/blockchain/polygon/request'
 import stacksRequest from 'lib/utils/blockchain/stacks/request'
 import RecordModalModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel'
 import React, { useCallback, useState } from 'react'
@@ -53,6 +54,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
 
         try {
             setLoading(true)
+            const tokenID = sku?.recordData?.data?.details?.token_id
             if (blockchain === "CASPER") {
                 const casperWallet = await openCasperWallet()
                 const publish = await publish_request({ casperWallet, quantity, sku })
@@ -65,14 +67,15 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                     params: {
                         amount: quantity,
                         commission: sku?.recordData?.data?.details?.commision,
-                        id: parseInt(sku?.recordData?.data?.details?.token_id),
+                        id: parseInt(tokenID),
                         publisher: stxAddress
                     }
                 })
                 if (request) deployHash = request.txId
             } else if (blockchain === "POLYGON") {
                 const login = await PolygonLogin()
-                
+                const request = await publish_request_polygon(login.address, sku?.recordData?.data?.details?.recipient, tokenID)
+                if (request) deployHash = request
             }
 
             if (deployHash) {
