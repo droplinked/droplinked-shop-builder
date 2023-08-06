@@ -65,10 +65,9 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                     const request = await stacks.approve({ isRequestPending, openContractCall, params: { id: requestID, publisher: shop?.recordData?.details?.publisher } })
                     deploy_hash = request.txId
                 } else if (blockchain === "POLYGON") {
-                    await PolygonLogin()
-                    const accept = await approve_request_polygon(shop?.recordData?.details?.publisher, requestID)
-                    console.log(accept);
-                    
+                    const login = await PolygonLogin()
+                    const accept = await approve_request_polygon(login.address, requestID)
+                    deploy_hash = accept
                 }
 
                 if (deploy_hash) {
