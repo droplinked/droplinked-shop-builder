@@ -12,11 +12,11 @@ import classes from './style.module.scss'
 function CouponsListContent() {
     const { coupons } = useContext(CouponsSettingContext)
     const [Code, setCode] = useState(null)
-
+    
     return (
         <VStack align="stretch">
             <VStack align="stretch" spacing={3}>
-                {coupons.totalDocuments.map((el: any, key: number) => (
+                {coupons.data.map((el: any, key: number) => (
                     <AppCard key={key}>
                         <VStack align="stretch" spacing="40px">
                             <Flex color="#C2C2C2" justifyContent="space-between" alignItems="center">
