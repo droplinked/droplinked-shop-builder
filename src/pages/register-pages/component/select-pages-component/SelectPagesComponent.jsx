@@ -49,6 +49,17 @@ const SelectPagesComponent = () => {
       >
         Social Links
       </SideText>
+      {isSettings && (
+        <SideText
+          cursor={isSettings && "pointer"}
+          color={currentPath.includes("coupons") ? "primary" : "lightGray"}
+          onClick={() => {
+            if (isSettings) shopNavigate("settings/coupons");
+          }}
+        >
+          Coupons
+        </SideText>
+      )}
     </>
   );
 };
