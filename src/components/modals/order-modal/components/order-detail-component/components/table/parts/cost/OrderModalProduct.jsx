@@ -22,7 +22,7 @@ function OrderDetailCost() {
     {
       caption: 'Items',
       placeholder: `${order?.items.length} items`,
-      value: null
+      value: order?.totalItemsAmount ? parseInt(order?.totalItemsAmount).toFixed(2) : ''
     },
     {
       caption: 'Discount',
@@ -30,9 +30,9 @@ function OrderDetailCost() {
       value: order?.totalDiscountAmount ? order?.totalDiscountAmount.toFixed(2) : ''
     },
     {
-      caption: 'Shipping',
+      caption: order?.shipmentData ? order?.shipmentData?.title : 'Shipping',
       placeholder: null,
-      value: order?.shippingPrice ? parseInt(order?.shippingPrice).toFixed(2) : ''
+      value: order?.shippingPrice ? parseInt(order?.shipmentData ? order?.shipmentData?.price : order?.shippingPrice).toFixed(2) : ''
     },
     {
       caption: 'Order Tax',
@@ -43,6 +43,11 @@ function OrderDetailCost() {
       caption: 'Total Cost',
       placeholder: null,
       value: order?.totalPriceCart ? order?.totalPriceCart.toFixed(2) : ''
+    },
+    {
+      caption: 'Total Crypto Payment',
+      placeholder: null,
+      value: order?.cryptoAmount ? order?.cryptoAmount : ''
     }
   ]
 
