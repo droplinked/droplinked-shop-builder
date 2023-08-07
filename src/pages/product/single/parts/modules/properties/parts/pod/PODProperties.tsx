@@ -55,8 +55,8 @@ function PODProperties() {
                     <Flex>
                         <Box width={"20%"}><AppTypography size="14px" color="#FFF">Colors</AppTypography></Box>
                         <Flex width={"80%"} flexWrap="wrap" gap={3}>
-                            {makeproperties.colors.map((el, key) => (
-                                <PropertyItem key={key} type="Color" name={el.name} hex={el.code} />
+                            {makeproperties.colors.map(el => ({ caption: el.name, value: el.code })).map((el, key) => (
+                                <PropertyItem key={key} type="Color" item={el} />
                             ))}
                         </Flex>
                     </Flex>
@@ -64,8 +64,8 @@ function PODProperties() {
                         <Box width={"20%"}><AppTypography size="14px" color="#FFF">Sizes</AppTypography></Box>
                         <Box width={"80%"}>
                             <Flex width={"80%"} flexWrap="wrap" gap={4}>
-                                {makeproperties.sizes.map((el, key) => (
-                                    <PropertyItem key={key} type="Size" name={el} />
+                                {makeproperties.sizes.map(el => ({ caption: el, value: el })).map((el, key) => (
+                                    <PropertyItem key={key} type="Size" item={el} />
                                 ))}
                             </Flex>
                         </Box>

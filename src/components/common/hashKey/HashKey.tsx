@@ -6,6 +6,7 @@ import React, { useMemo } from 'react'
 import ClipboardText from '../clipboardText/ClipboardText'
 import IconBlockchain from '../iconBlockchain/IconBlockchain'
 import AppTypography from '../typography/AppTypography'
+import hashkeyModel from './model'
 
 export type blockchainTypes = string
 
@@ -18,18 +19,7 @@ interface Iprops {
 
 function HashKey({ close, hashkey, text, blockchain }: Iprops) {
 
-    const getLink = useMemo(() => {
-        switch (blockchain) {
-            case "CASPER":
-                return `https://${appDeveloment ? "testnet." : ""}cspr.live/deploy/${hashkey}`
-            case "STACKS":
-                return `https://explorer.hiro.so/txid/${hashkey}?chain=${appDeveloment ? "testnet" : "mainnet"}`
-            case "POLYGON":
-                return `https://${appDeveloment ? "mumbai." : ""}polygonscan.com/tx/${hashkey}`
-            default:
-                return ""
-        }
-    }, [blockchain, appDeveloment])
+    const getLink = useMemo(() => hashkeyModel.getLink({ blockchain, hashkey }), [blockchain, appDeveloment])
 
     return (
         <VStack align={"stretch"} spacing={3} color="#C2C2C2">

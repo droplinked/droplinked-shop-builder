@@ -18,7 +18,7 @@ import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
 import useStack from 'functions/hooks/stack/useStack'
 import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
-import { record_merch } from 'lib/utils/blockchain/polygon/record'
+import { record_merch_polygon } from 'lib/utils/blockchain/polygon/record'
 
 export interface IRecordModalProduct {
     title: string
@@ -39,7 +39,7 @@ interface IRecordSubmit {
 }
 
 function RecordForm({ close, product }: Iprops) {
-    const { state: { sku }, productID } = useContext(productContext)
+    const { state: { sku, product_type }, productID } = useContext(productContext)
     const chains = useQuery({
         queryFn: supportedChainsService,
         queryKey: "supported_chains",
@@ -97,9 +97,10 @@ function RecordForm({ close, product }: Iprops) {
                 })
                 if (query) deploy(data, query.txId)
             } else if (data.blockchain === "POLYGON") {
-                // const login = await PolygonLogin()
-                // const record = await record_merch(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price, product.sku.quantity, commission, process.env.REACT_APP_RECORD_MATCH_POLYGON)
-                // if (record) deploy(data, record)
+                const login = await PolygonLogin()
+                const quantityPOD = '115792089237316195423570985008687907853269984665640564039457584007913129639935'
+                const record = await record_merch_polygon(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price, product_type === "PRINT_ON_DEMAND" ? quantityPOD : product.sku.quantity, commission)
+                if (record) deploy(data, record)
             }
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
@@ -112,7 +113,7 @@ function RecordForm({ close, product }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, sku, stxAddress, productID])
+    }, [product, sku, stxAddress, productID, product_type])
 
     const formSchema = Yup.object().shape({
         blockchain: Yup.string().required('Required'),

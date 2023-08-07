@@ -14,7 +14,7 @@ export interface IAppStore {
     access_token: string | null
     login(params: IauthLoginService): Promise<any>
     fetchShop(params: IshopInfoService): Promise<any>
-    clearShop(): void
+    reset(): void
     updateShop(params: IshopUpdateService): Promise<any>
 }
 
@@ -56,8 +56,7 @@ const states = (set: any): IAppStore => ({
             }
         })
     },
-    clearShop: () => {
-        AppStorage.clearStorage()
+    reset: () => {
         set({
             user: null,
             shop: null,

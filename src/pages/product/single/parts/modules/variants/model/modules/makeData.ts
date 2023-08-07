@@ -48,7 +48,8 @@ export default class VariantsMakeDataModel {
                     return {
                         value: option.value,
                         variantID: option.variantID,
-                        variantName: option.variantName
+                        variantName: option.variantName,
+                        caption: option?.caption
                     };
                 });
                 const sku = VariantsRefactorModel.findByOptionSku({ options, skues })
@@ -61,10 +62,12 @@ export default class VariantsMakeDataModel {
             const variantOption = {
                 value: "",
                 variantID: obj.value,
-                variantName: obj.title
+                variantName: obj.title,
+                caption: ""
             };
             for (let i = 0; i < obj.items.length; i++) {
                 variantOption.value = obj.items[i].value;
+                variantOption.caption = obj.items[i].caption;
                 handle(obj.child, [...options, variantOption]);
             }
         }

@@ -13,6 +13,7 @@ export default class VariantsProductModel {
     static makedataModel = VariantsMakeDataModel
 
     static makeData = ({ properties, skues, product_type }: ImakeData) => {
+        
         const sort = this.makedataModel.sort({ properties })
         const makedataModel = this.makedataModel.makePropertyChild({ sort })
         const refactor = this.makedataModel.getOptions({

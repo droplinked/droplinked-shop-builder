@@ -20,11 +20,13 @@ import HeaderLogin from "./parts/login/HeaderLogin";
 import { useCallback } from "react";
 import AppIcons from "assest/icon/Appicons";
 import useHookStore from "functions/hooks/store/useHookStore";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 
 const HeaderLayout = () => {
-  const { app: { shop, clearShop } } = useHookStore();
+  const { app: { shop } } = useHookStore();
   const { onOpen, onClose, isOpen } = useDisclosure();
   const { shopNavigate } = useCustomNavigate();
+  const { logoutUser } = useProfile()
 
   const clickOnViewShop = useCallback(() => {
     shopNavigate("products");
@@ -32,7 +34,7 @@ const HeaderLayout = () => {
   }, []);
 
   const logout = useCallback(() => {
-    clearShop();
+    logoutUser()
     onClose();
   });
 

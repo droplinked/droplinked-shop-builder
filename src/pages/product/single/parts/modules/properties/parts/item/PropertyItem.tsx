@@ -7,20 +7,20 @@ import classes from './style.module.scss'
 
 interface IProps {
     type: "Size" | "Color"
-    name: string
-    hex?: string
+    item: any
 }
-function PropertyItem({ type, name, hex }: IProps) {
+
+function PropertyItem({ type, item }: IProps) {
     const { state: { properties, publish_product }, productID } = useContext(productContext)
     const { set, remove } = useContext(propertiesFormContext)
-
-    const checkItem = useCallback((name: string) => {
-        return properties.find(el => el.items.find(e => e.value.toLowerCase() === name.toLowerCase()))
+    
+    const checkItem = useCallback((value: string) => {
+        return properties.find(el => el.items.find((e: any) => e.value === value))
     }, [properties])
 
     const addProperty = useCallback((value: string) => {
         if (productID && publish_product) return false
-        const getVariantID = typesProperties.find(el => el.name.toLowerCase() === type.toLowerCase())
+        const getVariantID = typesProperties.find(el => el.name === type)
 
         if (checkItem(value)) {
             remove(value)
@@ -28,11 +28,12 @@ function PropertyItem({ type, name, hex }: IProps) {
             set({
                 item: {
                     value,
+                    caption: item.caption,
                     variantID: getVariantID._id
                 }
             })
         }
-    }, [properties, productID, publish_product, type])
+    }, [properties, productID, publish_product, type, item])
 
     const getContainer = useMemo(() => {
         switch (type) {
@@ -40,24 +41,24 @@ function PropertyItem({ type, name, hex }: IProps) {
                 return (
                     <Box
                         borderRadius="100%"
-                        onClick={() => addProperty(name)}
+                        onClick={() => addProperty(item.value)}
                         width="32px"
                         height="32px"
                         cursor={productID && publish_product ? "auto" : "pointer"}
-                        background={hex}
-                        className={`${checkItem(name) ? classes.active : ""} ${classes.box}`}
+                        background={item.value}
+                        className={`${checkItem(item.value) ? classes.active : ""} ${classes.box}`}
                     ></Box>
                 )
             case "Size":
                 return (
                     <Box
                         borderRadius="28px"
-                        onClick={() => addProperty(name)}
+                        onClick={() => addProperty(item.value)}
                         padding="6px 16px"
                         cursor={productID && publish_product ? "auto" : "pointer"}
                         background="#1C1C1C"
-                        className={`${checkItem(name) ? classes.active : ""} ${classes.box}`}
-                    >{name}</Box>
+                        className={`${checkItem(item.value) ? classes.active : ""} ${classes.box}`}
+                    >{item.value}</Box>
                 )
             default:
                 return <></>
