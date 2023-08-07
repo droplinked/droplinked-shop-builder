@@ -29,6 +29,9 @@ const DesignPage = lazy(() =>
 const TechnicalPage = lazy(() =>
   import("pages/register-pages/pages/technical")
 );
+const CouponsSetting = lazy(() =>
+  import("pages/register-pages/pages/coupons/CouponsSetting")
+);
 const LandingPage = lazy(() =>
   import("pages/public-pages/landing-page/LandingPage")
 );
@@ -82,6 +85,7 @@ function AppRoutes() {
               <Route path="contact-info" element={<ContactInfo />} />
               <Route path="design" element={<DesignPage />} />
               <Route path="technical" element={<TechnicalPage />} />
+              <Route path="coupons" element={<CouponsSetting />} />
             </Route>
             <Route path="products">
               <Route index element={<Products />} />
