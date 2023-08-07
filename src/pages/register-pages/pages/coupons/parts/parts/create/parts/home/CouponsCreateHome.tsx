@@ -26,7 +26,7 @@ function CouponsCreateHome() {
     return (
         <VStack align="stretch" spacing="10px">
             {data.map((el, key: number) => (
-                <HStack backgroundColor="#141414" onClick={() => updateState('type', el.value)} cursor="pointer" padding="20px" key={key}>
+                <HStack spacing="13px" backgroundColor="#141414" onClick={() => updateState('type', el.value)} cursor="pointer" padding="20px" key={key}>
                     <Box>{el.icon}</Box>
                     <VStack align="stretch" spacing={1}>
                         <AppTypography size='16px' color="#C2C2C2" weight='bolder'>{el.title}</AppTypography>

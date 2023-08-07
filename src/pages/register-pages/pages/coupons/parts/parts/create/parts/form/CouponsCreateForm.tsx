@@ -12,6 +12,7 @@ import { useMutation } from 'react-query'
 import { IgiftcardCreateService } from 'lib/apis/coupons/interfaces'
 import { giftcardCreateService } from 'lib/apis/coupons/addressServices'
 import useAppToast from 'functions/hooks/toast/useToast'
+import CouponsSettingContext from 'pages/register-pages/pages/coupons/context'
 
 interface IFrom {
     name: string
@@ -22,6 +23,7 @@ interface IFrom {
 function CouponsCreateForm() {
     const { mutateAsync, isLoading } = useMutation((params: IgiftcardCreateService) => giftcardCreateService(params))
     const { type, closeModal } = useContext(CouponsCreateContext)
+    const { fetch } = useContext(CouponsSettingContext)
     const { shop } = useAppStore()
     const { showToast } = useAppToast()
 
@@ -36,6 +38,7 @@ function CouponsCreateForm() {
             await mutateAsync(body)
             showToast(capitalizeFirstLetter(type) + ' Created', 'success')
             closeModal()
+            fetch()
         } catch (error) {
             showToast(error?.message || "Oops! Something went wrong", 'error');
         }

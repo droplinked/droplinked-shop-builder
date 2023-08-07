@@ -5,6 +5,7 @@ import AppCard from 'components/common/card/AppCard'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import CouponsCreate from '../parts/create/CouponsCreate'
+import classes from './style.module.scss'
 
 function CouponsEmpty() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -12,9 +13,9 @@ function CouponsEmpty() {
     return (
         <>
             <AppCard>
-                <VStack align="stretch" spacing="20px" color="#C2C2C2">
+                <VStack align="stretch" spacing="25px" color="#C2C2C2">
                     <Box textAlign="center"><AppTypography size='18px'>Offer exclusive Gift Cards and Credit to Your Customers!</AppTypography></Box>
-                    <HStack justifyContent="center">
+                    <HStack justifyContent="center" className={classes.icons} spacing="30px">
                         <AppIcons.discountSetting />
                         <AppIcons.giftSetting />
                     </HStack>

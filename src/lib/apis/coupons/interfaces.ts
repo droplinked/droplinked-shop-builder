@@ -5,4 +5,9 @@ export interface IgiftcardCreateService {
     expiryDate: string
     quantity: string
     shopID: string
+
+}
+export interface IgiftcardsService {
+    page: string
+    limit?: number
 }
