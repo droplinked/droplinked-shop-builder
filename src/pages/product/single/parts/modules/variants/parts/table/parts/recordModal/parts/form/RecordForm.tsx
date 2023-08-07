@@ -98,8 +98,8 @@ function RecordForm({ close, product }: Iprops) {
                 if (query) deploy(data, query.txId)
             } else if (data.blockchain === "POLYGON") {
                 const login = await PolygonLogin()
-                const quantityPOD = '115792089237316195423570985008687907853269984665640564039457584007913129639935'
-                const record = await record_merch_polygon(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price, product_type === "PRINT_ON_DEMAND" ? quantityPOD : product.sku.quantity, commission)
+                const quantityPOD = '11579208923731619542357098500868790785326998466564056403945758400791312963999'
+                const record = await record_merch_polygon(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price * 100, product_type === "PRINT_ON_DEMAND" ? quantityPOD : product.sku.quantity, commission * 100)
                 if (record) deploy(data, record)
             }
             updateState("loading", false)
