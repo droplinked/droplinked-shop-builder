@@ -39,7 +39,6 @@ const DesignPage = () => {
           <TemplateStore />
           <Box mb="48px" />
           <BannerComponent />
-          <Box mb="48px" />
         </AppCard>
         <AppCard>
           <IconsComponent />
