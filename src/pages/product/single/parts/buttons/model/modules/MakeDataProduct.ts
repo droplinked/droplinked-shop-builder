@@ -42,6 +42,7 @@ export default class MakeDataProductModel {
             "pod_blank_product_id": state.pod_blank_product_id,
             "thumb": state.thumb,
             "m2m_services": state.m2m_services,
+            "purchaseAvailable": state.purchaseAvailable,
         }
     }
 }
