@@ -10,12 +10,21 @@ export const initialStatesDesign = {
   backgroundImageSecondary: "",
   backgroundColor: "#fff",
   productSectionText: "",
+  fullWidthHero: false
 };
 
-export const designContext = createContext({
+interface IProps {
+  state: any
+  methods: {
+    updateState: Function
+    resetState: Function
+  }
+}
+
+export const designContext = createContext<IProps>({
   state: initialStatesDesign,
   methods: {
-    updateState: () => {},
-    resetState: () => {},
+    updateState: () => { },
+    resetState: () => { },
   }
 });
