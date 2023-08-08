@@ -11,13 +11,13 @@ function CouponsCreateHome() {
     const data = [
         {
             title: 'Discount',
-            description: 'Create discount coupon to offer your valued customers',
+            description: 'Create discount coupon code',
             icon: <AppIcons.discountSetting className={classes.icon} />,
             value: "DISCOUNT"
         },
         {
             title: 'Credit',
-            description: 'Create credit coupon to offer your valued customers',
+            description: 'Create credit coupon code',
             icon: <AppIcons.giftSetting className={classes.icon} />,
             value: "CREDIT"
         }

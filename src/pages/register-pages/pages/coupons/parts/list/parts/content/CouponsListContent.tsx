@@ -12,7 +12,7 @@ import classes from './style.module.scss'
 function CouponsListContent() {
     const { coupons } = useContext(CouponsSettingContext)
     const [Code, setCode] = useState(null)
-    
+
     return (
         <VStack align="stretch">
             <VStack align="stretch" spacing={3}>
@@ -31,8 +31,8 @@ function CouponsListContent() {
                                     </VStack>
                                 </Flex>
                                 <VStack align="stretch">
-                                    <AppTypography size='12px'>{el.codes.length} Code</AppTypography>
-                                    <AppTypography size='12px'>%{el.balance}</AppTypography>
+                                    <AppTypography size='12px'>{el.codes.length} {el.codes.length > 1 ? 'Codes' : 'Code'}</AppTypography>
+                                    <AppTypography size='12px'>{el.balance} {el.type === "DISCOUNT" ? '%' : 'USD'}</AppTypography>
                                 </VStack>
                                 {/* <Box alignSelf="baseline" marginTop="7px"><AppTypography size='10px'>Export</AppTypography></Box> */}
                                 <Box>

@@ -72,7 +72,7 @@ function CouponsCreateForm() {
                                 <AppInput value={values.quantity} error={errors.quantity} name='Available Quantity' onChange={el => setFieldValue('quantity', parseInt(el.target.value))} label='Available Quantity' placeholder='100' />
                             </Box>
                             <Box width="50%">
-                                <AppInput value={values.balance} error={errors.balance} name={`${capitalizeFirstLetter(type)} Value`} onChange={el => setFieldValue('balance', parseInt(el.target.value))} label={`${capitalizeFirstLetter(type)} Value`} placeholder='%20' />
+                                <AppInput value={values.balance} error={errors.balance} name={`${capitalizeFirstLetter(type)} Value`} onChange={el => setFieldValue('balance', parseInt(el.target.value))} label={`${capitalizeFirstLetter(type)} Value`} placeholder={type === "DISCOUNT" ? '20%' : '200'} />
                             </Box>
                         </HStack>
                         <HStack justifyContent="space-between">
