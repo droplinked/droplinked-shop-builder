@@ -7,6 +7,7 @@ import { BANNER_DEFAULT_IMSGES } from "./default-images";
 import HeaderBannerComponent from "./components/header-banner-component/HeaderBannerComponent";
 import ImagesSliderBannerComponent from "./components/images-slider-banner-component/ImagesSliderBannerComponent";
 import { useLocation } from "react-router-dom";
+import FullWidth from "./components/fullwidth/FullWidth";
 
 const BannerComponent = () => {
   const { state: { backgroundColor, backgroundImage } } = useContext(designContext);
@@ -43,6 +44,7 @@ const BannerComponent = () => {
       </Box>
       <HeaderBannerComponent addNewImage={addNewImage} />
       <ImagesSliderBannerComponent images={images} />
+      <FullWidth />
     </Box>
   );
 };
