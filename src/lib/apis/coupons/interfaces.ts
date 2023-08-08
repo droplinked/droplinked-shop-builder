@@ -10,4 +10,5 @@ export interface IgiftcardCreateService {
 export interface IgiftcardsService {
     page: string
     limit?: number
+    search?:string
 }
