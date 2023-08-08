@@ -27,7 +27,7 @@ function CouponsListContent() {
                                     </VStack>
                                     <VStack width="100%" align="stretch">
                                         <AppTypography size='14px' weight='bolder'>{el.name}</AppTypography>
-                                        <AppTypography size='12px'>{el.createdAt}</AppTypography>
+                                        <AppTypography size='12px'>{el?.expiryDate}</AppTypography>
                                     </VStack>
                                 </Flex>
                                 <VStack align="stretch">
