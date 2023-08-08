@@ -5,6 +5,7 @@ import DescriptionProduct from '../modules/description/DescriptionProduct'
 import ProductTypes from '../modules/type/ProductTypes'
 import ProductCollapse from '../modules/collapse/ProductCollapse'
 import ProductImages from '../modules/images/ProductImages'
+import AvailablePurchase from '../modules/available/AvailablePurchase'
 
 function General() {
     return (
@@ -14,6 +15,7 @@ function General() {
                 <DescriptionProduct />
                 <ProductTypes />
                 <ProductImages />
+                <AvailablePurchase />
             </VStack>
         </ProductCollapse>
     )

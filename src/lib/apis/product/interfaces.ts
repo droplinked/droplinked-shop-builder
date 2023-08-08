@@ -26,6 +26,7 @@ export interface IproductState {
     m2m_positions: Array<string>
     thumb: string,
     m2m_services?: Array<string>
+    purchaseAvailable: boolean
 }
 
 export interface IpropertiesItems {
