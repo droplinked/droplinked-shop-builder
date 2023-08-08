@@ -14,7 +14,7 @@ function CouponsEmpty() {
         <>
             <AppCard>
                 <VStack align="stretch" spacing="25px" color="#C2C2C2">
-                    <Box textAlign="center"><AppTypography size='18px'>Offer exclusive Gift Cards and Credit to Your Customers!</AppTypography></Box>
+                    <Box textAlign="center"><AppTypography size='18px'>Offer exclusive Gift Cards and Credits to Your Customers!</AppTypography></Box>
                     <HStack justifyContent="center" className={classes.icons} spacing="30px">
                         <AppIcons.discountSetting />
                         <AppIcons.giftSetting />
