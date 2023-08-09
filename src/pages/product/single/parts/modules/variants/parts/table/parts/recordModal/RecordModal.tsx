@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import AppModal from 'components/common/modal/AppModal'
 import { Isku } from 'lib/apis/product/interfaces'
 import RecordForm from './parts/form/RecordForm'

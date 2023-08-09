@@ -55,7 +55,7 @@ const HeaderLayout = () => {
           <PopoverTrigger>
             <Flex alignItems="center" gap="12px" cursor="pointer">
               <ShopnameText>{shop?.name}</ShopnameText>
-              <AppIcons.shopIcon />
+              <AppIcons.ShopIcon />
             </Flex>
           </PopoverTrigger>
           <PopoverContent

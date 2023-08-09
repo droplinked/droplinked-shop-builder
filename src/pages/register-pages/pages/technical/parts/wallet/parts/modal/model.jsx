@@ -10,27 +10,27 @@ const walletModalClass = ({
         return [
             {
                 title: "Casper Signer",
-                icon: <AppIcons.casperIcon {...size} />
+                icon: <AppIcons.CasperIcon {...size} />
             },
             {
                 title: "Casper Wallet",
-                icon: <AppIcons.casperWalletIcon {...size} />
+                icon: <AppIcons.CasperWalletIcon {...size} />
             },
             {
                 title: "Wallet Connect",
-                icon: <AppIcons.walletConnectIcon {...size} />
+                icon: <AppIcons.WalletConnectIcon {...size} />
             },
             {
                 title: "MetaMask",
-                icon: <AppIcons.metaMaskIcon {...size} />
+                icon: <AppIcons.MetaMaskIcon {...size} />
             },
             {
                 title: "NEAR Wallet",
-                icon: <AppIcons.nearWalletIcon {...size} />
+                icon: <AppIcons.NearWalletIcon {...size} />
             },
             {
                 title: "Unstoppable Domains",
-                icon: <AppIcons.unstoppableDomainsIcon {...size} />
+                icon: <AppIcons.UnstoppableDomainsIcon {...size} />
             }
         ]
     }

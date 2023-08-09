@@ -11,11 +11,11 @@ function IconBlockchain({ blockchain, props }: IProps) {
     const icon = useMemo(() => {
         switch (blockchain) {
             case "CASPER":
-                return <AppIcons.casperIcon {...props} />
+                return <AppIcons.CasperIcon {...props} />
             case "STACKS":
-                return <AppIcons.stacks {...props} />
+                return <AppIcons.Stacks {...props} />
             case "POLYGON":
-                return <AppIcons.polygon {...props} />
+                return <AppIcons.Polygon {...props} />
             default:
                 return null
         }

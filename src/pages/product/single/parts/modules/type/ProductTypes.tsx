@@ -3,7 +3,7 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import { appDeveloment } from 'lib/utils/app/variable'
 import { productContext } from 'pages/product/single/context'
-import React, { useCallback, useContext, useEffect } from 'react'
+import React, { useCallback, useContext } from 'react'
 import ProductPovProvider from './parts/pov/ProductPovProvider'
 
 function ProductTypes() {
