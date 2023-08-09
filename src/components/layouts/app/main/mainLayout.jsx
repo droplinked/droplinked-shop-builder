@@ -4,6 +4,8 @@ import { Outlet } from 'react-router-dom'
 import FooterLayout from './parts/footer/FooterLayout'
 import HeaderLayout from './parts/header/HeaderLayout'
 
+// This is master layout
+
 function MainLayout() {
     return (
         <VStack align={"stretch"} bgColor={"bG"}>

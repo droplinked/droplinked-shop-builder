@@ -36,6 +36,8 @@ const keyframe_leftanimation = keyframes`
 }
 `;
 
+// This is home page 
+
 export default function LandingPage() {
   const prefersReducedMotion = usePrefersReducedMotion();
 

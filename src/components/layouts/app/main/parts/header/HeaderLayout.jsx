@@ -28,11 +28,13 @@ const HeaderLayout = () => {
   const { shopNavigate } = useCustomNavigate();
   const { logoutUser } = useProfile()
 
+  // Redirect dashboard
   const clickOnViewShop = useCallback(() => {
     shopNavigate("products");
     onClose();
   }, []);
 
+  // Logout
   const logout = useCallback(() => {
     logoutUser()
     onClose();

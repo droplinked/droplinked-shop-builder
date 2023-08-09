@@ -1,6 +1,6 @@
 import { VStack } from '@chakra-ui/react'
-import React, { useCallback, useEffect, useState } from 'react'
-import { initialStatesProduct, IproductStore, productContext } from './context'
+import React, { useCallback, useEffect, useReducer } from 'react'
+import { productContext } from './context'
 import ButtonsProduct from './parts/buttons/ButtonsProduct'
 import { useParams } from 'react-router-dom'
 import { useMutation } from 'react-query'
@@ -9,40 +9,22 @@ import ProductSingleModel from './model/model'
 import General from './parts/general/General'
 import Variant from './parts/variant/Variant'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
-import { IproductByIdServices, IproductState } from 'lib/apis/product/interfaces'
+import { IproductByIdServices } from 'lib/apis/product/interfaces'
 import ShippingProduct from './parts/modules/shipping/ShippingProduct'
 import ProductPodDesign from './parts/podDesign/ProductPodDesign'
 import CollectionProduct from './parts/collection/CollectionProduct'
 import ProductStore from './parts/store/ProductStore'
 import DigitalLinks from './parts/digital/DigitalLinks'
-
-interface Istate {
-    params: IproductState
-    store: IproductStore
-}
+import productPageNamespace from './reducers'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
+    const { reducers, initialState } = productPageNamespace
     const params = useParams()
-    const [State, setState] = useState<Istate>({
-        params: initialStatesProduct,
-        store: {
-            variants: []
-        }
-    })
+    const [state, dispatch] = useReducer(reducers, initialState)
     const { shop } = useProfile()
     const { refactorData } = ProductSingleModel
     const productId = params?.productId
-
-    const updateState = useCallback((element: any, value: any) => {
-        if ([typeof element, typeof value].includes("undefined")) return false
-        setState(prev => ({ ...prev, params: { ...prev.params, [element]: value } }))
-    }, [])
-
-    const updateStore = useCallback((storeName: any, value: any) => {
-        if ([typeof storeName, typeof value].includes("undefined")) return false
-        setState(prev => ({ ...prev, store: { ...prev.store, [storeName]: value } }))
-    }, [])
 
     // Fetch product for edit
     const fetch = useCallback(() => {
@@ -61,21 +43,21 @@ function ProductSingle() {
     }, [params])
 
     useEffect(() => {
-        if (params?.productId) fetch().then((res: any) => setState(prev => ({ ...prev, params: res })))
+        if (params?.productId) fetch().then((res: any) => dispatch({ type: "updateStateParams", params: { result: res } }))
     }, [params])
 
     // useEffect(() => {
-    //     console.log(State.params);
-    // }, [State])
+    //     console.log(state.params);
+    // }, [state])
 
     return (
         <productContext.Provider value={{
-            state: State.params,
+            state: state.params,
             store: {
-                state: State.store,
-                methods: { update: updateStore }
+                state: state.store,
+                methods: { update: (storeName, value) => dispatch({ type: "updateStore", params: { storeName, value } }) }
             },
-            methods: { updateState, fetch },
+            methods: { updateState: (element, value) => dispatch({ type: "updateState", params: { element, value } }), fetch },
             productID: productId,
             loading: productId ? !isLoading : true,
         }}>
