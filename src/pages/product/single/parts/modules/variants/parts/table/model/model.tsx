@@ -14,9 +14,8 @@ interface IgetRows {
     variants: any
 }
 
-export default class SkuTableModel {
-    private static table = ProductSkuesTable
-    static getRows = ({ state, sku, key, variants }: IgetRows) => {
+const SkuTableModel = ({
+    getRows: ({ state, sku, key, variants }: IgetRows) => {
         const checkRecord = sku?.recordData && sku.recordData.status !== "NOT_RECORDED"
         const product_type = state.product_type
 
@@ -51,7 +50,7 @@ export default class SkuTableModel {
             ...product_type === "PRINT_ON_DEMAND" && {
                 cost: {
                     caption: "Product Cost",
-                    value: variants ? <AppTypography size="12px">{this.table.variants({ variants, state })} USD</AppTypography> : 0
+                    value: variants ? <AppTypography size="12px">{ProductSkuesTable.variants({ variants, state })} USD</AppTypography> : 0
                 },
             },
             ...product_type === "NORMAL" && {
@@ -81,4 +80,6 @@ export default class SkuTableModel {
             },
         }
     }
-}
+})
+
+export default SkuTableModel

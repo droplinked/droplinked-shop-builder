@@ -29,24 +29,23 @@ interface IcheckUsedPropertyItem {
     properties: Array<Iproperties>
 }
 
-export default class propertyItemModel {
-    private static append = AppendModule
+ const propertyItemModel = ({
 
     // Append new row item to property
-    static appendPropertyItem = ({ state, keyProperty }: IappendPropertyItem) => {
-        return this.append.loopProperty({
+    appendPropertyItem : ({ state, keyProperty }: IappendPropertyItem) => {
+        return AppendModule.loopProperty({
             state,
             action: (el: Iproperties, key: number) => {
                 return {
                     ...el,
-                    items: keyProperty === key ? [...el.items, ...this.append.mockItem()] : el.items
+                    items: keyProperty === key ? [...el.items, ...AppendModule.mockItem()] : el.items
                 }
             }
         })
-    }
+    },
 
     // Set item for property
-    static addPropertyItem = ({ item, properties }: IaddProperty): Array<Iproperties> => {
+    addPropertyItem : ({ item, properties }: IaddProperty): Array<Iproperties> => {
         const property = properties.find(el => el.value === item.variantID)
 
         let result = []
@@ -60,11 +59,11 @@ export default class propertyItemModel {
             })
         });
         return result
-    }
+    },
 
     // Remove item property
-    static removePropertyItem = ({ valueItem, state }: IremoveItem): Array<Iproperties> => {
-        return this.append.loopProperty({
+    removePropertyItem : ({ valueItem, state }: IremoveItem): Array<Iproperties> => {
+        return AppendModule.loopProperty({
             state,
             action: (el: Iproperties, key: number) => {
                 return {
@@ -73,10 +72,10 @@ export default class propertyItemModel {
                 }
             }
         })
-    }
+    },
 
     // Check this item use in property
-    static checkUsedPropertyItem = ({ properties, propertyValue }: IcheckUsedPropertyItem) => {
+    checkUsedPropertyItem : ({ properties, propertyValue }: IcheckUsedPropertyItem) => {
         return new Promise((resolve, reject) => {
             const check = properties.find(el => el.items.find(item => item.value === propertyValue))
             if (check) {
@@ -85,7 +84,8 @@ export default class propertyItemModel {
                 resolve(true)
             }
         })
-    }
+    },
 
+ })
 
-}
+ export default propertyItemModel

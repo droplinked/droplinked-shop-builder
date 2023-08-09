@@ -10,7 +10,7 @@ export interface IpropertiesItems {
 interface IproductContext {
     state: IproductState,
     store: {
-        state: ProductPageNamespace.IproductStore
+        state: ProductPageNamespace.IStore
         methods: {
             update(storeName: any, data: any): void
         }

@@ -1,13 +1,13 @@
 import { IproductState } from "lib/apis/product/interfaces";
 
 namespace ProductPageNamespace {
-    export interface IproductStore {
+    export interface IStore {
         variants: any
     }
 
-    export interface IProductSingleStates {
+    export interface IStates {
         params: IproductState
-        store: IproductStore
+        store: IStore
     }
 
     type actions =
@@ -21,10 +21,10 @@ namespace ProductPageNamespace {
         } |
         {
             type: "updateStore",
-            params: { storeName: any, value: any }
+            params: { storeName: string, value: any }
         }
 
-    export const initialState: IProductSingleStates = {
+    export const initialState: IStates = {
         params: {
             title: '',
             description: '',
@@ -53,7 +53,7 @@ namespace ProductPageNamespace {
         }
     };
 
-    export const reducers = (state: IProductSingleStates, action: actions): IProductSingleStates => {
+    export const reducers = (state: IStates, action: actions): IStates => {
         switch (action.type) {
             case 'updateStateParams':
                 return {
@@ -73,8 +73,8 @@ namespace ProductPageNamespace {
                 if ([typeof action.params.storeName, typeof action.params.value].includes("undefined")) return state
                 return {
                     ...state,
-                    params: {
-                        ...state.params,
+                    store: {
+                        ...state.store,
                         [action.params.storeName]: action.params.value
                     }
                 }

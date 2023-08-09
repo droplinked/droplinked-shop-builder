@@ -1,7 +1,7 @@
 import AppIcons from "assest/icon/Appicons";
 
-export default class walletModalClass {
-    static listWallet = () => {
+const walletModalClass = ({
+    listWallet: () => {
         const size = {
             width: "24px",
             height: "24px",
@@ -34,4 +34,6 @@ export default class walletModalClass {
             }
         ]
     }
-}
+})
+
+export default walletModalClass

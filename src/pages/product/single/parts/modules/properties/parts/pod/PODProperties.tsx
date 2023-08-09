@@ -37,7 +37,8 @@ function PODProperties() {
             ])
         }
         setToggle(prev => !prev)
-    }, [properties])
+    }, [makeproperties])
+    console.log("makeproperties", makeproperties);
 
     return (
         <VStack align={"stretch"}>

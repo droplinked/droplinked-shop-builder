@@ -9,8 +9,8 @@ interface IrefactorData {
     fetch: Function
     search: string
 }
-export default class ProductListModel {
-    private static makeData = (element: any, fetch: any) => {
+const ProductListModel = ({
+    makeData: (element: any, fetch: any) => {
         const publish_status = element?.publish_status
         return {
             image: {
@@ -32,11 +32,12 @@ export default class ProductListModel {
                 value: <ControlsListProduct product={element} productID={element._id} fetch={fetch} />
             }
         }
-    }
+    },
 
-    static refactorData = ({ data, fetch, search }: IrefactorData): Array<ITableRows> => {
+    refactorData: ({ data, fetch, search }: IrefactorData): Array<ITableRows> => {
         search = search && search.toLowerCase()
         const products = search ? data.filter((el: any) => el?.title && el.title.toLowerCase().includes(search)) : data
-        return products.map((el: any): ITableRows => this.makeData(el, fetch))
+        return products.map((el: any): ITableRows => ProductListModel.makeData(el, fetch))
     }
-}
+})
+export default ProductListModel

@@ -20,11 +20,8 @@ interface Ivalidate {
     draft: boolean
 }
 
-export default class ButtonsProductClass {
-    private static makemodel = MakeDataProductModel
-    private static skumodel = ProductValidateModel
-
-    static validate = ({ state, draft }: Ivalidate) => {
+const ButtonsProductClass = ({
+    validate: ({ state, draft }: Ivalidate) => {
         return new Promise(async (resolve, reject) => {
             try {
                 let error = new Error();
@@ -33,7 +30,7 @@ export default class ButtonsProductClass {
                     if (!state.sku.length) {
                         error.message = "Please enter sku"
                         throw error
-                    } else if (state.sku.length && state.product_type === "NORMAL" && this.skumodel.skues({ skues: state.sku })) {
+                    } else if (state.sku.length && state.product_type === "NORMAL" && ProductValidateModel.skues({ skues: state.sku })) {
                         error.message = "Please enter Quantity for all SKUs"
                         throw error
                     } else if (state.sku.find(el => !el.price)) {
@@ -51,7 +48,7 @@ export default class ButtonsProductClass {
                     }
                 }
 
-                if (state.product_type === "PRINT_ON_DEMAND" && state.sku.length && !this.skumodel.checkExistAllPropperty({ properties: state.properties })) {
+                if (state.product_type === "PRINT_ON_DEMAND" && state.sku.length && !ProductValidateModel.checkExistAllPropperty({ properties: state.properties })) {
                     error.message = `Please enter all property (${typesProperties.map(el => el.name).join(', ')})`
                     throw error
                 }
@@ -72,20 +69,20 @@ export default class ButtonsProductClass {
                 reject(error)
             }
         })
-    }
+    },
 
-    static makeData = ({ state, draft, productID }: ImakeData) => {
+    makeData: ({ state, draft, productID }: ImakeData) => {
 
         // Check PRINT_ON_DEMAND
         if (state.product_type === "PRINT_ON_DEMAND") state.shippingType = "DLW"
 
-        const updateData = (publish_product: boolean) => this.makemodel.update({ state: { ...state, publish_product } })
+        const updateData = (publish_product: boolean) => MakeDataProductModel.update({ state: { ...state, publish_product } })
         const data = { ...state, sku: MakeDataProductModel.refactorSku({ skues: state.sku }) }
         return draft ? productID ? updateData(false) : { ...data, publish_product: false } : productID ? updateData(true) : { ...data, publish_product: true }
 
-    }
+    },
 
-    static makeskuUpdate = ({ sku }: ImakeskuUpdate) => {
+    makeskuUpdate: ({ sku }: ImakeskuUpdate) => {
         return {
             "quantity": sku.quantity,
             "price": sku.price,
@@ -94,4 +91,6 @@ export default class ButtonsProductClass {
             "dimensions": sku.dimensions,
         }
     }
-}
+})
+
+export default ButtonsProductClass

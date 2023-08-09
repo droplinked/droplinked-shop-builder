@@ -7,9 +7,10 @@ interface IrefactorData {
     data: any
     search: string
 }
-export default class OrdersModel {
 
-    static calculateHowTimePassed = (baseTime: string) => {
+const OrdersModel = ({
+
+    calculateHowTimePassed: (baseTime: string) => {
         const now = new Date();
         const yourDate = new Date(baseTime);
 
@@ -30,9 +31,9 @@ export default class OrdersModel {
         } else {
             return convertToStandardFormat(yourDate.getTime());
         }
-    };
+    },
 
-    static makeData = (element: any) => ({
+    makeData: (element: any) => ({
         Code: {
             caption: "Order ID",
             value: element?._id
@@ -42,7 +43,7 @@ export default class OrdersModel {
         },
         Date: {
             caption: "Date Created",
-            value: this.calculateHowTimePassed(element?.createdAt)
+            value: OrdersModel.calculateHowTimePassed(element?.createdAt)
         },
         Quantity: {
             value: element?.items?.length
@@ -55,11 +56,13 @@ export default class OrdersModel {
             caption: "",
             value: <ControlsListOrder order={element} />
         }
-    })
+    }),
 
-    static refactorData = ({ data,search }: IrefactorData): Array<ITableRows> => {
+    refactorData: ({ data, search }: IrefactorData): Array<ITableRows> => {
         search = search && search.toLowerCase()
         const products = search ? data.filter((el: any) => el?._id && el._id.toLowerCase().includes(search)) : data
-        return products.map((el: any): ITableRows => this.makeData(el))
+        return products.map((el: any): ITableRows => OrdersModel.makeData(el))
     }
-}
+})
+
+export default OrdersModel

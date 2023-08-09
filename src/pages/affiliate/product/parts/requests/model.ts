@@ -1,15 +1,17 @@
 import { typesProperties } from "lib/utils/statics/types";
 
-export default class RequestProductModel {
-    static getCaption = (id: string) => typesProperties.find(el => el._id === id).name
+const RequestProductModel = ({
+    getCaption: (id: string) => typesProperties.find(el => el._id === id).name,
 
-    static makeOptions = (list: any) => {
+    makeOptions: (list: any) => {
         let options = {}
         list.forEach((element: any) => {
-            options[this.getCaption(element.variantID)] = {
+            options[RequestProductModel.getCaption(element.variantID)] = {
                 value: element.value
             }
         });
         return options
     }
-}
+})
+
+export default RequestProductModel
