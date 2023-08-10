@@ -30,8 +30,8 @@ function SocialAffliate({ social, size }: IProps) {
     const icons = {
         instagram: <AppIcons.InstagramIcon {...sized} />,
         discord: <AppIcons.Discord {...sized} />,
-        tiktok: <AppIcons.Tiktok {...sized} />,
-        linkedin: <AppIcons.Linkedin {...sized} />,
+        tiktok: <AppIcons.TikTok {...sized} />,
+        linkedin: <AppIcons.LinkedIn {...sized} />,
         twitter: <AppIcons.TwitterIcon {...sized} />,
         facebook: <AppIcons.FacebookIcon {...sized} />,
         web: <AppIcons.Web {...sized} />,
