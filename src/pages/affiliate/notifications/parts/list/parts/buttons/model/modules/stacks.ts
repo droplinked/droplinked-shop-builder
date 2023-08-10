@@ -1,6 +1,6 @@
 import { principalCV, uintCV } from "@stacks/transactions"
 import { configStacks } from "lib/utils/blockchain/stacks/_constans"
-import { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel"
+import { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/recordFormModel"
 
 interface Iapprove {
     isRequestPending: any

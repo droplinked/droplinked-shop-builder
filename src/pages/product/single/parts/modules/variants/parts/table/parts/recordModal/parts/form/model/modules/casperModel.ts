@@ -6,7 +6,6 @@ export interface IRecordCasper {
     product: any
     publicKey: string
     commission: number,
-    sku: Isku
 }
 
 export interface IopenCasperWallet {
@@ -20,7 +19,7 @@ interface IcasperRecord {
     deployHash: string | undefined
 }
 
-const RecordModalModule = ({
+const RecordCasperModule = ({
     openCasperWallet: (): Promise<IopenCasperWallet> => {
         return new Promise<IopenCasperWallet>(async (resolve, reject) => {
             if (isCapseWalletExtentionInstalled()) {
@@ -42,11 +41,11 @@ const RecordModalModule = ({
         })
     },
 
-    casperRecord: async ({ commission, product, publicKey, sku }: IRecordCasper) => {
+    casperRecord: async ({ commission, product, publicKey }: IRecordCasper) => {
         return new Promise<IcasperRecord>(async (resolve, reject) => {
             try {
                 const data = {
-                    sku_properties: sku,
+                    sku_properties: product.sku,
                     account_information: {
                         publicKey: publicKey,
                     },
@@ -72,4 +71,4 @@ const RecordModalModule = ({
     }
 })
 
-export default RecordModalModule
+export default RecordCasperModule

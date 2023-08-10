@@ -14,6 +14,8 @@ const hashkeyModel = {
                 return `https://explorer.hiro.so/txid/${hashkey}?chain=${appDeveloment ? "testnet" : "mainnet"}`
             case "POLYGON":
                 return `https://${appDeveloment ? "mumbai." : ""}polygonscan.com/tx/${hashkey}`
+            case "RIPPLE":
+                return `https://evm-sidechain.xrpl.org/tx/${hashkey}`
             default:
                 return ""
         }
