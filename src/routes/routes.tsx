@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import React, { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import LoadingPage from "pages/public-pages/loading-page/LoadingPage";
 import DashboardLayout from "components/layouts/app/dashboard/DashboardLayout";
 import Products from "pages/product/list/products";
@@ -13,12 +13,8 @@ import MainLayout from 'components/layouts/app/main/mainLayout'
 import NotFound from 'pages/404/404'
 import Enquiry from 'pages/public-pages/enquiry-page/EnquiryPage'
 import ContactInfo from 'pages/register-pages/pages/contact-info/ContactInfo'
-import DesignPage from 'pages/register-pages/pages/design/DesignPage'
-import TechnicalPage from 'pages/register-pages/pages/technical'
-import CouponsSetting from 'pages/register-pages/pages/coupons/CouponsSetting'
 import LandingPage from 'pages/public-pages/landing-page/LandingPage'
 import TermsPage from 'pages/public-pages/terms-page/TermsPage'
-import ProductSingle from 'pages/product/single'
 import PrivacyPage from 'pages/public-pages/privacy-page/PrivacyPage'
 import ShopPage from 'pages/public-pages/shop-page/ShopPage'
 import VerifyEmailPage from 'pages/auth-pages/verify-email-page/Email-verification-page'
@@ -26,9 +22,13 @@ import ResetPassPage from 'pages/auth-pages/reset-pass-page/ResetPassPage'
 import ThankForRegisterPage from 'pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage'
 import Shop from 'pages/affiliate/shopSingle/Shop'
 import ShopProduct from 'pages/affiliate/product/ShopProduct'
-import Requests from 'pages/affiliate/requests/Requests'
-import Notifications from 'pages/affiliate/notifications/Notifications'
 
+const ProductSingle = lazy(() => import("pages/product/single"))
+const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
+const Notifications = lazy(() => import("pages/affiliate/notifications/Notifications"))
+const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"))
+const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPage"))
+const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"))
 
 function AppRoutes() {
   return (

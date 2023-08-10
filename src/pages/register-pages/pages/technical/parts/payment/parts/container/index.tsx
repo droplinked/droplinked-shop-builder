@@ -37,10 +37,11 @@ function ContainerPayment({ title, value, locked }) {
 
   const getIcon = useCallback((icon: string) => {
     let styles = { width: "16px", height: "16px" }
+    
     switch (icon) {
       case "CASPER":
         return <AppIcons.CasperIcon style={styles} />
-      case "NAER":
+      case "NEAR":
         return <AppIcons.NearWalletIcon style={styles} />
       case "STACKS":
         return <AppIcons.Stacks style={styles} />
