@@ -33,7 +33,7 @@ function Rules() {
                             value: (
                                 <HStack>
                                     
-                                    <Box>{el.gated ? <AppIcons.gatedIcon {...sizes}  /> : <AppIcons.discountIcon {...sizes} />}</Box>
+                                    <Box>{el.gated ? <AppIcons.GatedIcon {...sizes}  /> : <AppIcons.DiscountIcon {...sizes} />}</Box>
                                     <Box><AppTypography size='14px'>{el.gated ? "gated" : "discount"}</AppTypography></Box>
                                 </HStack>
                             )

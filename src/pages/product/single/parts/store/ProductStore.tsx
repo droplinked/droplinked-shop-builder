@@ -1,5 +1,5 @@
-import { IpodProductService, IproviderIDService } from 'lib/apis/pod/interfaces'
-import { podProductService, providerIDService } from 'lib/apis/pod/services'
+import { IpodProductService } from 'lib/apis/pod/interfaces'
+import { podProductService } from 'lib/apis/pod/services'
 import React, { useContext, useEffect } from 'react'
 import { useMutation } from 'react-query'
 import { productContext } from '../../context'

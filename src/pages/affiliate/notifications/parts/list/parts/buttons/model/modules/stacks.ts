@@ -12,10 +12,10 @@ interface Iapprove {
 }
 
 
-export default class stacksApprove {
+const stacksApprove = ({
 
     // Approve request
-    static async approve({ isRequestPending, openContractCall, params: { id, publisher } }: Iapprove) {
+    approve: async ({ isRequestPending, openContractCall, params: { id, publisher } }: Iapprove) => {
         if (isRequestPending) return
 
         try {
@@ -29,4 +29,6 @@ export default class stacksApprove {
         }
     }
 
-}
+})
+
+export default stacksApprove

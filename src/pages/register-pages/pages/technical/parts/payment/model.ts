@@ -9,13 +9,12 @@ interface Ifind {
 }
 
 
-export default class technicalPaymentsModel {
-    private static find = ({ paymentMethods, type }: Ifind) => paymentMethods.filter((el: any) => el.type === type)[0]
+const technicalPaymentsModel = ({
+    find: ({ paymentMethods, type }: Ifind) => paymentMethods.filter((el: any) => el.type === type)[0],
 
-    static makePayments = ({ paymentMethods, paymentPublic }: ImakePayments) => {
-
+    makePayments: ({ paymentMethods, paymentPublic }: ImakePayments) => {
         const result = paymentPublic.map((el: any) => {
-            const findElement: any = this.find({
+            const findElement: any = technicalPaymentsModel.find({
                 paymentMethods: paymentMethods,
                 type: el
             })
@@ -29,4 +28,6 @@ export default class technicalPaymentsModel {
 
         return result
     }
-}
+})
+
+export default technicalPaymentsModel

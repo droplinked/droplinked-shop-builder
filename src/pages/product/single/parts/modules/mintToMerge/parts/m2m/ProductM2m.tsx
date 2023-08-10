@@ -17,10 +17,10 @@ function ProductM2m() {
         const style = { width: "24px", height: "24px" }
         switch (name) {
             case "Casper NFT":
-                return <AppIcons.casperIcon style={style} />
+                return <AppIcons.CasperIcon style={style} />
 
             default:
-                return <AppIcons.file style={style} />
+                return <AppIcons.File style={style} />
 
         }
     }, [])

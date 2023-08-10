@@ -29,7 +29,7 @@ function DefaultHoverBox() {
                     ) : (
                         <VStack textAlign="center" align="stretch" visibility={isLoading || checkSingleImage ? "hidden" : "visible"}>
                             <>
-                                <Flex justifyContent="center"><AppIcons.upload width="50px" /></Flex>
+                                <Flex justifyContent="center"><AppIcons.Upload width="50px" /></Flex>
                                 <AppTypography size='16px' color="#666">
                                     Upload JPG, JPEG, PNG
                                     <br />

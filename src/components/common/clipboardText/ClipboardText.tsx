@@ -10,7 +10,7 @@ function ClipboardText({ text }: Iprops) {
     const copy = useCallback((text: string) => navigator.clipboard.writeText(text), [])
     const { showToast } = useAppToast()
 
-    return <AppIcons.copyIcon width={"18px"} height="18px" onClick={() => {
+    return <AppIcons.CopyIcon width={"18px"} height="18px" onClick={() => {
         copy(text)
         showToast('Copied', "info", {
             autoClose: 200,

@@ -1,62 +1,34 @@
 import { Routes, Route } from "react-router-dom";
-import React, { lazy, Suspense } from "react";
+import React, { Suspense } from "react";
 import LoadingPage from "pages/public-pages/loading-page/LoadingPage";
 import DashboardLayout from "components/layouts/app/dashboard/DashboardLayout";
 import Products from "pages/product/list/products";
 import Collections from "pages/collections/Collections";
 import Orders from "pages/orders/Orders";
-import Rules from "pages/rules/Rules";
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper";
 import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout";
 import Shops from "pages/affiliate/shops/Shops";
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo";
+import MainLayout from 'components/layouts/app/main/mainLayout'
+import NotFound from 'pages/404/404'
+import Enquiry from 'pages/public-pages/enquiry-page/EnquiryPage'
+import ContactInfo from 'pages/register-pages/pages/contact-info/ContactInfo'
+import DesignPage from 'pages/register-pages/pages/design/DesignPage'
+import TechnicalPage from 'pages/register-pages/pages/technical'
+import CouponsSetting from 'pages/register-pages/pages/coupons/CouponsSetting'
+import LandingPage from 'pages/public-pages/landing-page/LandingPage'
+import TermsPage from 'pages/public-pages/terms-page/TermsPage'
+import ProductSingle from 'pages/product/single'
+import PrivacyPage from 'pages/public-pages/privacy-page/PrivacyPage'
+import ShopPage from 'pages/public-pages/shop-page/ShopPage'
+import VerifyEmailPage from 'pages/auth-pages/verify-email-page/Email-verification-page'
+import ResetPassPage from 'pages/auth-pages/reset-pass-page/ResetPassPage'
+import ThankForRegisterPage from 'pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage'
+import Shop from 'pages/affiliate/shopSingle/Shop'
+import ShopProduct from 'pages/affiliate/product/ShopProduct'
+import Requests from 'pages/affiliate/requests/Requests'
+import Notifications from 'pages/affiliate/notifications/Notifications'
 
-const MainLayout = lazy(() =>
-  import("components/layouts/app/main/mainLayout")
-);
-const NotFound = lazy(() =>
-  import("pages/404/404")
-);
-const Enquiry = lazy(() =>
-  import("pages/public-pages/enquiry-page/EnquiryPage")
-);
-const ContactInfo = lazy(() =>
-  import("pages/register-pages/pages/contact-info/ContactInfo")
-);
-const DesignPage = lazy(() =>
-  import("pages/register-pages/pages/design/DesignPage")
-);
-const TechnicalPage = lazy(() =>
-  import("pages/register-pages/pages/technical")
-);
-const CouponsSetting = lazy(() =>
-  import("pages/register-pages/pages/coupons/CouponsSetting")
-);
-const LandingPage = lazy(() =>
-  import("pages/public-pages/landing-page/LandingPage")
-);
-const TermsPage = lazy(() =>
-  import("pages/public-pages/terms-page/TermsPage")
-);
-const PrivacyPage = lazy(() =>
-  import("pages/public-pages/privacy-page/PrivacyPage")
-);
-const VerifyEmailPage = lazy(() =>
-  import("pages/auth-pages/verify-email-page/Email-verification-page")
-);
-const ResetPassPage = lazy(() =>
-  import("pages/auth-pages/reset-pass-page/ResetPassPage")
-);
-const ThankForRegisterPage = lazy(() =>
-  import("pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage")
-);
-
-const ShopPage = lazy(() => import("pages/public-pages/shop-page/ShopPage"));
-const ProductSingle = lazy(() => import("pages/product/single"));
-const Shop = lazy(() => import("pages/affiliate/shopSingle/Shop"))
-const ShopProduct = lazy(() => import("pages/affiliate/product/ShopProduct"))
-const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
-const Notifications = lazy(() => import("pages/affiliate/notifications/Notifications"))
 
 function AppRoutes() {
   return (

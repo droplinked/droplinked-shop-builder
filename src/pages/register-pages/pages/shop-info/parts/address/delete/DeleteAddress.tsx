@@ -29,7 +29,7 @@ function DeleteAddress({ addressID, addressRefetch }: IProps) {
 
     return (
         <>
-            <AppIcons.deleteIcon style={{ cursor: "pointer" }} onClick={onOpen} width="16px" height="16px" />
+            <AppIcons.DeleteIcon style={{ cursor: "pointer" }} onClick={onOpen} width="16px" height="16px" />
             <AppDialog
                 open={isOpen}
                 close={onClose}

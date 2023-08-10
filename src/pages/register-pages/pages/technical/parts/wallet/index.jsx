@@ -35,7 +35,7 @@ function Wallet() {
                             <tr>
                                 <td>
                                     <HStack>
-                                        <Box><AppIcons.metaMaskIcon width="22px" height="22px" /></Box>
+                                        <Box><AppIcons.MetaMaskIcon width="22px" height="22px" /></Box>
                                         <Box position="relative" top={1}>
                                             <Text fontSize="sm" color="lightGray">
                                                 R343FH...R343FH

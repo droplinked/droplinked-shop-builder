@@ -7,10 +7,10 @@ interface Iapprove {
     casperWallet: IopenCasperWallet
 }
 
-export default class casperApprove {
+const casperApprove = ({
 
     // Approve request
-    static approveRequest = async ({ shop }: Iapprove) => {
+    approveRequest: async ({ shop }: Iapprove) => {
         const casperWallet = await RecordModalModule.openCasperWallet()
         const { request_id, account_info } = {
             request_id: shop?.recordData?.details?.request_id,
@@ -25,4 +25,6 @@ export default class casperApprove {
         return await approve_request(request_id, account_info)
     }
 
-}
+})
+
+export default casperApprove

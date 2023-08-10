@@ -8,8 +8,8 @@ interface Iupdate {
     state: IproductState
 }
 
-export default class MakeDataProductModel {
-    static refactorSku = ({ skues }: IrefactorSku): Array<Isku> => {
+const MakeDataProductModel = ({
+    refactorSku: ({ skues }: IrefactorSku): Array<Isku> => {
         return skues.map((el: any) => ({
             ...el,
             dimensions: {
@@ -22,9 +22,9 @@ export default class MakeDataProductModel {
             quantity: parseInt(el?.quantity),
             image: el?.image
         }))
-    }
+    },
 
-    static update = ({ state }: Iupdate) => {
+    update: ({ state }: Iupdate) => {
         return {
             "title": state.title,
             "description": state.description,
@@ -45,4 +45,6 @@ export default class MakeDataProductModel {
             "purchaseAvailable": state.purchaseAvailable,
         }
     }
-}
+})
+
+export default MakeDataProductModel

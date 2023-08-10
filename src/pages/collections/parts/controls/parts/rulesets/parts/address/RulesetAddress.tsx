@@ -51,7 +51,7 @@ function RulesetAddress() {
                         {values.address.length ? values.address.map(el => (
                             <HStack backgroundColor="#1c1c1c" padding="4px 10px" borderRadius="4px">
                                 <AppTypography size='14px' color="#777">{el}</AppTypography>
-                                <AppIcons.close onClick={() => deleted(el)} cursor="pointer" />
+                                <AppIcons.Close onClick={() => deleted(el)} cursor="pointer" />
                             </HStack>
                         )) : null}
                         <Input type="text" ref={inputRef} width="200px" value={Keywrod} placeholder="enter..." onChange={e => setKeywrod(e.target.value)} variant="unstyled" color="#777" />

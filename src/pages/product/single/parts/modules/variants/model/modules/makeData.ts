@@ -15,17 +15,17 @@ interface IgetOptions {
     product_type: product_type
 }
 
-export default class VariantsMakeDataModel {
-    static sort = ({ properties }: Isort) => properties.sort((a, b) => b.items.length - a.items.length)
+const VariantsMakeDataModel = ({
+    sort : ({ properties }: Isort) => properties.sort((a, b) => b.items.length - a.items.length),
 
-    static makePropertyChild = ({ sort }: ImakePropertyItem) => {
+    makePropertyChild : ({ sort }: ImakePropertyItem) => {
         return sort.reduceRight((acc, curr: any) => {
             curr.child = acc;
             return curr;
         }, null)
-    }
+    },
 
-    static getOptions = ({ properties, skues, product_type }: IgetOptions): Array<Isku> => {
+    getOptions : ({ properties, skues, product_type }: IgetOptions): Array<Isku> => {
         const arr: any = [];
         const data: Isku = {
             externalID: "",
@@ -74,4 +74,6 @@ export default class VariantsMakeDataModel {
         handle(properties)
         return arr
     }
-}
+})
+
+export default VariantsMakeDataModel

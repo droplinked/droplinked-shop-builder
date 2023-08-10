@@ -37,7 +37,7 @@ function Collection() {
                 </SkeletonProduct>
             </Box>
             <HStack alignItems="center">
-                <AppIcons.info />
+                <AppIcons.Info />
                 <AppTypography color="#757575" size='14px'>NFT gating features and ruleset management are in the Collections page. <a style={{ color: "#25BB92" }} target={"_blank"}>Learn more</a></AppTypography>
             </HStack>
         </VStack>

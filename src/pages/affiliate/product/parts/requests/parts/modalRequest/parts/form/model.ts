@@ -13,14 +13,14 @@ export interface IPublishRequest {
     casperWallet: IopenCasperWallet
 }
 
-export default class ModalRequestModel {
-    static formSchema = () => {
+const ModalRequestModel = ({
+    formSchema: () => {
         return Yup.object().shape({
             quantity: Yup.string().required('Required'),
         });
-    }
+    },
 
-    static publish_request = async ({ casperWallet, quantity, sku }: IPublishRequest) => {        
+    publish_request: async ({ casperWallet, quantity, sku }: IPublishRequest) => {
         const data = {
             holder_id: parseInt(sku?.recordData?.data?.details?.holder_id),
             amount: quantity,
@@ -34,4 +34,6 @@ export default class ModalRequestModel {
 
         return await publish_request(data.holder_id, data.amount, data.producer_public_key, data.account_info)
     }
-}
+})
+
+export default ModalRequestModel

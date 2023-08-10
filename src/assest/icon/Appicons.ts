@@ -1,106 +1,106 @@
-import { ReactComponent as productsIcon } from './products-icon.svg'
-import { ReactComponent as collectionIcon } from './collection-icon.svg'
-import { ReactComponent as settingIcon } from './setting-icon.svg'
-import { ReactComponent as orderIcon } from './order-icon.svg'
-import { ReactComponent as informationIcon } from './information-icon.svg'
-import { ReactComponent as rulesetsIcon } from './rulesets-icon.svg'
-import { ReactComponent as invisibleIcon } from './invisible-icon.svg'
-import { ReactComponent as visibleIcon } from './visible-icon.svg'
-import { ReactComponent as addIcon } from './add.svg'
-import { ReactComponent as variantsIcon } from './products-active-icon.svg'
-import { ReactComponent as ruleIcon } from './rulesets-active-icon.svg'
-import { ReactComponent as editIcon } from './edit-icon.svg'
-import { ReactComponent as deleteIcon } from './delete-icon.svg'
-import { ReactComponent as shopIcon } from './shop-green-icon.svg'
-import { ReactComponent as facebookIcon } from './facebook.svg'
-import { ReactComponent as twitterIcon } from './twitter.svg'
-import { ReactComponent as pintrestIcon } from './pintrest.svg'
-import { ReactComponent as snapchatIcon } from './snapchat.svg'
-import { ReactComponent as instagramIcon } from './instagram.svg'
-import { ReactComponent as metaMaskIcon } from './MetaMask.svg'
-import { ReactComponent as saveIcon } from './frame20783.svg'
-import { ReactComponent as casperIcon } from './casper.svg'
-import { ReactComponent as casperWalletIcon } from './CasperWallet.svg'
-import { ReactComponent as walletConnectIcon } from './WalletConnect.svg'
-import { ReactComponent as nearWalletIcon } from './nearWallet.svg'
-import { ReactComponent as unstoppableDomainsIcon } from './unstoppableDomains.svg'
-import { ReactComponent as moreIcon } from './more-icon.svg'
-import { ReactComponent as discountIcon } from './discount-active-icon.svg'
-import { ReactComponent as gatedIcon } from './gated-active-icon.svg'
-import { ReactComponent as plusIcon } from './plus-icon.svg'
-import { ReactComponent as minusIcon } from './image2vector.svg'
-import { ReactComponent as tearIcon } from './tear-icon.svg'
-import { ReactComponent as infoIcon } from './info-icon.svg'
-import { ReactComponent as manageIcon } from './manage.svg'
-import { ReactComponent as activeIcon } from './active.svg'
-import { ReactComponent as copyIcon } from './copy.svg'
-import { ReactComponent as arrowDown } from './arrowDown.svg'
-import { ReactComponent as close } from './close.svg'
-import { ReactComponent as stacks } from './stacks-stx-logo.svg'
-import { ReactComponent as info } from './info.svg'
-import { ReactComponent as stripe } from './stripe.svg'
-import { ReactComponent as file } from './file.svg'
-import { ReactComponent as discord } from './discord.svg'
-import { ReactComponent as web } from './web.svg'
-import { ReactComponent as linkedin } from './linkedin.svg'
-import { ReactComponent as tiktok } from './tiktok.svg'
-import { ReactComponent as cover } from './cover.svg'
-import { ReactComponent as upload } from './upload-icon.svg'
-import { ReactComponent as polygon } from './polygon-matic-logo.svg'
-import { ReactComponent as discountSetting } from './discount-setting.svg'
-import { ReactComponent as giftSetting } from './gift-setting.svg'
+import { ReactComponent as ProductsIcon } from './products-icon.svg';
+import { ReactComponent as CollectionIcon } from './collection-icon.svg';
+import { ReactComponent as SettingIcon } from './setting-icon.svg';
+import { ReactComponent as OrderIcon } from './order-icon.svg';
+import { ReactComponent as InformationIcon } from './information-icon.svg';
+import { ReactComponent as RulesetsIcon } from './rulesets-icon.svg';
+import { ReactComponent as InvisibleIcon } from './invisible-icon.svg';
+import { ReactComponent as VisibleIcon } from './visible-icon.svg';
+import { ReactComponent as AddIcon } from './add.svg';
+import { ReactComponent as VariantsIcon } from './products-active-icon.svg';
+import { ReactComponent as RuleIcon } from './rulesets-active-icon.svg';
+import { ReactComponent as EditIcon } from './edit-icon.svg';
+import { ReactComponent as DeleteIcon } from './delete-icon.svg';
+import { ReactComponent as ShopIcon } from './shop-green-icon.svg';
+import { ReactComponent as FacebookIcon } from './facebook.svg';
+import { ReactComponent as TwitterIcon } from './twitter.svg';
+import { ReactComponent as PintrestIcon } from './pintrest.svg';
+import { ReactComponent as SnapchatIcon } from './snapchat.svg';
+import { ReactComponent as InstagramIcon } from './instagram.svg';
+import { ReactComponent as MetaMaskIcon } from './MetaMask.svg';
+import { ReactComponent as SaveIcon } from './frame20783.svg';
+import { ReactComponent as CasperIcon } from './casper.svg';
+import { ReactComponent as CasperWalletIcon } from './CasperWallet.svg';
+import { ReactComponent as WalletConnectIcon } from './WalletConnect.svg';
+import { ReactComponent as NearWalletIcon } from './nearWallet.svg';
+import { ReactComponent as UnstoppableDomainsIcon } from './unstoppableDomains.svg';
+import { ReactComponent as MoreIcon } from './more-icon.svg';
+import { ReactComponent as DiscountIcon } from './discount-active-icon.svg';
+import { ReactComponent as GatedIcon } from './gated-active-icon.svg';
+import { ReactComponent as PlusIcon } from './plus-icon.svg';
+import { ReactComponent as MinusIcon } from './image2vector.svg';
+import { ReactComponent as TearIcon } from './tear-icon.svg';
+import { ReactComponent as InfoIcon } from './info-icon.svg';
+import { ReactComponent as ManageIcon } from './manage.svg';
+import { ReactComponent as ActiveIcon } from './active.svg';
+import { ReactComponent as CopyIcon } from './copy.svg';
+import { ReactComponent as ArrowDown } from './arrowDown.svg';
+import { ReactComponent as Close } from './close.svg';
+import { ReactComponent as Stacks } from './stacks-stx-logo.svg';
+import { ReactComponent as Info } from './info.svg';
+import { ReactComponent as Stripe } from './stripe.svg';
+import { ReactComponent as File } from './file.svg';
+import { ReactComponent as Discord } from './discord.svg';
+import { ReactComponent as Web } from './web.svg';
+import { ReactComponent as LinkedIn } from './linkedin.svg';
+import { ReactComponent as TikTok } from './tiktok.svg';
+import { ReactComponent as Cover } from './cover.svg';
+import { ReactComponent as Upload } from './upload-icon.svg';
+import { ReactComponent as Polygon } from './polygon-matic-logo.svg';
+import { ReactComponent as DiscountSetting } from './discount-setting.svg';
+import { ReactComponent as GiftSetting } from './gift-setting.svg';
 
 const AppIcons = {
-  productsIcon,
-  collectionIcon,
-  settingIcon,
-  orderIcon,
-  informationIcon,
-  rulesetsIcon,
-  invisibleIcon,
-  visibleIcon,
-  addIcon,
-  variantsIcon,
-  ruleIcon,
-  editIcon,
-  deleteIcon,
-  shopIcon,
-  instagramIcon,
-  facebookIcon,
-  twitterIcon,
-  pintrestIcon,
-  snapchatIcon,
-  metaMaskIcon,
-  saveIcon,
-  casperIcon,
-  casperWalletIcon,
-  walletConnectIcon,
-  nearWalletIcon,
-  unstoppableDomainsIcon,
-  moreIcon,
-  discountIcon,
-  gatedIcon,
-  plusIcon,
-  minusIcon,
-  tearIcon,
-  infoIcon,
-  manageIcon,
-  activeIcon,
-  copyIcon,
-  arrowDown,
-  close,
-  stacks,
-  info,
-  stripe,
-  file,
-  discord,
-  web,
-  linkedin,
-  tiktok,
-  cover,
-  upload,
-  polygon,
-  discountSetting,
-  giftSetting
+  ProductsIcon,
+  CollectionIcon,
+  SettingIcon,
+  OrderIcon,
+  InformationIcon,
+  RulesetsIcon,
+  InvisibleIcon,
+  VisibleIcon,
+  AddIcon,
+  VariantsIcon,
+  RuleIcon,
+  EditIcon,
+  DeleteIcon,
+  ShopIcon,
+  InstagramIcon,
+  FacebookIcon,
+  TwitterIcon,
+  PintrestIcon,
+  SnapchatIcon,
+  MetaMaskIcon,
+  SaveIcon,
+  CasperIcon,
+  CasperWalletIcon,
+  WalletConnectIcon,
+  NearWalletIcon,
+  UnstoppableDomainsIcon,
+  MoreIcon,
+  DiscountIcon,
+  GatedIcon,
+  PlusIcon,
+  MinusIcon,
+  TearIcon,
+  InfoIcon,
+  ManageIcon,
+  ActiveIcon,
+  CopyIcon,
+  ArrowDown,
+  Close,
+  Stacks,
+  Info,
+  Stripe,
+  File,
+  Discord,
+  Web,
+  LinkedIn,
+  TikTok,
+  Cover,
+  Upload,
+  Polygon,
+  DiscountSetting,
+  GiftSetting
 }
 export default AppIcons

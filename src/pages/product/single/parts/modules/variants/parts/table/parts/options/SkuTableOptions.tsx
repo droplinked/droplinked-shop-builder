@@ -41,7 +41,7 @@ function SkuTableOptions({ element, elementKey, updateSku, modals: { editModal, 
                 <>
                     <Box className={isDisable ? classes.isDisable : ''}>
                         <AppTooltip label="Product Must Publish First" isDisabled={!isDisable}>
-                            <AppIcons.tearIcon
+                            <AppIcons.TearIcon
                                 onClick={() => {
                                     if (isDisable) return false
                                     recordMoal()

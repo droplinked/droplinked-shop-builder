@@ -43,7 +43,7 @@ function ShopInfoAddress({ addressService }: Iprops) {
             Options: {
                 value: (
                     <HStack spacing={4}>
-                        <AppIcons.editIcon style={{ cursor: "pointer" }} onClick={() => editModal(el._id)} width="16px" height="16px" />
+                        <AppIcons.EditIcon style={{ cursor: "pointer" }} onClick={() => editModal(el._id)} width="16px" height="16px" />
                         {isRegister && <DeleteAddress addressID={el._id} addressRefetch={() => addressService.mutate()} />}
                     </HStack>
                 )

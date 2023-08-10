@@ -1,5 +1,5 @@
 import { Box, Image } from "@chakra-ui/react";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { designContext } from "../../design-context";
 import { BANNER_DEFAULT_IMSGES } from "./default-images";

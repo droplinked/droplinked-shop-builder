@@ -2,10 +2,8 @@ import { IproductState } from "lib/apis/product/interfaces";
 import AppendModule from "../parts/modules/properties/model/module/append";
 import propertyFactor from "./modules/property";
 
-export default class ProductSingleModel {
-    private static property = propertyFactor
-
-    static refactorData = (data: any): IproductState => {
+const ProductSingleModel = ({
+    refactorData: (data: any): IproductState => {
         const skuIDs: Array<any> = data?.skuIDs
 
         return {
@@ -14,7 +12,7 @@ export default class ProductSingleModel {
             media: data?.media ? data?.media : [],
             priceUnit: data?.priceUnit,
             productCollectionID: data?.productCollectionID?._id,
-            properties: this.property.refactor(skuIDs.map(el => el.options)),
+            properties: propertyFactor.refactor(skuIDs.map(el => el.options)),
             shippingPrice: data?.shippingPrice,
             shippingType: data?.shippingType,
             sku: skuIDs.map(el => {
@@ -54,4 +52,6 @@ export default class ProductSingleModel {
             purchaseAvailable: data?.purchaseAvailable
         }
     }
-} 
+})
+
+export default ProductSingleModel

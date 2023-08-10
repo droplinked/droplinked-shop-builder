@@ -13,7 +13,7 @@ function PopOverMenu({ items }: Iprops) {
   return (
     <Menu matchWidth>
       <MenuButton position={"relative"} top={1}>
-        <AppIcons.moreIcon width="15px" />
+        <AppIcons.MoreIcon width="15px" />
       </MenuButton>
       <MenuList minWidth={"auto"} backgroundColor={"#292929"} border="none">
         {items.map((el, key) => (
