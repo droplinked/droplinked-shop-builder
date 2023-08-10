@@ -32,7 +32,7 @@ const ContactInfo = () => {
     } catch (error) {
       showToast(error?.message, "error")
     }
-  }, [])
+  }, [showToast, shopNavigate, currentPath])
 
   return (
     <Formik

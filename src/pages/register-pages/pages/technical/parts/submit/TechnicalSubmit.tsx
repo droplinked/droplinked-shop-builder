@@ -24,7 +24,7 @@ function TechnicalSubmit() {
     const isRegister = currentPath.includes("register")
     const { showToast } = useAppToast()
 
-    const checkPayment = useMemo(() => checkPaymentMethod(payments), [payments])
+    const checkPayment = useMemo(() => checkPaymentMethod(payments), [payments, checkPaymentMethod])
 
     const clickSubmit = useCallback(async () => {
         try {
@@ -38,7 +38,7 @@ function TechnicalSubmit() {
         } catch (error) {
             showToast(error.message, "error");
         }
-    }, [payments, imsType, userPayments])
+    }, [payments, imsType, userPayments, isRegister, update, mutateAsync, showToast, refactor, shopNavigate])
     return (
         <Flex justifyContent={isRegister ? "space-between" : "right"} width={"100%"}>
             {isRegister && (

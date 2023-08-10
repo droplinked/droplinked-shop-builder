@@ -44,7 +44,10 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
             const err = error?.response?.data
             showToast(err && err?.statusCode && err?.statusCode === 422 ? "Cant verify address" : "Oops! Something went wrong", "error");
         }
-    }, [onSuccess, addressID])
+    }, [onSuccess, addressID, close, createService, showToast, updateService, updateShopData])
+
+    const getStates = useCallback(({ country_name }: IsatatesService) => states.mutate({ country_name }), [states])
+    const getCities = useCallback(({ country_name, state_name }: IcitiesService) => cities.mutate({ state_name, country_name }), [cities])
 
     // Fetch address by ID
     useEffect(() => {
@@ -58,12 +61,10 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
             })
 
         }
-    }, [addressID, open])
+    }, [addressID, open, getStates, fetchService, getCities])
 
-    useEffect(() => countryService.mutate(), [])
+    useEffect(() => countryService.mutate(), [countryService])
 
-    const getStates = useCallback(({ country_name }: IsatatesService) => states.mutate({ country_name }), [])
-    const getCities = useCallback(({ country_name, state_name }: IcitiesService) => cities.mutate({ state_name, country_name }), [])
 
     return (
         <AppModal close={close} title="Address Information" open={open} contentProps={{ padding: 8 }} size="2xl">

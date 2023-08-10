@@ -1,8 +1,7 @@
-import { Box, Flex, HStack, Input, VStack } from '@chakra-ui/react'
+import { Flex, HStack, Input, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons';
 import ErrorLabel from 'components/common/form/errorLabel/errorLabel';
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
-import AppSelectBox from 'components/common/form/select/AppSelectBox';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
@@ -33,18 +32,18 @@ function RulesetAddress() {
         } catch (error) {
             showToast(error.message, "error")
         }
-    }, [values, Keywrod])
+    }, [values, Keywrod, setFieldValue, showToast])
 
     const deleted = useCallback((element: any) => {
         setFieldValue("address", values.address.filter(el => el !== element))
-    }, [values])
+    }, [values, setFieldValue])
 
     return (
         <form onSubmit={submit}>
             <VStack align={"stretch"} spacing={1}>
                 <VStack align="stretch" spacing={1}>
                     <FieldLabel label='NFT Contract Address' isRequired loading={loading} />
-                    <AppTypography size="12px" color="#9C9C9C">Provide NFT contract addresses and separate them with enter. <a style={{ color: "#2EC99E" }} target="_blank">Learn more</a></AppTypography>
+                    <AppTypography size="12px" color="#9C9C9C">Provide NFT contract addresses and separate them with enter. <a href="javascript:;" style={{ color: "#2EC99E" }} rel="noreferrer" target="_blank">Learn more</a></AppTypography>
                 </VStack>
                 <AppSkeleton isLoaded={loading} >
                     <Flex backgroundColor="#141414" style={{ cursor: "text", ...errors?.address && { border: "1px solid #FEB2B2" } }} borderRadius="8px" onClick={() => inputRef.current.focus()} flexWrap="wrap" alignItems="center" minHeight="48px" gap={2} padding="17px">

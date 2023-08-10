@@ -1,5 +1,5 @@
 import { Box, Radio, RadioGroup, Text, VStack, useDisclosure } from '@chakra-ui/react'
-import { BlackBox, PageContentWrapper, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
+import { BlackBox, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
 import React, { useContext, useState } from 'react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import technicalContext from '../../context'

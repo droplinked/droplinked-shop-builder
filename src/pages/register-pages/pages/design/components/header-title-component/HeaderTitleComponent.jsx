@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { designContext } from "../../design-context";
 import AppInput from 'components/common/form/textbox/AppInput';
 import { VStack } from "@chakra-ui/react";
-import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
 import AppTypography from "components/common/typography/AppTypography";
 
 const HeaderTitleComponent = () => {

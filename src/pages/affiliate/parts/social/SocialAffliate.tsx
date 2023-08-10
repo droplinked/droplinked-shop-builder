@@ -30,8 +30,8 @@ function SocialAffliate({ social, size }: IProps) {
     const icons = {
         instagram: <AppIcons.InstagramIcon {...sized} />,
         discord: <AppIcons.Discord {...sized} />,
-        tiktok: <AppIcons.Tiktok {...sized} />,
-        linkedin: <AppIcons.Linkedin {...sized} />,
+        tiktok: <AppIcons.TikTok {...sized} />,
+        linkedin: <AppIcons.LinkedIn {...sized} />,
         twitter: <AppIcons.TwitterIcon {...sized} />,
         facebook: <AppIcons.FacebookIcon {...sized} />,
         web: <AppIcons.Web {...sized} />,
@@ -41,7 +41,7 @@ function SocialAffliate({ social, size }: IProps) {
         <HStack spacing={3}>
             {Object.keys(social).filter(el => social[el]).map((el, key) => (
                 <Box key={key}>
-                    <a href={social[el]} target={"_blank"}>
+                    <a href={social[el]} rel="noreferrer" target={"_blank"}>
                         {icons[el]}
                     </a>
                 </Box>
