@@ -1,6 +1,6 @@
 import { approve_request } from "lib/utils/blockchain/casper/casper_wallet_approve_request"
 import { disapprove_request } from "lib/utils/blockchain/casper/casper_wallet_disapprove_request"
-import RecordModalModule, { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel"
+import RecordModalModule, { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/recordFormModel"
 
 interface Iapprove {
     shop: any

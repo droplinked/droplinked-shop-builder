@@ -1,6 +1,6 @@
 import { Isku } from 'lib/apis/product/interfaces';
 import * as Yup from 'yup';
-import { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel"
+import { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/recordFormModel"
 import { publish_request } from 'lib/utils/blockchain/casper/casper_wallet_publish_request'
 
 export interface IRequestModelValues {

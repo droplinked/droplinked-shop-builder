@@ -6,7 +6,7 @@ import AppInput from 'components/common/form/textbox/AppInput'
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { productContext } from 'pages/product/single/context'
-import RecordModalModule from './recordFormModel'
+import RecordModalModule from './model/recordFormModel'
 import { Isku } from 'lib/apis/product/interfaces'
 import { useMutation, useQuery } from 'react-query'
 import { recordCasperService, supportedChainsService } from 'lib/apis/sku/services'
@@ -48,7 +48,7 @@ function RecordForm({ close, product }: Iprops) {
     })
     const { updateState, state: { loading } } = useContext(recordContext)
     const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
-    const { openCasperWallet, casperRecord } = RecordModalModule
+    const { casper, record } = RecordModalModule
     const { login, isRequestPending, openContractCall, stxAddress } = useStack()
     const { showToast } = useAppToast()
 
@@ -72,15 +72,8 @@ function RecordForm({ close, product }: Iprops) {
             updateState("loading", true)
             const commission = data.commission
             if (data.blockchain === "CASPER") {
-                const CasperWallet = await openCasperWallet()
-                const record = await casperRecord({
-                    commission,
-                    product,
-                    publicKey: CasperWallet.publicKey,
-                    sku: product.sku
-                })
-                if (!record.deployHash) throw Error("Desploy hash empty");
-                deploy(data, record.deployHash)
+                const deployHash = await casper({ commission, product })
+                deploy(data, deployHash)
             } else if (data.blockchain === "STACKS") {
                 await login()
                 const query = await stacksRecord({
@@ -96,11 +89,9 @@ function RecordForm({ close, product }: Iprops) {
                     }
                 })
                 if (query) deploy(data, query.txId)
-            } else if (data.blockchain === "POLYGON") {
-                const login = await PolygonLogin()
-                const quantityPOD = '11579208923731619542357098500868790785326998466564056403945758400791312963999'
-                const record = await record_merch_polygon(product.sku, login.address, product.title, product.description, product.media[0].url, product.sku.price * 100, product_type === "PRINT_ON_DEMAND" ? quantityPOD : product.sku.quantity, commission * 100)
-                if (record) deploy(data, record)
+            } else if (["POLYGON", "RIPPLE"].includes(data.blockchain)) {
+                const res = await record({ commission, product, product_type, blockchain: data.blockchain })
+                if (res) deploy(data, res)
             }
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
