@@ -25,14 +25,14 @@ function ContainerPayment({ title, value, locked }) {
   const save = useCallback(() => {
     if (title !== "STRIPE" && active && !value) return showToast("Please enter wallet", "error")
     activeMethod(true)
-  }, [value, title, active, showToast, activeMethod])
+  }, [value, title, locked, active, showToast, activeMethod])
 
   const activeHandle = useCallback((e: any) => {
     const checked = e.target.checked
     setSwitch(checked)
     if (title === "STRIPE") activeMethod(checked)
     if (!checked) activeMethod(false)
-  }, [title, activeMethod])
+  }, [title])
 
 
   const getIcon = useCallback((icon: string) => {
@@ -55,7 +55,7 @@ function ContainerPayment({ title, value, locked }) {
   const edit = useCallback(() => {
     activeMethod(false)
     setSwitch(true)
-  }, [activeMethod])
+  }, [])
 
 
   return (

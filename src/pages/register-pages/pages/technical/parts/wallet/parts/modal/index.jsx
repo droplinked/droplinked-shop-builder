@@ -3,6 +3,7 @@ import React from 'react'
 import walletModalClass from './model';
 import { BlackBox } from 'pages/register-pages/RegisterPages-style';
 import AppModal from 'components/common/modal/AppModal';
+import AppTypography from 'components/common/typography/AppTypography';
 
 function WalletModal({ open, close }) {
     return (

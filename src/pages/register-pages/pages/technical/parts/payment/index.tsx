@@ -17,7 +17,7 @@ function Payments() {
     const { makePayments } = technicalPaymentsModel
 
     // Fetch payments method
-    useEffect(() => paymentPublic.mutate(), [paymentPublic])
+    useEffect(() => paymentPublic.mutate(), [])
 
     // update payment methods
     useEffect(() => {
@@ -26,7 +26,7 @@ function Payments() {
             paymentMethods: userPayments,
             paymentPublic: pPublic
         }))
-    }, [userPayments, paymentPublic.data, updateState, makePayments]);
+    }, [userPayments, paymentPublic.data]);
 
     return (
         <AppCard>
