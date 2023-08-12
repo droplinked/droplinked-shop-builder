@@ -49,6 +49,7 @@ import { ReactComponent as Upload } from './upload-icon.svg';
 import { ReactComponent as Polygon } from './polygon-matic-logo.svg';
 import { ReactComponent as DiscountSetting } from './discount-setting.svg';
 import { ReactComponent as GiftSetting } from './gift-setting.svg';
+import { ReactComponent as Ripple } from './ripple.svg';
 
 const AppIcons = {
   ProductsIcon,
@@ -101,6 +102,7 @@ const AppIcons = {
   Upload,
   Polygon,
   DiscountSetting,
-  GiftSetting
+  GiftSetting,
+  Ripple
 }
 export default AppIcons

@@ -1,6 +1,5 @@
 import { approve_request } from "lib/utils/blockchain/casper/casper_wallet_approve_request"
-import { disapprove_request } from "lib/utils/blockchain/casper/casper_wallet_disapprove_request"
-import RecordModalModule, { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/recordFormModel"
+import RecordCasperModule, { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/modules/casperModel"
 
 interface Iapprove {
     shop: any
@@ -11,7 +10,7 @@ const casperApprove = ({
 
     // Approve request
     approveRequest: async ({ shop }: Iapprove) => {
-        const casperWallet = await RecordModalModule.openCasperWallet()
+        const casperWallet = await RecordCasperModule.openCasperWallet()
         const { request_id, account_info } = {
             request_id: shop?.recordData?.details?.request_id,
             account_info: {
