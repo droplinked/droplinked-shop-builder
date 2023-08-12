@@ -5,7 +5,8 @@ import { record_merch } from "lib/utils/blockchain/casper/recordMatch"
 export interface IRecordCasper {
     product: any
     publicKey: string
-    commission: number,
+    commission: number
+    sku: any
 }
 
 export interface IopenCasperWallet {
@@ -41,17 +42,17 @@ const RecordCasperModule = ({
         })
     },
 
-    casperRecord: async ({ commission, product, publicKey }: IRecordCasper) => {
+    casperRecord: async ({ commission, product, publicKey, sku }: IRecordCasper) => {
         return new Promise<IcasperRecord>(async (resolve, reject) => {
             try {
                 const data = {
-                    sku_properties: product.sku,
+                    sku_properties: sku,
                     account_information: {
                         publicKey: publicKey,
                     },
                     product_title: product.title,
-                    price: product.sku.price * 100,
-                    amount: product.sku.quantity * 100,
+                    price: sku.price * 100,
+                    amount: sku.quantity * 100,
                     comission: commission * 100
                 }
 

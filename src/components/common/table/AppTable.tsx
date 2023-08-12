@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react'
+import { Checkbox, Text } from '@chakra-ui/react'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from 'react'
 import AppTypography from '../typography/AppTypography'
@@ -16,9 +16,10 @@ export interface IAppTable {
     vertical?: boolean
     rows?: Array<ITableRows> | ITableRows
     empty?: any
+    checkbox?: boolean
 }
 
-function AppTable({ rows, vertical, empty }: IAppTable) {
+function AppTable({ rows, vertical, empty, checkbox }: IAppTable) {
     const checkRows = vertical ? Object.keys(rows).length : rows.length
     return (
         <>
@@ -39,6 +40,7 @@ function AppTable({ rows, vertical, empty }: IAppTable) {
                         <table className={classes.table}>
                             <thead>
                                 <tr>
+                                    {checkbox && <th><Checkbox></Checkbox></th>}
                                     {Object.keys(rows[0]).map((el, key) =>
                                         <th {...rows[0][el].props} key={key}>
                                             <AppTypography textTransform="none" size='14px' weight='bold'>
@@ -51,6 +53,7 @@ function AppTable({ rows, vertical, empty }: IAppTable) {
                             <tbody>
                                 {rows.map((el, key) =>
                                     <tr key={key}>
+                                        {checkbox && <td width="50"><Checkbox colorScheme='green'></Checkbox></td>}
                                         {Object.keys(el).map((item, key) => (
                                             <td {...el[item].props} key={key}>{el[item].value}</td>
                                         ))}
