@@ -2,10 +2,10 @@ import React from 'react'
 import { VStack } from '@chakra-ui/react'
 import ProductName from '../modules/name/ProductName'
 import DescriptionProduct from '../modules/description/DescriptionProduct'
-import ProductTypes from '../modules/type/ProductTypes'
 import ProductCollapse from '../modules/collapse/ProductCollapse'
 import ProductImages from '../modules/images/ProductImages'
 import AvailablePurchase from '../modules/available/AvailablePurchase'
+import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
 
 function General() {
     return (
@@ -13,7 +13,7 @@ function General() {
             <VStack spacing={10} align={"stretch"}>
                 <ProductName />
                 <DescriptionProduct />
-                <ProductTypes />
+                <ProductPovProvider />
                 <ProductImages />
                 <AvailablePurchase />
             </VStack>

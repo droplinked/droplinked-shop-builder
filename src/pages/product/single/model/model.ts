@@ -51,6 +51,18 @@ const ProductSingleModel = ({
             m2m_services: data?.m2m_services || [],
             purchaseAvailable: data?.purchaseAvailable
         }
+    },
+
+    productTypeHandle: (type: string) => {
+        switch (type) {
+            case "pod":
+                return "PRINT_ON_DEMAND"
+            case "digital":
+                return "DIGITAL"
+
+            default:
+                return "NORMAL"
+        }
     }
 })
 

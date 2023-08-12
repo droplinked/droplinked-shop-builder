@@ -22,6 +22,7 @@ import ResetPassPage from 'pages/auth-pages/reset-pass-page/ResetPassPage'
 import ThankForRegisterPage from 'pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage'
 import Shop from 'pages/affiliate/shopSingle/Shop'
 import ShopProduct from 'pages/affiliate/product/ShopProduct'
+import ProductTypes from "pages/product/types/ProductTypes";
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -61,7 +62,8 @@ function AppRoutes() {
             </Route>
             <Route path="products">
               <Route index element={<Products />} />
-              <Route path="create" element={<ProductSingle />} />
+              <Route path="types" element={<ProductTypes />} />
+              <Route path="create/:type" element={<ProductSingle />} />
               <Route path=":productId" element={<ProductSingle />} />
             </Route>
             <Route path="collections" element={<Collections />} />
