@@ -7,6 +7,7 @@ const ProductSingleModel = ({
         const skuIDs: Array<any> = data?.skuIDs
 
         return {
+            ...data?._id && { _id: data?._id },
             title: data?.title,
             description: data?.description,
             media: data?.media ? data?.media : [],

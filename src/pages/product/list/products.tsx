@@ -62,6 +62,7 @@ function Products() {
                 }
             ]}
             rows={rows}
+            checkbox
             filters={[
                 {
                     title: "Collections",

@@ -1,8 +1,10 @@
 import { ITableRows } from 'components/common/table/AppTable'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from "react"
+import CollectionProductList from './parts/collection/CollectionProductList'
 import ControlsListProduct from "./parts/controls/Controls"
 import ImageListProduct from "./parts/image/ImageListProduct"
+import InventoryStatus from './parts/status/InventoryStatus'
 
 interface IrefactorData {
     data: []
@@ -11,21 +13,17 @@ interface IrefactorData {
 }
 const ProductListModel = ({
     makeData: (element: any, fetch: any) => {
-        const publish_status = element?.publish_status
         return {
             image: {
                 caption: "Name",
                 value: <ImageListProduct product={element} />
             },
             collection: {
-                value: element?.productCollectionID?.title
+                value: <CollectionProductList data={element} />
             },
             inventory: {
                 caption: "Inventory Status",
-                value: "---"
-            },
-            status: {
-                value: publish_status === "PUBLISHED" ? "Published" : "Draft"
+                value: <InventoryStatus data={element} />
             },
             controls: {
                 caption: "",

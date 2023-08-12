@@ -18,7 +18,7 @@ export interface IdataGrid extends mergeType {
 }
 
 
-function AppDataGrid({ filters, rows, buttons, loading, empty, search, pagination }: IdataGrid) {
+function AppDataGrid({ filters, rows, buttons, loading, empty, search, pagination, checkbox }: IdataGrid) {
     return (
         <AppCard>
             <VStack align={"stretch"} spacing={6}>
@@ -29,7 +29,7 @@ function AppDataGrid({ filters, rows, buttons, loading, empty, search, paginatio
                     </HStack>
                     {buttons && <DatagridButtons buttons={buttons} />}
                 </Flex>
-                {loading ? <DatagridSkeleton /> : <Box><AppTable empty={empty} rows={rows} /></Box>}
+                {loading ? <DatagridSkeleton /> : <Box><AppTable checkbox={checkbox} empty={empty} rows={rows} /></Box>}
                 {pagination && <Pagination {...pagination} />}
             </VStack>
         </AppCard >
