@@ -1,7 +1,8 @@
 import { Isku } from 'lib/apis/product/interfaces';
 import * as Yup from 'yup';
-import { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/recordFormModel"
 import { publish_request } from 'lib/utils/blockchain/casper/casper_wallet_publish_request'
+import { XRPLogin } from 'lib/utils/blockchain/ripple/xrpLogin';
+import { IopenCasperWallet } from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/modules/casperModel';
 
 export interface IRequestModelValues {
     quantity: string
@@ -33,6 +34,13 @@ const ModalRequestModel = ({
         }
 
         return await publish_request(data.holder_id, data.amount, data.producer_public_key, data.account_info)
+    },
+
+    rippleRequest: async () => {
+        const login = await XRPLogin()
+        // const request = await XRPPublishRequest(login.address, )
+
+        // return request
     }
 })
 

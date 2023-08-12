@@ -1,6 +1,6 @@
 import AppIcons from 'assest/icon/Appicons';
 import React, { useMemo } from 'react'
-import { JsxAttribute, JsxAttributes } from 'typescript';
+import classes from './style.module.scss'
 
 interface IProps {
     blockchain: string
@@ -16,6 +16,8 @@ function IconBlockchain({ blockchain, props }: IProps) {
                 return <AppIcons.Stacks {...props} />
             case "POLYGON":
                 return <AppIcons.Polygon {...props} />
+            case "RIPPLE":
+                return <AppIcons.Ripple className={classes.ripple} {...props} />
             default:
                 return null
         }
