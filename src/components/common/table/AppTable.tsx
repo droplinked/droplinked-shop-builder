@@ -28,12 +28,12 @@ function AppTable({ rows, vertical, empty, checkbox }: IAppTable) {
 
     const selected = useCallback((value: string, status: boolean) => {
         checkbox.update(status ? [...checkbox.state, value] : checkbox.state.filter(el => el !== value))
-    }, [checkbox.state])
+    }, [checkbox])
 
     const selectAll = useCallback((status: boolean) => {
         if (!(rows instanceof Array)) return false
         checkbox.update(status ? rows.map((el, key) => el?._data?._id || key) : []);
-    }, [checkbox.state, rows])
+    }, [checkbox, rows])
 
     return (
         <>
