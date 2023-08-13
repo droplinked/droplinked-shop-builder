@@ -40,7 +40,7 @@ function AppTable({ rows, vertical, empty, checkbox }: IAppTable) {
                         <table className={classes.table}>
                             <thead>
                                 <tr>
-                                    {checkbox && <th><Checkbox></Checkbox></th>}
+                                    {checkbox && <th><Checkbox colorScheme='green'></Checkbox></th>}
                                     {Object.keys(rows[0]).map((el, key) =>
                                         <th {...rows[0][el].props} key={key}>
                                             <AppTypography textTransform="none" size='14px' weight='bold'>
