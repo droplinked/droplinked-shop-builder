@@ -23,8 +23,9 @@ function ProductSingle() {
     const params = useParams()
     const [state, dispatch] = useReducer(reducers, initialState)
     const { shop } = useProfile()
-    const { refactorData } = ProductSingleModel
+    const { refactorData, productTypeHandle } = ProductSingleModel
     const productId = params?.productId
+    const queryParams = useParams()
 
     // Fetch product for edit
     const fetch = useCallback(() => {
@@ -45,6 +46,10 @@ function ProductSingle() {
     useEffect(() => {
         if (params?.productId) fetch().then((res: any) => dispatch({ type: "updateStateParams", params: { result: res } }))
     }, [params])
+
+    useEffect(() => {
+        if (queryParams.type) dispatch({ type: "updateState", params: { element: "product_type", value: productTypeHandle(queryParams.type) } });
+    }, [queryParams])
 
     // useEffect(() => {
     //     console.log(state.params);

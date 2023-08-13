@@ -7,6 +7,7 @@ const ProductSingleModel = ({
         const skuIDs: Array<any> = data?.skuIDs
 
         return {
+            ...data?._id && { _id: data?._id },
             title: data?.title,
             description: data?.description,
             media: data?.media ? data?.media : [],
@@ -50,6 +51,18 @@ const ProductSingleModel = ({
             thumb: data?.thumb,
             m2m_services: data?.m2m_services || [],
             purchaseAvailable: data?.purchaseAvailable
+        }
+    },
+
+    productTypeHandle: (type: string) => {
+        switch (type) {
+            case "pod":
+                return "PRINT_ON_DEMAND"
+            case "digital":
+                return "DIGITAL"
+
+            default:
+                return "NORMAL"
         }
     }
 })

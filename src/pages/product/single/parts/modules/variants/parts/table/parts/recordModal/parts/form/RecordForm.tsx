@@ -5,7 +5,6 @@ import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import AppInput from 'components/common/form/textbox/AppInput'
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { productContext } from 'pages/product/single/context'
 import RecordModalModule from './model/recordFormModel'
 import { Isku } from 'lib/apis/product/interfaces'
 import { useMutation, useQuery } from 'react-query'
@@ -17,20 +16,11 @@ import AppTypography from 'components/common/typography/AppTypography'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
 import useStack from 'functions/hooks/stack/useStack'
-import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
-import { record_merch_polygon } from 'lib/utils/blockchain/polygon/record'
-
-export interface IRecordModalProduct {
-    title: string
-    description: string
-    shippingType: string
-    media: Array<any>
-    sku: Isku
-}
 
 interface Iprops {
     close: Function
-    product: IRecordModalProduct
+    product: any
+    sku: Isku
 }
 
 interface IRecordSubmit {
@@ -38,8 +28,7 @@ interface IRecordSubmit {
     commission: number
 }
 
-function RecordForm({ close, product }: Iprops) {
-    const { state: { sku, product_type }, productID } = useContext(productContext)
+function RecordForm({ close, product, sku }: Iprops) {
     const chains = useQuery({
         queryFn: supportedChainsService,
         queryKey: "supported_chains",
@@ -57,7 +46,7 @@ function RecordForm({ close, product }: Iprops) {
             chain: data.blockchain,
             params: {
                 deploy_hash: deployHash,
-                skuID: product.sku._id,
+                skuID: sku._id,
                 commision: Number(data.commission)
             }
         }, {
@@ -72,7 +61,7 @@ function RecordForm({ close, product }: Iprops) {
             updateState("loading", true)
             const commission = data.commission
             if (data.blockchain === "CASPER") {
-                const deployHash = await casper({ commission, product })
+                const deployHash = await casper({ commission, product, sku })
                 deploy(data, deployHash)
             } else if (data.blockchain === "STACKS") {
                 await login()
@@ -80,17 +69,17 @@ function RecordForm({ close, product }: Iprops) {
                     isRequestPending,
                     openContractCall,
                     params: {
-                        price: product.sku.price * 100,
-                        amount: product.sku.quantity,
+                        price: sku.price * 100,
+                        amount: sku.quantity,
                         commission,
-                        productID: productID,
+                        productID: product?._id,
                         creator: stxAddress,
                         uri: "record"
                     }
                 })
                 if (query) deploy(data, query.txId)
             } else if (["POLYGON", "RIPPLE"].includes(data.blockchain)) {
-                const res = await record({ commission, product, product_type, blockchain: data.blockchain })
+                const res = await record({ commission, product, product_type: product.product_type, blockchain: data.blockchain, sku })
                 if (res) deploy(data, res)
             }
             updateState("loading", false)
@@ -104,7 +93,7 @@ function RecordForm({ close, product }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, sku, stxAddress, productID, product_type])
+    }, [product, stxAddress, sku])
 
     const formSchema = Yup.object().shape({
         blockchain: Yup.string().required('Required'),
