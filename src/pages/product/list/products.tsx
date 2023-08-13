@@ -20,6 +20,7 @@ function Products() {
     const navigate = useNavigate()
     const [States, setStates] = useState({
         search: null,
+        checkboxes: []
     })
     const { shop } = useProfile()
 
@@ -51,7 +52,7 @@ function Products() {
         }
         navigate(`${location.pathname}?${searchParams.toString()}`)
     }, [searchParams, location])
-
+    
     return (
         <AppDataGrid
             loading={isLoading}
@@ -62,7 +63,10 @@ function Products() {
                 }
             ]}
             rows={rows}
-            checkbox
+            checkbox={{
+                state: States.checkboxes,
+                update: (value) => setStates(prev => ({ ...prev, checkboxes: value }))
+            }}
             filters={[
                 {
                     title: "Collections",
