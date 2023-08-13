@@ -12,8 +12,9 @@ interface IrefactorData {
     search: string
 }
 const ProductListModel = ({
-    makeData: (element: any, fetch: any) => {
+    makeData: (element: any, fetch: any): ITableRows => {
         return {
+            _data: element,
             image: {
                 caption: "Name",
                 value: <ImageListProduct product={element} />
