@@ -13,19 +13,28 @@ interface IgetOptions {
     skues: Array<Isku>
     properties: Array<Iproperties>
     product_type: product_type
+    available_variant: Array<any>
 }
 
 const VariantsMakeDataModel = ({
-    sort : ({ properties }: Isort) => properties.sort((a, b) => b.items.length - a.items.length),
+    sort: ({ properties }: Isort) => properties.sort((a, b) => b.items.length - a.items.length),
 
-    makePropertyChild : ({ sort }: ImakePropertyItem) => {
+    makePropertyChild: ({ sort }: ImakePropertyItem) => {
         return sort.reduceRight((acc, curr: any) => {
             curr.child = acc;
             return curr;
         }, null)
     },
 
-    getOptions : ({ properties, skues, product_type }: IgetOptions): Array<Isku> => {
+    check_available: (optionCombination: any, available_variant: any) => {
+        const values = {
+            color: optionCombination.find(el => el.variantName === "Color").caption,
+            size: optionCombination.find(el => el.variantName === "Size").value
+        }
+        return available_variant && available_variant.length && available_variant.find(el => el.color === values.color && el.sizes.map(size => size.size).includes(values.size))
+    },
+
+    getOptions: ({ properties, skues, product_type, available_variant }: IgetOptions): Array<Isku> => {
         const arr: any = [];
         const data: Isku = {
             externalID: "",
@@ -52,19 +61,27 @@ const VariantsMakeDataModel = ({
                         caption: option?.caption
                     };
                 });
+
+                // Check available
+                const check = optionCombination.length > 1 && optionCombination.find(el => el.variantName === "Color")
+                if (check && !VariantsMakeDataModel.check_available(optionCombination, available_variant)) return
+
                 const sku = VariantsRefactorModel.findByOptionSku({ options, skues })
+
                 arr.push({
                     ...sku || data,
                     options: optionCombination,
                 });
                 return;
             }
+
             const variantOption = {
                 value: "",
                 variantID: obj.value,
                 variantName: obj.title,
                 caption: ""
             };
+
             for (let i = 0; i < obj.items.length; i++) {
                 variantOption.value = obj.items[i].value;
                 variantOption.caption = obj.items[i].caption;
@@ -72,6 +89,7 @@ const VariantsMakeDataModel = ({
             }
         }
         handle(properties)
+
         return arr
     }
 })

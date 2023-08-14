@@ -13,7 +13,7 @@ interface IProps {
 function PropertyItem({ type, item }: IProps) {
     const { state: { properties, publish_product }, productID } = useContext(productContext)
     const { set, remove } = useContext(propertiesFormContext)
-    
+
     const checkItem = useCallback((value: string) => {
         return properties.find(el => el.items.find((e: any) => e.value === value))
     }, [properties])
@@ -46,7 +46,7 @@ function PropertyItem({ type, item }: IProps) {
                         height="32px"
                         cursor={productID && publish_product ? "auto" : "pointer"}
                         background={item.value}
-                        className={`${checkItem(item.value) ? classes.active : ""} ${classes.box}`}
+                        className={`${checkItem(item.value) ? classes.active : ""} ${classes.box} ${classes.color}`}
                     ></Box>
                 )
             case "Size":

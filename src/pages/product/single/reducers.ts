@@ -3,6 +3,7 @@ import { IproductState } from "lib/apis/product/interfaces";
 namespace ProductPageNamespace {
     export interface IStore {
         variants: any
+        available_variant: Array<any>
     }
 
     export interface IStates {
@@ -49,7 +50,8 @@ namespace ProductPageNamespace {
             purchaseAvailable: true
         },
         store: {
-            variants: []
+            variants: [],
+            available_variant: []
         }
     };
 

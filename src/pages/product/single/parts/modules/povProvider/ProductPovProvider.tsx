@@ -12,7 +12,7 @@ function ProductPovProvider() {
         refetchOnWindowFocus: false
     })
     const { state: { prodviderID, publish_product, product_type }, productID, methods: { updateState }, loading } = useContext(productContext)
-
+    
     const items = useMemo(() => data?.data?.data ? data?.data?.data.map((el: any) => ({
         caption: el,
         value: el

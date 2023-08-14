@@ -3,10 +3,10 @@ import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import { IproviderIDService } from 'lib/apis/pod/interfaces'
-import { providerIDService, providersService } from 'lib/apis/pod/services'
+import { providerIDService } from 'lib/apis/pod/services'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation } from 'react-query'
 
 function ProductType() {
     const { mutate, data, isLoading } = useMutation((params: IproviderIDService) => providerIDService(params))
@@ -16,7 +16,7 @@ function ProductType() {
     useEffect(() => mutate({ prodviderID }), [prodviderID])
 
     // Set default pod_blank_product_id 
-    useEffect(() => !pod_blank_product_id && items && items.length && updateState("pod_blank_product_id", items[0].value), [data, pod_blank_product_id])
+    useEffect(() => items && items.length && updateState("pod_blank_product_id", items[0].value), [data, prodviderID])
 
     const items = useMemo(() => data?.data?.data ? data?.data?.data.map((el: any) => ({
         caption: el.title,
