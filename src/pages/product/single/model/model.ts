@@ -42,7 +42,7 @@ const ProductSingleModel = ({
             product_type: data?.product_type,
             publish_product: data?.publish_status && typeof data?.publish_status === "string" ? data?.publish_status !== "DRAFTED" : data?.publish_status,
             pod_blank_product_id: data?.pod_blank_product_id,
-            prodviderID: data?.prodviderID || "DLW",
+            prodviderID: data?.prodviderID || data?.shippingType || "DLW",
             artwork: data?.artwork,
             artwork2: data?.artwork2,
             m2m_positions: data?.m2m_positions,

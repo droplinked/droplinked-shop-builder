@@ -5,3 +5,18 @@ export interface IproviderIDService {
 export interface IpodProductService {
     pod_blank_product_id: string
 }
+
+export interface IpodVariantsService {
+    provider: string
+    productId: string
+}
+
+export interface IpodAvailableVariantsService {
+    provider: string
+    productId: string
+}
+
+export interface IpodPrintPositionsService {
+    provider: string
+    productId: string
+}

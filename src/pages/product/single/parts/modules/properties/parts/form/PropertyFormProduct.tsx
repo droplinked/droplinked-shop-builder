@@ -1,6 +1,7 @@
 import { Box, Flex, HStack, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { variantOptionsService } from 'lib/apis/variant/services'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import { typesProperties } from 'lib/utils/statics/types'
 import { productContext } from 'pages/product/single/context'
 import SkeletonProduct from 'pages/product/single/parts/modules/skeleton/SkeletonProduct'
@@ -34,7 +35,8 @@ function PropertyFormProduct() {
     const getProperties = useCallback((title: string) => {
         const datas = data?.data?.data
         if (!datas) return []
-        return title === "Color" ? datas?.colors : datas?.sizes
+        const items = datas.find(el => el.name.toLowerCase() === title.toLowerCase())
+        return items ? items : []
     }, [data])
 
     return (

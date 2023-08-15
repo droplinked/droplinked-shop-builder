@@ -29,7 +29,9 @@ export const productContext = createContext<IproductContext>({
     productID: null,
     store: {
         state: {
-            variants: []
+            variants: [],
+            available_variant: [],
+            print_positions: []
         },
         methods: {
             update: () => { }
