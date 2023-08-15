@@ -13,7 +13,6 @@ function ProductPovProvider() {
         refetchOnWindowFocus: false
     })
     const { state: { prodviderID, publish_product, product_type }, productID, methods: { updateState }, loading } = useContext(productContext)
-    const provider = useMutation((params: IproviderIDService) => providerIDService(params))
 
     const items = useMemo(() => data?.data?.data ? data?.data?.data.map((el: any) => ({
         caption: el,
@@ -22,10 +21,8 @@ function ProductPovProvider() {
 
     const change = useCallback(async (e) => {
         updateState("prodviderID", e.target.value)
-        const data = await provider.mutateAsync({ prodviderID: e.target.value })
-        updateState("pod_blank_product_id", data?.data?.data[0]._id)
-
-        // updateState("sku", [])
+        updateState("properties", [])
+        updateState("sku", [])
     }, [])
 
     return (

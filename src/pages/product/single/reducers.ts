@@ -5,6 +5,7 @@ namespace ProductPageNamespace {
         variants: any
         available_variant: Array<any>
         print_positions: Array<any>
+        product_types: Array<any>
     }
 
     export interface IStates {
@@ -39,7 +40,7 @@ namespace ProductPageNamespace {
             shippingType: "EASY_POST",
             properties: [],
             sku: [],
-            prodviderID: "DLW",
+            prodviderID: null,
             pod_blank_product_id: null,
             artwork: null,
             artwork2: null,
@@ -53,7 +54,8 @@ namespace ProductPageNamespace {
         store: {
             variants: [],
             available_variant: [],
-            print_positions: []
+            print_positions: [],
+            product_types: []
         }
     };
 

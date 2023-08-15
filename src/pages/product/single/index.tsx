@@ -51,6 +51,10 @@ function ProductSingle() {
         if (queryParams.type) dispatch({ type: "updateState", params: { element: "product_type", value: productTypeHandle(queryParams.type) } });
     }, [queryParams])
 
+    useEffect(() => {
+        if (!productId) dispatch({ type: "updateState", params: { element: "prodviderID", value: "DLW" } })
+    }, [productId])
+
     // useEffect(() => {
     //     console.log(state.params);
     // }, [state])
