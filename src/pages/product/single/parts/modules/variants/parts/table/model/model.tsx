@@ -11,11 +11,11 @@ interface IgetRows {
     sku: Isku
     state: IproductState
     key: number
-    variants: any
+    available_variant: Array<any>
 }
 
 const SkuTableModel = ({
-    getRows: ({ state, sku, key, variants }: IgetRows) => {
+    getRows: ({ state, sku, key, available_variant }: IgetRows) => {
         const checkRecord = sku?.recordData && sku.recordData.status !== "NOT_RECORDED"
         const product_type = state.product_type
 
@@ -50,7 +50,7 @@ const SkuTableModel = ({
             ...product_type === "PRINT_ON_DEMAND" && {
                 cost: {
                     caption: "Product Cost",
-                    value: variants ? <AppTypography size="12px">{ProductSkuesTable.variants({ variants, state })} USD</AppTypography> : 0
+                    value: available_variant ? <AppTypography size="12px">{ProductSkuesTable.variants({ available_variant, state, options: sku.options })} USD</AppTypography> : 0
                 },
             },
             ...product_type === "NORMAL" && {

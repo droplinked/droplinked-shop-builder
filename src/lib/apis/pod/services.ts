@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { IpodAvailableVariantsService, IpodProductService, IpodVariantsService, IproviderIDService } from "./interfaces";
+import { IpodAvailableVariantsService, IpodPrintPositionsService, IpodProductService, IpodVariantsService, IproviderIDService } from "./interfaces";
 
 export const providersService = () => {
     return axiosInstance.get("pod/providers")
@@ -19,4 +19,8 @@ export const podVariantsService = ({ provider, productId }: IpodVariantsService)
 
 export const podAvailableVariantsService = ({ provider, productId }: IpodAvailableVariantsService) => {
     return axiosInstance.get(`pod/available-variants/${provider}/${productId}`)
+};
+
+export const podPrintPositionsService = ({ provider, productId }: IpodPrintPositionsService) => {
+    return axiosInstance.get(`pod/print-positions/${provider}/${productId}`)
 };

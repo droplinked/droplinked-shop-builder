@@ -20,6 +20,8 @@ function ProductPositions({ update, state, positions }: IProps) {
     FRONT_RIGHT_CHEST: shirtLeft,
     FRONT_LEFT_CHEST: shirtRight,
     BACK_CENTER: shirtBack,
+    back: shirtBack,
+    front: shirtCenter,
     LEFT_LEG_FRONT: pantLeft,
     RIGHT_LEG_FRONT: pantRight,
     BACK_NECK: backNeck,

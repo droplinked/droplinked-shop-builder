@@ -1,5 +1,5 @@
-import { IpodAvailableVariantsService, IpodProductService } from 'lib/apis/pod/interfaces'
-import { podAvailableVariantsService, podProductService } from 'lib/apis/pod/services'
+import { IpodAvailableVariantsService, IpodPrintPositionsService, IpodProductService } from 'lib/apis/pod/interfaces'
+import { podAvailableVariantsService, podPrintPositionsService, podProductService } from 'lib/apis/pod/services'
 import React, { useContext, useEffect } from 'react'
 import { useMutation } from 'react-query'
 import { productContext } from '../../context'
@@ -12,6 +12,7 @@ function ProductStore({ children }: IProps) {
     const { state: { pod_blank_product_id }, store: { methods: { update } } } = useContext(productContext)
     const providerService = useMutation((params: IpodProductService) => podProductService(params))
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
+    const printPositions = useMutation((params: IpodPrintPositionsService) => podPrintPositionsService(params))
 
     // Get providers
     useEffect(() => {
@@ -20,7 +21,10 @@ function ProductStore({ children }: IProps) {
                 const data = res.data?.data
                 update("variants", data)
                 availableVariants.mutate({ productId: data._id, provider: data.provider }, {
-                    onSuccess: (res:any) => update("available_variant", res?.data?.data)
+                    onSuccess: (res: any) => update("available_variant", res?.data?.data)
+                })
+                printPositions.mutate({ productId: data._id, provider: data.provider }, {
+                    onSuccess: (res: any) => update("print_positions", res?.data?.data)
                 })
             }
         })

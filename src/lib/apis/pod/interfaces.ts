@@ -15,3 +15,8 @@ export interface IpodAvailableVariantsService {
     provider: string
     productId: string
 }
+
+export interface IpodPrintPositionsService {
+    provider: string
+    productId: string
+}

@@ -1,13 +1,18 @@
-import { IproductState } from "lib/apis/product/interfaces";
+import { IproductState, IskuOption } from "lib/apis/product/interfaces";
+import VariantsMakeDataModel from "../../../../model/modules/makeData";
 
 interface Ivariants {
-    variants: any
+    available_variant: Array<any>
     state: IproductState
+    options: Array<IskuOption>
 }
 const ProductSkuesTable = ({
-    variants: ({ variants, state }: Ivariants) => {
-        const artworks = [state.artwork, state.artwork2].filter(el => el).length
-        return (artworks < 2 && !state.m2m_positions.length) || (!artworks && state.m2m_positions.length) ? variants?.single_print_price : variants?.front_back_print_price
+    variants: ({ available_variant, state, options }: Ivariants) => {
+        const artworkCount = [state.artwork, state.artwork2].filter(el => el).length
+        const avaliable = VariantsMakeDataModel.check_available({ options, available_variant })
+        const printPrice = artworkCount > 1 ? avaliable.data?.printPrice * artworkCount : 0
+
+        return avaliable.size.price + printPrice
     }
 })
 

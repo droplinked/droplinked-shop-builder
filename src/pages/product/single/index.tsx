@@ -52,7 +52,7 @@ function ProductSingle() {
     }, [queryParams])
 
     // useEffect(() => {
-    //     console.log(state);
+    //     console.log(state.params);
     // }, [state])
 
     return (

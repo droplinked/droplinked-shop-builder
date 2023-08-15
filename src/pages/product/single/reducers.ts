@@ -4,6 +4,7 @@ namespace ProductPageNamespace {
     export interface IStore {
         variants: any
         available_variant: Array<any>
+        print_positions: Array<any>
     }
 
     export interface IStates {
@@ -51,7 +52,8 @@ namespace ProductPageNamespace {
         },
         store: {
             variants: [],
-            available_variant: []
+            available_variant: [],
+            print_positions: []
         }
     };
 
