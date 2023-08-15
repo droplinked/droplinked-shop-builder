@@ -46,8 +46,8 @@ const VariantsMakeDataModel = ({
 
     check_available: ({ available_variant, options }: Icheck_available): IcheckAvailableExport => {
         const values = {
-            color: options.find(el => el.variantName === "Color").caption,
-            size: options.find(el => el.variantName === "Size").value
+            color: options.find(el => el.variantName === "Color")?.caption || null,
+            size: options.find(el => el.variantName === "Size")?.value || null
         }
         const data = available_variant && available_variant.length && available_variant.find(el => el.color === values.color && el.sizes.map(size => size.size).includes(values.size))
         const size = data ? data.sizes.find(el => el.size === values.size) : null
@@ -89,18 +89,21 @@ const VariantsMakeDataModel = ({
                         caption: option?.caption
                     };
                 });
+                const sku = VariantsRefactorModel.findByOptionSku({ options, skues })
+                const dataNew = {
+                    ...sku || data,
+                    options: optionCombination
+                }
 
                 // Check available
                 const check = available_variant.length && optionCombination.length > 1 && optionCombination.find(el => el.variantName === "Color")
-                const available = VariantsMakeDataModel.check_available({ available_variant, options: optionCombination })
-                if (check && !available.data) return
+                if (product_type === "PRINT_ON_DEMAND" && check) {
+                    const available = VariantsMakeDataModel.check_available({ available_variant, options: optionCombination })
+                    if (!available.data) return
+                    dataNew.externalID = available.size.id.toString()
+                }
 
-                const sku = VariantsRefactorModel.findByOptionSku({ options, skues })
-                arr.push({
-                    ...sku || data,
-                    ...product_type === "PRINT_ON_DEMAND" && { externalID: available.size.id },
-                    options: optionCombination
-                });
+                arr.push(dataNew);
                 return;
             }
 

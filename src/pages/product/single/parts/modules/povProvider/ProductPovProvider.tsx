@@ -1,9 +1,10 @@
 import { Box } from '@chakra-ui/react'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
-import { providersService } from 'lib/apis/pod/services'
+import { IproviderIDService } from 'lib/apis/pod/interfaces'
+import { providerIDService, providersService } from 'lib/apis/pod/services'
 import { productContext } from 'pages/product/single/context'
-import React, { useContext, useMemo } from 'react'
-import { useQuery } from 'react-query'
+import React, { useCallback, useContext, useEffect, useMemo } from 'react'
+import { useMutation, useQuery } from 'react-query'
 
 function ProductPovProvider() {
     const { data, isLoading } = useQuery({
@@ -12,11 +13,20 @@ function ProductPovProvider() {
         refetchOnWindowFocus: false
     })
     const { state: { prodviderID, publish_product, product_type }, productID, methods: { updateState }, loading } = useContext(productContext)
-    
+    const provider = useMutation((params: IproviderIDService) => providerIDService(params))
+
     const items = useMemo(() => data?.data?.data ? data?.data?.data.map((el: any) => ({
         caption: el,
         value: el
     })) : [], [data])
+
+    const change = useCallback(async (e) => {
+        updateState("prodviderID", e.target.value)
+        const data = await provider.mutateAsync({ prodviderID: e.target.value })
+        updateState("pod_blank_product_id", data?.data?.data[0]._id)
+
+        // updateState("sku", [])
+    }, [])
 
     return (
         <>
@@ -30,7 +40,7 @@ function ProductPovProvider() {
                         isRequired
                         loading={loading && !isLoading}
                         value={prodviderID}
-                        onChange={(e) => updateState("prodviderID", e.target.value)}
+                        onChange={change}
                     />
                 </Box>
             )}

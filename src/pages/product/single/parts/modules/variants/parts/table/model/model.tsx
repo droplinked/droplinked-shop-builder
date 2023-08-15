@@ -40,7 +40,7 @@ const SkuTableModel = ({
             },
             externalID: {
                 caption: "External ID",
-                value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.externalID} name={"externalID"} />
+                value: <FieldsSkuTable isDisabled={checkRecord || product_type === "PRINT_ON_DEMAND"} index={key} value={sku.externalID} name={"externalID"} />
             },
             ...product_type !== "PRINT_ON_DEMAND" && {
                 quantity: {

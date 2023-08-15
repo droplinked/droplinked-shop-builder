@@ -16,7 +16,7 @@ function ProductType() {
     useEffect(() => mutate({ prodviderID }), [prodviderID])
 
     // Set default pod_blank_product_id 
-    useEffect(() => items && items.length && updateState("pod_blank_product_id", items[0].value), [data, prodviderID])
+    // useEffect(() => items && items.length && !pod_blank_product_id && updateState("pod_blank_product_id", items[0].value), [data, prodviderID, pod_blank_product_id])
 
     const items = useMemo(() => data?.data?.data ? data?.data?.data.map((el: any) => ({
         caption: el.title,

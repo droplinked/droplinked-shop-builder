@@ -14,7 +14,7 @@ export interface IproductState {
     shippingPrice: number
     product_type: product_type
     publish_product: boolean
-    shippingType: "CUSTOM" | "EASY_POST" | "DLW"
+    shippingType: string
     properties: Array<Iproperties>
     sku: Array<Isku>
     prodviderID: string
