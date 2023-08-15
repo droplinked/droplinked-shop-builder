@@ -1,10 +1,9 @@
 import { Box } from '@chakra-ui/react'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
-import { IproviderIDService } from 'lib/apis/pod/interfaces'
-import { providerIDService, providersService } from 'lib/apis/pod/services'
+import { providersService } from 'lib/apis/pod/services'
 import { productContext } from 'pages/product/single/context'
-import React, { useCallback, useContext, useEffect, useMemo } from 'react'
-import { useMutation, useQuery } from 'react-query'
+import React, { useCallback, useContext, useMemo } from 'react'
+import { useQuery } from 'react-query'
 
 function ProductPovProvider() {
     const { data, isLoading } = useQuery({

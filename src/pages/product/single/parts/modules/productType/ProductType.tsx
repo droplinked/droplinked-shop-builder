@@ -2,11 +2,8 @@ import { Box, Flex, VStack } from '@chakra-ui/react'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
-import { IproviderIDService } from 'lib/apis/pod/interfaces'
-import { providerIDService } from 'lib/apis/pod/services'
 import { productContext } from 'pages/product/single/context'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { useMutation } from 'react-query'
+import React, { useCallback, useContext, useMemo } from 'react'
 
 function ProductType() {
     const { state: { pod_blank_product_id, publish_product }, productID, methods: { updateState }, loading, store: { state: { product_types } } } = useContext(productContext)
