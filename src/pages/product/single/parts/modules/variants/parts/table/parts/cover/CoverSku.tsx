@@ -24,7 +24,7 @@ function CoverSku({ index, image }: ICoverSku) {
             {image ? (
                 <AppImage src={image} onClick={onOpen} {...attr} />
             ) : (
-                <AppTooltip label="Choose variant cover amung the product images">
+                <AppTooltip label="Select a variant cover from the product images">
                     <AppIcons.Cover onClick={onOpen} {...attr} />
                 </AppTooltip>
             )}
