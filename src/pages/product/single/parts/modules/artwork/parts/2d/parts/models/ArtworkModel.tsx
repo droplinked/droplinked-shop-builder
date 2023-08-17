@@ -15,6 +15,10 @@ function ArtworkModel() {
         fabric.Image.fromURL(
             Images,
             function (img) {
+
+                // Update width position
+                setStates(prev => ({ ...prev, position: { ...prev.position, width: img.getScaledWidth() } }))
+
                 const desiredHeight = height;
                 const aspectRatio = img.width / img.height;
                 const desiredWidth = desiredHeight * aspectRatio;
@@ -36,13 +40,14 @@ function ArtworkModel() {
                 img.on('scaling', (e) => {
                     const scaleX = img.scaleX
                     const scaleY = img.scaleX
-
                     if (e.transform.action !== "scale") {
                         img.set({
                             scaleX: scaleX,
                             scaleY: scaleY,
                         });
                     }
+                    console.log('w', img.getScaledWidth());
+
                     setStates(prev => ({ ...prev, position: { ...prev.position, width: img.getScaledWidth(), height: img.getScaledHeight() } }));
                 })
 

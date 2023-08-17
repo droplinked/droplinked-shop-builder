@@ -10,21 +10,29 @@ import VariantsMakeDataModel from 'pages/product/single/parts/modules/variants/m
 import React, { useCallback, useContext } from 'react'
 import { useMutation } from 'react-query'
 import artwork2dContext, { artwork2dStates } from '../../context'
+import Artwork2dButtonsModel from './model'
 
 function Artwork2dButtons() {
     const { mutateAsync, isLoading } = useMutation((params: IpodGenerateMockupService) => podGenerateMockupService(params))
     const { state: { sku, artwork }, methods: { updateState }, store: { state: { variants, available_variant } } } = useContext(productContext)
-    const { position,setStates } = useContext(artwork2dContext)
+    const { position, setStates } = useContext(artwork2dContext)
     const { check_available } = VariantsMakeDataModel
     const { refactorImage } = introductionClass
     const { showToast } = useAppToast()
+    const { getSizeImage } = Artwork2dButtonsModel
 
     const submit = useCallback(async () => {
         try {
             const variant_ids = sku.map(el => check_available({ available_variant, options: el.options }).size?.id)
+            let width = position.width
 
             if (!artwork) throw Error("Please upload artwork")
             if (!Boolean(variant_ids.find(el => el))) throw Error("Please pick size and color variant")
+
+            if (!width) {
+                const size: any = await getSizeImage(artwork)
+                width = Math.round((size.width / size.height) * position.height)
+            }
 
             const data = await mutateAsync({
                 productId: variants._id,
@@ -34,12 +42,13 @@ function Artwork2dButtons() {
                         {
                             image_url: artwork,
                             placement: "front",
-                            position
+                            position: { ...position, width }
                         }
                     ]
                 }
             })
             updateState("media", refactorImage(data?.data?.data))
+            updateState("position", position)
             updateState("artwork_position", 'front')
         } catch (error) {
             showToast(error?.message || "Somthing went wrong", "error");
@@ -50,6 +59,7 @@ function Artwork2dButtons() {
         updateState("media", [])
         updateState("artwork", null)
         updateState("artwork_position", null)
+        updateState("position", null)
         setStates(artwork2dStates)
     }, [])
 
