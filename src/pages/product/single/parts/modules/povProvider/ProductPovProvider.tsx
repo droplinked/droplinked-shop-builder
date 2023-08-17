@@ -26,7 +26,7 @@ function ProductPovProvider() {
         updateState("artwork2", null)
         updateState("artwork2_position", null)
         updateState("artwork_position", null)
-        updateState("position", null)
+        updateState("positions", null)
     }, [])
 
     return (

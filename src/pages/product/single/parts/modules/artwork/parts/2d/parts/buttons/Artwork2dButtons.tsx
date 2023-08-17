@@ -51,7 +51,7 @@ function Artwork2dButtons() {
                 }
             })
             updateState("media", refactorImage(data?.data?.data))
-            updateState("position", position)
+            updateState("positions", position)
             updateState("artwork_position", 'front')
         } catch (error) {
             showToast(error?.message || "Somthing went wrong", "error");
@@ -62,7 +62,7 @@ function Artwork2dButtons() {
         updateState("media", [])
         updateState("artwork", null)
         updateState("artwork_position", null)
-        updateState("position", null)
+        updateState("positions", null)
         setStates(artwork2dStates)
     }, [])
 
