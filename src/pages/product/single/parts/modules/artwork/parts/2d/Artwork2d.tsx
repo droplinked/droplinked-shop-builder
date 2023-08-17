@@ -1,0 +1,30 @@
+import { Box, Flex, VStack } from '@chakra-ui/react'
+import BasicButton from 'components/common/BasicButton/BasicButton'
+import { productContext } from 'pages/product/single/context'
+import React, { useContext, useEffect, useState } from 'react'
+import artwork2dContext, { artwork2dStates } from './context'
+import Artwork2dButtons from './parts/buttons/Artwork2dButtons'
+import Artwork2dDetails from './parts/details/Artwork2dDetails'
+import ArtworkModel from './parts/models/ArtworkModel'
+
+function Artwork2d() {
+    const [States, setStates] = useState(artwork2dStates)
+    const { state: { artwork } } = useContext(productContext)
+
+    useEffect(() => setStates(artwork2dStates), [artwork])
+
+
+    return (
+        <artwork2dContext.Provider value={{ ...States, setStates }} >
+            <VStack align="stretch" backgroundColor="#141414" padding="40px" spacing="30px">
+                <Flex justifyContent="space-between" >
+                    <Box width="55%"><Artwork2dDetails /></Box>
+                    <Box width="313px"><ArtworkModel /></Box>
+                </Flex>
+                <Artwork2dButtons />
+            </VStack>
+        </ artwork2dContext.Provider>
+    )
+}
+
+export default Artwork2d

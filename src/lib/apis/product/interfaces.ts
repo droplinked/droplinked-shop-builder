@@ -4,6 +4,15 @@ export interface IproductList {
     filter?: string
 }
 
+export interface IProductPosition {
+    area_width: number
+    area_height: number
+    width: number
+    height: number
+    top: number
+    left: number
+}
+
 export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
 export interface IproductState {
     title: string
@@ -27,6 +36,7 @@ export interface IproductState {
     thumb: string,
     m2m_services?: Array<string>
     purchaseAvailable: boolean
+    position?: IProductPosition
 }
 
 export interface IpropertiesItems {

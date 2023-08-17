@@ -22,6 +22,10 @@ function ProductPovProvider() {
         updateState("prodviderID", e.target.value)
         updateState("properties", [])
         updateState("sku", [])
+        updateState("artwork", null)
+        updateState("artwork2", null)
+        updateState("artwork2_position", null)
+        updateState("artwork_position", null)
     }, [])
 
     return (
