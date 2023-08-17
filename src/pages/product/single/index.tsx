@@ -73,10 +73,10 @@ function ProductSingle() {
             <ProductStore>
                 <VStack spacing={5}>
                     <General />
-                    <ProductPodDesign />
                     <DigitalLinks />
                     <ShippingProduct />
                     <Variant />
+                    <ProductPodDesign />
                     <CollectionProduct />
                     <ButtonsProduct />
                 </VStack>

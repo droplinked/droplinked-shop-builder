@@ -12,19 +12,20 @@ function ProductTypes() {
   const data = [
     {
       title: "Physical Product",
-      description: "Add physical goods to sell",
+      description: "Add physical goods and merchandises to sell",
       image: "/assets/images/physical.svg",
       type: routeCreate + "physical"
     },
     {
       title: "Digital Product",
-      description: "Upload digital assents to sell ",
+      description: "Upload digital assents, artworks, NFTs to sell",
       image: "/assets/images/digital.svg",
       type: routeCreate + "digital"
     },
     {
       title: "Print On Demand",
-      description: "Create your custom printed to sell",
+      description: `Transform your Artwork or NFT into exclusive custom apparel, printed
+      and shipped by our trusted providers`,
       image: "/assets/images/pod.svg",
       type: routeCreate + "pod"
     },
@@ -42,7 +43,7 @@ function ProductTypes() {
         <Link to={el.type || ""}>
           <Flex key={key} justifyContent="center">
             <AppCard mini boxProps={{ padding: 0, ...!el.type && { background: "none" } }}>
-              <Flex justifyContent="space-between" alignItems="center" padding="0 40px">
+              <Flex gap="100px" justifyContent="space-between" alignItems="center" padding="0 40px">
                 <VStack align="stretch" spacing={1}>
                   <AppTypography size='20px' color={el.type ? "#FFF" : "#878787"} weight='bolder'>{el.title}</AppTypography>
                   <AppTypography size='14px' color="#C2C2C2">{el.description}</AppTypography>
