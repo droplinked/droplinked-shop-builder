@@ -7,7 +7,6 @@ import ArtworkNormal from './parts/normal/ArtworkNormal'
 
 function ProductArtwork() {
     const { store: { state: { print_positions } }, productID } = useContext(productContext)
-    console.log("print_positions", print_positions);
 
     const exactDimensions = useMemo(() => {
         return print_positions.find(el => el.positions.find(pos => pos.exactDimensions))

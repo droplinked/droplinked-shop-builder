@@ -49,7 +49,8 @@ namespace ProductPageNamespace {
             artwork2_position: null,
             thumb: "",
             m2m_services: [],
-            purchaseAvailable: true
+            purchaseAvailable: true,
+            position: null
         },
         store: {
             variants: [],
