@@ -28,7 +28,7 @@ function ProductType() {
         updateState("artwork2_position", null)
         updateState("m2m_services", [])
         updateState("m2m_positions", [])
-        updateState("position", [])
+        updateState("positions", [])
         updateState("properties", [
             {
                 "value": "62a989ab1f2c2bbc5b1e7153",
