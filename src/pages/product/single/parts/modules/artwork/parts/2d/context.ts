@@ -11,7 +11,7 @@ export const artwork2dStates = {
     color: null,
     position: {
         area_height: 213,
-        area_width: 160,
+        area_width: 170,
         height: 80,
         width: 0,
         left: 0,

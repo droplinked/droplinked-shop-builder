@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import './style.css'
-import { Box } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import artwork2dContext from '../../../../context';
 
 interface Iprops {
@@ -11,8 +11,10 @@ function Shirt({ children }: Iprops) {
 
     return (
         <Box position="relative" backgroundColor={color || "#999"}>
-            <img src='/assets/images/shirt/front.png' width="100%" />
-            {children}
+            <Image src='/assets/images/shirt/front.png' width="100%" />
+            <Box position="absolute" top={0} left="0" bottom={0} right="3px">
+                {children}
+            </Box>
         </Box>
     )
 }

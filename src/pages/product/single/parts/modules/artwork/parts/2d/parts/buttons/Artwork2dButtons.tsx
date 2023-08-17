@@ -42,7 +42,10 @@ function Artwork2dButtons() {
                         {
                             image_url: artwork,
                             placement: "front",
-                            position: { ...position, width }
+                            position: {
+                                ...position,
+                                width
+                            }
                         }
                     ]
                 }
