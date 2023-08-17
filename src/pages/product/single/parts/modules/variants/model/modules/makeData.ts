@@ -56,7 +56,7 @@ const VariantsMakeDataModel = ({
             data,
             size: {
                 id: size?.id,
-                price: size?.price ? parseFloat(size?.price) : 0,
+                price: size?.finalPrice ? Math.round(parseFloat(size?.finalPrice)) : 0,
                 size: size?.size,
             }
         }
