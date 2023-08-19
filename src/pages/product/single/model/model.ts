@@ -50,7 +50,8 @@ const ProductSingleModel = ({
             artwork2_position: data?.artwork2_position,
             thumb: data?.thumb,
             m2m_services: data?.m2m_services || [],
-            purchaseAvailable: data?.purchaseAvailable
+            purchaseAvailable: data?.purchaseAvailable,
+            positions: data?.positions,
         }
     },
 

@@ -8,26 +8,23 @@ import artwork2dContext from '../../context';
 
 function ArtworkModel() {
     const canvasRef = useRef(null);
-    const { state: { artwork } } = useContext(productContext)
+    const { state: { artwork, positions }, productID } = useContext(productContext)
     const { position: { area_height, area_width, height, left, top }, setStates } = useContext(artwork2dContext)
 
     const loadImage = useCallback((Images: string, canvas: any) => {
         fabric.Image.fromURL(
             Images,
             function (img) {
-
-                // Update width position
-                setStates(prev => ({ ...prev, position: { ...prev.position, width: img.getScaledWidth() } }))
-
-                const desiredHeight = height;
+                const checkUpdate = productID && positions
+                const desiredHeight = checkUpdate ? positions.height : height;
                 const aspectRatio = img.width / img.height;
                 const desiredWidth = desiredHeight * aspectRatio;
 
                 img.set({
                     scaleX: desiredWidth / img.width,
                     scaleY: desiredHeight / img.height,
-                    top,
-                    left,
+                    top: checkUpdate ? positions.top : top,
+                    left: checkUpdate ? positions.left : left,
                     lockRotation: true,
                 });
 
@@ -46,8 +43,6 @@ function ArtworkModel() {
                             scaleY: scaleY,
                         });
                     }
-                    console.log('w', img.getScaledWidth());
-
                     setStates(prev => ({ ...prev, position: { ...prev.position, width: img.getScaledWidth(), height: img.getScaledHeight() } }));
                 })
 
@@ -56,7 +51,7 @@ function ArtworkModel() {
             },
             { crossOrigin: 'anonymous' }
         );
-    }, [height, top, left])
+    }, [height, top, left, positions, productID])
 
     useEffect(() => {
         const canvas = new fabric.Canvas(canvasRef.current, {

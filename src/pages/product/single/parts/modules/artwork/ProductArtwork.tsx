@@ -6,7 +6,7 @@ import Artwork2d from './parts/2d/Artwork2d'
 import ArtworkNormal from './parts/normal/ArtworkNormal'
 
 function ProductArtwork() {
-    const { store: { state: { print_positions } }, productID } = useContext(productContext)
+    const { state: { positions }, store: { state: { print_positions } }, productID } = useContext(productContext)
 
     const exactDimensions = useMemo(() => {
         return print_positions.find(el => el.positions.find(pos => pos.exactDimensions))
@@ -14,7 +14,7 @@ function ProductArtwork() {
 
     return (
         <>
-            {print_positions.length && !(exactDimensions && productID) ? (
+            {print_positions.length || (positions && productID) ? (
                 <>
                     <VStack align="stretch" spacing={5}>
                         <ProductPageTitle

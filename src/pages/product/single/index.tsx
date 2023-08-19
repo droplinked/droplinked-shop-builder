@@ -56,7 +56,7 @@ function ProductSingle() {
     }, [productId])
 
     // useEffect(() => {
-    //     console.log(state.store);
+    //     console.log(state.params);
     // }, [state])
 
     return (
