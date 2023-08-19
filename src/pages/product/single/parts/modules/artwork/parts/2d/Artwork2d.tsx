@@ -5,6 +5,7 @@ import artwork2dContext, { artwork2dStates } from './context'
 import Artwork2dButtons from './parts/buttons/Artwork2dButtons'
 import Artwork2dDetails from './parts/details/Artwork2dDetails'
 import ArtworkModel from './parts/models/ArtworkModel'
+import Printful from './parts/printful/Printful'
 
 function Artwork2d() {
     const [States, setStates] = useState(artwork2dStates)
@@ -13,13 +14,14 @@ function Artwork2d() {
     useEffect(() => setStates(artwork2dStates), [artwork])
 
     useEffect(() => positions && setStates(prev => ({ ...prev, position: positions })), [positions])
-    
+
     return (
         <artwork2dContext.Provider value={{ ...States, setStates }} >
             <VStack align="stretch" backgroundColor="#141414" padding="40px" spacing="30px">
                 <Flex justifyContent="space-between" >
-                    <Box width="55%"><Artwork2dDetails /></Box>
-                    <Box width="313px"><ArtworkModel /></Box>
+                    {/* <Box width="55%"><Artwork2dDetails /></Box> */}
+                    <Box width="100%"><Printful /></Box>
+
                 </Flex>
                 <Artwork2dButtons />
             </VStack>
