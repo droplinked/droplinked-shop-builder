@@ -5,12 +5,12 @@ import React, { useContext } from 'react'
 import ArtworkImage from '../../../../../image/ArtworkImage'
 
 function Artwork2dUpload() {
-    const { state: { artwork }, methods: { updateState } } = useContext(productContext)
+    const { state: { artwork }, productID, methods: { updateState } } = useContext(productContext)
 
     return (
         <VStack align="stretch">
             {/* <Box><ProductPositions positions={['front']} state={[]} update={() => { }} /></Box> */}
-            <Box><ArtworkImage artwork={artwork} updateState={(image) => {
+            <Box><ArtworkImage isDisable={Boolean(productID)} artwork={artwork} updateState={(image) => {
                 updateState('artwork', image)
                 updateState('media', [])
             }} /></Box>

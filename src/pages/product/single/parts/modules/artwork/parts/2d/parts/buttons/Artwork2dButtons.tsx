@@ -14,7 +14,7 @@ import Artwork2dButtonsModel from './model'
 
 function Artwork2dButtons() {
     const { mutateAsync, isLoading } = useMutation((params: IpodGenerateMockupService) => podGenerateMockupService(params))
-    const { state: { sku, artwork }, methods: { updateState }, store: { state: { variants, available_variant } } } = useContext(productContext)
+    const { state: { sku, artwork }, productID, methods: { updateState }, store: { state: { variants, available_variant } } } = useContext(productContext)
     const { position, setStates } = useContext(artwork2dContext)
     const { check_available } = VariantsMakeDataModel
     const { refactorImage } = introductionClass
@@ -68,8 +68,8 @@ function Artwork2dButtons() {
 
     return (
         <Flex justifyContent="space-between" flexDirection="row-reverse">
-            <BasicButton onClick={submit} isDisabled={!appDeveloment} isLoading={isLoading}>Save</BasicButton>
-            <BasicButton onClick={reset} variant="outline" isDisabled={isLoading}>Reset All</BasicButton>
+            <BasicButton onClick={submit} isDisabled={!appDeveloment || Boolean(productID)} isLoading={isLoading}>Save</BasicButton>
+            <BasicButton onClick={reset} variant="outline" isDisabled={isLoading || Boolean(productID)}>Reset All</BasicButton>
         </Flex>
     )
 }

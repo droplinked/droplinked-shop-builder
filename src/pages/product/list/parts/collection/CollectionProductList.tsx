@@ -1,8 +1,7 @@
 import { HStack } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
-import AppBadge from 'components/common/badge/AppBadge';
 import AppTypography from 'components/common/typography/AppTypography';
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
+
 import React from 'react'
 
 interface IProps {
@@ -13,7 +12,7 @@ function CollectionProductList({ data }: IProps) {
 
     return (
         <HStack>
-            {data?.productCollectionID?.ruleSetID?.gated ? <AppIcons.GatedIcon /> : <AppIcons.DiscountIcon />}
+            {data?.productCollectionID?.ruleSetID ? data?.productCollectionID?.ruleSetID?.gated ? <AppIcons.GatedIcon /> : <AppIcons.DiscountIcon /> : null}
             <AppTypography size='14px'>{data?.productCollectionID?.title}</AppTypography>
         </HStack>
     )

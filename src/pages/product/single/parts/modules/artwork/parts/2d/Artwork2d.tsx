@@ -8,11 +8,12 @@ import ArtworkModel from './parts/models/ArtworkModel'
 
 function Artwork2d() {
     const [States, setStates] = useState(artwork2dStates)
-    const { state: { artwork } } = useContext(productContext)
+    const { state: { artwork, positions } } = useContext(productContext)
 
     useEffect(() => setStates(artwork2dStates), [artwork])
 
-
+    useEffect(() => positions && setStates(prev => ({ ...prev, position: positions })), [positions])
+    
     return (
         <artwork2dContext.Provider value={{ ...States, setStates }} >
             <VStack align="stretch" backgroundColor="#141414" padding="40px" spacing="30px">

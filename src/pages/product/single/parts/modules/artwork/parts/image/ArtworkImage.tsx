@@ -12,9 +12,10 @@ import ProductPageTitle from '../../../title/ProductPageTitle'
 interface IProps {
     artwork: string
     updateState(data: any): void
+    isDisable?: boolean
 }
 
-function ArtworkImage({ artwork, updateState }: IProps) {
+function ArtworkImage({ artwork, updateState, isDisable }: IProps) {
     const [FileSize, setFileSize] = useState("")
 
     useEffect(() => artwork && getSizeImage(artwork), [artwork])
@@ -39,7 +40,7 @@ function ArtworkImage({ artwork, updateState }: IProps) {
                             <AppTypography size='14px'>{FileSize} KB</AppTypography>
                         </Flex>
                         <Box>
-                            {artwork && <BasicButton variant='outline' sizes='medium' onClick={() => updateState(null)}>Remove</BasicButton>}
+                            {artwork && <BasicButton variant='outline' isDisabled={isDisable} sizes='medium' onClick={() => updateState(null)}>Remove</BasicButton>}
                         </Box>
                     </Flex>
                 ) : (

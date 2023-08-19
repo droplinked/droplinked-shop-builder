@@ -9,7 +9,7 @@ import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
 
 function General() {
     return (
-        <ProductCollapse show title='General Information' description='Provide product details.'>
+        <ProductCollapse show title='General Information' description='Provide product details and select your POD provider.'>
             <VStack spacing={10} align={"stretch"}>
                 <ProductName />
                 <DescriptionProduct />
