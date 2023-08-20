@@ -38,9 +38,11 @@ function Printful({ close, open }: IProps) {
                     '--pf-sys-neutral-400-on-background': '#94a3b8',
                     '--pf-sys-neutral-700-on-background': '#e2e8f0',
                     '--pf-sys-neutral-800-on-background': '#f1f5f9',
+                    '--pf-comp-banner-warning-surface': '#333',
                     '--pf-sys-neutral-900-on-background': '#f8fafc',
                     '--pf-sys-primary-400-on-background': '#059669',
                     '--pf-sys-primary-700-on-background': '#6ee7b7',
+                    '--pf-comp-designer-area-action-buttons-container-surface': '#333',
                     '--pf-sys-border-on-background': '#64748b',
                     '--pf-sys-link-on-background': '#93c5fd',
                     '--pf-comp-designer-mockup-area-surface': "#f1f5f9",
@@ -130,8 +132,7 @@ function Printful({ close, open }: IProps) {
             },
             onDesignStatusUpdate: (res) => console.log('onDesignStatusUpdate', res),
             initProduct: {
-                productId: variants?.blank_pod_id,
-                forceOrientation: "horizontal"
+                productId: variants?.blank_pod_id
             },
         });
 
