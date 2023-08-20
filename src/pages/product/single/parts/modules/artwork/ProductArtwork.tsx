@@ -1,4 +1,4 @@
-import { VStack } from '@chakra-ui/react'
+import { Flex, VStack } from '@chakra-ui/react'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useMemo } from 'react'
 import ProductPageTitle from '../title/ProductPageTitle'
@@ -12,18 +12,29 @@ function ProductArtwork() {
         return print_positions.find(el => el.positions.find(pos => pos.exactDimensions))
     }, [print_positions])
 
+    const title = useMemo(() => (
+        <ProductPageTitle
+            title='Artwork'
+            isReuired
+            description='Upload your design to print on the product. (Max artwork size 355.6x406.4 mm)'
+        />
+    ), [])
+
     return (
         <>
             {print_positions.length || (positions && productID) ? (
                 <>
-                    <VStack align="stretch" spacing={5}>
-                        <ProductPageTitle
-                            title='Artwork'
-                            isReuired
-                            description='Upload your design to print on the product. (Max artwork size 355.6x406.4 mm)'
-                        />
-                        {exactDimensions ? <Artwork2d /> : <ArtworkNormal />}
-                    </VStack>
+                    {exactDimensions ? (
+                        <Flex justifyContent="space-between" alignItems="center">
+                            {title}
+                            <Artwork2d />
+                        </Flex>
+                    ) : (
+                        <VStack align="stretch" spacing={5}>
+                            {title}
+                            <ArtworkNormal />
+                        </VStack>
+                    )}
                 </>
             ) : null}
         </>

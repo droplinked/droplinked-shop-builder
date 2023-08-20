@@ -1,4 +1,5 @@
-import { Box, Flex, VStack } from '@chakra-ui/react'
+import { Box, Flex, useDisclosure, VStack } from '@chakra-ui/react'
+import BasicButton from 'components/common/BasicButton/BasicButton'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext, useEffect, useState } from 'react'
 import artwork2dContext, { artwork2dStates } from './context'
@@ -10,6 +11,7 @@ import Printful from './parts/printful/Printful'
 function Artwork2d() {
     const [States, setStates] = useState(artwork2dStates)
     const { state: { artwork, positions } } = useContext(productContext)
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     useEffect(() => setStates(artwork2dStates), [artwork])
 
@@ -17,11 +19,8 @@ function Artwork2d() {
 
     return (
         <artwork2dContext.Provider value={{ ...States, setStates }} >
-            <VStack align="stretch" backgroundColor="#141414" padding="40px" spacing="30px">
-                <Artwork2dDetails />
-                <Printful />
-                <Artwork2dButtons />
-            </VStack>
+            <BasicButton onClick={onOpen} sizes="medium">Add Artwork</BasicButton>
+            {isOpen && <Printful close={onClose} open={isOpen} />}
         </ artwork2dContext.Provider>
     )
 }

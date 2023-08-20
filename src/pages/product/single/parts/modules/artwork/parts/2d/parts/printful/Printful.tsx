@@ -1,11 +1,15 @@
+import { Box, Flex, VStack } from '@chakra-ui/react';
 import axios from 'axios';
 import BasicButton from 'components/common/BasicButton/BasicButton';
+import AppModal, { IAppModal } from 'components/common/modal/AppModal';
 import axiosInstance from 'lib/apis/axiosConfig';
 import { productContext } from 'pages/product/single/context';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import classes from './style.module.scss'
 
-function Printful() {
+interface IProps extends IAppModal { }
+
+function Printful({ close, open }: IProps) {
     const { store: { state: { variants } } } = useContext(productContext)
     const [DesignMaker, setDesignMaker] = useState(null)
     const ref = useRef<any>()
@@ -20,7 +24,7 @@ function Printful() {
         const designMaker = new PFDesignMaker({
             elemId: ref.current?.id,
             nonce: data?.data?.data?.nonce,
-            onTemplateSaved: async (res) => {                
+            onTemplateSaved: async (res) => {
                 // try {
                 //     const data: any = await fetch(`https://api.printful.com/product-templates/${res}`, {
                 //         headers: {
@@ -48,17 +52,18 @@ function Printful() {
     }, [])
 
     return (
-        <>
-            <BasicButton onClick={() => {
-                if (!DesignMaker) return false
-                DesignMaker.sendMessage({ event: 'saveDesign' })
-                // DesignMaker.({ event: 'saveDesign')
-
-
-
-            }}>Save</BasicButton>
-            <div className={classes.model} ref={ref} id="printful"></div>
-        </>
+        <AppModal size="7xl" contentProps={{ maxWidth: "1400px", width: "95%" }} close={close} open={open}>
+            <VStack align="stretch" spacing={4}>
+                <Flex flexDirection="row-reverse">
+                    <BasicButton onClick={() => {
+                        if (!DesignMaker) return false
+                        DesignMaker.sendMessage({ event: 'saveDesign' })
+                        // DesignMaker.({ event: 'saveDesign')
+                    }}>Save</BasicButton>
+                </Flex>
+                <div className={classes.model} ref={ref} id="printful"></div>
+            </VStack>
+        </AppModal>
     )
 }
 
