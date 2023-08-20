@@ -1,38 +1,64 @@
 import axios from 'axios';
-import React, { useEffect, useRef } from 'react'
-import { useMutation } from 'react-query';
+import BasicButton from 'components/common/BasicButton/BasicButton';
+import axiosInstance from 'lib/apis/axiosConfig';
+import { productContext } from 'pages/product/single/context';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import classes from './style.module.scss'
 
 function Printful() {
+    const { store: { state: { variants } } } = useContext(productContext)
+    const [DesignMaker, setDesignMaker] = useState(null)
     const ref = useRef<any>()
-    const { mutateAsync } = useMutation(() => axios.post('https://api.printful.com/embedded-designer/nonces', {
-        external_product_id: 15489
-    }, {
-        withCredentials: true,
-        headers: {
-            origin: 'https://api.printful.com',
-            'Authorization': `Bearer ghkPL3XOhhx7QSoJiOIvHWdHaWKLUeOHsAGKq94o`,
-        }
-    }))
-    const test = async () => {
-        const data = await mutateAsync()
-        console.log(data?.data?.data);
+
+    const test = useCallback(async () => {
+        const data = await axiosInstance.post('pod/printful/nonces', {
+            external_product_id: "15489",
+            external_customer_id: "15489"
+        })
 
         //@ts-ignore
-        new PFDesignMaker({
+        const designMaker = new PFDesignMaker({
             elemId: ref.current?.id,
-            nonce: 'ujpLVVJrd9Bw2v8taK6oiiHjWCcpPqLu',
-            externalProductId: '15489',
+            nonce: data?.data?.data?.nonce,
+            onTemplateSaved: async (res) => {                
+                // try {
+                //     const data: any = await fetch(`https://api.printful.com/product-templates/${res}`, {
+                //         headers: {
+                //             'Authorization': `Bearer ghkPL3XOhhx7QSoJiOIvHWdHaWKLUeOHsAGKq94o`,
+                //         }
+                //     })
+                //     console.log(data?.data?.data?.result?.mockup_file_url);
+
+                // } catch (error) {
+                //     console.log(error);
+                // }
+            },
+            onDesignStatusUpdate: (res) => console.log('onDesignStatusUpdate', res),
             initProduct: {
-                productId: 362,
+                productId: variants?.blank_pod_id,
+                forceOrientation: "horizontal"
             },
         });
-    }
+
+        setDesignMaker(designMaker)
+    }, [variants])
+
     useEffect(() => {
         test()
     }, [])
 
     return (
-        <div ref={ref} id="printful"></div>
+        <>
+            <BasicButton onClick={() => {
+                if (!DesignMaker) return false
+                DesignMaker.sendMessage({ event: 'saveDesign' })
+                // DesignMaker.({ event: 'saveDesign')
+
+
+
+            }}>Save</BasicButton>
+            <div className={classes.model} ref={ref} id="printful"></div>
+        </>
     )
 }
 
