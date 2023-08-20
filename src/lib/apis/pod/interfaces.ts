@@ -16,6 +16,7 @@ export interface IpodVariantsService {
 export interface IpodAvailableVariantsService {
     provider: string
     productId: string
+    templateID?: string
 }
 
 export interface IpodPrintPositionsService {

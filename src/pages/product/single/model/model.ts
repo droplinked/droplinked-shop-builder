@@ -52,6 +52,7 @@ const ProductSingleModel = ({
             m2m_services: data?.m2m_services || [],
             purchaseAvailable: data?.purchaseAvailable,
             positions: data?.positions,
+            printful_template_id: data?.printful_template_id
         }
     },
 

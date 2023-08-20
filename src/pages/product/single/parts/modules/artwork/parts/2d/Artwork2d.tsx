@@ -1,11 +1,8 @@
-import { Box, Flex, useDisclosure, VStack } from '@chakra-ui/react'
+import { useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext, useEffect, useState } from 'react'
 import artwork2dContext, { artwork2dStates } from './context'
-import Artwork2dButtons from './parts/buttons/Artwork2dButtons'
-import Artwork2dDetails from './parts/details/Artwork2dDetails'
-import ArtworkModel from './parts/models/ArtworkModel'
 import Printful from './parts/printful/Printful'
 
 function Artwork2d() {

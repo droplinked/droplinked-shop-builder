@@ -37,6 +37,7 @@ export interface IproductState {
     m2m_services?: Array<string>
     purchaseAvailable: boolean
     positions?: IProductPosition
+    printful_template_id?: string
 }
 
 export interface IpropertiesItems {
