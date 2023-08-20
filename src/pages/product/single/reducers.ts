@@ -50,7 +50,8 @@ namespace ProductPageNamespace {
             thumb: "",
             m2m_services: [],
             purchaseAvailable: true,
-            positions: null
+            positions: null,
+            printful_template_id: null
         },
         store: {
             variants: [],

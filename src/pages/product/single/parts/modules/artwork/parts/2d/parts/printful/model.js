@@ -1,5 +1,5 @@
 export class PFDesignMaker {
-    par;
+    par
     iframeNode;
     loadingNode;
     allLoaded = !1;

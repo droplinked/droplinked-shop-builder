@@ -17,8 +17,8 @@ export const podVariantsService = ({ provider, productId }: IpodVariantsService)
     return axiosInstance.get(`pod/variant-options/${provider}/${productId}`)
 };
 
-export const podAvailableVariantsService = ({ provider, productId }: IpodAvailableVariantsService) => {
-    return axiosInstance.get(`pod/available-variants/${provider}/${productId}`)
+export const podAvailableVariantsService = ({ provider, productId, templateID }: IpodAvailableVariantsService) => {
+    return axiosInstance.get(`pod/available-variants/${provider}/${productId}${templateID ? `/${templateID}` : ''}`)
 };
 
 export const podPrintPositionsService = ({ provider, productId }: IpodPrintPositionsService) => {
