@@ -14,15 +14,12 @@ function Artwork2d() {
     useEffect(() => setStates(artwork2dStates), [artwork])
 
     useEffect(() => positions && setStates(prev => ({ ...prev, position: positions })), [positions])
-    
+
     return (
         <artwork2dContext.Provider value={{ ...States, setStates }} >
             <VStack align="stretch" backgroundColor="#141414" padding="40px" spacing="30px">
-                <Flex justifyContent="space-between" >
-                    <Box width="55%"><Artwork2dDetails /></Box>
-                    <Box width="313px"><ArtworkModel /></Box>
-                </Flex>
-                {/* <Printful /> */}
+                <Artwork2dDetails />
+                <Printful />
                 <Artwork2dButtons />
             </VStack>
         </ artwork2dContext.Provider>
