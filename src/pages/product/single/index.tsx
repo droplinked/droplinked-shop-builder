@@ -58,9 +58,9 @@ function ProductSingle() {
         if (!productId) dispatch({ type: "updateState", params: { element: "prodviderID", value: "PRINTFUL" } })
     }, [productId])
 
-    useEffect(() => {
-        console.log(state.params);
-    }, [state])
+    // useEffect(() => {
+    //     console.log(state.params);
+    // }, [state])
 
     return (
         <productContext.Provider value={{
