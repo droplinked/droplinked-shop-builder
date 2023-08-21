@@ -55,12 +55,12 @@ function ProductSingle() {
     }, [queryParams])
 
     useEffect(() => {
-        if (!productId) dispatch({ type: "updateState", params: { element: "prodviderID", value: "DLW" } })
+        if (!productId) dispatch({ type: "updateState", params: { element: "prodviderID", value: "PRINTFUL" } })
     }, [productId])
 
-    // useEffect(() => {
-    //     console.log(state.params.thumb);
-    // }, [state])
+    useEffect(() => {
+        console.log(state.params);
+    }, [state])
 
     return (
         <productContext.Provider value={{

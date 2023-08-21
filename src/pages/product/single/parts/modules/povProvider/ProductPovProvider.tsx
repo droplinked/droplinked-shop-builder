@@ -33,7 +33,7 @@ function ProductPovProvider() {
 
     return (
         <>
-            {product_type === "PRINT_ON_DEMAND" && (
+            {/* {product_type === "PRINT_ON_DEMAND" && (
                 <Box position={"relative"}>
                     <AppSelectBox
                         isDisabled={Boolean(productID) && publish_product}
@@ -46,7 +46,7 @@ function ProductPovProvider() {
                         onChange={change}
                     />
                 </Box>
-            )}
+            )} */}
         </>
     )
 }

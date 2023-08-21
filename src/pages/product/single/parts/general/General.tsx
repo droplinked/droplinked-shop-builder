@@ -11,7 +11,7 @@ import { productContext } from '../../context'
 import ProductType from '../modules/productType/ProductType'
 
 function General() {
-    const { store: { state: { print_positions } } } = useContext(productContext)
+    const { store: { state: { print_positions } }, state: { product_type, pod_blank_product_id } } = useContext(productContext)
     const { exactDimensions } = ProductArtworkModel
 
     return (
@@ -22,7 +22,7 @@ function General() {
                 <ProductPovProvider />
                 <ProductImages />
                 <AvailablePurchase />
-                {exactDimensions(print_positions) && <ProductType />}
+                {exactDimensions(print_positions) && (product_type === "PRINT_ON_DEMAND" && pod_blank_product_id) && <ProductType />}
             </VStack>
         </ProductCollapse>
     )
