@@ -43,7 +43,7 @@ function ProductTypes() {
         <Link to={el.type || ""}>
           <Flex key={key} justifyContent="center">
             <AppCard mini boxProps={{ padding: 0, ...!el.type && { background: "none" } }}>
-              <Flex gap="100px" justifyContent="space-between" alignItems="center" padding="0 40px">
+              <Flex gap="100px" minHeight="124px" justifyContent="space-between" alignItems="center" padding="0 40px">
                 <VStack align="stretch" spacing={1}>
                   <AppTypography size='20px' color={el.type ? "#FFF" : "#878787"} weight='bolder'>{el.title}</AppTypography>
                   <AppTypography size='14px' color="#C2C2C2">{el.description}</AppTypography>

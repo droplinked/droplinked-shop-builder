@@ -27,6 +27,8 @@ function ProductPovProvider() {
         updateState("artwork2_position", null)
         updateState("artwork_position", null)
         updateState("positions", null)
+        updateState("media", [])
+        updateState("printful_template_id", null)
     }, [])
 
     return (
