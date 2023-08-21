@@ -16,6 +16,7 @@ import CollectionProduct from './parts/collection/CollectionProduct'
 import ProductStore from './parts/store/ProductStore'
 import DigitalLinks from './parts/digital/DigitalLinks'
 import productPageNamespace from './reducers'
+import ProductArtworkModel from './parts/modules/artwork/model'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
@@ -26,6 +27,7 @@ function ProductSingle() {
     const { refactorData, productTypeHandle } = ProductSingleModel
     const productId = params?.productId
     const queryParams = useParams()
+    const { exactDimensions } = ProductArtworkModel
 
     // Fetch product for edit
     const fetch = useCallback(() => {
@@ -75,8 +77,9 @@ function ProductSingle() {
                     <General />
                     <DigitalLinks />
                     <ShippingProduct />
-                    <Variant />
+                    {!exactDimensions(state.store.print_positions) && <Variant />}
                     <ProductPodDesign />
+                    {exactDimensions(state.store.print_positions) && <Variant />}
                     <CollectionProduct />
                     <ButtonsProduct />
                 </VStack>
