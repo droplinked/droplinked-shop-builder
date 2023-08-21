@@ -14,7 +14,7 @@ function ProductArtwork() {
 
     const title = useMemo(() => (
         <ProductPageTitle
-            title='Artwork'
+            title='POD Design'
             isReuired
             description='Upload your design to print on the product. (Max artwork size 355.6x406.4 mm)'
         />
