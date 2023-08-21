@@ -24,8 +24,8 @@ function Printful({ close, open }: IProps) {
 
     const design = useCallback(async () => {
         const data = await axiosInstance.post('pod/printful/nonces', {
-            external_product_id: 'sadas',
-            external_customer_id: 'sadas'
+            external_product_id: variants?.blank_pod_id,
+            external_customer_id: variants?.blank_pod_id
         })
 
         //@ts-ignore
