@@ -1,8 +1,8 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext, useEffect } from 'react'
+import Artwork2dSkuModel from '../../../../../properties/model'
 import artwork2dContext from '../../../../context'
-import Artwork2dSkuModel from './model'
 
 function Artwork2dSku() {
     const { state: { sku } } = useContext(productContext)

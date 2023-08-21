@@ -5,6 +5,7 @@ import ProductPageTitle from '../title/ProductPageTitle'
 import ProductArtworkModel from './model'
 import Artwork2d from './parts/2d/Artwork2d'
 import ArtworkNormal from './parts/normal/ArtworkNormal'
+import PropertiesPod from './parts/properties/PropertiesPod'
 
 function ProductArtwork() {
     const { state: { positions }, store: { state: { print_positions } }, productID } = useContext(productContext)
@@ -24,10 +25,13 @@ function ProductArtwork() {
             {print_positions.length || (positions && productID) ? (
                 <>
                     {exactDimensions(print_positions) ? (
-                        <Flex justifyContent="space-between" alignItems="center">
-                            {title}
-                            <Artwork2d />
-                        </Flex>
+                        <VStack align="stretch" spacing={5}>
+                            <Flex justifyContent="space-between" alignItems="center">
+                                {title}
+                                <Artwork2d />
+                            </Flex>
+                            <PropertiesPod />
+                        </VStack>
                     ) : (
                         <VStack align="stretch" spacing={5}>
                             {title}

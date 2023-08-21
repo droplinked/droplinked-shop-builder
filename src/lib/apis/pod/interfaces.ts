@@ -37,3 +37,12 @@ export interface IpodGenerateMockupService {
         files: Array<Ifiles>
     }
 }
+
+export interface ImockupGeneratorService {
+    params: {
+        variant_ids: any
+        format: string
+        product_template_id: string
+    }
+    productID: string
+}
