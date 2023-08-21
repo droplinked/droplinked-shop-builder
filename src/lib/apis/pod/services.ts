@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { IpodAvailableVariantsService, IpodGenerateMockupService, IpodPrintPositionsService, IpodProductService, IpodVariantsService, IproviderIDService } from "./interfaces";
+import { ImockupGeneratorService, IpodAvailableVariantsService, IpodGenerateMockupService, IpodPrintPositionsService, IpodProductService, IpodVariantsService, IproviderIDService } from "./interfaces";
 
 export const providersService = () => {
     return axiosInstance.get("pod/providers")
@@ -27,4 +27,8 @@ export const podPrintPositionsService = ({ provider, productId }: IpodPrintPosit
 
 export const podGenerateMockupService = ({ productId, params }: IpodGenerateMockupService) => {
     return axiosInstance.post(`pod/generate-mockup/${productId}`, params)
+};
+
+export const mockupGeneratorService = ({ params, productID }: ImockupGeneratorService) => {
+    return axiosInstance.post(`pod/generate-mockup/${productID}`, params)
 };

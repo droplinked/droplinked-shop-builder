@@ -3,9 +3,10 @@ import axios from 'axios';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppModal, { IAppModal } from 'components/common/modal/AppModal';
 import axiosInstance from 'lib/apis/axiosConfig';
-import { IpodAvailableVariantsService } from 'lib/apis/pod/interfaces';
-import { podAvailableVariantsService } from 'lib/apis/pod/services';
+import { ImockupGeneratorService, IpodAvailableVariantsService } from 'lib/apis/pod/interfaces';
+import { mockupGeneratorService, podAvailableVariantsService } from 'lib/apis/pod/services';
 import { productContext } from 'pages/product/single/context';
+import introductionClass from 'pages/product/single/parts/general/model';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useMutation } from 'react-query';
 import classes from './style.module.scss'
@@ -15,10 +16,11 @@ interface IProps extends IAppModal { }
 function Printful({ close, open }: IProps) {
     const { methods: { updateState }, store: { state: { variants }, methods: { update } } } = useContext(productContext)
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
+    const mockupGenerator = useMutation((params: ImockupGeneratorService) => mockupGeneratorService(params))
     const [DesignMaker, setDesignMaker] = useState(null)
     const [TemplateId, setTemplateId] = useState(null)
     const ref = useRef<any>()
-
+    const { refactorImage } = introductionClass
 
     const design = useCallback(async () => {
         const data = await axiosInstance.post('pod/printful/nonces', {
@@ -110,17 +112,27 @@ function Printful({ close, open }: IProps) {
             const data = request?.data?.data
 
             let size = {}
-            data.flatMap(el => el.sizes.map(sized => size[sized.size] = { value: sized.size, caption: sized.size }))
+            data.flatMap(el => el.sizes.map(sized => size[sized.size] = { value: sized.size, id: sized.id, caption: sized.size }))
             let sizes = []
             Object.keys(size).forEach(element => {
                 sizes.push({ value: size[element].value, caption: size[element].caption, })
             });
 
+            const mockups = await mockupGenerator.mutateAsync({
+                params: {
+                    variant_ids: Object.keys(size).map(el => size[el].id.toString()),
+                    format: 'jpg',
+                    product_template_id: TemplateId.toString()
+                },
+                productID: variants?.blank_pod_id
+            })
+            updateState("media", refactorImage(mockups?.data?.data))
+
             const result = [
                 {
                     "value": "62a989ab1f2c2bbc5b1e7153",
                     "title": "Color",
-                    "items": uniqe(data.map(el => ({ value: el.color, caption: el.color }))),
+                    "items": uniqe(data.map(el => ({ value: el.color_code, caption: el.color }))),
                     "child": null
                 },
                 {
@@ -184,10 +196,11 @@ function Printful({ close, open }: IProps) {
     return (
         <AppModal size="7xl" contentProps={{ maxWidth: "1400px", width: "95%" }} close={close} open={open}>
             <VStack align="stretch" spacing={4}>
-                <Flex flexDirection="row-reverse">
-                    <BasicButton onClick={save} isLoading={availableVariants.isLoading}>Save</BasicButton>
-                </Flex>
                 <div className={classes.model} ref={ref} id="printful"></div>
+                <Flex justifyContent="space-between">
+                    <BasicButton onClick={close} variant="outline" isDisabled={availableVariants.isLoading || mockupGenerator.isLoading}>Discard</BasicButton>
+                    <BasicButton onClick={save} isLoading={availableVariants.isLoading || mockupGenerator.isLoading}>Save</BasicButton>
+                </Flex>
             </VStack>
         </AppModal>
     )
