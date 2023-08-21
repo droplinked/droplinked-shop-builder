@@ -16,7 +16,7 @@ function Printful({ close, open }: IProps) {
     const { methods: { updateState }, store: { state: { variants }, methods: { update } } } = useContext(productContext)
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
     const [DesignMaker, setDesignMaker] = useState(null)
-    const [Fetch, setFetch] = useState(false)
+    const [TemplateId, setTemplateId] = useState(null)
     const ref = useRef<any>()
 
 
@@ -92,43 +92,7 @@ function Printful({ close, open }: IProps) {
                 },
             },
             onTemplateSaved: async (res) => {
-                try {
-                    if (Fetch) return false
-                    const request = await availableVariants.mutateAsync({ productId: variants._id, provider: variants.provider, templateID: res })
-                    const data = request?.data?.data
-
-                    let size = {}
-                    data.flatMap(el => el.sizes.map(sized => size[sized.size] = { value: sized.size, caption: sized.size }))
-                    let sizes = []
-                    Object.keys(size).forEach(element => {
-                        sizes.push({ value: size[element].value, caption: size[element].caption, })
-                    });
-
-                    const result = [
-                        {
-                            "value": "62a989ab1f2c2bbc5b1e7153",
-                            "title": "Color",
-                            "items": uniqe(data.map(el => ({ value: el.color, caption: el.color }))),
-                            "child": null
-                        },
-                        {
-                            "value": "62a989e21f2c2bbc5b1e7154",
-                            "title": "Size",
-                            "items": sizes,
-                            "child": null
-                        }
-                    ]
-                    
-                    setFetch(true)
-                    update("available_variant", data)
-                    updateState('artwork', 'printful')
-                    updateState('artwork_position', 'front')
-                    updateState('properties', result)
-                    updateState('printful_template_id', res)
-                    close()
-                } catch (error) {
-                    console.log(error);
-                }
+                setTemplateId(res)
             },
             onDesignStatusUpdate: (res) => console.log('onDesignStatusUpdate', res),
             initProduct: {
@@ -137,7 +101,49 @@ function Printful({ close, open }: IProps) {
         });
 
         setDesignMaker(designMaker)
-    }, [variants, Fetch])
+    }, [variants])
+
+    const generate = useCallback(async () => {
+        try {
+            if (!TemplateId) return false
+            const request = await availableVariants.mutateAsync({ productId: variants._id, provider: variants.provider, templateID: TemplateId })
+            const data = request?.data?.data
+
+            let size = {}
+            data.flatMap(el => el.sizes.map(sized => size[sized.size] = { value: sized.size, caption: sized.size }))
+            let sizes = []
+            Object.keys(size).forEach(element => {
+                sizes.push({ value: size[element].value, caption: size[element].caption, })
+            });
+
+            const result = [
+                {
+                    "value": "62a989ab1f2c2bbc5b1e7153",
+                    "title": "Color",
+                    "items": uniqe(data.map(el => ({ value: el.color, caption: el.color }))),
+                    "child": null
+                },
+                {
+                    "value": "62a989e21f2c2bbc5b1e7154",
+                    "title": "Size",
+                    "items": sizes,
+                    "child": null
+                }
+            ]
+            update("available_variant", data)
+            updateState('artwork', 'printful')
+            updateState('artwork_position', 'front')
+            updateState('properties', result)
+            updateState('printful_template_id', TemplateId)
+            close()
+        } catch (error) {
+            console.log(error);
+        }
+    }, [TemplateId])
+
+    useEffect(() => {
+        if (TemplateId) generate()
+    }, [TemplateId])
 
     useEffect(() => {
         if (!DesignMaker) design()
