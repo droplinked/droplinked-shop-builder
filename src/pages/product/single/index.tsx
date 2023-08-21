@@ -17,6 +17,7 @@ import ProductStore from './parts/store/ProductStore'
 import DigitalLinks from './parts/digital/DigitalLinks'
 import productPageNamespace from './reducers'
 import ProductArtworkModel from './parts/modules/artwork/model'
+import ProductLoading from './parts/loading/ProductLoading'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
@@ -58,7 +59,7 @@ function ProductSingle() {
     }, [productId])
 
     // useEffect(() => {
-    //     console.log(state.store);
+    //     console.log(state.params.thumb);
     // }, [state])
 
     return (
@@ -68,11 +69,20 @@ function ProductSingle() {
                 state: state.store,
                 methods: { update: (storeName, value) => dispatch({ type: "updateStore", params: { storeName, value } }) }
             },
-            methods: { updateState: (element, value) => dispatch({ type: "updateState", params: { element, value } }), fetch },
+            methods: {
+                updateState: (element, value) => dispatch({
+                    type: "updateState",
+                    params: { element, value }
+                }),
+                fetch,
+                setSync: (value) => dispatch({ type: "updateSync", params: { value } }),
+            },
             productID: productId,
             loading: productId ? !isLoading : true,
+            sync: state.sync
         }}>
             <ProductStore>
+                <ProductLoading />
                 <VStack spacing={5}>
                     <General />
                     <DigitalLinks />
