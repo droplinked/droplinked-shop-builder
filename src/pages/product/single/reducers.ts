@@ -11,6 +11,8 @@ namespace ProductPageNamespace {
     export interface IStates {
         params: IproductState
         store: IStore
+        loading: boolean
+        sync: boolean
     }
 
     type actions =
@@ -25,6 +27,10 @@ namespace ProductPageNamespace {
         {
             type: "updateStore",
             params: { storeName: string, value: any }
+        } |
+        {
+            type: "updateSync",
+            params: { value: boolean }
         }
 
     export const initialState: IStates = {
@@ -58,7 +64,9 @@ namespace ProductPageNamespace {
             available_variant: [],
             print_positions: [],
             product_types: []
-        }
+        },
+        loading: false,
+        sync: false
     };
 
     export const reducers = (state: IStates, action: actions): IStates => {
@@ -85,6 +93,11 @@ namespace ProductPageNamespace {
                         ...state.store,
                         [action.params.storeName]: action.params.value
                     }
+                }
+            case 'updateSync':
+                return {
+                    ...state,
+                    sync: action.params.value
                 }
             default:
                 break;

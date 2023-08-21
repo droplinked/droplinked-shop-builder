@@ -9,7 +9,7 @@ interface IProps {
 }
 
 function ProductStore({ children }: IProps) {
-    const { state: { pod_blank_product_id, prodviderID }, productID, methods: { updateState }, store: { methods: { update } } } = useContext(productContext)
+    const { state: { pod_blank_product_id, prodviderID, printful_template_id }, productID, methods: { updateState, setSync }, store: { methods: { update } } } = useContext(productContext)
     const providerService = useMutation((params: IpodProductService) => podProductService(params))
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
     const printPositions = useMutation((params: IpodPrintPositionsService) => podPrintPositionsService(params))
@@ -21,7 +21,7 @@ function ProductStore({ children }: IProps) {
             onSuccess: res => {
                 const data = res.data?.data
                 update("variants", data)
-                availableVariants.mutate({ productId: data._id, provider: data.provider }, {
+                availableVariants.mutate({ productId: data._id, provider: data.provider, templateID: printful_template_id }, {
                     onSuccess: (res: any) => update("available_variant", res?.data?.data)
                 })
                 printPositions.mutate({ productId: data._id, provider: data.provider }, {
@@ -29,7 +29,7 @@ function ProductStore({ children }: IProps) {
                 })
             }
         })
-    }, [pod_blank_product_id])
+    }, [pod_blank_product_id, printful_template_id])
 
     // Get product types
     useEffect(() => {
@@ -41,6 +41,11 @@ function ProductStore({ children }: IProps) {
             }
         })
     }, [prodviderID, productID])
+
+    // Update sync
+    useEffect(() => {
+        setSync(!(providerService.isLoading || availableVariants.isLoading || printPositions.isLoading || provider.isLoading))
+    }, [providerService.isLoading, availableVariants.isLoading, printPositions.isLoading, provider.isLoading])
 
     return children
 }

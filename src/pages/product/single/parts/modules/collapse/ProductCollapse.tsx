@@ -1,8 +1,6 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppCard from 'components/common/card/AppCard'
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
-import AppTypography from 'components/common/typography/AppTypography'
 import React, { useCallback, useState } from 'react'
 import ProductPageTitle from '../title/ProductPageTitle'
 

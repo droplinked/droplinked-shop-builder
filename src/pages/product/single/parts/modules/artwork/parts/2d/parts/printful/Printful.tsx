@@ -123,7 +123,9 @@ function Printful({ close, open }: IProps) {
                 },
                 productID: variants?.blank_pod_id
             })
-            updateState("media", refactorImage(mockups?.data?.data))
+            const mockupsData = mockups?.data?.data
+            updateState("thumb", mockupsData[0])
+            updateState("media", refactorImage(mockupsData))
 
             const result = [
                 {

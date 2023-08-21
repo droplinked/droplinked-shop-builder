@@ -19,8 +19,10 @@ interface IproductContext {
     methods: {
         updateState(element: string, value: any): void
         fetch: Function
+        setSync(value: boolean): void
     },
-    loading: boolean
+    loading: boolean,
+    sync: boolean
 }
 
 
@@ -40,7 +42,9 @@ export const productContext = createContext<IproductContext>({
     },
     methods: {
         updateState: () => { },
-        fetch: () => { }
+        fetch: () => { },
+        setLoading: () => { }
     },
     loading: false,
+    sync: false
 })
