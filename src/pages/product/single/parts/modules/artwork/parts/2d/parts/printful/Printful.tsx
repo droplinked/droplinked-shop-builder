@@ -14,7 +14,7 @@ import classes from './style.module.scss'
 interface IProps extends IAppModal { }
 
 function Printful({ close, open }: IProps) {
-    const { methods: { updateState }, store: { state: { variants }, methods: { update } } } = useContext(productContext)
+    const { methods: { updateState }, state: { printful_template_id, publish_product }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
     const mockupGenerator = useMutation((params: ImockupGeneratorService) => mockupGeneratorService(params))
     const [DesignMaker, setDesignMaker] = useState(null)
@@ -32,7 +32,6 @@ function Printful({ close, open }: IProps) {
         const designMaker = new PFDesignMaker({
             elemId: ref.current?.id,
             nonce: data?.data?.data?.nonce,
-            externalProductId: "",
             style: {
                 variables: {
                     '--pf-sys-background': 'none',
@@ -97,13 +96,11 @@ function Printful({ close, open }: IProps) {
                 setTemplateId(res)
             },
             onDesignStatusUpdate: (res) => console.log('onDesignStatusUpdate', res),
-            initProduct: {
-                productId: variants?.blank_pod_id
-            },
+            ...printful_template_id ? { templateId: printful_template_id } : { initProduct: { productId: variants?.blank_pod_id } }
         });
 
         setDesignMaker(designMaker)
-    }, [variants])
+    }, [variants, printful_template_id])
 
     const generate = useCallback(async () => {
         try {
@@ -120,7 +117,7 @@ function Printful({ close, open }: IProps) {
 
             const mockups = await mockupGenerator.mutateAsync({
                 params: {
-                    variant_ids: Object.keys(size).map(el => size[el].id.toString()),
+                    variant_ids: data.flatMap(el => el.sizes.map(sized => sized.id)),
                     format: 'jpg',
                     product_template_id: TemplateId.toString()
                 },
@@ -199,7 +196,7 @@ function Printful({ close, open }: IProps) {
                 <div className={classes.model} ref={ref} id="printful"></div>
                 <Flex justifyContent="space-between">
                     <BasicButton onClick={close} variant="outline" isDisabled={availableVariants.isLoading || mockupGenerator.isLoading}>Discard</BasicButton>
-                    <BasicButton onClick={save} isLoading={availableVariants.isLoading || mockupGenerator.isLoading}>Save</BasicButton>
+                    <BasicButton onClick={save} disabled={Boolean(productID) && publish_product} isLoading={availableVariants.isLoading || mockupGenerator.isLoading}>Save</BasicButton>
                 </Flex>
             </VStack>
         </AppModal>
