@@ -1,4 +1,4 @@
-import { Box, BoxProps, Flex, HStack, Image, SimpleGrid, VStack } from '@chakra-ui/react'
+import { Box, Flex, Image, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import LoadingComponent from 'components/common/loading-component/LoadingComponent'
 import AppTypography from 'components/common/typography/AppTypography'

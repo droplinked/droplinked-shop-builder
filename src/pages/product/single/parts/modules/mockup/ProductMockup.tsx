@@ -3,18 +3,17 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppUploadImage from 'components/common/upload/image/AppUploadImage'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { productContext } from 'pages/product/single/context'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import introductionClass from '../../general/model'
-import InputImagesGroup from '../images/parts/Input-images-component/InputImageGroupe/Input-images-component'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
 import ProductPageTitle from '../title/ProductPageTitle'
 import ProductIframe from './parts/iframe/ProductIframe'
 
 function ProductMockup() {
     const { state: { media, thumb }, methods: { updateState }, store: { state: { variants } } } = useContext(productContext)
-    const { refactorImage, defactorImage } = introductionClass
+    const { refactorImage, defactorImage, isMain } = introductionClass
     const { isOpen, onOpen, onClose } = useDisclosure()
-
+    
     return (
         <>
             <VStack align={"stretch"}>
@@ -30,6 +29,7 @@ function ProductMockup() {
                     <SkeletonProduct width={"30%"} height={"200px"}>
                         <AppUploadImage
                             size='original'
+                            defaults={{ updateDefault: (url) => updateState("media", refactorImage(defactorImage(media), url)), value: isMain(media)?.url }}
                             toast={AppErrors.store.upload("Mockup")}
                             onSuccess={(images: any) => !thumb.length && images?.small && updateState("thumb", images?.small)}
                             onChange={(images: any) => updateState("media", refactorImage(images))}

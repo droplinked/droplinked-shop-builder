@@ -59,7 +59,7 @@ function ProductSingle() {
     }, [productId])
 
     // useEffect(() => {
-    //     console.log(state.params);
+    //     console.log(state.params.media);
     // }, [state])
 
     return (
