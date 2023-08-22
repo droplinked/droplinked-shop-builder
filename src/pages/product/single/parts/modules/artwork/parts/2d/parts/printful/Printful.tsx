@@ -9,6 +9,7 @@ import { productContext } from 'pages/product/single/context';
 import introductionClass from 'pages/product/single/parts/general/model';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useMutation } from 'react-query';
+import PrintfulModel from './model';
 import classes from './style.module.scss'
 
 interface IProps extends IAppModal { }
@@ -21,6 +22,7 @@ function Printful({ close, open }: IProps) {
     const [TemplateId, setTemplateId] = useState(null)
     const ref = useRef<any>()
     const { refactorImage } = introductionClass
+    const { uniqe, styles } = PrintfulModel
 
     const design = useCallback(async () => {
         const data = await axiosInstance.post('pod/printful/nonces', {
@@ -32,66 +34,7 @@ function Printful({ close, open }: IProps) {
         const designMaker = new PFDesignMaker({
             elemId: ref.current?.id,
             nonce: data?.data?.data?.nonce,
-            style: {
-                variables: {
-                    '--pf-sys-background': 'none',
-                    '--pf-sys-neutral-300-on-background': '#64748b',
-                    '--pf-sys-neutral-400-on-background': '#94a3b8',
-                    '--pf-sys-neutral-700-on-background': '#e2e8f0',
-                    '--pf-sys-neutral-800-on-background': '#f1f5f9',
-                    '--pf-comp-banner-warning-surface': '#333',
-                    '--pf-sys-neutral-900-on-background': '#f8fafc',
-                    '--pf-sys-primary-400-on-background': '#059669',
-                    '--pf-sys-primary-700-on-background': '#6ee7b7',
-                    '--pf-comp-designer-area-action-buttons-container-surface': '#333',
-                    '--pf-sys-border-on-background': '#64748b',
-                    '--pf-sys-link-on-background': '#93c5fd',
-                    '--pf-comp-designer-mockup-area-surface': "#f1f5f9",
-                    '--pf-sys-icon-on-background': '#94a3b8',
-                    '--pf-sys-icon-info-on-background': '#94a3b8',
-                    '--pf-sys-icon-hover-neutral-700-on-background': '#e2e8f0',
-                    '--pf-sys-icon-hover-neutral-900-on-background': '#f8fafc',
-                    '--pf-sys-error-on-background': '#f87171',
-                    '--pf-sys-success-on-background': '#22c55e',
-                    '--pf-sys-warning-on-background': '#fcd34d',
-                    '--pf-sys-hover-border-color-on-background': '#64748b',
-                    '--pf-sys-hover-box-shadow-on-background': '',
-                    '--pf-sys-neutral-surface-50': '#1e293b',
-                    '--pf-sys-neutral-surface-50-hsl': '217.24, 32.58%, 17.45%',
-                    '--pf-sys-neutral-300-on-surface-50': '#64748b',
-                    '--pf-sys-neutral-400-on-surface-50': '#94a3b8',
-                    '--pf-sys-neutral-700-on-surface-50': '#e2e8f0',
-                    '--pf-sys-neutral-900-on-surface-50': '#f8fafc',
-                    '--pf-sys-neutral-surface-100': '#334155',
-                    '--pf-sys-neutral-700-on-surface-100': '#e2e8f0',
-                    '--pf-sys-neutral-900-on-surface-100': '#f8fafc',
-                    '--pf-sys-neutral-surface-200': '#475569',
-                    '--pf-sys-neutral-400-on-surface-200': '#94a3b8',
-                    '--pf-sys-neutral-900-on-surface-200': '#f8fafc',
-                    '--pf-sys-neutral-surface-300': '#64748b',
-                    '--pf-sys-neutral-400-on-surface-300': '#94a3b8',
-                    '--pf-sys-neutral-900-on-surface-300': '#f8fafc',
-                    '--pf-sys-neutral-surface-400': '#94a3b8',
-                    '--pf-sys-neutral-900-on-surface-400': '#f8fafc',
-                    '--pf-sys-primary-surface-400': '#059669',
-                    '--pf-sys-primary-surface-700': '#6ee7b7',
-                    '--pf-sys-primary-on-surface-700': '#134e4a',
-                    '--pf-sys-error-surface': '#991b1b',
-                    '--pf-sys-error-on-surface': '#fef2f2',
-                    '--pf-sys-form-control-indicator-active-surface': '#93c5fd',
-                    '--pf-sys-form-control-indicator-active-on-surface': '#1e3a8a',
-                    '--pf-sys-action-button-surface': '',
-                    '--pf-sys-action-button-on-surface': '#f8fafc',
-                    '--pf-sys-action-button-hover-surface': '#64748b',
-                    '--pf-sys-action-button-hover-on-surface': '#f8fafc',
-                    '--pf-sys-action-button-focus-surface': '',
-                    '--pf-sys-action-button-focus-on-surface': '#f8fafc',
-                    '--pf-sys-action-button-selected-surface': '#155e75',
-                    '--pf-sys-action-button-selected-on-surface': '#ecfeff',
-                    '--pf-sys-action-button-disabled-surface': '',
-                    '--pf-sys-action-button-disabled-on-surface': '#94a3b8',
-                },
-            },
+            style: styles,
             onTemplateSaved: async (res) => {
                 setTemplateId(res)
             },
@@ -115,14 +58,16 @@ function Printful({ close, open }: IProps) {
                 sizes.push({ value: size[element].value, caption: size[element].caption, })
             });
 
-            const mockups = await mockupGenerator.mutateAsync({
+            const mockBody = {
                 params: {
                     variant_ids: data.flatMap(el => el.sizes.map(sized => sized.id)),
                     format: 'jpg',
                     product_template_id: TemplateId.toString()
                 },
                 productID: variants?.blank_pod_id
-            })
+            }
+
+            const mockups = await mockupGenerator.mutateAsync(mockBody)
             const mockupsData = mockups?.data?.data
             updateState("thumb", mockupsData[0])
             updateState("media", refactorImage(mockupsData))
@@ -174,19 +119,6 @@ function Printful({ close, open }: IProps) {
         }
     }, []);
 
-    const uniqe = (data) => {
-        const uniqueData = [];
-        const duplicates = [];
-        data.forEach((obj) => {
-            if (!duplicates.includes(obj.value)) {
-                duplicates.push(obj.value);
-                uniqueData.push(obj);
-            }
-        });
-
-        return uniqueData
-    }
-
     const save = useCallback(async () => {
         if (!DesignMaker) return false
         DesignMaker.sendMessage({ event: 'saveDesign' })
@@ -198,7 +130,7 @@ function Printful({ close, open }: IProps) {
                 <div className={classes.model} ref={ref} id="printful"></div>
                 <Flex justifyContent="space-between">
                     <BasicButton onClick={close} variant="outline" isDisabled={availableVariants.isLoading || mockupGenerator.isLoading}>Discard</BasicButton>
-                    <BasicButton onClick={save} disabled={Boolean(productID) && publish_product} isLoading={availableVariants.isLoading || mockupGenerator.isLoading}>Save</BasicButton>
+                    <BasicButton onClick={save} isDisabled={(Boolean(productID) && publish_product) || availableVariants.isLoading || mockupGenerator.isLoading} isLoading={availableVariants.isLoading || mockupGenerator.isLoading}>Save</BasicButton>
                 </Flex>
             </VStack>
         </AppModal>
