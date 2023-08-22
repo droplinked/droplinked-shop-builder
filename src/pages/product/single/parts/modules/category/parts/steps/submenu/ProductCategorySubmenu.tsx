@@ -35,9 +35,9 @@ function ProductCategorySubmenu() {
   ]
 
   return (
-    <SimpleGrid columns={3} spacing="30px">
+    <SimpleGrid columns={3} spacing="20px">
       {data.map((el, key) => (
-        <CategoryBox padding="20px" onClick={() => updateState('menu', el.value)}>
+        <CategoryBox padding="20px" onClick={() => updateState('submenu', el.value)}>
           <Flex key={key} alignItems="center" gap="20px">
             <Box><AppTypography size='14px'>{el.caption}</AppTypography></Box>
           </Flex>
