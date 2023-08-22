@@ -10,12 +10,12 @@ interface IfindByOptionSku {
     skues: Array<Isku>
 }
 
-export default class VariantsRefactorModel {
-    static findByOptionSku = ({ options, skues }: IfindByOptionSku) => {
+const VariantsRefactorModel = ({
+    findByOptionSku: ({ options, skues }: IfindByOptionSku) => {
         return skues.find(el => JSON.stringify(el.options) === JSON.stringify(options))
-    }
+    },
 
-    static checkAvailable = ({ options, variants }: IcheckAvailable) => {
+    checkAvailable: ({ options, variants }: IcheckAvailable) => {
         const blank_options = variants?.blank_options
         if (blank_options && blank_options[0]) {
             const getVariant = blank_options[0][options[0].value]
@@ -24,4 +24,6 @@ export default class VariantsRefactorModel {
         }
         return false
     }
-}
+})
+
+export default VariantsRefactorModel

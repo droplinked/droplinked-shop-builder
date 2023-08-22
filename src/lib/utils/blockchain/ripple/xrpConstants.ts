@@ -1,0 +1,23 @@
+import axios from 'axios';
+async function getContractAddress(){
+    let result = String((await axios.get("https://apiv3dev.droplinked.com/storage/contractAddress-XRP-Testnet")).data.value);
+    return result;
+}
+async function getContractABI(){
+	let result = (await axios.get("https://apiv3dev.droplinked.com/storage/ABI-XRP-Testnet")).data.value;
+	result = atob(result);
+	result = JSON.parse(result);
+	return result;
+}
+
+async function getXRPSignedPrice() : Promise<{signature : String, timestamp: String, latestAnswer : String, contractAddress : String}>{
+	let result = (await axios.get("https://apiv3dev.droplinked.com/payment/ripple/signed-price")).data.value;
+	result = atob(result);
+	result = JSON.parse(result);
+	return result;
+}
+
+export function toBase64(str: any){
+	return btoa(str);
+}
+export {getContractABI, getContractAddress, getXRPSignedPrice};

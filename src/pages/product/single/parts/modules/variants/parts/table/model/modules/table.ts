@@ -1,12 +1,21 @@
-import { IproductState } from "lib/apis/product/interfaces";
+import { IproductState, IskuOption } from "lib/apis/product/interfaces";
+import ProductArtworkModel from "pages/product/single/parts/modules/artwork/model";
+import VariantsMakeDataModel from "../../../../model/modules/makeData";
 
 interface Ivariants {
-    variants: any
+    available_variant: Array<any>
     state: IproductState
+    options: Array<IskuOption>
+    print_positions: Array<any>
 }
-export default class ProductSkuesTable {
-    static variants = ({ variants, state }: Ivariants) => {
-        const artworks = [state.artwork, state.artwork2].filter(el => el).length
-        return (artworks < 2 && !state.m2m_positions.length) || (!artworks && state.m2m_positions.length) ? variants?.single_print_price : variants?.front_back_print_price
+const ProductSkuesTable = ({
+    variants: ({ available_variant, state, options, print_positions }: Ivariants) => {
+        const artworkCount = [state.artwork, state.artwork2].filter(el => el).length
+        const avaliable = VariantsMakeDataModel.check_available({ options, available_variant })
+        
+        const printPrice = artworkCount > 1 ? avaliable.data?.printPrice * artworkCount : avaliable.data?.printPrice
+        return ProductArtworkModel.exactDimensions(print_positions) ? avaliable.size?.price : avaliable.size.price + printPrice
     }
-}
+})
+
+export default ProductSkuesTable

@@ -1,7 +1,7 @@
 import { IsizesHandel } from "../BasicButtonModel"
 
-export default class BasicButtonSizes {
-    static large = (): IsizesHandel => {
+const BasicButtonSizes = ({
+    large : (): IsizesHandel => {
         return {
             button: {
                 minWidth: "160px",
@@ -9,9 +9,9 @@ export default class BasicButtonSizes {
             },
             text: "16px"
         }
-    }
+    },
 
-    static medium = (): IsizesHandel => {
+    medium : (): IsizesHandel => {
         return {
             button: {
                 minWidth: "120px",
@@ -19,9 +19,9 @@ export default class BasicButtonSizes {
             },
             text: "12px"
         }
-    }
+    },
 
-    static small = (): IsizesHandel => {
+    small : (): IsizesHandel => {
         return {
             button: {
                 minWidth: "103px",
@@ -30,4 +30,6 @@ export default class BasicButtonSizes {
             text: "10px"
         }
     }
-}
+})
+
+export default BasicButtonSizes

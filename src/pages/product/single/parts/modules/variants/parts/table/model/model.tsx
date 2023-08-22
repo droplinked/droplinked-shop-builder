@@ -11,12 +11,12 @@ interface IgetRows {
     sku: Isku
     state: IproductState
     key: number
-    variants: any
+    available_variant: Array<any>
+    print_positions: Array<any>
 }
 
-export default class SkuTableModel {
-    private static table = ProductSkuesTable
-    static getRows = ({ state, sku, key, variants }: IgetRows) => {
+const SkuTableModel = ({
+    getRows: ({ state, sku, key, available_variant, print_positions }: IgetRows) => {
         const checkRecord = sku?.recordData && sku.recordData.status !== "NOT_RECORDED"
         const product_type = state.product_type
 
@@ -41,7 +41,7 @@ export default class SkuTableModel {
             },
             externalID: {
                 caption: "External ID",
-                value: <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.externalID} name={"externalID"} />
+                value: <FieldsSkuTable isDisabled={checkRecord || product_type === "PRINT_ON_DEMAND"} index={key} value={sku.externalID} name={"externalID"} />
             },
             ...product_type !== "PRINT_ON_DEMAND" && {
                 quantity: {
@@ -51,7 +51,7 @@ export default class SkuTableModel {
             ...product_type === "PRINT_ON_DEMAND" && {
                 cost: {
                     caption: "Product Cost",
-                    value: variants ? <AppTypography size="12px">{this.table.variants({ variants, state })} USD</AppTypography> : 0
+                    value: available_variant ? <AppTypography size="12px">{ProductSkuesTable.variants({ available_variant, state, options: sku.options, print_positions })} USD</AppTypography> : 0
                 },
             },
             ...product_type === "NORMAL" && {
@@ -81,4 +81,6 @@ export default class SkuTableModel {
             },
         }
     }
-}
+})
+
+export default SkuTableModel

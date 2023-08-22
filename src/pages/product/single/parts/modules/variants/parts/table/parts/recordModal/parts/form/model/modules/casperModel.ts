@@ -5,8 +5,8 @@ import { record_merch } from "lib/utils/blockchain/casper/recordMatch"
 export interface IRecordCasper {
     product: any
     publicKey: string
-    commission: number,
-    sku: Isku
+    commission: number
+    sku: any
 }
 
 export interface IopenCasperWallet {
@@ -20,12 +20,12 @@ interface IcasperRecord {
     deployHash: string | undefined
 }
 
-export default class RecordModalModule {
-    static openCasperWallet = (): Promise<IopenCasperWallet> => {
+const RecordCasperModule = ({
+    openCasperWallet: (): Promise<IopenCasperWallet> => {
         return new Promise<IopenCasperWallet>(async (resolve, reject) => {
             if (isCapseWalletExtentionInstalled()) {
                 try {
-                    await casper_wallet_login(async (account_info:any) => {
+                    await casper_wallet_login(async (account_info: any) => {
                         resolve({
                             account_hash: account_info.account_hash,
                             publicKey: account_info.publicKey,
@@ -40,9 +40,9 @@ export default class RecordModalModule {
                 reject("Please install casper wallet")
             }
         })
-    };
+    },
 
-    static casperRecord = async ({ commission, product, publicKey, sku }: IRecordCasper) => {
+    casperRecord: async ({ commission, product, publicKey, sku }: IRecordCasper) => {
         return new Promise<IcasperRecord>(async (resolve, reject) => {
             try {
                 const data = {
@@ -51,8 +51,8 @@ export default class RecordModalModule {
                         publicKey: publicKey,
                     },
                     product_title: product.title,
-                    price: product.sku.price * 100,
-                    amount: product.sku.quantity * 100,
+                    price: sku.price * 100,
+                    amount: sku.quantity * 100,
                     comission: commission * 100
                 }
 
@@ -70,4 +70,6 @@ export default class RecordModalModule {
             }
         })
     }
-}
+})
+
+export default RecordCasperModule

@@ -5,11 +5,13 @@ import propertyItemModel, { IaddPropertyItem } from './parts/item/model';
 import propertiesFormContext from './context'
 import PropertyFormProduct from './parts/form/PropertyFormProduct';
 import PODProperties from './parts/pod/PODProperties';
+import ProductArtworkModel from '../artwork/model';
 
 function Properties() {
-    const { state: { properties, product_type, sku, publish_product }, methods: { updateState }, productID } = useContext(productContext)
+    const { state: { properties, product_type, sku, publish_product }, methods: { updateState }, store: { state: { print_positions } }, productID } = useContext(productContext)
     const { showToast } = useAppToast()
     const { addPropertyItem, removePropertyItem, checkUsedPropertyItem } = propertyItemModel
+    const { exactDimensions } = ProductArtworkModel
 
     // Check used item in skues
     const checkItem = useCallback((propertyValue) => {
@@ -24,7 +26,7 @@ function Properties() {
         updateState("properties", removePropertyItem({ state: properties, valueItem }))
     }, [properties, sku, productID, publish_product])
 
-    const set = useCallback(async ({ item }: IaddPropertyItem) => {        
+    const set = useCallback(async ({ item }: IaddPropertyItem) => {
         if (productID && publish_product) return false
         try {
             await checkItem(item.value)
@@ -35,11 +37,8 @@ function Properties() {
     }, [updateState, sku, properties, productID, publish_product])
 
     return (
-        <propertiesFormContext.Provider value={{
-            set,
-            remove,
-        }}>
-            {["NORMAL", "DIGITAL"].includes(product_type) ? <PropertyFormProduct /> : <PODProperties />}
+        <propertiesFormContext.Provider value={{ set, remove }}>
+            {["NORMAL", "DIGITAL"].includes(product_type) ? <PropertyFormProduct /> : !exactDimensions(print_positions) ? <PODProperties /> : null}
         </propertiesFormContext.Provider>
     )
 }

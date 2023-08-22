@@ -2,7 +2,6 @@ import { useDisclosure } from '@chakra-ui/react'
 import { IacceptRejectRequestService } from 'lib/apis/affiliate/interfaces'
 import { acceptRejectRequestService } from 'lib/apis/affiliate/shopServices'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
-import RecordModalModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel'
 import React, { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
 import NotificationsModal from './parts/modal/NotificationsModal'
@@ -15,6 +14,9 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import useStack from 'functions/hooks/stack/useStack'
 import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
 import { approve_request_polygon } from 'lib/utils/blockchain/polygon/approve'
+import RecordCasperModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/modules/casperModel'
+import { XRPLogin } from 'lib/utils/blockchain/ripple/xrpLogin'
+import { XRPApproveRequest } from 'lib/utils/blockchain/ripple/xrpApprove'
 
 function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
     const { mutateAsync } = useMutation((params: IacceptRejectRequestService) => acceptRejectRequestService(params))
@@ -28,7 +30,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
         deployHash: null,
         blockchain: null
     })
-    const { login, isRequestPending, openContractCall, stxAddress } = useStack()
+    const { login, isRequestPending, openContractCall } = useStack()
 
     const setLoading = useCallback((value: boolean) => setStates(prev => ({ ...prev, loading: value })), [])
 
@@ -56,7 +58,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             const requestID = shop?.recordData?.details?.request_id
             if (States.status === "accept") {
                 if (blockchain === "CASPER") {
-                    const casperWallet = await RecordModalModule.openCasperWallet()
+                    const casperWallet = await RecordCasperModule.openCasperWallet()
                     const data = { shop, casperWallet }
                     const request = await casper.approveRequest(data)
                     deploy_hash = request.deployHash
@@ -67,6 +69,10 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                 } else if (blockchain === "POLYGON") {
                     const login = await PolygonLogin()
                     const accept = await approve_request_polygon(login.address, requestID)
+                    deploy_hash = accept
+                } else if (blockchain === "RIPPLE") {
+                    const login = await XRPLogin()
+                    const accept = await XRPApproveRequest(login.address, requestID)
                     deploy_hash = accept
                 }
 

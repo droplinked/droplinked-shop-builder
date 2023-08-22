@@ -7,7 +7,10 @@ import AppToastify from "components/common/toastify/AppToastify";
 function App() {
   return (
     <BrowserRouter>
+      {/* toast box */}
       <AppToastify />
+
+      {/* Routes */}
       <AppRoutes />
     </BrowserRouter >
   );

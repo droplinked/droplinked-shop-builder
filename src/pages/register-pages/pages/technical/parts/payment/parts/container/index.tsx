@@ -18,12 +18,14 @@ function ContainerPayment({ title, value, locked }) {
   const [Switch, setSwitch] = useState(locked)
   const { showToast } = useAppToast()
 
-  const activeMethod = useCallback((value?: boolean) => updatePayments("isActive", value), [])
+  const updatePayments = useCallback((key, value) => updatePayment(key, value, title), [title, updatePayment])
+
+  const activeMethod = useCallback((value?: boolean) => updatePayments("isActive", value), [updatePayments])
 
   const save = useCallback(() => {
     if (title !== "STRIPE" && active && !value) return showToast("Please enter wallet", "error")
     activeMethod(true)
-  }, [value, title, locked, active])
+  }, [value, title, locked, active, showToast, activeMethod])
 
   const activeHandle = useCallback((e: any) => {
     const checked = e.target.checked
@@ -32,19 +34,19 @@ function ContainerPayment({ title, value, locked }) {
     if (!checked) activeMethod(false)
   }, [title])
 
-  const updatePayments = useCallback((key, value) => updatePayment(key, value, title), [title])
 
   const getIcon = useCallback((icon: string) => {
     let styles = { width: "16px", height: "16px" }
+    
     switch (icon) {
       case "CASPER":
-        return <AppIcons.casperIcon style={styles} />
-      case "NAER":
-        return <AppIcons.nearWalletIcon style={styles} />
+        return <AppIcons.CasperIcon style={styles} />
+      case "NEAR":
+        return <AppIcons.NearWalletIcon style={styles} />
       case "STACKS":
-        return <AppIcons.stacks style={styles} />
+        return <AppIcons.Stacks style={styles} />
       case "STRIPE":
-        return <AppIcons.stripe width="30px" height="30px" />
+        return <AppIcons.Stripe width="30px" height="30px" />
 
       default:
         return ""
@@ -73,7 +75,7 @@ function ContainerPayment({ title, value, locked }) {
                   <Box position={"relative"} width="100%" top={.9}>
                     <input type="text" style={{ width: "100%" }} className={classes.textbox} value={value} readOnly />
                   </Box>
-                  <Box onClick={edit} cursor={"pointer"}><AppIcons.editIcon width="16px" height="16px" /></Box>
+                  <Box onClick={edit} cursor={"pointer"}><AppIcons.EditIcon width="16px" height="16px" /></Box>
                 </>
               ) : (
                 <>

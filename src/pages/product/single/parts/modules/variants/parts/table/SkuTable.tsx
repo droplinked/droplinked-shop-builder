@@ -9,7 +9,7 @@ import RecordModal from './parts/recordModal/RecordModal';
 import SkuTableModal from './parts/skuModal/SkuTableModal';
 
 function SkuTable() {
-    const { state, store: { state: { variants } }, productID } = useContext(productContext)
+    const { state, store: { state: { available_variant, print_positions } }, methods: { fetch, updateState } } = useContext(productContext)
     const [Sku, setSku] = useState(null)
     const { getRows } = SkuTableModel
     const recordModal = useDisclosure()
@@ -21,7 +21,7 @@ function SkuTable() {
         return state.sku.map((el, key) => {
 
             return {
-                ...getRows({ sku: el, state, key, variants, }),
+                ...getRows({ sku: el, state, key, available_variant, print_positions }),
                 controls: {
                     caption: "Drop",
                     props: {
@@ -48,7 +48,13 @@ function SkuTable() {
                 }
             }
         })
-    }, [state.sku, state.artwork, state.artwork2, state.m2m_positions, state.product_type, variants])
+    }, [state.sku, state.artwork, state.artwork2, state.m2m_positions, state.product_type, available_variant, print_positions])
+
+    const closeModal = useCallback(async () => {
+        const skues = await fetch()
+        updateState("sku", skues.sku)
+        recordModal.onClose()
+    }, [])
 
     return (
         <>
@@ -56,7 +62,7 @@ function SkuTable() {
                 {rows && <AppTable rows={rows} />}
             </SkeletonProduct>
             <SkuTableModal open={editModal.isOpen} close={editModal.onClose} skuData={Sku} />
-            <RecordModal open={Sku && recordModal.isOpen} product={Sku} close={recordModal.onClose} />
+            <RecordModal open={Sku && recordModal.isOpen} product={state} sku={Sku} close={closeModal} />
         </>
     )
 }

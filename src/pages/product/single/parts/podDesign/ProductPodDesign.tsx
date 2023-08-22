@@ -13,9 +13,8 @@ function ProductPodDesign() {
     return (
         <>
             {product_type === "PRINT_ON_DEMAND" && (
-                <ProductCollapse title='POD Design' description='Set product type, customize artwork and mockup, select product variations.'>
+                <ProductCollapse title='POD Design' description='Customize POD artworks, print positions and product mockups.'>
                     <VStack spacing={10} align={"stretch"}>
-                        <ProductType />
                         <ProductArtwork />
                         <ProductMockup />
                         <ProductMintToMerge />

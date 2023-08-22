@@ -22,7 +22,7 @@ function CouponsListContent() {
                             <Flex color="#C2C2C2" justifyContent="space-between" alignItems="center">
                                 <Flex gap="30px" width="40%" alignItems="center">
                                     <VStack width="20%" align="stretch" className={`${!el.isExpired ? classes.active : ''}`}>
-                                        {el.type === "DISCOUNT" ? <AppIcons.discountSetting /> : <AppIcons.giftSetting />}
+                                        {el.type === "DISCOUNT" ? <AppIcons.DiscountSetting /> : <AppIcons.GiftSetting />}
                                         <AppTypography size='10px' color="#808080">{capitalizeFirstLetter(el.type)}</AppTypography>
                                     </VStack>
                                     <VStack width="100%" align="stretch">
@@ -36,7 +36,7 @@ function CouponsListContent() {
                                 </VStack>
                                 {/* <Box alignSelf="baseline" marginTop="7px"><AppTypography size='10px'>Export</AppTypography></Box> */}
                                 <Box>
-                                    <AppIcons.arrowDown
+                                    <AppIcons.ArrowDown
                                         onClick={() => setCode(prev => prev === key ? null : key)}
                                         style={{
                                             transition: ".3s",

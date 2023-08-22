@@ -9,8 +9,8 @@ interface Ivalidation {
     textColor: string
 }
 
-export default class DesignRegisterMdel {
-    static validation = (designForm: Ivalidation) => {
+const DesignRegisterMdel = ({
+    validation: (designForm: Ivalidation) => {
         const schema = object({
             backgroundColor: string().required(),
             textColor: string().required(),
@@ -20,4 +20,6 @@ export default class DesignRegisterMdel {
         })
         return schema.validate(designForm)
     }
-}
+})
+
+export default DesignRegisterMdel

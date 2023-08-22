@@ -17,6 +17,7 @@ export default function VerifyEmailPage() {
   useEffect(() => {
     const verify = async () => {
       try {
+        // Check code
         await mutateAsync({ token })
         nav("/?modal=login");
         showToast("Your email has been verified, please login", "success");

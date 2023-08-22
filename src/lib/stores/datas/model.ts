@@ -1,14 +1,8 @@
 import { collectionService } from "lib/apis/collection/services";
 import { IDataStore } from "./dataStore";
 
-interface IsetLoading {
-    set: any
-    status: boolean
-    model: string
-}
-
-export default class dataStoreModel {
-    static getCollections = async (set: any) => {
+const dataStoreModel = ({
+    getCollections: async (set: any) => {
         try {
             const data = await collectionService()
             set((state: IDataStore) => ({
@@ -23,4 +17,6 @@ export default class dataStoreModel {
             set((state: IDataStore) => ({ collection: { ...state.collection, isError: true } }))
         }
     }
-}
+})
+
+export default dataStoreModel

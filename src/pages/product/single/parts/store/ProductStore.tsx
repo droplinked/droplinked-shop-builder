@@ -1,5 +1,5 @@
-import { IpodProductService, IproviderIDService } from 'lib/apis/pod/interfaces'
-import { podProductService, providerIDService } from 'lib/apis/pod/services'
+import { IpodAvailableVariantsService, IpodPrintPositionsService, IpodProductService, IproviderIDService } from 'lib/apis/pod/interfaces'
+import { podAvailableVariantsService, podPrintPositionsService, podProductService, providerIDService } from 'lib/apis/pod/services'
 import React, { useContext, useEffect } from 'react'
 import { useMutation } from 'react-query'
 import { productContext } from '../../context'
@@ -9,13 +9,43 @@ interface IProps {
 }
 
 function ProductStore({ children }: IProps) {
-    const { state: { pod_blank_product_id }, store: { methods: { update } } } = useContext(productContext)
+    const { state: { pod_blank_product_id, prodviderID, printful_template_id }, productID, methods: { updateState, setSync }, store: { methods: { update } } } = useContext(productContext)
     const providerService = useMutation((params: IpodProductService) => podProductService(params))
+    const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
+    const printPositions = useMutation((params: IpodPrintPositionsService) => podPrintPositionsService(params))
+    const provider = useMutation((params: IproviderIDService) => providerIDService(params))
 
     // Get providers
     useEffect(() => {
-        if (pod_blank_product_id) providerService.mutate({ pod_blank_product_id }, { onSuccess: res => update("variants", res.data?.data) })
-    }, [pod_blank_product_id])
+        if (pod_blank_product_id) providerService.mutate({ pod_blank_product_id }, {
+            onSuccess: res => {
+                const data = res.data?.data
+                update("variants", data)
+                availableVariants.mutate({ productId: data._id, provider: data.provider, templateID: printful_template_id }, {
+                    onSuccess: (res: any) => update("available_variant", res?.data?.data)
+                })
+                printPositions.mutate({ productId: data._id, provider: data.provider }, {
+                    onSuccess: (res: any) => update("print_positions", res?.data?.data)
+                })
+            }
+        })
+    }, [pod_blank_product_id, printful_template_id])
+
+    // Get product types
+    useEffect(() => {
+        if (prodviderID) provider.mutate({ prodviderID }, {
+            onSuccess: res => {
+                const data = res.data?.data
+                update("product_types", data)
+                if (!productID) updateState("pod_blank_product_id", data[0]._id)
+            }
+        })
+    }, [prodviderID, productID])
+
+    // Update sync
+    useEffect(() => {
+        setSync(!(providerService.isLoading || availableVariants.isLoading || printPositions.isLoading || provider.isLoading))
+    }, [providerService.isLoading, availableVariants.isLoading, printPositions.isLoading, provider.isLoading])
 
     return children
 }

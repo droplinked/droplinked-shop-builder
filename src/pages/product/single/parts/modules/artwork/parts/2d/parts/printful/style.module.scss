@@ -1,0 +1,12 @@
+.model {
+    iframe {
+        width: 100%;
+        height: 700px;
+    }
+
+    :global {
+        .main-mockup-area {
+            max-width: 565px !important;
+        }
+    }
+}

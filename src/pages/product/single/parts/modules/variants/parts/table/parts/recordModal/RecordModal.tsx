@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import AppModal from 'components/common/modal/AppModal'
 import { Isku } from 'lib/apis/product/interfaces'
 import RecordForm from './parts/form/RecordForm'
@@ -17,17 +17,15 @@ export interface IRecordModalProduct {
 interface Iprops {
     open: boolean
     close: Function
-    product: IRecordModalProduct
+    product: any
+    sku: Isku
 }
 
-function RecordModal({ close, open, product }: Iprops) {
-    const { methods } = useContext(productContext)
+function RecordModal({ close, open, product, sku }: Iprops) {
     const [State, setState] = useState(recordStates)
 
     // Close Modal
     const closeModal = useCallback(async () => {
-        const skues = await methods.fetch()
-        methods.updateState("sku", skues.sku)
         setState(recordStates)
         close()
     }, [])
@@ -45,7 +43,7 @@ function RecordModal({ close, open, product }: Iprops) {
                     padding: "30px"
                 }}
             >
-                {State.hashkey ? <HashKey text="Sku record successful" blockchain={State.blockchain} hashkey={State.hashkey} close={closeModal} /> : <RecordForm close={closeModal} product={product} />}
+                {State.hashkey ? <HashKey text="Sku record successful" blockchain={State.blockchain} hashkey={State.hashkey} close={closeModal} /> : <RecordForm close={closeModal} product={product} sku={sku} />}
             </AppModal>
         </recordContext.Provider>
     )

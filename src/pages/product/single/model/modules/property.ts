@@ -1,8 +1,8 @@
 import { Iproperties } from "lib/apis/product/interfaces";
 import AppendModule from "../../parts/modules/properties/model/module/append";
 
-export default class propertyFactor {
-    static refactor = (items: Array<any>): Array<Iproperties> => {
+const propertyFactor = ({
+    refactor : (items: Array<any>): Array<Iproperties> => {
 
         let properties = {}
         items.forEach(item => {
@@ -38,4 +38,6 @@ export default class propertyFactor {
 
         return refactorToArray
     }
-}
+})
+
+export default propertyFactor

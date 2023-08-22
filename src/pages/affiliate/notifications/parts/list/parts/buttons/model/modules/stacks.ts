@@ -1,6 +1,6 @@
 import { principalCV, uintCV } from "@stacks/transactions"
 import { configStacks } from "lib/utils/blockchain/stacks/_constans"
-import { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel"
+import { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/recordFormModel"
 
 interface Iapprove {
     isRequestPending: any
@@ -12,10 +12,10 @@ interface Iapprove {
 }
 
 
-export default class stacksApprove {
+const stacksApprove = ({
 
     // Approve request
-    static async approve({ isRequestPending, openContractCall, params: { id, publisher } }: Iapprove) {
+    approve: async ({ isRequestPending, openContractCall, params: { id, publisher } }: Iapprove) => {
         if (isRequestPending) return
 
         try {
@@ -29,4 +29,6 @@ export default class stacksApprove {
         }
     }
 
-}
+})
+
+export default stacksApprove

@@ -4,6 +4,15 @@ export interface IproductList {
     filter?: string
 }
 
+export interface IProductPosition {
+    area_width: number
+    area_height: number
+    width: number
+    height: number
+    top: number
+    left: number
+}
+
 export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
 export interface IproductState {
     title: string
@@ -14,7 +23,7 @@ export interface IproductState {
     shippingPrice: number
     product_type: product_type
     publish_product: boolean
-    shippingType: "CUSTOM" | "EASY_POST" | "DLW"
+    shippingType: string
     properties: Array<Iproperties>
     sku: Array<Isku>
     prodviderID: string
@@ -27,6 +36,8 @@ export interface IproductState {
     thumb: string,
     m2m_services?: Array<string>
     purchaseAvailable: boolean
+    positions?: IProductPosition
+    printful_template_id?: string
 }
 
 export interface IpropertiesItems {

@@ -2,7 +2,6 @@ import React, { useCallback, useMemo } from 'react'
 import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu'
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import { useDisclosure } from '@chakra-ui/react';
-import ConfirmDeleteProduct from './parts/modal/ConfirmDeleteCollection';
 import { useMutation } from 'react-query';
 import { productUpdateServices } from 'lib/apis/product/productServices';
 import { IproductUpdateServices } from 'lib/apis/product/interfaces';
@@ -10,10 +9,13 @@ import useAppToast from 'functions/hooks/toast/useToast';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import ButtonsProductClass from 'pages/product/single/parts/buttons/model/ButtonProductModel';
 import ProductSingleModel from 'pages/product/single/model/model';
+import ConfirmDeleteProduct from './parts/delete/ConfirmDeleteCollection';
+import DetailsProduct from './parts/details/DetailsProduct';
 
 function ControlsListProduct({ productID, product, fetch }) {
     const { mutateAsync } = useMutation((params: IproductUpdateServices) => productUpdateServices(params))
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const detailModal = useDisclosure()
     const { shopNavigate } = useCustomNavigate()
     const { showToast } = useAppToast()
 
@@ -39,9 +41,13 @@ function ControlsListProduct({ productID, product, fetch }) {
             {
                 caption: "Delete",
                 onClick: onOpen
+            },
+            {
+                caption: "View Details",
+                onClick: detailModal.onOpen
             }
         ]
-        if(product?.publish_status === "DRAFTED") list.push({
+        if (product?.publish_status === "DRAFTED") list.push({
             caption: "Publish",
             onClick: publish
         })
@@ -53,6 +59,7 @@ function ControlsListProduct({ productID, product, fetch }) {
         <>
             <PopOverMenu items={items} />
             <ConfirmDeleteProduct close={onClose} open={isOpen} productID={productID} fetch={fetch} />
+            {detailModal.isOpen && <DetailsProduct close={detailModal.onClose} open={detailModal.isOpen} productID={product._id} />}
         </>
     )
 }

@@ -5,10 +5,8 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
 import { requestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'
-import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
-import { publish_request_polygon } from 'lib/utils/blockchain/polygon/request'
 import stacksRequest from 'lib/utils/blockchain/stacks/request'
-import RecordModalModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel'
+import RecordCasperModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/modules/casperModel'
 import React, { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
 import { ModalRequestContext } from './context'
@@ -28,8 +26,8 @@ interface IProps {
 
 function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
     const { mutateAsync } = useMutation((params: IcasperRequestService) => requestService(params))
-    const { formSchema, publish_request } = ModalRequestModel
-    const { openCasperWallet } = RecordModalModule
+    const { formSchema, publish_request, requestModel } = ModalRequestModel
+    const { openCasperWallet } = RecordCasperModule
     const { showToast } = useAppToast()
     const { login, isRequestPending, openContractCall, stxAddress } = useStack()
     const [Loading, setLoading] = useState(false)
@@ -73,8 +71,10 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                 })
                 if (request) deployHash = request.txId
             } else if (blockchain === "POLYGON") {
-                const login = await PolygonLogin()
-                const request = await publish_request_polygon(login.address, sku?.recordData?.data?.details?.recipient, tokenID)
+                const request = await requestModel({ blockchain: "POLYGON", recipient: sku?.recordData?.data?.details?.recipient, tokenID })
+                if (request) deployHash = request
+            } else if (blockchain === "RIPPLE") {
+                const request = await requestModel({ blockchain: "RIPPLE", recipient: sku?.recordData?.data?.details?.recipient, tokenID })
                 if (request) deployHash = request
             }
 

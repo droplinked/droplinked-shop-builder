@@ -1,42 +1,16 @@
 import { IproductState } from "lib/apis/product/interfaces";
 import { createContext } from "react";
+import ProductPageNamespace from "./reducers";
+
 
 export interface IpropertiesItems {
     value: string
 }
 
-export const initialStatesProduct: IproductState = {
-    title: '',
-    description: '',
-    productCollectionID: '',
-    media: [],
-    priceUnit: "USD",
-    shippingPrice: 0,
-    product_type: "NORMAL",
-    publish_product: true,
-    shippingType: "EASY_POST",
-    properties: [],
-    sku: [],
-    prodviderID: "DLW",
-    pod_blank_product_id: null,
-    artwork: null,
-    artwork2: null,
-    m2m_positions: [],
-    artwork_position: null,
-    artwork2_position: null,
-    thumb: "",
-    m2m_services: [],
-    purchaseAvailable: true
-}
-
-export interface IproductStore {
-    variants: any
-}
-
 interface IproductContext {
     state: IproductState,
     store: {
-        state: IproductStore
+        state: ProductPageNamespace.IStore
         methods: {
             update(storeName: any, data: any): void
         }
@@ -45,16 +19,22 @@ interface IproductContext {
     methods: {
         updateState(element: string, value: any): void
         fetch: Function
+        setSync(value: boolean): void
     },
-    loading: boolean
+    loading: boolean,
+    sync: boolean
 }
 
+
 export const productContext = createContext<IproductContext>({
-    state: initialStatesProduct,
+    state: ProductPageNamespace.initialState.params,
     productID: null,
     store: {
         state: {
-            variants: []
+            variants: [],
+            available_variant: [],
+            print_positions: [],
+            product_types: []
         },
         methods: {
             update: () => { }
@@ -62,7 +42,9 @@ export const productContext = createContext<IproductContext>({
     },
     methods: {
         updateState: () => { },
-        fetch: () => { }
+        fetch: () => { },
+        setLoading: () => { }
     },
     loading: false,
+    sync: false
 })

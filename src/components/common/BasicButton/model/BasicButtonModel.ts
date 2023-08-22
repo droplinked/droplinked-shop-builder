@@ -13,37 +13,39 @@ interface Istyles {
     variant: BasicButtonStylesTypes
 }
 
-export default class BasicButtonModel {
-    private static sizes = BasicButtonSizes
-    private static styles = BasicButtonStyles
+const sizes = BasicButtonSizes
+const styles = BasicButtonStyles
 
-    static stylesHandel = ({ variant }: Istyles): ButtonProps => {
+const BasicButtonModel = ({
+    stylesHandel: ({ variant }: Istyles): ButtonProps => {
         switch (variant) {
             case "solid":
-                return this.styles.solid()
+                return styles.solid()
             case "outline":
-                return this.styles.outline()
+                return styles.outline()
             case "link":
-                return this.styles.link()
+                return styles.link()
             case "ghost":
-                return this.styles.ghost()
+                return styles.ghost()
             default:
-                return this.styles.solid()
+                return styles.solid()
         }
 
-    }
+    },
 
-    static sizesHandel = (size: sizesButton): IsizesHandel => {
+    sizesHandel: (size: sizesButton): IsizesHandel => {
         switch (size) {
             case "large":
-                return this.sizes.large()
+                return sizes.large()
             case "medium":
-                return this.sizes.medium()
+                return sizes.medium()
             case "small":
-                return this.sizes.small()
+                return sizes.small()
 
             default:
-                return this.sizes.large()
+                return sizes.large()
         }
     }
-}
+})
+
+export default BasicButtonModel

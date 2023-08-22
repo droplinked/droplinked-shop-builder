@@ -15,7 +15,6 @@ function ProductMockup() {
     const { refactorImage, defactorImage } = introductionClass
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-
     return (
         <>
             <VStack align={"stretch"}>

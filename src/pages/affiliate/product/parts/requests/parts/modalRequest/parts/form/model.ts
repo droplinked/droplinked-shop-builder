@@ -1,7 +1,11 @@
 import { Isku } from 'lib/apis/product/interfaces';
 import * as Yup from 'yup';
-import { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel"
 import { publish_request } from 'lib/utils/blockchain/casper/casper_wallet_publish_request'
+import { XRPLogin } from 'lib/utils/blockchain/ripple/xrpLogin';
+import { IopenCasperWallet } from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/modules/casperModel';
+import { XRPPublishRequest } from 'lib/utils/blockchain/ripple/xrpPublish';
+import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin';
+import { publish_request_polygon } from 'lib/utils/blockchain/polygon/request';
 
 export interface IRequestModelValues {
     quantity: string
@@ -13,14 +17,20 @@ export interface IPublishRequest {
     casperWallet: IopenCasperWallet
 }
 
-export default class ModalRequestModel {
-    static formSchema = () => {
+interface Irequest {
+    blockchain: "POLYGON" | "RIPPLE"
+    tokenID: string
+    recipient: string
+}
+
+const ModalRequestModel = ({
+    formSchema: () => {
         return Yup.object().shape({
             quantity: Yup.string().required('Required'),
         });
-    }
+    },
 
-    static publish_request = async ({ casperWallet, quantity, sku }: IPublishRequest) => {        
+    publish_request: async ({ casperWallet, quantity, sku }: IPublishRequest) => {
         const data = {
             holder_id: parseInt(sku?.recordData?.data?.details?.holder_id),
             amount: quantity,
@@ -33,5 +43,32 @@ export default class ModalRequestModel {
         }
 
         return await publish_request(data.holder_id, data.amount, data.producer_public_key, data.account_info)
+    },
+
+    requestModel: async ({ blockchain, recipient, tokenID }: Irequest) => {
+        let methods = {
+            login: null,
+            request: null
+        }
+
+        switch (blockchain) {
+            case 'POLYGON':
+                methods = {
+                    login: PolygonLogin,
+                    request: publish_request_polygon
+                }
+            case 'RIPPLE':
+                methods = {
+                    login: XRPLogin,
+                    request: XRPPublishRequest
+                }
+
+        }
+
+        const login = await methods.login()
+        const request = await methods.request(login.address, recipient, tokenID)
+        return request
     }
-}
+})
+
+export default ModalRequestModel
