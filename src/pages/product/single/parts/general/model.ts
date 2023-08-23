@@ -4,10 +4,10 @@ interface IrefactorImage {
 }
 
 const introductionClass = ({
-    refactorImage: (images: Array<string>): Array<IrefactorImage> => {
+    refactorImage: (images: Array<string>, isMain?: string): Array<IrefactorImage> => {
         return images.map((el, key) => {
             return {
-                isMain: key === 0,
+                isMain: isMain ? isMain === el : key === 0,
                 url: el
             }
         })
@@ -15,6 +15,10 @@ const introductionClass = ({
 
     defactorImage: (images: Array<IrefactorImage | any>) => {
         return images.map((el) => el.url)
+    },
+
+    isMain: (images: Array<IrefactorImage | any>) => {
+        return images.find((el) => el.isMain)
     }
 })
 

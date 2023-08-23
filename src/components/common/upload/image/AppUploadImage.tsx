@@ -1,8 +1,10 @@
+import { Box } from '@chakra-ui/react';
 import axios from 'axios';
+import AppScrollBar from 'components/common/scrollbar';
 import useAppToast from 'functions/hooks/toast/useToast';
 import React, { useCallback, useRef } from 'react'
 import { useMutation } from 'react-query';
-import appUploadImageContext, { ImodeUploadImage } from './context';
+import appUploadImageContext, { ImodeUploadImage, IUploadImageDefault } from './context';
 import UploadImageModel from './model';
 import DefaultHoverBox from './parts/default/DefaultHoverBox';
 
@@ -14,9 +16,10 @@ interface IProps {
     toast?: string
     size?: "small" | "original" | "standard"
     mode?: ImodeUploadImage
+    defaults?: IUploadImageDefault
 }
 
-function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess, mode = "multi", onDelete }: IProps) {
+function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess, mode = "multi", onDelete, defaults }: IProps) {
     const { mutateAsync, isLoading } = useMutation((formData: any) => axios.post("https://cdn.droplinked.com/upload", formData))
     const fileRef = useRef(null);
     const { showToast } = useAppToast()
@@ -50,10 +53,13 @@ function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess,
             openFile: () => fileRef.current.click(),
             deleted,
             isLoading,
-            mode
+            mode,
+            defaults
         }}>
-            <DefaultHoverBox />
-            <input type="file" className="d-none" ref={fileRef} onChange={create} />
+            <AppScrollBar maxHeight="425px" overflow="auto">
+                <DefaultHoverBox />
+                <input type="file" className="d-none" ref={fileRef} onChange={create} />
+            </AppScrollBar>
         </appUploadImageContext.Provider>
     )
 }
