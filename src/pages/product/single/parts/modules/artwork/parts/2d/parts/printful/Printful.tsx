@@ -35,7 +35,7 @@ function Printful({ close, open }: IProps) {
             elemId: ref.current?.id,
             nonce: data?.data?.data?.nonce,
             style: styles,
-            onTemplateSaved: async (res) => {                
+            onTemplateSaved: async (res) => {
                 setTemplateId(res)
             },
             onDesignStatusUpdate: (res) => console.log('onDesignStatusUpdate', res),
@@ -126,8 +126,8 @@ function Printful({ close, open }: IProps) {
     }, [DesignMaker])
 
     return (
-        <AppModal size="7xl" contentProps={{ maxWidth: "1400px", width: "95%" }} close={close} open={open}>
-            <VStack align="stretch" spacing={4}>
+        <AppModal size="7xl" isCentered={false} title="Design Product" contentProps={{ maxWidth: "1400px", width: "95%" }} close={close} open={open}>
+            <VStack align="stretch" spacing={4} paddingTop="20px">
                 <div className={classes.model} ref={ref} id="printful"></div>
                 <Flex justifyContent="space-between">
                     <BasicButton onClick={close} variant="outline" isDisabled={availableVariants.isLoading || mockupGenerator.isLoading}>Discard</BasicButton>
