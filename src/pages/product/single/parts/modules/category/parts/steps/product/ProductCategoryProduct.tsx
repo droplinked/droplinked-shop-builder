@@ -14,37 +14,37 @@ function ProductCategoryProduct() {
       caption: "Men Clothing",
       icon: faker.image.image(),
       price: "34.4 USD",
-      value: "men"
+      value: "64d9e5449e763fa7b150342e"
     },
     {
       caption: "Men Clothing",
       icon: faker.image.image(),
       price: "34.4 USD",
-      value: "men"
+      value: "64d9e5449e763fa7b150342e"
     },
     {
       caption: "Men Clothing",
       icon: faker.image.image(),
       price: "34.4 USD",
-      value: "men"
+      value: "64d9e5449e763fa7b150342e"
     },
     {
       caption: "Men Clothing",
       icon: faker.image.image(),
       price: "34.4 USD",
-      value: "men"
+      value: "64d9e5449e763fa7b150342e"
     },
     {
       caption: "Men Clothing",
       icon: faker.image.image(),
       price: "34.4 USD",
-      value: "men"
+      value: "64d9e5449e763fa7b150342e"
     },
     {
       caption: "Men Clothing",
       icon: faker.image.image(),
       price: "34.4 USD",
-      value: "men"
+      value: "64d9e5449e763fa7b150342e"
     },
   ]
 
