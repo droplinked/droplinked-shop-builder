@@ -9,7 +9,7 @@ import ProductPageTitle from '../title/ProductPageTitle'
 
 function ProductImages() {
   const { state: { media, product_type, thumb }, methods: { updateState } } = useContext(productContext);
-  const { refactorImage, defactorImage } = introductionClass;
+  const { refactorImage, defactorImage, isMain } = introductionClass;
 
   return (
     <>
@@ -25,6 +25,7 @@ function ProductImages() {
               <AppUploadImage
                 size='original'
                 values={defactorImage(media)}
+                defaults={{ updateDefault: (url) => updateState("media", refactorImage(defactorImage(media), url)), value: isMain(media)?.url }}
                 toast={AppErrors.store.upload("The product image")}
                 onSuccess={(images: any) => !thumb.length && images?.small && updateState("thumb", images?.small)}
                 onDelete={(images: any) => !images.length && updateState("thumb", "")}
