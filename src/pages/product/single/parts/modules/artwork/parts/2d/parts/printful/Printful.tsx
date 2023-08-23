@@ -1,4 +1,5 @@
 import { Box, Flex, VStack } from '@chakra-ui/react';
+import { faker } from '@faker-js/faker';
 import axios from 'axios';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppModal, { IAppModal } from 'components/common/modal/AppModal';
@@ -12,22 +13,25 @@ import { useMutation } from 'react-query';
 import PrintfulModel from './model';
 import classes from './style.module.scss'
 
-interface IProps extends IAppModal { }
+interface IProps extends IAppModal {
+    generate_externaID: string
+}
 
-function Printful({ close, open }: IProps) {
-    const { methods: { updateState }, state: { printful_template_id, publish_product }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
+function Printful({ close, open, generate_externaID }: IProps) {
+    const { methods: { updateState }, state: { printful_template_id, publish_product, pod_blank_product_id }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
     const mockupGenerator = useMutation((params: ImockupGeneratorService) => mockupGeneratorService(params))
     const [DesignMaker, setDesignMaker] = useState(null)
     const [TemplateId, setTemplateId] = useState(null)
+    const [UUID, setUUID] = useState(null)
     const ref = useRef<any>()
     const { refactorImage } = introductionClass
     const { uniqe, styles } = PrintfulModel
 
     const design = useCallback(async () => {
         const data = await axiosInstance.post('pod/printful/nonces', {
-            external_product_id: variants?.blank_pod_id,
-            external_customer_id: variants?.blank_pod_id
+            external_product_id: generate_externaID,
+            external_customer_id: generate_externaID
         })
 
         //@ts-ignore
@@ -39,16 +43,16 @@ function Printful({ close, open }: IProps) {
                 setTemplateId(res)
             },
             onDesignStatusUpdate: (res) => console.log('onDesignStatusUpdate', res),
-            ...printful_template_id ? { templateId: printful_template_id } : { initProduct: { productId: variants?.blank_pod_id } }
+            ...printful_template_id ? { templateId: printful_template_id } : { initProduct: { productId: pod_blank_product_id.toString() } }
         });
 
         setDesignMaker(designMaker)
-    }, [variants, printful_template_id])
+    }, [pod_blank_product_id, printful_template_id, generate_externaID])
 
     const generate = useCallback(async () => {
         try {
             if (!TemplateId) return false
-            const request = await availableVariants.mutateAsync({ productId: variants._id, provider: variants.provider, templateID: TemplateId })
+            const request = await availableVariants.mutateAsync({ productId: pod_blank_product_id, provider: "PRINTFUL", templateID: TemplateId })
             const data = request?.data?.data
 
             let size = {}
@@ -64,7 +68,7 @@ function Printful({ close, open }: IProps) {
                     format: 'jpg',
                     product_template_id: TemplateId.toString()
                 },
-                productID: variants?.blank_pod_id
+                productID: pod_blank_product_id
             }
 
             const mockups = await mockupGenerator.mutateAsync(mockBody)
@@ -96,7 +100,7 @@ function Printful({ close, open }: IProps) {
             setTemplateId(null)
             console.log(error);
         }
-    }, [TemplateId])
+    }, [pod_blank_product_id, TemplateId])
 
     useEffect(() => {
         if (TemplateId) generate()
