@@ -16,7 +16,7 @@ function OrderDetailTable() {
             </Box>
             {order.items ? order.items.map((el, key) => (
                 <HStack key={key} justifyContent="space-between">
-                    <Box width="50%"><OrderModalProduct product={el.product} /></Box>
+                    <Box width="50%"><OrderModalProduct data={el} /></Box>
                     <Box><AppTypography size='12px'>x{el?.quantity}</AppTypography></Box>
                     <Box><AppTypography size='12px'>${pricePerItem(el)}</AppTypography></Box>
                 </HStack>
