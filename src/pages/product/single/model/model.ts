@@ -10,7 +10,7 @@ const ProductSingleModel = ({
             ...data?._id && { _id: data?._id },
             title: data?.title,
             description: data?.description,
-            media: data?.media ? data?.media : [],
+            media: data?.media ? data?.media.map((el: any) => ({ ...el, isMain: el.isMain === 'true' })) : [],
             priceUnit: data?.priceUnit,
             productCollectionID: data?.productCollectionID?._id,
             properties: propertyFactor.refactor(skuIDs.map(el => el.options)),
