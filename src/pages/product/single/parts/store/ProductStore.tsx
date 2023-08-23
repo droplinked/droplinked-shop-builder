@@ -37,7 +37,6 @@ function ProductStore({ children }: IProps) {
             onSuccess: res => {
                 const data = res.data?.data
                 update("product_types", data)
-                if (!productID) updateState("pod_blank_product_id", data[0]._id)
             }
         })
     }, [prodviderID, productID])

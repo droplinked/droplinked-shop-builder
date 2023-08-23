@@ -16,8 +16,8 @@ import CollectionProduct from './parts/collection/CollectionProduct'
 import ProductStore from './parts/store/ProductStore'
 import DigitalLinks from './parts/digital/DigitalLinks'
 import productPageNamespace from './reducers'
-import ProductArtworkModel from './parts/modules/artwork/model'
 import ProductLoading from './parts/loading/ProductLoading'
+import ProductModel from './model'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
@@ -28,7 +28,6 @@ function ProductSingle() {
     const { refactorData, productTypeHandle } = ProductSingleModel
     const productId = params?.productId
     const queryParams = useParams()
-    const { exactDimensions } = ProductArtworkModel
 
     // Fetch product for edit
     const fetch = useCallback(() => {
@@ -54,9 +53,10 @@ function ProductSingle() {
         if (queryParams.type) dispatch({ type: "updateState", params: { element: "product_type", value: productTypeHandle(queryParams.type) } });
     }, [queryParams])
 
+    // Set default printfull when PRINT_ON_DEMAND product type
     useEffect(() => {
-        if (!productId) dispatch({ type: "updateState", params: { element: "prodviderID", value: "PRINTFUL" } })
-    }, [productId])
+        if (!productId && state.params.product_type === "PRINT_ON_DEMAND") dispatch({ type: "updateState", params: { element: "prodviderID", value: "PRINTFUL" } })
+    }, [productId, state.params.product_type])
 
     // useEffect(() => {
     //     console.log(state.params.media);
@@ -87,9 +87,9 @@ function ProductSingle() {
                     <General />
                     <DigitalLinks />
                     <ShippingProduct />
-                    {!exactDimensions(state.store.print_positions) && <Variant />}
+                    {!ProductModel.isPrintful(state.params.prodviderID) && <Variant />}
                     <ProductPodDesign />
-                    {exactDimensions(state.store.print_positions) && <Variant />}
+                    {ProductModel.isPrintful(state.params.prodviderID) && <Variant />}
                     <CollectionProduct />
                     <ButtonsProduct />
                 </VStack>
