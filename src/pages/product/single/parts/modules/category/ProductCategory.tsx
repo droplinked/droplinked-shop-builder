@@ -5,6 +5,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
 import ProductTypeModel from '../productType/model'
+import ProductTypeDetail from '../productType/parts/normal/parts/details/ProductTypeDetail'
 import ProductCategoryNamespace, { IProductCategoryState } from './context'
 import ProductCategoryDetail from './parts/details/ProductCategoryDetail'
 import ProductCategoryMenu from './parts/steps/menu/ProductCategoryMenu'
@@ -39,7 +40,7 @@ function ProductCategory() {
           </VStack>
           {pod_blank_product_id && <BasicButton onClick={reset} variant='outline' sizes="medium">Reset Product</BasicButton>}
         </Flex>
-        <Box color="#C2C2C2">{pod_blank_product_id ? <ProductCategoryDetail /> : steps}</Box>
+        <Box color="#C2C2C2">{pod_blank_product_id ? <ProductTypeDetail /> : steps}</Box>
       </VStack>
     </context.Provider>
   )
