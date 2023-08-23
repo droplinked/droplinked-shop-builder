@@ -1,4 +1,4 @@
-import { Box, Flex, Image, VStack } from '@chakra-ui/react'
+import { Box, Flex, Image, SimpleGrid, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import LoadingComponent from 'components/common/loading-component/LoadingComponent'
 import AppTypography from 'components/common/typography/AppTypography'
@@ -12,8 +12,8 @@ function DefaultHoverBox() {
     const checkSingleImage = useMemo(() => mode === "single" && values && values.length, [values])
 
     return (
-        <Flex gap={4}>
-            <Box width={mode === "multi" ? "300px" : "100%"}>
+        <SimpleGrid columns={mode === "multi" ? 4 : 1} spacing={4}>
+            <Box width={mode === "multi" ? "auto" : "100%"}>
                 <Flex
                     onClick={() => openFile()}
                     justifyContent="center"
@@ -39,10 +39,10 @@ function DefaultHoverBox() {
                         </VStack>
                     )}
                 </Flex>
-            </Box >
-            {mode === "multi" && <Box width="100%"><UploadImagesList /></Box>
+            </Box>
+            {mode === "multi" && <UploadImagesList />
             }
-        </Flex >
+        </SimpleGrid >
     )
 }
 

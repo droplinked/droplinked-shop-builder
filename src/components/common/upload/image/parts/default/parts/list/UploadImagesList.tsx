@@ -20,7 +20,7 @@ function UploadImagesList() {
     return (
         <>
             {values.length && typeof values === "object" ? (
-                <SimpleGrid columns={4} spacing={4}>
+                <>
                     {values.map((el: any, key: number) => (
                         <Flex key={key} position="relative" border="1px solid #313131" borderRadius="8px" alignItems="center" height="200px" justifyContent="center">
                             {el.search('https://printful') < 0 && (
@@ -30,12 +30,12 @@ function UploadImagesList() {
                                     </AppTooltip>
                                 </Box>
                             )}
-                                    
+
                             {defaults && <AppTooltip label="Set change default"><Box position="absolute" top={2} left={2}>{star(el)}</Box></AppTooltip>}
                             <Image src={el} maxWidth="75%" maxHeight="75%" borderRadius="8px" />
                         </Flex>
                     ))}
-                </SimpleGrid>
+                </>
             ) : null}
         </>
     )

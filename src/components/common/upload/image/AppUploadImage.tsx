@@ -1,4 +1,6 @@
+import { Box } from '@chakra-ui/react';
 import axios from 'axios';
+import AppScrollBar from 'components/common/scrollbar';
 import useAppToast from 'functions/hooks/toast/useToast';
 import React, { useCallback, useRef } from 'react'
 import { useMutation } from 'react-query';
@@ -54,8 +56,10 @@ function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess,
             mode,
             defaults
         }}>
-            <DefaultHoverBox />
-            <input type="file" className="d-none" ref={fileRef} onChange={create} />
+            <AppScrollBar maxHeight="425px" overflow="auto">
+                <DefaultHoverBox />
+                <input type="file" className="d-none" ref={fileRef} onChange={create} />
+            </AppScrollBar>
         </appUploadImageContext.Provider>
     )
 }

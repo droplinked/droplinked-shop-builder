@@ -35,7 +35,7 @@ function Printful({ close, open }: IProps) {
             elemId: ref.current?.id,
             nonce: data?.data?.data?.nonce,
             style: styles,
-            onTemplateSaved: async (res) => {
+            onTemplateSaved: async (res) => {                
                 setTemplateId(res)
             },
             onDesignStatusUpdate: (res) => console.log('onDesignStatusUpdate', res),
@@ -93,6 +93,7 @@ function Printful({ close, open }: IProps) {
             updateState('printful_template_id', TemplateId)
             close()
         } catch (error) {
+            setTemplateId(null)
             console.log(error);
         }
     }, [TemplateId])
