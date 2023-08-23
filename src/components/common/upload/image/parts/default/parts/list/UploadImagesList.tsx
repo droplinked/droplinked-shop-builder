@@ -24,14 +24,14 @@ function UploadImagesList() {
                     {values.map((el: any, key: number) => (
                         <Flex key={key} position="relative" border="1px solid #313131" borderRadius="8px" alignItems="center" height="200px" justifyContent="center">
                             {el.search('https://printful') < 0 && (
-                                <Box position="absolute" top={2} right={2}>
+                                <Box position="absolute" top={3} right={3}>
                                     <AppTooltip label="Delete image">
                                         <AppIcons.Close cursor="pointer" onClick={() => deleted(el)} style={{ backgroundColor: "#C2C2C2", padding: "3px", borderRadius: "100%" }} width="18px" height="18px" />
                                     </AppTooltip>
                                 </Box>
                             )}
 
-                            {defaults && <AppTooltip label="Set change default"><Box position="absolute" top={2} left={2}>{star(el)}</Box></AppTooltip>}
+                            {defaults && <AppTooltip label="Set change default"><Box position="absolute" top={3} left={3}>{star(el)}</Box></AppTooltip>}
                             <Image src={el} maxWidth="75%" maxHeight="75%" borderRadius="8px" />
                         </Flex>
                     ))}
