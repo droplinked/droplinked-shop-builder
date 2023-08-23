@@ -1,65 +1,44 @@
 import { Box, Flex, Image, SimpleGrid, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import CategoryBox from '../../box/CategoryBox'
 import { faker } from '@faker-js/faker';
 import { productContext } from 'pages/product/single/context'
 import ProductTypeModel from '../../../../productType/model'
+import { useMutation } from 'react-query';
+import { podCategoryProductService } from 'lib/apis/pod/services';
+import { IpodCategoryProductService } from 'lib/apis/pod/interfaces';
+import ProductCategoryNamespace from '../../../context';
+import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 
 function ProductCategoryProduct() {
-  const { methods: { updateState } } = useContext(productContext)
+  const product = useContext(productContext)
+  const { state: { submenu }, updateState } = useContext(ProductCategoryNamespace.context)
+  const { mutate, data, isLoading } = useMutation((params: IpodCategoryProductService) => podCategoryProductService(params))
 
-  const data = [
-    {
-      caption: "Men Clothing",
-      icon: faker.image.image(),
-      price: "34.4 USD",
-      value: "64d9e5449e763fa7b150342e"
-    },
-    {
-      caption: "Men Clothing",
-      icon: faker.image.image(),
-      price: "34.4 USD",
-      value: "64d9e5449e763fa7b150342e"
-    },
-    {
-      caption: "Men Clothing",
-      icon: faker.image.image(),
-      price: "34.4 USD",
-      value: "64d9e5449e763fa7b150342e"
-    },
-    {
-      caption: "Men Clothing",
-      icon: faker.image.image(),
-      price: "34.4 USD",
-      value: "64d9e5449e763fa7b150342e"
-    },
-    {
-      caption: "Men Clothing",
-      icon: faker.image.image(),
-      price: "34.4 USD",
-      value: "64d9e5449e763fa7b150342e"
-    },
-    {
-      caption: "Men Clothing",
-      icon: faker.image.image(),
-      price: "34.4 USD",
-      value: "64d9e5449e763fa7b150342e"
-    },
-  ]
+  useEffect(() => mutate({ subCategoryId: submenu }), [submenu])
+  console.log(data?.data?.data?.data);
 
   return (
-    <SimpleGrid columns={5} spacing="13px">
-      {data.map((el, key) => (
-        <CategoryBox padding="10px" onClick={() => ProductTypeModel.updateProductType({ value: el.value, updateState })}>
-          <VStack key={key} align="stretch" spacing="12px">
-            <Flex justifyContent="center"><Image src={el.icon} alt={el.caption} borderRadius="5px" width="100%" /></Flex>
-            <Box><AppTypography size='14px'>{el.caption}</AppTypography></Box>
-            <Box><AppTypography size='14px'>{el.price}</AppTypography></Box>
-          </VStack>
-        </CategoryBox>
-      ))}
-    </SimpleGrid>
+    <>
+      {isLoading ? <Flex justifyContent="center"><LoadingComponent /></Flex > : (
+        <SimpleGrid columns={5} spacing="13px">
+          {data && data?.data?.data?.data.map((el, key) => (
+            <CategoryBox key={key} padding="10px" onClick={() => {
+              ProductTypeModel.updateProductType({ value: el.id.toString(), updateState: product.methods.updateState })
+              updateState('title', el?.title)
+              updateState('image', el?.image)
+            }}>
+              <VStack align="stretch" spacing="12px">
+                <Flex justifyContent="center"><Image src={el?.image} alt={el?.title} borderRadius="5px" width="100%" /></Flex>
+                <Box><AppTypography size='14px'>{el?.title}</AppTypography></Box>
+                <Box><AppTypography size='14px'>{'---'}</AppTypography></Box>
+              </VStack>
+            </CategoryBox>
+          ))}
+        </SimpleGrid>
+      )}
+    </>
   )
 }
 

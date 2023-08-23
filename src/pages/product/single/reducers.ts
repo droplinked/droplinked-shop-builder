@@ -1,3 +1,4 @@
+import { faker } from "@faker-js/faker";
 import { IproductState } from "lib/apis/product/interfaces";
 
 namespace ProductPageNamespace {
@@ -57,7 +58,8 @@ namespace ProductPageNamespace {
             m2m_services: [],
             purchaseAvailable: true,
             positions: null,
-            printful_template_id: null
+            printful_template_id: null,
+            custome_external_id: faker.database.mongodbObjectId()
         },
         store: {
             variants: [],

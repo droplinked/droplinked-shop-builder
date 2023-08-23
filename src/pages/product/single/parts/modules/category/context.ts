@@ -4,6 +4,8 @@ export interface IProductCategoryState {
     menu: string
     submenu: string
     product: string
+    title: string
+    image: string
 }
 
 namespace ProductCategoryNamespace {
@@ -17,6 +19,8 @@ namespace ProductCategoryNamespace {
         menu: null,
         product: null,
         submenu: null,
+        title: null,
+        image: null
     }
 
     export const context = createContext<IContext>({

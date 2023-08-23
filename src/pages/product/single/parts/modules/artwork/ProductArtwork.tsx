@@ -8,7 +8,7 @@ import ArtworkNormal from './parts/normal/ArtworkNormal'
 import PropertiesPod from './parts/properties/PropertiesPod'
 
 function ProductArtwork() {
-    const { state: { positions, prodviderID }, store: { state: { print_positions } }, productID } = useContext(productContext)
+    const { state: { positions, prodviderID,pod_blank_product_id }, store: { state: { print_positions } }, productID } = useContext(productContext)
 
     const title = useMemo(() => (
         <ProductPageTitle
@@ -20,7 +20,7 @@ function ProductArtwork() {
 
     return (
         <>
-            {print_positions.length || (positions && productID) ? (
+            {(ProductModel.isPrintful(prodviderID) && pod_blank_product_id) || (print_positions.length || (positions && productID)) ? (
                 <>
                     {ProductModel.isPrintful(prodviderID) ? (
                         <VStack align="stretch" spacing={5}>

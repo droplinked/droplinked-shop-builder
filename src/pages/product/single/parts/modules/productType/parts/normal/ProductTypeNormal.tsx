@@ -27,7 +27,7 @@ function ProductTypeNormal() {
                     onChange={(e) => ProductTypeModel.updateProductType({ updateState, value: e.target.value })}
                 />
             </Box>
-            <ProductTypeDetail />
+            <ProductTypeDetail boxes={["description"]} />
         </VStack>
     )
 }

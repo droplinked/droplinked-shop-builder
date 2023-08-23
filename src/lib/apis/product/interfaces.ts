@@ -38,6 +38,7 @@ export interface IproductState {
     purchaseAvailable: boolean
     positions?: IProductPosition
     printful_template_id?: string
+    custome_external_id: string
 }
 
 export interface IpropertiesItems {

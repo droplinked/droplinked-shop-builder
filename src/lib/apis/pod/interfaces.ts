@@ -46,3 +46,11 @@ export interface ImockupGeneratorService {
     }
     productID: string
 }
+
+export interface IpodCategoryService {
+    mainCategoryId?: string
+}
+
+export interface IpodCategoryProductService {
+    subCategoryId: string
+}

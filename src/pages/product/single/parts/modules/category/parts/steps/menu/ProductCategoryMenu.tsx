@@ -1,56 +1,36 @@
 import { Box, Flex, SimpleGrid } from '@chakra-ui/react'
+import AppImage from 'components/common/image/AppImage'
+import LoadingComponent from 'components/common/loading-component/LoadingComponent'
 import AppTypography from 'components/common/typography/AppTypography'
-import React, { useContext } from 'react'
+import { podCategoryService } from 'lib/apis/pod/services'
+import React, { useContext, useEffect } from 'react'
+import { useMutation } from 'react-query'
 import ProductCategoryNamespace from '../../../context'
 import CategoryBox from '../../box/CategoryBox'
 
 function ProductCategoryMenu() {
   const { updateState } = useContext(ProductCategoryNamespace.context)
+  const { mutate, data, isLoading } = useMutation((params: any) => podCategoryService(params))
 
-  const data = [
-    {
-      caption: "Men Clothing",
-      icon: "/assets/images/category/menClothing.svg",
-      value: "men"
-    },
-    {
-      caption: "Men Clothing",
-      icon: "/assets/images/category/menClothing.svg",
-      value: "men"
-    },
-    {
-      caption: "Men Clothing",
-      icon: "/assets/images/category/menClothing.svg",
-      value: "men"
-    },
-    {
-      caption: "Men Clothing",
-      icon: "/assets/images/category/menClothing.svg",
-      value: "men"
-    },
-    {
-      caption: "Men Clothing",
-      icon: "/assets/images/category/menClothing.svg",
-      value: "men"
-    },
-    {
-      caption: "Men Clothing",
-      icon: "/assets/images/category/menClothing.svg",
-      value: "men"
-    },
-  ]
+  useEffect(() => {
+    mutate({})
+  }, [])
 
   return (
-    <SimpleGrid columns={3} spacing="30px">
-      {data.map((el, key) => (
-        <CategoryBox onClick={() => updateState('menu', el.value)}>
-          <Flex key={key} alignItems="center" gap="20px">
-            <Box><img src={el.icon} alt={el.caption} width="43px" height="43" /></Box>
-            <Box><AppTypography size='14px'>{el.caption}</AppTypography></Box>
-          </Flex>
-        </CategoryBox>
-      ))}
-    </SimpleGrid>
+    <>
+      {isLoading ? <Flex justifyContent="center"><LoadingComponent /></Flex > : (
+        <SimpleGrid columns={3} spacing="20px">
+          {data && data?.data?.data && data?.data?.data?.data.map((el, key) => (
+            <CategoryBox key={key} padding="18px 22px" onClick={() => updateState('menu', el.id)}>
+              <Flex alignItems="center" gap="20px">
+                <Box><AppImage src={el?.image_url} alt={el?.title} borderRadius="8px" width="43px" height="43" /></Box>
+                <Box><AppTypography size='14px'>{el?.title}</AppTypography></Box>
+              </Flex>
+            </CategoryBox>
+          ))}
+        </SimpleGrid>
+      )}
+    </>
   )
 }
 
