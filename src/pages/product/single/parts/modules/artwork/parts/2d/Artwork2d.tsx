@@ -8,7 +8,7 @@ import Printful from './parts/printful/Printful'
 
 function Artwork2d() {
     const [States, setStates] = useState(artwork2dStates)
-    const { state: { artwork, positions, printful_template_id, custome_external_id } } = useContext(productContext)
+    const { state: { artwork, positions, printful_template_id } } = useContext(productContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     useEffect(() => setStates(artwork2dStates), [artwork])
@@ -18,7 +18,7 @@ function Artwork2d() {
     return (
         <artwork2dContext.Provider value={{ ...States, setStates }} >
             <BasicButton onClick={onOpen} variant={printful_template_id ? "outline" : "solid"} sizes="medium">{printful_template_id ? "Edit Design" : 'Design Product'}</BasicButton>
-            {isOpen && <Printful generate_externaID={custome_external_id} close={onClose} open={isOpen} />}
+            {isOpen && <Printful close={onClose} open={isOpen} />}
         </ artwork2dContext.Provider>
     )
 }

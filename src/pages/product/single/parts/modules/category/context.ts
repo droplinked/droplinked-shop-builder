@@ -1,32 +1,14 @@
 import { createContext } from "react"
+import ProductCategoryNamespace, { IProductCategoryState, ProductCategoryActions } from "./reducer"
 
-export interface IProductCategoryState {
-    menu: string
-    submenu: string
-    product: string
-    title: string
-    image: string
+interface IContext {
+    state: IProductCategoryState
+    dispatch(action: ProductCategoryActions): void
 }
 
-namespace ProductCategoryNamespace {
+export const productCategoryContext = createContext<IContext>({
+    state: ProductCategoryNamespace.initialState,
+    dispatch: null
+})
 
-    interface IContext {
-        state: IProductCategoryState
-        updateState(key: string, value: string): void
-    }
-
-    export const state: IProductCategoryState = {
-        menu: null,
-        product: null,
-        submenu: null,
-        title: null,
-        image: null
-    }
-
-    export const context = createContext<IContext>({
-        state,
-        updateState: () => { }
-    })
-}
-
-export default ProductCategoryNamespace
+export default productCategoryContext

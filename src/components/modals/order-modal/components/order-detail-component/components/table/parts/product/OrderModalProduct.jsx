@@ -4,7 +4,7 @@ import React from 'react'
 
 function OrderModalProduct({ data }) {
   const product = data.product
-  console.log(data.color);
+
   return (
     <HStack>
       <Box><Image width={"50px"} borderRadius={"7px"} src={product.media.length ? product.media[0].url : ""} /></Box>

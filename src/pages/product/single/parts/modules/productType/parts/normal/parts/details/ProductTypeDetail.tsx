@@ -24,8 +24,6 @@ function ProductTypeDetail({ boxes, image, title }: IProps) {
         }
         return null
     }, [pod_blank_product_id, product_types, title, image])
-    console.log("getDetail", getDetail?.image);
-
 
     return (
         <>

@@ -43,7 +43,7 @@ export const productContext = createContext<IproductContext>({
     methods: {
         updateState: () => { },
         fetch: () => { },
-        setLoading: () => { }
+        setSync: () => { },
     },
     loading: false,
     sync: false

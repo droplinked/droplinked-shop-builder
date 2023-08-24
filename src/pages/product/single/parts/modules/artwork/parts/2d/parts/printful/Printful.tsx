@@ -13,25 +13,26 @@ import { useMutation } from 'react-query';
 import PrintfulModel from './model';
 import classes from './style.module.scss'
 
-interface IProps extends IAppModal {
-    generate_externaID: string
-}
+interface IProps extends IAppModal { }
 
-function Printful({ close, open, generate_externaID }: IProps) {
-    const { methods: { updateState }, state: { printful_template_id, publish_product, pod_blank_product_id }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
+function Printful({ close, open }: IProps) {
+    const { methods: { updateState }, state: { printful_template_id, publish_product, pod_blank_product_id, custome_external_id }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
     const mockupGenerator = useMutation((params: ImockupGeneratorService) => mockupGeneratorService(params))
-    const [DesignMaker, setDesignMaker] = useState(null)
-    const [TemplateId, setTemplateId] = useState(null)
-    const [UUID, setUUID] = useState(null)
+    const [States, setStates] = useState({
+        DesignMaker: null,
+        TemplateId: null
+    })
     const ref = useRef<any>()
     const { refactorImage } = introductionClass
     const { uniqe, styles } = PrintfulModel
 
+    const setState = useCallback((key: string, value: string) => setStates(prev => ({ ...prev, [key]: value })), [])
+
     const design = useCallback(async () => {
         const data = await axiosInstance.post('pod/printful/nonces', {
-            external_product_id: generate_externaID,
-            external_customer_id: generate_externaID
+            external_product_id: custome_external_id,
+            external_customer_id: custome_external_id
         })
 
         //@ts-ignore
@@ -40,19 +41,18 @@ function Printful({ close, open, generate_externaID }: IProps) {
             nonce: data?.data?.data?.nonce,
             style: styles,
             onTemplateSaved: async (res) => {
-                setTemplateId(res)
+                setState('TemplateId', res)
             },
             onDesignStatusUpdate: (res) => console.log('onDesignStatusUpdate', res),
             ...printful_template_id ? { templateId: printful_template_id } : { initProduct: { productId: pod_blank_product_id.toString() } }
         });
-
-        setDesignMaker(designMaker)
-    }, [pod_blank_product_id, printful_template_id, generate_externaID])
+        setState('DesignMaker', designMaker)
+    }, [pod_blank_product_id, printful_template_id, custome_external_id])
 
     const generate = useCallback(async () => {
         try {
-            if (!TemplateId) return false
-            const request = await availableVariants.mutateAsync({ productId: pod_blank_product_id, provider: "PRINTFUL", templateID: TemplateId })
+            if (!States.TemplateId) return false
+            const request = await availableVariants.mutateAsync({ productId: pod_blank_product_id, provider: "PRINTFUL", templateID: States.TemplateId })
             const data = request?.data?.data
 
             let size = {}
@@ -66,7 +66,7 @@ function Printful({ close, open, generate_externaID }: IProps) {
                 params: {
                     variant_ids: data.flatMap(el => el.sizes.map(sized => sized.id)),
                     format: 'jpg',
-                    product_template_id: TemplateId.toString()
+                    product_template_id: States.TemplateId.toString()
                 },
                 productID: pod_blank_product_id
             }
@@ -94,23 +94,23 @@ function Printful({ close, open, generate_externaID }: IProps) {
             updateState('artwork', 'printful')
             updateState('artwork_position', 'front')
             updateState('properties', result)
-            updateState('printful_template_id', TemplateId)
+            updateState('printful_template_id', States.TemplateId)
             close()
         } catch (error) {
-            setTemplateId(null)
+            setState('TemplateId', null)
             console.log(error);
         }
-    }, [pod_blank_product_id, TemplateId])
+    }, [pod_blank_product_id, States.TemplateId])
 
     useEffect(() => {
-        if (TemplateId) generate()
-    }, [TemplateId])
+        if (States.TemplateId) generate()
+    }, [States.TemplateId])
 
     useEffect(() => {
-        if (!DesignMaker) design()
+        if (!States.DesignMaker) design()
 
         return () => {
-            setDesignMaker(null)
+            setState('DesignMaker', null)
         }
     }, [variants])
 
@@ -125,9 +125,9 @@ function Printful({ close, open, generate_externaID }: IProps) {
     }, []);
 
     const save = useCallback(async () => {
-        if (!DesignMaker) return false
-        DesignMaker.sendMessage({ event: 'saveDesign' })
-    }, [DesignMaker])
+        if (!States.DesignMaker) return false
+        States.DesignMaker.sendMessage({ event: 'saveDesign' })
+    }, [States.DesignMaker])
 
     return (
         <AppModal size="7xl" isCentered={false} title="Design Product" contentProps={{ maxWidth: "1400px", width: "95%" }} close={close} open={open}>

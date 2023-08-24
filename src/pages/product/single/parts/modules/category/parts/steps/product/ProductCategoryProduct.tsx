@@ -8,16 +8,15 @@ import ProductTypeModel from '../../../../productType/model'
 import { useMutation } from 'react-query';
 import { podCategoryProductService } from 'lib/apis/pod/services';
 import { IpodCategoryProductService } from 'lib/apis/pod/interfaces';
-import ProductCategoryNamespace from '../../../context';
+import ProductCategoryNamespace, { productCategoryContext } from '../../../context';
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 
 function ProductCategoryProduct() {
   const product = useContext(productContext)
-  const { state: { submenu }, updateState } = useContext(ProductCategoryNamespace.context)
+  const { state: { steps: { submenu } }, dispatch } = useContext(productCategoryContext)
   const { mutate, data, isLoading } = useMutation((params: IpodCategoryProductService) => podCategoryProductService(params))
 
   useEffect(() => mutate({ subCategoryId: submenu }), [submenu])
-  console.log(data?.data?.data?.data);
 
   return (
     <>
@@ -26,8 +25,12 @@ function ProductCategoryProduct() {
           {data && data?.data?.data?.data.map((el, key) => (
             <CategoryBox key={key} padding="10px" onClick={() => {
               ProductTypeModel.updateProductType({ value: el.id.toString(), updateState: product.methods.updateState })
-              updateState('title', el?.title)
-              updateState('image', el?.image)
+              dispatch({
+                type: "updateProduct", params: {
+                  image: el?.image,
+                  title: el?.title
+                }
+              })
             }}>
               <VStack align="stretch" spacing="12px">
                 <Flex justifyContent="center"><Image src={el?.image} alt={el?.title} borderRadius="5px" width="100%" /></Flex>
