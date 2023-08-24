@@ -53,7 +53,8 @@ const ProductSingleModel = ({
             purchaseAvailable: data?.purchaseAvailable,
             positions: data?.positions,
             printful_template_id: data?.printful_template_id,
-            custome_external_id: data?.custome_external_id
+            custome_external_id: data?.custome_external_id,
+            digitalDetail: data?.digitalDetail
         }
     },
 

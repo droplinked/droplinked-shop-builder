@@ -11,10 +11,6 @@ interface ImakeData {
     productID: string
 }
 
-interface ImakeskuUpdate {
-    sku: Isku
-}
-
 interface Ivalidate {
     state: IproductState
     draft: boolean
@@ -80,16 +76,6 @@ const ButtonsProductClass = ({
         const data = { ...state, sku: MakeDataProductModel.refactorSku({ skues: state.sku }) }
         return draft ? productID ? updateData(false) : { ...data, publish_product: false } : productID ? updateData(true) : { ...data, publish_product: true }
 
-    },
-
-    makeskuUpdate: ({ sku }: ImakeskuUpdate) => {
-        return {
-            "quantity": sku.quantity,
-            "price": sku.price,
-            "weight": sku.weight,
-            "externalID": sku.externalID,
-            "dimensions": sku.dimensions,
-        }
     }
 })
 
