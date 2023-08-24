@@ -76,10 +76,11 @@ function ProductSingle() {
                 }),
                 fetch,
                 setSync: (value) => dispatch({ type: "updateSync", params: { value } }),
+                dispatch
             },
             productID: productId,
             loading: productId ? !isLoading : true,
-            sync: state.sync
+            sync: state.sync,
         }}>
             <ProductStore>
                 <ProductLoading />

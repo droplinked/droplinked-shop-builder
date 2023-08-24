@@ -17,7 +17,7 @@ function ButtonsProduct() {
     const [TargetButton, setTargetButton] = useState('')
     const { state, productID } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
-    const { validate, makeData, makeskuUpdate } = ButtonsProductClass
+    const { validate, makeData } = ButtonsProductClass
     const { showToast } = useAppToast()
 
     const submit = useCallback(async (draft) => {
