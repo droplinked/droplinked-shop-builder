@@ -1,4 +1,5 @@
 import { ITableRows } from 'components/common/table/AppTable'
+import AppTypography from 'components/common/typography/AppTypography'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from "react"
 import CollectionProductList from './parts/collection/CollectionProductList'
@@ -21,6 +22,9 @@ const ProductListModel = ({
             },
             collection: {
                 value: <CollectionProductList data={element} />
+            },
+            type: {
+                value: <AppTypography size='12px'>{element?.product_type}</AppTypography>
             },
             inventory: {
                 caption: "Inventory Status",

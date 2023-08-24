@@ -1,5 +1,27 @@
 import { faker } from "@faker-js/faker";
-import { IproductState } from "lib/apis/product/interfaces";
+import { IDigitalLinks, IproductState } from "lib/apis/product/interfaces";
+
+export type productActions =
+    {
+        type: "updateStateParams",
+        params: { result: any }
+    } |
+    {
+        type: "updateState",
+        params: { element: any, value: any }
+    } |
+    {
+        type: "updateStore",
+        params: { storeName: string, value: any }
+    } |
+    {
+        type: "updateSync",
+        params: { value: boolean }
+    } |
+    {
+        type: "updateDigitalLinks",
+        params: IDigitalLinks
+    }
 
 namespace ProductPageNamespace {
     export interface IStore {
@@ -15,24 +37,6 @@ namespace ProductPageNamespace {
         loading: boolean
         sync: boolean
     }
-
-    type actions =
-        {
-            type: "updateStateParams",
-            params: { result: any }
-        } |
-        {
-            type: "updateState",
-            params: { element: any, value: any }
-        } |
-        {
-            type: "updateStore",
-            params: { storeName: string, value: any }
-        } |
-        {
-            type: "updateSync",
-            params: { value: boolean }
-        }
 
     export const initialState: IStates = {
         params: {
@@ -59,7 +63,11 @@ namespace ProductPageNamespace {
             purchaseAvailable: true,
             positions: null,
             printful_template_id: null,
-            custome_external_id: faker.database.mongodbObjectId()
+            custome_external_id: faker.database.mongodbObjectId(),
+            digitalDetail: {
+                file_url: null,
+                message: null
+            }
         },
         store: {
             variants: [],
@@ -71,7 +79,7 @@ namespace ProductPageNamespace {
         sync: false
     };
 
-    export const reducers = (state: IStates, action: actions): IStates => {
+    export const reducers = (state: IStates, action: productActions): IStates => {
         switch (action.type) {
             case 'updateStateParams':
                 return {
@@ -85,6 +93,15 @@ namespace ProductPageNamespace {
                     params: {
                         ...state.params,
                         [action.params.element]: action.params.value
+                    }
+                }
+            case 'updateDigitalLinks':
+                if (!action.params) return state
+                return {
+                    ...state,
+                    params: {
+                        ...state.params,
+                        digitalDetail: { ...state.params.digitalDetail, ...action.params }
                     }
                 }
             case 'updateStore':
