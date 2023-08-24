@@ -6,6 +6,8 @@ const ProductCategoryMenuModel = ({
         '4' : '/assets/images/category/Accessories.svg',
         '5' : '/assets/images/category/HomeLiving.svg',
         '93' : '/assets/images/category/CapsandHats.svg',
+        '116' : '/assets/images/category/collections.svg',
+        '159' : '/assets/images/category/brands.svg',
     })
 })
 
