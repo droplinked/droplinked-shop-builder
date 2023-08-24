@@ -7,6 +7,7 @@ import React, { useContext, useEffect } from 'react'
 import { useMutation } from 'react-query'
 import productCategoryContext from '../../../context'
 import CategoryBox from '../../box/CategoryBox'
+import ProductCategoryMenuModel from './model'
 
 function ProductCategoryMenu() {
   const { dispatch } = useContext(productCategoryContext)
@@ -23,8 +24,8 @@ function ProductCategoryMenu() {
           {data && data?.data?.data && data?.data?.data?.data.map((el, key) => (
             <CategoryBox key={key} padding="18px 22px" onClick={() => dispatch({ type: "updateSteps", params: { menu: el.id } })}>
               <Flex alignItems="center" gap="20px">
-                <Box><AppImage src={el?.image_url} alt={el?.title} borderRadius="8px" width="43px" height="43" /></Box>
-                <Box><AppTypography size='14px'>{el?.title}</AppTypography></Box>
+                <Box><AppImage src={ProductCategoryMenuModel.getIcon[el?.id] || el?.image_url} alt={el?.title} borderRadius="8px" width="53px" height="53" /></Box>
+                <Box><AppTypography size='14px'>{el?.title} {el.id}</AppTypography></Box>
               </Flex>
             </CategoryBox>
           ))}
