@@ -16,7 +16,7 @@ function ProductCategoryMenu() {
     <>
       {loading ? <Flex justifyContent="center"><LoadingComponent /></Flex > : (
         <SimpleGrid columns={3} spacing="20px">
-          {cached.length && cached[cached.length - 1].filter(el => el.catalog_position).map((el, key) => (
+          {cached.length && cached[cached.length - 1].filter(el => el.catalog_position || el.sub_categories).map((el, key) => (
             <CategoryBox key={key} padding="18px 22px" onClick={() => {
               if (el?.sub_categories && el?.sub_categories.length) updateCategory(el?.sub_categories)
               else dispatch({ type: "updateCategory", params: { id: el.id } })
