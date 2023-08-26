@@ -1,5 +1,5 @@
-import { faker } from "@faker-js/faker";
 import { IDigitalLinks, IproductState } from "lib/apis/product/interfaces";
+import { nanoid } from 'nanoid'
 
 export type productActions =
     {
@@ -63,7 +63,7 @@ namespace ProductPageNamespace {
             purchaseAvailable: true,
             positions: null,
             printful_template_id: null,
-            custome_external_id: faker.database.mongodbObjectId(),
+            custome_external_id: null,
             digitalDetail: {
                 file_url: null,
                 message: null

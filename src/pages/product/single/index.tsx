@@ -18,6 +18,7 @@ import DigitalLinks from './parts/digital/DigitalLinks'
 import productPageNamespace from './reducers'
 import ProductLoading from './parts/loading/ProductLoading'
 import ProductModel from './model'
+import { nanoid } from 'nanoid'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
@@ -55,11 +56,14 @@ function ProductSingle() {
 
     // Set default printfull when PRINT_ON_DEMAND product type
     useEffect(() => {
-        if (!productId && state.params.product_type === "PRINT_ON_DEMAND") dispatch({ type: "updateState", params: { element: "prodviderID", value: "PRINTFUL" } })
+        if (!productId && state.params.product_type === "PRINT_ON_DEMAND") {
+            dispatch({ type: "updateState", params: { element: "prodviderID", value: "PRINTFUL" } })
+            dispatch({ type: "updateState", params: { element: "custome_external_id", value: Date.now() + nanoid(13) } })
+        }
     }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log(state.params.media);
+    //     console.log(state.params.custome_external_id);
     // }, [state])
 
     return (
