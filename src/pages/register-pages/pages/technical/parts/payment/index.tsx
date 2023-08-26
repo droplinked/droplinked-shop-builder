@@ -40,7 +40,7 @@ function Payments() {
                 <VStack align='stretch' spacing={3}>
                     <VStack spacing={2} align={"stretch"}>
                         {paymentPublic.isLoading ? <PaymentsLoading /> : payments && payments.map((el, key) => (
-                            <BlackBox key={key} padding={3}>
+                            <BlackBox key={key} padding="5px 20px" minHeight="58px" display="flex" alignItems="center">
                                 <ContainerPayment
                                     title={el.type}
                                     locked={el.isActive}

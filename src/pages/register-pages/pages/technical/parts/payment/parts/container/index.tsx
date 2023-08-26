@@ -60,7 +60,7 @@ function ContainerPayment({ title, value, locked }) {
 
 
   return (
-    <HStack justifyContent="space-between">
+    <HStack justifyContent="space-between" width="100%">
       <HStack>
         <Box position={"relative"} bottom={1.9}><AppSwitch isChecked={Switch} onChange={activeHandle} /></Box>
         <Box><TextLabelBold>{title}</TextLabelBold></Box>

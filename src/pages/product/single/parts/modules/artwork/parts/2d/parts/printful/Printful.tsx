@@ -2,6 +2,7 @@ import { Box, Flex, VStack } from '@chakra-ui/react';
 import { faker } from '@faker-js/faker';
 import axios from 'axios';
 import BasicButton from 'components/common/BasicButton/BasicButton';
+import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 import AppModal, { IAppModal } from 'components/common/modal/AppModal';
 import axiosInstance from 'lib/apis/axiosConfig';
 import { ImockupGeneratorService, IpodAvailableVariantsService } from 'lib/apis/pod/interfaces';
@@ -21,32 +22,37 @@ function Printful({ close, open }: IProps) {
     const mockupGenerator = useMutation((params: ImockupGeneratorService) => mockupGeneratorService(params))
     const [States, setStates] = useState({
         DesignMaker: null,
-        TemplateId: null
+        TemplateId: null,
+        loading: false,
+        loadIframe: false
     })
     const ref = useRef<any>()
     const { refactorImage } = introductionClass
     const { uniqe, styles } = PrintfulModel
 
-    const setState = useCallback((key: string, value: string) => setStates(prev => ({ ...prev, [key]: value })), [])
+    const setState = useCallback((key: string, value: any) => setStates(prev => ({ ...prev, [key]: value })), [])
 
     const design = useCallback(async () => {
-        const data = await axiosInstance.post('pod/printful/nonces', {
-            external_product_id: custome_external_id,
-            external_customer_id: custome_external_id
-        })
+        try {
+            const data = await axiosInstance.post('pod/printful/nonces', {
+                external_product_id: custome_external_id,
+                external_customer_id: custome_external_id
+            })
 
-        //@ts-ignore
-        const designMaker = new PFDesignMaker({
-            elemId: ref.current?.id,
-            nonce: data?.data?.data?.nonce,
-            style: styles,
-            onTemplateSaved: async (res) => {
-                setState('TemplateId', res)
-            },
-            onDesignStatusUpdate: (res) => console.log('onDesignStatusUpdate', res),
-            ...printful_template_id ? { templateId: printful_template_id } : { initProduct: { productId: pod_blank_product_id.toString() } }
-        });
-        setState('DesignMaker', designMaker)
+            //@ts-ignore
+            const designMaker = new PFDesignMaker({
+                elemId: ref.current?.id,
+                nonce: data?.data?.data?.nonce,
+                style: styles,
+                onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
+                onTemplateSaved: async (res) => setState('TemplateId', res),
+                onDesignStatusUpdate: (res) => console.log('onDesignStatusUpdate', res),
+                ...printful_template_id ? { templateId: printful_template_id } : { initProduct: { productId: pod_blank_product_id.toString() } }
+            });
+            setState('DesignMaker', designMaker)
+        } catch (error) {
+            setState('loading', false)
+        }
     }, [pod_blank_product_id, printful_template_id, custome_external_id])
 
     const generate = useCallback(async () => {
@@ -96,9 +102,10 @@ function Printful({ close, open }: IProps) {
             updateState('properties', result)
             updateState('printful_template_id', States.TemplateId)
             close()
+            setState('loading', false)
         } catch (error) {
             setState('TemplateId', null)
-            console.log(error);
+            setState('loading', false)
         }
     }, [pod_blank_product_id, States.TemplateId])
 
@@ -126,16 +133,18 @@ function Printful({ close, open }: IProps) {
 
     const save = useCallback(async () => {
         if (!States.DesignMaker) return false
+        setState('loading', true)
         States.DesignMaker.sendMessage({ event: 'saveDesign' })
     }, [States.DesignMaker])
 
     return (
         <AppModal size="7xl" isCentered={false} title="Design Product" contentProps={{ maxWidth: "1400px", width: "95%" }} close={close} open={open}>
             <VStack align="stretch" spacing={4} paddingTop="20px">
-                <div className={classes.model} ref={ref} id="printful"></div>
+                <div style={{ visibility: States.loadIframe ? "visible" : "hidden", height: States.loadIframe ? "auto" : "0" }} className={classes.model} ref={ref} id="printful"></div>
+                {!States.loadIframe && <Flex height="300px" justifyContent="center" alignItems="center"><LoadingComponent /></Flex>}
                 <Flex justifyContent="space-between">
-                    <BasicButton onClick={close} variant="outline" isDisabled={availableVariants.isLoading || mockupGenerator.isLoading}>Discard</BasicButton>
-                    <BasicButton onClick={save} isDisabled={(Boolean(productID) && publish_product) || availableVariants.isLoading || mockupGenerator.isLoading} isLoading={availableVariants.isLoading || mockupGenerator.isLoading}>Save</BasicButton>
+                    <BasicButton onClick={close} variant="outline" isDisabled={States.loading}>Discard</BasicButton>
+                    <BasicButton onClick={save} isDisabled={(Boolean(productID) && publish_product) || States.loading || !States.loadIframe} isLoading={States.loading}>Save</BasicButton>
                 </Flex>
             </VStack>
         </AppModal>
