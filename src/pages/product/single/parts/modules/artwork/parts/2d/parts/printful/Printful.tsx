@@ -144,7 +144,7 @@ function Printful({ close, open }: IProps) {
                 {!States.loadIframe && <Flex height="300px" justifyContent="center" alignItems="center"><LoadingComponent /></Flex>}
                 <Flex justifyContent="space-between">
                     <BasicButton onClick={close} variant="outline" isDisabled={States.loading}>Discard</BasicButton>
-                    <BasicButton onClick={save} isDisabled={(Boolean(productID) && publish_product) || States.loading} isLoading={States.loading}>Save</BasicButton>
+                    <BasicButton onClick={save} isDisabled={(Boolean(productID) && publish_product) || States.loading || !States.loadIframe} isLoading={States.loading}>Save</BasicButton>
                 </Flex>
             </VStack>
         </AppModal>
