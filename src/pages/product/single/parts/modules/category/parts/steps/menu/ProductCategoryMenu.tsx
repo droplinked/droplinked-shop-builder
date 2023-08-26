@@ -11,12 +11,13 @@ function ProductCategoryMenu() {
   const { dispatch, state: { category: { loading, cached } } } = useContext(productCategoryContext)
 
   const updateCategory = useCallback((value: any) => dispatch({ type: "updateCategory", params: { cached: [...cached, value] } }), [cached])
+  console.log(cached);
 
   return (
     <>
       {loading ? <Flex justifyContent="center"><LoadingComponent /></Flex > : (
         <SimpleGrid columns={3} spacing="20px">
-          {cached.length && cached[cached.length - 1].map((el, key) => (
+          {cached.length && cached[cached.length - 1].filter(el => el.catalog_position).map((el, key) => (
             <CategoryBox key={key} padding="18px 22px" onClick={() => {
               if (el?.sub_categories && el?.sub_categories.length) updateCategory(el?.sub_categories)
               else dispatch({ type: "updateCategory", params: { id: el.id } })
