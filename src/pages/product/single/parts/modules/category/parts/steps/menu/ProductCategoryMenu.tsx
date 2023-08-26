@@ -11,7 +11,6 @@ function ProductCategoryMenu() {
   const { dispatch, state: { category: { loading, cached } } } = useContext(productCategoryContext)
 
   const updateCategory = useCallback((value: any) => dispatch({ type: "updateCategory", params: { cached: [...cached, value] } }), [cached])
-  console.log(cached);
 
   return (
     <>
