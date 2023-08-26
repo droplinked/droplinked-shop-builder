@@ -46,7 +46,6 @@ function Printful({ close, open }: IProps) {
                 style: styles,
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
                 onTemplateSaved: async (res) => setState('TemplateId', res),
-                onDesignStatusUpdate: (res) => console.log('onDesignStatusUpdate', res),
                 ...printful_template_id ? { templateId: printful_template_id } : { initProduct: { productId: pod_blank_product_id.toString() } }
             });
             setState('DesignMaker', designMaker)

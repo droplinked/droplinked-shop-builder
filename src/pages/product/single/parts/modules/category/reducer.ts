@@ -1,24 +1,25 @@
-interface ISteps {
-    menu?: string
-    submenu?: string
-}
-
 interface IProduct {
     title: string
     image: string
 }
 
+interface ICategory {
+    loading?: boolean
+    cached?: Array<any>
+    id?: string
+}
+
 export interface IProductCategoryState {
-    steps: ISteps
     product: IProduct
+    category: ICategory
 }
 
 export type ProductCategoryActions = {
-    type: "updateSteps"
-    params: ISteps
-} | {
     type: "updateProduct"
     params: IProduct
+} | {
+    type: "updateCategory"
+    params: ICategory
 } | {
     type: "reset"
 }
@@ -26,24 +27,25 @@ export type ProductCategoryActions = {
 namespace ProductCategoryNamespace {
 
     export const initialState: IProductCategoryState = {
-        steps: {
-            menu: null,
-            submenu: null,
-        },
         product: {
             title: null,
             image: null
         },
+        category: {
+            loading: true,
+            cached: [],
+            id: null
+        }
     }
 
     export const reducer = (state: IProductCategoryState, action: ProductCategoryActions): IProductCategoryState => {
         switch (action.type) {
-            case 'updateSteps':
-                return { ...state, steps: { ...state.steps, ...action.params } }
             case 'updateProduct':
                 return { ...state, product: { ...state.product, ...action.params } }
+            case 'updateCategory':
+                return { ...state, category: { ...state.category, ...action.params } }
             case "reset":
-                return initialState
+                return { product: initialState.product, category: { ...state.category, cached: [state.category.cached[0]], id: null } }
 
             default:
                 return state
