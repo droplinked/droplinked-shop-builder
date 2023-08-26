@@ -3,17 +3,15 @@ import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import LoadingComponent from 'components/common/loading-component/LoadingComponent'
 import AppTypography from 'components/common/typography/AppTypography'
 import { IpodProductService } from 'lib/apis/pod/interfaces'
-import { podProductService } from 'lib/apis/pod/services'
+import { podCategoryService, podProductService } from 'lib/apis/pod/services'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext, useEffect, useMemo, useReducer } from 'react'
 import { useMutation } from 'react-query'
 import ProductTypeDetail from '../productType/parts/normal/parts/details/ProductTypeDetail'
 import ProductCategoryNamespace from './reducer'
 import ProductCategoryButton from './parts/button/ProductCategoryButton'
-import ProductCategoryDetail from './parts/details/ProductCategoryDetail'
 import ProductCategoryMenu from './parts/steps/menu/ProductCategoryMenu'
 import ProductCategoryProduct from './parts/steps/product/ProductCategoryProduct'
-import ProductCategorySubmenu from './parts/steps/submenu/ProductCategorySubmenu'
 import productCategoryContext from './context'
 
 function ProductCategory() {
@@ -21,12 +19,20 @@ function ProductCategory() {
   const [States, dispatch] = useReducer(reducer, initialState)
   const { state: { pod_blank_product_id }, productID } = useContext(productContext)
   const { mutate, isLoading } = useMutation((params: IpodProductService) => podProductService(params))
+  const Categories = useMutation((params: any) => podCategoryService(params))
 
-  const steps = useMemo(() => {
-    if (States.steps.menu && !States.steps.submenu) return <ProductCategorySubmenu />
-    else if (States.steps.submenu) return <ProductCategoryProduct />
-    else return <ProductCategoryMenu />
-  }, [States])
+  const steps = useMemo(() => States.category.id ? <ProductCategoryProduct /> : <ProductCategoryMenu />, [States.category.id])
+
+  // Get Categories
+  useEffect(() => {
+    Categories.mutate({}, {
+      onSuccess: res => {
+        const data = res?.data?.data?.data
+        dispatch({ type: "updateCategory", params: { loading: false, cached: [data] } })
+      }
+    })
+  }, [])
+
 
   useEffect(() => {
     if (pod_blank_product_id && productID) mutate({ pod_blank_product_id }, {
