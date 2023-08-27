@@ -70,11 +70,8 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                     }
                 })
                 if (request) deployHash = request.txId
-            } else if (blockchain === "POLYGON") {
-                const request = await requestModel({ blockchain: "POLYGON", recipient: sku?.recordData?.data?.details?.recipient, tokenID })
-                if (request) deployHash = request
-            } else if (blockchain === "RIPPLE") {
-                const request = await requestModel({ blockchain: "RIPPLE", recipient: sku?.recordData?.data?.details?.recipient, tokenID })
+            } else if (["POLYGON", "RIPPLE", "BINANCE"].includes(blockchain)) {
+                const request = await requestModel({ blockchain: blockchain, recipient: sku?.recordData?.data?.details?.recipient, tokenID })
                 if (request) deployHash = request
             }
 

@@ -1,11 +1,13 @@
 import { Isku } from 'lib/apis/product/interfaces';
 import * as Yup from 'yup';
 import { publish_request } from 'lib/utils/blockchain/casper/casper_wallet_publish_request'
+import { binancePublishRequest } from 'lib/utils/blockchain/binance/publish'
 import { XRPLogin } from 'lib/utils/blockchain/ripple/xrpLogin';
 import { IopenCasperWallet } from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/modules/casperModel';
 import { XRPPublishRequest } from 'lib/utils/blockchain/ripple/xrpPublish';
 import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin';
 import { publish_request_polygon } from 'lib/utils/blockchain/polygon/request';
+import { BinanceMetamaskLogin } from 'lib/utils/blockchain/binance/metamaskLogin';
 
 export interface IRequestModelValues {
     quantity: string
@@ -18,7 +20,7 @@ export interface IPublishRequest {
 }
 
 interface Irequest {
-    blockchain: "POLYGON" | "RIPPLE"
+    blockchain: "POLYGON" | "RIPPLE" | "BINANCE"
     tokenID: string
     recipient: string
 }
@@ -61,6 +63,11 @@ const ModalRequestModel = ({
                 methods = {
                     login: XRPLogin,
                     request: XRPPublishRequest
+                }
+            case 'BINANCE':
+                methods = {
+                    login: BinanceMetamaskLogin,
+                    request: binancePublishRequest
                 }
 
         }

@@ -22,7 +22,7 @@ function OrderDetailCost() {
     {
       caption: 'Items',
       placeholder: `${order?.items.length} items`,
-      value: order?.totalItemsAmount ? parseInt(order?.totalItemsAmount).toFixed(2) : ''
+      value: order?.totalItemsAmount ? parseFloat(order?.totalItemsAmount).toFixed(2) : ''
     },
     {
       caption: 'Discount',
@@ -32,7 +32,7 @@ function OrderDetailCost() {
     {
       caption: order?.shipmentData ? order?.shipmentData?.title : 'Shipping',
       placeholder: null,
-      value: order?.shippingPrice ? parseInt(order?.shipmentData ? order?.shipmentData?.price : order?.shippingPrice).toFixed(2) : ''
+      value: order?.shippingPrice ? parseFloat(order?.shipmentData ? order?.shipmentData?.price : order?.shippingPrice).toFixed(2) : ''
     },
     {
       caption: 'Order Tax',
