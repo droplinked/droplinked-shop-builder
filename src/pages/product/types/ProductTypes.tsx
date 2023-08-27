@@ -2,6 +2,7 @@ import { Box, Flex, Image, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
 import AppTypography from 'components/common/typography/AppTypography'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
+import { appDeveloment } from 'lib/utils/app/variable'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -18,9 +19,9 @@ function ProductTypes() {
     },
     {
       title: "Digital Product",
-      description: "Upload digital assents, artworks, NFTs to sell",
+      description: appDeveloment ? "Upload digital assents, artworks, NFTs to sell" : "Coming soon...",
       image: "/assets/images/digital.svg",
-      type: routeCreate + "digital"
+      type: appDeveloment ? routeCreate + "digital" : null
     },
     {
       title: "Print On Demand",
@@ -41,7 +42,7 @@ function ProductTypes() {
     <VStack align="stretch" spacing={5}>
       {data.map((el, key) => (
         <Link to={el.type || ""}>
-          <Flex key={key} justifyContent="center">
+          <Flex key={key} justifyContent="center" opacity={!el.type ? .8 : 1}>
             <AppCard mini boxProps={{ padding: 0, ...!el.type && { background: "none" } }}>
               <Flex gap="100px" minHeight="124px" justifyContent="space-between" alignItems="center" padding="0 40px">
                 <VStack align="stretch" spacing={1}>
