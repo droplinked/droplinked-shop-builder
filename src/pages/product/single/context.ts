@@ -1,6 +1,6 @@
 import { IproductState } from "lib/apis/product/interfaces";
 import { createContext } from "react";
-import ProductPageNamespace from "./reducers";
+import ProductPageNamespace, { productActions } from "./reducers";
 
 
 export interface IpropertiesItems {
@@ -20,9 +20,10 @@ interface IproductContext {
         updateState(element: string, value: any): void
         fetch: Function
         setSync(value: boolean): void
+        dispatch(action: productActions): void
     },
     loading: boolean,
-    sync: boolean
+    sync: boolean,
 }
 
 
@@ -43,8 +44,9 @@ export const productContext = createContext<IproductContext>({
     methods: {
         updateState: () => { },
         fetch: () => { },
-        setLoading: () => { }
+        setSync: () => { },
+        dispatch: null
     },
     loading: false,
-    sync: false
+    sync: false,
 })

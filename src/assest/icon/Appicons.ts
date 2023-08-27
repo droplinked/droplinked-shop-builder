@@ -50,6 +50,8 @@ import { ReactComponent as Polygon } from './polygon-matic-logo.svg';
 import { ReactComponent as DiscountSetting } from './discount-setting.svg';
 import { ReactComponent as GiftSetting } from './gift-setting.svg';
 import { ReactComponent as Ripple } from './ripple.svg';
+import { ReactComponent as StarOutline } from './starOutline.svg';
+import { ReactComponent as StarFilled } from './starFilled.svg';
 
 const AppIcons = {
   ProductsIcon,
@@ -103,6 +105,8 @@ const AppIcons = {
   Polygon,
   DiscountSetting,
   GiftSetting,
-  Ripple
+  Ripple,
+  StarOutline,
+  StarFilled
 }
 export default AppIcons

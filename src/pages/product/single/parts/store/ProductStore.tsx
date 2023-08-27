@@ -1,8 +1,9 @@
 import { IpodAvailableVariantsService, IpodPrintPositionsService, IpodProductService, IproviderIDService } from 'lib/apis/pod/interfaces'
 import { podAvailableVariantsService, podPrintPositionsService, podProductService, providerIDService } from 'lib/apis/pod/services'
-import React, { useContext, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
 import { useMutation } from 'react-query'
 import { productContext } from '../../context'
+import ProductModel from '../../model'
 
 interface IProps {
     children: any
@@ -15,21 +16,27 @@ function ProductStore({ children }: IProps) {
     const printPositions = useMutation((params: IpodPrintPositionsService) => podPrintPositionsService(params))
     const provider = useMutation((params: IproviderIDService) => providerIDService(params))
 
+    const getAvailable = useCallback(({ productId, provider, templateID }: IpodAvailableVariantsService) => {
+        availableVariants.mutate({ productId, provider, templateID }, {
+            onSuccess: (res: any) => update("available_variant", res?.data?.data)
+        })
+    }, [])
+
     // Get providers
     useEffect(() => {
-        if (pod_blank_product_id) providerService.mutate({ pod_blank_product_id }, {
-            onSuccess: res => {
-                const data = res.data?.data
-                update("variants", data)
-                availableVariants.mutate({ productId: data._id, provider: data.provider, templateID: printful_template_id }, {
-                    onSuccess: (res: any) => update("available_variant", res?.data?.data)
-                })
-                printPositions.mutate({ productId: data._id, provider: data.provider }, {
-                    onSuccess: (res: any) => update("print_positions", res?.data?.data)
-                })
-            }
-        })
-    }, [pod_blank_product_id, printful_template_id])
+        if (pod_blank_product_id && !ProductModel.isPrintful(prodviderID)) {
+            providerService.mutate({ pod_blank_product_id }, {
+                onSuccess: res => {
+                    const data = res.data?.data
+                    update("variants", data)
+                    getAvailable({ productId: data._id, provider: data.provider })
+                    printPositions.mutate({ productId: data._id, provider: data.provider }, {
+                        onSuccess: (res: any) => update("print_positions", res?.data?.data)
+                    })
+                }
+            })
+        }
+    }, [pod_blank_product_id, printful_template_id, prodviderID])
 
     // Get product types
     useEffect(() => {
@@ -37,7 +44,7 @@ function ProductStore({ children }: IProps) {
             onSuccess: res => {
                 const data = res.data?.data
                 update("product_types", data)
-                if (!productID) updateState("pod_blank_product_id", data[0]._id)
+                if (!productID && !ProductModel.isPrintful(prodviderID)) updateState("pod_blank_product_id", data[0]._id)
             }
         })
     }, [prodviderID, productID])

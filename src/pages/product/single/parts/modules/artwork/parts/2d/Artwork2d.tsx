@@ -1,7 +1,8 @@
 import { useDisclosure } from '@chakra-ui/react'
+import { faker } from '@faker-js/faker'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import { productContext } from 'pages/product/single/context'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import artwork2dContext, { artwork2dStates } from './context'
 import Printful from './parts/printful/Printful'
 

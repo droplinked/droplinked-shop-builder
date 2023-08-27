@@ -14,6 +14,12 @@ export interface IProductPosition {
 }
 
 export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
+
+export interface IDigitalLinks {
+    file_url?: string
+    message?: string
+}
+
 export interface IproductState {
     title: string
     description: string
@@ -38,6 +44,8 @@ export interface IproductState {
     purchaseAvailable: boolean
     positions?: IProductPosition
     printful_template_id?: string
+    custome_external_id: string,
+    digitalDetail: IDigitalLinks
 }
 
 export interface IpropertiesItems {

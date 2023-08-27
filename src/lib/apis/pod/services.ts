@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { ImockupGeneratorService, IpodAvailableVariantsService, IpodGenerateMockupService, IpodPrintPositionsService, IpodProductService, IpodVariantsService, IproviderIDService } from "./interfaces";
+import { ImockupGeneratorService, IpodAvailableVariantsService, IpodCategoryService, IpodGenerateMockupService, IpodPrintPositionsService, IpodProductService, IpodVariantsService, IproviderIDService, IpodCategoryProductService } from "./interfaces";
 
 export const providersService = () => {
     return axiosInstance.get("pod/providers")
@@ -31,4 +31,12 @@ export const podGenerateMockupService = ({ productId, params }: IpodGenerateMock
 
 export const mockupGeneratorService = ({ params, productID }: ImockupGeneratorService) => {
     return axiosInstance.post(`pod/generate-mockup/${productID}`, params)
+};
+
+export const podCategoryService = ({ mainCategoryId }: IpodCategoryService) => {
+    return axiosInstance.get(`pod/printful/categories${mainCategoryId ? `?mainCategoryId=${mainCategoryId}` : ''}`)
+};
+
+export const podCategoryProductService = ({ subCategoryId }: IpodCategoryProductService) => {
+    return axiosInstance.get(`pod/printful/products?subCategoryId=${subCategoryId}`)
 };

@@ -6,13 +6,12 @@ import ProductCollapse from '../modules/collapse/ProductCollapse'
 import ProductImages from '../modules/images/ProductImages'
 import AvailablePurchase from '../modules/available/AvailablePurchase'
 import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
-import ProductArtworkModel from '../modules/artwork/model'
 import { productContext } from '../../context'
 import ProductType from '../modules/productType/ProductType'
+import ProductModel from '../../model'
 
 function General() {
-    const { store: { state: { print_positions } }, state: { product_type, pod_blank_product_id } } = useContext(productContext)
-    const { exactDimensions } = ProductArtworkModel
+    const { state: { prodviderID } } = useContext(productContext)
 
     return (
         <ProductCollapse show title='General Information' description='Provide product details and select your POD provider.'>
@@ -22,7 +21,7 @@ function General() {
                 <ProductPovProvider />
                 <ProductImages />
                 <AvailablePurchase />
-                {exactDimensions(print_positions) && (product_type === "PRINT_ON_DEMAND" && pod_blank_product_id) && <ProductType />}
+                {ProductModel.isPrintful(prodviderID) && <ProductType />}
             </VStack>
         </ProductCollapse>
     )

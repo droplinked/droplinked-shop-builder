@@ -10,7 +10,7 @@ const ProductSingleModel = ({
             ...data?._id && { _id: data?._id },
             title: data?.title,
             description: data?.description,
-            media: data?.media ? data?.media : [],
+            media: data?.media ? data?.media.map((el: any) => ({ ...el, isMain: el.isMain === 'true' })) : [],
             priceUnit: data?.priceUnit,
             productCollectionID: data?.productCollectionID?._id,
             properties: propertyFactor.refactor(skuIDs.map(el => el.options)),
@@ -52,7 +52,9 @@ const ProductSingleModel = ({
             m2m_services: data?.m2m_services || [],
             purchaseAvailable: data?.purchaseAvailable,
             positions: data?.positions,
-            printful_template_id: data?.printful_template_id
+            printful_template_id: data?.printful_template_id,
+            custome_external_id: data?.custome_external_id,
+            digitalDetail: data?.digitalDetail
         }
     },
 

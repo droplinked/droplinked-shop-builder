@@ -16,8 +16,9 @@ import CollectionProduct from './parts/collection/CollectionProduct'
 import ProductStore from './parts/store/ProductStore'
 import DigitalLinks from './parts/digital/DigitalLinks'
 import productPageNamespace from './reducers'
-import ProductArtworkModel from './parts/modules/artwork/model'
 import ProductLoading from './parts/loading/ProductLoading'
+import ProductModel from './model'
+import { nanoid } from 'nanoid'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
@@ -28,7 +29,6 @@ function ProductSingle() {
     const { refactorData, productTypeHandle } = ProductSingleModel
     const productId = params?.productId
     const queryParams = useParams()
-    const { exactDimensions } = ProductArtworkModel
 
     // Fetch product for edit
     const fetch = useCallback(() => {
@@ -54,12 +54,16 @@ function ProductSingle() {
         if (queryParams.type) dispatch({ type: "updateState", params: { element: "product_type", value: productTypeHandle(queryParams.type) } });
     }, [queryParams])
 
+    // Set default printfull when PRINT_ON_DEMAND product type
     useEffect(() => {
-        if (!productId) dispatch({ type: "updateState", params: { element: "prodviderID", value: "PRINTFUL" } })
-    }, [productId])
+        if (!productId && state.params.product_type === "PRINT_ON_DEMAND") {
+            dispatch({ type: "updateState", params: { element: "prodviderID", value: "PRINTFUL" } })
+            dispatch({ type: "updateState", params: { element: "custome_external_id", value: Date.now() + nanoid(13) } })
+        }
+    }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log(state.params);
+    //     console.log(state.params.custome_external_id);
     // }, [state])
 
     return (
@@ -76,10 +80,11 @@ function ProductSingle() {
                 }),
                 fetch,
                 setSync: (value) => dispatch({ type: "updateSync", params: { value } }),
+                dispatch
             },
             productID: productId,
             loading: productId ? !isLoading : true,
-            sync: state.sync
+            sync: state.sync,
         }}>
             <ProductStore>
                 <ProductLoading />
@@ -87,9 +92,9 @@ function ProductSingle() {
                     <General />
                     <DigitalLinks />
                     <ShippingProduct />
-                    {!exactDimensions(state.store.print_positions) && <Variant />}
+                    {!ProductModel.isPrintful(state.params.prodviderID) && <Variant />}
                     <ProductPodDesign />
-                    {exactDimensions(state.store.print_positions) && <Variant />}
+                    {ProductModel.isPrintful(state.params.prodviderID) && <Variant />}
                     <CollectionProduct />
                     <ButtonsProduct />
                 </VStack>

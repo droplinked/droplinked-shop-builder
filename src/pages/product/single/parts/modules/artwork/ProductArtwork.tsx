@@ -1,16 +1,14 @@
 import { Flex, VStack } from '@chakra-ui/react'
 import { productContext } from 'pages/product/single/context'
-import React, { useCallback, useContext, useMemo } from 'react'
+import ProductModel from 'pages/product/single/model'
+import React, { useContext, useMemo } from 'react'
 import ProductPageTitle from '../title/ProductPageTitle'
-import ProductArtworkModel from './model'
 import Artwork2d from './parts/2d/Artwork2d'
 import ArtworkNormal from './parts/normal/ArtworkNormal'
 import PropertiesPod from './parts/properties/PropertiesPod'
 
 function ProductArtwork() {
-    const { state: { positions }, store: { state: { print_positions } }, productID } = useContext(productContext)
-
-    const { exactDimensions } = ProductArtworkModel
+    const { state: { positions, prodviderID,pod_blank_product_id }, store: { state: { print_positions } }, productID } = useContext(productContext)
 
     const title = useMemo(() => (
         <ProductPageTitle
@@ -22,9 +20,9 @@ function ProductArtwork() {
 
     return (
         <>
-            {print_positions.length || (positions && productID) ? (
+            {(ProductModel.isPrintful(prodviderID) && pod_blank_product_id) || (print_positions.length || (positions && productID)) ? (
                 <>
-                    {exactDimensions(print_positions) ? (
+                    {ProductModel.isPrintful(prodviderID) ? (
                         <VStack align="stretch" spacing={5}>
                             <Flex justifyContent="space-between" alignItems="center">
                                 {title}

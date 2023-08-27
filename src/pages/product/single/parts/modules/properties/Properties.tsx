@@ -5,13 +5,12 @@ import propertyItemModel, { IaddPropertyItem } from './parts/item/model';
 import propertiesFormContext from './context'
 import PropertyFormProduct from './parts/form/PropertyFormProduct';
 import PODProperties from './parts/pod/PODProperties';
-import ProductArtworkModel from '../artwork/model';
+import ProductModel from 'pages/product/single/model';
 
 function Properties() {
-    const { state: { properties, product_type, sku, publish_product }, methods: { updateState }, store: { state: { print_positions } }, productID } = useContext(productContext)
+    const { state: { properties, product_type, sku, prodviderID, publish_product }, methods: { updateState }, store: { state: { print_positions } }, productID } = useContext(productContext)
     const { showToast } = useAppToast()
     const { addPropertyItem, removePropertyItem, checkUsedPropertyItem } = propertyItemModel
-    const { exactDimensions } = ProductArtworkModel
 
     // Check used item in skues
     const checkItem = useCallback((propertyValue) => {
@@ -38,7 +37,7 @@ function Properties() {
 
     return (
         <propertiesFormContext.Provider value={{ set, remove }}>
-            {["NORMAL", "DIGITAL"].includes(product_type) ? <PropertyFormProduct /> : !exactDimensions(print_positions) ? <PODProperties /> : null}
+            {["NORMAL", "DIGITAL"].includes(product_type) ? <PropertyFormProduct /> : !ProductModel.isPrintful(prodviderID) ? <PODProperties /> : null}
         </propertiesFormContext.Provider>
     )
 }
