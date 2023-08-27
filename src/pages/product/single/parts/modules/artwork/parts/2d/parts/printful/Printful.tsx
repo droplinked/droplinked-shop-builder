@@ -78,7 +78,6 @@ function Printful({ close, open }: IProps) {
 
             const mockups = await mockupGenerator.mutateAsync(mockBody)
             const mockupsData = mockups?.data?.data
-            updateState("thumb", mockupsData[0])
             updateState("media", refactorImage(mockupsData))
 
             const result = [
