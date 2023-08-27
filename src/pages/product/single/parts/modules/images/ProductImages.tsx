@@ -27,8 +27,6 @@ function ProductImages() {
                 values={defactorImage(media)}
                 defaults={{ updateDefault: (url) => updateState("media", refactorImage(defactorImage(media), url)), value: isMain(media)?.url }}
                 toast={AppErrors.store.upload("The product image")}
-                onSuccess={(images: any) => !thumb.length && images?.small && updateState("thumb", images?.small)}
-                onDelete={(images: any) => !images.length && updateState("thumb", "")}
                 onChange={(images: any) => updateState("media", refactorImage(images))}
               />
             </SkeletonProduct>
