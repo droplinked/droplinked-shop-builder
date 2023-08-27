@@ -9,6 +9,8 @@ import ProductListModel from './model'
 import ProductEmpty from './parts/empty/ProductEmpty'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import useHookStore from 'functions/hooks/store/useHookStore'
+import { useDisclosure } from '@chakra-ui/hooks'
+import ConfirmDeleteAll from './parts/deleteAll/ConfirmDeleteAll'
 
 function Products() {
     const { data: { collection } } = useHookStore()
@@ -18,6 +20,8 @@ function Products() {
     const products = useMemo(() => data?.data?.data, [data])
     const location = useLocation()
     const navigate = useNavigate()
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { refactorData } = ProductListModel
     const [States, setStates] = useState({
         search: null,
         checkboxes: []
@@ -35,7 +39,7 @@ function Products() {
 
     // Handle search and without search
     const rows = useMemo(() => {
-        return data ? ProductListModel.refactorData({
+        return data ? refactorData({
             data: products?.data,
             fetch,
             search: States.search
@@ -52,51 +56,71 @@ function Products() {
         }
         navigate(`${location.pathname}?${searchParams.toString()}`)
     }, [searchParams, location])
-    
+
+    const buttons = useMemo(() => {
+        const data: any = [
+            {
+                caption: "Add Product",
+                to: `/${shop?.name}/c/products/types`
+            }
+        ]
+        if (States.checkboxes.length) data.push({
+            caption: "Delete Products" + ` (${States.checkboxes.length})`,
+            onClick: onOpen,
+            buttonProps: {
+                variant: "outline",
+                color: "red.300"
+            }
+        })
+
+        return data
+    }, [States.checkboxes, shop])
+
     return (
-        <AppDataGrid
-            loading={isLoading}
-            buttons={[
-                {
-                    caption: "Add Product",
-                    to: `/${shop?.name}/c/products/types`
-                }
-            ]}
-            rows={rows}
-            checkbox={{
-                state: States.checkboxes,
-                update: (value) => setStates(prev => ({ ...prev, checkboxes: value }))
-            }}
-            filters={[
-                {
-                    title: "Collections",
-                    list: collection.data ? collection.data.map(el => (
-                        {
-                            title: el?.title,
-                            onClick: () => updateFilters("productCollectionID", el?._id),
-                            isActive: searchParams.get("filter") === `productCollectionID:${el?._id}`
+        <>
+            <AppDataGrid
+                loading={isLoading}
+                buttons={buttons}
+                rows={rows}
+                checkbox={{
+                    state: States.checkboxes,
+                    update: (value) => setStates(prev => ({ ...prev, checkboxes: value }))
+                }}
+                filters={[
+                    {
+                        title: "Collections",
+                        list: collection.data ? collection.data.map(el => (
+                            {
+                                title: el?.title,
+                                onClick: () => updateFilters("productCollectionID", el?._id),
+                                isActive: searchParams.get("filter") === `productCollectionID:${el?._id}`
+                            }
+                        )) : []
+                    },
+                    {
+                        title: "Status",
+                        list: ["PUBLISHED", "DRAFTED"].map(el => ({
+                            title: capitalizeFirstLetter(el),
+                            onClick: () => updateFilters("publish_status", el),
+                            isActive: searchParams.get("filter") === `publish_status:${el}`
                         }
-                    )) : []
-                },
-                {
-                    title: "Status",
-                    list: ["PUBLISHED", "DRAFTED"].map(el => ({
-                        title: capitalizeFirstLetter(el),
-                        onClick: () => updateFilters("publish_status", el),
-                        isActive: searchParams.get("filter") === `publish_status:${el}`
+                        ))
                     }
-                    ))
-                }
-            ]}
-            search={{ onChange: (e) => setSearch(e.target.value) }}
-            empty={<ProductEmpty />}
-            pagination={{
-                lastPage: products?.totalPages ? parseInt(products?.totalPages) : 1,
-                current: page,
-                nextPage: products?.hasNextPage || false,
-                prevPage: products?.hasPreviousPage || false
-            }}
-        />
+                ]}
+                search={{ onChange: (e) => setSearch(e.target.value) }}
+                empty={<ProductEmpty />}
+                pagination={{
+                    lastPage: products?.totalPages ? parseInt(products?.totalPages) : 1,
+                    current: page,
+                    nextPage: products?.hasNextPage || false,
+                    prevPage: products?.hasPreviousPage || false
+                }}
+            />
+            {isOpen && <ConfirmDeleteAll close={onClose} open={isOpen} productIDs={States.checkboxes} fetch={() => {
+                fetch()
+                setStates(prev => ({ ...prev, checkboxes: [] }))
+            }} />}
+        </>
     )
 }
 

@@ -1,5 +1,6 @@
 import { ITableRows } from 'components/common/table/AppTable'
 import AppTypography from 'components/common/typography/AppTypography'
+import { productDeleteServices } from 'lib/apis/product/productServices'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from "react"
 import CollectionProductList from './parts/collection/CollectionProductList'
