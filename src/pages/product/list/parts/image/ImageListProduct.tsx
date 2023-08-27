@@ -5,11 +5,12 @@ import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomN
 
 function ImageListProduct({ product }) {
     const { shopRoute } = useCustomNavigate()
+    const main = product?.media && product?.media.length && product.media.find(el => el.isMain === 'true').url
 
     return (
         <a href={`${shopRoute}/products/${product._id}`} target="_blank">
             <HStack width={"250px"} color="#FFF">
-                <Box width={"50px"}><AppImage src={product?.thumb || product?.media && product?.media.length && product.media.find(el => el.isMain === 'true').url} /></Box>
+                <Box width={"50px"}><AppImage src={main ? main : product?.thumb} /></Box>
                 <Box width={"100%"}><Text>{product.title}</Text></Box>
             </HStack>
         </a>

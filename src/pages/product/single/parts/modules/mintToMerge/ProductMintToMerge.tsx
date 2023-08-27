@@ -2,6 +2,7 @@ import { Box, Checkbox, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
+import { appDeveloment } from 'lib/utils/app/variable'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import ProductPositions from '../positions/ProductPositions'
@@ -36,7 +37,7 @@ function ProductMintToMerge() {
         <VStack align={"stretch"} spacing={4}>
             <Box>
                 <AppSkeleton isLoaded={loading} width={"70%"}>
-                    <Checkbox size='md' isChecked={CheckBox} alignItems="flex-start" colorScheme='green' onChange={checkBoxHandle}>
+                    <Checkbox isDisabled={!appDeveloment} size='md' isChecked={CheckBox} alignItems="flex-start" colorScheme='green' onChange={checkBoxHandle}>
                         <VStack align='stretch' paddingLeft={2} spacing={1}>
                             <AppTypography size='14px' weight='bolder'>Mint to Merch</AppTypography>
                             <AppTypography size="14px" color="lightGray">

@@ -31,9 +31,7 @@ function ProductMockup() {
                             size='original'
                             defaults={{ updateDefault: (url) => updateState("media", refactorImage(defactorImage(media), url)), value: isMain(media)?.url }}
                             toast={AppErrors.store.upload("Mockup")}
-                            onSuccess={(images: any) => !thumb.length && images?.small && updateState("thumb", images?.small)}
                             onChange={(images: any) => updateState("media", refactorImage(images))}
-                            onDelete={(images: any) => !images.length && updateState("thumb", "")}
                             values={defactorImage(media)} />
                     </SkeletonProduct>
                 </Box>
