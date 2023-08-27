@@ -18,6 +18,8 @@ function IconBlockchain({ blockchain, props }: IProps) {
                 return <AppIcons.Polygon {...props} />
             case "RIPPLE":
                 return <AppIcons.Ripple className={classes.ripple} {...props} />
+            case "BINANCE":
+                return <AppIcons.Binance {...props} />
             default:
                 return null
         }

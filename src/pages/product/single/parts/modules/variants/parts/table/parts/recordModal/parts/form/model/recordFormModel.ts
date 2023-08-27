@@ -1,9 +1,12 @@
 import { product_type } from "lib/apis/product/interfaces"
+import { binanceRecordMerch } from "lib/utils/blockchain/binance/record"
 import { PolygonLogin } from "lib/utils/blockchain/polygon/metamaskLogin"
+import { binanceLogin } from "lib/utils/blockchain/binance/binanceWallet"
 import { record_merch_polygon } from "lib/utils/blockchain/polygon/record"
 import { XRPLogin } from "lib/utils/blockchain/ripple/xrpLogin"
 import { XRPRecordMerch } from "lib/utils/blockchain/ripple/xrpRecord"
 import RecordCasperModule from "./modules/casperModel"
+import { BinanceMetamaskLogin } from "lib/utils/blockchain/binance/metamaskLogin"
 
 interface Icasper {
     commission: number
@@ -47,6 +50,11 @@ const RecordModalModule = ({
                 methods = {
                     login: XRPLogin,
                     record: XRPRecordMerch
+                }
+            case "BINANCE":
+                methods = {
+                    login: BinanceMetamaskLogin,
+                    record: binanceRecordMerch
                 }
         }
 

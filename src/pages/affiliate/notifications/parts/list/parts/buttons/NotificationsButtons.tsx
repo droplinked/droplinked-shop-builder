@@ -13,10 +13,12 @@ import ModalHashkey from './parts/hashkey/ModalHashkey'
 import useAppToast from 'functions/hooks/toast/useToast'
 import useStack from 'functions/hooks/stack/useStack'
 import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
+import { binanceApproveRequest } from 'lib/utils/blockchain/binance/approve'
 import { approve_request_polygon } from 'lib/utils/blockchain/polygon/approve'
 import RecordCasperModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/modules/casperModel'
 import { XRPLogin } from 'lib/utils/blockchain/ripple/xrpLogin'
 import { XRPApproveRequest } from 'lib/utils/blockchain/ripple/xrpApprove'
+import { BinanceMetamaskLogin } from 'lib/utils/blockchain/binance/metamaskLogin'
 
 function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
     const { mutateAsync } = useMutation((params: IacceptRejectRequestService) => acceptRejectRequestService(params))
@@ -73,6 +75,10 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                 } else if (blockchain === "RIPPLE") {
                     const login = await XRPLogin()
                     const accept = await XRPApproveRequest(login.address, requestID)
+                    deploy_hash = accept
+                } else if (blockchain === "BINANCE") {
+                    const login = await BinanceMetamaskLogin()
+                    const accept = await binanceApproveRequest(login.address, requestID)
                     deploy_hash = accept
                 }
 

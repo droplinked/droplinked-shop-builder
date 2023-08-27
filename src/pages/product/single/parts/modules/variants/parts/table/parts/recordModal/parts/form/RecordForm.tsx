@@ -78,7 +78,7 @@ function RecordForm({ close, product, sku }: Iprops) {
                     }
                 })
                 if (query) deploy(data, query.txId)
-            } else if (["POLYGON", "RIPPLE"].includes(data.blockchain)) {
+            } else if (["POLYGON", "RIPPLE", "BINANCE"].includes(data.blockchain)) {
                 const res = await record({ commission, product, product_type: product.product_type, blockchain: data.blockchain, sku })
                 if (res) deploy(data, res)
             }
