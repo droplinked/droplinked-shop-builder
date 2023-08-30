@@ -17,7 +17,7 @@ function DetailsProduct() {
                 <Box><IconBlockchain blockchain={blockchain} props={{ width: "20px" }} /></Box>
                 <Box><AppTypography size='12px'>Dopped on <AppTypography display={"inline-block"} size={"12px"} weight="bolder">{capitalizeFirstLetter(blockchain)}</AppTypography> blockchain</AppTypography></Box>
             </HStack>
-            <Box paddingTop={55}><Text color={"#C2C2C2"} lineHeight={1.7} fontSize="lg">{product?.description.substring(0, 130)}</Text></Box>
+            <Box paddingTop={55}><Text color={"#C2C2C2"} lineHeight={1.7} fontSize="lg" dangerouslySetInnerHTML={{ __html: product?.description.substring(0, 130) }}></Text></Box>
         </VStack>
     )
 }

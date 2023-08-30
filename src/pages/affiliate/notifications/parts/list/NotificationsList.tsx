@@ -57,7 +57,7 @@ function NotificationsList() {
                                                 value: sku?.recordData?.commision
                                             },
                                         ]}
-                                        price={`${sku?.price} ${product?.priceUnit}`}
+                                        price={`${sku?.price} ${product?.priceUnit || ""}`}
                                         earning={`${el?.earning} ${sku?.recordData?.currency}`}
                                     />
                                 </Box>

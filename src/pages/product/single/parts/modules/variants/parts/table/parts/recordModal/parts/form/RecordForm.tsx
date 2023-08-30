@@ -26,6 +26,7 @@ interface Iprops {
 interface IRecordSubmit {
     blockchain: string
     commission: number
+    quantity: number
 }
 
 function RecordForm({ close, product, sku }: Iprops) {
@@ -98,13 +99,15 @@ function RecordForm({ close, product, sku }: Iprops) {
     const formSchema = Yup.object().shape({
         blockchain: Yup.string().required('Required'),
         commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
-    });
+        quantity: Yup.number().min(.1).max(100).typeError("Please enter quantity")
+    })
 
     return (
         <Formik
             initialValues={{
                 blockchain: '',
                 commission: 0,
+                quantity: 0
             }}
             validateOnChange={false}
             validationSchema={formSchema}
@@ -143,6 +146,18 @@ function RecordForm({ close, product, sku }: Iprops) {
                                 />
                                 <AppTypography size='14px' weight='bolder' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography size='14px' weight='bolder' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
                             </VStack>
+                            {product.product_type === "PRINT_ON_DEMAND" ? (
+                                <VStack align="stretch">
+                                    <AppInput
+                                        name="quantity"
+                                        placeholder='1'
+                                        label='Quantity'
+                                        error={errors.quantity}
+                                        onChange={(e) => setFieldValue("quantity", e.target.value)}
+                                        value={values.quantity || ""}
+                                    />
+                                </VStack>
+                            ) : null}
                             <HStack justifyContent={"space-between"}>
                                 <Box width={"25%"}><BasicButton variant='outline' onClick={() => close()}>Cancel</BasicButton></Box>
                                 <Box width={"25%"}><BasicButton type="submit" isLoading={loading}>Drop</BasicButton></Box>
