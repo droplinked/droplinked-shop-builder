@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 import FullWidth from "./components/fullwidth/FullWidth";
 
 const BannerComponent = () => {
-  const { state: { backgroundColor, backgroundImage } } = useContext(designContext);
+  const { state: { backgroundColor, backgroundImage, fullWidthHero } } = useContext(designContext);
   const [images, setImages] = useState(BANNER_DEFAULT_IMSGES);
   const [LoadImage, setLoadImage] = useState(false);
   const location = useLocation().pathname;
@@ -34,7 +34,7 @@ const BannerComponent = () => {
         <Image
           p="4px"
           src={backgroundImage}
-          w="auto"
+          w={fullWidthHero ? "100%" : "auto"}
           h="auto"
           maxH="100%"
           pos="absolute"

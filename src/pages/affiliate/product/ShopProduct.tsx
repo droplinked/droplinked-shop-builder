@@ -35,7 +35,7 @@ function ShopProduct() {
                 <Box width={"55%"}><DetailsProduct /></Box>
               </Flex>
               <Box><RequestProduct /></Box>
-              <Box><Text color={"#C2C2C2"} lineHeight={1.7} fontSize="lg">{product?.description}</Text></Box>
+              <Box><Text color={"#C2C2C2"} lineHeight={1.7} fontSize="lg" dangerouslySetInnerHTML={{ __html: product?.description }}></Text></Box>
             </VStack>
           </AppCard>
         </ShopProductContext.Provider>
