@@ -1,6 +1,4 @@
-import { Box, Flex, VStack } from '@chakra-ui/react';
-import { faker } from '@faker-js/faker';
-import axios from 'axios';
+import { Flex, VStack } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 import AppModal, { IAppModal } from 'components/common/modal/AppModal';

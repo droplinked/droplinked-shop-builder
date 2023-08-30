@@ -1,5 +1,5 @@
 import { VStack } from '@chakra-ui/react'
-import React, { useCallback, useContext, useEffect, useReducer } from 'react'
+import React, { useCallback, useEffect, useReducer } from 'react'
 import { productContext } from './context'
 import ButtonsProduct from './parts/buttons/ButtonsProduct'
 import { useParams } from 'react-router-dom'
