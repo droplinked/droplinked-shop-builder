@@ -23,16 +23,19 @@ const notificationsButtonsModel = ({
                     login: PolygonLogin,
                     request: approve_request_polygon
                 }
+                break;
             case 'RIPPLE':
                 methods = {
                     login: XRPLogin,
                     request: XRPApproveRequest
                 }
+                break;
             case 'BINANCE':
                 methods = {
                     login: BinanceMetamaskLogin,
                     request: binanceApproveRequest
                 }
+                break;
 
         }
 

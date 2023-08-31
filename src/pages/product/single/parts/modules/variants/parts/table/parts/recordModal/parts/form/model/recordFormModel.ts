@@ -46,16 +46,19 @@ const RecordModalModule = ({
                     login: PolygonLogin,
                     record: record_merch_polygon
                 }
+                break;
             case "RIPPLE":
                 methods = {
                     login: XRPLogin,
                     record: XRPRecordMerch
                 }
+                break;
             case "BINANCE":
                 methods = {
                     login: BinanceMetamaskLogin,
                     record: binanceRecordMerch
                 }
+                break;
         }
 
         const login = await methods.login()
