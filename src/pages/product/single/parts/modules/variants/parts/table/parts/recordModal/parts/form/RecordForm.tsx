@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useMemo } from 'react'
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
@@ -96,11 +96,13 @@ function RecordForm({ close, product, sku }: Iprops) {
         }
     }, [product, stxAddress, sku])
 
-    const formSchema = Yup.object().shape({
-        blockchain: Yup.string().required('Required'),
-        commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
-        quantity: Yup.number().min(.1).max(100).typeError("Please enter quantity")
-    })
+    const formSchema = useMemo(() => {
+        return Yup.object().shape({
+            blockchain: Yup.string().required('Required'),
+            commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
+            ...product.product_type === "PRINT_ON_DEMAND" && { quantity: Yup.number().min(.1).max(100).typeError("Please enter quantity") }
+        })
+    }, [product.product_type])
 
     return (
         <Formik
