@@ -36,6 +36,8 @@ const ProductListModel = ({
         }
     },
 
+    getMain: (product: any) => product?.media && product?.media.length && product.media.find(el => el.isMain === 'true').url,
+
     refactorData: ({ data, fetch, search }: IrefactorData): Array<ITableRows> => {
         search = search && search.toLowerCase()
         const products = search ? data.filter((el: any) => el?.title && el.title.toLowerCase().includes(search)) : data

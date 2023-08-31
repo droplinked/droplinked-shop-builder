@@ -28,6 +28,7 @@ function Products() {
     })
     const { shop } = useProfile()
 
+    // Fetch service
     const fetch = useCallback(() => {
         const filter = searchParams.get("filter")
         mutate({ limit: 10, page: page, ...filter && { filter } })
@@ -35,6 +36,7 @@ function Products() {
 
     useEffect(() => fetch(), [mutate, page, searchParams])
 
+    // Set search state
     const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
 
     // Handle search and without search
@@ -46,6 +48,7 @@ function Products() {
         }) : []
     }, [States.search, products, fetch])
 
+    // Update parametrs url 
     const updateFilters = useCallback((key: string, value: string) => {
         const filter = `${key}:${value}`
         if (searchParams.get("filter") === filter) {
@@ -57,6 +60,7 @@ function Products() {
         navigate(`${location.pathname}?${searchParams.toString()}`)
     }, [searchParams, location])
 
+    // Handle delete button
     const buttons = useMemo(() => {
         const data: any = [
             {

@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, Image, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
 import AppTypography from 'components/common/typography/AppTypography'
 import { IrecordedShopService } from 'lib/apis/shop/interfaces'

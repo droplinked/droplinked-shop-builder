@@ -2,10 +2,12 @@ import React from 'react'
 import { Box, HStack, Text } from '@chakra-ui/react';
 import AppImage from 'components/common/image/AppImage';
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
+import ProductListModel from '../../model';
 
 function ImageListProduct({ product }) {
     const { shopRoute } = useCustomNavigate()
-    const main = product?.media && product?.media.length && product.media.find(el => el.isMain === 'true').url
+    const { getMain } = ProductListModel
+    const main = getMain(product)
 
     return (
         <a href={`${shopRoute}/products/${product._id}`} target="_blank">
