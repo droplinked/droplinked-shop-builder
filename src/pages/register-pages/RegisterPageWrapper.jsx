@@ -3,6 +3,7 @@ import { Flex, Box } from "@chakra-ui/react";
 
 import SelectPagesComponent from "./component/select-pages-component/SelectPagesComponent";
 
+// Master layout register page
 const RegisterPagesWrapper = () => {
   return (
     <Flex w="100%">

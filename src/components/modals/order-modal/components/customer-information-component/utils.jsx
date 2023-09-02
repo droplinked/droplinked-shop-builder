@@ -25,7 +25,8 @@ export const convertCustomerInformation = (order) => {
 
 export const convertOrderInformation = (order) => {
   if (!order || !order.customerAddressBook) return null
-  const linkTransction = order?.paymentType ? hashkeyModel.getLink({ blockchain: order?.paymentType, hashkey: order?.transaction_id }) : null
+  const linkTransction = order?.cartID?.paymentType && order?.transaction_id ? hashkeyModel.getLink({ blockchain: order?.cartID?.paymentType, hashkey: order?.transaction_id }) : null
+
   return [
     {
       name: "Order ID",
@@ -43,7 +44,7 @@ export const convertOrderInformation = (order) => {
       name: "Deploy Hash",
       data: order?.transaction_id ? (
         <HStack justifyContent="space-between">
-          <Box><a href={linkTransction || ""} style={{ color: "#FFF" }} target="_blank">{order?.transaction_id}</a></Box>
+          <Box><a href={linkTransction || ""} style={{ color: "#FFF" }} target="_blank">{linkTransction.substr(0, 60)}...</a></Box>
           <Box><ClipboardText text={linkTransction || ""} /></Box>
         </HStack>
       ) : "-"

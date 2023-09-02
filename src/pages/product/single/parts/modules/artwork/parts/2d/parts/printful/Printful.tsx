@@ -1,9 +1,8 @@
-import { Box, Flex, VStack } from '@chakra-ui/react';
-import { faker } from '@faker-js/faker';
-import axios from 'axios';
+import { Flex, VStack } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 import AppModal, { IAppModal } from 'components/common/modal/AppModal';
+import useAppToast from 'functions/hooks/toast/useToast';
 import axiosInstance from 'lib/apis/axiosConfig';
 import { ImockupGeneratorService, IpodAvailableVariantsService } from 'lib/apis/pod/interfaces';
 import { mockupGeneratorService, podAvailableVariantsService } from 'lib/apis/pod/services';
@@ -27,6 +26,7 @@ function Printful({ close, open }: IProps) {
         loadIframe: false
     })
     const ref = useRef<any>()
+    const { showToast } = useAppToast()
     const { refactorImage } = introductionClass
     const { uniqe, styles } = PrintfulModel
 
@@ -44,6 +44,10 @@ function Printful({ close, open }: IProps) {
                 elemId: ref.current?.id,
                 nonce: data?.data?.data?.nonce,
                 style: styles,
+                onError: () => {
+                    showToast("Please try again", 'error', { toastId: "DesignMaker" })
+                    close()
+                },
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
                 onTemplateSaved: async (res) => setState('TemplateId', res),
                 ...printful_template_id ? { templateId: printful_template_id } : { initProduct: { productId: pod_blank_product_id.toString() } }

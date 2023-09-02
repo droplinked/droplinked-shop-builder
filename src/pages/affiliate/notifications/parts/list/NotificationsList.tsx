@@ -50,14 +50,14 @@ function NotificationsList() {
                                         options={[
                                             {
                                                 caption: "Quantity",
-                                                value: sku?.quantity
+                                                value: sku?.recorded_quantity || "---"
                                             },
                                             {
                                                 caption: "Commision",
                                                 value: sku?.recordData?.commision
                                             },
                                         ]}
-                                        price={`${sku?.price} ${product?.priceUnit}`}
+                                        price={`${sku?.price} ${product?.priceUnit || ""}`}
                                         earning={`${el?.earning} ${sku?.recordData?.currency}`}
                                     />
                                 </Box>

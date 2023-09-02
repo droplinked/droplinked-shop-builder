@@ -11,6 +11,7 @@ const DashboardLayout = () => {
 
   const permission = useMemo(() => DashboardGateModel.checkPermission({ shop }), [shop])
 
+  // This component manage layout 
   return (
     <Flex alignItems={"start"}>
       {!permission ? <Box w="72px"><SidebarLayout /></Box> : null}

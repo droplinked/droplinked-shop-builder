@@ -52,6 +52,7 @@ import { ReactComponent as GiftSetting } from './gift-setting.svg';
 import { ReactComponent as Ripple } from './ripple.svg';
 import { ReactComponent as StarOutline } from './starOutline.svg';
 import { ReactComponent as StarFilled } from './starFilled.svg';
+import { ReactComponent as Binance } from './binance.svg';
 
 const AppIcons = {
   ProductsIcon,
@@ -107,6 +108,7 @@ const AppIcons = {
   GiftSetting,
   Ripple,
   StarOutline,
-  StarFilled
+  StarFilled,
+  Binance
 }
 export default AppIcons

@@ -24,7 +24,7 @@ const CustomerInformationComponent = () => {
 
   return (
     <>
-      {customer_array.length ? (
+      {customer_array && customer_array.length ? (
         <VStack align={"stretch"} color="#C2C2C2">
           <Box textAlign={"center"} marginBottom={7}>
             <AppTypography size="18px" weight="bolder">Order Details</AppTypography>

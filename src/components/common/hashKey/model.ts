@@ -16,6 +16,8 @@ const hashkeyModel = {
                 return `https://${appDeveloment ? "mumbai." : ""}polygonscan.com/tx/${hashkey}`
             case "RIPPLE":
                 return `https://evm-sidechain.xrpl.org/tx/${hashkey}`
+            case "BINANCE":
+                return `https://${appDeveloment ? "testnet." : ""}bscscan.com/tx/${hashkey}`
             default:
                 return ""
         }

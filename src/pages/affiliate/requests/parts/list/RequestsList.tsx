@@ -38,7 +38,7 @@ function RequestsList() {
                   value: el?.commision,
                 },
               ]}
-              price={`${el?.sku[0]?.price} ${el?.product[0]?.priceUnit}`}
+              price={`${el?.sku[0]?.price} ${el?.product[0]?.priceUnit || ''}`}
               earning={`${el?.earning} ${el?.sku[0].recordData?.currency}`}
             />
           </Box>

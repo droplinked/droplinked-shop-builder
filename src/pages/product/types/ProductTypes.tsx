@@ -18,17 +18,17 @@ function ProductTypes() {
       type: routeCreate + "physical"
     },
     {
-      title: "Digital Product",
-      description: appDeveloment ? "Upload digital assents, artworks, NFTs to sell" : "Coming soon...",
-      image: "/assets/images/digital.svg",
-      type: appDeveloment ? routeCreate + "digital" : null
-    },
-    {
       title: "Print On Demand",
       description: `Transform your Artwork or NFT into exclusive custom apparel, printed
       and shipped by our trusted providers`,
       image: "/assets/images/pod.svg",
       type: routeCreate + "pod"
+    },
+    {
+      title: "Digital Product",
+      description: appDeveloment ? "Upload digital assents, artworks, NFTs to sell" : "Coming soon...",
+      image: "/assets/images/digital.svg",
+      type: appDeveloment ? routeCreate + "digital" : null
     },
     {
       title: "Event",

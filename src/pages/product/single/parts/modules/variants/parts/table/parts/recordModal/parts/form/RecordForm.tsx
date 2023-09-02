@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useMemo } from 'react'
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
@@ -26,6 +26,7 @@ interface Iprops {
 interface IRecordSubmit {
     blockchain: string
     commission: number
+    quantity: number
 }
 
 function RecordForm({ close, product, sku }: Iprops) {
@@ -47,7 +48,8 @@ function RecordForm({ close, product, sku }: Iprops) {
             params: {
                 deploy_hash: deployHash,
                 skuID: sku._id,
-                commision: Number(data.commission)
+                commision: Number(data.commission),
+                ...product.product_type === "PRINT_ON_DEMAND" && { recorded_quantity: data.quantity }
             }
         }, {
             onSuccess: async () => {
@@ -61,7 +63,7 @@ function RecordForm({ close, product, sku }: Iprops) {
             updateState("loading", true)
             const commission = data.commission
             if (data.blockchain === "CASPER") {
-                const deployHash = await casper({ commission, product, sku })
+                const deployHash = await casper({ commission, product, sku, quantity: data.quantity })
                 deploy(data, deployHash)
             } else if (data.blockchain === "STACKS") {
                 await login()
@@ -70,7 +72,7 @@ function RecordForm({ close, product, sku }: Iprops) {
                     openContractCall,
                     params: {
                         price: sku.price * 100,
-                        amount: sku.quantity,
+                        amount: product.product_type === "PRINT_ON_DEMAND" ? data.quantity : sku.quantity,
                         commission,
                         productID: product?._id,
                         creator: stxAddress,
@@ -78,8 +80,8 @@ function RecordForm({ close, product, sku }: Iprops) {
                     }
                 })
                 if (query) deploy(data, query.txId)
-            } else if (["POLYGON", "RIPPLE"].includes(data.blockchain)) {
-                const res = await record({ commission, product, product_type: product.product_type, blockchain: data.blockchain, sku })
+            } else if (["POLYGON", "RIPPLE", "BINANCE"].includes(data.blockchain)) {
+                const res = await record({ commission, product, blockchain: data.blockchain, sku, quantity: data.quantity })
                 if (res) deploy(data, res)
             }
             updateState("loading", false)
@@ -95,16 +97,20 @@ function RecordForm({ close, product, sku }: Iprops) {
         }
     }, [product, stxAddress, sku])
 
-    const formSchema = Yup.object().shape({
-        blockchain: Yup.string().required('Required'),
-        commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
-    });
+    const formSchema = useMemo(() => {
+        return Yup.object().shape({
+            blockchain: Yup.string().required('Required'),
+            commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
+            ...product.product_type === "PRINT_ON_DEMAND" && { quantity: Yup.number().min(1).typeError("Please enter quantity") }
+        })
+    }, [product.product_type])
 
     return (
         <Formik
             initialValues={{
                 blockchain: '',
                 commission: 0,
+                quantity: 0
             }}
             validateOnChange={false}
             validationSchema={formSchema}
@@ -143,6 +149,18 @@ function RecordForm({ close, product, sku }: Iprops) {
                                 />
                                 <AppTypography size='14px' weight='bolder' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography size='14px' weight='bolder' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
                             </VStack>
+                            {product.product_type === "PRINT_ON_DEMAND" ? (
+                                <VStack align="stretch">
+                                    <AppInput
+                                        name="quantity"
+                                        placeholder='1'
+                                        label='Quantity'
+                                        error={errors.quantity}
+                                        onChange={(e) => setFieldValue("quantity", e.target.value)}
+                                        value={values.quantity || ""}
+                                    />
+                                </VStack>
+                            ) : null}
                             <HStack justifyContent={"space-between"}>
                                 <Box width={"25%"}><BasicButton variant='outline' onClick={() => close()}>Cancel</BasicButton></Box>
                                 <Box width={"25%"}><BasicButton type="submit" isLoading={loading}>Drop</BasicButton></Box>

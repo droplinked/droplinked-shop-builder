@@ -99,10 +99,18 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.22.11",
     "@faker-js/faker": "^7.6.0",
+    "fetch-mock": "^9.11.0",
+    "jest": "^27.5.1",
     "react-app-rewired": "^2.2.1",
     "sass": "^1.54.9",
     "sass-loader": "^13.0.2",
     "webpack": "^5.74.0"
+  },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "src/*.js"
+    ]
   }
 }
