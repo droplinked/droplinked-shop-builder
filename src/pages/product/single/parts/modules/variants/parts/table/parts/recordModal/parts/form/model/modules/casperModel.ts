@@ -52,7 +52,7 @@ const RecordCasperModule = ({
                     },
                     product_title: product.title,
                     price: sku.price * 100,
-                    amount: sku.quantity * 100,
+                    amount: sku.quantity,
                     comission: commission * 100
                 }
 
