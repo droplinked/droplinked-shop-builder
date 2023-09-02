@@ -74,8 +74,8 @@ const ModalRequestModel = ({
                 break;
 
         }
-
         const login = await methods.login()
+        console.log(login.address, recipient, tokenID);
         const request = await methods.request(login.address, recipient, tokenID)
         return request
     }
