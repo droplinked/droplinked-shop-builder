@@ -14,7 +14,7 @@ const PrintfulModel = ({
 
     styles: ({
         variables: {
-            '--pf-sys-background': 'none',
+            '--pf-sys-background': '#242424',
             '--pf-sys-neutral-300-on-background': '#64748b',
             '--pf-sys-neutral-400-on-background': '#94a3b8',
             '--pf-sys-neutral-700-on-background': '#e2e8f0',
@@ -70,6 +70,8 @@ const PrintfulModel = ({
             '--pf-sys-action-button-selected-on-surface': '#ecfeff',
             '--pf-sys-action-button-disabled-surface': '',
             '--pf-sys-action-button-disabled-on-surface': '#94a3b8',
+            '--pf-comp-modal-surface': '#242424',
+            '--pf-comp-popover-on-surface': '#242424',
         },
     })
 })

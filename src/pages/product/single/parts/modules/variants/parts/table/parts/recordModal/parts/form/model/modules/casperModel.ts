@@ -7,6 +7,7 @@ export interface IRecordCasper {
     publicKey: string
     commission: number
     sku: any
+    quantity: number
 }
 
 export interface IopenCasperWallet {
@@ -42,7 +43,7 @@ const RecordCasperModule = ({
         })
     },
 
-    casperRecord: async ({ commission, product, publicKey, sku }: IRecordCasper) => {
+    casperRecord: async ({ commission, product, publicKey, sku, quantity }: IRecordCasper) => {
         return new Promise<IcasperRecord>(async (resolve, reject) => {
             try {
                 const data = {
@@ -52,7 +53,7 @@ const RecordCasperModule = ({
                     },
                     product_title: product.title,
                     price: sku.price * 100,
-                    amount: sku.quantity,
+                    amount: product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity,
                     comission: commission * 100
                 }
 
