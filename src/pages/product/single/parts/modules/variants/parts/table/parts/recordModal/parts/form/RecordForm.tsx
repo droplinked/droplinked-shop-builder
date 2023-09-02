@@ -48,7 +48,8 @@ function RecordForm({ close, product, sku }: Iprops) {
             params: {
                 deploy_hash: deployHash,
                 skuID: sku._id,
-                commision: Number(data.commission)
+                commision: Number(data.commission),
+                ...product.product_type === "PRINT_ON_DEMAND" && { recorded_quantity: data.quantity }
             }
         }, {
             onSuccess: async () => {

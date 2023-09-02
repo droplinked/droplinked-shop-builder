@@ -50,7 +50,7 @@ function NotificationsList() {
                                         options={[
                                             {
                                                 caption: "Quantity",
-                                                value: sku?.quantity
+                                                value: sku?.recorded_quantity || "---"
                                             },
                                             {
                                                 caption: "Commision",
