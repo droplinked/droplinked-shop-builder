@@ -18,7 +18,7 @@ function ModalRequestDetails() {
                     <Box marginBottom={2}><Text fontFamily={"aven"} fontSize="2xl">{product.title}</Text></Box>
                     <Box><LabelText>Commission: %{sku?.recordData?.commision}</LabelText></Box>
                     <Box><LabelText>Total Price: ${sku?.price}</LabelText></Box>
-                    {/* <Box><LabelText>Your earning: {`${el?.earning} ${sku?.recordData?.currency}`}</LabelText></Box> */}
+                    <Box><LabelText>Your earning: {`${sku?.earning} ${sku?.recordData?.currency}`}</LabelText></Box>
                     {/* <Box><LabelText>Your Earning: ${sku?.amount}</LabelText></Box> */}
                     <Box paddingTop={1}>
                         <HStack>

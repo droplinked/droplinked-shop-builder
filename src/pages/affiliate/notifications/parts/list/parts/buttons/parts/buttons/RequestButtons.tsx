@@ -14,7 +14,7 @@ function RequestButtons() {
                     <Box><RequestListButton status={"accept"} value="Accept" /></Box>
                     <Box><RequestListButton status={"reject"} value="Deny" /></Box>
                 </>
-            ) : <AppBadge text={shop?.status} colorScheme={["REJECTED", "CANCELED"].includes(shop?.status) ? "red" : "green"} />}
+            ) : <AppBadge text={shop?.status} whiteSpace="break-spaces" colorScheme={["REJECTED", "CANCELED"].includes(shop?.status) ? "red" : "green"} />}
 
         </VStack>
     )

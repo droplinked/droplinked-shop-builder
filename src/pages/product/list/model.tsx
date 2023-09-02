@@ -26,7 +26,7 @@ const ProductListModel = ({
                 value: <AppTypography size='12px'>{element?.product_type}</AppTypography>
             },
             inventory: {
-                caption: "Inventory Status",
+                caption: "Status",
                 value: <InventoryStatus data={element} />
             },
             controls: {

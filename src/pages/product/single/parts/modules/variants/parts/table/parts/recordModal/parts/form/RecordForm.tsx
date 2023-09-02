@@ -62,7 +62,7 @@ function RecordForm({ close, product, sku }: Iprops) {
             updateState("loading", true)
             const commission = data.commission
             if (data.blockchain === "CASPER") {
-                const deployHash = await casper({ commission, product, sku })
+                const deployHash = await casper({ commission, product, sku, quantity: data.quantity })
                 deploy(data, deployHash)
             } else if (data.blockchain === "STACKS") {
                 await login()
@@ -71,7 +71,7 @@ function RecordForm({ close, product, sku }: Iprops) {
                     openContractCall,
                     params: {
                         price: sku.price * 100,
-                        amount: sku.quantity,
+                        amount: product.product_type === "PRINT_ON_DEMAND" ? data.quantity : sku.quantity,
                         commission,
                         productID: product?._id,
                         creator: stxAddress,
@@ -80,7 +80,7 @@ function RecordForm({ close, product, sku }: Iprops) {
                 })
                 if (query) deploy(data, query.txId)
             } else if (["POLYGON", "RIPPLE", "BINANCE"].includes(data.blockchain)) {
-                const res = await record({ commission, product, product_type: product.product_type, blockchain: data.blockchain, sku })
+                const res = await record({ commission, product, blockchain: data.blockchain, sku, quantity: data.quantity })
                 if (res) deploy(data, res)
             }
             updateState("loading", false)
@@ -100,7 +100,7 @@ function RecordForm({ close, product, sku }: Iprops) {
         return Yup.object().shape({
             blockchain: Yup.string().required('Required'),
             commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
-            ...product.product_type === "PRINT_ON_DEMAND" && { quantity: Yup.number().min(.1).max(100).typeError("Please enter quantity") }
+            ...product.product_type === "PRINT_ON_DEMAND" && { quantity: Yup.number().min(1).typeError("Please enter quantity") }
         })
     }, [product.product_type])
 
