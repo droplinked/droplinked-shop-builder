@@ -18,7 +18,7 @@ function RequestProduct() {
                 rows={product.skuIDs.map((el: any) => ({
                     ...RequestProductModel.makeOptions(el.options),
                     Inventory: {
-                        value: el?.quantity
+                        value: el?.recorded_quantity || "---"
                     },
                     Price: {
                         value: el?.price
