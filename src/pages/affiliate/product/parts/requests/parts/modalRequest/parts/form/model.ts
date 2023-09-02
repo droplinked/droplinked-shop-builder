@@ -59,16 +59,19 @@ const ModalRequestModel = ({
                     login: PolygonLogin,
                     request: publish_request_polygon
                 }
+                break;
             case 'RIPPLE':
                 methods = {
                     login: XRPLogin,
                     request: XRPPublishRequest
                 }
+                break;
             case 'BINANCE':
                 methods = {
                     login: BinanceMetamaskLogin,
                     request: binancePublishRequest
                 }
+                break;
 
         }
 

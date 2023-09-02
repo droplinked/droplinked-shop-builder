@@ -56,7 +56,7 @@ export async function XRPLogin(): Promise<{
     let address = (await getAccounts())[0];
     let chainId = await (window as any).ethereum.request({ method: 'eth_chainId' });
     try {
-        if (chainId != 1440002)
+        if (Number(chainId) != 1440002)
             await (window as any).ethereum.request({
                 method: 'wallet_addEthereumChain',
                 params: [{

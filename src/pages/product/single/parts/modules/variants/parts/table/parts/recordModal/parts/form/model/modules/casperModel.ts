@@ -53,7 +53,7 @@ const RecordCasperModule = ({
                     },
                     product_title: product.title,
                     price: sku.price * 100,
-                    amount: product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity * 100,
+                    amount: product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity,
                     comission: commission * 100
                 }
 
