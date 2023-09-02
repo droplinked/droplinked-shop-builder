@@ -6,6 +6,14 @@ export const axiosInstance = axios.create({
     baseURL: BASE_URL,
 });
 
+const reject = (error) => {
+    const statusCode = error?.response?.status
+    if (statusCode && statusCode === 401) {
+        AppStorage.clearStorage()
+        window.location.replace(window.location.origin)
+    }
+    return Promise.reject(error);
+}
 
 axiosInstance.interceptors.request.use(
     function (config) {
@@ -16,18 +24,16 @@ axiosInstance.interceptors.request.use(
         return config;
     },
     function (error) {
-        return Promise.reject(error);
+        return reject(error)
     }
-    );
-    
-    axiosInstance.interceptors.response.use(
-        function (res) {
-            return res;
-        },
-        function (error) {
-        const statusCode = error?.response?.status
-        if(statusCode && statusCode === 401) AppStorage.clearStorage()
-        return Promise.reject(error);
+);
+
+axiosInstance.interceptors.response.use(
+    function (res) {
+        return res;
+    },
+    function (error) {
+        return reject(error)
     }
 );
 

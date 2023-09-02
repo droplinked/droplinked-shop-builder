@@ -9,7 +9,7 @@ function PropertiesPod() {
     const { options } = Artwork2dSkuModel
 
     const sizes = useMemo(() => {
-        const size_clothes = ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
+        const size_clothes = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL", "7XL"]
         const size_available = options(sku).sizes.map(el => el.value);
         return size_clothes.includes(size_available[0]) ? size_clothes.filter(el => size_available.includes(el)) : size_available
     }, [sku])
