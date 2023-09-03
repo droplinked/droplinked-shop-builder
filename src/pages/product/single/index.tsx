@@ -63,7 +63,7 @@ function ProductSingle() {
     }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log(state.params.thumb);
+    //     console.log(state.params.m2m_positions);
     // }, [state])
 
     return (

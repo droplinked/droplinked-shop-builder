@@ -44,6 +44,7 @@ const MakeDataProductModel = ({
             "m2m_services": state.m2m_services,
             "purchaseAvailable": state.purchaseAvailable,
             "digitalDetail": state.digitalDetail,
+            "m2m_positions_options": state.m2m_positions_options,
         }
     }
 })

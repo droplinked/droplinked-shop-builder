@@ -1,12 +1,7 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
-import React from "react";
-import shirtBack from "assest/image/positions/back.svg";
-import shirtCenter from "assest/image/positions/center.svg";
-import shirtLeft from "assest/image/positions/left.svg";
-import shirtRight from "assest/image/positions/right.svg";
-import pantLeft from "assest/image/positions/pent-left.svg";
-import pantRight from "assest/image/positions/pent-right.svg";
-import backNeck from "assest/image/positions/back-neck.svg";
+import React, { useCallback, useContext } from "react";
+import { productContext } from "pages/product/single/context";
+import AppTypography from "components/common/typography/AppTypography";
 
 interface IProps {
   update(element: string): void;
@@ -14,38 +9,24 @@ interface IProps {
   positions: Array<string>;
 }
 
-function ProductPositions({ update, state, positions }: IProps) {
-  const icons = {
-    FRONT_CENTER: shirtCenter,
-    FRONT_RIGHT_CHEST: shirtLeft,
-    FRONT_LEFT_CHEST: shirtRight,
-    BACK_CENTER: shirtBack,
-    back: shirtBack,
-    front: shirtCenter,
-    LEFT_LEG_FRONT: pantLeft,
-    RIGHT_LEG_FRONT: pantRight,
-    BACK_NECK: backNeck,
-  };
+function ProductPositions() {
+  const { state: { m2m_positions, m2m_positions_options }, methods: { updateState } } = useContext(productContext)
+
+  const click = useCallback((isActive: any, element: any) => {
+    updateState('m2m_positions', isActive ? m2m_positions.filter((item: any) => item?.placement !== element?.placement) : [...m2m_positions, element])
+  }, [m2m_positions])
 
   return (
     <Flex gap={3}>
-      {positions.map((el: any, key: number) => (
-        <Box key={key}>
-          <Image
-            style={{
-              border: `3px solid ${state.includes(el) ? "#2EC99E" : "transparent"
-                }`,
-              borderRadius: "8px",
-            }}
-            onClick={() => update(el)}
-            src={icons[el]}
-            cursor="pointer"
-            width="58px"
-            height="58px"
-          />
-        </Box>
-      ))}
-    </Flex>
+      {m2m_positions_options.map((el: any, key: number) => {
+        const isActive = m2m_positions.find((pos: any) => pos?.placement === el?.placement)
+        return (
+          <Box key={key} backgroundColor="#1C1C1C" padding="8px 16px" onClick={() => click(isActive, el)} cursor="pointer" borderRadius="8px" border={`2px solid ${isActive ? '#2BCFA1' : 'transparent'}`}>
+            <AppTypography size="14px">{el?.placement}</AppTypography>
+          </Box>
+        )
+      })}
+    </Flex >
   );
 }
 
