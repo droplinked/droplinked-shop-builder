@@ -1,4 +1,5 @@
 import { Flex, VStack } from '@chakra-ui/react'
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTypography from 'components/common/typography/AppTypography'
 import { productContext } from 'pages/product/single/context'
 import ProductModel from 'pages/product/single/model'
@@ -11,7 +12,12 @@ import PropertiesPod from './parts/properties/PropertiesPod'
 function ProductArtwork() {
     const { state: { positions, prodviderID, pod_blank_product_id }, store: { state: { print_positions } }, productID } = useContext(productContext)
 
-    const title = useMemo(() => <AppTypography size='14px' color={"#C2C2C2"}>Upload your design to print on the product. (Max artwork size 355.6x406.4 mm)</AppTypography>, [])
+    const title = useMemo(() => (
+        <VStack align="stretch">
+            <FieldLabel label="Product Template" isRequired />
+            <AppTypography size='14px' color={"#C2C2C2"}>Utilize the Design Maker tool to create product mockups with artwork placement.</AppTypography>
+        </VStack>
+    ), [])
 
     return (
         <>

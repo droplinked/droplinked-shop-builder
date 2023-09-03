@@ -56,8 +56,7 @@ function ProductCategory() {
       <VStack align="stretch" spacing="12px">
         <Flex justifyContent="space-between" alignItems="center">
           <VStack align="stretch" spacing="12px">
-            <FieldLabel label={pod_blank_product_id ? "Product Type" : "Product Category"} isRequired />
-            <AppTypography color="#C2C2C2" size='14px'>Product Category</AppTypography>
+            <FieldLabel label={pod_blank_product_id ? "Product Type" : "Product Catalog"} isRequired />
           </VStack>
           <ProductCategoryButton />
         </Flex>
