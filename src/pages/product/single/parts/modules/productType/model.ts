@@ -15,6 +15,7 @@ const ProductTypeModel = ({
         updateState("m2m_positions", [])
         updateState("media", [])
         updateState("printful_template_id", null)
+        updateState("m2m_positions_options", [])
         updateState("positions", [])
         updateState("properties", [
             {

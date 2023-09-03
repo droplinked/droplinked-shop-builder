@@ -46,10 +46,12 @@ function ProductSingle() {
         })
     }, [params])
 
+    // Set data product when edit mode
     useEffect(() => {
         if (params?.productId) fetch().then((res: any) => dispatch({ type: "updateStateParams", params: { result: res } }))
     }, [params])
 
+    // Set product type as url
     useEffect(() => {
         if (queryParams.type) dispatch({ type: "updateState", params: { element: "product_type", value: productTypeHandle(queryParams.type) } });
     }, [queryParams])
