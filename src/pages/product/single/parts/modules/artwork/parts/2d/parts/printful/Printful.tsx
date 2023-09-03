@@ -44,8 +44,8 @@ function Printful({ close, open }: IProps) {
                 elemId: ref.current?.id,
                 nonce: data?.data?.data?.nonce,
                 style: styles,
-                onError: () => {
-                    showToast("Please try again", 'error', { toastId: "DesignMaker" })
+                onError: (err) => {
+                    showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
                     close()
                 },
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
