@@ -9,23 +9,30 @@ import ProductM2m from './parts/m2m/ProductM2m'
 
 function ProductMintToMerge() {
     const [CheckBox, setCheckBox] = useState(false)
-    const { state: { m2m_positions }, store: { state: { variants } }, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { m2m_positions, m2m_positions_options }, store: { state: { variants } }, methods: { updateState }, loading } = useContext(productContext)
 
+    // onChange checkbox
     const checkBoxHandle = useCallback((e: any) => {
         const checked = e.target.checked
         if (!checked) updateState("m2m_positions", [])
         setCheckBox(e.target.checked)
     }, [])
 
+    // set true if exist m2m_positions
     useEffect(() => {
-        if (m2m_positions.length) setCheckBox(true)
+        if(m2m_positions.length) setCheckBox(true)
     }, [m2m_positions])
+
+    // if not exist m2m_positions_options checkbox unchecked 
+    useEffect(() => {
+        if(!m2m_positions_options.length) setCheckBox(false)
+    }, [m2m_positions_options])
 
     return (
         <VStack align={"stretch"} spacing={4}>
             <Box>
                 <AppSkeleton isLoaded={loading} width={"70%"}>
-                    <Checkbox isDisabled={!appDeveloment} size='md' isChecked={CheckBox} alignItems="flex-start" colorScheme='green' onChange={checkBoxHandle}>
+                    <Checkbox isDisabled={!appDeveloment || !m2m_positions_options.length} size='md' isChecked={CheckBox} alignItems="flex-start" colorScheme='green' onChange={checkBoxHandle}>
                         <VStack align='stretch' paddingLeft={2} spacing={1}>
                             <AppTypography size='14px' weight='bolder'>Mint to Merch</AppTypography>
                             <AppTypography size="14px" color="lightGray">
