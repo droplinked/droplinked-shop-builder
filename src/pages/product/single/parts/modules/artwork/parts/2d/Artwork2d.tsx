@@ -17,7 +17,7 @@ function Artwork2d() {
 
     return (
         <artwork2dContext.Provider value={{ ...States, setStates }} >
-            <BasicButton onClick={onOpen} variant={printful_template_id ? "outline" : "solid"} sizes="medium">{printful_template_id ? "Edit Design" : 'Design Product'}</BasicButton>
+            <BasicButton onClick={onOpen} variant={printful_template_id ? "outline" : "solid"} sizes="medium">{printful_template_id ? "Edit Design" : 'Design Maker'}</BasicButton>
             {isOpen && <Printful close={onClose} open={isOpen} />}
         </ artwork2dContext.Provider>
     )
