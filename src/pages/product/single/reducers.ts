@@ -64,6 +64,7 @@ namespace ProductPageNamespace {
             positions: null,
             printful_template_id: null,
             custome_external_id: null,
+            m2m_positions_options: [],
             digitalDetail: {
                 file_url: null,
                 message: null

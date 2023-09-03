@@ -54,7 +54,8 @@ const ProductSingleModel = ({
             positions: data?.positions,
             printful_template_id: data?.printful_template_id,
             custome_external_id: data?.custome_external_id,
-            digitalDetail: data?.digitalDetail
+            digitalDetail: data?.digitalDetail,
+            m2m_positions_options: data?.m2m_positions_options
         }
     },
 
