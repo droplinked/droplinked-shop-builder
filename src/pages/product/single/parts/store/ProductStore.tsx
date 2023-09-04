@@ -24,19 +24,20 @@ function ProductStore({ children }: IProps) {
 
     // Get providers
     useEffect(() => {
-        if (pod_blank_product_id && !ProductModel.isPrintful(prodviderID)) {
+        if ((pod_blank_product_id && !ProductModel.isPrintful(prodviderID)) || (productID && pod_blank_product_id)) {
             providerService.mutate({ pod_blank_product_id }, {
                 onSuccess: res => {
                     const data = res.data?.data
                     update("variants", data)
-                    getAvailable({ productId: data._id, provider: data.provider })
-                    printPositions.mutate({ productId: data._id, provider: data.provider }, {
+                    const body: IpodAvailableVariantsService = ProductModel.isPrintful(prodviderID) ? { productId: pod_blank_product_id, provider: prodviderID, templateID: printful_template_id } : { productId: data.id, provider: prodviderID }
+                    getAvailable(body)
+                    if (!ProductModel.isPrintful(prodviderID)) printPositions.mutate(body, {
                         onSuccess: (res: any) => update("print_positions", res?.data?.data)
                     })
                 }
             })
         }
-    }, [pod_blank_product_id, printful_template_id, prodviderID])
+    }, [pod_blank_product_id, printful_template_id, prodviderID, productID])
 
     // Get product types
     useEffect(() => {
