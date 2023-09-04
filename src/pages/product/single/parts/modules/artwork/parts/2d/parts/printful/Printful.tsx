@@ -46,7 +46,7 @@ function Printful({ close, open }: IProps) {
                 style: styles,
                 onError: (err) => {
                     showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
-                    close()
+                    setState('loading', false)
                 },
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
                 onTemplateSaved: async (res) => setState('TemplateId', res),
