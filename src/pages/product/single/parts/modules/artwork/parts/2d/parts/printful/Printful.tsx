@@ -142,7 +142,7 @@ function Printful({ close, open }: IProps) {
     }, [States.DesignMaker])
 
     return (
-        <AppModal size="7xl" isCentered={false} title="Create a  Product Template" contentProps={{ maxWidth: "1400px", width: "95%" }} close={close} open={open}>
+        <AppModal size="7xl" isCentered={false} title="Create a  Product Template" contentProps={{ maxWidth: "1400px", width: "95%" }} close={() => { }} open={open}>
             <VStack align="stretch" spacing={4} paddingTop="20px">
                 <div style={{ visibility: States.loadIframe ? "visible" : "hidden", height: States.loadIframe ? "auto" : "0" }} className={classes.model} ref={ref} id="printful"></div>
                 {!States.loadIframe && <Flex height="300px" justifyContent="center" alignItems="center"><LoadingComponent /></Flex>}
