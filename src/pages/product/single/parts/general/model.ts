@@ -4,6 +4,8 @@ interface IrefactorImage {
 }
 
 const introductionClass = ({
+
+    // refactor data like data incoming service
     refactorImage: (images: Array<string>, isMain?: string): Array<IrefactorImage> => {
         return images.map((el, key) => {
             return {
@@ -13,10 +15,12 @@ const introductionClass = ({
         })
     },
 
+    // data incoming service change to Array<string>
     defactorImage: (images: Array<IrefactorImage | any>) => {
         return images.map((el) => el.url)
     },
-
+    
+    // set default image
     isMain: (images: Array<IrefactorImage | any>) => {
         return images.find((el) => el.isMain)
     }

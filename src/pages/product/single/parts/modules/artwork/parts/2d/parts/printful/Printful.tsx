@@ -44,9 +44,9 @@ function Printful({ close, open }: IProps) {
                 elemId: ref.current?.id,
                 nonce: data?.data?.data?.nonce,
                 style: styles,
-                onError: () => {
-                    showToast("Please try again", 'error', { toastId: "DesignMaker" })
-                    close()
+                onError: (err) => {
+                    showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
+                    setState('loading', false)
                 },
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
                 onTemplateSaved: async (res) => setState('TemplateId', res),
@@ -82,7 +82,9 @@ function Printful({ close, open }: IProps) {
 
             const mockups = await mockupGenerator.mutateAsync(mockBody)
             const mockupsData = mockups?.data?.data
-            updateState("media", refactorImage(mockupsData))
+
+            updateState("media", refactorImage(mockupsData?.mockups))
+            updateState("m2m_positions_options", mockupsData?.printfiles)
 
             const result = [
                 {
@@ -140,7 +142,7 @@ function Printful({ close, open }: IProps) {
     }, [States.DesignMaker])
 
     return (
-        <AppModal size="7xl" isCentered={false} title="Design Product" contentProps={{ maxWidth: "1400px", width: "95%" }} close={close} open={open}>
+        <AppModal size="7xl" isCentered={false} title="Create a  Product Template" contentProps={{ maxWidth: "1400px", width: "95%" }} close={() => { }} open={open}>
             <VStack align="stretch" spacing={4} paddingTop="20px">
                 <div style={{ visibility: States.loadIframe ? "visible" : "hidden", height: States.loadIframe ? "auto" : "0" }} className={classes.model} ref={ref} id="printful"></div>
                 {!States.loadIframe && <Flex height="300px" justifyContent="center" alignItems="center"><LoadingComponent /></Flex>}

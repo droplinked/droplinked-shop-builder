@@ -46,6 +46,7 @@ export interface IproductState {
     printful_template_id?: string
     custome_external_id: string,
     digitalDetail: IDigitalLinks
+    m2m_positions_options: Array<any>
 }
 
 export interface IpropertiesItems {
