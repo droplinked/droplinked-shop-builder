@@ -32,6 +32,7 @@ function Printful({ close, open }: IProps) {
 
     const setState = useCallback((key: string, value: any) => setStates(prev => ({ ...prev, [key]: value })), [])
 
+    // Initial PFDesignMaker
     const design = useCallback(async () => {
         try {
             const data = await axiosInstance.post('pod/printful/nonces', {
@@ -58,9 +59,12 @@ function Printful({ close, open }: IProps) {
         }
     }, [pod_blank_product_id, printful_template_id, custome_external_id])
 
+    // after success PFDesignMaker and get templateID
     const generate = useCallback(async () => {
         try {
             if (!States.TemplateId) return false
+
+            // Get available variants
             const request = await availableVariants.mutateAsync({ productId: pod_blank_product_id, provider: "PRINTFUL", templateID: States.TemplateId })
             const data = request?.data?.data
 
@@ -71,6 +75,7 @@ function Printful({ close, open }: IProps) {
                 sizes.push({ value: size[element].value, caption: size[element].caption, })
             });
 
+            // mockupGenerator data body
             const mockBody = {
                 params: {
                     variant_ids: data.flatMap(el => el.sizes.map(sized => sized.id)),
@@ -80,6 +85,7 @@ function Printful({ close, open }: IProps) {
                 productID: pod_blank_product_id
             }
 
+            // Generate mock
             const mockups = await mockupGenerator.mutateAsync(mockBody)
             const mockupsData = mockups?.data?.data
 
@@ -113,18 +119,17 @@ function Printful({ close, open }: IProps) {
         }
     }, [pod_blank_product_id, States.TemplateId])
 
-    useEffect(() => {
-        if (States.TemplateId) generate()
-    }, [States.TemplateId])
+    useEffect(() => { if (States.TemplateId) generate() }, [States.TemplateId])
 
+    // setState DesignMaker
     useEffect(() => {
         if (!States.DesignMaker) design()
-
         return () => {
             setState('DesignMaker', null)
         }
     }, [variants])
 
+    // Implement printful embed
     useEffect(() => {
         const script = document.createElement('script');
         script.src = "https://files.cdn.printful.com/embed/embed.js";
@@ -135,6 +140,7 @@ function Printful({ close, open }: IProps) {
         }
     }, []);
 
+    // onClick save
     const save = useCallback(async () => {
         if (!States.DesignMaker) return false
         setState('loading', true)
@@ -142,7 +148,7 @@ function Printful({ close, open }: IProps) {
     }, [States.DesignMaker])
 
     return (
-        <AppModal size="7xl" isCentered={false} title="Create a  Product Template" contentProps={{ maxWidth: "1400px", width: "95%" }} close={() => { }} open={open}>
+        <AppModal size="7xl" isCentered={false} title="Create a Product Template" contentProps={{ maxWidth: "1400px", width: "95%" }} close={() => { }} open={open}>
             <VStack align="stretch" spacing={4} paddingTop="20px">
                 <div style={{ visibility: States.loadIframe ? "visible" : "hidden", height: States.loadIframe ? "auto" : "0" }} className={classes.model} ref={ref} id="printful"></div>
                 {!States.loadIframe && <Flex height="300px" justifyContent="center" alignItems="center"><LoadingComponent /></Flex>}
