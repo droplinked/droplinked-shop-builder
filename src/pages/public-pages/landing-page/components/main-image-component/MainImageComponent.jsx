@@ -1,7 +1,12 @@
-
-import { Box, Image, AspectRatio, keyframes, usePrefersReducedMotion } from '@chakra-ui/react'
+import {
+  Box,
+  Image,
+  AspectRatio,
+  keyframes,
+  usePrefersReducedMotion,
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import mainImage from "../../../../../assest/image/landingPageImage.png"
+import mainImage from "../../../../../assest/image/landingPageImage.png";
 
 const keyframe_rightanimation = keyframes`
 0% {
@@ -14,34 +19,34 @@ const keyframe_rightanimation = keyframes`
 }
 `;
 
-
 export default function MainImageComponent() {
+  const prefersReducedMotion = usePrefersReducedMotion();
 
-    const prefersReducedMotion = usePrefersReducedMotion();
+  let navigate = useNavigate();
 
-    let navigate = useNavigate();
+  const navigateToShop = () => navigate("/crashpunks");
 
-    const navigateToShop = () => navigate("/crashpunks")
+  const rightsideAnimation = prefersReducedMotion
+    ? undefined
+    : `${keyframe_rightanimation}  1s linear`;
 
-    const rightsideAnimation = prefersReducedMotion
-        ? undefined
-        : `${keyframe_rightanimation}  1s linear`;
-
-    return (
-        <>
-            <Box w={{ base: "100%", md: "50%" }} animation={rightsideAnimation}>
-                <AspectRatio ratio={1 / 1}>
-                    <Box w='100%' h='100%' pos='relative'>
-                        <Image
-                            pos='absolute'
-                            top='0px'
-                            maxW='100%'
-                            cursor='pointer'
-                            onClick={navigateToShop}
-                            src={mainImage} alt="" />
-                    </Box>
-                </AspectRatio>
-            </Box>
-        </>
-    )
+  return (
+    <>
+      <Box w={{ base: "100%", md: "50%" }} animation={rightsideAnimation}>
+        <AspectRatio ratio={1 / 1}>
+          <Box w="100%" h="100%" pos="relative">
+            <Image
+              pos="absolute"
+              top="0px"
+              maxW="100%"
+              // cursor='pointer'
+              //   onClick={navigateToShop}
+              src={mainImage}
+              alt=""
+            />
+          </Box>
+        </AspectRatio>
+      </Box>
+    </>
+  );
 }
