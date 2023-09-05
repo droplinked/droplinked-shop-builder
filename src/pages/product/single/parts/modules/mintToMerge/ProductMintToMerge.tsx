@@ -32,7 +32,7 @@ function ProductMintToMerge() {
         <VStack align={"stretch"} spacing={4}>
             <Box>
                 <AppSkeleton isLoaded={loading} width={"70%"}>
-                    <Checkbox isDisabled={!appDeveloment || !m2m_positions_options.length} size='md' isChecked={CheckBox} alignItems="flex-start" colorScheme='green' onChange={checkBoxHandle}>
+                    <Checkbox isDisabled={!m2m_positions_options.length} size='md' isChecked={CheckBox} alignItems="flex-start" colorScheme='green' onChange={checkBoxHandle}>
                         <VStack align='stretch' paddingLeft={2} spacing={1}>
                             <AppTypography size='14px' weight='bolder'>Mint to Merch</AppTypography>
                             <AppTypography size="14px" color="lightGray">
