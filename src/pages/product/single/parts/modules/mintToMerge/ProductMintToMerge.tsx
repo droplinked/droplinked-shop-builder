@@ -14,18 +14,21 @@ function ProductMintToMerge() {
     // onChange checkbox
     const checkBoxHandle = useCallback((e: any) => {
         const checked = e.target.checked
-        if (!checked) updateState("m2m_positions", [])
+        if (!checked) {
+            updateState("m2m_positions", [])
+            updateState("m2m_services", [])
+        }
         setCheckBox(e.target.checked)
     }, [])
 
     // set true if exist m2m_positions
     useEffect(() => {
-        if(m2m_positions.length) setCheckBox(true)
+        if (m2m_positions.length) setCheckBox(true)
     }, [m2m_positions])
 
     // if not exist m2m_positions_options checkbox unchecked 
     useEffect(() => {
-        if(!m2m_positions_options.length) setCheckBox(false)
+        if (!m2m_positions_options.length) setCheckBox(false)
     }, [m2m_positions_options])
 
     return (
