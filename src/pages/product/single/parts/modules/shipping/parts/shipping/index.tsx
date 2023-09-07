@@ -23,12 +23,7 @@ function Shipping() {
                     EASY Post takes responsibility to deliver your customer orders. <a style={{ color: "#2EC99E" }} href='' target={"_blank"}>Learn more</a>
                 </>
             )
-        },
-        {
-            title: 'DLW',
-            value: 'DLW',
-            description: 'Only select this method if you have contacted us for custom production.'
-        },
+        }
     ]
 
     return (

@@ -26,8 +26,8 @@ function RecordModal({ close, open, product, sku }: Iprops) {
 
     // Close Modal
     const closeModal = useCallback(async () => {
-        setState(recordStates)
         close()
+        setState(recordStates)
     }, [])
 
     return (
