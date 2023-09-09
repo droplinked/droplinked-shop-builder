@@ -8,29 +8,54 @@ import { productCreateServices, productUpdateServices } from 'lib/apis/product/p
 import AppErrors from 'lib/utils/statics/errors/errors'
 import useAppToast from 'functions/hooks/toast/useToast'
 import ButtonsProductClass from './model/ButtonProductModel'
-import MakeDataProductModel from './model/modules/MakeDataProduct'
+import { generateThumbService } from 'lib/apis/pod/services'
 
 // prdocut page
 function ButtonsProduct() {
     const create = useMutation((params) => productCreateServices(params))
     const update = useMutation((params) => productUpdateServices(params))
-    const [TargetButton, setTargetButton] = useState('')
-    const { state, productID } = useContext(productContext)
+    const generateThumb = useMutation((params) => generateThumbService(params))
+    const [States, setStates] = useState({
+        loading: false,
+        draft: false
+    })
+    const { state, productID, store: { state: { prev_data } } } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
     const { validate, makeData } = ButtonsProductClass
     const { showToast } = useAppToast()
 
+    const setThumb = useCallback(async () => {
+        try {
+            const isMain = state.media.find(el => el.isMain)?.url
+            if (!isMain) throw Error('')
+
+            const data = await generateThumb.mutateAsync([isMain])
+            state.thumb = data?.data?.data?.thumbs[0]
+        } catch (error) {
+            return null
+        }
+    }, [state])
+
+    const setStateHandle = useCallback((key, value) => setStates(prev => ({ ...prev, [key]: value })), [])
+
     const submit = useCallback(async (draft) => {
         try {
+            // Check change data
+            if (JSON.stringify(prev_data) === JSON.stringify(state)) return shopNavigate("products")
+            
+            setStateHandle("draft", draft)
+            setStateHandle("loading", true)
+            await setThumb()
             const service = productID ? update.mutateAsync : create.mutateAsync
             await validate({ state, draft })
-            setTargetButton(draft ? "draft" : "create")
             const formData = makeData({ state, draft, productID })
             await service(productID ? { productID, params: formData } : formData)
 
             showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")
             shopNavigate("products")
+            setStateHandle("loading", false)
         } catch (error) {
+            setStateHandle("loading", false)
             showToast(error?.response?.data?.data?.message ? error?.response?.data?.data?.message : error?.message ? error.message : "Oops! Something went wrong", "error")
         }
     }, [state, productID])
@@ -40,7 +65,7 @@ function ButtonsProduct() {
             <Box>
                 {!state.publish_product || !productID ? (
                     <BasicButton
-                        isLoading={TargetButton === "draft" ? productID ? update.isLoading : create.isLoading : false}
+                        isLoading={States.draft ? States.loading : false}
                         variant={'outline'}
                         onClick={() => submit(true)}
                     >
@@ -50,7 +75,8 @@ function ButtonsProduct() {
             </Box>
             <Box>
                 <BasicButton
-                    isLoading={TargetButton === "create" ? productID ? update.isLoading : create.isLoading : false}
+                    isLoading={!States.draft ? States.loading : false}
+                    isDisabled={States.loading}
                     onClick={() => submit(false)}
                 >
                     {productID && state.publish_product ? "Update Product" : "Publish Product"}
