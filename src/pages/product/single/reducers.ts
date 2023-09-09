@@ -23,12 +23,45 @@ export type productActions =
         params: IDigitalLinks
     }
 
+const productParams: IproductState = {
+    title: '',
+    description: '',
+    productCollectionID: '',
+    media: [],
+    priceUnit: "USD",
+    shippingPrice: 0,
+    product_type: "NORMAL",
+    publish_product: true,
+    shippingType: "EASY_POST",
+    properties: [],
+    sku: [],
+    prodviderID: null,
+    pod_blank_product_id: null,
+    artwork: null,
+    artwork2: null,
+    m2m_positions: [],
+    artwork_position: null,
+    artwork2_position: null,
+    thumb: "",
+    m2m_services: [],
+    purchaseAvailable: true,
+    positions: null,
+    printful_template_id: null,
+    custome_external_id: null,
+    m2m_positions_options: [],
+    digitalDetail: {
+        file_url: null,
+        message: null
+    }
+}
+
 namespace ProductPageNamespace {
     export interface IStore {
         variants: any
         available_variant: Array<any>
         print_positions: Array<any>
         product_types: Array<any>
+        prev_data: IproductState
     }
 
     export interface IStates {
@@ -39,41 +72,12 @@ namespace ProductPageNamespace {
     }
 
     export const initialState: IStates = {
-        params: {
-            title: '',
-            description: '',
-            productCollectionID: '',
-            media: [],
-            priceUnit: "USD",
-            shippingPrice: 0,
-            product_type: "NORMAL",
-            publish_product: true,
-            shippingType: "EASY_POST",
-            properties: [],
-            sku: [],
-            prodviderID: null,
-            pod_blank_product_id: null,
-            artwork: null,
-            artwork2: null,
-            m2m_positions: [],
-            artwork_position: null,
-            artwork2_position: null,
-            thumb: "",
-            m2m_services: [],
-            purchaseAvailable: true,
-            positions: null,
-            printful_template_id: null,
-            custome_external_id: null,
-            m2m_positions_options: [],
-            digitalDetail: {
-                file_url: null,
-                message: null
-            }
-        },
+        params: productParams,
         store: {
             variants: [],
             available_variant: [],
             print_positions: [],
+            prev_data: productParams,
             product_types: []
         },
         loading: false,
