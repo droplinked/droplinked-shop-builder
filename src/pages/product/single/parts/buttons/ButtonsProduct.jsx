@@ -9,6 +9,7 @@ import AppErrors from 'lib/utils/statics/errors/errors'
 import useAppToast from 'functions/hooks/toast/useToast'
 import ButtonsProductClass from './model/ButtonProductModel'
 import { generateThumbService } from 'lib/apis/pod/services'
+import introductionClass from '../general/model'
 
 // prdocut page
 function ButtonsProduct() {
@@ -23,18 +24,25 @@ function ButtonsProduct() {
     const { shopNavigate } = useCustomNavigate()
     const { validate, makeData } = ButtonsProductClass
     const { showToast } = useAppToast()
+    const { refactorImage } = introductionClass
 
     const setThumb = useCallback(async () => {
+        const checkChange = (field) => JSON.stringify(prev_data.media.map(el => el[field])) === JSON.stringify(state.media.map(el => el[field]))
         try {
             const isMain = state.media.find(el => el.isMain)?.url
+            const isMainIndex = state.media.findIndex(el => el.isMain)
             if (!isMain) throw Error('')
 
-            const data = await generateThumb.mutateAsync([isMain])
-            state.thumb = data?.data?.data?.thumbs[0]
-        } catch (error) {
-            return null
-        }
-    }, [state])
+            if (!checkChange('url') && state.product_type === "PRINT_ON_DEMAND") {
+                const data = await generateThumb.mutateAsync(state.media.map(el => el.url))
+                state.media = refactorImage(data?.data?.data?.originals).map((el, key) => ({ url: el.url, isMain: key === isMainIndex }))
+                state.thumb = state.media.find(el => el.isMain)?.url
+            } else if (!checkChange('isMain')) {
+                const data = await generateThumb.mutateAsync([isMain])
+                state.thumb = data?.data?.data?.thumbs[0]
+            }
+        } catch (error) { }
+    }, [state, prev_data])
 
     const setStateHandle = useCallback((key, value) => setStates(prev => ({ ...prev, [key]: value })), [])
 
@@ -42,7 +50,7 @@ function ButtonsProduct() {
         try {
             // Check change data
             if (JSON.stringify(prev_data) === JSON.stringify(state)) return shopNavigate("products")
-            
+
             setStateHandle("draft", draft)
             setStateHandle("loading", true)
             await setThumb()

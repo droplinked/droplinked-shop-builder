@@ -68,7 +68,7 @@ function ProductSingle() {
     }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log(state.store.prev_data);
+    //     console.log(state.params.media);
     // }, [state])
 
     return (
