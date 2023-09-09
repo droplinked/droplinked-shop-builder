@@ -58,7 +58,7 @@ function NotificationsList() {
                                             },
                                         ]}
                                         price={`${sku?.price} ${product?.priceUnit || ""}`}
-                                        earning={`${el?.earning} ${sku?.recordData?.currency}`}
+                                        earning={el?.earning}
                                     />
                                 </Box>
                                 <Box width={["15%", "10%"]}><NotificationsButtons refetch={() => mutate()} shop={el} /></Box>
