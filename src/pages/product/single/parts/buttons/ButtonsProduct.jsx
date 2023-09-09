@@ -36,7 +36,7 @@ function ButtonsProduct() {
             if (!checkChange('url') && state.product_type === "PRINT_ON_DEMAND") {
                 const data = await generateThumb.mutateAsync(state.media.map(el => el.url))
                 state.media = refactorImage(data?.data?.data?.originals).map((el, key) => ({ url: el.url, isMain: key === isMainIndex }))
-                state.thumb = state.media.find(el => el.isMain)?.url
+                state.thumb = data?.data?.data?.thumbs[isMainIndex]
             } else if (!checkChange('isMain')) {
                 const data = await generateThumb.mutateAsync([isMain])
                 state.thumb = data?.data?.data?.thumbs[0]
