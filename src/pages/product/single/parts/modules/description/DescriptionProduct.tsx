@@ -35,7 +35,7 @@ function DescriptionProduct() {
                             toolbar: 'undo redo | blocks | ' +
                                 'bold italic forecolor | alignleft aligncenter ' +
                                 'alignright alignjustify | bullist numlist outdent indent table',
-                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; background: #1C1C1C } .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {color: #777}',
+                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; background: #141414 } .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {color: #777}',
                         }}
                     />
                 </Box>
