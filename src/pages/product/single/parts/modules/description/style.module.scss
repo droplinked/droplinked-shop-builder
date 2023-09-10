@@ -1,15 +1,17 @@
 .editor {
+    background: #141414;
+    border-radius: 8px;
     position: relative;
     z-index: 1;
 
     :global {
-
+        .tox,
         .tox-editor-container,
         .tox-toolbar__primary,
         .tox-editor-header,
         .tox-statusbar,
         .tox-tbtn {
-            background: #1C1C1C !important;
+            background: #141414 !important;
             border: none !important;
         }
 
