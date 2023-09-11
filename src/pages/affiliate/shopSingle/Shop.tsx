@@ -47,7 +47,7 @@ function Shop() {
                             <Flex flexWrap={"wrap"} gap="2%" rowGap={7}>
                                 {shop?.products && shop.products.map((el: any, key: number) => (
                                     <Box key={key} width={["23.5%", "15%"]}>
-                                        <AffiliateProduct blockchain={el.skuIDs.length ? el.skuIDs[0].recordData.recordNetwork : ""} link={`${shop?.name}/${el?._id}`} image={el.media && el.media[0].url} title={el?.title} />
+                                        <AffiliateProduct blockchain={el.skuIDs.length ? el.skuIDs[0].recordData.recordNetwork : ""} link={`${shop?.name}/${el?._id}`} image={el.thumb || el.media.find(el => el.isMain === 'true')?.url} title={el?.title} />
                                     </Box>
                                 ))}
                             </Flex>

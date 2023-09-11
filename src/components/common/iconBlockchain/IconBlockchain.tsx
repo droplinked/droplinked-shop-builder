@@ -21,7 +21,7 @@ function IconBlockchain({ blockchain, props }: IProps) {
             case "BINANCE":
                 return <AppIcons.Binance {...props} />
             default:
-                return null
+                return <AppIcons.File {...props} />
         }
     }, [blockchain, props])
 
