@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, SimpleGrid, Switch } from '@chakra-ui/react'
+import { Box, HStack, SimpleGrid, Switch } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import { printServicesServices } from 'lib/apis/product/productServices'
@@ -6,6 +6,7 @@ import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect } from 'react'
 import { useMutation } from 'react-query'
 import classes from './style.module.scss'
+import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
 
 function ProductM2m() {
     const { mutate, data } = useMutation(() => printServicesServices())
@@ -36,7 +37,7 @@ function ProductM2m() {
             {data?.data?.data && data?.data?.data.map((item: any, key: number) => (
                 <HStack spacing="5px" key={key}>
                     <Switch className={classes.switch} isChecked={checked(item?._id)} onChange={el => updateM2M(el.target.checked, item?._id)} outline="none !important" boxShadow="none !important" size='md' />
-                    <Box>{handleIcon(item?.name)}</Box>
+                    <Box><IconBlockchain blockchain={item?.name.toUpperCase()} props={{ width: "20px", height: "20px" }} /></Box>
                     <AppTypography size='14px'>{item?.name}</AppTypography>
                 </HStack>
             ))}

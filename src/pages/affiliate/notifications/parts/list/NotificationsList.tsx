@@ -44,7 +44,7 @@ function NotificationsList() {
                                 </Box>
                                 <Box width={"70%"}>
                                     <AffiliateDetailCard
-                                        image={product?.media && product?.media[0].url}
+                                        image={product?.thumb || product?.media.find(el => el.isMain === 'true')?.url}
                                         title={product?.title}
                                         decript={el?.productCollection[0]?.title}
                                         options={[

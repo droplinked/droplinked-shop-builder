@@ -10,7 +10,7 @@ function ShopsProduct() {
         <Flex gap={[3, 5]} height="100%">
             {shop?.products && shop?.products.length && shop?.products.slice(0, 4).map((el: any, key: number) => (
                 <Box key={key} width="25%">
-                    <AffiliateProduct blockchain={el.skuIDs.length ? el.skuIDs[0].recordData.recordNetwork : ""} link={`${shop?.name}/${el?._id}`} image={el.media && el.media[0].url} title={el?.title} />
+                    <AffiliateProduct blockchain={el.skuIDs.length ? el.skuIDs[0].recordData.recordNetwork : ""} link={`${shop?.name}/${el?._id}`} image={el.thumb || el.media.find(el => el.isMain === 'true')?.url} title={el?.title} />
                 </Box>
             ))}
         </Flex>
