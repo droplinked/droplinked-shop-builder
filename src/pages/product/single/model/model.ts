@@ -51,7 +51,7 @@ const ProductSingleModel = ({
             artwork_position: data?.artwork_position,
             artwork2_position: data?.artwork2_position,
             thumb: data?.thumb,
-            m2m_services: data?.m2m_services || [],
+            m2m_services: data?.m2m_services ? data?.m2m_services.map((el: any) => el?._id) : [],
             purchaseAvailable: data?.purchaseAvailable,
             positions: data?.positions,
             printful_template_id: data?.printful_template_id,

@@ -39,7 +39,7 @@ function RequestsList() {
                 },
               ]}
               price={`${el?.sku[0]?.price} ${el?.product[0]?.priceUnit || ''}`}
-              earning={`${el?.earning} ${el?.sku[0].recordData?.currency}`}
+              earning={el?.earning}
             />
           </Box>
           <Box>

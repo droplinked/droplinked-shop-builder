@@ -48,7 +48,10 @@ function ProductSingle() {
 
     // Set data product when edit mode
     useEffect(() => {
-        if (params?.productId) fetch().then((res: any) => dispatch({ type: "updateStateParams", params: { result: res } }))
+        if (params?.productId) fetch().then((res: any) => {
+            dispatch({ type: "updateStateParams", params: { result: res } })
+            dispatch({ type: "updateStore", params: { storeName: "prev_data", value: res } })
+        })
     }, [params])
 
     // Set product type as url
@@ -65,7 +68,7 @@ function ProductSingle() {
     }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log(state.params.m2m_positions);
+    //     console.log(state.params.media);
     // }, [state])
 
     return (

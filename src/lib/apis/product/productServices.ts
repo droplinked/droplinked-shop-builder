@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IproductByIdServices, IproductDeleteServices, IproductList, IproductState, IproductUpdateServices } from "./interfaces"
+import { IgenerateBufferServices, IproductByIdServices, IproductDeleteServices, IproductList, IproductState, IproductUpdateServices } from "./interfaces"
 
 export const productServices = ({ page, limit, filter }: IproductList) => {
     return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ''}`)
@@ -23,4 +23,8 @@ export const productByIdServices = ({ productID, shopname }: IproductByIdService
 
 export const printServicesServices = () => {
     return axiosInstance.get(`product/public/print-services`)
+}
+
+export const generateBufferServices = (urls: Array<string>) => {
+    return axiosInstance.post(`product/generate/image/buffer`, urls)
 }

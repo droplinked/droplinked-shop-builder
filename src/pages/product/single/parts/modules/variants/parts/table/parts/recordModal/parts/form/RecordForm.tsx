@@ -26,7 +26,7 @@ interface Iprops {
 interface IRecordSubmit {
     blockchain: string
     commission: number
-    quantity: number
+    quantity: string
 }
 
 function RecordForm({ close, product, sku }: Iprops) {
@@ -49,7 +49,7 @@ function RecordForm({ close, product, sku }: Iprops) {
                 deploy_hash: deployHash,
                 skuID: sku._id,
                 commision: Number(data.commission),
-                ...product.product_type === "PRINT_ON_DEMAND" && { recorded_quantity: data.quantity }
+                ...product.product_type === "PRINT_ON_DEMAND" && { recorded_quantity: parseInt(data.quantity) }
             }
         }, {
             onSuccess: async () => {
@@ -62,8 +62,9 @@ function RecordForm({ close, product, sku }: Iprops) {
         try {
             updateState("loading", true)
             const commission = data.commission
+            const quantity: any = data.quantity
             if (data.blockchain === "CASPER") {
-                const deployHash = await casper({ commission, product, sku, quantity: data.quantity })
+                const deployHash = await casper({ commission, product, sku, quantity })
                 deploy(data, deployHash)
             } else if (data.blockchain === "STACKS") {
                 await login()
@@ -72,7 +73,7 @@ function RecordForm({ close, product, sku }: Iprops) {
                     openContractCall,
                     params: {
                         price: sku.price * 100,
-                        amount: product.product_type === "PRINT_ON_DEMAND" ? data.quantity : sku.quantity,
+                        amount: product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity,
                         commission,
                         productID: product?._id,
                         creator: stxAddress,
@@ -81,7 +82,7 @@ function RecordForm({ close, product, sku }: Iprops) {
                 })
                 if (query) deploy(data, query.txId)
             } else if (["POLYGON", "RIPPLE", "BINANCE"].includes(data.blockchain)) {
-                const res = await record({ commission, product, blockchain: data.blockchain, sku, quantity: data.quantity })
+                const res = await record({ commission, product, blockchain: data.blockchain, sku, quantity })
                 if (res) deploy(data, res)
             }
             updateState("loading", false)
@@ -110,7 +111,7 @@ function RecordForm({ close, product, sku }: Iprops) {
             initialValues={{
                 blockchain: '',
                 commission: 0,
-                quantity: 0
+                quantity: ''
             }}
             validateOnChange={false}
             validationSchema={formSchema}

@@ -105,3 +105,7 @@ export interface IproductUpdateServices {
     productID: string
     params: any
 }
+
+export interface IgenerateBufferServices {
+    urls: Array<string>
+}

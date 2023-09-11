@@ -33,7 +33,7 @@ function AffiliateDetailCard({ decript, earning, image, options, price, title }:
                         </Flex>
                     </Box>
                     <Box><Text fontSize={["sm", "md"]}>Price: {price}</Text></Box>
-                    <Box><Text fontSize={["sm", "md"]}>Your earning: {earning} /each</Text></Box>
+                    <Box><Text fontSize={["sm", "md"]}>Your earning: {earning} USD / each</Text></Box>
                 </VStack>
             </Box>
         </Flex>
