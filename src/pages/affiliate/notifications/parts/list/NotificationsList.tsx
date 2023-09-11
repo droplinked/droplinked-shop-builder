@@ -50,15 +50,15 @@ function NotificationsList() {
                                         options={[
                                             {
                                                 caption: "Quantity",
-                                                value: sku?.recorded_quantity || "---"
+                                                value: el?.quantity || "---"
                                             },
                                             {
                                                 caption: "Commision",
-                                                value: sku?.recordData?.commision
+                                                value: sku?.recordData?.commision + '%'
                                             },
                                         ]}
                                         price={`${sku?.price} ${product?.priceUnit || ""}`}
-                                        earning={el?.earning}
+                                        earning={el?.producerEarning}
                                     />
                                 </Box>
                                 <Box width={["15%", "10%"]}><NotificationsButtons refetch={() => mutate()} shop={el} /></Box>

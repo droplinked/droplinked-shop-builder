@@ -14,18 +14,6 @@ function ProductM2m() {
 
     useEffect(() => mutate(), [])
 
-    const handleIcon = useCallback((name: string) => {
-        const style = { width: "24px", height: "24px" }
-        switch (name) {
-            case "Casper NFT":
-                return <AppIcons.CasperIcon style={style} />
-
-            default:
-                return <AppIcons.File style={style} />
-
-        }
-    }, [])
-
     const updateM2M = useCallback((checked: boolean, id: string) => {
         updateState('m2m_services', checked ? [...m2m_services, id] : m2m_services.filter(el => el !== id))
     }, [m2m_services, updateState])
