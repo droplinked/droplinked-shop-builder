@@ -22,7 +22,7 @@ import AppIcons from "assest/icon/Appicons";
 import useHookStore from "functions/hooks/store/useHookStore";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 
-const HeaderLayout = () => {
+const HeaderDashboard = () => {
   const { app: { shop } } = useHookStore();
   const { onOpen, onClose, isOpen } = useDisclosure();
   const { shopNavigate } = useCustomNavigate();
@@ -126,4 +126,4 @@ const HeaderLayout = () => {
   );
 };
 
-export default HeaderLayout;
+export default HeaderDashboard;
