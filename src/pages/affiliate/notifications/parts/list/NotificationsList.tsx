@@ -44,21 +44,21 @@ function NotificationsList() {
                                 </Box>
                                 <Box width={"70%"}>
                                     <AffiliateDetailCard
-                                        image={product?.media && product?.media[0].url}
+                                        image={product?.thumb || product?.media.find(el => el.isMain === 'true')?.url}
                                         title={product?.title}
                                         decript={el?.productCollection[0]?.title}
                                         options={[
                                             {
                                                 caption: "Quantity",
-                                                value: sku?.recorded_quantity || "---"
+                                                value: el?.quantity || "---"
                                             },
                                             {
                                                 caption: "Commision",
-                                                value: sku?.recordData?.commision
+                                                value: sku?.recordData?.commision + '%'
                                             },
                                         ]}
                                         price={`${sku?.price} ${product?.priceUnit || ""}`}
-                                        earning={el?.earning}
+                                        earning={el?.producerEarning}
                                     />
                                 </Box>
                                 <Box width={["15%", "10%"]}><NotificationsButtons refetch={() => mutate()} shop={el} /></Box>

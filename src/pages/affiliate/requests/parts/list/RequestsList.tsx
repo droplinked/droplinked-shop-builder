@@ -31,15 +31,15 @@ function RequestsList() {
               options={[
                 {
                   caption: "Quantity",
-                  value: el?.sku[0]?.quantity,
+                  value: el?.quantity,
                 },
                 {
                   caption: "Commision",
-                  value: el?.commision,
+                  value: el?.commision + '%',
                 },
               ]}
               price={`${el?.sku[0]?.price} ${el?.product[0]?.priceUnit || ''}`}
-              earning={el?.earning}
+              earning={el?.publisherEarning}
             />
           </Box>
           <Box>

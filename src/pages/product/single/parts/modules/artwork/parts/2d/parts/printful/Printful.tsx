@@ -5,7 +5,7 @@ import AppModal, { IAppModal } from 'components/common/modal/AppModal';
 import useAppToast from 'functions/hooks/toast/useToast';
 import axiosInstance from 'lib/apis/axiosConfig';
 import { ImockupGeneratorService, IpodAvailableVariantsService } from 'lib/apis/pod/interfaces';
-import { mockupGeneratorService, podAvailableVariantsService } from 'lib/apis/pod/services';
+import { generateThumbService, mockupGeneratorService, podAvailableVariantsService } from 'lib/apis/pod/services';
 import { productContext } from 'pages/product/single/context';
 import introductionClass from 'pages/product/single/parts/general/model';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
@@ -19,6 +19,8 @@ function Printful({ close, open }: IProps) {
     const { methods: { updateState }, state: { printful_template_id, publish_product, pod_blank_product_id, custome_external_id }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
     const mockupGenerator = useMutation((params: ImockupGeneratorService) => mockupGeneratorService(params))
+    const generateThumb = useMutation((params: any) => generateThumbService(params))
+
     const [States, setStates] = useState({
         DesignMaker: null,
         TemplateId: null,
@@ -89,8 +91,12 @@ function Printful({ close, open }: IProps) {
             const mockups = await mockupGenerator.mutateAsync(mockBody)
             const mockupsData = mockups?.data?.data
 
+            // Upload printfiles url on cdn
+            const generateThumbPrintfiles = await generateThumb.mutateAsync(mockupsData?.printfiles.map(el => el?.url))
+            const imagesPrintfiles = generateThumbPrintfiles?.data?.data?.originals
+            updateState("m2m_positions_options", mockupsData?.printfiles.map((el, key) => ({ ...el, url: imagesPrintfiles[key] })))
+
             updateState("media", refactorImage(mockupsData?.mockups))
-            updateState("m2m_positions_options", mockupsData?.printfiles)
 
             const result = [
                 {
