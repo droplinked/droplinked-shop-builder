@@ -1,0 +1,22 @@
+.autoHeight {
+    height: auto;
+}
+
+.rightBack {
+    svg {
+        width: 120vh;
+        height: 50vw;
+        position: absolute;
+        top: 0;
+        right: -100px;
+    }
+}
+.leftBack {
+    svg {
+        width: 120vh;
+        height: 50vw;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+}
