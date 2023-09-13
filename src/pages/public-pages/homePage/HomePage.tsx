@@ -43,7 +43,7 @@ function HomePage() {
               <div className="section"><Embeddable /></div>
               <div className="section"><Supported /></div>
               <div className="section"><Contact /></div>
-              <div className={`section ${classes.autoHeight}`}>
+              <div auto-height className={`section ${classes.autoHeight}`}>
                 <FooterLayout />
               </div>
             </ReactFullpage.Wrapper>
