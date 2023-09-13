@@ -13,7 +13,6 @@ import MainLayout from 'components/layouts/app/main/mainLayout'
 import NotFound from 'pages/404/404'
 import Enquiry from 'pages/public-pages/enquiry-page/EnquiryPage'
 import ContactInfo from 'pages/register-pages/pages/contact-info/ContactInfo'
-import LandingPage from 'pages/public-pages/landing-page/LandingPage'
 import TermsPage from 'pages/public-pages/terms-page/TermsPage'
 import PrivacyPage from 'pages/public-pages/privacy-page/PrivacyPage'
 import ShopPage from 'pages/public-pages/shop-page/ShopPage'
@@ -23,6 +22,7 @@ import ThankForRegisterPage from 'pages/auth-pages/thank-for-regsiter-page/Thank
 import Shop from 'pages/affiliate/shopSingle/Shop'
 import ShopProduct from 'pages/affiliate/product/ShopProduct'
 import ProductTypes from "pages/product/types/ProductTypes";
+import HomePage from "pages/public-pages/homePage/HomePage";
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -36,7 +36,7 @@ function AppRoutes() {
     <Suspense fallback={<LoadingPage />}>
       <Routes>
         <Route path="/" element={<MainLayout />}>
-          <Route index element={<LandingPage />} />
+          <Route index element={<HomePage />} />
           <Route path="/enquiry" element={<Enquiry />} />
           <Route path="terms" element={<TermsPage />} />
           <Route path="privacy" element={<PrivacyPage />} />
