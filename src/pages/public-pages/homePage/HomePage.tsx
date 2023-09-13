@@ -25,7 +25,7 @@ function HomePage() {
       </Box>
       <ReactFullpage
         anchors={['banner', 'partners', 'community', 'products', 'network', 'embeddable', 'supported', 'contact', 'end']}
-        afterLoad={(origin, destination) => console.log(destination.isFirst)}
+        // afterLoad={(origin, destination) => console.log(destination.isFirst)}
         verticalCentered
         scrollOverflow={false}
         scrollingSpeed={500}
