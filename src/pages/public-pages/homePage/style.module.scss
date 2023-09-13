@@ -1,5 +1,6 @@
 .autoHeight {
-    height: auto;
+    height: auto !important;
+    max-height: auto !important;
 }
 
 .rightBack {
@@ -11,6 +12,7 @@
         right: -100px;
     }
 }
+
 .leftBack {
     svg {
         width: 120vh;
