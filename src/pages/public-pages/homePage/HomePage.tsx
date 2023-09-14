@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Banner from './parts/banner/Banner';
 import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
 import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
@@ -16,16 +16,28 @@ import Supported from './parts/supported/Supported';
 import Contact from './parts/contact/Contact';
 
 function HomePage() {
+  const [States, setStates] = useState({
+    pause: false,
+    loaded: []
+  })
+
+  console.log(States);
+
 
   return (
     <div style={{ color: "#FFF" }}>
       <Box position="fixed" top={0} right={0} left={0} bottom={0}>
-        <Box className={classes.rightBack}><RightBack /></Box>
-        <Box className={classes.leftBack}><LeftBack /></Box>
+        <Box className={`${classes.rightBack} ${States.pause ? classes.animationPaused : ''}`}>
+          <Box className={`${classes.circle} ${classes.b1}`}></Box>
+          <Box className={`${classes.circle} ${classes.b2}`}></Box>
+        </Box>
+        <Box className={`${classes.leftBack} ${States.pause ? classes.animationPaused : ''}`}></Box>
       </Box>
       <ReactFullpage
         anchors={['banner', 'partners', 'community', 'products', 'network', 'embeddable', 'supported', 'contact', 'end']}
-        // afterLoad={(origin, destination) => console.log(destination.isFirst)}
+        afterLoad={(origin, destination) => {
+          setStates(prev => ({ ...prev, pause: !destination.isFirst, loaded: !prev.loaded.includes(destination.anchor) ? [...prev.loaded, destination.anchor] : prev.loaded }))
+        }}
         verticalCentered
         scrollOverflow={false}
         scrollingSpeed={500}
@@ -36,9 +48,9 @@ function HomePage() {
                 <HeaderMain />
                 <Banner />
               </div>
-              <div className="section"><Partners /></div>
+              <div className="section"><Partners loaded={States.loaded} /></div>
               <div className="section"><Community /></div>
-              <div className="section"><ProductsMain /></div>
+              <div className="section"><ProductsMain loaded={States.loaded} /></div>
               <div className={`section ${classes.autoHeight}`}><Networks /></div>
               <div className="section"><Embeddable /></div>
               <div className="section"><Supported /></div>

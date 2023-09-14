@@ -24,7 +24,7 @@ function Embeddable() {
 
     return (
         <Flex justifyContent="center" alignItems="center" gap="100px">
-            <VStack align="stretch" width="250px">
+            <VStack align="stretch" width="300px">
                 <Swiper
                     slidesPerView={1}
                     spaceBetween={3}

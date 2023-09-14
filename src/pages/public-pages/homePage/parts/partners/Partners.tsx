@@ -1,10 +1,10 @@
 import { Box, Flex, Image, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
-import React from 'react'
+import React, { useMemo } from 'react'
 import MainCard from '../parts/card/MainCard'
 
-function Partners() {
+function Partners({ loaded }) {
     const data = [
         {
             title: 'Unstoppable Domains',
@@ -28,22 +28,27 @@ function Partners() {
         }
     ]
 
+    const checkLoad = useMemo(() => loaded.includes('partners'), [loaded])
+
     return (
-        <Flex justifyContent="center" alignItems="center">
-            <VStack width="80%" justifyContent="center" color="#FFF">
-                <Box><AppTypography size="34px" weight='bolder'>Partners</AppTypography></Box>
-                <Box padding="10px 0 30px 0"><AppTypography size="20px" color="#888">Explore the Network of collaborators taking commerce to the next level!</AppTypography></Box>
-                <Flex gap="60px" width="100%" justifyContent="center">
-                    {data.map((el, key) => (
-                        <MainCard width="22%" key={key}>
-                            <Image width="64px" height="64px" src={el.icon} alt={el.title} />
-                            <AppTypography height="72px" size='24px' weight='bolder' color="#f5f5f5">{el.title}</AppTypography>
-                            <BasicButton sizes="medium" variant='ghost'>View Shop</BasicButton>
-                        </MainCard>
-                    ))}
-                </Flex>
-            </VStack>
-        </Flex>
+        <Box position="relative">
+            <Image src="assets/images/homepage/shape.svg" position="absolute" zIndex="1" right="42%" top="-90px" width="34px" />
+            <Flex justifyContent="center" alignItems="center">
+                <VStack width="95%" maxWidth={checkLoad ? "1400px" : "100%"} opacity={checkLoad ? 1 : 0} transition={".7s"} justifyContent="center" color="#FFF">
+                    <Box><AppTypography size="34px" weight='bolder'>Partners</AppTypography></Box>
+                    <Box padding="10px 0 30px 0"><AppTypography size="20px" color="#888">Explore the Network of collaborators taking commerce to the next level!</AppTypography></Box>
+                    <Flex width="100%" justifyContent="space-between">
+                        {data.map((el, key) => (
+                            <MainCard transition="1s" width="22%" key={key}>
+                                <Image width="64px" height="64px" src={el.icon} alt={el.title} />
+                                <AppTypography height="72px" size='24px' weight='bolder' color="#f5f5f5">{el.title}</AppTypography>
+                                <BasicButton sizes="medium" variant='ghost'>View Shop</BasicButton>
+                            </MainCard>
+                        ))}
+                    </Flex>
+                </VStack>
+            </Flex>
+        </Box>
     )
 }
 
