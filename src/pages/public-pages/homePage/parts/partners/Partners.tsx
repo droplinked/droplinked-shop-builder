@@ -34,7 +34,7 @@ function Partners({ loaded }) {
         <Box position="relative">
             <Image src="assets/images/homepage/shape.svg" position="absolute" zIndex="1" right="42%" top="-90px" width="34px" />
             <Flex justifyContent="center" alignItems="center">
-                <VStack width="95%" maxWidth={checkLoad ? "1400px" : "100%"} opacity={checkLoad ? 1 : 0} transition={".7s"} justifyContent="center" color="#FFF">
+                <VStack width="95%" maxWidth={checkLoad ? "1500px" : "100%"} opacity={checkLoad ? 1 : 0} transition={".7s"} justifyContent="center" color="#FFF">
                     <Box><AppTypography size="34px" weight='bolder'>Partners</AppTypography></Box>
                     <Box padding="10px 0 30px 0"><AppTypography size="20px" color="#888">Explore the Network of collaborators taking commerce to the next level!</AppTypography></Box>
                     <Flex width="100%" justifyContent="space-between">

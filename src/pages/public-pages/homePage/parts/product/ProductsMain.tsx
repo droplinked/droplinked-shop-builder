@@ -35,7 +35,7 @@ function ProductsMain({ loaded }) {
             <VStack width="95%" justifyContent="center" color="#FFF">
                 <Box><AppTypography size="34px" weight='bolder'>Decentralized Registration of Products</AppTypography></Box>
                 <Box padding="10px 0 30px 0"><AppTypography size="20px" color="#888">Sell types of products on chain in your customized online store integrated with web3 tools</AppTypography></Box>
-                <Flex width="100%" maxWidth={checkLoad ? "1400px" : "100%"} opacity={checkLoad ? 1 : 0} transition={".7s"} justifyContent="space-between" color="#FFF">
+                <Flex width="100%" maxWidth={checkLoad ? "1500px" : "100%"} opacity={checkLoad ? 1 : 0} transition={".7s"} justifyContent="space-between" color="#FFF">
                     {data.map((el, key) => (
                         <MainCard width="22%" key={key}>
                             <VStack justifyContent="center" spacing="20px">

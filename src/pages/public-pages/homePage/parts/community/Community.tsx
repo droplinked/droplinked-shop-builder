@@ -5,7 +5,7 @@ import React from 'react'
 function Community() {
     return (
         <Flex justifyContent="center" >
-            <Flex width="90%" maxWidth="95%" alignItems="center" gap="30px">
+            <Flex width="95%" maxWidth="1500px" alignItems="center" gap="30px">
                 <Box width="80%"><Image src='assets/images/homepage/ConnectionsAnimation.png' width="100%" /></Box>
                 <VStack width="40%" align="stretch" marginTop="20px">
                     <Box><AppTypography size='34px' weight='bolder'>Community Driven Commerce</AppTypography></Box>
