@@ -1,19 +1,35 @@
-import { Box, Flex, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, Image, Text, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import Droplinked from './parts/droplinked/Droplinked'
+import Typewriter from 'typewriter-effect';
 
 function Banner() {
     return (
-        <Flex height="100%" justifyContent="center" alignItems="center">
-            <VStack justifyContent="center" color="#FFF">
-                <Box><Droplinked /></Box>
-                <Box><AppTypography size="50px" weight='bolder'>Powering The Next Generation of Commerce</AppTypography></Box>
-                <Box padding="10px 0 30px 0"><Text fontSize="34px">Build Customized Online Store| On-Chain</Text></Box>
-                <Box><BasicButton>Start Selling</BasicButton></Box>
-            </VStack>
-        </Flex>
+        <Box position="relative">
+            <Image src="assets/images/homepage/droplinked1.svg" position="absolute" zIndex="1" top="-200px" width="100%" />
+            <Image src="assets/images/homepage/shape.svg" position="absolute" zIndex="1" right="26%" bottom="0" width="34px" />
+            <Flex height="100%" justifyContent="center" alignItems="center" position="relative" zIndex="2">
+                <VStack justifyContent="center" color="#FFF">
+                    <Box><Droplinked /></Box>
+                    <Box textAlign="center"><AppTypography size="50px" weight='bolder'>Powering The Next Generation of Commerce</AppTypography></Box>
+                    <Box padding="10px 0 30px 0">
+                        <Text fontSize="34px" display="flex">
+                            <Typewriter
+                                options={{
+                                    strings: ['Build Customized Online Store', 'Sell Diverse Products', 'Token Gating Products', 'Automated Inventory Management', 'Sales Tracking', 'Co-sell and Earn Commissions', 'Mint to Merch', 'Be Secure and Transparent in the commerce Network'],
+                                    cursor: '',
+                                    autoStart: true,
+                                    loop: true
+                                }}
+                            /> | On-Chain
+                        </Text>
+                    </Box>
+                    <Box><BasicButton>Start Selling</BasicButton></Box>
+                </VStack>
+            </Flex>
+        </Box>
     )
 }
 

@@ -4,21 +4,90 @@
 }
 
 .rightBack {
-    svg {
-        width: 120vh;
-        height: 50vw;
+    .circle {
+        content: '';
+        display: block;
+        filter: blur(50px);
+        opacity: .6;
+        background: red;
         position: absolute;
         top: 0;
-        right: -100px;
+        right: 0;
+
+        &.b1 {
+            width: 35vh;
+            height: 65vw;
+            border-radius: 100%;
+            transform: rotate(70deg);
+            top: -450px;
+            filter: blur(150px);
+            right: 7%;
+            background: linear-gradient(#141414, transparent);
+            animation: effect 3.7s infinite alternate;
+            opacity: .5;
+        }
+
+        &.b2 {
+            width: 30vh;
+            height: 43vw;
+            border-radius: 100%;
+            transform: rotate(60deg);
+            top: 12%;
+            right: 13%;
+            background: linear-gradient(-15deg, #141414, transparent);
+            animation: effect 3.7s infinite alternate;
+        }
     }
+
+
+    &.animationPaused {
+        .circle {
+            animation-play-state: paused;
+        }
+    }
+
 }
 
 .leftBack {
-    svg {
-        width: 120vh;
-        height: 50vw;
-        position: absolute;
-        bottom: 0;
-        left: 0;
+    background: linear-gradient(225deg, #141414 40%, transparent);
+    animation: effect2 4s infinite alternate;
+    position: absolute;
+    filter: blur(20px);
+    left: 0;
+    bottom: 0;
+    width: 500px;
+    opacity: .5;
+    height: 500px;
+
+    &.animationPaused {
+        animation-play-state: paused;
+    }
+}
+
+@keyframes effect {
+    0% {
+        background-color: #380cd4;
+    }
+
+    50% {
+        background-color: #19a884;
+    }
+
+    100% {
+        background-color: #23c3d8;
+    }
+}
+
+@keyframes effect2 {
+    0% {
+        background-color: #19a884;
+    }
+    
+    50% {
+        background-color: #380cd4;
+    }
+
+    100% {
+        background-color: #23c3d8;
     }
 }
