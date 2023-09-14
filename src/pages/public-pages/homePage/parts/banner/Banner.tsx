@@ -18,7 +18,7 @@ function Banner() {
                         <Text fontSize="34px" display="flex">
                             <Typewriter
                                 options={{
-                                    strings: ['Build Customized Online Store', 'Sell Diverse Products', 'Token Gating Products', 'Automated Inventory Management', 'Sales Tracking', 'Co-sell and Earn Commissions', 'Mint to Merch', 'Be Secure and Transparent in the commerce Network'],
+                                    strings: ['Build Customized Online Store', 'Sell Diverse Products', 'Token Gating Products', 'Automated Inventory Management', 'Sales Tracking', 'Co-sell and Earn Commissions', 'Mint to Merch'],
                                     cursor: '',
                                     autoStart: true,
                                     loop: true
