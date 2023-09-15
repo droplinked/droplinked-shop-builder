@@ -49,7 +49,7 @@ function HomePage() {
                 <Banner />
               </div>
               <div className="section"><Partners loaded={States.loaded} /></div>
-              <div className="section"><Community /></div>
+              <div className="section"><Community loaded={States.loaded} /></div>
               <div className="section"><ProductsMain loaded={States.loaded} /></div>
               <div className={`section ${classes.autoHeight}`}><Networks /></div>
               <div className="section"><Embeddable /></div>
