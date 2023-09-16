@@ -13,24 +13,26 @@ export default function FooterLayout() {
   const { FooterWrapper, FooterBody, FooterText, FooterLogo, TermText } =
     footerStyles;
   return (
-    <Box
+    <VStack
       w="100%"
-      padding={{ base: "78px 42px", md: "80px 100px", lg: "80px 200px" }}
+      padding="60px 0"
       backgroundColor="black"
+      justifyContent="center"
     >
-      <Flex
-        w="100%"
-        flexDir={{base:'column' ,md:'row'}}
-        display="flex"
-        justifyContent="center"
-        alignItems={{base:"start",md:"center"}}
-        mb={{base:'86px',md:"54px"}}
-      >
-        <Description />
-        <Box mb={{base:'86px' , md:'0px'}} />
-        <Links />
-      </Flex>
-      <BottomComponent />
-    </Box>
+      <VStack align="stretch" w="95%" maxWidth="1400px">
+        <Flex
+          flexDir={{ base: 'column', md: 'row' }}
+          display="flex"
+          justifyContent="center"
+          alignItems={{ base: "start", md: "center" }}
+          mb={{ base: '86px', md: "54px" }}
+        >
+          <Description />
+          <Box mb={{ base: '86px', md: '0px' }} />
+          <Links />
+        </Flex>
+        <BottomComponent />
+      </VStack>
+    </VStack>
   );
 }

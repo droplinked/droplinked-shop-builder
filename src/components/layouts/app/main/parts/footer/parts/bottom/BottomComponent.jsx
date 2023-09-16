@@ -12,6 +12,7 @@ const BottomComponent = () => {
     <Flex
       flexDirection={{ base: "column", md: "row" }}
       justifyContent={"space-between"}
+      width="100%"
     >
       <HStack mb={{base:'18px' , md:'0px'}}>
         <Text fontFamily="Avenir Next" fontWeight="500" fontSize="12px" color='lightGray' >

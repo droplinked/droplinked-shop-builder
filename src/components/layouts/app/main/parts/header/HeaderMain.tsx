@@ -34,7 +34,7 @@ function HeaderMain() {
           <Link to=''><AppTypography color="#FFF" size='14px'>About Us</AppTypography></Link>
           <Link to=''><AppTypography color="#FFF" size='14px'>Help Center</AppTypography></Link>
         </Flex>
-        <Box><AppTypography cursor="pointer" onClick={toggleAuthModal} color="#C2C2C2" border="2px solid #292929" padding="6px 23px" size='12px'>Sign In</AppTypography></Box>
+        <Box><AppTypography borderRadius="8px" cursor="pointer" onClick={toggleAuthModal} color="#C2C2C2" border="2px solid #292929" padding="6px 23px" size='12px'>Sign In</AppTypography></Box>
       </Flex>
       <AuthModal show={authModal} shopName={shop?.name} close={toggleAuthModal} />
     </>
