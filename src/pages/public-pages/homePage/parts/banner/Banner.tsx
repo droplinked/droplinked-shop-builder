@@ -25,7 +25,7 @@ function Banner() {
                                         'Mint to Merch',
                                         'Decentralize Inventory',
                                         'Sales Tracking',
-                                        'Transparent Co-Selling',
+                                        'Transparent Co-selling',
                                         'Increase Earnings'
                                     ],
                                     cursor: '',
