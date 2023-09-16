@@ -21,9 +21,6 @@ function HomePage() {
     loaded: []
   })
 
-  console.log(States);
-
-
   return (
     <div style={{ color: "#FFF" }}>
       <Box position="fixed" top={0} right={0} left={0} bottom={0}>
