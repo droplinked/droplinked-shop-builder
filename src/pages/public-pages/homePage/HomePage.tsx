@@ -5,8 +5,6 @@ import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout'
 import ReactFullpage from '@fullpage/react-fullpage';
 import classes from './style.module.scss'
 import { Box } from '@chakra-ui/react';
-import { ReactComponent as RightBack } from 'assest/image/homepage/rightBack.svg';
-import { ReactComponent as LeftBack } from 'assest/image/homepage/leftBack.svg';
 import Partners from './parts/partners/Partners';
 import Community from './parts/community/Community';
 import ProductsMain from './parts/product/ProductsMain';
