@@ -8,22 +8,22 @@ function Partners({ loaded }) {
     const data = [
         {
             title: 'Unstoppable Domains',
-            url: '',
+            url: 'https://shop.unstoppabledomains.com/',
             icon: '/assets/images/homepage/uns.svg'
         },
         {
             title: 'Casper Punks',
-            url: '',
+            url: 'https://shop.casperpunks.io/',
             icon: '/assets/images/homepage/casper.svg'
         },
         {
             title: 'Skale',
-            url: '',
+            url: 'https://droplinked.io/skale',
             icon: '/assets/images/homepage/skale.svg'
         },
         {
             title: 'Polygon',
-            url: '',
+            url: 'https://droplinked.io/polygon',
             icon: '/assets/images/homepage/polygan.svg'
         }
     ]
@@ -42,7 +42,7 @@ function Partners({ loaded }) {
                             <MainCard transition="1s" key={key}>
                                 <Image width="64px" height="64px" src={el.icon} alt={el.title} />
                                 <AppTypography height="72px" size='24px' weight='bolder' color="#f5f5f5">{el.title}</AppTypography>
-                                <Link to=''><AppTypography backgroundColor="#292929" color="#C2C2C2" textAlign="center" borderRadius="8px" lineHeight="40px" height="40px" size='16px' weight='normal'>View Store</AppTypography></Link>
+                                <a href={el.url} target="_blank"><AppTypography backgroundColor="#292929" color="#C2C2C2" textAlign="center" borderRadius="8px" lineHeight="40px" height="40px" size='16px' weight='normal'>View Store</AppTypography></a>
                             </MainCard>
                         ))}
                     </Flex>
