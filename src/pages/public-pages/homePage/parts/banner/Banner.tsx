@@ -19,7 +19,7 @@ function Banner() {
                             <Typewriter
                                 options={{
                                     strings: [
-                                        'Build Customizable Online Store',
+                                        'Build a Customizable Store',
                                         'Sell Diverse Products',
                                         'Token Gating Collections',
                                         'Mint to Merch',

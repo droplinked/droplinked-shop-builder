@@ -1,11 +1,14 @@
-import { FlexProps, Flex } from '@chakra-ui/react'
+import { FlexProps, Flex, Box } from '@chakra-ui/react'
 import React from 'react'
+import classes from './style.module.scss'
 
 interface IProps extends FlexProps { }
 
 function MainCard(props: IProps) {
     return (
-        <Flex flexDirection="column" gap="10px" maxWidth="320px" border="2px solid #464646" background="rgba(139, 139, 139, 0.1)" borderRadius="24px" padding="50px 30px" {...props}>{props.children}</Flex>
+        <Flex className={classes.box} flexDirection="column" backdropFilter="blur(20px)" gap="10px" borderRadius="24px" background="rgba(62, 62, 62, 0.3)" padding="40px 40px" maxWidth="267px" width="24%" {...props}>
+            {props.children}
+        </Flex>
     )
 }
 

@@ -6,7 +6,7 @@ import React from 'react'
 function Contact() {
     return (
         <Flex justifyContent="center" >
-            <Flex width="95%" maxWidth="1500px" alignItems="center" gap="20px">
+            <Flex width="95%" maxWidth="1400px" alignItems="center" gap="20px">
                 <VStack width="60%" spacing="20px" align="stretch" marginTop="20px">
                     <Box><AppTypography color="#2BCFA1" size='34px' weight='bolder'>Contact droplinked team</AppTypography></Box>
                     <Box><AppTypography size='18px' color="#f5f5f5">
