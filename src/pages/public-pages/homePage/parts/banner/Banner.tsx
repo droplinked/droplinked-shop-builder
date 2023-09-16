@@ -13,7 +13,7 @@ function Banner() {
             <Flex height="100%" justifyContent="center" alignItems="center" position="relative" zIndex="2">
                 <VStack justifyContent="center" color="#FFF">
                     <Box><Droplinked /></Box>
-                    <Box textAlign="center"><AppTypography size="50px" weight='bolder'>Powering The Next Generation of Commerce</AppTypography></Box>
+                    <Box textAlign="center"><AppTypography size="50px" weight='bolder'>Powering the Next Generation of Commerce</AppTypography></Box>
                     <Box padding="10px 0 30px 0">
                         <Text fontSize="34px" display="flex">
                             <Typewriter
