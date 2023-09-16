@@ -10,13 +10,13 @@ function Community({ loaded }) {
         <Flex justifyContent="center" >
             <Flex width="95%" maxWidth="1500px" alignItems="center" gap="30px">
                 <Box width="80%" position="relative" bottom="100px">
-                    <Image src='assets/images/homepage/shape.svg' position="absolute" top="100px" left="" width="34px" />
-                    <Box background='url(assets/images/homepage/line.svg) no-repeat' backgroundSize="330px 330px" position="absolute" top="-70px" left="-15px" width={checkLoad ? "330px" : "0"} height={checkLoad ? "330px" : "0"} transition="5s" />
-                    <Box background='url(assets/images/homepage/line.svg) no-repeat' backgroundSize="330px 330px" position="absolute" top="-70px" left="205px" transform="rotate(55deg)" width="330px" height={checkLoad ? "330px" : "0"} transition="5s" />
-                    <Box background='url(assets/images/homepage/line.svg) no-repeat' backgroundSize="330px 330px" position="absolute" top="-70px" left="430px" width={checkLoad ? "330px" : "0"} height={checkLoad ? "330px" : "0"} transition="5s" />
-                    <Image src='assets/images/homepage/shape.svg' position="absolute" top="0" left="200px" width="34px" />
-                    <Image src='assets/images/homepage/shape.svg' position="absolute" top="100px" left="375px" width="34px" />
-                    <Image src='assets/images/homepage/shape.svg' position="absolute" top="0" left="550px" width="34px" />
+                    <Image src='assets/images/homepage/shape.svg' position="absolute" top="140px" left="23px" width="34px" />
+                    <Box background='url(assets/images/homepage/line.svg) no-repeat' backgroundSize="330px 330px" position="absolute" top="-70px" left="-15px" width="330px" height="330px" transition="5s" />
+                    <Box background='url(assets/images/homepage/line.svg) no-repeat' backgroundSize="330px 330px" position="absolute" top="-70px" left="205px" transform="rotate(55deg)" width="330px" height="330px" transition="5s" />
+                    <Box background='url(assets/images/homepage/line.svg) no-repeat' backgroundSize="330px 330px" position="absolute" top="-70px" left="430px" width="330px" height="330px" transition="5s" />
+                    <Image src='assets/images/homepage/shape.svg' position="absolute" top="20px" left="240px" width="34px" />
+                    <Image src='assets/images/homepage/shape.svg' position="absolute" top="140px" left="465px" width="34px" />
+                    <Image src='assets/images/homepage/shape.svg' position="absolute" top="20px" left="687px" width="34px" />
                 </Box>
                 <VStack width="40%" align="stretch">
                     <Box><AppTypography size='34px' weight='bolder'>Community Driven Commerce</AppTypography></Box>
