@@ -29,7 +29,7 @@ function HeaderMain() {
 
   return (
     <>
-      <Flex justifyContent="space-between" position="absolute" top="0" right="0" left="0" padding="20px 30px" zIndex="1" alignItems="center">
+      <Flex justifyContent="space-between" position="absolute" top="0" right="0" left="0" padding="20px 30px" zIndex="10" alignItems="center">
         <Flex color="#FFF" gap="100px">
           <Link to=''><AppTypography color="#FFF" size='14px'>About Us</AppTypography></Link>
           <Link to=''><AppTypography color="#FFF" size='14px'>Help Center</AppTypography></Link>
