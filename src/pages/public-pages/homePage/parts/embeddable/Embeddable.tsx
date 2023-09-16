@@ -13,12 +13,12 @@ function Embeddable() {
         {
             image: 'assets/images/homepage/Frame21377.jpg',
             title: 'Caramel Imagination',
-            price: '23.00 USD'
+            price: '58.00 USD'
         },
         {
-            image: 'assets/images/homepage/Frame21377.jpg',
-            title: 'Example',
-            price: '33 USD'
+            image: 'assets/images/homepage/Frame21328.jpg',
+            title: 'ColorWave Handbag',
+            price: '39.99 USD'
         }
     ]
 
