@@ -69,10 +69,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                     await login()
                     const request = await stacks.approve({ isRequestPending, openContractCall, params: { id: requestID, publisher: shop?.recordData?.details?.publisher } })
                     deploy_hash = request.txId
-                } else if (["POLYGON", "RIPPLE", "BINANCE"].includes(blockchain)) {
-                    if(blockchain === "RIPPLE"){
-                        blockchain = "RIPPLESIDECHAIN";
-                    }
+                } else if (["POLYGON", "RIPPLESIDECHAIN", "BINANCE"].includes(blockchain)) {
                     const accept = await notificationsButtonsModel.approve({ chain: blockchain, requestID })
                     deploy_hash = accept
                 }

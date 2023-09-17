@@ -49,7 +49,7 @@ const RecordModalModule = ({
                     record: record_merch_polygon
                 }
                 break;
-            case "RIPPLE":
+            case "RIPPLESIDECHAIN":
                 methods = {
                     login: XRPLogin,
                     record: XRPRecordMerch
