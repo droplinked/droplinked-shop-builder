@@ -24,8 +24,12 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
   // submit form function
   const onSubmit = async (data: Iform) => {
-   console.log("test");
-   
+    try {
+      let result = await login(data)
+      if (result) loginFunction(result);
+    } catch (error) {
+      showToast(error?.statusCode === 406 ? "Incorrect login information" : error.message, "error");
+    }
   };
 
   // action on user data based on type and status
