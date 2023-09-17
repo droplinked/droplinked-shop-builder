@@ -55,7 +55,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
 
     const submit = useCallback(async () => {
         try {
-            const blockchain = shop.sku[0]?.recordData?.recordNetwork
+            let blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
             let deploy_hash = ''
             const requestID = shop?.recordData?.details?.request_id
@@ -70,6 +70,9 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                     const request = await stacks.approve({ isRequestPending, openContractCall, params: { id: requestID, publisher: shop?.recordData?.details?.publisher } })
                     deploy_hash = request.txId
                 } else if (["POLYGON", "RIPPLE", "BINANCE"].includes(blockchain)) {
+                    if(blockchain === "RIPPLE"){
+                        blockchain = "RIPPLESIDECHAIN";
+                    }
                     const accept = await notificationsButtonsModel.approve({ chain: blockchain, requestID })
                     deploy_hash = accept
                 }
