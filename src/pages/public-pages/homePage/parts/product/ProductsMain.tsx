@@ -7,17 +7,17 @@ import classes from './style.module.scss'
 function ProductsMain({ loaded }) {
     const data = [
         {
-            title: 'Physical Products',
+            title: 'Physical Items',
             url: '',
             icon: '/assets/images/homepage/physicalProducts.svg'
         },
         {
-            title: 'Print on Deman',
+            title: 'Print On Demand',
             url: '',
             icon: '/assets/images/homepage/pod.svg'
         },
         {
-            title: 'Digital Products',
+            title: 'Digital Goods',
             url: '',
             icon: '/assets/images/homepage/digital.svg'
         },

@@ -28,7 +28,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
       let result = await login(data)
       if (result) loginFunction(result);
     } catch (error) {
-      showToast(error?.statusCode === 406 ? "Incorrect login information" : error.message, "error");
+      showToast(error?.message, "error");
     }
   };
 
