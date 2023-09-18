@@ -5,7 +5,7 @@ import appUploadImageContext from 'components/common/upload/image/context'
 import React, { useCallback, useContext } from 'react'
 
 function UploadImagesList() {
-    const { values, deleted, defaults } = useContext(appUploadImageContext)
+    const { values, deleted, defaults, product } = useContext(appUploadImageContext)
 
     const star = useCallback((url: string) => {
         const props = {
@@ -29,8 +29,8 @@ function UploadImagesList() {
                                 </AppTooltip>
                             </Box>
 
-                            {defaults && <AppTooltip label="Set change default"><Box position="absolute" top={3} left={3}>{star(el)}</Box></AppTooltip>}
-                            <Image src={el} maxWidth="75%" maxHeight="75%" borderRadius="8px" />
+                            {defaults && <AppTooltip label="Set change default"><Box position="absolute" top={3} left={3}>{star(product ? el.url : el)}</Box></AppTooltip>}
+                            <Image src={product ? el?.thumbnail : el} maxWidth="75%" maxHeight="75%" borderRadius="8px" />
                         </Flex>
                     ))}
                 </>

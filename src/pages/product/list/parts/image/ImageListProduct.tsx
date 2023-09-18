@@ -12,7 +12,7 @@ function ImageListProduct({ product }) {
     return (
         <a href={`${shopRoute}/products/${product._id}`} target="_blank">
             <HStack width={"250px"} color="#FFF">
-                <Box width={"50px"}><AppImage src={product?.thumb || main} /></Box>
+                <Box width={"50px"}><AppImage src={main} /></Box>
                 <Box width={"100%"}><Text>{product.title}</Text></Box>
             </HStack>
         </a>

@@ -13,6 +13,7 @@ interface IProps {
     deleted(name: string): void
     isLoading: boolean
     mode: ImodeUploadImage
+    product?: boolean
     defaults: IUploadImageDefault
 }
 
@@ -21,6 +22,7 @@ const appUploadImageContext = createContext<IProps>({
     openFile: () => { },
     deleted: () => { },
     isLoading: false,
+    product: false,
     mode: "multi",
     defaults: {
         value: null,

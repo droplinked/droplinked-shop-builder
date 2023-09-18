@@ -43,7 +43,7 @@ const HeaderDashboard = () => {
 
   return (
     <UserHeaderWrapper>
-      <Link to={`${shop?.name}/c/products`}>
+      <Link to={`/${shop?.name}/c/products`}>
         <UserHeaderIcon src={droplinkedIcon} />
       </Link>
       {shop ? (

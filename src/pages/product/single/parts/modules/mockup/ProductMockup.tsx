@@ -7,7 +7,6 @@ import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'
 import introductionClass from '../../general/model'
 import SkeletonProduct from '../skeleton/SkeletonProduct'
-import ProductPageTitle from '../title/ProductPageTitle'
 import ProductIframe from './parts/iframe/ProductIframe'
 
 function ProductMockup() {
@@ -26,10 +25,11 @@ function ProductMockup() {
                     <SkeletonProduct width={"30%"} height={"200px"}>
                         <AppUploadImage
                             size='original'
-                            defaults={{ updateDefault: (url) => updateState("media", refactorImage(defactorImage(media), url)), value: isMain(media)?.url }}
+                            defaults={{ updateDefault: (url) => updateState("media", refactorImage(media, url)), value: isMain(media)?.url }}
+                            product
                             toast={AppErrors.store.upload("Mockup")}
                             onChange={(images: any) => updateState("media", refactorImage(images))}
-                            values={defactorImage(media)} />
+                            values={media} />
                     </SkeletonProduct>
                 </Box>
             </VStack>
