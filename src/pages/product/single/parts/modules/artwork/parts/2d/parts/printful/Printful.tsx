@@ -96,7 +96,7 @@ function Printful({ close, open }: IProps) {
             const imagesPrintfiles = generateThumbPrintfiles?.data?.data?.originals
             updateState("m2m_positions_options", mockupsData?.printfiles.map((el, key) => ({ ...el, url: imagesPrintfiles[key] })))
 
-            updateState("media", refactorImage(mockupsData?.mockups))
+            await generateImages(mockupsData?.mockups)
 
             const result = [
                 {
@@ -124,6 +124,15 @@ function Printful({ close, open }: IProps) {
             setState('loading', false)
         }
     }, [pod_blank_product_id, States.TemplateId])
+
+    const generateImages = useCallback(async (mocks: any) => {
+        try {
+            const data = await generateThumb.mutateAsync(mocks)
+            const images = data?.data?.data?.originals.map((el, key) => ({ url: el, thumbnail: data?.data?.data?.thumbs[key], isMain: key === 0 }))
+            updateState("media", images)
+
+        } catch (error) { }
+    }, [])
 
     useEffect(() => { if (States.TemplateId) generate() }, [States.TemplateId])
 

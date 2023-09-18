@@ -1,6 +1,6 @@
 import { IproductState } from "lib/apis/product/interfaces";
 import { createContext } from "react";
-import ProductPageNamespace, { productActions } from "./reducers";
+import ProductPageNamespace, { productActions, productParams } from "./reducers";
 
 
 export interface IpropertiesItems {
@@ -35,7 +35,8 @@ export const productContext = createContext<IproductContext>({
             variants: [],
             available_variant: [],
             print_positions: [],
-            product_types: []
+            product_types: [],
+            prev_data: productParams
         },
         methods: {
             update: () => { }

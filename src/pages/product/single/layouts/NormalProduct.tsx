@@ -14,7 +14,7 @@ function NormalProduct() {
 
     return (
         <>
-            <General open={false} />
+            <General open={true} />
             <DigitalLinks />
             <ShippingProduct />
             {!ProductModel.isPrintful(prodviderID) && <Variant />}

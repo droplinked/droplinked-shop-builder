@@ -20,12 +20,18 @@ export interface IDigitalLinks {
     message?: string
 }
 
+export interface Imedia {
+    isMain: boolean
+    url: string
+    thumbnail: string
+}
+
 export interface IproductState {
     title: string
     description: string
     productCollectionID: string
     priceUnit: string
-    media: Array<string>
+    media: Array<Imedia>
     shippingPrice: number
     product_type: product_type
     publish_product: boolean
