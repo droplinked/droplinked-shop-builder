@@ -19,6 +19,8 @@ import productPageNamespace from './reducers'
 import ProductLoading from './parts/loading/ProductLoading'
 import ProductModel from './model'
 import { nanoid } from 'nanoid'
+import NormalProduct from './layouts/NormalProduct'
+import PODProduct from './layouts/PODProduct'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
@@ -94,14 +96,7 @@ function ProductSingle() {
             <ProductStore>
                 <ProductLoading />
                 <VStack spacing={5}>
-                    <General />
-                    <DigitalLinks />
-                    <ShippingProduct />
-                    {!ProductModel.isPrintful(state.params.prodviderID) && <Variant />}
-                    <ProductPodDesign />
-                    {ProductModel.isPrintful(state.params.prodviderID) && <Variant />}
-                    <CollectionProduct />
-                    <ButtonsProduct />
+                    {state.params.product_type === "PRINT_ON_DEMAND" ? <PODProduct /> : <NormalProduct />}
                 </VStack>
             </ProductStore>
         </productContext.Provider>

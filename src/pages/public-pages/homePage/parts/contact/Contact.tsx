@@ -8,11 +8,11 @@ function Contact() {
         <Flex justifyContent="center" >
             <Flex width="95%" maxWidth="1400px" alignItems="center" gap="20px">
                 <VStack width="60%" spacing="20px" align="stretch" marginTop="20px">
-                    <Box><AppTypography color="#2BCFA1" size='34px' weight='bolder'>Contact droplinked team</AppTypography></Box>
+                    <Box><AppTypography color="#2BCFA1" size='34px' weight='bolder'>Contact droplinked Team</AppTypography></Box>
                     <Box><AppTypography paddingTop="20px" size='18px' color="#f5f5f5">
                         Are you a large retailer, brand or enterprise organization?
                         <br />
-                        droplinked provides interoperable infrastructure that scales with you.
+                        Droplinked provides interoperable infrastructure that scales with you
                     </AppTypography></Box>
                     <Box paddingTop="20px"><BasicButton>Get Started</BasicButton></Box>
                 </VStack>

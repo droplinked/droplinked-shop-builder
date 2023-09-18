@@ -21,6 +21,7 @@ import { useCallback } from "react";
 import AppIcons from "assest/icon/Appicons";
 import useHookStore from "functions/hooks/store/useHookStore";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
+import { appDeveloment } from "lib/utils/app/variable";
 
 const HeaderDashboard = () => {
   const { app: { shop } } = useHookStore();
@@ -85,7 +86,7 @@ const HeaderDashboard = () => {
               </Text>
               <Box mb="20px" />
               <a
-                href={`https://droplinked.io/${shop?.name}`}
+                href={`https://${appDeveloment ? 'dev.' : ''}droplinked.io/${shop?.name}`}
                 onClick={onClose}
                 target="_blank"
               >

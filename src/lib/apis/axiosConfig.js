@@ -8,7 +8,7 @@ export const axiosInstance = axios.create({
 
 const reject = (error) => {
     const statusCode = error?.response?.status
-    if (statusCode && statusCode === 401) {
+    if (statusCode && statusCode === 401 && AppStorage.accessToken()) {
         AppStorage.clearStorage()
         window.location.replace(window.location.origin)
     }
