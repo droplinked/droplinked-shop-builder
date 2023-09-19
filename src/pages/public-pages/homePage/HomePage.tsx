@@ -4,7 +4,7 @@ import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
 import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
 import ReactFullpage from '@fullpage/react-fullpage';
 import classes from './style.module.scss'
-import { Box } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import Partners from './parts/partners/Partners';
 import Community from './parts/community/Community';
 import ProductsMain from './parts/product/ProductsMain';
@@ -32,7 +32,7 @@ function HomePage() {
         render={({ state, fullpageApi }) => {
           return (
             <ReactFullpage.Wrapper>
-              <div className="section" style={{ position: "relative" }}>
+              <div className="section">
                 <Box position="fixed" top={0} right={0} left={0} bottom={0}>
                   <Box className={`${classes.rightBack} ${States.pause ? classes.animationPaused : ''}`}>
                     <Box className={`${classes.circle} ${classes.b1}`}></Box>
@@ -43,17 +43,30 @@ function HomePage() {
                 <HeaderMain />
                 <Banner />
               </div>
-              <div className="section" style={{ position: "relative" }}>
-                <Box className={`${classes.over} ${classes.right}`}></Box>
-                <Box className={`${classes.over} ${classes.left}`}></Box>
+              <div className="section">
+                <Image src='/assets/images/homepage/ef1.png' position="absolute" top="-300px" right="0" />
+                <Image src='/assets/images/homepage/ef2.png' position="absolute" bottom="-300px" left="0" />
                 <Partners loaded={States.loaded} />
               </div>
               <div className="section"><Community loaded={States.loaded} /></div>
-              <div className="section"><ProductsMain loaded={States.loaded} /></div>
+              <div className="section">
+                <Image src='/assets/images/homepage/ef1.png' position="absolute" top="-200px" right="0" />
+                <Image src='/assets/images/homepage/ef2.png' position="absolute" bottom="-600px" left="0" />
+                <ProductsMain loaded={States.loaded} />
+              </div>
               <div className={`section ${classes.autoHeight}`}><Networks /></div>
-              <div className="section"><Embeddable /></div>
-              <div className="section"><Supported /></div>
-              <div className="section"><Contact /></div>
+              <div className="section">
+                <Image src='/assets/images/homepage/ef1.png' opacity=".5" position="absolute" top="-200px" right="0" />
+                <Embeddable />
+              </div>
+              <div className="section">
+                <Image src='/assets/images/homepage/ef3.png' position="absolute" width="50%" bottom="-1000px" left="0" />
+                <Supported />
+              </div>
+              <div className="section">
+                <Box width="500px" height="500px" background="linear-gradient(-50deg, #30977E -170%,transparent)" filter="blur(30px)" bottom="0" right="0" position="absolute"></Box>
+                <Contact />
+              </div>
               <div auto-height className={`section ${classes.autoHeight}`}>
                 <FooterLayout />
               </div>
