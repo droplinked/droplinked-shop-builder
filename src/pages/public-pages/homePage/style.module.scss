@@ -1,3 +1,11 @@
+@mixin before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+}
+
 .autoHeight {
     height: auto !important;
     max-height: auto !important;
@@ -39,7 +47,6 @@
         }
     }
 
-
     &.animationPaused {
         .circle {
             animation-play-state: paused;
@@ -49,15 +56,29 @@
 }
 
 .leftBack {
-    background: linear-gradient(225deg, #141414 40%, transparent);
+    background: linear-gradient(-90deg, #141414, transparent);
     animation: effect2 4s infinite alternate;
     position: absolute;
     filter: blur(20px);
     left: 0;
     bottom: 0;
-    width: 500px;
+    width: 600px;
     opacity: .5;
-    height: 500px;
+    height: 600px;
+
+    &::before {
+        background: linear-gradient(#141414, transparent);
+        top: 0;
+        left: 0;
+        @include before
+    }
+
+    &::after {
+        background: linear-gradient(transparent, #141414);
+        bottom: 0;
+        left: 0;
+        @include before
+    }
 
     &.animationPaused {
         animation-play-state: paused;
@@ -82,7 +103,7 @@
     0% {
         background-color: #19a884;
     }
-    
+
     50% {
         background-color: #380cd4;
     }
@@ -90,4 +111,15 @@
     100% {
         background-color: #23c3d8;
     }
+}
+
+.over {
+    background: linear-gradient(90deg, #380cd4, transparent);
+    position: absolute;
+    filter: blur(20px);
+    left: 0;
+    bottom: 0;
+    width: 600px;
+    opacity: .5;
+    height: 600px;
 }

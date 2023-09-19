@@ -21,13 +21,6 @@ function HomePage() {
 
   return (
     <div style={{ color: "#FFF" }}>
-      <Box position="fixed" top={0} right={0} left={0} bottom={0}>
-        <Box className={`${classes.rightBack} ${States.pause ? classes.animationPaused : ''}`}>
-          <Box className={`${classes.circle} ${classes.b1}`}></Box>
-          <Box className={`${classes.circle} ${classes.b2}`}></Box>
-        </Box>
-        <Box className={`${classes.leftBack} ${States.pause ? classes.animationPaused : ''}`}></Box>
-      </Box>
       <ReactFullpage
         anchors={['banner', 'partners', 'community', 'products', 'network', 'embeddable', 'supported', 'contact', 'end']}
         afterLoad={(origin, destination) => {
@@ -39,11 +32,22 @@ function HomePage() {
         render={({ state, fullpageApi }) => {
           return (
             <ReactFullpage.Wrapper>
-              <div className="section">
+              <div className="section" style={{ position: "relative" }}>
+                <Box position="fixed" top={0} right={0} left={0} bottom={0}>
+                  <Box className={`${classes.rightBack} ${States.pause ? classes.animationPaused : ''}`}>
+                    <Box className={`${classes.circle} ${classes.b1}`}></Box>
+                    <Box className={`${classes.circle} ${classes.b2}`}></Box>
+                  </Box>
+                  <Box className={`${classes.leftBack} ${States.pause ? classes.animationPaused : ''}`}></Box>
+                </Box>
                 <HeaderMain />
                 <Banner />
               </div>
-              <div className="section"><Partners loaded={States.loaded} /></div>
+              <div className="section" style={{ position: "relative" }}>
+                <Box className={`${classes.over} ${classes.b1}`}></Box>
+                <Box className={`${classes.over} ${classes.b2}`}></Box>
+                <Partners loaded={States.loaded} />
+              </div>
               <div className="section"><Community loaded={States.loaded} /></div>
               <div className="section"><ProductsMain loaded={States.loaded} /></div>
               <div className={`section ${classes.autoHeight}`}><Networks /></div>
