@@ -44,8 +44,8 @@ function HomePage() {
                 <Banner />
               </div>
               <div className="section" style={{ position: "relative" }}>
-                <Box className={`${classes.over} ${classes.b1}`}></Box>
-                <Box className={`${classes.over} ${classes.b2}`}></Box>
+                <Box className={`${classes.over} ${classes.right}`}></Box>
+                <Box className={`${classes.over} ${classes.left}`}></Box>
                 <Partners loaded={States.loaded} />
               </div>
               <div className="section"><Community loaded={States.loaded} /></div>
