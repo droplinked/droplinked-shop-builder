@@ -13,7 +13,7 @@ function Contact() {
                     <Box><AppTypography size={{ base: "14px", sm: "20px" }} textAlign={{ base: "center", md: "left" }} paddingTop="20px" color="#f5f5f5">
                         Are you a large retailer, brand or enterprise organization?
                         <br />
-                        droplinked provides interoperable infrastructure that scales with you.
+                        Droplinked provides interoperable infrastructure that scales with you
                     </AppTypography></Box>
                     <Flex paddingTop={{ base: "50px", sm: "90px", md: "20px" }} justifyContent={{ base: "center", md: "left" }}>
                         <BasicButton minWidth={{ base: "120px", sm: "160px" }} height={{ base: "32px", sm: "40px" }}>

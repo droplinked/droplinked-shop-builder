@@ -21,7 +21,7 @@ const ImagesSliderBannerComponent = ({ images }) => {
 
   return (
     <Flex wrap="wrap">
-      <Swiper spaceBetween={10} slidesPerView={4.7} lazyPreloadPrevNext >
+      <Swiper style={{ width: "100%" }} spaceBetween={10} slidesPerView={4.7} lazyPreloadPrevNext >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <ActiveBox props={{ width: "100%", borderRadius: "4px" }} active={backgroundImage === image.banner_src}>

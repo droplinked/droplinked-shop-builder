@@ -8,18 +8,21 @@ import appUploadImageContext, { ImodeUploadImage, IUploadImageDefault } from './
 import UploadImageModel from './model';
 import DefaultHoverBox from './parts/default/DefaultHoverBox';
 
+type sizes = "small" | "original" | "standard"
+
 interface IProps {
-    values: Array<string> | string
+    values: Array<any> | string
     onChange: Function
     onSuccess?: Function
     onDelete?: Function
     toast?: string
-    size?: "small" | "original" | "standard"
+    size?: sizes
+    product?: boolean
     mode?: ImodeUploadImage
     defaults?: IUploadImageDefault
 }
 
-function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess, mode = "multi", onDelete, defaults }: IProps) {
+function AppUploadImage({ onChange, product, values, size = "standard", toast, onSuccess, mode = "multi", onDelete, defaults }: IProps) {
     const { mutateAsync, isLoading } = useMutation((formData: any) => axios.post("https://cdn.droplinked.com/upload", formData))
     const fileRef = useRef(null);
     const { showToast } = useAppToast()
@@ -31,13 +34,14 @@ function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess,
             const formData = new FormData();
             formData.append("image", file);
             const data = await mutateAsync(formData)
-            onChange(typeof values === "object" ? [...values, data.data[size]] : data.data[size])
+            const images = product ? { url: data.data[size], thumbnail: data.data['small'] } : data.data[size]
+            onChange(typeof values === "object" ? [...values, images] : images)
             if (onSuccess) onSuccess(data.data)
             showToast(toast || "Upload image successful", "success")
         } catch (error) {
             showToast(error.message, "error");
         }
-    }, [values, toast])
+    }, [values, toast, size, product])
 
     const deleted = useCallback((name: string) => {
         if (typeof values !== "object") return false
@@ -53,6 +57,7 @@ function AppUploadImage({ onChange, values, size = "standard", toast, onSuccess,
             openFile: () => fileRef.current.click(),
             deleted,
             isLoading,
+            product,
             mode,
             defaults
         }}>

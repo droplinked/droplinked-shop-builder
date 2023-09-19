@@ -28,21 +28,42 @@ function SocialAffliate({ social, size }: IProps) {
     }, [size])
 
     const icons = {
-        instagram: <AppIcons.InstagramIcon {...sized} />,
-        discord: <AppIcons.Discord {...sized} />,
-        tiktok: <AppIcons.TikTok {...sized} />,
-        linkedin: <AppIcons.LinkedIn {...sized} />,
-        twitter: <AppIcons.TwitterIcon {...sized} />,
-        facebook: <AppIcons.FacebookIcon {...sized} />,
-        web: <AppIcons.Web {...sized} />,
+        instagram: {
+            icon: <AppIcons.InstagramIcon {...sized} />,
+            url: 'https://www.instagram.com/'
+        },
+        discord: {
+            icon: <AppIcons.Discord {...sized} />,
+            url: 'https://discord.gg/'
+        },
+        tiktok: {
+            icon: <AppIcons.TikTok {...sized} />,
+            url: 'https://www.tiktok.com/'
+        },
+        linkedin: {
+            icon: <AppIcons.LinkedIn {...sized} />,
+            url: 'https://www.linkedin.com/'
+        },
+        twitter: {
+            icon: <AppIcons.TwitterIcon {...sized} />,
+            url: 'https://twitter.com/'
+        },
+        facebook: {
+            icon: <AppIcons.FacebookIcon {...sized} />,
+            url: 'https://www.facebook.com/'
+        },
+        web: {
+            icon: <AppIcons.Web {...sized} />,
+            url: 'https://'
+        },
     }
 
     return (
         <HStack spacing={3}>
             {Object.keys(social).filter(el => social[el]).map((el, key) => (
                 <Box key={key}>
-                    <a href={social[el]} target={"_blank"}>
-                        {icons[el]}
+                    <a href={icons[el].url + social[el]} target={"_blank"}>
+                        {icons[el].icon}
                     </a>
                 </Box>
             ))}

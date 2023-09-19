@@ -6,7 +6,7 @@ import { XRPApproveRequest } from "lib/utils/blockchain/ripple/xrpApprove"
 import { XRPLogin } from "lib/utils/blockchain/ripple/xrpLogin"
 
 interface IApprove {
-    chain: "POLYGON" | "RIPPLE" | "BINANCE"
+    chain: "POLYGON" | "RIPPLESIDECHAIN" | "BINANCE"
     requestID: string
 }
 
@@ -24,7 +24,7 @@ const notificationsButtonsModel = ({
                     request: approve_request_polygon
                 }
                 break;
-            case 'RIPPLE':
+            case 'RIPPLESIDECHAIN':
                 methods = {
                     login: XRPLogin,
                     request: XRPApproveRequest

@@ -23,7 +23,7 @@ export type productActions =
         params: IDigitalLinks
     }
 
-const productParams: IproductState = {
+export const productParams: IproductState = {
     title: '',
     description: '',
     productCollectionID: '',
