@@ -36,7 +36,7 @@ function Partners({ loaded }) {
             <Flex justifyContent="center" alignItems="center">
                 <VStack width="95%" maxWidth={checkLoad ? "1400px" : "100%"} opacity={checkLoad ? 1 : 0} transition={".7s"} justifyContent="center" color="#FFF">
                     <Box><AppTypography size="34px" weight='bolder'>Partners</AppTypography></Box>
-                    <Box padding="10px 0 30px 0"><AppTypography size="20px" color="#888">Explore the Network of collaborators taking commerce to the next level!</AppTypography></Box>
+                    <Box padding="10px 0 30px 0"><AppTypography size="20px" color="#888">Explore the network of collaborators taking commerce to the next level!</AppTypography></Box>
                     <Flex width="100%" justifyContent="space-between">
                         {data.map((el, key) => (
                             <MainCard transition="1s" key={key}>
