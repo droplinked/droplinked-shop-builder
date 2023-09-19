@@ -12,7 +12,7 @@ function ProductsMain({ loaded }) {
             icon: '/assets/images/homepage/physicalProducts.svg'
         },
         {
-            title: 'Print on Deman',
+            title: 'Print On Demand',
             url: '',
             icon: '/assets/images/homepage/pod.svg'
         },
