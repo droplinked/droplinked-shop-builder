@@ -48,7 +48,7 @@ function Printful({ close, open }: IProps) {
                 nonce: data?.data?.data?.nonce,
                 style: styles,
                 onError: (err) => {
-                    showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
+                    if(err && err.search("valid nonce") <= 0) showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
                     setState('loading', false)
                 },
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
