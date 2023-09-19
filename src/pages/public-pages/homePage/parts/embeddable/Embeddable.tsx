@@ -23,8 +23,8 @@ function Embeddable() {
     ]
 
     return (
-        <Flex justifyContent="center" alignItems="center" gap="100px">
-            <VStack align="stretch" width="300px">
+        <Flex justifyContent="center" flexDirection={{ base: "column", lg: "row" }} alignItems="center" columnGap="100px" rowGap="20px">
+            <VStack align="stretch" width={{ base: "200px", lg: "300px" }}>
                 <Swiper
                     slidesPerView={1}
                     spaceBetween={3}
@@ -37,15 +37,15 @@ function Embeddable() {
                 >
                     {data.map((el, key) => (
                         <SwiperSlide key={key}>
-                            <VStack align="stretch" borderRadius="24px" background="linear-gradient(#944BFB, #619FE7)" padding="25px" spacing="11px">
+                            <VStack align="stretch" borderRadius={{ base: "14px", lg: "24px" }} background="linear-gradient(#944BFB, #619FE7)" padding={{ base: "10px", lg: "25px" }} spacing="11px">
                                 <Box><Image src={el.image} borderRadius="8px" width="100%" /></Box>
-                                <AppTypography size='20px'>{el.title}</AppTypography>
-                                <AppTypography size='20px' weight='bolder'>{el.price}</AppTypography>
-                                <Flex color="#C2C2C2" padding="10px 10px 10px 40px" alignItems="center" gap="10px" borderRadius="8px" backgroundColor="#292929">
+                                <AppTypography size={{ base: "14px", lg: "20px" }}>{el.title}</AppTypography>
+                                <AppTypography size={{ base: "14px", lg: "20px" }} weight='bolder'>{el.price}</AppTypography>
+                                <Flex color="#C2C2C2" padding={{ base: "10px", lg: "10px 10px 10px 40px" }} alignItems="center" gap="10px" borderRadius="8px" backgroundColor="#292929">
                                     <PaymentIcon />
                                     <AppTypography size='14px' weight='bolder'>Fiat Payment</AppTypography>
                                 </Flex>
-                                <Flex color="#C2C2C2" padding="10px 10px 10px 40px" alignItems="center" gap="10px" borderRadius="8px" backgroundColor="#292929">
+                                <Flex color="#C2C2C2" padding={{ base: "10px", lg: "10px 10px 10px 40px" }} alignItems="center" gap="10px" borderRadius="8px" backgroundColor="#292929">
                                     <CryptoIcon />
                                     <AppTypography size='14px' weight='bolder'>Crypto Payment</AppTypography>
                                 </Flex>
@@ -54,9 +54,9 @@ function Embeddable() {
                     ))}
                 </Swiper>
             </VStack>
-            <VStack width="40%" align="stretch" marginTop="20px">
-                <Box><AppTypography size='34px' weight='bolder'>Embeddable Product Card</AppTypography></Box>
-                <Box><AppTypography size='20px' color="#888">Semi and fully decentralized product cards to sell anywhere on the web with distributed checkout that reaches your customers wherever they are online</AppTypography></Box>
+            <VStack width={{ base: "90%", sm: "60%", lg: "40%" }} align="stretch" marginTop="20px">
+                <Box><AppTypography textAlign={{ base: "center", lg: "left" }} size={{ base: "18px", sm: "24px", lg: "34px" }} weight='bolder'>Embeddable Product Card</AppTypography></Box>
+                <Box><AppTypography textAlign={{ base: "center", lg: "left" }} size={{ base: "14px", sm: "18px", lg: "20px" }} color="#888">Semi and fully decentralized product cards to sell anywhere on the web with distributed checkout that reaches your customers wherever they are online</AppTypography></Box>
             </VStack>
         </Flex>
     )
