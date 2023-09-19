@@ -7,7 +7,7 @@ type weight = "normal" | "bold" | "bolder"
 
 export interface IAppTypography extends TextProps {
   children?: any
-  size: size
+  size: any | size
   weight?: weight
 }
 

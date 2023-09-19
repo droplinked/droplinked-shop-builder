@@ -44,23 +44,23 @@ function HomePage() {
                 <Banner />
               </div>
               <div className="section">
-                <Image src='/assets/images/homepage/ef1.png' position="absolute" top="-300px" right="0" />
-                <Image src='/assets/images/homepage/ef2.png' position="absolute" bottom="-300px" left="0" />
+                <Image src='/assets/images/homepage/ef1.png' position="absolute" top="-300px" right="0" zIndex="0" />
+                <Image src='/assets/images/homepage/ef2.png' position="absolute" bottom="-300px" left="0" zIndex="0" />
                 <Partners loaded={States.loaded} />
               </div>
               <div className="section"><Community loaded={States.loaded} /></div>
               <div className="section">
-                <Image src='/assets/images/homepage/ef1.png' position="absolute" top="-200px" right="0" />
-                <Image src='/assets/images/homepage/ef2.png' position="absolute" bottom="-600px" left="0" />
+                <Image src='/assets/images/homepage/ef1.png' position="absolute" top="-200px" right="0" zIndex="0" />
+                <Image src='/assets/images/homepage/ef2.png' position="absolute" bottom="-600px" left="0" zIndex="0" />
                 <ProductsMain loaded={States.loaded} />
               </div>
               <div className={`section ${classes.autoHeight}`}><Networks /></div>
               <div className="section">
-                <Image src='/assets/images/homepage/ef1.png' opacity=".5" position="absolute" top="-200px" right="0" />
+                <Image src='/assets/images/homepage/ef1.png' opacity=".5" zIndex="0" position="absolute" top="-200px" right="0" />
                 <Embeddable />
               </div>
               <div className="section">
-                <Image src='/assets/images/homepage/ef3.png' position="absolute" width="50%" bottom="-1000px" left="0" />
+                <Image src='/assets/images/homepage/ef3.png' position="absolute" zIndex="0" width="50%" bottom="-1000px" left="0" />
                 <Supported />
               </div>
               <div className="section">
