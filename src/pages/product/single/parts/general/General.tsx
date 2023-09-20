@@ -7,10 +7,14 @@ import ProductImages from '../modules/images/ProductImages'
 import AvailablePurchase from '../modules/available/AvailablePurchase'
 import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
 
-function General() {
+interface Iprops {
+    open: boolean
+}
+
+function General({open}:Iprops) {
 
     return (
-        <ProductCollapse show title='General Information' description="Provide product details">
+        <ProductCollapse show={open} title='General Information' description="Provide product details">
             <VStack spacing={10} align={"stretch"}>
                 <ProductName />
                 <DescriptionProduct />
