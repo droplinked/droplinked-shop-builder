@@ -45,6 +45,8 @@ const MakeDataProductModel = ({
             "purchaseAvailable": state.purchaseAvailable,
             "digitalDetail": state.digitalDetail,
             "m2m_positions_options": state.m2m_positions_options,
+            "shippingType": state.shippingType,
+            ...state.shippingPrice && {"shippingPrice": state.shippingPrice},
         }
     }
 })
