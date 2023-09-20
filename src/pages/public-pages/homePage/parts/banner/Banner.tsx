@@ -13,9 +13,9 @@ function Banner() {
             <Flex height="100%" justifyContent="center" alignItems="center" position="relative" zIndex="2">
                 <VStack justifyContent="center" color="#FFF">
                     <Droplinked />
-                    <Box textAlign="center"><AppTypography size={{ base: "20px", sm: "30px", lg: "50px" }} weight='bolder'>Powering the Next Generation of Commerce</AppTypography></Box>
+                    <Box textAlign="center" padding="0 20px"><AppTypography size={{ base: "20px", sm: "25px", lg: "30px", xl: "50px" }} weight='bolder'>Powering the Next Generation of Commerce</AppTypography></Box>
                     <Box padding="10px 0 30px 0">
-                        <Text fontSize={{ base: "14px", sm: "24px", lg: "34px" }} display="flex">
+                        <Text fontSize={{ base: "14px", sm: "24px", xl: "34px" }} display="flex">
                             <Typewriter
                                 options={{
                                     strings: [
