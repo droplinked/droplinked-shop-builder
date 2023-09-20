@@ -2,7 +2,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 
 interface Iprops {
-    text: string
+    text: any
 }
 
 function LandingDescription({ text }: Iprops) {
