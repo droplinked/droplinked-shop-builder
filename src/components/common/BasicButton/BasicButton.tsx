@@ -39,6 +39,7 @@ export default function BasicButton(props: IBasicButton) {
         background: "unset"
       }}
       {...props}
+      boxShadow="none !important"
     >
       {props.isLoading !== undefined && props.isLoading === true ? (
         <>
