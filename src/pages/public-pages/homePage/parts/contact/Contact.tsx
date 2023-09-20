@@ -8,9 +8,9 @@ function Contact() {
         <Flex justifyContent="center" >
             <Flex width="95%" maxWidth="1400px" flexDirection={{ base: "column", md: "row" }} alignItems="center" gap="20px">
                 <VStack width={{ base: "100%", md: "60%" }} spacing={{ base: "-30px", sm: "-60px", md: "20px" }} align="stretch" marginTop="20px">
-                    <Box><AppTypography size={{ base: "18px", sm: "34px" }} color="#2BCFA1" textAlign={{ base: "center", md: "left" }} weight='bolder'>Contact droplinked team</AppTypography></Box>
+                    <Box><AppTypography size={{ base: "18px", sm: "23px", lg: "34px" }} color="#2BCFA1" textAlign={{ base: "center", md: "left" }} weight='bolder'>Contact droplinked team</AppTypography></Box>
                     <Show below='md'><Box><Image src='assets/images/homepage/contact.svg' /></Box></Show>
-                    <Box><AppTypography size={{ base: "14px", sm: "20px" }} textAlign={{ base: "center", md: "left" }} paddingTop="20px" color="#f5f5f5">
+                    <Box><AppTypography size={{ base: "14px", sm: "16px", lg: "20px" }} textAlign={{ base: "center", md: "left" }} paddingTop="20px" color="#f5f5f5">
                         Are you a large retailer, brand or enterprise organization?
                         <br />
                         Droplinked provides interoperable infrastructure that scales with you
