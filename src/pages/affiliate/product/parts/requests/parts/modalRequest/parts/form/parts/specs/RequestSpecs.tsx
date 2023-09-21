@@ -11,7 +11,7 @@ function RequestSpecs() {
         ...RequestProductModel.makeOptions(sku.options),
         requestQuantity: {
           caption: "Request Quantity",
-          value: sku.quantity
+          value: sku.quantity === -1 ? '∞' : sku.quantity
         },
         PackageSize: {
           caption: "Package size",
