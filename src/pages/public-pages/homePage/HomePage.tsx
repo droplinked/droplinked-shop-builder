@@ -19,16 +19,6 @@ function HomePage() {
     loaded: []
   })
 
-  useEffect(() => {
-    const handleResize = () => window.location.reload();
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
     <div style={{ color: "#FFF" }}>
       <ReactFullpage
@@ -37,7 +27,7 @@ function HomePage() {
           setStates(prev => ({ ...prev, pause: !destination.isFirst, loaded: !prev.loaded.includes(destination.anchor) ? [...prev.loaded, destination.anchor] : prev.loaded }))
         }}
         verticalCentered
-        fitToSection
+        scrollOverflow={false}
         scrollingSpeed={500}
         render={({ state, fullpageApi }) => {
           return (
@@ -51,7 +41,7 @@ function HomePage() {
                   <Box className={`${classes.leftBack} ${States.pause ? classes.animationPaused : ''}`}></Box>
                 </Box>
                 <HeaderMain />
-                <Flex position="absolute" top="0" justifyContent="center" left="0" right="0" bottom="0"><Banner /></Flex>
+                <Banner />
               </div>
               <div className="section">
                 <Image src='/assets/images/homepage/ef1.png' position="absolute" top={{ base: "-100px", md: "-300px" }} right={{ base: "-200px", lg: "0" }} zIndex="0" />
@@ -75,7 +65,7 @@ function HomePage() {
               </div>
               <div className="section">
                 <Box width={{ base: "200px", md: "300px", xl: "500px" }} height={{ base: "200px", md: "300px", xl: "500px" }} background="linear-gradient(-50deg, #30977E -170%,transparent)" filter="blur(150px)" bottom="0" right="0" position="absolute"></Box>
-                <Box padding={{ base: "0", lg: "200px 0" }} overflow="hidden"><Contact /></Box>
+                <Contact />
               </div>
               <div auto-height className={`section ${classes.autoHeight}`}>
                 <FooterLayout />
