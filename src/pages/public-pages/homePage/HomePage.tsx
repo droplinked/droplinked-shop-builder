@@ -27,13 +27,12 @@ function HomePage() {
           setStates(prev => ({ ...prev, pause: !destination.isFirst, loaded: !prev.loaded.includes(destination.anchor) ? [...prev.loaded, destination.anchor] : prev.loaded }))
         }}
         verticalCentered
-        scrollOverflow={false}
         scrollingSpeed={500}
         render={({ state, fullpageApi }) => {
           return (
             <ReactFullpage.Wrapper>
-              <div className="section">
-                <Box position="fixed" top={0} right={0} left={0} bottom={0}>
+              <div className="section" style={{ position: "relative", overflow: "hidden" }}>
+                <Box position="absolute" top={0} right={0} left={0} bottom={0}>
                   <Box className={`${classes.rightBack} ${States.pause ? classes.animationPaused : ''}`}>
                     <Box className={`${classes.circle} ${classes.b1}`}></Box>
                     <Box className={`${classes.circle} ${classes.b2}`}></Box>
