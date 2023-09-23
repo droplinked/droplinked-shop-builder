@@ -1,0 +1,31 @@
+import React, { useContext } from 'react'
+import { VStack } from '@chakra-ui/react'
+import ProductCollapse from '../modules/collapse/ProductCollapse'
+import { productContext } from '../../context'
+import SaleInfromation from '../modules/saleInfromation/SaleInfromation'
+import NftImage from '../modules/nftImage/NftImage'
+import CommissionDigital from '../modules/commissionDigital/CommissionDigital'
+
+interface Iprops {
+    open?: boolean
+}
+
+function DigitalInformation({ open = true }: Iprops) {
+    const { state: { product_type } } = useContext(productContext)
+
+    return (
+        <>
+            {product_type === "DIGITAL" && (
+                <ProductCollapse show={open} title='Product Information' description="Write a message to your customers and attach the original file link.">
+                    <VStack spacing={10} align={"stretch"}>
+                        <SaleInfromation />
+                        <NftImage />
+                        <CommissionDigital />
+                    </VStack>
+                </ProductCollapse>
+            )}
+        </>
+    )
+}
+
+export default DigitalInformation

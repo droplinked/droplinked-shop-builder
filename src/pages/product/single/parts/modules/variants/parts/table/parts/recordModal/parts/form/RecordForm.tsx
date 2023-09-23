@@ -16,6 +16,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
 import useStack from 'functions/hooks/stack/useStack'
+import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork'
 
 interface Iprops {
     close: Function
@@ -30,12 +31,7 @@ interface IRecordSubmit {
 }
 
 function RecordForm({ close, product, sku }: Iprops) {
-    const chains = useQuery({
-        queryFn: supportedChainsService,
-        queryKey: "supported_chains",
-        cacheTime: 60 * 60 * 1000,
-        refetchOnWindowFocus: false
-    })
+
     const { updateState, state: { loading } } = useContext(recordContext)
     const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
     const { casper, record } = RecordModalModule
@@ -128,14 +124,9 @@ function RecordForm({ close, product, sku }: Iprops) {
                                 </Text>
                             </Box>
                             <Box>
-                                <AppSelectBox
-                                    items={chains.data ? chains.data?.data?.data.map((el: any) => ({ value: el, caption: capitalizeFirstLetter(el) })) : []}
-                                    name="blockchain"
-                                    label='Blockchain Network'
-                                    loading={!chains.isLoading}
-                                    placeholder='Select Blockchain'
+                                <BlockchainNetwork
                                     error={errors.blockchain}
-                                    onChange={(e) => setFieldValue("blockchain", e.target.value)}
+                                    onChange={(e) => setFieldValue("blockchain", e)}
                                     value={values.blockchain}
                                 />
                             </Box>
