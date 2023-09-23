@@ -5,6 +5,7 @@ import ButtonsProduct from '../parts/buttons/ButtonsProduct'
 import CollectionProduct from '../parts/collection/CollectionProduct'
 import DigitalLinks from '../parts/digital/DigitalLinks'
 import General from '../parts/general/General'
+import DigitalInformation from '../parts/infromation/General'
 import ShippingProduct from '../parts/modules/shipping/ShippingProduct'
 import ProductPodDesign from '../parts/podDesign/ProductPodDesign'
 import Variant from '../parts/variant/Variant'
@@ -15,6 +16,7 @@ function NormalProduct() {
     return (
         <>
             <General open={true} />
+            <DigitalInformation />
             <DigitalLinks />
             <ShippingProduct />
             {!ProductModel.isPrintful(prodviderID) && <Variant />}

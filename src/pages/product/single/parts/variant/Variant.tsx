@@ -12,7 +12,7 @@ function Variant() {
 
   return (
     <>
-      {(product_type === "PRINT_ON_DEMAND" && pod_blank_product_id) || ["DIGITAL", "NORMAL"].includes(product_type) ? (
+      {(product_type === "PRINT_ON_DEMAND" && pod_blank_product_id) || ["NORMAL"].includes(product_type) ? (
         <ProductCollapse title='Variants' description="Set product type and define product properties for use in product variations.">
           <VStack align={"stretch"} spacing={10}>
             {!ProductModel.isPrintful(prodviderID) && product_type === "PRINT_ON_DEMAND" && <ProductType />}

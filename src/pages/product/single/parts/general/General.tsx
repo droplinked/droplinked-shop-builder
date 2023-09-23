@@ -6,6 +6,7 @@ import ProductCollapse from '../modules/collapse/ProductCollapse'
 import ProductImages from '../modules/images/ProductImages'
 import AvailablePurchase from '../modules/available/AvailablePurchase'
 import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
+import NetworkDigital from '../modules/network/NetworkDigital'
 
 interface Iprops {
     open?: boolean
@@ -20,6 +21,7 @@ function General({ open = true }: Iprops) {
                 <ProductPovProvider />
                 <ProductImages />
                 <AvailablePurchase />
+                <NetworkDigital />
             </VStack>
         </ProductCollapse>
     )

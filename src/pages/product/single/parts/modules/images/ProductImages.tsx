@@ -13,7 +13,7 @@ function ProductImages() {
 
   return (
     <>
-      {["DIGITAL", "NORMAL"].includes(product_type) && (
+      {["NORMAL"].includes(product_type) && (
         <VStack align={"stretch"}>
           <ProductPageTitle
             isReuired
