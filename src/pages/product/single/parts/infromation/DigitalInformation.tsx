@@ -6,17 +6,14 @@ import SaleInfromation from '../modules/saleInfromation/SaleInfromation'
 import NftImage from '../modules/nftImage/NftImage'
 import CommissionDigital from '../modules/commissionDigital/CommissionDigital'
 
-interface Iprops {
-    open?: boolean
-}
 
-function DigitalInformation({ open = true }: Iprops) {
+function DigitalInformation() {
     const { state: { product_type } } = useContext(productContext)
 
     return (
         <>
             {product_type === "DIGITAL" && (
-                <ProductCollapse show={open} title='Product Information' description="Write a message to your customers and attach the original file link.">
+                <ProductCollapse title='Product Information' description="Write a message to your customers and attach the original file link.">
                     <VStack spacing={10} align={"stretch"}>
                         <SaleInfromation />
                         <NftImage />
