@@ -18,6 +18,7 @@ export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
 export interface IDigitalLinks {
     file_url?: string
     message?: string
+    chain?: string
 }
 
 export interface Imedia {
@@ -96,6 +97,9 @@ export interface Isku {
     weight: number
     recordData?: IrecordData
     image?: string
+    commision?: number
+    recorded_quantity?: number
+    deploy_hash?: number
 }
 
 export interface IproductByIdServices {
