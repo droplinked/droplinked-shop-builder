@@ -22,7 +22,7 @@ interface IProps {
     defaults?: IUploadImageDefault
 }
 
-function AppUploadImage({ onChange, product, values, size = "standard", toast, onSuccess, mode = "multi", onDelete, defaults }: IProps) {
+function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mode = "multi", onDelete, defaults }: IProps) {
     const { mutateAsync, isLoading } = useMutation((formData: any) => axios.post("https://cdn.droplinked.com/upload", formData))
     const fileRef = useRef(null);
     const { showToast } = useAppToast()
@@ -34,7 +34,7 @@ function AppUploadImage({ onChange, product, values, size = "standard", toast, o
             const formData = new FormData();
             formData.append("image", file);
             const data = await mutateAsync(formData)
-            const images = product ? { url: data.data[size], thumbnail: data.data['small'] } : data.data[size]
+            const images = product ? { url: data.data[size], thumbnail: data.data['small'] } : size ? data.data[size] : data.data
             onChange(typeof values === "object" ? [...values, images] : images)
             if (onSuccess) onSuccess(data.data)
             showToast(toast || "Upload image successful", "success")

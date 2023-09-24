@@ -9,7 +9,7 @@ import ProductPageTitle from '../title/ProductPageTitle'
 
 function ProductImages() {
   const { state: { media, product_type }, methods: { updateState } } = useContext(productContext);
-  const { refactorImage, defactorImage, isMain } = introductionClass;
+  const { refactorImage, isMain } = introductionClass;
 
   return (
     <>
