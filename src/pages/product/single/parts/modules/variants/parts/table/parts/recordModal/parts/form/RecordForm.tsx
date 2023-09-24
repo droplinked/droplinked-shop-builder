@@ -1,22 +1,21 @@
 import React, { useCallback, useContext, useMemo } from 'react'
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import AppInput from 'components/common/form/textbox/AppInput'
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import RecordModalModule from './model/recordFormModel'
 import { Isku } from 'lib/apis/product/interfaces'
-import { useMutation, useQuery } from 'react-query'
-import { recordCasperService, supportedChainsService } from 'lib/apis/sku/services'
+import { useMutation } from 'react-query'
+import { recordCasperService } from 'lib/apis/sku/services'
 import { IrecordCasperService } from 'lib/apis/sku/interfaces'
 import recordContext from '../../context'
 import useAppToast from 'functions/hooks/toast/useToast'
 import AppTypography from 'components/common/typography/AppTypography'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
 import useStack from 'functions/hooks/stack/useStack'
 import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork'
+import RecordCovers from './parts/covers/RecordCovers';
 
 interface Iprops {
     close: Function
@@ -142,15 +141,19 @@ function RecordForm({ close, product, sku }: Iprops) {
                                 <AppTypography size='14px' weight='bolder' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography size='14px' weight='bolder' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
                             </VStack>
                             {product.product_type === "PRINT_ON_DEMAND" ? (
-                                <VStack align="stretch">
-                                    <AppInput
-                                        name="quantity"
-                                        placeholder='1'
-                                        label='Quantity'
-                                        error={errors.quantity}
-                                        onChange={(e) => setFieldValue("quantity", e.target.value)}
-                                        value={values.quantity || ""}
-                                    />
+                                <VStack align="stretch" spacing="30px">
+                                    <VStack align="stretch">
+                                        <AppInput
+                                            name="quantity"
+                                            placeholder='1'
+                                            label='Drop Quantity'
+                                            error={errors.quantity}
+                                            onChange={(e) => setFieldValue("quantity", e.target.value)}
+                                            value={values.quantity || ""}
+                                        />
+                                        <AppTypography size='14px' weight='bolder' color="#808080">As the POD inventory is infinite, specify the amount of products you want to drop.</AppTypography>
+                                    </VStack>
+                                    <RecordCovers />
                                 </VStack>
                             ) : null}
                             <HStack justifyContent={"space-between"}>
