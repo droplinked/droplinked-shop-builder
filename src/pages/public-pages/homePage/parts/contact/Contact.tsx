@@ -2,6 +2,7 @@ import { Box, Flex, Image, Show, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import ContactConnections from './parts/connections/ContactConnections'
 
 function Contact() {
@@ -23,9 +24,11 @@ function Contact() {
                         Droplinked provides interoperable infrastructure that scales with you
                     </AppTypography></Box>
                     <Flex paddingTop={{ base: "50px", sm: "90px", md: "20px" }} justifyContent={{ base: "center", md: "left" }}>
+                        <Link to={'/enquiry'}>
                         <BasicButton minWidth={{ base: "120px", sm: "160px" }} height={{ base: "32px", sm: "40px" }}>
                             <AppTypography size={{ base: "12px", sm: "16px" }}>Contact Us</AppTypography>
                         </BasicButton>
+                        </Link>
                     </Flex>
                 </VStack>
                 {/* <Show above='md'><Box width="50%"><Image src='assets/images/homepage/contact.svg' transform="scale(1.4)" /></Box></Show> */}
