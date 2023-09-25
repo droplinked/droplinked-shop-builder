@@ -6,7 +6,7 @@ import React, { useContext } from 'react'
 import BlockchainNetwork from '../variants/parts/table/parts/recordModal/parts/form/parts/blockchainNetwork/BlockchainNetwork'
 
 function NetworkDigital() {
-    const { state: { product_type }, methods: { dispatch } } = useContext(productContext)
+    const { state: { product_type, digitalDetail: { chain } }, methods: { dispatch } } = useContext(productContext)
 
     return (
         <>
@@ -15,11 +15,11 @@ function NetworkDigital() {
                     <BlockchainNetwork
                         error={null}
                         onChange={e => dispatch({ type: "updateDigitalLinks", params: { chain: e } })}
-                        value={[]}
+                        value={chain}
                     />
                     <HStack alignItems="center">
                         <AppIcons.Info />
-                        <AppTypography color="#757575" size='14px'>??? NFT Creating Blockchain.. <a style={{ color: "#25BB92" }} target={"_blank"}>Learn more</a></AppTypography>
+                        <AppTypography color="#757575" size='14px'>??? NFT Creating Blockchain. <a style={{ color: "#25BB92" }} target={"_blank"}>Learn more</a></AppTypography>
                     </HStack>
                 </VStack>
             )}

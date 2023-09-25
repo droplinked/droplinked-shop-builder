@@ -99,7 +99,7 @@ export interface Isku {
     image?: string
     commision?: number
     recorded_quantity?: number
-    deploy_hash?: number
+    deploy_hash?: string
 }
 
 export interface IproductByIdServices {

@@ -38,7 +38,8 @@ const ProductSingleModel = ({
                     record: false,
                     weight: el?.weight,
                     recordData: el?.recordData,
-                    image: el?.image
+                    image: el?.image,
+                    ...el?.commision && { commision: el.commision }
                 }
             }),
             product_type: data?.product_type,
