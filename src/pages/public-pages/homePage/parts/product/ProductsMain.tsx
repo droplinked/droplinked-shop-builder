@@ -14,7 +14,7 @@ function ProductsMain({ loaded }) {
             icon: '/assets/images/homepage/physicalProducts.png'
         },
         {
-            title: 'Print on Demand',
+            title: 'Production on Demand',
             url: '',
             icon: '/assets/images/homepage/pod.png'
         },
