@@ -4,28 +4,41 @@ import AppInput from 'components/common/form/textbox/AppInput'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTable from 'components/common/table/AppTable'
 import AppTypography from 'components/common/typography/AppTypography'
+import { Isku } from 'lib/apis/product/interfaces'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect } from 'react'
 import AlertProduct from '../alert/AlertProduct'
 
 function SaleInfromation() {
-    const { loading, methods: { updateState }, state: { sku } } = useContext(productContext)
+    const { loading, methods: { updateState }, state: { sku }, productID } = useContext(productContext)
 
     useEffect(() => {
-        updateState('sku', [{
+        if (sku.length) return
+        let data: any = {
             "externalID": "",
             "price": 0,
+            "dimensions": {
+                height: 0,
+                length: 0,
+                width: 0
+            },
             "quantity": 0,
             "recorded_quantity": 0,
-            "commision": 0,
-            "deploy_hash": 0
-        }])
-    }, [])
+            "commision": 20,
+            "deploy_hash": '',
+        }
+        
+
+        if (productID && !sku[0].commision) data = { ...sku[0], commision: 20 }
+
+        updateState('sku', [data])
+    }, [productID, sku])
 
     const change = useCallback((key: string, value: number) => {
         updateState('sku', [{
             ...sku[0],
-            [key]: value
+            [key]: value,
+            ...key === "quantity" && { recorded_quantity: value }
         }])
     }, [sku])
 
@@ -44,7 +57,9 @@ function SaleInfromation() {
                                 props: {
                                     width: "33%"
                                 },
-                                value: <AppInput onChange={(e: any) => change('quantity', parseInt(e.target.value))} value={sku.length ? sku[0].quantity : ''} name='Quantity' placeholder='0' width="104px" />
+                                value: <AppInput onChange={(e: any) => {
+                                    change('quantity', parseInt(e.target.value))
+                                }} value={sku.length ? sku[0].quantity : ''} name='Quantity' placeholder='0' width="104px" />
                             },
                             extenalID: {
                                 caption: 'Extenal ID',

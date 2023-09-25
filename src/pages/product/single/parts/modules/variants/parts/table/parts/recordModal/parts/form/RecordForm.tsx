@@ -6,16 +6,12 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import RecordModalModule from './model/recordFormModel'
 import { Isku } from 'lib/apis/product/interfaces'
-import { useMutation } from 'react-query'
-import { recordCasperService } from 'lib/apis/sku/services'
-import { IrecordCasperService } from 'lib/apis/sku/interfaces'
 import recordContext from '../../context'
 import useAppToast from 'functions/hooks/toast/useToast'
 import AppTypography from 'components/common/typography/AppTypography'
-import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
-import useStack from 'functions/hooks/stack/useStack'
 import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork'
 import RecordCovers from './parts/covers/RecordCovers';
+import useStack from 'functions/hooks/stack/useStack';
 
 interface Iprops {
     close: Function
@@ -30,56 +26,17 @@ interface IRecordSubmit {
 }
 
 function RecordForm({ close, product, sku }: Iprops) {
-
+    const stacks = useStack()
     const { updateState, state: { loading } } = useContext(recordContext)
-    const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
-    const { casper, record } = RecordModalModule
-    const { login, isRequestPending, openContractCall, stxAddress } = useStack()
+    const { switchRecord } = RecordModalModule
     const { showToast } = useAppToast()
 
-    const deploy = useCallback((data: IRecordSubmit, deployHash: string) => {
-        return mutateAsync({
-            chain: data.blockchain,
-            params: {
-                deploy_hash: deployHash,
-                skuID: sku._id,
-                commision: Number(data.commission),
-                ...product.product_type === "PRINT_ON_DEMAND" && { recorded_quantity: parseInt(data.quantity) }
-            }
-        }, {
-            onSuccess: async () => {
-                updateState("hashkey", deployHash)
-            }
-        })
-    }, [product])
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
             updateState("loading", true)
-            const commission = data.commission
-            const quantity: any = data.quantity
-            if (data.blockchain === "CASPER") {
-                const deployHash = await casper({ commission, product, sku, quantity })
-                deploy(data, deployHash)
-            } else if (data.blockchain === "STACKS") {
-                await login()
-                const query = await stacksRecord({
-                    isRequestPending,
-                    openContractCall,
-                    params: {
-                        price: sku.price * 100,
-                        amount: product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity,
-                        commission,
-                        productID: product?._id,
-                        creator: stxAddress,
-                        uri: "record"
-                    }
-                })
-                if (query) deploy(data, query.txId)
-            } else if (["POLYGON", "RIPPLESIDECHAIN", "BINANCE"].includes(data.blockchain)) {
-                const res = await record({ commission, product, blockchain: data.blockchain, sku, quantity })
-                if (res) deploy(data, res)
-            }
+            const deployhash = await switchRecord({ data, product, sku, stacks })
+            updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
         } catch (error) {
@@ -91,7 +48,7 @@ function RecordForm({ close, product, sku }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, stxAddress, sku])
+    }, [product, sku])
 
     const formSchema = useMemo(() => {
         return Yup.object().shape({
