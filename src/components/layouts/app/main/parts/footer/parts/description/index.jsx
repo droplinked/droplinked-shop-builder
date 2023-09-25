@@ -2,6 +2,7 @@ import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import droplinkFull from "assest/image/droplinkFull.svg";
 import AppTypography from "components/common/typography/AppTypography";
+import { Link } from "react-router-dom";
 
 function Description() {
   return (
@@ -10,7 +11,7 @@ function Description() {
       spacing={5}
       w="max-content"
     >
-      <Image src={droplinkFull} maxW="210px" h="auto" mb="18px" />
+      <Link to="/#banner"><Image src={droplinkFull} maxW="210px" h="auto" mb="18px" /></Link>
 
       <Text
         fontFamily="Avenir Next"
