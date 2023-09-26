@@ -79,6 +79,8 @@ export interface IrecordData {
     status: "NOT_RECORDED" | "RECORDED" | "PENDING"
     recordNetwork: any
     data?: any
+    commision?: number
+    deploy_hash?: string
 }
 
 export interface Isku {
@@ -97,9 +99,7 @@ export interface Isku {
     weight: number
     recordData?: IrecordData
     image?: string
-    commision?: number
     recorded_quantity?: number
-    deploy_hash?: string
 }
 
 export interface IproductByIdServices {
