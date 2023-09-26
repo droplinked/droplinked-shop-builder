@@ -10,6 +10,7 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import ButtonsProductClass from './model/ButtonProductModel'
 import RecordModalModule from '../modules/variants/parts/table/parts/recordModal/parts/form/model/recordFormModel'
 import useStack from 'functions/hooks/stack/useStack'
+import ProductSingleModel from '../../model/model'
 
 // prdocut page
 function ButtonsProduct() {
@@ -19,12 +20,12 @@ function ButtonsProduct() {
         loading: false,
         draft: false
     })
-    const { switchRecord } = RecordModalModule
     const { state, productID, store: { state: { prev_data } } } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
-    const { validate, makeData } = ButtonsProductClass
+    const { validate, makeData, record } = ButtonsProductClass
     const { showToast } = useAppToast()
     const stacks = useStack()
+    const { refactorData } = ProductSingleModel
 
     const setStateHandle = useCallback((key, value) => setStates(prev => ({ ...prev, [key]: value })), [])
 
@@ -32,13 +33,11 @@ function ButtonsProduct() {
     const submit = useCallback(async (draft) => {
         try {
             // Check change data
-            if (JSON.stringify(prev_data) === JSON.stringify(state) && (state.sku[0]?.recordData?.status !== "NOT_RECORDED" && state.product_type === "DIGITAL")) return shopNavigate("products")
+            const isChanged = JSON.stringify(prev_data) === JSON.stringify(state)
+            if (isChanged && (state.sku[0]?.recordData?.status !== "NOT_RECORDED" && state.product_type === "DIGITAL")) return shopNavigate("products")
 
             setStateHandle("draft", draft)
             setStateHandle("loading", true)
-
-            // Handle service mode update or create
-            const service = productID ? update.mutateAsync : create.mutateAsync
 
             // Validate product data
             await validate({ state, draft })
@@ -47,24 +46,13 @@ function ButtonsProduct() {
             const formData = makeData({ state, draft, productID })
 
             // Request service
-            const data = await service(productID ? { productID, params: formData } : formData)
+            const requestData = productID ? { productID, params: formData } : formData
+            const product = !productID ? refactorData(await (await create.mutateAsync(requestData)).data?.data) : productID && !isChanged ? refactorData(await (await update.mutateAsync(requestData)).data?.data) : state
 
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
-                    const product = data?.data?.data
-                    const deployhash = await switchRecord({
-                        data: {
-                            blockchain: state.digitalDetail.chain,
-                            commission: state.sku[0].recordData.commision,
-                            quantity: state.sku[0].quantity
-                        },
-                        product,
-                        sku: product?.skuIDs[0],
-                        stacks
-                    })
-                    formData.sku[0].recordData.deploy_hash = deployhash
-                    formData.publish_product = true
-                    await update.mutateAsync({ productID: product._id, params: formData })
+                    await record({ product, stacks })
+                    await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
                 } catch (error) {
                     shopNavigate("products")
                     showToast("Somthimg went wrong", "error")

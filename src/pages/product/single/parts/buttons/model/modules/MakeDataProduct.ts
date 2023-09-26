@@ -20,7 +20,11 @@ const MakeDataProductModel = ({
             price: parseFloat(el?.price),
             weight: parseFloat(el?.weight),
             quantity: parseInt(el?.quantity),
-            image: el?.image
+            image: el?.image,
+            recordData: {
+                commision: el?.recordData?.commision,
+                ...el?.recordData?.deploy_hash && { deploy_hash: el?.recordData?.deploy_hash }
+            }
         }))
     },
 
@@ -46,7 +50,7 @@ const MakeDataProductModel = ({
             "digitalDetail": state.digitalDetail,
             "m2m_positions_options": state.m2m_positions_options,
             "shippingType": state.shippingType,
-            ...state.shippingPrice && {"shippingPrice": state.shippingPrice},
+            ...state.shippingPrice && { "shippingPrice": state.shippingPrice },
         }
     }
 })

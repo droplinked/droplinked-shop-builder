@@ -32,16 +32,18 @@ interface IrecordData {
     blockchain: string
 }
 
+export interface IStacks {
+    login: any
+    isRequestPending: any
+    openContractCall: any
+    stxAddress: any
+}
+
 interface IswitchRecord {
     data: IrecordData
     product: any
     sku: any
-    stacks: {
-        login: any
-        isRequestPending: any
-        openContractCall: any
-        stxAddress: any
-    }
+    stacks: IStacks
 }
 
 interface Ideploy {
@@ -126,7 +128,7 @@ const RecordModalModule = ({
                     const res = await RecordModalModule.record({ commission, product, blockchain: data.blockchain, sku, quantity })
                     if (res) dataDeploy.deployHash = res
                 }
-                
+
                 await RecordModalModule.deploy(dataDeploy)
                 resolve(dataDeploy.deployHash)
             } catch (error) {

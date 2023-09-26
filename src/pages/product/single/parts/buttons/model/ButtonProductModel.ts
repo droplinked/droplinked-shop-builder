@@ -1,7 +1,8 @@
-import { IproductState, Isku } from 'lib/apis/product/interfaces'
+import { IproductState } from 'lib/apis/product/interfaces'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { typesProperties } from 'lib/utils/statics/types'
 import { object, string, array, number } from 'yup'
+import RecordModalModule, { IStacks } from '../../modules/variants/parts/table/parts/recordModal/parts/form/model/recordFormModel'
 import MakeDataProductModel from './modules/MakeDataProduct'
 import ProductValidateModel from './modules/validate'
 
@@ -15,6 +16,13 @@ interface Ivalidate {
     state: IproductState
     draft: boolean
 }
+
+interface Irecord {
+    product: IproductState
+    stacks: IStacks
+}
+
+const { switchRecord } = RecordModalModule
 
 const ButtonsProductClass = ({
     validate: ({ state, draft }: Ivalidate) => {
@@ -94,6 +102,20 @@ const ButtonsProductClass = ({
         const data = { ...state, sku: MakeDataProductModel.refactorSku({ skues: state.sku }) }
         return draft ? productID ? updateData(false) : { ...data, publish_product: false } : productID ? updateData(true) : { ...data, publish_product: true }
 
+    },
+
+    record: async ({ product, stacks }: Irecord) => {
+        const dataForm = {
+            data: {
+                blockchain: product.digitalDetail.chain,
+                commission: product.sku[0].recordData.commision,
+                quantity: product.sku[0].quantity
+            },
+            product,
+            sku: product?.sku[0],
+            stacks
+        }
+        await switchRecord(dataForm)
     }
 })
 
