@@ -24,7 +24,7 @@ const ButtonsProductClass = ({
 
                 // Digital product validation
                 if (state.product_type === "DIGITAL") {
-                    if (!state.sku[0].commision) {
+                    if (!state.sku[0].recordData.commision) {
                         error.message = "Please enter commision"
                         throw error
                     } else if (!state.sku[0].price) {
@@ -88,7 +88,7 @@ const ButtonsProductClass = ({
 
         // Check PRINT_ON_DEMAND
         if (state.product_type === "PRINT_ON_DEMAND") state.shippingType = state.prodviderID
-        if (state.product_type === "DIGITAL") draft = true
+        if (state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") draft = true
 
         const updateData = (publish_product: boolean) => MakeDataProductModel.update({ state: { ...state, publish_product } })
         const data = { ...state, sku: MakeDataProductModel.refactorSku({ skues: state.sku }) }

@@ -32,7 +32,7 @@ function ButtonsProduct() {
     const submit = useCallback(async (draft) => {
         try {
             // Check change data
-            if (JSON.stringify(prev_data) === JSON.stringify(state) && (state.sku[0]?.recordData?.status !== "NOT_RECORDED" && state.product_type !== "DIGITAL")) return shopNavigate("products")
+            if (JSON.stringify(prev_data) === JSON.stringify(state) && (state.sku[0]?.recordData?.status !== "NOT_RECORDED" && state.product_type === "DIGITAL")) return shopNavigate("products")
 
             setStateHandle("draft", draft)
             setStateHandle("loading", true)
@@ -49,20 +49,20 @@ function ButtonsProduct() {
             // Request service
             const data = await service(productID ? { productID, params: formData } : formData)
 
-            if (!draft && state.product_type === "DIGITAL") {
+            if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
                     const product = data?.data?.data
                     const deployhash = await switchRecord({
                         data: {
                             blockchain: state.digitalDetail.chain,
-                            commission: state.sku[0].commision,
+                            commission: state.sku[0].recordData.commision,
                             quantity: state.sku[0].quantity
                         },
                         product,
                         sku: product?.skuIDs[0],
                         stacks
                     })
-                    formData.sku[0].deploy_hash = deployhash
+                    formData.sku[0].recordData.deploy_hash = deployhash
                     formData.publish_product = true
                     await update.mutateAsync({ productID: product._id, params: formData })
                 } catch (error) {
