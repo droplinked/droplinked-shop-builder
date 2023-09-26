@@ -7,7 +7,6 @@ import axiosInstance from 'lib/apis/axiosConfig';
 import { ImockupGeneratorService, IpodAvailableVariantsService } from 'lib/apis/pod/interfaces';
 import { generateThumbService, mockupGeneratorService, podAvailableVariantsService } from 'lib/apis/pod/services';
 import { productContext } from 'pages/product/single/context';
-import introductionClass from 'pages/product/single/parts/general/model';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useMutation } from 'react-query';
 import PrintfulModel from './model';
@@ -29,7 +28,6 @@ function Printful({ close, open }: IProps) {
     })
     const ref = useRef<any>()
     const { showToast } = useAppToast()
-    const { refactorImage } = introductionClass
     const { uniqe, styles } = PrintfulModel
 
     const setState = useCallback((key: string, value: any) => setStates(prev => ({ ...prev, [key]: value })), [])

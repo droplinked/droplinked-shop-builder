@@ -61,9 +61,9 @@ function ProductSingle() {
         }
     }, [productId, state.params.product_type])
 
-    useEffect(() => {
-        console.log(state.params.sku);
-    }, [state])
+    // useEffect(() => {
+    //     console.log(state.params.sku);
+    // }, [state])
 
     return (
         <productContext.Provider value={{
