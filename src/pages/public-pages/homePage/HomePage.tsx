@@ -20,7 +20,10 @@ function HomePage() {
   })
 
   return (
-    <div style={{ color: "#FFF" }}>
+    <div style={{ color: "#FFF", overflowX: "hidden" }}>
+      <Box className={`${classes.sshape} ${classes.shape1}`} fontSize={{ base: "400px", lg: "1400px" }} top={{base: "0", lg: "100px"}} right="0">s</Box>
+      <Box className={`${classes.sshape} ${classes.shape2}`} fontSize={{ base: "400px", lg: "1400px" }} top="400px" left={{ base: "0", lg: "-210px" }}>s</Box>
+      {/* <Box className={`${classes.leftBack} ${States.pause ? classes.animationPaused : ''}`}></Box> */}
       <ReactFullpage
         anchors={['banner', 'partners', 'community', 'products', 'network', 'embeddable', 'supported', 'contact', 'end']}
         afterLoad={(origin, destination) => {
@@ -34,19 +37,12 @@ function HomePage() {
           return (
             <ReactFullpage.Wrapper>
               <div className="section" style={{ position: "relative", overflow: "hidden" }}>
-                <Box position="absolute" top={0} right={0} left={0} bottom={0}>
-                  <Box className={`${classes.rightBack} ${States.pause ? classes.animationPaused : ''}`}>
-                    <Box className={`${classes.circle} ${classes.b1}`}></Box>
-                    <Box className={`${classes.circle} ${classes.b2}`}></Box>
-                  </Box>
-                  <Box className={`${classes.leftBack} ${States.pause ? classes.animationPaused : ''}`}></Box>
-                </Box>
                 <HeaderMain />
                 <Banner />
               </div>
               <div className="section">
-                <Image src='/assets/images/homepage/ef1.png' position="absolute" top={{ base: "-100px", md: "-300px" }} right={{ base: "-200px", lg: "0" }} zIndex="0" />
-                <Image src='/assets/images/homepage/ef2.png' position="absolute" bottom="-300px" left="0" zIndex="0" />
+                <Image src='/assets/images/homepage/ef1.png' position="absolute" top={{ base: "-100px", md: "-100px" }} right={{ base: "-200px", lg: "0" }} zIndex="0" />
+                <Image src='/assets/images/homepage/ef2.png' position="absolute" bottom="-600px" left="0" zIndex="0" />
                 <Partners loaded={States.loaded} />
               </div>
               <div className="section"><Community loaded={States.loaded} /></div>

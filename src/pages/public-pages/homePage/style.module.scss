@@ -28,92 +28,35 @@
     min-height: auto !important;
 }
 
-.rightBack {
-    .circle {
-        content: '';
-        display: block;
-        filter: blur(50px);
-        opacity: .6;
-        background: red;
-        position: absolute;
-        top: 0;
-        right: 0;
-
-        &.b1 {
-            width: 35vh;
-            height: 65vw;
-            border-radius: 100%;
-            transform: rotate(70deg);
-            top: -450px;
-            filter: blur(150px);
-            right: 7%;
-            background: linear-gradient(#141414, transparent);
-            animation: effect 3.7s infinite alternate;
-            opacity: .5;
-        }
-
-        &.b2 {
-            width: 30vh;
-            height: 43vw;
-            border-radius: 100%;
-            transform: rotate(60deg);
-            top: 12%;
-            right: 13%;
-            background: linear-gradient(-15deg, #141414, transparent);
-            animation: effect 3.7s infinite alternate;
-        }
-    }
-
-    &.animationPaused {
-        .circle {
-            animation-play-state: paused;
-        }
-    }
-
-}
-
-.leftBack {
-    background: linear-gradient(-90deg, #141414, transparent);
-    animation: effect2 4s infinite alternate;
+.sshape {
     position: absolute;
-    filter: blur(60px);
-    left: 0;
-    bottom: 0;
-    width: 60%;
-    opacity: .5;
-    height: 80%;
-    border-radius: 0 100% 100% 0;
-    @include gradiants;
+    line-height: 500px;
+    filter: blur(180px);
+    opacity: .7;
+    z-index: 0;
 
-    &.animationPaused {
-        animation-play-state: paused;
+    &.shape1 {
+        transform: skew(10deg) rotate(-20deg) rotateX(30deg);
+        animation: effect 3.7s infinite alternate;
+    }
+
+    &.shape2 {
+        transform: skew(-10deg) rotate(20deg) rotateX(40deg);
+        animation: effect 3.7s infinite alternate-reverse;
     }
 }
+
 
 @keyframes effect {
     0% {
-        background-color: #380cd4;
+        color: #380cd4;
     }
 
     50% {
-        background-color: #19a884;
+        color: #19a884;
     }
 
     100% {
-        background-color: #23c3d8;
-    }
-}
-
-@keyframes effect2 {
-    0% {
-        background-color: #19a884;
-    }
-
-    50% {
-        background-color: #380cd4;
-    }
-
-    100% {
-        background-color: #23c3d8;
+        color: #23c3d8;
     }
 }
