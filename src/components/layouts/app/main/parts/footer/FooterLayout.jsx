@@ -18,6 +18,7 @@ export default function FooterLayout() {
       padding="60px 0"
       backgroundColor="black"
       justifyContent="center"
+      position="relative"
     >
       <VStack align="stretch" w="95%" maxWidth="1400px">
         <Flex
