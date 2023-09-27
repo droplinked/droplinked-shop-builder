@@ -27,6 +27,7 @@ function HomePage() {
           setStates(prev => ({ ...prev, pause: !destination.isFirst, loaded: !prev.loaded.includes(destination.anchor) ? [...prev.loaded, destination.anchor] : prev.loaded }))
         }}
         verticalCentered
+        autoScrolling={false}
         scrollOverflow={false}
         scrollingSpeed={500}
         render={({ state, fullpageApi }) => {

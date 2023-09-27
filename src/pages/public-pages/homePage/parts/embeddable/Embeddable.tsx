@@ -27,7 +27,7 @@ function Embeddable() {
             <VStack align="stretch" width={{ base: "200px", lg: "300px" }}>
                 <Swiper
                     slidesPerView={1}
-                    spaceBetween={3}
+                    spaceBetween={"17px"}
                     modules={[Autoplay]}
                     autoplay={{
                         delay: 2500,

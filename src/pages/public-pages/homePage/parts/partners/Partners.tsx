@@ -50,8 +50,8 @@ function Partners({ loaded }) {
                             ))}
                         </Flex>
                     </VStack>
-                </Flex >
-            </Box >
+                </Flex>
+            </Box>
         </Flex>
     )
 }
