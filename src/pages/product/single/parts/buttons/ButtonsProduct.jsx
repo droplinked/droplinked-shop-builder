@@ -1,4 +1,4 @@
-import { Box, HStack } from '@chakra-ui/react'
+import { Box, HStack, Link, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import React, { useCallback, useContext, useState } from 'react'
 import { productContext } from '../../context'
@@ -8,17 +8,20 @@ import { productCreateServices, productUpdateServices } from 'lib/apis/product/p
 import AppErrors from 'lib/utils/statics/errors/errors'
 import useAppToast from 'functions/hooks/toast/useToast'
 import ButtonsProductClass from './model/ButtonProductModel'
-import RecordModalModule from '../modules/variants/parts/table/parts/recordModal/parts/form/model/recordFormModel'
 import useStack from 'functions/hooks/stack/useStack'
 import ProductSingleModel from '../../model/model'
+import ModalHashkey from 'pages/affiliate/notifications/parts/list/parts/buttons/parts/hashkey/ModalHashkey'
+import AppTypography from 'components/common/typography/AppTypography'
 
 // prdocut page
 function ButtonsProduct() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const create = useMutation((params) => productCreateServices(params))
     const update = useMutation((params) => productUpdateServices(params))
     const [States, setStates] = useState({
         loading: false,
-        draft: false
+        draft: false,
+        hashkey: null
     })
     const { state, productID, store: { state: { prev_data } } } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
@@ -51,15 +54,18 @@ function ButtonsProduct() {
 
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
-                    await record({ product, stacks })
+                    const hashkey = await record({ product, stacks })
                     await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
+                    setStateHandle('hashkey', hashkey)
+                    onOpen()
                 } catch (error) {
                     shopNavigate("products")
                     showToast("Somthimg went wrong", "error")
                 }
+            } else {
+                showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")
+                shopNavigate("products")
             }
-            showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")
-            shopNavigate("products")
             setStateHandle("loading", false)
         } catch (error) {
             setStateHandle("loading", false)
@@ -68,28 +74,42 @@ function ButtonsProduct() {
     }, [state, productID, stacks])
 
     return (
-        <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
-            <Box>
-                {!state.publish_product || !productID ? (
+        <>
+            <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
+                <Box>
+                    {!state.publish_product || !productID ? (
+                        <BasicButton
+                            isLoading={States.draft ? States.loading : false}
+                            variant={'outline'}
+                            onClick={() => submit(true)}
+                        >
+                            Save as Draft
+                        </BasicButton>
+                    ) : null}
+                </Box>
+                <Box>
                     <BasicButton
-                        isLoading={States.draft ? States.loading : false}
-                        variant={'outline'}
-                        onClick={() => submit(true)}
+                        isLoading={!States.draft ? States.loading : false}
+                        isDisabled={States.loading}
+                        onClick={() => submit(false)}
                     >
-                        Save as Draft
+                        {productID && state.publish_product ? "Update Product" : state.product_type === "DIGITAL" ? "Publish And Drop" : "Publish Product"}
                     </BasicButton>
-                ) : null}
-            </Box>
-            <Box>
-                <BasicButton
-                    isLoading={!States.draft ? States.loading : false}
-                    isDisabled={States.loading}
-                    onClick={() => submit(false)}
-                >
-                    {productID && state.publish_product ? "Update Product" : state.product_type === "DIGITAL" ? "Publish And Drop" : "Publish Product"}
-                </BasicButton>
-            </Box>
-        </HStack>
+                </Box>
+            </HStack>
+            {isOpen && <ModalHashkey
+                blockchain={state.digitalDetail.chain}
+                size='3xl'
+                description={(<AppTypography textAlign="center" size="18px">By hashing your product variant on the blockchain network, it becomes secured and decentralized, unlocking the potential to join the droplinked decentralized affiliate network. <Link color="#2BCFA1" _hover={{ color: "#2BCFA1" }}>Learn more</Link></AppTypography>)}
+                close={() => {
+                    shopNavigate("products")
+                    onClose()
+                }}
+                hashkey={States.hashkey}
+                open
+                text='NFT Successfully Created!'
+            />}
+        </>
     )
 }
 

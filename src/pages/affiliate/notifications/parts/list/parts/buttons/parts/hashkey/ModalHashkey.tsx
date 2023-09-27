@@ -1,18 +1,17 @@
-import HashKey from 'components/common/hashKey/HashKey'
-import AppModal from 'components/common/modal/AppModal'
+import HashKey, { IHashKeyModal } from 'components/common/hashKey/HashKey'
+import AppModal, { IAppModal } from 'components/common/modal/AppModal'
 import React from 'react'
 
-interface Iprops {
-    close: Function
+type props = IHashKeyModal & IAppModal
+interface Iprops extends props {
     open: boolean
-    hashKey: string
-    blockchain: string
+    size?: string
 }
 
-function ModalHashkey({ close, open, hashKey, blockchain }: Iprops) {
+function ModalHashkey({ close, open, hashkey, blockchain, text, contentProps, size, description }: Iprops) {
     return (
-        <AppModal close={() => { }} open={open}>
-            <HashKey blockchain={blockchain} close={close} hashkey={hashKey} text="Accept successful" />
+        <AppModal contentProps={contentProps} close={() => { }} open={open} size={size}>
+            <HashKey blockchain={blockchain} close={close} description={description} hashkey={hashkey} text={text || "Accept successful"} />
         </AppModal>
     )
 }

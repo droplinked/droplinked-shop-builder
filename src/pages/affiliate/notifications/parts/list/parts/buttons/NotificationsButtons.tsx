@@ -103,7 +103,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
                 approveClick={submit}
                 open={modal.isOpen}
             />
-            <ModalHashkey close={closeModalHashkey} blockchain={States.blockchain} hashKey={States.deployHash} open={modalHashKey.isOpen} />
+            <ModalHashkey close={closeModalHashkey} blockchain={States.blockchain} hashkey={States.deployHash} open={modalHashKey.isOpen} />
         </requestsButtonsContext.Provider>
     )
 }

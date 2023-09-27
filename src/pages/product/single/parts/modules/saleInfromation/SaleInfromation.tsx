@@ -8,6 +8,7 @@ import { Isku } from 'lib/apis/product/interfaces'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect } from 'react'
 import AlertProduct from '../alert/AlertProduct'
+import VariantsUnlimited from '../variants/parts/table/parts/unlimited/VariantsUnlimited'
 
 function SaleInfromation() {
     const { loading, methods: { updateState }, state: { sku }, productID } = useContext(productContext)
@@ -61,16 +62,16 @@ function SaleInfromation() {
                                 props: {
                                     width: "33%"
                                 },
-                                value: <AppInput onChange={(e: any) => {
-                                    change('quantity', parseInt(e.target.value))
-                                }} value={sku.length ? sku[0].quantity : ''} name='Quantity' placeholder='0' width="104px" />
+                                value: (
+                                    <VariantsUnlimited value={sku.length ? sku[0].quantity : ''} isDisabled={false} onChange={e => change('quantity', e)} name={"unlimited"} />
+                                )
                             },
                             extenalID: {
                                 caption: 'Extenal ID',
                                 props: {
                                     width: "33%"
                                 },
-                                value: <AppInput onChange={(e: any) => change('externalID', parseInt(e.target.value))} value={sku.length ? sku[0].externalID : ''} name='externalID' placeholder='0' width="104px" />
+                                value: <AppInput onChange={(e: any) => change('externalID', e.target.value)} value={sku.length ? sku[0].externalID : ''} name='externalID' placeholder='0' width="104px" />
                             },
                             price: {
                                 caption: 'Price',

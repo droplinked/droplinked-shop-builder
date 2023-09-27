@@ -115,7 +115,7 @@ const ButtonsProductClass = ({
             sku: product?.sku[0],
             stacks
         }
-        await switchRecord(dataForm)
+        return await switchRecord(dataForm)
     }
 })
 
