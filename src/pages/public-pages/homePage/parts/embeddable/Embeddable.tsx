@@ -23,7 +23,7 @@ function Embeddable() {
     ]
 
     return (
-        <Flex justifyContent="center" flexDirection={{ base: "column", lg: "row" }} alignItems="center" columnGap="100px" rowGap="20px">
+        <Flex justifyContent="center" flexDirection={{ base: "column", lg: "row" }} alignItems="center" height="100%" columnGap="100px" rowGap="20px">
             <VStack align="stretch" width={{ base: "200px", lg: "300px" }}>
                 <Swiper
                     slidesPerView={1}
@@ -55,8 +55,8 @@ function Embeddable() {
                 </Swiper>
             </VStack>
             <VStack width={{ base: "90%", sm: "60%", lg: "40%" }} align="stretch" marginTop="20px">
-                <Box><AppTypography textAlign={{ base: "center", lg: "left" }} size={{ base: "18px", sm: "23px", lg: "34px" }} weight='bolder'>Embeddable Product Card</AppTypography></Box>
-                <Box><AppTypography textAlign={{ base: "center", lg: "left" }} size={{ base: "14px", sm: "18px", lg: "20px" }} color="#888">Semi and fully decentralized product cards to sell anywhere on the web with distributed checkout that reaches your customers wherever they are online</AppTypography></Box>
+                <Box><AppTypography textAlign={{ base: "center", lg: "left" }} size={{ base: "18px", sm: "23px", lg: "34px" }} weight='bolder'>Embeddable Product Cards</AppTypography></Box>
+                <Box><AppTypography textAlign={{ base: "center", lg: "left" }} size={{ base: "14px", sm: "18px", lg: "20px" }} color="#888">Semi and fully decentralized product cards to sell anywhere on the web with a distributed checkout to reach your customers where they are</AppTypography></Box>
             </VStack>
         </Flex>
     )
