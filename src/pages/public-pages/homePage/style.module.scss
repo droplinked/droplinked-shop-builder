@@ -38,11 +38,19 @@
     &.shape1 {
         transform: skew(10deg) rotate(-20deg) rotateX(30deg);
         animation: effect 3.7s infinite alternate;
+
+        &.animationPaused {
+            animation-play-state: paused;
+        }
     }
 
     &.shape2 {
         transform: skew(-10deg) rotate(20deg) rotateX(40deg);
         animation: effect 3.7s infinite alternate-reverse;
+
+        &.animationPaused {
+            animation-play-state: paused;
+        }
     }
 }
 

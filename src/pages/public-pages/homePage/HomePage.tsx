@@ -21,8 +21,8 @@ function HomePage() {
 
   return (
     <div style={{ color: "#FFF", overflowX: "hidden" }}>
-      <Box className={`${classes.sshape} ${classes.shape1}`} fontSize={{ base: "400px", lg: "1400px" }} top={{base: "0", lg: "100px"}} right="0">s</Box>
-      <Box className={`${classes.sshape} ${classes.shape2}`} fontSize={{ base: "400px", lg: "1400px" }} top="400px" left={{ base: "0", lg: "-210px" }}>s</Box>
+      <Box className={`${classes.sshape} ${classes.shape1} ${States.pause ? classes.animationPaused : ''}`} fontSize={{ base: "400px", lg: "1400px" }} top={{base: "0", lg: "100px"}} right="0">s</Box>
+      <Box className={`${classes.sshape} ${classes.shape2} ${States.pause ? classes.animationPaused : ''}`} fontSize={{ base: "400px", lg: "1400px" }} top="400px" left={{ base: "0", lg: "-210px" }}>s</Box>
       {/* <Box className={`${classes.leftBack} ${States.pause ? classes.animationPaused : ''}`}></Box> */}
       <ReactFullpage
         anchors={['banner', 'partners', 'community', 'products', 'network', 'embeddable', 'supported', 'contact', 'end']}

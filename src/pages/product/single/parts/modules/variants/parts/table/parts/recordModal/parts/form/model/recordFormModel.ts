@@ -1,14 +1,11 @@
-import { product_type } from "lib/apis/product/interfaces"
 import { binanceRecordMerch } from "lib/utils/blockchain/binance/record"
 import { PolygonLogin } from "lib/utils/blockchain/polygon/metamaskLogin"
-import { binanceLogin } from "lib/utils/blockchain/binance/binanceWallet"
 import { record_merch_polygon } from "lib/utils/blockchain/polygon/record"
 import { XRPLogin } from "lib/utils/blockchain/ripple/xrpLogin"
 import { XRPRecordMerch } from "lib/utils/blockchain/ripple/xrpRecord"
 import RecordCasperModule from "./modules/casperModel"
 import { BinanceMetamaskLogin } from "lib/utils/blockchain/binance/metamaskLogin"
 import { stacksRecord } from "lib/utils/blockchain/stacks/record"
-import useStack from "functions/hooks/stack/useStack"
 import { recordCasperService } from "lib/apis/sku/services"
 
 interface Icasper {
@@ -24,6 +21,7 @@ interface Irecord {
     blockchain: string
     sku: any
     quantity: number
+    imageUrl?: string
 }
 
 interface IrecordData {
@@ -44,6 +42,7 @@ interface IswitchRecord {
     product: any
     sku: any
     stacks: IStacks
+    imageUrl?: string
 }
 
 interface Ideploy {
@@ -69,7 +68,7 @@ const RecordModalModule = ({
         return record.deployHash
     },
 
-    record: async ({ product, commission, blockchain, quantity, sku }: Irecord) => {
+    record: async ({ product, commission, blockchain, quantity, sku, imageUrl }: Irecord) => {
         let methods = { login: null, record: null }
 
         switch (blockchain) {
@@ -94,12 +93,12 @@ const RecordModalModule = ({
         }
 
         const login = await methods.login()
-        const record = await methods.record(sku, login.address, product.title, product.description, product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100)
+        const record = await methods.record(sku, login.address, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100)
 
         return record
     },
 
-    switchRecord: async ({ data, product, sku, stacks: { isRequestPending, login, openContractCall, stxAddress } }: IswitchRecord) => {
+    switchRecord: async ({ data, product, sku, stacks: { isRequestPending, login, openContractCall, stxAddress }, imageUrl }: IswitchRecord) => {
         return new Promise<void>(async (resolve: any, reject) => {
             try {
                 const commission = data.commission
@@ -125,7 +124,7 @@ const RecordModalModule = ({
                     })
                     if (query) dataDeploy.deployHash = query.txId
                 } else if (["POLYGON", "RIPPLESIDECHAIN", "BINANCE"].includes(data.blockchain)) {
-                    const res = await RecordModalModule.record({ commission, product, blockchain: data.blockchain, sku, quantity })
+                    const res = await RecordModalModule.record({ commission, product, blockchain: data.blockchain, sku, quantity, imageUrl })
                     if (res) dataDeploy.deployHash = res
                 }
 

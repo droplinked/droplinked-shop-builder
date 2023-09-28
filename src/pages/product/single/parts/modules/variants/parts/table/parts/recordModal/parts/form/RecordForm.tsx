@@ -27,15 +27,15 @@ interface IRecordSubmit {
 
 function RecordForm({ close, product, sku }: Iprops) {
     const stacks = useStack()
-    const { updateState, state: { loading } } = useContext(recordContext)
+    const { updateState, state: { loading, image } } = useContext(recordContext)
     const { switchRecord } = RecordModalModule
     const { showToast } = useAppToast()
 
-
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
+            if (!image && product.product_type === "PRINT_ON_DEMAND") throw Error('Please enter image')
             updateState("loading", true)
-            const deployhash = await switchRecord({ data, product, sku, stacks })
+            const deployhash = await switchRecord({ data, product, sku, stacks, ...product.product_type === "PRINT_ON_DEMAND" && { imageUrl: image } })
             updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
@@ -48,13 +48,13 @@ function RecordForm({ close, product, sku }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, sku])
+    }, [product, sku, image])
 
     const formSchema = useMemo(() => {
         return Yup.object().shape({
             blockchain: Yup.string().required('Required'),
             commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
-            ...product.product_type === "PRINT_ON_DEMAND" && { quantity: Yup.number().min(1).typeError("Please enter quantity") }
+            ...product.product_type === "PRINT_ON_DEMAND" && { quantity: Yup.number().required().min(1).typeError("Please enter quantity") }
         })
     }, [product.product_type])
 
