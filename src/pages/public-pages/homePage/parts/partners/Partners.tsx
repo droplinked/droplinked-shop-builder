@@ -40,7 +40,7 @@ function Partners({ loaded }) {
                     <VStack width="95%" maxWidth={checkLoad ? "1400px" : "100%"} opacity={checkLoad ? 1 : 0} transition={".7s"} justifyContent="center" color="#FFF">
                         <Box><LandingTitle title='Partners' /></Box>
                         <Box padding="10px 0 30px 0"><LandingDescription text='Explore the network of collaborators taking commerce to the next level!' /></Box>
-                        <Flex width="100%" flexWrap={{ base: "wrap", md: "nowrap" }} transition=".7s" justifyContent="center" gap={{ base: "4%", md: checkLoad ? "40px" : "70px", xl: checkLoad ? "64px" : "130px" }}>
+                        <Flex width="100%" maxWidth={{ base: "500px", md: "100%" }} flexWrap={{ base: "wrap", md: "nowrap" }} transition=".7s" justifyContent="center" gap={{ base: "4%", md: checkLoad ? "20px" : "70px", xl: checkLoad ? "64px" : "130px" }}>
                             {data.map((el, key) => (
                                 <MainCard transition="1s" padding={{ base: "25px", lg: "40px" }} key={key}>
                                     <Image width={{ base: "36px", md: "64px" }} paddingBottom="10px" src={el.icon} alt={el.title} />
