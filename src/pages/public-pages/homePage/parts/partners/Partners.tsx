@@ -35,7 +35,6 @@ function Partners({ loaded }) {
     return (
         <Flex alignItems="center" justifyContent="center" height="100%">
             <Box position="relative">
-                <Image src="assets/images/homepage/shape.svg" position="absolute" zIndex="1" right="42%" top="-90px" width={{ base: "24px", md: "34px" }} />
                 <Flex justifyContent="center" alignItems="center">
                     <VStack width="95%" maxWidth={checkLoad ? "1400px" : "100%"} opacity={checkLoad ? 1 : 0} transition={".7s"} justifyContent="center" color="#FFF">
                         <Box><LandingTitle title='Partners' /></Box>
