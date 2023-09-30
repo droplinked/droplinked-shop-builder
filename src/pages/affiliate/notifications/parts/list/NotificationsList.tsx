@@ -1,24 +1,32 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
+import Pagination from 'components/common/datagrid/parts/pagination/Pagination'
 import AppEmptyPage from 'components/common/empty/AppEmptyPage'
+import { IproducerRequestService } from 'lib/apis/affiliate/interfaces'
 import { producerRequestService } from 'lib/apis/affiliate/shopServices'
 import { appDeveloment } from 'lib/utils/app/variable'
 import AffiliateDetailCard from 'pages/affiliate/parts/detail/affiliateDetailCard'
 import ShopsProfile from 'pages/affiliate/parts/pofile/ShopsProfile'
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 import { useMutation } from 'react-query'
+import { useSearchParams } from 'react-router-dom'
 import NotificationsButtons from './parts/buttons/NotificationsButtons'
 import NotificationsSkeleton from './parts/skeleton/NotificationsSkeleton'
 
 function NotificationsList() {
-    const { mutate, isLoading, data } = useMutation(() => producerRequestService())
+    const [searchParams] = useSearchParams()
+    const { mutate, isLoading, data } = useMutation((params: IproducerRequestService) => producerRequestService(params))
+    const list = data?.data?.data
+    const page = useMemo(() => searchParams.get("page"), [searchParams]) || 1
 
-    useEffect(() => mutate(), [])
+    const fetch = useCallback(() => mutate({ page }), [page, searchParams])
+
+    useEffect(() => fetch(), [page])
 
     return (
         <>
-            {isLoading ? <NotificationsSkeleton /> : data?.data?.data.length ? (
+            {isLoading ? <NotificationsSkeleton /> : list?.data.length ? (
                 <VStack align={"stretch"}>
-                    {data?.data?.data.map((el: any, key: number) => {
+                    {list?.data.map((el: any, key: number) => {
                         const element = el?.publisherShop[0]
                         const product = el?.product[0]
                         const sku = el?.sku[0]
@@ -61,10 +69,11 @@ function NotificationsList() {
                                         earning={el?.producerEarning}
                                     />
                                 </Box>
-                                <Box width={["15%", "10%"]}><NotificationsButtons refetch={() => mutate()} shop={el} /></Box>
+                                <Box width={["15%", "10%"]}><NotificationsButtons refetch={() => fetch()} shop={el} /></Box>
                             </Flex>
                         )
                     })}
+                    <Pagination current={list?.currentPage} lastPage={list?.totalPages || 1} nextPage={list?.nextPage} prevPage={list?.previousPage} />
                 </VStack>
             ) : <AppEmptyPage title="No Notifications Yet!" />
             }
