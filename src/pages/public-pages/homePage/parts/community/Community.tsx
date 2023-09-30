@@ -7,7 +7,7 @@ function Community({ loaded }) {
     const checkLoad = useMemo(() => loaded.includes('community'), [loaded])
 
     return (
-        <Flex justifyContent="center" >
+        <Flex justifyContent="center" position="relative">
             <Flex width="95%" maxWidth="1500px" flexDirection={{ base: "column", lg: "row" }} alignItems="center" gap="30px">
                 <Box width={{ base: "100%", md: "80%" }} position="relative" transform={{ base: "scale(1.2)", md: "scale(1)" }}>
                     <Image src='assets/images/homepage/com.svg' width="100%" opacity={checkLoad ? 1 : 0} zIndex="1" position="relative" transition="8s" />

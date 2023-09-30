@@ -20,7 +20,7 @@ export default function FooterLayout() {
       justifyContent="center"
       position="relative"
     >
-      <VStack align="stretch" w="95%" maxWidth="1400px">
+      <VStack align="stretch" width="80%" maxWidth="1400px">
         <Flex
           flexDir={{ base: 'column', md: 'row' }}
           display="flex"

@@ -6,6 +6,7 @@ import Droplinked from './parts/droplinked/Droplinked'
 import Typewriter from 'typewriter-effect';
 import useHookStore from 'functions/hooks/store/useHookStore'
 import AuthModal from 'components/modals/auth-modal/AuthModal'
+import { Parallax } from 'react-scroll-parallax'
 
 function Banner() {
     const { app: { shop } } = useHookStore();
@@ -15,7 +16,6 @@ function Banner() {
         <>
             <Box position="relative">
                 <Image src="assets/images/homepage/droplinked1.svg" position="absolute" zIndex="1" top="-200px" width="100%" />
-                <Image src="assets/images/homepage/shape.svg" position="absolute" zIndex="1" right={{ base: "8%", sm: "26%" }} bottom={{ base: "-100px", sm: "0" }} width={{ base: "24px", sm: "34px" }} />
                 <Flex height="100%" justifyContent="center" alignItems="center" position="relative" zIndex="2">
                     <VStack justifyContent="center" color="#FFF">
                         <Droplinked />

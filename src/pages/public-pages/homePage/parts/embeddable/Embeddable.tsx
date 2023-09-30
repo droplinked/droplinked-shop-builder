@@ -23,7 +23,7 @@ function Embeddable() {
     ]
 
     return (
-        <Flex justifyContent="center" flexDirection={{ base: "column", lg: "row" }} alignItems="center" height="100%" columnGap="100px" rowGap="20px">
+        <Flex justifyContent="center" flexDirection={{ base: "column", lg: "row" }} alignItems="center" height="100%" columnGap="100px" rowGap="20px" position="relative">
             <VStack align="stretch" width={{ base: "200px", lg: "300px" }}>
                 <Swiper
                     slidesPerView={1}
