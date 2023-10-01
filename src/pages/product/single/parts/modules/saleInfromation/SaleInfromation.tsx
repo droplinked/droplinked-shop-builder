@@ -63,7 +63,7 @@ function SaleInfromation() {
                                     width: "33%"
                                 },
                                 value: (
-                                    <VariantsUnlimited value={sku.length ? sku[0].quantity : ''} isDisabled={false} onChange={e => change('quantity', e)} name={"unlimited"} />
+                                    <VariantsUnlimited value={sku.length && sku[0].quantity ? sku[0].quantity : ''} isDisabled={false} onChange={e => change('quantity', parseInt(e))} name={"unlimited"} />
                                 )
                             },
                             extenalID: {
