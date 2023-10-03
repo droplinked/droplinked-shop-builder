@@ -19,7 +19,7 @@ function ProductPodDesign({ open = false }: Iprops) {
         <>
             {product_type === "PRINT_ON_DEMAND" && (
                 <ProductCollapse show={open} title='POD Design' description='Select a product, customize it with your artwork, and create product template.'>
-                    <VStack spacing={10} align={"stretch"}>
+                    <VStack spacing="60px" align={"stretch"}>
                         {ProductModel.isPrintful(prodviderID) && <ProductType />}
                         <ProductArtwork />
                         <ProductMockup />

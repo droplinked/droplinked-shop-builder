@@ -12,7 +12,7 @@ function DigitalLinks() {
         <>
             {product_type === "DIGITAL" && (
                 <ProductCollapse title='Product Link' description='Write a message to your customers and attach the original file link.'>
-                    <VStack spacing={10} align={"stretch"}>
+                    <VStack spacing="60px" align={"stretch"}>
                         <MessageDigital />
                         <OrginalFile />
                     </VStack>

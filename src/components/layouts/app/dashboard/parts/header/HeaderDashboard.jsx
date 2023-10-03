@@ -66,6 +66,7 @@ const HeaderDashboard = () => {
             p="16px 36px"
             h="auto"
             w="auto"
+            right="27px"
             border="none !important"
             outline="none !important"
             shadow="none !important"

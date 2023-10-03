@@ -15,7 +15,6 @@ const FormModel = ({
             backgroundColor: "#141414",
             padding: "22px 17px",
             fontSize: "14px",
-            fontWeight: "bold",
             color: "#808080",
         }
     },
@@ -23,7 +22,8 @@ const FormModel = ({
         return {
             ...FormModel.baseStyleProps(),
             _placeholder: {
-                color: "#808080"
+                color: "#808080",
+                opacity: "1"
             },
             _focus: {
                 borderColor: "none",

@@ -51,11 +51,11 @@ function RegisterShopInfo() {
           <VStack align={"stretch"}>
             <VStack align={"stretch"}>
               <FieldLabel label='Store Name' isRequired />
-              <AppTypography size='14px' color={"rgb(128, 128, 128)"}>Enter your store name.(max 20 characters)</AppTypography>
             </VStack>
             <Box>
               <AppInput name='name' maxLength={20} value={States.description} onChange={(e: any) => updateStates("description", e.target.value)} placeholder='e.g., droplinked' isRequired />
             </Box>
+            <AppTypography size='14px' color={"rgb(128, 128, 128)"}>Enter your store name.(max 20 characters)</AppTypography>
           </VStack>
         </VStack>
       </AppCard>

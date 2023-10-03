@@ -7,6 +7,7 @@ const InputColor = ({ label, value, change }) => {
       <FieldLabel color="#C2C2C2" label={label} />
       <Flex
         w="100%"
+        marginTop="12px"
         bg="subLayer"
         borderRadius="8px"
         p="13px 24px"
