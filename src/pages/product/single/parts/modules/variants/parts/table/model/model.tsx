@@ -50,7 +50,7 @@ const SkuTableModel = ({
             ...product_type === "PRINT_ON_DEMAND" && {
                 cost: {
                     caption: "Product Cost",
-                    value: available_variant ? <AppTypography size="12px">{ProductSkuesTable.variants({ available_variant, state, options: sku.options, prodviderID: state.prodviderID })} USD</AppTypography> : 0
+                    value: available_variant ? <AppTypography size="12px">{sku.rawPrice} USD</AppTypography> : 0
                 },
             },
             ...product_type === "NORMAL" && {

@@ -93,6 +93,7 @@ export interface Isku {
     }
     externalID: string
     index: number
+    rawPrice?: number
     options: Array<IskuOption>
     price: number
     quantity: number

@@ -1,4 +1,5 @@
-import { Iproperties, Isku, product_type } from "lib/apis/product/interfaces"
+import { IproductState, Iproperties, Isku, product_type } from "lib/apis/product/interfaces"
+import ProductSkuesTable from "../../parts/table/model/modules/table"
 import VariantsRefactorModel from "./refactor"
 
 interface Isort {
@@ -10,9 +11,8 @@ interface ImakePropertyItem {
 }
 
 interface IgetOptions {
-    skues: Array<Isku>
+    state: IproductState
     properties: Array<Iproperties>
-    product_type: product_type
     available_variant: Array<any>
 }
 
@@ -62,7 +62,12 @@ const VariantsMakeDataModel = ({
         }
     },
 
-    getOptions: ({ properties, skues, product_type, available_variant }: IgetOptions): Array<Isku> => {
+    getOptions: ({ properties, available_variant, state }: IgetOptions): Array<Isku> => {
+        const skues = state.sku
+        const product_type = state.product_type
+        console.log({ available_variant, properties, sku: state.sku });
+
+
         const arr: any = [];
         const data: Isku = {
             externalID: "",
@@ -71,6 +76,7 @@ const VariantsMakeDataModel = ({
             price: 0,
             quantity: product_type === "PRINT_ON_DEMAND" ? -1 : 0,
             record: false,
+            ...product_type === "PRINT_ON_DEMAND" && { rawPrice: 0 },
             weight: 0,
             dimensions: {
                 height: 0,
@@ -92,6 +98,7 @@ const VariantsMakeDataModel = ({
                 const sku = VariantsRefactorModel.findByOptionSku({ options, skues })
                 const dataNew = {
                     ...sku || data,
+                    ...product_type === "PRINT_ON_DEMAND" && sku && Object.keys(sku).length && { rawPrice: ProductSkuesTable.variants({ available_variant, state, options: sku.options, prodviderID: state.prodviderID }) },
                     options: optionCombination
                 }
 
