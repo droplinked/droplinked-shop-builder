@@ -1,5 +1,4 @@
 import { IDigitalLinks, IproductState } from "lib/apis/product/interfaces";
-import { nanoid } from 'nanoid'
 
 export type productActions =
     {

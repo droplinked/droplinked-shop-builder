@@ -1,4 +1,5 @@
-import { Iproperties, Isku, product_type } from "lib/apis/product/interfaces"
+import { IproductState, Iproperties, Isku, product_type } from "lib/apis/product/interfaces"
+import ProductSkuesTable from "../../parts/table/model/modules/table"
 import VariantsRefactorModel from "./refactor"
 
 interface Isort {
@@ -10,9 +11,8 @@ interface ImakePropertyItem {
 }
 
 interface IgetOptions {
-    skues: Array<Isku>
+    state: IproductState
     properties: Array<Iproperties>
-    product_type: product_type
     available_variant: Array<any>
 }
 
@@ -62,7 +62,11 @@ const VariantsMakeDataModel = ({
         }
     },
 
-    getOptions: ({ properties, skues, product_type, available_variant }: IgetOptions): Array<Isku> => {
+    getOptions: ({ properties, available_variant, state }: IgetOptions): Array<Isku> => {
+        const skues = state.sku
+        const product_type = state.product_type
+
+
         const arr: any = [];
         const data: Isku = {
             externalID: "",
@@ -71,6 +75,7 @@ const VariantsMakeDataModel = ({
             price: 0,
             quantity: product_type === "PRINT_ON_DEMAND" ? -1 : 0,
             record: false,
+            ...product_type === "PRINT_ON_DEMAND" && { rawPrice: 0 },
             weight: 0,
             dimensions: {
                 height: 0,
@@ -103,6 +108,9 @@ const VariantsMakeDataModel = ({
                     dataNew.externalID = available.size.id.toString()
                 }
 
+                // Add rawPrice sku POD
+                if (product_type === "PRINT_ON_DEMAND" && !dataNew.rawPrice) dataNew.rawPrice = ProductSkuesTable.variants({ available_variant, state, options: dataNew.options, prodviderID: state.prodviderID })
+
                 arr.push(dataNew);
                 return;
             }
@@ -117,6 +125,7 @@ const VariantsMakeDataModel = ({
             for (let i = 0; i < obj.items.length; i++) {
                 variantOption.value = obj.items[i].value;
                 variantOption.caption = obj.items[i].caption;
+
                 handle(obj.child, [...options, variantOption]);
             }
         }
