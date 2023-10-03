@@ -65,7 +65,6 @@ const VariantsMakeDataModel = ({
     getOptions: ({ properties, available_variant, state }: IgetOptions): Array<Isku> => {
         const skues = state.sku
         const product_type = state.product_type
-        console.log({ available_variant, properties, sku: state.sku });
 
 
         const arr: any = [];
@@ -98,7 +97,6 @@ const VariantsMakeDataModel = ({
                 const sku = VariantsRefactorModel.findByOptionSku({ options, skues })
                 const dataNew = {
                     ...sku || data,
-                    ...product_type === "PRINT_ON_DEMAND" && sku && Object.keys(sku).length && { rawPrice: ProductSkuesTable.variants({ available_variant, state, options: sku.options, prodviderID: state.prodviderID }) },
                     options: optionCombination
                 }
 
@@ -109,6 +107,9 @@ const VariantsMakeDataModel = ({
                     if (!available.data) return
                     dataNew.externalID = available.size.id.toString()
                 }
+
+                // Add rawPrice sku POD
+                if (product_type === "PRINT_ON_DEMAND" && !dataNew.rawPrice) dataNew.rawPrice = ProductSkuesTable.variants({ available_variant, state, options: dataNew.options, prodviderID: state.prodviderID })
 
                 arr.push(dataNew);
                 return;
@@ -124,6 +125,7 @@ const VariantsMakeDataModel = ({
             for (let i = 0; i < obj.items.length; i++) {
                 variantOption.value = obj.items[i].value;
                 variantOption.caption = obj.items[i].caption;
+
                 handle(obj.child, [...options, variantOption]);
             }
         }

@@ -39,6 +39,7 @@ const ProductSingleModel = ({
                     weight: el?.weight,
                     recordData: el?.recordData,
                     image: el?.image,
+                    ...el?.rawPrice && { rawPrice: el?.rawPrice }
                 }
             }),
             product_type: data?.product_type,

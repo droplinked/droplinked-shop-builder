@@ -11,6 +11,7 @@ const VariantsProductModel = ({
     makeData: ({ properties, available_variant, state }: ImakeData) => {
         const sort = VariantsMakeDataModel.sort({ properties })
         const makedataModel = VariantsMakeDataModel.makePropertyChild({ sort })
+
         const refactor = VariantsMakeDataModel.getOptions({
             properties: makedataModel,
             state,
