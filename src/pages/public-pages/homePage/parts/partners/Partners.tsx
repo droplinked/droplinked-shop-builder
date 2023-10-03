@@ -36,7 +36,7 @@ function Partners({ loaded }) {
         <Flex alignItems="center" justifyContent="center" height="100%">
             <Box position="relative">
                 <Flex justifyContent="center" alignItems="center">
-                    <VStack width="95%" maxWidth={checkLoad ? "1400px" : "100%"} opacity={checkLoad ? 1 : 0} transition={".7s"} justifyContent="center" color="#FFF">
+                    <VStack maxWidth={checkLoad ? "1400px" : "100%"} opacity={checkLoad ? 1 : 0} transition={".7s"} justifyContent="center" color="#FFF">
                         <Box><LandingTitle title='Partners' /></Box>
                         <Box padding="10px 0 30px 0"><LandingDescription text='Explore the network of collaborators taking commerce to the next level!' /></Box>
                         <Flex width="100%" maxWidth={{ base: "500px", md: "100%" }} flexWrap={{ base: "wrap", md: "nowrap" }} transition=".7s" justifyContent="center" gap={{ base: "4%", md: checkLoad ? "20px" : "70px", xl: checkLoad ? "64px" : "130px" }}>

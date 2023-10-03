@@ -33,10 +33,6 @@ function HomePage() {
         <Box className={`${classes.sshape} ${classes.shape1} ${States.pause ? classes.animationPaused : ''}`} fontSize={{ base: "400px", lg: "1400px" }} top={{ base: "0", lg: "100px" }} right="0">s</Box>
         <Box className={`${classes.sshape} ${classes.shape2} ${States.pause ? classes.animationPaused : ''}`} fontSize={{ base: "400px", lg: "1400px" }} top="400px" left={{ base: "0", lg: "-210px" }}>s</Box>
 
-        <Parallax speed={-155} translateX={[50, 1, "easeInOut"]} style={{ position: "absolute", top: "100vh", left: "0", right: "30vw" }}>
-          <Image src="assets/images/homepage/shape.svg" position="absolute" zIndex="1" right={{ base: "8%", sm: "26%" }} bottom={{ base: "-100px", sm: "0" }} width={{ base: "24px", sm: "34px" }} />
-        </Parallax>
-
         <ReactFullpage
           anchors={['banner', 'partners', 'community', 'products', 'network', 'embeddable', 'supported', 'contact', 'end']}
           afterLoad={(origin, destination) => {
@@ -56,7 +52,6 @@ function HomePage() {
                 <div className="section" style={{ position: "relative" }}>
                   <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
                   <Partners loaded={States.loaded} />
-
                 </div>
                 <div className="section" style={{ position: "relative" }}>
                   <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
