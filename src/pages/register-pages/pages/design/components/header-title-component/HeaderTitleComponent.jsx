@@ -12,11 +12,8 @@ const HeaderTitleComponent = () => {
   } = useContext(designContext);
 
   return (
-    <VStack align="stretch">
-      <VStack align="stretch" spacing={1}>
-        <AppTypography size="16px">Hero Text</AppTypography>
-        <AppTypography size="14px" color="#808080" marginTop={1}>Please enter a catchy slogan for your store.</AppTypography>
-      </VStack>
+    <VStack align="stretch" spacing="12px">
+      <AppTypography size="16px">Hero Text</AppTypography>
       <AppInput
         placeholder="Be Smart, Get Comfy"
         onChange={(e) => {
@@ -24,6 +21,7 @@ const HeaderTitleComponent = () => {
         }}
         value={backgroundText}
       />
+      <AppTypography size="14px" color="#808080" marginTop={1}>Please enter a catchy slogan for your store.</AppTypography>
     </VStack>
   );
 };

@@ -28,7 +28,7 @@ function ProductTypeDetail({ boxes, image, title }: IProps) {
     return (
         <>
             {getDetail && (
-                <Flex gap={3} alignItems="center" padding="20px" borderRadius="8px" backgroundColor="#171717">
+                <Flex gap={3} alignItems="center">
                     <Box width="fit-content">
                         <AppImage width="40px" height="50px" borderRadius="8px" src={getDetail?.image} />
                     </Box>

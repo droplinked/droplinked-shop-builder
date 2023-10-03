@@ -14,7 +14,7 @@ function Variant() {
     <>
       {(product_type === "PRINT_ON_DEMAND" && pod_blank_product_id) || ["NORMAL"].includes(product_type) ? (
         <ProductCollapse title='Variants' description="Set product type and define product properties for use in product variations.">
-          <VStack align={"stretch"} spacing={10}>
+          <VStack align={"stretch"} spacing="60px">
             {!ProductModel.isPrintful(prodviderID) && product_type === "PRINT_ON_DEMAND" && <ProductType />}
             <Properties />
             <VariantsProduct />

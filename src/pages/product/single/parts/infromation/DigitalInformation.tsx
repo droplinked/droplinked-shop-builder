@@ -14,7 +14,7 @@ function DigitalInformation() {
         <>
             {product_type === "DIGITAL" && (
                 <ProductCollapse title='Product Information' description="Write a message to your customers and attach the original file link.">
-                    <VStack spacing={10} align={"stretch"}>
+                    <VStack spacing="60px" align={"stretch"}>
                         <SaleInfromation />
                         <NftImage />
                         <CommissionDigital />

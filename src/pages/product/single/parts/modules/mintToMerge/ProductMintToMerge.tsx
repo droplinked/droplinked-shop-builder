@@ -36,9 +36,9 @@ function ProductMintToMerge() {
             <Box>
                 <AppSkeleton isLoaded={loading} width={"70%"}>
                     <Checkbox isDisabled={!m2m_positions_options.length} size='md' isChecked={CheckBox} alignItems="flex-start" colorScheme='green' onChange={checkBoxHandle}>
-                        <VStack align='stretch' paddingLeft={2} spacing={1}>
+                        <VStack align='stretch' color="#C2C2C2" paddingLeft={2} spacing={1}>
                             <AppTypography size='14px' weight='bolder'>Mint to Merch</AppTypography>
-                            <AppTypography size="14px" color="lightGray">
+                            <AppTypography size="14px">
                                 Enable customers to directly print their NFT artwork on the POD product
                             </AppTypography>
                         </VStack>

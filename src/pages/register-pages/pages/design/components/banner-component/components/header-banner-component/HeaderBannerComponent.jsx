@@ -61,7 +61,7 @@ const HeaderBannerComponent = ({ addNewImage }) => {
   };
 
   return (
-    <Flex w="100%" justifyContent="space-between" alignItems="center">
+    <Flex w="100%" justifyContent="space-between" marginTop="40px" alignItems="center">
       <FormControl isRequired w="100%" marginBottom={3}>
         <FieldLabel label="Hero Image" textProps={{ size: "18px", weight: "bolder" }} isRequired />
         <AppTypography size="14px" color="#C2C2C2" marginTop={1}>Select one of the pre-designed images or upload a transparent PNG file up to 5MB.</AppTypography>
@@ -79,4 +79,4 @@ const HeaderBannerComponent = ({ addNewImage }) => {
   );
 };
 
-export default HeaderBannerComponent;
+export default HeaderBannerComponent

@@ -41,11 +41,16 @@ function ShopInfoAddress({ addressService }: Iprops) {
                 value: `${el.zip}`
             },
             Options: {
+                props: {
+                    style: {
+                        textAlign: "center"
+                    }
+                },
                 value: (
-                    <HStack spacing={4}>
+                    <Flex gap={4} justifyContent="center">
                         <AppIcons.EditIcon style={{ cursor: "pointer" }} onClick={() => editModal(el._id)} width="16px" height="16px" />
                         {isRegister && <DeleteAddress addressID={el._id} addressRefetch={() => addressService.mutate()} />}
-                    </HStack>
+                    </Flex>
                 )
             },
         })) : []
