@@ -1,4 +1,4 @@
-import { Box, HStack } from '@chakra-ui/react'
+import { Box, HStack, Link, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import React, { useCallback, useContext, useState } from 'react'
 import { productContext } from '../../context'
@@ -8,42 +8,27 @@ import { productCreateServices, productUpdateServices } from 'lib/apis/product/p
 import AppErrors from 'lib/utils/statics/errors/errors'
 import useAppToast from 'functions/hooks/toast/useToast'
 import ButtonsProductClass from './model/ButtonProductModel'
-import { generateThumbService } from 'lib/apis/pod/services'
-import introductionClass from '../general/model'
+import useStack from 'functions/hooks/stack/useStack'
+import ProductSingleModel from '../../model/model'
+import ModalHashkey from 'pages/affiliate/notifications/parts/list/parts/buttons/parts/hashkey/ModalHashkey'
+import AppTypography from 'components/common/typography/AppTypography'
 
 // prdocut page
 function ButtonsProduct() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const create = useMutation((params) => productCreateServices(params))
     const update = useMutation((params) => productUpdateServices(params))
-    const generateThumb = useMutation((params) => generateThumbService(params))
     const [States, setStates] = useState({
         loading: false,
-        draft: false
+        draft: false,
+        hashkey: null
     })
     const { state, productID, store: { state: { prev_data } } } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
-    const { validate, makeData } = ButtonsProductClass
+    const { validate, makeData, record } = ButtonsProductClass
     const { showToast } = useAppToast()
-    const { refactorImage } = introductionClass
-
-    // Handle thumbnail
-    const setThumb = useCallback(async () => {
-        const checkChange = (field) => JSON.stringify(prev_data.media.map(el => el[field])) === JSON.stringify(state.media.map(el => el[field]))
-        try {
-            const isMain = state.media.find(el => el.isMain)?.url
-            const isMainIndex = state.media.findIndex(el => el.isMain)
-            if (!isMain) throw Error('')
-
-            if (!checkChange('url') && state.product_type === "PRINT_ON_DEMAND") {
-                const data = await generateThumb.mutateAsync(state.media.map(el => el.url))
-                state.media = refactorImage(data?.data?.data?.originals).map((el, key) => ({ url: el.url, isMain: key === isMainIndex }))
-                state.thumb = data?.data?.data?.thumbs[isMainIndex]
-            } else if (!checkChange('isMain') || state.product_type !== "PRINT_ON_DEMAND") {
-                const data = await generateThumb.mutateAsync([isMain])
-                state.thumb = data?.data?.data?.thumbs[0]
-            }
-        } catch (error) { }
-    }, [state, prev_data])
+    const stacks = useStack()
+    const { refactorData } = ProductSingleModel
 
     const setStateHandle = useCallback((key, value) => setStates(prev => ({ ...prev, [key]: value })), [])
 
@@ -51,16 +36,11 @@ function ButtonsProduct() {
     const submit = useCallback(async (draft) => {
         try {
             // Check change data
-            if (JSON.stringify(prev_data) === JSON.stringify(state)) return shopNavigate("products")
+            const isChanged = JSON.stringify(prev_data) === JSON.stringify(state)
+            if (isChanged && (state.sku[0]?.recordData?.status !== "NOT_RECORDED" && state.product_type === "DIGITAL")) return shopNavigate("products")
 
             setStateHandle("draft", draft)
             setStateHandle("loading", true)
-
-            // Handle thumbnail and media
-            await setThumb()
-
-            // Handle service mode update or create
-            const service = productID ? update.mutateAsync : create.mutateAsync
 
             // Validate product data
             await validate({ state, draft })
@@ -69,40 +49,67 @@ function ButtonsProduct() {
             const formData = makeData({ state, draft, productID })
 
             // Request service
-            await service(productID ? { productID, params: formData } : formData)
+            const requestData = productID ? { productID, params: formData } : formData
+            const product = !productID ? refactorData(await (await create.mutateAsync(requestData)).data?.data) : productID && !isChanged ? refactorData(await (await update.mutateAsync(requestData)).data?.data) : state
 
-            showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")
-            shopNavigate("products")
+            if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
+                try {
+                    const hashkey = await record({ product, stacks })
+                    await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
+                    setStateHandle('hashkey', hashkey)
+                    onOpen()
+                } catch (error) {
+                    shopNavigate("products")
+                    showToast("Somthimg went wrong", "error")
+                }
+            } else {
+                showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")
+                shopNavigate("products")
+            }
             setStateHandle("loading", false)
         } catch (error) {
             setStateHandle("loading", false)
             showToast(error?.response?.data?.data?.message ? error?.response?.data?.data?.message : error?.message ? error.message : "Oops! Something went wrong", "error")
         }
-    }, [state, productID])
+    }, [state, productID, stacks])
 
     return (
-        <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
-            <Box>
-                {!state.publish_product || !productID ? (
+        <>
+            <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
+                <Box>
+                    {!state.publish_product || !productID ? (
+                        <BasicButton
+                            isLoading={States.draft ? States.loading : false}
+                            variant={'outline'}
+                            onClick={() => submit(true)}
+                        >
+                            Save as Draft
+                        </BasicButton>
+                    ) : null}
+                </Box>
+                <Box>
                     <BasicButton
-                        isLoading={States.draft ? States.loading : false}
-                        variant={'outline'}
-                        onClick={() => submit(true)}
+                        isLoading={!States.draft ? States.loading : false}
+                        isDisabled={States.loading}
+                        onClick={() => submit(false)}
                     >
-                        Save as Draft
+                        {productID && state.publish_product ? "Update Product" : state.product_type === "DIGITAL" ? "Publish And Drop" : "Publish Product"}
                     </BasicButton>
-                ) : null}
-            </Box>
-            <Box>
-                <BasicButton
-                    isLoading={!States.draft ? States.loading : false}
-                    isDisabled={States.loading}
-                    onClick={() => submit(false)}
-                >
-                    {productID && state.publish_product ? "Update Product" : "Publish Product"}
-                </BasicButton>
-            </Box>
-        </HStack>
+                </Box>
+            </HStack>
+            {isOpen && <ModalHashkey
+                blockchain={state.digitalDetail.chain}
+                size='3xl'
+                description={(<AppTypography textAlign="center" size="18px">By hashing your product variant on the blockchain network, it becomes secured and decentralized, unlocking the potential to join the droplinked decentralized affiliate network. <Link color="#2BCFA1" _hover={{ color: "#2BCFA1" }}>Learn more</Link></AppTypography>)}
+                close={() => {
+                    shopNavigate("products")
+                    onClose()
+                }}
+                hashkey={States.hashkey}
+                open
+                text='NFT Successfully Created!'
+            />}
+        </>
     )
 }
 

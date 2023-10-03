@@ -13,7 +13,7 @@ function CollectionProductList({ data }: IProps) {
     return (
         <HStack>
             {data?.productCollectionID?.ruleSetID ? data?.productCollectionID?.ruleSetID?.gated ? <AppIcons.GatedIcon /> : <AppIcons.DiscountIcon /> : null}
-            <AppTypography size='14px'>{data?.productCollectionID?.title}</AppTypography>
+            <AppTypography size='12px'>{data?.productCollectionID?.title}</AppTypography>
         </HStack>
     )
 }

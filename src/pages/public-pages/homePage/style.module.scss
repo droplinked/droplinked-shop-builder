@@ -1,0 +1,70 @@
+@mixin before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 300px;
+    position: absolute;
+}
+
+@mixin gradiants {
+    &::before {
+        background: linear-gradient(#141414 10%, transparent);
+        top: 0;
+        left: 0;
+        @include before
+    }
+
+    &::after {
+        background: linear-gradient(transparent 10%, #141414);
+        bottom: 0;
+        left: 0;
+        @include before
+    }
+}
+
+.autoHeight {
+    height: auto !important;
+    max-height: auto !important;
+    min-height: auto !important;
+}
+
+.sshape {
+    position: absolute;
+    line-height: 500px;
+    filter: blur(180px);
+    opacity: .7;
+    z-index: 0;
+
+    &.shape1 {
+        transform: skew(10deg) rotate(-20deg) rotateX(30deg);
+        animation: effect 3.7s infinite alternate;
+
+        &.animationPaused {
+            animation-play-state: paused;
+        }
+    }
+
+    &.shape2 {
+        transform: skew(-10deg) rotate(20deg) rotateX(40deg);
+        animation: effect 3.7s infinite alternate-reverse;
+
+        &.animationPaused {
+            animation-play-state: paused;
+        }
+    }
+}
+
+
+@keyframes effect {
+    0% {
+        color: #380cd4;
+    }
+
+    50% {
+        color: #19a884;
+    }
+
+    100% {
+        color: #23c3d8;
+    }
+}

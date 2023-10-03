@@ -7,7 +7,6 @@ import axiosInstance from 'lib/apis/axiosConfig';
 import { ImockupGeneratorService, IpodAvailableVariantsService } from 'lib/apis/pod/interfaces';
 import { generateThumbService, mockupGeneratorService, podAvailableVariantsService } from 'lib/apis/pod/services';
 import { productContext } from 'pages/product/single/context';
-import introductionClass from 'pages/product/single/parts/general/model';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useMutation } from 'react-query';
 import PrintfulModel from './model';
@@ -29,7 +28,6 @@ function Printful({ close, open }: IProps) {
     })
     const ref = useRef<any>()
     const { showToast } = useAppToast()
-    const { refactorImage } = introductionClass
     const { uniqe, styles } = PrintfulModel
 
     const setState = useCallback((key: string, value: any) => setStates(prev => ({ ...prev, [key]: value })), [])
@@ -96,7 +94,7 @@ function Printful({ close, open }: IProps) {
             const imagesPrintfiles = generateThumbPrintfiles?.data?.data?.originals
             updateState("m2m_positions_options", mockupsData?.printfiles.map((el, key) => ({ ...el, url: imagesPrintfiles[key] })))
 
-            updateState("media", refactorImage(mockupsData?.mockups))
+            await generateImages(mockupsData?.mockups)
 
             const result = [
                 {
@@ -124,6 +122,15 @@ function Printful({ close, open }: IProps) {
             setState('loading', false)
         }
     }, [pod_blank_product_id, States.TemplateId])
+
+    const generateImages = useCallback(async (mocks: any) => {
+        try {
+            const data = await generateThumb.mutateAsync(mocks)
+            const images = data?.data?.data?.originals.map((el, key) => ({ url: el, thumbnail: data?.data?.data?.thumbs[key], isMain: key === 0 }))
+            updateState("media", images)
+
+        } catch (error) { }
+    }, [])
 
     useEffect(() => { if (States.TemplateId) generate() }, [States.TemplateId])
 

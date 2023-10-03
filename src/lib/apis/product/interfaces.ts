@@ -18,14 +18,22 @@ export type product_type = "NORMAL" | "PRINT_ON_DEMAND" | "DIGITAL"
 export interface IDigitalLinks {
     file_url?: string
     message?: string
+    chain?: string
+}
+
+export interface Imedia {
+    isMain: boolean
+    url: string
+    thumbnail: string
 }
 
 export interface IproductState {
+    _id?: string
     title: string
     description: string
     productCollectionID: string
     priceUnit: string
-    media: Array<string>
+    media: Array<Imedia>
     shippingPrice: number
     product_type: product_type
     publish_product: boolean
@@ -72,6 +80,8 @@ export interface IrecordData {
     status: "NOT_RECORDED" | "RECORDED" | "PENDING"
     recordNetwork: any
     data?: any
+    commision?: number
+    deploy_hash?: string
 }
 
 export interface Isku {
@@ -90,6 +100,7 @@ export interface Isku {
     weight: number
     recordData?: IrecordData
     image?: string
+    recorded_quantity?: number
 }
 
 export interface IproductByIdServices {

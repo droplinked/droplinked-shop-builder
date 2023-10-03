@@ -9,11 +9,11 @@ import ProductPageTitle from '../title/ProductPageTitle'
 
 function ProductImages() {
   const { state: { media, product_type }, methods: { updateState } } = useContext(productContext);
-  const { refactorImage, defactorImage, isMain } = introductionClass;
+  const { refactorImage, isMain } = introductionClass;
 
   return (
     <>
-      {["DIGITAL", "NORMAL"].includes(product_type) && (
+      {["NORMAL"].includes(product_type) && (
         <VStack align={"stretch"}>
           <ProductPageTitle
             isReuired
@@ -24,11 +24,11 @@ function ProductImages() {
             <SkeletonProduct width={"30%"} height={"200px"}>
               <AppUploadImage
                 size='original'
-                values={defactorImage(media)}
-                defaults={{ updateDefault: (url) => updateState("media", refactorImage(defactorImage(media), url)), value: isMain(media)?.url }}
-                toast={AppErrors.store.upload("The product image")}
+                defaults={{ updateDefault: (url) => updateState("media", refactorImage(media, url)), value: isMain(media)?.url }}
+                product
+                toast={AppErrors.store.upload("Mockup")}
                 onChange={(images: any) => updateState("media", refactorImage(images))}
-              />
+                values={media} />
             </SkeletonProduct>
           </Box>
         </VStack>

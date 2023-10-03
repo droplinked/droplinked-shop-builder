@@ -32,14 +32,14 @@ function Links() {
 
   return (
     <HStack
-      spacing={14}
+      spacing={24}
       width={"100%"}
       alignItems={"baseline"}
-      justifyContent={{base:'center',md:"end"}}
+      justifyContent={{ base: 'space-between', md: "end" }}
     >
       <Box>
         <VStack align="stretch" spacing={3}>
-          <Header>Contact Us</Header>
+          <Header>Get to know us</Header>
 
           <VStack align="stretch" spacing={3}>
             <LinkComponent path="https://discord.com/channels/1068939465025916959/1088500920406515763">
@@ -62,7 +62,7 @@ function Links() {
       </Box>
       <Box>
         <VStack align="stretch" spacing={3}>
-          <Header>Resources</Header>
+          <Header>Recourses</Header>
           <VStack align="stretch" spacing={3}>
             <Link
               target="_blank"
@@ -83,7 +83,7 @@ function Links() {
 
       <VStack align="stretch" spacing={33}>
         <VStack align="stretch" spacing={3}>
-          <Header>Products</Header>
+          <Header>Services</Header>
 
           <VStack align="stretch" spacing={3}>
             <Link target="_blank" href="https://events.droplinked.com">

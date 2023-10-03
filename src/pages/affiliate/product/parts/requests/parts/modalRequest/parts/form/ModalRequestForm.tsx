@@ -70,7 +70,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                     }
                 })
                 if (request) deployHash = request.txId
-            } else if (["POLYGON", "RIPPLE", "BINANCE"].includes(blockchain)) {
+            } else if (["POLYGON", "RIPPLESIDECHAIN", "BINANCE"].includes(blockchain)) {
                 const request = await requestModel({ blockchain: blockchain, recipient: sku?.recordData?.data?.details?.recipient, tokenID })
                 if (request) deployHash = request
             }

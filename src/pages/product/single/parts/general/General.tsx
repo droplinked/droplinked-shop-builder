@@ -6,21 +6,22 @@ import ProductCollapse from '../modules/collapse/ProductCollapse'
 import ProductImages from '../modules/images/ProductImages'
 import AvailablePurchase from '../modules/available/AvailablePurchase'
 import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
+import NetworkDigital from '../modules/network/NetworkDigital'
 
 interface Iprops {
-    open: boolean
+    open?: boolean
 }
 
-function General({open}:Iprops) {
-
+function General({ open = true }: Iprops) {
     return (
         <ProductCollapse show={open} title='General Information' description="Provide product details">
-            <VStack spacing={10} align={"stretch"}>
+            <VStack spacing="60px" align={"stretch"}>
                 <ProductName />
                 <DescriptionProduct />
                 <ProductPovProvider />
                 <ProductImages />
                 <AvailablePurchase />
+                <NetworkDigital />
             </VStack>
         </ProductCollapse>
     )
