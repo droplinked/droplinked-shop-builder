@@ -19,3 +19,11 @@ export interface IacceptRejectRequestService {
         status: IApproveRequestService
     }
 }
+
+export interface IproducerRequestService {
+    page: any
+}
+
+export interface IpublisherRequestService {
+    page: any
+}

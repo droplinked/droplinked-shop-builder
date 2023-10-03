@@ -1,26 +1,18 @@
 import { VStack } from '@chakra-ui/react'
 import React, { useCallback, useEffect, useReducer } from 'react'
 import { productContext } from './context'
-import ButtonsProduct from './parts/buttons/ButtonsProduct'
 import { useParams } from 'react-router-dom'
 import { useMutation } from 'react-query'
 import { productByIdServices } from 'lib/apis/product/productServices'
 import ProductSingleModel from './model/model'
-import General from './parts/general/General'
-import Variant from './parts/variant/Variant'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { IproductByIdServices } from 'lib/apis/product/interfaces'
-import ShippingProduct from './parts/modules/shipping/ShippingProduct'
-import ProductPodDesign from './parts/podDesign/ProductPodDesign'
-import CollectionProduct from './parts/collection/CollectionProduct'
 import ProductStore from './parts/store/ProductStore'
-import DigitalLinks from './parts/digital/DigitalLinks'
 import productPageNamespace from './reducers'
 import ProductLoading from './parts/loading/ProductLoading'
-import ProductModel from './model'
 import { nanoid } from 'nanoid'
-import PODProduct from './layouts/PODProduct'
 import NormalProduct from './layouts/NormalProduct'
+import PODProduct from './layouts/PODProduct'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
@@ -70,7 +62,7 @@ function ProductSingle() {
     }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log(state.params.media);
+    //     console.log(state.params.sku);
     // }, [state])
 
     return (

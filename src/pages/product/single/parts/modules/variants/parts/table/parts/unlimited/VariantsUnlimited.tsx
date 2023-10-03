@@ -8,9 +8,10 @@ interface IProps {
     isDisabled: boolean
     value: any
     name: string
-    index: number
+    index?: number
+    onChange?: Function
 }
-function VariantsUnlimited({ index, isDisabled, name, value }: IProps) {
+function VariantsUnlimited({ index, isDisabled, name, value, onChange }: IProps) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { state: { sku }, methods: { updateState } } = useContext(productContext)
     const inputRef = useRef(null);
@@ -21,13 +22,14 @@ function VariantsUnlimited({ index, isDisabled, name, value }: IProps) {
     }, [sku, index, name, value])
 
     const item = useCallback((value: any) => <Box padding="6px 10px" onClick={() => {
-        updateSku(value)
+        if (onChange) onChange(value)
+        else updateSku(value)
         onClose()
-    }} cursor="pointer">{value === -1 ? "∞" : value}</Box>, [updateSku])
+    }} cursor="pointer">{value === 1000000 ? "∞" : value}</Box>, [updateSku, onChange])
 
     const rows = useMemo(() => {
         let html = []
-        for (let index = 0; index < 21; index++) {
+        for (let index = 1; index < 21; index++) {
             html.push(item(index))
         }
         return html
@@ -49,20 +51,21 @@ function VariantsUnlimited({ index, isDisabled, name, value }: IProps) {
                 onFocus={onOpen}
                 variant={"unstyled"}
                 // readOnly
-                value={value === -1 ? "∞" : value}
+                value={value === 1000000 ? "∞" : value}
                 background="#141414"
                 border={"none"}
+                readOnly={value === 1000000}
                 isDisabled={name === "cost" || isDisabled}
                 outline="none"
                 _disabled={{ opacity: ".3" }}
                 width="100%"
                 padding="3px"
                 color="#808080"
-                onChange={(e) => e.target.value && parseInt(e.target.value) >= 0 && updateSku(parseInt(e.target.value))}
+                onChange={(e) => onChange ? onChange(parseInt(e.target.value)) : e.target.value && parseInt(e.target.value) >= 0 && updateSku(parseInt(e.target.value))}
             />
             {isOpen && (
                 <VStack align="stretch" zIndex={1} maxHeight="200px" top={8} right={0} left={0} overflow="auto" spacing={0} position="absolute" backgroundColor="#272728" borderRadius="5px" color="#FFF" width="100%">
-                    {item(-1)}
+                    {item(1000000)}
                     {rows}
                 </VStack>
             )}

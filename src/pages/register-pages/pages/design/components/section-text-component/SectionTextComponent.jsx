@@ -10,7 +10,7 @@ const SectionTextComponent = () => {
   } = useContext(designContext);
 
   return (
-    <VStack align="stretch">
+    <VStack align="stretch" spacing="12px">
       <AppInput
         placeholder="Outfits for Summer"
         label="Products Section Text"

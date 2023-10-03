@@ -3,6 +3,7 @@ import { Box, HStack, Text } from '@chakra-ui/react';
 import AppImage from 'components/common/image/AppImage';
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
 import ProductListModel from '../../model';
+import AppTypography from 'components/common/typography/AppTypography';
 
 function ImageListProduct({ product }) {
     const { shopRoute } = useCustomNavigate()
@@ -12,8 +13,8 @@ function ImageListProduct({ product }) {
     return (
         <a href={`${shopRoute}/products/${product._id}`} target="_blank">
             <HStack width={"250px"} color="#FFF">
-                <Box width={"50px"}><AppImage src={product?.thumb || main} /></Box>
-                <Box width={"100%"}><Text>{product.title}</Text></Box>
+                <Box width={"50px"}><AppImage src={main} /></Box>
+                <Box width={"100%"}><AppTypography size="12px">{product.title}</AppTypography></Box>
             </HStack>
         </a>
     )

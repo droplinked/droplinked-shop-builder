@@ -1,21 +1,17 @@
 import React, { useCallback, useContext, useMemo } from 'react'
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import AppInput from 'components/common/form/textbox/AppInput'
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import RecordModalModule from './model/recordFormModel'
 import { Isku } from 'lib/apis/product/interfaces'
-import { useMutation, useQuery } from 'react-query'
-import { recordCasperService, supportedChainsService } from 'lib/apis/sku/services'
-import { IrecordCasperService } from 'lib/apis/sku/interfaces'
 import recordContext from '../../context'
 import useAppToast from 'functions/hooks/toast/useToast'
 import AppTypography from 'components/common/typography/AppTypography'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
-import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
-import useStack from 'functions/hooks/stack/useStack'
+import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork'
+import RecordCovers from './parts/covers/RecordCovers';
+import useStack from 'functions/hooks/stack/useStack';
 
 interface Iprops {
     close: Function
@@ -30,61 +26,17 @@ interface IRecordSubmit {
 }
 
 function RecordForm({ close, product, sku }: Iprops) {
-    const chains = useQuery({
-        queryFn: supportedChainsService,
-        queryKey: "supported_chains",
-        cacheTime: 60 * 60 * 1000,
-        refetchOnWindowFocus: false
-    })
-    const { updateState, state: { loading } } = useContext(recordContext)
-    const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
-    const { casper, record } = RecordModalModule
-    const { login, isRequestPending, openContractCall, stxAddress } = useStack()
+    const stacks = useStack()
+    const { updateState, state: { loading, image } } = useContext(recordContext)
+    const { switchRecord } = RecordModalModule
     const { showToast } = useAppToast()
-
-    const deploy = useCallback((data: IRecordSubmit, deployHash: string) => {
-        return mutateAsync({
-            chain: data.blockchain,
-            params: {
-                deploy_hash: deployHash,
-                skuID: sku._id,
-                commision: Number(data.commission),
-                ...product.product_type === "PRINT_ON_DEMAND" && { recorded_quantity: parseInt(data.quantity) }
-            }
-        }, {
-            onSuccess: async () => {
-                updateState("hashkey", deployHash)
-            }
-        })
-    }, [product])
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
+            if (!image) throw Error('Please enter image')
             updateState("loading", true)
-            const commission = data.commission
-            const quantity: any = data.quantity
-            if (data.blockchain === "CASPER") {
-                const deployHash = await casper({ commission, product, sku, quantity })
-                deploy(data, deployHash)
-            } else if (data.blockchain === "STACKS") {
-                await login()
-                const query = await stacksRecord({
-                    isRequestPending,
-                    openContractCall,
-                    params: {
-                        price: sku.price * 100,
-                        amount: product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity,
-                        commission,
-                        productID: product?._id,
-                        creator: stxAddress,
-                        uri: "record"
-                    }
-                })
-                if (query) deploy(data, query.txId)
-            } else if (["POLYGON", "RIPPLE", "BINANCE"].includes(data.blockchain)) {
-                const res = await record({ commission, product, blockchain: data.blockchain, sku, quantity })
-                if (res) deploy(data, res)
-            }
+            const deployhash = await switchRecord({ data, product, sku, stacks, imageUrl: image })
+            updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
         } catch (error) {
@@ -96,13 +48,13 @@ function RecordForm({ close, product, sku }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, stxAddress, sku])
+    }, [product, sku, image])
 
     const formSchema = useMemo(() => {
         return Yup.object().shape({
             blockchain: Yup.string().required('Required'),
             commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
-            ...product.product_type === "PRINT_ON_DEMAND" && { quantity: Yup.number().min(1).typeError("Please enter quantity") }
+            ...product.product_type === "PRINT_ON_DEMAND" && { quantity: Yup.number().required().min(1).typeError("Please enter quantity") }
         })
     }, [product.product_type])
 
@@ -128,14 +80,9 @@ function RecordForm({ close, product, sku }: Iprops) {
                                 </Text>
                             </Box>
                             <Box>
-                                <AppSelectBox
-                                    items={chains.data ? chains.data?.data?.data.map((el: any) => ({ value: el, caption: capitalizeFirstLetter(el) })) : []}
-                                    name="blockchain"
-                                    label='Blockchain Network'
-                                    loading={!chains.isLoading}
-                                    placeholder='Select Blockchain'
+                                <BlockchainNetwork
                                     error={errors.blockchain}
-                                    onChange={(e) => setFieldValue("blockchain", e.target.value)}
+                                    onChange={(e) => setFieldValue("blockchain", e)}
                                     value={values.blockchain}
                                 />
                             </Box>
@@ -150,18 +97,22 @@ function RecordForm({ close, product, sku }: Iprops) {
                                 />
                                 <AppTypography size='14px' weight='bolder' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography size='14px' weight='bolder' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
                             </VStack>
-                            {product.product_type === "PRINT_ON_DEMAND" ? (
-                                <VStack align="stretch">
-                                    <AppInput
-                                        name="quantity"
-                                        placeholder='1'
-                                        label='Quantity'
-                                        error={errors.quantity}
-                                        onChange={(e) => setFieldValue("quantity", e.target.value)}
-                                        value={values.quantity || ""}
-                                    />
-                                </VStack>
-                            ) : null}
+                            <VStack align="stretch" spacing="30px">
+                                {product.product_type === "PRINT_ON_DEMAND" ? (
+                                    <VStack align="stretch">
+                                        <AppInput
+                                            name="quantity"
+                                            placeholder='1'
+                                            label='Drop Quantity'
+                                            error={errors.quantity}
+                                            onChange={(e) => setFieldValue("quantity", e.target.value)}
+                                            value={values.quantity || ""}
+                                        />
+                                        <AppTypography size='14px' weight='bolder' color="#808080">As the POD inventory is infinite, specify the amount of products you want to drop.</AppTypography>
+                                    </VStack>
+                                ) : null}
+                                <RecordCovers />
+                            </VStack>
                             <HStack justifyContent={"space-between"}>
                                 <Box width={"25%"}><BasicButton variant='outline' onClick={() => close()}>Cancel</BasicButton></Box>
                                 <Box width={"25%"}><BasicButton type="submit" isLoading={loading}>Drop</BasicButton></Box>

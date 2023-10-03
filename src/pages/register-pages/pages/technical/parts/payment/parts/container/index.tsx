@@ -7,6 +7,7 @@ import technicalContext from 'pages/register-pages/pages/technical/context'
 import useAppToast from 'functions/hooks/toast/useToast'
 import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
+import AppTypography from 'components/common/typography/AppTypography'
 
 function ContainerPayment({ title, value, locked }) {
 
@@ -37,7 +38,7 @@ function ContainerPayment({ title, value, locked }) {
 
   const getIcon = useCallback((icon: string) => {
     let styles = { width: "16px", height: "16px" }
-    
+
     switch (icon) {
       case "CASPER":
         return <AppIcons.CasperIcon style={styles} />
@@ -61,9 +62,9 @@ function ContainerPayment({ title, value, locked }) {
 
   return (
     <HStack justifyContent="space-between" width="100%">
-      <HStack>
+      <HStack spacing="18px">
         <Box position={"relative"} bottom={1.9}><AppSwitch isChecked={Switch} onChange={activeHandle} /></Box>
-        <Box><TextLabelBold>{title}</TextLabelBold></Box>
+        <Box><AppTypography size="14px" color="#C2C2C2" weight='bolder'>{title}</AppTypography></Box>
       </HStack>
       {title !== "STRIPE" ? (
         <HStack width={"60%"}>

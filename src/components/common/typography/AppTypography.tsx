@@ -2,11 +2,12 @@ import { Text, TextProps } from '@chakra-ui/react'
 import React from 'react'
 
 type size = "10px" | "12px" | "14px" | "16px" | "18px" | "20px" | "22px" | "24px"
+  | "34px" | "50px"
 type weight = "normal" | "bold" | "bolder"
 
 export interface IAppTypography extends TextProps {
   children?: any
-  size: size
+  size: any | size
   weight?: weight
 }
 

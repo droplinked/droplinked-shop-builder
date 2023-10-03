@@ -15,29 +15,28 @@ const OptionComponent = ({ icon, label, path }) => {
   }, [location, path]);
 
   return (
-    <Tooltip
-      label={label}
-      placement="right-start"
-      borderRadius="8px"
-      bg="mainLayer"
-    >
-      <Link to={path ? `/${shop?.name}/c/${path}` : ""}>
+    <Link to={path ? `/${shop?.name}/c/${path}` : ""}>
+      <Tooltip
+        label={label}
+        placement="right-end"
+        borderRadius="100px"
+        color="#C2C2C2"
+        padding="5px 11px"
+        fontSize="12px"
+        bg="#292929"
+      >
         <IconWrapper
           borderLeft="4px solid transparent"
+          paddingLeft="19px"
           borderColor={isActive ? "primary" : "none"}
           _hover={{
             borderColor: "primary",
           }}
         >
           <Box className={`${classes.icon} ${isActive ? classes.active : ""}`}>{icon}</Box>
-          {/* <IconComponent
-            style={isActive ? { filter: "contrast(160%)" } : {}}
-            src={icon}
-            cursor={label === "informations" ? "not-allowed" : "pointer"}
-          /> */}
         </IconWrapper>
-      </Link>
-    </Tooltip>
+      </Tooltip>
+    </Link>
   );
 };
 

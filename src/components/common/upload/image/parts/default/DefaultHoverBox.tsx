@@ -40,8 +40,7 @@ function DefaultHoverBox() {
                     )}
                 </Flex>
             </Box>
-            {mode === "multi" && <UploadImagesList />
-            }
+            {mode === "multi" && <UploadImagesList />}
         </SimpleGrid >
     )
 }
