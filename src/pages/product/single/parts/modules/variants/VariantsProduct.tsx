@@ -12,22 +12,22 @@ interface IaddSku {
 }
 
 function VariantsProduct() {
-  const { state: { sku, properties, product_type }, methods: { updateState }, loading, productID, store: { state: { variants, available_variant } } } = useContext(productContext)
+  const { state, methods: { updateState }, loading, productID, store: { state: { available_variant, variants } } } = useContext(productContext)
+  const { sku, properties, product_type } = state
   const { makeData } = VariantsProductModel
 
-  const addSku = useCallback(async ({ properties }: IaddSku) => {
+  const addSku = useCallback(() => {
     const makedata = makeData({
       properties: properties.filter(el => el.title.length && el.items.length),
-      skues: sku,
       available_variant,
-      product_type
+      state
     })
     updateState("sku", makedata)
-  }, [sku, variants, product_type, available_variant])
+  }, [sku, variants, product_type, product_type, properties, available_variant])
 
   useEffect(() => {
-    addSku({ properties })
-  }, [properties, productID, product_type])
+    addSku()
+  }, [properties, productID, product_type, available_variant])
 
   return (
     <AppSkeleton isLoaded={loading}>
