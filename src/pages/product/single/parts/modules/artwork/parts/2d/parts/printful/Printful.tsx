@@ -15,7 +15,7 @@ import classes from './style.module.scss'
 interface IProps extends IAppModal { }
 
 function Printful({ close, open }: IProps) {
-    const { methods: { updateState }, state: { printful_template_id, publish_product, pod_blank_product_id, custome_external_id }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
+    const { methods: { updateState }, state: { printful_template_id, media, publish_product, pod_blank_product_id, custome_external_id }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
     const mockupGenerator = useMutation((params: ImockupGeneratorService) => mockupGeneratorService(params))
     const generateThumb = useMutation((params: any) => generateThumbService(params))
@@ -46,7 +46,7 @@ function Printful({ close, open }: IProps) {
                 nonce: data?.data?.data?.nonce,
                 style: styles,
                 onError: (err) => {
-                    if(err && err.search("valid nonce") <= 0) showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
+                    if (err && err.search("valid nonce") <= 0) showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
                     setState('loading', false)
                 },
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
@@ -126,11 +126,15 @@ function Printful({ close, open }: IProps) {
     const generateImages = useCallback(async (mocks: any) => {
         try {
             const data = await generateThumb.mutateAsync(mocks)
-            const images = data?.data?.data?.originals.map((el, key) => ({ url: el, thumbnail: data?.data?.data?.thumbs[key], isMain: key === 0 }))
-            updateState("media", images)
-
+            const images = data?.data?.data?.originals.map((el, key) => ({
+                url: el,
+                thumbnail: data?.data?.data?.thumbs[key],
+                isMain: media.length ? false : key === 0,
+                isMockup: true
+            }))
+            updateState("media", [...media.filter(el => !el.isMockup), ...images].map((el, key) => ({ ...el, isMain: key === 0 })))
         } catch (error) { }
-    }, [])
+    }, [media])
 
     useEffect(() => { if (States.TemplateId) generate() }, [States.TemplateId])
 

@@ -37,7 +37,10 @@ const ProductSingleModel = ({
                     quantity: el?.quantity,
                     record: false,
                     weight: el?.weight,
-                    recordData: el?.recordData,
+                    recordData: {
+                        ...el?.recordData,
+                        commision: el?.commision || 20
+                    },
                     image: el?.image,
                     ...el?.rawPrice && { rawPrice: el?.rawPrice }
                 }

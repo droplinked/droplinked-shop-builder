@@ -51,6 +51,8 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
         let deployHash = ""
 
         try {
+            if (sku.recorded_quantity < parseInt(values.quantity)) throw Error('The entered value is invalid')
+
             setLoading(true)
             const tokenID = sku?.recordData?.data?.details?.token_id
             if (blockchain === "CASPER") {

@@ -1,6 +1,6 @@
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import { productContext } from 'pages/product/single/context'
-import React, { useCallback, useContext, useMemo } from 'react'
+import React, { useCallback, useContext } from 'react'
 import ProductTypeModel from '../../../productType/model'
 import productCategoryContext from '../../context'
 

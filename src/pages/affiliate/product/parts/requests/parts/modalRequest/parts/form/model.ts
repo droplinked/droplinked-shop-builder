@@ -28,7 +28,7 @@ interface Irequest {
 const ModalRequestModel = ({
     formSchema: () => {
         return Yup.object().shape({
-            quantity: Yup.string().required('Required'),
+            quantity: Yup.number().typeError('Please enter number').required('Required'),
         });
     },
 
