@@ -9,6 +9,7 @@ const introductionClass = ({
                 isMain: isMain ? isMain === el.url : key === 0,
                 url: el.url,
                 thumbnail: el.thumbnail,
+                ...el.isMockup && { isMockup: el.isMockup }
             }
         })
     },

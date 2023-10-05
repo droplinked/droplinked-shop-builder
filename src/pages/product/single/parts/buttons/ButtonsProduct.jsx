@@ -50,7 +50,7 @@ function ButtonsProduct() {
 
             // Request service
             const requestData = productID ? { productID, params: formData } : formData
-            const product = !productID ? refactorData(await (await create.mutateAsync(requestData)).data?.data) : productID && !isChanged ? refactorData(await (await update.mutateAsync(requestData)).data?.data) : state
+            const product = state.product_type === "DIGITAL" ? !productID ? refactorData(await (await create.mutateAsync(requestData)).data?.data) : productID && !isChanged ? refactorData(await (await update.mutateAsync(requestData)).data?.data) : state : !productID ? await create.mutateAsync(requestData) : await update.mutateAsync(requestData)
 
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
