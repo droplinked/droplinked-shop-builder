@@ -25,6 +25,7 @@ export interface Imedia {
     isMain: boolean
     url: string
     thumbnail: string
+    isMockup?: boolean
 }
 
 export interface IproductState {

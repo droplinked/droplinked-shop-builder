@@ -2,13 +2,12 @@ import { Box, Flex, Image, SimpleGrid, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useContext, useEffect } from 'react'
 import CategoryBox from '../../box/CategoryBox'
-import { faker } from '@faker-js/faker';
 import { productContext } from 'pages/product/single/context'
 import ProductTypeModel from '../../../../productType/model'
 import { useMutation } from 'react-query';
 import { podCategoryProductService } from 'lib/apis/pod/services';
 import { IpodCategoryProductService } from 'lib/apis/pod/interfaces';
-import ProductCategoryNamespace, { productCategoryContext } from '../../../context';
+import { productCategoryContext } from '../../../context';
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 
 function ProductCategoryProduct() {
