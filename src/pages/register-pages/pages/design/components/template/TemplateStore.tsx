@@ -1,4 +1,5 @@
 import { Flex, FormControl, Image, VStack } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons';
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import AppTypography from 'components/common/typography/AppTypography';
 import { TemplatedStore } from 'lib/utils/statics/templated';
@@ -17,8 +18,7 @@ function TemplateStore() {
                 maxW="100%"
                 overflow="hidden"
                 gap="24px"
-                justifyContent="space-between"
-                alignItems="center"
+                alignItems="stretch"
             >
                 {TemplatedStore.map((currentObj, key) => {
                     return (
@@ -27,6 +27,7 @@ function TemplateStore() {
                             props={{
                                 w: "125px",
                                 borderRadius: "8px",
+                                backgroundColor: "#141414",
                                 cursor: "pointer"
                             }}
                         >
@@ -40,6 +41,10 @@ function TemplateStore() {
                         </ActiveBox>
                     );
                 })}
+                <VStack width="125px" backgroundColor="#141414" onClick={() => window.open('mailto:support@droplinked.com')} cursor="pointer" borderRadius="8px" alignItems="center" padding="10px" textAlign="center">
+                    <AppIcons.Email />
+                    <AppTypography size="12px" color="#808080">Order a customized template</AppTypography>
+                </VStack>
             </Flex>
         </VStack>
     )
