@@ -54,7 +54,15 @@ function ButtonsProduct() {
 
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
-                    const hashkey = await record({ product, stacks })
+                    const hashkey = await record({
+                        product: {
+                            ...state,
+                            _id: product._id,
+                            sku: [
+                                { ...state.sku[0], _id: product.sku[0]._id }
+                            ]
+                        }, stacks
+                    })
                     await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
                     setStateHandle('hashkey', hashkey)
                     onOpen()
