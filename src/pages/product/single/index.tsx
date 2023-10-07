@@ -62,7 +62,7 @@ function ProductSingle() {
     }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log('mediamedia', state.params.sku);
+    //     console.log(state.params.sku);
     // }, [state])
 
     return (
