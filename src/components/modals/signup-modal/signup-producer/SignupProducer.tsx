@@ -14,7 +14,7 @@ import { signupService } from "lib/apis/user/services";
 import { IsignupService } from "lib/apis/user/interfaces";
 import BasicButton from "components/common/BasicButton/BasicButton";
 
-export default function SignupProducer({ close, shopname, switchToggle }) {
+const SignupProducer = ({ close, shopname, switchToggle }) => {
   const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params))
   const [States, setStates] = useState({
     show: {
@@ -110,3 +110,5 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
     </Formik>
   );
 }
+
+export default SignupProducer

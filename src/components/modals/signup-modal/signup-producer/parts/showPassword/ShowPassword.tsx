@@ -6,7 +6,7 @@ interface IProps {
     showed: boolean
 }
 
-function ShowPassword({ onClick, showed }: IProps) {
+const ShowPassword = ({ onClick, showed }: IProps) => {
     const Tag = showed ? AppIcons.VisibleIcon : AppIcons.InvisibleIcon
     return (
         <Tag
