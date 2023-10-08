@@ -22,7 +22,7 @@ function ModalRequest({ close, open, product, sku, shop }: IProps) {
     }, [open])
 
     return (
-        <AppModal close={() => { }} open={open} contentProps={{ padding: "60px" }} size="3xl">
+        <AppModal close={() => { }} open={open} isCentered={false} contentProps={{ padding: "60px" }} size="3xl">
             {HashKeyState ? (
                 <HashKey blockchain={sku?.recordData?.recordNetwork} text='Request sended' close={close} hashkey={HashKeyState} />
             ) : (
