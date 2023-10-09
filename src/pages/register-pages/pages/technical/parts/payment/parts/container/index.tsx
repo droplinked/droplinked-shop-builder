@@ -68,8 +68,8 @@ function ContainerPayment({ title, value, locked }) {
       </HStack>
       {title !== "STRIPE" ? (
         <HStack width={"60%"}>
-          <PageContentWrapper padding={3}>
-            <HStack alignItems="center" spacing={4}>
+          <PageContentWrapper padding={3} height="45px" display="flex" alignItems="center">
+            <HStack alignItems="center" padding="0" justifyContent="space-between" width="100%">
               {locked ? (
                 <>
                   <Box>{getIcon(title)}</Box>

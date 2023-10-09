@@ -10,7 +10,7 @@ import RecordCasperModule from 'pages/product/single/parts/modules/variants/part
 import React, { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
 import { ModalRequestContext } from './context'
-import ModalRequestModel, { IRequestModelValues } from './model'
+import ModalRequestModel from './model'
 import RequestModalButtons from './parts/buttons/RequestModalButtons'
 import ModalRequestDetails from './parts/details/ModalRequestDetails'
 import RequestSpecs from './parts/specs/RequestSpecs'
