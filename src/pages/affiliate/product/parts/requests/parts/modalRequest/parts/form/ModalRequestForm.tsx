@@ -13,7 +13,6 @@ import { ModalRequestContext } from './context'
 import ModalRequestModel, { IRequestModelValues } from './model'
 import RequestModalButtons from './parts/buttons/RequestModalButtons'
 import ModalRequestDetails from './parts/details/ModalRequestDetails'
-import RequestQuantity from './parts/quantity/RequestQuantity'
 import RequestSpecs from './parts/specs/RequestSpecs'
 
 interface IProps {
@@ -26,7 +25,7 @@ interface IProps {
 
 function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
     const { mutateAsync } = useMutation((params: IcasperRequestService) => requestService(params))
-    const { formSchema, publish_request, requestModel } = ModalRequestModel
+    const { publish_request, requestModel } = ModalRequestModel
     const { openCasperWallet } = RecordCasperModule
     const { showToast } = useAppToast()
     const { login, isRequestPending, openContractCall, stxAddress } = useStack()
@@ -45,14 +44,12 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
         })
     }, [product, sku])
 
-    const onSubmit = useCallback(async (values: IRequestModelValues) => {
+    const onSubmit = useCallback(async () => {
         const blockchain = sku?.recordData?.recordNetwork
-        const quantity = parseInt(values.quantity)
+        const quantity = sku.recorded_quantity
         let deployHash = ""
 
         try {
-            if (sku.recorded_quantity < parseInt(values.quantity)) throw Error('The entered value is invalid')
-
             setLoading(true)
             const tokenID = sku?.recordData?.data?.details?.token_id
             if (blockchain === "CASPER") {
@@ -94,7 +91,6 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                 quantity: '',
             }}
             validateOnChange={false}
-            validationSchema={formSchema}
             onSubmit={onSubmit}
         >
             {(formik) => (
@@ -103,7 +99,6 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                         <VStack align={"stretch"} color="#FFF" spacing={8}>
                             <Box><ModalRequestDetails /></Box>
                             <Box><RequestSpecs /></Box>
-                            <Box><RequestQuantity /></Box>
                             <Box><RequestModalButtons close={close} /></Box>
                         </VStack>
                     </Form>
