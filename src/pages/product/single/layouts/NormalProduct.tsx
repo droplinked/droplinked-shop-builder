@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { productContext } from '../context'
 import ProductModel from '../model'
 import ButtonsProduct from '../parts/buttons/ButtonsProduct'
+import CategoryProduct from '../parts/category/CategoryProduct'
 import CollectionProduct from '../parts/collection/CollectionProduct'
 import DigitalLinks from '../parts/digital/DigitalLinks'
 import General from '../parts/general/General'
@@ -22,6 +23,7 @@ function NormalProduct() {
             {!ProductModel.isPrintful(prodviderID) && <Variant />}
             <ProductPodDesign />
             {ProductModel.isPrintful(prodviderID) && <Variant />}
+            <CategoryProduct />
             <CollectionProduct />
             <ButtonsProduct />
         </>

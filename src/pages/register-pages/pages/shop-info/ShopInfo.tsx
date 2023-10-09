@@ -10,6 +10,7 @@ import ShopInfoSubmit from './parts/submit/ShopInfoSubmit'
 import { useProfile } from "functions/hooks/useProfile/useProfile"
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
+import ShopTag from './parts/tag/ShopTag'
 
 export interface IstatesShopInfo {
   description: string,
@@ -60,6 +61,7 @@ function RegisterShopInfo() {
         </VStack>
       </AppCard>
       <AppCard><ShopInfoAddress addressService={addressService} /></AppCard>
+      <AppCard><ShopTag /></AppCard>
       <Flex justifyContent={"right"}><ShopInfoSubmit States={States} /></Flex>
     </VStack>
   )
