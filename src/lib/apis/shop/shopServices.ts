@@ -38,3 +38,7 @@ export const shopInfoService = ({ shopName }: IshopInfoService) => {
 export const shopUpdateService = (params: IshopUpdateService) => {
     return axiosInstance.put(`shop`, params)
 }
+
+export const availableTemplateService = () => {
+    return axiosInstance.get(`shop/available/templates`,)
+}

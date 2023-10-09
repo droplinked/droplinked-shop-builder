@@ -31,6 +31,7 @@ export const refactorDesignData = (data) => {
       : "",
     backgroundColor: data.backgroundColor ? data.backgroundColor : "#ffffff",
     productSectionText: data.productSectionText,
+    templateID: data.templateID || '',
     fullWidthHero: data.fullWidthHero
   };
 };
