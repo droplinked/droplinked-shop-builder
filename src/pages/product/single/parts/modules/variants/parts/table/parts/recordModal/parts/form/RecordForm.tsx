@@ -33,6 +33,7 @@ function RecordForm({ close, product, sku }: Iprops) {
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
+            data.quantity = product.product_type === "PRINT_ON_DEMAND" ? "1000000" : sku.quantity.toString()
             if (!image) throw Error('Please enter image')
             updateState("loading", true)
             const deployhash = await switchRecord({ data, product, sku, stacks, imageUrl: image })
@@ -54,7 +55,6 @@ function RecordForm({ close, product, sku }: Iprops) {
         return Yup.object().shape({
             blockchain: Yup.string().required('Required'),
             commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
-            ...product.product_type === "PRINT_ON_DEMAND" && { quantity: Yup.number().required().min(1).typeError("Please enter quantity") }
         })
     }, [product.product_type])
 
@@ -97,22 +97,7 @@ function RecordForm({ close, product, sku }: Iprops) {
                                 />
                                 <AppTypography size='14px' weight='bolder' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography size='14px' weight='bolder' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
                             </VStack>
-                            <VStack align="stretch" spacing="30px">
-                                {product.product_type === "PRINT_ON_DEMAND" ? (
-                                    <VStack align="stretch">
-                                        <AppInput
-                                            name="quantity"
-                                            placeholder='1'
-                                            label='Drop Quantity'
-                                            error={errors.quantity}
-                                            onChange={(e) => setFieldValue("quantity", e.target.value)}
-                                            value={values.quantity || ""}
-                                        />
-                                        <AppTypography size='14px' weight='bolder' color="#808080">As the POD inventory is infinite, specify the amount of products you want to drop.</AppTypography>
-                                    </VStack>
-                                ) : null}
-                                <RecordCovers />
-                            </VStack>
+                            <RecordCovers />
                             <HStack justifyContent={"space-between"}>
                                 <Box width={"25%"}><BasicButton variant='outline' onClick={() => close()}>Cancel</BasicButton></Box>
                                 <Box width={"25%"}><BasicButton type="submit" isLoading={loading}>Drop</BasicButton></Box>

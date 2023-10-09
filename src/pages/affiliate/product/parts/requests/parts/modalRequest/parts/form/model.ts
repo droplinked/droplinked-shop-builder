@@ -26,12 +26,6 @@ interface Irequest {
 }
 
 const ModalRequestModel = ({
-    formSchema: () => {
-        return Yup.object().shape({
-            quantity: Yup.number().typeError('Please enter number').required('Required'),
-        });
-    },
-
     publish_request: async ({ casperWallet, quantity, sku }: IPublishRequest) => {
         const data = {
             holder_id: parseInt(sku?.recordData?.data?.details?.holder_id),
