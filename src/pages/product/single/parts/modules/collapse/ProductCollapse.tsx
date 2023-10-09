@@ -9,9 +9,10 @@ interface IProps {
   title: string
   description: string
   show?: boolean
+  isReuired?: boolean
 }
 
-function ProductCollapse({ children, description, title, show = false }: IProps) {
+function ProductCollapse({ children, description, title, show = false, isReuired = true }: IProps) {
   const [Show, setShow] = useState(show)
 
   const toggle = useCallback(() => setShow(prev => !prev), [])
@@ -20,7 +21,7 @@ function ProductCollapse({ children, description, title, show = false }: IProps)
     <AppCard mini>
       <VStack align={"stretch"} spacing={10}>
         <Flex justifyContent={"space-between"} onClick={toggle} style={{ cursor: "pointer" }} alignItems="center">
-          <Box><ProductPageTitle head isReuired title={title} description={description} /></Box>
+          <Box><ProductPageTitle head isReuired={isReuired} title={title} description={description} /></Box>
           <Box><AppIcons.ArrowDown style={{ transition: ".3s", ...Show && { transform: "rotate(180deg)" } }} /></Box>
         </Flex>
         <Box display={Show ? "block" : "none"}>{children}</Box>

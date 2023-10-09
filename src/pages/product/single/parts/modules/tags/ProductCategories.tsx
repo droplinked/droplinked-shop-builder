@@ -12,7 +12,7 @@ function ProductCategories() {
   return (
     <VStack align="stretch" spacing="30px">
       <VStack align="stretch">
-        <FieldLabel isRequired label='Category' />
+        <FieldLabel label='Category' />
         <AppSelectBox
           items={[
             {
@@ -36,7 +36,7 @@ function ProductCategories() {
         />
       </VStack>
       <VStack align="stretch">
-        <FieldLabel isRequired label='Sub category' />
+        <FieldLabel label='Sub category' />
         <Flex flexWrap="wrap" gap="10px">
           {subs.map((el, key) => (
             <Box key={key} cursor="pointer" padding="10px 20px" onClick={() => setSubCategory(prev => SubCategory.includes(el) ? prev.filter(item => item !== el) : [...prev, el])} border={`2px solid ${SubCategory.includes(el) ? "#2EC99E" : "#2F2F2F"}`} borderRadius="8px"><AppTypography size="14px">{el}</AppTypography></Box>
