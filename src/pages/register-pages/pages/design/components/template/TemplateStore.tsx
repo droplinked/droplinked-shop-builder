@@ -9,7 +9,7 @@ import { designContext } from '../../design-context';
 import ActiveBox from '../../parts/active/ActiveBox';
 
 function TemplateStore() {
-    const { state: { templateID }, methods: { updateState }, } = useContext(designContext);
+    const { state: { templateID }, methods: { updateState } } = useContext(designContext);
     const { data } = useQuery({
         queryFn: availableTemplateService,
         queryKey: "chains_query",
