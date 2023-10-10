@@ -43,6 +43,7 @@ export interface IshopUpdateService extends IshopSocial {
     backgroundImage?: string
     backgroundImageSecondary?: string
     templateID?: string
+    tags?: Array<string>
     infoEmail?: string
     imsType?: string
 }

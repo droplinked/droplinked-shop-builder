@@ -19,8 +19,8 @@ function ShopInfoSubmit({ States }: IProps) {
 
     const submit = useCallback(async () => {
         try {
-            const { addressBookID, description } = States
-            await update({ addressBookID, description })
+            const { addressBookID, description, tags } = States
+            await update({ addressBookID, description, tags })
             if (isRegister) {
                 shopNavigate(`register/design`);
             } else {
