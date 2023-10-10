@@ -51,7 +51,16 @@ function Printful({ close, open }: IProps) {
                 },
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
                 onTemplateSaved: async (res) => setState('TemplateId', res),
-                ...printful_template_id ? { templateId: printful_template_id } : { initProduct: { productId: pod_blank_product_id.toString() } }
+                featureConfig: {
+                    sub_technique_switcher: true,
+                    embroidery_3d_puff: true
+                },
+                ...printful_template_id ? { templateId: printful_template_id } : {
+                    initProduct: {
+                        productId: pod_blank_product_id.toString(),
+                        technique: "T-SHIRT, EMBROIDERY, EMBROIDERY_FULL_COLOR",
+                    }
+                }
             });
             setState('DesignMaker', designMaker)
         } catch (error) {
