@@ -61,7 +61,9 @@ const ProductSingleModel = ({
             printful_template_id: data?.printful_template_id,
             custome_external_id: data?.custome_external_id,
             digitalDetail: data?.digitalDetail,
-            m2m_positions_options: data?.m2m_positions_options || []
+            m2m_positions_options: data?.m2m_positions_options || [],
+            mainCategory: data?.mainCategory ? data?.mainCategory._id : null,
+            subCategories: data?.subCategories ? data?.subCategories.map(el => el._id) : []
         }
     },
 

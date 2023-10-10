@@ -4,13 +4,16 @@ import AppTags from 'components/common/tags/AppTags'
 import React, { useState } from 'react'
 import classes from './style.module.scss'
 
-function ShopTag() {
-    const [Tags, setTags] = useState([])
+interface IProps {
+    updateStates: any
+    value: any
+}
+function ShopTag({ updateStates, value }: IProps) {
 
     return (
         <VStack align={"stretch"} className={classes.tags}>
             <Box><FieldLabel textProps={{ size: "18px", weight: "bolder" }} isRequired label='Store Tags' /></Box>
-            <Box><AppTags value={Tags} onChange={(value) => setTags(value)} /></Box>
+            <Box><AppTags value={value} onChange={(values) => updateStates("tags", values)} /></Box>
         </VStack>
     )
 }
