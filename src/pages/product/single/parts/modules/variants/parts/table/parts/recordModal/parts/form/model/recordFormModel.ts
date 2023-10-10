@@ -7,6 +7,9 @@ import RecordCasperModule from "./modules/casperModel"
 import { BinanceMetamaskLogin } from "lib/utils/blockchain/binance/metamaskLogin"
 import { stacksRecord } from "lib/utils/blockchain/stacks/record"
 import { recordCasperService } from "lib/apis/sku/services"
+import { getNetworkProvider } from "lib/utils/chains/chainProvider"
+import { appDeveloment } from "lib/utils/app/variable"
+import { Chain, Network } from "lib/utils/chains/Chains"
 
 interface Icasper {
     commission: number
@@ -69,31 +72,9 @@ const RecordModalModule = ({
     },
 
     record: async ({ product, commission, blockchain, quantity, sku, imageUrl }: Irecord) => {
-        let methods = { login: null, record: null }
 
-        switch (blockchain) {
-            case "POLYGON":
-                methods = {
-                    login: PolygonLogin,
-                    record: record_merch_polygon
-                }
-                break;
-            case "RIPPLESIDECHAIN":
-                methods = {
-                    login: XRPLogin,
-                    record: XRPRecordMerch
-                }
-                break;
-            case "BINANCE":
-                methods = {
-                    login: BinanceMetamaskLogin,
-                    record: binanceRecordMerch
-                }
-                break;
-        }
-
-        const login = await methods.login()
-        const record = await methods.record(sku, login.address, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100)
+        const provider = getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
+        const record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100)
 
         return record
     },
@@ -131,6 +112,8 @@ const RecordModalModule = ({
                 await RecordModalModule.deploy(dataDeploy)
                 resolve(dataDeploy.deployHash)
             } catch (error) {
+                console.log(error);
+                
                 reject(error)
             }
         })
