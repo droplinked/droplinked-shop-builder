@@ -12,16 +12,16 @@ function CommissionDigital() {
             ...sku[0],
             'recordData': {
                 ...sku[0].recordData,
-                commision: checked ? 20 : 0
+                commision: checked ? 10 : 0
             }
         }])
     }, [sku])
-
+    
     return (
         <Flex gap={3}>
-            <Box><AppSwitch onChange={(e: any) => change(e.target.checked)} isDisabled={true} isChecked={sku.length ? sku[0].recordData.commision === 20 : false} /></Box>
+            <Box><AppSwitch onChange={(e: any) => change(e.target.checked)} isChecked={sku.length && sku[0].recordData.commision === 10} /></Box>
             <VStack align='stretch' color="#C2C2C2" spacing={1}>
-                <AppTypography size='14px' weight='bolder'>I want to available this NFT to affiliate purchases with %20 commission for collaborators</AppTypography>
+                <AppTypography size='14px' weight='bolder'>I want to available this NFT to affiliate purchases with %10 commission for collaborators</AppTypography>
                 <AppTypography size='14px'>Description</AppTypography>
             </VStack>
         </Flex>

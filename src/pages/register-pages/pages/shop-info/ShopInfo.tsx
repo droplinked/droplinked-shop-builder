@@ -10,10 +10,12 @@ import ShopInfoSubmit from './parts/submit/ShopInfoSubmit'
 import { useProfile } from "functions/hooks/useProfile/useProfile"
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
+import ShopTag from './parts/tag/ShopTag'
 
 export interface IstatesShopInfo {
-  description: string,
+  description: string
   addressBookID: string
+  tags?: Array<string>
 }
 
 function RegisterShopInfo() {
@@ -21,7 +23,8 @@ function RegisterShopInfo() {
   const addressService = useMutation(() => addressBookService())
   const [States, setStates] = useState<IstatesShopInfo>({
     description: null,
-    addressBookID: null
+    addressBookID: null,
+    tags: []
   })
   const address = addressService.data?.data?.data
   const userStore = useMemo(() => 'https://droplinked.io/' + shop.name, [shop])
@@ -35,7 +38,10 @@ function RegisterShopInfo() {
   useEffect(() => updateStates("addressBookID", address && address.length ? address[0]._id : null), [addressService.data])
 
   // Update store name as shop
-  useEffect(() => shop.description && updateStates("description", shop.description), [shop])
+  useEffect(() => {
+    if (shop.description) updateStates("description", shop.description)
+    if (shop?.tags) updateStates("tags", shop.tags)
+  }, [shop])
 
   return (
     <VStack width={"100%"} spacing={4} justifyContent="center" align={"stretch"}>
@@ -60,6 +66,7 @@ function RegisterShopInfo() {
         </VStack>
       </AppCard>
       <AppCard><ShopInfoAddress addressService={addressService} /></AppCard>
+      <AppCard><ShopTag updateStates={updateStates} value={States.tags} /></AppCard>
       <Flex justifyContent={"right"}><ShopInfoSubmit States={States} /></Flex>
     </VStack>
   )

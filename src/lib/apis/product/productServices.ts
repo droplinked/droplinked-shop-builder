@@ -28,3 +28,7 @@ export const printServicesServices = () => {
 export const generateBufferServices = (urls: Array<string>) => {
     return axiosInstance.post(`product/generate/image/buffer`, urls)
 }
+
+export const productCategoryervices = () => {
+    return axiosInstance.get(`product/public/categories/main`)
+}

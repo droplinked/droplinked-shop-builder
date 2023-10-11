@@ -32,10 +32,7 @@ const ButtonsProductClass = ({
 
                 // Digital product validation
                 if (state.product_type === "DIGITAL") {
-                    if (!state.sku[0].recordData.commision) {
-                        error.message = "Please enter commision"
-                        throw error
-                    } else if (!state.sku[0].price) {
+                    if (!state.sku[0].price) {
                         error.message = "Please enter price"
                         throw error
                     } else if (!state.sku[0].quantity) {
@@ -115,6 +112,7 @@ const ButtonsProductClass = ({
             sku: product?.sku[0],
             stacks
         }
+
         return await switchRecord(dataForm)
     }
 })

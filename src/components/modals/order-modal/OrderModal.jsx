@@ -8,7 +8,7 @@ import orderModalContext from "./context";
 export default function OrderModal({ order, show, close }) {
   return (
     <orderModalContext.Provider value={{ order }}>
-      <AppModal open={show} close={close} size="3xl" contentProps={{ padding: 9 }}>
+      <AppModal open={show} isCentered={false} close={close} size="3xl" contentProps={{ padding: 9 }}>
         <CustomerInformationComponent />
         <Box mb="34px" />
         <OrderDetailComponent />

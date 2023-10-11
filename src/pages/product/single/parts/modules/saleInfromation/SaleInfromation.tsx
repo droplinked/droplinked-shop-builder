@@ -27,9 +27,8 @@ function SaleInfromation() {
             "recorded_quantity": 0,
             "recordData": {
                 status: "NOT_RECORDED",
-                commision: 20
+                commision: 0
             },
-            "commision": 20,
             "deploy_hash": '',
         }
 

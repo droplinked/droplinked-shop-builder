@@ -56,6 +56,8 @@ export interface IproductState {
     custome_external_id: string,
     digitalDetail: IDigitalLinks
     m2m_positions_options: Array<any>
+    mainCategory?: string
+    subCategories?: Array<string>
 }
 
 export interface IpropertiesItems {

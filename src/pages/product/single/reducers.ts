@@ -51,7 +51,9 @@ export const productParams: IproductState = {
     digitalDetail: {
         file_url: null,
         message: null
-    }
+    },
+    mainCategory: null,
+    subCategories: []
 }
 
 namespace ProductPageNamespace {

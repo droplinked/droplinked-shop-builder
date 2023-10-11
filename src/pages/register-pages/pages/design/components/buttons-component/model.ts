@@ -17,6 +17,7 @@ const DesignRegisterMdel = ({
             backgroundImage: string().required("Header banner is required"),
             headerIcon: string().required("Header logo is required"),
             logo: string().required(),
+            templateID: string().required('Please choose store template'),
         })
         return schema.validate(designForm)
     }
