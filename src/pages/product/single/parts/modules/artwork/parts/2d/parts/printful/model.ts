@@ -15,6 +15,10 @@ const PrintfulModel = ({
     styles: ({
         variables: {
             '--pf-sys-background': '#242424',
+            '--pf-comp-header-surface': '#1c1c1c',
+            '--pf-comp-sidebar-content-vertical-divider': '#1c1c1c',
+            '--pf-comp-sidebar-content-surface': '#1c1c1c',
+            '--pf-comp-sidebar-navigation-surface': '#1c1c1c',
             '--pf-sys-neutral-300-on-background': '#64748b',
             '--pf-sys-neutral-400-on-background': '#94a3b8',
             '--pf-sys-neutral-700-on-background': '#e2e8f0',
@@ -24,9 +28,9 @@ const PrintfulModel = ({
             '--pf-sys-primary-400-on-background': '#059669',
             '--pf-sys-primary-700-on-background': '#6ee7b7',
             '--pf-comp-designer-area-action-buttons-container-surface': '#333',
-            '--pf-sys-border-on-background': '#64748b',
+            '--pf-sys-border-on-background': '#303030',
             '--pf-sys-link-on-background': '#93c5fd',
-            '--pf-comp-designer-mockup-area-surface': "#f1f5f9",
+            '--pf-comp-designer-mockup-area-surface': "#1c1c1c",
             '--pf-sys-icon-on-background': '#94a3b8',
             '--pf-sys-icon-info-on-background': '#94a3b8',
             '--pf-sys-icon-hover-neutral-700-on-background': '#e2e8f0',
