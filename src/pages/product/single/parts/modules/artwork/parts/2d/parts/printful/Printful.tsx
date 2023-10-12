@@ -49,19 +49,13 @@ function Printful({ close, open }: IProps) {
                     if (err && err.search("valid nonce") <= 0) showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
                     setState('loading', false)
                 },
-                featureConfig: {
-                    clipart_layers: true,
-                    file_layers: true,
-                    text_layers: true,
-                    sub_technique_switcher: true,
-                    has_external_user_file_library: true,
-                    new_layout: true,
-                },
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
                 onTemplateSaved: async (res) => setState('TemplateId', res),
+                featureConfig: {
+                    sub_technique_switcher: true,
+                },
                 ...printful_template_id ? { templateId: printful_template_id } : {
                     initProduct: {
-                        technique: "T-SHIRT, EMBROIDERY",
                         productId: pod_blank_product_id.toString(),
                     }
                 }
@@ -178,10 +172,10 @@ function Printful({ close, open }: IProps) {
     }, [States.DesignMaker])
 
     return (
-        <AppModal size="full" isCentered={false} title="Create a Product Template" close={() => { }} open={open}>
+        <AppModal size="7xl" isCentered={false} title="Create a Product Template" contentProps={{ maxWidth: "1400px", width: "95%" }} close={() => { }} open={open}>
             <VStack align="stretch" spacing={4} paddingTop="20px">
                 <div style={{ visibility: States.loadIframe ? "visible" : "hidden", height: States.loadIframe ? "auto" : "0" }} className={classes.model} ref={ref} id="printful"></div>
-                {!States.loadIframe && <Flex height="70vh" justifyContent="center" alignItems="center"><LoadingComponent /></Flex>}
+                {!States.loadIframe && <Flex height="300px" justifyContent="center" alignItems="center"><LoadingComponent /></Flex>}
                 <Flex justifyContent="space-between">
                     <BasicButton onClick={close} variant="outline" isDisabled={States.loading}>Discard</BasicButton>
                     <BasicButton onClick={save} isDisabled={(Boolean(productID) && publish_product) || States.loading || !States.loadIframe} isLoading={States.loading}>Save</BasicButton>
