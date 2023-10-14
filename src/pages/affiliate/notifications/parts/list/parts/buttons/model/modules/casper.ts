@@ -1,5 +1,5 @@
+import RecordCasperModule, { IopenCasperWallet } from "functions/hooks/web3/models/module/record/modules/casperModel"
 import { approve_request } from "lib/utils/blockchain/casper/casper_wallet_approve_request"
-import RecordCasperModule, { IopenCasperWallet } from "pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/modules/casperModel"
 
 interface Iapprove {
     shop: any

@@ -2,15 +2,14 @@ import { Box, VStack } from '@chakra-ui/react'
 import { Form, Formik } from 'formik'
 import useStack from 'functions/hooks/stack/useStack'
 import useAppToast from 'functions/hooks/toast/useToast'
+import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
 import { requestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'
 import stacksRequest from 'lib/utils/blockchain/stacks/request'
-import RecordCasperModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/modules/casperModel'
 import React, { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
 import { ModalRequestContext } from './context'
-import ModalRequestModel from './model'
 import RequestModalButtons from './parts/buttons/RequestModalButtons'
 import ModalRequestDetails from './parts/details/ModalRequestDetails'
 import RequestSpecs from './parts/specs/RequestSpecs'
@@ -25,11 +24,10 @@ interface IProps {
 
 function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
     const { mutateAsync } = useMutation((params: IcasperRequestService) => requestService(params))
-    const { publish_request, requestModel } = ModalRequestModel
-    const { openCasperWallet } = RecordCasperModule
     const { showToast } = useAppToast()
-    const { login, isRequestPending, openContractCall, stxAddress } = useStack()
+    const { isRequestPending, openContractCall, stxAddress } = useStack()
     const [Loading, setLoading] = useState(false)
+    const { web3 } = useAppWeb3()
 
     const request = useCallback(async (deployHash: string, quantity: number, chain: string) => {
         return mutateAsync({
@@ -47,38 +45,14 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
     const onSubmit = useCallback(async () => {
         const blockchain = sku?.recordData?.recordNetwork
         const quantity = sku.recorded_quantity
-        let deployHash = ""
 
         try {
             setLoading(true)
-            const tokenID = sku?.recordData?.data?.details?.token_id
-            if (blockchain === "CASPER") {
-                const casperWallet = await openCasperWallet()
-                const publish = await publish_request({ casperWallet, quantity, sku })
-                deployHash = publish.deployHash
-            } else if (blockchain === "STACKS") {
-                await login()
-                const request = await stacksRequest({
-                    isRequestPending,
-                    openContractCall,
-                    params: {
-                        amount: quantity,
-                        commission: sku?.recordData?.data?.details?.commision,
-                        id: parseInt(tokenID),
-                        publisher: stxAddress
-                    }
-                })
-                if (request) deployHash = request.txId
-            } else if (["POLYGON", "RIPPLESIDECHAIN", "BINANCE"].includes(blockchain)) {
-                const request = await requestModel({ blockchain: blockchain, recipient: sku?.recordData?.data?.details?.recipient, tokenID })
-                if (request) deployHash = request
-            }
-
-            if (deployHash) {
-                await request(deployHash, quantity, blockchain)
-                setHahskey(deployHash)
-                setLoading(false)
-            }
+            const deployHash = await web3({ chain: blockchain, method: "request", params: { sku, stack: { isRequestPending, openContractCall, stacksRequest, stxAddress } } })
+            
+            await request(deployHash, quantity, blockchain)
+            setHahskey(deployHash)
+            setLoading(false)
         } catch (error) {
             setLoading(false)
             if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")

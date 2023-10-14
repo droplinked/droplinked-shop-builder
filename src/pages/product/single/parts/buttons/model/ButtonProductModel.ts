@@ -1,8 +1,8 @@
+import { IStacks } from 'functions/hooks/web3/models/module/record/recordModel'
 import { IproductState } from 'lib/apis/product/interfaces'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { typesProperties } from 'lib/utils/statics/types'
 import { object, string, array, number } from 'yup'
-import RecordModalModule, { IStacks } from '../../modules/variants/parts/table/parts/recordModal/parts/form/model/recordFormModel'
 import MakeDataProductModel from './modules/MakeDataProduct'
 import ProductValidateModel from './modules/validate'
 
@@ -18,11 +18,10 @@ interface Ivalidate {
 }
 
 interface Irecord {
+    method: Function
     product: IproductState
     stacks: IStacks
 }
-
-const { switchRecord } = RecordModalModule
 
 const ButtonsProductClass = ({
     validate: ({ state, draft }: Ivalidate) => {
@@ -101,7 +100,7 @@ const ButtonsProductClass = ({
 
     },
 
-    record: async ({ product, stacks }: Irecord) => {
+    record: async ({ method, product, stacks }: Irecord) => {
         const dataForm = {
             data: {
                 blockchain: product.digitalDetail.chain,
@@ -113,7 +112,7 @@ const ButtonsProductClass = ({
             stacks
         }
 
-        return await switchRecord(dataForm)
+        return await method(dataForm)
     }
 })
 

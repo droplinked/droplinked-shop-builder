@@ -21,6 +21,15 @@ interface IcasperRecord {
     deployHash: string | undefined
 }
 
+interface Icasper {
+    commission: number
+    product: any
+    sku: any
+    quantity: number
+    accountAddress: string
+}
+
+
 const RecordCasperModule = ({
     openCasperWallet: (): Promise<IopenCasperWallet> => {
         return new Promise<IopenCasperWallet>(async (resolve, reject) => {
@@ -70,7 +79,21 @@ const RecordCasperModule = ({
                 reject(error)
             }
         })
-    }
+    },
+
+    casper: async ({ commission, product, sku, quantity, accountAddress }: Icasper) => {
+        const { casperRecord } = RecordCasperModule
+        const record = await casperRecord({
+            commission,
+            product,
+            sku,
+            publicKey: accountAddress,
+            quantity
+        })
+        if (!record.deployHash) throw Error("Desploy hash empty");
+
+        return record.deployHash
+    },
 })
 
 export default RecordCasperModule
