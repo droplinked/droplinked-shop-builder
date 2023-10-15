@@ -10,7 +10,9 @@ export let EVMPublishRequest = async function (chain: Chain, network: Network, a
     }
     const contract = new ethers.Contract(await getContractAddress(chain, network), await getContractABI(chain), signer);
     try {
-        let tx = await contract.publish_request(producer_account_address, token_id);
+        let tx = await contract.publish_request(producer_account_address, token_id, {
+            gasLimit: 3000000
+        });
         return tx.hash;
     } catch (e: any) {
         if (e.code.toString() == "ACTION_REJECTED") {

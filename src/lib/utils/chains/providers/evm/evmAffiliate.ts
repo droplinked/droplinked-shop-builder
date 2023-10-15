@@ -10,7 +10,9 @@ export let EVMApproveRequest = async function (chain: Chain, network: Network, a
     }
     const contract = new ethers.Contract(await getContractAddress(chain, network), await getContractABI(chain), signer);
     try {
-        let tx = await contract.approve_request(request_id);
+        let tx = await contract.approve_request(request_id, {
+            gasLimit: 3000000
+        });
         return tx.hash;
     } catch (e: any) {
         if (e.code.toString() == "ACTION_REJECTED") {
@@ -28,7 +30,9 @@ export let EVMCancelRequest = async function (chain: Chain, network: Network, ad
     }
     const contract = new ethers.Contract(await getContractAddress(chain, network), await getContractABI(chain), signer);
     try {
-        let tx = await contract.cancel_request(request_id);
+        let tx = await contract.cancel_request(request_id, {
+            gasLimit: 3000000
+        });
         return tx.hash;
     } catch (e: any) {
         if (e.code.toString() == "ACTION_REJECTED") {
@@ -46,7 +50,9 @@ export let EVMDisapproveRequest = async function (chain: Chain, network: Network
     }
     const contract = new ethers.Contract(await getContractAddress(chain, network), await getContractABI(chain), signer);
     try {
-        let tx = await contract.disapprove(request_id);
+        let tx = await contract.disapprove(request_id, {
+            gasLimit: 3000000
+        });
         return tx.hash;
     } catch (e: any) {
         if (e.code.toString() == "ACTION_REJECTED") {
