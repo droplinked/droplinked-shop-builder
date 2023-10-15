@@ -4,7 +4,7 @@ import { publish_request } from "lib/utils/blockchain/casper/casper_wallet_publi
 import { stacksRecord } from "lib/utils/blockchain/stacks/record"
 import { getNetworkProvider } from "lib/utils/chains/chainProvider"
 import { Chain, Network } from "lib/utils/chains/Chains"
-import ModalRequestModel from "pages/affiliate/product/parts/requests/parts/modalRequest/parts/form/model"
+import acceptModel, { IDeployAccept } from "./module/accept/acceptModel"
 import RecordCasperModule from "./module/record/modules/casperModel"
 import recordModel, { Ideploy, IStacks } from "./module/record/recordModel"
 
@@ -42,6 +42,20 @@ interface IRequest {
     accountAddress: any
 }
 
+export interface IAcceptData {
+    shop: any
+    stack: {
+        isRequestPending: any
+        openContractCall: any
+    }
+    accept: boolean
+}
+
+interface IAccept {
+    params: IAcceptData
+    accountAddress: any
+}
+
 const web3Model = ({
     record: async ({ params: { data, product, sku, stacks: { isRequestPending, login, openContractCall, stxAddress }, imageUrl }, accountAddress }: Irecord) => {
         return new Promise<void>(async (resolve: any, reject) => {
@@ -74,8 +88,6 @@ const web3Model = ({
                 await recordModel.deploy(dataDeploy)
                 resolve(dataDeploy.deployHash)
             } catch (error) {
-                console.log(error);
-
                 reject(error)
             }
         })
@@ -113,15 +125,40 @@ const web3Model = ({
                     })
                     resolve(request.txId)
                 } else if (["POLYGON", "RIPPLESIDECHAIN", "BINANCE"].includes(blockchain)) {
-                    const request = await getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress).publishRequest({ recipient: sku?.recordData?.data?.details?.recipient, tokenID })
+                    const request = await getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress).publishRequest(sku?.recordData?.data?.details?.recipient, tokenID)
                     resolve(request)
-                } else {
-                    reject(null)
                 }
             } catch (error) {
                 reject(error)
             }
         })
+    },
+
+    accept: ({ accountAddress, params: { shop, stack: { isRequestPending, openContractCall }, accept } }: IAccept) => {
+        return new Promise<any>(async (resolve, reject) => {
+            try {
+                const requestID = shop?.recordData?.details?.request_id
+                const blockchain: string = shop.sku[0]?.recordData?.recordNetwork
+                let deployHash = null
+                if (blockchain === "CASPER") {
+                    const request = await acceptModel.approveRequestCasper({ accountAddress, shop })
+                    deployHash = request.deployHash
+                    resolve(deployHash)
+                } else if (blockchain === "STACKS") {
+                    const request = await acceptModel.approveRequestStack({ isRequestPending, openContractCall, params: { id: requestID, publisher: shop?.recordData?.details?.publisher } })
+                    deployHash = request.txId
+                    resolve(deployHash)
+                } else if (["POLYGON", "RIPPLESIDECHAIN", "BINANCE"].includes(blockchain)) {
+                    const accept = await getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress).approveRequest(requestID)
+                    deployHash = accept
+                    resolve(deployHash)
+                }
+                await acceptModel.deploy({ deployHash, accept, chain: blockchain, shop })
+            } catch (error) {
+                reject(error)
+            }
+        })
+
     }
 })
 
