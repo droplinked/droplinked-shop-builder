@@ -4,7 +4,7 @@ import { publish_request } from "lib/utils/blockchain/casper/casper_wallet_publi
 import { stacksRecord } from "lib/utils/blockchain/stacks/record"
 import { getNetworkProvider } from "lib/utils/chains/chainProvider"
 import { Chain, Network } from "lib/utils/chains/Chains"
-import acceptModel, { IDeployAccept } from "./module/accept/acceptModel"
+import acceptModel from "./module/accept/acceptModel"
 import RecordCasperModule from "./module/record/modules/casperModel"
 import recordModel, { Ideploy, IStacks } from "./module/record/recordModel"
 
