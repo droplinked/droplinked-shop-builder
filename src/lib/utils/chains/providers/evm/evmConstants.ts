@@ -278,8 +278,13 @@ async function getContractABI(_chain: Chain) {
 					"type": "uint256[]"
 				},
 				{
-					"internalType": "address[]",
+					"internalType": "address",
 					"name": "tokenReceivers",
+					"type": "address"
+				},
+				{
+					"internalType": "address[]",
+					"name": "tokenSenders",
 					"type": "address[]"
 				},
 				{
