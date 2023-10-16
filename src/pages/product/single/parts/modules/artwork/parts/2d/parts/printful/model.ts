@@ -15,6 +15,7 @@ const PrintfulModel = ({
     styles: ({
         variables: {
             '--pf-sys-background': '#242424',
+            '--pf-sys-neutral-surface-50': '#242424',
             '--pf-sys-neutral-300-on-background': '#64748b',
             '--pf-sys-neutral-400-on-background': '#94a3b8',
             '--pf-sys-neutral-700-on-background': '#e2e8f0',
@@ -36,7 +37,6 @@ const PrintfulModel = ({
             '--pf-sys-warning-on-background': '#fcd34d',
             '--pf-sys-hover-border-color-on-background': '#64748b',
             '--pf-sys-hover-box-shadow-on-background': '',
-            '--pf-sys-neutral-surface-50': 'none',
             '--pf-sys-neutral-surface-50-hsl': '217.24, 32.58%, 17.45%',
             '--pf-sys-neutral-300-on-surface-50': '#64748b',
             '--pf-sys-neutral-400-on-surface-50': '#94a3b8',
