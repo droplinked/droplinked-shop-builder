@@ -1,28 +1,27 @@
 import { createContext } from "react";
 
-export const initialStatesDesign = {
-  logo: "",
-  headerIcon: "",
-  textColor: "#000",
-  theme: "theme-2",
-  backgroundText: "",
-  backgroundImage: "",
-  backgroundImageSecondary: "",
-  backgroundColor: "#fff",
-  productSectionText: "",
-  fullWidthHero: false
-};
+interface IState {
+  device: "desktop" | "mobile"
+}
 
 interface IProps {
-  state: any
+  state: IState
   methods: {
     updateState: Function
     resetState: Function
   }
 }
 
+export const initialStateDesignPage: IState = {
+  device: "desktop"
+}
+
+export interface IDesignPageStates {
+  state: IState
+}
+
 export const designContext = createContext<IProps>({
-  state: initialStatesDesign,
+  state: initialStateDesignPage,
   methods: {
     updateState: () => { },
     resetState: () => { },

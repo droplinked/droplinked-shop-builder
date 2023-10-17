@@ -1,10 +1,14 @@
-import { Box, Flex, VStack } from '@chakra-ui/react'
+import { Box, Flex, FlexProps, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 
-function EmbedCode() {
+interface IProps {
+    props?: FlexProps
+}
+
+function EmbedCode({ props }: IProps) {
     return (
-        <Flex backgroundColor="#141414" position="relative" padding="10px 20px" gap="20px" borderRadius="8px">
+        <Flex backgroundColor="#141414" position="relative" padding="24px 20px" gap="20px" borderRadius="8px" {...props}>
             <VStack align="stretch">
                 <AppTypography size="14px">Embed Code</AppTypography>
                 <AppTypography size="14px" color="#808080">Embed html/css code to develope your own design</AppTypography>

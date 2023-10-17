@@ -1,12 +1,14 @@
 import { Box, Flex, HStack, VStack } from '@chakra-ui/react'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import { availableTemplateService } from 'lib/apis/shop/shopServices'
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import ActiveBox from '../../../active/ActiveBox'
 import OptionsCaption from '../../../caption/OptionsCaption'
 
 function OptionImages() {
+    const [Test, setTest] = useState(0)
+
     const { data } = useQuery({
         queryFn: availableTemplateService,
         queryKey: "images_them_option_query",
@@ -22,13 +24,13 @@ function OptionImages() {
                     return (
                         <ActiveBox
                             key={key}
-                            active={template._id === ''}
+                            active={key === Test}
                             props={{
-                                borderRadius: "8px",
-                                border: "3px solid transparent",
+                                borderRadius: "100px",
                                 backgroundColor: "#141414",
                                 cursor: "pointer",
-                                width: "40px"
+                                width: "40px",
+                                onClick: () => setTest(key)
                             }}
                         >
                             <HStack width="100%" spacing="0" >

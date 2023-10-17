@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 
 interface IProps {
     title: string
-    description: string
+    description?: string
     children: any
 }
 
@@ -19,7 +19,7 @@ function DesignPageCard({ description, title, children }: IProps) {
                 <Flex justifyContent="space-between" cursor="pointer" onClick={() => setToggle(prev => !prev)} alignItems="center">
                     <VStack align="stretch" spacing="8px">
                         <AppTypography size="16px" weight="bolder">{title}</AppTypography>
-                        <AppTypography size="12px" color="#C2C2C2">{description}</AppTypography>
+                        {description && <AppTypography size="12px" color="#C2C2C2">{description}</AppTypography>}
                     </VStack>
                     <AppIcons.ArrowDown width="18px" height="18px" style={{ cursor: "pointer", transition: ".3s", transform: `rotate(${Toggle ? "180deg" : '0'})` }} />
                 </Flex>

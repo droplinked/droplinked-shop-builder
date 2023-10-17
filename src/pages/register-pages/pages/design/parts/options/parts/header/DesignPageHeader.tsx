@@ -1,4 +1,4 @@
-import { VStack } from '@chakra-ui/react'
+import { Box, VStack } from '@chakra-ui/react'
 import React from 'react'
 import DesignPageCard from '../card/DesignPageCard'
 import EmbedCode from '../embedCode/EmbedCode'
@@ -13,7 +13,7 @@ function DesignPageHeader() {
                 <OptionLogo />
                 <OptionUploadLogo />
                 <HeaderIconsColor />
-                <EmbedCode />
+                <Box paddingTop="20px"><EmbedCode /></Box>
             </VStack>
         </DesignPageCard>
     )

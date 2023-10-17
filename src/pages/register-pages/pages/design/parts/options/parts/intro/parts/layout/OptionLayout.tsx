@@ -9,7 +9,7 @@ function OptionLayout() {
 
     return (
         <VStack align="stretch">
-            <OptionsCaption caption='Layout' />
+            <OptionsCaption caption='hero section layout' />
             <SimpleGrid columns={4} spacing="15px">
                 {OptionLayoutModel.items.map((el, key) => (
                     <ActiveBox active={key === Test} key={key} props={{ padding: "8px", display: "flex", justifyContent: "center", borderRadius: "8px", onClick: () => setTest(key), cursor: "pointer" }}>{el.icon}</ActiveBox>

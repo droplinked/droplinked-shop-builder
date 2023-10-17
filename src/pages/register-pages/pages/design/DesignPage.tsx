@@ -1,40 +1,46 @@
 import { Box, Flex, VStack } from "@chakra-ui/react";
-import React, { useState, useEffect, useCallback } from "react";
-import { designContext, initialStatesDesign } from "./design-context";
-import { refactorDesignData } from "./utils";
+import React, { useCallback, useState } from "react";
+import { designContext, IDesignPageStates, initialStateDesignPage } from "./design-context";
 import AppCard from "components/common/card/AppCard";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import DesignPageOptions from "./parts/options/DesignPageOptions";
+import DesignPageDevices from "./parts/devices/DesignPageDevices";
+import DesignPagePreview from "./parts/preview/DesignPagePreview";
+import DesignPageButtons from "./parts/buttons/DesignPageButtons";
 
 const DesignPage = () => {
-  const [designState, setDesignState] = useState(initialStatesDesign);
   const { shop } = useProfile();
+  const [States, setStates] = useState<IDesignPageStates>({
+    state: initialStateDesignPage
+  });
 
-  useEffect(() => {
-    if (shop) setDesignState(refactorDesignData(shop));
-  }, [shop]);
-
-  const resetState = useCallback(() => setDesignState(initialStatesDesign), [])
-
-  const updateState = useCallback((element, value) => {
-    if ([typeof element, typeof value].includes("undefined")) return false;
-    setDesignState((prev) => ({ ...prev, [element]: value }));
-  }, []);
+  const updateState = useCallback((key: any, value) => {
+    setStates((prev: IDesignPageStates) => ({ ...prev, state: { ...prev.state, [key]: value } }))
+  }, [])
 
   return (
     <designContext.Provider
       value={{
-        state: designState,
-        methods: { updateState, resetState },
+        state: States.state,
+        methods: {
+          updateState,
+          resetState: () => { }
+        }
       }}
     >
-      <Flex gap="24px" alignItems="baseline">
-        <AppCard boxProps={{ width: "72%", padding: "30px" }}>
-          left
-        </AppCard>
+      <Flex gap="24px" alignItems="flex-start">
+        <VStack align="stretch" width="72%" spacing="24px">
+          <AppCard boxProps={{ padding: "30px" }}>
+            <VStack align="stretch" spacing="24px">
+              <DesignPageDevices />
+              <DesignPagePreview />
+            </VStack>
+          </AppCard>
+          <DesignPageButtons />
+        </VStack>
         <Box width="28%"><DesignPageOptions /></Box>
       </Flex>
-    </designContext.Provider>
+    </designContext.Provider >
   );
 };
 
