@@ -1,6 +1,7 @@
 import { VStack } from '@chakra-ui/react'
 import React from 'react'
 import DesignPageCard from '../card/DesignPageCard'
+import EmbedCode from '../embedCode/EmbedCode'
 import HeaderIconsColor from './parts/icons/HeaderIconsColor'
 import OptionLogo from './parts/logo/OptionLogo'
 import OptionUploadLogo from './parts/upload/OptionUploadLogo'
@@ -12,6 +13,7 @@ function DesignPageHeader() {
                 <OptionLogo />
                 <OptionUploadLogo />
                 <HeaderIconsColor />
+                <EmbedCode />
             </VStack>
         </DesignPageCard>
     )

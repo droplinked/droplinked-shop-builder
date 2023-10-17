@@ -10,8 +10,8 @@ interface Iprops {
 
 function ActiveBox({ children, active, props }: Iprops) {
     return (
-        <Box position={"relative"} {...props} {...active && { border: "3px solid #2EC99E" }}>
-            {active && <AppIcons.ActiveIcon style={{ position: "absolute", top: "0", left: "0", margin: "5px" }} />}
+        <Box position={"relative"} {...props} border={`3px solid ${active ? "#2EC99E" : "transparent"}`}>
+            {/* {active && <AppIcons.ActiveIcon style={{ position: "absolute", top: "0", left: "0", margin: "5px" }} />} */}
             {children}
         </Box>
     )
