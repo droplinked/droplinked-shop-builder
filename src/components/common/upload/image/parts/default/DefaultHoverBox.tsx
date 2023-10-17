@@ -9,7 +9,8 @@ import UploadImagesList from './parts/list/UploadImagesList'
 function DefaultHoverBox() {
     const { openFile, isLoading, values, mode } = useContext(appUploadImageContext)
 
-    const checkSingleImage = useMemo(() => mode === "single" && values && values.length, [values])
+    const checkSingleImage = useMemo(() => ["single", "horizontal"].includes(mode) && values && values.length, [values])
+    const isHorizontal = mode === "horizontal"
 
     return (
         <SimpleGrid columns={mode === "multi" ? 4 : 1} spacing={4}>
@@ -19,24 +20,26 @@ function DefaultHoverBox() {
                     justifyContent="center"
                     position="relative"
                     cursor="pointer"
-                    padding="30px 10px"
+                    padding={isHorizontal ? "0 20px" : "10px 10px"}
                     backgroundColor="#141414"
-                    height="200px"
+                    alignItems="center"
+                    overflow={isHorizontal ? "hidden" : "unset"}
+                    height={isHorizontal ? checkSingleImage ? "80px" : "auto" : "200px"}
                 >
                     {isLoading && <Box position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)"><LoadingComponent /></Box>}
                     {!isLoading && checkSingleImage ? (
                         <Flex width="100%" justifyContent="center"><Image position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)" src={values} maxWidth="90%" maxHeight="90%" /></Flex>
                     ) : (
-                        <VStack textAlign="center" align="stretch" visibility={isLoading || checkSingleImage ? "hidden" : "visible"}>
+                        <Flex textAlign="center" gap={isHorizontal ? "20px" : "0"} alignItems="center" flexDirection={isHorizontal ? "row" : "column"} visibility={isLoading || checkSingleImage ? "hidden" : "visible"}>
                             <>
-                                <Flex justifyContent="center"><AppIcons.Upload width="50px" /></Flex>
-                                <AppTypography size='16px' color="#666">
+                                <Flex justifyContent="center"><AppIcons.Upload width={isHorizontal ? "24px" : "50px"} /></Flex>
+                                <AppTypography size={isHorizontal ? "14px" : '16px'} textAlign={isHorizontal ? "left" : "center"} color="#666">
                                     Upload JPG, JPEG, PNG
-                                    <br />
+                                    {isHorizontal ? null : <br />}
                                     (Max 5 MB)
                                 </AppTypography>
                             </>
-                        </VStack>
+                        </Flex>
                     )}
                 </Flex>
             </Box>
