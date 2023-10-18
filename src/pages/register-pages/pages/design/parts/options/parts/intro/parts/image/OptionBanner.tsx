@@ -1,14 +1,16 @@
 import { Image, SimpleGrid, VStack } from '@chakra-ui/react'
 import AppScrollBar from 'components/common/scrollbar'
 import AppUploadImage from 'components/common/upload/image/AppUploadImage'
-import React, { useCallback, useEffect, useState } from 'react'
+import { designContext } from 'pages/register-pages/pages/design/design-context'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import ActiveBox from '../../../active/ActiveBox'
 import OptionsCaption from '../../../caption/OptionsCaption'
 import OptionBannerModel from './model'
 
 function OptionBanner() {
+    const { methods: { dispatch }, state: { shop: { backgroundImage } } } = useContext(designContext)
+
     const [States, setStates] = useState({
-        image: 'https://upload-file-flatlay.s3.us-west-2.amazonaws.com/91b9390f2d29012f8920c49444f30fd815c8ae033cc2894707cc011042fcd41c.png_or.png',
         defaults: OptionBannerModel.defaults
     })
 
@@ -19,13 +21,22 @@ function OptionBanner() {
         }))
     }, [])
 
+    const setImage = useCallback((image: string) => {
+        dispatch({
+            type: 'updateShop', params: {
+                backgroundImage: image,
+                backgroundImageSecondary: image,
+            }
+        })
+    }, [])
+
     return (
         <VStack align="stretch">
             <OptionsCaption caption='Hero Image' />
             <AppScrollBar maxHeight="320px" overflow="auto" padding="0 10px">
-                <SimpleGrid columns={2} spacing="12px">
+                <SimpleGrid columns={2} spacing="12px" alignItems="center">
                     {States.defaults.map((el, key) => (
-                        <ActiveBox key={key} active={el.banner_src === States.image} props={{ onClick: () => setStates(prev => ({ ...prev, image: el.banner_src })) }}>
+                        <ActiveBox key={key} active={el.banner_src === backgroundImage} props={{ onClick: () => setImage(el.banner_src) }}>
                             <Image src={el.thumb} borderRadius="8px" width="100%" />
                         </ActiveBox>
                     ))}
