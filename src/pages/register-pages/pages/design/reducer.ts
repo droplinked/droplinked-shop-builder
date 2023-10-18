@@ -2,7 +2,7 @@ export interface IShopDesignPage {
     templateID?: string
     backgroundImage?: string
     backgroundImageSecondary?: string
-    fullWidthHero?: string
+    fullWidthHero?: boolean
     productSectionText?: string
     backgroundColor?: string
     backgroundText?: string
@@ -39,7 +39,6 @@ export type actionsDesignPage = {
 
 namespace designPageReducer {
     export const reducers = (state: IStateDesignPage, actions: actionsDesignPage): IStateDesignPage => {
-        console.log(actions);
 
         if (actions.type === "updateState") {
             return {

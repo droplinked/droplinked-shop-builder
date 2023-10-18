@@ -1,7 +1,7 @@
 import { VStack } from '@chakra-ui/react'
 import React from 'react'
 import DesignPageCard from '../card/DesignPageCard'
-import OptionSocial from './parts/social/OptionAvatar'
+import OptionSocial from './parts/social/OptionSocial'
 import OptionAvatar from './parts/upload/OptionAvatar'
 
 function DesignPageProfile() {

@@ -1,5 +1,5 @@
 import { Box, Flex, VStack } from "@chakra-ui/react";
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { designContext, initialStateDesignPage } from "./design-context";
 import AppCard from "components/common/card/AppCard";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
@@ -8,14 +8,15 @@ import DesignPageDevices from "./parts/devices/DesignPageDevices";
 import DesignPagePreview from "./parts/preview/DesignPagePreview";
 import DesignPageButtons from "./parts/buttons/DesignPageButtons";
 import designPageReducer from "./reducer";
+import DesignPageModel from "./model";
 
 const DesignPage = () => {
   const { shop } = useProfile();
   const { reducers } = designPageReducer
   const [state, dispatch] = useReducer(reducers, initialStateDesignPage)
+  const { refactorData } = DesignPageModel
 
-  console.log('state', state);
-
+  useEffect(() => dispatch({ type: 'updateState', params: { shop: refactorData(shop) } }), [shop])
 
   return (
     <designContext.Provider

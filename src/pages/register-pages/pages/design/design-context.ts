@@ -26,7 +26,7 @@ export const initialStateDesignPage: IStateDesignPage = {
     backgroundColor: '',
     backgroundImage: '',
     backgroundImageSecondary: '',
-    fullWidthHero: '',
+    fullWidthHero: false,
     productSectionText: '',
     shopDesign: {
       fontfamily: '',
