@@ -20,6 +20,7 @@ export interface IShopDesignPage {
         headerBackground?: string
         hiroLayout?: string
         profileLogo?: string
+        hiroTextColor?: string
     }
 }
 

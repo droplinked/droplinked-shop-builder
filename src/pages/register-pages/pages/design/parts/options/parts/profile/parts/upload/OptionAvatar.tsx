@@ -1,14 +1,16 @@
 import { VStack } from '@chakra-ui/react'
 import AppUploadImage from 'components/common/upload/image/AppUploadImage'
-import React, { useState } from 'react'
+import { designContext } from 'pages/register-pages/pages/design/design-context'
+import React, { useContext, useState } from 'react'
 import OptionsCaption from '../../../caption/OptionsCaption'
 
 function OptionAvatar() {
-    const [Test, setTest] = useState('')
+    const { methods: { dispatch }, state: { shop: { shopDesign: { profileLogo } } } } = useContext(designContext)
+
     return (
         <VStack align="stretch">
             <OptionsCaption caption='Profile Logo' />
-            <AppUploadImage onChange={(image) => setTest(image)} size="original" values={Test} mode="horizontal" />
+            <AppUploadImage onChange={(image) => dispatch({ type: 'updateShop', params: { shopDesign: { profileLogo: image } } })} size="original" values={profileLogo} mode="horizontal" />
         </VStack>
     )
 }

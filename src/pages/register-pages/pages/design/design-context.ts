@@ -33,6 +33,7 @@ export const initialStateDesignPage: IStateDesignPage = {
       headerBackground: '',
       hiroLayout: '',
       profileLogo: '',
+      hiroTextColor: ''
     }
   }
 }
