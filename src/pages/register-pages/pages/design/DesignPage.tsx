@@ -1,29 +1,28 @@
 import { Box, Flex, VStack } from "@chakra-ui/react";
-import React, { useCallback, useState } from "react";
-import { designContext, IDesignPageStates, initialStateDesignPage } from "./design-context";
+import React, { useReducer } from "react";
+import { designContext, initialStateDesignPage } from "./design-context";
 import AppCard from "components/common/card/AppCard";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import DesignPageOptions from "./parts/options/DesignPageOptions";
 import DesignPageDevices from "./parts/devices/DesignPageDevices";
 import DesignPagePreview from "./parts/preview/DesignPagePreview";
 import DesignPageButtons from "./parts/buttons/DesignPageButtons";
+import designPageReducer from "./reducer";
 
 const DesignPage = () => {
   const { shop } = useProfile();
-  const [States, setStates] = useState<IDesignPageStates>({
-    state: initialStateDesignPage
-  });
+  const { reducers } = designPageReducer
+  const [state, dispatch] = useReducer(reducers, initialStateDesignPage)
 
-  const updateState = useCallback((key: any, value) => {
-    setStates((prev: IDesignPageStates) => ({ ...prev, state: { ...prev.state, [key]: value } }))
-  }, [])
+  console.log('state', state);
+
 
   return (
     <designContext.Provider
       value={{
-        state: States.state,
+        state,
         methods: {
-          updateState,
+          dispatch,
           resetState: () => { }
         }
       }}

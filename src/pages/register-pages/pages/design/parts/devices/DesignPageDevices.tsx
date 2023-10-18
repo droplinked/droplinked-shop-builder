@@ -4,9 +4,9 @@ import { designContext } from '../../design-context'
 import classes from './style.module.scss'
 
 function DesignPageDevices() {
-    const { state: { device }, methods: { updateState } } = useContext(designContext)
+    const { state: { device }, methods: { dispatch } } = useContext(designContext)
 
-    const items = [
+    const items: any = [
         {
             key: "desktop",
             icon: (
@@ -29,7 +29,7 @@ function DesignPageDevices() {
     return (
         <Flex justifyContent="center" gap="48px">
             {items.map((el, key) => (
-                <Box key={key} onClick={() => updateState('device', el.key)} className={device === el.key ? classes.active : ''} cursor="pointer">{el.icon}</Box>
+                <Box key={key} onClick={() => dispatch({ type: 'updateState', params: { device: el.key } })} className={device === el.key ? classes.active : ''} cursor="pointer">{el.icon}</Box>
             ))}
         </Flex>
     )

@@ -8,7 +8,7 @@ function DesignPagePreview() {
 
     return (
         <Flex justifyContent="center">
-            <AppScrollBar width={device === "mobile" ? "300px" : "100%"}>
+            <AppScrollBar transition=".3s" width={device === "mobile" ? "300px" : "100%"}>
                 <iframe
                     style={{ width: "100%", height: "600px" }}
                     src="https://dev.droplinked.io/mehrpouya"

@@ -1,29 +1,46 @@
 import { createContext } from "react";
-
-interface IState {
-  device: "desktop" | "mobile"
-}
+import { actionsDesignPage, IStateDesignPage } from "./reducer";
 
 interface IProps {
-  state: IState
+  state: IStateDesignPage
   methods: {
-    updateState: Function
+    dispatch(action: actionsDesignPage): void
     resetState: Function
   }
 }
 
-export const initialStateDesignPage: IState = {
-  device: "desktop"
-}
-
-export interface IDesignPageStates {
-  state: IState
+export const initialStateDesignPage: IStateDesignPage = {
+  device: "desktop",
+  shop: {
+    templateID: '6523b829f31b22884436a8da',
+    backgroundText: '',
+    logo: '',
+    discordURL: '',
+    instagramURL: '',
+    twitterURL: '',
+    facebookURL: '',
+    linkedinURL: '',
+    tiktokURL: '',
+    webURL: '',
+    headerIcon: '',
+    backgroundColor: '',
+    backgroundImage: '',
+    backgroundImageSecondary: '',
+    fullWidthHero: '',
+    productSectionText: '',
+    shopDesign: {
+      fontfamily: '',
+      headerBackground: '',
+      hiroLayout: '',
+      profileLogo: '',
+    }
+  }
 }
 
 export const designContext = createContext<IProps>({
   state: initialStateDesignPage,
   methods: {
-    updateState: () => { },
+    dispatch: null,
     resetState: () => { },
   }
 });
