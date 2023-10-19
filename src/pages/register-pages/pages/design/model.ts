@@ -21,6 +21,8 @@ const DesignPageModel = ({
             hiroLayout: shop?.shopDesign?.hiroLayout || initialStateDesignPage.shop.shopDesign.hiroLayout,
             hiroTextColor: shop?.shopDesign?.hiroTextColor || initialStateDesignPage.shop.shopDesign.hiroTextColor,
             profileLogo: shop?.shopDesign?.profileLogo || initialStateDesignPage.shop.shopDesign.profileLogo,
+            footerLinks: shop?.shopDesign?.footerLinks || initialStateDesignPage.shop.shopDesign.footerLinks,
+            bannerLinks: shop?.shopDesign?.bannerLinks || initialStateDesignPage.shop.shopDesign.bannerLinks,
         },
         templateID: shop?.templateID || initialStateDesignPage.shop.templateID,
         tiktokURL: shop?.tiktokURL || initialStateDesignPage.shop.tiktokURL,

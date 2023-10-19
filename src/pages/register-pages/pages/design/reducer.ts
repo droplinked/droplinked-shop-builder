@@ -1,3 +1,8 @@
+export interface IAdditionalLinkes {
+    caption: string
+    link: string
+}
+
 export interface IShopDesignPage {
     templateID?: string
     backgroundImage?: string
@@ -21,6 +26,8 @@ export interface IShopDesignPage {
         hiroLayout?: string
         profileLogo?: string
         hiroTextColor?: string
+        bannerLinks?: Array<IAdditionalLinkes>
+        footerLinks?: Array<IAdditionalLinkes>
     }
 }
 

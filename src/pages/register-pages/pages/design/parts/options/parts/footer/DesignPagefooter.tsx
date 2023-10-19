@@ -8,7 +8,7 @@ function DesignPagefooter() {
     return (
         <DesignPageCard title='Footer'>
             <VStack align="stretch" spacing="24px">
-                <AdditionalLinkes />
+                <AdditionalLinkes element='footerLinks' />
                 <Box paddingTop="20px"><EmbedCode /></Box>
             </VStack>
         </DesignPageCard>
