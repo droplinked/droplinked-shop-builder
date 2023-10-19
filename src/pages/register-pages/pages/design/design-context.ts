@@ -33,7 +33,9 @@ export const initialStateDesignPage: IStateDesignPage = {
       headerBackground: '',
       hiroLayout: '',
       profileLogo: '',
-      hiroTextColor: ''
+      hiroTextColor: '',
+      bannerLinks: [],
+      footerLinks: []
     }
   }
 }

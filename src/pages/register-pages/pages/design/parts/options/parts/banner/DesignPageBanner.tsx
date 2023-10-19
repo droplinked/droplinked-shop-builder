@@ -8,7 +8,7 @@ function DesignPageBanner() {
     return (
         <DesignPageCard title='Banner'>
             <VStack align="stretch" spacing="24px">
-                <AdditionalLinkes />
+                <AdditionalLinkes element='bannerLinks' />
                 <Box paddingTop="20px"><EmbedCode /></Box>
             </VStack>
         </DesignPageCard>

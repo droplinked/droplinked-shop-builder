@@ -7,7 +7,7 @@ import SelectPagesComponent from "./component/select-pages-component/SelectPages
 const RegisterPagesWrapper = () => {
 
   const location = useLocation()
-  const isFullpage = location.pathname.search('settings/design') > 0
+  const isFullpage = location.pathname.search('settings/design') > 0 || location.pathname.search('register/design') > 0
 
   return (
     <Flex w="100%">
