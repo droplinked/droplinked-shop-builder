@@ -29,6 +29,7 @@ export interface IShopDesignPage {
         bannerLinks?: Array<IAdditionalLinkes>
         footerLinks?: Array<IAdditionalLinkes>
     }
+    template_options?: any
 }
 
 export interface IStateDesignPage {

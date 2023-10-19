@@ -9,6 +9,33 @@ interface IProps {
   }
 }
 
+export const template_options_defaults = {
+  '--dlk-hdr': {
+    '--dlk-hdr-styles': {},
+    '--dlk-hdr-container': {},
+    '--dlk-hdr-logo': {},
+    '--dlk-hdr-icons': {
+      '--dlk-hdr-icons-styles': {},
+      '--dlk-hdr-icons-profile': {},
+      '--dlk-hdr-icons-cart': {},
+      '--dlk-hdr-icons-notification': {}
+    }
+  },
+  '--dlk-wrp': {
+    '--dlk-wrp-styles': {},
+    '--dlk-wrp-hiro': {
+      '--dlk-wrp-hiro-styles': {},
+      '--dlk-wrp-hiro-image': {},
+      '--dlk-wrp-hiro-caption': {}
+    }
+  },
+  '--dlk-ftr': {
+    '--dlk-ftr-styles': {},
+    '--dlk-ftr-logo': {},
+    '--dlk-ftr-description': {}
+  }
+}
+
 export const initialStateDesignPage: IStateDesignPage = {
   device: "desktop",
   shop: {
@@ -32,11 +59,11 @@ export const initialStateDesignPage: IStateDesignPage = {
       fontfamily: '',
       headerBackground: '',
       hiroLayout: '',
-      profileLogo: '',
       hiroTextColor: '',
       bannerLinks: [],
       footerLinks: []
-    }
+    },
+    template_options: template_options_defaults
   }
 }
 
