@@ -34,6 +34,7 @@ const DesignPageModel = ({
         tiktokURL: shop?.tiktokURL || initialStateDesignPage.shop.tiktokURL,
         twitterURL: shop?.twitterURL || initialStateDesignPage.shop.twitterURL,
         webURL: shop?.webURL || initialStateDesignPage.shop.webURL,
+        template_options: shop?.template_options || initialStateDesignPage.shop.template_options, 
     })
 })
 
