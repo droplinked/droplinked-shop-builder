@@ -1,7 +1,14 @@
 import { initialStateDesignPage } from "./design-context"
-import { IShopDesignPage } from "./reducer"
+import { IAdditionalLinkes, IShopDesignPage } from "./reducer"
 
 const DesignPageModel = ({
+    refactorAdditionalLinkes: (data: Array<IAdditionalLinkes>): Array<IAdditionalLinkes> => {
+        return data.map(el => ({
+            caption: el.caption,
+            link: el.link,
+            save: true,
+        }))
+    },
     refactorData: (shop: any): IShopDesignPage => ({
         backgroundColor: shop?.backgroundColor || initialStateDesignPage.shop.backgroundColor,
         backgroundImage: shop?.backgroundImage || initialStateDesignPage.shop.backgroundImage,
@@ -20,9 +27,8 @@ const DesignPageModel = ({
             headerBackground: shop?.shopDesign?.headerBackground || initialStateDesignPage.shop.shopDesign.headerBackground,
             hiroLayout: shop?.shopDesign?.hiroLayout || initialStateDesignPage.shop.shopDesign.hiroLayout,
             hiroTextColor: shop?.shopDesign?.hiroTextColor || initialStateDesignPage.shop.shopDesign.hiroTextColor,
-            profileLogo: shop?.shopDesign?.profileLogo || initialStateDesignPage.shop.shopDesign.profileLogo,
-            footerLinks: shop?.shopDesign?.footerLinks || initialStateDesignPage.shop.shopDesign.footerLinks,
-            bannerLinks: shop?.shopDesign?.bannerLinks || initialStateDesignPage.shop.shopDesign.bannerLinks,
+            footerLinks: DesignPageModel.refactorAdditionalLinkes(shop?.shopDesign?.footerLinks) || initialStateDesignPage.shop.shopDesign.footerLinks,
+            bannerLinks: DesignPageModel.refactorAdditionalLinkes(shop?.shopDesign?.bannerLinks) || initialStateDesignPage.shop.shopDesign.bannerLinks,
         },
         templateID: shop?.templateID || initialStateDesignPage.shop.templateID,
         tiktokURL: shop?.tiktokURL || initialStateDesignPage.shop.tiktokURL,

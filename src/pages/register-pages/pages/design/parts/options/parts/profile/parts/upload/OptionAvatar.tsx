@@ -5,12 +5,12 @@ import React, { useContext, useState } from 'react'
 import OptionsCaption from '../../../caption/OptionsCaption'
 
 function OptionAvatar() {
-    const { methods: { dispatch }, state: { shop: { shopDesign: { profileLogo } } } } = useContext(designContext)
+    const { methods: { dispatch }, state: { shop: { logo } } } = useContext(designContext)
 
     return (
         <VStack align="stretch">
             <OptionsCaption caption='Profile Logo' />
-            <AppUploadImage onChange={(image) => dispatch({ type: 'updateShop', params: { shopDesign: { profileLogo: image } } })} size="original" values={profileLogo} mode="horizontal" />
+            <AppUploadImage onChange={(image) => dispatch({ type: 'updateShop', params: { logo: image } })} size="original" values={logo} mode="horizontal" />
         </VStack>
     )
 }

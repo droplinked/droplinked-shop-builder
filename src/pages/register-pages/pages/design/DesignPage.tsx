@@ -17,7 +17,6 @@ const DesignPage = () => {
   const { refactorData } = DesignPageModel
 
   useEffect(() => dispatch({ type: 'updateState', params: { shop: refactorData(shop) } }), [shop])
-  console.log("state", state.shop.shopDesign.footerLinks);
 
   return (
     <designContext.Provider
