@@ -1,30 +1,76 @@
 import { createContext } from "react";
-
-export const initialStatesDesign = {
-  logo: "",
-  headerIcon: "",
-  textColor: "#000",
-  theme: "theme-2",
-  backgroundText: "",
-  backgroundImage: "",
-  backgroundImageSecondary: "",
-  backgroundColor: "#fff",
-  productSectionText: "",
-  fullWidthHero: false
-};
+import { actionsDesignPage, IStateDesignPage } from "./reducer";
 
 interface IProps {
-  state: any
+  state: IStateDesignPage
   methods: {
-    updateState: Function
+    dispatch(action: actionsDesignPage): void
     resetState: Function
   }
 }
 
+export const template_options_defaults = {
+  '--dlk-hdr': {
+    '--dlk-hdr-styles': {},
+    '--dlk-hdr-container': {},
+    '--dlk-hdr-logo': {},
+    '--dlk-hdr-icons': {
+      '--dlk-hdr-icons-styles': {},
+      '--dlk-hdr-icons-profile': {},
+      '--dlk-hdr-icons-cart': {},
+      '--dlk-hdr-icons-notification': {}
+    }
+  },
+  '--dlk-wrp': {
+    '--dlk-wrp-styles': {},
+    '--dlk-wrp-hiro': {
+      '--dlk-wrp-hiro-styles': {},
+      '--dlk-wrp-hiro-image': {},
+      '--dlk-wrp-hiro-caption': {}
+    }
+  },
+  '--dlk-ftr': {
+    '--dlk-ftr-styles': {},
+    '--dlk-ftr-logo': {},
+    '--dlk-ftr-description': {}
+  }
+}
+
+export const initialStateDesignPage: IStateDesignPage = {
+  device: "desktop",
+  shop: {
+    templateID: '6523b829f31b22884436a8da',
+    backgroundText: '',
+    logo: '',
+    discordURL: '',
+    instagramURL: '',
+    twitterURL: '',
+    facebookURL: '',
+    linkedinURL: '',
+    tiktokURL: '',
+    webURL: '',
+    headerIcon: '',
+    backgroundColor: '',
+    backgroundImage: '',
+    backgroundImageSecondary: '',
+    fullWidthHero: false,
+    productSectionText: '',
+    shopDesign: {
+      fontfamily: '',
+      headerBackground: '',
+      hiroLayout: '',
+      hiroTextColor: '',
+      bannerLinks: [],
+      footerLinks: []
+    },
+    template_options: template_options_defaults
+  }
+}
+
 export const designContext = createContext<IProps>({
-  state: initialStatesDesign,
+  state: initialStateDesignPage,
   methods: {
-    updateState: () => { },
+    dispatch: null,
     resetState: () => { },
   }
 });
