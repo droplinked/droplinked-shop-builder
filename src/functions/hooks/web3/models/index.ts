@@ -65,8 +65,7 @@ const web3Model = ({
                 const dataDeploy: Ideploy = {
                     data, deployHash: '', product, sku
                 }
-                if (data.blockchain === "CASPER") dataDeploy.deployHash = await RecordCasperModule.casper({ commission, product, sku, quantity, accountAddress: accountAddress.publicKey })
-                else if (data.blockchain === "STACKS") {
+                if (data.blockchain === "STACKS") {
                     const query = await stacksRecord({
                         isRequestPending,
                         openContractCall,
@@ -80,7 +79,7 @@ const web3Model = ({
                         }
                     })
                     if (query) dataDeploy.deployHash = query.txId
-                } else if (["POLYGON", "RIPPLESIDECHAIN", "BINANCE"].includes(data.blockchain)) {
+                } else {
                     const res = await recordModel.record({ commission, product, blockchain: data.blockchain, sku, quantity, imageUrl, accountAddress })
                     if (res) dataDeploy.deployHash = res
                 }
@@ -100,19 +99,7 @@ const web3Model = ({
                 const blockchain: string = sku?.recordData?.recordNetwork
                 const quantity = sku.recorded_quantity
 
-                if (blockchain === "CASPER") {
-                    const publish = await publish_request(
-                        parseInt(sku?.recordData?.data?.details?.holder_id),
-                        quantity,
-                        sku?.recordData?.data?.details?.recipient,
-                        {
-                            publicKey: accountAddress.publicKey,
-                            account_hash: accountAddress.account_hash,
-                            signature: accountAddress.signature
-                        }
-                    )
-                    resolve(publish.deployHash)
-                } else if (blockchain === "STACKS") {
+                if (blockchain === "STACKS") {
                     const request = await stacksRequest({
                         isRequestPending,
                         openContractCall,
@@ -124,7 +111,7 @@ const web3Model = ({
                         }
                     })
                     resolve(request.txId)
-                } else if (["POLYGON", "RIPPLESIDECHAIN", "BINANCE"].includes(blockchain)) {
+                } else {
                     const request = await getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress).publishRequest(sku?.recordData?.data?.details?.recipient, tokenID)
                     resolve(request)
                 }
@@ -140,15 +127,11 @@ const web3Model = ({
                 const requestID = shop?.recordData?.details?.request_id
                 const blockchain: string = shop.sku[0]?.recordData?.recordNetwork
                 let deployHash = null
-                if (blockchain === "CASPER") {
-                    const request = await acceptModel.approveRequestCasper({ accountAddress, shop })
-                    deployHash = request.deployHash
-                    resolve(deployHash)
-                } else if (blockchain === "STACKS") {
+                if (blockchain === "STACKS") {
                     const request = await acceptModel.approveRequestStack({ isRequestPending, openContractCall, params: { id: requestID, publisher: shop?.recordData?.details?.publisher } })
                     deployHash = request.txId
                     resolve(deployHash)
-                } else if (["POLYGON", "RIPPLESIDECHAIN", "BINANCE"].includes(blockchain)) {
+                } else {
                     const accept = await getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress).approveRequest(requestID)
                     deployHash = accept
                     resolve(deployHash)

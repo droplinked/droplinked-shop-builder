@@ -26,12 +26,10 @@ function useAppWeb3() {
     const stack = useStack()
 
     const _login = async (chain: string) => {
-        if (chain == "CASPER") {
-            return await RecordCasperModule.openCasperWallet()
-        } else if (chain == "STACKS") {
+        if (chain == "STACKS") {
             await stack.login()
         } else {
-            return await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin()).address
+            return await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin(null)).address
         }
     }
 
@@ -45,11 +43,11 @@ function useAppWeb3() {
                 } else if (method === "request") {
                     const requests = await request({ params, accountAddress })
                     resolve(requests)
-                } else if (method === "accept") {                    
+                } else if (method === "accept") {
                     const requests = await accept({ params, accountAddress })
                     resolve(requests)
                 }
-            } catch (error) {                
+            } catch (error) {
                 reject(error);
             }
         })
