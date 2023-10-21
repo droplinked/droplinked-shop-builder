@@ -1,4 +1,5 @@
 import { Chain, Network } from "./Chains";
+import { CasperProvider } from "./providers/casper/casperProvider";
 import { EVMProvider } from "./providers/evm/evmProvider";
 
 export class WalletNotFoundException {
@@ -22,7 +23,7 @@ export class ChainNotImplementedException {
 }
 
 export interface ChainProvider {
-    walletLogin(): Promise<any>;
+    walletLogin(onConnected:any): Promise<any>;
     recordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string>;
     publishRequest(producerAccountAddress: string, tokenId: number | string): Promise<string>;
     approveRequest(requestId: number): Promise<string>;
@@ -45,8 +46,8 @@ let chainMapping = {
         [Network.MAINNET]: null,
     },
     [Chain.CASPER]: {
-        [Network.TESTNET]: null,
-        [Network.MAINNET]: null,
+        [Network.TESTNET]: new CasperProvider(Chain.CASPER, Network.TESTNET),
+        [Network.MAINNET]: new CasperProvider(Chain.CASPER, Network.MAINNET),
     },
     [Chain.RIPPLESIDECHAIN]: {
         [Network.TESTNET]: new EVMProvider(Chain.RIPPLESIDECHAIN, Network.TESTNET),
