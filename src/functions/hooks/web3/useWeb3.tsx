@@ -29,11 +29,9 @@ function useAppWeb3() {
     const { app: { user, updateState } } = useHookStore()
     const stack = useStack()
 
-    const updateWallet = useCallback((values: IUserProps) => {
-        updateState({ key: "user", params: { ...user, wallets: [...user?.wallets || [], values] } })
-    }, [user])
-
-    // console.log('user', user);
+    // const updateWallet = useCallback((values: IUserProps) => {
+    //     updateState({ key: "user", params: { ...user, wallets: [...user?.wallets || [], values] } })
+    // }, [user])
 
     const _login = (chain: string) => {
         return new Promise<any>(async (resolve, reject) => {
@@ -46,17 +44,17 @@ function useAppWeb3() {
                 } else if (chain == "STACKS") {
                     const address: any = await stack.login()
                     resolve(address)
-                    updateWallet({ type: "STACKS", address })
+                    // updateWallet({ type: "STACKS", address })
                 } else {
                     if (chain === "CASPER") {
                         await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin((res) => {
-                            updateWallet({ type: "CASPER", address: res.account_hash, public_key: res.publicKey })
+                            // updateWallet({ type: "CASPER", address: res.account_hash, public_key: res.publicKey })
                             resolve(res.account_hash)
                         }))
                     } else {
                         const address = await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin(null)).address
                         resolve(address)
-                        updateWallet({ type: chain, address })
+                        // updateWallet({ type: chain, address })
                     }
                     console.log("adasda 1");
                 }
