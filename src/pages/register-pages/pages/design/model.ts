@@ -27,14 +27,14 @@ const DesignPageModel = ({
             headerBackground: shop?.shopDesign?.headerBackground || initialStateDesignPage.shop.shopDesign.headerBackground,
             hiroLayout: shop?.shopDesign?.hiroLayout || initialStateDesignPage.shop.shopDesign.hiroLayout,
             hiroTextColor: shop?.shopDesign?.hiroTextColor || initialStateDesignPage.shop.shopDesign.hiroTextColor,
-            footerLinks: DesignPageModel.refactorAdditionalLinkes(shop?.shopDesign?.footerLinks) || initialStateDesignPage.shop.shopDesign.footerLinks,
-            bannerLinks: DesignPageModel.refactorAdditionalLinkes(shop?.shopDesign?.bannerLinks) || initialStateDesignPage.shop.shopDesign.bannerLinks,
+            footerLinks: shop?.shopDesign?.footerLinks && typeof shop?.shopDesign?.footerLinks === "object" ? DesignPageModel.refactorAdditionalLinkes(shop?.shopDesign?.footerLinks) : initialStateDesignPage.shop.shopDesign.footerLinks,
+            bannerLinks: shop?.shopDesign?.bannerLinks && typeof shop?.shopDesign?.bannerLinks === "object" ? DesignPageModel.refactorAdditionalLinkes(shop?.shopDesign?.bannerLinks) : initialStateDesignPage.shop.shopDesign.bannerLinks,
         },
         templateID: shop?.templateID || initialStateDesignPage.shop.templateID,
         tiktokURL: shop?.tiktokURL || initialStateDesignPage.shop.tiktokURL,
         twitterURL: shop?.twitterURL || initialStateDesignPage.shop.twitterURL,
         webURL: shop?.webURL || initialStateDesignPage.shop.webURL,
-        template_options: shop?.template_options || initialStateDesignPage.shop.template_options, 
+        template_options: shop?.template_options || initialStateDesignPage.shop.template_options,
     })
 })
 
