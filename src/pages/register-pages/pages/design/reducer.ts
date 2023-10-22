@@ -28,6 +28,7 @@ export interface IShopDesignPage {
         hiroTextColor?: string
         bannerLinks?: Array<IAdditionalLinkes>
         footerLinks?: Array<IAdditionalLinkes>
+        productListTitle?: string
     }
     template_options?: any
 }
