@@ -5,10 +5,8 @@ import { casperService, getContractAddress } from './casperConstants';
 import { getCasperWalletInstance } from './casperWalletAuth';
 
 
-
 async function casperRecordMerch(network: Network, sku_properties: any , address: string, product_title: string, discription: string, image_url: string, price: number, amount: number, commission: number, apiKey: string): Promise<string>{
     let IPFSHASH = await uploadToIPFS(sku_properties, apiKey);
-
     let producer_public_key = address;
     const publicKey = CLPublicKey.fromHex(producer_public_key);
     let gasPrice = 5*1000000000;

@@ -22,7 +22,7 @@ export class EVMProvider implements ChainProvider {
             throw new WalletNotFoundException("Metamask is not installed");
         let accs = await getAccounts();
         if (!isWalletConnected() || accs.length == 0) {
-            let { address } = await this.walletLogin((res:any)=>{});
+            let { address } = await this.walletLogin();
             if (_address.toLocaleLowerCase() != address.toLocaleLowerCase()) {
                 await (window as any).ethereum.request({
                     method: 'wallet_requestPermissions',
@@ -48,7 +48,7 @@ export class EVMProvider implements ChainProvider {
             // throw new AccountChangedException("The current account on your wallet is not the one you've logged in with!");
         }
     }
-    async walletLogin(onConnected:any) {
+    async walletLogin() {
         let { address, signature } = await metamaskLogin(this.chain, this.network);
         this.address = address;
         return { address, signature };

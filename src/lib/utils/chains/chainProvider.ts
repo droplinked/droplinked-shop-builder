@@ -23,7 +23,7 @@ export class ChainNotImplementedException {
 }
 
 export interface ChainProvider {
-    walletLogin(onConnected:any): Promise<any>;
+    walletLogin(): Promise<any>;
     recordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string>;
     publishRequest(producerAccountAddress: string, tokenId: number | string): Promise<string>;
     approveRequest(requestId: number): Promise<string>;

@@ -7,8 +7,8 @@ let chainNames = {
         [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x38", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://bsc-dataseed.binance.org/'] }
     },
     [Chain.POLYGON]: {
-        [Network.TESTNET]: { chainName: "Mumbai", chainId: "0x13881", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://mumbai.polygonscan.com/'] },
-        [Network.MAINNET]: { chainName: "Polygon Mainnet", chainId: "0x89", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://polygonscan.com/'] }
+        [Network.TESTNET]: { chainName: "Mumbai", chainId: "0x13881", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://rpc-mumbai.maticvigil.com'] },
+        [Network.MAINNET]: { chainName: "Polygon Mainnet", chainId: "0x89", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://polygon-rpc.com/'] }
     },
     [Chain.RIPPLESIDECHAIN]: {
         [Network.TESTNET]: { chainName: "XRPL EVM Sidechain", chainId: "0x15f902", nativeCurrency: { name: 'XRP', decimals: 18, symbol: 'XRP' }, rpcUrls: ['https://rpc-evm-sidechain.xrpl.org'] },
@@ -86,7 +86,7 @@ export async function metamaskLogin(chain: Chain, network: Network): Promise<{
         await (window as any).ethereum.request({
             method: 'wallet_addEthereumChain',
             params: [{
-                chainName: chainNames[chain][network],
+                chainName: chainNames[chain][network].chainName,
                 chainId: chainNames[chain][network].chainId,
                 nativeCurrency: chainNames[chain][network].nativeCurrency,
                 rpcUrls: chainNames[chain][network].rpcUrls

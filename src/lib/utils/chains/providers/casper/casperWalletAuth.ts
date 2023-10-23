@@ -29,31 +29,34 @@ let get_account_information = async function(publicKey: any){
         "signature" :sign.signatureHex
     };
 }
-export async function casper_login(on_connected: any){
-    let called = false;
-    await getCasperWalletInstance().requestConnection();
-    if (await getCasperWalletInstance().isConnected()){
-        if(!called){
-            called = true;
-            on_connected(await get_account_information(await getCasperWalletInstance().getActivePublicKey()));
-        }
-        return;
-    }
-    await getCasperWalletInstance().requestConnection();
-    const handleConnected = async (event: any) => {
-        try {
-            const action = JSON.parse(event.detail);
-            if (action.activeKey) {
-                if(!called){
-                    called = true;
-                    on_connected(await get_account_information(action.activeKey));    
-                }            
+export async function casper_login(){
+    return new Promise(async (resolve, reject)=>{
+        let called = false;
+        await getCasperWalletInstance().requestConnection();
+        if (await getCasperWalletInstance().isConnected()){
+            if(!called){
+                called = true;
+                resolve(await get_account_information(await getCasperWalletInstance().getActivePublicKey()));
             }
-        } catch (err) {
-            console.log(err);
+            return;
         }
-    };
-    window.addEventListener(CasperWalletEventTypes.Connected, handleConnected);
-    if (!called)
-        on_connected(await get_account_information(await getCasperWalletInstance().getActivePublicKey()));
+        await getCasperWalletInstance().requestConnection();
+        const handleConnected = async (event: any) => {
+            try {
+                const action = JSON.parse(event.detail);
+                if (action.activeKey) {
+                    if(!called){
+                        called = true;
+                        resolve(await get_account_information(action.activeKey));
+                    }            
+                }
+            } catch (err) {
+                console.log(err);
+                reject(err);
+            }
+        };
+        window.addEventListener(CasperWalletEventTypes.Connected, handleConnected);
+        if (!called)
+            resolve(await get_account_information(await getCasperWalletInstance().getActivePublicKey()));  
+    })
 }

@@ -14,7 +14,7 @@ export class CasperProvider implements ChainProvider{
         this.network = _network;
     }
     async walletLogin(onConnected:any): Promise<any> {
-        return await casper_login(onConnected);
+        return casper_login(onConnected);
     }
     async recordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string> {
         return await casperRecordMerch(this.network, skuProperties, this.address, productTitle, description, imageUrl, price, amount, commission, apiKey);
