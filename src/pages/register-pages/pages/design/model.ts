@@ -27,6 +27,7 @@ const DesignPageModel = ({
             headerBackground: shop?.shopDesign?.headerBackground || initialStateDesignPage.shop.shopDesign.headerBackground,
             hiroLayout: shop?.shopDesign?.hiroLayout || initialStateDesignPage.shop.shopDesign.hiroLayout,
             hiroTextColor: shop?.shopDesign?.hiroTextColor || initialStateDesignPage.shop.shopDesign.hiroTextColor,
+            productListTitle: shop?.shopDesign?.productListTitle || initialStateDesignPage.shop.shopDesign.productListTitle,
             footerLinks: shop?.shopDesign?.footerLinks && typeof shop?.shopDesign?.footerLinks === "object" ? DesignPageModel.refactorAdditionalLinkes(shop?.shopDesign?.footerLinks) : initialStateDesignPage.shop.shopDesign.footerLinks,
             bannerLinks: shop?.shopDesign?.bannerLinks && typeof shop?.shopDesign?.bannerLinks === "object" ? DesignPageModel.refactorAdditionalLinkes(shop?.shopDesign?.bannerLinks) : initialStateDesignPage.shop.shopDesign.bannerLinks,
         },

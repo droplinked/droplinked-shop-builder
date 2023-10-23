@@ -39,7 +39,7 @@ const OrdersModel = ({
             value: element?._id
         },
         Customer: {
-            value: `${element?.customerAddressBook?.firstName} ${element?.customerAddressBook?.lastName}`
+            value: element?.customerAddressBook ? `${element?.customerAddressBook?.firstName} ${element?.customerAddressBook?.lastName}` : '---'
         },
         Date: {
             caption: "Date Created",

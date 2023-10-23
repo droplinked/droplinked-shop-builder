@@ -8,7 +8,7 @@ import { Editor } from '@tinymce/tinymce-react';
 
 function DescriptionProduct() {
     const { state: { description }, methods: { updateState }, loading } = useContext(productContext)
-    const [Update, setUpdate] = useState(null)
+    const [Update, setUpdate] = useState(' ')
 
     useEffect(() => !Update && setUpdate(description), [description])
 

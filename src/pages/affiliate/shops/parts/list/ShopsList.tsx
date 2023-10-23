@@ -10,13 +10,13 @@ function ShopsList() {
 
     useEffect(() => {
         mutate()
-    }, [])
+    }, [])    
 
     return (
         <>
             {isLoading ? <ShopsListSkeleton /> : (
-                <VStack align={"stretch"}>
-                    {data?.data?.data && data.data.data.map((el: any, key: number) => <ShopsContainer shop={el} key={key} />)}
+                <VStack align={"stretch"} spacing="20px">
+                    {data?.data?.data && data.data.data.data.map((el: any, key: number) => <ShopsContainer shop={el} key={key} />)}
                 </VStack>
             )}
         </>
