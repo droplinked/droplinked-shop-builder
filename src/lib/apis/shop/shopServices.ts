@@ -40,5 +40,9 @@ export const shopUpdateService = (params: IshopUpdateService) => {
 }
 
 export const availableTemplateService = () => {
-    return axiosInstance.get(`shop/available/templates`,)
+    return axiosInstance.get(`shop/available/templates`)
+}
+
+export const ShopRecordedService = () => {
+    return axiosInstance.get(`shop/public/recorded`)
 }

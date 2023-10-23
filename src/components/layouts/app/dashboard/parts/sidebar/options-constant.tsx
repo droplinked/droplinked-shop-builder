@@ -1,4 +1,3 @@
-import { appDeveloment } from "lib/utils/app/variable";
 import AppIcons from "assest/icon/Appicons";
 import React from "react";
 
@@ -13,7 +12,7 @@ export const OPTIONS = [
         icon: <AppIcons.OrderIcon />, label: 'Orders', path: 'orders'
     },
     {
-        icon: <AppIcons.InformationIcon />, label: 'Affiliate', path: 'affiliate'
+        icon: <AppIcons.InformationIcon />, label: 'Affiliate', path: 'affiliate/products'
     },
     {
         icon: <AppIcons.SettingIcon />, label: 'Settings', path: 'settings/shop-info'
