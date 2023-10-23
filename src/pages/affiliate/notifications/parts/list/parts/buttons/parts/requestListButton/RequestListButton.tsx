@@ -13,9 +13,8 @@ function RequestListButton({ status, value }: Iprops) {
 
     return (
         <BasicButton
-            width="100%"
-            minWidth={"100%"}
-            maxWidth="150px"
+            width="110px"
+            sizes="medium"
             variant={status === "reject" ? 'outline' : 'solid'}
             onClick={() => {
                 setStates((prev: requestInterfaces.IStates) => ({ ...prev, status }))

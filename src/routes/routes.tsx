@@ -24,6 +24,7 @@ import ShopProduct from 'pages/affiliate/product/ShopProduct'
 import ProductTypes from "pages/product/types/ProductTypes";
 import HomePage from "pages/public-pages/homePage/HomePage";
 import AboutUs from "pages/public-pages/about/AboutUs";
+import AffiliateProducts from "pages/affiliate/products/AffiliateProducts";
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -70,7 +71,10 @@ function AppRoutes() {
           <Route path="collections" element={<Collections />} />
           <Route path="orders" element={<Orders />} />
           <Route path="affiliate" element={<AffiliateLayout />}>
-            <Route index element={<Shops />} />
+            <Route path="stores" element={<Shops />} />
+            <Route path="products" element={<AffiliateProducts />} />
+            {/* <Route path="joined" element={<Shops />} /> */}
+            {/* <Route path="saved" element={<Shops />} /> */}
             <Route path="shops">
               <Route index element={<Shops />} />
               <Route path=":shopName">

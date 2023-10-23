@@ -12,13 +12,7 @@ import RequestButtons from './parts/buttons/RequestButtons'
 import ModalHashkey from './parts/hashkey/ModalHashkey'
 import useAppToast from 'functions/hooks/toast/useToast'
 import useStack from 'functions/hooks/stack/useStack'
-import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
-import { binanceApproveRequest } from 'lib/utils/blockchain/binance/approve'
-import { approve_request_polygon } from 'lib/utils/blockchain/polygon/approve'
 import RecordCasperModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/modules/casperModel'
-import { XRPLogin } from 'lib/utils/blockchain/ripple/xrpLogin'
-import { XRPApproveRequest } from 'lib/utils/blockchain/ripple/xrpApprove'
-import { BinanceMetamaskLogin } from 'lib/utils/blockchain/binance/metamaskLogin'
 import notificationsButtonsModel from './model'
 
 function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
