@@ -12,6 +12,7 @@ import ProductSingleModel from 'pages/product/single/model/model';
 import ConfirmDeleteProduct from './parts/delete/ConfirmDeleteCollection';
 import DetailsProduct from './parts/details/DetailsProduct';
 import useStack from 'functions/hooks/stack/useStack';
+import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 
 function ControlsListProduct({ productID, product, fetch }) {
     const { mutateAsync } = useMutation((params: IproductUpdateServices) => productUpdateServices(params))
@@ -21,6 +22,7 @@ function ControlsListProduct({ productID, product, fetch }) {
     const { showToast } = useAppToast()
     const stacks = useStack()
     const { validate, record } = ButtonsProductClass
+    const appWeb3 = useAppWeb3()
 
     const publish = useCallback(async () => {
         try {
@@ -28,7 +30,7 @@ function ControlsListProduct({ productID, product, fetch }) {
             await validate({ draft: false, state })
 
             // Digital product record
-            if (state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") await record({ product: state, stacks })
+            if (state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") await record({ method: (data: any) => appWeb3.web3({ method: "record", params: data, chain: state.digitalDetail.chain }), product: state, stacks })
 
             await mutateAsync({ productID: state._id, params: { publish_product: true } })
             showToast(AppErrors.product.your_product_published, "success")

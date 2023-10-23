@@ -29,9 +29,9 @@ function AffiliateProduct({ image, title, link, blockchain, shop }: Iprops) {
                 <Box><AppImage src={image} width="100%" /></Box>
                 {title && <Box><AppTypography size='12px'>{title}</AppTypography></Box>}
                 {blockchain && (
-                    <HStack position={"absolute"} bottom={4}>
-                        <IconBlockchain blockchain={blockchain} props={{ width: "20px" }} />
-                        <Text fontSize={"sm"}>{capitalizeFirstLetter(blockchain)}</Text>
+                    <HStack position={"absolute"} gap="0" bottom={4}>
+                        <IconBlockchain blockchain={blockchain} props={{ width: "16px" }} />
+                        <AppTypography size="10px">{capitalizeFirstLetter(blockchain)}</AppTypography>
                     </HStack>
                 )}
                 {shop && (

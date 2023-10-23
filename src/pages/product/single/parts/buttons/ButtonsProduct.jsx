@@ -12,6 +12,7 @@ import useStack from 'functions/hooks/stack/useStack'
 import ProductSingleModel from '../../model/model'
 import ModalHashkey from 'pages/affiliate/notifications/parts/list/parts/buttons/parts/hashkey/ModalHashkey'
 import AppTypography from 'components/common/typography/AppTypography'
+import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 
 // prdocut page
 function ButtonsProduct() {
@@ -29,6 +30,7 @@ function ButtonsProduct() {
     const { showToast } = useAppToast()
     const stacks = useStack()
     const { refactorData } = ProductSingleModel
+    const appWeb3 = useAppWeb3()
 
     const setStateHandle = useCallback((key, value) => setStates(prev => ({ ...prev, [key]: value })), [])
 
@@ -55,13 +57,15 @@ function ButtonsProduct() {
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
                     const hashkey = await record({
+                        method: (data) => appWeb3.web3({ method: "record", params: data, chain: state.digitalDetail.chain }),
                         product: {
                             ...state,
                             _id: product._id,
                             sku: [
                                 { ...state.sku[0], _id: product.sku[0]._id }
                             ]
-                        }, stacks
+                        },
+                        stacks
                     })
                     await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
                     setStateHandle('hashkey', hashkey)

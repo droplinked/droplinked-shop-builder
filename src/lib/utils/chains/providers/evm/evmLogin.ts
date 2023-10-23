@@ -1,0 +1,104 @@
+import { Buffer } from "buffer";
+import { Chain, Network } from "../../Chains";
+
+let chainNames = {
+    [Chain.BINANCE]: {
+        [Network.TESTNET]: { chainName: "Smart Chain - Testnet", chainId: "0x61", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] },
+        [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x38", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://bsc-dataseed.binance.org/'] }
+    },
+    [Chain.POLYGON]: {
+        [Network.TESTNET]: { chainName: "Mumbai", chainId: "0x13881", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://rpc-mumbai.maticvigil.com'] },
+        [Network.MAINNET]: { chainName: "Polygon Mainnet", chainId: "0x89", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://polygon-rpc.com/'] }
+    },
+    [Chain.RIPPLESIDECHAIN]: {
+        [Network.TESTNET]: { chainName: "XRPL EVM Sidechain", chainId: "0x15f902", nativeCurrency: { name: 'XRP', decimals: 18, symbol: 'XRP' }, rpcUrls: ['https://rpc-evm-sidechain.xrpl.org'] },
+        [Network.MAINNET]: { chainName: "XRPL EVM Sidechain", chainId: "0x15f902", nativeCurrency: { name: 'XRP', decimals: 18, symbol: 'XRP' }, rpcUrls: ['https://rpc-evm-sidechain.xrpl.org'] }
+    },
+    [Chain.CASPER]: {
+        [Network.TESTNET]: { chainName: "Smart Chain - Testnet", chainId: "0x38", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] },
+        [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x61", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] }
+    },
+    [Chain.STACKS]: {
+        [Network.TESTNET]: { chainName: "Smart Chain - Testnet", chainId: "0x38", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] },
+        [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x61", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] }
+    },
+    [Chain.NEAR]: {
+        [Network.TESTNET]: { chainName: "Smart Chain - Testnet", chainId: "0x38", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] },
+        [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x61", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] }
+    },
+    [Chain.SKALE]: {
+        [Network.TESTNET]: { chainName: "staging | CHAOS Testnet", chainId: "0x50877ED6", nativeCurrency: { name: 'sFUEL', decimals: 18, symbol: 'sFUEL' }, rpcUrls: ['https://staging-v3.skalenodes.com/v1/staging-fast-active-bellatrix'] },
+        [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x61", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] }
+    },
+};
+
+export const isMetamaskInstalled = (): boolean => {
+    const { ethereum } = window as any;
+    return Boolean(ethereum && ethereum.isMetaMask);
+};
+
+export async function getAccounts() {
+    return await (window as any).ethereum.request({ method: 'eth_accounts' });
+}
+
+export async function isWalletConnected() {
+    let accounts = await getAccounts();
+    return accounts && accounts[0] > 0;
+}
+
+export async function isChainCorrect(chain: Chain, network: Network) {
+    let chainId = await (window as any).ethereum.request({ method: 'eth_chainId' })
+    return String(chainId).toLowerCase() == chainNames[chain][network].chainId.toLowerCase();
+}
+
+export async function changeChain(chain: Chain, network: Network) {
+    await (window as any).ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: chainNames[chain][network].chainId }],
+    });
+}
+
+async function requestAccounts() {
+    try {
+        return await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+
+export async function getBalance(address: string): Promise<number> {
+    return Number(await (window as any).ethereum.request({ method: 'eth_getBalance', params: [address, 'latest'] }));
+}
+
+export async function metamaskLogin(chain: Chain, network: Network): Promise<{
+    address: string,
+    signature: string,
+}> {
+    if (!isMetamaskInstalled()) {
+        throw ("Wallet is not installed");
+    }
+    if (!await isWalletConnected()) {
+        await requestAccounts();
+    }
+    let address = (await getAccounts())[0];
+    try {
+        await (window as any).ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [{
+                chainName: chainNames[chain][network].chainName,
+                chainId: chainNames[chain][network].chainId,
+                nativeCurrency: chainNames[chain][network].nativeCurrency,
+                rpcUrls: chainNames[chain][network].rpcUrls
+            }]
+        });
+    } catch (err) { }
+    await changeChain(chain, network);
+    const siweMessage = `Please sign this message to let droplinked view your PublicKey & Address and validate your identity`;
+    let msg = `0x${Buffer.from(siweMessage, 'utf8').toString('hex')}`;
+    const signature = await (window as any).ethereum.request({ method: 'personal_sign', params: [msg, address] });
+    return {
+        address: address,
+        signature: signature
+    };
+}
