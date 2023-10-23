@@ -37,8 +37,6 @@ function useAppWeb3() {
         return new Promise<any>(async (resolve, reject) => {
             try {
                 const findAccountAddress = user?.wallets ? user.wallets.find(el => el.type === chain && el?.address) : null
-                console.log("findAccountAddress", findAccountAddress);
-
                 if (findAccountAddress) {
                     resolve(findAccountAddress.address)
                 } else if (chain == "STACKS") {
@@ -46,20 +44,12 @@ function useAppWeb3() {
                     resolve(address)
                     // updateWallet({ type: "STACKS", address })
                 } else {
-                    if (chain === "CASPER") {
-                        await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin((res) => {
-                            // updateWallet({ type: "CASPER", address: res.account_hash, public_key: res.publicKey })
-                            resolve(res.account_hash)
-                        }))
-                    } else {
-                        const address = await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin(null)).address
-                        resolve(address)
-                        // updateWallet({ type: chain, address })
-                    }
-                    console.log("adasda 1");
+                    const provider = await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin(null))
+                    const address = provider[chain === "CASPER" ? "publicKey" : "address"]
+                    resolve(address)
+                    // updateWallet({ type: chain, address })
                 }
             } catch (error) {
-                console.log("ads", error);
                 reject(error)
             }
         })
@@ -70,7 +60,6 @@ function useAppWeb3() {
             return new Promise<any>(async (resolve, reject) => {
                 try {
                     const accountAddress = await _login(chain)
-                    console.log("accountAddress", accountAddress);
 
                     if (method === "record") {
                         const records = await record({ params, accountAddress })
@@ -83,6 +72,7 @@ function useAppWeb3() {
                         resolve(requests)
                     }
                 } catch (error) {
+                    console.log("ads", error);
 
                     reject(error);
                 }
