@@ -71,8 +71,8 @@ function AppRoutes() {
           <Route path="collections" element={<Collections />} />
           <Route path="orders" element={<Orders />} />
           <Route path="affiliate" element={<AffiliateLayout />}>
+            <Route index element={<AffiliateProducts />} />
             <Route path="stores" element={<Shops />} />
-            <Route path="products" element={<AffiliateProducts />} />
             <Route path="shops">
               <Route index element={<Shops />} />
               <Route path=":shopName">
