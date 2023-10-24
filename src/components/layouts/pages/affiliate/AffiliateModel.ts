@@ -7,7 +7,7 @@ export default class AffiliateModel {
         return [
             {
                 caption: "Affiliate Products",
-                link: `/${shop.name}/c/affiliate/products`
+                link: `/${shop.name}/c/affiliate`
             },
             {
                 caption: "Affiliate Stores",

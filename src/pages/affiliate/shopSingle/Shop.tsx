@@ -8,7 +8,6 @@ import { useMutation } from 'react-query'
 import { useParams } from 'react-router-dom'
 import AffiliateProduct from '../parts/product/AffiliateProduct'
 import SocialAffliate from '../parts/social/SocialAffliate'
-import ShopsFilter from '../shops/parts/filter/ShopsFilter'
 import SingleShopSkeleton from './parts/skeleton/SingleShopSkeleton'
 
 function Shop() {
@@ -43,7 +42,6 @@ function Shop() {
 
                     <AppCard>
                         <VStack paddingBottom={10} spacing={16} align={"stretch"}>
-                            <Box><ShopsFilter /></Box>
                             <Flex flexWrap={"wrap"} gap="2%" rowGap={7}>
                                 {shop?.products && shop.products.map((el: any, key: number) => (
                                     <Box key={key} width={["23.5%", "15%"]}>
