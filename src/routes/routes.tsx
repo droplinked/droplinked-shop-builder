@@ -73,8 +73,6 @@ function AppRoutes() {
           <Route path="affiliate" element={<AffiliateLayout />}>
             <Route path="stores" element={<Shops />} />
             <Route path="products" element={<AffiliateProducts />} />
-            {/* <Route path="joined" element={<Shops />} /> */}
-            {/* <Route path="saved" element={<Shops />} /> */}
             <Route path="shops">
               <Route index element={<Shops />} />
               <Route path=":shopName">

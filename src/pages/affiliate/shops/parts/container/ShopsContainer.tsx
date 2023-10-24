@@ -1,7 +1,6 @@
 import { Box, Flex, Image, VStack } from '@chakra-ui/react'
 import React from 'react'
 import ShopsMore from './parts/more/ShopsMore'
-import ShopsProfile from '../../../../../parts/pofile/ShopsProfile'
 import ShopsProduct from './parts/products/ShopsProduct'
 import { shopsContainerContext } from './context'
 import AppTypography from 'components/common/typography/AppTypography'

@@ -1,6 +1,7 @@
 import { Box, SimpleGrid, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
 import Pagination from 'components/common/datagrid/parts/pagination/Pagination'
+import AppEmptyPage from 'components/common/empty/AppEmptyPage'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { IShopRecordedService } from 'lib/apis/shop/interfaces'
 import { ShopRecordedService } from 'lib/apis/shop/shopServices'
@@ -30,7 +31,7 @@ function AffiliateProducts() {
 
     const addQuery = useCallback((key, value) => {
         const filter = searchParams
-        filter.set("page", 1)
+        filter.set("page", '1')
         if (filter.get(key) === value || !value.length) {
             filter.delete(key)
         } else {
@@ -43,7 +44,7 @@ function AffiliateProducts() {
         <AppCard>
             <VStack align={"stretch"} spacing={7}>
                 <AffiliateProductsFilters addQuery={addQuery} />
-                {isLoading ? <AffiliateProductsLoading /> : (
+                {isLoading ? <AffiliateProductsLoading /> : products && products.data.length ? (
                     <VStack align={"stretch"} spacing={7}>
                         <SimpleGrid columns={5} spacing="12px">
                             {products && products.data.map((el, key) => (
@@ -52,7 +53,7 @@ function AffiliateProducts() {
                         </SimpleGrid>
                         <Pagination current={products?.currentPage} lastPage={products?.totalPages ? parseInt(products?.totalPages) : 1} nextPage={products?.hasNextPage || false} prevPage={products?.hasPreviousPage || false} />
                     </VStack>
-                )}
+                ) : <AppEmptyPage title='No result' />}
             </VStack>
         </AppCard>
     )
