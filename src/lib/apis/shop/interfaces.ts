@@ -47,3 +47,10 @@ export interface IshopUpdateService extends IshopSocial {
     infoEmail?: string
     imsType?: string
 }
+
+export interface IShopRecordedService {
+    subCategoryIds: Array<string>
+    categoryIds: Array<string>
+    title: string
+    page: string | number
+}

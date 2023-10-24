@@ -72,8 +72,6 @@ function useAppWeb3() {
                         resolve(requests)
                     }
                 } catch (error) {
-                    console.log("ads", error);
-
                     reject(error);
                 }
             })
