@@ -56,7 +56,7 @@ const acceptModel = ({
                 const record = await acceptRejectRequestService({
                     chain,
                     params: {
-                        deploy_hash: deployHash,
+                        ...deployHash && { deployHash },
                         requestID: shop?._id,
                         status: accept ? "ACCEPTED" : "REJECTED"
                     }
