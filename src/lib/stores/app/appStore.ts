@@ -2,6 +2,7 @@ import { IauthLoginService } from 'lib/apis/auth/interfaces'
 import { authLoginService } from 'lib/apis/auth/services'
 import { IshopInfoService, IshopUpdateService } from 'lib/apis/shop/interfaces'
 import { shopInfoService, shopUpdateService } from 'lib/apis/shop/shopServices'
+import { userUpdateService } from 'lib/apis/user/services'
 import { appDeveloment } from 'lib/utils/app/variable'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
@@ -32,6 +33,7 @@ export interface IAppStore {
     reset(): void
     updateShop(params: IshopUpdateService): Promise<any>
     updateState({ key, params }: IPropsUpdatestate): void
+    updateWallet({ address, type, public_key }: IUserProps): void
 }
 
 const states = (set: any, get: any): IAppStore => ({
@@ -94,7 +96,17 @@ const states = (set: any, get: any): IAppStore => ({
             }
         })
     },
-    updateState: ({ key, params }: IPropsUpdatestate) => { set({ ...get, [key]: params }) }
+    updateState: ({ key, params }: IPropsUpdatestate) => { set({ ...get, [key]: params }) },
+    updateWallet: ({ address, type, public_key }: IUserProps) => {
+        set(state => {
+            const wallets = [...state.user?.wallets || [], { type, address, public_key }]
+            userUpdateService({ wallets })
+            return {
+                ...state,
+                user: { ...state.user, wallets }
+            }
+        })
+    }
 })
 
 export const appStorePersistName = "appStore"
