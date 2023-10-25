@@ -44,7 +44,7 @@ function AboutUs() {
                     <Flex flexWrap="wrap" justifyContent="space-between" color="#FFF">
                         {data.map((el, key) => (
                             <VStack width={{ base: "48%", md: "23%" }} marginBottom="20px" align="stretch" key={key} padding={{ base: "20px", sm: "40px 20px 90px 20px", xl: "40px 30px 90px 30px" }} border={`1px solid ${el.borderColor}`} borderRadius="18px" spacing="20px">
-                                <AppTypography size={{ base: "18px", lg: "24px" }} weight='bolder'>{el.title}</AppTypography>
+                                <AppTypography size={{ base: "18px", lg: "24px" }} weight='bolder' height={{ base: "auto", md: "45px", lg: "72px" }}>{el.title}</AppTypography>
                                 <AppTypography size="14px">{el.description}</AppTypography>
                             </VStack>
                         ))}
