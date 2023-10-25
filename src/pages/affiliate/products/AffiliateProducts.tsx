@@ -37,7 +37,7 @@ function AffiliateProducts() {
         } else {
             filter.set(key, value)
         }
-        shopNavigate(`affiliate/products?${filter.toString()}`)
+        shopNavigate(`affiliate?${filter.toString()}`)
     }, [searchParams])
 
     return (
