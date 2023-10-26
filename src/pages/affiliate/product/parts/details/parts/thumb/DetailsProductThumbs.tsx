@@ -6,8 +6,6 @@ import React, { useContext } from 'react'
 import classes from './style.module.scss'
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import "yet-another-react-lightbox/styles.css";
-import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 function DetailsProductThumbs() {
     const { product, updateState } = useContext(ShopProductContext)
