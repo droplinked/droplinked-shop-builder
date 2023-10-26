@@ -42,8 +42,8 @@ let chainMapping = {
         [Network.MAINNET]: new EVMProvider(Chain.POLYGON, Network.MAINNET),
     },
     [Chain.NEAR]: {
-        [Network.TESTNET]: null,
-        [Network.MAINNET]: null,
+        [Network.TESTNET]: new EVMProvider(Chain.NEAR, Network.TESTNET),
+        [Network.MAINNET]: new EVMProvider(Chain.NEAR, Network.MAINNET)
     },
     [Chain.CASPER]: {
         [Network.TESTNET]: new CasperProvider(Chain.CASPER, Network.TESTNET),

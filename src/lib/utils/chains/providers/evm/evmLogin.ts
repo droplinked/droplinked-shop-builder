@@ -23,8 +23,8 @@ let chainNames = {
         [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x61", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] }
     },
     [Chain.NEAR]: {
-        [Network.TESTNET]: { chainName: "Smart Chain - Testnet", chainId: "0x38", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] },
-        [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x61", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] }
+        [Network.TESTNET]: { chainName: "Aurora Testnet", chainId: "0x4e454153", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://testnet.aurora.dev'] },
+        [Network.MAINNET]: { chainName: "Aurora Mainnet", chainId: "0x4e454152", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://mainnet.aurora.dev'] }
     },
     [Chain.SKALE]: {
         [Network.TESTNET]: { chainName: "staging | CHAOS Testnet", chainId: "0x50877ED6", nativeCurrency: { name: 'sFUEL', decimals: 18, symbol: 'sFUEL' }, rpcUrls: ['https://staging-v3.skalenodes.com/v1/staging-fast-active-bellatrix'] },
