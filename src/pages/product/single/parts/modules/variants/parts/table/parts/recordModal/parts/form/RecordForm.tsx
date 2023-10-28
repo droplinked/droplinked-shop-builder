@@ -12,6 +12,7 @@ import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork'
 import RecordCovers from './parts/covers/RecordCovers';
 import useStack from 'functions/hooks/stack/useStack';
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
+import useHookStore from 'functions/hooks/store/useHookStore';
 
 interface Iprops {
     close: Function
@@ -30,13 +31,14 @@ function RecordForm({ close, product, sku }: Iprops) {
     const { updateState, state: { loading, image } } = useContext(recordContext)
     const { web3 } = useAppWeb3()
     const { showToast } = useAppToast()
+    const { app: { user: { wallets } } } = useHookStore()
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
             data.quantity = product.product_type === "PRINT_ON_DEMAND" ? "1000000" : sku.quantity.toString()
             if (!image) throw Error('Please enter image')
             updateState("loading", true)
-            const deployhash = await web3({ method: "record", params: { data, product, sku, stacks, imageUrl: image }, chain: data.blockchain })
+            const deployhash = await web3({ method: "record", params: { data, product, sku, stacks, imageUrl: image }, chain: data.blockchain, wallets })
             updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
@@ -49,7 +51,7 @@ function RecordForm({ close, product, sku }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, sku, image])
+    }, [product, sku, image, wallets])
 
     const formSchema = useMemo(() => {
         return Yup.object().shape({

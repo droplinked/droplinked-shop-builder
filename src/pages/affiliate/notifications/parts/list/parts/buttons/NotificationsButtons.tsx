@@ -10,12 +10,15 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import useStack from 'functions/hooks/stack/useStack'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import acceptModel from 'functions/hooks/web3/models/module/accept/acceptModel'
+import useHookStore from 'functions/hooks/store/useHookStore'
 
 function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
     const modal = useDisclosure()
     const modalHashKey = useDisclosure()
     const { showToast } = useAppToast()
     const { web3 } = useAppWeb3()
+    const { app: { user: { wallets } } } = useHookStore()
+
     const [States, setStates] = useState<requestInterfaces.IStates>({
         status: null,
         loading: false,
@@ -36,7 +39,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             let blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
             if (States.status === "accept") {
-                const deploy_hash = await web3({ chain: blockchain, method: "accept", params: { shop, accept: States.status === "accept", stack: { isRequestPending, openContractCall } } })
+                const deploy_hash = await web3({ chain: blockchain, method: "accept", params: { shop, accept: States.status === "accept", stack: { isRequestPending, openContractCall } }, wallets })
                 modalHashKey.onOpen()
                 setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
             } else {
@@ -51,7 +54,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             setLoading(false)
             if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
         }
-    }, [States.status, shop, refetch, modal])
+    }, [States.status, shop, refetch, modal, wallets])
 
     return (
         <requestsButtonsContext.Provider value={{ shop, modal: { open: modal.onOpen }, methods: { setStates } }}>
