@@ -7,14 +7,14 @@ import { appDeveloment } from 'lib/utils/app/variable'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
-export interface IUserProps {
+export interface IUserWalletsProps {
     type: string
     address: string
     public_key?: string
 }
 
 interface IUser {
-    wallets: Array<IUserProps>
+    wallets: Array<IUserWalletsProps>
     [propname: string]: any
 }
 
@@ -33,7 +33,7 @@ export interface IAppStore {
     reset(): void
     updateShop(params: IshopUpdateService): Promise<any>
     updateState({ key, params }: IPropsUpdatestate): void
-    updateWallet({ address, type, public_key }: IUserProps): void
+    updateWallet({ address, type, public_key }: IUserWalletsProps): void
 }
 
 const states = (set: any, get: any): IAppStore => ({
@@ -97,9 +97,12 @@ const states = (set: any, get: any): IAppStore => ({
         })
     },
     updateState: ({ key, params }: IPropsUpdatestate) => { set({ ...get, [key]: params }) },
-    updateWallet: ({ address, type, public_key }: IUserProps) => {
+    updateWallet: ({ address, type, public_key }: IUserWalletsProps) => {
         set(state => {
-            const wallets = [...state.user?.wallets || [], { type, address, public_key }]
+            const prevWallets = state.user?.wallets
+            if (prevWallets && prevWallets.find((el: IUserWalletsProps) => el.type === type)) return prevWallets
+
+            const wallets = [...prevWallets || [], { type, address, public_key }]
             userUpdateService({ wallets })
             return {
                 ...state,

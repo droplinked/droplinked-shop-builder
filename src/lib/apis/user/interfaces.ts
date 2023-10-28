@@ -1,4 +1,4 @@
-import { IUserProps } from "lib/stores/app/appStore"
+import { IUserWalletsProps } from "lib/stores/app/appStore"
 
 export interface IsignupService {
     email: string
@@ -39,5 +39,5 @@ export interface IuserUpdateService {
     unisatAddress?: string,
     polygonAddress?: string,
     binanceAddress?: string,
-    wallets?: Array<IUserProps>
+    wallets?: Array<IUserWalletsProps>
 }

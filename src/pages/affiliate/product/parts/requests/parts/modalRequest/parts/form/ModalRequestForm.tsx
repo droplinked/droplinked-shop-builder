@@ -1,6 +1,7 @@
 import { Box, VStack } from '@chakra-ui/react'
 import { Form, Formik } from 'formik'
 import useStack from 'functions/hooks/stack/useStack'
+import useHookStore from 'functions/hooks/store/useHookStore'
 import useAppToast from 'functions/hooks/toast/useToast'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
@@ -28,6 +29,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
     const { isRequestPending, openContractCall, stxAddress } = useStack()
     const [Loading, setLoading] = useState(false)
     const { web3 } = useAppWeb3()
+    const { app: { user: { wallets } } } = useHookStore()
 
     const request = useCallback(async (deployHash: string, quantity: number, chain: string) => {
         return mutateAsync({
@@ -48,8 +50,8 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
 
         try {
             setLoading(true)
-            const deployHash = await web3({ chain: blockchain, method: "request", params: { sku, stack: { isRequestPending, openContractCall, stacksRequest, stxAddress } } })
-            
+            const deployHash = await web3({ chain: blockchain, method: "request", params: { sku, stack: { isRequestPending, openContractCall, stacksRequest, stxAddress } }, wallets })
+
             await request(deployHash, quantity, blockchain)
             setHahskey(deployHash)
             setLoading(false)
@@ -57,7 +59,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
             setLoading(false)
             if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
         }
-    }, [sku, product, shop])
+    }, [sku, product, shop, wallets])
 
     return (
         <Formik

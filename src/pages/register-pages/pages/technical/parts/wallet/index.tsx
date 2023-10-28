@@ -14,6 +14,7 @@ import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import useAppToast from 'functions/hooks/toast/useToast';
 import ClipboardText from 'components/common/clipboardText/ClipboardText';
+import useHookStore from 'functions/hooks/store/useHookStore';
 
 function Wallet() {
     const { data, isLoading } = useQuery({
@@ -24,14 +25,15 @@ function Wallet() {
     })
     const { getChain, login } = useAppWeb3()
     const { showToast } = useAppToast()
+    const { app: { user: { wallets } } } = useHookStore()
 
     const loginChain = useCallback(async (chain: string) => {
         try {
-            await login(chain)
+            await login({ chain, wallets })
         } catch (error) {
             showToast('Failed login', 'warning')
         }
-    }, [])
+    }, [wallets])
 
     return (
         <AppCard>
@@ -39,7 +41,7 @@ function Wallet() {
                 <Box><FieldLabel label='Connected Wallets' textProps={{ size: "18px", weight: "bolder" }} isRequired /></Box>
                 <VStack align="stretch" spacing="8px">
                     {data?.data?.data ? data?.data?.data.map((el, key) => {
-                        const isExist = getChain(el)
+                        const isExist = getChain({ chain: el, wallets })
                         return (
                             <Flex backgroundColor="#141414" height="55px" padding="0 18px" key={key} alignItems="center" justifyContent="space-between" borderRadius="8px" color="#C2C2C2">
                                 <HStack alignItems="center">

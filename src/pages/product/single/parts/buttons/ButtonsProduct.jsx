@@ -13,6 +13,7 @@ import ProductSingleModel from '../../model/model'
 import ModalHashkey from 'pages/affiliate/notifications/parts/list/parts/buttons/parts/hashkey/ModalHashkey'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
+import useHookStore from 'functions/hooks/store/useHookStore'
 
 // prdocut page
 function ButtonsProduct() {
@@ -31,6 +32,7 @@ function ButtonsProduct() {
     const stacks = useStack()
     const { refactorData } = ProductSingleModel
     const appWeb3 = useAppWeb3()
+    const { app: { user: { wallets } } } = useHookStore()
 
     const setStateHandle = useCallback((key, value) => setStates(prev => ({ ...prev, [key]: value })), [])
 
@@ -57,7 +59,7 @@ function ButtonsProduct() {
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
                     const hashkey = await record({
-                        method: (data) => appWeb3.web3({ method: "record", params: data, chain: state.digitalDetail.chain }),
+                        method: (data) => appWeb3.web3({ method: "record", params: data, chain: state.digitalDetail.chain, wallets }),
                         product: {
                             ...state,
                             _id: product._id,
@@ -83,7 +85,7 @@ function ButtonsProduct() {
             setStateHandle("loading", false)
             showToast(error?.response?.data?.data?.message ? error?.response?.data?.data?.message : error?.message ? error.message : "Oops! Something went wrong", "error")
         }
-    }, [state, productID, stacks])
+    }, [state, productID, stacks, wallets])
 
     return (
         <>
