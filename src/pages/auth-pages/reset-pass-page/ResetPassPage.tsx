@@ -48,7 +48,7 @@ export default function ResetPassPage() {
       <AppCard mini maxWidth="600px">
         <VStack align={"stretch"} spacing={6}>
           <Flex justifyContent={"center"}>
-            <AppTypography size="18px" weight="bolder">Set your bew password</AppTypography>
+            <AppTypography size="18px" weight="bolder">Set your new password</AppTypography>
           </Flex>
           <AppInput
             type={"password"}
@@ -63,7 +63,7 @@ export default function ResetPassPage() {
           <AppInput
             isRequired
             type={"password"}
-            name={"repassword"}
+            name={"Confirm password"}
             label={"Confirm password"}
             value={confirmnewPass}
             onChange={changeConfirmPass}
