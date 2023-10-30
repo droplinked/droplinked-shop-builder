@@ -57,6 +57,7 @@ function Printful({ close, open }: IProps) {
                 ...printful_template_id ? { templateId: printful_template_id } : {
                     initProduct: {
                         productId: pod_blank_product_id.toString(),
+                        technique: 'T-SHIRT, EMBROIDERY'
                     }
                 }
             });
