@@ -17,7 +17,7 @@ const OrderDetailComponent = () => {
         <Box><OrderDetailTable /></Box>
         <Box><OrderModalPayment /></Box>
         <Box><OrderDetailCost /></Box>
-        {/* <Box><OrderChain /></Box> */}
+        <Box><OrderChain /></Box>
       </VStack>
 
     </VStack>

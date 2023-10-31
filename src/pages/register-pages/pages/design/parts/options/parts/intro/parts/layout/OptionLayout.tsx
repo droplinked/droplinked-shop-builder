@@ -10,7 +10,7 @@ function OptionLayout() {
 
     return (
         <VStack align="stretch">
-            <OptionsCaption caption='hero section layout' />
+            <OptionsCaption caption='Display Layout' isRequired />
             <SimpleGrid columns={4} spacing="15px">
                 {OptionLayoutModel.items.map((el, key) => (
                     <ActiveBox active={el.key === hiroLayout} key={key} props={{ padding: "8px", display: "flex", justifyContent: "center", borderRadius: "8px", onClick: () => dispatch({ type: 'updateShop', params: { shopDesign: { hiroLayout: el.key } } }), cursor: "pointer" }}>{el.icon}</ActiveBox>

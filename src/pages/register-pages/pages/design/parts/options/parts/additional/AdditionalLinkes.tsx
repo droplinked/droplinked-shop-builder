@@ -42,7 +42,7 @@ function AdditionalLinkes({ element }: IProps) {
 
     return (
         <VStack align="stretch" spacing="24px">
-            <OptionsCaption caption='Additional linkes' />
+            <OptionsCaption caption='Footer Items' />
             <VStack align="stretch" spacing="12px">
                 {shopDesign[element] && shopDesign[element].map((el, key) => (
                     <>

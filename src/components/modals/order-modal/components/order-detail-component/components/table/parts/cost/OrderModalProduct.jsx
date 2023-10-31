@@ -7,17 +7,6 @@ import AppTypography from "components/common/typography/AppTypography";
 function OrderDetailCost() {
   const { order } = useContext(orderModalContext);
 
-  const textTypes = {
-    typeA: {
-      fontSize: { base: "sm", sm: "md" },
-      fontWeight: "extrabold",
-    },
-    typeB: {
-      fontSize: { base: "sm", sm: "md" },
-      color: "lightGray",
-    },
-  };
-
   const data = [
     {
       caption: 'Total Product Cost',
