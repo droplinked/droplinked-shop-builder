@@ -19,7 +19,7 @@ function OptionTemplatePreview() {
 
     return (
         <VStack align="stretch">
-            <OptionsCaption caption='Design Template' />
+            <OptionsCaption caption='Template' isRequired />
             <Flex gap="14px">
                 <Box width="50%"><Image src={images?.[templateID]} width="100%" borderRadius="15px" /></Box>
                 <Flex width="50%" backgroundColor="#141414" onClick={() => window.open('mailto:support@droplinked.com')} cursor="pointer" borderRadius="15px" alignItems="center" padding="10px" textAlign="center">

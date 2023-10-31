@@ -12,7 +12,7 @@ function OptionFonts() {
 
     return (
         <VStack align="stretch">
-            <OptionsCaption caption='Font Family' isRequired />
+            <OptionsCaption caption='Font Style' isRequired />
             <SimpleGrid columns={2} spacing="12px">
                 {fonts.map((el, key: number) => (
                     <ActiveBox active={el === fontfamily} props={{ cursor: "pointer", onClick: () => dispatch({ type: 'updateShop', params: { shopDesign: { fontfamily: el } } }) }}>

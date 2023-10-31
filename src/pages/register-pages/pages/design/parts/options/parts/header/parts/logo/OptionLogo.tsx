@@ -7,7 +7,7 @@ import OptionsCaption from '../../../caption/OptionsCaption'
 function OptionLogo() {
     return (
         <VStack align="stretch">
-            <OptionsCaption caption='logo' />
+            <OptionsCaption caption='Site Logo' />
             <AppSelectBox items={[{ caption: "Image", value: "Image" }]} name="" />
             <AppTypography size="14px" color="#808080">sample</AppTypography>
         </VStack>

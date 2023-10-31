@@ -1,13 +1,13 @@
 import { Box, Flex } from '@chakra-ui/react'
 import AppScrollBar from 'components/common/scrollbar'
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useMemo, useRef } from 'react'
 import { designContext } from '../../design-context'
 
 function DesignPagePreview() {
     const dataShop = useProfile();
     const { state: { device, shop } } = useContext(designContext)
-    const url = "https://dev.droplinked.io/" + dataShop.shop.name
+    const url = useMemo(() => "https://dev.droplinked.io/" + dataShop.shop.name + `?${Math.random()}`, [shop])
     const iframeElement = useRef<any>(null)
 
     useEffect(() => {

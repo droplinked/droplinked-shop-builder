@@ -38,7 +38,9 @@ function DefaultHoverBox() {
                         <>
                             {isHorizontal ?
                                 <Flex gap="18px">
-                                    <Image src={values} borderRadius="3px" border="1px solid #262626" width="48px" height="48px" />
+                                    <Box position="relative">
+                                        <Image src={values} borderRadius="3px" border="1px solid #262626" width="48px" height="48px" />
+                                    </Box>
                                     <VStack align="stretch">
                                         <AppTypography size="12px" color="#C2C2C2" weight='bolder'>{getFileNameFromUrl(values)}</AppTypography>
                                         <AppTypography size="12px" color="#808080">{Size} kb</AppTypography>
