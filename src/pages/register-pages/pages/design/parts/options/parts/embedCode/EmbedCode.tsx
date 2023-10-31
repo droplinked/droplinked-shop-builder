@@ -15,7 +15,7 @@ function EmbedCode({ props }: IProps) {
             <Flex backgroundColor="#141414" cursor="pointer" onClick={onOpen} position="relative" padding="24px 20px" gap="20px" borderRadius="8px" {...props}>
                 <VStack align="stretch">
                     <AppTypography size="14px">Embed Code</AppTypography>
-                    <AppTypography size="14px" color="#808080">Embed html/css code to develope your own design</AppTypography>
+                    <AppTypography size="14px" color="#808080">Embed HTML or CSS code to implement a custom design</AppTypography>
                 </VStack>
                 <Box>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">

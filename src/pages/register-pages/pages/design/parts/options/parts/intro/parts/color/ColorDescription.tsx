@@ -9,7 +9,7 @@ function ColorDescription() {
 
   return (
     <VStack align="stretch">
-      <OptionsCaption caption='Text Color' />
+      <OptionsCaption caption='Hero Text Color' />
       <AppColorPicker onChange={(color) => dispatch({ type: 'updateShop', params: { shopDesign: { hiroTextColor: color } } })} value={hiroTextColor || "#777"} />
     </VStack>
   )

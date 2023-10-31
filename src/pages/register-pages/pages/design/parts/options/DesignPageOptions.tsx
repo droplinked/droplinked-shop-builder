@@ -19,7 +19,7 @@ function DesignPageOptions() {
             <DesignPageProfile />
             <DesignPageProducts />
             <DesignPagefooter />
-            <DesignPageBanner />
+            {/* <DesignPageBanner /> */}
         </VStack>
     )
 }

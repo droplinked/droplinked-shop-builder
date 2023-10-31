@@ -6,6 +6,7 @@ import { getFileNameFromUrl, getImageFileSize } from 'lib/utils/heper/image'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import appUploadImageContext from '../../context'
 import UploadImagesList from './parts/list/UploadImagesList'
+import classes from './style.module.scss'
 
 function DefaultHoverBox() {
     const { openFile, isLoading, values, mode } = useContext(appUploadImageContext)
@@ -37,8 +38,9 @@ function DefaultHoverBox() {
                     {!isLoading && checkSingleImage && typeof values === "string" ? (
                         <>
                             {isHorizontal ?
-                                <Flex gap="18px">
+                                <Flex gap="18px" className={classes.iconUpload}>
                                     <Box position="relative">
+                                        <Flex position="absolute" className={classes.icon} display="none" top="0" left="0" bottom="0" right="0" backgroundColor="rgba(0,0,0,.8)" justifyContent="center" alignItems="center"><AppIcons.Upload width="18px" /></Flex>
                                         <Image src={values} borderRadius="3px" border="1px solid #262626" width="48px" height="48px" />
                                     </Box>
                                     <VStack align="stretch">
