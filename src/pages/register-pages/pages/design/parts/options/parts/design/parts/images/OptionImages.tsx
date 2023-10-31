@@ -18,7 +18,7 @@ function OptionImages() {
 
     return (
         <VStack align="stretch">
-            <OptionsCaption caption='Image' isRequired />
+            <OptionsCaption caption='Color Layouts' isRequired />
             <Flex gap="10px">
                 {data ? data?.data?.data.map((template: any, key: number) => {
                     return (
