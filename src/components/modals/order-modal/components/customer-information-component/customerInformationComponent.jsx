@@ -22,7 +22,7 @@ const CustomerInformationComponent = () => {
       <Box width={{ base: "60%", sm: "80%" }}><AppTypography size="12px">{value}</AppTypography></Box>
     </HStack>
   ), []);
-  console.log("customer_array", customer_array);
+
   return (
     <>
       {customer_array && customer_array.length ? (

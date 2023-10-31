@@ -12,13 +12,13 @@ function OptionSocial() {
     const { items } = optionSocialModel
 
     const keysSocials = useMemo(() => Socials.map(el => el), [Socials])
-    
+
     return (
         <VStack align="stretch">
             <OptionsCaption caption='Social Links' />
-            <SocialInputs socials={Socials} />
+            <SocialInputs socials={Socials} updateSocial={(value) => setSocials(prev => prev.filter(el => el !== value))} />
             <AppSelectBox name='' onChange={(e: any) => setSocials(prev => ([...prev, e.target.value]))} placeholder='---' items={items.filter(el => !keysSocials.includes(el.value))} />
-            <AppTypography size="14px" color="#808080">Add your social media links to your Store profile</AppTypography>
+            <AppTypography size="14px" color="#808080">Select social network and enter your username</AppTypography>
         </VStack>
     )
 }

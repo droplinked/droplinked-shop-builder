@@ -1,6 +1,7 @@
-import { Box, HStack } from "@chakra-ui/react"
+import { Box, HStack, Link, VStack } from "@chakra-ui/react"
 import ClipboardText from "components/common/clipboardText/ClipboardText"
 import hashkeyModel from "components/common/hashKey/model"
+import AppTypography from "components/common/typography/AppTypography"
 
 export const convertCustomerInformation = (order) => {
   if (!order || !order?.details?.customerAddress) return null
@@ -33,6 +34,19 @@ export const convertOrderInformation = (order) => {
     {
       name: "POD ID",
       data: order?.details?.podId || "-"
+    },
+    order?.details?.shippingUrls && order?.details?.shippingUrls.length && {
+      name: "Shipping Url",
+      data: (
+        <VStack align="stretch" spacing="20px">
+          {order?.details?.shippingUrls.map((el, key) => (
+            <VStack align="stretch" spacing="0" key={key}>
+              <AppTypography size="10px" color="#777">({el?.name})</AppTypography>
+              <Link href={el?.url} boxShadow="unset !important" target="_blank"><AppTypography size="12px" textDecor="underline">{el?.url}</AppTypography></Link>
+            </VStack>
+          ))}
+        </VStack>
+      )
     },
     // {
     //   name: "Deploy Hash",
