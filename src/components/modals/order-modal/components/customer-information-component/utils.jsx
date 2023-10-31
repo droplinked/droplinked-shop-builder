@@ -26,7 +26,7 @@ export const convertOrderInformation = (order) => {
   if (!order || !order?.details?.customerAddress) return null
   const linkTransction = order?.cartID?.paymentType && order?.transaction_id ? hashkeyModel.getLink({ blockchain: order?.cartID?.paymentType, hashkey: order?.transaction_id }) : null
 
-  return [
+  const result = [
     {
       name: "Order ID",
       data: order?._id
@@ -34,19 +34,6 @@ export const convertOrderInformation = (order) => {
     {
       name: "POD ID",
       data: order?.details?.podId || "-"
-    },
-    order?.details?.shippingUrls && order?.details?.shippingUrls.length && {
-      name: "Shipping Url",
-      data: (
-        <VStack align="stretch" spacing="20px">
-          {order?.details?.shippingUrls.map((el, key) => (
-            <VStack align="stretch" spacing="0" key={key}>
-              <AppTypography size="10px" color="#777">({el?.name})</AppTypography>
-              <Link href={el?.url} boxShadow="unset !important" target="_blank"><AppTypography size="12px" textDecor="underline">{el?.url}</AppTypography></Link>
-            </VStack>
-          ))}
-        </VStack>
-      )
     },
     // {
     //   name: "Deploy Hash",
@@ -58,5 +45,23 @@ export const convertOrderInformation = (order) => {
     //   ) : "-"
     // }
   ]
+
+  if (order?.details?.shippingUrls && order?.details?.shippingUrls.length) {
+    result.push({
+      name: "Shipping Url",
+      data: (
+        <VStack align="stretch" spacing="20px">
+          {order?.details?.shippingUrls.map((el, key) => (
+            <VStack align="stretch" spacing="0" key={key}>
+              <AppTypography size="10px" color="#777">({el?.name})</AppTypography>
+              <Link href={el?.url} boxShadow="unset !important" target="_blank"><AppTypography size="12px" textDecor="underline">{el?.url}</AppTypography></Link>
+            </VStack>
+          ))}
+        </VStack>
+      )
+    })
+  }
+
+  return result
 
 }
