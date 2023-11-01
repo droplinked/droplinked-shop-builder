@@ -39,14 +39,14 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/enquiry" element={<Enquiry />} />
+          <Route path="enquiry" element={<Enquiry />} />
           <Route path="terms" element={<TermsPage />} />
-          <Route path="pricing" element={<PricingPage />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="email-confirmation" element={<ThankForRegisterPage />} />
           <Route path="email-verification/:token" element={<VerifyEmailPage />} />
           <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
+          <Route path="plans" element={<PricingPage />} />
         </Route>
 
         <Route path=":shopname/c" element={<DashboardLayout />}>
