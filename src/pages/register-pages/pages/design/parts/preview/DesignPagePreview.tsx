@@ -11,8 +11,8 @@ function DesignPagePreview() {
     const iframeElement = useRef<any>(null)
 
     useEffect(() => {
-        iframeElement.current.contentWindow.postMessage(shop, url);
-    }, [shop])
+        if (iframeElement.current) iframeElement.current.contentWindow.postMessage(shop, url);
+    }, [shop, iframeElement])
 
     return (
         <Flex justifyContent="center">
