@@ -9,16 +9,8 @@ function PricingPage() {
         "Collaborate with creators",
         "Brand revenue sharing",
         "Dedicated account managment",
-        "%10 of profits earned from sales",
         "Sell both digital and physical goods",
         "Smart product listing technology",
-        (
-            <p>
-                Limited token gating functionality
-                <br />
-                (discounts, loyalty programs, etc)
-            </p>
-        ),
     ]
 
     const itemsPlanB = [
