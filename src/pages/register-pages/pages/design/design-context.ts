@@ -50,7 +50,7 @@ export const initialStateDesignPage: IStateDesignPage = {
     tiktokURL: '',
     webURL: '',
     headerIcon: '',
-    backgroundColor: '',
+    backgroundColor: '#141414',
     backgroundImage: '',
     backgroundImageSecondary: '',
     fullWidthHero: false,
@@ -58,10 +58,11 @@ export const initialStateDesignPage: IStateDesignPage = {
     shopDesign: {
       fontfamily: '',
       headerBackground: '',
-      hiroLayout: '',
+      hiroLayout: 'right',
       hiroTextColor: '',
       bannerLinks: [],
-      footerLinks: []
+      footerLinks: [],
+      iconHeaderColor: "#ffffff"
     },
     template_options: template_options_defaults
   }

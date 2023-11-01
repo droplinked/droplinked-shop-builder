@@ -5,12 +5,12 @@ import React, { useContext } from 'react'
 import OptionsCaption from '../../../caption/OptionsCaption';
 
 function HeaderIconsColor() {
-    const { methods: { dispatch }, state: { shop: { shopDesign: { headerBackground } } } } = useContext(designContext)
+    const { methods: { dispatch }, state: { shop: { shopDesign: { iconHeaderColor } } } } = useContext(designContext)
 
     return (
         <VStack align="stretch">
             <OptionsCaption caption='Icon Color' />
-            <AppColorPicker onChange={(color) => dispatch({ type: 'updateShop', params: { shopDesign: { headerBackground: color } } })} value={headerBackground || '#aabbcc'} />
+            <AppColorPicker onChange={(color) => dispatch({ type: 'updateShop', params: { shopDesign: { iconHeaderColor: color } } })} value={iconHeaderColor} />
         </VStack>
     )
 
