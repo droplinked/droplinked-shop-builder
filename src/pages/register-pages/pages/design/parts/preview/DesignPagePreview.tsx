@@ -1,28 +1,17 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import AppScrollBar from 'components/common/scrollbar'
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
-import React, { useContext, useEffect, useMemo, useRef } from 'react'
+import React, { useContext } from 'react'
 import { designContext } from '../../design-context'
+import PreviewHeader from './parts/header/PreviewHeader';
 
 function DesignPagePreview() {
-    const dataShop = useProfile();
-    const { state: { device, shop } } = useContext(designContext)
-    const url = useMemo(() => "https://dev.droplinked.io/" + dataShop.shop.name + `?${Math.random()}`, [shop])
-    const iframeElement = useRef<any>(null)
-
-    useEffect(() => {
-        iframeElement.current.contentWindow.postMessage(shop, 'https://dev.droplinked.io')
-    }, [shop, iframeElement])
+    const { state: { device } } = useContext(designContext)
 
     return (
         <Flex justifyContent="center">
             <AppScrollBar transition=".3s" width={device === "mobile" ? "300px" : "100%"}>
-                <iframe
-                    style={{ width: "100%", height: "600px" }}
-                    src={url}
-                    ref={iframeElement}
-                    title="Module"
-                ></iframe>
+                <PreviewHeader />
             </AppScrollBar>
         </Flex>
     )
