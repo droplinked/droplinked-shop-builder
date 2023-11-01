@@ -11,6 +11,8 @@ function DesignPagePreview() {
     const iframeElement = useRef<any>(null)
 
     useEffect(() => {
+        console.log("Faghat majid", shop, url);
+
         if (iframeElement.current) iframeElement.current.contentWindow.postMessage(shop, url);
     }, [shop, iframeElement])
 
