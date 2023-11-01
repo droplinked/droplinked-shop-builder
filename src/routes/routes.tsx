@@ -24,6 +24,7 @@ import ShopProduct from 'pages/affiliate/product/ShopProduct'
 import ProductTypes from "pages/product/types/ProductTypes";
 import HomePage from "pages/public-pages/homePage/HomePage";
 import AboutUs from "pages/public-pages/about/AboutUs";
+import PricingPage from "pages/public-pages/pricing/PricingPage";
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -40,6 +41,7 @@ function AppRoutes() {
           <Route index element={<HomePage />} />
           <Route path="/enquiry" element={<Enquiry />} />
           <Route path="terms" element={<TermsPage />} />
+          <Route path="pricing" element={<PricingPage />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="email-confirmation" element={<ThankForRegisterPage />} />
