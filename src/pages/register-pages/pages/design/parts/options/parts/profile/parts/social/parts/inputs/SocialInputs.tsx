@@ -70,7 +70,7 @@ function SocialInputs({ socials, updateSocial }) {
                             <Box className={classes.icon} position="relative" top="3px">{items[el].icon}</Box>
                         </Flex>
                     ) : (
-                        <form onSubmit={(e) => submit(e, el)}>
+                        <form style={{ width: "100%" }} onSubmit={(e) => submit(e, el)}>
                             <VStack align="stretch" width="100%" spacing="0">
                                 <Flex alignItems="center" gap="12px" backgroundColor="#1C1C1C" padding="10px 14px" borderRadius="6px 6px 0px 0px">
                                     <Flex className={classes.icon}>{items[el].icon}</Flex>
