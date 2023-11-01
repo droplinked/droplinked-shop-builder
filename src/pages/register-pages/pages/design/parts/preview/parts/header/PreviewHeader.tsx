@@ -5,7 +5,7 @@ import previewHeaderModel from './model'
 function PreviewHeader() {
     const { icons } = previewHeaderModel
     return (
-        <Flex justifyContent="space-between" alignItems="center">
+        <Flex justifyContent="space-between" width="90%" alignItems="center">
             <Box>{icons({ icon: "logo", color: "#FFF" })}</Box>
             <HStack>
                 <Box>{icons({ icon: "user", color: "#FFF" })}</Box>
