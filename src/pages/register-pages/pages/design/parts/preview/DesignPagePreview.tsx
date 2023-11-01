@@ -11,9 +11,7 @@ function DesignPagePreview() {
     const iframeElement = useRef<any>(null)
 
     useEffect(() => {
-        console.log("Faghat majid", shop, url);
-
-        if (iframeElement.current) iframeElement.current.contentWindow.postMessage(shop, url);
+        iframeElement.current.contentWindow.postMessage(shop, 'https://dev.droplinked.io')
     }, [shop, iframeElement])
 
     return (
