@@ -30,10 +30,10 @@ function AboutUs() {
 
     return (
         <>
-            <Image src='/assets/images/homepage/ef1.png' position="absolute" top={{ base: "-100px", md: "-300px" }} right={{ base: "-200px", lg: "0" }} zIndex="0" />
-            <Image src='/assets/images/homepage/ef2.png' width="800px" position="absolute" bottom="-300px" left="0" zIndex="0" />
             <Flex justifyContent="center" position="relative" padding={{ base: "110px 0", lg: "180px 0" }}>
-                <VStack width="92%" maxWidth="1300px" align="stretch" spacing={{ base: "15px", lg: "45px" }}>
+                <Image src='/assets/images/homepage/ef1.png' position="absolute" top={{ base: "-100px", md: "-300px" }} right={{ base: "-200px", lg: "0" }} zIndex="0" />
+                <Image src='/assets/images/homepage/ef2.png' width="800px" position="absolute" bottom="-300px" left="0" zIndex="0" />
+                <VStack width="92%" maxWidth="1300px" align="stretch" position="relative" spacing={{ base: "15px", lg: "45px" }}>
                     <Box><AppTypography color="#FFF" size={{ base: "24px", sm: "32px" }} weight='bolder'>Why droplinked?</AppTypography></Box>
                     <VStack color="#C3C3C3" align="stretch">
                         <Box><AppTypography size={{ base: "16px", lg: "20px" }}>Droplinked is a cutting-edge decentralized commerce platform that allows individuals to create their own store and trade various products and services using non-fungible tokens (NFTs). With a strong foundation in decentralized inventory management and sales protocols, ensuring unparalleled transparency and immutability.</AppTypography></Box>
