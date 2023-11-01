@@ -38,7 +38,7 @@ function PricingPage() {
             <Flex justifyContent="center" position="relative">
                 <Image src='/assets/images/homepage/ef1.png' position="absolute" top={{ base: "-100px", md: "-300px" }} right={{ base: "-200px", lg: "0" }} zIndex="0" />
                 <Image src='/assets/images/homepage/ef2.png' width="800px" position="absolute" bottom="-300px" left="0" zIndex="0" />
-                <Flex padding="200px 0 100px 0" position="relative" zIndex={1} flexDirection={{ base: "column", sm: "row" }} color="#C2C2C2" width="95%" gap={{ base: "20px", lg: "48px" }} maxWidth="1200px">
+                <Flex padding="150px 0 100px 0" position="relative" zIndex={1} flexDirection={{ base: "column", sm: "row" }} color="#C2C2C2" width="95%" gap={{ base: "20px", lg: "48px" }} maxWidth="1200px">
 
                     <VStack align="stretch" spacing={{ base: "10px", sm: "20px" }} width={{ base: "100%", sm: "50%" }} border="1px solid #6080CA" borderRadius="18px" padding={{ base: "30px 20px", md: "56px 48px" }}>
                         <AppTypography size={{ base: "18px", sm: "24px" }} weight='bolder' color="#FFF">Pro</AppTypography>
