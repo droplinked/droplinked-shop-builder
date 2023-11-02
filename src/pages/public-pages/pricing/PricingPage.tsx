@@ -5,20 +5,20 @@ import React from 'react'
 
 function PricingPage() {
     const itemsPlanA = [
+        "Brand revenue sharing",
         "Advanced token gating",
         "Collaborate with creators",
-        "Brand revenue sharing",
         "Dedicated account managment",
         "Sell both digital and physical goods",
-        "Smart product listing technology",
+        "Advanced smart product listing technology",
     ]
 
     const itemsPlanB = [
-        "White labeled customizable shopfront",
+        "White-labeled customizable shopfront",
         "Collaborate with other shops and publishers",
         "Headless embeddable products and collections",
         "DIMST enterprise console access for on-chain inventory management",
-        "Customize Your platform stack with web3 commerce infrastructure and on-chain attribution",
+        "Customize a platform stack with web3 commerce infrastructure and on-chain attribution",
     ]
 
     const icon = <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +32,7 @@ function PricingPage() {
                 <Image src='/assets/images/homepage/ef2.png' width="800px" position="absolute" bottom="-300px" left="0" zIndex="0" />
                 <Flex padding="150px 0 100px 0" position="relative" zIndex={1} flexDirection={{ base: "column", sm: "row" }} color="#C2C2C2" width="95%" gap={{ base: "20px", lg: "48px" }} maxWidth="1200px">
 
-                    <VStack align="stretch" spacing={{ base: "10px", sm: "20px" }} width={{ base: "100%", sm: "50%" }} border="1px solid #6080CA" borderRadius="18px" padding={{ base: "30px 20px", md: "56px 48px" }}>
+                    <VStack align="stretch" spacing={{ base: "10px", sm: "20px" }} width={{ base: "100%", sm: "50%" }} border="1px solid #6080CA" borderRadius="18px" padding={{ base: "30px 20px", md: "64px 56px" }}>
                         <AppTypography size={{ base: "18px", sm: "24px" }} weight='bolder' color="#FFF">Pro</AppTypography>
                         <Flex alignItems="center" gap="14px">
                             <AppTypography size={{ base: "28px", sm: "40px" }} weight='bolder' color="#FFF">$20</AppTypography>
@@ -48,8 +48,8 @@ function PricingPage() {
                         </VStack>
                     </VStack>
 
-                    <VStack align="stretch" spacing={{ base: "10px", sm: "20px" }} width={{ base: "100%", sm: "50%" }} border="1px solid #6080CA" borderRadius="18px" padding={{ base: "30px 20px", md: "56px 48px" }}>
-                        <AppTypography size="24px" weight='bolder' color="#FFF">Enterprise</AppTypography>
+                    <VStack align="stretch" spacing={{ base: "10px", sm: "20px" }} width={{ base: "100%", sm: "50%" }} border="1px solid #6080CA" borderRadius="18px" padding={{ base: "30px 20px", md: "64px 56px" }}>
+                        <AppTypography size={{ base: "18px", sm: "24px" }} weight='bolder' color="#FFF">Enterprise</AppTypography>
                         <AppTypography size={{ base: "28px", sm: "40px" }} weight='bolder' color="#FFF">Custom</AppTypography>
                         <AppTypography size={{ base: "14px", sm: "16px" }} color="#FFF">Leverage the full power of droplinked (everything included in the Pro plan + the below)</AppTypography>
                         <VStack align="stretch" spacing="24px" paddingTop={{ base: "10px", sm: "40px" }}>
