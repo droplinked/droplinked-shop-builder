@@ -7,12 +7,12 @@ import PreviewHeader from './parts/header/PreviewHeader';
 import PreviewWrapper from './parts/wrapper/PreviewWrapper';
 
 function DesignPagePreview() {
-    const { state: { device } } = useContext(designContext)
+    const { state: { device, shop: { shopDesign: { backgroundBody } } } } = useContext(designContext)
 
     return (
-        <Flex justifyContent="center" backgroundColor="#1e1e1e">
+        <Flex justifyContent="center" backgroundColor={backgroundBody || "#1e1e1e"}>
             <AppScrollBar transition=".3s" width={device === "mobile" ? "300px" : "100%"}>
-                <VStack align="stretch" spacing="20px">
+                <VStack align="stretch" spacing="0">
                     <PreviewHeader />
                     <PreviewWrapper />
                     <PreviewFooter />

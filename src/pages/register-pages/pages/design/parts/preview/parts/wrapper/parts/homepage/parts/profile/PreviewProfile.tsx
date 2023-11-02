@@ -8,11 +8,11 @@ import PreviewSocials from './parts/socials/PreviewSocials'
 
 function PreviewProfile() {
     const { shop } = useProfile()
-    const { state: { shop: { logo } } } = useContext(designContext)
+    const { state: { shop: { logo, shopDesign: { foreground } } } } = useContext(designContext)
 
     return (
         <VStack align="stretch" spacing="15px">
-            <VStack align="stretch" spacing="15px" padding="30px 20px" backgroundColor="#141414">
+            <VStack align="stretch" spacing="15px" padding="30px 20px" backgroundColor={foreground || "#141414"}>
                 <Flex justifyContent="center">
                     {logo && <Image width="70%" borderRadius="100%" src={logo} />}
                 </Flex>

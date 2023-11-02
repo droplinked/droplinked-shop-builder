@@ -4,17 +4,17 @@ import React, { useContext } from 'react'
 import previewHeaderModel from './model'
 
 function PreviewHeader() {
-    const { state: { shop: { headerIcon, shopDesign: { iconHeaderColor } } } } = useContext(designContext)
+    const { state: { shop: { headerIcon, shopDesign: { iconHeaderColor }, template_options } } } = useContext(designContext)
     const { icons } = previewHeaderModel
 
     return (
-        <Flex justifyContent="center">
-            <Flex justifyContent="space-between" width="90%" alignItems="center">
-                <Box>{headerIcon && <Image height="50px" src={headerIcon} />}</Box>
-                <HStack>
-                    <Box>{icons({ icon: "user", color: iconHeaderColor })}</Box>
-                    <Box>{icons({ icon: "cart", color: iconHeaderColor })}</Box>
-                    <Box>{icons({ icon: "notification", color: iconHeaderColor })}</Box>
+        <Flex {...template_options?.['--dlk-hdr']?.['--dlk-hdr-styles']} justifyContent="center">
+            <Flex justifyContent="space-between" alignItems="center" {...template_options?.['--dlk-hdr']?.['--dlk-hdr-container']} width="90%" padding="5px 0">
+                <Box>{headerIcon && <Image {...template_options?.['--dlk-hdr']?.['--dlk-hdr-logo']} height="50px" src={headerIcon} />}</Box>
+                <HStack {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-styles']}>
+                    <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-profile']}>{icons({ icon: "user", color: iconHeaderColor })}</Box>
+                    <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-cart']}>{icons({ icon: "cart", color: iconHeaderColor })}</Box>
+                    <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-notification']}>{icons({ icon: "notification", color: iconHeaderColor })}</Box>
                 </HStack>
             </Flex>
         </Flex>

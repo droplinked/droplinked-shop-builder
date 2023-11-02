@@ -8,7 +8,7 @@ import ActiveBox from '../../../active/ActiveBox'
 import OptionsCaption from '../../../caption/OptionsCaption'
 
 function OptionImages() {
-    const { methods: { dispatch }, state: { shop: { templateID } } } = useContext(designContext)
+    const { methods: { dispatch }, state: { shop: { shopDesign: { backgroundBody, foreground } } } } = useContext(designContext)
     const { data } = useQuery({
         queryFn: availableTemplateService,
         queryKey: "images_them_option_query",
@@ -24,13 +24,24 @@ function OptionImages() {
                     return (
                         <ActiveBox
                             key={key}
-                            active={template._id === templateID}
+                            active={template.background === backgroundBody && template.foreground === foreground}
                             props={{
                                 borderRadius: "100px",
                                 backgroundColor: "#141414",
                                 cursor: "pointer",
                                 width: "40px",
-                                onClick: () => dispatch({ type: 'updateShop', params: { templateID: template._id } })
+                                onClick: () => {
+                                    dispatch({
+                                        type: 'updateShop', params: {
+                                            shopDesign: {
+                                                backgroundBody: template.background,
+                                                fontfamily: template.fontFamily,
+                                                foreground: template.foreground,
+                                                textColorParagraphs: template.textColor,
+                                            }
+                                        }
+                                    })
+                                }
                             }}
                         >
                             <HStack width="100%" spacing="0" >

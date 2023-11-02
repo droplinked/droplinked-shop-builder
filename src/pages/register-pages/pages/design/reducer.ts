@@ -30,6 +30,9 @@ export interface IShopDesignPage {
         footerLinks?: Array<IAdditionalLinkes>
         productListTitle?: string
         iconHeaderColor?: string
+        foreground?: string
+        backgroundBody?: string
+        textColorParagraphs?: string
     }
     template_options?: any
 }

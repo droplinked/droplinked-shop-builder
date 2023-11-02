@@ -1,12 +1,14 @@
 import { Box, Flex } from '@chakra-ui/layout'
-import React from 'react'
+import { designContext } from 'pages/register-pages/pages/design/design-context'
+import React, { useContext } from 'react'
 import PreviewProducts from './parts/products/PreviewProducts'
 import PreviewProfile from './parts/profile/PreviewProfile'
 
 function PreviewHomepage() {
+    const { state: { shop: { template_options } } } = useContext(designContext)
 
     return (
-        <Flex justifyContent="center">
+        <Flex justifyContent="center" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-styles']}>
             <Flex width="85%" gap="20px">
                 <Box width="30%"><PreviewProfile /></Box>
                 <Box width="70%"><PreviewProducts /></Box>

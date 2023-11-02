@@ -62,7 +62,10 @@ export const initialStateDesignPage: IStateDesignPage = {
       hiroTextColor: '',
       bannerLinks: [],
       footerLinks: [],
-      iconHeaderColor: "#ffffff"
+      iconHeaderColor: "#ffffff",
+      backgroundBody: '',
+      foreground: '',
+      textColorParagraphs: '',
     },
     template_options: template_options_defaults
   }
