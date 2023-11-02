@@ -10,8 +10,8 @@ function DesignPagePreview() {
     const { state: { device, shop: { shopDesign: { backgroundBody } } } } = useContext(designContext)
 
     return (
-        <Flex justifyContent="center" backgroundColor={backgroundBody || "#1e1e1e"}>
-            <AppScrollBar transition=".3s" width={device === "mobile" ? "300px" : "100%"}>
+        <Flex justifyContent="center">
+            <AppScrollBar transition=".3s" width={device === "mobile" ? "300px" : "100%"} backgroundColor={backgroundBody || "#1e1e1e"}>
                 <VStack align="stretch" spacing="0">
                     <PreviewHeader />
                     <PreviewWrapper />

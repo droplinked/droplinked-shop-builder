@@ -8,7 +8,7 @@ function PreviewTypo(props: IProps) {
     const { state: { shop: { shopDesign: { fontfamily, textColorParagraphs } } } } = useContext(designContext)
 
     return (
-        <Text {...props} className={classes.fonts} fontFamily={fontfamily} color={textColorParagraphs || "#FFF"}>{props.children}</Text>
+        <Text className={classes.fonts} fontFamily={fontfamily} color={textColorParagraphs || "#FFF"} {...props} >{props.children}</Text>
     )
 }
 

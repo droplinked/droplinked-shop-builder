@@ -9,7 +9,7 @@ function PreviewHiro() {
 
     return (
         <Flex backgroundColor={backgroundColor} justifyContent="space-between" padding="3%" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-styles']}>
-            <Box width="50%"><PreviewTypo fontSize="20px" fontWeight="bold" color={hiroTextColor} {...template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-caption']}>{backgroundText}</PreviewTypo></Box>
+            <Box width="50%"><PreviewTypo fontSize="20px" fontWeight="bold" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-caption']} color={hiroTextColor}>{backgroundText}</PreviewTypo></Box>
             {backgroundImage && <Image width="50%" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-image']} src={backgroundImage} />}
         </Flex>
     )

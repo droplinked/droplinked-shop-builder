@@ -5,13 +5,13 @@ import PreviewProducts from './parts/products/PreviewProducts'
 import PreviewProfile from './parts/profile/PreviewProfile'
 
 function PreviewHomepage() {
-    const { state: { shop: { template_options } } } = useContext(designContext)
+    const { state: { shop: { template_options }, device } } = useContext(designContext)
 
     return (
         <Flex justifyContent="center" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-styles']}>
-            <Flex width="85%" gap="20px">
-                <Box width="30%"><PreviewProfile /></Box>
-                <Box width="70%"><PreviewProducts /></Box>
+            <Flex width="85%" gap="20px" flexDirection={device === "desktop" ? "row" : "column"}>
+                <Box width={device === "desktop" ? "30%" : "100%"}><PreviewProfile /></Box>
+                <Box width={device === "desktop" ? "70%" : "100%"}><PreviewProducts /></Box>
             </Flex>
         </Flex>
     )
