@@ -1,43 +1,43 @@
 import { Flex, Link } from '@chakra-ui/layout'
 import { designContext } from 'pages/register-pages/pages/design/design-context'
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import previewSocialsModel from './model'
 import classes from './style.module.scss'
 
 function PreviewSocials() {
     const { icons } = previewSocialsModel
-    const { state: { shop: { discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL } } } = useContext(designContext)
+    const { state: { shop: { discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL, shopDesign: { textColorParagraphs } } } } = useContext(designContext)
 
-    const social = [
+    const social = useMemo(() => [
         {
             url: discordURL,
-            icon: icons().discord
+            icon: icons({ color: textColorParagraphs }).discord
         },
         {
             url: facebookURL,
-            icon: icons().facebook
+            icon: icons({ color: textColorParagraphs }).facebook
         },
         {
             url: instagramURL,
-            icon: icons().instagram
+            icon: icons({ color: textColorParagraphs }).instagram
         },
         {
             url: linkedinURL,
-            icon: icons().linkedin
+            icon: icons({ color: textColorParagraphs }).linkedin
         },
         {
             url: tiktokURL,
-            icon: icons().tiktok
+            icon: icons({ color: textColorParagraphs }).tiktok
         },
         {
             url: twitterURL,
-            icon: icons().twitter
+            icon: icons({ color: textColorParagraphs }).twitter
         },
         {
             url: webURL,
-            icon: icons().web
+            icon: icons({ color: textColorParagraphs }).web
         },
-    ]
+    ], [textColorParagraphs, discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL])
 
     return (
         <Flex justifyContent="center" gap="7px" alignItems="center" flexWrap="wrap" className={classes.icons}>

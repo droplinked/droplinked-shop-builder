@@ -5,6 +5,7 @@ import AppScrollBar from 'components/common/scrollbar';
 import { designContext, template_options_defaults } from 'pages/register-pages/pages/design/design-context';
 import React, { useContext, useEffect, useState } from 'react'
 import ReactJson from 'react-json-view'
+import classes from './style.module.scss'
 
 interface IProps extends IAppModal { }
 
@@ -22,7 +23,7 @@ function EmbedCodeModal({ close, open }: IProps) {
     return (
         <AppModal open={open} size="4xl" close={close} isCentered={false}>
             <VStack align='stretch' spacing="30px">
-                <AppScrollBar>
+                <AppScrollBar className={classes.editor}>
                     <ReactJson
                         theme="google"
                         style={{ fontSize: "13px", borderRadius: "8px" }}
