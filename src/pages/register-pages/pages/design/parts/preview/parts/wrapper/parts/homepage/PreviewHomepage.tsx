@@ -8,7 +8,7 @@ function PreviewHomepage() {
     const { state: { shop: { template_options }, device } } = useContext(designContext)
 
     return (
-        <Flex justifyContent="center" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-styles']}>
+        <Flex justifyContent="center" padding="20px 0" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-styles']}>
             <Flex width="85%" gap="20px" flexDirection={device === "desktop" ? "row" : "column"}>
                 <Box width={device === "desktop" ? "30%" : "100%"}><PreviewProfile /></Box>
                 <Box width={device === "desktop" ? "70%" : "100%"}><PreviewProducts /></Box>
