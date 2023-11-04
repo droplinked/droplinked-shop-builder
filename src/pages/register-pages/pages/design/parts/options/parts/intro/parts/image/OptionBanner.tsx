@@ -9,7 +9,7 @@ import OptionBannerModel from './model'
 
 function OptionBanner() {
     const { methods: { dispatch }, state: { shop: { backgroundImage } } } = useContext(designContext)
-    const { defaults, images } = OptionBannerModel
+    const { defaults } = OptionBannerModel
     const [States, setStates] = useState({ defaults })
 
     const upload = useCallback((image: string) => {
@@ -28,9 +28,9 @@ function OptionBanner() {
         })
     }, [])
 
-    useEffect(() => {        
-        if (backgroundImage && !images.includes(backgroundImage)) upload(backgroundImage)
-    }, [backgroundImage])
+    useEffect(() => {
+        if (backgroundImage && !States.defaults.find(el => el.banner_src === backgroundImage)) upload(backgroundImage)
+    }, [backgroundImage, States])
 
 
     return (

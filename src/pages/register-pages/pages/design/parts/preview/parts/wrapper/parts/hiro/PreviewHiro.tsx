@@ -10,7 +10,7 @@ function PreviewHiro() {
     const isDesktop = useMemo(() => device === "desktop", [device])
 
     const text = useMemo(() => <PreviewTypo fontSize={isDesktop ? "20px" : "14px"} fontWeight="bold" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-caption']} color={hiroTextColor}>{backgroundText}</PreviewTypo>, [hiroTextColor, backgroundText, device])
-    const image = useMemo(() => backgroundImage && <Image width={fullWidthHero ? "100%" : "50%"} {...template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-image']} src={backgroundImage} />, [backgroundImage, fullWidthHero])
+    const image = useMemo(() => backgroundImage && <Image width={fullWidthHero ? "100%" : "auto"} maxWidth="100%" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-image']} src={backgroundImage} />, [backgroundImage, fullWidthHero])
     const style = useMemo(() => template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-styles'], [template_options])
 
 
@@ -18,16 +18,16 @@ function PreviewHiro() {
         switch (hiroLayout) {
             case 'right':
                 return (
-                    <Flex justifyContent="space-between" alignItems="center" {...style}>
-                        <Box width="50%" paddingLeft="8%">{text}</Box>
+                    <Flex justifyContent="space-between" position="relative" flexDirection="row-reverse" {...style}>
                         {image}
+                        <Box position="absolute" top="50%" transform="translate(-50%, -50%)" left="10%">{text}</Box>
                     </Flex>
                 )
             case 'left':
                 return (
-                    <Flex justifyContent="space-between" alignItems="center" {...style}>
+                    <Flex justifyContent="space-between" position="relative" alignItems="center" {...style}>
                         {image}
-                        <Box width="50%" paddingRight="8%" textAlign="right">{text}</Box>
+                        <Box position="absolute" top="50%" transform="translate(-50%, -50%)" right="5%">{text}</Box>
                     </Flex>
                 )
             case 'center':
