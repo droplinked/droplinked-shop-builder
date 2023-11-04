@@ -9,3 +9,15 @@ interface ItoMb {
 export const toMb = ({ value }: ItoMb) => {
     return value * 1024 * 1024
 }
+
+export const getMinMaxArray =(arr) => {
+    let min = arr[0];
+    let max = arr[0];
+    let i = arr.length;
+
+    while (i--) {
+        min = arr[i] < min ? arr[i] : min;
+        max = arr[i] > max ? arr[i] : max;
+    }
+    return { min, max };
+}

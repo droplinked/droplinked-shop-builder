@@ -9,7 +9,7 @@ function PreviewFooter() {
 
     return (
         <Flex justifyContent="center" backgroundColor={foreground || "#141414"} padding="20px 0" {...template_options?.['--dlk-ftr']?.['--dlk-ftr-styles']}>
-            <VStack align="stretch" width="90%" spacing="20px">
+            <VStack align="stretch" width="85%" spacing="20px">
                 <Flex justifyContent="space-between">
                     {headerIcon && <Image height="50px" {...template_options?.['--dlk-ftr']?.['--dlk-ftr-logo']} src={headerIcon} />}
                     <VStack align="stretch">
