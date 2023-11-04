@@ -9,10 +9,8 @@ import OptionBannerModel from './model'
 
 function OptionBanner() {
     const { methods: { dispatch }, state: { shop: { backgroundImage } } } = useContext(designContext)
-
-    const [States, setStates] = useState({
-        defaults: OptionBannerModel.defaults
-    })
+    const { defaults, images } = OptionBannerModel
+    const [States, setStates] = useState({ defaults })
 
     const upload = useCallback((image: string) => {
         setStates(prev => ({
@@ -30,11 +28,16 @@ function OptionBanner() {
         })
     }, [])
 
+    useEffect(() => {        
+        if (backgroundImage && !images.includes(backgroundImage)) upload(backgroundImage)
+    }, [backgroundImage])
+
+
     return (
         <VStack align="stretch">
             <OptionsCaption caption='Hero Image' />
             <AppScrollBar maxHeight="320px" overflow="auto" padding="0 10px">
-                <SimpleGrid columns={2} spacing="12px" alignItems="center">
+                <SimpleGrid columns={3} spacing="12px" alignItems="center">
                     {States.defaults.map((el, key) => (
                         <ActiveBox key={key} active={el.banner_src === backgroundImage} props={{ onClick: () => setImage(el.banner_src) }}>
                             <Image src={el.thumb} borderRadius="8px" width="100%" />
