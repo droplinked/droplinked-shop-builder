@@ -32,3 +32,7 @@ export const generateBufferServices = (urls: Array<string>) => {
 export const productCategoryervices = () => {
     return axiosInstance.get(`product/public/categories/main`)
 }
+
+export const productsShopervices = (shopname: string) => {
+    return axiosInstance.get(`product/public/shop/${shopname}?page=1&limit=5`)
+}

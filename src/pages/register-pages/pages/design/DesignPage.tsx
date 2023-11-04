@@ -9,6 +9,7 @@ import DesignPagePreview from "./parts/preview/DesignPagePreview";
 import DesignPageButtons from "./parts/buttons/DesignPageButtons";
 import designPageReducer from "./reducer";
 import DesignPageModel from "./model";
+import StickyBox from "react-sticky-box";
 
 const DesignPage = () => {
   const { shop } = useProfile();
@@ -29,15 +30,17 @@ const DesignPage = () => {
       }}
     >
       <Flex gap="24px" alignItems="flex-start">
-        <VStack align="stretch" width="72%" spacing="24px">
-          <AppCard boxProps={{ padding: "30px" }}>
-            <VStack align="stretch" spacing="24px">
-              <DesignPageDevices />
-              <DesignPagePreview />
-            </VStack>
-          </AppCard>
-          <DesignPageButtons />
-        </VStack>
+        <StickyBox offsetTop={20} offsetBottom={20} style={{ width: "72%" }}>
+          <VStack align="stretch" spacing="24px">
+            <AppCard boxProps={{ padding: "30px" }}>
+              <VStack align="stretch" spacing="24px">
+                <DesignPageDevices />
+                <DesignPagePreview />
+              </VStack>
+            </AppCard>
+            <DesignPageButtons />
+          </VStack>
+        </StickyBox>
         <Box width="28%"><DesignPageOptions /></Box>
       </Flex>
     </designContext.Provider >
