@@ -25,6 +25,8 @@ function ProductCategoryProduct() {
           <SimpleGrid columns={5} spacing="13px">
             {data && data?.data?.data?.data.map((el, key) => (
               <CategoryBox key={key} padding="10px" onClick={async () => {
+                const data = await productService.mutateAsync({ pod_blank_product_id: el.id })
+                product.methods.dispatch({ type: "updateStore", params: { storeName: 'product_printful', value: data?.data?.data } })
                 ProductTypeModel.updateProductType({ value: el.id.toString(), updateState: product.methods.updateState })
                 dispatch({
                   type: "updateProduct", params: {
@@ -32,8 +34,6 @@ function ProductCategoryProduct() {
                     title: el?.title
                   }
                 })
-                const data = await productService.mutateAsync({ pod_blank_product_id: el.id })
-                product.methods.dispatch({ type: "updateStore", params: { storeName: 'product_printful', value: data?.data?.data } })
               }}>
                 <VStack align="stretch" spacing="12px">
                   <Flex justifyContent="center"><Image src={el?.image} alt={el?.title} borderRadius="5px" width="100%" /></Flex>
