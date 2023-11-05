@@ -10,9 +10,11 @@ function PreviewHeader() {
     const isDesktop = useMemo(() => device === "desktop", [device])
 
     return (
-        <Flex {...template_options?.['--dlk-hdr']?.['--dlk-hdr-styles']} justifyContent="center" position="absolute" zIndex="1" top={isDesktop ? "10px" : "4px"} right="0" left="0">
+        <Flex padding="5px 0" {...template_options?.['--dlk-hdr']?.['--dlk-hdr-styles']} justifyContent="center" position="absolute" zIndex="1" top={isDesktop ? "10px" : "4px"} right="0" left="0">
             <Flex justifyContent="space-between" alignItems="center" {...template_options?.['--dlk-hdr']?.['--dlk-hdr-container']} width="85%" padding="5px 0">
-                <Box>{headerIcon && <Image {...template_options?.['--dlk-hdr']?.['--dlk-hdr-logo']} height={isDesktop ? "50px" : "30px"} src={headerIcon} />}</Box>
+                <Box>{headerIcon ? <Image {...template_options?.['--dlk-hdr']?.['--dlk-hdr-logo']} height={isDesktop ? "50px" : "30px"} src={headerIcon} /> : (
+                    <Box width="50%">{icons({ icon: "logo", color: "#FFF" })}</Box>
+                )}</Box>
                 <HStack gap={isDesktop ? "8px" : "0"} {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-styles']}>
                     <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-profile']}>{icons({ icon: "user", color: iconHeaderColor })}</Box>
                     <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-cart']}>{icons({ icon: "cart", color: iconHeaderColor })}</Box>

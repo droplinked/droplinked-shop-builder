@@ -20,42 +20,42 @@ function PreviewHiro() {
                 return (
                     <Flex justifyContent="space-between" position="relative" flexDirection="row-reverse" {...style}>
                         {image}
-                        <Box position="absolute" top="50%" transform="translate(-50%, -50%)" left="10%">{text}</Box>
+                        <Box position="absolute" top="50%" width="50%" transform="translateY(-50%)" left="7%" textAlign="left">{text}</Box>
                     </Flex>
                 )
             case 'left':
                 return (
                     <Flex justifyContent="space-between" position="relative" alignItems="center" {...style}>
                         {image}
-                        <Box position="absolute" top="50%" transform="translate(-50%, -50%)" right="5%">{text}</Box>
+                        <Box position="absolute" top="50%" width="50%" transform="translateY(-50%)" right="7%" textAlign="right">{text}</Box>
                     </Flex>
                 )
             case 'center':
                 return (
                     <VStack justifyContent="center" {...style}>
                         {image}
-                        <Box>{text}</Box>
+                        <Box textAlign="center" padding="20px">{text}</Box>
                     </VStack>
                 )
             case 'right_text':
                 return (
                     <Box justifyContent="center" position="relative" {...style}>
                         {image}
-                        <Box position="absolute" top="50%" transform="translate(-50%, -50%)" right="5%">{text}</Box>
+                        <Box position="absolute" top="50%" width="50%" transform="translateY(-50%)" right="7%" textAlign="right">{text}</Box>
                     </Box>
                 )
             case 'left_text':
                 return (
                     <Box justifyContent="center" position="relative" {...style}>
                         {image}
-                        <Box position="absolute" top="50%" transform="translate(-50%, -50%)" left="10%">{text}</Box>
+                        <Box position="absolute" top="50%" width="50%" transform="translateY(-50%)" left="7%">{text}</Box>
                     </Box>
                 )
             case 'center_text':
                 return (
                     <Box justifyContent="center" position="relative" {...style}>
                         {image}
-                        <Box position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)">{text}</Box>
+                        <Box position="absolute" top="50%" left="50%" textAlign="center" width="80%" transform="translate(-50%, -50%)">{text}</Box>
                     </Box>
                 )
 
@@ -64,7 +64,7 @@ function PreviewHiro() {
         }
     }, [hiroLayout, backgroundImage, device, hiroTextColor, template_options, backgroundText, fullWidthHero])
 
-    return handleLayout
+    return <Box minHeight="100px">{handleLayout}</Box>
 }
 
 export default PreviewHiro

@@ -19,12 +19,13 @@ function PreviewProducts() {
     }, [shop])
 
     const isDesktop = useMemo(() => device === "desktop", [device])
-
+    const products = useMemo(() => data?.data?.data, [data])
+    
     return (
         <VStack align="stretch">
             {productListTitle && <PreviewTypo fontSize="16px" fontWeight="bold">{productListTitle}</PreviewTypo>}
             <SimpleGrid columns={isDesktop ? { base: 2, xl: 3 } : 2} rowGap="40px" spacing={isDesktop ? "25px" : "10px"}>
-                {data?.data?.data ? data?.data?.data?.data.map((el, key) => (
+                {products && products?.data ? products.data.map((el, key) => (
                     <VStack key={key} align="stretch" spacing="3px">
                         <Image width="100%" paddingBottom="4px" borderRadius="2px" src={el.media.find(img => img.isMain === "true")?.thumbnail} />
                         <PreviewTypo fontSize="12px" fontWeight="bold" textAlign="center" color={textColorParagraphs || "#FFF"}>{el.title.substr(0, 20)}</PreviewTypo>

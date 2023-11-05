@@ -7,7 +7,6 @@ import artwork2dContext from '../../context'
 function PrintfullTechniques() {
   const { setStates } = useContext(artwork2dContext)
   const { store: { state: { product_printful } } } = useContext(productContext)
-  console.log("product_printful.techniques", product_printful.techniques);
 
   return (
     <VStack align="stretch" spacing="10px">

@@ -7,10 +7,10 @@ import classes from './style.module.scss'
 import { Editor } from '@tinymce/tinymce-react';
 
 function DescriptionProduct() {
-    const { state: { description }, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { description }, methods: { updateState }, loading, productID } = useContext(productContext)
     const [Update, setUpdate] = useState(' ')
 
-    useEffect(() => !Update && setUpdate(description), [description])
+    useEffect(() => (!Update || Update === ' ') && productID && setUpdate(description), [description, productID])
 
     return (
         <VStack align="stretch" position={"relative"} spacing={1}>

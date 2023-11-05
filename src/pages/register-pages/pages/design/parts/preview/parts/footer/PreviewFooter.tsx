@@ -2,16 +2,18 @@ import { Image } from '@chakra-ui/image'
 import { Box, Flex, Link, VStack } from '@chakra-ui/layout'
 import { designContext } from 'pages/register-pages/pages/design/design-context'
 import React, { useContext } from 'react'
+import previewHeaderModel from '../header/model'
 import PreviewTypo from '../parts/typo/PreviewTypo'
 
 function PreviewFooter() {
     const { state: { shop: { headerIcon, shopDesign: { footerLinks, foreground }, template_options } } } = useContext(designContext)
+    const { icons } = previewHeaderModel
 
     return (
         <Flex justifyContent="center" backgroundColor={foreground || "#141414"} padding="20px 0" {...template_options?.['--dlk-ftr']?.['--dlk-ftr-styles']}>
             <VStack align="stretch" width="85%" spacing="20px">
                 <Flex justifyContent="space-between">
-                    {headerIcon && <Image height="50px" {...template_options?.['--dlk-ftr']?.['--dlk-ftr-logo']} src={headerIcon} />}
+                    {headerIcon ? <Image height="50px" {...template_options?.['--dlk-ftr']?.['--dlk-ftr-logo']} src={headerIcon} /> : <Box width="40%" maxWidth="150px">{icons({ icon: "logo", color: "#FFF" })}</Box>}
                     <VStack align="stretch">
                         {footerLinks && footerLinks.length ? footerLinks.map((el, key) => (
                             <Link href={el.link} key={key} target="_blank">
