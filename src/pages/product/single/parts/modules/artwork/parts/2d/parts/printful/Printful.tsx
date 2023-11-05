@@ -50,7 +50,7 @@ function Printful({ close }: IProps) {
                 elemId: ref.current?.id,
                 nonce: data?.data?.data?.nonce,
                 style: styles,
-                onError: (err) => {
+                onError: (err) => {                    
                     if (err && err.search("valid nonce") <= 0) showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
                     setState('loading', false)
                 },

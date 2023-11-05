@@ -1,28 +1,21 @@
-import { VStack } from '@chakra-ui/react'
-import BasicButton from 'components/common/BasicButton/BasicButton'
-import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import { IpodProductService } from 'lib/apis/pod/interfaces'
-import { getPodProductService, podProductService } from 'lib/apis/pod/services'
+import { Box, Flex, VStack } from '@chakra-ui/react'
+import AppTypography from 'components/common/typography/AppTypography'
 import { productContext } from 'pages/product/single/context'
-import React, { useContext, useEffect } from 'react'
-import { useMutation } from 'react-query'
+import React, { useContext } from 'react'
 import artwork2dContext from '../../context'
 
 function PrintfullTechniques() {
   const { setStates } = useContext(artwork2dContext)
-  const { state: { pod_blank_product_id } } = useContext(productContext)
-  const { mutate, isLoading, data } = useMutation((params: IpodProductService) => podProductService(params))
-
-  useEffect(() => {
-    mutate({ pod_blank_product_id })
-  }, [pod_blank_product_id])
+  const { store: { state: { product_printful } } } = useContext(productContext)
+  console.log("product_printful.techniques", product_printful.techniques);
 
   return (
-    <VStack align="stretch">
-      {isLoading ? (
-        <AppSkeleton isLoaded={false} height="20px">{''}</AppSkeleton>
-      ) : data?.data?.data ? data?.data?.data?.techniques.map((el, key) => (
-        <BasicButton key={key} variant="outline" onClick={() => setStates("technique", el.key)}>{el.display_name}</BasicButton>
+    <VStack align="stretch" spacing="10px">
+      {product_printful ? product_printful.techniques.map((el, key) => (
+        <Flex key={key} gap="10px" justifyContent="center" border="1px solid #444" color="#FFF" borderRadius="5px" onClick={() => setStates("technique", el.key)} alignItems="center" cursor="pointer" padding="10px">
+          <AppTypography size="14px">{el.display_name}</AppTypography>
+          {el.is_default && <AppTypography size="12px" color="#888">(default)</AppTypography>}
+        </Flex>
       )) : null}
     </VStack>
   )

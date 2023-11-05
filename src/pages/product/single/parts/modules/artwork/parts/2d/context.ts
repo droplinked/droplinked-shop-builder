@@ -1,4 +1,3 @@
-import { IProductPosition } from "lib/apis/product/interfaces";
 import { createContext } from "react";
 
 interface Iprops {
