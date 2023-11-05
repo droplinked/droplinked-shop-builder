@@ -44,7 +44,7 @@ function Printful({ close }: IProps) {
                 external_product_id: custome_external_id,
                 external_customer_id: custome_external_id
             })
-            
+
             //@ts-ignore
             const designMaker = new PFDesignMaker({
                 elemId: ref.current?.id,
@@ -89,11 +89,12 @@ function Printful({ close }: IProps) {
             });
 
             // mockupGenerator data body
-            const mockBody = {
+            const mockBody: ImockupGeneratorService = {
                 params: {
                     variant_ids: data.flatMap(el => el.sizes.map(sized => sized.id)),
                     format: 'jpg',
-                    product_template_id: States.TemplateId.toString()
+                    product_template_id: States.TemplateId.toString(),
+                    technique: printfullContext?.technique
                 },
                 productID: pod_blank_product_id
             }
@@ -134,7 +135,7 @@ function Printful({ close }: IProps) {
             setState('TemplateId', null)
             setState('loading', false)
         }
-    }, [pod_blank_product_id, States.TemplateId])
+    }, [pod_blank_product_id, States.TemplateId, printfullContext?.technique])
 
     const generateImages = useCallback(async (mocks: any) => {
         try {

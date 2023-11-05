@@ -63,6 +63,7 @@ namespace ProductPageNamespace {
         print_positions: Array<any>
         product_types: Array<any>
         prev_data: IproductState
+        product_printful: any
     }
 
     export interface IStates {
@@ -79,7 +80,8 @@ namespace ProductPageNamespace {
             available_variant: [],
             print_positions: [],
             prev_data: productParams,
-            product_types: []
+            product_types: [],
+            product_printful: null
         },
         loading: false,
         sync: false
