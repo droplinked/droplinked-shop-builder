@@ -15,12 +15,12 @@ function OrderDetailTable() {
             </Box>
             {order?.products ? order.products.map((el, key) => (
                 <HStack alignItems="self-start" key={key} justifyContent="space-between">
-                    <OrderModalProduct product={el} />
-                    <Box><AppTypography size='12px'>x{el?.quantity}</AppTypography></Box>
+                    <Box width="50%"><OrderModalProduct product={el} /></Box>
+                    <Box width="15%"><AppTypography size='12px'>x{el?.quantity}</AppTypography></Box>
                     <VStack justifyContent="right" align="stretch">
                         <Box textAlign="right"><AppTypography size='12px'>${parseFloat(el?.amount).toFixed(2)}</AppTypography></Box>
                         <Flex alignItems="center" justifyContent="right" gap="4px">
-                            {el?.discount ? <AppIcons.DiscountIcon width="10px" height="10px" /> : <AppIcons.GatedIcon width="10px" height="10px" />}
+                            {el?.discount && el?.hasRule ? <AppIcons.DiscountIcon width="10px" height="10px" /> : <AppIcons.GatedIcon width="10px" height="10px" />}
                             <AppTypography size='12px' color="#808080">{!el?.discount ? "Gated Product" : `$ ${el?.discount} Discount`}</AppTypography>
                         </Flex>
                     </VStack>

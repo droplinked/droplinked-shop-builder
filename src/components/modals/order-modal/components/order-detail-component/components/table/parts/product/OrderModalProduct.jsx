@@ -12,6 +12,7 @@ function OrderModalProduct({ product }) {
       <Box><Image width={"48px"} borderRadius={"7px"} src={main ? main : product.media.find(el => el.isMain === "true")} /></Box>
       <VStack align="stretch">
         <Box><AppTypography size='12px'>{product.title}: {product.size}</AppTypography></Box>
+        <Box width="18px" height="18px" borderRadius="100%" backgroundColor={product.color} border="1px solid #333"></Box>
         <Box><AppTypography size='12px' color="#808080">{product?.shippingType}</AppTypography></Box>
       </VStack>
     </HStack>
