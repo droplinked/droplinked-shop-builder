@@ -54,8 +54,8 @@ function AdditionalLinkes({ element }: IProps) {
                         ) : (
                             <VStack key={key} align="stretch">
                                 <VStack align="stretch" spacing="3px">
-                                    <AppTypography size="14px" color="#C2C2C2">Hyperlink</AppTypography>
-                                    <AppInput name='' value={el.caption} onChange={(e) => change(key, e.target.value, 'caption')} placeholder='Caption' />
+                                    <AppTypography size="14px" color="#C2C2C2">Item Name</AppTypography>
+                                    <AppInput name='' value={el.caption} onChange={(e) => change(key, e.target.value, 'caption')} placeholder='Privacy Policy' />
                                 </VStack>
                                 <VStack align="stretch" spacing="3px">
                                     <AppTypography size="14px" color="#C2C2C2">URL</AppTypography>

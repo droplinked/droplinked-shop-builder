@@ -1,7 +1,7 @@
 import { SimpleGrid, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { designContext } from 'pages/register-pages/pages/design/design-context'
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import ActiveBox from '../../../active/ActiveBox'
 import OptionsCaption from '../../../caption/OptionsCaption'
 
@@ -13,12 +13,12 @@ function OptionFonts() {
     return (
         <VStack align="stretch">
             <OptionsCaption caption='Font Style' isRequired />
-            <SimpleGrid columns={2} spacing="12px">
+            <SimpleGrid columns={2} spacing="7px">
                 {fonts.map((el, key: number) => (
-                    <ActiveBox active={el === fontfamily} props={{ cursor: "pointer", onClick: () => dispatch({ type: 'updateShop', params: { shopDesign: { fontfamily: el } } }) }}>
-                        <VStack key={key} backgroundColor="#141414" padding="12px" borderRadius="12px" align="stretch" spacing="0">
-                            <AppTypography size="12px" weight='bolder'>{el}</AppTypography>
-                            <AppTypography size="12px" color="#c2c2c2">{el}</AppTypography>
+                    <ActiveBox key={key} active={el === fontfamily} props={{ cursor: "pointer", backgroundColor: "#141414", borderRadius: "12px", onClick: () => dispatch({ type: 'updateShop', params: { shopDesign: { fontfamily: el } } }) }}>
+                        <VStack padding="12px" align="stretch" spacing="0">
+                            <AppTypography size="10px" weight='bolder'>{el}</AppTypography>
+                            <AppTypography size="10px" color="#c2c2c2">{el}</AppTypography>
                         </VStack>
                     </ActiveBox>
                 ))}
