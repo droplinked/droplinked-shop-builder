@@ -3,16 +3,22 @@ import { appDeveloment } from "lib/utils/app/variable";
 import orderModalContext from "components/modals/order-modal/context";
 import React, { useCallback, useContext, useMemo } from "react";
 import AppTypography from "components/common/typography/AppTypography";
+import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 
 function OrderModalPayment() {
   const { order } = useContext(orderModalContext);
 
-  const data = [
+  const data = useMemo(() => order && order?.details ? [
     {
       caption: 'Items',
       placeholder: `${order?.details?.items.count} items`,
       value: order?.details?.items.amount ? parseFloat(order?.details?.items.amount).toFixed(2) : ''
     },
+    ...order.details?.shippings && order.details?.shippings.length ? order.details?.shippings.map(element => ({
+      caption: capitalizeFirstLetter(element.type) + ' Shipping',
+      placeholder: null,
+      value: element.amount ? parseFloat(element.amount).toFixed(2) : ''
+    })) : [],
     {
       caption: 'Order Tax',
       placeholder: null,
@@ -23,7 +29,7 @@ function OrderModalPayment() {
       placeholder: null,
       value: order?.details?.totalCost ? parseFloat(order?.details?.totalCost).toFixed(2) : ''
     }
-  ]
+  ] : [], [order])
 
   return (
     <VStack align="stretch">
