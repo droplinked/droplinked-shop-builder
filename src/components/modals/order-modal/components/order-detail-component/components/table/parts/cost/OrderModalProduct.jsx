@@ -9,6 +9,16 @@ function OrderDetailCost() {
 
   const data = [
     {
+      caption: 'shipping Cost',
+      placeholder: null,
+      value: order?.details?.shippingCost ? parseFloat(order?.details?.shippingCost).toFixed(2) : ''
+    },
+    {
+      caption: 'Final Earning',
+      placeholder: null,
+      value: order?.details?.finalEarning ? parseFloat(order?.details?.finalEarning).toFixed(2) : ''
+    },
+    {
       caption: 'Total Product Cost',
       placeholder: null,
       value: order?.details?.totalProductCost ? parseFloat(order?.details?.totalProductCost).toFixed(2) : ''
@@ -19,7 +29,7 @@ function OrderDetailCost() {
       value: order?.details?.totalOfGoodSold ? parseFloat(order?.details?.totalOfGoodSold).toFixed(2) : ''
     },
     {
-      caption: 'Affiliate Share asd',
+      caption: 'Affiliate Share',
       placeholder: null,
       value: order?.details?.affiliateShare ? parseFloat(order?.details?.affiliateShare).toFixed(2) : ''
     }
