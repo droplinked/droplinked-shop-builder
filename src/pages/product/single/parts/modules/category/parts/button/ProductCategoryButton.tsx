@@ -10,6 +10,7 @@ function ProductCategoryButton() {
     const { cached, id } = state.category
 
     const reset = useCallback(() => {
+        methods.dispatch({ type: "updateStore", params: { storeName: 'product_printful', value: null } })
         ProductTypeModel.updateProductType({ value: null, updateState: methods.updateState })
         dispatch({ type: "reset" })
     }, [pod_blank_product_id])

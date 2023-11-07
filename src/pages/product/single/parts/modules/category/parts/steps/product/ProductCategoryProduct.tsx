@@ -5,8 +5,8 @@ import CategoryBox from '../../box/CategoryBox'
 import { productContext } from 'pages/product/single/context'
 import ProductTypeModel from '../../../../productType/model'
 import { useMutation } from 'react-query';
-import { podCategoryProductService, podProductService } from 'lib/apis/pod/services';
-import { IpodCategoryProductService, IpodProductService } from 'lib/apis/pod/interfaces';
+import { podCategoryProductService} from 'lib/apis/pod/services';
+import { IpodCategoryProductService } from 'lib/apis/pod/interfaces';
 import { productCategoryContext } from '../../../context';
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 
@@ -14,7 +14,6 @@ function ProductCategoryProduct() {
   const product = useContext(productContext)
   const { state: { category: { id } }, dispatch } = useContext(productCategoryContext)
   const { mutate, data, isLoading } = useMutation((params: IpodCategoryProductService) => podCategoryProductService(params))
-  const productService = useMutation((params: IpodProductService) => podProductService(params))
 
   useEffect(() => mutate({ subCategoryId: id }), [id])
 
@@ -25,8 +24,6 @@ function ProductCategoryProduct() {
           <SimpleGrid columns={5} spacing="13px">
             {data && data?.data?.data?.data.map((el, key) => (
               <CategoryBox key={key} padding="10px" onClick={async () => {
-                const data = await productService.mutateAsync({ pod_blank_product_id: el.id })
-                product.methods.dispatch({ type: "updateStore", params: { storeName: 'product_printful', value: data?.data?.data } })
                 ProductTypeModel.updateProductType({ value: el.id.toString(), updateState: product.methods.updateState })
                 dispatch({
                   type: "updateProduct", params: {
