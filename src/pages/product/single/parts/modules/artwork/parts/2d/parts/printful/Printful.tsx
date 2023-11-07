@@ -88,7 +88,7 @@ function Printful({ close, open }: IProps) {
             const mockBody = {
                 params: {
                     variant_ids: data.flatMap(el => el.sizes.map(sized => sized.id)),
-                    format: 'jpg',
+                    format: 'png',
                     product_template_id: States.TemplateId.toString()
                 },
                 productID: pod_blank_product_id
