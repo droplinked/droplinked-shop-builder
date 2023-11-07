@@ -12,12 +12,14 @@ import NotificationsButtons from './parts/buttons/NotificationsButtons'
 import NotificationsSkeleton from './parts/skeleton/NotificationsSkeleton'
 import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import requestsModel from 'pages/affiliate/requests/parts/list/model'
 
 function NotificationsList() {
     const [searchParams] = useSearchParams()
     const { mutate, isLoading, data } = useMutation((params: IproducerRequestService) => producerRequestService(params))
     const list = data?.data?.data
     const page = useMemo(() => searchParams.get("page"), [searchParams]) || 1
+    const { getVariant } = requestsModel
 
     const fetch = useCallback(() => mutate({ page }), [page, searchParams])
 
@@ -31,9 +33,10 @@ function NotificationsList() {
                         const element = el?.publisherShop[0]
                         const product = el?.product[0]
                         const sku = el?.sku[0]
+                        const variant = getVariant(sku)
 
                         return (
-                            <VStack key={key} align="stretch" backgroundColor="#141414" spacing="12px" borderRadius="8px" padding="20px">
+                            <VStack key={key} align="stretch" backgroundColor="#141414" spacing="22px" borderRadius="8px" padding="20px">
                                 <Flex alignItems="center" gap="4px">
                                     <AppTypography size="12px" paddingRight="10px" color="#808080">From:</AppTypography>
                                     <Image src={element.logo} width="14px" height="14px" borderRadius="100%" />
@@ -46,11 +49,18 @@ function NotificationsList() {
                                                 <AppImage src={product?.media.find(el => el.isMain === 'true')?.thumbnail} width="44px" height="44px" borderRadius="8px" />
                                                 <VStack align="stretch">
                                                     <Box>
-                                                        <AppTypography size="14px">{product?.title}</AppTypography>
-                                                        {/* <Flex>
-                                                            <Box></Box>
-                                                            <AppTypography size="14px">{product?.title} -</AppTypography>
-                                                        </Flex> */}
+                                                        <Flex alignItems="center" gap="10px">
+                                                            {product?.title && (
+                                                                <>
+                                                                    <AppTypography size="14px">{product?.title}</AppTypography>
+                                                                    <AppTypography size="14px">-</AppTypography>
+                                                                </>
+                                                            )}
+                                                            <Flex alignItems="center" gap="6px">
+                                                                {variant?.color && <Box width="12px" height="12px" borderRadius="100%" backgroundColor={variant?.color.value}></Box>}
+                                                                {variant?.size && <AppTypography size="12px">{variant?.size.caption}</AppTypography>}
+                                                            </Flex>
+                                                        </Flex>
                                                     </Box>
                                                     <Flex gap="32px" color="#808080">
                                                         <AppTypography size="12px">Requested Quantity: {el?.quantity || "---"}</AppTypography>

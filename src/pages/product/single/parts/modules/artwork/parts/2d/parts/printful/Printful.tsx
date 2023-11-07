@@ -86,7 +86,7 @@ function Printful({ close }: IProps) {
             const mockBody: ImockupGeneratorService = {
                 params: {
                     variant_ids: data.flatMap(el => el.sizes.map(sized => sized.id)),
-                    format: 'jpg',
+                    format: 'png',
                     product_template_id: States.TemplateId.toString(),
                     technique
                 },
