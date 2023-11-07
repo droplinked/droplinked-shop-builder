@@ -18,22 +18,22 @@ function PreviewHiro() {
         switch (hiroLayout) {
             case 'right':
                 return (
-                    <Flex justifyContent="space-between" position="relative" flexDirection="row-reverse" {...style}>
-                        {image}
+                    <Flex justifyContent="space-between" padding={isDesktop ? "0" : "30px 0"} position="relative" flexDirection="row-reverse" {...style}>
+                        <Box maxWidth={isDesktop ? "70%" : "85%"}>{image}</Box>
                         <Box position="absolute" top="50%" width="50%" transform="translateY(-50%)" left="7%" textAlign="left">{text}</Box>
                     </Flex>
                 )
             case 'left':
                 return (
-                    <Flex justifyContent="space-between" position="relative" alignItems="center" {...style}>
-                        {image}
+                    <Flex justifyContent="space-between" padding={isDesktop ? "0" : "30px 0"} position="relative" alignItems="center" {...style}>
+                        <Box maxWidth={isDesktop ? "70%" : "85%"}>{image}</Box>
                         <Box position="absolute" top="50%" width="50%" transform="translateY(-50%)" right="7%" textAlign="right">{text}</Box>
                     </Flex>
                 )
             case 'center':
                 return (
-                    <VStack justifyContent="center" {...style}>
-                        {image}
+                    <VStack justifyContent="center" padding={isDesktop ? "0" : "30px 0"} {...style}>
+                        <Box maxWidth={isDesktop ? "70%" : "85%"}>{image}</Box>
                         <Box textAlign="center" padding="20px">{text}</Box>
                     </VStack>
                 )
