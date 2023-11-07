@@ -36,7 +36,8 @@ export const productContext = createContext<IproductContext>({
             available_variant: [],
             print_positions: [],
             product_types: [],
-            prev_data: productParams
+            prev_data: productParams,
+            product_printful: null
         },
         methods: {
             update: () => { }

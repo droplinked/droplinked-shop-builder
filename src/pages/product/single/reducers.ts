@@ -24,6 +24,7 @@ export type productActions =
 
 export const productParams: IproductState = {
     title: '',
+    ownerID: null,
     description: '',
     productCollectionID: '',
     media: [],
@@ -53,7 +54,8 @@ export const productParams: IproductState = {
         message: null
     },
     mainCategory: null,
-    subCategories: []
+    subCategories: [],
+    technique: null
 }
 
 namespace ProductPageNamespace {

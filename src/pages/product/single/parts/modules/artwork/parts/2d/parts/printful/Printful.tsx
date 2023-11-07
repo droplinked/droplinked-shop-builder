@@ -1,7 +1,6 @@
 import { Flex, VStack } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
-import AppModal, { IAppModal } from 'components/common/modal/AppModal';
 import useAppToast from 'functions/hooks/toast/useToast';
 import axiosInstance from 'lib/apis/axiosConfig';
 import { ImockupGeneratorService, IpodAvailableVariantsService } from 'lib/apis/pod/interfaces';
@@ -10,7 +9,6 @@ import { productContext } from 'pages/product/single/context';
 import ProductTypeModel from 'pages/product/single/parts/modules/productType/model';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useMutation } from 'react-query';
-import artwork2dContext from '../../context';
 import PrintfulModel from './model';
 import classes from './style.module.scss'
 
@@ -19,8 +17,7 @@ interface IProps {
 }
 
 function Printful({ close }: IProps) {
-    const { methods: { updateState }, state: { printful_template_id, media, publish_product, pod_blank_product_id, custome_external_id }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
-    const printfullContext = useContext(artwork2dContext)
+    const { methods: { updateState }, state: { printful_template_id, media, publish_product, pod_blank_product_id, custome_external_id, technique }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
     const mockupGenerator = useMutation((params: ImockupGeneratorService) => mockupGeneratorService(params))
     const generateThumb = useMutation((params: any) => generateThumbService(params))
@@ -56,13 +53,10 @@ function Printful({ close }: IProps) {
                 },
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
                 onTemplateSaved: async (res) => setState('TemplateId', res),
-                featureConfig: {
-                    sub_technique_switcher: true,
-                },
                 ...printful_template_id ? { templateId: printful_template_id } : {
                     initProduct: {
                         productId: pod_blank_product_id.toString(),
-                        technique: printfullContext?.technique
+                        technique: technique
                     }
                 }
             });
@@ -70,7 +64,7 @@ function Printful({ close }: IProps) {
         } catch (error) {
             setState('loading', false)
         }
-    }, [pod_blank_product_id, printful_template_id, custome_external_id, printfullContext?.technique])
+    }, [pod_blank_product_id, printful_template_id, custome_external_id, technique])
 
     // after success PFDesignMaker and get templateID
     const generate = useCallback(async () => {
@@ -94,7 +88,7 @@ function Printful({ close }: IProps) {
                     variant_ids: data.flatMap(el => el.sizes.map(sized => sized.id)),
                     format: 'jpg',
                     product_template_id: States.TemplateId.toString(),
-                    technique: printfullContext?.technique
+                    technique
                 },
                 productID: pod_blank_product_id
             }
@@ -135,7 +129,7 @@ function Printful({ close }: IProps) {
             setState('TemplateId', null)
             setState('loading', false)
         }
-    }, [pod_blank_product_id, States.TemplateId, printfullContext?.technique])
+    }, [pod_blank_product_id, States.TemplateId, technique])
 
     const generateImages = useCallback(async (mocks: any) => {
         try {
@@ -184,7 +178,7 @@ function Printful({ close }: IProps) {
     }, [States.DesignMaker])
 
     const back = useCallback(async () => {
-        printfullContext.setStates('technique', null)
+        updateState('technique', null)
         ProductTypeModel.updateProductType({ value: pod_blank_product_id, updateState })
         updateState("media", [])
     }, [States.DesignMaker])

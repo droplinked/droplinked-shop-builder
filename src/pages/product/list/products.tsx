@@ -23,7 +23,6 @@ function Products() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { refactorData } = ProductListModel
     const [States, setStates] = useState({
-        search: null,
         checkboxes: []
     })
     const { shop } = useProfile()
@@ -37,21 +36,19 @@ function Products() {
     useEffect(() => fetch(), [mutate, page, searchParams])
 
     // Set search state
-    const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
 
     // Handle search and without search
     const rows = useMemo(() => {
         return data ? refactorData({
             data: products?.data,
             fetch,
-            search: States.search
         }) : []
-    }, [States.search, products, fetch])
+    }, [products, fetch])
 
     // Update parametrs url 
     const updateFilters = useCallback((key: string, value: string) => {
         const filter = `${key}:${value}`
-        if (searchParams.get("filter") === filter) {
+        if (searchParams.get("filter") === filter || !value) {
             searchParams.delete("filter")
         } else {
             searchParams.set("filter", filter)
@@ -111,7 +108,10 @@ function Products() {
                         ))
                     }
                 ]}
-                search={{ onChange: (e) => setSearch(e.target.value) }}
+                search={{
+                    onChange: (e) => updateFilters("title", e.target.value),
+                    value: searchParams.get("filter") && searchParams.get("filter").split(':')[0] === "title" ? searchParams.get("filter").split(':')[1] : ''
+                }}
                 empty={<ProductEmpty />}
                 pagination={{
                     lastPage: products?.totalPages ? parseInt(products?.totalPages) : 1,

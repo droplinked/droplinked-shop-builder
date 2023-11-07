@@ -62,7 +62,8 @@ function ProductSingle() {
     }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log('des', state.params.description);
+    //     console.log('technique', state.params.technique);
+    //     console.log('product_printful', state.store.product_printful);
     // }, [state])
 
     return (
