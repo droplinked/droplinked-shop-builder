@@ -13,35 +13,39 @@ import React, { useCallback, useEffect, useMemo } from "react";
 import { useMutation } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import RequestSkeleton from "../skeleton/RequestSkeleton";
+import requestsModel from "./model";
 
 function RequestsList() {
   const [searchParams] = useSearchParams()
   const { mutate, isLoading, data } = useMutation((params: IpublisherRequestService) => publisherRequestService(params));
   const list = data?.data?.data
   const page = useMemo(() => searchParams.get("page"), [searchParams]) || 1
+  const { getVariant } = requestsModel
 
   const fetch = useCallback(() => mutate({ page }), [page, searchParams])
+
 
   useEffect(() => fetch(), [page])
 
   return (
     <VStack align={"stretch"}>
       {isLoading ? <RequestSkeleton /> : list?.data.length ? (
-        <VStack align="stretch">
+        <VStack align="stretch" spacing="12px">
           {list?.data.map((el: any, key: number) => {
             const element = el?.publisherShop[0]
             const product = el?.product[0]
             const sku = el?.sku[0]
+            const variant = getVariant(sku)
 
             return (
-              <VStack align="stretch" key={key} backgroundColor="#141414" spacing="12px" borderRadius="8px" padding="20px">
+              <VStack align="stretch" key={key} backgroundColor="#141414" spacing="22px" borderRadius="8px" padding="20px">
                 <Flex justifyContent="space-between">
                   <Flex alignItems="center" gap="4px">
                     <AppTypography size="12px" paddingRight="10px" color="#808080">From:</AppTypography>
                     <Image src={element.logo} width="14px" height="14px" borderRadius="100%" />
                     <AppTypography size="12px" color="#2BCFA1">{element.name}</AppTypography>
                   </Flex>
-                  <AppBadge fontSize="10px" padding="6px 24px" text={el?.status} />
+                  <AppBadge fontSize="10px" padding="6px 24px" status={el?.status === "PENDING" ? "gray" : ["FAILED", "CANCELED"].includes(el?.status) ? "red" : "green"} text={capitalizeFirstLetter(el?.status)} />
                 </Flex>
                 <VStack width="100%" align="stretch" paddingLeft="44px" spacing="12px">
                   <Flex justifyContent="space-between" gap="12px">
@@ -49,7 +53,11 @@ function RequestsList() {
                     <Flex width="100%" justifyContent="space-between">
                       <VStack align="stretch" color="#C2C2C2">
                         <AppTypography size="14px">{product?.title}</AppTypography>
-                        <AppTypography size="12px">quantity: {el?.quantity || "---"}</AppTypography>
+                        <Flex alignItems="center" gap="6px">
+                          {variant?.color && <Box width="12px" height="12px" borderRadius="100%" backgroundColor={variant?.color.value}></Box>}
+                          {variant?.size && <AppTypography size="12px">{variant?.size.caption}</AppTypography>}
+                        </Flex>
+                        <AppTypography size="12px">Quantity: {el?.quantity || "---"}</AppTypography>
                       </VStack>
                       <VStack align="stretch" color="#C2C2C2" textAlign="right">
                         <AppTypography size="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>

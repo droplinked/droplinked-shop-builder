@@ -1,4 +1,4 @@
-import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react'
+import { Box, HStack, Image, StackProps, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom';
 import AppImage from 'components/common/image/AppImage';
@@ -17,15 +17,16 @@ interface Iprops {
         name: '',
         icon: ''
     }
+    props?: StackProps
 }
 
-function AffiliateProduct({ image, title, link, blockchain, shop }: Iprops) {
+function AffiliateProduct({ image, title, link, blockchain, shop, props }: Iprops) {
     const dataProfile = useProfile()
 
 
     return (
         <Link to={`/${dataProfile.shop.name}/c/affiliate/shops/${link}`}>
-            <VStack align={"stretch"} backgroundColor={"#000"} height="100%" position={"relative"} color='#FFF' borderRadius="8px" padding={5} paddingBottom={61} spacing={4}>
+            <VStack align={"stretch"} backgroundColor={"#000"} height="100%" position={"relative"} color='#FFF' borderRadius="8px" padding={5} paddingBottom={61} spacing={4} {...props}>
                 <Box><AppImage src={image} width="100%" /></Box>
                 {title && <Box><AppTypography size='12px'>{title}</AppTypography></Box>}
                 {blockchain && (

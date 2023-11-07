@@ -7,10 +7,15 @@ import { shopsContainerContext } from '../../context'
 function ShopsProduct() {
     const { shop } = useContext(shopsContainerContext)
     return (
-        <SimpleGrid gap={[3, 5]} columns={6} height="100%">
+        <SimpleGrid gap="16px" columns={6} height="100%">
             {shop?.products && shop?.products.length && shop?.products.slice(0, 6).map((el: any, key: number) => (
                 <Box key={key}>
-                    <AffiliateProduct blockchain={el.skuIDs.length ? el.skuIDs[0].recordData.recordNetwork : ""} link={`${shop?.name}/${el?._id}`} image={el.thumb || el.media.find(el => el.isMain === 'true')?.url} title={el?.title} />
+                    <AffiliateProduct
+                        props={{ backgroundColor: "#1C1C1C" }}
+                        blockchain={el.skuIDs.length ? el.skuIDs[0].recordData.recordNetwork : ""}
+                        link={`${shop?.name}/${el?._id}`} image={el.thumb || el.media.find(el => el.isMain === 'true')?.url}
+                        title={el?.title}
+                    />
                 </Box>
             ))}
         </SimpleGrid>

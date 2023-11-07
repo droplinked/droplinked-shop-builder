@@ -1,4 +1,4 @@
-import { Box, VStack } from '@chakra-ui/react'
+import { Box, SimpleGrid, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { useMutation } from 'react-query'
