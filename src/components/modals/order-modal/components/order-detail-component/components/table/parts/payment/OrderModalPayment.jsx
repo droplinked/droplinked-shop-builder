@@ -7,6 +7,7 @@ import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 
 function OrderModalPayment() {
   const { order } = useContext(orderModalContext);
+  const appliedes = order?.details?.appliedDiscountCode || order?.details?.appliedCreditCode
 
   const data = useMemo(() => order && order?.details ? [
     {
@@ -23,6 +24,16 @@ function OrderModalPayment() {
       caption: 'Order Tax',
       placeholder: null,
       value: order?.details?.orderTax ? parseFloat(order?.details?.orderTax).toFixed(2) : ''
+    },
+    {
+      caption: 'Total Rules Discounts',
+      placeholder: order?.details?.totalRulesDiscounts?.count ? order?.details?.totalRulesDiscounts?.count + ' items' : null,
+      value: order?.details?.totalRulesDiscounts?.amount ? parseFloat(order?.details?.totalRulesDiscounts?.amount).toFixed(2) : ''
+    },
+    {
+      caption: order?.details?.appliedDiscountCode ? 'Applied Discount Code' : 'Applied Credit Code',
+      placeholder: appliedes?.count,
+      value: appliedes?.amount ? parseFloat(appliedes?.amount).toFixed(2) : ''
     },
     {
       caption: 'shipping Cost',
@@ -42,9 +53,9 @@ function OrderModalPayment() {
       <VStack align={"stretch"} spacing={3} color="#C2C2C2">
         {data.map((el, key) => el.value || el.placeholder ? (
           <HStack key={key} justifyContent={"space-between"} alignItems="center">
-            <AppTypography size="12px">{el.caption}</AppTypography>
-            {el.placeholder && <AppTypography size="12px" color="#808080">{el.placeholder}</AppTypography>}
-            <AppTypography size="12px">{el.value ? '$' + el.value : "-"}</AppTypography>
+            <AppTypography width="40%" size="12px">{el.caption}</AppTypography>
+            {el.placeholder && <AppTypography width="20%" textAlign="center" size="12px" color="#808080">{el.placeholder}</AppTypography>}
+            <AppTypography width="40%" textAlign="right" size="12px">{el.value ? '$' + el.value : "-"}</AppTypography>
           </HStack>
         ) : null)}
       </VStack>

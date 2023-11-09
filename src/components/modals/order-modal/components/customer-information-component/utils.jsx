@@ -5,7 +5,7 @@ import AppTypography from "components/common/typography/AppTypography"
 
 export const convertCustomerInformation = (order) => {
   if (!order || !order?.details?.customerAddress) return null
-
+  
   return [
     {
       name: "name",
@@ -24,7 +24,7 @@ export const convertCustomerInformation = (order) => {
 
 export const convertOrderInformation = (order) => {
   if (!order || !order?.details?.customerAddress) return null
-  const linkTransction = order?.cartID?.paymentType && order?.transaction_id ? hashkeyModel.getLink({ blockchain: order?.cartID?.paymentType, hashkey: order?.transaction_id }) : null
+  const linkTransction = order?.details?.deployHash && order?.details?.paymentType ? hashkeyModel.getLink({ blockchain: order?.details?.paymentType, hashkey: order?.details?.deployHash }) : null
 
   const result = [
     {
@@ -34,17 +34,19 @@ export const convertOrderInformation = (order) => {
     {
       name: "POD ID",
       data: order?.details?.podId || "-"
-    },
-    // {
-    //   name: "Deploy Hash",
-    //   data: order?.deployHash ? (
-    //     <HStack justifyContent="space-between">
-    //       <Box><a href={linkTransction || ""} style={{ color: "#FFF" }} target="_blank">{linkTransction.substr(0, 60)}...</a></Box>
-    //       <Box><ClipboardText text={linkTransction || ""} /></Box>
-    //     </HStack>
-    //   ) : "-"
-    // }
-  ]
+    }  ]
+
+  if(linkTransction) {
+    result.push({
+      name: "Deploy Hash",
+      data: (
+        <HStack justifyContent="space-between">
+          <Box><a href={linkTransction || ""} style={{ color: "#FFF" }} target="_blank">{linkTransction.substr(0, 60)}...</a></Box>
+          <Box><ClipboardText text={linkTransction || ""} /></Box>
+        </HStack>
+      )
+    })
+  }
 
   if (order?.details?.shippingUrls && order?.details?.shippingUrls.length) {
     result.push({
