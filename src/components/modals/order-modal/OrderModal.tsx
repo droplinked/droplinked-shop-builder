@@ -23,7 +23,7 @@ export default function OrderModal({ orderID, show, close }) {
             <VStack align="stretch" spacing="24px" width="100%">
               <CustomerInformationComponent />
               <OrderDetailComponent />
-              {/* <BlockChainOrderModal /> */}
+              <BlockChainOrderModal />
             </VStack>
           )}
         </Flex>

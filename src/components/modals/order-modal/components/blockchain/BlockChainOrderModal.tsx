@@ -7,7 +7,8 @@ import orderModalContext from '../../context'
 
 function BlockChainOrderModal() {
     const { order } = useContext(orderModalContext)
-    const paymentType = order?.paymentType
+    const paymentType = order?.details?.paymentType
+
     return (
         <>
             {paymentType ? (
