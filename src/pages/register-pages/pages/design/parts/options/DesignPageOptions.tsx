@@ -1,7 +1,6 @@
 import { VStack } from '@chakra-ui/react'
 import React from 'react'
 import DesignPageAi from './parts/ai/DesignPageAi'
-import DesignPageBanner from './parts/banner/DesignPageBanner'
 import DesignPageTemplate from './parts/design/DesignPageTemplate'
 import DesignPagefooter from './parts/footer/DesignPagefooter'
 import DesignPageHeader from './parts/header/DesignPageHeader'

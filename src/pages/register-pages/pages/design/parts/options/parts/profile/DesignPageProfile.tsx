@@ -6,7 +6,7 @@ import OptionAvatar from './parts/upload/OptionAvatar'
 
 function DesignPageProfile() {
     return (
-        <DesignPageCard title='Store Profile'>
+        <DesignPageCard title='Store Profile' section='profile'>
             <VStack align="stretch" spacing="24px">
                 <OptionAvatar />
                 <OptionSocial />

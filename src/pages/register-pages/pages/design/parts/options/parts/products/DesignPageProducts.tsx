@@ -5,7 +5,7 @@ import ProductSwitch from './parts/switch/ProductSwitch'
 
 function DesignPageProducts() {
     return (
-        <DesignPageCard title='Products Listing'>
+        <DesignPageCard title='Products Listing' section='products'>
             <VStack align="stretch" spacing="24px">
                 <ProductSwitch />
             </VStack>

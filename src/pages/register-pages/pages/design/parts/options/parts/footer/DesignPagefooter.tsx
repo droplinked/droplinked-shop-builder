@@ -6,7 +6,7 @@ import EmbedCode from '../embedCode/EmbedCode'
 
 function DesignPagefooter() {
     return (
-        <DesignPageCard title='Footer'>
+        <DesignPageCard title='Footer' section='footer'>
             <VStack align="stretch" spacing="24px">
                 <AdditionalLinkes element='footerLinks' />
                 <Box paddingTop="20px"><EmbedCode /></Box>

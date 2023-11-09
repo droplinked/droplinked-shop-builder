@@ -25,6 +25,11 @@ function OrderModalPayment() {
       value: order?.details?.orderTax ? parseFloat(order?.details?.orderTax).toFixed(2) : ''
     },
     {
+      caption: 'shipping Cost',
+      placeholder: null,
+      value: order?.details?.shippingCost ? parseFloat(order?.details?.shippingCost).toFixed(2) : ''
+    },
+    {
       caption: 'Total Cost',
       placeholder: null,
       value: order?.details?.totalCost ? parseFloat(order?.details?.totalCost).toFixed(2) : ''

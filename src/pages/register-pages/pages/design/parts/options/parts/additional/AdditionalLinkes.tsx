@@ -27,7 +27,7 @@ function AdditionalLinkes({ element }: IProps) {
     }, [element, shopDesign])
 
     const add = useCallback(() => {
-        dispatch({ type: 'updateShop', params: { shopDesign: { [element]: [...shopDesign[element], { caption: '', link: '' }] } } })
+        dispatch({ type: 'updateShop', params: { shopDesign: { [element]: [...shopDesign[element], { caption: '', link: '', save: false }] } } })
     }, [element, shopDesign.footerLinks, shopDesign.bannerLinks])
 
     const deleted = useCallback((key) => {
@@ -68,7 +68,7 @@ function AdditionalLinkes({ element }: IProps) {
                     </>
                 ))}
             </VStack>
-            <BasicButton variant={shopDesign[element].length ? "outline" : "solid"} onClick={add}>Add Link</BasicButton>
+            {shopDesign[element] && !shopDesign[element].find(el => !el.save) ? <BasicButton variant={shopDesign[element].length ? "outline" : "solid"} onClick={add}>Add Link</BasicButton> : null}
         </VStack>
     )
 }

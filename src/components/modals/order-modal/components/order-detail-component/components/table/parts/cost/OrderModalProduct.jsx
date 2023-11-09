@@ -9,11 +9,6 @@ function OrderDetailCost() {
 
   const data = [
     {
-      caption: 'shipping Cost',
-      placeholder: null,
-      value: order?.details?.shippingCost ? parseFloat(order?.details?.shippingCost).toFixed(2) : ''
-    },
-    {
       caption: 'Total Product Cost',
       placeholder: null,
       value: order?.details?.totalProductCost ? parseFloat(order?.details?.totalProductCost).toFixed(2) : ''
