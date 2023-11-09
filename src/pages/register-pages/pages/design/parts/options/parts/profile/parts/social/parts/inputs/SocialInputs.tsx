@@ -1,6 +1,7 @@
-import { Box, Flex, VStack } from '@chakra-ui/react'
+import { Box, Flex, useOutsideClick, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppInput from 'components/common/form/textbox/AppInput'
+import AppTooltip from 'components/common/tooltip/AppTooltip'
 import AppTypography from 'components/common/typography/AppTypography'
 import { Form } from 'formik'
 import { designContext } from 'pages/register-pages/pages/design/design-context'
@@ -11,6 +12,11 @@ import classes from './style.module.scss'
 function SocialInputs({ socials, updateSocial }) {
     const { methods: { dispatch }, state: { shop } } = useContext(designContext)
     const { icons } = socialInputsModel
+    const ref = React.useRef()
+    useOutsideClick({
+        ref: ref,
+        handler: () => updateSocial(''),
+    })
 
     const items = useMemo(() => {
         const { discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL } = shop
@@ -18,27 +24,27 @@ function SocialInputs({ socials, updateSocial }) {
             linkedinURL: {
                 icon: icons.linkedin,
                 value: linkedinURL,
-                url: 'https://linkedin.com/'
+                url: 'linkedin.com/'
             },
             instagramURL: {
                 icon: icons.instagram,
                 value: instagramURL,
-                url: 'https://instagram.com/'
+                url: 'instagram.com/'
             },
             twitterURL: {
                 icon: icons.twitter,
                 value: twitterURL,
-                url: 'https://twitter.com/'
+                url: 'twitter.com/'
             },
             facebookURL: {
                 icon: icons.facebook,
                 value: facebookURL,
-                url: 'https://facebook.com/'
+                url: 'facebook.com/'
             },
             tiktokURL: {
                 icon: icons.tiktok,
                 value: tiktokURL,
-                url: 'https://tiktok.com/'
+                url: 'tiktok.com/'
             },
             webURL: {
                 icon: icons.web,
@@ -48,30 +54,35 @@ function SocialInputs({ socials, updateSocial }) {
             discordURL: {
                 icon: icons.discord,
                 value: discordURL,
-                url: 'https://discord.gg/'
+                url: 'discord.gg/'
             },
         }
     }, [shop])
 
     const change = useCallback((key, value) => dispatch({ type: 'updateShop', params: { [key]: value } }), [shop])
 
-    const submit = useCallback((e, key) => {
+    const submit = useCallback((e) => {
         e.preventDefault()
-        updateSocial(key)
+        updateSocial('')
     }, [])
 
     return (
         <VStack align="stretch">
             {Object.keys(items).filter(el => socials.includes(el) || shop[el].length).map((el, key) => (
                 <Flex backgroundColor="#141414" padding="4px" gap="8px" alignItems="center" key={key}>
-                    {!socials.includes(el) ? (
-                        <Flex padding="0 14px" gap="10px" alignItems="flex-start" width="100%" justifyContent="space-between">
-                            <AppTypography size="14px" width="85%" color="#C2C2C2">{items[el].url}{items[el].value}</AppTypography>
-                            <Box className={classes.icon} position="relative" top="3px">{items[el].icon}</Box>
-                        </Flex>
+                    {el !== socials ? (
+                        <AppTooltip label={items[el].url + items[el].value} placement="top">
+                            <Flex padding="0 14px" cursor="pointer" onClick={() => updateSocial(el)} gap="10px" alignItems="flex-start" width="100%">
+                                <Box className={classes.icon} position="relative" top="3px">{items[el].icon}</Box>
+                                <AppTypography size="14px" width="85%" color="#C2C2C2">
+                                    {items[el].url}{items[el].value.substr(0, 6)}
+                                    {items[el].value.length > 7 && '...'}
+                                </AppTypography>
+                            </Flex>
+                        </AppTooltip>
                     ) : (
-                        <form style={{ width: "100%" }} onSubmit={(e) => submit(e, el)}>
-                            <VStack align="stretch" width="100%" spacing="0">
+                        <form style={{ width: "100%" }} onSubmit={(e) => submit(e)}>
+                            <VStack ref={ref} align="stretch" width="100%" spacing="0">
                                 <Flex alignItems="center" gap="12px" backgroundColor="#1C1C1C" padding="10px 14px" borderRadius="6px 6px 0px 0px">
                                     <Flex className={classes.icon}>{items[el].icon}</Flex>
                                     <AppTypography size="14px" color="#C2C2C2">{items[el].url}</AppTypography>

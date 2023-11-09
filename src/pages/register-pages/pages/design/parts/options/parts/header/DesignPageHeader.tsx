@@ -8,7 +8,7 @@ import OptionUploadLogo from './parts/upload/OptionUploadLogo'
 
 function DesignPageHeader() {
     return (
-        <DesignPageCard title='Header' description='Provide header details'>
+        <DesignPageCard title='Header' section='header'>
             <VStack align="stretch" spacing="24px">
                 <OptionLogo />
                 <OptionUploadLogo />

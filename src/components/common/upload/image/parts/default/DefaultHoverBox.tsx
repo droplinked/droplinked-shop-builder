@@ -28,6 +28,7 @@ function DefaultHoverBox() {
                     justifyContent={isHorizontal ? "left" : "center"}
                     position="relative"
                     cursor="pointer"
+                    borderRadius="8px"
                     padding={isHorizontal ? checkSingleImage ? "0" : "0 20px" : "10px 10px"}
                     backgroundColor={isHorizontal && checkSingleImage ? "none" : "#141414"}
                     alignItems="center"

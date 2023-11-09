@@ -1,3 +1,5 @@
+export type IPreviewSections = 'theme' | 'header' | 'hero' | 'profile' | 'products' | 'footer'
+
 export interface IAdditionalLinkes {
     caption: string
     link: string
@@ -39,6 +41,7 @@ export interface IShopDesignPage {
 
 export interface IStateDesignPage {
     device?: "desktop" | "mobile"
+    optionSelected?: IPreviewSections
     shop?: IShopDesignPage
 }
 

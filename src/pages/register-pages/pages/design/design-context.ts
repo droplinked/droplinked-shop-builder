@@ -38,6 +38,7 @@ export const template_options_defaults = {
 
 export const initialStateDesignPage: IStateDesignPage = {
   device: "desktop",
+  optionSelected: null,
   shop: {
     templateID: '6523b829f31b22884436a8da',
     backgroundText: '',
