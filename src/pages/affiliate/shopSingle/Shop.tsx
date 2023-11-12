@@ -1,5 +1,6 @@
 import { Box, Flex, Image, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
+import AppEmptyPage from 'components/common/empty/AppEmptyPage'
 import AppTypography from 'components/common/typography/AppTypography'
 import { IrecordedShopService } from 'lib/apis/shop/interfaces'
 import { recordedShopService } from 'lib/apis/shop/shopServices'
@@ -39,7 +40,6 @@ function Shop() {
                             }} size={16} />
                         </VStack>
                     </AppCard>
-
                     <AppCard>
                         <VStack paddingBottom={10} spacing={16} align={"stretch"}>
                             <Flex flexWrap={"wrap"} gap="2%" rowGap={7}>
@@ -57,7 +57,7 @@ function Shop() {
                         </VStack>
                     </AppCard>
                 </VStack>
-            ) : "Empty"}
+            ) : <AppEmptyPage title='Cant find this shop' />}
         </>
     )
 }

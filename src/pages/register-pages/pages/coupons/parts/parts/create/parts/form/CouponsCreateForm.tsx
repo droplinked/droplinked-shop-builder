@@ -50,8 +50,8 @@ function CouponsCreateForm() {
 
     const formSchema = Yup.object().shape({
         name: Yup.string().required('Required'),
-        quantity: Yup.number().typeError('Please correct value').required('Required'),
-        balance: Yup.number().typeError('Please correct value').required('Required'),
+        quantity: Yup.number().min(0).typeError('Please correct value').required('Required'),
+        balance: Yup.number().min(0).typeError('Please correct value').required('Required'),
     });
 
     return (
