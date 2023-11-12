@@ -60,6 +60,7 @@ export interface IproductState {
     mainCategory?: string
     subCategories?: Array<string>
     technique?: string
+    isAddToCartDisabled?: boolean
 }
 
 export interface IpropertiesItems {

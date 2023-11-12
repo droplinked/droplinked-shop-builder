@@ -14,6 +14,8 @@ function IconBlockchain({ blockchain, props }: IProps) {
                 return <AppIcons.CasperIcon {...props} />
             case "STACKS":
                 return <AppIcons.Stacks {...props} />
+            case "NEAR":
+                return <AppIcons.NearWalletIcon  {...props} />
             case "POLYGON":
                 return <AppIcons.Polygon {...props} />
             case "RIPPLESIDECHAIN":
