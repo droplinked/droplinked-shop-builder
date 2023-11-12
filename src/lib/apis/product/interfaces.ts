@@ -58,6 +58,7 @@ export interface IproductState {
     m2m_positions_options: Array<any>
     mainCategory?: string
     subCategories?: Array<string>
+    isAddToCartDisabled?: boolean
 }
 
 export interface IpropertiesItems {
