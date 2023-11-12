@@ -65,7 +65,8 @@ const ProductSingleModel = ({
             m2m_positions_options: data?.m2m_positions_options || [],
             mainCategory: data?.mainCategory ? data?.mainCategory._id : null,
             subCategories: data?.subCategories ? data?.subCategories.map(el => el._id) : [],
-            technique: data?.technique
+            technique: data?.technique,
+            isAddToCartDisabled: data?.isAddToCartDisabled
         }
     },
 

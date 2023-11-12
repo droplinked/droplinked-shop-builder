@@ -55,7 +55,8 @@ export const productParams: IproductState = {
     },
     mainCategory: null,
     subCategories: [],
-    technique: null
+    technique: null,
+    isAddToCartDisabled: false
 }
 
 namespace ProductPageNamespace {

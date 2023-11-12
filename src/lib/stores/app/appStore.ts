@@ -48,10 +48,12 @@ const states = (set: any, get: any): IAppStore => ({
                 const data = await authLoginService(params)
                 const result = data.data.data
                 set({
-                    user: result?.user,
-                    shop: result?.shop,
-                    access_token: result?.access_token,
-                    loading: false
+                    loading: false,
+                    ...result?.user?.status !== "NEW" && {
+                        user: result?.user,
+                        shop: result?.shop,
+                        access_token: result?.access_token,
+                    }
                 })
                 resolve(result)
             } catch (error) {

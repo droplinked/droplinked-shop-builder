@@ -6,6 +6,7 @@ import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import ProductPositions from '../positions/ProductPositions'
 import ProductM2m from './parts/m2m/ProductM2m'
+import M2MPlaceholder from './parts/placeholder/M2MPlaceholder'
 
 function ProductMintToMerge() {
     const [CheckBox, setCheckBox] = useState(false)
@@ -47,11 +48,10 @@ function ProductMintToMerge() {
             </Box>
 
             {CheckBox && variants ? (
-                <VStack align="stretch" backgroundColor="#141414" borderRadius="8px" padding="20px 25px" spacing={4}>
-                    <AppTypography size='14px'>Customers Position Options</AppTypography>
+                <VStack align="stretch" backgroundColor="#141414" borderRadius="8px" padding="20px 25px" spacing="48px">
                     <ProductPositions />
-                    <AppTypography size='14px'>Customers Wallet Options</AppTypography>
                     <ProductM2m />
+                    <M2MPlaceholder />
                 </VStack>
             ) : null}
         </VStack >

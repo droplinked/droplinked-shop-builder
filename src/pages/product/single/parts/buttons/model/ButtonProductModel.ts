@@ -75,8 +75,8 @@ const ButtonsProductClass = ({
                         ...state.shippingType === "CUSTOM" && { shippingPrice: number().typeError('Shipping Cost not valid').min(1, "Shipping Cost not valid").required("Shipping Cost is required") },
                         sku: array().min(1, AppErrors.product.sku_not_added).required(),
                         media: array().min(1, AppErrors.product[state.product_type === "PRINT_ON_DEMAND" ? "mockup_image_required" : "product_image_required"]).required(),
+                        description: string().required(),
                     },
-                    description: string().required(),
                     title: string().required(),
                 })
 

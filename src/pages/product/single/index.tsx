@@ -62,8 +62,7 @@ function ProductSingle() {
     }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log('technique', state.params.technique);
-    //     console.log('product_printful', state.store.product_printful);
+    //     console.log('isAddToCartDisabled', state.params.isAddToCartDisabled);
     // }, [state])
 
     return (
