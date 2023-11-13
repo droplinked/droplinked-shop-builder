@@ -102,9 +102,10 @@ const states = (set: any, get: any): IAppStore => ({
     updateWallet: ({ address, type, public_key }: IUserWalletsProps) => {
         set(state => {
             const prevWallets = state.user?.wallets
-            if (prevWallets && prevWallets.find((el: IUserWalletsProps) => el.type === type)) return prevWallets
-
-            const wallets = [...prevWallets || [], { type, address, public_key }]
+            const checkWallet = prevWallets && prevWallets.find((el: IUserWalletsProps) => el.type === type && el.address)
+            if (checkWallet) return prevWallets
+            
+            const wallets = [...prevWallets ? prevWallets.filter(el => el.type !== type) : [], { type, address, public_key }]
             userUpdateService({ wallets })
             return {
                 ...state,

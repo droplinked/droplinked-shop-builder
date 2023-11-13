@@ -27,7 +27,7 @@ interface IRecordSubmit {
 }
 
 function RecordForm({ close, product, sku }: Iprops) {
-    const stacks = useStack()
+    const stack = useStack()
     const { updateState, state: { loading, image } } = useContext(recordContext)
     const { web3 } = useAppWeb3()
     const { showToast } = useAppToast()
@@ -38,7 +38,7 @@ function RecordForm({ close, product, sku }: Iprops) {
             data.quantity = product.product_type === "PRINT_ON_DEMAND" ? "1000000" : sku.quantity.toString()
             if (!image) throw Error('Please enter image')
             updateState("loading", true)
-            const deployhash = await web3({ method: "record", params: { data, product, sku, stacks, imageUrl: image }, chain: data.blockchain, wallets })
+            const deployhash = await web3({ method: "record", params: { data, product, sku, imageUrl: image }, chain: data.blockchain, wallets, stack })
             updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
@@ -51,7 +51,7 @@ function RecordForm({ close, product, sku }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, sku, image, wallets])
+    }, [product, sku, image, wallets, stack.stxAddress])
 
     const formSchema = useMemo(() => {
         return Yup.object().shape({

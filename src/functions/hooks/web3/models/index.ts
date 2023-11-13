@@ -1,11 +1,10 @@
 import { Isku } from "lib/apis/product/interfaces"
 import { appDeveloment } from "lib/utils/app/variable"
-import { publish_request } from "lib/utils/blockchain/casper/casper_wallet_publish_request"
 import { stacksRecord } from "lib/utils/blockchain/stacks/record"
+import stacksRequest from "lib/utils/blockchain/stacks/request"
 import { getNetworkProvider } from "lib/utils/chains/chainProvider"
 import { Chain, Network } from "lib/utils/chains/Chains"
 import acceptModel from "./module/accept/acceptModel"
-import RecordCasperModule from "./module/record/modules/casperModel"
 import recordModel, { Ideploy, IStacks } from "./module/record/recordModel"
 
 interface IRecordData {
@@ -18,46 +17,38 @@ export interface IRecordPrams {
     data: IRecordData
     product: any
     sku: any
-    stacks: IStacks
     imageUrl?: string
 }
 
 export interface Irecord {
     params: IRecordPrams
     accountAddress: any
+    stack: IStacks
 }
 
 export interface IRequestData {
     sku: Isku
-    stack: {
-        stacksRequest: any
-        isRequestPending: any
-        openContractCall: any
-        stxAddress: any
-    }
 }
 
 interface IRequest {
     params: IRequestData
     accountAddress: any
+    stack: IStacks
 }
 
 export interface IAcceptData {
     shop: any
-    stack: {
-        isRequestPending: any
-        openContractCall: any
-    }
     accept: boolean
 }
 
 interface IAccept {
     params: IAcceptData
     accountAddress: any
+    stack: IStacks
 }
 
 const web3Model = ({
-    record: async ({ params: { data, product, sku, stacks: { isRequestPending, login, openContractCall, stxAddress }, imageUrl }, accountAddress }: Irecord) => {
+    record: async ({ params: { data, product, sku, imageUrl }, accountAddress, stack: { isRequestPending, openContractCall, stxAddress } }: Irecord) => {
         return new Promise<void>(async (resolve: any, reject) => {
             try {
                 const commission = data.commission
@@ -92,7 +83,7 @@ const web3Model = ({
         })
     },
 
-    request: ({ params: { sku, stack: { stacksRequest, isRequestPending, openContractCall, stxAddress } }, accountAddress }: IRequest) => {
+    request: ({ accountAddress, params: { sku }, stack: { isRequestPending, openContractCall, stxAddress } }: IRequest) => {
         return new Promise<any>(async (resolve: any, reject) => {
             try {
                 const tokenID = sku?.recordData?.data?.details?.token_id
@@ -121,7 +112,7 @@ const web3Model = ({
         })
     },
 
-    accept: ({ accountAddress, params: { shop, stack: { isRequestPending, openContractCall }, accept } }: IAccept) => {
+    accept: ({ accountAddress, params: { shop, accept }, stack: { isRequestPending, openContractCall } }: IAccept) => {
         return new Promise<any>(async (resolve, reject) => {
             try {
                 const requestID = shop?.recordData?.details?.request_id

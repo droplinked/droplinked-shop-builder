@@ -25,7 +25,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
         deployHash: null,
         blockchain: null
     })
-    const { isRequestPending, openContractCall } = useStack()
+    const stack = useStack()
 
     const setLoading = useCallback((value: boolean) => setStates(prev => ({ ...prev, loading: value })), [])
 
@@ -39,7 +39,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             let blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
             if (States.status === "accept") {
-                const deploy_hash = await web3({ chain: blockchain, method: "accept", params: { shop, accept: States.status === "accept", stack: { isRequestPending, openContractCall } }, wallets })
+                const deploy_hash = await web3({ chain: blockchain, method: "accept", params: { shop, accept: States.status === "accept"}, wallets, stack })
                 modalHashKey.onOpen()
                 setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
             } else {
@@ -54,7 +54,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             setLoading(false)
             if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
         }
-    }, [States.status, shop, refetch, modal, wallets])
+    }, [States.status, shop, refetch, modal, wallets,stack.stxAddress])
 
     return (
         <requestsButtonsContext.Provider value={{ shop, modal: { open: modal.onOpen }, methods: { setStates } }}>
