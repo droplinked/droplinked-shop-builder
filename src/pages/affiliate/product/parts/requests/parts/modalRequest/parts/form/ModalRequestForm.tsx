@@ -26,7 +26,7 @@ interface IProps {
 function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
     const { mutateAsync } = useMutation((params: IcasperRequestService) => requestService(params))
     const { showToast } = useAppToast()
-    const { isRequestPending, openContractCall, stxAddress } = useStack()
+    const stack = useStack()
     const [Loading, setLoading] = useState(false)
     const { web3 } = useAppWeb3()
     const { app: { user: { wallets } } } = useHookStore()
@@ -50,7 +50,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
 
         try {
             setLoading(true)
-            const deployHash = await web3({ chain: blockchain, method: "request", params: { sku, stack: { isRequestPending, openContractCall, stacksRequest, stxAddress } }, wallets })
+            const deployHash = await web3({ chain: blockchain, method: "request", params: { sku }, wallets, stack })
 
             await request(deployHash, quantity, blockchain)
             setHahskey(deployHash)
@@ -59,7 +59,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
             setLoading(false)
             if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
         }
-    }, [sku, product, shop, wallets])
+    }, [sku, product, shop, wallets, stack.stxAddress])
 
     return (
         <Formik

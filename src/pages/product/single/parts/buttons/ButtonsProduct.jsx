@@ -87,7 +87,7 @@ function ButtonsProduct() {
             setStateHandle("loading", false)
             showToast(error?.response?.data?.data?.message ? error?.response?.data?.data?.message : error?.message ? error.message : "Oops! Something went wrong", "error")
         }
-    }, [state, productID, stacks, wallets])
+    }, [state, productID, stacks, wallets, stacks.stxAddress])
 
     return (
         <>

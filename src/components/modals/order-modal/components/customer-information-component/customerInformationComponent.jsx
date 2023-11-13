@@ -34,7 +34,7 @@ const CustomerInformationComponent = () => {
           <VStack align="stretch" spacing="24px" paddingBottom={5}>
             <Box><AppTypography size="16px" weight="bold" color="#FFF">Order Information</AppTypography></Box>
             <VStack align={"stretch"} spacing="18px">
-              {order_array.map((item, key) => container(key, item.name, item.data))}
+              {order_array && order_array.map((item, key) => container(key, item.name, item.data))}
             </VStack>
             <Flex alignItems="center" gap="6px" color="#808080">
               <AppIcons.InfoIcon width="14px" height="14px" className={classes.iconInfo} />

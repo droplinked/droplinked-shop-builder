@@ -21,7 +21,7 @@ function ControlsListProduct({ productID, product, fetch }) {
     const detailModal = useDisclosure()
     const { shopNavigate } = useCustomNavigate()
     const { showToast } = useAppToast()
-    const stacks = useStack()
+    const stack = useStack()
     const { validate, record } = ButtonsProductClass
     const appWeb3 = useAppWeb3()
     const { app: { user: { wallets } } } = useHookStore()
@@ -32,7 +32,7 @@ function ControlsListProduct({ productID, product, fetch }) {
             await validate({ draft: false, state })
 
             // Digital product record
-            if (state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") await record({ method: (data: any) => appWeb3.web3({ method: "record", params: data, chain: state.digitalDetail.chain, wallets }), product: state, stacks })
+            if (state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") await record({ method: (data: any) => appWeb3.web3({ method: "record", params: data, chain: state.digitalDetail.chain, wallets, stack }), product: state, stacks: stack })
 
             await mutateAsync({ productID: state._id, params: { publish_product: true } })
             showToast(AppErrors.product.your_product_published, "success")
@@ -42,7 +42,7 @@ function ControlsListProduct({ productID, product, fetch }) {
             showToast(message ? message : "Oops! Something went wrong", "error")
 
         }
-    }, [productID, fetch, product, wallets])
+    }, [productID, fetch, product, wallets, stack.stxAddress])
 
     const items = useMemo(() => {
         const list = [

@@ -15,6 +15,7 @@ import BasicButton from 'components/common/BasicButton/BasicButton';
 import useAppToast from 'functions/hooks/toast/useToast';
 import ClipboardText from 'components/common/clipboardText/ClipboardText';
 import useHookStore from 'functions/hooks/store/useHookStore';
+import useStack from 'functions/hooks/stack/useStack';
 
 function Wallet() {
     const { data, isLoading } = useQuery({
@@ -26,14 +27,15 @@ function Wallet() {
     const { getChain, login } = useAppWeb3()
     const { showToast } = useAppToast()
     const { app: { user: { wallets } } } = useHookStore()
+    const stack = useStack()
 
     const loginChain = useCallback(async (chain: string) => {
         try {
-            await login({ chain, wallets })
+            await login({ chain, wallets, stack })
         } catch (error) {
-            showToast('Failed login', 'warning')
+            showToast(error || 'Failed login', 'warning')
         }
-    }, [wallets])
+    }, [wallets, stack.stxAddress])
 
     return (
         <AppCard>

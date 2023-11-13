@@ -4,8 +4,8 @@ import hashkeyModel from "components/common/hashKey/model"
 import AppTypography from "components/common/typography/AppTypography"
 
 export const convertCustomerInformation = (order) => {
-  if (!order || !order?.details?.customerAddress) return null
-  
+  if (!order && !order?.details) return null
+
   return [
     {
       name: "name",
@@ -23,7 +23,7 @@ export const convertCustomerInformation = (order) => {
 }
 
 export const convertOrderInformation = (order) => {
-  if (!order || !order?.details?.customerAddress) return null
+  if (!order && !order?.details) return null
   const linkTransction = order?.details?.deployHash && order?.details?.paymentType ? hashkeyModel.getLink({ blockchain: order?.details?.paymentType, hashkey: order?.details?.deployHash }) : null
 
   const result = [
@@ -34,9 +34,9 @@ export const convertOrderInformation = (order) => {
     {
       name: "POD ID",
       data: order?.details?.podId || "-"
-    }  ]
+    }]
 
-  if(linkTransction) {
+  if (linkTransction) {
     result.push({
       name: "Deploy Hash",
       data: (
