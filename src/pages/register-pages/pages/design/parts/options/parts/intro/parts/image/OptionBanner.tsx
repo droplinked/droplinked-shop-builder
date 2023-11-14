@@ -45,7 +45,10 @@ function OptionBanner() {
                     ))}
                 </SimpleGrid>
             </AppScrollBar>
-            <AppUploadImage onChange={(image) => upload(image)} size="original" values={''} mode="horizontal" />
+            <AppUploadImage onChange={(image) => {
+                upload(image)
+                setImage(image)
+            }} size="original" values={''} mode="horizontal" />
         </VStack>
     )
 }

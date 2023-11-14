@@ -22,8 +22,9 @@ function PreviewFooter() {
                 section: 'footer',
                 display: "flex",
                 justifyContent: "center",
-                backgroundColor: foreground || "#141414",
+                backgroundColor: 'red',
                 padding: "20px 0",
+                borderRadius: "0",
                 ...template_options?.['--dlk-ftr']?.['--dlk-ftr-styles']
             }}
         >
