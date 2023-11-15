@@ -17,13 +17,12 @@ function PreviewHeader() {
             section='header'
             props={{
                 ...["header", "theme"].includes(optionSelected) && { ref: scrollRef },
-                padding: "5px 0",
                 ...template_options?.['--dlk-hdr']?.['--dlk-hdr-styles'],
                 justifyContent: "center",
                 display: "flex",
                 position: "absolute",
                 zIndex: "1",
-                top: isDesktop ? "10px" : "4px",
+                top: isDesktop ? "5px 0" : "10px 0",
                 right: "0",
                 left: "0"
             }}

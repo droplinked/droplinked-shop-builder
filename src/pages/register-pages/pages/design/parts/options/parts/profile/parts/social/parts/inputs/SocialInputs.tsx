@@ -69,10 +69,10 @@ function SocialInputs({ socials, updateSocial }) {
     return (
         <VStack align="stretch">
             {Object.keys(items).filter(el => socials.includes(el) || shop[el].length).map((el, key) => (
-                <Flex backgroundColor="#141414" padding="4px" gap="8px" alignItems="center" key={key}>
+                <Flex backgroundColor="#141414" borderRadius="8px" padding="4px" gap="8px" alignItems="center" key={key}>
                     {el !== socials ? (
                         <AppTooltip label={items[el].url + items[el].value} placement="top">
-                            <Flex padding="0 14px" cursor="pointer" onClick={() => updateSocial(el)} gap="10px" alignItems="flex-start" width="100%">
+                            <Flex padding="13px 18px" cursor="pointer" onClick={() => updateSocial(el)} gap="10px" alignItems="flex-start" width="100%">
                                 <Box className={classes.icon} position="relative" top="3px">{items[el].icon}</Box>
                                 <AppTypography size="14px" width="85%" color="#C2C2C2">
                                     {items[el].url}{items[el].value.substr(0, 6)}
@@ -83,11 +83,11 @@ function SocialInputs({ socials, updateSocial }) {
                     ) : (
                         <form style={{ width: "100%" }} onSubmit={(e) => submit(e)}>
                             <VStack ref={ref} align="stretch" width="100%" spacing="0">
-                                <Flex alignItems="center" gap="12px" backgroundColor="#1C1C1C" padding="10px 14px" borderRadius="6px 6px 0px 0px">
+                                <Flex alignItems="center" gap="12px" backgroundColor="#1C1C1C" padding="13px 18px" borderRadius="6px 6px 0px 0px">
                                     <Flex className={classes.icon}>{items[el].icon}</Flex>
                                     <AppTypography size="14px" color="#C2C2C2">{items[el].url}</AppTypography>
                                 </Flex>
-                                <Box padding="0 14px">
+                                <Box padding="0 18px">
                                     <AppInput name='' value={items[el].value} onChange={(e) => change(el, e.target.value)} placeholder={el !== "webURL" ? "Username" : "Domain"} paddingLeft="0" width="100%" />
                                 </Box>
                             </VStack>

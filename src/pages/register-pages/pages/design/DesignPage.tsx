@@ -31,7 +31,7 @@ const DesignPage = () => {
     >
       <Flex gap="24px" alignItems="flex-start">
         <StickyBox offsetTop={20} offsetBottom={20} style={{ width: "72%" }}>
-          <VStack align="stretch" spacing="24px">
+          <VStack align="stretch" spacing="12px">
             <AppCard boxProps={{ padding: "30px" }}>
               <VStack align="stretch" spacing="24px">
                 <DesignPageDevices />
