@@ -61,7 +61,7 @@ function ButtonsProduct() {
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
                     const hashkey = await record({
-                        method: (data) => appWeb3.web3({ method: "record", params: data, chain: state.digitalDetail.chain, wallets }),
+                        method: (data) => appWeb3.web3({ method: "record", params: data, chain: state.digitalDetail.chain, wallets, stack: stacks }),
                         product: {
                             ...state,
                             _id: product._id,
@@ -75,7 +75,8 @@ function ButtonsProduct() {
                     setStateHandle('hashkey', hashkey)
                     onOpen()
                 } catch (error) {
-                    shopNavigate("products")
+                    // shopNavigate("products")
+                    console.log(error);
                     showToast("Somthimg went wrong", "error")
                 }
             } else {
