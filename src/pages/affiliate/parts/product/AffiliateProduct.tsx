@@ -26,11 +26,11 @@ function AffiliateProduct({ image, title, link, blockchain, shop, props }: Iprop
 
     return (
         <Link to={`/${dataProfile.shop.name}/c/affiliate/shops/${link}`}>
-            <VStack align={"stretch"} backgroundColor={"#000"} height="100%" position={"relative"} color='#FFF' borderRadius="8px" padding={5} paddingBottom={61} spacing={4} {...props}>
-                <Box><AppImage src={image} width="100%" /></Box>
-                {title && <Box><AppTypography size='12px'>{title}</AppTypography></Box>}
+            <VStack align={"stretch"} backgroundColor={"#000"} height="100%" position={"relative"} color='#FFF' borderRadius="8px" padding={{ base: "8px", xl: "15px" }} paddingBottom={61} spacing={4} {...props}>
+                <Box height="120px" overflow="hidden" position="relative" background={`url(${image}) center`} backgroundSize="cover"></Box>
+                {title && <Box height="35px"><AppTypography size='12px'>{title}</AppTypography></Box>}
                 {blockchain && (
-                    <HStack position={"absolute"} gap="0" bottom={4}>
+                    <HStack height="20px">
                         <IconBlockchain blockchain={blockchain} props={{ width: "16px" }} />
                         <AppTypography size="10px">{capitalizeFirstLetter(blockchain)}</AppTypography>
                     </HStack>
