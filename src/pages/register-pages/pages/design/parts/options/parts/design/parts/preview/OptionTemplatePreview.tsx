@@ -4,6 +4,7 @@ import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTypography from 'components/common/typography/AppTypography'
 import { designContext } from 'pages/register-pages/pages/design/design-context'
 import React, { useContext, useMemo } from 'react'
+import ActiveBox from '../../../active/ActiveBox'
 import OptionsCaption from '../../../caption/OptionsCaption'
 
 function OptionTemplatePreview() {
@@ -23,7 +24,7 @@ function OptionTemplatePreview() {
         <VStack align="stretch">
             <OptionsCaption caption='Template' isRequired />
             <Flex gap="14px">
-                <Box width="50%"><Image src={getImage} width="100%" borderRadius="15px" /></Box>
+                <Box width="50%"><ActiveBox active={Boolean(getImage)} props={{ borderRadius: "13px" }}><Image src={getImage} width="100%" borderRadius="15px" /></ActiveBox></Box>
                 <Flex width="50%" backgroundColor="#141414" onClick={() => window.open('mailto:support@droplinked.com')} cursor="pointer" borderRadius="15px" alignItems="center" padding="10px" textAlign="center">
                     <VStack justifyContent="center">
                         <AppIcons.Email />

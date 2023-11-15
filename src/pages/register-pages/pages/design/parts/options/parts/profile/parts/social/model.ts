@@ -1,7 +1,7 @@
 const optionSocialModel = ({
     items : [
         {
-            caption: "---",
+            caption: "Social Links",
             value: ''
         },
         {

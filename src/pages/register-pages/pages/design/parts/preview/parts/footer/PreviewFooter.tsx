@@ -14,6 +14,13 @@ function PreviewFooter() {
 
     const isDekstop = useMemo(() => device === "desktop", [device])
 
+    const text = [
+        "Powered by droplinked",
+        "© 2023 droplinked, All Rights Reserved",
+        "Terms & Conditions",
+        "Returns & FAQ"
+    ]
+
     return (
         <PreviewActive
             section='footer'
@@ -22,7 +29,7 @@ function PreviewFooter() {
                 section: 'footer',
                 display: "flex",
                 justifyContent: "center",
-                backgroundColor: 'red',
+                backgroundColor: foreground || "#141414",
                 padding: "20px 0",
                 borderRadius: "0",
                 ...template_options?.['--dlk-ftr']?.['--dlk-ftr-styles']
@@ -43,11 +50,13 @@ function PreviewFooter() {
                     </Flex>
                 </Flex>
                 <Box borderBottom="2px solid #777"></Box>
-                <Flex gap="15px">
-                    <Box width="80px" borderBottom="5px solid #555"></Box>
-                    <Box width="80px" borderBottom="5px solid #555"></Box>
-                    <Box width="80px" borderBottom="5px solid #555"></Box>
-                    <Box width="80px" borderBottom="5px solid #555"></Box>
+                <Flex gap="8px" alignItems="center" flexWrap="wrap">
+                    {text.map((el, key) => (
+                        <>
+                            {key !== 0 && <Box height="10px" position="relative" top="2px" borderRight={`1px solid ${textColorParagraphs || "#999"}`}></Box>}
+                            <PreviewTypo key={key} fontSize="10px">{el}</PreviewTypo>
+                        </>
+                    ))}
                 </Flex>
             </VStack>
         </PreviewActive>

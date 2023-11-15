@@ -14,7 +14,7 @@ function ShopsProduct() {
                         props={{ backgroundColor: "#1C1C1C" }}
                         blockchain={el.skuIDs.length ? el.skuIDs[0].recordData.recordNetwork : ""}
                         link={`${shop?.name}/${el?._id}`} image={el.thumb || el.media.find(el => el.isMain === 'true')?.url}
-                        title={el?.title}
+                        title={el?.title.substr(0, 15)}
                     />
                 </Box>
             ))}

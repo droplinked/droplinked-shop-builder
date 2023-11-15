@@ -39,13 +39,13 @@ function DefaultHoverBox() {
                     {!isLoading && checkSingleImage && typeof values === "string" ? (
                         <>
                             {isHorizontal ?
-                                <Flex gap="18px" className={classes.iconUpload}>
-                                    <Box position="relative">
-                                        <Flex position="absolute" className={classes.icon} display="none" top="0" left="0" bottom="0" right="0" backgroundColor="rgba(0,0,0,.8)" justifyContent="center" alignItems="center"><AppIcons.Upload width="18px" /></Flex>
-                                        <Image src={values} borderRadius="3px" border="1px solid #262626" width="48px" height="48px" />
+                                <Flex gap="18px" alignItems="center" className={classes.iconUpload}>
+                                    <Box position="relative" border="2px solid #262626" backgroundColor="#000" borderRadius="4px" overflow="hidden">
+                                        <Flex position="absolute" className={classes.icon} display="none" top="0" left="0" bottom="0" right="0" justifyContent="center" alignItems="center"><AppIcons.Upload width="18px" /></Flex>
+                                        <Image src={values} width="48px" height="48px" className={classes.image} />
                                     </Box>
-                                    <VStack align="stretch">
-                                        <AppTypography size="12px" color="#C2C2C2" weight='bolder'>{getFileNameFromUrl(values)}</AppTypography>
+                                    <VStack align="stretch" spacing="11px">
+                                        <AppTypography size="12px" color="#C2C2C2">{getFileNameFromUrl(values)}</AppTypography>
                                         <AppTypography size="12px" color="#808080">{Size} kb</AppTypography>
                                     </VStack>
                                 </Flex>

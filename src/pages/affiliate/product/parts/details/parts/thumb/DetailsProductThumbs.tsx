@@ -18,7 +18,7 @@ function DetailsProductThumbs() {
             <SimpleGrid columns={5} spacing="18px">
                 {product.media && product.media.length ? product.media.slice(0, 5).map((el: any, key: number) => (
                     <Box key={key} position="relative" className={classes.box} onMouseOver={() => updateState('slider', el.url)}>
-                        {key === product.media.length - 1 && (
+                        {[product.media.length - 1, 4].includes(key) && (
                             <Flex alignItems="center" onClick={onOpen} cursor="pointer" className={classes.text} justifyContent="center" textAlign="center" backgroundColor="rgba(0,0,0,.6)" position="absolute" top="0" left="0" right="0" bottom="0"><AppTypography size="12px" width="80%">See More
                                 Images</AppTypography></Flex>
                         )}

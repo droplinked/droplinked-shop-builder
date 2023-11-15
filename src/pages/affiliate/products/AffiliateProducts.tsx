@@ -2,6 +2,7 @@ import { Box, SimpleGrid, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
 import Pagination from 'components/common/datagrid/parts/pagination/Pagination'
 import AppEmptyPage from 'components/common/empty/AppEmptyPage'
+import AppTooltip from 'components/common/tooltip/AppTooltip'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { IShopRecordedService } from 'lib/apis/shop/interfaces'
 import { ShopRecordedService } from 'lib/apis/shop/shopServices'
@@ -48,7 +49,9 @@ function AffiliateProducts() {
                     <VStack align={"stretch"} spacing={7}>
                         <SimpleGrid columns={5} spacing="12px">
                             {products && products.data.map((el, key) => (
-                                <AffiliateProduct key={key} image={el.media.find(image => image.isMain === "true")?.thumbnail} link={`${el.shopName}/${el._id}`} title={el.title} shop={{ icon: el.shopLogo, name: el.shopName }} />
+                                <AppTooltip label={el.title} placement="auto">
+                                    <AffiliateProduct key={key} image={el.media.find(image => image.isMain === "true")?.thumbnail} link={`${el.shopName}/${el._id}`} blockchain={el.skus.recordData ? el.skus.recordData.recordNetwork : ""} title={el.title.substr(0, 45)} shop={{ icon: el.shopLogo, name: el.shopName }} />
+                                </AppTooltip>
                             ))}
                         </SimpleGrid>
                         <Pagination current={products?.currentPage} lastPage={products?.totalPages ? parseInt(products?.totalPages) : 1} nextPage={products?.hasNextPage || false} prevPage={products?.hasPreviousPage || false} />
