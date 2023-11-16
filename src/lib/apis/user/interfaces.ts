@@ -39,5 +39,6 @@ export interface IuserUpdateService {
     unisatAddress?: string,
     polygonAddress?: string,
     binanceAddress?: string,
+    baseAddress?: string,
     wallets?: Array<IUserWalletsProps>
 }

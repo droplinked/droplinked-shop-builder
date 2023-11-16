@@ -53,6 +53,7 @@ import { ReactComponent as Ripple } from './ripple.svg';
 import { ReactComponent as StarOutline } from './starOutline.svg';
 import { ReactComponent as StarFilled } from './starFilled.svg';
 import { ReactComponent as Binance } from './binance.svg';
+import { ReactComponent as Base } from './base.svg';
 import { ReactComponent as Email } from './email.svg';
 
 const AppIcons = {
@@ -111,6 +112,7 @@ const AppIcons = {
   StarOutline,
   StarFilled,
   Binance,
-  Email
+  Email,
+  Base
 }
 export default AppIcons
