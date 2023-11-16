@@ -30,6 +30,10 @@ let chainNames = {
         [Network.TESTNET]: { chainName: "staging | CHAOS Testnet", chainId: "0x50877ED6", nativeCurrency: { name: 'sFUEL', decimals: 18, symbol: 'sFUEL' }, rpcUrls: ['https://staging-v3.skalenodes.com/v1/staging-fast-active-bellatrix'] },
         [Network.MAINNET]: { chainName: "Smart Chain", chainId: "0x61", nativeCurrency: { name: 'BNB', decimals: 18, symbol: 'BNB' }, rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545/'] }
     },
+    [Chain.BASE]: {
+        [Network.TESTNET]: { chainName: "Base Göerli", chainId: "0x14a33", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://goerli.base.org'] },
+        [Network.MAINNET]: { chainName: "Base Mainnet", chainId: "0x2105", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://mainnet.base.org/'] }
+    },
 };
 
 export const isMetamaskInstalled = (): boolean => {

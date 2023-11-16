@@ -5,7 +5,8 @@ export enum Chain {
     STACKS,
     RIPPLESIDECHAIN,
     NEAR,
-    SKALE
+    SKALE,
+    BASE
 }
 export enum Network {
     MAINNET,
