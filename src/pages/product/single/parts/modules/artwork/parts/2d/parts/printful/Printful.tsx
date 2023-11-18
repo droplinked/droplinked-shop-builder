@@ -48,8 +48,10 @@ function Printful({ close }: IProps) {
                 nonce: data?.data?.data?.nonce,
                 style: styles,
                 onError: (err) => {
-                    if (err && err.search("valid nonce") <= 0) showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
-                    setState('loading', false)
+                    if (err && err.search("valid nonce") <= 0) {
+                        showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
+                        setState('loading', false)
+                    }
                 },
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
                 onTemplateSaved: async (res) => setState('TemplateId', res),
@@ -127,21 +129,24 @@ function Printful({ close }: IProps) {
             setState('loading', false)
         } catch (error) {
             setState('TemplateId', null)
+            update("available_variant", [])
+            updateState("variants", [])
             setState('loading', false)
+            updateState('printful_template_id', null)
+            close()
+            showToast(error.message, 'error')
         }
     }, [pod_blank_product_id, States.TemplateId, technique])
 
     const generateImages = useCallback(async (mocks: any) => {
-        try {
-            const data = await generateThumb.mutateAsync(mocks)
-            const images = data?.data?.data?.originals.map((el, key) => ({
-                url: el,
-                thumbnail: data?.data?.data?.thumbs[key],
-                isMain: media.length ? false : key === 0,
-                isMockup: true
-            }))
-            updateState("media", [...media.filter(el => !el.isMockup), ...images].map((el, key) => ({ ...el, isMain: key === 0 })))
-        } catch (error) { }
+        const data = await generateThumb.mutateAsync(mocks)
+        const images = data?.data?.data?.originals.map((el, key) => ({
+            url: el,
+            thumbnail: data?.data?.data?.thumbs[key],
+            isMain: media.length ? false : key === 0,
+            isMockup: true
+        }))
+        updateState("media", [...media.filter(el => !el.isMockup), ...images].map((el, key) => ({ ...el, isMain: key === 0 })))
     }, [media])
 
     useEffect(() => { if (States.TemplateId) generate() }, [States.TemplateId])
