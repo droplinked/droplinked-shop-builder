@@ -10,7 +10,7 @@ import M2MPlaceholder from './parts/placeholder/M2MPlaceholder'
 
 function ProductMintToMerge() {
     const [CheckBox, setCheckBox] = useState(false)
-    const { state: { m2m_positions, m2m_positions_options }, store: { state: { variants } }, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { m2m_positions, m2m_positions_options,m2m_services,isAddToCartDisabled }, store: { state: { variants } }, methods: { updateState }, loading } = useContext(productContext)
 
     // onChange checkbox
     const checkBoxHandle = useCallback((e: any) => {
@@ -24,7 +24,7 @@ function ProductMintToMerge() {
 
     // set true if exist m2m_positions
     useEffect(() => {
-        if (m2m_positions.length) setCheckBox(true)
+        if (m2m_positions.length || m2m_services.length || isAddToCartDisabled) setCheckBox(true)
     }, [m2m_positions])
 
     // if not exist m2m_positions_options checkbox unchecked 

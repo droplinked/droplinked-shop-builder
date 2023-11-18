@@ -39,7 +39,7 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="/enquiry" element={<Enquiry />} />
+          <Route path="enquiry" element={<Enquiry />} />
           <Route path="terms" element={<TermsPage />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="privacy" element={<PrivacyPage />} />
