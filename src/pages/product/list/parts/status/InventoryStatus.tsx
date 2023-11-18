@@ -8,7 +8,7 @@ interface IProps {
 
 function InventoryStatus({ data }: IProps) {
     return (
-        <div><AppBadge colorScheme={data?.publish_status === "DRAFTED" ? "purple" : "green"} textTransform="capitalize" text={capitalizeFirstLetter(data?.publish_status)} /></div>
+        <div><AppBadge colorScheme={data?.publish_status === "DRAFTED" ? "purple" : "green"} textTransform="capitalize" text={data?.publish_status === "PUBLISHED" ? capitalizeFirstLetter(data?.publish_status) : "Draft" } /></div>
     )
 }
 

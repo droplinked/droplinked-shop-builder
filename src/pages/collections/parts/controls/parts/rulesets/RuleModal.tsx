@@ -80,7 +80,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     weburl: Yup.string().required('Required'),
     chain: Yup.string().required('Required'),
     rule: Yup.string().required('Required'),
-    discount: Yup.number().typeError("Please correct value").required('Required'),
+    discount: Yup.number().min(0).typeError("Please correct value").required('Required'),
     address: Yup.array().min(1, "Required").required("Required"),
     requirement: Yup.number().min(1).max(99).typeError("Please correct value").required('Required'),
   });

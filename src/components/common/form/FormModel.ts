@@ -15,7 +15,7 @@ const FormModel = ({
             backgroundColor: "#141414",
             padding: "22px 17px",
             fontSize: "14px",
-            color: "#808080",
+            color: "#C2C2C2",
         }
     },
     styleProps: () => {

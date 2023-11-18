@@ -71,6 +71,7 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
                                     value={values.title}
                                     onChange={(e: any) => setFieldValue("title", e.target.value)}
                                     isRequired
+                                    maxLength={40}
                                     label="Collection Title"
                                     placeholder="Summer Collection"
                                     error={errors.title ? errors.title.toString() : ""}

@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export type ImodeUploadImage = "multi" | "single"
+export type ImodeUploadImage = "multi" | "single" | "horizontal"
 
 export interface IUploadImageDefault {
     value: string

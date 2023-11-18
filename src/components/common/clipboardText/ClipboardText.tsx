@@ -4,13 +4,14 @@ import React, { useCallback } from 'react'
 
 interface Iprops {
     text: string
+    props?: any
 }
 
-function ClipboardText({ text }: Iprops) {
+function ClipboardText({ text, props }: Iprops) {
     const copy = useCallback((text: string) => navigator.clipboard.writeText(text), [])
     const { showToast } = useAppToast()
 
-    return <AppIcons.CopyIcon width={"18px"} height="18px" onClick={() => {
+    return <AppIcons.CopyIcon width={"18px"} height="18px" {...props} onClick={() => {
         copy(text)
         showToast('Copied', "info", {
             autoClose: 200,

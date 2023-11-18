@@ -30,6 +30,7 @@ export interface Imedia {
 
 export interface IproductState {
     _id?: string
+    ownerID?: string
     title: string
     description: string
     productCollectionID: string
@@ -58,6 +59,7 @@ export interface IproductState {
     m2m_positions_options: Array<any>
     mainCategory?: string
     subCategories?: Array<string>
+    technique?: string
     isAddToCartDisabled?: boolean
 }
 

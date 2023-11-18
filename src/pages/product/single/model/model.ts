@@ -10,6 +10,7 @@ const ProductSingleModel = ({
 
         return {
             ...data?._id && { _id: data?._id },
+            ...data?.ownerID && { ownerID: data?.ownerID },
             title: data?.title,
             description: data?.description,
             media: data?.media ? data?.media.map((el: any) => ({ thumbnail: el?.thumbnail, url: el?.url, isMain: el.isMain === 'true' })) : [],
@@ -64,7 +65,9 @@ const ProductSingleModel = ({
             isAddToCartDisabled: data?.isAddToCartDisabled,
             m2m_positions_options: data?.m2m_positions_options || [],
             mainCategory: data?.mainCategory ? data?.mainCategory._id : null,
-            subCategories: data?.subCategories ? data?.subCategories.map(el => el._id) : []
+            subCategories: data?.subCategories ? data?.subCategories.map(el => el._id) : [],
+            technique: data?.technique,
+            isAddToCartDisabled: data?.isAddToCartDisabled
         }
     },
 

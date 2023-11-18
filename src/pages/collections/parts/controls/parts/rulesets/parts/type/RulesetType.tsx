@@ -20,7 +20,7 @@ function RulesetType() {
                 </Checkbox>
                 {values.rule === RuleTypes.DISCOUNT && (
                     <Box width={"100%"}>
-                        <TextboxRule element={"discount"} placeholder="20%" label="Discount Value" />
+                        <TextboxRule element={"discount"} onChange={e => setFieldValue('discount', parseInt(e.target.value))} placeholder="20%" label="Discount Value" />
                     </Box>
                 )}
             </VStack>

@@ -2,13 +2,29 @@ import { IauthLoginService } from 'lib/apis/auth/interfaces'
 import { authLoginService } from 'lib/apis/auth/services'
 import { IshopInfoService, IshopUpdateService } from 'lib/apis/shop/interfaces'
 import { shopInfoService, shopUpdateService } from 'lib/apis/shop/shopServices'
-import AppStorage from 'lib/utils/app/sessions'
+import { userUpdateService } from 'lib/apis/user/services'
 import { appDeveloment } from 'lib/utils/app/variable'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
+export interface IUserWalletsProps {
+    type: string
+    address: string
+    public_key?: string
+}
+
+interface IUser {
+    wallets: Array<IUserWalletsProps>
+    [propname: string]: any
+}
+
+interface IPropsUpdatestate {
+    key: string
+    params: any
+}
+
 export interface IAppStore {
-    user: any
+    user: IUser
     shop: any
     loading: boolean
     access_token: string | null
@@ -16,9 +32,11 @@ export interface IAppStore {
     fetchShop(params: IshopInfoService): Promise<any>
     reset(): void
     updateShop(params: IshopUpdateService): Promise<any>
+    updateState({ key, params }: IPropsUpdatestate): void
+    updateWallet({ address, type, public_key }: IUserWalletsProps): void
 }
 
-const states = (set: any): IAppStore => ({
+const states = (set: any, get: any): IAppStore => ({
     user: null,
     shop: null,
     access_token: null,
@@ -30,10 +48,12 @@ const states = (set: any): IAppStore => ({
                 const data = await authLoginService(params)
                 const result = data.data.data
                 set({
-                    user: result?.user,
-                    shop: result?.shop,
-                    access_token: result?.access_token,
-                    loading: false
+                    loading: false,
+                    ...result?.user?.status !== "NEW" && {
+                        user: result?.user,
+                        shop: result?.shop,
+                        access_token: result?.access_token,
+                    }
                 })
                 resolve(result)
             } catch (error) {
@@ -78,14 +98,31 @@ const states = (set: any): IAppStore => ({
             }
         })
     },
+    updateState: ({ key, params }: IPropsUpdatestate) => { set({ ...get, [key]: params }) },
+    updateWallet: ({ address, type, public_key }: IUserWalletsProps) => {
+        set(state => {
+            const prevWallets = state.user?.wallets
+            const checkWallet = prevWallets && prevWallets.find((el: IUserWalletsProps) => el.type === type && el.address)
+            if (checkWallet) return prevWallets
+            
+            const wallets = [...prevWallets ? prevWallets.filter(el => el.type !== type) : [], { type, address, public_key }]
+            userUpdateService({ wallets })
+            return {
+                ...state,
+                user: { ...state.user, wallets }
+            }
+        })
+    }
 })
 
 export const appStorePersistName = "appStore"
-const _persist = persist(states, { name: appStorePersistName, partialize: (state) => ({
-    shop: state.shop,
-    user: state.user,
-    access_token: state.access_token,
-}) })
+const _persist = persist(states, {
+    name: appStorePersistName, partialize: (state) => ({
+        shop: state.shop,
+        user: state.user,
+        access_token: state.access_token,
+    })
+})
 const useAppStore = appDeveloment ? create<IAppStore>()(devtools(_persist, { name: "App" })) : create<IAppStore>()(_persist)
 
 export default useAppStore

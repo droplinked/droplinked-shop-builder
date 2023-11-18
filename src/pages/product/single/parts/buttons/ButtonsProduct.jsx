@@ -1,6 +1,6 @@
 import { Box, HStack, Link, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
 import { productContext } from '../../context'
 import { useMutation } from 'react-query'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
@@ -12,6 +12,8 @@ import useStack from 'functions/hooks/stack/useStack'
 import ProductSingleModel from '../../model/model'
 import ModalHashkey from 'pages/affiliate/notifications/parts/list/parts/buttons/parts/hashkey/ModalHashkey'
 import AppTypography from 'components/common/typography/AppTypography'
+import useAppWeb3 from 'functions/hooks/web3/useWeb3'
+import useHookStore from 'functions/hooks/store/useHookStore'
 
 // prdocut page
 function ButtonsProduct() {
@@ -29,6 +31,10 @@ function ButtonsProduct() {
     const { showToast } = useAppToast()
     const stacks = useStack()
     const { refactorData } = ProductSingleModel
+    const appWeb3 = useAppWeb3()
+    const { app: { user: { wallets, _id } } } = useHookStore()
+
+    const isProducer = useMemo(() => productID && (_id !== state?.ownerID), [state, _id, productID])
 
     const setStateHandle = useCallback((key, value) => setStates(prev => ({ ...prev, [key]: value })), [])
 
@@ -55,19 +61,22 @@ function ButtonsProduct() {
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
                     const hashkey = await record({
+                        method: (data) => appWeb3.web3({ method: "record", params: data, chain: state.digitalDetail.chain, wallets, stack: stacks }),
                         product: {
                             ...state,
                             _id: product._id,
                             sku: [
                                 { ...state.sku[0], _id: product.sku[0]._id }
                             ]
-                        }, stacks
+                        },
+                        stacks
                     })
                     await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
                     setStateHandle('hashkey', hashkey)
                     onOpen()
                 } catch (error) {
-                    shopNavigate("products")
+                    // shopNavigate("products")
+                    console.log(error);
                     showToast("Somthimg went wrong", "error")
                 }
             } else {
@@ -79,13 +88,13 @@ function ButtonsProduct() {
             setStateHandle("loading", false)
             showToast(error?.response?.data?.data?.message ? error?.response?.data?.data?.message : error?.message ? error.message : "Oops! Something went wrong", "error")
         }
-    }, [state, productID, stacks])
+    }, [state, productID, stacks, wallets, stacks.stxAddress])
 
     return (
         <>
             <HStack justifyContent={"space-between"} maxWidth={"1000px"} width={"100%"}>
                 <Box>
-                    {!state.publish_product || !productID ? (
+                    {(!state.publish_product || !productID) && !isProducer ? (
                         <BasicButton
                             isLoading={States.draft ? States.loading : false}
                             variant={'outline'}
@@ -98,8 +107,8 @@ function ButtonsProduct() {
                 <Box>
                     <BasicButton
                         isLoading={!States.draft ? States.loading : false}
-                        isDisabled={States.loading}
-                        onClick={() => submit(false)}
+                        isDisabled={States.loading || isProducer}
+                        onClick={() => !isProducer && submit(false)}
                     >
                         {productID && state.publish_product ? "Update Product" : state.product_type === "DIGITAL" ? "Publish And Drop" : "Publish Product"}
                     </BasicButton>

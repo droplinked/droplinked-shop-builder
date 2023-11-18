@@ -2,7 +2,7 @@ import { Box, Flex, Text, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
 import { IproductService, IrecordedShopService } from 'lib/apis/shop/interfaces'
 import { productService, recordedShopService } from 'lib/apis/shop/shopServices'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { ShopProductContext } from './context'
@@ -17,6 +17,11 @@ function ShopProduct() {
   const params = useParams()
   const product = data?.data?.data || null
   const shop = shopService.data?.data?.data ? shopService.data?.data?.data[0] : null
+  const [States, setStates] = useState({
+    slider: null
+  },)
+
+  const updateState = (key, value) => setStates(prev => ({ ...prev, [key]: value }))
 
   // Get product
   useEffect(() => mutate({ productID: params.productID }), [params.productID])
@@ -27,7 +32,7 @@ function ShopProduct() {
   return (
     <>
       {isLoading ? <ShopProductSkeleton /> : product ? (
-        <ShopProductContext.Provider value={{ product, shop }}>
+        <ShopProductContext.Provider value={{ product, shop, states: States,updateState }}>
           <AppCard>
             <VStack align={"stretch"} spacing={20}>
               <Flex gap={14}>
