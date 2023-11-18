@@ -17,7 +17,7 @@ import productCategoryContext from './context'
 function ProductCategory() {
   const { initialState, reducer } = ProductCategoryNamespace
   const [States, dispatch] = useReducer(reducer, initialState)
-  const { state: { pod_blank_product_id }, productID } = useContext(productContext)
+  const { state: { pod_blank_product_id }, methods, productID } = useContext(productContext)
   const { mutate, isLoading } = useMutation((params: IpodProductService) => podProductService(params))
   const Categories = useMutation((params: any) => podCategoryService(params))
 
@@ -35,7 +35,8 @@ function ProductCategory() {
 
 
   useEffect(() => {
-    if (pod_blank_product_id && productID) mutate({ pod_blank_product_id }, {
+
+    if (pod_blank_product_id || productID) mutate({ pod_blank_product_id }, {
       onSuccess: (res) => {
         const data = res?.data?.data
         if (data) {
@@ -46,6 +47,7 @@ function ProductCategory() {
               image: data?.image
             }
           })
+          methods.dispatch({ type: "updateStore", params: { storeName: 'product_printful', value: data } })
         }
       }
     })

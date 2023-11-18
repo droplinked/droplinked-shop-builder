@@ -49,9 +49,7 @@ function ProductMintToMerge() {
 
             {CheckBox && variants ? (
                 <VStack align="stretch" backgroundColor="#141414" borderRadius="8px" padding="20px 25px" spacing="48px">
-                    <AppTypography size='14px'>Customers Position Options</AppTypography>
                     <ProductPositions />
-                    <AppTypography size='14px'>Customers Wallet Options</AppTypography>
                     <ProductM2m />
                     <M2MPlaceholder />
                 </VStack>

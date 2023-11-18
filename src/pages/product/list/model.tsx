@@ -9,7 +9,6 @@ import InventoryStatus from './parts/status/InventoryStatus'
 interface IrefactorData {
     data: []
     fetch: Function
-    search: string
 }
 const ProductListModel = ({
     makeData: (element: any, fetch: any): ITableRows => {
@@ -38,10 +37,8 @@ const ProductListModel = ({
 
     getMain: (product: any) => product.media.find(el => el.isMain === 'true')?.thumbnail,
 
-    refactorData: ({ data, fetch, search }: IrefactorData): Array<ITableRows> => {
-        search = search && search.toLowerCase()
-        const products = search ? data.filter((el: any) => el?.title && el.title.toLowerCase().includes(search)) : data
-        return products.map((el: any): ITableRows => ProductListModel.makeData(el, fetch))
+    refactorData: ({ data, fetch }: IrefactorData): Array<ITableRows> => {
+        return data.map((el: any): ITableRows => ProductListModel.makeData(el, fetch))
     }
 })
 export default ProductListModel

@@ -1,0 +1,11 @@
+.box {
+    .text {
+        display: none;
+    }
+
+    &:hover {
+        .text {
+            display: flex;
+        }
+    }
+}

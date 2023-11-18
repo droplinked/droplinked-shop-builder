@@ -5,7 +5,7 @@ import CategoryBox from '../../box/CategoryBox'
 import { productContext } from 'pages/product/single/context'
 import ProductTypeModel from '../../../../productType/model'
 import { useMutation } from 'react-query';
-import { podCategoryProductService } from 'lib/apis/pod/services';
+import { podCategoryProductService} from 'lib/apis/pod/services';
 import { IpodCategoryProductService } from 'lib/apis/pod/interfaces';
 import { productCategoryContext } from '../../../context';
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
@@ -23,7 +23,7 @@ function ProductCategoryProduct() {
         (
           <SimpleGrid columns={5} spacing="13px">
             {data && data?.data?.data?.data.map((el, key) => (
-              <CategoryBox key={key} padding="10px" onClick={() => {
+              <CategoryBox key={key} padding="10px" onClick={async () => {
                 ProductTypeModel.updateProductType({ value: el.id.toString(), updateState: product.methods.updateState })
                 dispatch({
                   type: "updateProduct", params: {

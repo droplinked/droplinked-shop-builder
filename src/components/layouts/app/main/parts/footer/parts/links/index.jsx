@@ -32,10 +32,10 @@ function Links() {
 
   return (
     <HStack
-      spacing={24}
+      spacing={{base: 4, lg: 24}}
       width={"100%"}
       alignItems={"baseline"}
-      justifyContent={{ base: 'space-between', md: "end" }}
+      justifyContent={{ base: 'space-between', lg: "end" }}
     >
       <Box>
         <VStack align="stretch" spacing={3}>

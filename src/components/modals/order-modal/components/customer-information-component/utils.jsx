@@ -1,54 +1,69 @@
-import { Box, HStack } from "@chakra-ui/react"
+import { Box, HStack, Link, VStack } from "@chakra-ui/react"
 import ClipboardText from "components/common/clipboardText/ClipboardText"
 import hashkeyModel from "components/common/hashKey/model"
+import AppTypography from "components/common/typography/AppTypography"
 
 export const convertCustomerInformation = (order) => {
-  if (!order || !order.customerAddressBook) return null
-
-  const { firstName, lastName, addressLine1, city, state, country, zip } = order.customerAddressBook
+  if (!order && !order?.details) return null
 
   return [
     {
-      name: "Customer",
-      data: `${firstName} ${lastName}`
+      name: "name",
+      data: order?.details?.customerName
     },
     {
       name: "Email",
-      data: order?.customerEmail ? order?.customerEmail : "-"
+      data: order?.details?.customerEmail || "-"
     },
     {
       name: "Address",
-      data: `${addressLine1} ${city} ${state} ${country} ${zip} `
+      data: order?.details?.customerAddress || "-"
     }
   ]
 }
 
 export const convertOrderInformation = (order) => {
-  if (!order || !order.customerAddressBook) return null
-  const linkTransction = order?.cartID?.paymentType && order?.transaction_id ? hashkeyModel.getLink({ blockchain: order?.cartID?.paymentType, hashkey: order?.transaction_id }) : null
+  if (!order && !order?.details) return null
+  const linkTransction = order?.details?.deployHash && order?.details?.paymentType ? hashkeyModel.getLink({ blockchain: order?.details?.paymentType, hashkey: order?.details?.deployHash }) : null
 
-  return [
+  const result = [
     {
       name: "Order ID",
       data: order?._id
     },
     {
       name: "POD ID",
-      data: order?.pod_order_id || "-"
-    },
-    {
-      name: "Shipping Url",
-      data: "-"
-    },
-    {
+      data: order?.details?.podId || "-"
+    }]
+
+  if (linkTransction) {
+    result.push({
       name: "Deploy Hash",
-      data: order?.transaction_id ? (
+      data: (
         <HStack justifyContent="space-between">
           <Box><a href={linkTransction || ""} style={{ color: "#FFF" }} target="_blank">{linkTransction.substr(0, 60)}...</a></Box>
           <Box><ClipboardText text={linkTransction || ""} /></Box>
         </HStack>
-      ) : "-"
-    }
-  ]
+      )
+    })
+  }
+
+  if (order?.details?.shippingUrls && order?.details?.shippingUrls.length) {
+    result.push({
+      name: "Shipping Url",
+      data: (
+        <VStack align="stretch" spacing="20px">
+          {order?.details?.shippingUrls.map((el, key) => (
+            <VStack align="stretch" spacing="0" key={key}>
+              <AppTypography size="10px" color="#777">({el?.name})</AppTypography>
+              <Link href={el?.url} boxShadow="unset !important" target="_blank"><AppTypography size="12px" textDecor="underline">{el?.url}</AppTypography></Link>
+            </VStack>
+          ))}
+        </VStack>
+      )
+    })
+  }
+
+  return result
 
 }

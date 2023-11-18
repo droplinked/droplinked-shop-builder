@@ -42,7 +42,7 @@ const HeaderDashboard = () => {
   });
 
   return (
-    <UserHeaderWrapper>
+    <UserHeaderWrapper position="fixed" top="0" left="0" right="0" zIndex="3" backgroundColor="#141414">
       <Link to={`/${shop?.name}/c/products`}>
         <UserHeaderIcon src={droplinkedIcon} />
       </Link>

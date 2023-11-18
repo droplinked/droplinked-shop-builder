@@ -1,5 +1,6 @@
 import { Box, Flex, Image, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
+import AppEmptyPage from 'components/common/empty/AppEmptyPage'
 import AppTypography from 'components/common/typography/AppTypography'
 import { IrecordedShopService } from 'lib/apis/shop/interfaces'
 import { recordedShopService } from 'lib/apis/shop/shopServices'
@@ -8,7 +9,6 @@ import { useMutation } from 'react-query'
 import { useParams } from 'react-router-dom'
 import AffiliateProduct from '../parts/product/AffiliateProduct'
 import SocialAffliate from '../parts/social/SocialAffliate'
-import ShopsFilter from '../shops/parts/filter/ShopsFilter'
 import SingleShopSkeleton from './parts/skeleton/SingleShopSkeleton'
 
 function Shop() {
@@ -40,21 +40,24 @@ function Shop() {
                             }} size={16} />
                         </VStack>
                     </AppCard>
-
                     <AppCard>
                         <VStack paddingBottom={10} spacing={16} align={"stretch"}>
-                            <Box><ShopsFilter /></Box>
                             <Flex flexWrap={"wrap"} gap="2%" rowGap={7}>
                                 {shop?.products && shop.products.map((el: any, key: number) => (
                                     <Box key={key} width={["23.5%", "15%"]}>
-                                        <AffiliateProduct blockchain={el.skuIDs.length ? el.skuIDs[0].recordData.recordNetwork : ""} link={`${shop?.name}/${el?._id}`} image={el.thumb || el.media.find(el => el.isMain === 'true')?.url} title={el?.title} />
+                                        <AffiliateProduct
+                                            blockchain={el.skuIDs.length ? el.skuIDs[0].recordData.recordNetwork : ""}
+                                            link={`${shop?.name}/${el?._id}`}
+                                            image={el.thumb || el.media.find(el => el.isMain === 'true')?.url}
+                                            title={el?.title}
+                                        />
                                     </Box>
                                 ))}
                             </Flex>
                         </VStack>
                     </AppCard>
                 </VStack>
-            ) : "Empty"}
+            ) : <AppEmptyPage title='Cant find this shop' />}
         </>
     )
 }

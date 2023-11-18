@@ -18,6 +18,10 @@ const hashkeyModel = {
                 return `https://evm-sidechain.xrpl.org/tx/${hashkey}`
             case "BINANCE":
                 return `https://${appDeveloment ? "testnet." : ""}bscscan.com/tx/${hashkey}`
+            case "NEAR":
+                return `https://explorer.${appDeveloment? "testnet": "mainnet"}.aurora.dev/tx/${hashkey}`;
+            case "BASE":
+                return `https://base${appDeveloment? "-goerli" : ""}.blockscout.com/tx/${hashkey}`;
             default:
                 return ""
         }

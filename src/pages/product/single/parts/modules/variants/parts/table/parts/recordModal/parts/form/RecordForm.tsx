@@ -4,7 +4,6 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppInput from 'components/common/form/textbox/AppInput'
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import RecordModalModule from './model/recordFormModel'
 import { Isku } from 'lib/apis/product/interfaces'
 import recordContext from '../../context'
 import useAppToast from 'functions/hooks/toast/useToast'
@@ -12,6 +11,8 @@ import AppTypography from 'components/common/typography/AppTypography'
 import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork'
 import RecordCovers from './parts/covers/RecordCovers';
 import useStack from 'functions/hooks/stack/useStack';
+import useAppWeb3 from 'functions/hooks/web3/useWeb3';
+import useHookStore from 'functions/hooks/store/useHookStore';
 
 interface Iprops {
     close: Function
@@ -26,17 +27,18 @@ interface IRecordSubmit {
 }
 
 function RecordForm({ close, product, sku }: Iprops) {
-    const stacks = useStack()
+    const stack = useStack()
     const { updateState, state: { loading, image } } = useContext(recordContext)
-    const { switchRecord } = RecordModalModule
+    const { web3 } = useAppWeb3()
     const { showToast } = useAppToast()
+    const { app: { user: { wallets } } } = useHookStore()
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
             data.quantity = product.product_type === "PRINT_ON_DEMAND" ? "1000000" : sku.quantity.toString()
             if (!image) throw Error('Please enter image')
             updateState("loading", true)
-            const deployhash = await switchRecord({ data, product, sku, stacks, imageUrl: image })
+            const deployhash = await web3({ method: "record", params: { data, product, sku, imageUrl: image }, chain: data.blockchain, wallets, stack })
             updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
@@ -49,7 +51,7 @@ function RecordForm({ close, product, sku }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, sku, image])
+    }, [product, sku, image, wallets, stack.stxAddress])
 
     const formSchema = useMemo(() => {
         return Yup.object().shape({

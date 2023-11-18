@@ -9,7 +9,7 @@ export function useProfile() {
 
   const updateShopData = () => fetchShop({ shopName: shop.name })
 
-  const setShopData = { update: (params: IshopUpdateService) => updateShop(params), loading }
+  const setShopData = { update: (params: any) => updateShop(params), loading }
 
   const logoutUser = () => {
     clearStore();

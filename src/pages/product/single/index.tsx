@@ -62,7 +62,7 @@ function ProductSingle() {
     }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log(state.params.subCategories);
+    //     console.log('isAddToCartDisabled', state.params.isAddToCartDisabled);
     // }, [state])
 
     return (

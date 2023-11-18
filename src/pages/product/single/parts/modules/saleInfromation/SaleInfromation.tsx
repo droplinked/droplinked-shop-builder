@@ -49,15 +49,15 @@ function SaleInfromation() {
     return (
         <VStack align="stretch" spacing="20px">
             <VStack align="stretch">
-                <FieldLabel label='Sale Information' isRequired loading={loading} />
-                <AppTypography size='14px' color={"#808080"}>??? sale fields</AppTypography>
+                <FieldLabel label='Variants' isRequired loading={loading} />
+                <AppTypography size='14px' color={"#808080"}>Enter the quantity and price of the digital item. (External ID is optional)</AppTypography>
             </VStack>
             <AppSkeleton isLoaded={loading}>
                 <AppTable
                     rows={[
                         {
                             quantity: {
-                                caption: 'Quantity',
+                                caption: 'Stock',
                                 props: {
                                     width: "33%"
                                 },
@@ -88,7 +88,7 @@ function SaleInfromation() {
                     ]}
                 />
             </AppSkeleton>
-            <AlertProduct text='Once you publish your product these information can not be changed' />
+            <AlertProduct text='The variant data will become immutable after the product is dropped and published' />
         </VStack>
     )
 }

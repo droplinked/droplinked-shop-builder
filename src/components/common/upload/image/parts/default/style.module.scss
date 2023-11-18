@@ -1,0 +1,11 @@
+.iconUpload {
+    &:hover {
+        .icon {
+            display: flex;
+        }
+
+        .image {
+            opacity: .17;
+        }
+    }
+}

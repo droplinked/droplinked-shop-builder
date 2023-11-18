@@ -43,6 +43,7 @@ export interface ImockupGeneratorService {
         variant_ids: any
         format: string
         product_template_id: string
+        technique: string
     }
     productID: string
 }

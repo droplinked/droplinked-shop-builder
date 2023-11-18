@@ -13,11 +13,13 @@ import { IgiftcardCreateService } from 'lib/apis/coupons/interfaces'
 import { giftcardCreateService } from 'lib/apis/coupons/addressServices'
 import useAppToast from 'functions/hooks/toast/useToast'
 import CouponsSettingContext from 'pages/register-pages/pages/coupons/context'
+import AppDatepicker from 'components/common/datepicker/AppDatepicker'
 
 interface IFrom {
     name: string
     quantity: string
     balance: string
+    expiryDate: Date
 }
 
 function CouponsCreateForm() {
@@ -30,10 +32,12 @@ function CouponsCreateForm() {
     const onSubmit = useCallback(async (params: IFrom) => {
         try {
             const body: IgiftcardCreateService = {
-                ...params,
+                balance: params.balance,
+                name: params.name,
+                quantity: params.quantity,
+                ...params.expiryDate && { expiryDate: moment(params.expiryDate).format('Y/M/D') },
                 type,
                 shopID: shop._id,
-                expiryDate: moment().add(2, 'year').format('YYYY/MM/DD'),
             }
             await mutateAsync(body)
             showToast(capitalizeFirstLetter(type) + ' Created', 'success')
@@ -46,8 +50,8 @@ function CouponsCreateForm() {
 
     const formSchema = Yup.object().shape({
         name: Yup.string().required('Required'),
-        quantity: Yup.number().typeError('Please correct value').required('Required'),
-        balance: Yup.number().typeError('Please correct value').required('Required'),
+        quantity: Yup.number().min(0).typeError('Please correct value').required('Required'),
+        balance: Yup.number().min(0).typeError('Please correct value').required('Required'),
     });
 
     return (
@@ -56,6 +60,7 @@ function CouponsCreateForm() {
                 name: '',
                 quantity: '',
                 balance: '',
+                expiryDate: null
             }}
             validationSchema={formSchema}
             validateOnChange={false}
@@ -67,7 +72,7 @@ function CouponsCreateForm() {
                         <HStack>
                             <AppInput name='Title' value={values.name} error={errors.name} onChange={el => setFieldValue('name', el.target.value)} label='Title' placeholder='Summer Offer' />
                         </HStack>
-                        <HStack justifyContent="space-between" spacing="20px">
+                        <HStack justifyContent="space-between" alignItems="baseline" spacing="20px">
                             <Box width="50%">
                                 <AppInput value={values.quantity} error={errors.quantity} name='Available Quantity' onChange={el => setFieldValue('quantity', parseInt(el.target.value))} label='Available Quantity' placeholder='100' />
                             </Box>
@@ -75,6 +80,8 @@ function CouponsCreateForm() {
                                 <AppInput value={values.balance} error={errors.balance} name={`${capitalizeFirstLetter(type)} Value`} onChange={el => setFieldValue('balance', parseInt(el.target.value))} label={`${capitalizeFirstLetter(type)} Value`} placeholder={type === "DISCOUNT" ? '20%' : '200'} />
                             </Box>
                         </HStack>
+                        <Box><AppDatepicker onChange={(value) => setFieldValue('expiryDate', value)} placeholderText="Enter expiration Date
+" minDate={new Date()} label='Expiration Date' value={values.expiryDate} /></Box>
                         <HStack justifyContent="space-between">
                             <BasicButton variant='outline' sizes="medium" onClick={() => closeModal()}>Discard</BasicButton>
                             <BasicButton isLoading={isLoading} type='submit' sizes="medium">Save</BasicButton>

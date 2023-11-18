@@ -1,39 +1,31 @@
 import { useDisclosure } from '@chakra-ui/react'
-import { IacceptRejectRequestService } from 'lib/apis/affiliate/interfaces'
-import { acceptRejectRequestService } from 'lib/apis/affiliate/shopServices'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useCallback, useState } from 'react'
-import { useMutation } from 'react-query'
 import NotificationsModal from './parts/modal/NotificationsModal'
-import requestsButtonsModel from './model/model'
 import requestInterfaces from './interfaces'
 import { requestsButtonsContext } from './context'
 import RequestButtons from './parts/buttons/RequestButtons'
 import ModalHashkey from './parts/hashkey/ModalHashkey'
 import useAppToast from 'functions/hooks/toast/useToast'
 import useStack from 'functions/hooks/stack/useStack'
-import { PolygonLogin } from 'lib/utils/blockchain/polygon/metamaskLogin'
-import { binanceApproveRequest } from 'lib/utils/blockchain/binance/approve'
-import { approve_request_polygon } from 'lib/utils/blockchain/polygon/approve'
-import RecordCasperModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/model/modules/casperModel'
-import { XRPLogin } from 'lib/utils/blockchain/ripple/xrpLogin'
-import { XRPApproveRequest } from 'lib/utils/blockchain/ripple/xrpApprove'
-import { BinanceMetamaskLogin } from 'lib/utils/blockchain/binance/metamaskLogin'
-import notificationsButtonsModel from './model'
+import useAppWeb3 from 'functions/hooks/web3/useWeb3'
+import acceptModel from 'functions/hooks/web3/models/module/accept/acceptModel'
+import useHookStore from 'functions/hooks/store/useHookStore'
 
 function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
-    const { mutateAsync } = useMutation((params: IacceptRejectRequestService) => acceptRejectRequestService(params))
     const modal = useDisclosure()
     const modalHashKey = useDisclosure()
     const { showToast } = useAppToast()
-    const { casper, stacks } = requestsButtonsModel
+    const { web3 } = useAppWeb3()
+    const { app: { user: { wallets } } } = useHookStore()
+
     const [States, setStates] = useState<requestInterfaces.IStates>({
         status: null,
         loading: false,
         deployHash: null,
         blockchain: null
     })
-    const { login, isRequestPending, openContractCall } = useStack()
+    const stack = useStack()
 
     const setLoading = useCallback((value: boolean) => setStates(prev => ({ ...prev, loading: value })), [])
 
@@ -42,45 +34,16 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
         refetch()
     }, [])
 
-    const deploy = useCallback((deploy_hash: string, chain: string) => {
-        return mutateAsync({
-            chain,
-            params: {
-                ...deploy_hash && { deploy_hash },
-                requestID: shop?._id,
-                status: States.status === "accept" ? "ACCEPTED" : "REJECTED"
-            }
-        })
-    }, [States.status, shop])
-
     const submit = useCallback(async () => {
         try {
             let blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
-            let deploy_hash = ''
-            const requestID = shop?.recordData?.details?.request_id
             if (States.status === "accept") {
-                if (blockchain === "CASPER") {
-                    const casperWallet = await RecordCasperModule.openCasperWallet()
-                    const data = { shop, casperWallet }
-                    const request = await casper.approveRequest(data)
-                    deploy_hash = request.deployHash
-                } else if (blockchain === "STACKS") {
-                    await login()
-                    const request = await stacks.approve({ isRequestPending, openContractCall, params: { id: requestID, publisher: shop?.recordData?.details?.publisher } })
-                    deploy_hash = request.txId
-                } else if (["POLYGON", "RIPPLESIDECHAIN", "BINANCE"].includes(blockchain)) {
-                    const accept = await notificationsButtonsModel.approve({ chain: blockchain, requestID })
-                    deploy_hash = accept
-                }
-
-                if (deploy_hash) {
-                    await deploy(deploy_hash, blockchain)
-                    modalHashKey.onOpen()
-                    setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
-                }
+                const deploy_hash = await web3({ chain: blockchain, method: "accept", params: { shop, accept: States.status === "accept"}, wallets, stack })
+                modalHashKey.onOpen()
+                setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
             } else {
-                await deploy(null, blockchain)
+                await acceptModel.deploy({ deployHash: null, accept: false, chain: blockchain, shop })
                 refetch()
             }
 
@@ -91,7 +54,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             setLoading(false)
             if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
         }
-    }, [States.status, shop, refetch, modal])
+    }, [States.status, shop, refetch, modal, wallets,stack.stxAddress])
 
     return (
         <requestsButtonsContext.Provider value={{ shop, modal: { open: modal.onOpen }, methods: { setStates } }}>

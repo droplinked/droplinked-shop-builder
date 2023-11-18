@@ -40,29 +40,24 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     //first close modal
     close();
 
-    const status =
-      appDeveloment && data.user.status === "NEW"
-        ? "VERIFIED"
-        : data.user.status;
+    const status = data.user.status
 
-    if (status === "NEW") {
-      localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
-      navigateUser(status, data.shop.name);
-      return;
-    } else if (status === "DELETED") {
+    if (status === "DELETED") {
       showToast("This account has been deleted", "error");
       return;
     } else {
-      navigateUser(status, data.shop.name);
+      navigateUser(status, data);
       return;
     }
   };
 
   // navigate user based on status
-  const navigateUser = (status: string, shopName: string) => {
+  const navigateUser = (status: string, data: any) => {
+    const shopName = data.shop.name
     // eslint-disable-next-line default-case
     switch (status) {
       case "NEW":
+        localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
         navigate("/email-confirmation");
         return;
       case "VERIFIED":
