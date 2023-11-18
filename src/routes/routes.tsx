@@ -24,6 +24,7 @@ import ProductTypes from "pages/product/types/ProductTypes";
 import HomePage from "pages/public-pages/homePage/HomePage";
 import AboutUs from "pages/public-pages/about/AboutUs";
 import AffiliateProducts from "pages/affiliate/products/AffiliateProducts";
+import PricingPage from "pages/public-pages/pricing/PricingPage";
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -45,6 +46,7 @@ function AppRoutes() {
           <Route path="email-confirmation" element={<ThankForRegisterPage />} />
           <Route path="email-verification/:token" element={<VerifyEmailPage />} />
           <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
+          <Route path="plans" element={<PricingPage />} />
         </Route>
 
         <Route path=":shopname/c" element={<DashboardLayout />}>
