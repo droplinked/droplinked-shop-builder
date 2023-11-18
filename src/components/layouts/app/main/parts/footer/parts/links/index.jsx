@@ -90,8 +90,8 @@ function Links() {
               <Sublink>Events</Sublink>
             </Link>
 
-            <Link target="_blank" href="https://www.flatlay.io">
-              <Sublink>Flatlay</Sublink>
+            <Link target="_blank" href="https://www.droplinked.io">
+              <Sublink>droplinked</Sublink>
             </Link>
           </VStack>
         </VStack>
