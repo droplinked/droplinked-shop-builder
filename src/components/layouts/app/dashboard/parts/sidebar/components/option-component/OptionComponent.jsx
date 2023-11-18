@@ -4,15 +4,16 @@ import { Link, useLocation } from "react-router-dom";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { IconWrapper } from "../../SidebarLayout-style";
 import classes from './style.module.scss'
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 
 const OptionComponent = ({ icon, label, path }) => {
   const location = useLocation();
   const { shop } = useProfile();
+  const { shopRoute } = useCustomNavigate()
 
   const isActive = useMemo(() => {
-    const currentPath = path.split('/')[0]
-    return location.pathname.split('/').find(el => el.toLowerCase() === currentPath.toLowerCase())
-  }, [location, path]);
+    return shopRoute + "/" + path === location.pathname
+  }, [location, path, shopRoute]);
 
   return (
     <Link to={path ? `/${shop?.name}/c/${path}` : ""}>

@@ -15,14 +15,14 @@ function NftImageDefault() {
         <VStack align="stretch" spacing="20px">
             <Flex justifyContent="space-between" alignItems='center'>
                 <VStack align="stretch">
-                    <FieldLabel label='NFT Image' isRequired />
-                    <AppTypography size='14px' color="#808080">it could be the image file you wanna create NFT for, or only a cover for your main product</AppTypography>
+                    <FieldLabel label='Cover Image' isRequired />
+                    <AppTypography size='14px' color="#808080">Upload an image to represent the product in your storefront and blockchain wallet.</AppTypography>
                 </VStack>
             </Flex>
             <Box>
                 <AppUploadImage onChange={(images: any) => updateState("media", refactorImage(images.map(el => ({ url: el.original, thumbnail: el.small }))))} values={media} mode="single" />
             </Box>
-            {<AlertProduct text='Once you publish your product this image will be tokenized as NFT and can not be changed' />}
+            {<AlertProduct text='The cover image will become immutable after the product is dropped and published' />}
         </VStack>
     )
 }

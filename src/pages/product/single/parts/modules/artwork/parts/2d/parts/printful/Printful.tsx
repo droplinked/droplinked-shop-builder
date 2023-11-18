@@ -1,21 +1,23 @@
 import { Flex, VStack } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
-import AppModal, { IAppModal } from 'components/common/modal/AppModal';
 import useAppToast from 'functions/hooks/toast/useToast';
 import axiosInstance from 'lib/apis/axiosConfig';
 import { ImockupGeneratorService, IpodAvailableVariantsService } from 'lib/apis/pod/interfaces';
 import { generateThumbService, mockupGeneratorService, podAvailableVariantsService } from 'lib/apis/pod/services';
 import { productContext } from 'pages/product/single/context';
+import ProductTypeModel from 'pages/product/single/parts/modules/productType/model';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useMutation } from 'react-query';
 import PrintfulModel from './model';
 import classes from './style.module.scss'
 
-interface IProps extends IAppModal { }
+interface IProps {
+    close: any
+}
 
-function Printful({ close, open }: IProps) {
-    const { methods: { updateState }, state: { printful_template_id, media, publish_product, pod_blank_product_id, custome_external_id }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
+function Printful({ close }: IProps) {
+    const { methods: { updateState }, state: { printful_template_id, media, publish_product, pod_blank_product_id, custome_external_id, technique }, productID, store: { state: { variants }, methods: { update } } } = useContext(productContext)
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
     const mockupGenerator = useMutation((params: ImockupGeneratorService) => mockupGeneratorService(params))
     const generateThumb = useMutation((params: any) => generateThumbService(params))
@@ -51,14 +53,10 @@ function Printful({ close, open }: IProps) {
                 },
                 onIframeLoaded: () => setInterval(() => setState('loadIframe', true), 3500),
                 onTemplateSaved: async (res) => setState('TemplateId', res),
-                featureConfig: {
-                    sub_technique_switcher: true,
-                    embroidery_3d_puff: true
-                },
                 ...printful_template_id ? { templateId: printful_template_id } : {
                     initProduct: {
                         productId: pod_blank_product_id.toString(),
-                        technique: "T-SHIRT, EMBROIDERY, EMBROIDERY_FULL_COLOR",
+                        technique: technique
                     }
                 }
             });
@@ -66,7 +64,7 @@ function Printful({ close, open }: IProps) {
         } catch (error) {
             setState('loading', false)
         }
-    }, [pod_blank_product_id, printful_template_id, custome_external_id])
+    }, [pod_blank_product_id, printful_template_id, custome_external_id, technique])
 
     // after success PFDesignMaker and get templateID
     const generate = useCallback(async () => {
@@ -85,11 +83,12 @@ function Printful({ close, open }: IProps) {
             });
 
             // mockupGenerator data body
-            const mockBody = {
+            const mockBody: ImockupGeneratorService = {
                 params: {
                     variant_ids: data.flatMap(el => el.sizes.map(sized => sized.id)),
                     format: 'png',
-                    product_template_id: States.TemplateId.toString()
+                    product_template_id: States.TemplateId.toString(),
+                    technique
                 },
                 productID: pod_blank_product_id
             }
@@ -130,7 +129,7 @@ function Printful({ close, open }: IProps) {
             setState('TemplateId', null)
             setState('loading', false)
         }
-    }, [pod_blank_product_id, States.TemplateId])
+    }, [pod_blank_product_id, States.TemplateId, technique])
 
     const generateImages = useCallback(async (mocks: any) => {
         try {
@@ -168,22 +167,34 @@ function Printful({ close, open }: IProps) {
 
     // onClick save
     const save = useCallback(async () => {
-        if (!States.DesignMaker) return false
-        setState('loading', true)
-        States.DesignMaker.sendMessage({ event: 'saveDesign' })
+        try {
+            if (!States.DesignMaker) return false
+            setState('loading', true)
+            States.DesignMaker.sendMessage({ event: 'saveDesign' })
+        } catch (error) {
+            console.log(error);
+
+        }
+    }, [States.DesignMaker])
+
+    const back = useCallback(async () => {
+        updateState('technique', null)
+        ProductTypeModel.updateProductType({ value: pod_blank_product_id, updateState })
+        updateState("media", [])
     }, [States.DesignMaker])
 
     return (
-        <AppModal size="7xl" isCentered={false} title="Create a Product Template" contentProps={{ maxWidth: "1400px", width: "95%" }} close={() => { }} open={open}>
-            <VStack align="stretch" spacing={4} paddingTop="20px">
-                <div style={{ visibility: States.loadIframe ? "visible" : "hidden", height: States.loadIframe ? "auto" : "0" }} className={classes.model} ref={ref} id="printful"></div>
-                {!States.loadIframe && <Flex height="300px" justifyContent="center" alignItems="center"><LoadingComponent /></Flex>}
-                <Flex justifyContent="space-between">
+        <VStack align="stretch" spacing={4} paddingTop="20px">
+            <div style={{ visibility: States.loadIframe ? "visible" : "hidden", height: States.loadIframe ? "auto" : "0" }} className={classes.model} ref={ref} id="printful"></div>
+            {!States.loadIframe && <Flex height="300px" justifyContent="center" alignItems="center"><LoadingComponent /></Flex>}
+            <Flex justifyContent="space-between">
+                <Flex gap="20px">
                     <BasicButton onClick={close} variant="outline" isDisabled={States.loading}>Discard</BasicButton>
-                    <BasicButton onClick={save} isDisabled={(Boolean(productID) && publish_product) || States.loading || !States.loadIframe} isLoading={States.loading}>Save</BasicButton>
+                    {!(Boolean(productID) && publish_product) ? <BasicButton onClick={back} variant="ghost" isDisabled={States.loading}>Back</BasicButton> : null}
                 </Flex>
-            </VStack>
-        </AppModal>
+                <BasicButton onClick={save} isDisabled={(Boolean(productID) && publish_product) || States.loading || !States.loadIframe} isLoading={States.loading}>Save</BasicButton>
+            </Flex>
+        </VStack>
     )
 }
 

@@ -6,6 +6,8 @@ import {
 } from "@chakra-ui/react";
 import OrderDetailTable from "./components/table/OrderDetailTable";
 import OrderDetailCost from "./components/table/parts/cost/OrderModalProduct";
+import OrderChain from "./components/table/parts/chain/OrderChain";
+import OrderModalPayment from "./components/table/parts/payment/OrderModalPayment";
 
 const OrderDetailComponent = () => {
 
@@ -13,8 +15,9 @@ const OrderDetailComponent = () => {
     <VStack align={"stretch"} color={"#FFF"}>
       <VStack align={"stretch"} spacing={10}>
         <Box><OrderDetailTable /></Box>
+        <Box><OrderModalPayment /></Box>
         <Box><OrderDetailCost /></Box>
-        {/* <Box><OrderDetailPayment /></Box> */}
+        <Box><OrderChain /></Box>
       </VStack>
 
     </VStack>

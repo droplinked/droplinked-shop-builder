@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopService, IshopUpdateService } from "./interfaces"
+import { IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService } from "./interfaces"
 
 export const shopService = ({ shopName }: IshopService) => {
     return axiosInstance.get(`shop/${shopName}`)
@@ -19,8 +19,8 @@ export const paymentCreateService = (params: Array<IpaymentCreateService>) => {
     })
 }
 
-export const shopPublicRecordedService = () => {
-    return axiosInstance.get(`shop/public/recorded`)
+export const shopPublicRecordedService = ({ page, tags }: IshopPublicRecordedService) => {
+    return axiosInstance.get(`shop/public/recorded?limit=10&page=${page}${tags ? '&tags=' + `["${tags}"]` : ''}`)
 }
 
 export const recordedShopService = ({ shopName }: IrecordedShopService) => {
@@ -40,5 +40,9 @@ export const shopUpdateService = (params: IshopUpdateService) => {
 }
 
 export const availableTemplateService = () => {
-    return axiosInstance.get(`shop/available/templates`,)
+    return axiosInstance.get(`shop/available/templates`)
+}
+
+export const ShopRecordedService = ({ categoryIds, page, subCategoryIds, title }: IShopRecordedService) => {
+    return axiosInstance.get(`product/community/recorded?limit=25&page=${page}${categoryIds ? '&categoryIds=' + `["${categoryIds}"]` : ''}${subCategoryIds ? '&subCategoryIds=' + `["${subCategoryIds}"]` : ''}${title ? '&title=' + title : ''}`)
 }

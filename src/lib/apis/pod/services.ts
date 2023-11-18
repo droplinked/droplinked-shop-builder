@@ -44,3 +44,7 @@ export const podCategoryProductService = ({ subCategoryId }: IpodCategoryProduct
 export const generateThumbService = (images: Array<string>) => {
     return axiosInstance.post(`product/upload/external/images`, images)
 };
+
+export const getPodProductService = (productID: string) => {
+    return axiosInstance.get(`pod/printful/techniques/product/${productID}`)
+};

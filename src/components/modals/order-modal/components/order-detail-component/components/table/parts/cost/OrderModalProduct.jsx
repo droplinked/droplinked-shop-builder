@@ -7,59 +7,46 @@ import AppTypography from "components/common/typography/AppTypography";
 function OrderDetailCost() {
   const { order } = useContext(orderModalContext);
 
-  const textTypes = {
-    typeA: {
-      fontSize: { base: "sm", sm: "md" },
-      fontWeight: "extrabold",
-    },
-    typeB: {
-      fontSize: { base: "sm", sm: "md" },
-      color: "lightGray",
-    },
-  };
-
   const data = [
     {
-      caption: 'Items',
-      placeholder: `${order?.items.length} items`,
-      value: order?.totalItemsAmount ? parseFloat(order?.totalItemsAmount).toFixed(2) : ''
+      caption: 'Total Product Cost',
+      placeholder: null,
+      value: order?.details?.totalProductCost ? parseFloat(order?.details?.totalProductCost).toFixed(2) : ''
     },
     {
-      caption: 'Discount',
+      caption: 'Cost Of Good Sold',
       placeholder: null,
-      value: order?.totalDiscountAmount ? order?.totalDiscountAmount.toFixed(2) : ''
+      description: '(Tax + Shipping + Product Cost)',
+      value: order?.details?.totalOfGoodSold ? parseFloat(order?.details?.totalOfGoodSold).toFixed(2) : ''
     },
     {
-      caption: order?.shipmentData ? order?.shipmentData?.title : 'Shipping',
+      caption: 'Affiliate Share',
       placeholder: null,
-      value: order?.shippingPrice ? parseFloat(order?.shipmentData ? order?.shipmentData?.price : order?.shippingPrice).toFixed(2) : ''
+      value: order?.details?.affiliateShare ? parseFloat(order?.details?.affiliateShare).toFixed(2) : ''
     },
     {
-      caption: 'Order Tax',
+      caption: 'Final Earning',
       placeholder: null,
-      value: order?.taxAmount ? order?.taxAmount.toFixed(2) : ''
+      value: order?.details?.finalEarning ? parseFloat(order?.details?.finalEarning).toFixed(2) : '',
+      color: "#2BCFA1"
     },
-    {
-      caption: 'Total Cost',
-      placeholder: null,
-      value: order?.totalPriceCart ? order?.totalPriceCart.toFixed(2) : ''
-    },
-    {
-      caption: 'Total Crypto Payment',
-      placeholder: null,
-      value: order?.cryptoAmount ? order?.cryptoAmount : ''
-    }
   ]
 
   return (
-    <VStack align={"stretch"} spacing={3} color="#C2C2C2">
-      {data.map((el, key) => el.value || el.placeholder ? (
-        <HStack key={key} justifyContent={"space-between"} alignItems="center">
-          <AppTypography size="12px">{el.caption}</AppTypography>
-          {el.placeholder && <AppTypography size="12px" color="#808080">{el.placeholder}</AppTypography>}
-          <Box>{el.value ? '$' + el.value : "-"}</Box>
-        </HStack>
-      ) : null)}
+    <VStack align="stretch">
+      <AppTypography size="16px" weight="bolder" color="#FFF">Total Cost</AppTypography>
+      <VStack align={"stretch"} spacing={3} color="#C2C2C2">
+        {data.map((el, key) => el.value !== null ? (
+          <HStack key={key} color={el?.color || "#C2C2C2"} justifyContent={"space-between"} alignItems="center">
+            <VStack align="stretch" spacing="0">
+              <AppTypography size="12px">{el.caption}</AppTypography>
+              {el.description && <AppTypography size="12px" color="#808080">{el.description}</AppTypography>}
+            </VStack>
+            {el.placeholder && <AppTypography size="12px" color="#808080">{el.placeholder}</AppTypography>}
+            <AppTypography size="12px">{el.value ? '$' + el.value : "-"}</AppTypography>
+          </HStack>
+        ) : null)}
+      </VStack>
     </VStack>
   );
 }

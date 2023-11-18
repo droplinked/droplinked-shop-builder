@@ -12,7 +12,6 @@ import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo";
 import MainLayout from 'components/layouts/app/main/mainLayout'
 import NotFound from 'pages/404/404'
 import Enquiry from 'pages/public-pages/enquiry-page/EnquiryPage'
-import ContactInfo from 'pages/register-pages/pages/contact-info/ContactInfo'
 import TermsPage from 'pages/public-pages/terms-page/TermsPage'
 import PrivacyPage from 'pages/public-pages/privacy-page/PrivacyPage'
 import ShopPage from 'pages/public-pages/shop-page/ShopPage'
@@ -24,6 +23,7 @@ import ShopProduct from 'pages/affiliate/product/ShopProduct'
 import ProductTypes from "pages/product/types/ProductTypes";
 import HomePage from "pages/public-pages/homePage/HomePage";
 import AboutUs from "pages/public-pages/about/AboutUs";
+import AffiliateProducts from "pages/affiliate/products/AffiliateProducts";
 import PricingPage from "pages/public-pages/pricing/PricingPage";
 
 const ProductSingle = lazy(() => import("pages/product/single"))
@@ -52,13 +52,11 @@ function AppRoutes() {
         <Route path=":shopname/c" element={<DashboardLayout />}>
           <Route path="register" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
-            <Route path="contact-info" element={<ContactInfo />} />
             <Route path="design" element={<DesignPage />} />
             <Route path="technical" element={<TechnicalPage />} />
           </Route>
           <Route path="settings" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
-            <Route path="contact-info" element={<ContactInfo />} />
             <Route path="design" element={<DesignPage />} />
             <Route path="technical" element={<TechnicalPage />} />
             <Route path="coupons" element={<CouponsSetting />} />
@@ -72,7 +70,8 @@ function AppRoutes() {
           <Route path="collections" element={<Collections />} />
           <Route path="orders" element={<Orders />} />
           <Route path="affiliate" element={<AffiliateLayout />}>
-            <Route index element={<Shops />} />
+            <Route index element={<AffiliateProducts />} />
+            <Route path="stores" element={<Shops />} />
             <Route path="shops">
               <Route index element={<Shops />} />
               <Route path=":shopName">

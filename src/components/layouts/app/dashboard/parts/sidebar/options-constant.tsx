@@ -1,4 +1,3 @@
-import { appDeveloment } from "lib/utils/app/variable";
 import AppIcons from "assest/icon/Appicons";
 import React from "react";
 

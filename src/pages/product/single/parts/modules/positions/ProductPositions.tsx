@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, Image, VStack } from "@chakra-ui/react";
 import React, { useCallback, useContext } from "react";
 import { productContext } from "pages/product/single/context";
 import AppTypography from "components/common/typography/AppTypography";
@@ -17,16 +17,19 @@ function ProductPositions() {
   }, [m2m_positions])
 
   return (
-    <Flex gap={3}>
-      {m2m_positions_options.map((el: any, key: number) => {
-        const isActive = m2m_positions.find((pos: any) => pos?.placement === el?.placement)
-        return (
-          <Box key={key} backgroundColor="#1C1C1C" padding="8px 16px" onClick={() => click(isActive, el)} cursor="pointer" borderRadius="8px" border={`2px solid ${isActive ? '#2BCFA1' : 'transparent'}`}>
-            <AppTypography size="14px">{el?.placement}</AppTypography>
-          </Box>
-        )
-      })}
-    </Flex >
+    <VStack align="stretch" spacing="16px">
+      <AppTypography size='14px'>Customers Position Options</AppTypography>
+      <Flex gap={3}>
+        {m2m_positions_options.map((el: any, key: number) => {
+          const isActive = m2m_positions.find((pos: any) => pos?.placement === el?.placement)
+          return (
+            <Box key={key} backgroundColor="#1C1C1C" padding="8px 16px" onClick={() => click(isActive, el)} cursor="pointer" borderRadius="8px" border={`2px solid ${isActive ? '#2BCFA1' : 'transparent'}`}>
+              <AppTypography size="14px">{el?.placement}</AppTypography>
+            </Box>
+          )
+        })}
+      </Flex >
+    </VStack>
   );
 }
 

@@ -24,6 +24,7 @@ export type productActions =
 
 export const productParams: IproductState = {
     title: '',
+    ownerID: null,
     description: '',
     productCollectionID: '',
     media: [],
@@ -53,7 +54,9 @@ export const productParams: IproductState = {
         message: null
     },
     mainCategory: null,
-    subCategories: []
+    subCategories: [],
+    technique: null,
+    isAddToCartDisabled: false
 }
 
 namespace ProductPageNamespace {
@@ -63,6 +66,7 @@ namespace ProductPageNamespace {
         print_positions: Array<any>
         product_types: Array<any>
         prev_data: IproductState
+        product_printful: any
     }
 
     export interface IStates {
@@ -79,7 +83,8 @@ namespace ProductPageNamespace {
             available_variant: [],
             print_positions: [],
             prev_data: productParams,
-            product_types: []
+            product_types: [],
+            product_printful: null
         },
         loading: false,
         sync: false

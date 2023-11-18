@@ -26,9 +26,9 @@ function ProductTypes() {
     },
     {
       title: "Digital Product",
-      description: appDeveloment ? "Upload digital assents, artworks, NFTs to sell" : "Coming soon...",
+      description: "Upload digital assents, artworks, NFTs to sell",
       image: "/assets/images/digital.svg",
-      type: appDeveloment ? routeCreate + "digital" : null
+      type: routeCreate + "digital"
     },
     {
       title: "Event",

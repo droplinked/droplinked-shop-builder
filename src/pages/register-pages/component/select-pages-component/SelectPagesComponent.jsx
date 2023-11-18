@@ -40,15 +40,6 @@ const SelectPagesComponent = () => {
       >
         Payment Options
       </SideText>
-      <SideText
-        cursor={isSettings && "pointer"}
-        color={currentPath.includes("contact-info") ? "primary" : "lightGray"}
-        onClick={() => {
-          if (isSettings) shopNavigate("settings/contact-info");
-        }}
-      >
-        Social Links
-      </SideText>
       {isSettings && (
         <SideText
           cursor={isSettings && "pointer"}

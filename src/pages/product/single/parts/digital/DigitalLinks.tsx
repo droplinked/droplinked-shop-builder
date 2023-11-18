@@ -11,7 +11,7 @@ function DigitalLinks() {
     return (
         <>
             {product_type === "DIGITAL" && (
-                <ProductCollapse title='Product Link' description='Write a message to your customers and attach the original file link.'>
+                <ProductCollapse title='Delivery Message' description='Add an email message and the original file URL for the customer to receive post-purchase.'>
                     <VStack spacing="60px" align={"stretch"}>
                         <MessageDigital />
                         <OrginalFile />

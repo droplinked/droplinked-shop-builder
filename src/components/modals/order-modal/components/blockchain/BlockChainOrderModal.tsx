@@ -7,13 +7,14 @@ import orderModalContext from '../../context'
 
 function BlockChainOrderModal() {
     const { order } = useContext(orderModalContext)
-    const paymentType = order?.paymentType
+    const paymentType = order?.details?.paymentType
+
     return (
         <>
             {paymentType ? (
                 <HStack alignItems="center" color="#FFF">
                     <AppTypography size='14px' weight='bold'>Payment with</AppTypography>
-                    <IconBlockchain blockchain={paymentType} />
+                    <IconBlockchain blockchain={paymentType} props={{ width: "24px", height: "24px" }} />
                     <AppTypography size='14px' weight='bold' color="#FF473E">{capitalizeFirstLetter(paymentType)} payment</AppTypography>
                 </HStack>
             ) : null}

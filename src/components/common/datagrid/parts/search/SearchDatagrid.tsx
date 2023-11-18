@@ -7,7 +7,7 @@ export interface ISearchDatagrid {
     value?: string
 }
 
-function SearchDatagrid({ onChange, value }: ISearchDatagrid) {
+function SearchDatagrid({ onChange, value }: ISearchDatagrid) {    
     return (
         <InputGroup w="200px">
             <InputLeftElement
@@ -17,7 +17,7 @@ function SearchDatagrid({ onChange, value }: ISearchDatagrid) {
             <Input
                 p="8px 36px"
                 borderRadius="24px"
-                {...value && { value }}
+                value={value}
                 border="1px solid"
                 borderColor="line"
                 _placeholder={{ color: "#C2C2C2", opacity: "1" }}

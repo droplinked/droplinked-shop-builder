@@ -54,7 +54,7 @@ function SocialAffliate({ social, size }: IProps) {
         },
         web: {
             icon: <AppIcons.Web {...sized} />,
-            url: 'https://'
+            url: 'http://'
         },
     }
 

@@ -24,7 +24,7 @@ function AppDataGrid({ filters, rows, buttons, loading, empty, search, paginatio
             <VStack align={"stretch"} spacing={6}>
                 <Flex justifyContent={"space-between"}>
                     <HStack spacing={8}>
-                        {search && <SearchDatagrid onChange={search.onChange} />}
+                        {search && <SearchDatagrid onChange={search.onChange} value={search.value} />}
                         {filters && <FiltersDatagrid item={filters} />}
                     </HStack>
                     {buttons && <DatagridButtons buttons={buttons} />}

@@ -13,7 +13,7 @@ function DigitalInformation() {
     return (
         <>
             {product_type === "DIGITAL" && (
-                <ProductCollapse title='Product Information' description="Write a message to your customers and attach the original file link.">
+                <ProductCollapse title='Product Variants' description="Add the variants, and set a cover image to preview the product.">
                     <VStack spacing="60px" align={"stretch"}>
                         <SaleInfromation />
                         <NftImage />

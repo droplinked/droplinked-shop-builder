@@ -8,6 +8,7 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
+import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain'
 
 function ContainerPayment({ title, value, locked }) {
 
@@ -35,30 +36,10 @@ function ContainerPayment({ title, value, locked }) {
     if (!checked) activeMethod(false)
   }, [title])
 
-
-  const getIcon = useCallback((icon: string) => {
-    let styles = { width: "16px", height: "16px" }
-
-    switch (icon) {
-      case "CASPER":
-        return <AppIcons.CasperIcon style={styles} />
-      case "NEAR":
-        return <AppIcons.NearWalletIcon style={styles} />
-      case "STACKS":
-        return <AppIcons.Stacks style={styles} />
-      case "STRIPE":
-        return <AppIcons.Stripe width="30px" height="30px" />
-
-      default:
-        return ""
-    }
-  }, [])
-
   const edit = useCallback(() => {
     activeMethod(false)
     setSwitch(true)
   }, [])
-
 
   return (
     <HStack justifyContent="space-between" width="100%">
@@ -72,7 +53,7 @@ function ContainerPayment({ title, value, locked }) {
             <HStack alignItems="center" padding="0" justifyContent="space-between" width="100%">
               {locked ? (
                 <>
-                  <Box>{getIcon(title)}</Box>
+                  <Box><IconBlockchain blockchain={title} props={{ width: "16px", height: "16px" }} /></Box>
                   <Box position={"relative"} width="100%" top={.9}>
                     <input type="text" style={{ width: "100%" }} className={classes.textbox} value={value} readOnly />
                   </Box>
@@ -97,7 +78,7 @@ function ContainerPayment({ title, value, locked }) {
             </HStack>
           </PageContentWrapper>
         </HStack>
-      ) : Switch ? <Box>{getIcon("STRIPE")}</Box> : null}
+      ) : Switch ? <Box><IconBlockchain blockchain={title} props={{ width: "16px", height: "16px" }} /></Box> : null}
     </HStack>
   )
 }
