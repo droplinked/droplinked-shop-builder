@@ -3,19 +3,19 @@ import React, { useCallback, useEffect, useReducer } from 'react'
 import { productContext } from './context'
 import { useParams } from 'react-router-dom'
 import { useMutation } from 'react-query'
-import { productByIdServices } from 'lib/apis/product/productServices'
 import ProductSingleModel from './model/model'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
-import { IproductByIdServices } from 'lib/apis/product/interfaces'
 import ProductStore from './parts/store/ProductStore'
 import productPageNamespace from './reducers'
 import ProductLoading from './parts/loading/ProductLoading'
 import { nanoid } from 'nanoid'
 import NormalProduct from './layouts/NormalProduct'
 import PODProduct from './layouts/PODProduct'
+import { productService } from 'lib/apis/shop/shopServices'
+import { IproductService } from 'lib/apis/shop/interfaces'
 
 function ProductSingle() {
-    const { mutate, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
+    const { mutate, isLoading } = useMutation((params: IproductService) => productService(params))
     const { reducers, initialState } = productPageNamespace
     const params = useParams()
     const [state, dispatch] = useReducer(reducers, initialState)
@@ -30,7 +30,6 @@ function ProductSingle() {
             mutate(
                 {
                     productID: params?.productId,
-                    shopname: shop.name
                 },
                 {
                     onSuccess: (res) => res.data.statusCode === 200 && res.data?.data ? resolve(refactorData(res.data.data)) : reject("Cant find this product"),
@@ -62,7 +61,7 @@ function ProductSingle() {
     }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log('isAddToCartDisabled', state.params.isAddToCartDisabled);
+    //     console.log('sku test', state.params.sku);
     // }, [state])
 
     return (

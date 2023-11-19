@@ -24,7 +24,7 @@ function ShopProduct() {
   const updateState = (key, value) => setStates(prev => ({ ...prev, [key]: value }))
 
   // Get product
-  useEffect(() => mutate({ productID: params.productID }), [params.productID])
+  useEffect(() => mutate({ productID: params.productID, recorded: true }), [params.productID])
 
   // Get shop
   useEffect(() => shopService.mutate({ shopName: params.shopName }), [params.shopName])
@@ -32,7 +32,7 @@ function ShopProduct() {
   return (
     <>
       {isLoading ? <ShopProductSkeleton /> : product ? (
-        <ShopProductContext.Provider value={{ product, shop, states: States,updateState }}>
+        <ShopProductContext.Provider value={{ product, shop, states: States, updateState }}>
           <AppCard>
             <VStack align={"stretch"} spacing={20}>
               <Flex gap={14}>

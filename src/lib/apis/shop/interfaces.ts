@@ -18,6 +18,7 @@ export interface IrecordedShopService {
 
 export interface IproductService {
     productID: string
+    recorded?: boolean
 }
 
 export interface IshopSocial {
