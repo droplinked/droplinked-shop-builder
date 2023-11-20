@@ -1,7 +1,9 @@
 import { Box, Flex, Text, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
-import { IproductService, IrecordedShopService } from 'lib/apis/shop/interfaces'
-import { productService, recordedShopService } from 'lib/apis/shop/shopServices'
+import { IproductByIdServices } from 'lib/apis/product/interfaces'
+import { productByIdServices } from 'lib/apis/product/productServices'
+import { IrecordedShopService } from 'lib/apis/shop/interfaces'
+import { recordedShopService } from 'lib/apis/shop/shopServices'
 import React, { useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import { useParams } from 'react-router-dom'
@@ -12,7 +14,7 @@ import ShopProductSkeleton from './parts/skeleton/ShopProductSkeleton'
 import SliderProduct from './parts/slider/SliderProduct'
 
 function ShopProduct() {
-  const { mutate, data, isLoading } = useMutation((params: IproductService) => productService(params))
+  const { mutate, data, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
   const shopService = useMutation((params: IrecordedShopService) => recordedShopService(params))
   const params = useParams()
   const product = data?.data?.data || null
@@ -24,7 +26,7 @@ function ShopProduct() {
   const updateState = (key, value) => setStates(prev => ({ ...prev, [key]: value }))
 
   // Get product
-  useEffect(() => mutate({ productID: params.productID, recorded: true }), [params.productID])
+  useEffect(() => mutate({ productID: params.productID, shopname: params.shopName }), [params.productID])
 
   // Get shop
   useEffect(() => shopService.mutate({ shopName: params.shopName }), [params.shopName])
