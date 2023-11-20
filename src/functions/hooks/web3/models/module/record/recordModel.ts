@@ -39,9 +39,15 @@ export interface Ideploy {
 const recordModel = ({
     record: async ({ product, commission, blockchain, quantity, sku, imageUrl, accountAddress }: Irecord) => {
         const provider = getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress)
-        const record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
+        const record = await provider.recordProduct(recordModel.refactorSku(sku), product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
 
         return record
+    },
+
+    refactorSku: (sku: any) => {
+        const result = {}
+        Object.keys(sku).filter(el => !['recordData', 'partialOwners', 'sold_units'].includes(el)).forEach(el => result[el] = sku[el])
+        return result
     },
 
     deploy: ({ data, deployHash, product, sku }: Ideploy) => {
