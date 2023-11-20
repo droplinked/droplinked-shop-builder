@@ -19,7 +19,7 @@ function Banner() {
                 <Flex height="100%" justifyContent="center" alignItems="center" position="relative" zIndex="2">
                     <VStack justifyContent="center" color="#FFF">
                         <Droplinked />
-                        <Box textAlign="center" padding="0 20px"><AppTypography size={{ base: "20px", sm: "25px", lg: "30px", xl: "50px" }} weight='bolder'>Powering the Next Generation of Commerce</AppTypography></Box>
+                        <Box textAlign="center" padding="0 20px"><AppTypography fontSize={{ base: "20px", sm: "25px", lg: "30px", xl: "50px" }} fontWeight='bold'>Powering the Next Generation of Commerce</AppTypography></Box>
                         <Box padding="10px 0 30px 0">
                             <Text fontSize={{ base: "14px", sm: "24px", xl: "34px" }} display="flex">
                                 <Typewriter
@@ -43,7 +43,7 @@ function Banner() {
                         </Box>
                         <Box>
                             <BasicButton onClick={onOpen} minWidth={{ base: "120px", sm: "160px" }} height={{ base: "32px", sm: "40px" }}>
-                                <AppTypography size={{ base: "12px", sm: "16px" }}>Start Selling</AppTypography>
+                                <AppTypography fontSize={{ base: "12px", sm: "16px" }}>Start Selling</AppTypography>
                             </BasicButton>
                         </Box>
                     </VStack>

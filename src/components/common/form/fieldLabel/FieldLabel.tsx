@@ -19,7 +19,7 @@ function FieldLabel({ isRequired, label, loading, color,textProps }: IFieldLabel
                 <Box width={"fit-content"}>
                     <AppSkeleton isLoaded={loading}>
                         <HStack>
-                            <AppTypography size='16px' color={"#FFF" || color} {...textProps}>{label}</AppTypography>
+                            <AppTypography fontSize='16px' color={"#FFF" || color} {...textProps}>{label}</AppTypography>
                             {isRequired && <FieldLabelReuired />}
                         </HStack>
                     </AppSkeleton>

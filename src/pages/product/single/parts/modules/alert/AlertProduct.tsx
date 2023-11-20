@@ -12,7 +12,7 @@ function AlertProduct({ text }: Iprops) {
     return (
         <Flex alignItems="center" gap="10px">
             <AppIcons.InfoIcon className={classes.icon} />
-            <AppTypography size='12px' color="#FEB900">{text}</AppTypography>
+            <AppTypography fontSize='12px' color="#FEB900">{text}</AppTypography>
         </Flex>
     )
 }

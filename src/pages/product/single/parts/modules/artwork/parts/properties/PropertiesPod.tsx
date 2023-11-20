@@ -19,7 +19,7 @@ function PropertiesPod() {
             {sku.length ? (
                 <VStack align="stretch">
                     <Flex gap={"10px"}>
-                        <Box><AppTypography size='14px'>Available Colors:</AppTypography></Box>
+                        <Box><AppTypography fontSize='14px'>Available Colors:</AppTypography></Box>
                         <Flex gap={"5px"}>
                             {options(sku).colors.map((el, key) => (
                                 <Box key={key} backgroundColor={el.value} width="18px" height="18px" borderRadius="100%"></Box>
@@ -27,10 +27,10 @@ function PropertiesPod() {
                         </Flex>
                     </Flex>
                     <Flex gap={"10px"}>
-                        <Box><AppTypography size='14px'>Available Size: </AppTypography></Box>
+                        <Box><AppTypography fontSize='14px'>Available Size: </AppTypography></Box>
                         <Flex gap={"10px"}>
                             {sizes.map((el, key) => (
-                                <Box key={key}><AppTypography size='14px'>{el}</AppTypography></Box>
+                                <Box key={key}><AppTypography fontSize='14px'>{el}</AppTypography></Box>
                             ))}
                         </Flex>
                     </Flex>

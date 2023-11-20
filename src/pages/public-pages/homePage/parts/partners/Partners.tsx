@@ -43,8 +43,8 @@ function Partners({ loaded }) {
                             {data.map((el, key) => (
                                 <MainCard transition="1s" padding={{ base: "25px", lg: "40px" }} key={key}>
                                     <Image width={{ base: "36px", md: "64px" }} paddingBottom="10px" src={el.icon} alt={el.title} />
-                                    <AppTypography height={{ base: "42px", sm: "30px", md: "40px", lg: "72px" }} size={{ base: "14px", sm: "16px", lg: "24px" }} weight='bolder' color="#f5f5f5">{el.title}</AppTypography>
-                                    <a href={el.url} target="_blank"><AppTypography backgroundColor="#292929" color="#C2C2C2" textAlign="center" borderRadius="8px" lineHeight="40px" height="40px" size={{ base: '14px', md: '16px' }} weight='normal'>View Store</AppTypography></a>
+                                    <AppTypography height={{ base: "42px", sm: "30px", md: "40px", lg: "72px" }} fontSize={{ base: "14px", sm: "16px", lg: "24px" }} fontWeight='bold' color="#f5f5f5">{el.title}</AppTypography>
+                                    <a href={el.url} target="_blank"><AppTypography backgroundColor="#292929" color="#C2C2C2" textAlign="center" borderRadius="8px" lineHeight="40px" height="40px" fontSize={{ base: '14px', md: '16px' }} fontWeight='normal'>View Store</AppTypography></a>
                                 </MainCard>
                             ))}
                         </Flex>

@@ -16,7 +16,7 @@ function NftImageDefault() {
             <Flex justifyContent="space-between" alignItems='center'>
                 <VStack align="stretch">
                     <FieldLabel label='Cover Image' isRequired />
-                    <AppTypography size='14px' color="#808080">Upload an image to represent the product in your storefront and blockchain wallet.</AppTypography>
+                    <AppTypography fontSize='14px' color="#808080">Upload an image to represent the product in your storefront and blockchain wallet.</AppTypography>
                 </VStack>
             </Flex>
             <Box>

@@ -28,7 +28,7 @@ function Pagination({ current, lastPage, nextPage, prevPage }: IPagination) {
             result.push(
                 <Link to={getRoutePage(key)}>
                     <Flex height="40px" width="40px" justifyContent="center" alignItems="center" color="#FFF" border={`1px solid ${active ? "#4B4B4B" : "transparent"}`} borderRadius="100px">
-                        <AppTypography size='14px' weight={active ? 'bolder' : 'normal'}>{key}</AppTypography>
+                        <AppTypography fontSize='14px' fontWeight={active ? 'bold' : 'normal'}>{key}</AppTypography>
                     </Flex>
                 </Link>
             )
@@ -40,9 +40,9 @@ function Pagination({ current, lastPage, nextPage, prevPage }: IPagination) {
         <>
             {lastPage > 1 && (
                 <Flex justifyContent="center" alignItems="center" gap={5}>
-                    <Box cursor={prevPage ? "pointer" : "auto"} color={prevPage ? "#FFF" : "#777"} onClick={() => prevPage && navigate(getRoutePage(current - 1))}><AppTypography size="12px">PREV</AppTypography></Box>
+                    <Box cursor={prevPage ? "pointer" : "auto"} color={prevPage ? "#FFF" : "#777"} onClick={() => prevPage && navigate(getRoutePage(current - 1))}><AppTypography fontSize="12px">PREV</AppTypography></Box>
                     <HStack>{list}</HStack>
-                    <Box cursor={nextPage ? "pointer" : "auto"} color={nextPage ? "#FFF" : "#777"} onClick={() => nextPage && navigate(getRoutePage(current + 1))}><AppTypography size="12px">NEXT</AppTypography></Box>
+                    <Box cursor={nextPage ? "pointer" : "auto"} color={nextPage ? "#FFF" : "#777"} onClick={() => nextPage && navigate(getRoutePage(current + 1))}><AppTypography fontSize="12px">NEXT</AppTypography></Box>
                 </Flex>
             )}
         </>

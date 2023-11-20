@@ -20,8 +20,8 @@ function ShopsProfile({ avatar, title, desciption, shopname, social, link }: Ipr
   const jsxContent = useMemo(() => (
     <VStack align={"stretch"} spacing={3}>
       <Box><Image src={avatar} borderRadius="100px" width="36px" height="36px" /></Box>
-      <Box><AppTypography size='14px' color="#2EC99E" weight="bolder">{title}</AppTypography></Box>
-      {desciption && <Box><AppTypography size='12px' color="#C2C2C2">{desciption}</AppTypography></Box>}
+      <Box><AppTypography fontSize='14px' color="#2EC99E" fontWeight="bold">{title}</AppTypography></Box>
+      {desciption && <Box><AppTypography fontSize='12px' color="#C2C2C2">{desciption}</AppTypography></Box>}
     </VStack>
   ), [avatar, desciption, title])
 

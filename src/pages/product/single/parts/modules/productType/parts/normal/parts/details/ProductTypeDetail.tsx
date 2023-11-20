@@ -34,7 +34,7 @@ function ProductTypeDetail({ boxes, image, title }: IProps) {
                     </Box>
                     <VStack width="100%" align="stretch" color="#C2C2C2">
                         {boxes.map((el, key) => (
-                            <AppTypography key={key} size='14px' weight={el === "title" ? "bolder" : "normal"}>{getDetail[el]}</AppTypography>
+                            <AppTypography key={key} fontSize='14px' fontWeight={el === "title" ? "bold" : "normal"}>{getDetail[el]}</AppTypography>
                         ))}
                     </VStack>
                 </Flex>

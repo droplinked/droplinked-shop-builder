@@ -45,7 +45,7 @@ function ContainerPayment({ title, value, locked }) {
     <HStack justifyContent="space-between" width="100%">
       <HStack spacing="18px">
         <Box position={"relative"} bottom={1.9}><AppSwitch isChecked={Switch} onChange={activeHandle} /></Box>
-        <Box><AppTypography size="14px" color="#C2C2C2" weight='bolder'>{title}</AppTypography></Box>
+        <Box><AppTypography fontSize="14px" color="#C2C2C2" fontWeight='bold'>{title}</AppTypography></Box>
       </HStack>
       {title !== "STRIPE" ? (
         <HStack width={"60%"}>

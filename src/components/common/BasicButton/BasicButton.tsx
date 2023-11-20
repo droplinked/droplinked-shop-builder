@@ -53,7 +53,7 @@ export default function BasicButton(props: IBasicButton) {
           />
         </>
       ) : null}
-      <Box {...props.isLoading && { color: "transparent" }}><AppTypography size={sizesHandel(sizes).text} fontWeight="600">{children}</AppTypography></Box>
+      <Box {...props.isLoading && { color: "transparent" }}><AppTypography fontSize={sizesHandel(sizes).text} fontWeight="600">{children}</AppTypography></Box>
     </Button>
   );
 }

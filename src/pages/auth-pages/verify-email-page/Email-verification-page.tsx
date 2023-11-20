@@ -32,7 +32,7 @@ export default function VerifyEmailPage() {
     <Flex justifyContent="center" padding="150px 0">
       <VStack align="stretch" width="95%" backgroundColor="#090909" padding="100px 0" borderRadius="10px" maxWidth="400px" textAlign="center" spacing={5}>
         <LoadingComponent />
-        <AppTypography size="16px" color="#FFF">Please Waiting...</AppTypography>
+        <AppTypography fontSize="16px" color="#FFF">Please Waiting...</AppTypography>
       </VStack>
     </Flex>
   );

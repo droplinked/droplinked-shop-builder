@@ -30,13 +30,13 @@ function DetailsProduct({ close, open, productID }: Iprops) {
                     <VStack align="stretch" color="#C2C2C2" spacing="20px">
                         <AppSkeleton isLoaded={!isLoading}>
                             <VStack align="stretch" spacing="0">
-                                <AppTypography size='16px' weight='bolder'>Sales Information</AppTypography>
+                                <AppTypography fontSize='16px' fontWeight='bold'>Sales Information</AppTypography>
                                 <Box padding={3}><DetailsProductInformation /></Box>
                             </VStack>
                         </AppSkeleton>
                         <AppSkeleton isLoaded={!isLoading}>
                             <VStack align="stretch" spacing="0">
-                                <AppTypography size='16px' weight='bolder'>Product Data</AppTypography>
+                                <AppTypography fontSize='16px' fontWeight='bold'>Product Data</AppTypography>
                                 <Box padding={3}><DetailsProductInSku /></Box>
                             </VStack>
                         </AppSkeleton>

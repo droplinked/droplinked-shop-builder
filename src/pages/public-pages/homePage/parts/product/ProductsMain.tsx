@@ -43,7 +43,7 @@ function ProductsMain({ loaded }) {
                             {data.map((el, key) => (
                                 <MainCard key={key}>
                                     <VStack justifyContent="center" spacing={{ base: "10px", lg: "40px" }}>
-                                        <AppTypography textAlign="center" height={{ base: "42px", sm: "30px", md: "40px", lg: "auto" }} size={{ base: '14px', sm: '16px', xl: '20px' }} color="#f5f5f5">{el.title}</AppTypography>
+                                        <AppTypography textAlign="center" height={{ base: "42px", sm: "30px", md: "40px", lg: "auto" }} fontSize={{ base: '14px', sm: '16px', xl: '20px' }} color="#f5f5f5">{el.title}</AppTypography>
                                         <Box width="100%" height={{ base: "60px", sm: "130px" }} className={classes.images} position="relative">
                                             <Image width={{ base: "63px", sm: "90px", lg: "130px" }} src={el.icon} alt={el.title} />
                                             <Image width={{ base: "63px", sm: "90px", lg: "130px" }} src={el.icon} alt={el.title} />

@@ -19,7 +19,7 @@ function NetworkDigital() {
                     />
                     <HStack alignItems="center">
                         <AppIcons.Info />
-                        <AppTypography color="#757575" size='14px'>All product details will be recorded as an NFT on your selected blockchain wallet. <a style={{ color: "#25BB92" }} target={"_blank"}>Learn more</a></AppTypography>
+                        <AppTypography color="#757575" fontSize='14px'>All product details will be recorded as an NFT on your selected blockchain wallet. <a style={{ color: "#25BB92" }} target={"_blank"}>Learn more</a></AppTypography>
                     </HStack>
                 </VStack>
             )}

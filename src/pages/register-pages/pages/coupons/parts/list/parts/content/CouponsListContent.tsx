@@ -23,18 +23,18 @@ function CouponsListContent() {
                                 <Flex gap="30px" width="40%" alignItems="center">
                                     <VStack width="20%" align="stretch" className={`${!el.isExpired ? classes.active : ''}`}>
                                         {el.type === "DISCOUNT" ? <AppIcons.DiscountSetting /> : <AppIcons.GiftSetting />}
-                                        <AppTypography size='10px' color="#808080">{capitalizeFirstLetter(el.type)}</AppTypography>
+                                        <AppTypography fontSize='10px' color="#808080">{capitalizeFirstLetter(el.type)}</AppTypography>
                                     </VStack>
                                     <VStack width="100%" align="stretch">
-                                        <AppTypography size='14px' weight='bolder'>{el.name}</AppTypography>
-                                        <AppTypography size='12px'>{el?.expiryDate}</AppTypography>
+                                        <AppTypography fontSize='14px' fontWeight='bold'>{el.name}</AppTypography>
+                                        <AppTypography fontSize='12px'>{el?.expiryDate}</AppTypography>
                                     </VStack>
                                 </Flex>
                                 <VStack align="stretch">
-                                    <AppTypography size='12px'>{el.codes.length} {el.codes.length > 1 ? 'Codes' : 'Code'}</AppTypography>
-                                    <AppTypography size='12px'>{el.balance} {el.type === "DISCOUNT" ? '%' : 'USD'}</AppTypography>
+                                    <AppTypography fontSize='12px'>{el.codes.length} {el.codes.length > 1 ? 'Codes' : 'Code'}</AppTypography>
+                                    <AppTypography fontSize='12px'>{el.balance} {el.type === "DISCOUNT" ? '%' : 'USD'}</AppTypography>
                                 </VStack>
-                                {/* <Box alignSelf="baseline" marginTop="7px"><AppTypography size='10px'>Export</AppTypography></Box> */}
+                                {/* <Box alignSelf="baseline" marginTop="7px"><AppTypography fontSize='10px'>Export</AppTypography></Box> */}
                                 <Box>
                                     <AppIcons.ArrowDown
                                         onClick={() => setCode(prev => prev === key ? null : key)}
@@ -52,8 +52,8 @@ function CouponsListContent() {
                                         <thead>
                                             <tr>
                                                 <td width="50px"></td>
-                                                <td><AppTypography size="12px">Code</AppTypography></td>
-                                                <td><AppTypography size="12px">Status</AppTypography></td>
+                                                <td><AppTypography fontSize="12px">Code</AppTypography></td>
+                                                <td><AppTypography fontSize="12px">Status</AppTypography></td>
                                                 <td width="30px"></td>
                                             </tr>
                                         </thead>
@@ -61,8 +61,8 @@ function CouponsListContent() {
                                             {el.codes.map((code: any, keys: number) => (
                                                 <tr key={keys} style={{ opacity: code.isRedeemed ? .4 : 1 }}>
                                                     <td>{keys + 1}</td>
-                                                    <td><AppTypography size="12px">{code.code}</AppTypography></td>
-                                                    <td><AppTypography size="12px">{code.isRedeemed ? "Expired" : "Valid"}</AppTypography></td>
+                                                    <td><AppTypography fontSize="12px">{code.code}</AppTypography></td>
+                                                    <td><AppTypography fontSize="12px">{code.isRedeemed ? "Expired" : "Valid"}</AppTypography></td>
                                                     <td><ClipboardText text={code.code} /></td>
                                                 </tr>
                                             ))}

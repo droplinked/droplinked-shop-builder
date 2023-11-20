@@ -33,30 +33,30 @@ function PricingPage() {
                 <Flex padding="150px 0 100px 0" position="relative" zIndex={1} flexDirection={{ base: "column", sm: "row" }} color="#C2C2C2" width="95%" gap={{ base: "20px", lg: "48px" }} maxWidth="1200px">
 
                     <VStack align="stretch" spacing={{ base: "10px", sm: "20px" }} width={{ base: "100%", sm: "50%" }} border="1px solid #6080CA" borderRadius="18px" padding={{ base: "30px 20px", md: "64px 56px" }}>
-                        <AppTypography size={{ base: "18px", sm: "24px" }} weight='bolder' color="#FFF">Pro</AppTypography>
+                        <AppTypography fontSize={{ base: "18px", sm: "24px" }} fontWeight='bold' color="#FFF">Pro</AppTypography>
                         <Flex alignItems="center" gap="14px">
-                            <AppTypography size={{ base: "28px", sm: "40px" }} weight='bolder' color="#FFF">$20</AppTypography>
-                            <AppTypography size="16px">/ monthly</AppTypography>
+                            <AppTypography fontSize={{ base: "28px", sm: "40px" }} fontWeight='bold' color="#FFF">$20</AppTypography>
+                            <AppTypography fontSize="16px">/ monthly</AppTypography>
                         </Flex>
                         <VStack align="stretch" spacing="24px" paddingTop={{ base: "0", sm: "40px" }}>
                             {itemsPlanA.map((el, key) => (
                                 <Flex gap="12px" alignItems="center">
                                     <Box width="22px">{icon}</Box>
-                                    <AppTypography key={key} size="14px">{el}</AppTypography>
+                                    <AppTypography key={key} fontSize="14px">{el}</AppTypography>
                                 </Flex>
                             ))}
                         </VStack>
                     </VStack>
 
                     <VStack align="stretch" spacing={{ base: "10px", sm: "20px" }} width={{ base: "100%", sm: "50%" }} border="1px solid #6080CA" borderRadius="18px" padding={{ base: "30px 20px", md: "64px 56px" }}>
-                        <AppTypography size={{ base: "18px", sm: "24px" }} weight='bolder' color="#FFF">Enterprise</AppTypography>
-                        <AppTypography size={{ base: "28px", sm: "40px" }} weight='bolder' color="#FFF">Custom</AppTypography>
-                        <AppTypography size={{ base: "14px", sm: "16px" }} color="#FFF">Leverage the full power of droplinked (everything included in the Pro plan + the below)</AppTypography>
+                        <AppTypography fontSize={{ base: "18px", sm: "24px" }} fontWeight='bold' color="#FFF">Enterprise</AppTypography>
+                        <AppTypography fontSize={{ base: "28px", sm: "40px" }} fontWeight='bold' color="#FFF">Custom</AppTypography>
+                        <AppTypography fontSize={{ base: "14px", sm: "16px" }} color="#FFF">Leverage the full power of droplinked (everything included in the Pro plan + the below)</AppTypography>
                         <VStack align="stretch" spacing="24px" paddingTop={{ base: "10px", sm: "40px" }}>
                             {itemsPlanB.map((el, key) => (
                                 <Flex gap="12px" alignItems="center">
                                     <Box width="22px">{icon}</Box>
-                                    <AppTypography key={key} size="14px">{el}</AppTypography>
+                                    <AppTypography key={key} fontSize="14px">{el}</AppTypography>
                                 </Flex>
                             ))}
                         </VStack>

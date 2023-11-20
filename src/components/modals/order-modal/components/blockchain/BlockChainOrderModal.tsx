@@ -13,9 +13,9 @@ function BlockChainOrderModal() {
         <>
             {paymentType ? (
                 <HStack alignItems="center" color="#FFF">
-                    <AppTypography size='14px' weight='bold'>Payment with</AppTypography>
+                    <AppTypography fontSize='14px' fontWeight='bold'>Payment with</AppTypography>
                     <IconBlockchain blockchain={paymentType} props={{ width: "24px", height: "24px" }} />
-                    <AppTypography size='14px' weight='bold' color="#FF473E">{capitalizeFirstLetter(paymentType)} payment</AppTypography>
+                    <AppTypography fontSize='14px' fontWeight='bold' color="#FF473E">{capitalizeFirstLetter(paymentType)} payment</AppTypography>
                 </HStack>
             ) : null}
         </>

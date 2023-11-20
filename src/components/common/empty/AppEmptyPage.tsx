@@ -10,7 +10,7 @@ function AppEmptyPage({ title }: IProps) {
     return (
         <Flex justifyContent={"center"} width="100%" marginTop={8} marginBottom={5}>
             <Box>
-                <AppTypography size='18px' color={"#777"}>{title}</AppTypography>
+                <AppTypography fontSize='18px' color={"#777"}>{title}</AppTypography>
             </Box>
         </Flex>
     )

@@ -49,13 +49,13 @@ function OrderModalPayment() {
 
   return (
     <VStack align="stretch">
-      <AppTypography size="16px" weight="bolder" color="#FFF">Customer Payment Detail</AppTypography>
+      <AppTypography fontSize="16px" fontWeight="bold" color="#FFF">Customer Payment Detail</AppTypography>
       <VStack align={"stretch"} spacing={3} color="#C2C2C2">
         {data.map((el, key) => el.value || el.placeholder ? (
           <HStack key={key} justifyContent={"space-between"} alignItems="center">
             <AppTypography width="40%" size="12px">{el.caption}</AppTypography>
-            {el.placeholder && <AppTypography width="20%" textAlign="center" size="12px" color="#808080">{el.placeholder}</AppTypography>}
-            <AppTypography width="40%" textAlign="right" size="12px">{el.value ? '$' + el.value : "-"}</AppTypography>
+            {el.placeholder && <AppTypography width="20%" textAlign="center" fontSize="12px" color="#808080">{el.placeholder}</AppTypography>}
+            <AppTypography width="40%" textAlign="right" fontSize="12px">{el.value ? '$' + el.value : "-"}</AppTypography>
           </HStack>
         ) : null)}
       </VStack>

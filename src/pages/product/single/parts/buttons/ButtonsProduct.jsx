@@ -117,7 +117,7 @@ function ButtonsProduct() {
             {isOpen && <ModalHashkey
                 blockchain={state.digitalDetail.chain}
                 size='3xl'
-                description={(<AppTypography textAlign="center" size="18px">By hashing your product variant on the blockchain network, it becomes secured and decentralized, unlocking the potential to join the droplinked decentralized affiliate network. <Link color="#2BCFA1" _hover={{ color: "#2BCFA1" }}>Learn more</Link></AppTypography>)}
+                description={(<AppTypography textAlign="center" fontSize="18px">By hashing your product variant on the blockchain network, it becomes secured and decentralized, unlocking the potential to join the droplinked decentralized affiliate network. <Link color="#2BCFA1" _hover={{ color: "#2BCFA1" }}>Learn more</Link></AppTypography>)}
                 close={() => {
                     shopNavigate("products")
                     onClose()

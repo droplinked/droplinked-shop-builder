@@ -6,7 +6,7 @@ interface Iprops {
 }
 
 function LandingTitle({ title }: Iprops) {
-    return <AppTypography textAlign="center" size={{ base: "18px",md:"27px", lg: "34px" }} weight='bolder'>{title}</AppTypography>
+    return <AppTypography textAlign="center" fontSize={{ base: "18px",md:"27px", lg: "34px" }} fontWeight='bold'>{title}</AppTypography>
 }
 
 export default LandingTitle

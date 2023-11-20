@@ -15,7 +15,7 @@ function ProductArtwork() {
     const title = useMemo(() => (
         <VStack align="stretch">
             <FieldLabel label="Product Template" isRequired />
-            <AppTypography size='14px' color={"#808080"}>Utilize the Design Maker tool to create product mockups with artwork placement.</AppTypography>
+            <AppTypography fontSize='14px' color={"#808080"}>Utilize the Design Maker tool to create product mockups with artwork placement.</AppTypography>
         </VStack>
     ), [])
 

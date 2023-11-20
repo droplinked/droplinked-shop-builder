@@ -23,7 +23,7 @@ function ProductCategoryMenu() {
             }}>
               <Flex alignItems="center" gap="20px">
                 {!el.parent_id && <Box><AppImage src={ProductCategoryMenuModel.getIcon[el?.id] || el?.image_url} alt={el?.title} borderRadius="8px" width="53px" height="53" /></Box>}
-                <Box><AppTypography size='14px'>{el?.title}</AppTypography></Box>
+                <Box><AppTypography fontSize='14px'>{el?.title}</AppTypography></Box>
               </Flex>
             </CategoryBox>
           ))}

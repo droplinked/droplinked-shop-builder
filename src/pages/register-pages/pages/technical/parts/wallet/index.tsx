@@ -40,7 +40,7 @@ function Wallet() {
     return (
         <AppCard>
             <VStack spacing={3} align='stretch'>
-                <Box><FieldLabel label='Connected Wallets' textProps={{ size: "18px", weight: "bolder" }} isRequired /></Box>
+                <Box><FieldLabel label='Connected Wallets' textProps={{ fontSize: "18px", fontWeight: "bolder" }} isRequired /></Box>
                 <VStack align="stretch" spacing="8px">
                     {data?.data?.data ? data?.data?.data.map((el, key) => {
                         const isExist = getChain({ chain: el, wallets })
@@ -48,12 +48,12 @@ function Wallet() {
                             <Flex backgroundColor="#141414" height="55px" padding="0 18px" key={key} alignItems="center" justifyContent="space-between" borderRadius="8px" color="#C2C2C2">
                                 <HStack alignItems="center">
                                     <IconBlockchain props={{ width: "18px", height: "18px" }} blockchain={el} />
-                                    <AppTypography size="12px" color="lightGray">{capitalizeFirstLetter(el)}</AppTypography>
+                                    <AppTypography fontSize="12px" color="lightGray">{capitalizeFirstLetter(el)}</AppTypography>
                                 </HStack>
                                 <Box>
                                     {isExist ? (
                                         <Flex gap="10px" alignItems="center">
-                                            <AppTypography size="12px">{`${isExist?.address.substring(0, 6)}....${isExist?.address.substring(isExist?.address.length - 6)}`}</AppTypography>
+                                            <AppTypography fontSize="12px">{`${isExist?.address.substring(0, 6)}....${isExist?.address.substring(isExist?.address.length - 6)}`}</AppTypography>
                                             <ClipboardText props={{ width: "16px", height: "16px" }} text={isExist?.address} />
                                         </Flex>
                                     ) : (

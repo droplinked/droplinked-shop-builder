@@ -34,7 +34,7 @@ const SkuTableModel = ({
                 value: (
                     <Flex gap={2} alignItems="center">
                         <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.price} name={"price"} />
-                        <AppTypography size="12px" color={"#808080"}>USD</AppTypography>
+                        <AppTypography fontSize="12px" color={"#808080"}>USD</AppTypography>
                     </Flex>
                 )
             },
@@ -50,7 +50,7 @@ const SkuTableModel = ({
             ...product_type === "PRINT_ON_DEMAND" && {
                 cost: {
                     caption: "Product Cost",
-                    value: available_variant ? <AppTypography size="12px">{sku.rawPrice} USD</AppTypography> : 0
+                    value: available_variant ? <AppTypography fontSize="12px">{sku.rawPrice} USD</AppTypography> : 0
                 },
             },
             ...product_type === "NORMAL" && {
@@ -59,9 +59,9 @@ const SkuTableModel = ({
                     value: (
                         <Flex gap={2} alignItems="center">
                             <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.dimensions.height} maxWidth="35px" textAlign={"center"} name={"height"} />
-                            <AppTypography size="12px" color={"#808080"}>x</AppTypography>
+                            <AppTypography fontSize="12px" color={"#808080"}>x</AppTypography>
                             <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.dimensions.length} maxWidth="35px" textAlign={"center"} name={"length"} />
-                            <AppTypography size="12px" color={"#808080"}>x</AppTypography>
+                            <AppTypography fontSize="12px" color={"#808080"}>x</AppTypography>
                             <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.dimensions.width} maxWidth="35px" textAlign={"center"} name={"width"} />
                         </Flex>
                     )
@@ -70,7 +70,7 @@ const SkuTableModel = ({
                     value: (
                         <Flex gap={2} alignItems="center">
                             <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.weight} name={"weight"} />
-                            <AppTypography size="12px" color={"#808080"}>oz</AppTypography>
+                            <AppTypography fontSize="12px" color={"#808080"}>oz</AppTypography>
                         </Flex>
                     )
                 },
