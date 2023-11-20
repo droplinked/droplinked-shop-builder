@@ -18,7 +18,7 @@ export const productDeleteServices = ({ productID }: IproductDeleteServices) => 
 }
 
 export const productByIdServices = ({ productID, shopname }: IproductByIdServices) => {
-    return axiosInstance.get(`product/public/${productID}?shopname=${shopname}`)
+    return axiosInstance.get(`product/public/${productID}?shopname=${shopname}&recorded=true`)
 }
 
 export const printServicesServices = () => {
