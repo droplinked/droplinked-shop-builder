@@ -16,8 +16,7 @@ function AppTypography(props: IAppTypography) {
   return (
     <Text
       fontSize={size}
-      {...weight === "bolder" && { fontFamily: "aven" }}
-      {...weight === "bold" && !props.fontWeight && { fontWeight: "bold" }}
+      fontWeight={props.fontWeight || "normal"}
       {...props}>
       {children}
     </Text>
