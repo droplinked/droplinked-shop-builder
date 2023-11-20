@@ -9,10 +9,10 @@ function OrderChain() {
 
   return order?.details?.chain ? (
     <HStack spacing={4}>
-      <Box><AppTypography size="12px">Payment with</AppTypography></Box>
+      <Box><AppTypography fontSize="12px">Payment with</AppTypography></Box>
       <HStack gap="0">
         <Box><IconBlockchain blockchain={order?.details?.chain} /></Box>
-        <Box><AppTypography size="12px" color={"#FF473E"}>{order?.details?.chain} payment</AppTypography></Box>
+        <Box><AppTypography fontSize="12px" color={"#FF473E"}>{order?.details?.chain} payment</AppTypography></Box>
       </HStack>
     </HStack>
   ) : null

@@ -1,24 +1,27 @@
 @font-face {
-  font-family: "AvenirNext";
-  src: url(../fonts/AvenirNextLTPro-Regular.otf);
+  font-family: "Avenir Next";
+  font-weight: normal;
+  src: url(../fonts/avenir/AvenirNext-Regular-08.ttf);
 }
 
 @font-face {
   font-family: "Avenir Next";
-  src: url(../fonts/Avenir-Regular.otf);
+  font-weight: 300;
+  src: url(../fonts/avenir/AvenirNext-UltraLight-11.ttf);
 }
 
 @font-face {
-  font-family: "aven";
+  font-family: "Avenir Next";
   font-weight: bold;
-  src: url(../fonts/AvenirNextLTPro-Bold.otf);
+  src: url(../fonts/avenir/AvenirNext-Bold-01.ttf);
 }
 
 @font-face {
-  font-family: "aven";
-  font-weight: normal;
-  src: url(../fonts/Avenir-SemiBold.otf);
+  font-family: "Avenir Next";
+  font-weight: 600;
+  src: url(../fonts/avenir/AvenirNext-DemiBold-03.ttf);
 }
+
 
 ::-webkit-scrollbar {
   width: 2px;
@@ -41,7 +44,8 @@
 
 * {
   box-sizing: border-box;
-  font-family: "AvenirNext";
+  font-family: "Avenir Next";
+  font-weight: normal;
   font-style: normal;
 }
 

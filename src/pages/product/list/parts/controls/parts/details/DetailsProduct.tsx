@@ -1,8 +1,6 @@
 import { Box, VStack } from '@chakra-ui/react'
 import AppModal, { IAppModal } from 'components/common/modal/AppModal'
 import AppTypography from 'components/common/typography/AppTypography'
-import { productByIdServices } from 'lib/apis/product/productServices'
-import { IproductByIdServices } from 'lib/apis/product/interfaces'
 import React, { useCallback, useEffect } from 'react'
 import { useMutation } from 'react-query'
 import detailsProductContext from './context'
@@ -10,16 +8,18 @@ import DetailsProductInformation from './parts/information/DetailsProductInforma
 import DetailsProductInSku from './parts/sku/DetailsProductInSku'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
+import { productService } from 'lib/apis/shop/shopServices'
+import { IproductService } from 'lib/apis/shop/interfaces'
 
 interface Iprops extends IAppModal {
     productID: string
 }
 
 function DetailsProduct({ close, open, productID }: Iprops) {
-    const { mutate, isLoading, data } = useMutation((params: IproductByIdServices) => productByIdServices(params))
+    const { mutate, isLoading, data } = useMutation((params: IproductService) => productService(params))
     const { shop } = useProfile()
 
-    const fetch = useCallback(() => mutate({ productID, shopname: shop.name }), [productID, shop])
+    const fetch = useCallback(() => mutate({ productID }), [productID, shop])
 
     useEffect(() => fetch(), [])
 
@@ -30,13 +30,13 @@ function DetailsProduct({ close, open, productID }: Iprops) {
                     <VStack align="stretch" color="#C2C2C2" spacing="20px">
                         <AppSkeleton isLoaded={!isLoading}>
                             <VStack align="stretch" spacing="0">
-                                <AppTypography size='16px' weight='bolder'>Sales Information</AppTypography>
+                                <AppTypography fontSize='16px' fontWeight='bold'>Sales Information</AppTypography>
                                 <Box padding={3}><DetailsProductInformation /></Box>
                             </VStack>
                         </AppSkeleton>
                         <AppSkeleton isLoaded={!isLoading}>
                             <VStack align="stretch" spacing="0">
-                                <AppTypography size='16px' weight='bolder'>Product Data</AppTypography>
+                                <AppTypography fontSize='16px' fontWeight='bold'>Product Data</AppTypography>
                                 <Box padding={3}><DetailsProductInSku /></Box>
                             </VStack>
                         </AppSkeleton>

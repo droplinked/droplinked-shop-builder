@@ -48,17 +48,17 @@ function AdditionalLinkes({ element }: IProps) {
                     <>
                         {el.save ? (
                             <Flex gap="20px" color="#C2C2C2" justifyContent="space-between">
-                                <AppTypography size="14px">{el.caption}</AppTypography>
+                                <AppTypography fontSize="14px">{el.caption}</AppTypography>
                                 <AppIcons.EditIcon onClick={() => trigger(key, false)} width="18px" height="18px" style={{ cursor: "pointer" }} />
                             </Flex>
                         ) : (
                             <VStack key={key} align="stretch">
                                 <VStack align="stretch" spacing="3px">
-                                    <AppTypography size="14px" color="#C2C2C2">Item Name</AppTypography>
+                                    <AppTypography fontSize="14px" color="#C2C2C2">Item Name</AppTypography>
                                     <AppInput name='' value={el.caption} onChange={(e) => change(key, e.target.value, 'caption')} placeholder='Privacy Policy' />
                                 </VStack>
                                 <VStack align="stretch" spacing="3px">
-                                    <AppTypography size="14px" color="#C2C2C2">URL</AppTypography>
+                                    <AppTypography fontSize="14px" color="#C2C2C2">URL</AppTypography>
                                     <AppInput name='' value={el.link} onChange={(e) => change(key, e.target.value, 'link')} placeholder='http://' />
                                 </VStack>
                                 <BasicButton sizes='medium' onClick={() => trigger(key, true)}>Save</BasicButton>

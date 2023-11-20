@@ -22,7 +22,7 @@ function NotificationsModal({ close, open, status, approveClick, loading }: Ipro
             open={open}
             text={(
                 <Text>
-                    You are Confirming permission to co-sell this product, Are you sure you want to <Text display={"inline"} fontFamily={"aven"} fontWeight="bold">{label}</Text> this request?
+                    You are Confirming permission to co-sell this product, Are you sure you want to <Text display={"inline"} fontFamily={"aven"} fontfontWeight="bold">{label}</Text> this request?
                 </Text>
             )}
             title={`Are you sure you want to ${label} this product request?`}

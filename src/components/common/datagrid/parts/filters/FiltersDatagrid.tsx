@@ -30,11 +30,11 @@ function FiltersDatagrid({ item }: IFiltersDatagrid) {
                         <MenuButton fontSize={"sm"}>
                             {checkActive(el) ?
                                 <HStack>
-                                    <AppTypography size='12px'>{checkActive(el).title}</AppTypography>
+                                    <AppTypography fontSize='12px'>{checkActive(el).title}</AppTypography>
                                     <Box width="6px" height="6px" backgroundColor="#2ec99e" borderRadius="100%"></Box>
                                 </HStack>
                                 :
-                                <AppTypography size='12px'>{el.title}</AppTypography>
+                                <AppTypography fontSize='12px'>{el.title}</AppTypography>
                             }
 
                         </MenuButton>
@@ -64,7 +64,7 @@ function FiltersDatagrid({ item }: IFiltersDatagrid) {
                 </Box>
             ))}
             {existFilter && <Box>
-                <AppTypography color="#ff9696" onClick={() => navigate(location.pathname)} border="1px solid #ff9696" padding="2px 10px" borderRadius="100px" cursor="pointer" size='12px'>Clear</AppTypography>
+                <AppTypography color="#ff9696" onClick={() => navigate(location.pathname)} border="1px solid #ff9696" padding="2px 10px" borderRadius="100px" cursor="pointer" fontSize='12px'>Clear</AppTypography>
             </Box>}
         </HStack>
     )

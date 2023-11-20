@@ -54,9 +54,9 @@ const ContactInfo = () => {
           <VStack align={"stretch"}>
             <AppCard>
               <VStack align={"stretch"} marginBottom={8}>
-                <Box><FieldLabel label='Social Media Links' textProps={{ size: "18px", weight: "bolder" }} /></Box>
+                <Box><FieldLabel label='Social Media Links' textProps={{ fontSize: "18px", fontWeight: "bolder" }} /></Box>
                 <Box>
-                  <AppTypography size="14px" color="#C2C2C2">
+                  <AppTypography fontSize="14px" color="#C2C2C2">
                     Add your social media links on your store to help customers find you easily across multiple platforms.
                   </AppTypography>
                 </Box>

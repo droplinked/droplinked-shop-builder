@@ -1,23 +1,16 @@
 import { Text, TextProps } from '@chakra-ui/react'
 import React from 'react'
 
-type size = "10px" | "12px" | "14px" | "16px" | "18px" | "20px" | "22px" | "24px"
-  | "34px" | "50px"
-type weight = "normal" | "bold" | "bolder"
-
 export interface IAppTypography extends TextProps {
   children?: any
-  size: any | size
-  weight?: weight
 }
 
 function AppTypography(props: IAppTypography) {
-  const { children, size, weight } = props
+  const { children } = props
   return (
     <Text
-      fontSize={size}
-      {...weight === "bolder" && { fontFamily: "aven" }}
-      {...weight === "bold" && !props.fontWeight && { fontWeight: "bold" }}
+      fontWeight={props.fontWeight || "normal"}
+      fontSize={props.fontSize || "12px"}
       {...props}>
       {children}
     </Text>

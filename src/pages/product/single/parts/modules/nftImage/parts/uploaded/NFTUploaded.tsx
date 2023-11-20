@@ -20,7 +20,7 @@ function NftImageUploaded() {
             <Flex justifyContent="space-between" alignItems='center'>
                 <VStack align="stretch">
                     <FieldLabel label='Product Tokening AssetImage' isRequired loading={loading} />
-                    <AppTypography size='14px' color="#808080">
+                    <AppTypography fontSize='14px' color="#808080">
                         {media.length ? 'it could be the image file you wanna create NFT for, or only a cover for your main product' : 'it could be the image file you wanna create NFT for, or only a cover for your main product'}
                     </AppTypography>
                 </VStack>
@@ -30,11 +30,11 @@ function NftImageUploaded() {
                 <Flex gap="20px" alignItems="center">
                     <Img src={media[0].thumbnail} borderRadius="8px" width="47px" />
                     <VStack align="stretch">
-                        <AppTypography size="14px">{getFileNameFromUrl(media[0].url)}</AppTypography>
+                        <AppTypography fontSize="14px">{getFileNameFromUrl(media[0].url)}</AppTypography>
                         <AlertProduct text='Once you publish your product this image will be tokenized as NFT and can not be changed' />
                     </VStack>
                 </Flex>
-                <AppTypography size="12px" color="#C2C2C2">{SizeImage} KB</AppTypography>
+                <AppTypography fontSize="12px" color="#C2C2C2">{SizeImage} KB</AppTypography>
             </Flex>
         </VStack>
     )

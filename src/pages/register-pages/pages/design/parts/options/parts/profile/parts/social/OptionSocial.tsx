@@ -21,7 +21,7 @@ function OptionSocial() {
             <OptionsCaption caption='Social Links' />
             <SocialInputs socials={Socials} updateSocial={(value) => setSocials(value)} />
             <AppSelectBox name='' onChange={change} items={items} />
-            <AppTypography size="14px" color="#808080">Select social network and enter your username</AppTypography>
+            <AppTypography fontSize="14px" color="#808080">Select social network and enter your username</AppTypography>
         </VStack>
     )
 }

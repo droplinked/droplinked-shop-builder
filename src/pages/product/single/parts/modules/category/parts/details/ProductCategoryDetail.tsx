@@ -10,8 +10,8 @@ function ProductCategoryDetail() {
                 <Image src={faker.image.abstract()} width="40px" />
             </Box>
             <VStack align="stretch">
-                <AppTypography size='14px'>{faker.commerce.productName()}</AppTypography>
-                <AppTypography size='14px'>{faker.commerce.price()}</AppTypography>
+                <AppTypography fontSize='14px'>{faker.commerce.productName()}</AppTypography>
+                <AppTypography fontSize='14px'>{faker.commerce.price()}</AppTypography>
             </VStack>
         </Flex>
     )

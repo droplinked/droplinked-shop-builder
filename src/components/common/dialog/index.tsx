@@ -23,11 +23,11 @@ function AppDialog({ open, close, text, title, buttons }: IAppDialog) {
         <AppModal open={open} close={close} size="lg">
             <VStack color="#FFF" align="stretch" spacing={6}>
                 <Box textAlign="center">
-                    <AppTypography size='20px' weight='bolder' color={"#FEB900"}>{title}</AppTypography>
+                    <AppTypography fontSize='20px' fontWeight='bold' color={"#FEB900"}>{title}</AppTypography>
                 </Box>
                 {text && (
                     <Box textAlign="center">
-                        <AppTypography size='16px' whiteSpace={"pre-wrap"} color={"#C2C2C2"}>
+                        <AppTypography fontSize='16px' whiteSpace={"pre-wrap"} color={"#C2C2C2"}>
                             {text}
                         </AppTypography>
                     </Box>

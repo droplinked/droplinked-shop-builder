@@ -18,22 +18,22 @@ function DetailsProductInSku() {
                 <table className={classes.table}>
                     <thead>
                         <tr>
-                            <th><AppTypography weight='bolder' size='14px'>Variants</AppTypography></th>
-                            <th><AppTypography weight='bolder' size='14px'>Inventory Status</AppTypography></th>
-                            <th><AppTypography weight='bolder' size='14px'>Price</AppTypography></th>
-                            <th style={{ textAlign: "center" }}><AppTypography weight='bolder' size='14px'>Drop</AppTypography></th>
+                            <th><AppTypography fontWeight='bold' fontSize='14px'>Variants</AppTypography></th>
+                            <th><AppTypography fontWeight='bold' fontSize='14px'>Inventory Status</AppTypography></th>
+                            <th><AppTypography fontWeight='bold' fontSize='14px'>Price</AppTypography></th>
+                            <th style={{ textAlign: "center" }}><AppTypography fontWeight='bold' fontSize='14px'>Drop</AppTypography></th>
                         </tr>
                     </thead>
                     <tbody>
                         {product?.skuIDs && product.skuIDs.map((el: any, key: number) => (
                             <tr key={key}>
-                                <td><AppTypography size='14px'>{el.options.map(el => el.caption).join("-")}</AppTypography></td>
+                                <td><AppTypography fontSize='14px'>{el.options.map(el => el.caption).join("-")}</AppTypography></td>
                                 <td>---</td>
-                                <td><AppTypography size='14px'>{el.price} USD</AppTypography></td>
+                                <td><AppTypography fontSize='14px'>{el.price} USD</AppTypography></td>
                                 <td>
                                     <Flex justifyContent="center">
                                         {el?.recordData && el.recordData.status !== "NOT_RECORDED" ?
-                                            <Flex justifyContent={"center"}><AppTypography size='12px' backgroundColor={"#000"} borderRadius="100px" padding="4px 20px">{el?.recordData.status}</AppTypography></Flex>
+                                            <Flex justifyContent={"center"}><AppTypography fontSize='12px' backgroundColor={"#000"} borderRadius="100px" padding="4px 20px">{el?.recordData.status}</AppTypography></Flex>
                                             :
                                             <AppIcons.TearIcon width="16px" height="16px" cursor="pointer" onClick={() => {
                                                 setSku(el)

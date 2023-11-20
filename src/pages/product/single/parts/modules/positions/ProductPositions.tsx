@@ -18,13 +18,13 @@ function ProductPositions() {
 
   return (
     <VStack align="stretch" spacing="16px">
-      <AppTypography size='14px'>Customers Position Options</AppTypography>
+      <AppTypography fontSize='14px'>Customers Position Options</AppTypography>
       <Flex gap={3}>
         {m2m_positions_options.map((el: any, key: number) => {
           const isActive = m2m_positions.find((pos: any) => pos?.placement === el?.placement)
           return (
             <Box key={key} backgroundColor="#1C1C1C" padding="8px 16px" onClick={() => click(isActive, el)} cursor="pointer" borderRadius="8px" border={`2px solid ${isActive ? '#2BCFA1' : 'transparent'}`}>
-              <AppTypography size="14px">{el?.placement}</AppTypography>
+              <AppTypography fontSize="14px">{el?.placement}</AppTypography>
             </Box>
           )
         })}

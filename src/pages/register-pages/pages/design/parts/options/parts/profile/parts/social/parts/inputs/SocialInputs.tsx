@@ -74,7 +74,7 @@ function SocialInputs({ socials, updateSocial }) {
                         <AppTooltip label={items[el].url + items[el].value} placement="top">
                             <Flex padding="13px 18px" cursor="pointer" onClick={() => updateSocial(el)} gap="10px" alignItems="flex-start" width="100%">
                                 <Box className={classes.icon} position="relative" top="3px">{items[el].icon}</Box>
-                                <AppTypography size="14px" width="85%" color="#C2C2C2">
+                                <AppTypography fontSize="14px" width="85%" color="#C2C2C2">
                                     {items[el].url}{items[el].value.substr(0, 6)}
                                     {items[el].value.length > 7 && '...'}
                                 </AppTypography>
@@ -85,7 +85,7 @@ function SocialInputs({ socials, updateSocial }) {
                             <VStack ref={ref} align="stretch" width="100%" spacing="0">
                                 <Flex alignItems="center" gap="12px" backgroundColor="#1C1C1C" padding="13px 18px" borderRadius="6px 6px 0px 0px">
                                     <Flex className={classes.icon}>{items[el].icon}</Flex>
-                                    <AppTypography size="14px" color="#C2C2C2">{items[el].url}</AppTypography>
+                                    <AppTypography fontSize="14px" color="#C2C2C2">{items[el].url}</AppTypography>
                                 </Flex>
                                 <Box padding="0 18px">
                                     <AppInput name='' value={items[el].value} onChange={(e) => change(el, e.target.value)} placeholder={el !== "webURL" ? "Username" : "Domain"} paddingLeft="0" width="100%" />

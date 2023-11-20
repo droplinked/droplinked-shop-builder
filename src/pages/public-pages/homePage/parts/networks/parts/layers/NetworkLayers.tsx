@@ -39,8 +39,8 @@ function NetworkLayers() {
                 <Flex key={key} gap="15px">
                     <Box width="100px"><Image src={el.image} width="100%" /></Box>
                     <VStack width="100%" align="stretch">
-                        <AppTypography size={{base: "12px", md: "16px"}} weight='bolder'>{el.title}</AppTypography>
-                        <AppTypography size={{base: "12px", md: "16px"}} color="#666">{el.description}</AppTypography>
+                        <AppTypography fontSize={{base: "12px", md: "16px"}} fontWeight='bold'>{el.title}</AppTypography>
+                        <AppTypography fontSize={{base: "12px", md: "16px"}} color="#666">{el.description}</AppTypography>
                     </VStack>
                 </Flex>
             ))}

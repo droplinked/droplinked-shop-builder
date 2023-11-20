@@ -17,8 +17,8 @@ function Community({ loaded }) {
                     <Image src='assets/images/homepage/shape.svg' position="absolute" top="36%" right="18.5%" width="3%" />
                 </Box>
                 <VStack width={{ base: "100%", sm: "80%", lg: "40%" }} align="stretch">
-                    <Box><AppTypography textAlign={{ base: "center", lg: "left" }} size={{ base: "18px", sm: "23px", lg: "34px" }} weight='bolder'>Community Driven Commerce</AppTypography></Box>
-                    <Box><AppTypography textAlign={{ base: "center", lg: "left" }} color="#888" size={{ base: "14px", sm: "18px", lg: "20px" }}>Launch your drop on blockchain to gain proof of ownership and seamless transfer capabilities as a member of our decentralized community</AppTypography></Box>
+                    <Box><AppTypography textAlign={{ base: "center", lg: "left" }} fontSize={{ base: "18px", sm: "23px", lg: "34px" }} fontWeight='bold'>Community Driven Commerce</AppTypography></Box>
+                    <Box><AppTypography textAlign={{ base: "center", lg: "left" }} color="#888" fontSize={{ base: "14px", sm: "18px", lg: "20px" }}>Launch your drop on blockchain to gain proof of ownership and seamless transfer capabilities as a member of our decentralized community</AppTypography></Box>
                 </VStack>
             </Flex>
         </Flex>

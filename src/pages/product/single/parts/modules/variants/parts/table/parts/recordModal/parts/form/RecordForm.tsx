@@ -97,7 +97,7 @@ function RecordForm({ close, product, sku }: Iprops) {
                                     onChange={(e) => setFieldValue("commission", e.target.value)}
                                     value={values.commission || ""}
                                 />
-                                <AppTypography size='14px' weight='bolder' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography size='14px' weight='bolder' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
+                                <AppTypography fontSize='14px' fontWeight='bold' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography fontSize='14px' fontWeight='bold' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
                             </VStack>
                             <RecordCovers />
                             <HStack justifyContent={"space-between"}>

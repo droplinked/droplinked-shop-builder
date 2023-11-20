@@ -14,7 +14,7 @@ function AffiliateLayout() {
         {links().map((el, key) => (
           <Box key={key}>
             <Link to={el.link}>
-              <AppTypography color={el.link === location.pathname ? "#2EC99E" : "#FFF"} size={"14px"}>{el.caption}</AppTypography>
+              <AppTypography color={el.link === location.pathname ? "#2EC99E" : "#FFF"} fontSize="14px">{el.caption}</AppTypography>
             </Link>
           </Box>
         ))}

@@ -19,7 +19,7 @@ function Collection() {
                 <HStack justifyContent={"space-between"}>
                     <VStack align={"stretch"}>
                         <FieldLabel isRequired label='Collections' />
-                        <AppTypography color="#C2C2C2" size='14px'>
+                        <AppTypography color="#C2C2C2" fontSize='14px'>
                             Select a collection or create a new one to publish the product.
                         </AppTypography>
                     </VStack>
@@ -38,7 +38,7 @@ function Collection() {
             </Box>
             <HStack alignItems="center">
                 <AppIcons.Info />
-                <AppTypography color="#757575" size='14px'>NFT gating features and ruleset management are in the Collections page. <a style={{ color: "#25BB92" }} target={"_blank"}>Learn more</a></AppTypography>
+                <AppTypography color="#757575" fontSize='14px'>NFT gating features and ruleset management are in the Collections page. <a style={{ color: "#25BB92" }} target={"_blank"}>Learn more</a></AppTypography>
             </HStack>
         </VStack>
     )

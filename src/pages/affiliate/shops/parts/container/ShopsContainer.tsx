@@ -22,7 +22,7 @@ function ShopsContainer({ shop }: Iprops) {
                     <Flex justifyContent="space-between">
                         <Flex gap="18px" alignItems="center">
                             <Image src={shop?.logo} width="32px" height="32px" borderRadius="100%" />
-                            <AppTypography size="14px" color="#2BCFA1">{shop?.name}</AppTypography>
+                            <AppTypography fontSize="14px" color="#2BCFA1">{shop?.name}</AppTypography>
                         </Flex>
                         {/* <BasicButton sizes='medium'>Follow</BasicButton> */}
                     </Flex>

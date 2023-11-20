@@ -40,7 +40,7 @@ function ProductCategories() {
           <FieldLabel label='Sub category' />
           <Flex flexWrap="wrap" gap="10px">
             {data?.data?.data.find(el => el._id === mainCategory)?.subCategories.map((el, key) => (
-              <Box key={key} cursor="pointer" padding="10px 20px" onClick={() => updateState('subCategories', subCategories.includes(el._id) ? subCategories.filter(item => item !== el._id) : [...subCategories, el._id])} border={`2px solid ${subCategories.includes(el._id) ? "#2EC99E" : "#2F2F2F"}`} borderRadius="8px"><AppTypography size="14px">{el.title}</AppTypography></Box>
+              <Box key={key} cursor="pointer" padding="10px 20px" onClick={() => updateState('subCategories', subCategories.includes(el._id) ? subCategories.filter(item => item !== el._id) : [...subCategories, el._id])} border={`2px solid ${subCategories.includes(el._id) ? "#2EC99E" : "#2F2F2F"}`} borderRadius="8px"><AppTypography fontSize="14px">{el.title}</AppTypography></Box>
             ))}
           </Flex>
         </VStack>

@@ -48,9 +48,9 @@ function RegisterShopInfo() {
       <AppCard>
         <VStack align={"stretch"} color="#FFF" spacing={7}>
           <VStack align={"stretch"}>
-            <Box><AppTypography size='18px' weight='bolder'>Store URL</AppTypography></Box>
+            <Box><AppTypography fontSize='18px' fontWeight='bold'>Store URL</AppTypography></Box>
             <Flex justifyContent={"space-between"}>
-              <AppTypography size='16px' color={"#C2C2C2"}>{userStore}</AppTypography>
+              <AppTypography fontSize='16px' color={"#C2C2C2"}>{userStore}</AppTypography>
               <ClipboardText text={userStore} />
             </Flex>
           </VStack>
@@ -61,7 +61,7 @@ function RegisterShopInfo() {
             <Box>
               <AppInput name='name' maxLength={20} value={States.description} onChange={(e: any) => updateStates("description", e.target.value)} placeholder='e.g., droplinked' isRequired />
             </Box>
-            <AppTypography size='14px' color={"rgb(128, 128, 128)"}>Enter your store name.(max 20 characters)</AppTypography>
+            <AppTypography fontSize='14px' color={"rgb(128, 128, 128)"}>Enter your store name.(max 20 characters)</AppTypography>
           </VStack>
         </VStack>
       </AppCard>
