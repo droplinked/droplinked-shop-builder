@@ -27,7 +27,7 @@ function Shop() {
                     <AppCard>
                         <VStack spacing={4}>
                             <Box><Image src={shop?.logo} width="80px" height={"80px"} borderRadius={"100%"} /></Box>
-                            <Box><AppTypography color="#2EC99E" size='24px' weight='bolder'>{shop?.name}</AppTypography></Box>
+                            <Box><AppTypography color="#2EC99E" fontSize='24px' fontWeight='bold'>{shop?.name}</AppTypography></Box>
                             {/* <Box><Text color="#FFF" fontSize={"1xl"}>{faker.company.catchPhrase()}</Text></Box> */}
                             <SocialAffliate social={{
                                 facebook: shop?.facebookURL,

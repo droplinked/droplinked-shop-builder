@@ -34,16 +34,16 @@ function OrderDetailCost() {
 
   return (
     <VStack align="stretch">
-      <AppTypography size="16px" weight="bolder" color="#FFF">Total Cost</AppTypography>
+      <AppTypography fontSize="16px" fontWeight="bold" color="#FFF">Total Cost</AppTypography>
       <VStack align={"stretch"} spacing={3} color="#C2C2C2">
         {data.map((el, key) => el.value !== null ? (
           <HStack key={key} color={el?.color || "#C2C2C2"} justifyContent={"space-between"} alignItems="center">
             <VStack align="stretch" spacing="0">
-              <AppTypography size="12px">{el.caption}</AppTypography>
-              {el.description && <AppTypography size="12px" color="#808080">{el.description}</AppTypography>}
+              <AppTypography fontSize="12px">{el.caption}</AppTypography>
+              {el.description && <AppTypography fontSize="12px" color="#808080">{el.description}</AppTypography>}
             </VStack>
-            {el.placeholder && <AppTypography size="12px" color="#808080">{el.placeholder}</AppTypography>}
-            <AppTypography size="12px">{el.value ? '$' + el.value : "-"}</AppTypography>
+            {el.placeholder && <AppTypography fontSize="12px" color="#808080">{el.placeholder}</AppTypography>}
+            <AppTypography fontSize="12px">{el.value ? '$' + el.value : "-"}</AppTypography>
           </HStack>
         ) : null)}
       </VStack>

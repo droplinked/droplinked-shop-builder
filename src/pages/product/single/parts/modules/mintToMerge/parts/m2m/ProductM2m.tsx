@@ -22,13 +22,13 @@ function ProductM2m() {
 
     return (
         <VStack align="stretch" spacing="16px">
-            <AppTypography size='14px'>Customers Wallet Options</AppTypography>
+            <AppTypography fontSize='14px'>Customers Wallet Options</AppTypography>
             <SimpleGrid columns={3} justifyContent="space-between" spacing={5}>
                 {data?.data?.data && data?.data?.data.map((item: any, key: number) => (
                     <HStack spacing="5px" key={key}>
                         <Switch className={classes.switch} isChecked={checked(item?._id)} onChange={el => updateM2M(el.target.checked, item?._id)} outline="none !important" boxShadow="none !important" size='md' />
                         <Box><IconBlockchain blockchain={item?.name.toUpperCase()} props={{ width: "20px", height: "20px" }} /></Box>
-                        <AppTypography size='14px'>{item?.name}</AppTypography>
+                        <AppTypography fontSize='14px'>{item?.name}</AppTypography>
                     </HStack>
                 ))}
             </SimpleGrid>

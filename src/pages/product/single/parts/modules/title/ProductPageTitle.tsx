@@ -15,11 +15,11 @@ function ProductPageTitle({ description, title, head, isReuired }: IProps) {
         <VStack align={"stretch"}>
             <Box>
                 <HStack width={"fit-content"}>
-                    <AppTypography size='18px' fontWeight={head ? 'bold' : "normal"}>{title}</AppTypography>
+                    <AppTypography fontSize='18px' fontWeight={head ? 'bold' : "normal"}>{title}</AppTypography>
                     {isReuired && <FieldLabelReuired fontSize={"larger"} fontFamily="aven" fontWeight={"bold"} />}
                 </HStack>
             </Box>
-            <AppTypography size='14px' color={"#C2C2C2"}>{description}</AppTypography>
+            <AppTypography fontSize='14px' color={"#C2C2C2"}>{description}</AppTypography>
         </VStack>
     )
 }

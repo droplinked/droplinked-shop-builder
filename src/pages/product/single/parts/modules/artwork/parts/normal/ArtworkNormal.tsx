@@ -21,7 +21,7 @@ function ArtworkNormal() {
                 }
                 return (
                     <VStack key={key} align="stretch" width="50%">
-                        <AppTypography size='12px' color="#C2C2C2">{capitalizeFirstLetter(el.name)}</AppTypography>
+                        <AppTypography fontSize='12px' color="#C2C2C2">{capitalizeFirstLetter(el.name)}</AppTypography>
                         <ArtworkImage artwork={item.artwork} updateState={(data: any) => updateState(item.artwork_name, data)} />
                         {item.artwork && <ProductPositions positions={el.positions.map(pos => pos.value)} update={(data: string) => updateState(item.artwork_position_name, data)} state={[item.artwork_position]} />}
                     </VStack>

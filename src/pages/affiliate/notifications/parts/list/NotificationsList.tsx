@@ -38,9 +38,9 @@ function NotificationsList() {
                         return (
                             <VStack key={key} align="stretch" backgroundColor="#141414" spacing="22px" borderRadius="8px" padding="20px">
                                 <Flex alignItems="center" gap="4px">
-                                    <AppTypography size="12px" paddingRight="10px" color="#808080">From:</AppTypography>
+                                    <AppTypography fontSize="12px" paddingRight="10px" color="#808080">From:</AppTypography>
                                     <Image src={element.logo} width="14px" height="14px" borderRadius="100%" />
-                                    <AppTypography size="12px" color="#2BCFA1">{element.name}</AppTypography>
+                                    <AppTypography fontSize="12px" color="#2BCFA1">{element.name}</AppTypography>
                                 </Flex>
                                 <Flex paddingLeft="44px" gap={3} justifyContent="space-between" >
                                     <Box>
@@ -52,27 +52,27 @@ function NotificationsList() {
                                                         <Flex alignItems="center" gap="10px">
                                                             {product?.title && (
                                                                 <>
-                                                                    <AppTypography size="14px">{product?.title}</AppTypography>
-                                                                    <AppTypography size="14px">-</AppTypography>
+                                                                    <AppTypography fontSize="14px">{product?.title}</AppTypography>
+                                                                    <AppTypography fontSize="14px">-</AppTypography>
                                                                 </>
                                                             )}
                                                             <Flex alignItems="center" gap="6px">
                                                                 {variant?.color && <Box width="12px" height="12px" borderRadius="100%" backgroundColor={variant?.color.value}></Box>}
-                                                                {variant?.size && <AppTypography size="12px">{variant?.size.caption}</AppTypography>}
+                                                                {variant?.size && <AppTypography fontSize="12px">{variant?.size.caption}</AppTypography>}
                                                             </Flex>
                                                         </Flex>
                                                     </Box>
                                                     <Flex gap="32px" color="#808080">
-                                                        <AppTypography size="12px">Requested Quantity: {el?.quantity || "---"}</AppTypography>
-                                                        <AppTypography size="12px">Price: {`${sku?.price} ${product?.priceUnit || ""}`}</AppTypography>
-                                                        <AppTypography size="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>
+                                                        <AppTypography fontSize="12px">Requested Quantity: {el?.quantity || "---"}</AppTypography>
+                                                        <AppTypography fontSize="12px">Price: {`${sku?.price} ${product?.priceUnit || ""}`}</AppTypography>
+                                                        <AppTypography fontSize="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>
                                                     </Flex>
                                                 </VStack>
                                             </Flex>
                                             <Flex alignItems="center" gap="8px" color="#808080">
                                                 <IconBlockchain blockchain={el?.network} props={{ width: "12px", height: "12px" }} />
-                                                <AppTypography position="relative" top="2px" size="10px" display="flex">
-                                                    Dropped on <AppTypography padding="0 3px" size="10px" weight='bolder'>{capitalizeFirstLetter(el?.network)}</AppTypography> blockchain
+                                                <AppTypography position="relative" top="2px" fontSize="10px" display="flex">
+                                                    Dropped on <AppTypography padding="0 3px" fontSize="10px" fontWeight='bold'>{capitalizeFirstLetter(el?.network)}</AppTypography> blockchain
                                                 </AppTypography>
                                             </Flex>
                                         </VStack>

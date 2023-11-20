@@ -50,7 +50,7 @@ function SaleInfromation() {
         <VStack align="stretch" spacing="20px">
             <VStack align="stretch">
                 <FieldLabel label='Variants' isRequired loading={loading} />
-                <AppTypography size='14px' color={"#808080"}>Enter the quantity and price of the digital item. (External ID is optional)</AppTypography>
+                <AppTypography fontSize='14px' color={"#808080"}>Enter the quantity and price of the digital item. (External ID is optional)</AppTypography>
             </VStack>
             <AppSkeleton isLoaded={loading}>
                 <AppTable
@@ -80,7 +80,7 @@ function SaleInfromation() {
                                 value: (
                                     <Flex alignItems="end" gap="10px">
                                         <Box width="100px"><AppInput onChange={(e: any) => change('price', parseInt(e.target.value))} value={sku.length ? sku[0].price : ''} name='price' placeholder='0' width="100%" /></Box>
-                                        <AppTypography size='14px' position="relative" bottom="13px" color="#808080">USD</AppTypography>
+                                        <AppTypography fontSize='14px' position="relative" bottom="13px" color="#808080">USD</AppTypography>
                                     </Flex>
                                 )
                             },

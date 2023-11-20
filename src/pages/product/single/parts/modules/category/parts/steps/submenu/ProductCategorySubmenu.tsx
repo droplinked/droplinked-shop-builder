@@ -23,7 +23,7 @@ function ProductCategorySubmenu() {
           {data && data?.data?.data?.data.map((el, key) => (
             <CategoryBox key={key} padding="20px" onClick={() => dispatch({ type: "updateSteps", params: { submenu: el.id } })}>
               <Flex alignItems="center" gap="20px">
-                <Box><AppTypography size='14px'>{el?.title}</AppTypography></Box>
+                <Box><AppTypography fontSize='14px'>{el?.title}</AppTypography></Box>
               </Flex>
             </CategoryBox>
           ))}

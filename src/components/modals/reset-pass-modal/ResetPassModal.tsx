@@ -43,7 +43,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
         {({ errors, values, setFieldValue }) => (
           <Form>
             <VStack align={"stretch"} spacing={4}>
-              <AppTypography size="14px" color={"#FFF"}>
+              <AppTypography fontSize="14px" color={"#FFF"}>
                 Enter the email address associated with your account and we'll send
                 you a link to reset your password.
               </AppTypography>

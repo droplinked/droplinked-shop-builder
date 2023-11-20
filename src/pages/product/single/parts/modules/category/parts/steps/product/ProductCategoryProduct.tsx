@@ -34,8 +34,8 @@ function ProductCategoryProduct() {
               }}>
                 <VStack align="stretch" spacing="12px">
                   <Flex justifyContent="center"><Image src={el?.image} alt={el?.title} borderRadius="5px" width="100%" /></Flex>
-                  <Box><AppTypography size='14px'>{el?.title}</AppTypography></Box>
-                  <Box><AppTypography size='14px'>{'---'}</AppTypography></Box>
+                  <Box><AppTypography fontSize='14px'>{el?.title}</AppTypography></Box>
+                  <Box><AppTypography fontSize='14px'>{'---'}</AppTypography></Box>
                 </VStack>
               </CategoryBox>
             ))}
@@ -44,7 +44,7 @@ function ProductCategoryProduct() {
         :
         (
           <Flex justifyContent="center">
-            <AppTypography size='16px' color="#777">Empty</AppTypography>
+            <AppTypography fontSize='16px' color="#777">Empty</AppTypography>
           </Flex>
         )
       }

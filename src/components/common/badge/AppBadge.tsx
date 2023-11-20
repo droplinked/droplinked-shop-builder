@@ -24,7 +24,7 @@ function AppBadge(props: Iprops) {
 
     return (
         <Badge variant='outline' colorScheme={props.status ? handleStatus : "green"} textTransform="capitalize" padding="10px 20px" borderRadius="100px" {...props}>
-            <AppTypography size="" fontWeight='bold'>{props.text}</AppTypography>
+            <AppTypography fontWeight='bold'>{props.text}</AppTypography>
         </Badge>
     )
 }

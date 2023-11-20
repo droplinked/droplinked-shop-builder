@@ -6,11 +6,11 @@ function DetailsProductInformation() {
     const data = [
         {
             caption: 'Sold Items',
-            value: <AppTypography size='14px' weight='bolder'>---</AppTypography>
+            value: <AppTypography fontSize='14px' fontWeight='bold'>---</AppTypography>
         },
         {
             caption: 'Earnings',
-            value: <AppTypography size='14px' weight='bolder'>---</AppTypography>
+            value: <AppTypography fontSize='14px' fontWeight='bold'>---</AppTypography>
         }
     ]
 
@@ -18,7 +18,7 @@ function DetailsProductInformation() {
         <VStack align="stretch" spacing="15px">
             {data.map((el, key) => (
                 <Flex key={key}>
-                    <Box width="25%"><AppTypography size='14px'>{el.caption}</AppTypography></Box>
+                    <Box width="25%"><AppTypography fontSize='14px'>{el.caption}</AppTypography></Box>
                     <Box>{el.value}</Box>
                 </Flex>
             ))}

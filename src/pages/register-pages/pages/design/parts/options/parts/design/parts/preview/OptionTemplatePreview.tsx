@@ -28,7 +28,7 @@ function OptionTemplatePreview() {
                 <Flex width="50%" backgroundColor="#141414" onClick={() => window.open('mailto:support@droplinked.com')} cursor="pointer" borderRadius="15px" alignItems="center" padding="10px" textAlign="center">
                     <VStack justifyContent="center">
                         <AppIcons.Email />
-                        <AppTypography size="12px" color="#808080">Order a customized template</AppTypography>
+                        <AppTypography fontSize="12px" color="#808080">Order a customized template</AppTypography>
                     </VStack>
                 </Flex>
             </Flex>

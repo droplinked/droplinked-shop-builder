@@ -45,8 +45,8 @@ function DefaultHoverBox() {
                                         <Image src={values} width="48px" height="48px" className={classes.image} />
                                     </Box>
                                     <VStack align="stretch" spacing="11px">
-                                        <AppTypography size="12px" color="#C2C2C2">{getFileNameFromUrl(values)}</AppTypography>
-                                        <AppTypography size="12px" color="#808080">{Size} kb</AppTypography>
+                                        <AppTypography fontSize="12px" color="#C2C2C2">{getFileNameFromUrl(values)}</AppTypography>
+                                        <AppTypography fontSize="12px" color="#808080">{Size} kb</AppTypography>
                                     </VStack>
                                 </Flex>
                                 : <Flex width="100%" justifyContent="center"><Image position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)" src={values} maxWidth="90%" maxHeight="90%" /></Flex>}
@@ -55,7 +55,7 @@ function DefaultHoverBox() {
                         <Flex textAlign="center" gap={isHorizontal ? "20px" : "0"} alignItems="center" flexDirection={isHorizontal ? "row" : "column"} visibility={isLoading || checkSingleImage ? "hidden" : "visible"}>
                             <>
                                 <Flex justifyContent="center"><AppIcons.Upload width={isHorizontal ? "24px" : "50px"} /></Flex>
-                                <AppTypography size={isHorizontal ? "14px" : '16px'} textAlign={isHorizontal ? "left" : "center"} color="#666">
+                                <AppTypography fontSize={isHorizontal ? "14px" : '16px'} textAlign={isHorizontal ? "left" : "center"} color="#666">
                                     Upload JPG, JPEG, PNG
                                     {isHorizontal ? null : <br />}
                                     (Max 5 MB)

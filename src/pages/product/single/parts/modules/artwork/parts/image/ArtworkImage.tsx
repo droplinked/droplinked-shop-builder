@@ -37,7 +37,7 @@ function ArtworkImage({ artwork, updateState, isDisable }: IProps) {
                     <Flex justifyContent={"space-between"} alignItems="center">
                         <Flex alignItems="center" gap={4}>
                             <AppImage src={artwork} width="47px" height="47px" />
-                            <AppTypography size='14px'>{FileSize} KB</AppTypography>
+                            <AppTypography fontSize='14px'>{FileSize} KB</AppTypography>
                         </Flex>
                         <Box>
                             {artwork && <BasicButton variant='outline' isDisabled={isDisable} sizes='medium' onClick={() => updateState(null)}>Remove</BasicButton>}

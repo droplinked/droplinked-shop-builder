@@ -22,7 +22,7 @@ function OptionLayout() {
             </VStack>
             <Flex alignItems="center" gap="16px">
                 <AppSwitch isChecked={fullWidthHero} onChange={e => dispatch({ type: "updateShop", params: { fullWidthHero: e.target.checked } })} />
-                <AppTypography size="14px">Full with Background</AppTypography>
+                <AppTypography fontSize="14px">Full with Background</AppTypography>
             </Flex>
         </VStack>
     )

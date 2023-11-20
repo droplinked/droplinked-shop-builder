@@ -58,7 +58,7 @@ function PODProperties() {
                 <VStack color={"#FFF"} background={"#141414"} spacing={4} borderRadius="8px" padding={4} align={"stretch"} width={"100%"}>
                     <AppSkeleton isLoaded={!isLoading}>
                         <Flex>
-                            <Box width={"20%"}><AppTypography size="14px" color="#FFF">Colors</AppTypography></Box>
+                            <Box width={"20%"}><AppTypography fontSize="14px" color="#FFF">Colors</AppTypography></Box>
                             <Flex width={"80%"} flexWrap="wrap" gap={3}>
                                 {makeproperties('color').map(el => ({ caption: el.caption, value: el.value.includes("#") ? el.value : '#' + el.value })).map((el, key) => (
                                     <PropertyItem key={key} type="Color" item={el} />
@@ -68,7 +68,7 @@ function PODProperties() {
                     </AppSkeleton>
                     <AppSkeleton isLoaded={!isLoading}>
                         <Flex>
-                            <Box width={"20%"}><AppTypography size="14px" color="#FFF">Sizes</AppTypography></Box>
+                            <Box width={"20%"}><AppTypography fontSize="14px" color="#FFF">Sizes</AppTypography></Box>
                             <Box width={"80%"}>
                                 <Flex width={"80%"} flexWrap="wrap" gap={4}>
                                     {makeproperties('size').map((el, key) => (

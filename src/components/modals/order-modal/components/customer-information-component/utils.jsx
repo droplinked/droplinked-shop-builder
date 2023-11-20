@@ -55,8 +55,8 @@ export const convertOrderInformation = (order) => {
         <VStack align="stretch" spacing="20px">
           {order?.details?.shippingUrls.map((el, key) => (
             <VStack align="stretch" spacing="0" key={key}>
-              <AppTypography size="10px" color="#777">({el?.name})</AppTypography>
-              <Link href={el?.url} boxShadow="unset !important" target="_blank"><AppTypography size="12px" textDecor="underline">{el?.url}</AppTypography></Link>
+              <AppTypography fontSize="10px" color="#777">({el?.name})</AppTypography>
+              <Link href={el?.url} boxShadow="unset !important" target="_blank"><AppTypography fontSize="12px" textDecor="underline">{el?.url}</AppTypography></Link>
             </VStack>
           ))}
         </VStack>

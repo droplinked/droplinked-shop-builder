@@ -22,7 +22,7 @@ const ProductListModel = ({
                 value: <CollectionProductList data={element} />
             },
             type: {
-                value: <AppTypography size='12px'>{element?.product_type}</AppTypography>
+                value: <AppTypography fontSize='12px'>{element?.product_type}</AppTypography>
             },
             inventory: {
                 caption: "Status",

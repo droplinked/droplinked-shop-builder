@@ -55,14 +55,14 @@ function PropertyFormProduct() {
                     {!isLoading && properties.length ? properties.map((el, keyProperty) => (
                         <VStack background={"#141414"} spacing={4} borderRadius="8px" padding={4} align={"stretch"} key={keyProperty} width={"100%"}>
                             <HStack>
-                                <Box width={"20%"}><AppTypography size="14px" color="#FFF">Property</AppTypography></Box>
+                                <Box width={"20%"}><AppTypography fontSize="14px" color="#FFF">Property</AppTypography></Box>
                                 <Box width={"80%"}>
                                     <PropertyOptions element={el} value={el.value} onChange={(e: any) => create(e.target.value, keyProperty)} />
                                 </Box>
                             </HStack>
                             {el.value && (
                                 <HStack>
-                                    <Box width={"20%"}><AppTypography size="14px" color="#FFF">Values</AppTypography></Box>
+                                    <Box width={"20%"}><AppTypography fontSize="14px" color="#FFF">Values</AppTypography></Box>
                                     <Flex width={"80%"} flexWrap="wrap" gap={3}>
                                         {getProperties(el.title) && typeof getProperties(el.title)?.values === "object" && getProperties(el.title)?.values.map((item: any, key: number) => (
                                             <PropertyItem

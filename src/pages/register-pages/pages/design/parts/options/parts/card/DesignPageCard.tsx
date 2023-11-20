@@ -24,8 +24,8 @@ function DesignPageCard({ description, title, children, section }: IProps) {
             <VStack align="stretch" spacing={"48px"}>
                 <Flex justifyContent="space-between" cursor="pointer" onClick={setToggle} alignItems="center">
                     <VStack align="stretch" spacing="8px">
-                        <AppTypography size="16px" weight="bolder">{title}</AppTypography>
-                        {description && <AppTypography size="12px" color="#C2C2C2">{description}</AppTypography>}
+                        <AppTypography fontSize="16px" fontWeight="bold">{title}</AppTypography>
+                        {description && <AppTypography fontSize="12px" color="#C2C2C2">{description}</AppTypography>}
                     </VStack>
                     <AppIcons.ArrowDown width="18px" height="18px" style={{ cursor: "pointer", transition: ".3s", transform: `rotate(${isActive ? "180deg" : '0'})` }} />
                 </Flex>

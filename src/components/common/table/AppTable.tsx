@@ -57,7 +57,7 @@ function AppTable({ rows, vertical, empty, checkbox }: IAppTable) {
                                     {checkbox && <th><Checkbox onChange={(e) => selectAll(e.target.checked)} colorScheme='green'></Checkbox></th>}
                                     {Object.keys(rows[0]).filter(el => el !== "_data").map((el, key) =>
                                         <th {...rows[0][el].props} key={key}>
-                                            <AppTypography textTransform="none" size='12px' color="#FFF">
+                                            <AppTypography textTransform="none" fontSize='12px' color="#FFF">
                                                 {typeof rows[0][el].caption !== "undefined" ? rows[0][el].caption : capitalizeFirstLetter(el)}
                                             </AppTypography>
                                         </th>

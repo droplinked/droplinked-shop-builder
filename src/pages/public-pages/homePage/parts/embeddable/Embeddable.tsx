@@ -39,15 +39,15 @@ function Embeddable() {
                         <SwiperSlide key={key}>
                             <VStack align="stretch" borderRadius={{ base: "14px", lg: "24px" }} background="linear-gradient(#944BFB, #619FE7)" padding={{ base: "10px", lg: "25px" }} spacing="11px">
                                 <Box><Image src={el.image} borderRadius="8px" width="100%" /></Box>
-                                <AppTypography size={{ base: "14px", lg: "20px" }}>{el.title}</AppTypography>
-                                <AppTypography size={{ base: "14px", lg: "20px" }} weight='bolder'>{el.price}</AppTypography>
+                                <AppTypography fontSize={{ base: "14px", lg: "20px" }}>{el.title}</AppTypography>
+                                <AppTypography fontSize={{ base: "14px", lg: "20px" }} fontWeight='bold'>{el.price}</AppTypography>
                                 <Flex color="#C2C2C2" padding={{ base: "10px", lg: "10px 10px 10px 40px" }} alignItems="center" gap="10px" borderRadius="8px" backgroundColor="#292929">
                                     <PaymentIcon />
-                                    <AppTypography size='14px' weight='bolder'>Fiat Payment</AppTypography>
+                                    <AppTypography fontSize='14px' fontWeight='bold'>Fiat Payment</AppTypography>
                                 </Flex>
                                 <Flex color="#C2C2C2" padding={{ base: "10px", lg: "10px 10px 10px 40px" }} alignItems="center" gap="10px" borderRadius="8px" backgroundColor="#292929">
                                     <CryptoIcon />
-                                    <AppTypography size='14px' weight='bolder'>Crypto Payment</AppTypography>
+                                    <AppTypography fontSize='14px' fontWeight='bold'>Crypto Payment</AppTypography>
                                 </Flex>
                             </VStack>
                         </SwiperSlide>
@@ -55,8 +55,8 @@ function Embeddable() {
                 </Swiper>
             </VStack>
             <VStack width={{ base: "90%", sm: "60%", lg: "40%" }} align="stretch" marginTop="20px">
-                <Box><AppTypography textAlign={{ base: "center", lg: "left" }} size={{ base: "18px", sm: "23px", lg: "34px" }} weight='bolder'>Embeddable Product Cards</AppTypography></Box>
-                <Box><AppTypography textAlign={{ base: "center", lg: "left" }} size={{ base: "14px", sm: "18px", lg: "20px" }} color="#888">Semi and fully decentralized product cards to sell anywhere on the web with a distributed checkout to reach your customers where they are</AppTypography></Box>
+                <Box><AppTypography textAlign={{ base: "center", lg: "left" }} fontSize={{ base: "18px", sm: "23px", lg: "34px" }} fontWeight='bold'>Embeddable Product Cards</AppTypography></Box>
+                <Box><AppTypography textAlign={{ base: "center", lg: "left" }} fontSize={{ base: "14px", sm: "18px", lg: "20px" }} color="#888">Semi and fully decentralized product cards to sell anywhere on the web with a distributed checkout to reach your customers where they are</AppTypography></Box>
             </VStack>
         </Flex>
     )
