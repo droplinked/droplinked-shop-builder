@@ -16,7 +16,7 @@ function Links() {
   const Header = ({ children }) => (
     <Text
       fontFamily="Avenir Next"
-      fontfontWeight="bold"
+      fontWeight="bold"
       fontSize="14px"
       color="#808080"
     >

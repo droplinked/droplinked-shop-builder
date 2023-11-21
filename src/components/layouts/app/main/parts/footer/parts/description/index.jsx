@@ -21,7 +21,7 @@ function Description() {
         mb="18px"
         w='max-content'
       >
-        <AppTypography fontSize="12px" fontfontWeight="bold" display={"inline-block"}>Community driven commerce</AppTypography>
+        <AppTypography fontSize="12px" fontWeight="bold" display={"inline-block"}>Community driven commerce</AppTypography>
         <br />
         Launch a drop in minutes & unlock the power of web3.
       </Text>

@@ -18,7 +18,7 @@ function OptionFonts() {
                 {fonts.map((el, key: number) => (
                     <ActiveBox key={key} active={el === fontfamily} props={{ cursor: "pointer", backgroundColor: "#141414", borderRadius: "12px", onClick: () => dispatch({ type: 'updateShop', params: { shopDesign: { fontfamily: el } } }) }}>
                         <VStack padding="12px" align="stretch" spacing="0">
-                            <PreviewTypo fontSize="10px" fontFamily={el} fontfontWeight='bold' color="#FFF">{el}</PreviewTypo>
+                            <PreviewTypo fontSize="10px" fontFamily={el} fontWeight='bold' color="#FFF">{el}</PreviewTypo>
                             <PreviewTypo fontSize="10px" fontFamily={el} color="#c2c2c2">{el}</PreviewTypo>
                         </VStack>
                     </ActiveBox>

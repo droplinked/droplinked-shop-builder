@@ -28,11 +28,11 @@ const CustomerInformationComponent = () => {
       {customer_array && customer_array.length ? (
         <VStack align={"stretch"} color="#C2C2C2">
           <Box textAlign={"center"} marginBottom={7}>
-            <AppTypography fontSize="18px" fontfontWeight="bold">Order Details</AppTypography>
+            <AppTypography fontSize="18px" fontWeight="bold">Order Details</AppTypography>
           </Box>
 
           <VStack align="stretch" spacing="24px" paddingBottom={5}>
-            <Box><AppTypography fontSize="16px" fontfontWeight="bold" color="#FFF">Order Information</AppTypography></Box>
+            <Box><AppTypography fontSize="16px" fontWeight="bold" color="#FFF">Order Information</AppTypography></Box>
             <VStack align={"stretch"} spacing="18px">
               {order_array && order_array.map((item, key) => container(key, item.name, item.data))}
             </VStack>
