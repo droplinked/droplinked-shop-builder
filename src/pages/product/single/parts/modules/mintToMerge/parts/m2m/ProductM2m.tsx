@@ -1,18 +1,20 @@
 import { Box, HStack, SimpleGrid, Switch, VStack } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
 import { printServicesServices } from 'lib/apis/product/productServices'
 import { productContext } from 'pages/product/single/context'
-import React, { useCallback, useContext, useEffect } from 'react'
-import { useMutation } from 'react-query'
+import React, { useCallback, useContext } from 'react'
+import { useQuery } from 'react-query'
 import classes from './style.module.scss'
 import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
 
 function ProductM2m() {
-    const { mutate, data } = useMutation(() => printServicesServices())
+    const { data } = useQuery({
+        queryFn: printServicesServices,
+        queryKey: "printServicesServices",
+        cacheTime: 60 * 60 * 1000,
+        refetchOnWindowFocus: false
+    })
     const { state: { m2m_services }, methods: { updateState } } = useContext(productContext)
-
-    useEffect(() => mutate(), [])
 
     const updateM2M = useCallback((checked: boolean, id: string) => {
         updateState('m2m_services', checked ? [...m2m_services, id] : m2m_services.filter(el => el !== id))
@@ -22,7 +24,7 @@ function ProductM2m() {
 
     return (
         <VStack align="stretch" spacing="16px">
-            <AppTypography fontSize='14px'>Customers Wallet Options</AppTypography>
+            <AppTypography fontSize='14px'>Customer Wallet Options</AppTypography>
             <SimpleGrid columns={3} justifyContent="space-between" spacing={5}>
                 {data?.data?.data && data?.data?.data.map((item: any, key: number) => (
                     <HStack spacing="5px" key={key}>

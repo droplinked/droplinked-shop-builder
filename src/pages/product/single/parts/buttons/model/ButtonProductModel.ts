@@ -57,7 +57,7 @@ const ButtonsProductClass = ({
                         error.message = "Please enter packaging size property for all SKUs"
                         throw error
                     } else if (state.m2m_positions.length && !state.m2m_services.length) {
-                        error.message = "Please choose customers wallet options"
+                        error.message = "Please choose customer wallet options"
                         throw error
                     } else if ((state.artwork && !state.artwork_position) || (state.artwork2 && !state.artwork2_position)) {
                         error.message = "Please choose position for artworks"
