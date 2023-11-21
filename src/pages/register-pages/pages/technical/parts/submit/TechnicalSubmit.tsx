@@ -18,7 +18,7 @@ function TechnicalSubmit() {
     const { mutateAsync, isLoading } = useMutation((params: Array<IpaymentCreateService>) => paymentCreateService(params))
     const currentPath = useLocation().pathname
     const { checkPaymentMethod } = technicalModel
-    const { setShopData: { loading, update } } = useProfile()
+    const { setShopData: { loading, update }, shop } = useProfile()
     const { shopNavigate } = useCustomNavigate()
     const { refactor } = TechnicalSubmitModel
     const isRegister = currentPath.includes("register")
@@ -30,7 +30,7 @@ function TechnicalSubmit() {
         try {
             await mutateAsync(isRegister ? payments.filter(el => el.isActive) : refactor({ payments, userPayments })) // Post payments service
             if (isRegister) {
-                update({ imsType })
+                if (!shop.imsType) await update({ imsType: imsType })
                 shopNavigate(`products`);
             } else {
                 showToast(AppErrors.store.payment_options_have_been_updated, "success");
@@ -38,7 +38,7 @@ function TechnicalSubmit() {
         } catch (error) {
             showToast(error.message, "error");
         }
-    }, [payments, imsType, userPayments])
+    }, [payments, imsType, userPayments, isRegister, shop])
     return (
         <Flex justifyContent={isRegister ? "space-between" : "right"} width={"100%"}>
             {isRegister && (

@@ -49,7 +49,7 @@ function AppRoutes() {
           <Route path="plans" element={<PricingPage />} />
         </Route>
 
-        <Route path=":shopname/c" element={<DashboardLayout />}>
+        <Route path="dashboard" element={<DashboardLayout />}>
           <Route path="register" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
             <Route path="design" element={<DesignPage />} />

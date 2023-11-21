@@ -26,7 +26,7 @@ import { appDeveloment } from "lib/utils/app/variable";
 const HeaderDashboard = () => {
   const { app: { shop } } = useHookStore();
   const { onOpen, onClose, isOpen } = useDisclosure();
-  const { shopNavigate } = useCustomNavigate();
+  const { shopNavigate, shopRoute } = useCustomNavigate();
   const { logoutUser } = useProfile()
 
   // Redirect dashboard
@@ -43,7 +43,7 @@ const HeaderDashboard = () => {
 
   return (
     <UserHeaderWrapper position="fixed" top="0" left="0" right="0" zIndex="3" backgroundColor="#141414">
-      <Link to={`/${shop?.name}/c/products`}>
+      <Link to={`${shopRoute}/products`}>
         <UserHeaderIcon src={droplinkedIcon} />
       </Link>
       {shop ? (

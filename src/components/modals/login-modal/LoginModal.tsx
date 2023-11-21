@@ -11,6 +11,7 @@ import useAppToast from "functions/hooks/toast/useToast";
 import AppModal from "components/common/modal/AppModal";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import useHookStore from "functions/hooks/store/useHookStore";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 
 interface Iform {
   email: string
@@ -19,8 +20,8 @@ interface Iform {
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   const { app: { login, loading } } = useHookStore()
-  const navigate = useNavigate();
   const { showToast } = useAppToast()
+  const { shopRoute, shopNavigate } = useCustomNavigate()
 
   // submit form function
   const onSubmit = async (data: Iform) => {
@@ -39,8 +40,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
     //first close modal
     close();
-
-    const status = data.user.status
+    const status = appDeveloment && data.user.status === "NEW" ? "VERIFIED" : data.user.status
 
     if (status === "DELETED") {
       showToast("This account has been deleted", "error");
@@ -53,27 +53,26 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
   // navigate user based on status
   const navigateUser = (status: string, data: any) => {
-    const shopName = data.shop.name
     // eslint-disable-next-line default-case
     switch (status) {
       case "NEW":
         localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
-        navigate("/email-confirmation");
+        shopNavigate("/email-confirmation");
         return;
       case "VERIFIED":
-        navigate(`/${shopName}/c/register/shop-info`);
+        shopNavigate(`register/shop-info`);
         return;
       case "PROFILE_COMPLETED":
-        navigate(`/${shopName}/c/register/shop-info`);
+        shopNavigate(`register/shop-info`);
         return;
       case "SHOP_INFO_COMPLETED":
-        navigate(`/${shopName}/c/products/`);
+        shopNavigate(`products/`);
         return;
       case "IMS_TYPE_COMPLETED":
-        navigate(`/${shopName}/c/products/`);
+        shopNavigate(`products/`);
         return;
       case "ACTIVE":
-        navigate(`/${shopName}/c/products/`);
+        shopNavigate(`products/`);
         return;
     }
   };

@@ -1,11 +1,11 @@
 import { Box, HStack, Image, StackProps, VStack } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import AppTypography from 'components/common/typography/AppTypography';
 import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
 
 interface Iprops {
     image: string
@@ -20,10 +20,10 @@ interface Iprops {
 }
 
 function AffiliateProduct({ image, title, link, blockchain, shop, props }: Iprops) {
-    const dataProfile = useProfile()
+    const { shopRoute } = useCustomNavigate()
 
     return (
-        <Link to={`/${dataProfile.shop.name}/c/affiliate/shops/${link}`}>
+        <Link to={`${shopRoute}/affiliate/shops/${link}`}>
             <VStack align={"stretch"} backgroundColor="#000" height="100%" position={"relative"} color='#FFF' borderRadius="8px" padding={{ base: "8px", xl: "15px" }} spacing="12px" {...props}>
                 <Box height="120px" overflow="hidden" position="relative" background={`url(${image}) center`} backgroundSize="cover"></Box>
                 {title && (

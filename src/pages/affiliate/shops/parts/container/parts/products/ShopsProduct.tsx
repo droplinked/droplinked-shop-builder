@@ -1,11 +1,11 @@
-import { Box, Flex, HStack, SimpleGrid, Stack } from '@chakra-ui/react'
-import { faker } from '@faker-js/faker'
+import { Box, SimpleGrid } from '@chakra-ui/react'
 import AffiliateProduct from 'pages/affiliate/parts/product/AffiliateProduct'
 import React, { useContext } from 'react'
 import { shopsContainerContext } from '../../context'
 
 function ShopsProduct() {
     const { shop } = useContext(shopsContainerContext)
+
     return (
         <SimpleGrid gap="16px" columns={6} height="100%">
             {shop?.products && shop?.products.length && shop?.products.slice(0, 6).map((el: any, key: number) => (
