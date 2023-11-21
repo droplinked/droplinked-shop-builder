@@ -24,6 +24,8 @@ function IconBlockchain({ blockchain, props }: IProps) {
                 return <AppIcons.Ripple className={classes.ripple} {...props} />
             case "BINANCE":
                 return <AppIcons.Binance {...props} />
+            case "BASE":
+                return <AppIcons.Base className={classes.base} {...props} />
             default:
                 return <AppIcons.File {...props} />
         }
