@@ -47,9 +47,11 @@ const states = (set: any, get: any): IAppStore => ({
                 set({ loading: true })
                 const data = await authLoginService(params)
                 const result = data.data.data
+                let status = appDeveloment && result?.user?.status === "NEW" ? "VERIFIED" : result?.user?.status
+
                 set({
                     loading: false,
-                    ...result?.user?.status !== "NEW" && {
+                    ...status !== "NEW" && {
                         user: result?.user,
                         shop: result?.shop,
                         access_token: result?.access_token,
@@ -104,7 +106,7 @@ const states = (set: any, get: any): IAppStore => ({
             const prevWallets = state.user?.wallets
             const checkWallet = prevWallets && prevWallets.find((el: IUserWalletsProps) => el.type === type && el.address)
             if (checkWallet) return prevWallets
-            
+
             const wallets = [...prevWallets ? prevWallets.filter(el => el.type !== type) : [], { type, address, public_key }]
             userUpdateService({ wallets })
             return {
