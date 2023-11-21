@@ -30,11 +30,11 @@ function DescriptionProduct() {
                             plugins: [
                                 'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
                                 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                                'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount', 'importcss'
+                                'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount', 'importcss','image'
                             ],
                             toolbar: 'undo redo | blocks | ' +
                                 'bold italic forecolor | alignleft aligncenter ' +
-                                'alignright alignjustify | bullist numlist outdent indent table',
+                                'alignright alignjustify | bullist numlist outdent indent table image',
                             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; background: #141414 } .mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {color: #777}',
                         }}
                     />
