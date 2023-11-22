@@ -1,10 +1,7 @@
 import { Flex, Text, HStack, Box } from "@chakra-ui/layout";
 import { Link } from "react-router-dom";
-
 import { footerStyles } from "../../FooterLayout-style";
 import droplinkFull from "assest/image/droplinkFull.svg";
-
-import footerLogo from "assest/icon/Flatlay-Logo.png";
 import { appVersion } from "lib/utils/app/variable";
 import AppTypography from "components/common/typography/AppTypography";
 

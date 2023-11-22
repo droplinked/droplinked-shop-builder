@@ -10,7 +10,7 @@ function ProductSwitch() {
     return (
         <VStack align="stretch" >
             <OptionsCaption caption='Products list title' />
-            <AppInput name='' value={productListTitle} onChange={(e) => dispatch({ type: "updateShop", params: { shopDesign: { productListTitle: e.target.value } } })} placeholder='Enter a slogan' />
+            <AppInput name='' value={productListTitle} onChange={(e) => dispatch({ type: "updateShop", params: { shopDesign: { productListTitle: e.target.value } } })} placeholder='New Season Collection' />
         </VStack>
     )
 }

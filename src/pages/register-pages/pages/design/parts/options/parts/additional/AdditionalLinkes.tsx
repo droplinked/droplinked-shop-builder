@@ -54,12 +54,12 @@ function AdditionalLinkes({ element }: IProps) {
                         ) : (
                             <VStack key={key} align="stretch">
                                 <VStack align="stretch" spacing="3px">
-                                    <AppTypography fontSize="14px" color="#C2C2C2">Item Name</AppTypography>
+                                    <AppTypography fontSize="14px" color="#C2C2C2">Text to Display</AppTypography>
                                     <AppInput name='' value={el.caption} onChange={(e) => change(key, e.target.value, 'caption')} placeholder='Privacy Policy' />
                                 </VStack>
                                 <VStack align="stretch" spacing="3px">
-                                    <AppTypography fontSize="14px" color="#C2C2C2">URL</AppTypography>
-                                    <AppInput name='' value={el.link} onChange={(e) => change(key, e.target.value, 'link')} placeholder='http://' />
+                                    <AppTypography fontSize="14px" color="#C2C2C2">Write or paste a link</AppTypography>
+                                    <AppInput name='' value={el.link} onChange={(e) => change(key, e.target.value, 'link')} placeholder='https://privacypolicy.com' />
                                 </VStack>
                                 <BasicButton sizes='medium' onClick={() => trigger(key, true)}>Save</BasicButton>
                                 <BasicButton sizes='medium' variant='outline' onClick={() => deleted(key)}>Delete</BasicButton>
