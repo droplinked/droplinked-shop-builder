@@ -2,18 +2,17 @@ import { Box, Flex, Image, VStack } from "@chakra-ui/react";
 import AppBadge from 'components/common/badge/AppBadge';
 import Pagination from "components/common/datagrid/parts/pagination/Pagination";
 import AppEmptyPage from 'components/common/empty/AppEmptyPage';
-import IconBlockchain from "components/common/iconBlockchain/IconBlockchain";
 import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
 import { IpublisherRequestService } from "lib/apis/affiliate/interfaces";
 import { publisherRequestService } from "lib/apis/affiliate/shopServices";
 import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
-import AffiliateDetailCard from "pages/affiliate/parts/detail/affiliateDetailCard";
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useMutation } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import RequestSkeleton from "../skeleton/RequestSkeleton";
 import requestsModel from "./model";
+import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 
 function RequestsList() {
   const [searchParams] = useSearchParams()
@@ -67,9 +66,9 @@ function RequestsList() {
                     </Flex>
                   </Flex>
                   <Flex alignItems="center" gap="8px" color="#808080">
-                    <IconBlockchain blockchain={el?.network} props={{ width: "12px", height: "12px" }} />
-                    <AppTypography position="relative" top="2px" display="flex">
-                      Dropped on <AppTypography padding="0 3px" fontSize="10px" fontWeight='bold'>{capitalizeFirstLetter(el?.network)}</AppTypography> blockchain
+                    <BlockchainDisplay show="icon" blockchain={el?.network} props={{ width: "12px", height: "12px" }} />
+                    <AppTypography position="relative" top="2px" fontSize="10px" display="flex">
+                      Dropped on <AppTypography padding="0 3px" fontSize="10px" fontWeight='bold'><BlockchainDisplay show='name' blockchain={el?.network} /></AppTypography> blockchain
                     </AppTypography>
                   </Flex>
                 </VStack>

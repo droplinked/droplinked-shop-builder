@@ -2,10 +2,10 @@ import { Box, HStack, Image, StackProps, VStack } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom';
 import AppTypography from 'components/common/typography/AppTypography';
-import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
 import AppTooltip from 'components/common/tooltip/AppTooltip';
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
+import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 
 interface Iprops {
     image: string
@@ -37,8 +37,8 @@ function AffiliateProduct({ image, title, link, blockchain, shop, props }: Iprop
                 )}
                 {blockchain && (
                     <HStack height="20px">
-                        <IconBlockchain blockchain={blockchain} props={{ width: "12px" }} />
-                        <AppTypography fontSize="10px">{capitalizeFirstLetter(blockchain)}</AppTypography>
+                        <BlockchainDisplay show='icon' blockchain={blockchain} props={{ width: "12px" }} />
+                        <AppTypography fontSize="10px"><BlockchainDisplay show='name' blockchain={blockchain} /></AppTypography>
                     </HStack>
                 )}
             </VStack>

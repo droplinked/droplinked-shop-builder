@@ -3,8 +3,8 @@ import AppImage from 'components/common/image/AppImage'
 import React, { useContext } from 'react'
 import { ModalReqDetailsStyles } from './style-component';
 import { ModalRequestContext } from '../../context';
-import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
+import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 
 function ModalRequestDetails() {
     const { product, sku } = useContext(ModalRequestContext)
@@ -21,7 +21,7 @@ function ModalRequestDetails() {
                     <Box><LabelText>Your earning: {`${sku?.publisherEarning} USD`}</LabelText></Box>
                     <Box paddingTop={1}>
                         <HStack>
-                            <Box><IconBlockchain blockchain={sku?.recordData?.recordNetwork} props={{ width: "16px" }} /></Box>
+                            <Box><BlockchainDisplay show='icon' blockchain={sku?.recordData?.recordNetwork} props={{ width: "16px" }} /></Box>
                             <Box><Text fontSize={"sm"}>{capitalizeFirstLetter(sku?.recordData?.recordNetwork)}</Text></Box>
                         </HStack>
                     </Box>
