@@ -16,6 +16,7 @@ import useAppToast from 'functions/hooks/toast/useToast';
 import ClipboardText from 'components/common/clipboardText/ClipboardText';
 import useHookStore from 'functions/hooks/store/useHookStore';
 import useStack from 'functions/hooks/stack/useStack';
+import { ChainTypes } from 'lib/utils/statics/chainTypes';
 
 function Wallet() {
     const { data, isLoading } = useQuery({
@@ -48,7 +49,7 @@ function Wallet() {
                             <Flex backgroundColor="#141414" height="55px" padding="0 18px" key={key} alignItems="center" justifyContent="space-between" borderRadius="8px" color="#C2C2C2">
                                 <HStack alignItems="center">
                                     <IconBlockchain props={{ width: "18px", height: "18px" }} blockchain={el} />
-                                    <AppTypography fontSize="12px" color="lightGray">{capitalizeFirstLetter(el)}</AppTypography>
+                                    <AppTypography fontSize="12px" color="lightGray">{ChainTypes[el] || capitalizeFirstLetter(el)}</AppTypography>
                                 </HStack>
                                 <Box>
                                     {isExist ? (

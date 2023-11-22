@@ -8,30 +8,17 @@ interface IProps {
 }
 function IconBlockchain({ blockchain, props }: IProps) {
 
-    const icon = useMemo(() => {
-        switch (blockchain) {
-            case "CASPER":
-                return <AppIcons.CasperIcon {...props} />
-            case "STACKS":
-                return <AppIcons.Stacks {...props} />
-            case "NEAR":
-                return <AppIcons.NearWalletIcon  {...props} />
-            case "POLYGON":
-                return <AppIcons.Polygon {...props} />
-            case "RIPPLESIDECHAIN":
-                return <AppIcons.Ripple className={classes.ripple} {...props} />
-            case "RIPPLE":
-                return <AppIcons.Ripple className={classes.ripple} {...props} />
-            case "BINANCE":
-                return <AppIcons.Binance {...props} />
-            case "BASE":
-                return <AppIcons.Base className={classes.base} {...props} />
-            default:
-                return <AppIcons.File {...props} />
-        }
-    }, [blockchain, props])
+    const icon = useMemo(() => ({
+        "CASPER": <AppIcons.CasperIcon {...props} />,
+        "STACKS": <AppIcons.Stacks {...props} />,
+        "NEAR": <AppIcons.NearWalletIcon  {...props} />,
+        "POLYGON": <AppIcons.Polygon {...props} />,
+        "XRPLSIDECHAIN": <AppIcons.Ripple className={classes.ripple} {...props} />,
+        "BINANCE": <AppIcons.Binance {...props} />,
+        "BASE": <AppIcons.Base className={classes.base} {...props} />,
+    }), [props])
 
-    return icon
+    return icon[blockchain] || <AppIcons.File {...props} />
 }
 
 export default IconBlockchain
