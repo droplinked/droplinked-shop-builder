@@ -29,7 +29,11 @@ module.exports = function override(config, env) {
 				resolve: {
 					fullySpecified: false,
 				},
-			}
+			},
+			{
+				test: /\.json$/,
+				loader: 'json-loader'
+			},
 		]
 	]
 

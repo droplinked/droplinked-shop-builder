@@ -1,10 +1,12 @@
-import { Flex, Text, HStack } from "@chakra-ui/layout";
+import { Flex, Text, HStack, Box } from "@chakra-ui/layout";
 import { Link } from "react-router-dom";
 
 import { footerStyles } from "../../FooterLayout-style";
 import droplinkFull from "assest/image/droplinkFull.svg";
 
 import footerLogo from "assest/icon/Flatlay-Logo.png";
+import { appVersion } from "lib/utils/app/variable";
+import AppTypography from "components/common/typography/AppTypography";
 
 const BottomComponent = () => {
   const { TermText, FooterLogo } = footerStyles;
@@ -14,8 +16,10 @@ const BottomComponent = () => {
       flexDirection={{ base: "column", md: "row" }}
       justifyContent={"space-between"}
       width="100%"
+      alignItems="center"
     >
-      <HStack mb={{base:'18px' , md:'0px'}}>
+      <AppTypography color="#888" fontSize="10px" position="absolute" bottom="0" right="0" margin="15px">version: {appVersion}</AppTypography>
+      <HStack mb={{ base: '18px', md: '0px' }} alignItems="center">
         <Text fontFamily="Avenir Next" fontWeight="500" fontSize="12px" color='lightGray' >
           Powered by
         </Text>
