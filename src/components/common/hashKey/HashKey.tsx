@@ -3,8 +3,8 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import { appDeveloment } from 'lib/utils/app/variable'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useMemo } from 'react'
+import BlockchainDisplay from '../blockchainDisplay/BlockchainDisplay'
 import ClipboardText from '../clipboardText/ClipboardText'
-import IconBlockchain from '../iconBlockchain/IconBlockchain'
 import AppTypography from '../typography/AppTypography'
 import hashkeyModel from './model'
 
@@ -34,7 +34,7 @@ function HashKey({ close, hashkey, text, blockchain, description }: IHashKeyModa
                 </Box>
                 <Box><ClipboardText text={getLink} /></Box>
             </Flex>
-            <Box><AppTypography display="flex" gap={1} fontSize='12px'>Dropped on <IconBlockchain props={{ width: "15px", height: "15px" }} blockchain={blockchain} /> {capitalizeFirstLetter(blockchain)}</AppTypography></Box>
+            <Box><AppTypography display="flex" gap={1} fontSize='12px'>Dropped on <BlockchainDisplay show='icon' props={{ width: "15px", height: "15px" }} blockchain={blockchain} /> {capitalizeFirstLetter(blockchain)}</AppTypography></Box>
             <Flex paddingTop={6} justifyContent="center"><BasicButton onClick={() => close()}>Close</BasicButton></Flex>
         </VStack>
     )

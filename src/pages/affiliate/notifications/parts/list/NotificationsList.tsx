@@ -10,9 +10,9 @@ import { useMutation } from 'react-query'
 import { useSearchParams } from 'react-router-dom'
 import NotificationsButtons from './parts/buttons/NotificationsButtons'
 import NotificationsSkeleton from './parts/skeleton/NotificationsSkeleton'
-import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import requestsModel from 'pages/affiliate/requests/parts/list/model'
+import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 
 function NotificationsList() {
     const [searchParams] = useSearchParams()
@@ -70,9 +70,9 @@ function NotificationsList() {
                                                 </VStack>
                                             </Flex>
                                             <Flex alignItems="center" gap="8px" color="#808080">
-                                                <IconBlockchain blockchain={el?.network} props={{ width: "12px", height: "12px" }} />
+                                                <BlockchainDisplay show='icon' blockchain={el?.network} props={{ width: "12px", height: "12px" }} />
                                                 <AppTypography position="relative" top="2px" fontSize="10px" display="flex">
-                                                    Dropped on <AppTypography padding="0 3px" fontSize="10px" fontWeight='bold'>{capitalizeFirstLetter(el?.network)}</AppTypography> blockchain
+                                                    Dropped on <AppTypography padding="0 3px" fontSize="10px" fontWeight='bold'><BlockchainDisplay show='name' blockchain={el?.network} /></AppTypography> blockchain
                                                 </AppTypography>
                                             </Flex>
                                         </VStack>
