@@ -1,7 +1,10 @@
-export const ChainTypes = {
-    ETH: "ETH",
-    CASPER: "CASPER",
-    UNSTOPPABLEDOMAIN: "UNSTOPPABLEDOMAIN",
-    NEAR: "NEAR",
-  };
-  
+export enum ChainTypes {
+  STRIPE = "Stripe",
+  CASPER = "Casper",
+  STACKS = "Stacks",
+  NEAR = "Near",
+  POLYGON = "Polygon",
+  XRPLSIDECHAIN = "XRPL sidechain",
+  BINANCE = "Binance",
+  BASE = "Base",
+};

@@ -10,6 +10,8 @@ import technicalPaymentsModel from './model';
 import ContainerPayment from './parts/container';
 import PaymentsLoading from './parts/loading/PaymentsLoading';
 import AppCard from 'components/common/card/AppCard';
+import { ChainTypes } from 'lib/utils/statics/chainTypes';
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
 
 function Payments() {
     const { state: { payments }, userPayments, updateState } = useContext(technicalContext)
@@ -42,7 +44,7 @@ function Payments() {
                         {paymentPublic.isLoading ? <PaymentsLoading /> : payments && payments.map((el, key) => (
                             <BlackBox key={key} padding="5px 20px" height="55px" display="flex" alignItems="center">
                                 <ContainerPayment
-                                    title={el.type}
+                                    title={ChainTypes[el.type] || capitalizeFirstLetter(el.type)}
                                     locked={el.isActive}
                                     value={el.destinationAddress}
                                 />
