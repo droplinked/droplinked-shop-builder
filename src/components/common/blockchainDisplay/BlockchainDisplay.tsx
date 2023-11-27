@@ -38,6 +38,10 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
             icon: <AppIcons.Base className={classes.base} {...props} />,
             name: 'Base'
         },
+        "STRIPE": {
+            icon: <AppIcons.Stripe {...props} />,
+            name: 'Stripe'
+        },
     }), [props])
 
     return show === "icon" ? chains[blockchain]?.icon || <AppIcons.File {...props} /> : chains[blockchain]?.name || blockchain

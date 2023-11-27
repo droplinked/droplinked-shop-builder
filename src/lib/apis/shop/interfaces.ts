@@ -59,3 +59,7 @@ export interface IshopPublicRecordedService {
     tags: string
     page: string | number
 }
+
+export interface IchargeCreditService {
+    amount: number
+}
