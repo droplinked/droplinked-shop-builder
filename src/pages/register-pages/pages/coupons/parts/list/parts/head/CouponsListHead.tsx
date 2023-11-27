@@ -1,38 +1,33 @@
-import { Box, Flex, useDisclosure } from '@chakra-ui/react'
+import React from 'react'
+import { Flex, HStack, useDisclosure, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import SearchDatagrid from 'components/common/datagrid/parts/search/SearchDatagrid'
-import CouponsSettingContext from 'pages/register-pages/pages/coupons/context'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import CouponsCreate from '../../../parts/create/CouponsCreate'
+import AppTypography from 'components/common/typography/AppTypography'
+import CouponsCreate from './parts/modal/create/CouponsCreate'
+import RechargeModel from './parts/modal/recharge/RechargeModel'
+import useAppStore from 'lib/stores/app/appStore'
 
 function CouponsListHead() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { updateFilters } = useContext(CouponsSettingContext)
-    const [searchParams] = useSearchParams()
-    const [Keyword, setKeyword] = useState(null)
-    const search = searchParams.get('search')
-
-    useEffect(() => search && setKeyword(search), [searchParams, search])
-
-    const submit = useCallback((form: any) => {
-        form.preventDefault()
-        if (search === Keyword) return false
-
-        updateFilters('search', Keyword)
-    }, [Keyword])
+    const rechargeModel = useDisclosure()
+    const { shop } = useAppStore()
 
     return (
         <>
             <Flex justifyContent="space-between" alignItems="center">
-                <Box>
-                    <form method="post" onSubmit={submit}>
-                        <SearchDatagrid value={Keyword} onChange={e => setKeyword(e.target.value)} />
-                    </form>
-                </Box>
-                <Box><BasicButton sizes="medium" onClick={onOpen}>Create Coupon</BasicButton></Box>
+                <VStack align="stretch" spacing="12px">
+                    <AppTypography color="#C2C2C2" fontSize="12px">Your Credit</AppTypography>
+                    <HStack alignItems="center">
+                        <AppTypography color="#FFF" fontWeight="bold" fontSize="18px">$ {shop?.credit}</AppTypography>
+                        <AppTypography color="#C2C2C2" fontSize="12px">USD</AppTypography>
+                    </HStack>
+                </VStack>
+                <Flex gap="10px">
+                    <BasicButton sizes="medium" variant='outline' onClick={rechargeModel.onOpen}>Recharge Credit</BasicButton>
+                    <BasicButton sizes="medium" onClick={onOpen}>Create Coupon</BasicButton>
+                </Flex>
             </Flex>
             {isOpen && <CouponsCreate close={onClose} open={isOpen} />}
+            {rechargeModel.isOpen && <RechargeModel close={rechargeModel.onClose} open={rechargeModel.isOpen} />}
         </>
     )
 }
