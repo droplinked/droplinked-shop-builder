@@ -4,7 +4,7 @@ import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
 import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
 import ReactFullpage from '@fullpage/react-fullpage';
 import classes from './style.module.scss'
-import { Box, Flex, Image, position, Show } from '@chakra-ui/react';
+import { Box, Flex, Image, position, Show, useDisclosure } from '@chakra-ui/react';
 import Partners from './parts/partners/Partners';
 import Community from './parts/community/Community';
 import ProductsMain from './parts/product/ProductsMain';
@@ -13,12 +13,18 @@ import Embeddable from './parts/embeddable/Embeddable';
 import Supported from './parts/supported/Supported';
 import Contact from './parts/contact/Contact';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import AuthModal from 'components/modals/auth-modal/AuthModal';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 function HomePage() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [States, setStates] = useState({
     pause: false,
     loaded: []
   })
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => searchParams.get('modal') === "login" && onOpen(), [searchParams])
 
   const effects = useMemo(() => (
     <>
@@ -84,6 +90,7 @@ function HomePage() {
           }}
         />
       </div>
+      {isOpen && <AuthModal show={true} type="SIGNIN" close={onClose} />}
     </ParallaxProvider >
   )
 }
