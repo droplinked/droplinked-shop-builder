@@ -22,7 +22,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
       showToast(`Send an email to : ${params.email}`, "success");
       close();
     } catch (error) {
-      showToast(error?.response?.data?.message, "error")
+      showToast(error?.response?.data?.data?.message || error?.message, "error")
     }
   }
 
@@ -31,7 +31,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
   });
 
   return (
-    <AppModal open={show} close={close} title="Reset your password">
+    <AppModal open={show} close={close} title="Forgot Password">
       <Formik
         initialValues={{
           email: '',
@@ -43,10 +43,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
         {({ errors, values, setFieldValue }) => (
           <Form>
             <VStack align={"stretch"} spacing={4}>
-              <AppTypography fontSize="14px" color={"#FFF"}>
-                Enter the email address associated with your account and we'll send
-                you a link to reset your password.
-              </AppTypography>
+              <AppTypography fontSize="14px" color={"#FFF"}>Please enter the email address you’ve been registered for your store, we will send you an email to help you change your password</AppTypography>
               <AppInput
                 name="email"
                 isRequired
@@ -56,7 +53,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
                 type={"email"}
                 onChange={(e) => setFieldValue("email", e.target.value)}
               />
-              <BasicButton minWidth={"100%"} type="submit" isLoading={isLoading}>Reset password</BasicButton>
+              <BasicButton minWidth={"100%"} type="submit" isLoading={isLoading}>Send Verification</BasicButton>
               <BasicButton width={"100%"} sizes="medium" onClick={switchReset} variant={"link"}>
                 Back to login
               </BasicButton>
