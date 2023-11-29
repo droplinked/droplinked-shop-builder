@@ -3,7 +3,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import rechargeContext from '../../context';
 import CheckoutForm from './parts/CheckoutForm';
-const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_KEY}`);
+import { appDeveloment } from 'lib/utils/app/variable';
+const stripePromise = loadStripe(`${appDeveloment ? process.env.REACT_APP_STRIPE_KEY_DEV : process.env.REACT_APP_STRIPE_KEY_MAIN}`);
 
 function RechargeStripe() {
   const { clientSecret } = useContext(rechargeContext)
