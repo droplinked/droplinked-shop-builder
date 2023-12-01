@@ -89,7 +89,7 @@ function Printful({ close }: IProps) {
                 params: {
                     variant_ids: data.flatMap(el => el.sizes.map(sized => sized.id)),
                     format: 'png',
-                    product_template_id: States.TemplateId.toString(),
+                    product_template_id: Number(States.TemplateId),
                     technique
                 },
                 productID: pod_blank_product_id
