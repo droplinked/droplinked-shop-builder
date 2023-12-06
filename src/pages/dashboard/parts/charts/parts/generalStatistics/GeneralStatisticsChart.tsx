@@ -54,7 +54,7 @@ function GeneralStatisticsChart() {
     <VStack align="stretch">
       <AppTypography textAlign="right" color="#2BCFA1" fontSize="16px">$6823.96</AppTypography>
       <Box borderTop="2px dashed rgba(128, 237, 207, 0.25)">
-        <Bar options={options} data={data} height="110px" />
+        <Bar options={options} data={data} height="80px" />
       </Box>
     </VStack>
   )

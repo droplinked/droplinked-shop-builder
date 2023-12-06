@@ -31,7 +31,7 @@ function TechnicalSubmit() {
             await mutateAsync(isRegister ? payments.filter(el => el.isActive) : refactor({ payments, userPayments })) // Post payments service
             if (isRegister) {
                 if (!shop.imsType) await update({ imsType: imsType })
-                shopNavigate(`products`);
+                shopNavigate(``);
             } else {
                 showToast(AppErrors.store.payment_options_have_been_updated, "success");
             }
