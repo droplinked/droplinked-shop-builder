@@ -55,6 +55,8 @@ import { ReactComponent as StarFilled } from './starFilled.svg';
 import { ReactComponent as Binance } from './binance.svg';
 import { ReactComponent as Email } from './email.svg';
 import { ReactComponent as Base } from './base-logo.svg';
+import { ReactComponent as Hand } from './hand.svg';
+import { ReactComponent as Dashboard } from './dashboard.svg';
 
 const AppIcons = {
   ProductsIcon,
@@ -113,6 +115,8 @@ const AppIcons = {
   StarFilled,
   Binance,
   Email,
-  Base
+  Base,
+  Hand,
+  Dashboard
 }
 export default AppIcons
