@@ -66,13 +66,13 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
         shopNavigate(`register/shop-info`);
         return;
       case "SHOP_INFO_COMPLETED":
-        shopNavigate(`products/`);
+        shopNavigate(``);
         return;
       case "IMS_TYPE_COMPLETED":
-        shopNavigate(`products/`);
+        shopNavigate(``);
         return;
       case "ACTIVE":
-        shopNavigate(`products/`);
+        shopNavigate(``);
         return;
     }
   };
