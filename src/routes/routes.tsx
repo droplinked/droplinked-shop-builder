@@ -25,6 +25,7 @@ import HomePage from "pages/public-pages/homePage/HomePage";
 import AboutUs from "pages/public-pages/about/AboutUs";
 import AffiliateProducts from "pages/affiliate/products/AffiliateProducts";
 import PricingPage from "pages/public-pages/pricing/PricingPage";
+import DashboardPage from "pages/dashboard/DashboardPage";
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -50,6 +51,7 @@ function AppRoutes() {
         </Route>
 
         <Route path="dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardPage />} />
           <Route path="register" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
             <Route path="design" element={<DesignPage />} />
