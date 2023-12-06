@@ -4,37 +4,66 @@ import { BASE_URL } from "lib/utils/app/variable";
 
 export const axiosInstance = axios.create({
     baseURL: BASE_URL,
-});
+})
 
-const reject = (error) => {
-    const statusCode = error?.response?.status
-    if (statusCode && statusCode === 401 && AppStorage.accessToken()) {
-        AppStorage.clearStorage()
-        window.location.replace(window.location.origin)
+const setToken = (access_token, refresh_token) => {
+    let newData = JSON.parse(localStorage.getItem('appStore'))
+    newData = {
+        ...newData,
+        state: {
+            ...newData.state,
+            access_token: access_token,
+            refresh_token: refresh_token,
+        }
     }
-    return Promise.reject(error);
+    localStorage.setItem('appStore', JSON.stringify(newData))
 }
 
+const refreshAccessToken = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const appStore = JSON.parse(localStorage.getItem('appStore'))
+            const query = await axios.post(BASE_URL + "/auth/refresh-token", {}, {
+                headers: {
+                    'Authorization': `Bearer ${appStore?.state?.refresh_token}`,
+                }
+            })
+            const data = query?.data?.data
+            setToken(data?.access_token, data?.refresh_token);
+            resolve(data?.access_token)
+        } catch (error) {
+            reject(error)
+            AppStorage.clearStorage()
+            window.location.replace(window.location.origin)
+        }
+    })
+}
+
+// Request interceptor for API calls
 axiosInstance.interceptors.request.use(
-    function (config) {
-        const token = AppStorage.accessToken()
+    async config => {
+        const appStore = JSON.parse(localStorage.getItem('appStore'))
         config.headers = {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${appStore?.state?.access_token}`,
         }
         return config;
     },
-    function (error) {
-        return reject(error)
+    error => {
+        Promise.reject(error)
     }
-);
+)
 
-axiosInstance.interceptors.response.use(
-    function (res) {
-        return res;
-    },
-    function (error) {
-        return reject(error)
+axiosInstance.interceptors.response.use((response) => {
+    return response
+}, async function (error) {
+    const originalRequest = error.config;
+    if (error.response.status === 401 && !originalRequest._retry) {
+        originalRequest._retry = true;
+        const access_token = await refreshAccessToken();
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
+        return axiosInstance(originalRequest);
     }
-);
+    return Promise.reject(error);
+});
 
 export default axiosInstance

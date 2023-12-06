@@ -28,6 +28,7 @@ export interface IAppStore {
     shop: any
     loading: boolean
     access_token: string | null
+    refresh_token: string | null
     login(params: IauthLoginService): Promise<any>
     fetchShop(params: IshopInfoService): Promise<any>
     reset(): void
@@ -40,6 +41,7 @@ const states = (set: any, get: any): IAppStore => ({
     user: null,
     shop: null,
     access_token: null,
+    refresh_token: null,
     loading: false,
     login: (params: IauthLoginService) => {
         return new Promise<any>(async (resolve, reject) => {
@@ -55,6 +57,7 @@ const states = (set: any, get: any): IAppStore => ({
                         user: result?.user,
                         shop: result?.shop,
                         access_token: result?.access_token,
+                        refresh_token: result?.refresh_token,
                     }
                 })
                 resolve(result)
@@ -123,6 +126,7 @@ const _persist = persist(states, {
         shop: state.shop,
         user: state.user,
         access_token: state.access_token,
+        refresh_token: state.refresh_token,
     })
 })
 const useAppStore = appDeveloment ? create<IAppStore>()(devtools(_persist, { name: "App" })) : create<IAppStore>()(_persist)
