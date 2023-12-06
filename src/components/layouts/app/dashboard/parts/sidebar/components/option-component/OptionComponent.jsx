@@ -10,11 +10,13 @@ const OptionComponent = ({ icon, label, path }) => {
   const { shopRoute } = useCustomNavigate()
 
   const isActive = useMemo(() => {
-    return shopRoute + "/" + path === location.pathname
+    const checkDash = location.pathname.charAt(location.pathname.length - 1) === '/'
+    const match = shopRoute + path === (checkDash ? location.pathname.slice(0, -1) : location.pathname)
+    return match
   }, [location, path, shopRoute]);
 
   return (
-    <Link to={path ? `${shopRoute}/${path}` : ""}>
+    <Link to={path ? `${shopRoute}${path}` : ""}>
       <Tooltip
         label={label}
         placement="right-end"
