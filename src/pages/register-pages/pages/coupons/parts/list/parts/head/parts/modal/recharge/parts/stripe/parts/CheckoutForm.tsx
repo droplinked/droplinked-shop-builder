@@ -11,7 +11,10 @@ import rechargeContext from '../../../context'
 
 function CheckoutForm() {
     const { mutateAsync } = useMutation(() => patchedChargedService())
-    const [Loading, setLoading] = useState(false)
+    const [States, setStates] = useState({
+        loading: false,
+        complete: false
+    })
     const { close } = useContext(rechargeContext)
     const { fetch } = useContext(CouponsSettingContext)
     const stripe = useStripe();
@@ -19,8 +22,11 @@ function CheckoutForm() {
     const { showToast } = useAppToast();
     const { updateShopData } = useProfile()
 
+    const setLoading = (loading: boolean) => setStates(prev => ({ ...prev, loading }))
+
     const handleSubmit = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
+
         if (!stripe || !elements) return
 
         try {
@@ -35,7 +41,7 @@ function CheckoutForm() {
             setLoading(false)
             close()
 
-            showToast("Recharge success", 'success');
+            showToast("Payment confirmed! Your credit has been added successfully", 'success');
         } catch (error) {
             setLoading(false)
             showToast(error?.message, 'error');
@@ -45,10 +51,10 @@ function CheckoutForm() {
     return (
         <form onSubmit={handleSubmit}>
             <VStack align="stretch" spacing="30px">
-                <PaymentElement />
+                <PaymentElement onChange={(e) => setStates((prev) => ({ ...prev, complete: e.complete }))} />
                 <Flex justifyContent="space-between">
                     <BasicButton variant='outline' onClick={close}>Cancel</BasicButton>
-                    <BasicButton type='submit' isLoading={Loading}>Pay</BasicButton>
+                    <BasicButton type='submit' isDisabled={!States.complete} isLoading={States.loading}>Pay</BasicButton>
                 </Flex>
             </VStack>
         </form>
