@@ -1,10 +1,13 @@
 import { Box, Flex, Icon, VStack } from '@chakra-ui/react'
 import AppBadge from 'components/common/badge/AppBadge'
 import AppTypography from 'components/common/typography/AppTypography'
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaLongArrowAltUp } from "react-icons/fa";
+import dashboardChartsContext from '../../context';
 
 function Revenue() {
+
+
     return (
         <VStack align="stretch" spacing="12px">
             <AppTypography fontSize="16px">Revenue</AppTypography>

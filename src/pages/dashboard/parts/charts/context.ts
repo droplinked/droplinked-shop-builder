@@ -4,6 +4,10 @@ export interface IdashboardChartsStates {
   revenue: any
 }
 
+// export const dashboardChartsStates: IdashboardChartsStates = {
+//   revenue: null
+// }
+
 interface IProps {
   states: IdashboardChartsStates
 }
