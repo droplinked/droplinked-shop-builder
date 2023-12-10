@@ -7,9 +7,11 @@ import classes from './style.module.scss'
 import { Editor } from '@tinymce/tinymce-react';
 
 function DescriptionProduct() {
-    const { state: { description }, methods: { updateState }, loading, productID } = useContext(productContext)
+    const { state: { description }, methods: { updateState }, loading, productID, store: { state: { product_printful } } } = useContext(productContext)
     const [Update, setUpdate] = useState(' ')
 
+    useEffect(() => product_printful && description === `<p>${product_printful?.description}</p>` && setUpdate(product_printful?.description), [product_printful?.description, description])
+    
     useEffect(() => (!Update || Update === ' ') && productID && setUpdate(description), [description, productID])
 
     return (
@@ -30,7 +32,7 @@ function DescriptionProduct() {
                             plugins: [
                                 'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
                                 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                                'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount', 'importcss','image'
+                                'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount', 'importcss', 'image'
                             ],
                             toolbar: 'undo redo | blocks | ' +
                                 'bold italic forecolor | alignleft aligncenter ' +
