@@ -1,5 +1,5 @@
 import { Box, VStack } from '@chakra-ui/react'
-import React from 'react'
+import React, { useContext, useMemo } from 'react'
 import { Bar } from 'react-chartjs-2'
 
 import {
@@ -12,6 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import AppTypography from 'components/common/typography/AppTypography';
+import dashboardChartsContext from '../../context';
 
 ChartJS.register(
   CategoryScale,
@@ -23,13 +24,22 @@ ChartJS.register(
 );
 
 function GeneralStatisticsChart() {
-  const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const { states: { revenue } } = useContext(dashboardChartsContext)
+
+  const getMonths = useMemo(() => {
+    return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map(month => ({
+      title: month.substring(0, 3),
+      value: revenue?.chart.find(el => el.title === month)?.value || 0
+    }))
+  }, [revenue])
+
+  const labels = getMonths.map(el => el.title)
 
   const data = {
     labels,
     datasets: [
       {
-        data: [65, 59, 80, 81, 56, 55, 40, 21, 45, 66, 33, 25],
+        data: getMonths.map(el => el.value),
         backgroundColor: '#2BCFA1',
       }
     ],

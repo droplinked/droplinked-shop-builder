@@ -54,3 +54,11 @@ export const chargeCreditService = (props: IchargeCreditService) => {
 export const patchedChargedService = () => {
     return axiosInstance.patch(`shop/credit/charge`)
 }
+
+export const shopDashboardService = () => {
+    return axiosInstance.get(`shop/dashboard/products?limit=5`)
+}
+
+export const shopSellerService = () => {
+    return axiosInstance.get(`shop/dashboard/sellers?limit=5`)
+}

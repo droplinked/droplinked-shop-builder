@@ -10,7 +10,7 @@ export const toMb = ({ value }: ItoMb) => {
     return value * 1024 * 1024
 }
 
-export const getMinMaxArray =(arr) => {
+export const getMinMaxArray = (arr) => {
     let min = arr[0];
     let max = arr[0];
     let i = arr.length;
@@ -21,3 +21,5 @@ export const getMinMaxArray =(arr) => {
     }
     return { min, max };
 }
+
+export const getPercentage = (number: number, max: number) => (number * 100) / max

@@ -1,35 +1,43 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import React from 'react'
+import { getPercentage } from 'lib/utils/heper/helpers'
+import dashboardChartsContext from 'pages/dashboard/parts/charts/context'
+import React, { useContext, useMemo } from 'react'
 import MiniChartsFlags from '../../flags/MiniChartsFlags'
 
 function ProfitChart() {
+  const { states: { revenue } } = useContext(dashboardChartsContext)
 
-  const items: any = [
-    {
-      caption: 'Direct',
-      color: 'green',
-      value: '$923.92',
-      width: '100%',
-      chartColor: '#2BCFA1'
-    },
-    {
-      caption: 'Affiliate',
-      color: 'purple',
-      value: '$3.92',
-      width: '30%',
-      chartColor: '#9C4EFF'
-    }
-  ]
+  const items: any = useMemo(() => {
+    const data = revenue?.report?.profit
+    return [
+      {
+        caption: 'Direct',
+        color: 'green',
+        value: data?.direct,
+        width: getPercentage(data?.direct, data?.value),
+        chartColor: '#2BCFA1'
+      },
+      {
+        caption: 'Affiliate',
+        color: 'purple',
+        value: data?.affiliate,
+        width: getPercentage(data?.affiliate, data?.value),
+        chartColor: '#9C4EFF'
+      }
+    ]
+  }, [revenue])
 
   return (
     <VStack align="stretch">
-      <AppTypography fontSize="18px" fontWeight="600">$2323.96</AppTypography>
+      <AppTypography fontSize="18px" fontWeight="600">${revenue?.report?.profit?.value}</AppTypography>
       {items.map((el, key) => (
         <Flex alignItems="center" gap="20px" key={key}>
           <Box width="100px"><MiniChartsFlags caption={el.caption} color={el.color} /></Box>
           <Box width="100%">
-            <Box width={el.width} height="20px" backgroundColor={el.chartColor} textAlign="right" borderRadius="2px" padding="1px 5px"><AppTypography color="#333">{el.value}</AppTypography></Box>
+            <Box width={el.width + '%'} minWidth="30px" height="20px" backgroundColor={el.chartColor} textAlign="right" borderRadius="2px" padding="1px 5px">
+              <AppTypography color="#333">${el.value}</AppTypography>
+            </Box>
           </Box>
         </Flex>
       ))}
