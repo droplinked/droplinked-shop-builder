@@ -18,7 +18,7 @@ function PreviewProfile() {
                     <Flex justifyContent="center">
                         {logo && <Image width="90px" height="90px" borderRadius="100%" src={logo} />}
                     </Flex>
-                    <Flex justifyContent="center"><PreviewTypo fontSize="15px" fontWeight="bold" color={textColorParagraphs || "#FFF"}>{shop?.name}</PreviewTypo></Flex>
+                    <Flex justifyContent="center"><PreviewTypo fontSize="15px" fontWeight="bold" color={textColorParagraphs || "#FFF"} wordBreak="break-word">{shop?.description}</PreviewTypo></Flex>
                     <PreviewSocials />
                 </VStack>
             </VStack>

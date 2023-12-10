@@ -49,7 +49,7 @@ function TechnicalSubmit() {
             <Box>
                 <BasicButton sizes="large" isDisabled={imsType === "DROPLINKED" ? !imsType || !checkPayment : !imsType} onClick={clickSubmit} isLoading={isLoading || loading}>
                     {isRegister
-                        ? "Next"
+                        ? "Publish Store"
                         : "Update"}
                 </BasicButton>
             </Box>
