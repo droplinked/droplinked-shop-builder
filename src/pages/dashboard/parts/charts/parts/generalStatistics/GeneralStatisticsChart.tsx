@@ -13,6 +13,7 @@ import {
 } from "chart.js";
 import AppTypography from 'components/common/typography/AppTypography';
 import dashboardChartsContext from '../../context';
+import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 
 ChartJS.register(
   CategoryScale,
@@ -24,22 +25,15 @@ ChartJS.register(
 );
 
 function GeneralStatisticsChart() {
-  const { states: { revenue } } = useContext(dashboardChartsContext)
+  const { states: { revenue }, isLoading } = useContext(dashboardChartsContext)
 
-  const getMonths = useMemo(() => {
-    return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map(month => ({
-      title: month.substring(0, 3),
-      value: revenue?.chart.find(el => el.title === month)?.value || 0
-    }))
-  }, [revenue])
-
-  const labels = getMonths.map(el => el.title)
+  const labels = revenue?.chart.map(el => el.title)
 
   const data = {
     labels,
     datasets: [
       {
-        data: getMonths.map(el => el.value),
+        data: revenue?.chart.map(el => el.value),
         backgroundColor: '#2BCFA1',
       }
     ],
@@ -61,12 +55,14 @@ function GeneralStatisticsChart() {
   };
 
   return (
-    <VStack align="stretch">
-      <AppTypography textAlign="right" color="#2BCFA1" fontSize="16px">$6823.96</AppTypography>
-      <Box borderTop="2px dashed rgba(128, 237, 207, 0.25)">
-        <Bar options={options} data={data} height="80px" />
-      </Box>
-    </VStack>
+    <AppSkeleton isLoaded={isLoading}>
+      <VStack align="stretch">
+        <AppTypography textAlign="right" color="#2BCFA1" fontSize="16px">${revenue?.total.toFixed(2)}</AppTypography>
+        <Box borderTop="2px dashed rgba(128, 237, 207, 0.25)">
+          <Bar options={options} data={data} height="100px" />
+        </Box>
+      </VStack>
+    </AppSkeleton>
   )
 }
 

@@ -1,21 +1,29 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import MiniChartsFlags from '../charts/parts/charts/parts/flags/MiniChartsFlags'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import miniChartsFlagsModel from '../charts/parts/charts/parts/flags/model';
+import { useMutation } from 'react-query';
+import { bestPartnersService } from 'lib/apis/shop/shopServices';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function ProductGroups() {
-    const { colors: { brown, yellow, gold } } = miniChartsFlagsModel
-    const labels = ['Jan', 'Feb', 'Mar']
+    const { mutate, data } = useMutation(() => bestPartnersService())
 
-    const data = {
+    useEffect(() => mutate(), [])
+
+    const getValue = useCallback((title: string) => data?.data?.data.find(el => el?.title === "DIGITAL")?.value, [data])
+
+    const { colors: { brown, yellow, gold } } = miniChartsFlagsModel
+    const labels = ['Digital', 'Print on Demand']
+
+    const items = {
         labels,
         datasets: [
             {
-                data: [65, 59, 80],
+                data: [getValue('DIGITAL'), getValue('PRINT_ON_DEMAND')],
                 backgroundColor: [yellow, gold, brown],
                 borderWidth: 0,
                 cutout: 20,
@@ -44,12 +52,12 @@ function ProductGroups() {
             <VStack width="100%" align="stretch">
                 <AppTypography fontSize='16px'>Product Groups</AppTypography>
                 <Flex alignItems="center" gap="10px" flexWrap="wrap">
-                    <MiniChartsFlags caption='Physical Product' color='yellow' />
-                    <MiniChartsFlags caption='Print on Demand' color='gold' />
-                    <MiniChartsFlags caption='Digital Product' color='brown' />
+                    {/* <MiniChartsFlags caption='Physical Product' color='yellow' /> */}
+                    <MiniChartsFlags caption='Print on Demand' color='yellow' />
+                    <MiniChartsFlags caption='Digital Product' color='gold' />
                 </Flex>
             </VStack>
-            <Box width="60px"><Doughnut options={options} data={data} /></Box>
+            <Box width="60px"><Doughnut options={options} data={items} /></Box>
         </Flex>
     )
 }

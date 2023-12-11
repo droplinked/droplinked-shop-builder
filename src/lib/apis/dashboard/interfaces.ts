@@ -1,5 +1,4 @@
-export interface IproductList {
-    page: number
-    limit: number
-    filter?: string
+export interface IgetRevenueServices {
+    dateRange: string
 }
+

@@ -62,3 +62,7 @@ export const shopDashboardService = () => {
 export const shopSellerService = () => {
     return axiosInstance.get(`shop/dashboard/sellers?limit=5`)
 }
+
+export const bestPartnersService = () => {
+    return axiosInstance.get(`shop/dashboard/product-types`)
+}
