@@ -1,6 +1,6 @@
 import axiosInstance from "../axiosConfig"
-import { } from "./interfaces"
+import { IgetRevenueServices } from "./interfaces"
 
-export const getRevenueServices = () => {
-    return axiosInstance.get(`shop/dashboard/revenue`)
+export const getRevenueServices = ({ dateRange }: IgetRevenueServices) => {
+    return axiosInstance.get(`shop/dashboard/revenue${dateRange ? '?dateRange=' + dateRange : ''}`)
 }

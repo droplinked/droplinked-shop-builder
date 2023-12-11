@@ -1,4 +1,5 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import { getPercentage } from 'lib/utils/heper/helpers'
 import dashboardChartsContext from 'pages/dashboard/parts/charts/context'
@@ -6,7 +7,7 @@ import React, { useContext, useMemo } from 'react'
 import MiniChartsFlags from '../../flags/MiniChartsFlags'
 
 function ProfitChart() {
-  const { states: { revenue } } = useContext(dashboardChartsContext)
+  const { states: { revenue }, isLoading } = useContext(dashboardChartsContext)
 
   const items: any = useMemo(() => {
     const data = revenue?.report?.profit
@@ -30,17 +31,21 @@ function ProfitChart() {
 
   return (
     <VStack align="stretch">
-      <AppTypography fontSize="18px" fontWeight="600">${revenue?.report?.profit?.value}</AppTypography>
-      {items.map((el, key) => (
-        <Flex alignItems="center" gap="20px" key={key}>
-          <Box width="100px"><MiniChartsFlags caption={el.caption} color={el.color} /></Box>
-          <Box width="100%">
-            <Box width={el.width + '%'} minWidth="30px" height="20px" backgroundColor={el.chartColor} textAlign="right" borderRadius="2px" padding="1px 5px">
-              <AppTypography color="#333">${el.value}</AppTypography>
+      <AppSkeleton isLoaded={isLoading}>
+        <AppTypography fontSize="18px" fontWeight="600">${revenue?.report?.profit?.value}</AppTypography>
+      </AppSkeleton>
+      <AppSkeleton isLoaded={isLoading}>
+        {items.map((el, key) => (
+          <Flex alignItems="center" gap="20px" key={key}>
+            <Box width="100px"><MiniChartsFlags caption={el.caption} color={el.color} /></Box>
+            <Box width="100%">
+              <Box width={el.width + '%'} minWidth="30px" height="20px" backgroundColor={el.chartColor} textAlign="right" borderRadius="2px" padding="1px 5px">
+                <AppTypography color="#333">${el.value}</AppTypography>
+              </Box>
             </Box>
-          </Box>
-        </Flex>
-      ))}
+          </Flex>
+        ))}
+      </AppSkeleton>
     </VStack>
   )
 }

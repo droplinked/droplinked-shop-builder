@@ -3,11 +3,13 @@ import AppTable, { ITableRows } from 'components/common/table/AppTable'
 import { shopSellerService } from 'lib/apis/shop/shopServices'
 import React, { useEffect, useMemo } from 'react'
 import { useMutation } from 'react-query'
+import DashboardEmpty from '../parts/empty/DashboardEmpty'
 import HeadCardDashboard from '../parts/headcard/HeadCardDashboard'
+import PartnersLoading from './parts/loading/PartnersLoading'
 import PartnersSelling from './parts/products/PartnersSelling'
 
 function PartnersDashboard() {
-    const { mutate, data } = useMutation(() => shopSellerService())
+    const { mutate, data, isLoading } = useMutation(() => shopSellerService())
 
     useEffect(() => mutate(), [])
 
@@ -23,26 +25,26 @@ function PartnersDashboard() {
                 }
             },
             orders: {
-                value: 'Sample',
+                value: el?.ordersCount,
                 props: {
                     width: "19%"
                 }
             },
             profit: {
-                value: 'Sample',
+                value: el?.totalAmount.toFixed(2),
                 caption: 'Your Profit',
                 props: {
                     width: "19%"
                 }
             },
             involvement: {
-                value: 'Sample',
+                value: el?.involvement,
                 props: {
                     width: "19%"
                 }
             },
             selling: {
-                value: <PartnersSelling />,
+                value: <PartnersSelling product={el?.products} />,
                 caption: 'Best Selling Products'
             },
         })) : []
@@ -51,7 +53,7 @@ function PartnersDashboard() {
     return (
         <VStack align="stretch">
             <HeadCardDashboard link='' title='Best Affiliate Partner' />
-            <AppTable rows={items} />
+            {isLoading ? <PartnersLoading /> : <AppTable empty={<DashboardEmpty />} rows={items} />}
         </VStack>
     )
 }

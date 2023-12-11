@@ -1,21 +1,20 @@
 import { VStack } from '@chakra-ui/react'
-import AppDataGrid from 'components/common/datagrid/DataGrid'
 import AppTable, { ITableRows } from 'components/common/table/AppTable'
 import { shopDashboardService } from 'lib/apis/shop/shopServices'
 import React, { useEffect, useMemo } from 'react'
 import { useMutation } from 'react-query'
+import DashboardEmpty from '../parts/empty/DashboardEmpty'
 import HeadCardDashboard from '../parts/headcard/HeadCardDashboard'
+import BestSellingLoading from './parts/loading/BestSellingLoading'
 import BestSellingProduct from './parts/product/BestSellingProduct'
 import BestSellingSale from './parts/sale/BestSellingSale'
 
 function BestSelling() {
-    const { mutate, data } = useMutation(() => shopDashboardService())
+    const { mutate, data, isLoading } = useMutation(() => shopDashboardService())
 
     useEffect(() => mutate(), [])
 
     const items: Array<ITableRows> = useMemo(() => {
-        console.log(data?.data?.data);
-
         return data?.data?.data ? data?.data?.data.map(el => ({
             _data: el,
             product: {
@@ -33,7 +32,7 @@ function BestSelling() {
     return (
         <VStack align="stretch">
             <HeadCardDashboard link='' title='Best Selling Products' />
-            <AppTable rows={items} />
+            {isLoading ? <BestSellingLoading /> : <AppTable empty={<DashboardEmpty />} rows={items} />}
         </VStack>
     )
 }

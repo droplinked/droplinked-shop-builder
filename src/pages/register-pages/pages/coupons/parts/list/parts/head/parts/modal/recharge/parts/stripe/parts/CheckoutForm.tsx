@@ -10,7 +10,6 @@ import { useMutation } from 'react-query'
 import rechargeContext from '../../../context'
 
 function CheckoutForm() {
-    const { mutateAsync } = useMutation(() => patchedChargedService())
     const [States, setStates] = useState({
         loading: false,
         complete: false
@@ -35,7 +34,6 @@ function CheckoutForm() {
                 elements,
                 redirect: "if_required"
             });
-            await mutateAsync()
             await fetch()
             await updateShopData()
             setLoading(false)
