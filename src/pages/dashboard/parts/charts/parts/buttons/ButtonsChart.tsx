@@ -20,9 +20,6 @@ function ButtonsChart() {
         setCurrentIndex((prevIndex) => (prevIndex - 1 + options.length) % options.length);
     };
 
-    console.log('currentIndex', options[currentIndex]);
-
-
     return (
         <Flex justifyContent="end" gap="24px">
             <Flex gap="8px" cursor="pointer" alignItems="center" onClick={handlePrev}>
