@@ -3,6 +3,7 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import { getPercentage } from 'lib/utils/heper/helpers'
 import dashboardChartsContext from 'pages/dashboard/parts/charts/context'
+import DashboardEmpty from 'pages/dashboard/parts/parts/empty/DashboardEmpty'
 import React, { useContext, useMemo } from 'react'
 import MiniChartsFlags from '../../flags/MiniChartsFlags'
 
@@ -30,23 +31,27 @@ function ProfitChart() {
   }, [revenue])
 
   return (
-    <VStack align="stretch">
-      <AppSkeleton isLoaded={isLoading}>
-        <AppTypography fontSize="18px" fontWeight="600">${revenue?.report?.profit?.value}</AppTypography>
-      </AppSkeleton>
-      <AppSkeleton isLoaded={isLoading}>
-        {items.map((el, key) => (
-          <Flex alignItems="center" gap="20px" key={key}>
-            <Box width="100px"><MiniChartsFlags caption={el.caption} color={el.color} /></Box>
-            <Box width="100%">
-              <Box width={el.width + '%'} minWidth="30px" height="20px" backgroundColor={el.chartColor} textAlign="right" borderRadius="2px" padding="1px 5px">
-                <AppTypography color="#333">${el.value}</AppTypography>
-              </Box>
-            </Box>
-          </Flex>
-        ))}
-      </AppSkeleton>
-    </VStack>
+    <>
+      {revenue?.report.length ? (
+        <VStack align="stretch">
+          <AppSkeleton isLoaded={isLoading}>
+            <AppTypography fontSize="18px" fontWeight="600">${revenue?.report?.profit?.value}</AppTypography>
+          </AppSkeleton>
+          <AppSkeleton isLoaded={isLoading}>
+            {items.map((el, key) => (
+              <Flex alignItems="center" gap="20px" key={key}>
+                <Box width="100px"><MiniChartsFlags caption={el.caption} color={el.color} /></Box>
+                <Box width="100%">
+                  <Box width={el.width + '%'} minWidth="30px" height="20px" backgroundColor={el.chartColor} textAlign="right" borderRadius="2px" padding="1px 5px">
+                    <AppTypography color="#333">${el.value}</AppTypography>
+                  </Box>
+                </Box>
+              </Flex>
+            ))}
+          </AppSkeleton>
+        </VStack>
+      ) : <DashboardEmpty minHeight="100px" />}
+    </>
   )
 }
 

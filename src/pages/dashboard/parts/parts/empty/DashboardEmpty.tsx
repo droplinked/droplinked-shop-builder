@@ -1,10 +1,11 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, FlexProps } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 
-function DashboardEmpty() {
+interface IProps extends FlexProps { }
+function DashboardEmpty(props: IProps) {
     return (
-        <Flex justifyContent="center" alignItems="center" minHeight="400px">
+        <Flex justifyContent="center" alignItems="center" minHeight="400px" {...props}>
             <Flex justifyContent="center" alignItems="center" borderRadius="4px" gap="4px" backgroundColor="#292929" width="141px" padding="10px 0">
                 <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_13770_2770)">
