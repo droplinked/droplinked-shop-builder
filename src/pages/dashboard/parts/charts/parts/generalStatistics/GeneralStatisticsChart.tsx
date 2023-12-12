@@ -14,6 +14,7 @@ import {
 import AppTypography from 'components/common/typography/AppTypography';
 import dashboardChartsContext from '../../context';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
+import DashboardEmpty from 'pages/dashboard/parts/parts/empty/DashboardEmpty';
 
 ChartJS.register(
   CategoryScale,
@@ -56,12 +57,14 @@ function GeneralStatisticsChart() {
 
   return (
     <AppSkeleton isLoaded={isLoading}>
-      <VStack align="stretch">
-        <AppTypography textAlign="right" color="#2BCFA1" fontSize="16px">${revenue?.total.toFixed(2)}</AppTypography>
-        <Box borderTop="2px dashed rgba(128, 237, 207, 0.25)">
-          <Bar options={options} data={data} height="100px" />
-        </Box>
-      </VStack>
+      {revenue?.chart?.length ? (
+        <VStack align="stretch">
+          <AppTypography textAlign="right" color="#2BCFA1" fontSize="16px">${revenue?.total.toFixed(2)}</AppTypography>
+          <Box borderTop="2px dashed rgba(128, 237, 207, 0.25)">
+            <Bar options={options} data={data} height="100px" />
+          </Box>
+        </VStack>
+      ) : <DashboardEmpty minHeight="300px" />}
     </AppSkeleton>
   )
 }

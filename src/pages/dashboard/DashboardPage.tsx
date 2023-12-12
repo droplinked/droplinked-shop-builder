@@ -11,7 +11,7 @@ function DashboardPage() {
   return (
     <VStack align="stretch" spacing="24px">
       <WelcomeDashboard />
-      <Flex gap="24px" alignItems="baseline">
+      <Flex gap="24px" alignItems="flex-start">
         <AppCard boxProps={{ width: "65%", padding: "30px" }}><DashboardCharts /></AppCard>
         <VStack width="45%" justifyContent="space-between" alignItems="center" align="stretch" spacing="24px">
           <AppCard boxProps={{ padding: "30px" }}><BestSelling /></AppCard>
