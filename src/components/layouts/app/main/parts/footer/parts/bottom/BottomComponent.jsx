@@ -10,20 +10,12 @@ const BottomComponent = () => {
 
   return (
     <Flex
-      flexDirection={{ base: "column", md: "row" }}
+      flexDirection={{ base: "column", md: "row-reverse" }}
       justifyContent={"space-between"}
       width="100%"
       alignItems="center"
     >
       <AppTypography color="#888" fontSize="10px" position="absolute" bottom="0" right="0" margin="15px">version: {appVersion}</AppTypography>
-      <HStack mb={{ base: '18px', md: '0px' }} alignItems="center">
-        <Text fontFamily="Avenir Next" fontWeight="500" fontSize="12px" color='lightGray' >
-          Powered by
-        </Text>
-        <a href="https://droplinked.io/" target="_blank" >
-          <FooterLogo src={droplinkFull} width="100px" alt={"logo"} />
-        </a>
-      </HStack>
       <HStack
         justifyContent={{ sm: "left", md: "right" }}
         marginTop={{ sm: 3, md: 0 }}
