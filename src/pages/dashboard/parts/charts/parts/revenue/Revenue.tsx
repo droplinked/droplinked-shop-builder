@@ -13,7 +13,7 @@ function Revenue() {
     }), [date])
 
     return (
-        <VStack align="stretch" spacing="12px">
+        <VStack align="stretch" spacing="3px">
             <AppTypography fontSize="16px">Revenue</AppTypography>
             <AppSkeleton isLoaded={isLoading}>
                 <Flex alignItems="center" gap="12px">

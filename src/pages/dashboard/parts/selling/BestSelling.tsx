@@ -5,6 +5,7 @@ import React, { useEffect, useMemo } from 'react'
 import { useMutation } from 'react-query'
 import DashboardEmpty from '../parts/empty/DashboardEmpty'
 import HeadCardDashboard from '../parts/headcard/HeadCardDashboard'
+import DashboardTable from '../parts/table/DashboardTable'
 import BestSellingLoading from './parts/loading/BestSellingLoading'
 import BestSellingProduct from './parts/product/BestSellingProduct'
 import BestSellingSale from './parts/sale/BestSellingSale'
@@ -19,11 +20,15 @@ function BestSelling() {
             _data: el,
             product: {
                 value: <BestSellingProduct product={el} />,
+                props: {
+                    width: "100%"
+                }
             },
             sale: {
                 value: <BestSellingSale product={el} />,
                 props: {
-                    width: "30%"
+                    width: "auto",
+                    style: { paddingRight: "0" }
                 }
             },
         })) : []
@@ -32,7 +37,7 @@ function BestSelling() {
     return (
         <VStack align="stretch">
             <HeadCardDashboard link='' title='Best Selling Products' />
-            {isLoading ? <BestSellingLoading /> : <AppTable empty={<DashboardEmpty />} rows={items} />}
+            {isLoading ? <BestSellingLoading /> : <DashboardTable items={items} />}
         </VStack>
     )
 }
