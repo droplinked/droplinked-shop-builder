@@ -89,10 +89,6 @@ function Links() {
             <Link target="_blank" href="https://events.droplinked.com">
               <Sublink>Events</Sublink>
             </Link>
-
-            <Link target="_blank" href="https://www.droplinked.io">
-              <Sublink>droplinked</Sublink>
-            </Link>
           </VStack>
         </VStack>
       </VStack>
