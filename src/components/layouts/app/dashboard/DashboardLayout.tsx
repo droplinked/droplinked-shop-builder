@@ -19,7 +19,7 @@ const DashboardLayout = () => {
       <Box><HeaderDashboard /></Box>
       <Flex alignItems={"start"}>
         {!permission ? <Box w="72px" position="fixed" left="0" top="70px" paddingTop="45px" borderRight="1px solid" bottom="0"><SidebarLayout /></Box> : null}
-        <Box width={"100%"} minH={"80vh"} padding="125px 86px 24px 126px" borderColor={"line"}><Outlet /></Box>
+        <Box width={"100%"} minH={"80vh"} padding="125px 36px 24px 106px" borderColor={"line"}><Outlet /></Box>
       </Flex>
       <Box><FooterLayout /></Box>
     </VStack>

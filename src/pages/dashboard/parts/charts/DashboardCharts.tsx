@@ -19,7 +19,7 @@ function DashboardCharts() {
 
     return (
         <dashboardChartsContext.Provider value={{ states: States, method: { updateStates }, isLoading: !isLoading }}>
-            <VStack align="stretch" spacing="24px">
+            <VStack align="stretch" spacing="14px">
                 <Box><Revenue /></Box>
                 <Box><ButtonsChart /></Box>
                 <Box><GeneralStatisticsChart /></Box>

@@ -5,6 +5,7 @@ import React, { useEffect, useMemo } from 'react'
 import { useMutation } from 'react-query'
 import DashboardEmpty from '../parts/empty/DashboardEmpty'
 import HeadCardDashboard from '../parts/headcard/HeadCardDashboard'
+import DashboardTable from '../parts/table/DashboardTable'
 import PartnersLoading from './parts/loading/PartnersLoading'
 import PartnersSelling from './parts/products/PartnersSelling'
 
@@ -21,31 +22,34 @@ function PartnersDashboard() {
             name: {
                 value: 'Sample',
                 props: {
-                    width: "19%"
+                    width: "20%"
                 }
             },
             orders: {
                 value: el?.ordersCount,
                 props: {
-                    width: "19%"
+                    width: "20%"
                 }
             },
             profit: {
                 value: el?.totalAmount.toFixed(2),
                 caption: 'Your Profit',
                 props: {
-                    width: "19%"
+                    width: "20%"
                 }
             },
             involvement: {
                 value: el?.involvement,
                 props: {
-                    width: "19%"
+                    width: "20%"
                 }
             },
             selling: {
                 value: <PartnersSelling product={el?.products} />,
-                caption: 'Best Selling Products'
+                caption: 'Best Selling Products',
+                props: {
+                    width: "20%"
+                }
             },
         })) : []
     }, [data])
@@ -53,7 +57,7 @@ function PartnersDashboard() {
     return (
         <VStack align="stretch">
             <HeadCardDashboard link='' title='Best Affiliate Partner' />
-            {isLoading ? <PartnersLoading /> : <AppTable empty={<DashboardEmpty />} rows={items} />}
+            {isLoading ? <PartnersLoading /> : <DashboardTable items={items} />}
         </VStack>
     )
 }
