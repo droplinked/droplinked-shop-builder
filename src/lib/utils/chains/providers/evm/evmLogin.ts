@@ -10,7 +10,7 @@ let chainNames = {
         [Network.TESTNET]: { chainName: "Mumbai", chainId: "0x13881", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://rpc-mumbai.maticvigil.com'] },
         [Network.MAINNET]: { chainName: "Polygon Mainnet", chainId: "0x89", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://polygon-rpc.com/'] }
     },
-    [Chain.RIPPLESIDECHAIN]: {
+    [Chain.XRPLSIDECHAIN]: {
         [Network.TESTNET]: { chainName: "XRPL EVM Sidechain", chainId: "0x15f902", nativeCurrency: { name: 'XRP', decimals: 18, symbol: 'XRP' }, rpcUrls: ['https://rpc-evm-sidechain.xrpl.org'] },
         [Network.MAINNET]: { chainName: "XRPL EVM Sidechain", chainId: "0x15f902", nativeCurrency: { name: 'XRP', decimals: 18, symbol: 'XRP' }, rpcUrls: ['https://rpc-evm-sidechain.xrpl.org'] }
     },

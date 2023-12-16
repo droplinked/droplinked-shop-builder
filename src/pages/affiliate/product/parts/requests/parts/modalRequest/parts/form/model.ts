@@ -19,7 +19,7 @@ export interface IPublishRequest {
 }
 
 interface Irequest {
-    blockchain: "POLYGON" | "RIPPLESIDECHAIN" | "BINANCE"
+    blockchain: "POLYGON" | "XRPLSIDECHAIN" | "BINANCE"
     tokenID: string
     recipient: string
 }
@@ -53,7 +53,7 @@ const ModalRequestModel = ({
                     request: publish_request_polygon
                 }
                 break;
-            case 'RIPPLESIDECHAIN':
+            case 'XRPLSIDECHAIN':
                 methods = {
                     login: XRPLogin,
                     request: XRPPublishRequest

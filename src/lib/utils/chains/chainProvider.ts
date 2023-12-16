@@ -49,9 +49,9 @@ let chainMapping = {
         [Network.TESTNET]: new CasperProvider(Chain.CASPER, Network.TESTNET),
         [Network.MAINNET]: new CasperProvider(Chain.CASPER, Network.MAINNET),
     },
-    [Chain.RIPPLESIDECHAIN]: {
-        [Network.TESTNET]: new EVMProvider(Chain.RIPPLESIDECHAIN, Network.TESTNET),
-        [Network.MAINNET]: new EVMProvider(Chain.RIPPLESIDECHAIN, Network.MAINNET),
+    [Chain.XRPLSIDECHAIN]: {
+        [Network.TESTNET]: new EVMProvider(Chain.XRPLSIDECHAIN, Network.TESTNET),
+        [Network.MAINNET]: new EVMProvider(Chain.XRPLSIDECHAIN, Network.MAINNET),
     },
     [Chain.STACKS]: {
         [Network.TESTNET]: null,

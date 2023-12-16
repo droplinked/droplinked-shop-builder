@@ -3,7 +3,7 @@ export enum Chain {
     POLYGON,
     BINANCE,
     STACKS,
-    RIPPLESIDECHAIN,
+    XRPLSIDECHAIN,
     NEAR,
     SKALE,
     BASE

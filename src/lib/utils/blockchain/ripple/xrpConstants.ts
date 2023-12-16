@@ -12,7 +12,7 @@ async function getContractABI(){
 }
 
 async function getXRPSignedPrice() : Promise<{signature : String, timestamp: String, latestAnswer : String, contractAddress : String}>{
-	let result = (await axios.get("https://apiv3dev.droplinked.com/payment/ripplesidechain/signed-price")).data.value;
+	let result = (await axios.get("https://apiv3dev.droplinked.com/payment/xrplsidechain/signed-price")).data.value;
 	return result;
 }
 
