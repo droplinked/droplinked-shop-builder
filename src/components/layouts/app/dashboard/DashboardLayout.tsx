@@ -7,6 +7,7 @@ import DashboardGateModel from "functions/hoc/admin/parts/gate/model/DashboardGa
 import AdminHoc from "functions/hoc/admin/adminHoc";
 import HeaderDashboard from "./parts/header/HeaderDashboard";
 import FooterLayout from "../main/parts/footer/FooterLayout";
+import StickyBox from "react-sticky-box";
 
 const DashboardLayout = () => {
   const { shop } = useProfile()
@@ -18,8 +19,8 @@ const DashboardLayout = () => {
     <VStack align={"stretch"} spacing={0} bgColor={"bG"}>
       <Box><HeaderDashboard /></Box>
       <Flex alignItems={"start"}>
-        {!permission ? <Box w="72px" position="fixed" left="0" top="70px" paddingTop="45px" borderRight="1px solid" bottom="0"><SidebarLayout /></Box> : null}
-        <Box width={"100%"} minH={"80vh"} padding="125px 36px 24px 106px" borderColor={"line"}><Outlet /></Box>
+        {!permission ? <StickyBox offsetTop={20} offsetBottom={20} style={{ width: "72px", borderRight: '1px solid"', position: 'absolute', paddingTop: '100px' }}><SidebarLayout /></StickyBox> : null}
+        <Box width={"100%"} minH={"80vh"} padding="125px 36px 24px 36px" borderColor={"line"}><Outlet /></Box>
       </Flex>
       <Box><FooterLayout /></Box>
     </VStack>

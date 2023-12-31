@@ -80,7 +80,7 @@ function ButtonsProduct() {
                     showToast("Somthimg went wrong", "error")
                 }
             } else {
-                showToast(draft ? AppErrors.product.your_product_draft : AppErrors.product.your_product_published, "success")
+                showToast(draft ? AppErrors.product.your_product_draft : productID ? AppErrors.product.your_product_updated : AppErrors.product.your_product_published, "success")
                 shopNavigate("products")
             }
             setStateHandle("loading", false)
