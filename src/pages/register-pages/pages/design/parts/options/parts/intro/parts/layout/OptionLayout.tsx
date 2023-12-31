@@ -10,6 +10,12 @@ import OptionLayoutModel from './model'
 function OptionLayout() {
     const { methods: { dispatch }, state: { shop: { shopDesign: { hiroLayout }, fullWidthHero } } } = useContext(designContext)
 
+    const change = (e: any) => {
+        const fullWidthHero = e.target.checked
+        dispatch({ type: "updateShop", params: { fullWidthHero } })
+        dispatch({ type: "updateShop", params: { shopDesign: { hiroLayout: fullWidthHero ? 'left_text' : 'right' } } })
+    }
+
     return (
         <VStack align="stretch" spacing="24px">
             <VStack align="stretch">
@@ -21,7 +27,7 @@ function OptionLayout() {
                 </Flex>
             </VStack>
             <Flex alignItems="center" gap="16px">
-                <AppSwitch isChecked={fullWidthHero} onChange={e => dispatch({ type: "updateShop", params: { fullWidthHero: e.target.checked } })} />
+                <AppSwitch isChecked={fullWidthHero} onChange={change} />
                 <AppTypography fontSize="14px">Full with Background</AppTypography>
             </Flex>
         </VStack>

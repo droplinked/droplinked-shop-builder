@@ -28,7 +28,7 @@ function PreviewHeader() {
             }}
         >
             <Flex justifyContent="space-between" alignItems="center" {...template_options?.['--dlk-hdr']?.['--dlk-hdr-container']} width="85%" padding="5px 0">
-                <Box>{headerIcon ? <Image {...template_options?.['--dlk-hdr']?.['--dlk-hdr-logo']} height={isDesktop ? "50px" : "30px"} src={headerIcon} /> : (
+                <Box>{headerIcon ? <Image {...template_options?.['--dlk-hdr']?.['--dlk-hdr-logo']} height={isDesktop ? "35px" : "25px"} src={headerIcon} /> : (
                     <Box width="50%">{icons({ icon: "logo", color: "#FFF" })}</Box>
                 )}</Box>
                 <HStack gap={isDesktop ? "8px" : "0"} {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-styles']}>
