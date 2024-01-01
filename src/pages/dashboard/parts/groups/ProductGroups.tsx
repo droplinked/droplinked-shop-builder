@@ -14,16 +14,16 @@ function ProductGroups() {
 
     useEffect(() => mutate(), [])
 
-    const getValue = useCallback((title: string) => data?.data?.data.find(el => el?.title === "DIGITAL")?.value, [data])
+    const getValue = useCallback((title: string) => data?.data?.data.find(el => el?.title === title)?.value, [data])
 
     const { colors: { brown, yellow, gold } } = miniChartsFlagsModel
-    const labels = ['Digital', 'Print on Demand']
+    const labels = ['Digital', 'Print on Demand', 'Physical Product']
 
     const items = {
         labels,
         datasets: [
             {
-                data: [getValue('DIGITAL'), getValue('PRINT_ON_DEMAND')],
+                data: [getValue('DIGITAL'), getValue('PRINT_ON_DEMAND'), getValue('NORMAL')],
                 backgroundColor: [yellow, gold, brown],
                 borderWidth: 0,
                 cutout: 20,
@@ -45,16 +45,19 @@ function ProductGroups() {
                 display: false,
             },
         }
-    };
+    }
+
+    console.log(data);
+
 
     return (
         <Flex alignItems="center" justifyContent="space-between" gap="30px">
             <VStack width="100%" align="stretch">
                 <AppTypography fontSize='16px'>Product Groups</AppTypography>
                 <Flex alignItems="center" gap="10px" flexWrap="wrap">
-                    {/* <MiniChartsFlags caption='Physical Product' color='yellow' /> */}
-                    <MiniChartsFlags caption='Print on Demand' color='yellow' />
-                    <MiniChartsFlags caption='Digital Product' color='gold' />
+                    <MiniChartsFlags caption='Digital Product' color='yellow' />
+                    <MiniChartsFlags caption='Print on Demand' color='gold' />
+                    <MiniChartsFlags caption='Physical Product' color='brown' />
                 </Flex>
             </VStack>
             <Box width="60px"><Doughnut options={options} data={items} /></Box>

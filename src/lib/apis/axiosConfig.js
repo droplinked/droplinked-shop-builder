@@ -36,7 +36,6 @@ const refreshAccessToken = async (refresh_token) => {
 axiosInstance.interceptors.request.use(
     async (config) => {
         const appStore = useAppStore.getState().access_token || '';
-        console.log(config.method, appStore);
         config.headers = {
             ...config.headers,
             'Authorization': `Bearer ${appStore || ''}`,
