@@ -47,9 +47,6 @@ function ProductGroups() {
         }
     }
 
-    console.log(data);
-
-
     return (
         <Flex alignItems="center" justifyContent="space-between" gap="30px">
             <VStack width="100%" align="stretch">
