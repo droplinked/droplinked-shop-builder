@@ -12,7 +12,7 @@ function ProfitChart() {
 
   const items: any = useMemo(() => {
     const data = revenue?.report?.profit
-    return [
+    return data?.affiliate + data?.direct + data?.value > 0 ? [
       {
         caption: 'Direct',
         color: 'green',
@@ -27,27 +27,29 @@ function ProfitChart() {
         width: getPercentage(data?.affiliate, data?.value),
         chartColor: '#9C4EFF'
       }
-    ]
+    ] : null
   }, [revenue])
 
   return (
     <>
-      {revenue?.report.length ? (
-        <VStack align="stretch">
+      {items ? (
+        <VStack align="stretch" spacing="12px">
           <AppSkeleton isLoaded={isLoading}>
             <AppTypography fontSize="18px" fontWeight="600">${revenue?.report?.profit?.value}</AppTypography>
           </AppSkeleton>
           <AppSkeleton isLoaded={isLoading}>
-            {items.map((el, key) => (
-              <Flex alignItems="center" gap="20px" key={key}>
-                <Box width="100px"><MiniChartsFlags caption={el.caption} color={el.color} /></Box>
-                <Box width="100%">
-                  <Box width={el.width + '%'} minWidth="30px" height="20px" backgroundColor={el.chartColor} textAlign="right" borderRadius="2px" padding="1px 5px">
-                    <AppTypography color="#333">${el.value}</AppTypography>
+            <VStack align="stretch" spacing="8px">
+              {items.map((el, key) => (
+                <Flex alignItems="center" gap="20px" key={key}>
+                  <Box width="100px"><MiniChartsFlags caption={el.caption} color={el.color} /></Box>
+                  <Box width="100%">
+                    <Box width={el.width + '%'} minWidth="30px" height="20px" backgroundColor={el.chartColor} textAlign="right" borderRadius="2px" padding="1px 5px">
+                      <AppTypography color="#333">${el.value}</AppTypography>
+                    </Box>
                   </Box>
-                </Box>
-              </Flex>
-            ))}
+                </Flex>
+              ))}
+            </VStack>
           </AppSkeleton>
         </VStack>
       ) : <DashboardEmpty minHeight="100px" />}
