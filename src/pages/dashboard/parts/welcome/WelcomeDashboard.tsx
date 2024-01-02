@@ -4,6 +4,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import useHookStore from 'functions/hooks/store/useHookStore'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React from 'react'
+import DashboardDate from './parts/datepicker/DashboardDate'
 
 function WelcomeDashboard() {
     const { app } = useHookStore()
@@ -26,9 +27,12 @@ function WelcomeDashboard() {
     }
 
     return (
-        <Flex alignItems="center" gap="10px">
-            <AppTypography fontSize="32px" color="#FFF">Good {getTime()}, <strong>{capitalizeFirstLetter(app?.shop?.name)}</strong></AppTypography>
-            <AppIcons.Hand />
+        <Flex justifyContent="space-between" alignItems="center">
+            <Flex alignItems="center" gap="10px">
+                <AppTypography fontSize="32px" color="#FFF">Good {getTime()}, <strong>{capitalizeFirstLetter(app?.shop?.name)}</strong></AppTypography>
+                <AppIcons.Hand />
+            </Flex>
+            <DashboardDate />
         </Flex>
     )
 }

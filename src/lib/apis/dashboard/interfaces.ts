@@ -1,4 +1,11 @@
+export enum dashboardDates {
+    weekly = 'WEEKLY',
+    monthly = 'MONTHLY',
+}
+
 export interface IgetRevenueServices {
-    dateRange: string
+    dateRange: dashboardDates
+    to: Date
+    from: Date
 }
 
