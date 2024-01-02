@@ -12,7 +12,7 @@ function ProfitChart() {
 
   const items: any = useMemo(() => {
     const data = revenue?.report?.profit
-    return data?.affiliate + data?.direct + data?.value > 0 ? [
+    return data?.affiliate || data?.direct || data?.value ? [
       {
         caption: 'Direct',
         color: 'green',
