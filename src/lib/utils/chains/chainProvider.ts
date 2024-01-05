@@ -1,4 +1,4 @@
-import { Chain, Network } from "./Chains";
+import { Beneficiary, Chain, Network, ProductType } from "./Chains";
 import { CasperProvider } from "./providers/casper/casperProvider";
 import { EVMProvider } from "./providers/evm/evmProvider";
 
@@ -24,7 +24,8 @@ export class ChainNotImplementedException {
 
 export interface ChainProvider {
     walletLogin(): Promise<any>;
-    recordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string>;
+    casperRecordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string>;
+    recordProduct(sku_properties: any, product_title: string, discription: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, paymentWallet: string, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, apiKey: string): Promise<string>;
     publishRequest(producerAccountAddress: string, tokenId: number | string): Promise<string>;
     approveRequest(requestId: number): Promise<string>;
     cancelRequest(requestId: number | string): Promise<string>;
@@ -53,6 +54,10 @@ let chainMapping = {
         [Network.TESTNET]: new EVMProvider(Chain.XRPLSIDECHAIN, Network.TESTNET),
         [Network.MAINNET]: new EVMProvider(Chain.XRPLSIDECHAIN, Network.MAINNET),
     },
+    [Chain.BASE]: {
+        [Network.TESTNET]: new EVMProvider(Chain.BASE, Network.TESTNET),
+        [Network.MAINNET]: new EVMProvider(Chain.BASE, Network.MAINNET),
+    },
     [Chain.STACKS]: {
         [Network.TESTNET]: null,
         [Network.MAINNET]: null,
@@ -61,9 +66,9 @@ let chainMapping = {
         [Network.TESTNET]: new EVMProvider(Chain.SKALE, Network.TESTNET),
         [Network.MAINNET]: new EVMProvider(Chain.SKALE, Network.MAINNET),
     },
-    [Chain.BASE]: {
-        [Network.TESTNET]: new EVMProvider(Chain.BASE, Network.TESTNET),
-        [Network.MAINNET]: new EVMProvider(Chain.BASE, Network.MAINNET),
+    [Chain.LINEA]: {
+        [Network.TESTNET]: new EVMProvider(Chain.LINEA, Network.TESTNET),
+        [Network.MAINNET]: new EVMProvider(Chain.LINEA, Network.MAINNET),
     },
 };
 

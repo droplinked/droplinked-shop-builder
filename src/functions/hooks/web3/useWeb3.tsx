@@ -57,7 +57,7 @@ const useAppWeb3 = () => {
                     resolve(address)
                     updateWallet({ type: "STACKS", address: stack.stxAddress })
                 } else {
-                    const provider = await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin(null))
+                    const provider = await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin())
 
                     if (chain === "CASPER") {
                         resolve(provider.publicKey)

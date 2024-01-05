@@ -34,6 +34,10 @@ let chainNames = {
         [Network.TESTNET]: { chainName: "Base Göerli", chainId: "0x14a33", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://goerli.base.org'] },
         [Network.MAINNET]: { chainName: "Base Mainnet", chainId: "0x2105", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://mainnet.base.org/'] }
     },
+    [Chain.LINEA]: {
+        [Network.MAINNET]: { chainName: "Linea", chainId: "0xe708", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'LineaETH' }, rpcUrls: ['https://rpc.linea.build'] },
+        [Network.TESTNET]: { chainName: "Linea", chainId: "0xe704", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'LineaETH' }, rpcUrls: ['https://rpc.goerli.linea.build'] }
+    }
 };
 
 export const isMetamaskInstalled = (): boolean => {
