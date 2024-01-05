@@ -1,10 +1,10 @@
-import { CLPublicKey } from "casper-js-sdk";
-let casperWalletInstance: any;
-export let account_information: any;
+import { CLPublicKey, CasperWalletEventTypes } from "casper-js-sdk";
+let casperWalletInstance;
+export let account_information;
 export const getCasperWalletInstance = () => {
     try {
       if (casperWalletInstance == null) {
-        casperWalletInstance = (window as any).CasperWalletProvider();
+        casperWalletInstance = (window).CasperWalletProvider();
       }
       return casperWalletInstance;
     } catch (err) {}
@@ -13,7 +13,7 @@ export const getCasperWalletInstance = () => {
 
 export const isCasperWalletExtentionInstalled = () => {
     try{
-        let walletInstance = (window as any).CasperWalletProvider();
+        let walletInstance = (window).CasperWalletProvider();
         return walletInstance != null;
     }
     catch(error){
@@ -21,7 +21,7 @@ export const isCasperWalletExtentionInstalled = () => {
     }
 }
 
-let get_account_information = async function(publicKey: any){
+let get_account_information = async function(publicKey){
     let sign = await getCasperWalletInstance().signMessage("matin.ghiasvand1381@gmail.com", await getCasperWalletInstance().getActivePublicKey());
     return {
         "publicKey":publicKey,
@@ -41,7 +41,7 @@ export async function casper_login(){
             return;
         }
         await getCasperWalletInstance().requestConnection();
-        const handleConnected = async (event: any) => {
+        const handleConnected = async (event) => {
             try {
                 const action = JSON.parse(event.detail);
                 if (action.activeKey) {
