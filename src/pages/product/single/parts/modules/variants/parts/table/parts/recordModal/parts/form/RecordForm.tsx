@@ -86,11 +86,11 @@ function RecordForm({ close, product, sku }: Iprops) {
                 <Form>
                     <Box color={"#FFF"}>
                         <VStack align={"stretch"} spacing={8}>
-                            <Box textAlign={"center"}><Text fontSize={"larger"} margin="12px 0" fontFamily="aven" color={"#FEB900"}>Warning !</Text></Box>
+                            <Box textAlign={"center"}><AppTypography fontSize={"larger"} margin="12px 0" color={"#FEB900"}>Warning !</AppTypography></Box>
                             <Box textAlign={"center"}>
-                                <Text color="#C2C2C2" fontSize={"lg"}>
-                                    Once your product variant is recorded on a blockchain network, it becomes immutable, and <Text color={"#FFF"} fontFamily={"aven"} display="inline">neither the variants nor properties can be edited.</Text> Please ensure that all details of your product are accurate before recording it.
-                                </Text>
+                                <AppTypography color="#C2C2C2" fontSize={"lg"}>
+                                    Once your product variant is recorded on a blockchain network, it becomes immutable, and <AppTypography color={"#FFF"} fontWeight='600' fontSize={"lg"} display="inline">neither the variants nor properties can be edited.</AppTypography> Please ensure that all details of your product are accurate before recording it.
+                                </AppTypography>
                             </Box>
                             <Box>
                                 <BlockchainNetwork
