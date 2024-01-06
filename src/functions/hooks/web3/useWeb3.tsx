@@ -4,7 +4,6 @@ import { getNetworkProvider } from 'lib/utils/chains/chainProvider'
 import { Chain, Network } from 'lib/utils/chains/Chains'
 import useHookStore from '../store/useHookStore'
 import web3Model, { IAcceptData, IRecordPrams, IRequestData } from './models'
-import { userUpdateService } from 'lib/apis/user/services'
 
 // method: "record" | "request" | "accept"
 export type IWeb3 = {

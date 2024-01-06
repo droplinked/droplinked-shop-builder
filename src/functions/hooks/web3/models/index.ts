@@ -11,6 +11,7 @@ interface IRecordData {
     commission: any
     quantity: any
     blockchain: any
+    royalty: any
 }
 
 export interface IRecordPrams {
@@ -71,7 +72,7 @@ const web3Model = ({
                     })
                     if (query) dataDeploy.deployHash = query.txId
                 } else {
-                    const res = await recordModel.record({ commission, product, blockchain: data.blockchain, sku, quantity, imageUrl, accountAddress })
+                    const res = await recordModel.record({ commission, product, royalty: data.royalty, blockchain: data.blockchain, sku, quantity, imageUrl, accountAddress })
                     if (res) dataDeploy.deployHash = res
                 }
 

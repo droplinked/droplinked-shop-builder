@@ -13,6 +13,7 @@ interface Irecord {
     quantity: number
     imageUrl?: string
     accountAddress: string
+    royalty: number
 }
 
 interface IrecordData {
@@ -37,7 +38,7 @@ export interface Ideploy {
 }
 
 const recordModel = ({
-    record: async ({ product, commission, blockchain, quantity, sku, imageUrl, accountAddress }: Irecord) => {
+    record: async ({ product, commission, blockchain, quantity, sku, imageUrl, accountAddress, royalty }: Irecord) => {
         const provider = getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress)
         // ---------------- new parameters: ------------------------
         // get these parameters from recorder:
@@ -45,9 +46,8 @@ const recordModel = ({
         const paymentWallet = accountAddress; // the wallet in which the funds would go
         const beneficiaries: Beneficiary[] = []; // this is the value added services
         const acceptsManageWallet = true; // if user accepts the manage wallet
-        const royalty = 5 * 100; // royalty of this product
         // ----------------------------------------------------------
-        const record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
+        const record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
         return record
     },
 
