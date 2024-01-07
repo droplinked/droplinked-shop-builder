@@ -7,7 +7,7 @@ import { Chain, Network } from "lib/utils/chains/Chains"
 import acceptModel from "./module/accept/acceptModel"
 import recordModel, { Ideploy, IStacks } from "./module/record/recordModel"
 
-interface IRecordData {
+export interface IRecordParamsData {
     commission: any
     quantity: any
     blockchain: any
@@ -15,7 +15,7 @@ interface IRecordData {
 }
 
 export interface IRecordPrams {
-    data: IRecordData
+    data: IRecordParamsData
     product: any
     sku: any
     imageUrl?: string

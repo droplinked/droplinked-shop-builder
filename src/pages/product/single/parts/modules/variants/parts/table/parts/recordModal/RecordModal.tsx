@@ -43,6 +43,7 @@ function RecordModal({ close, open, product, sku }: Iprops) {
                 contentProps={{
                     padding: "30px"
                 }}
+                isCentered={false}
             >
                 {State.hashkey ? <HashKey text="Sku record successful" blockchain={State.blockchain} hashkey={State.hashkey} close={closeModal} /> : <RecordForm close={closeModal} product={product} sku={sku} />}
             </AppModal>

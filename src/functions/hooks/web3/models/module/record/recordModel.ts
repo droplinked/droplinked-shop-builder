@@ -4,6 +4,7 @@ import { recordCasperService } from "lib/apis/sku/services"
 import { getNetworkProvider } from "lib/utils/chains/chainProvider"
 import { appDeveloment } from "lib/utils/app/variable"
 import { Beneficiary, Chain, Network, ProductType } from "lib/utils/chains/Chains"
+import { IRecordParamsData } from "../.."
 
 interface Irecord {
     product: any
@@ -16,12 +17,6 @@ interface Irecord {
     royalty: number
 }
 
-interface IrecordData {
-    commission: number
-    quantity: any
-    blockchain: string
-}
-
 export interface IStacks {
     login: any
     isRequestPending: any
@@ -31,7 +26,7 @@ export interface IStacks {
 
 
 export interface Ideploy {
-    data: IrecordData
+    data: IRecordParamsData
     product: any
     sku: any
     deployHash: string
@@ -46,8 +41,14 @@ const recordModel = ({
         const paymentWallet = accountAddress; // the wallet in which the funds would go
         const beneficiaries: Beneficiary[] = []; // this is the value added services
         const acceptsManageWallet = true; // if user accepts the manage wallet
+        let record: any;
         // ----------------------------------------------------------
-        const record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
+        if (blockchain === 'CASPER') {
+            record = await provider.casperRecordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
+
+        } else {
+            record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
+        }
         return record
     },
 
@@ -65,7 +66,9 @@ const recordModel = ({
                     params: {
                         deploy_hash: deployHash,
                         skuID: sku._id,
-                        commision: Number(data.commission),
+                        royalty: parseInt(data.royalty),
+                        canBeAffiliated: Boolean(data.commission && data.commission.length),
+                        commision: parseInt(data.commission),
                         ...product.product_type === "PRINT_ON_DEMAND" && { recorded_quantity: parseInt(data.quantity) }
                     }
                 })
