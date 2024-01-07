@@ -28,7 +28,7 @@ function OptionLayout() {
             </VStack>
             <Flex alignItems="center" gap="16px">
                 <AppSwitch isChecked={fullWidthHero} onChange={change} />
-                <AppTypography fontSize="14px">Full with Background</AppTypography>
+                <AppTypography fontSize="14px">Full width Background</AppTypography>
             </Flex>
         </VStack>
     )
