@@ -15,7 +15,7 @@ function MiniCharts() {
 
         return [
             {
-                title: 'Overall Profit',
+                title: 'Net Profit',
                 width: '48%',
                 component: <ProfitChart />,
             },
