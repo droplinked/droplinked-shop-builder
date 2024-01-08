@@ -5,51 +5,49 @@ import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import FormModel from 'components/common/form/FormModel'
 import AppInput from 'components/common/form/textbox/AppInput'
 import AppTypography from 'components/common/typography/AppTypography'
+import useAppToast from 'functions/hooks/toast/useToast'
 import { generateShopAPIKey, getShopApiKey } from 'lib/apis/shop/shopServices'
 import React, { useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 
 export default function ShopAPIKey() {
+    const { showToast } = useAppToast()
     const [domain, setDomain] = useState("")
-    const [initialData, setInitialData] = useState(null)
-    const { isLoading: isFetching } = useQuery({
-        queryKey: ["apiKey"],
+    const { isLoading: isFetching, data: fetchedData, refetch } = useQuery({
         queryFn: () => getShopApiKey(),
         onSuccess: (response) => {
             const result = response.data.data
-            setInitialData(result)
-            setDomain(result.domains[0])
-        }
+            if (result) setDomain(result.domains[0])
+        },
+        refetchOnWindowFocus: false
     })
     const { isLoading: isMutating, mutate } = useMutation({
         mutationFn: () => generateShopAPIKey({ domains: [domain] }),
-        onSuccess: (response) => {
-            const result = response.data.data
-            setInitialData(result)
-        }
+        onSuccess: () => refetch(),
+        onError: (error) => showToast((error as Error).message, "error")
     })
 
     return (
         <VStack align={"stretch"} spacing={7}>
-            <VStack align={"stretch"}>
-                <Flex justifyContent={"space-between"} alignItems={"center"}>
+            <Flex justifyContent={"space-between"} alignItems={"center"}>
+                <AppTypography
+                    fontSize='18px'
+                    fontWeight='bold'>
+                    API KEY
+                </AppTypography>
+                <Link
+                    to={"https://apiv3dev.droplinked.com/v1/public-apis/document"}
+                    target="_blank">
                     <AppTypography
-                        fontSize='18px'
-                        fontWeight='bold'>
-                        API KEY
+                        fontSize={"14px"}
+                        color={"#33A9EC"}
+                        textDecoration={"underline"}
+                        textDecorationColor={"#33A9EC"}>
+                        API Documentation
                     </AppTypography>
-                    <Link to={"https://apiv3dev.droplinked.com/v1/public-apis/document"}>
-                        <AppTypography
-                            fontSize={"14px"}
-                            color={"#33A9EC"}
-                            textDecoration={"underline"}
-                            textDecorationColor={"#33A9EC"}>
-                            API Documentation
-                        </AppTypography>
-                    </Link>
-                </Flex>
-            </VStack>
+                </Link>
+            </Flex>
             <VStack align={"stretch"}>
                 <FieldLabel label='Domain' isRequired />
                 <AppTypography
@@ -73,18 +71,18 @@ export default function ShopAPIKey() {
                         isDisabled={!domain}
                         isLoading={isFetching || isMutating}
                         onClick={() => mutate()}>
-                        {initialData ? "Edit" : "Generate API Key"}
+                        {fetchedData?.data.data ? "Edit" : "Generate API Key"}
                     </BasicButton>
                 </Flex>
             </VStack>
             {
-                initialData && <VStack align={"stretch"}>
+                fetchedData?.data.data && <VStack align={"stretch"}>
                     <AppTypography fontSize='16px' color={"#C2C2C2"}>API KEY</AppTypography>
                     <Flex justifyContent={"space-between"} alignItems={"center"}>
                         <AppTypography fontSize='16px' color={"#C2C2C2"}>
-                            {initialData.clientId}
+                            {fetchedData.data.data.clientId}
                         </AppTypography>
-                        <ClipboardText text={initialData.clientId} />
+                        <ClipboardText text={fetchedData.data.data.clientId} />
                     </Flex>
                 </VStack>
             }
