@@ -1,20 +1,21 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import Banner from './parts/banner/Banner';
-import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
-import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
+import { Box, Image, Show, useDisclosure } from '@chakra-ui/react';
 import ReactFullpage from '@fullpage/react-fullpage';
-import classes from './style.module.scss'
-import { Box, Flex, Image, position, Show, useDisclosure } from '@chakra-ui/react';
-import Partners from './parts/partners/Partners';
-import Community from './parts/community/Community';
-import ProductsMain from './parts/product/ProductsMain';
-import Networks from './parts/networks/Networks';
-import Embeddable from './parts/embeddable/Embeddable';
-import Supported from './parts/supported/Supported';
-import Contact from './parts/contact/Contact';
-import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
+import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import useAppStore from 'lib/stores/app/appStore';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Navigate, useSearchParams } from 'react-router-dom';
+import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import Banner from './parts/banner/Banner';
+import Community from './parts/community/Community';
+import Contact from './parts/contact/Contact';
+import Embeddable from './parts/embeddable/Embeddable';
+import Networks from './parts/networks/Networks';
+import Partners from './parts/partners/Partners';
+import ProductsMain from './parts/product/ProductsMain';
+import Supported from './parts/supported/Supported';
+import classes from './style.module.scss';
 
 function HomePage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -32,6 +33,9 @@ function HomePage() {
       <Image src='/assets/images/homepage/ef2.png' position="absolute" top="50vh" left="0" zIndex="0" />
     </>
   ), [])
+
+  const user = useAppStore(store => store.user)
+  if (user) return <Navigate to="/dashboard" />
 
   return (
     <ParallaxProvider>
