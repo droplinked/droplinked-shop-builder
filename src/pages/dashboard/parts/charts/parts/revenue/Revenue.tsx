@@ -12,7 +12,7 @@ function Revenue() {
 
     return (
         <VStack align="stretch" spacing="3px">
-            <AppTypography fontSize="16px">Revenue</AppTypography>
+            <AppTypography fontSize="16px">Total earning</AppTypography>
             <AppSkeleton isLoaded={isLoading}>
                 <Flex alignItems="center" gap="12px">
                     <AppTypography fontSize="32px" fontWeight="600">${revenue?.total.toFixed(2)}</AppTypography>

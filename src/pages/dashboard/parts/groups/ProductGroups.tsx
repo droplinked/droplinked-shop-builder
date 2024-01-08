@@ -50,10 +50,10 @@ function ProductGroups() {
     return (
         <Flex alignItems="center" justifyContent="space-between" gap="30px">
             <VStack width="100%" align="stretch">
-                <AppTypography fontSize='16px'>Product Groups</AppTypography>
+                <AppTypography fontSize='16px'>Sales Based Category</AppTypography>
                 <Flex alignItems="center" gap="10px" flexWrap="wrap">
                     <MiniChartsFlags caption='Digital Product' color='yellow' />
-                    <MiniChartsFlags caption='Print on Demand' color='gold' />
+                    <MiniChartsFlags caption='Production On Demand' color='gold' />
                     <MiniChartsFlags caption='Physical Product' color='brown' />
                 </Flex>
             </VStack>
