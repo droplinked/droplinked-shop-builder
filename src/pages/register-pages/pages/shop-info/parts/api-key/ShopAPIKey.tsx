@@ -7,14 +7,15 @@ import AppInput from 'components/common/form/textbox/AppInput'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { generateShopAPIKey, getShopApiKey } from 'lib/apis/shop/shopServices'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
+import { domainRegex } from 'lib/utils/heper/regex'
 
 export default function ShopAPIKey() {
     const { showToast } = useAppToast()
     const [domain, setDomain] = useState("")
-    const { isLoading: isFetching, data: fetchedData, refetch } = useQuery({
+    const { isLoading: isFetching, data, refetch } = useQuery({
         queryFn: () => getShopApiKey(),
         onSuccess: (response) => {
             const result = response.data.data
@@ -22,11 +23,20 @@ export default function ShopAPIKey() {
         },
         refetchOnWindowFocus: false
     })
-    const { isLoading: isMutating, mutate } = useMutation({
-        mutationFn: () => generateShopAPIKey({ domains: [domain] }),
-        onSuccess: () => refetch(),
-        onError: (error) => showToast((error as Error).message, "error")
-    })
+    const fetchedData = useMemo(() => data?.data.data, [data])
+    const { isLoading: isMutating, mutateAsync } = useMutation(() => generateShopAPIKey({ domains: [domain] }))
+    const handleApiKeyCreation = async () => {
+        if (!domainRegex.test(domain)) {
+            showToast("Please enter a valid domain.", "error")
+            return
+        }
+        try {
+            await mutateAsync()
+            refetch()
+        } catch (error) {
+            showToast((error as Error).message, "error")
+        }
+    }
 
     return (
         <VStack align={"stretch"} spacing={7}>
@@ -70,19 +80,19 @@ export default function ShopAPIKey() {
                         sizes='medium'
                         isDisabled={!domain}
                         isLoading={isFetching || isMutating}
-                        onClick={() => mutate()}>
-                        {fetchedData?.data.data ? "Edit" : "Generate API Key"}
+                        onClick={handleApiKeyCreation}>
+                        {fetchedData ? "Edit" : "Generate API Key"}
                     </BasicButton>
                 </Flex>
             </VStack>
             {
-                fetchedData?.data.data && <VStack align={"stretch"}>
+                fetchedData && <VStack align={"stretch"}>
                     <AppTypography fontSize='16px' color={"#C2C2C2"}>API KEY</AppTypography>
                     <Flex justifyContent={"space-between"} alignItems={"center"}>
                         <AppTypography fontSize='16px' color={"#C2C2C2"}>
-                            {fetchedData.data.data.clientId}
+                            {fetchedData.clientId}
                         </AppTypography>
-                        <ClipboardText text={fetchedData.data.data.clientId} />
+                        <ClipboardText text={fetchedData.clientId} />
                     </Flex>
                 </VStack>
             }
