@@ -63,3 +63,7 @@ export interface IshopPublicRecordedService {
 export interface IchargeCreditService {
     amount: number
 }
+
+export interface ShopOAuth2Client {
+    domains: Array<string>
+}
