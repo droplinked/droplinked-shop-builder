@@ -6,11 +6,12 @@ import FormModel from 'components/common/form/FormModel'
 import AppInput from 'components/common/form/textbox/AppInput'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
+import { ShopOAuth2Client } from 'lib/apis/shop/interfaces'
 import { generateShopAPIKey, getShopApiKey } from 'lib/apis/shop/shopServices'
+import { domainRegex } from 'lib/utils/heper/regex'
 import React, { useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
-import { domainRegex } from 'lib/utils/heper/regex'
 
 export default function ShopAPIKey() {
     const { showToast } = useAppToast()
@@ -24,14 +25,11 @@ export default function ShopAPIKey() {
         refetchOnWindowFocus: false
     })
     const fetchedData = useMemo(() => data?.data.data, [data])
-    const { isLoading: isMutating, mutateAsync } = useMutation(() => generateShopAPIKey({ domains: [domain] }))
+    const { isLoading: isMutating, mutateAsync } = useMutation((params: ShopOAuth2Client) => generateShopAPIKey(params))
     const handleApiKeyCreation = async () => {
-        if (!domainRegex.test(domain)) {
-            showToast("Please enter a valid domain.", "error")
-            return
-        }
         try {
-            await mutateAsync()
+            if (!domainRegex.test(domain)) throw Error("Please enter a valid domain.")
+            await mutateAsync({ domains: [domain] })
             refetch()
         } catch (error) {
             showToast((error as Error).message, "error")
