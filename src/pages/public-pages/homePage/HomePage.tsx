@@ -35,7 +35,7 @@ function HomePage() {
   ), [])
 
   const { app: { user } } = useHookStore()
-  return !user ? <Navigate to="/dashboard" /> : (
+  return user ? <Navigate to="/dashboard" /> : (
     <ParallaxProvider>
       <div style={{ color: "#FFF", overflowX: "hidden" }}>
         <Box className={`${classes.sshape} ${classes.shape1} ${States.pause ? classes.animationPaused : ''}`} fontSize={{ base: "400px", lg: "1400px" }} top={{ base: "0", lg: "100px" }} right="0">s</Box>
