@@ -3,7 +3,7 @@ import ReactFullpage from '@fullpage/react-fullpage';
 import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
 import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
 import AuthModal from 'components/modals/auth-modal/AuthModal';
-import useAppStore from 'lib/stores/app/appStore';
+import useHookStore from 'functions/hooks/store/useHookStore';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
@@ -34,10 +34,8 @@ function HomePage() {
     </>
   ), [])
 
-  const user = useAppStore(store => store.user)
-  if (user) return <Navigate to="/dashboard" />
-
-  return (
+  const { app: { user } } = useHookStore()
+  return !user ? <Navigate to="/dashboard" /> : (
     <ParallaxProvider>
       <div style={{ color: "#FFF", overflowX: "hidden" }}>
         <Box className={`${classes.sshape} ${classes.shape1} ${States.pause ? classes.animationPaused : ''}`} fontSize={{ base: "400px", lg: "1400px" }} top={{ base: "0", lg: "100px" }} right="0">s</Box>
