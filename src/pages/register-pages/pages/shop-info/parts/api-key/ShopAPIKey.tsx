@@ -1,4 +1,4 @@
-import { Flex, VStack } from '@chakra-ui/react'
+import { Flex, Link, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
@@ -11,7 +11,6 @@ import { generateShopAPIKey, getShopApiKey } from 'lib/apis/shop/shopServices'
 import { domainRegex } from 'lib/utils/heper/regex'
 import React, { useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { Link } from 'react-router-dom'
 
 export default function ShopAPIKey() {
     const { showToast } = useAppToast()
@@ -45,7 +44,7 @@ export default function ShopAPIKey() {
                     API KEY
                 </AppTypography>
                 <Link
-                    to={"https://apiv3dev.droplinked.com/v1/public-apis/document"}
+                    href={"https://apiv3dev.droplinked.com/v1/public-apis/document"}
                     target="_blank">
                     <AppTypography
                         fontSize={"14px"}
