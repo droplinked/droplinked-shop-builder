@@ -58,6 +58,7 @@ import { ReactComponent as Base } from './base-logo.svg';
 import { ReactComponent as Hand } from './hand.svg';
 import { ReactComponent as Dashboard } from './dashboard.svg';
 import { ReactComponent as DatepickerDashboard } from './datepicker-dashboard.svg';
+import { ReactComponent as Linea } from './linea.svg';
 
 const AppIcons = {
   ProductsIcon,
@@ -119,6 +120,7 @@ const AppIcons = {
   Base,
   Hand,
   Dashboard,
-  DatepickerDashboard
+  DatepickerDashboard,
+  Linea
 }
 export default AppIcons
