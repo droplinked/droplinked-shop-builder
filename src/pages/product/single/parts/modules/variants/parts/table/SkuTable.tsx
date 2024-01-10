@@ -1,9 +1,11 @@
-import AppTable from 'components/common/table/AppTable'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { Flex, Text, useDisclosure } from '@chakra-ui/react'
-import SkuTableModel from './model/model';
+import { Flex, Text, useDisclosure } from '@chakra-ui/react';
+import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
+import AppTable from 'components/common/table/AppTable';
 import { productContext } from 'pages/product/single/context';
+import React, { useCallback, useContext, useMemo, useState } from 'react';
 import SkeletonProduct from '../../../skeleton/SkeletonProduct';
+import SkuTableModel from './model/model';
+import DetailsModal from './parts/detailsModal/DetailsModal';
 import SkuTableOptions from './parts/options/SkuTableOptions';
 import RecordModal from './parts/recordModal/RecordModal';
 import SkuTableModal from './parts/skuModal/SkuTableModal';
@@ -14,6 +16,7 @@ function SkuTable() {
     const { getRows } = SkuTableModel
     const recordModal = useDisclosure()
     const editModal = useDisclosure()
+    const detailsModal = useDisclosure()
 
     const rows = useMemo(() => {
         if (!state.sku.length) return null
@@ -30,10 +33,41 @@ function SkuTable() {
                     value: (
                         <>
                             {
-                                el?.recordData && el.recordData.status !== "NOT_RECORDED" ?
-                                    <Flex justifyContent={"center"}><Text backgroundColor={"#000"} borderRadius="100px" fontSize={"xs"} padding="4px 20px">{el?.recordData.status}</Text></Flex>
-                                    :
-                                    <SkuTableOptions
+                                el?.recordData ?
+                                    el.recordData.status === "RECORDED" ?
+                                        <Flex justifyContent={"center"}>
+                                            <BlockchainDisplay
+                                                blockchain={el.recordData.recordNetwork}
+                                                show="icon"
+                                                props={{
+                                                    width: "25px",
+                                                    height: "25px",
+                                                    cursor: "pointer",
+                                                    onClick: () => {
+                                                        setSku(el)
+                                                        detailsModal.onOpen()
+                                                    }
+                                                }}
+                                            />
+                                        </Flex>
+                                        :
+                                        el.recordData.status !== "NOT_RECORDED" ?
+                                            <Flex justifyContent={"center"}>
+                                                <Text backgroundColor={"#000"} borderRadius="100px" fontSize={"xs"} padding="4px 20px">
+                                                    {el?.recordData.status}
+                                                </Text>
+                                            </Flex>
+                                            :
+                                            <SkuTableOptions
+                                                element={el}
+                                                updateSku={(sku: any) => setSku(sku)}
+                                                elementKey={key}
+                                                modals={{
+                                                    editModal: editModal.onOpen,
+                                                    recordMoal: recordModal.onOpen
+                                                }}
+                                            />
+                                    : <SkuTableOptions
                                         element={el}
                                         updateSku={(sku: any) => setSku(sku)}
                                         elementKey={key}
@@ -63,6 +97,9 @@ function SkuTable() {
             </SkeletonProduct>
             <SkuTableModal open={editModal.isOpen} close={editModal.onClose} skuData={Sku} />
             <RecordModal open={Sku && recordModal.isOpen} product={state} sku={Sku} close={closeModal} />
+            {
+                detailsModal.isOpen && <DetailsModal open={detailsModal.isOpen} close={detailsModal.onClose} sku={Sku} />
+            }
         </>
     )
 }

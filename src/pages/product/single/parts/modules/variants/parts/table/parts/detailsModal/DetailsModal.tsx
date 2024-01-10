@@ -1,0 +1,118 @@
+import { Box, Flex, VStack } from "@chakra-ui/react"
+import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay"
+import ClipboardText from "components/common/clipboardText/ClipboardText"
+import AppImage from "components/common/image/AppImage"
+import AppModal from "components/common/modal/AppModal"
+import AppTypography from "components/common/typography/AppTypography"
+import console from "console"
+import useAppToast from "functions/hooks/toast/useToast"
+import { Isku } from "lib/apis/product/interfaces"
+import { getSkuById } from "lib/apis/sku/services"
+import requestsModel from "pages/affiliate/requests/parts/list/model"
+import React from "react"
+import { useQuery } from "react-query"
+import DetailsModalSkeleton from "./parts/DetailsModalSkeleton"
+
+interface Props {
+    open: boolean
+    close: Function,
+    sku: Isku
+}
+
+function DetailsModal({ open, close, sku }: Props) {
+    const { showToast } = useAppToast()
+    const { getVariant } = requestsModel
+    const { isLoading, data } = useQuery({
+        queryKey: ["sku", sku._id],
+        queryFn: () => getSkuById(sku._id),
+        onError: (error) => {
+            showToast((error as Error).message, "error")
+            close()
+        }
+    })
+    const response = data?.data.data
+    const variant = getVariant(response?.sku)
+
+    return <AppModal
+        open={open}
+        close={close}
+        size={"2xl"}
+        contentProps={{
+            padding: "50px",
+            maxWidth: "95%",
+            width: "720px",
+        }}
+        isCentered={false}
+        title={"Drop Information"}
+    >
+        {
+            isLoading ?
+                <DetailsModalSkeleton />
+                :
+                <VStack align={"stretch"} gap={"36px"}>
+                    <Flex gap={"16px"} height={"54px"}>
+                        <AppImage src={response?.product?.media.find(el => el.isMain === 'true')?.thumbnail} width="54px" height="54px" borderRadius="4px" />
+                        <Flex direction={"column"} justifyContent={"space-between"} height={"54px"}>
+                            <AppTypography color={"#ffffff"} fontSize={"16px"}>{response?.product?.title}</AppTypography>
+                            <Flex alignItems={"center"} gap={"7.5px"}>
+                                <Box
+                                    backgroundColor={variant.color.value}
+                                    width="20px"
+                                    height="20px"
+                                    borderRadius="100%">
+                                </Box>
+                                <AppTypography color={"#c2c2c2"} fontSize={"16px"}>{variant.size.value}</AppTypography>
+                            </Flex>
+                        </Flex>
+                    </Flex>
+
+                    <VStack align={"stretch"} gap={"18px"} color={"#c2c2c2"} as="dl">
+                        <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px">
+                            <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">NFT Asset:</AppTypography>
+                            <AppTypography fontSize={"14px"} as="dd">NFT Asset</AppTypography>
+                        </Flex>
+
+                        <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px">
+                            <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Variant Price:</AppTypography>
+                            <AppTypography fontSize={"14px"} as="dd">{`$ ${response?.sku.price} USD`}</AppTypography>
+                        </Flex>
+
+                        <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px">
+                            <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Commission:</AppTypography>
+                            <AppTypography fontSize={"14px"} as="dd">{`% ${response?.sku.recordData.commision}`}</AppTypography>
+                        </Flex>
+
+                        <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px">
+                            <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Affiliate Collaborators:</AppTypography>
+                            <AppTypography fontSize={"14px"} as="dd">12 Stores</AppTypography>
+                        </Flex>
+                        {
+                            response?.sku.deploy_hash && <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px">
+                                <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Deploy Hash:</AppTypography>
+                                <Flex flex={1} alignItems={"center"} justifyContent={"space-between"} as="dd">
+                                    <AppTypography fontSize={"14px"} textDecoration={"underline"}>
+                                        {response?.sku.deploy_hash.slice(0, 35) + "..."}
+                                    </AppTypography>
+                                    <ClipboardText text={response?.sku.deploy_hash} />
+                                </Flex>
+                            </Flex>
+                        }
+                    </VStack>
+
+                    <Flex alignItems={"center"} gap={"5px"}>
+                        <AppTypography color={"#c2c2c2"} fontSize={"12px"}>Dropped on</AppTypography>
+                        <BlockchainDisplay
+                            blockchain={response?.sku.recordData.recordNetwork}
+                            show="icon"
+                            props={{ width: "15px" }}
+                        />
+                        <AppTypography color={"#FF473E"} fontSize={"12px"}>
+                            {response?.sku.recordData.recordNetwork} Blockchain
+                        </AppTypography>
+                    </Flex>
+                </VStack >
+        }
+    </AppModal >
+}
+
+export default DetailsModal

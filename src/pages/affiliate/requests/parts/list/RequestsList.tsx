@@ -1,5 +1,7 @@
 import { Box, Flex, Image, VStack } from "@chakra-ui/react";
 import AppBadge from 'components/common/badge/AppBadge';
+import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
+import ClipboardText from "components/common/clipboardText/ClipboardText";
 import Pagination from "components/common/datagrid/parts/pagination/Pagination";
 import AppEmptyPage from 'components/common/empty/AppEmptyPage';
 import AppImage from "components/common/image/AppImage";
@@ -12,7 +14,6 @@ import { useMutation } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import RequestSkeleton from "../skeleton/RequestSkeleton";
 import requestsModel from "./model";
-import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 
 function RequestsList() {
   const [searchParams] = useSearchParams()
@@ -52,11 +53,17 @@ function RequestsList() {
                     <Flex width="100%" justifyContent="space-between">
                       <VStack align="stretch" color="#C2C2C2">
                         <AppTypography fontSize="14px">{product?.title}</AppTypography>
-                        <Flex alignItems="center" gap="6px">
-                          {variant?.color && <Box width="12px" height="12px" borderRadius="100%" backgroundColor={variant?.color.value}></Box>}
-                          {variant?.size && <AppTypography fontSize="12px">{variant?.size.caption}</AppTypography>}
+                        <Flex alignItems="center" gap="32px">
+                          <Flex alignItems="center" gap="6px">
+                            {variant?.color && <Box width="12px" height="12px" borderRadius="100%" backgroundColor={variant?.color.value}></Box>}
+                            {variant?.size && <AppTypography fontSize="12px">{variant?.size.caption}</AppTypography>}
+                          </Flex>
+                          <AppTypography fontSize="12px">Quantity: {el?.quantity || "---"}</AppTypography>
                         </Flex>
-                        <AppTypography fontSize="12px">Quantity: {el?.quantity || "---"}</AppTypography>
+                        <Flex alignItems="center" gap="10px">
+                          <AppTypography fontSize="12px" textDecoration="underline">Deploy Hash</AppTypography>
+                          <ClipboardText text={sku?.recordData.data.details.recipient} />
+                        </Flex>
                       </VStack>
                       <VStack align="stretch" color="#C2C2C2" textAlign="right">
                         <AppTypography fontSize="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>
