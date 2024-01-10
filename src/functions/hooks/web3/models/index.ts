@@ -54,6 +54,7 @@ const web3Model = ({
             try {
                 const commission = data.commission
                 const quantity: any = data.quantity
+                if (!data.royalty) data.royalty = 0
                 const dataDeploy: Ideploy = {
                     data, deployHash: '', product, sku
                 }
