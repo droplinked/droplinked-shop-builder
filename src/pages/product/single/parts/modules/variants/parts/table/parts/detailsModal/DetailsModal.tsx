@@ -4,12 +4,11 @@ import ClipboardText from "components/common/clipboardText/ClipboardText"
 import AppImage from "components/common/image/AppImage"
 import AppModal from "components/common/modal/AppModal"
 import AppTypography from "components/common/typography/AppTypography"
-import console from "console"
 import useAppToast from "functions/hooks/toast/useToast"
 import { Isku } from "lib/apis/product/interfaces"
-import { getSkuById } from "lib/apis/sku/services"
+import { getSkuByIdService } from "lib/apis/sku/services"
 import requestsModel from "pages/affiliate/requests/parts/list/model"
-import React from "react"
+import React, { ReactNode } from "react"
 import { useQuery } from "react-query"
 import DetailsModalSkeleton from "./parts/DetailsModalSkeleton"
 
@@ -24,7 +23,7 @@ function DetailsModal({ open, close, sku }: Props) {
     const { getVariant } = requestsModel
     const { isLoading, data } = useQuery({
         queryKey: ["sku", sku._id],
-        queryFn: () => getSkuById(sku._id),
+        queryFn: () => getSkuByIdService(sku._id),
         onError: (error) => {
             showToast((error as Error).message, "error")
             close()
@@ -32,6 +31,33 @@ function DetailsModal({ open, close, sku }: Props) {
     })
     const response = data?.data.data
     const variant = getVariant(response?.sku)
+
+    const renderSkuAttributes = () => {
+        const attributes = [
+            { label: "Variant Price:", value: `$ ${response?.sku.price} USD`, renderCondition: true },
+            { label: "Commission:", value: `% ${response?.sku.recordData.commision}`, renderCondition: true },
+            { label: "Deploy Hash:", value: response?.sku.deploy_hash, renderCondition: response?.sku.deploy_hash },
+        ]
+
+        return attributes.map((el, key) => {
+            if (!el.renderCondition) return null
+
+            if (el.label !== "Deploy Hash:") return <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px" key={key}>
+                <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">{el.label}</AppTypography>
+                <AppTypography fontSize={"14px"} as="dd">{el.value}</AppTypography>
+            </Flex>
+
+            return <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px" key={key}>
+                <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">{el.label}</AppTypography>
+                <Flex flex={1} alignItems={"center"} justifyContent={"space-between"} as="dd">
+                    <AppTypography fontSize={"14px"} textDecoration={"underline"}>
+                        {el.value.slice(0, 35) + "..."}
+                    </AppTypography>
+                    <ClipboardText text={el.value} />
+                </Flex>
+            </Flex>
+        })
+    }
 
     return <AppModal
         open={open}
@@ -67,26 +93,8 @@ function DetailsModal({ open, close, sku }: Props) {
                     </Flex>
 
                     <VStack align={"stretch"} gap={"18px"} color={"#c2c2c2"} as="dl">
-                        <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px">
-                            <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">NFT Asset:</AppTypography>
-                            <AppTypography fontSize={"14px"} as="dd">NFT Asset</AppTypography>
-                        </Flex>
-
-                        <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px">
-                            <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Variant Price:</AppTypography>
-                            <AppTypography fontSize={"14px"} as="dd">{`$ ${response?.sku.price} USD`}</AppTypography>
-                        </Flex>
-
-                        <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px">
-                            <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Commission:</AppTypography>
-                            <AppTypography fontSize={"14px"} as="dd">{`% ${response?.sku.recordData.commision}`}</AppTypography>
-                        </Flex>
-
-                        <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px">
-                            <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Affiliate Collaborators:</AppTypography>
-                            <AppTypography fontSize={"14px"} as="dd">12 Stores</AppTypography>
-                        </Flex>
-                        {
+                        {renderSkuAttributes()}
+                        {/* {
                             response?.sku.deploy_hash && <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px">
                                 <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Deploy Hash:</AppTypography>
                                 <Flex flex={1} alignItems={"center"} justifyContent={"space-between"} as="dd">
@@ -96,7 +104,7 @@ function DetailsModal({ open, close, sku }: Props) {
                                     <ClipboardText text={response?.sku.deploy_hash} />
                                 </Flex>
                             </Flex>
-                        }
+                        } */}
                     </VStack>
 
                     <Flex alignItems={"center"} gap={"5px"}>

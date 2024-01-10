@@ -60,10 +60,11 @@ function RequestsList() {
                           </Flex>
                           <AppTypography fontSize="12px">Quantity: {el?.quantity || "---"}</AppTypography>
                         </Flex>
-                        <Flex alignItems="center" gap="10px">
+                        {sku?.deploy_hash && <Flex alignItems="center" gap="10px">
                           <AppTypography fontSize="12px" textDecoration="underline">Deploy Hash</AppTypography>
-                          <ClipboardText text={sku?.recordData.data.details.recipient} />
+                          <ClipboardText text={sku?.deploy_hash} />
                         </Flex>
+                        }
                       </VStack>
                       <VStack align="stretch" color="#C2C2C2" textAlign="right">
                         <AppTypography fontSize="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>

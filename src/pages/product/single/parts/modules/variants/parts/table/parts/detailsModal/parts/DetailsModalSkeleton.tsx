@@ -1,40 +1,25 @@
-import { Box, Flex, VStack } from '@chakra-ui/react'
+import { Flex, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
-import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 
 function DetailsModalSkeleton() {
+    const generateSkeletonRows = (rows: number, height: string, width = "100%") => {
+        return Array.from({ length: rows }).map((_, key) =>
+            <AppSkeleton key={key} width={width} height={height} isLoaded={false}>{""}</AppSkeleton>)
+    }
+
     return (
         <VStack align={"stretch"} gap={"36px"}>
             <Flex gap={"16px"} height={"54px"}>
-                <AppSkeleton width="65px" height="54px" isLoaded={false}>{""}</AppSkeleton>
-                <AppSkeleton width="100%" height="54px" isLoaded={false}>{""}</AppSkeleton>
+                {generateSkeletonRows(1, "54px", "54px")}
+                <Flex flex={1} direction={"column"} justifyContent={"space-between"} height={"54px"}>
+                    {generateSkeletonRows(2, "20px")}
+                </Flex>
             </Flex>
-
             <VStack align={"stretch"} gap={"18px"} color={"#c2c2c2"} as="dl">
-                <Flex alignItems={"center"}>
-                    <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">NFT Asset:</AppTypography>
-                    <AppSkeleton width="100%" height="20px" isLoaded={false}>{""}</AppSkeleton>
-                </Flex>
-                <Flex alignItems={"center"}>
-                    <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Variant Price:</AppTypography>
-                    <AppSkeleton width="100%" height="20px" isLoaded={false}>{""}</AppSkeleton>
-                </Flex>
-                <Flex alignItems={"center"}>
-                    <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Commission:</AppTypography>
-                    <AppSkeleton width="100%" height="20px" isLoaded={false}>{""}</AppSkeleton>
-                </Flex>
-                <Flex alignItems={"center"}>
-                    <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Affiliate Collaborators:</AppTypography>
-                    <AppSkeleton width="100%" height="20px" isLoaded={false}>{""}</AppSkeleton>
-                </Flex>
-                <Flex alignItems={"center"}>
-                    <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Deploy Hash:</AppTypography>
-                    <AppSkeleton width="100%" height="20px" isLoaded={false}>{""}</AppSkeleton>
-                </Flex>
+                {generateSkeletonRows(3, "20px")}
             </VStack>
-
-            <AppSkeleton width="100%" height="20px" isLoaded={false}>{""}</AppSkeleton>
+            {generateSkeletonRows(1, "20px")}
         </VStack >
     )
 }

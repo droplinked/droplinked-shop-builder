@@ -66,10 +66,11 @@ function NotificationsList() {
                                                         <AppTypography fontSize="12px">Requested Quantity: {el?.quantity || "---"}</AppTypography>
                                                         <AppTypography fontSize="12px">Price: {`${sku?.price} ${product?.priceUnit || ""}`}</AppTypography>
                                                         <AppTypography fontSize="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>
-                                                        <Flex alignItems="center" gap="10px">
+                                                        {sku?.deploy_hash && <Flex alignItems="center" gap="10px">
                                                             <AppTypography fontSize="12px" textDecoration="underline">Deploy Hash</AppTypography>
-                                                            <ClipboardText text={sku?.recordData.data.details.recipient} />
+                                                            <ClipboardText text={sku?.deploy_hash} />
                                                         </Flex>
+                                                        }
                                                     </Flex>
                                                 </VStack>
                                             </Flex>

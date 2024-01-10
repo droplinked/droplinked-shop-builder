@@ -97,9 +97,7 @@ function SkuTable() {
             </SkeletonProduct>
             <SkuTableModal open={editModal.isOpen} close={editModal.onClose} skuData={Sku} />
             <RecordModal open={Sku && recordModal.isOpen} product={state} sku={Sku} close={closeModal} />
-            {
-                detailsModal.isOpen && <DetailsModal open={detailsModal.isOpen} close={detailsModal.onClose} sku={Sku} />
-            }
+            {detailsModal.isOpen && <DetailsModal open={detailsModal.isOpen} close={detailsModal.onClose} sku={Sku} />}
         </>
     )
 }

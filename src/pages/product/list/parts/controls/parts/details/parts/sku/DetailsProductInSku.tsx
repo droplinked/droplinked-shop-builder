@@ -94,9 +94,7 @@ function DetailsProductInSku() {
                 onClose()
             }} open={isOpen} product={product} sku={Sku} />}
 
-            {
-                detailsModal.isOpen && <DetailsModal open={detailsModal.isOpen} close={detailsModal.onClose} sku={Sku} />
-            }
+            {detailsModal.isOpen && <DetailsModal open={detailsModal.isOpen} close={detailsModal.onClose} sku={Sku} />}
         </>
     )
 }
