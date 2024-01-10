@@ -1,18 +1,18 @@
 import { Box, Flex, Image, VStack } from '@chakra-ui/react'
+import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
+import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import Pagination from 'components/common/datagrid/parts/pagination/Pagination'
 import AppEmptyPage from 'components/common/empty/AppEmptyPage'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import { IproducerRequestService } from 'lib/apis/affiliate/interfaces'
 import { producerRequestService } from 'lib/apis/affiliate/shopServices'
+import requestsModel from 'pages/affiliate/requests/parts/list/model'
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { useMutation } from 'react-query'
 import { useSearchParams } from 'react-router-dom'
 import NotificationsButtons from './parts/buttons/NotificationsButtons'
 import NotificationsSkeleton from './parts/skeleton/NotificationsSkeleton'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
-import requestsModel from 'pages/affiliate/requests/parts/list/model'
-import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 
 function NotificationsList() {
     const [searchParams] = useSearchParams()
@@ -66,6 +66,11 @@ function NotificationsList() {
                                                         <AppTypography fontSize="12px">Requested Quantity: {el?.quantity || "---"}</AppTypography>
                                                         <AppTypography fontSize="12px">Price: {`${sku?.price} ${product?.priceUnit || ""}`}</AppTypography>
                                                         <AppTypography fontSize="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>
+                                                        {sku?.deploy_hash && <Flex alignItems="center" gap="10px">
+                                                            <AppTypography fontSize="12px" textDecoration="underline">Deploy Hash</AppTypography>
+                                                            <ClipboardText text={sku?.deploy_hash} />
+                                                        </Flex>
+                                                        }
                                                     </Flex>
                                                 </VStack>
                                             </Flex>
