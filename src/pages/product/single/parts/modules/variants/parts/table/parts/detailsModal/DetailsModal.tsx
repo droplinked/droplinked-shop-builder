@@ -8,7 +8,7 @@ import useAppToast from "functions/hooks/toast/useToast"
 import { Isku } from "lib/apis/product/interfaces"
 import { getSkuByIdService } from "lib/apis/sku/services"
 import requestsModel from "pages/affiliate/requests/parts/list/model"
-import React, { ReactNode } from "react"
+import React from "react"
 import { useQuery } from "react-query"
 import DetailsModalSkeleton from "./parts/DetailsModalSkeleton"
 
@@ -94,17 +94,6 @@ function DetailsModal({ open, close, sku }: Props) {
 
                     <VStack align={"stretch"} gap={"18px"} color={"#c2c2c2"} as="dl">
                         {renderSkuAttributes()}
-                        {/* {
-                            response?.sku.deploy_hash && <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px">
-                                <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">Deploy Hash:</AppTypography>
-                                <Flex flex={1} alignItems={"center"} justifyContent={"space-between"} as="dd">
-                                    <AppTypography fontSize={"14px"} textDecoration={"underline"}>
-                                        {response?.sku.deploy_hash.slice(0, 35) + "..."}
-                                    </AppTypography>
-                                    <ClipboardText text={response?.sku.deploy_hash} />
-                                </Flex>
-                            </Flex>
-                        } */}
                     </VStack>
 
                     <Flex alignItems={"center"} gap={"5px"}>
