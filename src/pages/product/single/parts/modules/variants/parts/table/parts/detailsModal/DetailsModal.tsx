@@ -72,20 +72,17 @@ function DetailsModal({ open, close, sku }: Props) {
                     </Flex>
 
                     <VStack align={"stretch"} gap={"18px"} color={"#c2c2c2"} as="dl">
-                        {
-                            skuAttributes.map((el, key) =>
-                                !el.value ? null :
-                                    <Flex alignItems={"center"} justifyContent="space-between" wrap={"wrap"} rowGap="7.5px" key={key}>
-                                        <Flex alignItems={"center"}>
-                                            <AppTypography minWidth={"140px"} fontSize={"14px"} as="dt">{el.label}</AppTypography>
-                                            <AppTypography fontSize={"14px"} as="dd">
-                                                {el.label !== 'Deploy Hash:' ? el.value : el.value.slice(0, 40) + "..."}
-                                            </AppTypography>
-                                        </Flex>
-                                        {el.label === 'Deploy Hash:' && <ClipboardText text={el.value} />}
-                                    </Flex>
-                            )
-                        }
+                        {skuAttributes.filter(el => el.value).map((el, key) =>
+                            <Flex alignItems={"center"} justifyContent="space-between" wrap={"wrap"} rowGap="7.5px" key={key}>
+                                <Flex alignItems={"center"}>
+                                    <AppTypography minWidth={"140px"} fontSize={"14px"} as="dt">{el.label}</AppTypography>
+                                    <AppTypography fontSize={"14px"} as="dd">
+                                        {el.label !== 'Deploy Hash:' ? el.value : el.value.slice(0, 40) + "..."}
+                                    </AppTypography>
+                                </Flex>
+                                {el.label === 'Deploy Hash:' && <ClipboardText text={el.value} />}
+                            </Flex>
+                        )}
                     </VStack>
 
                     <Flex alignItems={"center"} gap={"5px"}>
