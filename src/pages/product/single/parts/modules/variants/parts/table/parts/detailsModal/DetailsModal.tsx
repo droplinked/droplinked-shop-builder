@@ -32,27 +32,11 @@ function DetailsModal({ open, close, sku }: Props) {
     })
     const response = useMemo(() => data?.data.data, [data])
     const variant = getVariant(response?.sku)
-
-    const renderSkuAttributes = () => {
-        const attributes = [
-            { label: "Variant Price:", value: `$ ${response?.sku.price} USD` },
-            { label: "Commission:", value: `% ${response?.sku.recordData.commision}` },
-            { label: "Deploy Hash:", value: response?.sku.deploy_hash },
-        ]
-
-        return attributes.map((el, key) =>
-            !el.value ? null :
-                <Flex alignItems={"center"} justifyContent="space-between" wrap={"wrap"} rowGap="7.5px" key={key}>
-                    <Flex alignItems={"center"}>
-                        <AppTypography minWidth={"140px"} fontSize={"14px"} as="dt">{el.label}</AppTypography>
-                        <AppTypography fontSize={"14px"} as="dd">
-                            {el.label !== 'Deploy Hash:' ? el.value : el.value.slice(0, 40) + "..."}
-                        </AppTypography>
-                    </Flex>
-                    {el.label === 'Deploy Hash:' && <ClipboardText text={el.value} />}
-                </Flex>
-        )
-    }
+    const skuAttributes = [
+        { label: "Variant Price:", value: `$ ${response?.sku.price} USD` },
+        { label: "Commission:", value: `% ${response?.sku.recordData.commision}` },
+        { label: "Deploy Hash:", value: response?.sku.deploy_hash },
+    ]
 
     return <AppModal
         open={open}
@@ -88,7 +72,20 @@ function DetailsModal({ open, close, sku }: Props) {
                     </Flex>
 
                     <VStack align={"stretch"} gap={"18px"} color={"#c2c2c2"} as="dl">
-                        {renderSkuAttributes()}
+                        {
+                            skuAttributes.map((el, key) =>
+                                !el.value ? null :
+                                    <Flex alignItems={"center"} justifyContent="space-between" wrap={"wrap"} rowGap="7.5px" key={key}>
+                                        <Flex alignItems={"center"}>
+                                            <AppTypography minWidth={"140px"} fontSize={"14px"} as="dt">{el.label}</AppTypography>
+                                            <AppTypography fontSize={"14px"} as="dd">
+                                                {el.label !== 'Deploy Hash:' ? el.value : el.value.slice(0, 40) + "..."}
+                                            </AppTypography>
+                                        </Flex>
+                                        {el.label === 'Deploy Hash:' && <ClipboardText text={el.value} />}
+                                    </Flex>
+                            )
+                        }
                     </VStack>
 
                     <Flex alignItems={"center"} gap={"5px"}>
