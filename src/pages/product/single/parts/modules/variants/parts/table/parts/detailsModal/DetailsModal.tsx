@@ -8,7 +8,7 @@ import useAppToast from "functions/hooks/toast/useToast"
 import { Isku } from "lib/apis/product/interfaces"
 import { getSkuByIdService } from "lib/apis/sku/services"
 import requestsModel from "pages/affiliate/requests/parts/list/model"
-import React from "react"
+import React, { useMemo } from "react"
 import { useQuery } from "react-query"
 import DetailsModalSkeleton from "./parts/DetailsModalSkeleton"
 
@@ -27,36 +27,31 @@ function DetailsModal({ open, close, sku }: Props) {
         onError: (error) => {
             showToast((error as Error).message, "error")
             close()
-        }
+        },
+        refetchOnWindowFocus: false
     })
-    const response = data?.data.data
+    const response = useMemo(() => data?.data.data, [data])
     const variant = getVariant(response?.sku)
 
     const renderSkuAttributes = () => {
         const attributes = [
-            { label: "Variant Price:", value: `$ ${response?.sku.price} USD`, renderCondition: true },
-            { label: "Commission:", value: `% ${response?.sku.recordData.commision}`, renderCondition: true },
-            { label: "Deploy Hash:", value: response?.sku.deploy_hash, renderCondition: response?.sku.deploy_hash },
+            { label: "Variant Price:", value: `$ ${response?.sku.price} USD` },
+            { label: "Commission:", value: `% ${response?.sku.recordData.commision}` },
+            { label: "Deploy Hash:", value: response?.sku.deploy_hash },
         ]
 
-        return attributes.map((el, key) => {
-            if (!el.renderCondition) return null
-
-            if (el.label !== "Deploy Hash:") return <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px" key={key}>
-                <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">{el.label}</AppTypography>
-                <AppTypography fontSize={"14px"} as="dd">{el.value}</AppTypography>
-            </Flex>
-
-            return <Flex alignItems={"center"} wrap={"wrap"} rowGap="7.5px" key={key}>
-                <AppTypography minWidth={"175px"} fontSize={"14px"} as="dt">{el.label}</AppTypography>
-                <Flex flex={1} alignItems={"center"} justifyContent={"space-between"} as="dd">
-                    <AppTypography fontSize={"14px"} textDecoration={"underline"}>
-                        {el.value.slice(0, 35) + "..."}
-                    </AppTypography>
-                    <ClipboardText text={el.value} />
+        return attributes.map((el, key) =>
+            !el.value ? null :
+                <Flex alignItems={"center"} justifyContent="space-between" wrap={"wrap"} rowGap="7.5px" key={key}>
+                    <Flex alignItems={"center"}>
+                        <AppTypography minWidth={"140px"} fontSize={"14px"} as="dt">{el.label}</AppTypography>
+                        <AppTypography fontSize={"14px"} as="dd">
+                            {el.label !== 'Deploy Hash:' ? el.value : el.value.slice(0, 40) + "..."}
+                        </AppTypography>
+                    </Flex>
+                    {el.label === 'Deploy Hash:' && <ClipboardText text={el.value} />}
                 </Flex>
-            </Flex>
-        })
+        )
     }
 
     return <AppModal
