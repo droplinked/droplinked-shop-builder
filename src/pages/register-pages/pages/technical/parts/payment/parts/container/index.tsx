@@ -78,7 +78,7 @@ function ContainerPayment({ title, value, locked }) {
             </HStack>
           </PageContentWrapper>
         </HStack>
-      ) : Switch ? <Box><BlockchainDisplay show='icon' blockchain={title} props={{ width: "16px", height: "16px" }} /></Box> : null}
+      ) : Switch ? <Box><BlockchainDisplay show='icon' blockchain={title} props={{ width: "40px", height: "40px" }} /></Box> : null}
     </HStack>
   )
 }
