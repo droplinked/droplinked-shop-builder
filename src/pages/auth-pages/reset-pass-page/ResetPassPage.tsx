@@ -59,15 +59,16 @@ export default function ResetPassPage() {
         <Form>
           <Flex justifyContent={"center"} padding="100px 0" margin="60px 0">
             <VStack align={"stretch"} spacing={6} color="#FFF" maxWidth="500px">
-              <Flex justifyContent={"center"}>
-                <AppTypography fontSize="20px" fontWeight="bold">Change Password</AppTypography>
-              </Flex>
+              <AppTypography fontSize="20px" fontWeight="bold" textAlign="center">Change Password</AppTypography>
               <AppTypography fontSize="16px" textAlign="center">Please enter the email address you’ve been registered for your store, we will send you an email to help you change your password</AppTypography>
               <Box position={"relative"}>
                 <AppInput
                   type={States.show.password ? "text" : "password"}
                   name="password"
                   placeholder="New password"
+                  backgroundColor="#1C1C1C"
+                  _hover={{ backgroundColor: "#1C1C1C" }}
+                  _focus={{ backgroundColor: "#1C1C1C" }}
                   error={errors?.password ? errors.password.toString() : ""}
                   onChange={(e) => setFieldValue("password", e.target.value)}
                   value={values.password}
@@ -77,8 +78,11 @@ export default function ResetPassPage() {
               <Box position={"relative"}>
                 <AppInput
                   type={States.show.repassword ? "text" : "password"}
-                  placeholder="Confirm Password"
                   name="repassword"
+                  placeholder="Confirm Password"
+                  backgroundColor="#1C1C1C"
+                  _hover={{ backgroundColor: "#1C1C1C" }}
+                  _focus={{ backgroundColor: "#1C1C1C" }}
                   error={errors?.repassword ? errors.repassword.toString() : ""}
                   onChange={(e) => setFieldValue("repassword", e.target.value)}
                   value={values.repassword}
