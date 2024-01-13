@@ -10,6 +10,7 @@ import { getSkuByIdService } from "lib/apis/sku/services"
 import requestsModel from "pages/affiliate/requests/parts/list/model"
 import React, { useMemo } from "react"
 import { useQuery } from "react-query"
+import { Link } from "react-router-dom"
 import DetailsModalSkeleton from "./parts/DetailsModalSkeleton"
 
 interface Props {
@@ -60,13 +61,14 @@ function DetailsModal({ open, close, sku }: Props) {
                         <Flex direction={"column"} justifyContent={"space-between"} height={"54px"}>
                             <AppTypography color={"#ffffff"} fontSize={"16px"}>{response?.product?.title}</AppTypography>
                             <Flex alignItems={"center"} gap={"7.5px"}>
-                                <Box
+                                {variant.color && <Box
                                     backgroundColor={variant.color.value}
                                     width="20px"
                                     height="20px"
                                     borderRadius="100%">
-                                </Box>
-                                <AppTypography color={"#c2c2c2"} fontSize={"16px"}>{variant.size.value}</AppTypography>
+                                </Box>}
+                                {variant.size &&
+                                    <AppTypography color={"#c2c2c2"} fontSize={"16px"}>{variant.size.value}</AppTypography>}
                             </Flex>
                         </Flex>
                     </Flex>
@@ -77,7 +79,16 @@ function DetailsModal({ open, close, sku }: Props) {
                                 <Flex alignItems={"center"}>
                                     <AppTypography minWidth={"140px"} fontSize={"14px"} as="dt">{el.label}</AppTypography>
                                     <AppTypography fontSize={"14px"} as="dd">
-                                        {el.label !== 'Deploy Hash:' ? el.value : el.value.slice(0, 40) + "..."}
+                                        {el.label !== 'Deploy Hash:' ? el.value :
+                                            <Link
+                                                to={sku?.deploy_hash_link}
+                                                target={"_blank"}
+                                            >
+                                                <AppTypography fontSize={"14px"} textDecoration={"underline"}>
+                                                    {el.value.slice(0, 40) + "..."}
+                                                </AppTypography>
+                                            </Link>
+                                        }
                                     </AppTypography>
                                 </Flex>
                                 {el.label === 'Deploy Hash:' && <ClipboardText text={el.value} />}

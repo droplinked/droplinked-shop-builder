@@ -18,7 +18,7 @@ export interface IHashKeyModal {
     description?: any
 }
 
-function HashKey({ close, hashkey, text, blockchain, description }: IHashKeyModal) {    
+function HashKey({ close, hashkey, text, blockchain, description }: IHashKeyModal) {
     const getLink = useMemo(() => hashkeyModel.getLink({ blockchain, hashkey }), [blockchain, appDeveloment, hashkey])
 
     return (
