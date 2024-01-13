@@ -108,6 +108,7 @@ export interface Isku {
     recordData?: IrecordData
     image?: string
     recorded_quantity?: number
+    deploy_hash_link: string
 }
 
 export interface IproductByIdServices {

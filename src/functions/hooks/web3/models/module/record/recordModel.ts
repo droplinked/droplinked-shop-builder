@@ -1,8 +1,7 @@
-import RecordCasperModule from "./modules/casperModel"
-import { stacksRecord } from "lib/utils/blockchain/stacks/record"
+import hashkeyModel from "components/common/hashKey/model"
 import { recordCasperService } from "lib/apis/sku/services"
-import { getNetworkProvider } from "lib/utils/chains/chainProvider"
 import { appDeveloment } from "lib/utils/app/variable"
+import { getNetworkProvider } from "lib/utils/chains/chainProvider"
 import { Beneficiary, Chain, Network, ProductType } from "lib/utils/chains/Chains"
 import { IRecordParamsData } from "../.."
 
@@ -65,6 +64,7 @@ const recordModel = ({
                     chain: data.blockchain,
                     params: {
                         deploy_hash: deployHash,
+                        deploy_hash_link: hashkeyModel.getLink({ blockchain: data.blockchain, hashkey: deployHash }),
                         skuID: sku._id,
                         royalty: parseInt(data.royalty),
                         canBeAffiliated: Boolean(data.commission && data.commission.length),

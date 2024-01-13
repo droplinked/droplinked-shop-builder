@@ -19,9 +19,11 @@ const hashkeyModel = {
             case "BINANCE":
                 return `https://${appDeveloment ? "testnet." : ""}bscscan.com/tx/${hashkey}`
             case "NEAR":
-                return `https://explorer.${appDeveloment? "testnet": "mainnet"}.aurora.dev/tx/${hashkey}`;
+                return `https://explorer.${appDeveloment ? "testnet" : "mainnet"}.aurora.dev/tx/${hashkey}`;
             case "BASE":
-                return `https://base${appDeveloment? "-goerli" : ""}.blockscout.com/tx/${hashkey}`;
+                return `https://base${appDeveloment ? "-goerli" : ""}.blockscout.com/tx/${hashkey}`;
+            case "LINEA":
+                return `https://${appDeveloment ? "goerli" : ""}.lineascan.build/tx/TXHASH`
             default:
                 return ""
         }
