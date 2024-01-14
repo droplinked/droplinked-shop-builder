@@ -1,4 +1,4 @@
-import { Box, Flex, Image, VStack } from '@chakra-ui/react'
+import { Box, Flex, Image, Link, VStack } from '@chakra-ui/react'
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import Pagination from 'components/common/datagrid/parts/pagination/Pagination'
@@ -66,9 +66,16 @@ function NotificationsList() {
                                                         <AppTypography fontSize="12px">Requested Quantity: {el?.quantity || "---"}</AppTypography>
                                                         <AppTypography fontSize="12px">Price: {`${sku?.price} ${product?.priceUnit || ""}`}</AppTypography>
                                                         <AppTypography fontSize="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>
-                                                        {sku?.deploy_hash && <Flex alignItems="center" gap="10px">
-                                                            <AppTypography fontSize="12px" textDecoration="underline">Deploy Hash</AppTypography>
-                                                            <ClipboardText text={sku?.deploy_hash} />
+                                                        {sku?.deploy_hash_link && <Flex alignItems="center" gap="10px">
+                                                            <Link
+                                                                href={sku?.deploy_hash_link}
+                                                                target={"_blank"}
+                                                                textDecoration={"underline"}
+                                                                isExternal
+                                                            >
+                                                                Deploy Hash
+                                                            </Link>
+                                                            <ClipboardText text={sku?.deploy_hash_link} />
                                                         </Flex>
                                                         }
                                                     </Flex>
