@@ -8,7 +8,7 @@ interface IProps {
 function BestSellingProduct({ product }: IProps) {
     return (
         <Flex alignItems="center" gap="16px">
-            <Image src={product?.productMedia.find(el => el.isMain === "true")?.thumbnail} width="48px" height="48px" borderRadius="4px" />
+            <Image src={product?.productMedia?.find(el => el.isMain === "true")?.thumbnail} width="48px" height="48px" borderRadius="4px" />
             <VStack align="stretch">
                 <AppTypography fontSize="14px" fontWeight="600">{product?.productName}</AppTypography>
                 <Flex alignItems="center" gap="6px">
