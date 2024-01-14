@@ -71,45 +71,57 @@ function GeneralStatisticsChart() {
               <div style="height: 1px; background-color: #878787"></div>
 
               <div style="display: flex; flex-direction: column; gap: 4px">
-                <div style="display: ${data.order || data.order === 0 ? 'flex' : 'none'}; justify-content: space-between">
-                  <p style="color: #878787">Order</p>
-                  <p>${data.order}</p>
-                </div>
+                ${typeof data.order !== "undefined" ? `
+                  <div style="display: flex; justify-content: space-between">
+                    <p style="color: #878787">Order</p>
+                    <p>${data.order}</p>
+                  </div>
+                `: ""}
+                
+                ${typeof data.revenue !== "undefined" ? `
+                  <div style="display: flex; justify-content: space-between">
+                    <p style="color: #878787">Earning</p>
+                    <p>$${data.revenue}</p>
+                  </div>
+                `: ""}
 
-                <div style="display: ${data.revenue || data.revenue === 0 ? 'flex' : 'none'}; justify-content: space-between">
-                  <p style="color: #878787">Earning</p>
-                  <p>$${data.revenue}</p>
-                </div>
-
-                <div style="display: ${data.profit || data.profit === 0 ? 'flex' : 'none'}; justify-content: space-between">
+                ${typeof data.profit !== "undefined" ? `
+                <div style="display: flex; justify-content: space-between">
                   <p style="color: #878787">Profit</p>
                   <p>$${data.profit}</p>
                 </div>
+                `: ""}
               </div>
 
               <div style="height: 1px; background-color: #878787"></div>
 
               <div style="display: flex; flex-direction: column; gap: 4px">
-                <div style="display: ${data.direct || data.direct === 0 ? 'flex' : 'none'}; justify-content: space-between">
-                  <div style="display: flex; align-items: center; gap: 4px">
-                    <div style="width: 8px; height: 8px; border:2px solid #2BCFA1; border-radius: 50%;"></div>
-                    <p style="color: #878787">Direct</p>
+                ${typeof data.direct !== "undefined" ? `
+                  <div style="display: flex; justify-content: space-between">
+                    <div style="display: flex; align-items: center; gap: 4px">
+                      <div style="width: 8px; height: 8px; border:2px solid #2BCFA1; border-radius: 50%;"></div>
+                      <p style="color: #878787">Direct</p>
+                    </div>
+                    <p>$${data.direct}</p>
                   </div>
-                  <p>$${data.direct}</p>
-                </div>
-
-                <div style="display: ${data.affiliate || data.affiliate === 0 ? 'flex' : 'none'}; justify-content: space-between">
-                  <div style="display: flex; align-items: center; gap: 4px">
-                    <div style="width: 8px; height: 8px; border:2px solid #9C4EFF; border-radius: 50%;"></div>
-                    <p style="color: #878787">Affiliate</p>
+                ` : ""}
+                
+                ${typeof data.affiliate !== "undefined" ? `
+                  <div style="display: flex; justify-content: space-between">
+                    <div style="display: flex; align-items: center; gap: 4px">
+                      <div style="width: 8px; height: 8px; border:2px solid #9C4EFF; border-radius: 50%;"></div>
+                      <p style="color: #878787">Affiliate</p>
+                    </div>
+                    <p>$${data.affiliate}</p>
                   </div>
-                  <p>$${data.affiliate}</p>
-                </div>
-
-                <div style="display: ${data.affiliate || data.direct ? 'flex' : 'none'}; height: 11px; border-radius: 8px; background-color: #878787; overflow: hidden;">
-                  <div style="width: ${(data.direct * 100 / data.profit) || 0}%; max-width: 100%; height: 100%; background-color: #2BCFA1"></div>
-                  <div style="width: ${(data.affiliate * 100 / data.profit) || 0}%; max-width: 100%; height: 100%; background-color: #9C4EFF"></div>
-                </div>
+                `: ""}
+                
+                ${data.affiliate || data.direct ? `
+                  <div style="display: flex; height: 11px; border-radius: 8px; background-color: #878787; overflow: hidden;">
+                    <div style="width: ${(data.direct * 100 / data.profit) || 0}%; max-width: 100%; height: 100%; background-color: #2BCFA1"></div>
+                    <div style="width: ${(data.affiliate * 100 / data.profit) || 0}%; max-width: 100%; height: 100%; background-color: #9C4EFF"></div>
+                  </div>
+                ` : ""}
               </div>
             </div>
             `
