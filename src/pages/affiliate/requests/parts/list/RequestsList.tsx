@@ -1,4 +1,4 @@
-import { Box, Flex, Image, VStack } from "@chakra-ui/react";
+import { Box, Flex, Image, Link, VStack } from "@chakra-ui/react";
 import AppBadge from 'components/common/badge/AppBadge';
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import ClipboardText from "components/common/clipboardText/ClipboardText";
@@ -60,9 +60,16 @@ function RequestsList() {
                           </Flex>
                           <AppTypography fontSize="12px">Quantity: {el?.quantity || "---"}</AppTypography>
                         </Flex>
-                        {sku?.deploy_hash && <Flex alignItems="center" gap="10px">
-                          <AppTypography fontSize="12px" textDecoration="underline">Deploy Hash</AppTypography>
-                          <ClipboardText text={sku?.deploy_hash} />
+                        {sku?.deploy_hash_link && <Flex alignItems="center" gap="10px">
+                          <Link
+                            href={sku?.deploy_hash_link}
+                            target={"_blank"}
+                            textDecoration={"underline"}
+                            isExternal
+                          >
+                            Deploy Hash
+                          </Link>
+                          <ClipboardText text={sku?.deploy_hash_link} />
                         </Flex>
                         }
                       </VStack>
