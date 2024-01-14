@@ -62,7 +62,7 @@ function GeneralStatisticsChart() {
 
           if (tooltipModel.body) {
             const title = tooltipModel.title[0]
-            const data = revenue?.chart.filter(el => el.title === title)[0].details
+            const data = revenue?.chart.find(el => el.title === title).details
 
             let innerHtml = `
             <div style="display: flex; flex-direction: column; gap: 10px">
