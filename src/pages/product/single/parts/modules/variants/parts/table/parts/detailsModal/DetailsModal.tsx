@@ -1,4 +1,4 @@
-import { Box, Flex, VStack } from "@chakra-ui/react"
+import { Box, Flex, Link, VStack } from "@chakra-ui/react"
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay"
 import ClipboardText from "components/common/clipboardText/ClipboardText"
 import AppImage from "components/common/image/AppImage"
@@ -10,7 +10,6 @@ import { getSkuByIdService } from "lib/apis/sku/services"
 import requestsModel from "pages/affiliate/requests/parts/list/model"
 import React, { useMemo } from "react"
 import { useQuery } from "react-query"
-import { Link } from "react-router-dom"
 import DetailsModalSkeleton from "./parts/DetailsModalSkeleton"
 
 interface Props {
@@ -36,7 +35,7 @@ function DetailsModal({ open, close, sku }: Props) {
     const skuAttributes = [
         { label: "Variant Price:", value: `$ ${response?.sku.price} USD` },
         { label: "Commission:", value: `% ${response?.sku.recordData.commision}` },
-        { label: "Deploy Hash:", value: response?.sku.deploy_hash },
+        { label: "Deploy Hash:", value: response?.sku.deploy_hash_link },
     ]
 
     return <AppModal
@@ -81,12 +80,12 @@ function DetailsModal({ open, close, sku }: Props) {
                                     <AppTypography fontSize={"14px"} as="dd">
                                         {el.label !== 'Deploy Hash:' ? el.value :
                                             <Link
-                                                to={sku?.deploy_hash_link}
+                                                href={el.value}
                                                 target={"_blank"}
+                                                textDecoration={"underline"}
+                                                isExternal
                                             >
-                                                <AppTypography fontSize={"14px"} textDecoration={"underline"}>
-                                                    {el.value.slice(0, 40) + "..."}
-                                                </AppTypography>
+                                                {response?.sku.deploy_hash.slice(0, 40) + "..."}
                                             </Link>
                                         }
                                     </AppTypography>
@@ -101,7 +100,10 @@ function DetailsModal({ open, close, sku }: Props) {
                         <BlockchainDisplay
                             blockchain={response?.sku.recordData.recordNetwork}
                             show="icon"
-                            props={{ width: "15px" }}
+                            props={{
+                                width: "15px",
+                                height: "15px"
+                            }}
                         />
                         <AppTypography color={"#FF473E"} fontSize={"12px"}>
                             {response?.sku.recordData.recordNetwork} Blockchain
