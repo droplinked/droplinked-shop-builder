@@ -59,6 +59,7 @@ import { ReactComponent as Hand } from './hand.svg';
 import { ReactComponent as Dashboard } from './dashboard.svg';
 import { ReactComponent as DatepickerDashboard } from './datepicker-dashboard.svg';
 import { ReactComponent as Linea } from './linea.svg';
+import { ReactComponent as NFT } from './white-nft-icon.svg';
 
 const AppIcons = {
   ProductsIcon,
@@ -121,6 +122,7 @@ const AppIcons = {
   Hand,
   Dashboard,
   DatepickerDashboard,
-  Linea
+  Linea,
+  NFT
 }
 export default AppIcons
