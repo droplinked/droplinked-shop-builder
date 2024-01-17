@@ -1,5 +1,5 @@
-import { Box, Checkbox, Flex, Select, useDisclosure, VStack } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
+import { Box, Checkbox, Flex, useDisclosure, VStack } from '@chakra-ui/react'
+import { faker } from '@faker-js/faker'
 import AppCard from 'components/common/card/AppCard'
 import SearchDatagrid from 'components/common/datagrid/parts/search/SearchDatagrid'
 import AppImage from 'components/common/image/AppImage'
@@ -14,22 +14,10 @@ function NFTs() {
     const [selectedNFT, setSelectedNFT] = useState(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const isLoading = false;
-    const nfts = [
-        { image: "./Image Placeholder.png", title: "Distant Galaxy" },
-        { image: "./Image Placeholder2.png", title: "Distant Galaxy" },
-        { image: "./Image Placeholder (1).png", title: "Distant Galaxy" },
-        { image: "./Image Placeholder4.png", title: "Distant Galaxy" },
-        { image: "./Image Placeholder.png", title: "Distant Galaxy" },
-        { image: "./Image Placeholder2.png", title: "Distant Galaxy" },
-        { image: "./Image Placeholder (1).png", title: "Distant Galaxy" },
-        { image: "./Image Placeholder4.png", title: "Distant Galaxy" },
-    ]
-
-    const selectOptions = [
-        { label: "All", value: "all" },
-        { label: "Active", value: "active" },
-        { label: "Inactive", value: "inactive" },
-    ]
+    const nfts = Array.from({ length: 8 }).map(() => ({
+        image: faker.image.avatar,
+        title: faker.lorem.sentence(5)
+    }))
 
     const generateSkeletons = () => Array.from({ length: 6 }).map((_, key) =>
         <AppSkeleton key={key} width={"196px"} height={"241px"} isLoaded={false}>{" "}</AppSkeleton>)
@@ -57,6 +45,7 @@ function NFTs() {
                             nfts.map((nft, index) => (
                                 <Box
                                     key={index}
+                                    width={"196px"}
                                     borderRadius={"8px"}
                                     overflow={"hidden"}
                                     backgroundColor={"#262626"}
@@ -66,7 +55,7 @@ function NFTs() {
                                         onOpen()
                                     }}
                                 >
-                                    <AppImage src={nft.image} width={"196px"} height={"196px"} />
+                                    <AppImage src={nft.image()} objectFit={"cover"} width={"196px"} height={"196px"} />
                                     <Box paddingBlock={"12px"} paddingInline={"16px"}>
                                         <AppTypography fontSize={"14px"} fontWeight={"600"}>{nft.title}</AppTypography>
                                     </Box>

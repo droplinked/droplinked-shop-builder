@@ -30,7 +30,7 @@ function NFTDetailsModal({ open, close }: Props) {
     >
         {isLoading ? <NFTDetailsModalSkeleton /> :
             <Flex alignItems={"flex-start"} gap={"36px"}>
-                <AppImage width={"250px"} height={"250px"} borderRadius={"8px"} />
+                <AppImage objectFit={"cover"} width={"250px"} height={"250px"} borderRadius={"8px"} />
                 <Flex gap={"36px"} flexDirection={"column"}>
                     <Flex gap={"24px"} flexDirection={"column"}>
                         <AppTypography fontSize={"16px"} color={"#FFFFFF"}>NFT Information</AppTypography>
