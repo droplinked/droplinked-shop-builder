@@ -21,7 +21,6 @@ function NFTDetailsModal({ open, close }: Props) {
     return <AppModal
         open={open}
         close={close}
-        size={"2xl"}
         contentProps={{
             padding: "36px",
             maxWidth: "95%",

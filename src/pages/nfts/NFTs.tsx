@@ -9,9 +9,7 @@ import React, { useState } from 'react'
 import NFTDetailsModal from './parts/NFTDetailsModal'
 
 function NFTs() {
-    const [searchTerm, setSearchTerm] = useState("")
-    const [myProducts, setMyProducts] = useState(false)
-    const [selectedNFT, setSelectedNFT] = useState(null)
+    const [pageData, setPageData] = useState({ searchTerm: "", myProducts: false, selectedNFT: null })
     const { isOpen, onOpen, onClose } = useDisclosure()
     const isLoading = false;
     const nfts = Array.from({ length: 8 }).map(() => ({
@@ -27,14 +25,17 @@ function NFTs() {
             <AppCard>
                 <VStack align={"stretch"} spacing={"24px"}>
                     <Flex justifyContent={"space-between"} alignItems={"center"}>
-                        <SearchDatagrid onChange={(e) => setSearchTerm(e.currentTarget.value)} value={searchTerm} />
+                        <SearchDatagrid
+                            value={pageData.searchTerm}
+                            onChange={(e) => setPageData({ ...pageData, searchTerm: e.currentTarget.value })}
+                        />
                         <Flex alignItems={"center"} gap={"36px"}>
                             <Checkbox
                                 size='md'
                                 alignItems="center"
                                 colorScheme='green'
-                                checked={myProducts}
-                                onChange={e => setMyProducts(e.currentTarget.checked)} >
+                                checked={pageData.myProducts}
+                                onChange={e => setPageData({ ...pageData, myProducts: e.currentTarget.checked })} >
                                 <AppTypography fontSize="12px" color="#C2C2C2">My Products</AppTypography>
                             </Checkbox>
                         </Flex>
@@ -51,7 +52,7 @@ function NFTs() {
                                     backgroundColor={"#262626"}
                                     cursor={"pointer"}
                                     onClick={() => {
-                                        setSelectedNFT(nft)
+                                        setPageData({ ...pageData, selectedNFT: nft })
                                         onOpen()
                                     }}
                                 >

@@ -3,10 +3,9 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import React from 'react'
 
 function NFTDetailsModalSkeleton() {
-    const generateSkeletonRows = (rows: number, height: string, width = "100%") => {
-        return Array.from({ length: rows }).map((_, key) =>
+    const generateSkeletonRows = (rows: number, height: string, width = "100%") =>
+        Array.from({ length: rows }).map((_, key) =>
             <AppSkeleton key={key} width={width} height={height} isLoaded={false}>{""}</AppSkeleton>)
-    }
 
     return (
         <Flex alignItems={"flex-start"} gap={"36px"}>
