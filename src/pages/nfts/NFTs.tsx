@@ -17,6 +17,9 @@ function NFTs() {
         title: faker.lorem.sentence(5)
     }))
 
+    const updatePageData = <K extends keyof typeof pageData>(key: K, value: typeof pageData[K]) =>
+        setPageData({ ...pageData, [key]: value })
+
     const generateSkeletons = () => Array.from({ length: 6 }).map((_, key) =>
         <AppSkeleton key={key} width={"196px"} height={"241px"} isLoaded={false}>{" "}</AppSkeleton>)
 
@@ -27,7 +30,7 @@ function NFTs() {
                     <Flex justifyContent={"space-between"} alignItems={"center"}>
                         <SearchDatagrid
                             value={pageData.searchTerm}
-                            onChange={(e) => setPageData({ ...pageData, searchTerm: e.currentTarget.value })}
+                            onChange={e => updatePageData("searchTerm", e.target.value)}
                         />
                         <Flex alignItems={"center"} gap={"36px"}>
                             <Checkbox
@@ -35,7 +38,7 @@ function NFTs() {
                                 alignItems="center"
                                 colorScheme='green'
                                 checked={pageData.myProducts}
-                                onChange={e => setPageData({ ...pageData, myProducts: e.currentTarget.checked })} >
+                                onChange={e => updatePageData("myProducts", e.target.checked)} >
                                 <AppTypography fontSize="12px" color="#C2C2C2">My Products</AppTypography>
                             </Checkbox>
                         </Flex>
@@ -52,7 +55,7 @@ function NFTs() {
                                     backgroundColor={"#262626"}
                                     cursor={"pointer"}
                                     onClick={() => {
-                                        setPageData({ ...pageData, selectedNFT: nft })
+                                        updatePageData("selectedNFT", nft)
                                         onOpen()
                                     }}
                                 >
