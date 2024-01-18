@@ -5,7 +5,7 @@ import { appDeveloment } from 'lib/utils/app/variable';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-interface Link {
+interface ILink {
     label: string
     href: string
     icon: JSX.Element
@@ -16,33 +16,30 @@ interface Props {
 }
 
 function ProfileDropdownLinks({ shop }: Props) {
-    const links: Link[] = [
+    const links: ILink[] = [
         { label: "Store", href: `https://${appDeveloment ? 'dev.' : ''}droplinked.io/${shop?.name}`, icon: <AppIcons.WhiteShopIcon width={"24px"} height={"24px"} color={"#FFFFFF"} /> },
         { label: "Credit", href: "/dashboard", icon: <AppIcons.WhiteOpenWallet width={"24px"} height={"24px"} color={"#FFFFFF"} /> },
         { label: "Settings", href: "/dashboard/settings/shop-info", icon: <AppIcons.SettingIcon width={"24px"} height={"24px"} color={"#FFFFFF"} /> },
         { label: "Help", href: "https://droplinked.gitbook.io/droplinked-store-front-help-center/about-us/what-is-droplinked", icon: <AppIcons.HelpCenter width={"24px"} height={"24px"} color={"#FFFFFF"} /> },
     ]
 
+    const renderLinkAttributes = (link: ILink) =>
+        <Flex alignItems={"center"} gap={"12px"}>
+            {link.icon}
+            <AppTypography color={"#FFFFFF"} fontSize={"16px"}>{link.label}</AppTypography>
+        </Flex>
+
     return (
         <Flex direction={"column"} gap="24px">
             {links.map(link => {
                 return link.label !== "Credit" ?
-                    <Link to={link.href} target={"_blank"}><LinkAttributes link={link} /></Link>
+                    <Link to={link.href} target={"_blank"}>{renderLinkAttributes(link)}</Link>
                     :
                     <Flex justifyContent={"space-between"} alignItems={"center"} gap={"12px"}>
-                        <LinkAttributes link={link} />
+                        {renderLinkAttributes(link)}
                         <AppTypography color={"#2BCFA1"} fontSize={"16px"}>${shop?.credit.toFixed(2)}</AppTypography>
                     </Flex>
             })}
-        </Flex>
-    )
-}
-
-function LinkAttributes({ link }: { link: Link }) {
-    return (
-        <Flex alignItems={"center"} gap={"12px"}>
-            {link.icon}
-            <AppTypography color={"#FFFFFF"} fontSize={"16px"}>{link.label}</AppTypography>
         </Flex>
     )
 }
