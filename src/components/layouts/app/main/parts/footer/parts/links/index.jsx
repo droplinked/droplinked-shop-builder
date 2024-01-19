@@ -32,7 +32,7 @@ function Links() {
 
   return (
     <HStack
-      spacing={{base: 4, lg: 24}}
+      spacing={{ base: 4, lg: 24 }}
       width={"100%"}
       alignItems={"baseline"}
       justifyContent={{ base: 'space-between', lg: "end" }}
@@ -66,7 +66,7 @@ function Links() {
           <VStack align="stretch" spacing={3}>
             <Link
               target="_blank"
-              href="https://droplinked.gitbook.io/droplinked-commerce-help-center"
+              href="https://droplinked.gitbook.io/droplinked-store-front-help-center/about-us/what-is-droplinked"
             >
               <Sublink>Help center</Sublink>
             </Link>
