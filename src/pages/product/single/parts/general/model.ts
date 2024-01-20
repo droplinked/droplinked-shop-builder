@@ -1,19 +1,28 @@
-interface IrefactorImage {
-    isMain: boolean
-    url: string
-}
+import { Imedia } from "lib/apis/product/interfaces"
 
-export default class introductionClass {
-    static refactorImage = (images: Array<string>): Array<IrefactorImage> => {
+const introductionClass = ({
+
+    // refactor data like data incoming service
+    refactorImage: (images: Array<Imedia>, isMain?: string): Array<Imedia> => {
         return images.map((el, key) => {
             return {
-                isMain: key === 0,
-                url: el
+                isMain: isMain ? isMain === el.url : key === 0,
+                url: el.url,
+                thumbnail: el.thumbnail,
+                ...el.isMockup && { isMockup: el.isMockup }
             }
         })
-    }
+    },
 
-    static defactorImage = (images: Array<IrefactorImage | any>) => {
+    // data incoming service change to Array<string>
+    defactorImage: (images: Array<Imedia | any>) => {
         return images.map((el) => el.url)
+    },
+
+    // set default image
+    isMain: (images: Array<Imedia | any>) => {
+        return images.find((el) => el.isMain)
     }
-} 
+})
+
+export default introductionClass

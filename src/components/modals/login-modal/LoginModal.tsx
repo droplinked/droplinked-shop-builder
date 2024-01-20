@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import { BottomText } from "./LoginModal-style";
@@ -7,12 +7,10 @@ import AppInput from "components/common/form/textbox/AppInput";
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import AppErrors from "lib/utils/statics/errors/errors";
-import { useStore } from "zustand";
-import useAppStore from "lib/stores/app/appStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import AppModal from "components/common/modal/AppModal";
-import AppTypography from "components/common/typography/AppTypography";
 import BasicButton from "components/common/BasicButton/BasicButton";
+import useHookStore from "functions/hooks/store/useHookStore";
 
 interface Iform {
   email: string
@@ -20,7 +18,7 @@ interface Iform {
 }
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
-  const { login, loading } = useStore(useAppStore)
+  const { app: { login, loading } } = useHookStore()
   const navigate = useNavigate();
   const { showToast } = useAppToast()
 
@@ -30,7 +28,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
       let result = await login(data)
       if (result) loginFunction(result);
     } catch (error) {
-      showToast(error.message, "error");
+      showToast(error?.message, "error");
     }
   };
 
@@ -42,29 +40,24 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     //first close modal
     close();
 
-    const status =
-      appDeveloment && data.user.status === "NEW"
-        ? "VERIFIED"
-        : data.user.status;
+    const status = data.user.status
 
-    if (status === "NEW") {
-      localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
-      navigateUser(status, data.shop.name);
-      return;
-    } else if (status === "DELETED") {
+    if (status === "DELETED") {
       showToast("This account has been deleted", "error");
       return;
     } else {
-      navigateUser(status, data.shop.name);
+      navigateUser(status, data);
       return;
     }
   };
 
   // navigate user based on status
-  const navigateUser = (status: string, shopName: string) => {
+  const navigateUser = (status: string, data: any) => {
+    const shopName = data.shop.name
     // eslint-disable-next-line default-case
     switch (status) {
       case "NEW":
+        localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
         navigate("/email-confirmation");
         return;
       case "VERIFIED":

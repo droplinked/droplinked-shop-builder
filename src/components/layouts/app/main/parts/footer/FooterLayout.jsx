@@ -1,36 +1,31 @@
 import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-//
-
-import { footerStyles } from "./FooterLayout-style";
-//
-
 import Description from "./parts/description";
 import Links from "./parts/links";
 import BottomComponent from "./parts/bottom/BottomComponent";
 
 export default function FooterLayout() {
-  const { FooterWrapper, FooterBody, FooterText, FooterLogo, TermText } =
-    footerStyles;
+
   return (
-    <Box
+    <VStack
       w="100%"
-      padding={{ base: "78px 42px", md: "80px 100px", lg: "80px 200px" }}
+      padding="60px 0"
       backgroundColor="black"
+      position="relative"
+      zIndex="1"
     >
-      <Flex
-        w="100%"
-        flexDir={{base:'column' ,md:'row'}}
-        display="flex"
-        justifyContent="center"
-        alignItems={{base:"start",md:"center"}}
-        mb={{base:'86px',md:"54px"}}
-      >
-        <Description />
-        <Box mb={{base:'86px' , md:'0px'}} />
-        <Links />
-      </Flex>
-      <BottomComponent />
-    </Box>
+      <VStack align="stretch" width="90%" maxWidth="1400px">
+        <Flex
+          flexDir={{ base: 'column', md: 'row' }}
+          justifyContent="space-between"
+          alignItems={{ base: "start", md: "center" }}
+          mb={{ base: '86px', md: "54px" }}
+          gap="30px"
+        >
+          <Description />
+          <Links />
+        </Flex>
+        <BottomComponent />
+      </VStack>
+    </VStack>
   );
 }

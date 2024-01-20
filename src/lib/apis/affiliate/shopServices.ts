@@ -1,22 +1,18 @@
 import axiosInstance from "../axiosConfig"
-import { IacceptRejectRequestService, IcancelRequestService, IcasperRequestService } from "./interfaces"
+import { IacceptRejectRequestService, IcasperRequestService, IproducerRequestService, IpublisherRequestService } from "./interfaces"
 
-export const casperRequestService = (props: IcasperRequestService) => {
-    return axiosInstance.post(`affiliate/casper/request`, props)
+export const requestService = ({ chain, params }: IcasperRequestService) => {
+    return axiosInstance.post(`affiliate/${chain}/request`, params)
 }
 
-export const producerRequestService = () => {
-    return axiosInstance.get(`affiliate/producer/requests`)
+export const producerRequestService = ({ page }: IproducerRequestService) => {
+    return axiosInstance.get(`affiliate/producer/requests?page=${page}&limit=10`)
 }
 
-export const acceptRejectRequestService = (params: IacceptRejectRequestService) => {
-    return axiosInstance.post(`affiliate/casper/request/accept-reject`, params)
+export const acceptRejectRequestService = ({ chain, params }: IacceptRejectRequestService) => {
+    return axiosInstance.post(`affiliate/${chain}/request/accept-reject`, params)
 }
 
-export const cancelRequestService = (params: IcancelRequestService) => {
-    return axiosInstance.post(`affiliate/casper/request/accept-reject`, params)
-}
-
-export const publisherRequestService = () => {
-    return axiosInstance.get(`affiliate/publisher/requests`)
+export const publisherRequestService = ({ page }: IpublisherRequestService) => {
+    return axiosInstance.get(`affiliate/publisher/requests?page=${page}&limit=10`)
 }

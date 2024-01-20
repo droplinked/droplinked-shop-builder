@@ -14,7 +14,7 @@ function ControlsListOrder({ order }) {
                     onClick: onOpen
                 }
             ]} />
-            <OrderModal order={order} show={isOpen} close={onClose} />
+            {isOpen && <OrderModal orderID={order._id} show={isOpen} close={onClose} />}
         </>
     )
 }

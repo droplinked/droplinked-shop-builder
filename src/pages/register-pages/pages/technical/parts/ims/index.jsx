@@ -22,10 +22,10 @@ function Ims() {
                 <VStack align={"stretch"}>
                     <Box><FieldLabel label='IMS Type' textProps={{ size: "18px", weight: "bolder" }} isRequired /></Box>
                     <Box>
-                        <AppTypography size="14px" color="#C2C2C2">
+                        <AppTypography fontSize="14px" color="#C2C2C2">
                             {imsType ? (
                                 <>
-                                    <AppTypography size='14px' weight='bolder' display={"inline"}>{capitalizeFirstLetter(imsType)}</AppTypography>: You can add and manage your products right from you droplinked dashboard
+                                    <AppTypography fontSize='14px' fontWeight='bold' display={"inline"}>{capitalizeFirstLetter(imsType)}</AppTypography>: You can add and manage your products right from you droplinked dashboard
                                 </>
                             ) : "Choose your Inventory Management System (IMS) to manage your products."}
 
@@ -54,7 +54,7 @@ function Ims() {
                             </Box>
                             <Box>
                                 <BlackBox padding={5}>
-                                    <Radio size='md' value='SHOPIFY' alignItems="flex-start" colorScheme='green'>
+                                    <Radio isDisabled size='md' value='SHOPIFY' alignItems="flex-start" colorScheme='green'>
                                         <VStack align='stretch' paddingLeft={2} spacing={2}>
                                             <TextLabelBold>Shopify</TextLabelBold>
                                             <Text fontSize="sm" color="lightGray">

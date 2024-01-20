@@ -4,39 +4,40 @@ import { Link, useLocation } from "react-router-dom";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { IconWrapper } from "../../SidebarLayout-style";
 import classes from './style.module.scss'
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 
 const OptionComponent = ({ icon, label, path }) => {
   const location = useLocation();
   const { shop } = useProfile();
+  const { shopRoute } = useCustomNavigate()
 
   const isActive = useMemo(() => {
-    return location.pathname.includes(path);
-  }, [location]);
+    return shopRoute + "/" + path === location.pathname
+  }, [location, path, shopRoute]);
 
   return (
-    <Tooltip
-      label={label}
-      placement="right-start"
-      borderRadius="8px"
-      bg="mainLayer"
-    >
-      <Link to={path ? `/${shop?.name}/c/${path}` : ""}>
+    <Link to={path ? `/${shop?.name}/c/${path}` : ""}>
+      <Tooltip
+        label={label}
+        placement="right-end"
+        borderRadius="100px"
+        color="#C2C2C2"
+        padding="5px 11px"
+        fontSize="12px"
+        bg="#292929"
+      >
         <IconWrapper
           borderLeft="4px solid transparent"
+          paddingLeft="19px"
           borderColor={isActive ? "primary" : "none"}
           _hover={{
             borderColor: "primary",
           }}
         >
           <Box className={`${classes.icon} ${isActive ? classes.active : ""}`}>{icon}</Box>
-          {/* <IconComponent
-            style={isActive ? { filter: "contrast(160%)" } : {}}
-            src={icon}
-            cursor={label === "informations" ? "not-allowed" : "pointer"}
-          /> */}
         </IconWrapper>
-      </Link>
-    </Tooltip>
+      </Tooltip>
+    </Link>
   );
 };
 

@@ -14,7 +14,7 @@ import { signupService } from "lib/apis/user/services";
 import { IsignupService } from "lib/apis/user/interfaces";
 import BasicButton from "components/common/BasicButton/BasicButton";
 
-export default function SignupProducer({ close, shopname, switchToggle }) {
+const SignupProducer = ({ close, shopname, switchToggle }) => {
   const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params))
   const [States, setStates] = useState({
     show: {
@@ -36,7 +36,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
       close();
       navigate("/email-confirmation");
     } catch (error) {
-      showToast(error?.response?.data?.message, "error")
+      showToast(error?.response?.data?.data?.message, "error")
     }
   };
 
@@ -55,10 +55,10 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
         password: '',
         repassword: '',
       }}
+      validateOnChange={false}
       validationSchema={formSchema}
       onSubmit={onSubmit}
     >
-
       {({ errors, values, setFieldValue }) => (
         <Form>
           <Stack w="100%" h="100%" spacing="20px">
@@ -97,7 +97,7 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
               <ShowPassword showed={States.show.repassword} onClick={() => toggleShowField("repassword")} />
             </Box>
 
-            <BasicButton type="submit" isDisabled={isLoading}>
+            <BasicButton type="submit" isLoading={isLoading}>
               Sign up
             </BasicButton>
 
@@ -110,3 +110,5 @@ export default function SignupProducer({ close, shopname, switchToggle }) {
     </Formik>
   );
 }
+
+export default SignupProducer

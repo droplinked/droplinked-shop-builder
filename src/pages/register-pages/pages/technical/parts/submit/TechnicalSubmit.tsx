@@ -31,7 +31,7 @@ function TechnicalSubmit() {
             await mutateAsync(isRegister ? payments.filter(el => el.isActive) : refactor({ payments, userPayments })) // Post payments service
             if (isRegister) {
                 update({ imsType })
-                shopNavigate(`register/contact-info`);
+                shopNavigate(`products`);
             } else {
                 showToast(AppErrors.store.payment_options_have_been_updated, "success");
             }
@@ -47,7 +47,7 @@ function TechnicalSubmit() {
                 </Box>
             )}
             <Box>
-                <BasicButton sizes="large" isDisabled={!imsType || !checkPayment} onClick={clickSubmit} isLoading={isLoading || loading}>
+                <BasicButton sizes="large" isDisabled={imsType === "DROPLINKED" ? !imsType || !checkPayment : !imsType} onClick={clickSubmit} isLoading={isLoading || loading}>
                     {isRegister
                         ? "Next"
                         : "Update"}

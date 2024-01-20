@@ -1,39 +1,44 @@
 import { ITableRows } from 'components/common/table/AppTable'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import AppTypography from 'components/common/typography/AppTypography'
 import React from "react"
+import CollectionProductList from './parts/collection/CollectionProductList'
 import ControlsListProduct from "./parts/controls/Controls"
 import ImageListProduct from "./parts/image/ImageListProduct"
+import InventoryStatus from './parts/status/InventoryStatus'
 
 interface IrefactorData {
     data: []
     fetch: Function
-    search: string
 }
-export default class ProductListModel {
-    private static makeData = (element: any, fetch: any) => ({
-        image: {
-            caption: "Name",
-            value: <ImageListProduct product={element} />
-        },
-        collection: {
-            value: element?.productCollectionID?.title
-        },
-        inventory: {
-            caption: "Inventory status",
-            value: "---"
-        },
-        status: {
-            value: capitalizeFirstLetter(element?.publish_status)
-        },
-        controls: {
-            caption: "",
-            value: <ControlsListProduct product={element} productID={element._id} fetch={fetch} />
+const ProductListModel = ({
+    makeData: (element: any, fetch: any): ITableRows => {
+        return {
+            _data: element,
+            image: {
+                caption: "Name",
+                value: <ImageListProduct product={element} />
+            },
+            collection: {
+                value: <CollectionProductList data={element} />
+            },
+            type: {
+                value: <AppTypography fontSize='12px'>{element?.product_type}</AppTypography>
+            },
+            inventory: {
+                caption: "Status",
+                value: <InventoryStatus data={element} />
+            },
+            controls: {
+                caption: "",
+                value: <ControlsListProduct product={element} productID={element._id} fetch={fetch} />
+            }
         }
-    })
+    },
 
-    static refactorData = ({ data, fetch, search }: IrefactorData): Array<ITableRows> => {
-        search = search && search.toLowerCase()
-        const products = search ? data.filter((el: any) => el?.title && el.title.toLowerCase().includes(search)) : data
-        return products.map((el: any): ITableRows => this.makeData(el, fetch))
+    getMain: (product: any) => product.media.find(el => el.isMain === 'true')?.thumbnail,
+
+    refactorData: ({ data, fetch }: IrefactorData): Array<ITableRows> => {
+        return data.map((el: any): ITableRows => ProductListModel.makeData(el, fetch))
     }
-}
+})
+export default ProductListModel

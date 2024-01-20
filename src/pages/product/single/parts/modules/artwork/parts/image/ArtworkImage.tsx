@@ -11,11 +11,11 @@ import ProductPageTitle from '../../../title/ProductPageTitle'
 
 interface IProps {
     artwork: string
-    field: "artwork" | "artwork2"
     updateState(data: any): void
+    isDisable?: boolean
 }
 
-function ArtworkImage({ artwork, field,updateState }: IProps) {
+function ArtworkImage({ artwork, updateState, isDisable }: IProps) {
     const [FileSize, setFileSize] = useState("")
 
     useEffect(() => artwork && getSizeImage(artwork), [artwork])
@@ -37,15 +37,15 @@ function ArtworkImage({ artwork, field,updateState }: IProps) {
                     <Flex justifyContent={"space-between"} alignItems="center">
                         <Flex alignItems="center" gap={4}>
                             <AppImage src={artwork} width="47px" height="47px" />
-                            <AppTypography size='14px'>{FileSize} KB</AppTypography>
+                            <AppTypography fontSize='14px'>{FileSize} KB</AppTypography>
                         </Flex>
                         <Box>
-                            {artwork && <BasicButton variant='outline' sizes='medium' onClick={() => updateState(null)}>Edit Artwork</BasicButton>}
+                            {artwork && <BasicButton variant='outline' isDisabled={isDisable} sizes='medium' onClick={() => updateState(null)}>Remove</BasicButton>}
                         </Box>
                     </Flex>
                 ) : (
                     <SkeletonProduct width={"30%"} height={"200px"}>
-                        <InputImagesGroup vertical message={AppErrors.product[field === "artwork" ? "front_artwork_uploaded_successfully" : "back_artwork_uploaded_successfully"]} setState={(images: any) => updateState(images[0])} state={[]} />
+                        <InputImagesGroup vertical size='original' message={AppErrors.product.artwork_uploaded_successfully} setState={(images: any) => updateState(images[0])} state={[]} />
                     </SkeletonProduct>
                 )}
             </Box>

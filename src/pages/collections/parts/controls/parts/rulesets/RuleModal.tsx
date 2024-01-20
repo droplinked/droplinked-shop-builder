@@ -2,21 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Box, HStack, VStack } from "@chakra-ui/react";
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import AppModal from 'components/common/modal/AppModal';
-import AppTextarea from 'components/common/form/textarea/AppTextarea';
 import ruleModelContext from "./context";
 import TextboxRule from "./parts/textbox/TextboxRule";
 import SelectRule from "./parts/select/SelectRule";
-import { useMutation } from "react-query";
-import { createRuleService, getRuleService, updateRuleService } from "lib/apis/rule/ruleServices";
+import { useMutation, useQuery } from "react-query";
+import { createRuleService, getRuleService, rulesetChainsService, updateRuleService } from "lib/apis/rule/ruleServices";
 import useAppToast from "functions/hooks/toast/useToast";
 import { RuleTypes } from "./RuleModel";
 import { IcreateRuleService, IgetRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
 import AppTypography from 'components/common/typography/AppTypography';
-import { ChainTypes } from "lib/utils/statics/chainTypes";
 import RulesetAddress from "./parts/address/RulesetAddress";
+import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
+import RulesetType from "./parts/type/RulesetType";
+import AppErrors from "lib/utils/statics/errors/errors";
+import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
@@ -24,6 +26,13 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const getRule = useMutation((params: IgetRuleService) => getRuleService(params))
   const createRule = useMutation((params: IcreateRuleService) => createRuleService(params))
   const updateRule = useMutation((params: IupdateRuleService) => updateRuleService(params))
+  const chains = useQuery({
+    queryFn: rulesetChainsService,
+    queryKey: "chains_query",
+    cacheTime: 60 * 60 * 1000,
+    refetchOnWindowFocus: false
+  })
+
   const { showToast } = useAppToast()
 
   useEffect(() => {
@@ -60,7 +69,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
       }
       update();
       close();
-      showToast(`Rule ${ruleId ? "update" : "created"}`, "success")
+      showToast(AppErrors.collection[ruleId ? "ruleset_update" : "ruleset_create"], "success")
     } catch (error) {
       showToast("Oops! Something went wrong", "error")
     }
@@ -71,7 +80,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     weburl: Yup.string().required('Required'),
     chain: Yup.string().required('Required'),
     rule: Yup.string().required('Required'),
-    discount: Yup.number().typeError("Please correct value").required('Required'),
+    discount: Yup.number().min(0).typeError("Please correct value").required('Required'),
     address: Yup.array().min(1, "Required").required("Required"),
     requirement: Yup.number().min(1).max(99).typeError("Please correct value").required('Required'),
   });
@@ -79,7 +88,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   if (!show) return null;
 
   return (
-    <AppModal open={show} close={close} title="Make Rule" size="2xl">
+    <AppModal open={show} isCentered={false} close={close} title="Create Ruleset" size="2xl">
       {false ? (
         <LoadingComponent />
       ) : (
@@ -88,7 +97,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
             tag: State ? State?.rules ? State?.rules[0].description : '' : '',
             weburl: State ? State?.webUrl : '',
             chain: State ? State?.type : 'ETH',
-            rule: State ? State?.gated ? RuleTypes.GATED : RuleTypes.DISCOUNT : true,
+            rule: State ? State?.gated ? RuleTypes.GATED : RuleTypes.DISCOUNT : RuleTypes.GATED,
             discount: State ? State?.rules ? State?.rules[0].discountPercentage : 0 : 0,
             address: State ? State?.rules ? State?.rules[0].addresses : [] : [],
             requirement: State ? State?.rules ? State?.rules[0].nftsCount : '' : ''
@@ -102,53 +111,48 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
           {({ errors, values, setFieldValue, submitForm }) => (
             <ruleModelContext.Provider value={{ errors, values, setFieldValue, loading: ruleId ? !getRule.isLoading : true }}>
               <VStack width={"100%"} align="stretch" spacing={8}>
-                <Box>
-                  <TextboxRule element={"tag"} placeholder="tag" label={"NFT Gating Message"} />
-                </Box>
-                <Box>
-                  <TextboxRule element={"weburl"} placeholder="url ..." label={"NFT info URL"} />
-                </Box>
-                <Box>
+                <VStack align="stretch" spacing={1}>
+                  <VStack align="stretch" spacing={1}>
+                    <FieldLabel label="NFT Gating Message" isRequired />
+                    <AppTypography fontSize="12px" color="#9C9C9C">Enter a message for the NFT holders that will be shown in the gating modal.</AppTypography>
+                  </VStack>
+                  <TextboxRule element={"tag"} placeholder="e.g., Exclusive offer unlocked by the ownership of specific NFT" />
+                </VStack>
+                <Box><RulesetType /></Box>
+                <VStack align="stretch" spacing={1}>
+                  <VStack align="stretch" spacing={1}>
+                    <FieldLabel label="NFT Info URL" isRequired />
+                    <AppTypography fontSize="12px" color="#9C9C9C">Add the link to provide more information about the NFT or marketplace.</AppTypography>
+                  </VStack>
+                  <TextboxRule element={"weburl"} placeholder="e.g., https://www.opensea.com" />
+                </VStack>
+                <VStack align="stretch" spacing={1}>
+                  <VStack align="stretch" spacing={1}>
+                    <FieldLabel label="Blockchain Network" isRequired />
+                    <AppTypography fontSize="12px" color="#9C9C9C">Select a blockchain network to validate the ownership of the Required NFTs.</AppTypography>
+                  </VStack>
                   <SelectRule
                     element={"chain"}
                     placeholder="Select chain"
-                    label={"Chain Type"}
-                    loading={!getRule.isLoading}
-                    items={Object.keys(ChainTypes).map((el) => {
+                    loading={!getRule.isLoading && !chains.isLoading}
+                    items={chains.data ? chains.data?.data?.data.map((el) => {
                       return {
                         value: el,
-                        caption: el
+                        caption: capitalizeFirstLetter(el)
                       }
-                    })}
+                    }) : []}
                   />
-                </Box>
-                <HStack alignItems={"baseline"}>
-                  <Box width={"100%"}>
-                    <SelectRule
-                      element={"rule"}
-                      placeholder="Select rule"
-                      label={"Rule Type"}
-                      loading={!getRule.isLoading}
-                      items={Object.keys(RuleTypes).map((el) => {
-                        return {
-                          value: el,
-                          caption: el
-                        }
-                      })}
-                    />
-                  </Box>
-                  {values.rule === RuleTypes.DISCOUNT && (
-                    <Box width={"100%"}>
-                      <TextboxRule element={"discount"} placeholder="%20" label={"Offer"} />
-                    </Box>
-                  )}
-                </HStack>
+                </VStack>
                 <Box>
                   <RulesetAddress />
                 </Box>
-                <Box width={"100%"}>
-                  <TextboxRule element={"requirement"} placeholder="number ..." label={"Minimum Requirement"} />
-                </Box>
+                <VStack align="stretch" spacing={1}>
+                  <VStack align="stretch" spacing={1}>
+                    <FieldLabel label='Minimum NFT Required' isRequired />
+                    <AppTypography fontSize="12px" color="#9C9C9C">Specify the minimum amount of NFTs required to pass the ruleset.</AppTypography>
+                  </VStack>
+                  <TextboxRule element={"requirement"} placeholder="e.g., 5" />
+                </VStack>
                 <HStack justifyContent={"space-between"}>
                   <Box width={"35%"}><BasicButton width={"100%"} onClick={close} variant="outline">Cancel</BasicButton></Box>
                   <Box width={"35%"}>

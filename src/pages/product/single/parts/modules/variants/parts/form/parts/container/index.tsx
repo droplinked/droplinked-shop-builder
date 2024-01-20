@@ -73,7 +73,7 @@ function VariantMakeForm({ caption, property }) {
     }, [caption, property, form])
     return (
         <HStack>
-            <Box width={"30%"}><AppTypography size='14px'>{caption}</AppTypography></Box>
+            <Box width={"30%"}><AppTypography fontSize='14px'>{caption}</AppTypography></Box>
             <Box width={"70%"}>{content}</Box>
         </HStack>
     )

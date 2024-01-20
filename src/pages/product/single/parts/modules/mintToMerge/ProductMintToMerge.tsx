@@ -1,42 +1,45 @@
 import { Box, Checkbox, VStack } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
+import { appDeveloment } from 'lib/utils/app/variable'
 import { productContext } from 'pages/product/single/context'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import ProductPositions from '../positions/ProductPositions'
+import ProductM2m from './parts/m2m/ProductM2m'
+import M2MPlaceholder from './parts/placeholder/M2MPlaceholder'
 
 function ProductMintToMerge() {
     const [CheckBox, setCheckBox] = useState(false)
-    const { state: { m2m_positions }, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { m2m_positions, m2m_positions_options,m2m_services,isAddToCartDisabled }, store: { state: { variants } }, methods: { updateState }, loading } = useContext(productContext)
 
-    const checkActive = useCallback((postion: string) => m2m_positions.includes(postion), [m2m_positions])
-
-    const updatePosition = useCallback((postion: string) => {
-        const newData = [...m2m_positions, postion]
-        const removeData = m2m_positions.filter(el => el !== postion)
-        updateState("m2m_positions", checkActive(postion) ? removeData : newData)
-    }, [m2m_positions])
-
+    // onChange checkbox
     const checkBoxHandle = useCallback((e: any) => {
         const checked = e.target.checked
-        if (!checked) updateState("m2m_positions", [])
+        if (!checked) {
+            updateState("m2m_positions", [])
+            updateState("m2m_services", [])
+        }
         setCheckBox(e.target.checked)
     }, [])
 
+    // set true if exist m2m_positions
     useEffect(() => {
-        if (m2m_positions.length) setCheckBox(true)
+        if (m2m_positions.length || m2m_services.length || isAddToCartDisabled) setCheckBox(true)
     }, [m2m_positions])
 
+    // if not exist m2m_positions_options checkbox unchecked 
+    useEffect(() => {
+        if (!m2m_positions_options.length) setCheckBox(false)
+    }, [m2m_positions_options])
 
     return (
         <VStack align={"stretch"} spacing={4}>
             <Box>
                 <AppSkeleton isLoaded={loading} width={"70%"}>
-                    <Checkbox size='md' isChecked={CheckBox} alignItems="flex-start" colorScheme='green' onChange={checkBoxHandle}>
-                        <VStack align='stretch' paddingLeft={2} spacing={1}>
-                            <AppTypography size='14px' weight='bolder'>Mint to Merch</AppTypography>
-                            <AppTypography size="14px" color="lightGray">
+                    <Checkbox isDisabled={!m2m_positions_options.length} size='md' isChecked={CheckBox} alignItems="flex-start" colorScheme='green' onChange={checkBoxHandle}>
+                        <VStack align='stretch' color="#C2C2C2" paddingLeft={2} spacing={1}>
+                            <AppTypography fontSize='14px' fontWeight='bold'>Mint to Merch</AppTypography>
+                            <AppTypography fontSize="14px">
                                 Enable customers to directly print their NFT artwork on the POD product
                             </AppTypography>
                         </VStack>
@@ -44,7 +47,13 @@ function ProductMintToMerge() {
                 </AppSkeleton>
             </Box>
 
-            {CheckBox && <ProductPositions update={updatePosition} state={m2m_positions} />}
+            {CheckBox && variants ? (
+                <VStack align="stretch" backgroundColor="#141414" borderRadius="8px" padding="20px 25px" spacing="48px">
+                    <ProductPositions />
+                    <ProductM2m />
+                    <M2MPlaceholder />
+                </VStack>
+            ) : null}
         </VStack >
     )
 }

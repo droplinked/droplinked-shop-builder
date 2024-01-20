@@ -9,7 +9,7 @@ import RecordModal from './parts/recordModal/RecordModal';
 import SkuTableModal from './parts/skuModal/SkuTableModal';
 
 function SkuTable() {
-    const { state, store: { state: { variants } } } = useContext(productContext)
+    const { state, store: { state: { available_variant } }, methods: { fetch, updateState } } = useContext(productContext)
     const [Sku, setSku] = useState(null)
     const { getRows } = SkuTableModel
     const recordModal = useDisclosure()
@@ -21,36 +21,40 @@ function SkuTable() {
         return state.sku.map((el, key) => {
 
             return {
-                ...getRows({ sku: el, state, key, variants, }),
-                ...state.publish_product && {
-                    controls: {
-                        caption: "Drop",
-                        props: {
-                            style: { textAlign: "center" }
-                        },
-                        value: (
-                            <>
-                                {
-                                    el?.recordData && el.recordData.status !== "NOT_RECORDED" ?
-                                        <Flex justifyContent={"center"}><Text backgroundColor={"#000"} borderRadius="100px" fontSize={"xs"} padding="4px 20px">{el?.recordData.status}</Text></Flex>
-                                        :
-                                        <SkuTableOptions
-                                            element={el}
-                                            updateSku={(sku: any) => setSku(sku)}
-                                            elementKey={key}
-                                            modals={{
-                                                editModal: editModal.onOpen,
-                                                recordMoal: recordModal.onOpen
-                                            }}
-                                        />
-                                }
-                            </>
-                        )
-                    }
+                ...getRows({ sku: el, state, key, available_variant }),
+                controls: {
+                    caption: "Drop",
+                    props: {
+                        style: { textAlign: "center" }
+                    },
+                    value: (
+                        <>
+                            {
+                                el?.recordData && el.recordData.status !== "NOT_RECORDED" ?
+                                    <Flex justifyContent={"center"}><Text backgroundColor={"#000"} borderRadius="100px" fontSize={"xs"} padding="4px 20px">{el?.recordData.status}</Text></Flex>
+                                    :
+                                    <SkuTableOptions
+                                        element={el}
+                                        updateSku={(sku: any) => setSku(sku)}
+                                        elementKey={key}
+                                        modals={{
+                                            editModal: editModal.onOpen,
+                                            recordMoal: recordModal.onOpen
+                                        }}
+                                    />
+                            }
+                        </>
+                    )
                 }
             }
         })
-    }, [state.sku, state.artwork, state.artwork2, state.m2m_positions, state.product_type, variants])
+    }, [state.sku, state.artwork, state.artwork2, state.m2m_positions, state.product_type, available_variant, state.prodviderID])
+
+    const closeModal = useCallback(async () => {
+        const skues = await fetch()
+        updateState("sku", skues.sku)
+        recordModal.onClose()
+    }, [])
 
     return (
         <>
@@ -58,7 +62,7 @@ function SkuTable() {
                 {rows && <AppTable rows={rows} />}
             </SkeletonProduct>
             <SkuTableModal open={editModal.isOpen} close={editModal.onClose} skuData={Sku} />
-            <RecordModal open={Sku && recordModal.isOpen} product={Sku} close={recordModal.onClose} />
+            <RecordModal open={Sku && recordModal.isOpen} product={state} sku={Sku} close={closeModal} />
         </>
     )
 }

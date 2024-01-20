@@ -7,15 +7,16 @@ interface IProps extends InputProps {
     value: any
     name: string
     index: number
+    isDisabled?: boolean
 }
 
 function FieldsSkuTable(props: IProps) {
     const { state: { sku }, methods: { updateState } } = useContext(productContext)
-    const { name, index, value } = props
+    const { name, index, value, isDisabled } = props
 
     const updateSku = useCallback((e: any) => {
         let inputvalue: any = e.target.value
-        
+
         if (!["externalID"].includes(name) && inputvalue) inputvalue = floatNumberRegex.test(inputvalue) ? inputvalue : value
 
         const isDimensions = ["height", "length", "width"].includes(name)
@@ -38,9 +39,9 @@ function FieldsSkuTable(props: IProps) {
             value={value || 0}
             background="#141414"
             border={"none"}
-            disabled={name === "cost"}
+            isDisabled={name === "cost" || isDisabled}
             outline="none"
-            _disabled={{opacity: ".3"}}
+            _disabled={{ opacity: ".3" }}
             width="auto"
             maxWidth={"70px"}
             padding="3px"

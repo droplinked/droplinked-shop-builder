@@ -1,39 +1,16 @@
 import { IproductState } from "lib/apis/product/interfaces";
 import { createContext } from "react";
+import ProductPageNamespace, { productActions, productParams } from "./reducers";
+
 
 export interface IpropertiesItems {
     value: string
 }
 
-export const initialStatesProduct: IproductState = {
-    title: '',
-    description: '',
-    productCollectionID: '',
-    media: [],
-    priceUnit: "USD",
-    shippingPrice: 0,
-    product_type: "NORMAL",
-    publish_product: true,
-    shippingType: "EASY_POST",
-    properties: [],
-    sku: [],
-    prodviderID: "DLW",
-    pod_blank_product_id: null,
-    artwork: null,
-    artwork2: null,
-    m2m_positions: [],
-    artwork_position: "FRONT_CENTER",
-    artwork2_position: "BACK_CENTER"
-}
-
-export interface IproductStore {
-    variants: any
-}
-
 interface IproductContext {
     state: IproductState,
     store: {
-        state: IproductStore
+        state: ProductPageNamespace.IStore
         methods: {
             update(storeName: any, data: any): void
         }
@@ -42,16 +19,25 @@ interface IproductContext {
     methods: {
         updateState(element: string, value: any): void
         fetch: Function
+        setSync(value: boolean): void
+        dispatch(action: productActions): void
     },
-    loading: boolean
+    loading: boolean,
+    sync: boolean,
 }
 
+
 export const productContext = createContext<IproductContext>({
-    state: initialStatesProduct,
+    state: ProductPageNamespace.initialState.params,
     productID: null,
     store: {
         state: {
-            variants: []
+            variants: [],
+            available_variant: [],
+            print_positions: [],
+            product_types: [],
+            prev_data: productParams,
+            product_printful: null
         },
         methods: {
             update: () => { }
@@ -59,7 +45,10 @@ export const productContext = createContext<IproductContext>({
     },
     methods: {
         updateState: () => { },
-        fetch: () => { }
+        fetch: () => { },
+        setSync: () => { },
+        dispatch: null
     },
     loading: false,
+    sync: false,
 })

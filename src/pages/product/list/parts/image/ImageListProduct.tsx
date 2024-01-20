@@ -1,18 +1,20 @@
 import React from 'react'
 import { Box, HStack, Text } from '@chakra-ui/react';
 import AppImage from 'components/common/image/AppImage';
-import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
+import ProductListModel from '../../model';
+import AppTypography from 'components/common/typography/AppTypography';
 
 function ImageListProduct({ product }) {
-    const { shop } = useProfile()
-    const { redirectToIo } = useCustomNavigate()
+    const { shopRoute } = useCustomNavigate()
+    const { getMain } = ProductListModel
+    const main = getMain(product)
 
     return (
-        <a href={redirectToIo({ productID: product._id })} target="_blank">
+        <a href={`${shopRoute}/products/${product._id}`} target="_blank">
             <HStack width={"250px"} color="#FFF">
-                <Box width={"50px"}><AppImage src={product?.media && product?.media.length && product.media[0].url} /></Box>
-                <Box><Text>{product.title}</Text></Box>
+                <Box width={"50px"}><AppImage src={main} /></Box>
+                <Box width={"100%"}><AppTypography fontSize="12px">{product.title}</AppTypography></Box>
             </HStack>
         </a>
     )

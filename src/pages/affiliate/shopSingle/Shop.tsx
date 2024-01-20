@@ -1,5 +1,6 @@
-import { Box, Flex, Image, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, Image, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
+import AppEmptyPage from 'components/common/empty/AppEmptyPage'
 import AppTypography from 'components/common/typography/AppTypography'
 import { IrecordedShopService } from 'lib/apis/shop/interfaces'
 import { recordedShopService } from 'lib/apis/shop/shopServices'
@@ -8,7 +9,6 @@ import { useMutation } from 'react-query'
 import { useParams } from 'react-router-dom'
 import AffiliateProduct from '../parts/product/AffiliateProduct'
 import SocialAffliate from '../parts/social/SocialAffliate'
-import ShopsFilter from '../shops/parts/filter/ShopsFilter'
 import SingleShopSkeleton from './parts/skeleton/SingleShopSkeleton'
 
 function Shop() {
@@ -27,26 +27,37 @@ function Shop() {
                     <AppCard>
                         <VStack spacing={4}>
                             <Box><Image src={shop?.logo} width="80px" height={"80px"} borderRadius={"100%"} /></Box>
-                            <Box><AppTypography color="#2EC99E" size='24px' weight='bolder'>{shop?.name}</AppTypography></Box>
+                            <Box><AppTypography color="#2EC99E" fontSize='24px' fontWeight='bold'>{shop?.name}</AppTypography></Box>
                             {/* <Box><Text color="#FFF" fontSize={"1xl"}>{faker.company.catchPhrase()}</Text></Box> */}
-                            <SocialAffliate facebook="" instagram={shop?.instagramURL} pintrest="" snapchat="" twitter={shop?.twitterURL} size={16} />
+                            <SocialAffliate social={{
+                                facebook: shop?.facebookURL,
+                                instagram: shop?.instagramURL,
+                                tiktok: shop?.tiktokURL,
+                                discord: shop?.discordURL,
+                                linkedin: shop?.linkedinURL,
+                                twitter: shop?.twitterURL,
+                                web: shop?.webURL,
+                            }} size={16} />
                         </VStack>
                     </AppCard>
-
                     <AppCard>
                         <VStack paddingBottom={10} spacing={16} align={"stretch"}>
-                            <Box><ShopsFilter /></Box>
                             <Flex flexWrap={"wrap"} gap="2%" rowGap={7}>
                                 {shop?.products && shop.products.map((el: any, key: number) => (
                                     <Box key={key} width={["23.5%", "15%"]}>
-                                        <AffiliateProduct link={`${shop?.name}/${el?._id}`} image={el.media && el.media[0].url} title={el?.title} />
+                                        <AffiliateProduct
+                                            blockchain={el.skuIDs.length ? el.skuIDs[0].recordData.recordNetwork : ""}
+                                            link={`${shop?.name}/${el?._id}`}
+                                            image={el.thumb || el.media.find(el => el.isMain === 'true')?.url}
+                                            title={el?.title}
+                                        />
                                     </Box>
                                 ))}
                             </Flex>
                         </VStack>
                     </AppCard>
                 </VStack>
-            ) : "Empty"}
+            ) : <AppEmptyPage title='Cant find this shop' />}
         </>
     )
 }

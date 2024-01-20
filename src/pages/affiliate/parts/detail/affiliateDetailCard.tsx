@@ -29,11 +29,11 @@ function AffiliateDetailCard({ decript, earning, image, options, price, title }:
                     <Box><Text fontSize={["sm", "md"]} fontFamily="aven" color="#2EC99E">{decript}</Text></Box>
                     <Box>
                         <Flex gap={[3, 8]} flexWrap="wrap">
-                            {options.map((el, key) => <Box key={key}><Text fontSize={["sm", "md"]}>{el.caption}: {el.value}</Text></Box>)}
+                            {options.map((el, key) => <Box key={key}><Text fontSize={["sm", "md"]}>{el.caption}: {el.value < 0 ? "∞" : el.value}</Text></Box>)}
                         </Flex>
                     </Box>
                     <Box><Text fontSize={["sm", "md"]}>Price: {price}</Text></Box>
-                    <Box><Text fontSize={["sm", "md"]}>Your earning: {earning} /each</Text></Box>
+                    <Box><Text fontSize={["sm", "md"]}>Your earning: {parseFloat(earning).toFixed(2)} USD / each</Text></Box>
                 </VStack>
             </Box>
         </Flex>

@@ -7,12 +7,12 @@ interface IgetValueOptions {
     variantName: string
 }
 
-export default class SkuFormValidationModule {
+const SkuFormValidationModule = ({
 
-    static isValidateProperties = (skues: Array<Isku>) => Boolean(skues.filter(el => !el.options.filter(option => option.value.length).length).length)
+    isValidateProperties: (skues: Array<Isku>) => Boolean(skues.filter(el => !el.options.filter(option => option.value.length).length).length),
 
     // Make properties for push to validate schema
-    static propertyValidation = ({ formData, skues }: IvalidationFormSku) => {
+    propertyValidation: ({ formData, skues }: IvalidationFormSku) => {
         let shapes = {};
 
         if (formData?.properties) {
@@ -21,21 +21,21 @@ export default class SkuFormValidationModule {
             });
         }
         return shapes
-    }
+    },
 
-    static getValueOptions = ({update,variantName}:IgetValueOptions) => {
+    getValueOptions: ({ update, variantName }: IgetValueOptions) => {
         return update ? update.options.filter(el => el.variantName === variantName)[0].value : ""
-    }
+    },
 
-    static initialProperties = ({ properties, update }: IinitialFormikVariantForm) => {
+    initialProperties: ({ properties, update }: IinitialFormikVariantForm) => {
         const values = {}
         properties.forEach(element => {
-            values[element.title] = update ? this.getValueOptions({update,variantName: element.title}) : ''
+            values[element.title] = update ? SkuFormValidationModule.getValueOptions({ update, variantName: element.title }) : ''
         });
         return values
-    }
+    },
 
-    static schema = ({ properties }: IinitialFormikVariantForm) => {
+    schema: ({ properties }: IinitialFormikVariantForm) => {
         const shapes = {}
         properties.forEach(element => {
             shapes[element.title] = string().required("Required");
@@ -54,4 +54,6 @@ export default class SkuFormValidationModule {
         });
     }
 
-}
+})
+
+export default SkuFormValidationModule

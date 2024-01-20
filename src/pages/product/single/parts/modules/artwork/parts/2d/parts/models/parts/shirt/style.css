@@ -1,0 +1,57 @@
+.tshirt {
+    width: 200px;
+    height: 300px;
+    position: relative;
+    perspective: 800px;
+  }
+  
+  .front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg);
+    transition: transform 0.5s;
+  }
+  
+  .collar,
+  .body,
+  .sleeve {
+    position: absolute;
+    background-color: #ffffff;
+  }
+  
+  .collar {
+    width: 120%;
+    height: 20px;
+    top: 10%;
+    left: -10%;
+    transform-origin: top center;
+  }
+  
+  .body {
+    width: 100%;
+    height: 70%;
+    top: 30%;
+  }
+  
+  .sleeve {
+    width: 35%;
+    height: 60%;
+    top: 40%;
+    border-radius: 50% 50% 0 0;
+  }
+  
+  .sleeve:first-child {
+    left: -10%;
+    transform-origin: bottom right;
+  }
+  
+  .sleeve:last-child {
+    right: -10%;
+    transform-origin: bottom left;
+  }
+  
+  .tshirt:hover .front {
+    transform: rotateX(30deg);
+  }

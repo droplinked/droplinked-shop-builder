@@ -4,9 +4,10 @@ import searchIcon from "assest/icon/search-icon.svg";
 
 export interface ISearchDatagrid {
     onChange(e: any): void
+    value?: string
 }
 
-function SearchDatagrid({ onChange }: ISearchDatagrid) {
+function SearchDatagrid({ onChange, value }: ISearchDatagrid) {    
     return (
         <InputGroup w="200px">
             <InputLeftElement
@@ -16,6 +17,7 @@ function SearchDatagrid({ onChange }: ISearchDatagrid) {
             <Input
                 p="8px 36px"
                 borderRadius="24px"
+                value={value}
                 border="1px solid"
                 borderColor="line"
                 _placeholder={{ color: "#C2C2C2", opacity: "1" }}

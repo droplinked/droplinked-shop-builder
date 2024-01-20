@@ -1,38 +1,22 @@
 .editor {
-    padding: 20px;
     background: #141414;
     border-radius: 8px;
+    position: relative;
+    z-index: 1;
 
     :global {
-        .ql-toolbar {
-            &.ql-snow {
-                border: none;
-            }
+        .tox,
+        .tox-editor-container,
+        .tox-toolbar__primary,
+        .tox-editor-header,
+        .tox-statusbar,
+        .tox-tbtn {
+            background: #141414 !important;
+            border: none !important;
         }
 
-        .ql-container {
-            &.ql-snow {
-                border: none;
-                padding: 20px 0;
-            }
-        }
-
-        .ql-editor {
-            padding: 0;
-
-            &.ql-blank {
-                padding: 0;
-
-                &::before {
-                    color: #777;
-                    left: 0;
-                }
-            }
-        }
-
-        .ql-picker-options {
-            background: #131313;
-            color: #CACACA;
+        .tox-statusbar__branding {
+            display: none;
         }
     }
 }

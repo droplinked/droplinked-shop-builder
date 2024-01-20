@@ -2,6 +2,7 @@ import { Flex, Text, HStack } from "@chakra-ui/layout";
 import { Link } from "react-router-dom";
 
 import { footerStyles } from "../../FooterLayout-style";
+import droplinkFull from "assest/image/droplinkFull.svg";
 
 import footerLogo from "assest/icon/Flatlay-Logo.png";
 
@@ -12,13 +13,14 @@ const BottomComponent = () => {
     <Flex
       flexDirection={{ base: "column", md: "row" }}
       justifyContent={"space-between"}
+      width="100%"
     >
       <HStack mb={{base:'18px' , md:'0px'}}>
         <Text fontFamily="Avenir Next" fontWeight="500" fontSize="12px" color='lightGray' >
           Powered by
         </Text>
-        <a href="https://flatlay.io/" target="_blank" >
-          <FooterLogo src={footerLogo} alt={"logo"} />
+        <a href="https://droplinked.io/" target="_blank" >
+          <FooterLogo src={droplinkFull} width="100px" alt={"logo"} />
         </a>
       </HStack>
       <HStack

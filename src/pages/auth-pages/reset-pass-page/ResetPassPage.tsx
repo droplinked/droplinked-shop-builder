@@ -36,7 +36,7 @@ export default function ResetPassPage() {
     setBtnActivd(true);
     try {
       await mutateAsync({ accountRecoveryToken: token, newPassword: newPass })
-      showToast("Your password has been changed successfully. Please login again.", "success");
+      showToast("Confirmation email sent! Please check your inbox and follow the instructions to reset your account password.", "success");
       navigate("/?modal=login");
     } catch (error) {
       navigate("/")
@@ -48,13 +48,13 @@ export default function ResetPassPage() {
       <AppCard mini maxWidth="600px">
         <VStack align={"stretch"} spacing={6}>
           <Flex justifyContent={"center"}>
-            <AppTypography size="18px" weight="bolder">Change your password</AppTypography>
+            <AppTypography fontSize="18px" fontWeight="bold">Set your new password</AppTypography>
           </Flex>
           <AppInput
             type={"password"}
             name={"password"}
             isRequired
-            label={"New Password"}
+            label={"New password"}
             value={newPass}
             onChange={(e) => {
               setNewpass(e.target.value);
@@ -63,14 +63,14 @@ export default function ResetPassPage() {
           <AppInput
             isRequired
             type={"password"}
-            name={"repassword"}
-            label={"Confirm New Password"}
+            name={"Confirm password"}
+            label={"Confirm password"}
             value={confirmnewPass}
             onChange={changeConfirmPass}
           />
           {confirmError && (<p className="error">{`Password and confirm password don't match.`}</p>)}
           <BasicButton onClick={changePassword} isDisabled={btnActivd}>
-            Change my password
+            Save new password
           </BasicButton>
         </VStack>
       </AppCard>

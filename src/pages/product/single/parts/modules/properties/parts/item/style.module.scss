@@ -1,0 +1,23 @@
+.box {
+    border: 2px solid transparent;
+    transition: transform .3s ease-in-out;
+
+    &.color {
+        border-color: #353535;
+    }
+
+    &.active {
+        border-color: #FFF;
+        animation: effect .3s linear;
+
+        @keyframes effect {
+            from {
+                transform: rotateX(0deg);
+            }
+
+            to {
+                transform: rotateX(360deg);
+            }
+        }
+    }
+}

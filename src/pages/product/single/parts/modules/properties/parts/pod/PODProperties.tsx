@@ -1,44 +1,47 @@
-import { Box, Button, Flex, VStack } from '@chakra-ui/react'
+import { Box, Flex, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
-import { typesProperties } from 'lib/utils/statics/types'
+import { IpodVariantsService } from 'lib/apis/pod/interfaces'
+import { podVariantsService } from 'lib/apis/pod/services'
 import { productContext } from 'pages/product/single/context'
 import ProductPageTitle from 'pages/product/single/parts/modules/title/ProductPageTitle'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import propertiesFormContext from '../../context'
-import { PODPropertiesModel } from './PODProperties_model'
-import classes from './style.module.scss'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
+import { useMutation } from 'react-query'
+import PropertyItem from '../item/PropertyItem'
 
 function PODProperties() {
-    const { state: { properties, pod_blank_product_id, publish_product }, productID, methods: { updateState }, store: { state: { variants } } } = useContext(productContext)
-    const { set, remove } = useContext(propertiesFormContext)
-    const { getProperties } = PODPropertiesModel
+    const { state: { properties }, methods: { updateState }, store: { state: { variants } } } = useContext(productContext)
+    const { mutate, data, isLoading } = useMutation((params: IpodVariantsService) => podVariantsService(params))
     const [Toggle, setToggle] = useState(false)
 
-    const makeproperties = useMemo(() => {
-        const blank_options = variants?.blank_options
-        if (!blank_options || !blank_options.length) return null
-        return getProperties({ pod_blank_product_id, providers: blank_options[0] })
-    }, [variants])
+    useEffect(() => variants?._id && mutate({ productId: variants._id, provider: variants.provider }), [variants])
 
-    const checkItem = useCallback((name: string) => {
-        return properties.find(eel => eel.items.find(e => e.value === name))
-    }, [properties])
+    const makeproperties = useCallback((title: string) => {
+        const datas = data?.data?.data
+        return datas ? datas.find(el => el.name === title)?.values || [] : []
+    }, [data])
 
-    const addProperty = useCallback((value: string, model: string) => {
-        if (productID && publish_product) return false
-        const getVariantID = typesProperties.find(el => el.name === model)
-        if (checkItem(value)) {
-            remove(value, model === "Color" ? 0 : 1)
-        } else {
-            set({
-                item: {
-                    value,
-                    variantID: getVariantID._id
+
+    const createProperty = useCallback(() => {
+        const getItems = (property: string) => properties.find(el => el.title === property)
+
+        if (properties.length !== 2) {
+            updateState("properties", [
+                {
+                    "value": "62a989ab1f2c2bbc5b1e7153",
+                    "title": "Color",
+                    "items": getItems("Color") ? getItems("Color").items : []
+                },
+                {
+                    "value": "62a989e21f2c2bbc5b1e7154",
+                    "title": "Size",
+                    "items": getItems("Size") ? getItems("Size").items : []
                 }
-            })
+            ])
         }
-    }, [properties, productID, publish_product])
+        setToggle(prev => !prev)
+    }, [makeproperties])
 
     return (
         <VStack align={"stretch"}>
@@ -49,64 +52,32 @@ function PODProperties() {
                     title='Product Properties'
                     description='Add at least one property to enable all variant fields.'
                 />
-                <BasicButton onClick={() => {
-                    if (!properties.length) {
-                        updateState("properties", [
-                            {
-                                "value": "62a989ab1f2c2bbc5b1e7153",
-                                "title": "Color",
-                                "items": []
-                            },
-                            {
-                                "value": "62a989e21f2c2bbc5b1e7154",
-                                "title": "Size",
-                                "items": []
-                            }
-                        ])
-                    }
-                    setToggle(prev => !prev)
-                }} variant='outline' sizes='medium'>Manage</BasicButton>
+                <BasicButton onClick={createProperty} variant='outline' sizes='medium'>Manage</BasicButton>
             </Flex>
-            {Toggle && makeproperties && (
+            {Toggle && (
                 <VStack color={"#FFF"} background={"#141414"} spacing={4} borderRadius="8px" padding={4} align={"stretch"} width={"100%"}>
-                    <Flex>
-                        <Box width={"20%"}><AppTypography size="14px" color="#FFF">Colors</AppTypography></Box>
-                        <Flex width={"80%"} flexWrap="wrap" gap={3}>
-                            {makeproperties.colors.map((el, key) => (
-                                <Box
-                                    key={key}
-                                    borderRadius="100%"
-                                    onClick={() => addProperty(el.name, "Color")}
-                                    width="32px"
-                                    height="32px"
-                                    cursor={productID && publish_product ? "auto" : "pointer"}
-                                    background={el.code}
-                                    className={`${checkItem(el.name) ? classes.active : ""} ${classes.box}`}
-                                >
-                                </Box>
-                            ))}
-                        </Flex>
-                    </Flex>
-                    <Flex>
-                        <Box width={"20%"}><AppTypography size="14px" color="#FFF">Sizes</AppTypography></Box>
-                        <Box width={"80%"}>
+                    <AppSkeleton isLoaded={!isLoading}>
+                        <Flex>
+                            <Box width={"20%"}><AppTypography fontSize="14px" color="#FFF">Colors</AppTypography></Box>
                             <Flex width={"80%"} flexWrap="wrap" gap={3}>
-                                {makeproperties.sizes.map((el, key) => (
-                                    <Box
-                                        key={key}
-                                        borderRadius="28px"
-                                        onClick={() => addProperty(el, "Size")}
-                                        padding="6px 16px"
-                                        cursor={productID && publish_product ? "auto" : "pointer"}
-                                        background="#1C1C1C"
-                                        className={`${checkItem(el) ? classes.active : ""} ${classes.box}`}
-                                    >
-                                        {el}
-                                    </Box>
+                                {makeproperties('color').map(el => ({ caption: el.caption, value: el.value.includes("#") ? el.value : '#' + el.value })).map((el, key) => (
+                                    <PropertyItem key={key} type="Color" item={el} />
                                 ))}
                             </Flex>
-                        </Box>
-                    </Flex>
+                        </Flex>
+                    </AppSkeleton>
+                    <AppSkeleton isLoaded={!isLoading}>
+                        <Flex>
+                            <Box width={"20%"}><AppTypography fontSize="14px" color="#FFF">Sizes</AppTypography></Box>
+                            <Box width={"80%"}>
+                                <Flex width={"80%"} flexWrap="wrap" gap={4}>
+                                    {makeproperties('size').map((el, key) => (
+                                        <PropertyItem key={key} type="Size" item={el} />
+                                    ))}
+                                </Flex>
+                            </Box>
+                        </Flex>
+                    </AppSkeleton>
                 </VStack>
             )}
         </VStack>

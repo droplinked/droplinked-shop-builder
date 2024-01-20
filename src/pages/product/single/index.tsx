@@ -1,47 +1,28 @@
 import { VStack } from '@chakra-ui/react'
-import React, { useCallback, useEffect, useState } from 'react'
-import { initialStatesProduct, IproductStore, productContext } from './context'
-import ButtonsProduct from './parts/buttons/ButtonsProduct'
+import React, { useCallback, useEffect, useReducer } from 'react'
+import { productContext } from './context'
 import { useParams } from 'react-router-dom'
 import { useMutation } from 'react-query'
-import { productByIdServices } from 'lib/apis/product/productServices'
 import ProductSingleModel from './model/model'
-import General from './parts/general/General'
-import Variant from './parts/variant/Variant'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
-import { IproductByIdServices, IproductState } from 'lib/apis/product/interfaces'
-import ShippingProduct from './parts/modules/shipping/ShippingProduct'
-import ProductPodDesign from './parts/podDesign/ProductPodDesign'
-import CollectionProduct from './parts/collection/CollectionProduct'
 import ProductStore from './parts/store/ProductStore'
-
-interface Istate {
-    params: IproductState
-    store: IproductStore
-}
+import productPageNamespace from './reducers'
+import ProductLoading from './parts/loading/ProductLoading'
+import { nanoid } from 'nanoid'
+import NormalProduct from './layouts/NormalProduct'
+import PODProduct from './layouts/PODProduct'
+import { productService } from 'lib/apis/shop/shopServices'
+import { IproductService } from 'lib/apis/shop/interfaces'
 
 function ProductSingle() {
-    const { mutate, isLoading } = useMutation((params: IproductByIdServices) => productByIdServices(params))
+    const { mutate, isLoading } = useMutation((params: IproductService) => productService(params))
+    const { reducers, initialState } = productPageNamespace
     const params = useParams()
-    const [State, setState] = useState<Istate>({
-        params: initialStatesProduct,
-        store: {
-            variants: []
-        }
-    })
+    const [state, dispatch] = useReducer(reducers, initialState)
     const { shop } = useProfile()
-    const { refactorData } = ProductSingleModel
+    const { refactorData, productTypeHandle } = ProductSingleModel
     const productId = params?.productId
-
-    const updateState = useCallback((element: any, value: any) => {
-        if ([typeof element, typeof value].includes("undefined")) return false
-        setState(prev => ({ ...prev, params: { ...prev.params, [element]: value } }))
-    }, [])
-
-    const updateStore = useCallback((storeName: any, value: any) => {
-        if ([typeof storeName, typeof value].includes("undefined")) return false
-        setState(prev => ({ ...prev, store: { ...prev.store, [storeName]: value } }))
-    }, [])
+    const queryParams = useParams()
 
     // Fetch product for edit
     const fetch = useCallback(() => {
@@ -49,7 +30,6 @@ function ProductSingle() {
             mutate(
                 {
                     productID: params?.productId,
-                    shopname: shop.name
                 },
                 {
                     onSuccess: (res) => res.data.statusCode === 200 && res.data?.data ? resolve(refactorData(res.data.data)) : reject("Cant find this product"),
@@ -59,33 +39,55 @@ function ProductSingle() {
         })
     }, [params])
 
+    // Set data product when edit mode
     useEffect(() => {
-        if (params?.productId) fetch().then((res: any) => setState(prev => ({ ...prev, params: res })))
+        if (params?.productId) fetch().then((res: any) => {
+            dispatch({ type: "updateStateParams", params: { result: res } })
+            dispatch({ type: "updateStore", params: { storeName: "prev_data", value: res } })
+        })
     }, [params])
 
+    // Set product type as url
+    useEffect(() => {
+        if (queryParams.type) dispatch({ type: "updateState", params: { element: "product_type", value: productTypeHandle(queryParams.type) } });
+    }, [queryParams])
+
+    // Set default printfull when PRINT_ON_DEMAND product type
+    useEffect(() => {
+        if (!productId && state.params.product_type === "PRINT_ON_DEMAND") {
+            dispatch({ type: "updateState", params: { element: "prodviderID", value: "PRINTFUL" } })
+            dispatch({ type: "updateState", params: { element: "custome_external_id", value: Date.now() + nanoid(13) } })
+        }
+    }, [productId, state.params.product_type])
+
     // useEffect(() => {
-    //     console.log(State);
-    // }, [State])
+    //     console.log('sku test', state.params.sku);
+    // }, [state])
 
     return (
         <productContext.Provider value={{
-            state: State.params,
+            state: state.params,
             store: {
-                state: State.store,
-                methods: { update: updateStore }
+                state: state.store,
+                methods: { update: (storeName, value) => dispatch({ type: "updateStore", params: { storeName, value } }) }
             },
-            methods: { updateState, fetch },
+            methods: {
+                updateState: (element, value) => dispatch({
+                    type: "updateState",
+                    params: { element, value }
+                }),
+                fetch,
+                setSync: (value) => dispatch({ type: "updateSync", params: { value } }),
+                dispatch
+            },
             productID: productId,
             loading: productId ? !isLoading : true,
+            sync: state.sync,
         }}>
             <ProductStore>
+                <ProductLoading />
                 <VStack spacing={5}>
-                    <General />
-                    <ProductPodDesign />
-                    <ShippingProduct />
-                    <Variant />
-                    <CollectionProduct />
-                    <ButtonsProduct />
+                    {state.params.product_type === "PRINT_ON_DEMAND" ? <PODProduct /> : <NormalProduct />}
                 </VStack>
             </ProductStore>
         </productContext.Provider>

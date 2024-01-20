@@ -4,21 +4,20 @@ import {
   Text,
   VStack
 } from "@chakra-ui/react";
-import AppTypography from 'components/common/typography/AppTypography';
 import OrderDetailTable from "./components/table/OrderDetailTable";
 import OrderDetailCost from "./components/table/parts/cost/OrderModalProduct";
+import OrderChain from "./components/table/parts/chain/OrderChain";
+import OrderModalPayment from "./components/table/parts/payment/OrderModalPayment";
 
 const OrderDetailComponent = () => {
 
   return (
     <VStack align={"stretch"} color={"#FFF"}>
-      <Flex justifyContent={"center"} marginBottom={7}>
-        <AppTypography size="18px" color={"#FFF"} weight="bolder">Order Details</AppTypography>
-      </Flex>
       <VStack align={"stretch"} spacing={10}>
         <Box><OrderDetailTable /></Box>
+        <Box><OrderModalPayment /></Box>
         <Box><OrderDetailCost /></Box>
-        {/* <Box><OrderDetailPayment /></Box> */}
+        <Box><OrderChain /></Box>
       </VStack>
 
     </VStack>

@@ -1,67 +1,47 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useMemo } from 'react'
 import { Box, HStack, Text, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import AppInput from 'components/common/form/textbox/AppInput'
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { productContext } from 'pages/product/single/context'
-import RecordModalModule from './recordFormModel'
 import { Isku } from 'lib/apis/product/interfaces'
-import { useMutation } from 'react-query'
-import { recordCasperService } from 'lib/apis/sku/services'
-import { IrecordCasperService } from 'lib/apis/sku/interfaces'
 import recordContext from '../../context'
 import useAppToast from 'functions/hooks/toast/useToast'
 import AppTypography from 'components/common/typography/AppTypography'
-
-export interface IRecordModalProduct {
-    title: string
-    description: string
-    shippingType: string
-    media: Array<string>
-    sku: Isku
-}
+import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork'
+import RecordCovers from './parts/covers/RecordCovers';
+import useStack from 'functions/hooks/stack/useStack';
+import useAppWeb3 from 'functions/hooks/web3/useWeb3';
+import useHookStore from 'functions/hooks/store/useHookStore';
 
 interface Iprops {
     close: Function
-    product: IRecordModalProduct
+    product: any
+    sku: Isku
 }
 
 interface IRecordSubmit {
     blockchain: string
     commission: number
+    quantity: string
 }
 
-function RecordForm({ close, product }: Iprops) {
-    const { state: { sku } } = useContext(productContext)
-    const { updateState, state: { loading } } = useContext(recordContext)
-    const { mutateAsync } = useMutation((params: IrecordCasperService) => recordCasperService(params))
-    const { openCasperWallet, casperRecord } = RecordModalModule
+function RecordForm({ close, product, sku }: Iprops) {
+    const stack = useStack()
+    const { updateState, state: { loading, image } } = useContext(recordContext)
+    const { web3 } = useAppWeb3()
     const { showToast } = useAppToast()
+    const { app: { user: { wallets } } } = useHookStore()
 
     const onSubmit = useCallback(async (data: IRecordSubmit) => {
         try {
-            if (data.blockchain === "CASPER") {
-                const CasperWallet = await openCasperWallet()
-                updateState("loading", true)
-                const record = await casperRecord({
-                    commission: data.commission,
-                    product,
-                    publicKey: CasperWallet.publicKey,
-                    sku: product.sku
-                })
-                if (!record.deployHash) throw Error("Desploy hash empty");
-                await mutateAsync({
-                    deploy_hash: record.deployHash,
-                    skuID: product.sku._id,
-                    commision: Number(data.commission)
-                }, {
-                    onSuccess: async () => {
-                        updateState("hashkey", record.deployHash)
-                    }
-                })
-            }
+            data.quantity = product.product_type === "PRINT_ON_DEMAND" ? "1000000" : sku.quantity.toString()
+            if (!image) throw Error('Please enter image')
+            updateState("loading", true)
+            const deployhash = await web3({ method: "record", params: { data, product, sku, imageUrl: image }, chain: data.blockchain, wallets, stack })
+            updateState("hashkey", deployhash)
+            updateState("loading", false)
+            updateState("blockchain", data.blockchain)
         } catch (error) {
             if (error?.message) {
                 if (error?.message.includes("The first argument")) return updateState("loading", false)
@@ -71,18 +51,21 @@ function RecordForm({ close, product }: Iprops) {
             }
             updateState("loading", false)
         }
-    }, [product, sku])
+    }, [product, sku, image, wallets, stack.stxAddress])
 
-    const formSchema = Yup.object().shape({
-        blockchain: Yup.string().required('Required'),
-        commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
-    });
+    const formSchema = useMemo(() => {
+        return Yup.object().shape({
+            blockchain: Yup.string().required('Required'),
+            commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
+        })
+    }, [product.product_type])
 
     return (
         <Formik
             initialValues={{
                 blockchain: '',
                 commission: 0,
+                quantity: ''
             }}
             validateOnChange={false}
             validationSchema={formSchema}
@@ -99,13 +82,9 @@ function RecordForm({ close, product }: Iprops) {
                                 </Text>
                             </Box>
                             <Box>
-                                <AppSelectBox
-                                    items={[{ value: "CASPER", caption: "Casper" }]}
-                                    name="blockchain"
-                                    label='Blockchain Network'
-                                    placeholder='Select Blockchain'
+                                <BlockchainNetwork
                                     error={errors.blockchain}
-                                    onChange={(e) => setFieldValue("blockchain", e.target.value)}
+                                    onChange={(e) => setFieldValue("blockchain", e)}
                                     value={values.blockchain}
                                 />
                             </Box>
@@ -118,10 +97,11 @@ function RecordForm({ close, product }: Iprops) {
                                     onChange={(e) => setFieldValue("commission", e.target.value)}
                                     value={values.commission || ""}
                                 />
-                                <AppTypography size='14px' weight='bolder' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography size='14px' weight='bolder' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
+                                <AppTypography fontSize='14px' fontWeight='bold' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography fontSize='14px' fontWeight='bold' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
                             </VStack>
+                            <RecordCovers />
                             <HStack justifyContent={"space-between"}>
-                                <Box width={"25%"}><BasicButton variant='outline' onClick={() => !loading ? close() : {}}>Cancel</BasicButton></Box>
+                                <Box width={"25%"}><BasicButton variant='outline' onClick={() => close()}>Cancel</BasicButton></Box>
                                 <Box width={"25%"}><BasicButton type="submit" isLoading={loading}>Drop</BasicButton></Box>
                             </HStack>
                         </VStack>
