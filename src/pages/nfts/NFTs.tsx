@@ -2,20 +2,26 @@ import { Box, Checkbox, Flex, useDisclosure, VStack } from '@chakra-ui/react'
 import { faker } from '@faker-js/faker'
 import AppCard from 'components/common/card/AppCard'
 import SearchDatagrid from 'components/common/datagrid/parts/search/SearchDatagrid'
+import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import AppImage from 'components/common/image/AppImage'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useState } from 'react'
 import NFTDetailsModal from './parts/NFTDetailsModal'
-
 function NFTs() {
     const [pageData, setPageData] = useState({ searchTerm: "", myProducts: false, selectedNFT: null })
     const { isOpen, onOpen, onClose } = useDisclosure()
     const isLoading = false;
     const nfts = Array.from({ length: 8 }).map(() => ({
-        image: faker.image.avatar,
+        image: faker.image.avatar(),
         title: faker.lorem.sentence(5)
     }))
+
+    const selectOptions = [
+        { caption: "All", value: "all" },
+        { caption: "My NFTs", value: "myNFTs" },
+        { caption: "My Products", value: "myProducts" }
+    ]
 
     const updatePageData = <K extends keyof typeof pageData>(key: K, value: typeof pageData[K]) =>
         setPageData({ ...pageData, [key]: value })
@@ -33,6 +39,7 @@ function NFTs() {
                             onChange={e => updatePageData("searchTerm", e.target.value)}
                         />
                         <Flex alignItems={"center"} gap={"36px"}>
+                            <AppSelectBox name={"NFT"} items={selectOptions} />
                             <Checkbox
                                 size='md'
                                 alignItems="center"
@@ -59,7 +66,7 @@ function NFTs() {
                                         onOpen()
                                     }}
                                 >
-                                    <AppImage src={nft.image()} objectFit={"cover"} width={"196px"} height={"196px"} />
+                                    <AppImage src={nft.image} objectFit={"cover"} width={"196px"} height={"196px"} />
                                     <Box paddingBlock={"12px"} paddingInline={"16px"}>
                                         <AppTypography fontSize={"14px"} fontWeight={"600"}>{nft.title}</AppTypography>
                                     </Box>
