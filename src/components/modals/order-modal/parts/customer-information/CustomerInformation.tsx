@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import AppTypography from 'components/common/typography/AppTypography';
-import orderModalContext from "components/modals/order-modal/context";
+import orderModalContext from "../context";
 import React, { useContext } from "react";
 
 const CustomerInformation = () => {

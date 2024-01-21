@@ -1,15 +1,15 @@
 import { Flex } from "@chakra-ui/react";
-import LoadingComponent from "components/common/loading-component/LoadingComponent";
 import AppModal from 'components/common/modal/AppModal';
 import { IgetOrderService } from "lib/apis/order/interfaces";
 import { getOrderService } from "lib/apis/order/services";
 import React, { useEffect } from "react";
 import { useMutation } from "react-query";
-import CustomerInformation from "./components/customer-information/CustomerInformation";
-import OrderDetails from "./components/order-details/OrderDetails";
-import OrderInformation from "./components/order-information/OrderInformation";
-import OrderItems from "./components/order-items/OrderItems";
-import orderModalContext from "./context";
+import orderModalContext from "./parts/context";
+import CustomerInformation from "./parts/customer-information/CustomerInformation";
+import ModalSkeleton from "./parts/modal-skeleton/ModalSkeleton";
+import OrderDetails from "./parts/order-details/OrderDetails";
+import OrderInformation from "./parts/order-information/OrderInformation";
+import OrderItems from "./parts/order-items/OrderItems";
 
 export default function OrderModal({ orderID, show, close }) {
   const { mutate, isLoading, data } = useMutation((params: IgetOrderService) => getOrderService(params))
@@ -20,16 +20,11 @@ export default function OrderModal({ orderID, show, close }) {
     <orderModalContext.Provider value={{ order: data?.data?.data }}>
       <AppModal open={show} isCentered={false} close={close} size="3xl" contentProps={{ padding: 9 }} title={"Order Details"}>
         <Flex justifyContent="center">
-          {isLoading ? <LoadingComponent /> : (
+          {isLoading ? <ModalSkeleton /> : (
             <Flex direction={"column"} gap={"36px"} width={"100%"}>
               <OrderInformation />
               <CustomerInformation />
-              <OrderDetails title="Shipping" />
-              <OrderDetails title="Tax" />
-              <OrderDetails title="Gift Card" />
-              <OrderDetails title="Affiliate" />
-              <OrderDetails title="Commission" />
-              <OrderDetails title="Payment Detail" />
+              <OrderDetails />
               <OrderItems />
             </Flex>
           )}

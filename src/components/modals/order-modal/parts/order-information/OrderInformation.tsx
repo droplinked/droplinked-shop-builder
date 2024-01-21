@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import ClipboardText from "components/common/clipboardText/ClipboardText";
 import AppTypography from 'components/common/typography/AppTypography';
-import orderModalContext from "components/modals/order-modal/context";
+import orderModalContext from "../context";
 import React, { useContext } from "react";
 
 const OrderInformation = () => {

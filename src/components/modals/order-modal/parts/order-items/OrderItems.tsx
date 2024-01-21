@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useContext } from 'react'
-import orderModalContext from '../../context'
+import orderModalContext from '../context'
 import CartItemBadge from './components/CartItemBadge'
 
 function OrderItems() {
