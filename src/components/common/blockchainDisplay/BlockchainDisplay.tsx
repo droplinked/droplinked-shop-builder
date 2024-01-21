@@ -1,6 +1,6 @@
 import AppIcons from 'assest/icon/Appicons';
-import React, { useMemo } from 'react'
-import classes from './style.module.scss'
+import React, { useMemo } from 'react';
+import classes from './style.module.scss';
 
 interface IProps {
     blockchain: string
@@ -47,8 +47,28 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
             name: 'Linea'
         },
         "UNISAT": {
-            icon: <AppIcons.Unisat className={classes.ripple} {...props} />,
+            icon: <AppIcons.Unisat {...props} />,
             name: 'Unisat'
+        },
+        "HEDERA": {
+            icon: <AppIcons.Hedera {...props} />,
+            name: 'Hedera'
+        },
+        "SKALE": {
+            icon: <AppIcons.Skale {...props} />,
+            name: 'Skale'
+        },
+        "UNSTOPPABLEDOMAIN": {
+            icon: <AppIcons.UnstoppableDomainsIcon {...props} />,
+            name: 'Unstoppable domain'
+        },
+        "XUMM": {
+            icon: <AppIcons.Xumm {...props} />,
+            name: 'Xumm'
+        },
+        "ETH": {
+            icon: <AppIcons.ETH {...props} />,
+            name: 'Eth'
         }
     }), [props])
 
