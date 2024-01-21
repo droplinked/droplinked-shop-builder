@@ -1,12 +1,12 @@
 import { Flex } from '@chakra-ui/layout'
-import { Spinner } from '@chakra-ui/spinner'
 import AppCard from 'components/common/card/AppCard'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTypography from 'components/common/typography/AppTypography'
 import { authSupportedService } from 'lib/apis/auth/services'
 import React, { useMemo } from 'react'
 import { useQuery } from 'react-query'
-import ChainAccordion from './parts/ChainAccordion'
+import ChainAccordion from './parts/accordion/ChainAccordion'
+import LoginMethodsLoading from './parts/loading/LoginMethodsLoading'
 
 function SupportedLoginMethods() {
     const { isLoading, error, data } = useQuery({
@@ -15,7 +15,6 @@ function SupportedLoginMethods() {
     })
 
     const response = useMemo(() => data?.data.data, [data])
-    console.log(response)
 
     return (
         <AppCard>
@@ -25,13 +24,7 @@ function SupportedLoginMethods() {
                     <AppTypography fontSize="14px" color="#C2C2C2">Allow or deny login option for each wallet</AppTypography>
                 </Flex>
                 <Flex direction={"column"} gap={"8px"}>
-                    {isLoading ?
-                        <Spinner />
-                        :
-                        response.map((chain, index) =>
-                            <ChainAccordion key={index} label={chain} />
-                        )
-                    }
+                    {isLoading ? <LoginMethodsLoading /> : response.map((chain, index) => <ChainAccordion key={index} label={chain} />)}
                 </Flex>
             </Flex>
         </AppCard>

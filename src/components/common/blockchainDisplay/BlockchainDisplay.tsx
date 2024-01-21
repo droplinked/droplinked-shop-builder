@@ -45,6 +45,10 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
         "LINEA": {
             icon: <AppIcons.Linea className={classes.ripple} {...props} />,
             name: 'Linea'
+        },
+        "UNISAT": {
+            icon: <AppIcons.Unisat className={classes.ripple} {...props} />,
+            name: 'Unisat'
         }
     }), [props])
 
