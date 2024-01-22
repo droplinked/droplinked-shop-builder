@@ -63,6 +63,11 @@ import { ReactComponent as WhiteShopIcon } from './white-shop.svg';
 import { ReactComponent as WhiteOpenWallet } from './white-open-wallet.svg';
 import { ReactComponent as HelpCenter } from './help-circle 1.svg';
 import { ReactComponent as Logout } from './log-out.svg';
+import { ReactComponent as Unisat } from './unisat.svg';
+import { ReactComponent as Hedera } from './hedera.svg';
+import { ReactComponent as Skale } from './skale.svg';
+import { ReactComponent as Xumm } from './xumm.svg';
+import { ReactComponent as ETH } from './eth.svg';
 
 const AppIcons = {
   ProductsIcon,
@@ -129,6 +134,11 @@ const AppIcons = {
   WhiteShopIcon,
   WhiteOpenWallet,
   HelpCenter,
-  Logout
+  Logout,
+  Unisat,
+  Hedera,
+  Skale,
+  Xumm,
+  ETH
 }
 export default AppIcons
