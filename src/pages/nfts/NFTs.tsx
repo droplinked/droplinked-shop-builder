@@ -46,7 +46,7 @@ function NFTs() {
                                 colorScheme='green'
                                 checked={pageData.myProducts}
                                 onChange={e => updatePageData("myProducts", e.target.checked)} >
-                                <AppTypography fontSize="12px" color="#C2C2C2">My Products</AppTypography>
+                                <AppTypography fontSize="12px" color="#C2C2C2" width={"68px"}>My Products</AppTypography>
                             </Checkbox>
                         </Flex>
                     </Flex>

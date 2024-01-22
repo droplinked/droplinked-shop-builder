@@ -46,8 +46,9 @@ function NFTDetailsModal({ open, close }: Props) {
                             <AppTypography width={"150px"} fontSize={"14px"} color={"#C2C2C2"}>Product Address</AppTypography>
                             <Link
                                 href='https://www.google.com'
-                                textDecorationColor={"#33A9EC"}
+                                target={"_blank"}
                                 textDecoration={"underline"}
+                                textDecorationColor={"#33A9EC"}
                                 color={"#33A9EC"}
                             >
                                 https://trello.com/b/iPcNVjUi/droplinked
