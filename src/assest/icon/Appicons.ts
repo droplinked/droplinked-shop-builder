@@ -59,6 +59,10 @@ import { ReactComponent as Hand } from './hand.svg';
 import { ReactComponent as Dashboard } from './dashboard.svg';
 import { ReactComponent as DatepickerDashboard } from './datepicker-dashboard.svg';
 import { ReactComponent as Linea } from './linea.svg';
+import { ReactComponent as WhiteShopIcon } from './white-shop.svg';
+import { ReactComponent as WhiteOpenWallet } from './white-open-wallet.svg';
+import { ReactComponent as HelpCenter } from './help-circle 1.svg';
+import { ReactComponent as Logout } from './log-out.svg';
 import { ReactComponent as NFT } from './white-nft-icon.svg';
 import { ReactComponent as Unisat } from './unisat.svg';
 import { ReactComponent as Hedera } from './hedera.svg';
@@ -128,6 +132,10 @@ const AppIcons = {
   Dashboard,
   DatepickerDashboard,
   Linea,
+  WhiteShopIcon,
+  WhiteOpenWallet,
+  HelpCenter,
+  Logout,
   NFT,
   Unisat,
   Hedera,
