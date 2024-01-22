@@ -60,6 +60,11 @@ import { ReactComponent as Dashboard } from './dashboard.svg';
 import { ReactComponent as DatepickerDashboard } from './datepicker-dashboard.svg';
 import { ReactComponent as Linea } from './linea.svg';
 import { ReactComponent as NFT } from './white-nft-icon.svg';
+import { ReactComponent as Unisat } from './unisat.svg';
+import { ReactComponent as Hedera } from './hedera.svg';
+import { ReactComponent as Skale } from './skale.svg';
+import { ReactComponent as Xumm } from './xumm.svg';
+import { ReactComponent as ETH } from './eth.svg';
 
 const AppIcons = {
   ProductsIcon,
@@ -123,6 +128,11 @@ const AppIcons = {
   Dashboard,
   DatepickerDashboard,
   Linea,
-  NFT
+  NFT,
+  Unisat,
+  Hedera,
+  Skale,
+  Xumm,
+  ETH
 }
 export default AppIcons
