@@ -23,7 +23,7 @@ const hashkeyModel = {
             case "BASE":
                 return `https://base${appDeveloment ? "-goerli" : ""}.blockscout.com/tx/${hashkey}`;
             case "LINEA":
-                return `https://${appDeveloment ? "goerli" : ""}.lineascan.build/tx/TXHASH`
+                return `https://${appDeveloment ? "goerli" : ""}.lineascan.build/tx/${hashkey}`
             default:
                 return ""
         }
