@@ -25,4 +25,4 @@ jobs:
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build s3://dev-droplinked-com-bucket --delete
       - name: Invalidate cache
-        run: aws cloudfront create-invalidation --distribution-id=E28SG2N8S2IKF5 --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id=E1FJVBL65XM53P --paths "/*"
