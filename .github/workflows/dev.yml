@@ -23,6 +23,6 @@ jobs:
       - name: Build React App
         run: npm install && npm run build 
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./build s3://dev-droplinked-com --delete
+        run: aws s3 sync ./build s3://dev-droplinked-com-bucket --delete
       - name: Invalidate cache
         run: aws cloudfront create-invalidation --distribution-id=E28SG2N8S2IKF5 --paths "/*"
