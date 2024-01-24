@@ -102,7 +102,7 @@ namespace OrderDetailsModel {
             ]
         };
 
-        return detailsMap["Publisher"]
+        return detailsMap[order?.type]
     }
 }
 
