@@ -1,19 +1,19 @@
 import { Box, HStack, Link, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import React, { useCallback, useContext, useMemo, useState } from 'react'
-import { productContext } from '../../context'
-import { useMutation } from 'react-query'
+import AppTypography from 'components/common/typography/AppTypography'
+import useStack from 'functions/hooks/stack/useStack'
+import useHookStore from 'functions/hooks/store/useHookStore'
+import useAppToast from 'functions/hooks/toast/useToast'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
+import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { productCreateServices, productUpdateServices } from 'lib/apis/product/productServices'
 import AppErrors from 'lib/utils/statics/errors/errors'
-import useAppToast from 'functions/hooks/toast/useToast'
-import ButtonsProductClass from './model/ButtonProductModel'
-import useStack from 'functions/hooks/stack/useStack'
-import ProductSingleModel from '../../model/model'
 import ModalHashkey from 'pages/affiliate/notifications/parts/list/parts/buttons/parts/hashkey/ModalHashkey'
-import AppTypography from 'components/common/typography/AppTypography'
-import useAppWeb3 from 'functions/hooks/web3/useWeb3'
-import useHookStore from 'functions/hooks/store/useHookStore'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
+import { useMutation } from 'react-query'
+import { productContext } from '../../context'
+import ProductSingleModel from '../../model/model'
+import ButtonsProductClass from './model/ButtonProductModel'
 
 // prdocut page
 function ButtonsProduct() {
@@ -77,16 +77,16 @@ function ButtonsProduct() {
                 } catch (error) {
                     // shopNavigate("products")
                     console.log(error);
-                    showToast("Somthimg went wrong", "error")
+                    showToast({message: "Somthimg went wrong", type: "error"})
                 }
             } else {
-                showToast(draft ? AppErrors.product.your_product_draft : productID ? AppErrors.product.your_product_updated : AppErrors.product.your_product_published, "success")
+                showToast({message: draft ? AppErrors.product.your_product_draft : productID ? AppErrors.product.your_product_updated : AppErrors.product.your_product_published, type: "success"})
                 shopNavigate("products")
             }
             setStateHandle("loading", false)
         } catch (error) {
             setStateHandle("loading", false)
-            showToast(error?.response?.data?.data?.message ? error?.response?.data?.data?.message : error?.message ? error.message : "Oops! Something went wrong", "error")
+            showToast({message: error?.response?.data?.data?.message ? error?.response?.data?.data?.message : error?.message ? error.message : "Oops! Something went wrong", type: "error"})
         }
     }, [state, productID, stacks, wallets, stacks.stxAddress])
 

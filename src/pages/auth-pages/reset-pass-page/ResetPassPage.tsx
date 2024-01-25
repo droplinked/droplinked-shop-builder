@@ -1,19 +1,19 @@
-import React, { useCallback, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import "./ResetPassPage-style.scss";
-import BasicButton from 'components/common/BasicButton/BasicButton';
-import useAppToast from "functions/hooks/toast/useToast";
 import { Box, Flex, VStack } from "@chakra-ui/react";
+import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppInput from 'components/common/form/textbox/AppInput';
 import AppTypography from 'components/common/typography/AppTypography';
-import { useMutation } from "react-query";
-import { IchangePasswordService } from "lib/apis/user/interfaces";
-import { changePasswordService } from "lib/apis/user/services";
 import ShowPassword from "components/modals/signup-modal/signup-producer/parts/showPassword/ShowPassword";
 import { Form, Formik } from "formik";
-import * as Yup from 'yup';
+import useAppToast from "functions/hooks/toast/useToast";
+import { IchangePasswordService } from "lib/apis/user/interfaces";
+import { changePasswordService } from "lib/apis/user/services";
 import { passwordRegex } from "lib/utils/heper/regex";
 import AppErrors from "lib/utils/statics/errors/errors";
+import React, { useCallback, useState } from "react";
+import { useMutation } from "react-query";
+import { useNavigate, useParams } from "react-router-dom";
+import * as Yup from 'yup';
+import "./ResetPassPage-style.scss";
 
 export default function ResetPassPage() {
   const { mutateAsync, isLoading } = useMutation((params: IchangePasswordService) => changePasswordService(params))
@@ -32,10 +32,13 @@ export default function ResetPassPage() {
   const onSubmit = async (data) => {
     try {
       await mutateAsync({ accountRecoveryToken: token, newPassword: data.password })
-      showToast("Confirmation email sent! Please check your inbox and follow the instructions to reset your account password.", "success");
+      showToast({
+        message: "Confirmation email sent! Please check your inbox and follow the instructions to reset your account password.",
+        type: "success"
+      });
       navigate("/?modal=login");
     } catch (error) {
-      showToast(error?.response?.data?.data?.message || error?.message, 'error')
+      showToast({ message: error?.response?.data?.data?.message || error?.message, type: 'error' })
     }
   };
 

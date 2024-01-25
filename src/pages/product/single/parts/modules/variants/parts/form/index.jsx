@@ -1,12 +1,12 @@
 import { Box, HStack, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import React, { useCallback, useContext, useMemo } from 'react'
-import VariantMakeForm from './parts/container'
-import VariantsFormModel from './model/model'
-import { productContext } from 'pages/product/single/context'
-import { Formik, Form } from 'formik';
-import variontFormContext from './context';
+import { Form, Formik } from 'formik'
 import useAppToast from 'functions/hooks/toast/useToast'
+import { productContext } from 'pages/product/single/context'
+import React, { useCallback, useContext, useMemo } from 'react'
+import variontFormContext from './context'
+import VariantsFormModel from './model/model'
+import VariantMakeForm from './parts/container'
 
 function SkuForm({ close, update }) {
     const { state: { properties, sku }, methods: { updateState } } = useContext(productContext)
@@ -32,7 +32,7 @@ function SkuForm({ close, update }) {
 
             close()
         } catch (error) {
-            showToast(error?.errors ? error?.errors[0] : error, "error");
+            showToast({ message: error?.errors ? error?.errors[0] : error, type: "error"});
         }
     }
 

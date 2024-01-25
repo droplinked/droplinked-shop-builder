@@ -8,16 +8,13 @@ interface Iprops {
 }
 
 function ClipboardText({ text, props }: Iprops) {
-    const copy = useCallback((text: string) => navigator.clipboard.writeText(text), [])
     const { showToast } = useAppToast()
+    const handleClick = useCallback(() => {
+        navigator.clipboard.writeText(text)
+        showToast({ message: 'Copied', type: "info", options: { autoClose: 200, hideProgressBar: true } })
+    }, [])
 
-    return <AppIcons.CopyIcon width={"18px"} height="18px" {...props} onClick={() => {
-        copy(text)
-        showToast('Copied', "info", {
-            autoClose: 200,
-            hideProgressBar: true
-        })
-    }} style={{ cursor: "pointer" }} />
+    return <AppIcons.CopyIcon width={"18px"} height="18px" {...props} onClick={handleClick} style={{ cursor: "pointer" }} />
 }
 
 export default ClipboardText

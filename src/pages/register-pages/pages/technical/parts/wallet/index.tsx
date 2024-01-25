@@ -1,18 +1,17 @@
-import { Box, Flex, HStack, VStack } from '@chakra-ui/react'
-import React, { useCallback } from 'react'
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
-import AppCard from 'components/common/card/AppCard';
-import { useQuery } from 'react-query';
-import { supportedChainsService } from 'lib/apis/sku/services';
-import useAppWeb3 from 'functions/hooks/web3/useWeb3';
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
-import AppTypography from 'components/common/typography/AppTypography';
+import { Box, Flex, HStack, VStack } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
-import useAppToast from 'functions/hooks/toast/useToast';
-import ClipboardText from 'components/common/clipboardText/ClipboardText';
-import useHookStore from 'functions/hooks/store/useHookStore';
-import useStack from 'functions/hooks/stack/useStack';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
+import AppCard from 'components/common/card/AppCard';
+import ClipboardText from 'components/common/clipboardText/ClipboardText';
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
+import AppTypography from 'components/common/typography/AppTypography';
+import useStack from 'functions/hooks/stack/useStack';
+import useHookStore from 'functions/hooks/store/useHookStore';
+import useAppToast from 'functions/hooks/toast/useToast';
+import useAppWeb3 from 'functions/hooks/web3/useWeb3';
+import { supportedChainsService } from 'lib/apis/sku/services';
+import React, { useCallback } from 'react';
+import { useQuery } from 'react-query';
 
 function Wallet() {
     const { data, isLoading } = useQuery({
@@ -30,7 +29,7 @@ function Wallet() {
         try {
             await login({ chain, wallets, stack })
         } catch (error) {
-            showToast(error || 'Failed login', 'warning')
+            showToast({ message: error || 'Failed login', type: 'warning' })
         }
     }, [wallets, stack.stxAddress])
 
