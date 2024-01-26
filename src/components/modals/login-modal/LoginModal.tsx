@@ -1,17 +1,16 @@
-import { Box } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import React from "react";
-import { BottomText } from "./LoginModal-style";
-import { appDeveloment } from "lib/utils/app/variable";
-import AppInput from "components/common/form/textbox/AppInput";
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import AppErrors from "lib/utils/statics/errors/errors";
-import useAppToast from "functions/hooks/toast/useToast";
-import AppModal from "components/common/modal/AppModal";
+import { Box, Flex } from "@chakra-ui/react";
 import BasicButton from "components/common/BasicButton/BasicButton";
+import AppInput from "components/common/form/textbox/AppInput";
+import AppModal from "components/common/modal/AppModal";
+import { Form, Formik } from 'formik';
 import useHookStore from "functions/hooks/store/useHookStore";
+import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import { appDeveloment } from "lib/utils/app/variable";
+import AppErrors from "lib/utils/statics/errors/errors";
+import React from "react";
+import * as Yup from 'yup';
+import { BottomText } from "./LoginModal-style";
 
 interface Iform {
   email: string
@@ -21,69 +20,55 @@ interface Iform {
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   const { app: { login, loading } } = useHookStore()
   const { showToast } = useAppToast()
-  const { shopRoute, shopNavigate } = useCustomNavigate()
+  const { shopNavigate } = useCustomNavigate()
 
   // submit form function
-  const onSubmit = async (data: Iform) => {
+  const handleLoginFormSubmit = async (data: Iform) => {
     try {
       let result = await login(data)
-      if (result) loginFunction(result);
+      if (result) handleLoginProcess(result);
     } catch (error) {
       showToast(error?.message, "error");
     }
   };
 
   // action on user data based on type and status
-  const loginFunction = (data: any) => {
+  const handleLoginProcess = (data: any) => {
     // check customer
-    if (data.user.type !== "PRODUCER") return showToast("This account cant login", "error");
+    if (data.user.type !== "PRODUCER") return showToast("This account cannot be logged in", "error");
 
     //first close modal
     close();
     const status = appDeveloment && data.user.status === "NEW" ? "VERIFIED" : data.user.status
-
-    if (status === "DELETED") {
-      showToast("This account has been deleted", "error");
-      return;
-    } else {
-      navigateUser(status, data);
-      return;
-    }
+    status === "DELETED" ? showToast("This account has been deleted", "error") : navigateUser(status, data)
   };
 
   // navigate user based on status
   const navigateUser = (status: string, data: any) => {
-    // eslint-disable-next-line default-case
     switch (status) {
       case "NEW":
         localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
         shopNavigate("/email-confirmation");
-        return;
+        break;
       case "VERIFIED":
-        shopNavigate(`register/shop-info`);
-        return;
       case "PROFILE_COMPLETED":
-        shopNavigate(`register/shop-info`);
-        return;
+        shopNavigate("register/shop-info");
+        break;
       case "SHOP_INFO_COMPLETED":
-        shopNavigate(``);
-        return;
       case "IMS_TYPE_COMPLETED":
-        shopNavigate(``);
-        return;
       case "ACTIVE":
-        shopNavigate(``);
-        return;
+        shopNavigate("");
+        break;
     }
   };
 
   const formSchema = Yup.object().shape({
-    email: Yup.string().email(AppErrors.signin.invalid_email_address).required('Required'),
-    password: Yup.string().required('Required'),
+    email: Yup.string().email(AppErrors.signin.invalid_email_address).required('Email is required'),
+    password: Yup.string().required('Password is required'),
   });
 
   return (
-    <AppModal open={show} title="Sign in" close={close}>
+    <AppModal title="Sign in" open={show} close={close}>
       <Formik
         initialValues={{
           email: '',
@@ -91,48 +76,41 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
         }}
         validateOnChange={false}
         validationSchema={formSchema}
-        onSubmit={onSubmit}
+        onSubmit={handleLoginFormSubmit}
       >
-
         {({ errors, values, setFieldValue }) => (
           <Form>
-            <Box w="100%">
-              <Box w="100%">
-                <AppInput
-                  error={errors.email ? errors.email.toString() : ""}
-                  name="email"
-                  onChange={(e) => setFieldValue("email", e.target.value)}
-                  value={values.email}
-                />
-                <Box mb="16px"></Box>
-                <AppInput
-                  type="password"
-                  name="password"
-                  error={errors.password ? errors.password.toString() : ""}
-                  onChange={(e) => setFieldValue("password", e.target.value)}
-                  value={values.password}
-                />
-                <Box mb="16px"></Box>
-                <BasicButton type="submit" minWidth={"100%"} isDisabled={loading} isLoading={loading}>
-                  Login
-                </BasicButton>
-              </Box>
-              <Box mb="8px"></Box>
+            <Flex direction={"column"} gap={"16px"}>
+              <AppInput
+                error={errors.email ? errors.email.toString() : ""}
+                name="email"
+                onChange={(e) => setFieldValue("email", e.target.value)}
+                value={values.email}
+              />
+              <AppInput
+                type="password"
+                name="password"
+                error={errors.password ? errors.password.toString() : ""}
+                onChange={(e) => setFieldValue("password", e.target.value)}
+                value={values.password}
+              />
+              <BasicButton type="submit" isDisabled={loading} isLoading={loading}>
+                Login
+              </BasicButton>
+            </Flex>
+            <Flex direction={"column"} gap={"4px"} mt={"8px"}>
               <BottomText onClick={switchReset}>
-                Forgot
-                <Box as="span" ml={1} color="green.500">
+                Forgot {" "}
+                <Box as="span" color="green.500">
                   password?
                 </Box>
               </BottomText>
-              <Box mb="4px"></Box>
               <BottomText onClick={switchModal}>
                 Don’t have an account?{" "}
-                <Box as="span" mx={1} color="green.500">
-                  Sign up
-                </Box>
+                <Box as="span" color="green.500">Sign up</Box>{" "}
                 now!
               </BottomText>
-            </Box>
+            </Flex>
           </Form>
         )}
       </Formik>

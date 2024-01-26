@@ -22,9 +22,8 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
       repassword: false
     }
   })
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { showToast } = useAppToast();
-
   const toggleShowField = useCallback((field: any) => setStates(prev => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), [])
 
   const onSubmit = async (data: any) => {
@@ -102,7 +101,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
             </BasicButton>
 
             <BottomText onClick={switchToggle}>
-              Already have an account? <a>Sign in</a> now
+              Already have an account? <a>Sign in</a> now!
             </BottomText>
           </Stack>
         </Form>

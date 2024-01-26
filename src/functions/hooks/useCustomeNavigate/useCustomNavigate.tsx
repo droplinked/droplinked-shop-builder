@@ -1,6 +1,5 @@
 import { SHOP_URL } from "lib/utils/app/variable";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import { useProfile } from "../useProfile/useProfile";
 
 interface IredirectToShop {
@@ -10,7 +9,6 @@ interface IredirectToShop {
 
 //this hook have been used for handle shop and user data
 export function useCustomNavigate() {
-
   const { shop } = useProfile();
   const navigate = useNavigate();
   const location = useLocation()
@@ -32,9 +30,5 @@ export function useCustomNavigate() {
     }
   }
 
-  return {
-    shopNavigate,
-    shopRoute,
-    redirectToIo
-  };
+  return { shopNavigate, shopRoute, redirectToIo };
 }

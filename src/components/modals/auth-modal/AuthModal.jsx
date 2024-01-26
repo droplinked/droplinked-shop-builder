@@ -1,8 +1,7 @@
-import { useState  } from "react";
-
+import { useState } from "react";
 import LoginModal from "../login-modal/LoginModal";
-import SignupModal from "../signup-modal/SignupModal";
 import ResetPassModal from "../reset-pass-modal/ResetPassModal";
+import SignupModal from "../signup-modal/SignupModal";
 
 const MODAL_TYPE = {
   SIGNIN: "SIGNIN",
@@ -10,9 +9,8 @@ const MODAL_TYPE = {
   RESET: "RESET",
 };
 
-const AuthModal = ({ show, close ,shopName , type }) => {
-
-  const [modalType, setModalType] = useState((type)?type:MODAL_TYPE.SIGNIN);
+const AuthModal = ({ show, close, shopName, type }) => {
+  const [modalType, setModalType] = useState(type || MODAL_TYPE.SIGNIN);
 
   const switchModal = () =>
     setModalType(
@@ -25,7 +23,7 @@ const AuthModal = ({ show, close ,shopName , type }) => {
     );
 
     const closeModal = () => {
-      setModalType((type)?type:MODAL_TYPE.SIGNIN);
+      setModalType(type || MODAL_TYPE.SIGNIN);
       close()
     }
 

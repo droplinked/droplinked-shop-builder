@@ -92,7 +92,7 @@ function HomePage() {
           }}
         />
       </div>
-      {isOpen && <AuthModal show={true} type="SIGNIN" close={onClose} />}
+      <AuthModal show={isOpen} close={onClose} type="SIGNIN" />
     </ParallaxProvider >
   )
 }
