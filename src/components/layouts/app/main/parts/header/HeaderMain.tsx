@@ -1,16 +1,15 @@
-import { Box, Flex, Image } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
-import AuthModal from 'components/modals/auth-modal/AuthModal';
-import useHookStore from 'functions/hooks/store/useHookStore';
-import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Box, Flex, Image, useDisclosure } from '@chakra-ui/react';
 import droplinkFull from "assest/image/droplinkFull.svg";
+import AppTypography from 'components/common/typography/AppTypography';
 import HeaderDashboardLogedin from 'components/layouts/app/dashboard/parts/header/parts/loged/HeaderDashboardLogedin';
+import LoginModal from 'components/modals/login-modal/LoginModal';
+import useHookStore from 'functions/hooks/store/useHookStore';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 function HeaderMain() {
   const { app: { shop } } = useHookStore();
-  const [authModal, setAuthModal] = useState(false);
-  const toggleAuthModal = () => setAuthModal((p) => !p);
+  const loginModal = useDisclosure()
   const location = useLocation()
 
   return (
@@ -23,11 +22,11 @@ function HeaderMain() {
         </Flex>
         <Box>
           {shop ? <HeaderDashboardLogedin /> : (
-            <AppTypography borderRadius="8px" cursor="pointer" onClick={toggleAuthModal} color="#C2C2C2" border="2px solid #292929" padding={{ base: "6px 13px", lg: "6px 23px" }} fontSize='12px'>Sign In</AppTypography>
+            <AppTypography borderRadius="8px" cursor="pointer" onClick={loginModal.onOpen} color="#C2C2C2" border="2px solid #292929" padding={{ base: "6px 13px", lg: "6px 23px" }} fontSize='12px'>Sign In</AppTypography>
           )}
         </Box>
       </Flex>
-      <AuthModal show={authModal} shopName={shop?.name} close={toggleAuthModal} />
+      <LoginModal show={loginModal.isOpen} open={loginModal.onOpen} close={loginModal.onClose} />
     </>
   )
 }

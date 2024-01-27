@@ -1,16 +1,17 @@
 import { Box, Flex, Image, Text, useDisclosure, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
-import React from 'react'
-import Droplinked from './parts/droplinked/Droplinked'
-import Typewriter from 'typewriter-effect';
+import LoginModal from 'components/modals/login-modal/LoginModal'
+import SignupModal from 'components/modals/signup-modal/SignupModal'
 import useHookStore from 'functions/hooks/store/useHookStore'
-import AuthModal from 'components/modals/auth-modal/AuthModal'
-import { Parallax } from 'react-scroll-parallax'
+import React from 'react'
+import Typewriter from 'typewriter-effect'
+import Droplinked from './parts/droplinked/Droplinked'
 
 function Banner() {
     const { app: { shop } } = useHookStore();
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const signupModal = useDisclosure()
+    const loginModal = useDisclosure()
 
     return (
         <>
@@ -42,14 +43,18 @@ function Banner() {
                             </Text>
                         </Box>
                         <Box>
-                            <BasicButton onClick={onOpen} minWidth={{ base: "120px", sm: "160px" }} height={{ base: "32px", sm: "40px" }}>
+                            <BasicButton onClick={signupModal.onOpen} minWidth={{ base: "120px", sm: "160px" }} height={{ base: "32px", sm: "40px" }}>
                                 <AppTypography fontSize={{ base: "12px", sm: "16px" }}>Start Selling</AppTypography>
                             </BasicButton>
                         </Box>
                     </VStack>
                 </Flex>
             </Box>
-            {isOpen && <AuthModal show={isOpen} type="SIGNUP" shopName={shop?.name} close={onClose} />}
+            <SignupModal show={signupModal.isOpen} close={signupModal.onClose} shopName={shop?.name} switchToLogin={() => {
+                signupModal.onClose()
+                loginModal.onOpen()
+            }} />
+            <LoginModal show={loginModal.isOpen} open={loginModal.onOpen} close={loginModal.onClose} />
         </>
     )
 }

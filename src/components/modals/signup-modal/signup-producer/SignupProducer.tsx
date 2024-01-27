@@ -1,20 +1,20 @@
-import { useNavigate } from "react-router-dom";
-import React, { useState, useCallback } from "react";
 import { Box, Stack } from "@chakra-ui/react";
-import { BottomText } from "../SignupModal-style";
+import BasicButton from "components/common/BasicButton/BasicButton";
 import AppInput from 'components/common/form/textbox/AppInput';
-import { Formik, Form } from 'formik';
+import AppTypography from "components/common/typography/AppTypography";
+import { Form, Formik } from 'formik';
+import useAppToast from "functions/hooks/toast/useToast";
+import { IsignupService } from "lib/apis/user/interfaces";
+import { signupService } from "lib/apis/user/services";
+import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
+import AppErrors from "lib/utils/statics/errors/errors";
+import React, { useCallback, useState } from "react";
+import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 import ShowPassword from "./parts/showPassword/ShowPassword";
-import AppErrors from "lib/utils/statics/errors/errors";
-import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
-import useAppToast from "functions/hooks/toast/useToast";
-import { useMutation } from "react-query";
-import { signupService } from "lib/apis/user/services";
-import { IsignupService } from "lib/apis/user/interfaces";
-import BasicButton from "components/common/BasicButton/BasicButton";
 
-const SignupProducer = ({ close, shopname, switchToggle }) => {
+const SignupProducer = ({ close, shopname, switchToLogin }) => {
   const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params))
   const [States, setStates] = useState({
     show: {
@@ -100,9 +100,11 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
               Sign up
             </BasicButton>
 
-            <BottomText onClick={switchToggle}>
-              Already have an account? <a>Sign in</a> now!
-            </BottomText>
+            <AppTypography fontSize={{ base: "12px", md: "14px" }} fontWeight={400} color={"#FFFFFF"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchToLogin}>
+              Already have an account?{" "}
+              <Box as="span" color="green.500">Sign in</Box>{" "}
+              now!
+            </AppTypography>
           </Stack>
         </Form>
       )}

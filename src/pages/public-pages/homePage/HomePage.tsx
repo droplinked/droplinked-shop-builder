@@ -2,7 +2,7 @@ import { Box, Image, Show, useDisclosure } from '@chakra-ui/react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
 import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
-import AuthModal from 'components/modals/auth-modal/AuthModal';
+import LoginModal from 'components/modals/login-modal/LoginModal';
 import useHookStore from 'functions/hooks/store/useHookStore';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Navigate, useSearchParams } from 'react-router-dom';
@@ -92,7 +92,7 @@ function HomePage() {
           }}
         />
       </div>
-      <AuthModal show={isOpen} close={onClose} type="SIGNIN" />
+      <LoginModal show={isOpen} open={onOpen} close={onClose} />
     </ParallaxProvider >
   )
 }

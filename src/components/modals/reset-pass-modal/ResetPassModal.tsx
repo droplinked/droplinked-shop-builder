@@ -12,7 +12,7 @@ import AppErrors from "lib/utils/statics/errors/errors";
 import * as Yup from 'yup';
 import BasicButton from "components/common/BasicButton/BasicButton";
 
-const ResetPassModal = ({ show, close, switchReset }) => {
+const ResetPassModal = ({ show, close, switchToLogin }) => {
   const { mutateAsync, isLoading } = useMutation((params: IforgetPasswordService) => forgetPasswordService(params))
   const { showToast } = useAppToast();
 
@@ -54,7 +54,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
                 onChange={(e) => setFieldValue("email", e.target.value)}
               />
               <BasicButton minWidth={"100%"} type="submit" isLoading={isLoading}>Send Verification</BasicButton>
-              <BasicButton width={"100%"} sizes="medium" onClick={switchReset} variant={"link"}>
+              <BasicButton width={"100%"} sizes="medium" onClick={switchToLogin} variant={"link"}>
                 Back to login
               </BasicButton>
             </VStack>
