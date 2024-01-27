@@ -1,18 +1,13 @@
-import axios from "axios";
-import { Image, Box, Text, Flex } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
-import {
-  ImagesInputWrapper,
-  ItemImage,
-  InputAddImage,
-  DeleteIcon,
-} from "./Input-images-style";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import dltImg from "assest/icon/icons8-multiply-100.png";
 import uploadImage from "assest/icon/upload-icon.svg";
+import axios from "axios";
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
-import AppErrors from "lib/utils/statics/errors/errors";
 import useAppToast from "functions/hooks/toast/useToast";
 import { toMb } from "lib/utils/heper/helpers";
+import AppErrors from "lib/utils/statics/errors/errors";
+import React, { useRef, useState } from "react";
+import { DeleteIcon, ImagesInputWrapper, InputAddImage, ItemImage } from "./Input-images-style";
 
 interface IProps {
   setState: any
@@ -35,7 +30,7 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
   const changeImage = (e) => {
     const file = e.target.files[0];
     if (file.size > toMb({ value: 5 })) {
-      showToast(AppErrors.store.size_limit({ fieldName: "Product", size: "5MB" }), "error");
+      showToast({ message: AppErrors.store.size_limit({ fieldName: "Product", size: "5MB" }), type: "error" });
       setLoading(false);
       return;
     }
@@ -45,7 +40,7 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
       file.type !== "image/webp" &&
       file.type !== "image/jpg"
     ) {
-      showToast(AppErrors.product.product_image_type_not_supported, "error");
+      showToast({ message: AppErrors.product.product_image_type_not_supported, type: "error" });
       setLoading(false);
       return;
     }
@@ -63,12 +58,12 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
         imgArr.push(e.data[size]);
         if (onSuccess) onSuccess(e.data)
         setState(imgArr);
-        showToast(message ? message : e.data.message, "success");
+        showToast({ message: message ? message : e.data.message, type: "success" });
         setLoading(false);
         return;
       })
       .catch((e) => {
-        showToast(e.response.data.message, "error");
+        showToast({ message: e.response.data.message, type: "error" });
         setLoading(false);
         return;
       });

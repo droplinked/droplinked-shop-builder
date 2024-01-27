@@ -1,16 +1,11 @@
 import { Box } from "@chakra-ui/react";
-import React, { useState } from "react";
-import {
-  ThankPageWrapper,
-  ThankText,
-  MessageText,
-  EmailText,
-} from "./ThankForRegisterPage-style";
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import useAppToast from "functions/hooks/toast/useToast";
-import { useMutation } from "react-query";
-import { resendEmailService } from "lib/apis/user/services";
 import { IresendEmailService } from "lib/apis/user/interfaces";
+import { resendEmailService } from "lib/apis/user/services";
+import React, { useState } from "react";
+import { useMutation } from "react-query";
+import { EmailText, MessageText, ThankPageWrapper, ThankText } from "./ThankForRegisterPage-style";
 
 export default function ThankForRegisterPage() {
   const { mutateAsync } = useMutation((params: IresendEmailService) => resendEmailService(params))
@@ -28,9 +23,9 @@ export default function ThankForRegisterPage() {
       await mutateAsync({ email })
       setLoading(false);
       // if get error from api
-      showToast("A new link was sent to your email", "success");
+      showToast({ message: "A new link was sent to your email", type: "success" });
     } catch (error) {
-      showToast(error?.response?.data?.message[0], "error");
+      showToast({ message: error?.response?.data?.message[0], type: "error" });
       setLoading(false);
     }
   };

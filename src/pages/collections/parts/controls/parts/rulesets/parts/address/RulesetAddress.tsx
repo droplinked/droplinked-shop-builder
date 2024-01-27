@@ -1,14 +1,12 @@
-import { Box, Flex, HStack, Input, VStack } from '@chakra-ui/react'
+import { Flex, HStack, Input, VStack } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import ErrorLabel from 'components/common/form/errorLabel/errorLabel';
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
-import AppSelectBox from 'components/common/form/select/AppSelectBox';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
-import React, { useCallback, useContext, useRef, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react';
 import ruleModelContext from '../../context';
-
 
 function RulesetAddress() {
     const { loading, setFieldValue, values, errors } = useContext(ruleModelContext)
@@ -31,7 +29,7 @@ function RulesetAddress() {
             setFieldValue("address", [...address, keywrod])
             setKeywrod("")
         } catch (error) {
-            showToast(error.message, "error")
+            showToast({ message: error.message, type: "error" })
         }
     }, [values, Keywrod])
 

@@ -1,11 +1,4 @@
-import {
-  Box,
-  Radio,
-  RadioGroup,
-  Text,
-  useDisclosure,
-  VStack,
-} from "@chakra-ui/react"
+import { Box, Radio, RadioGroup, Text, useDisclosure, VStack } from "@chakra-ui/react"
 import BasicButton from "components/common/BasicButton/BasicButton"
 import AppCard from "components/common/card/AppCard"
 import AppDialog from "components/common/dialog"
@@ -13,20 +6,14 @@ import FieldLabel from "components/common/form/fieldLabel/FieldLabel"
 import AppTypography from "components/common/typography/AppTypography"
 import useAppToast from "functions/hooks/toast/useToast"
 import { capitalizeFirstLetter } from "lib/utils/heper/helpers"
-import {
-  BlackBox,
-  TextLabelBold,
-} from "pages/register-pages/RegisterPages-style"
+import { BlackBox, TextLabelBold } from "pages/register-pages/RegisterPages-style"
 import React, { useContext, useState } from "react"
 import technicalContext from "../../context"
 
 function Ims() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [RadioGroupValue, setRadioGroup] = useState("")
-  const {
-    updateState,
-    state: { imsType },
-  } = useContext(technicalContext)
+  const {updateState, state: { imsType }} = useContext(technicalContext)
   const { showToast } = useAppToast()
 
   return (
@@ -121,7 +108,7 @@ function Ims() {
                 <BasicButton
                   onClick={() => {
                     if (!RadioGroupValue.length)
-                      return showToast("Please choose type", "error")
+                      return showToast({ message: "Please choose type", type: "error"})
                     onOpen()
                   }}
                   sizes="medium">
@@ -142,7 +129,7 @@ function Ims() {
             this is the the method you want to use.
           </>
         }
-        title="Warning !"
+        title="Warning!"
         buttons={[
           {
             children: "Cancel",

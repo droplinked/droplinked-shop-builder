@@ -1,11 +1,11 @@
-import React, { useCallback, useContext } from 'react'
-import { productContext } from 'pages/product/single/context';
 import useAppToast from 'functions/hooks/toast/useToast';
-import propertyItemModel, { IaddPropertyItem } from './parts/item/model';
-import propertiesFormContext from './context'
-import PropertyFormProduct from './parts/form/PropertyFormProduct';
-import PODProperties from './parts/pod/PODProperties';
+import { productContext } from 'pages/product/single/context';
 import ProductModel from 'pages/product/single/model';
+import React, { useCallback, useContext } from 'react';
+import propertiesFormContext from './context';
+import PropertyFormProduct from './parts/form/PropertyFormProduct';
+import propertyItemModel, { IaddPropertyItem } from './parts/item/model';
+import PODProperties from './parts/pod/PODProperties';
 
 function Properties() {
     const { state: { properties, product_type, sku, prodviderID, publish_product }, methods: { updateState }, store: { state: { print_positions } }, productID } = useContext(productContext)
@@ -31,7 +31,7 @@ function Properties() {
             await checkItem(item.value)
             updateState("properties", addPropertyItem({ item, properties }))
         } catch (error) {
-            showToast("This property exist", "error", { toastId: "SkuUsed" })
+            showToast({ message: "This property exist", type: "error", options: { toastId: "SkuUsed" } })
         }
     }, [updateState, sku, properties, productID, publish_product])
 

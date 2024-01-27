@@ -20,10 +20,10 @@ function RechargePayment() {
 
     const onSubmit = async (data: any) => {
         try {
-            const query = await mutateAsync(data)            
+            const query = await mutateAsync(data)
             updateState('clientSecret', query.data.data.clientSecret)
         } catch (error) {
-            showToast(error?.message || 'Oops! Something went wrong', 'error')
+            showToast({ message: error?.message || 'Oops! Something went wrong', type: 'error' })
         }
     }
 

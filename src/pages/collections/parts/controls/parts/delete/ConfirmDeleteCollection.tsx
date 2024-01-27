@@ -36,11 +36,11 @@ function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
                     onClick: () => {
                         mutate({ collectionID }, {
                             onSuccess: () => {
-                                showToast(AppErrors.collection.delete_Collection, "success")
+                                showToast({ message: AppErrors.collection.delete_Collection, type: "success" })
                                 fetch()
                                 close()
                             },
-                            onError: async () => showToast("Oops! Something went wrong", "error")
+                            onError: async () => showToast({ message: "Oops! Something went wrong", type: "error" })
                         })
                     }
                 }
