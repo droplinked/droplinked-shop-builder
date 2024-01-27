@@ -7,10 +7,10 @@ import { ImockupGeneratorService, IpodAvailableVariantsService } from 'lib/apis/
 import { generateThumbService, mockupGeneratorService, podAvailableVariantsService } from 'lib/apis/pod/services';
 import { productContext } from 'pages/product/single/context';
 import ProductTypeModel from 'pages/product/single/parts/modules/productType/model';
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useMutation } from 'react-query';
 import PrintfulModel from './model';
-import classes from './style.module.scss'
+import classes from './style.module.scss';
 
 interface IProps {
     close: any
@@ -21,7 +21,6 @@ function Printful({ close }: IProps) {
     const availableVariants = useMutation((params: IpodAvailableVariantsService) => podAvailableVariantsService(params))
     const mockupGenerator = useMutation((params: ImockupGeneratorService) => mockupGeneratorService(params))
     const generateThumb = useMutation((params: any) => generateThumbService(params))
-
     const [States, setStates] = useState({
         DesignMaker: null,
         TemplateId: null,
@@ -49,7 +48,7 @@ function Printful({ close }: IProps) {
                 style: styles,
                 onError: (err) => {
                     if (err && err.search("valid nonce") <= 0) {
-                        showToast(err || "Please try again", 'error', { toastId: "DesignMaker" })
+                        showToast({ message: err || "Please try again", type: 'error', options: { toastId: "DesignMaker" } })
                         setState('loading', false)
                     }
                 },
@@ -134,7 +133,7 @@ function Printful({ close }: IProps) {
             setState('loading', false)
             updateState('printful_template_id', null)
             close()
-            showToast(error.message, 'error')
+            showToast({ message: error.message, type: 'error' })
         }
     }, [pod_blank_product_id, States.TemplateId, technique])
 
@@ -178,7 +177,6 @@ function Printful({ close }: IProps) {
             States.DesignMaker.sendMessage({ event: 'saveDesign' })
         } catch (error) {
             console.log(error);
-
         }
     }, [States.DesignMaker])
 

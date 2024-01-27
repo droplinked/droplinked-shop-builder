@@ -23,7 +23,7 @@ function DeleteAddress({ addressID, addressRefetch }: IProps) {
             await mutateAsync({ addressID })
             addressRefetch()
         } catch (error) {
-            showToast(error?.response?.data?.message, "error")
+            showToast({ message: error?.response?.data?.message, type: "error" })
         }
     }, [])
 
@@ -48,8 +48,7 @@ function DeleteAddress({ addressID, addressRefetch }: IProps) {
                         buttonProps: {
                             isLoading: isLoading
                         }
-                    },
-
+                    }
                 ]}
             />
         </>

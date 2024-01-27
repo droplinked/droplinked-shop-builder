@@ -1,19 +1,19 @@
 import { Box, HStack, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
+import AppDatepicker from 'components/common/datepicker/AppDatepicker'
 import AppInput from 'components/common/form/textbox/AppInput'
 import { Form, Formik } from 'formik'
-import React, { useCallback, useContext } from 'react'
-import CouponsCreateContext from '../../context'
-import * as Yup from 'yup';
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
-import useAppStore from 'lib/stores/app/appStore'
-import moment from 'moment/moment'
-import { useMutation } from 'react-query'
-import { IgiftcardCreateService } from 'lib/apis/coupons/interfaces'
-import { giftcardCreateService } from 'lib/apis/coupons/addressServices'
 import useAppToast from 'functions/hooks/toast/useToast'
+import { giftcardCreateService } from 'lib/apis/coupons/addressServices'
+import { IgiftcardCreateService } from 'lib/apis/coupons/interfaces'
+import useAppStore from 'lib/stores/app/appStore'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import moment from 'moment/moment'
 import CouponsSettingContext from 'pages/register-pages/pages/coupons/context'
-import AppDatepicker from 'components/common/datepicker/AppDatepicker'
+import React, { useCallback, useContext } from 'react'
+import { useMutation } from 'react-query'
+import * as Yup from 'yup'
+import CouponsCreateContext from '../../context'
 
 interface IFrom {
     name: string
@@ -40,11 +40,11 @@ function CouponsCreateForm() {
                 shopID: shop._id,
             }
             await mutateAsync(body)
-            showToast(capitalizeFirstLetter(type) + ' Created', 'success')
+            showToast({ message: capitalizeFirstLetter(type) + ' Created', type: 'success' })
             closeModal()
             fetch()
         } catch (error) {
-            showToast(error?.message || "Oops! Something went wrong", 'error');
+            showToast({ message: error?.message || "Oops! Something went wrong", type: 'error' });
         }
     }, [type, shop])
 

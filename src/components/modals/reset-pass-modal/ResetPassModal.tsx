@@ -1,16 +1,16 @@
-import React from "react";
-import { Flex, VStack } from "@chakra-ui/react";
-import AppTypography from 'components/common/typography/AppTypography';
-import AppInput from 'components/common/form/textbox/AppInput';
-import useAppToast from "functions/hooks/toast/useToast";
-import AppModal from 'components/common/modal/AppModal';
-import { useMutation } from "react-query";
-import { forgetPasswordService } from "lib/apis/user/services";
-import { IforgetPasswordService } from "lib/apis/user/interfaces";
-import { Form, Formik } from "formik";
-import AppErrors from "lib/utils/statics/errors/errors";
-import * as Yup from 'yup';
+import { VStack } from "@chakra-ui/react";
 import BasicButton from "components/common/BasicButton/BasicButton";
+import AppInput from 'components/common/form/textbox/AppInput';
+import AppModal from 'components/common/modal/AppModal';
+import AppTypography from 'components/common/typography/AppTypography';
+import { Form, Formik } from "formik";
+import useAppToast from "functions/hooks/toast/useToast";
+import { IforgetPasswordService } from "lib/apis/user/interfaces";
+import { forgetPasswordService } from "lib/apis/user/services";
+import AppErrors from "lib/utils/statics/errors/errors";
+import React from "react";
+import { useMutation } from "react-query";
+import * as Yup from 'yup';
 
 const ResetPassModal = ({ show, close, switchToLogin }) => {
   const { mutateAsync, isLoading } = useMutation((params: IforgetPasswordService) => forgetPasswordService(params))
@@ -19,10 +19,10 @@ const ResetPassModal = ({ show, close, switchToLogin }) => {
   const onSubmit = async (params: IforgetPasswordService) => {
     try {
       await mutateAsync(params)
-      showToast(`Send an email to : ${params.email}`, "success");
+      showToast({ message: `Send an email to : ${params.email}`, type: "success" });
       close();
     } catch (error) {
-      showToast(error?.response?.data?.data?.message || error?.message, "error")
+      showToast({ message: error?.response?.data?.data?.message || error?.message, type: "error" })
     }
   }
 

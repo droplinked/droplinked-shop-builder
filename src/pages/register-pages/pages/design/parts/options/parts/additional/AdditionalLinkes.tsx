@@ -36,7 +36,7 @@ function AdditionalLinkes({ element }: IProps) {
 
     const trigger = useCallback((key, save: boolean) => {
         const target = shopDesign[element].find((el, elKey) => key === elKey)
-        if (save && !target.caption.length || !target.link.length) return showToast("Please comlete form", "error")
+        if (save && !target.caption.length || !target.link.length) return showToast({ message: "Please complete the form", type: "error" })
         dispatch({ type: 'updateShop', params: { shopDesign: { [element]: shopDesign[element].map((el, elKey) => ({ ...el, save: elKey === key ? save : el.save })) } } })
     }, [element, shopDesign.footerLinks, shopDesign.bannerLinks])
 

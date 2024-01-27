@@ -31,11 +31,11 @@ const SignupProducer = ({ close, shopname, switchToLogin }) => {
       const { email, password, username } = data
       await mutateAsync({ email, password, shopName: username });
       localStorage.setItem("registerEmail", JSON.stringify(email));
-      showToast("Account successfully created", "success");
+      showToast({ message: "Account successfully created", type: "success" });
       close();
       navigate("/email-confirmation");
     } catch (error) {
-      showToast(error?.response?.data?.data?.message, "error")
+      showToast({ message: error?.response?.data?.data?.message, type: "error" })
     }
   };
 

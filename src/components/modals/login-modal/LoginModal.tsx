@@ -32,19 +32,19 @@ const LoginModal = ({ show, open, close }) => {
       let result = await login(data)
       if (result) handleLoginProcess(result);
     } catch (error) {
-      showToast(error?.message, "error");
+      showToast({ message: error?.message, type: "error" });
     }
   };
 
   // action on user data based on type and status
   const handleLoginProcess = (data: any) => {
     // check customer
-    if (data.user.type !== "PRODUCER") return showToast("This account cannot be logged in", "error");
+    if (data.user.type !== "PRODUCER") return showToast({ message: "This account can not login", type: "error" });
 
     //first close modal
     close();
     const status = appDeveloment && data.user.status === "NEW" ? "VERIFIED" : data.user.status
-    status === "DELETED" ? showToast("This account has been deleted", "error") : navigateUser(status, data)
+    status === "DELETED" ? showToast({ message: "This account has been deleted", type: "error" }) : navigateUser(status, data)
   };
 
   // navigate user based on status

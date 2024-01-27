@@ -31,18 +31,14 @@ export default function ShopAPIKey() {
             await mutateAsync({ domains: [domain] })
             refetch()
         } catch (error) {
-            showToast((error as Error).message, "error")
+            showToast({ message: (error as Error).message, type: "error" })
         }
     }
 
     return (
         <VStack align={"stretch"} spacing={7}>
             <Flex justifyContent={"space-between"} alignItems={"center"}>
-                <AppTypography
-                    fontSize='18px'
-                    fontWeight='bold'>
-                    API KEY
-                </AppTypography>
+                <AppTypography fontSize='18px' fontWeight='bold'>API KEY</AppTypography>
                 <Link
                     href={"https://apiv3dev.droplinked.com/v1/public-apis/document"}
                     target="_blank">
