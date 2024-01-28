@@ -57,7 +57,7 @@ function HeaderDashboardLogedin() {
                             </Flex>
                         </Flex>
                         <Divider />
-                        <ProfileDropdownLinks shop={shop} />
+                        <ProfileDropdownLinks shop={shop} close={onClose} />
                         <Divider />
                         <Flex alignItems={"center"} gap={"12px"} cursor={"pointer"} onClick={logout}>
                             <AppIcons.Logout width={"24px"} height={"24px"} color={"#FFFFFF"} />

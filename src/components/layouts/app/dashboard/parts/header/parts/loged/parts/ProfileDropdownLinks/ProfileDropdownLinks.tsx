@@ -12,10 +12,11 @@ interface ILink {
 }
 
 interface Props {
-    shop: any
+    shop: any,
+    close: Function
 }
 
-function ProfileDropdownLinks({ shop }: Props) {
+function ProfileDropdownLinks({ shop, close }: Props) {
     const links: ILink[] = [
         { label: "Store", href: `https://${appDeveloment ? 'dev.' : ''}droplinked.io/${shop?.name}`, icon: <AppIcons.WhiteShopIcon width={"24px"} height={"24px"} color={"#FFFFFF"} /> },
         { label: "Credit", href: "/dashboard/settings/coupons", icon: <AppIcons.WhiteOpenWallet width={"24px"} height={"24px"} color={"#FFFFFF"} /> },
@@ -34,7 +35,7 @@ function ProfileDropdownLinks({ shop }: Props) {
             {links.map((link, index) => {
                 return ["Store", "Help"].includes(link.label) ?
                     <ChakraLink key={index} href={link.href} target={"_blank"}>{renderLinkAttributes(link)}</ChakraLink > :
-                    <ReactLink key={index} to={link.href}>
+                    <ReactLink key={index} to={link.href} onClick={() => close()}>
                         {link.label === "Settings" ? renderLinkAttributes(link) :
                             <Flex justifyContent={"space-between"} alignItems={"center"} gap={"12px"}>
                                 {renderLinkAttributes(link)}
