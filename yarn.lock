@@ -3298,9 +3298,9 @@
     prop-types "^15.7.2"
 
 "@stripe/stripe-js@^2.2.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-2.3.0.tgz#607f91b75990eb660b9a7a4a8a7c282f5babd3fc"
-  integrity sha512-iTwzjw1ORUR+1pH21+C/M05w+Jh5hAuE4QUei7Gnku65N7QpEaHtyVszYMYDBs6iNyLrD1tfQTSrjD6NkOA/ww==
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-2.4.0.tgz#7a7e5b187b9e9bb43073edd946ec3e9a778e61bd"
+  integrity sha512-WFkQx1mbs2b5+7looI9IV1BLa3bIApuN3ehp9FP58xGg7KL9hCHDECgW3BwO9l9L+xBPVAD7Yjn1EhGe6EDTeA==
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
@@ -5292,11 +5292,6 @@ chart.js@^4.4.1:
   dependencies:
     "@kurkle/color" "^0.3.0"
 
-chartjs-plugin-annotation@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/chartjs-plugin-annotation/-/chartjs-plugin-annotation-3.0.1.tgz#4cf51d9797bf3202788ca0beae8694404621ad19"
-  integrity sha512-hlIrXXKqSDgb+ZjVYHefmlZUXK8KbkCPiynSVrTb/HjTMkT62cOInaT1NTQCKtxKKOm9oHp958DY3RTAFKtkHg==
-
 check-types@^11.2.3:
   version "11.2.3"
   resolved "https://registry.yarnpkg.com/check-types/-/check-types-11.2.3.tgz#1ffdf68faae4e941fce252840b1787b8edc93b71"
@@ -6324,9 +6319,9 @@ electron-fetch@^1.7.2:
     encoding "^0.1.13"
 
 electron-to-chromium@^1.4.601:
-  version "1.4.640"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.640.tgz#76290a36fa4b5f1f4cadaf1fc582478ebb3ac246"
-  integrity sha512-z/6oZ/Muqk4BaE7P69bXhUhpJbUM9ZJeka43ZwxsDshKtePns4mhBlh8bU5+yrnOnz3fhG82XLzGUXazOmsWnA==
+  version "1.4.642"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.642.tgz#eb380fa8b58e515c641d642ba452fa2c453c2e4f"
+  integrity sha512-M4+u22ZJGpk4RY7tne6W+APkZhnnhmAH48FNl8iEFK2lEgob+U5rUQsIqQhvAwCXYpfd3H20pHK/ENsCvwTbsA==
 
 elliptic@6.5.4, elliptic@^6.4.1, elliptic@^6.5.3, elliptic@^6.5.4:
   version "6.5.4"
@@ -12527,7 +12522,6 @@ stop-iteration-iterator@^1.0.0:
     internal-slot "^1.0.4"
 
 stream-browserify@^3.0.0, "stream@npm:stream-browserify@^3.0.0":
-  name stream
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-3.0.0.tgz#22b0a2850cdf6503e73085da1fc7b7d0c2122f2f"
   integrity sha512-H73RAHsVBapbim0tU2JwwOiXUj+fikfiaoYAKHF3VJfA0pe2BCzkhAHBlLG6REzE+2WNZcxOXjK7lkso+9euLA==
