@@ -7,7 +7,7 @@ import useHookStore from 'functions/hooks/store/useHookStore';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import React, { useCallback } from 'react';
 import { ShopnameText } from '../../HeaderLayout-style';
-import ProfileDropdownLinks from './parts/ProfileDropdownLinks';
+import ProfileDropdownLinks from './parts/ProfileDropdownLinks/ProfileDropdownLinks';
 
 function HeaderDashboardLogedin() {
     const { onOpen, onClose, isOpen } = useDisclosure();
