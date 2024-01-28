@@ -31,15 +31,14 @@ function HeaderDashboardLogedin() {
                 </Flex>
             </PopoverTrigger>
             <PopoverContent
-                bg="#292929"
-                borderRadius="8px"
-                p="16px 36px"
-                h="auto"
-                w="auto"
                 right="27px"
-                border="none !important"
-                outline="none !important"
+                width="280px"
                 shadow="none !important"
+                outline="none !important"
+                border="none !important"
+                borderRadius="8px"
+                padding="24px"
+                bg="#292929"
             >
                 <PopoverBody>
                     <Flex direction={"column"} gap="24px">

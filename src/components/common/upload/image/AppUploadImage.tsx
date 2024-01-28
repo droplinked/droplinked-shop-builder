@@ -1,8 +1,7 @@
-import { Box } from '@chakra-ui/react';
 import axios from 'axios';
 import AppScrollBar from 'components/common/scrollbar';
 import useAppToast from 'functions/hooks/toast/useToast';
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useRef } from 'react';
 import { useMutation } from 'react-query';
 import appUploadImageContext, { ImodeUploadImage, IUploadImageDefault } from './context';
 import UploadImageModel from './model';
@@ -23,7 +22,7 @@ interface IProps {
 }
 
 function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mode = "multi", onDelete, defaults }: IProps) {
-    const { mutateAsync, isLoading } = useMutation((formData: any) => axios.post("https://cdn.droplinked.com/upload", formData))
+    const { mutateAsync, isLoading } = useMutation((formData: any) => axios.post("https://d2kpv1k2vro2sk.cloudfront.net/upload", formData))
     const fileRef = useRef(null);
     const { showToast } = useAppToast()
 
@@ -37,9 +36,9 @@ function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mod
             const images = product ? { url: data.data[size], thumbnail: data.data['small'] } : size ? data.data[size] : data.data
             onChange(typeof values === "object" ? [...values, images] : images)
             if (onSuccess) onSuccess(data.data)
-            showToast(toast || "Upload image successful", "success")
+            showToast({ message: toast || "Upload image successful", type: "success" })
         } catch (error) {
-            showToast(error.message, "error");
+            showToast({ message: error.message, type: "error" });
         }
     }, [values, toast, size, product])
 
@@ -48,7 +47,7 @@ function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mod
         values = values.filter(el => el !== name)
         onChange(values)
         if (onDelete) onDelete(values)
-        showToast("Image has been deleted successfully", "success")
+        showToast({ message: "Image has been deleted successfully", type: "success" })
     }, [values, onChange, onDelete])
 
     return (

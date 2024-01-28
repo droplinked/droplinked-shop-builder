@@ -1,18 +1,18 @@
-import React, { useCallback, useContext, useMemo } from 'react'
-import { Box, Checkbox, HStack, Text, VStack } from '@chakra-ui/react'
-import BasicButton from 'components/common/BasicButton/BasicButton'
-import AppInput from 'components/common/form/textbox/AppInput'
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import { Isku } from 'lib/apis/product/interfaces'
-import recordContext from '../../context'
-import useAppToast from 'functions/hooks/toast/useToast'
-import AppTypography from 'components/common/typography/AppTypography'
-import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork'
-import RecordCovers from './parts/covers/RecordCovers';
+import { Box, Checkbox, HStack, VStack } from '@chakra-ui/react';
+import BasicButton from 'components/common/BasicButton/BasicButton';
+import AppInput from 'components/common/form/textbox/AppInput';
+import AppTypography from 'components/common/typography/AppTypography';
+import { Form, Formik } from 'formik';
 import useStack from 'functions/hooks/stack/useStack';
-import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import useHookStore from 'functions/hooks/store/useHookStore';
+import useAppToast from 'functions/hooks/toast/useToast';
+import useAppWeb3 from 'functions/hooks/web3/useWeb3';
+import { Isku } from 'lib/apis/product/interfaces';
+import React, { useCallback, useContext, useMemo } from 'react';
+import * as Yup from 'yup';
+import recordContext from '../../context';
+import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork';
+import RecordCovers from './parts/covers/RecordCovers';
 
 interface Iprops {
     close: Function
@@ -50,9 +50,9 @@ function RecordForm({ close, product, sku }: Iprops) {
         } catch (error) {
             if (error?.message) {
                 if (error?.message.includes("The first argument")) return updateState("loading", false)
-                showToast(error?.message, "error");
+                showToast({ message: error?.message, type: "error" });
             } else {
-                showToast("Oops! Something went wrong please contact support", "error");
+                showToast({ message: "Oops! Something went wrong please contact support", type: "error" });
             }
             updateState("loading", false)
         }

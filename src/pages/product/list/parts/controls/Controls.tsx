@@ -1,19 +1,19 @@
-import React, { useCallback, useMemo } from 'react'
-import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu'
-import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 import { useDisclosure } from '@chakra-ui/react';
-import { useMutation } from 'react-query';
-import { productUpdateServices } from 'lib/apis/product/productServices';
-import { IproductUpdateServices } from 'lib/apis/product/interfaces';
+import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu';
+import useStack from 'functions/hooks/stack/useStack';
+import useHookStore from 'functions/hooks/store/useHookStore';
 import useAppToast from 'functions/hooks/toast/useToast';
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import useAppWeb3 from 'functions/hooks/web3/useWeb3';
+import { IproductUpdateServices } from 'lib/apis/product/interfaces';
+import { productUpdateServices } from 'lib/apis/product/productServices';
 import AppErrors from 'lib/utils/statics/errors/errors';
-import ButtonsProductClass from 'pages/product/single/parts/buttons/model/ButtonProductModel';
 import ProductSingleModel from 'pages/product/single/model/model';
+import ButtonsProductClass from 'pages/product/single/parts/buttons/model/ButtonProductModel';
+import React, { useCallback, useMemo } from 'react';
+import { useMutation } from 'react-query';
 import ConfirmDeleteProduct from './parts/delete/ConfirmDeleteCollection';
 import DetailsProduct from './parts/details/DetailsProduct';
-import useStack from 'functions/hooks/stack/useStack';
-import useAppWeb3 from 'functions/hooks/web3/useWeb3';
-import useHookStore from 'functions/hooks/store/useHookStore';
 
 function ControlsListProduct({ productID, product, fetch }) {
     const { mutateAsync } = useMutation((params: IproductUpdateServices) => productUpdateServices(params))
@@ -35,11 +35,11 @@ function ControlsListProduct({ productID, product, fetch }) {
             if (state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") await record({ method: (data: any) => appWeb3.web3({ method: "record", params: data, chain: state.digitalDetail.chain, wallets, stack }), product: state, stacks: stack })
 
             await mutateAsync({ productID: state._id, params: { publish_product: true } })
-            showToast(AppErrors.product.your_product_published, "success")
+            showToast({ message: AppErrors.product.your_product_published, type: "success" })
             fetch()
         } catch (error) {
             const message = error?.message || error?.response?.data?.data?.message
-            showToast(message ? message : "Oops! Something went wrong", "error")
+            showToast({ message: message ? message : "Oops! Something went wrong", type: "error" })
 
         }
     }, [productID, fetch, product, wallets, stack.stxAddress])

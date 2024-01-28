@@ -1,17 +1,16 @@
 import { Box, HStack } from '@chakra-ui/react'
+import AppIcons from 'assest/icon/Appicons'
+import BasicButton from 'components/common/BasicButton/BasicButton'
+import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
+import AppSwitch from 'components/common/swich'
+import AppTypography from 'components/common/typography/AppTypography'
+import useAppToast from 'functions/hooks/toast/useToast'
+import technicalContext from 'pages/register-pages/pages/technical/context'
 import { PageContentWrapper } from 'pages/register-pages/RegisterPages-style'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import classes from './style.module.scss'
-import AppSwitch from 'components/common/swich'
-import technicalContext from 'pages/register-pages/pages/technical/context'
-import useAppToast from 'functions/hooks/toast/useToast'
-import AppIcons from 'assest/icon/Appicons'
-import BasicButton from 'components/common/BasicButton/BasicButton'
-import AppTypography from 'components/common/typography/AppTypography'
-import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 
 function ContainerPayment({ title, value, locked }) {
-
   // Check active
   useEffect(() => locked && setActive(true), [title, value, locked])
 
@@ -25,7 +24,7 @@ function ContainerPayment({ title, value, locked }) {
   const activeMethod = useCallback((value?: boolean) => updatePayments("isActive", value), [updatePayments])
 
   const save = useCallback(() => {
-    if (title !== "STRIPE" && active && !value) return showToast("Please enter wallet", "error")
+    if (title !== "STRIPE" && active && !value) return showToast({ message: "Please enter wallet", type: "error" })
     activeMethod(true)
   }, [value, title, locked, active, showToast, activeMethod])
 

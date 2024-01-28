@@ -1,7 +1,8 @@
-import { Box, VStack } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 import {
   BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip
 } from "chart.js";
+import Annotation from 'chartjs-plugin-annotation';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import AppTypography from 'components/common/typography/AppTypography';
 import DashboardEmpty from 'pages/dashboard/parts/parts/empty/DashboardEmpty';
@@ -15,20 +16,23 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Annotation
 );
 
 function GeneralStatisticsChart() {
   const { states: { revenue }, isLoading } = useContext(dashboardChartsContext)
 
+  const barChartValues = revenue?.chart.map(el => el.value) || []
+
   const data = {
     labels: revenue?.chart.map(el => el.title),
     datasets: [
       {
-        data: revenue?.chart.map(el => el.value),
+        data: barChartValues,
         backgroundColor: '#2BCFA1',
-      }
-    ],
+      },
+    ]
   };
 
   const options = {
@@ -40,6 +44,17 @@ function GeneralStatisticsChart() {
       }
     },
     plugins: {
+      annotation: {
+        annotations: {
+          line: {
+            yMin: Math.max(...barChartValues),
+            yMax: Math.max(...barChartValues),
+            borderColor: '#2BCFA1',
+            borderWidth: 1,
+            borderDash: [5, 5]
+          }
+        }
+      },
       tooltip: {
         enabled: false,
         external: function (context) {
@@ -152,9 +167,7 @@ function GeneralStatisticsChart() {
       {revenue?.chart?.length ? (
         <VStack align="stretch">
           <AppTypography textAlign="right" color="#2BCFA1" fontSize="16px">${revenue?.total.toFixed(2)}</AppTypography>
-          <Box borderTop="2px dashed rgba(128, 237, 207, 0.25)">
-            <Bar options={options} data={data} height="100px" />
-          </Box>
+          <Bar options={options} data={data} height="100px" />
         </VStack>
       ) : <DashboardEmpty minHeight="300px" />}
     </AppSkeleton>
