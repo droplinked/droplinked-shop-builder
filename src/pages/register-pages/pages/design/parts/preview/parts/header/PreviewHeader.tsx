@@ -32,9 +32,9 @@ function PreviewHeader() {
                     <Box width="50%">{icons({ icon: "logo", color: "#FFF" })}</Box>
                 )}</Box>
                 <HStack gap={isDesktop ? "8px" : "0"} {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-styles']}>
-                    <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-profile']}>{icons({ icon: "user", color: iconHeaderColor })}</Box>
                     <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-cart']}>{icons({ icon: "cart", color: iconHeaderColor })}</Box>
-                    <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-notification']}>{icons({ icon: "notification", color: iconHeaderColor })}</Box>
+                    <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-profile']}>{icons({ icon: "user", color: iconHeaderColor })}</Box>
+                    {/* <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-notification']}>{icons({ icon: "notification", color: iconHeaderColor })}</Box> */}
                 </HStack>
             </Flex>
         </PreviewActive>
