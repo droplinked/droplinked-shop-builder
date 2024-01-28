@@ -54,7 +54,7 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
     formData.append("image", file);
     setLoading(true);
     axios
-      .post("https://cdn.droplinked.com/upload", formData)
+      .post("https://d2kpv1k2vro2sk.cloudfront.net/upload", formData)
       .then((e) => {
         let imgArr = [];
         for (let i = 0; i < state.length; i++) {
