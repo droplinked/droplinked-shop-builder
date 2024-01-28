@@ -1,4 +1,4 @@
-import { Flex, Link } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
 import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
@@ -37,21 +37,21 @@ namespace OrderDetailsModel {
                         { label: "Credit", value: formattedPrice(order?.giftCard?.credit ? order.giftCard.credit : 0) },
                     ]
                 },
-                {
-                    title: "Affiliate",
-                    rows: [
-                        { label: "Total Affiliated Products", value: formattedPrice(165) },
-                        { label: "Publisher Profit", value: formattedPrice(180) },
-                        {
-                            label: "Publisher",
-                            value: <Link href='https://www.droplinked.com' fontSize={"14px"} color={"#33A9EC"}>Behdad Mansouri Shop</Link>
-                        },
-                        {
-                            label: "Publisher Wallet",
-                            value: <AppTypography fontSize={"14px"} color={"#FFFFFF"} >e0327b0924cf37</AppTypography>
-                        },
-                    ]
-                },
+                // {
+                //     title: "Affiliate",
+                //     rows: [
+                //         { label: "Total Affiliated Products", value: formattedPrice(165) },
+                //         { label: "Publisher Profit", value: formattedPrice(180) },
+                //         {
+                //             label: "Publisher",
+                //             value: <Link href='https://www.droplinked.com' fontSize={"14px"} color={"#33A9EC"}>Behdad Mansouri Shop</Link>
+                //         },
+                //         {
+                //             label: "Publisher Wallet",
+                //             value: <AppTypography fontSize={"14px"} color={"#FFFFFF"} >e0327b0924cf37</AppTypography>
+                //         },
+                //     ]
+                // },
                 {
                     title: "Commission",
                     rows: [
