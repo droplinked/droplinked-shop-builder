@@ -2,14 +2,14 @@ import { Box, Flex, VStack } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppDropDown from 'components/common/form/dropdown/AppDropDown';
 import AppInput from 'components/common/form/textbox/AppInput';
-import AppModal, { IAppModal } from 'components/common/modal/AppModal'
-import { Form, Formik } from 'formik'
+import AppModal, { IAppModal } from 'components/common/modal/AppModal';
+import { Form, Formik } from 'formik';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { addressByIdService, allCountriesService, citiesService, createAddressService, statesService, updateAddressService } from 'lib/apis/address/addressServices';
 import { IaddressByIdService, IcitiesService, IcreateAddressService, IsatatesService, IupdateAddressService } from 'lib/apis/address/interfaces';
 import AppErrors from 'lib/utils/statics/errors/errors';
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import AddressModalModel from './AddressModalModel';
 
@@ -38,11 +38,17 @@ function AddressModal({ close, open, addressID, onSuccess }: Iprops) {
 
             if (onSuccess) onSuccess()
             updateShopData()
-            showToast(addressID ? AppErrors.store.store_address__been_updated : AppErrors.store.store_address_added_successfully, "success")
+            showToast({
+                message: addressID ? AppErrors.store.store_address__been_updated : AppErrors.store.store_address_added_successfully,
+                type: "success"
+            })
             close()
         } catch (error) {
             const err = error?.response?.data
-            showToast(err && err?.statusCode && err?.statusCode === 422 ? "Cant verify address" : "Oops! Something went wrong", "error");
+            showToast({
+                message: err && err?.statusCode && err?.statusCode === 422 ? "Cant verify address" : "Oops! Something went wrong",
+                type: "error"
+            });
         }
     }, [onSuccess, addressID])
 

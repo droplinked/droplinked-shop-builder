@@ -1,5 +1,5 @@
 import AppDialog from 'components/common/dialog'
-import AppModal, { IAppModal } from 'components/common/modal/AppModal'
+import { IAppModal } from 'components/common/modal/AppModal'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { IproductDeleteServices } from 'lib/apis/product/interfaces'
 import { productDeleteServices } from 'lib/apis/product/productServices'
@@ -38,12 +38,12 @@ function ConfirmDeleteAll({ productIDs, fetch, close, open }: Iprops) {
               setLoading(true)
               const promises = productIDs.map(id => mutateAsync({ productID: id }))
               await Promise.allSettled(promises)
-              showToast("Products has been deleted!", "success")
+              showToast({ message: "Products has been deleted!", type: "success" })
               await fetch()
               close()
               setLoading(false)
             } catch (error) {
-              showToast("Oops! Something went wrong", "error")
+              showToast({ message: "Oops! Something went wrong", type: "error" })
               setLoading(false)
             }
           }

@@ -1,21 +1,20 @@
-import { Box, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, Text, useDisclosure } from '@chakra-ui/react'
+import { Divider, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
+import AppImage from 'components/common/image/AppImage';
+import AppTypography from 'components/common/typography/AppTypography';
 import useHookStore from 'functions/hooks/store/useHookStore';
-import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
-import { appDeveloment } from 'lib/utils/app/variable';
-import React, { useCallback } from 'react'
-import { Link } from 'react-router-dom';
-import { ShopnameText } from '../../HeaderLayout-style'
+import React, { useCallback } from 'react';
+import { ShopnameText } from '../../HeaderLayout-style';
+import ProfileDropdownLinks from './parts/ProfileDropdownLinks';
 
 function HeaderDashboardLogedin() {
     const { onOpen, onClose, isOpen } = useDisclosure();
     const { logoutUser } = useProfile()
     const { app: { shop } } = useHookStore();
-
     const logout = useCallback(() => {
         logoutUser()
-        onClose();
+        onClose()
     }, []);
 
     return (
@@ -32,64 +31,29 @@ function HeaderDashboardLogedin() {
                 </Flex>
             </PopoverTrigger>
             <PopoverContent
-                bg="#292929"
-                borderRadius="8px"
-                p="16px 36px"
-                h="auto"
-                w="auto"
                 right="27px"
-                border="none !important"
-                outline="none !important"
+                width="280px"
                 shadow="none !important"
+                outline="none !important"
+                border="none !important"
+                borderRadius="8px"
+                padding="24px"
+                bg="#292929"
             >
                 <PopoverBody>
-                    <Link to="/dashboard" onClick={() => onClose()}>
-                        <Text
-                            fontFamily="Avenir Next"
-                            fontStyle="normal"
-                            fontWeight="500"
-                            fontSize="14px"
-                            color="#FFFFFF"
-                            w="100%"
-                            textAlign="center"
-                            cursor="pointer"
-                        >
-                            Dashboard
-                        </Text>
-                    </Link>
-                    <Box mb="20px" />
-                    <a
-                        href={`https://${appDeveloment ? 'dev.' : ''}droplinked.io/${shop?.name}`}
-                        onClick={onClose}
-                        target="_blank"
-                    >
-                        <Text
-                            fontFamily="Avenir Next"
-                            fontStyle="normal"
-                            fontWeight="500"
-                            fontSize="14px"
-                            color="#FFFFFF"
-                            w="100%"
-                            textAlign="center"
-                            cursor="pointer"
-                        >
-                            View Store
-                        </Text>
-                    </a>
-                    <Box mb="20px" />
-                    <Text
-                        fontFamily="Avenir Next"
-                        fontStyle="normal"
-                        fontWeight="500"
-                        fontSize="14px"
-                        color="#FFFFFF"
-                        w="100%"
-                        textAlign="center"
-                        cursor="pointer"
-                        onClick={logout}
-                    >
-                        Logout
-                    </Text>
+                    <Flex direction={"column"} gap="24px">
+                        <Flex alignItems={"center"} gap={"16px"}>
+                            <AppImage src={shop?.logo} objectFit={"contain"} backgroundPosition={"center"} width="48px" height="48px" borderRadius="4px" />
+                            <AppTypography color={"#FFFFFF"} fontSize={"16px"}>{shop?.name}</AppTypography>
+                        </Flex>
+                        <Divider />
+                        <ProfileDropdownLinks shop={shop} />
+                        <Divider />
+                        <Flex alignItems={"center"} gap={"12px"} cursor={"pointer"} onClick={logout}>
+                            <AppIcons.Logout width={"24px"} height={"24px"} color={"#FFFFFF"} />
+                            <AppTypography color={"#E63F43"} fontSize={"16px"}>Log out</AppTypography>
+                        </Flex>
+                    </Flex>
                 </PopoverBody>
             </PopoverContent>
         </Popover>

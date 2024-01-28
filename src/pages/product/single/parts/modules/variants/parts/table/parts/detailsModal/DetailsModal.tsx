@@ -25,7 +25,7 @@ function DetailsModal({ open, close, sku }: Props) {
         queryKey: ["sku", sku._id],
         queryFn: () => getSkuByIdService(sku._id),
         onError: (error) => {
-            showToast((error as Error).message, "error")
+            showToast({ message: (error as Error).message, type: "error" })
             close()
         },
         refetchOnWindowFocus: false

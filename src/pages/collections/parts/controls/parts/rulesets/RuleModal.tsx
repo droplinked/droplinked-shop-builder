@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
 import { Box, HStack, VStack } from "@chakra-ui/react";
 import BasicButton from 'components/common/BasicButton/BasicButton';
-import LoadingComponent from 'components/common/loading-component/LoadingComponent';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
-import AppModal from 'components/common/modal/AppModal';
-import ruleModelContext from "./context";
-import TextboxRule from "./parts/textbox/TextboxRule";
-import SelectRule from "./parts/select/SelectRule";
-import { useMutation, useQuery } from "react-query";
-import { createRuleService, getRuleService, rulesetChainsService, updateRuleService } from "lib/apis/rule/ruleServices";
-import useAppToast from "functions/hooks/toast/useToast";
-import { RuleTypes } from "./RuleModel";
-import { IcreateRuleService, IgetRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
-import AppTypography from 'components/common/typography/AppTypography';
-import RulesetAddress from "./parts/address/RulesetAddress";
 import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
-import RulesetType from "./parts/type/RulesetType";
-import AppErrors from "lib/utils/statics/errors/errors";
+import LoadingComponent from 'components/common/loading-component/LoadingComponent';
+import AppModal from 'components/common/modal/AppModal';
+import AppTypography from 'components/common/typography/AppTypography';
+import { Formik } from 'formik';
+import useAppToast from "functions/hooks/toast/useToast";
+import { IcreateRuleService, IgetRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
+import { createRuleService, getRuleService, rulesetChainsService, updateRuleService } from "lib/apis/rule/ruleServices";
 import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
+import AppErrors from "lib/utils/statics/errors/errors";
+import React, { useEffect, useState } from "react";
+import { useMutation, useQuery } from "react-query";
+import * as Yup from 'yup';
+import ruleModelContext from "./context";
+import RulesetAddress from "./parts/address/RulesetAddress";
+import SelectRule from "./parts/select/SelectRule";
+import TextboxRule from "./parts/textbox/TextboxRule";
+import RulesetType from "./parts/type/RulesetType";
+import { RuleTypes } from "./RuleModel";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
@@ -27,12 +27,11 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   const createRule = useMutation((params: IcreateRuleService) => createRuleService(params))
   const updateRule = useMutation((params: IupdateRuleService) => updateRuleService(params))
   const chains = useQuery({
-    queryFn: rulesetChainsService,
     queryKey: "chains_query",
+    queryFn: rulesetChainsService,
     cacheTime: 60 * 60 * 1000,
     refetchOnWindowFocus: false
   })
-
   const { showToast } = useAppToast()
 
   useEffect(() => {
@@ -69,9 +68,9 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
       }
       update();
       close();
-      showToast(AppErrors.collection[ruleId ? "ruleset_update" : "ruleset_create"], "success")
+      showToast({ message: AppErrors.collection[ruleId ? "ruleset_update" : "ruleset_create"], type: "success" })
     } catch (error) {
-      showToast("Oops! Something went wrong", "error")
+      showToast({ message: "Oops! Something went wrong", type: "error" })
     }
   };
 

@@ -23,7 +23,6 @@ function TechnicalSubmit() {
     const { refactor } = TechnicalSubmitModel
     const isRegister = currentPath.includes("register")
     const { showToast } = useAppToast()
-
     const checkPayment = useMemo(() => checkPaymentMethod(paymentMethods), [paymentMethods])
 
     const clickSubmit = useCallback(async () => {
@@ -39,10 +38,10 @@ function TechnicalSubmit() {
                 if (!shop.imsType) await update({ imsType: imsType })
                 shopNavigate(``);
             } else {
-                showToast(AppErrors.store.payment_options_have_been_updated, "success");
+                showToast({ message: AppErrors.store.payment_options_have_been_updated, type: "success" });
             }
         } catch (error) {
-            showToast(error.message, "error");
+            showToast({ message: error.message, type: "error" });
         }
     }, [paymentMethods, imsType, userPayments, isRegister, shop])
     return (
@@ -54,9 +53,7 @@ function TechnicalSubmit() {
             )}
             <Box>
                 <BasicButton sizes="large" isDisabled={imsType === "DROPLINKED" ? !imsType || !checkPayment : !imsType} onClick={clickSubmit} isLoading={isLoading || loading}>
-                    {isRegister
-                        ? "Publish Store"
-                        : "Update"}
+                    {isRegister ? "Publish Store" : "Update"}
                 </BasicButton>
             </Box>
         </Flex>
