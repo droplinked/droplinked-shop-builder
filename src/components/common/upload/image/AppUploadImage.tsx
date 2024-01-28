@@ -23,7 +23,7 @@ interface IProps {
 }
 
 function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mode = "multi", onDelete, defaults }: IProps) {
-    const { mutateAsync, isLoading } = useMutation((formData: any) => axios.post("https://cdn.droplinked.com/upload", formData))
+    const { mutateAsync, isLoading } = useMutation((formData: any) => axios.post("https://d2kpv1k2vro2sk.cloudfront.net/upload", formData))
     const fileRef = useRef(null);
     const { showToast } = useAppToast()
 
