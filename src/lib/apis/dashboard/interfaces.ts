@@ -9,3 +9,8 @@ export interface IgetRevenueServices {
     from: Date
 }
 
+export interface IbestProducts {
+    from: Date
+    to: Date
+}
+
