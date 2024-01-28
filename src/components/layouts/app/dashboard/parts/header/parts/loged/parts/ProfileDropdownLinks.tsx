@@ -1,8 +1,9 @@
-import { Flex, Link } from '@chakra-ui/react';
+import { Flex, Link as ChakraLink } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import { appDeveloment } from 'lib/utils/app/variable';
 import React from 'react';
+import { Link as ReactLink } from 'react-router-dom';
 
 interface ILink {
     label: string
@@ -30,18 +31,18 @@ function ProfileDropdownLinks({ shop }: Props) {
 
     return (
         <Flex direction={"column"} gap="24px">
-            {links.map(link => <Link href={link.href} target={["Store", "Help"].includes(link.label) ? "_blank" : ""}>
-                {
-                    link.label !== "Credit" ?
-                        renderLinkAttributes(link) :
-                        <Flex justifyContent={"space-between"} alignItems={"center"} gap={"12px"}>
-                            {renderLinkAttributes(link)}
-                            <AppTypography color={"#2BCFA1"} fontSize={"16px"} fontWeight={600}>${shop?.credit.toFixed(2)}</AppTypography>
-                        </Flex>
-                }
-            </Link>
-
-            )}
+            {links.map((link, index) => {
+                return ["Store", "Help"].includes(link.label) ?
+                    <ChakraLink key={index} href={link.href} target={"_blank"}>{renderLinkAttributes(link)}</ChakraLink > :
+                    <ReactLink key={index} to={link.href}>
+                        {link.label === "Settings" ? renderLinkAttributes(link) :
+                            <Flex justifyContent={"space-between"} alignItems={"center"} gap={"12px"}>
+                                {renderLinkAttributes(link)}
+                                <AppTypography color={"#2BCFA1"} fontSize={"16px"} fontWeight={600}>${shop?.credit.toFixed(2)}</AppTypography>
+                            </Flex>
+                        }
+                    </ReactLink>
+            })}
         </Flex>
     )
 }

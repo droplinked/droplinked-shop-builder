@@ -1,6 +1,7 @@
 import { Divider, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppImage from 'components/common/image/AppImage';
+import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppTypography from 'components/common/typography/AppTypography';
 import useHookStore from 'functions/hooks/store/useHookStore';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
@@ -47,7 +48,12 @@ function HeaderDashboardLogedin() {
                             <AppImage src={shop?.logo} objectFit={"contain"} backgroundPosition={"center"} width="48px" height="48px" borderRadius="4px" />
                             <Flex direction={"column"} justifyContent={"space-between"}>
                                 <AppTypography color={"#FFFFFF"} fontSize={"16px"} fontWeight={500}>{`${user?.firstName} ${user?.lastName}`}</AppTypography>
-                                <AppTypography color={"#808080"} fontSize={"14px"}>{shop?.name}</AppTypography>
+                                <AppTypography color={"#808080"} fontSize={"14px"} position={"relative"}>
+                                    {shop?.description.length < 15 ?
+                                        shop?.description :
+                                        <AppTooltip label={shop?.description}>{shop?.description.slice(0, 15)}</AppTooltip>
+                                    }
+                                </AppTypography>
                             </Flex>
                         </Flex>
                         <Divider />
