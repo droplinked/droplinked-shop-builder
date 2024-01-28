@@ -52,7 +52,7 @@ function Technical() {
       <PageContent>
         <VStack spacing={4} align="stretch">
           <Ims />
-          <SupportedLoginMethods />
+          {/* <SupportedLoginMethods /> */}
           {Technical.imsType !== "SHOPIFY" && <Payments />}
           {appDeveloment && <Wallet />}
           <TechnicalSubmit />
