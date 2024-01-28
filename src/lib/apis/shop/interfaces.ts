@@ -1,3 +1,5 @@
+import { IAuthSupportedWalletsService } from "../auth/interfaces"
+
 export interface IshopService {
     shopName: string
 }
@@ -45,7 +47,9 @@ export interface IshopUpdateService extends IshopSocial {
     templateID?: string
     tags?: Array<string>
     infoEmail?: string
-    imsType?: string
+    imsType?: string;
+    paymentMethods: any[];
+    loginMethods: IAuthSupportedWalletsService[]
 }
 
 export interface IShopRecordedService {

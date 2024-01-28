@@ -11,7 +11,7 @@ import technicalModel from "./model";
 import Ims from "./parts/ims";
 import Payments from "./parts/payment";
 import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
-import SupportedLoginMethods from "./parts/supported-login-methods";
+import SupportedLoginMethods from "./parts/supported-login-methods/SupportedLoginMethods";
 import Wallet from "./parts/wallet";
 
 function Technical() {
@@ -31,7 +31,7 @@ function Technical() {
       value,
       type: title
     })
-    setTechnical((prev) => ({ ...prev, payments: refactor(prev.payments) }))
+    setTechnical((prev) => ({ ...prev, paymentMethods: refactor(prev.paymentMethods) }))
   }, [])
 
   // Set default "STRIPE" when register

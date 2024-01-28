@@ -1,13 +1,16 @@
-import { createContext } from "react"
+import { IAuthSupportedWalletsService } from "lib/apis/auth/interfaces";
+import { createContext } from "react";
 
 export const technicalContextState = {
     imsType: '',
-    payments: []
+    paymentMethods: [],
+    loginMethods: [],
 }
 
 interface IStates {
-    imsType:string
-    payments: Array<any>
+    imsType: string;
+    paymentMethods: Array<any>;
+    loginMethods: Array<IAuthSupportedWalletsService>;
 }
 
 interface IProps {
