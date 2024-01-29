@@ -27,7 +27,7 @@ function ButtonsProduct() {
     })
     const { state, productID, store: { state: { prev_data } } } = useContext(productContext)
     const { shopNavigate } = useCustomNavigate()
-    const { validate, makeData, record } = ButtonsProductClass
+    const { validate, makeData, record, checkSkuesRecord } = ButtonsProductClass
     const { showToast } = useAppToast()
     const stacks = useStack()
     const { refactorData } = ProductSingleModel
@@ -77,16 +77,16 @@ function ButtonsProduct() {
                 } catch (error) {
                     // shopNavigate("products")
                     console.log(error);
-                    showToast({message: "Somthimg went wrong", type: "error"})
+                    showToast({ message: "Somthimg went wrong", type: "error" })
                 }
             } else {
-                showToast({message: draft ? AppErrors.product.your_product_draft : productID ? AppErrors.product.your_product_updated : AppErrors.product.your_product_published, type: "success"})
+                showToast({ message: draft ? AppErrors.product.your_product_draft : productID ? AppErrors.product.your_product_updated : AppErrors.product.your_product_published, type: "success" })
                 shopNavigate("products")
             }
             setStateHandle("loading", false)
         } catch (error) {
             setStateHandle("loading", false)
-            showToast({message: error?.response?.data?.data?.message ? error?.response?.data?.data?.message : error?.message ? error.message : "Oops! Something went wrong", type: "error"})
+            showToast({ message: error?.response?.data?.data?.message ? error?.response?.data?.data?.message : error?.message ? error.message : "Oops! Something went wrong", type: "error" })
         }
     }, [state, productID, stacks, wallets, stacks.stxAddress])
 
@@ -104,15 +104,17 @@ function ButtonsProduct() {
                         </BasicButton>
                     ) : null}
                 </Box>
-                <Box>
-                    <BasicButton
-                        isLoading={!States.draft ? States.loading : false}
-                        isDisabled={States.loading || isProducer}
-                        onClick={() => !isProducer && submit(false)}
-                    >
-                        {productID && state.publish_product ? "Update Product" : state.product_type === "DIGITAL" ? "Publish And Drop" : "Publish Product"}
-                    </BasicButton>
-                </Box>
+                {!checkSkuesRecord({ sku: state.sku }) ? (
+                    <Box>
+                        <BasicButton
+                            isLoading={!States.draft ? States.loading : false}
+                            isDisabled={States.loading || isProducer}
+                            onClick={() => !isProducer && submit(false)}
+                        >
+                            {productID && state.publish_product ? "Update Product" : state.product_type === "DIGITAL" ? "Publish And Drop" : "Publish Product"}
+                        </BasicButton>
+                    </Box>
+                ) : null}
             </HStack>
             {isOpen && <ModalHashkey
                 blockchain={state.digitalDetail.chain}
