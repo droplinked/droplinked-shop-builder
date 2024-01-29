@@ -37,7 +37,7 @@ function OrderItems() {
                         {/* right part */}
                         <Flex direction={"column"} gap={"5px"}>
                             <Flex alignItems={"center"} gap={"8px"}>
-                                {item.isDiscounted && <CartItemBadge text={item.percent} colorScheme='green' />}
+                                {item.isAffiliate && <CartItemBadge text={item.percent} colorScheme='green' />}
                                 <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>{`$${item?.price?.toFixed(2) || 0}`}</AppTypography>
                             </Flex>
                             {item.isGated &&

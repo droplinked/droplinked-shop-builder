@@ -1,17 +1,19 @@
 import { Divider, Flex, Popover, PopoverBody, PopoverContent, PopoverTrigger, useDisclosure } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppImage from 'components/common/image/AppImage';
+import AppTooltip from 'components/common/tooltip/AppTooltip';
 import AppTypography from 'components/common/typography/AppTypography';
 import useHookStore from 'functions/hooks/store/useHookStore';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import React, { useCallback } from 'react';
 import { ShopnameText } from '../../HeaderLayout-style';
-import ProfileDropdownLinks from './parts/ProfileDropdownLinks';
+import ProfileDropdownLinks from './parts/ProfileDropdownLinks/ProfileDropdownLinks';
 
 function HeaderDashboardLogedin() {
     const { onOpen, onClose, isOpen } = useDisclosure();
     const { logoutUser } = useProfile()
-    const { app: { shop } } = useHookStore();
+    const { app: { shop, user } } = useHookStore();
+
     const logout = useCallback(() => {
         logoutUser()
         onClose()
@@ -44,10 +46,24 @@ function HeaderDashboardLogedin() {
                     <Flex direction={"column"} gap="24px">
                         <Flex alignItems={"center"} gap={"16px"}>
                             <AppImage src={shop?.logo} objectFit={"contain"} backgroundPosition={"center"} width="48px" height="48px" borderRadius="4px" />
-                            <AppTypography color={"#FFFFFF"} fontSize={"16px"}>{shop?.name}</AppTypography>
+                            <Flex direction={"column"} justifyContent={"space-between"}>
+                                <AppTypography color={"#FFFFFF"} fontSize={"16px"} fontWeight={500}>
+                                    {user?.firstName && user?.lastName ? `${user?.firstName} ${user?.lastName}` : 'Welcome'}
+                                </AppTypography>
+                                <AppTypography color={"#808080"} fontSize={"14px"} position={"relative"}>
+                                    {shop?.description &&
+                                        <AppTooltip label={shop?.description}>
+                                            <>
+                                                {shop?.description.slice(0, 15)}
+                                                {shop?.description?.length < 15 ? '...' : null}
+                                            </>
+                                        </AppTooltip>
+                                    }
+                                </AppTypography>
+                            </Flex>
                         </Flex>
                         <Divider />
-                        <ProfileDropdownLinks shop={shop} />
+                        <ProfileDropdownLinks shop={shop} close={onClose} />
                         <Divider />
                         <Flex alignItems={"center"} gap={"12px"} cursor={"pointer"} onClick={logout}>
                             <AppIcons.Logout width={"24px"} height={"24px"} color={"#FFFFFF"} />
