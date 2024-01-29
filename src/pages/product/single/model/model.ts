@@ -67,7 +67,7 @@ const ProductSingleModel = ({
             mainCategory: data?.mainCategory ? data?.mainCategory._id : null,
             subCategories: data?.subCategories ? data?.subCategories.map(el => el._id) : [],
             technique: data?.technique,
-            isAddToCartDisabled: data?.isAddToCartDisabled
+            // isAddToCartDisabled: data?.isAddToCartDisabled,
         }
     },
 

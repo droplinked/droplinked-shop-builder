@@ -10,20 +10,19 @@ interface IProps {
     image?: string
 }
 function ProductTypeDetail({ boxes, image, title }: IProps) {
-    const { state: { pod_blank_product_id }, store: { state: { product_types } } } = useContext(productContext)
+    const { state: { pod_blank_product_id }, store: { state: { product_types, product_printful } } } = useContext(productContext)
 
     const getDetail = useMemo(() => {
-        if (product_types.length) {
-            const data = product_types.find(el => el._id === pod_blank_product_id)
+        if (product_printful) {
             return {
-                image: image || data?.image,
-                title: title || data?.title,
+                image: image || product_printful?.image,
+                title: title || product_printful?.title,
                 price: "34.4 USD",
-                description: data?.description
+                description: product_printful?.description
             }
         }
         return null
-    }, [pod_blank_product_id, product_types, title, image])
+    }, [pod_blank_product_id, product_printful, title, image])
 
     return (
         <>

@@ -1,5 +1,5 @@
 import { IStacks } from 'functions/hooks/web3/models/module/record/recordModel'
-import { IproductState } from 'lib/apis/product/interfaces'
+import { IproductState, Isku } from 'lib/apis/product/interfaces'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { typesProperties } from 'lib/utils/statics/types'
 import { object, string, array, number } from 'yup'
@@ -21,6 +21,10 @@ interface Irecord {
     method: Function
     product: IproductState
     stacks: IStacks
+}
+
+interface IcheckSkuesRecord {
+    sku: Array<Isku>
 }
 
 const ButtonsProductClass = ({
@@ -113,7 +117,9 @@ const ButtonsProductClass = ({
         }
 
         return await method(dataForm)
-    }
+    },
+
+    checkSkuesRecord: ({ sku }: IcheckSkuesRecord) => sku.find(el => ['RECORDED','PENDING'].includes(el?.recordData?.status))
 })
 
 export default ButtonsProductClass
