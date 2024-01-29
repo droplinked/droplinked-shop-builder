@@ -18,7 +18,6 @@ function HeaderDashboardLogedin() {
         logoutUser()
         onClose()
     }, []);
-console.log(user?.lastName);
 
     return (
         <Popover
@@ -54,8 +53,10 @@ console.log(user?.lastName);
                                 <AppTypography color={"#808080"} fontSize={"14px"} position={"relative"}>
                                     {shop?.description &&
                                         <AppTooltip label={shop?.description}>
-                                            {shop?.description.slice(0, 15)}
-                                            {shop?.description?.length < 15 ? '...' : null}
+                                            <>
+                                                {shop?.description.slice(0, 15)}
+                                                {shop?.description?.length < 15 ? '...' : null}
+                                            </>
                                         </AppTooltip>
                                     }
                                 </AppTypography>
