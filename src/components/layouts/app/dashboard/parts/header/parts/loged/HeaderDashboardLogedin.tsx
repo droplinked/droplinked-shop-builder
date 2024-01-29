@@ -18,6 +18,7 @@ function HeaderDashboardLogedin() {
         logoutUser()
         onClose()
     }, []);
+console.log(user?.lastName);
 
     return (
         <Popover
@@ -47,11 +48,15 @@ function HeaderDashboardLogedin() {
                         <Flex alignItems={"center"} gap={"16px"}>
                             <AppImage src={shop?.logo} objectFit={"contain"} backgroundPosition={"center"} width="48px" height="48px" borderRadius="4px" />
                             <Flex direction={"column"} justifyContent={"space-between"}>
-                                <AppTypography color={"#FFFFFF"} fontSize={"16px"} fontWeight={500}>{`${user?.firstName} ${user?.lastName}`}</AppTypography>
+                                <AppTypography color={"#FFFFFF"} fontSize={"16px"} fontWeight={500}>
+                                    {user?.firstName && user?.lastName ? `${user?.firstName} ${user?.lastName}` : 'Welcome'}
+                                </AppTypography>
                                 <AppTypography color={"#808080"} fontSize={"14px"} position={"relative"}>
-                                    {shop?.description.length < 15 ?
-                                        shop?.description :
-                                        <AppTooltip label={shop?.description}>{shop?.description.slice(0, 15)}</AppTooltip>
+                                    {shop?.description &&
+                                        <AppTooltip label={shop?.description}>
+                                            {shop?.description.slice(0, 15)}
+                                            {shop?.description?.length < 15 ? '...' : null}
+                                        </AppTooltip>
                                     }
                                 </AppTypography>
                             </Flex>

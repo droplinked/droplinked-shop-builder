@@ -40,7 +40,7 @@ function RegisterShopInfo() {
 
   // Update store name as shop
   useEffect(() => {
-    if (shop.description) updateStates("description", shop.description)
+    if (shop?.description) updateStates("description", shop.description)
     if (shop?.tags) updateStates("tags", shop.tags)
   }, [shop])
 
