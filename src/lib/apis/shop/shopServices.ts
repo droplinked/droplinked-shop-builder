@@ -74,3 +74,7 @@ export const getShopApiKey = () => {
 export const generateShopAPIKey = (data: ShopOAuth2Client) => {
     return axiosInstance.put("shop/client/oauth2 ", data)
 }
+
+export const getShopInformationService = () => {
+    return axiosInstance.get("shop").then(response => response.data)
+}

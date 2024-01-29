@@ -14,7 +14,7 @@ import technicalModel from '../../model';
 import TechnicalSubmitModel from './TechnicalSubmitModel';
 
 function TechnicalSubmit() {
-    const { state: { imsType, paymentMethods, loginMethods }, userPayments } = useContext(technicalContext)
+    const { state: { imsType, paymentMethods, loginMethods }, userPayments, updateState } = useContext(technicalContext)
     const { mutateAsync, isLoading } = useMutation((params: IshopUpdateService) => shopUpdateService(params))
     const currentPath = useLocation().pathname
     const { checkPaymentMethod } = technicalModel
@@ -27,7 +27,6 @@ function TechnicalSubmit() {
 
     const clickSubmit = useCallback(async () => {
         try {
-            if (loginMethods.length < 1) throw new Error("Please select a login method")
             const shopData: IshopUpdateService = {
                 paymentMethods: isRegister ? paymentMethods.filter(el => el.isActive) : refactor({ payments: paymentMethods, userPayments }),
                 loginMethods
@@ -43,7 +42,7 @@ function TechnicalSubmit() {
         } catch (error) {
             showToast({ message: error.message, type: "error" });
         }
-    }, [paymentMethods, imsType, userPayments, isRegister, shop])
+    }, [paymentMethods, imsType, userPayments, isRegister, shop, updateState])
     return (
         <Flex justifyContent={isRegister ? "space-between" : "right"} width={"100%"}>
             {isRegister && (

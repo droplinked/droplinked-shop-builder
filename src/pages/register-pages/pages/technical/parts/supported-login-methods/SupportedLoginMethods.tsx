@@ -2,9 +2,9 @@ import { Flex } from '@chakra-ui/layout'
 import AppCard from 'components/common/card/AppCard'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppTypography from 'components/common/typography/AppTypography'
-import { IAuthSupportedWalletsService } from 'lib/apis/auth/interfaces'
 import { authSupportedWalletsService } from 'lib/apis/auth/services'
-import React, { useContext, useEffect, useMemo } from 'react'
+import { getShopInformationService } from 'lib/apis/shop/shopServices'
+import React, { useContext, useMemo } from 'react'
 import { useQuery } from 'react-query'
 import technicalContext from '../../context'
 import ChainAccordion from './parts/accordion/ChainAccordion'
@@ -12,21 +12,21 @@ import LoginMethodsLoading from './parts/loading/LoginMethodsLoading'
 
 function SupportedLoginMethods() {
     const { updateState } = useContext(technicalContext)
-    const { isLoading, error, data } = useQuery({
-        queryKey: "supported-login-methods",
-        queryFn: authSupportedWalletsService,
-        refetchOnWindowFocus: false
+    const supportedLoginMethods = useQuery("supported-login-methods", authSupportedWalletsService, { refetchOnWindowFocus: false })
+    const selectedLoginMethods = useQuery("selected-login-methods", getShopInformationService, {
+        refetchOnWindowFocus: false,
+        enabled: supportedLoginMethods.isSuccess,
+        onSuccess: (data) => {
+            let selectedLoginMethods = data.data.loginMethods
+            if (!Array.isArray(selectedLoginMethods) || selectedLoginMethods.length === 0) {
+                const [{ name, wallets: [firstWallet] }] = supportedLoginMethods.data.data
+                selectedLoginMethods = [{ name, wallets: [{ ...firstWallet, isActivated: true }] }]
+            }
+            updateState("loginMethods", selectedLoginMethods)
+        }
     })
-
-    const response = useMemo(() => data?.data, [data])
-    useEffect(() => {
-        const selectedLoginMethods = response?.reduce((chains: IAuthSupportedWalletsService[], currentChain) => {
-            const activatedWallets = currentChain.wallets.filter(wallet => wallet.isActivated)
-            if (activatedWallets.length > 0) chains.push({ ...currentChain, wallets: activatedWallets })
-            return chains
-        }, [])
-        updateState("loginMethods", selectedLoginMethods)
-    }, [response])
+    const response = useMemo(() => supportedLoginMethods.data?.data, [supportedLoginMethods.data])
+    const isLoading = supportedLoginMethods.isLoading || selectedLoginMethods.isLoading
 
     return (
         <AppCard>
