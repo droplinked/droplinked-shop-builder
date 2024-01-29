@@ -18,7 +18,6 @@ function HeaderDashboardLogedin() {
         logoutUser()
         onClose()
     }, []);
-    console.log(user?.lastName);
 
     return (
         <Popover
