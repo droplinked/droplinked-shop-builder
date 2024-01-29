@@ -71,8 +71,11 @@ namespace OrderDetailsModel {
                         {
                             label: "Paid with",
                             value: <Flex alignItems={"center"} gap={"5px"}>
-                                <BlockchainDisplay show="icon" blockchain={order?.details?.paidWith} props={{ width: "16px", height: "16px" }} />
-                                <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>{`${order?.details?.paidWith} payment`}</AppTypography>
+                                <BlockchainDisplay show="icon" blockchain={order?.details?.paidWith} props={{ width: "20px", height: "20px" }} />
+                                <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>
+                                    <BlockchainDisplay show="name" blockchain={order?.details?.paidWith} props={{ width: "16px", height: "16px" }} />{" "}
+                                    payment
+                                </AppTypography>
                             </Flex>
                         }
                     ]

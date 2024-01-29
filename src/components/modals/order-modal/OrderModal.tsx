@@ -16,7 +16,7 @@ export default function OrderModal({ orderID, show, close }) {
   const { showToast } = useAppToast()
   const { mutate, isLoading, data } = useMutation((params: IgetOrderService) => getOrderService(params), {
     onError: (error) => {
-      showToast((error as Error).message, "error")
+      showToast({ message: (error as Error).message, type: "error" })
       close()
     }
   })
@@ -24,7 +24,7 @@ export default function OrderModal({ orderID, show, close }) {
   useEffect(() => mutate({ orderID }), [orderID])
 
   return (
-    <AppModal open={show} close={close} title={"Order Details"} size="3xl" isCentered={false} contentProps={{ padding: 9 }} >
+    <AppModal open={show} close={close} title={"Order Details"} size="3xl" isCentered={false} contentProps={{ paddingX: 2, paddingY: 5 }} >
       <Flex justifyContent="center">
         {isLoading ? <ModalSkeleton /> : (
           <orderModalContext.Provider value={{ order: data?.data?.data }}>
