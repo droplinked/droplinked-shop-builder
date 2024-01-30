@@ -1,5 +1,5 @@
 export enum dashboardDates {
-    weekly = 'WEEKLY',
+    yearly = 'YEARLY',
     monthly = 'MONTHLY',
 }
 
