@@ -38,7 +38,7 @@ export interface IrevenueData {
 
 export interface IdashboardChartsStates {
     revenue: IrevenueData;
-    date: "WEEKLY" | "MONTHLY" | "YEARLY";
+    date: "MONTHLY" | "YEARLY";
 }
 
 interface IProps {
