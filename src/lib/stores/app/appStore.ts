@@ -103,7 +103,7 @@ const states = (set: any, get: any): IAppStore => ({
             }
         })
     },
-    updateState: ({ key, params }: IPropsUpdatestate) => { set({ ...get, [key]: params }) },
+    updateState: ({ key, params }: IPropsUpdatestate) => { set(prev => ({ ...prev, [key]: params })) },
     updateWallet: ({ address, type, public_key }: IUserWalletsProps) => {
         set(state => {
             const prevWallets = state.user?.wallets
