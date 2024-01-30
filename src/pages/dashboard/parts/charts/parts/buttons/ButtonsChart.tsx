@@ -10,7 +10,7 @@ function ButtonsChart() {
 
     useEffect(() => options[currentIndex] !== date && updateStates('date', options[currentIndex]), [currentIndex])
 
-    const options = ['WEEKLY', 'YEARLY']
+    const options = ["MONTHLY", 'YEARLY']
 
     const handleNext = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % options.length);

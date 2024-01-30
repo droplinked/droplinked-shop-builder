@@ -23,12 +23,12 @@ interface IprevNextDateRange {
 }
 
 namespace dashboardDatepickerModel {
-  export const ranges = [dashboardDates.weekly, dashboardDates.monthly]
+  export const ranges = [dashboardDates.yearly, dashboardDates.monthly]
 
   export const getDateRange = ({ startDate, range }: IgetDateRange): IOutputGetDateRange => {
-    if (range === dashboardDates.weekly) return {
-      from: moment(startDate).startOf('week').toDate(),
-      to: moment(startDate).endOf('week').toDate(),
+    if (range === dashboardDates.yearly) return {
+      from: moment(startDate).startOf('year').toDate(),
+      to: moment(startDate).endOf('year').toDate(),
     }
     else if (range === dashboardDates.monthly) return {
       from: moment(startDate).startOf('month').toDate(),
@@ -42,7 +42,7 @@ namespace dashboardDatepickerModel {
   }
 
   export const prevNextDateRange = ({ startDate, range, operation }: IprevNextDateRange): IOutputGetDateRange => {
-    const getDate = (time: 'week' | 'month', operation: IdashboardDatepickerTime) => {
+    const getDate = (time: 'year' | 'month', operation: IdashboardDatepickerTime) => {
       if (operation === IdashboardDatepickerTime.add) return {
         from: moment(startDate).add(1, time).startOf(time).toDate(),
         to: moment(startDate).add(1, time).endOf(time).toDate(),
@@ -53,7 +53,7 @@ namespace dashboardDatepickerModel {
       }
     }
 
-    if (range === dashboardDates.weekly) return getDate('week', operation)
+    if (range === dashboardDates.yearly) return getDate('year', operation)
     else if (range === dashboardDates.monthly) return getDate('month', operation)
     else return {
       from: new Date(),
