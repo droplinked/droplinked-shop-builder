@@ -46,6 +46,7 @@ export interface IshopUpdateService extends IshopSocial {
     tags?: Array<string>
     infoEmail?: string
     imsType?: string
+    credit?: number
 }
 
 export interface IShopRecordedService {
