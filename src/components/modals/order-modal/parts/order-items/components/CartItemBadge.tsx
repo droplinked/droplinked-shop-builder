@@ -10,7 +10,7 @@ interface Props {
 
 function CartItemBadge({ text, colorScheme = "gray" }: Props) {
     const isGrayScheme = colorScheme === "gray"
-
+    if (!text) return null
     return (
         <Box
             borderRadius={"24px"}
@@ -25,7 +25,7 @@ function CartItemBadge({ text, colorScheme = "gray" }: Props) {
             >
                 {text.length <= 15 ?
                     text :
-                    <AppTooltip label={text}>{`${text.slice(0, 16)}...`}</AppTooltip>
+                    <AppTooltip label={text}>{`${text.slice(0, 15)}...`}</AppTooltip>
                 }
             </AppTypography>
         </Box>

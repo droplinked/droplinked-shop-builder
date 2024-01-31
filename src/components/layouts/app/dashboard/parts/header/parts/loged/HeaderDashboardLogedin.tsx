@@ -52,12 +52,8 @@ function HeaderDashboardLogedin() {
                                 </AppTypography>
                                 <AppTypography color={"#808080"} fontSize={"14px"} position={"relative"}>
                                     {shop?.description &&
-                                        <AppTooltip label={shop?.description}>
-                                            <>
-                                                {shop?.description.slice(0, 15)}
-                                                {shop?.description?.length < 15 ? '...' : null}
-                                            </>
-                                        </AppTooltip>
+                                        shop.description.length <= 15 ? shop.description :
+                                        < AppTooltip label={shop?.description}>{`${shop?.description.slice(0, 15)}...`}</AppTooltip>
                                     }
                                 </AppTypography>
                             </Flex>
@@ -72,7 +68,7 @@ function HeaderDashboardLogedin() {
                     </Flex>
                 </PopoverBody>
             </PopoverContent>
-        </Popover>
+        </Popover >
     )
 }
 
