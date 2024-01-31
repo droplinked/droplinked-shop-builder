@@ -5,7 +5,7 @@ import AppRoutes from "routes/routes";
 import AppToastify from "components/common/toastify/AppToastify";
 
 function App() {
-  
+  console.log('v.1.1')
   return (
     <BrowserRouter>
       {/* toast box */}
