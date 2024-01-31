@@ -9,7 +9,6 @@ import CartItemBadge from './components/CartItemBadge'
 
 function OrderItems() {
     const { order } = useContext(orderModalContext)
-
     return (
         <Flex direction={"column"} gap={"24px"}>
             <AppTypography fontSize={"16px"} fontWeight={500} color={"#FFFFFF"}>Cart</AppTypography>
@@ -24,15 +23,15 @@ function OrderItems() {
                                     <AppTypography color={"#FFFFFF"} fontSize={"14px"} position={"relative"}>
                                         {item.title.length <= 25 ?
                                             item.title :
-                                            <AppTooltip label={item.title} fontSize={"14px"}>{`${item.title.slice(0, 26)}...`}</AppTooltip>
+                                            <AppTooltip label={item.title} fontSize={"14px"}>{`${item.title.slice(0, 25)}...`}</AppTooltip>
                                         }
                                     </AppTypography>
                                     {item.isAffiliate && <CartItemBadge text={"Affiliate"} colorScheme='green' />}
                                 </Flex>
                                 <Flex alignItems={"center"} gap={"5px"}>
                                     {item.shipping && <CartItemBadge text={item.shipping} />}
-                                    <CartItemBadge text={item.size.title} />
-                                    <CartItemBadge text={item.color.title} />
+                                    {item.size.title && <CartItemBadge text={item.size.title} />}
+                                    {item.color.title && <CartItemBadge text={item.color.title} />}
                                 </Flex>
                             </Flex>
                         </Flex>
