@@ -9,7 +9,7 @@ import CartItemBadge from './components/CartItemBadge'
 
 function OrderItems() {
     const { order } = useContext(orderModalContext)
-
+    console.log(order)
     return (
         <Flex direction={"column"} gap={"24px"}>
             <AppTypography fontSize={"16px"} fontWeight={500} color={"#FFFFFF"}>Cart</AppTypography>
@@ -30,9 +30,9 @@ function OrderItems() {
                                     {item.isAffiliate && <CartItemBadge text={"Affiliate"} colorScheme='green' />}
                                 </Flex>
                                 <Flex alignItems={"center"} gap={"5px"}>
-                                    <CartItemBadge text={item.shipping} />
-                                    <CartItemBadge text={item.size.title} />
-                                    <CartItemBadge text={item.color.title} />
+                                    {item.shipping && <CartItemBadge text={item.shipping} />}
+                                    {item.size.title && <CartItemBadge text={item.size.title} />}
+                                    {item.color.title && <CartItemBadge text={item.color.title} />}
                                 </Flex>
                             </Flex>
                         </Flex>

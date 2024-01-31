@@ -10,7 +10,7 @@ interface Props {
 
 function CartItemBadge({ text, colorScheme = "gray" }: Props) {
     const isGrayScheme = colorScheme === "gray"
-    if (!text) return null
+
     return (
         <Box
             borderRadius={"24px"}
