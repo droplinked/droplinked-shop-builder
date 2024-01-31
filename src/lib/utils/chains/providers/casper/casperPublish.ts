@@ -6,7 +6,6 @@ export let casperPublishRequest = async function(network: Network, address: stri
     const fromHexString = (hexString:string) =>
         Uint8Array.from(hexString.match(/.{1,2}/g).map((byte) => parseInt(byte, 16)));
     let producer_hash = new CLAccountHash(fromHexString(producer_account_address));
-    console.log(producer_hash);
     const publicKeyHex = address;
     const publicKey = CLPublicKey.fromHex(publicKeyHex);
     let gasPrice = 3800000000;
@@ -23,8 +22,6 @@ export let casperPublishRequest = async function(network: Network, address: stri
     const payment = DeployUtil.standardPayment(gasPrice);
     let deploy = DeployUtil.makeDeploy(deployParams , kk , payment);
     const json = DeployUtil.deployToJson(deploy);
-    console.log(publicKeyHex);
-    console.log(json);
     const signature = await getCasperWalletInstance().sign(JSON.stringify(json), publicKeyHex).catch((reason: any)=>{
         return "Cancelled";
     });

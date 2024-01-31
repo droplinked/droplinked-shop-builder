@@ -13,7 +13,7 @@ function PODProduct() {
             <ProductPodDesign open={true} />
             <Variant />
             <General open={false} />
-            <CategoryProduct />
+            {/* <CategoryProduct /> */}
             <CollectionProduct />
             <ButtonsProduct />
         </>

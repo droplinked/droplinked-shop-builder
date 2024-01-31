@@ -34,7 +34,6 @@ async function casperRecordMerch(network: Network, sku_properties: any , address
         CLPublicKey.fromHex(producer_public_key)
       );
     const deployres = await casperService.deploy(signedDeploy);
-    console.log(deployres);
     return deployres.deploy_hash;
 }
 export { casperRecordMerch };
