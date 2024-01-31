@@ -13,6 +13,7 @@ function HeaderDashboardLogedin() {
     const { onOpen, onClose, isOpen } = useDisclosure();
     const { logoutUser } = useProfile()
     const { app: { shop, user } } = useHookStore();
+    console.log(shop?.description)
 
     const logout = useCallback(() => {
         logoutUser()
@@ -50,12 +51,13 @@ function HeaderDashboardLogedin() {
                                 <AppTypography color={"#FFFFFF"} fontSize={"16px"} fontWeight={500}>
                                     {user?.firstName && user?.lastName ? `${user?.firstName} ${user?.lastName}` : 'Welcome'}
                                 </AppTypography>
-                                <AppTypography color={"#808080"} fontSize={"14px"} position={"relative"}>
-                                    {shop?.description &&
-                                        shop.description.length <= 15 ? shop.description :
-                                        < AppTooltip label={shop?.description}>{`${shop?.description.slice(0, 15)}...`}</AppTooltip>
-                                    }
-                                </AppTypography>
+                                {shop?.description &&
+                                    <AppTypography color={"#808080"} fontSize={"14px"} position={"relative"}>
+                                        {shop.description.length <= 15 ? shop.description :
+                                            < AppTooltip label={shop?.description}>{`${shop?.description.slice(0, 15)}...`}</AppTooltip>
+                                        }
+                                    </AppTypography>
+                                }
                             </Flex>
                         </Flex>
                         <Divider />

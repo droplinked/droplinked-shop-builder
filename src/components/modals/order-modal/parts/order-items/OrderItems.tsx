@@ -9,7 +9,6 @@ import CartItemBadge from './components/CartItemBadge'
 
 function OrderItems() {
     const { order } = useContext(orderModalContext)
-    console.log(order)
     return (
         <Flex direction={"column"} gap={"24px"}>
             <AppTypography fontSize={"16px"} fontWeight={500} color={"#FFFFFF"}>Cart</AppTypography>
