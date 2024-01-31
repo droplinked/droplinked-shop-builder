@@ -41,9 +41,9 @@ function Technical() {
   useEffect(() => userPaymentsService.mutate(), [])
 
   // update imsType as state managment
-  useEffect(() => {
-    updateState("imsType", shop?.imsType || "")
-  }, [shop]);
+  // useEffect(() => {
+  //   updateState("imsType", shop?.imsType || "")
+  // }, [shop]);
 
   return (
     <technicalContext.Provider value={{ state: Technical, updateState, updatePayment, userPayments }}>
