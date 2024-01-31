@@ -100,7 +100,9 @@ export async function metamaskLogin(chain: Chain, network: Network): Promise<{
                 rpcUrls: chainNames[chain][network].rpcUrls
             }]
         });
-    } catch (err) { }
+    } catch (err) { 
+        console.log(err);
+    }
     await changeChain(chain, network);
     const siweMessage = `Please sign this message to let droplinked view your PublicKey & Address and validate your identity`;
     let msg = `0x${Buffer.from(siweMessage, 'utf8').toString('hex')}`;
