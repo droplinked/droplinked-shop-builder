@@ -1,6 +1,6 @@
-import { Flex, Icon } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
-import React, { useContext, useEffect, useState } from 'react'
+import { Flex, Icon } from '@chakra-ui/react';
+import AppTypography from 'components/common/typography/AppTypography';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import dashboardChartsContext from '../../context';
 
@@ -10,7 +10,7 @@ function ButtonsChart() {
 
     useEffect(() => options[currentIndex] !== date && updateStates('date', options[currentIndex]), [currentIndex])
 
-    const options = ["MONTHLY", 'YEARLY']
+    const options = ["WEEKLY", 'YEARLY']
 
     const handleNext = () => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % options.length);

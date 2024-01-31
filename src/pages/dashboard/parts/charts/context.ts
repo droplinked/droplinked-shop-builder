@@ -38,7 +38,7 @@ export interface IrevenueData {
 
 export interface IdashboardChartsStates {
     revenue: IrevenueData;
-    date: "MONTHLY" | "YEARLY";
+    date: "WEEKLY" | "YEARLY";
 }
 
 interface IProps {
@@ -57,7 +57,7 @@ export const dashboardChartsStates: IdashboardChartsStates = {
 const dashboardChartsContext = createContext<IProps>({
     states: dashboardChartsStates,
     method: {
-        updateStates: () => {},
+        updateStates: () => { },
     },
     isLoading: false,
 });

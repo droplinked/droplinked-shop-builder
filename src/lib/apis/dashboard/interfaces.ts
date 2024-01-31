@@ -1,6 +1,6 @@
 export enum dashboardDates {
     yearly = 'YEARLY',
-    monthly = 'MONTHLY',
+    weekly = 'WEEKLY',
 }
 
 export interface IgetRevenueServices {
