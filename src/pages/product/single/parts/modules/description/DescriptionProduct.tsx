@@ -18,7 +18,7 @@ function DescriptionProduct() {
             <AppSkeleton isLoaded={loading}>
                 <Box className={classes.editor}>
                     <Editor
-                        apiKey='your-api-key'
+                        apiKey='6pfzx71rzzdg48m2qr77o5du3ueym435j2nxhsjnqc6e18s3'
                         onEditorChange={(el: any) => updateState('description', el)}
                         initialValue={Update}
                         init={{
