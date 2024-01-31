@@ -75,7 +75,7 @@ function RequestsList() {
                       </VStack>
                       <VStack align="stretch" color="#C2C2C2" textAlign="right">
                         <AppTypography fontSize="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>
-                        <AppTypography fontSize="12px">Price: {`${sku?.price} ${product?.priceUnit || ""}`}</AppTypography>
+                        <AppTypography fontSize="12px">Price: ${`${sku?.price.toFixed(2)} ${product?.priceUnit || ""}`}</AppTypography>
                         <AppTypography fontSize="12px" display="flex">Your earning: <AppTypography padding="0 3px" fontSize="12px" fontWeight="bold">{parseFloat(el?.publisherEarning).toFixed(2)} USD / each</AppTypography></AppTypography>
                       </VStack>
                     </Flex>
