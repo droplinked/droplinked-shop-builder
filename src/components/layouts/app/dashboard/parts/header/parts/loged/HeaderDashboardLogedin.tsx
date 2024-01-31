@@ -13,8 +13,6 @@ function HeaderDashboardLogedin() {
     const { onOpen, onClose, isOpen } = useDisclosure();
     const { logoutUser } = useProfile()
     const { app: { shop, user } } = useHookStore();
-    console.log(shop?.description)
-
     const logout = useCallback(() => {
         logoutUser()
         onClose()
