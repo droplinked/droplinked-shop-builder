@@ -8,10 +8,8 @@ import { useMutation } from "react-query";
 import { useLocation } from "react-router-dom";
 import technicalContext, { technicalContextState } from "./context";
 import technicalModel from "./model";
-import Ims from "./parts/ims";
 import Payments from "./parts/payment";
 import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
-import SupportedLoginMethods from "./parts/supported-login-methods";
 import Wallet from "./parts/wallet";
 
 function Technical() {
@@ -43,15 +41,15 @@ function Technical() {
   useEffect(() => userPaymentsService.mutate(), [])
 
   // update imsType as state managment
-  useEffect(() => {
-    updateState("imsType", shop?.imsType || "")
-  }, [shop]);
+  // useEffect(() => {
+  //   updateState("imsType", shop?.imsType || "")
+  // }, [shop]);
 
   return (
     <technicalContext.Provider value={{ state: Technical, updateState, updatePayment, userPayments }}>
       <PageContent>
         <VStack spacing={4} align="stretch">
-          <Ims />
+          {/* <Ims /> */}
           {/* <SupportedLoginMethods /> */}
           {Technical.imsType !== "SHOPIFY" && <Payments />}
           {appDeveloment && <Wallet />}
