@@ -1,6 +1,6 @@
 import { Box, VStack } from '@chakra-ui/react'
 import { IgetRevenueServices } from 'lib/apis/dashboard/interfaces'
-import { getRevenueServices } from 'lib/apis/dashboard/productServices'
+import { getRevenueServices } from 'lib/apis/dashboard/dashboardServices'
 import dashboardPageContext from 'pages/dashboard/context'
 import React, { useContext, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
