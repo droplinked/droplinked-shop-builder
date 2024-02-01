@@ -10,7 +10,7 @@ interface IdashboardPageState {
   }
 }
 
-const range = dashboardDates.monthly
+const range = dashboardDates.yearly
 const { from, to } = dashboardDatepickerModel.getDateRange({ range, startDate: new Date() })
 export const dashboardPageState: IdashboardPageState = {
   dateRange: { from, to, value: range }
