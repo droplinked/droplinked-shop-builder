@@ -15,7 +15,7 @@ function DashboardDate() {
         borderRadius: "4px"
     }
 
-    const setRange = useCallback((el) => {
+    const setRange = useCallback((el) => {        
         const range = getDateRange({ range: el, startDate: new Date() })
         updateDateRange('from', range.from)
         updateDateRange('to', range.to)

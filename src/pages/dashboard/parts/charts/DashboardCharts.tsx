@@ -15,7 +15,7 @@ function DashboardCharts() {
     const [States, setStates] = useState<IdashboardChartsStates>(dashboardChartsStates)
 
     const updateStates = (key: string, value: any) => setStates(prev => ({ ...prev, [key]: value }))
-
+    
     useEffect(() => mutate({ from, to, dateRange: value }, { onSuccess: (data) => updateStates('revenue', data?.data?.data) }), [from, to, value])
 
     return (
