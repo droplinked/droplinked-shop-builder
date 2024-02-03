@@ -35,6 +35,7 @@ export interface Ideploy {
 const recordModel = ({
     record: async ({ product, commission, blockchain, quantity, sku, imageUrl, accountAddress, royalty }: Irecord) => {
         const provider = getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress)
+
         // ---------------- new parameters: ------------------------
         // get these parameters from recorder:
         const type = ProductType.DIGITAL; // type of the product
@@ -50,7 +51,7 @@ const recordModel = ({
         } else {
             if (pod) beneficiaries = [{
                 isPercentage: false,
-                value: sku.price * 100,
+                value: sku.rawPrice * 100,
                 wallet: droplink_wallet
             }]
             record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, pod ? quantity : sku.quantity, commission * 100, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
