@@ -17,24 +17,25 @@ export interface IRecordModalProduct {
 interface Iprops {
     open: boolean
     close: Function
-    product: any
-    sku: Isku
+    product: IRecordModalProduct
 }
 
-function RecordModal({ close, open, product, sku }: Iprops) {
+function RecordModal({ close, open, product }: Iprops) {
+    const { methods } = useContext(productContext)
     const [State, setState] = useState(recordStates)
 
     // Close Modal
     const closeModal = useCallback(async () => {
-        close()
+        const skues = await methods.fetch()
+        methods.updateState("sku", skues.sku)
         setState(recordStates)
+        close()
     }, [])
 
     return (
         <recordContext.Provider value={{
             state: State,
-            product,
-            updateState: (key: string, value: string) => setState(prev => ({ ...prev, [key]: value })),
+            updateState: (key: string, value: string) => setState(prev => ({ ...prev, [key]: value }))
         }}>
             <AppModal
                 open={open}
@@ -43,9 +44,8 @@ function RecordModal({ close, open, product, sku }: Iprops) {
                 contentProps={{
                     padding: "30px"
                 }}
-                isCentered={false}
             >
-                {State.hashkey ? <HashKey text="Sku record successful" blockchain={State.blockchain} hashkey={State.hashkey} close={closeModal} /> : <RecordForm close={closeModal} product={product} sku={sku} />}
+                {State.hashkey ? <HashKey text="Sku record successful" hashkey={State.hashkey} close={closeModal} /> : <RecordForm close={closeModal} product={product} />}
             </AppModal>
         </recordContext.Provider>
     )

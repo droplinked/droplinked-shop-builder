@@ -10,19 +10,19 @@ function ProductEmpty() {
             <EmptyTable
                 add={{
                     caption: "New Product",
-                    onClick: () => shopNavigate("products/types")
+                    onClick: () => shopNavigate("products/create")
                 }}
                 list={[
                     {
-                        icon: <AppIcons.VariantsIcon />,
+                        icon: <AppIcons.variantsIcon />,
                         label: "Add your physical and digital products "
                     },
                     {
-                        icon: <AppIcons.ManageIcon />,
+                        icon: <AppIcons.manageIcon />,
                         label: "Track and manage inventory"
                     },
                     {
-                        icon: <AppIcons.TearIcon />,
+                        icon: <AppIcons.tearIcon />,
                         label: "Decentralize earnings and commissions on-chain"
                     }
                 ]}

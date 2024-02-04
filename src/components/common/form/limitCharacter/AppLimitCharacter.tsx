@@ -8,7 +8,7 @@ interface Iprops {
 
 function AppLimitCharacter({ limit, value }: Iprops) {
     return (
-        <AppTypography fontSize='14px' position={"absolute"} bottom="10px" right="20px" zIndex={"1"} color="#808080">{value.length}/{limit}</AppTypography>
+        <AppTypography size='14px' position={"absolute"} bottom="10px" right="20px" zIndex={"1"} color="#808080">{value.length}/{limit}</AppTypography>
     )
 }
 

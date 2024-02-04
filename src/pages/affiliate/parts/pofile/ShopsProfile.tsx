@@ -1,5 +1,5 @@
 import { Box, Image, Text, VStack } from '@chakra-ui/react'
-import React, { useMemo } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import SocialAffliate, { ISocialAffliate } from '../social/SocialAffliate';
@@ -11,28 +11,22 @@ interface Iprops {
   desciption?: string
   shopname: string
   social: ISocialAffliate
-  link?: string
 }
 
-function ShopsProfile({ avatar, title, desciption, shopname, social, link }: Iprops) {
+function ShopsProfile({ avatar, title, desciption, shopname, social }: Iprops) {
   const { shop } = useProfile()
-
-  const jsxContent = useMemo(() => (
-    <VStack align={"stretch"} spacing={3}>
-      <Box><Image src={avatar} borderRadius="100px" width="36px" height="36px" /></Box>
-      <Box><AppTypography fontSize='14px' color="#2EC99E" fontWeight="bold">{title}</AppTypography></Box>
-      {desciption && <Box><AppTypography fontSize='12px' color="#C2C2C2">{desciption}</AppTypography></Box>}
-    </VStack>
-  ), [avatar, desciption, title])
+  const { facebook, instagram, pintrest, snapchat, twitter } = social
 
   return (
     <VStack align={"stretch"} spacing={3}>
-      {link && link.search("http") >= 0 ? (
-        <a href={link} target="_blank">{jsxContent}</a>
-      ) : (
-        <Link to={link || `/${shop.name}/c/affiliate/shops/${shopname}`}>{jsxContent}</Link>
-      )}
-      <SocialAffliate social={social} />
+      <Link to={`/${shop.name}/c/affiliate/shops/${shopname}`}>
+        <VStack align={"stretch"} spacing={3}>
+          <Box><Image src={avatar} borderRadius="100px" width="36px" height="36px" /></Box>
+          <Box><AppTypography size='14px' color="#2EC99E" weight="bolder">{title}</AppTypography></Box>
+          {desciption && <Box><AppTypography size='12px' color="#C2C2C2">{desciption}</AppTypography></Box>}
+        </VStack>
+      </Link>
+      <SocialAffliate facebook={facebook} instagram={instagram} pintrest={pintrest} snapchat={snapchat} twitter={twitter} />
     </VStack>
   )
 }

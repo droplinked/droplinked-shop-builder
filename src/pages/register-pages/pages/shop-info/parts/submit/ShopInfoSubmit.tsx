@@ -19,15 +19,15 @@ function ShopInfoSubmit({ States }: IProps) {
 
     const submit = useCallback(async () => {
         try {
-            const { addressBookID, description, tags } = States
-            await update({ addressBookID, description, tags })
+            const { addressBookID, description } = States
+            await update({ addressBookID, description })
             if (isRegister) {
                 shopNavigate(`register/design`);
             } else {
-                showToast({ message: AppErrors.store.has_been_updated("Store info"), type: "success" })
+                showToast(AppErrors.store.has_been_updated("Store info"), "success")
             }
         } catch (error) {
-            showToast({ message: error?.message, type: "error" })
+            showToast(error?.message, "error")
         }
     }, [States, isRegister])
 

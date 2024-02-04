@@ -1,36 +1,49 @@
-import { Box, Flex, Image, VStack } from "@chakra-ui/react";
-import React, { useCallback, useContext } from "react";
-import { productContext } from "pages/product/single/context";
-import AppTypography from "components/common/typography/AppTypography";
+import { Box, Flex, Image } from '@chakra-ui/react'
+import { printPositionsServices } from 'lib/apis/product/productServices'
+import React from 'react'
+import { useQuery } from 'react-query'
+import shirtBack from 'assest/image/positions/back.svg'
+import shirtCenter from 'assest/image/positions/center.svg'
+import shirtLeft from 'assest/image/positions/left.svg'
+import shirtRight from 'assest/image/positions/right.svg'
 
 interface IProps {
-  update(element: string): void;
-  state: Array<string>;
-  positions: Array<string>;
+    update(element: string): void
+    state: Array<string>
+    posistion?: "back" | "front"
 }
 
-function ProductPositions() {
-  const { state: { m2m_positions, m2m_positions_options }, methods: { updateState } } = useContext(productContext)
+function ProductPositions({ update, state, posistion }: IProps) {
+    const { data } = useQuery({
+        queryFn: printPositionsServices,
+        queryKey: "positions_query",
+        cacheTime: 60 * 60 * 1000,
+        refetchOnWindowFocus: false
+    })
 
-  const click = useCallback((isActive: any, element: any) => {
-    updateState('m2m_positions', isActive ? m2m_positions.filter((item: any) => item?.placement !== element?.placement) : [...m2m_positions, element])
-  }, [m2m_positions])
+    const icons = {
+        FRONT_CENTER: shirtCenter,
+        FRONT_LEFT_CHEST: shirtLeft,
+        FRONT_RIGHT_CHEST: shirtRight,
+        BACK_CENTER: shirtBack,
+    }
 
-  return (
-    <VStack align="stretch" spacing="16px">
-      <AppTypography fontSize='14px'>Customer Position Options</AppTypography>
-      <Flex gap={3}>
-        {m2m_positions_options.map((el: any, key: number) => {
-          const isActive = m2m_positions.find((pos: any) => pos?.placement === el?.placement)
-          return (
-            <Box key={key} backgroundColor="#1C1C1C" padding="8px 16px" onClick={() => click(isActive, el)} cursor="pointer" borderRadius="8px" border={`2px solid ${isActive ? '#2BCFA1' : 'transparent'}`}>
-              <AppTypography fontSize="14px">{el?.placement}</AppTypography>
-            </Box>
-          )
-        })}
-      </Flex >
-    </VStack>
-  );
+    return (
+        <Flex gap={3}>
+            {data?.data?.data && data.data.data.filter((el:string) => posistion ? posistion === "back" ? !el.search("BACK") : el.search("BACK_") : true).map((el: any, key: number) => (
+                <Box key={key}>
+                    <Image
+                        style={{ border: `3px solid ${state.includes(el) ? "#2EC99E" : "transparent"}`, borderRadius: "8px" }}
+                        onClick={() => update(el)}
+                        src={icons[el]}
+                        cursor="pointer"
+                        width="58px"
+                        height="58px"
+                    />
+                </Box>
+            ))}
+        </Flex>
+    )
 }
 
-export default ProductPositions;
+export default ProductPositions

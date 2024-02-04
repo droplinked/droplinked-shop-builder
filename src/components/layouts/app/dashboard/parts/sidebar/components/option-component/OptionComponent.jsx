@@ -1,43 +1,42 @@
 import { useMemo } from "react";
 import { Box, Tooltip } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { IconWrapper } from "../../SidebarLayout-style";
 import classes from './style.module.scss'
-import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 
 const OptionComponent = ({ icon, label, path }) => {
   const location = useLocation();
-  const { shopRoute } = useCustomNavigate()
+  const { shop } = useProfile();
 
   const isActive = useMemo(() => {
-    const checkDash = location.pathname.charAt(location.pathname.length - 1) === '/'
-    const match = shopRoute + path === (checkDash ? location.pathname.slice(0, -1) : location.pathname)
-    return match
-  }, [location, path, shopRoute]);
+    return location.pathname.includes(path);
+  }, [location]);
 
   return (
-    <Link to={path ? `${shopRoute}${path}` : ""}>
-      <Tooltip
-        label={label}
-        placement="right-end"
-        borderRadius="100px"
-        color="#C2C2C2"
-        padding="5px 11px"
-        fontSize="12px"
-        bg="#292929"
-      >
+    <Tooltip
+      label={label}
+      placement="right-start"
+      borderRadius="8px"
+      bg="mainLayer"
+    >
+      <Link to={path ? `/${shop?.name}/c/${path}` : ""}>
         <IconWrapper
           borderLeft="4px solid transparent"
-          paddingLeft="19px"
           borderColor={isActive ? "primary" : "none"}
           _hover={{
             borderColor: "primary",
           }}
         >
           <Box className={`${classes.icon} ${isActive ? classes.active : ""}`}>{icon}</Box>
+          {/* <IconComponent
+            style={isActive ? { filter: "contrast(160%)" } : {}}
+            src={icon}
+            cursor={label === "informations" ? "not-allowed" : "pointer"}
+          /> */}
         </IconWrapper>
-      </Tooltip>
-    </Link>
+      </Link>
+    </Tooltip>
   );
 };
 

@@ -25,7 +25,7 @@ function AppModal(props: IAppModal) {
             <ModalOverlay bg={"rgba(0,0,0,.9)"} />
             <ModalContent bg="#1c1c1c" padding={"45px 30px"} {...contentProps}>
                 <ModalBody>
-                    {title && <Flex justifyContent={"center"} marginBottom={5}><AppTypography fontSize="18px" fontWeight="bold" color={"#FFF"}>{title}</AppTypography></Flex>}
+                    {title && <Flex justifyContent={"center"} marginBottom={5}><AppTypography size="18px" weight="bolder" color={"#FFF"}>{title}</AppTypography></Flex>}
                     {props?.children}
                 </ModalBody>
             </ModalContent>

@@ -1,11 +1,16 @@
 import { Box } from "@chakra-ui/react";
+import React, { useState } from "react";
+import {
+  ThankPageWrapper,
+  ThankText,
+  MessageText,
+  EmailText,
+} from "./ThankForRegisterPage-style";
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import useAppToast from "functions/hooks/toast/useToast";
-import { IresendEmailService } from "lib/apis/user/interfaces";
-import { resendEmailService } from "lib/apis/user/services";
-import React, { useState } from "react";
 import { useMutation } from "react-query";
-import { EmailText, MessageText, ThankPageWrapper, ThankText } from "./ThankForRegisterPage-style";
+import { resendEmailService } from "lib/apis/user/services";
+import { IresendEmailService } from "lib/apis/user/interfaces";
 
 export default function ThankForRegisterPage() {
   const { mutateAsync } = useMutation((params: IresendEmailService) => resendEmailService(params))
@@ -23,15 +28,15 @@ export default function ThankForRegisterPage() {
       await mutateAsync({ email })
       setLoading(false);
       // if get error from api
-      showToast({ message: "A new link was sent to your email", type: "success" });
+      showToast("A new link was sent to your email", "success");
     } catch (error) {
-      showToast({ message: error?.response?.data?.message[0], type: "error" });
+      showToast(error?.response?.data?.message[0], "error");
       setLoading(false);
     }
   };
 
   return (
-    <ThankPageWrapper padding={'250px 0'}>
+    <ThankPageWrapper minHeight={"50vh"} paddingTop={50}>
       <ThankText>Thank you!</ThankText>
       <MessageText>
         We have sent a verification email to

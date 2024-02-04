@@ -42,7 +42,7 @@ function TextBoxVariantForm(props: Iprops) {
                     <>
                         {textbox}
                         <Flex position={"absolute"} top={0} bottom={0} margin="auto" right={0} height="90%" borderLeft="1px solid" padding={"15px 15px 10px 15px"} borderColor="line" alignItems={"center"}>
-                            <AppTypography fontSize='14px'>USD</AppTypography>
+                            <AppTypography size='14px'>USD</AppTypography>
                         </Flex>
                     </>
                 ) : textbox}

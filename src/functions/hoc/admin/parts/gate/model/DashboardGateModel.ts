@@ -1,3 +1,5 @@
+import AppErrors from "lib/utils/statics/errors/errors";
+import { toast } from "react-toastify";
 import { statuesModule } from "./modules/statues";
 
 interface IcheckPermission {
@@ -10,20 +12,19 @@ interface IregisterGate extends IcheckPermission {
     to: string
 }
 
-const DashboardGateModel = ({
-    checkPermission: ({ shop }: IcheckPermission) => {
+export default class DashboardGateModel {
+    static checkPermission = ({ shop }: IcheckPermission) => {
         const statues = new statuesModule(shop)
         const shopInfo = statues.shopInfo()
         const designTemplate = statues.designTemplate()
         const technical = statues.technical()
         return shopInfo || designTemplate || technical
-    },
+    }
 
-    registerGate: ({ to, redirect, pathname }: IregisterGate) => {
+    static registerGate = ({ to, redirect, pathname }: IregisterGate) => {
         if (pathname.includes("register")) return false
         const checkPath = pathname.includes(to) // check current path
         if (!checkPath) redirect(to)
+        toast.info(AppErrors.signup.users_want_to_navigate_to_the_pages, { toastId: "Permission" })
     }
-})
-
-export default DashboardGateModel 
+}

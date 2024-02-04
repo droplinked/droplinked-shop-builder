@@ -1,8 +1,8 @@
 import { Iproperties } from "lib/apis/product/interfaces";
 import AppendModule from "../../parts/modules/properties/model/module/append";
 
-const propertyFactor = ({
-    refactor : (items: Array<any>): Array<Iproperties> => {
+export default class propertyFactor {
+    static refactor = (items: Array<any>): Array<Iproperties> => {
 
         let properties = {}
         items.forEach(item => {
@@ -15,10 +15,7 @@ const propertyFactor = ({
                         value: element.variantID
                     }
                 }
-                properties[element.variantID]["items"][element.value] = { 
-                    value: element.value,
-                    caption: element.caption
-                 }
+                properties[element.variantID]["items"][element.value] = { value: element.value }
             });
 
         });
@@ -29,8 +26,7 @@ const propertyFactor = ({
                 ...properties[el],
                 items: Object.keys(items).map(el => {
                     return {
-                        value: items[el].value,
-                        caption: items[el].caption,
+                        value: items[el].value
                     }
                 })
             }
@@ -38,6 +34,4 @@ const propertyFactor = ({
 
         return refactorToArray
     }
-})
-
-export default propertyFactor
+}

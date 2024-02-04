@@ -20,7 +20,7 @@ function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
         <AppDialog
             open={open}
             close={() => { }}
-            title="Delete Collection"
+            title="Confirm Collection Deletion"
             text={"Are you sure you want to delete this collection? You will no longer have access to this collection."}
             buttons={[
                 {
@@ -31,16 +31,16 @@ function ConfirmDeleteCollection({ open, close, collectionID, fetch }: IProps) {
                     }
                 },
                 {
-                    children: "Delete",
+                    children: "Delete Collection",
                     buttonProps: { isLoading },
                     onClick: () => {
                         mutate({ collectionID }, {
                             onSuccess: () => {
-                                showToast({ message: AppErrors.collection.delete_Collection, type: "success" })
+                                showToast(AppErrors.collection.delete_Collection, "success")
                                 fetch()
                                 close()
                             },
-                            onError: async () => showToast({ message: "Oops! Something went wrong", type: "error" })
+                            onError: async () => showToast("Oops! Something went wrong", "error")
                         })
                     }
                 }

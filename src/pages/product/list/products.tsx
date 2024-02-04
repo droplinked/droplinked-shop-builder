@@ -1,132 +1,44 @@
 import AppDataGrid from 'components/common/datagrid/DataGrid'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
-import { IproductList } from 'lib/apis/product/interfaces'
 import { productServices } from 'lib/apis/product/productServices'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import ProductListModel from './model'
 import ProductEmpty from './parts/empty/ProductEmpty'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
-import useHookStore from 'functions/hooks/store/useHookStore'
-import { useDisclosure } from '@chakra-ui/hooks'
-import ConfirmDeleteAll from './parts/deleteAll/ConfirmDeleteAll'
-import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 
 function Products() {
-    const { data: { collection } } = useHookStore()
-    const { mutate, isLoading, data } = useMutation((params: IproductList) => productServices(params))
-    const [searchParams] = useSearchParams()
-    const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1
-    const products = useMemo(() => data?.data?.data, [data])
-    const location = useLocation()
-    const navigate = useNavigate()
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const { refactorData } = ProductListModel
+    const { mutate, isLoading, data } = useMutation(() => productServices())
     const [States, setStates] = useState({
-        checkboxes: []
+        search: null
     })
     const { shop } = useProfile()
-    const { shopRoute } = useCustomNavigate()
 
-    // Fetch service
-    const fetch = useCallback(() => {
-        const filter = searchParams.get("filter")
-        mutate({ limit: 10, page: page, ...filter && { filter } })
-    }, [page, searchParams])
+    useEffect(() => mutate(), [mutate])
 
-    useEffect(() => fetch(), [mutate, page, searchParams])
-
-    // Set search state
+    const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
 
     // Handle search and without search
     const rows = useMemo(() => {
-        return data ? refactorData({
-            data: products?.data,
-            fetch,
+        return data ? ProductListModel.refactorData({
+            data: data.data.data,
+            fetch: mutate,
+            search: States.search
         }) : []
-    }, [products, fetch])
-
-    // Update parametrs url 
-    const updateFilters = useCallback((key: string, value: string) => {
-        const filter = `${key}:${value}`
-        if (searchParams.get("filter") === filter || !value) {
-            searchParams.delete("filter")
-        } else {
-            searchParams.set("filter", filter)
-            searchParams.set("page", "1")
-        }
-        navigate(`${location.pathname}?${searchParams.toString()}`)
-    }, [searchParams, location])
-
-    // Handle delete button
-    const buttons = useMemo(() => {
-        const data: any = [
-            {
-                caption: "Add Product",
-                to: `${shopRoute}/products/types`
-            }
-        ]
-        if (States.checkboxes.length) data.push({
-            caption: "Delete Products" + ` (${States.checkboxes.length})`,
-            onClick: onOpen,
-            buttonProps: {
-                variant: "outline",
-                color: "red.300"
-            }
-        })
-
-        return data
-    }, [States.checkboxes, shop])
+    }, [States.search, data])
 
     return (
-        <>
-            <AppDataGrid
-                loading={isLoading}
-                buttons={buttons}
-                rows={rows}
-                checkbox={{
-                    state: States.checkboxes,
-                    update: (value) => setStates(prev => ({ ...prev, checkboxes: value }))
-                }}
-                filters={[
-                    {
-                        title: "Collections",
-                        list: collection.data ? collection.data.map(el => (
-                            {
-                                title: el?.title,
-                                onClick: () => updateFilters("productCollectionID", el?._id),
-                                isActive: searchParams.get("filter") === `productCollectionID:${el?._id}`
-                            }
-                        )) : []
-                    },
-                    {
-                        title: "Status",
-                        list: ["PUBLISHED", "DRAFTED"].map(el => ({
-                            title: capitalizeFirstLetter(el),
-                            onClick: () => updateFilters("publish_status", el),
-                            isActive: searchParams.get("filter") === `publish_status:${el}`
-                        }
-                        ))
-                    }
-                ]}
-                search={{
-                    onChange: (e) => updateFilters("title", e.target.value),
-                    value: searchParams.get("filter") && searchParams.get("filter").split(':')[0] === "title" ? searchParams.get("filter").split(':')[1] : ''
-                }}
-                empty={<ProductEmpty />}
-                pagination={{
-                    lastPage: products?.totalPages ? parseInt(products?.totalPages) : 1,
-                    current: page,
-                    nextPage: products?.hasNextPage || false,
-                    prevPage: products?.hasPreviousPage || false
-                }}
-            />
-            {isOpen && <ConfirmDeleteAll close={onClose} open={isOpen} productIDs={States.checkboxes} fetch={() => {
-                fetch()
-                setStates(prev => ({ ...prev, checkboxes: [] }))
-            }} />}
-        </>
+        <AppDataGrid
+            loading={isLoading}
+            buttons={[
+                {
+                    caption: "Add Product",
+                    to: `/${shop?.name}/c/products/create`
+                }
+            ]}
+            rows={rows}
+            search={{ onChange: (e) => setSearch(e.target.value) }}
+            empty={<ProductEmpty />}
+        />
     )
 }
 

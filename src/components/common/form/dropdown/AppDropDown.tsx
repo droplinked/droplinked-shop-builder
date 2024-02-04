@@ -24,7 +24,7 @@ function AppDropDown({ options, isRequired, label, onChange, error, value, loadi
 
     return (
         <VStack align={"stretch"} spacing={1}>
-            {label && <FieldLabel loading={loading} label={label} isRequired={isRequired} />}
+            <FieldLabel loading={loading} label={label} isRequired={isRequired} />
             <AppSkeleton isLoaded={loading}>
                 <Select
                     options={options}

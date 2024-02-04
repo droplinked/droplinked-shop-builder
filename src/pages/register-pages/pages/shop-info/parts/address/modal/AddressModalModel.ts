@@ -5,8 +5,8 @@ interface IinitialValues {
     address: IcreateAddressService | null
 }
 
-const AddressModalModel = ({
-    initialValues: ({ address }: IinitialValues): IcreateAddressService => {
+export default class AddressModalModel {
+    static initialValues = ({ address }: IinitialValues): IcreateAddressService => {
         return {
             firstName: '' || address?.firstName,
             lastName: '' || address?.lastName,
@@ -18,9 +18,9 @@ const AddressModalModel = ({
             zip: '' || address?.zip,
             addressType: 'SHOP'
         }
-    },
+    }
 
-    formSchema: () => {
+    static formSchema = () => {
         return Yup.object().shape({
             firstName: Yup.string().required('Required'),
             lastName: Yup.string().required('Required'),
@@ -31,6 +31,4 @@ const AddressModalModel = ({
             zip: Yup.string().required('Required'),
         });
     }
-})
-
-export default AddressModalModel
+}

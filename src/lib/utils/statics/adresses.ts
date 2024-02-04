@@ -1,1 +1,0 @@
-export const droplink_wallet = '0xe74CFa92DB1c8863c0103CC10cF363008348098c'

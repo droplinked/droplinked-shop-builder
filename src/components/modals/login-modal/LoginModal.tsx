@@ -1,16 +1,18 @@
-import { Box } from "@chakra-ui/react";
-import BasicButton from "components/common/BasicButton/BasicButton";
-import AppInput from "components/common/form/textbox/AppInput";
-import AppModal from "components/common/modal/AppModal";
-import { Form, Formik } from 'formik';
-import useHookStore from "functions/hooks/store/useHookStore";
-import useAppToast from "functions/hooks/toast/useToast";
-import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
-import { appDeveloment } from "lib/utils/app/variable";
-import AppErrors from "lib/utils/statics/errors/errors";
+import { Box, Flex } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import React from "react";
-import * as Yup from 'yup';
 import { BottomText } from "./LoginModal-style";
+import { appDeveloment } from "lib/utils/app/variable";
+import AppInput from "components/common/form/textbox/AppInput";
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import AppErrors from "lib/utils/statics/errors/errors";
+import { useStore } from "zustand";
+import useAppStore from "lib/stores/app/appStore";
+import useAppToast from "functions/hooks/toast/useToast";
+import AppModal from "components/common/modal/AppModal";
+import AppTypography from "components/common/typography/AppTypography";
+import BasicButton from "components/common/BasicButton/BasicButton";
 
 interface Iform {
   email: string
@@ -18,9 +20,9 @@ interface Iform {
 }
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
-  const { app: { login, loading } } = useHookStore()
+  const { login, loading } = useStore(useAppStore)
+  const navigate = useNavigate();
   const { showToast } = useAppToast()
-  const { shopRoute, shopNavigate } = useCustomNavigate()
 
   // submit form function
   const onSubmit = async (data: Iform) => {
@@ -28,50 +30,57 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
       let result = await login(data)
       if (result) loginFunction(result);
     } catch (error) {
-      showToast({ message: error?.message, type: "error" });
+      showToast(error.message, "error");
     }
   };
 
   // action on user data based on type and status
   const loginFunction = (data: any) => {
     // check customer
-    if (data.user.type !== "PRODUCER") return showToast({ message: "This account can not login", type: "error" });
+    if (data.user.type !== "PRODUCER") return showToast("This account cant login", "error");
 
     //first close modal
     close();
-    const status = appDeveloment && data.user.status === "NEW" ? "VERIFIED" : data.user.status
 
-    if (status === "DELETED") {
-      showToast({ message: "This account has been deleted", type: "error" });
+    const status =
+      appDeveloment && data.user.status === "NEW"
+        ? "VERIFIED"
+        : data.user.status;
+
+    if (status === "NEW") {
+      localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
+      navigateUser(status, data.shop.name);
+      return;
+    } else if (status === "DELETED") {
+      showToast("This account has been deleted", "error");
       return;
     } else {
-      navigateUser(status, data);
+      navigateUser(status, data.shop.name);
       return;
     }
   };
 
   // navigate user based on status
-  const navigateUser = (status: string, data: any) => {
+  const navigateUser = (status: string, shopName: string) => {
     // eslint-disable-next-line default-case
     switch (status) {
       case "NEW":
-        localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
-        shopNavigate("/email-confirmation");
+        navigate("/email-confirmation");
         return;
       case "VERIFIED":
-        shopNavigate(`register/shop-info`);
+        navigate(`/${shopName}/c/register/shop-info`);
         return;
       case "PROFILE_COMPLETED":
-        shopNavigate(`register/shop-info`);
+        navigate(`/${shopName}/c/register/shop-info`);
         return;
       case "SHOP_INFO_COMPLETED":
-        shopNavigate(``);
+        navigate(`/${shopName}/c/products/`);
         return;
       case "IMS_TYPE_COMPLETED":
-        shopNavigate(``);
+        navigate(`/${shopName}/c/products/`);
         return;
       case "ACTIVE":
-        shopNavigate(``);
+        navigate(`/${shopName}/c/products/`);
         return;
     }
   };

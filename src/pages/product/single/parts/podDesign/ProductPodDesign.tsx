@@ -6,21 +6,16 @@ import { productContext } from '../../context'
 import ProductMockup from '../modules/mockup/ProductMockup'
 import ProductArtwork from '../modules/artwork/ProductArtwork'
 import ProductMintToMerge from '../modules/mintToMerge/ProductMintToMerge'
-import ProductModel from '../../model'
 
-interface Iprops {
-    open?: boolean
-}
-
-function ProductPodDesign({ open = false }: Iprops) {
-    const { state: { product_type, prodviderID } } = useContext(productContext)
+function ProductPodDesign() {
+    const { state: { product_type } } = useContext(productContext)
 
     return (
         <>
             {product_type === "PRINT_ON_DEMAND" && (
-                <ProductCollapse show={open} title='POD Design' description='Select a product, customize it with your artwork, and create product template.'>
-                    <VStack spacing="60px" align={"stretch"}>
-                        {ProductModel.isPrintful(prodviderID) && <ProductType />}
+                <ProductCollapse title='POD Design' description='Set product type, customize artwork and mockup, select product variations.'>
+                    <VStack spacing={10} align={"stretch"}>
+                        <ProductType />
                         <ProductArtwork />
                         <ProductMockup />
                         <ProductMintToMerge />

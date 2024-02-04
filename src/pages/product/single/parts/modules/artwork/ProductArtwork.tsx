@@ -1,45 +1,34 @@
-import { Flex, VStack } from '@chakra-ui/react'
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
-import AppTypography from 'components/common/typography/AppTypography'
+import { Box, Flex, VStack } from '@chakra-ui/react'
 import { productContext } from 'pages/product/single/context'
-import ProductModel from 'pages/product/single/model'
-import React, { useContext, useMemo } from 'react'
+import React, { useContext } from 'react'
 import ProductPageTitle from '../title/ProductPageTitle'
-import Artwork2d from './parts/2d/Artwork2d'
-import ArtworkNormal from './parts/normal/ArtworkNormal'
-import PropertiesPod from './parts/properties/PropertiesPod'
+import ArtworkImage from './parts/image/ArtworkImage'
+import AppTypography from 'components/common/typography/AppTypography'
+import ProductPositions from '../positions/ProductPositions'
 
 function ProductArtwork() {
-    const { state: { positions, prodviderID, pod_blank_product_id }, store: { state: { print_positions, product_printful } }, productID } = useContext(productContext)
-
-    const title = useMemo(() => (
-        <VStack align="stretch">
-            <FieldLabel label="Product Template" isRequired />
-            <AppTypography fontSize='14px' color={"#808080"}>Utilize the Design Maker tool to create product mockups with artwork placement.</AppTypography>
-        </VStack>
-    ), [])
+    const { state: { artwork, artwork2, artwork_position, artwork2_position }, methods: { updateState } } = useContext(productContext)
 
     return (
-        <>
-            {(ProductModel.isPrintful(prodviderID) && pod_blank_product_id) || (print_positions.length || (positions && productID)) && product_printful ? (
-                <>
-                    {ProductModel.isPrintful(prodviderID) ? (
-                        <VStack align="stretch" spacing={5}>
-                            <Flex justifyContent="space-between" alignItems="center">
-                                {title}
-                                <Artwork2d />
-                            </Flex>
-                            <PropertiesPod />
-                        </VStack>
-                    ) : (
-                        <VStack align="stretch" spacing={5}>
-                            {title}
-                            <ArtworkNormal />
-                        </VStack>
-                    )}
-                </>
-            ) : null}
-        </>
+        <VStack align="stretch" spacing={5}>
+            <ProductPageTitle
+                title='Artwork'
+                isReuired
+                description='Upload your design to print on the product. (Max artwork size 355.6x406.4 mm)'
+            />
+            <Flex gap={10}>
+                <VStack align="stretch" width="50%">
+                    <AppTypography size='12px' color="#C2C2C2">Front Artwork</AppTypography>
+                    <ArtworkImage artwork={artwork} field="artwork" updateState={(data: any) => updateState("artwork", data)} />
+                    {artwork && <ProductPositions posistion='front' update={(data: string) => updateState("artwork_position", data)} state={[artwork_position]} />}
+                </VStack>
+                <VStack align="stretch" width="50%">
+                    <AppTypography size='12px' color="#C2C2C2">Back Artwork</AppTypography>
+                    <ArtworkImage artwork={artwork2} field="artwork2" updateState={(data: any) => updateState("artwork2", data)} />
+                    {artwork2 && <ProductPositions posistion='back' update={(data: string) => updateState("artwork2_position", data)} state={[artwork2_position]} />}
+                </VStack>
+            </Flex>
+        </VStack>
     )
 }
 

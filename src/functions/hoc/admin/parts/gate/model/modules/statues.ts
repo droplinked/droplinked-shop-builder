@@ -21,6 +21,6 @@ export class statuesModule {
 
     technical = () => {
         const shop = this.shop
-        return (shop.imsType === "DROPLINKED" ? !Boolean(shop.imsType && shop.paymentMethods.length) : !Boolean(shop.imsType)) && "register/technical"
+        return !Boolean(shop.imsType && shop.paymentMethods.length) && "register/technical"
     }
 }

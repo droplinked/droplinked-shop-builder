@@ -10,7 +10,7 @@ function ShippingProduct() {
     return (
         <>
             {product_type === "NORMAL" && <ProductCollapse title='Shipping' description='Select a shipping method to deliver your product.'>
-                <VStack spacing="60px" align={"stretch"}>
+                <VStack spacing={10} align={"stretch"}>
                     <Shipping />
                 </VStack>
             </ProductCollapse>

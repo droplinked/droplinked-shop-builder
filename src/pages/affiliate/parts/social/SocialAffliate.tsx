@@ -4,66 +4,51 @@ import AppIcons from 'assest/icon/Appicons';
 
 export interface ISocialAffliate {
     instagram: string
-    tiktok: string
-    discord: string
-    linkedin: string
+    snapchat: string
+    pintrest: string
     twitter: string
-    web: string
     facebook: string
-}
-
-export interface IProps {
-    social: ISocialAffliate
     size?: number
 }
 
-function SocialAffliate({ social, size }: IProps) {
+function SocialAffliate({ facebook, instagram, pintrest, snapchat, twitter, size }: ISocialAffliate) {
 
     const sized = useMemo(() => {
+        if (!size) return {}
         return {
             width: `${size ? size : 17}px`,
-            height: `${size ? size : 17}px`,
-            opacity: ".7"
+            height: `${size ? size : 17}px`
         }
     }, [size])
 
-    const icons = {
-        instagram: {
-            icon: <AppIcons.InstagramIcon {...sized} />,
-            url: 'https://www.instagram.com/'
+    const social = [
+        {
+            icon: <AppIcons.instagramIcon {...sized} />,
+            link: instagram
         },
-        discord: {
-            icon: <AppIcons.Discord {...sized} />,
-            url: 'https://discord.gg/'
+        {
+            icon: <AppIcons.snapchatIcon {...sized} />,
+            link: snapchat
         },
-        tiktok: {
-            icon: <AppIcons.TikTok {...sized} />,
-            url: 'https://www.tiktok.com/'
+        {
+            icon: <AppIcons.pintrestIcon {...sized} />,
+            link: pintrest
         },
-        linkedin: {
-            icon: <AppIcons.LinkedIn {...sized} />,
-            url: 'https://www.linkedin.com/'
+        {
+            icon: <AppIcons.twitterIcon {...sized} />,
+            link: twitter
         },
-        twitter: {
-            icon: <AppIcons.TwitterIcon {...sized} />,
-            url: 'https://twitter.com/'
-        },
-        facebook: {
-            icon: <AppIcons.FacebookIcon {...sized} />,
-            url: 'https://www.facebook.com/'
-        },
-        web: {
-            icon: <AppIcons.Web {...sized} />,
-            url: 'http://'
-        },
-    }
-
+        {
+            icon: <AppIcons.facebookIcon {...sized} />,
+            link: facebook
+        }
+    ]
     return (
         <HStack spacing={3}>
-            {Object.keys(social).filter(el => social[el]).map((el, key) => (
+            {social.map((el, key) => (
                 <Box key={key}>
-                    <a href={icons[el].url + social[el]} target={"_blank"}>
-                        {icons[el].icon}
+                    <a href={el.link} target={"_blank"}>
+                        {el.icon}
                     </a>
                 </Box>
             ))}

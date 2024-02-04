@@ -1,20 +1,20 @@
-import { Box, Stack } from "@chakra-ui/react";
-import BasicButton from "components/common/BasicButton/BasicButton";
-import AppInput from 'components/common/form/textbox/AppInput';
-import { Form, Formik } from 'formik';
-import useAppToast from "functions/hooks/toast/useToast";
-import { IsignupService } from "lib/apis/user/interfaces";
-import { signupService } from "lib/apis/user/services";
-import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
-import AppErrors from "lib/utils/statics/errors/errors";
-import React, { useCallback, useState } from "react";
-import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import * as Yup from 'yup';
+import React, { useState, useCallback } from "react";
+import { Box, Stack } from "@chakra-ui/react";
 import { BottomText } from "../SignupModal-style";
+import AppInput from 'components/common/form/textbox/AppInput';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import ShowPassword from "./parts/showPassword/ShowPassword";
+import AppErrors from "lib/utils/statics/errors/errors";
+import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
+import useAppToast from "functions/hooks/toast/useToast";
+import { useMutation } from "react-query";
+import { signupService } from "lib/apis/user/services";
+import { IsignupService } from "lib/apis/user/interfaces";
+import BasicButton from "components/common/BasicButton/BasicButton";
 
-const SignupProducer = ({ close, shopname, switchToggle }) => {
+export default function SignupProducer({ close, shopname, switchToggle }) {
   const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params))
   const [States, setStates] = useState({
     show: {
@@ -32,11 +32,11 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
       const { email, password, username } = data
       await mutateAsync({ email, password, shopName: username });
       localStorage.setItem("registerEmail", JSON.stringify(email));
-      showToast({ message: "Account successfully created", type: "success" });
+      showToast("Account successfully created", "success");
       close();
       navigate("/email-confirmation");
     } catch (error) {
-      showToast({ message: error?.response?.data?.data?.message, type: "error" })
+      showToast(error?.response?.data?.message, "error")
     }
   };
 
@@ -55,10 +55,10 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
         password: '',
         repassword: '',
       }}
-      validateOnChange={false}
       validationSchema={formSchema}
       onSubmit={onSubmit}
     >
+
       {({ errors, values, setFieldValue }) => (
         <Form>
           <Stack w="100%" h="100%" spacing="20px">
@@ -97,7 +97,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
               <ShowPassword showed={States.show.repassword} onClick={() => toggleShowField("repassword")} />
             </Box>
 
-            <BasicButton type="submit" isLoading={isLoading}>
+            <BasicButton type="submit" isDisabled={isLoading}>
               Sign up
             </BasicButton>
 
@@ -110,5 +110,3 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
     </Formik>
   );
 }
-
-export default SignupProducer

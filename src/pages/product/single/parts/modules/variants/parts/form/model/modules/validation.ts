@@ -7,12 +7,12 @@ interface IgetValueOptions {
     variantName: string
 }
 
-const SkuFormValidationModule = ({
+export default class SkuFormValidationModule {
 
-    isValidateProperties: (skues: Array<Isku>) => Boolean(skues.filter(el => !el.options.filter(option => option.value.length).length).length),
+    static isValidateProperties = (skues: Array<Isku>) => Boolean(skues.filter(el => !el.options.filter(option => option.value.length).length).length)
 
     // Make properties for push to validate schema
-    propertyValidation: ({ formData, skues }: IvalidationFormSku) => {
+    static propertyValidation = ({ formData, skues }: IvalidationFormSku) => {
         let shapes = {};
 
         if (formData?.properties) {
@@ -21,21 +21,21 @@ const SkuFormValidationModule = ({
             });
         }
         return shapes
-    },
+    }
 
-    getValueOptions: ({ update, variantName }: IgetValueOptions) => {
+    static getValueOptions = ({update,variantName}:IgetValueOptions) => {
         return update ? update.options.filter(el => el.variantName === variantName)[0].value : ""
-    },
+    }
 
-    initialProperties: ({ properties, update }: IinitialFormikVariantForm) => {
+    static initialProperties = ({ properties, update }: IinitialFormikVariantForm) => {
         const values = {}
         properties.forEach(element => {
-            values[element.title] = update ? SkuFormValidationModule.getValueOptions({ update, variantName: element.title }) : ''
+            values[element.title] = update ? this.getValueOptions({update,variantName: element.title}) : ''
         });
         return values
-    },
+    }
 
-    schema: ({ properties }: IinitialFormikVariantForm) => {
+    static schema = ({ properties }: IinitialFormikVariantForm) => {
         const shapes = {}
         properties.forEach(element => {
             shapes[element.title] = string().required("Required");
@@ -54,6 +54,4 @@ const SkuFormValidationModule = ({
         });
     }
 
-})
-
-export default SkuFormValidationModule
+}

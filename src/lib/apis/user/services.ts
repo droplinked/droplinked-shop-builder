@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { IchangePasswordService, IemailVerifyService, IforgetPasswordService, IresendEmailService, IsignupService, IuserUpdateService } from "./interfaces";
+import { IchangePasswordService, IemailVerifyService, IforgetPasswordService, IresendEmailService, IsignupService } from "./interfaces";
 
 export const signupService = (props: IsignupService) => {
     return axiosInstance.post(`user/signup`, props)
@@ -19,8 +19,4 @@ export const resendEmailService = (props: IresendEmailService) => {
 
 export const emailVerifyService = (props: IemailVerifyService) => {
     return axiosInstance.post(`user/email-verification`, props)
-}
-
-export const userUpdateService = (props: IuserUpdateService) => {
-    return axiosInstance.put(`user`, props)
 }

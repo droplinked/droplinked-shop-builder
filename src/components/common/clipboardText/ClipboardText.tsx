@@ -1,20 +1,14 @@
 import AppIcons from 'assest/icon/Appicons'
-import useAppToast from 'functions/hooks/toast/useToast'
 import React, { useCallback } from 'react'
 
 interface Iprops {
     text: string
-    props?: any
 }
 
-function ClipboardText({ text, props }: Iprops) {
-    const { showToast } = useAppToast()
-    const handleClick = useCallback(() => {
-        navigator.clipboard.writeText(text)
-        showToast({ message: 'Copied', type: "info", options: { autoClose: 200, hideProgressBar: true } })
-    }, [])
+function ClipboardText({ text }: Iprops) {
+    const copy = useCallback((text:string) => navigator.clipboard.writeText(text),[])
 
-    return <AppIcons.CopyIcon width={"18px"} height="18px" {...props} onClick={handleClick} style={{ cursor: "pointer" }} />
+    return <AppIcons.copyIcon width={"13px"} onClick={() => copy(text)} style={{ cursor: "pointer" }} height="16px" />
 }
 
 export default ClipboardText

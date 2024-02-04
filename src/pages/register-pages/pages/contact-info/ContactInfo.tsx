@@ -1,17 +1,17 @@
-import { Box, Flex, VStack } from "@chakra-ui/react";
-import BasicButton from 'components/common/BasicButton/BasicButton';
-import AppCard from 'components/common/card/AppCard';
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
-import AppTypography from 'components/common/typography/AppTypography';
-import { Form, Formik } from "formik";
-import useAppToast from "functions/hooks/toast/useToast";
-import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
-import { useProfile } from "functions/hooks/useProfile/useProfile";
-import { IshopSocial } from "lib/apis/shop/interfaces";
-import AppErrors from "lib/utils/statics/errors/errors";
-import InputLefton from "pages/register-pages/component/input-lefton/InputLefton";
 import React, { useCallback } from "react";
 import { useLocation } from "react-router-dom";
+import AppTypography from 'components/common/typography/AppTypography';
+import AppErrors from "lib/utils/statics/errors/errors";
+import { Form, Formik } from "formik";
+import { Box, Flex, VStack } from "@chakra-ui/react";
+import AppCard from 'components/common/card/AppCard';
+import InputLefton from "pages/register-pages/component/input-lefton/InputLefton";
+import { IshopSocial } from "lib/apis/shop/interfaces";
+import BasicButton from 'components/common/BasicButton/BasicButton';
+import useAppToast from "functions/hooks/toast/useToast";
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
+import { useProfile } from "functions/hooks/useProfile/useProfile";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 
 const ContactInfo = () => {
   const { shopNavigate } = useCustomNavigate();
@@ -25,12 +25,12 @@ const ContactInfo = () => {
       await update(params)
       if (currentPath.includes("register")) {
         shopNavigate(`products`);
-        showToast({ message: AppErrors.store.when_user_publishes__store, type: "success" })
+        showToast(AppErrors.store.when_user_publishes__store, "success")
       } else {
-        showToast({ message: AppErrors.store.social_links_have_been_updated, type: "success" });
+        showToast(AppErrors.store.social_links_have_been_updated, "success");
       }
     } catch (error) {
-      showToast({ message: error?.message, type: "error" })
+      showToast(error?.message, "error")
     }
   }, [])
 
@@ -54,9 +54,9 @@ const ContactInfo = () => {
           <VStack align={"stretch"}>
             <AppCard>
               <VStack align={"stretch"} marginBottom={8}>
-                <Box><FieldLabel label='Social Media Links' textProps={{ fontSize: "18px", fontWeight: "bolder" }} /></Box>
+                <Box><FieldLabel label='Social Media Links' textProps={{ size: "18px", weight: "bolder" }} /></Box>
                 <Box>
-                  <AppTypography fontSize="14px" color="#C2C2C2">
+                  <AppTypography size="14px" color="#C2C2C2">
                     Add your social media links on your store to help customers find you easily across multiple platforms.
                   </AppTypography>
                 </Box>

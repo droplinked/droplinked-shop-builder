@@ -1,15 +1,16 @@
-import { Flex, HStack, Input, VStack } from '@chakra-ui/react';
+import { Box, Flex, HStack, Input, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons';
-import ErrorLabel from 'components/common/form/errorLabel/errorLabel';
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
+import AppSelectBox from 'components/common/form/select/AppSelectBox';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import ruleModelContext from '../../context';
 
+
 function RulesetAddress() {
-    const { loading, setFieldValue, values, errors } = useContext(ruleModelContext)
+    const { loading, setFieldValue, values } = useContext(ruleModelContext)
     const [Keywrod, setKeywrod] = useState('')
     const { showToast } = useAppToast()
     const inputRef = useRef<any>()
@@ -29,7 +30,7 @@ function RulesetAddress() {
             setFieldValue("address", [...address, keywrod])
             setKeywrod("")
         } catch (error) {
-            showToast({ message: error.message, type: "error" })
+            showToast(error.message, "error")
         }
     }, [values, Keywrod])
 
@@ -40,22 +41,18 @@ function RulesetAddress() {
     return (
         <form onSubmit={submit}>
             <VStack align={"stretch"} spacing={1}>
-                <VStack align="stretch" spacing={1}>
-                    <FieldLabel label='NFT Contract Address' isRequired loading={loading} />
-                    <AppTypography fontSize="12px" color="#9C9C9C">Provide NFT contract addresses and separate them with enter. <a style={{ color: "#2EC99E" }} target="_blank">Learn more</a></AppTypography>
-                </VStack>
+                <FieldLabel label='NFT asset identifiers' isRequired loading={loading} />
                 <AppSkeleton isLoaded={loading} >
-                    <Flex backgroundColor="#141414" style={{ cursor: "text", ...errors?.address && { border: "1px solid #FEB2B2" } }} borderRadius="8px" onClick={() => inputRef.current.focus()} flexWrap="wrap" alignItems="center" minHeight="48px" gap={2} padding="17px">
+                    <Flex backgroundColor="#141414" style={{ cursor: "text" }} onClick={() => inputRef.current.focus()} flexWrap="wrap" alignItems="center" minHeight="48px" gap={2} padding="17px">
                         {values.address.length ? values.address.map(el => (
                             <HStack backgroundColor="#1c1c1c" padding="4px 10px" borderRadius="4px">
-                                <AppTypography fontSize='14px' color="#777">{el}</AppTypography>
-                                <AppIcons.Close onClick={() => deleted(el)} cursor="pointer" />
+                                <AppTypography size='14px' color="#777">{el}</AppTypography>
+                                <AppIcons.close onClick={() => deleted(el)} cursor="pointer" />
                             </HStack>
                         )) : null}
                         <Input type="text" ref={inputRef} width="200px" value={Keywrod} placeholder="enter..." onChange={e => setKeywrod(e.target.value)} variant="unstyled" color="#777" />
                     </Flex>
                 </AppSkeleton>
-                <ErrorLabel message={errors?.address} />
             </VStack>
         </form>
     )
