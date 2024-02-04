@@ -3,12 +3,24 @@ export enum Chain {
     POLYGON,
     BINANCE,
     STACKS,
-    RIPPLESIDECHAIN,
+    XRPLSIDECHAIN,
     NEAR,
     SKALE,
-    BASE
+    BASE,
+    LINEA
 }
 export enum Network {
     MAINNET,
     TESTNET
+}
+export enum ProductType{
+    DIGITAL,
+    POD,
+    PHYSICAL
+}
+
+export type Beneficiary = {
+    isPercentage: boolean; 
+    value: number;
+    wallet: string;
 }

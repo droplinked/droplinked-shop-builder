@@ -25,7 +25,7 @@ export type productActions =
 export const productParams: IproductState = {
     title: '',
     ownerID: null,
-    description: '',
+    description: ' ',
     productCollectionID: '',
     media: [],
     priceUnit: "USD",

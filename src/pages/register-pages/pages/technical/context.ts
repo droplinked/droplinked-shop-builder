@@ -1,12 +1,12 @@
 import { createContext } from "react"
 
 export const technicalContextState = {
-    imsType: '',
+    imsType: 'DROPLINKED',
     payments: []
 }
 
 interface IStates {
-    imsType:string
+    imsType: string
     payments: Array<any>
 }
 

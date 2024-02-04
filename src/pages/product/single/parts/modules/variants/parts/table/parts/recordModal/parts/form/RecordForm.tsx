@@ -1,18 +1,18 @@
-import React, { useCallback, useContext, useMemo } from 'react'
-import { Box, HStack, Text, VStack } from '@chakra-ui/react'
-import BasicButton from 'components/common/BasicButton/BasicButton'
-import AppInput from 'components/common/form/textbox/AppInput'
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import { Isku } from 'lib/apis/product/interfaces'
-import recordContext from '../../context'
-import useAppToast from 'functions/hooks/toast/useToast'
-import AppTypography from 'components/common/typography/AppTypography'
-import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork'
-import RecordCovers from './parts/covers/RecordCovers';
+import { Box, Checkbox, HStack, VStack } from '@chakra-ui/react';
+import BasicButton from 'components/common/BasicButton/BasicButton';
+import AppInput from 'components/common/form/textbox/AppInput';
+import AppTypography from 'components/common/typography/AppTypography';
+import { Form, Formik } from 'formik';
 import useStack from 'functions/hooks/stack/useStack';
-import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import useHookStore from 'functions/hooks/store/useHookStore';
+import useAppToast from 'functions/hooks/toast/useToast';
+import useAppWeb3 from 'functions/hooks/web3/useWeb3';
+import { Isku } from 'lib/apis/product/interfaces';
+import React, { useCallback, useContext, useMemo } from 'react';
+import * as Yup from 'yup';
+import recordContext from '../../context';
+import BlockchainNetwork from './parts/blockchainNetwork/BlockchainNetwork';
+import RecordCovers from './parts/covers/RecordCovers';
 
 interface Iprops {
     close: Function
@@ -24,6 +24,9 @@ interface IRecordSubmit {
     blockchain: string
     commission: number
     quantity: string
+    dropon: boolean
+    royaltyon: boolean
+    royalty: number
 }
 
 function RecordForm({ close, product, sku }: Iprops) {
@@ -38,16 +41,18 @@ function RecordForm({ close, product, sku }: Iprops) {
             data.quantity = product.product_type === "PRINT_ON_DEMAND" ? "1000000" : sku.quantity.toString()
             if (!image) throw Error('Please enter image')
             updateState("loading", true)
-            const deployhash = await web3({ method: "record", params: { data, product, sku, imageUrl: image }, chain: data.blockchain, wallets, stack })
+            const { commission, quantity, blockchain, royalty } = data
+            const params = { commission, quantity, blockchain, royalty }
+            const deployhash = await web3({ method: "record", params: { data: params, product, sku, imageUrl: image }, chain: data.blockchain, wallets, stack })
             updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
         } catch (error) {
             if (error?.message) {
                 if (error?.message.includes("The first argument")) return updateState("loading", false)
-                showToast(error?.message, "error");
+                showToast({ message: error?.message, type: "error" });
             } else {
-                showToast("Oops! Something went wrong please contact support", "error");
+                showToast({ message: "Oops! Something went wrong please contact support", type: "error" });
             }
             updateState("loading", false)
         }
@@ -56,7 +61,10 @@ function RecordForm({ close, product, sku }: Iprops) {
     const formSchema = useMemo(() => {
         return Yup.object().shape({
             blockchain: Yup.string().required('Required'),
-            commission: Yup.number().min(.1).max(100).typeError("Please enter number").required('Required'),
+            dropon: Yup.boolean(),
+            commission: Yup.number().when('dropon', { is: true, then: (schema) => schema.min(.1).max(100).typeError("Please enter number").required('Required') }),
+            royaltyon: Yup.boolean(),
+            royalty: Yup.number().when('royaltyon', { is: true, then: (schema) => schema.min(.1).max(100).typeError("Please enter number").required('Required') }),
         })
     }, [product.product_type])
 
@@ -65,7 +73,10 @@ function RecordForm({ close, product, sku }: Iprops) {
             initialValues={{
                 blockchain: '',
                 commission: 0,
-                quantity: ''
+                royalty: 0,
+                quantity: '',
+                dropon: false,
+                royaltyon: false,
             }}
             validateOnChange={false}
             validationSchema={formSchema}
@@ -75,11 +86,11 @@ function RecordForm({ close, product, sku }: Iprops) {
                 <Form>
                     <Box color={"#FFF"}>
                         <VStack align={"stretch"} spacing={8}>
-                            <Box textAlign={"center"}><Text fontSize={"larger"} margin="12px 0" fontFamily="aven" color={"#FEB900"}>Warning !</Text></Box>
+                            <Box textAlign={"center"}><AppTypography fontSize={"larger"} margin="12px 0" color={"#FEB900"}>Warning !</AppTypography></Box>
                             <Box textAlign={"center"}>
-                                <Text color="#C2C2C2" fontSize={"lg"}>
-                                    Once your product variant is recorded on a blockchain network, it becomes immutable, and <Text color={"#FFF"} fontFamily={"aven"} display="inline">neither the variants nor properties can be edited.</Text> Please ensure that all details of your product are accurate before recording it.
-                                </Text>
+                                <AppTypography color="#C2C2C2" fontSize={"lg"}>
+                                    Once your product variant is recorded on a blockchain network, it becomes immutable, and <AppTypography color={"#FFF"} fontWeight='600' fontSize={"lg"} display="inline">neither the variants nor properties can be edited.</AppTypography> Please ensure that all details of your product are accurate before recording it.
+                                </AppTypography>
                             </Box>
                             <Box>
                                 <BlockchainNetwork
@@ -88,17 +99,50 @@ function RecordForm({ close, product, sku }: Iprops) {
                                     value={values.blockchain}
                                 />
                             </Box>
-                            <VStack align="stretch">
-                                <AppInput
-                                    name="blockchain"
-                                    placeholder='%25'
-                                    label='Commision'
-                                    error={errors.commission}
-                                    onChange={(e) => setFieldValue("commission", e.target.value)}
-                                    value={values.commission || ""}
-                                />
-                                <AppTypography fontSize='14px' fontWeight='bold' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography fontSize='14px' fontWeight='bold' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
-                            </VStack>
+                            <Box>
+                                <Checkbox size='md' onChange={e => setFieldValue('dropon', e.target.checked)} value='DROPLINKED' alignItems="flex-start" colorScheme='green'>
+                                    <VStack align='stretch' paddingLeft={2} spacing={2}>
+                                        <AppTypography fontWeight='700' fontSize="14px" color="#C2C2C2">Drop on affiliate</AppTypography>
+                                        <AppTypography fontSize="14px" color="#C2C2C2">
+                                            You can drop your product on the affiliate system to let other stores cooperate with you on your sales
+                                        </AppTypography>
+                                    </VStack>
+                                </Checkbox>
+                            </Box>
+                            {values.dropon && (
+                                <VStack align="stretch">
+                                    <AppInput
+                                        name="blockchain"
+                                        placeholder='%25'
+                                        label='Commision'
+                                        error={errors.commission}
+                                        onChange={(e) => setFieldValue("commission", e.target.value)}
+                                        value={values.commission || ""}
+                                    />
+                                    <AppTypography fontSize='14px' fontWeight='bold' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography fontSize='14px' fontWeight='bold' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
+                                </VStack>
+                            )}
+                            <Box>
+                                <Checkbox size='md' onChange={e => setFieldValue('royaltyon', e.target.checked)} value='DROPLINKED' alignItems="flex-start" colorScheme='green'>
+                                    <VStack align='stretch' paddingLeft={2} spacing={2}>
+                                        <AppTypography fontWeight='700' fontSize="14px" color="#C2C2C2">Royalty</AppTypography>
+                                        <AppTypography fontSize="14px" color="#C2C2C2">Ensures you receive a percentage from each resale.</AppTypography>
+                                    </VStack>
+                                </Checkbox>
+                            </Box>
+                            {values.royaltyon && (
+                                <VStack align="stretch">
+                                    <AppInput
+                                        name="royalty"
+                                        placeholder='%25'
+                                        label='Royalty'
+                                        error={errors.royalty}
+                                        onChange={(e) => setFieldValue("royalty", e.target.value)}
+                                        value={values.royalty || ""}
+                                    />
+                                    <AppTypography fontSize='14px' fontWeight='bold' color="#808080">Specify a commission rate for co-selling the product variant. <a href='' target="_blank"><AppTypography fontSize='14px' fontWeight='bold' display="inline" color="#2EC99E">Learn more</AppTypography></a></AppTypography>
+                                </VStack>
+                            )}
                             <RecordCovers />
                             <HStack justifyContent={"space-between"}>
                                 <Box width={"25%"}><BasicButton variant='outline' onClick={() => close()}>Cancel</BasicButton></Box>

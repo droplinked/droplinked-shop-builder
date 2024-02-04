@@ -1,4 +1,4 @@
-import { Chain, Network } from "../../Chains";
+import { Beneficiary, Chain, Network, ProductType } from "../../Chains";
 import { ChainProvider } from "../../chainProvider";
 import { casperApproveRequest, casperDisapproveRequest } from "./casperAffiliate";
 import { casperPublishRequest } from "./casperPublish";
@@ -13,11 +13,15 @@ export class CasperProvider implements ChainProvider{
         this.chain = _chain;
         this.network = _network;
     }
-    async walletLogin(onConnected:any): Promise<any> {
-        return casper_login(onConnected);
+    async walletLogin(): Promise<any> {
+        return casper_login();
     }
-    async recordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string> {
+    async casperRecordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string> {
         return await casperRecordMerch(this.network, skuProperties, this.address, productTitle, description, imageUrl, price, amount, commission, apiKey);
+    }
+    async recordProduct(sku_properties: any, product_title: string, discription: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, paymentWallet: string, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, apiKey: string): Promise<string> {
+        // nothing
+        return "";
     }
     async publishRequest(producerAccountAddress: string, tokenId: string | number): Promise<string> {
         return await casperPublishRequest(this.network, this.address, producerAccountAddress, tokenId)

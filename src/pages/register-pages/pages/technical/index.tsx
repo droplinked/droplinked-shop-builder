@@ -1,17 +1,16 @@
-import { PageContent } from "pages/register-pages/RegisterPages-style";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import Ims from "./parts/ims";
-import Payments from "./parts/payment";
 import { VStack } from "@chakra-ui/react";
-import technicalContext, { technicalContextState } from "./context";
-import { appDeveloment } from "lib/utils/app/variable";
-import technicalModel from "./model";
-import Wallet from "./parts/wallet";
-import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { paymentMethodsService } from "lib/apis/shop/shopServices";
+import { appDeveloment } from "lib/utils/app/variable";
+import { PageContent } from "pages/register-pages/RegisterPages-style";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useMutation } from "react-query";
 import { useLocation } from "react-router-dom";
+import technicalContext, { technicalContextState } from "./context";
+import technicalModel from "./model";
+import Payments from "./parts/payment";
+import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
+import Wallet from "./parts/wallet";
 
 function Technical() {
   const userPaymentsService = useMutation(() => paymentMethodsService())
@@ -42,15 +41,16 @@ function Technical() {
   useEffect(() => userPaymentsService.mutate(), [])
 
   // update imsType as state managment
-  useEffect(() => {
-    updateState("imsType", shop?.imsType || "")
-  }, [shop]);
+  // useEffect(() => {
+  //   updateState("imsType", shop?.imsType || "")
+  // }, [shop]);
 
   return (
     <technicalContext.Provider value={{ state: Technical, updateState, updatePayment, userPayments }}>
       <PageContent>
         <VStack spacing={4} align="stretch">
-          <Ims />
+          {/* <Ims /> */}
+          {/* <SupportedLoginMethods /> */}
           {Technical.imsType !== "SHOPIFY" && <Payments />}
           {appDeveloment && <Wallet />}
           <TechnicalSubmit />

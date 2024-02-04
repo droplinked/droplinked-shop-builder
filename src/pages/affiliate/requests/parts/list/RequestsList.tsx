@@ -1,14 +1,14 @@
-import { Box, Flex, Image, VStack } from "@chakra-ui/react";
+import { Box, Flex, Image, Link, VStack } from "@chakra-ui/react";
 import AppBadge from 'components/common/badge/AppBadge';
+import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay";
+import ClipboardText from "components/common/clipboardText/ClipboardText";
 import Pagination from "components/common/datagrid/parts/pagination/Pagination";
 import AppEmptyPage from 'components/common/empty/AppEmptyPage';
-import IconBlockchain from "components/common/iconBlockchain/IconBlockchain";
 import AppImage from "components/common/image/AppImage";
 import AppTypography from "components/common/typography/AppTypography";
 import { IpublisherRequestService } from "lib/apis/affiliate/interfaces";
 import { publisherRequestService } from "lib/apis/affiliate/shopServices";
 import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
-import AffiliateDetailCard from "pages/affiliate/parts/detail/affiliateDetailCard";
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useMutation } from "react-query";
 import { useSearchParams } from "react-router-dom";
@@ -53,23 +53,37 @@ function RequestsList() {
                     <Flex width="100%" justifyContent="space-between">
                       <VStack align="stretch" color="#C2C2C2">
                         <AppTypography fontSize="14px">{product?.title}</AppTypography>
-                        <Flex alignItems="center" gap="6px">
-                          {variant?.color && <Box width="12px" height="12px" borderRadius="100%" backgroundColor={variant?.color.value}></Box>}
-                          {variant?.size && <AppTypography fontSize="12px">{variant?.size.caption}</AppTypography>}
+                        <Flex alignItems="center" gap="32px">
+                          <Flex alignItems="center" gap="6px">
+                            {variant?.color && <Box width="12px" height="12px" borderRadius="100%" backgroundColor={variant?.color.value}></Box>}
+                            {variant?.size && <AppTypography fontSize="12px">{variant?.size.caption}</AppTypography>}
+                          </Flex>
+                          <AppTypography fontSize="12px">Quantity: {el?.quantity || "---"}</AppTypography>
                         </Flex>
-                        <AppTypography fontSize="12px">Quantity: {el?.quantity || "---"}</AppTypography>
+                        {sku?.deploy_hash_link && <Flex alignItems="center" gap="10px">
+                          <Link
+                            href={sku?.deploy_hash_link}
+                            target={"_blank"}
+                            textDecoration={"underline"}
+                            isExternal
+                          >
+                            Deploy Hash
+                          </Link>
+                          <ClipboardText text={sku?.deploy_hash_link} />
+                        </Flex>
+                        }
                       </VStack>
                       <VStack align="stretch" color="#C2C2C2" textAlign="right">
                         <AppTypography fontSize="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>
-                        <AppTypography fontSize="12px">Price: {`${sku?.price} ${product?.priceUnit || ""}`}</AppTypography>
+                        <AppTypography fontSize="12px">Price: ${`${sku?.price.toFixed(2)} ${product?.priceUnit || ""}`}</AppTypography>
                         <AppTypography fontSize="12px" display="flex">Your earning: <AppTypography padding="0 3px" fontSize="12px" fontWeight="bold">{parseFloat(el?.publisherEarning).toFixed(2)} USD / each</AppTypography></AppTypography>
                       </VStack>
                     </Flex>
                   </Flex>
                   <Flex alignItems="center" gap="8px" color="#808080">
-                    <IconBlockchain blockchain={el?.network} props={{ width: "12px", height: "12px" }} />
-                    <AppTypography position="relative" top="2px" display="flex">
-                      Dropped on <AppTypography padding="0 3px" fontSize="10px" fontWeight='bold'>{capitalizeFirstLetter(el?.network)}</AppTypography> blockchain
+                    <BlockchainDisplay show="icon" blockchain={el?.network} props={{ width: "12px", height: "12px" }} />
+                    <AppTypography position="relative" top="2px" fontSize="10px" display="flex">
+                      Dropped on <AppTypography padding="0 3px" fontSize="10px" fontWeight='bold'><BlockchainDisplay show='name' blockchain={el?.network} /></AppTypography> blockchain
                     </AppTypography>
                   </Flex>
                 </VStack>

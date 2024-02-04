@@ -7,17 +7,21 @@ import classes from './style.module.scss'
 
 interface IProps {
     value?: Date
+    endDate?: Date
     onChange: any
     label?: string
     minDate?: Date
+    className?: any
+    inline?: boolean
+    selectsRange?: boolean
     placeholderText?: string
 }
 
-function AppDatepicker({ onChange, value, label, minDate, placeholderText }: IProps) {
+function AppDatepicker({ onChange, value, label, minDate, placeholderText, inline, className, endDate, selectsRange }: IProps) {
     return (
-        <VStack align="stretch" className={classes.datepicker}>
+        <VStack align="stretch" className={`${classes.datepicker} ${className || ''}`}>
             {label && <FieldLabel label={label} />}
-            <DatePicker selected={value} dateFormat="Y/M/d" placeholderText={placeholderText} {...minDate && { minDate }} onKeyDown={(e) => e.preventDefault()} onChange={(date) => onChange(date)} className={classes.input} />
+            <DatePicker {...typeof endDate && { endDate }} selectsRange={selectsRange} selected={value} dateFormat="Y/M/d" inline={inline} placeholderText={placeholderText} {...minDate && { minDate }} onKeyDown={(e) => e.preventDefault()} onChange={(date) => onChange(date)} className={classes.input} />
         </VStack>
     )
 }

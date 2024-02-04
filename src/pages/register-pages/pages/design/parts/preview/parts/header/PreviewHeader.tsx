@@ -28,13 +28,13 @@ function PreviewHeader() {
             }}
         >
             <Flex justifyContent="space-between" alignItems="center" {...template_options?.['--dlk-hdr']?.['--dlk-hdr-container']} width="85%" padding="5px 0">
-                <Box>{headerIcon ? <Image {...template_options?.['--dlk-hdr']?.['--dlk-hdr-logo']} height={isDesktop ? "50px" : "30px"} src={headerIcon} /> : (
+                <Box>{headerIcon ? <Image {...template_options?.['--dlk-hdr']?.['--dlk-hdr-logo']} height={isDesktop ? "35px" : "25px"} src={headerIcon} /> : (
                     <Box width="50%">{icons({ icon: "logo", color: "#FFF" })}</Box>
                 )}</Box>
                 <HStack gap={isDesktop ? "8px" : "0"} {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-styles']}>
-                    <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-profile']}>{icons({ icon: "user", color: iconHeaderColor })}</Box>
                     <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-cart']}>{icons({ icon: "cart", color: iconHeaderColor })}</Box>
-                    <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-notification']}>{icons({ icon: "notification", color: iconHeaderColor })}</Box>
+                    <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-profile']}>{icons({ icon: "user", color: iconHeaderColor })}</Box>
+                    {/* <Box {...template_options?.['--dlk-hdr']?.['--dlk-hdr-icons']?.['--dlk-hdr-icons-notification']}>{icons({ icon: "notification", color: iconHeaderColor })}</Box> */}
                 </HStack>
             </Flex>
         </PreviewActive>

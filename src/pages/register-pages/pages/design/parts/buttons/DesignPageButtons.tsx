@@ -38,10 +38,10 @@ function DesignPageButtons() {
                 }
             })
             updateShopData()
-            showToast("Shop update", "success")
+            showToast({ message: "Shop update", type: "success" })
             if (isRegister) shopNavigate(`register/technical`)
         } catch (error) {
-            showToast(error, "error");
+            showToast({ message: error, type: "error" });
         }
     }, [shop, isRegister])
 

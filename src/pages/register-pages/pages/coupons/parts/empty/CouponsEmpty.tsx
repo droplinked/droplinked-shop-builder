@@ -4,7 +4,7 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppCard from 'components/common/card/AppCard'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import CouponsCreate from '../parts/create/CouponsCreate'
+import CouponsCreate from '../list/parts/head/parts/modal/create/CouponsCreate'
 import classes from './style.module.scss'
 
 function CouponsEmpty() {

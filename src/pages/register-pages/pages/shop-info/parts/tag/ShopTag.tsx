@@ -12,7 +12,7 @@ function ShopTag({ updateStates, value }: IProps) {
 
     return (
         <VStack align={"stretch"} className={classes.tags}>
-            <Box><FieldLabel textProps={{ size: "18px", weight: "bolder" }} isRequired label='Store Tags' /></Box>
+            <Box><FieldLabel textProps={{ size: "18px", fontWeight: "bold" }} isRequired label='Store Tags' /></Box>
             <Box><AppTags value={value} onChange={(values) => updateStates("tags", values)} /></Box>
         </VStack>
     )

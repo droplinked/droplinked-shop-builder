@@ -4,7 +4,6 @@ import { getNetworkProvider } from 'lib/utils/chains/chainProvider'
 import { Chain, Network } from 'lib/utils/chains/Chains'
 import useHookStore from '../store/useHookStore'
 import web3Model, { IAcceptData, IRecordPrams, IRequestData } from './models'
-import { userUpdateService } from 'lib/apis/user/services'
 
 // method: "record" | "request" | "accept"
 export type IWeb3 = {
@@ -57,7 +56,7 @@ const useAppWeb3 = () => {
                     resolve(address)
                     updateWallet({ type: "STACKS", address: stack.stxAddress })
                 } else {
-                    const provider = await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin(null))
+                    const provider = await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin())
 
                     if (chain === "CASPER") {
                         resolve(provider.publicKey)

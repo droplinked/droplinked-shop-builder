@@ -1,30 +1,32 @@
-import { Routes, Route } from "react-router-dom";
-import React, { lazy, Suspense } from "react";
-import LoadingPage from "pages/public-pages/loading-page/LoadingPage";
 import DashboardLayout from "components/layouts/app/dashboard/DashboardLayout";
-import Products from "pages/product/list/products";
-import Collections from "pages/collections/Collections";
-import Orders from "pages/orders/Orders";
-import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper";
+import MainLayout from 'components/layouts/app/main/mainLayout';
 import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout";
-import Shops from "pages/affiliate/shops/Shops";
-import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo";
-import MainLayout from 'components/layouts/app/main/mainLayout'
-import NotFound from 'pages/404/404'
-import Enquiry from 'pages/public-pages/enquiry-page/EnquiryPage'
-import TermsPage from 'pages/public-pages/terms-page/TermsPage'
-import PrivacyPage from 'pages/public-pages/privacy-page/PrivacyPage'
-import ShopPage from 'pages/public-pages/shop-page/ShopPage'
-import VerifyEmailPage from 'pages/auth-pages/verify-email-page/Email-verification-page'
-import ResetPassPage from 'pages/auth-pages/reset-pass-page/ResetPassPage'
-import ThankForRegisterPage from 'pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage'
-import Shop from 'pages/affiliate/shopSingle/Shop'
-import ShopProduct from 'pages/affiliate/product/ShopProduct'
-import ProductTypes from "pages/product/types/ProductTypes";
-import HomePage from "pages/public-pages/homePage/HomePage";
-import AboutUs from "pages/public-pages/about/AboutUs";
+import NotFound from 'pages/404/404';
+import ShopProduct from 'pages/affiliate/product/ShopProduct';
 import AffiliateProducts from "pages/affiliate/products/AffiliateProducts";
+import Shops from "pages/affiliate/shops/Shops";
+import Shop from 'pages/affiliate/shopSingle/Shop';
+import ResetPassPage from 'pages/auth-pages/reset-pass-page/ResetPassPage';
+import ThankForRegisterPage from 'pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage';
+import VerifyEmailPage from 'pages/auth-pages/verify-email-page/Email-verification-page';
+import Collections from "pages/collections/Collections";
+import DashboardPage from "pages/dashboard/DashboardPage";
+import NFTs from "pages/nfts/NFTs";
+import Orders from "pages/orders/Orders";
+import Products from "pages/product/list/products";
+import ProductTypes from "pages/product/types/ProductTypes";
+import AboutUs from "pages/public-pages/about/AboutUs";
+import Enquiry from 'pages/public-pages/enquiry-page/EnquiryPage';
+import HomePage from "pages/public-pages/homePage/HomePage";
+import LoadingPage from "pages/public-pages/loading-page/LoadingPage";
 import PricingPage from "pages/public-pages/pricing/PricingPage";
+import PrivacyPage from 'pages/public-pages/privacy-page/PrivacyPage';
+import ShopPage from 'pages/public-pages/shop-page/ShopPage';
+import TermsPage from 'pages/public-pages/terms-page/TermsPage';
+import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo";
+import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper";
+import React, { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -49,7 +51,8 @@ function AppRoutes() {
           <Route path="plans" element={<PricingPage />} />
         </Route>
 
-        <Route path=":shopname/c" element={<DashboardLayout />}>
+        <Route path="dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardPage />} />
           <Route path="register" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
             <Route path="design" element={<DesignPage />} />
@@ -82,6 +85,7 @@ function AppRoutes() {
             <Route path="requests" element={<Requests />} />
             <Route path="notifications" element={<Notifications />} />
           </Route>
+          <Route path="nfts" element={<NFTs />} />
         </Route>
         <Route path=":shopname" element={<ShopPage />} />
         <Route path="*" element={<NotFound />} />

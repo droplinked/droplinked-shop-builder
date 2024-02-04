@@ -11,6 +11,7 @@ import { useProfile } from "functions/hooks/useProfile/useProfile"
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import ShopTag from './parts/tag/ShopTag'
+import ShopAPIKey from './parts/api-key/ShopAPIKey'
 
 export interface IstatesShopInfo {
   description: string
@@ -39,7 +40,7 @@ function RegisterShopInfo() {
 
   // Update store name as shop
   useEffect(() => {
-    if (shop.description) updateStates("description", shop.description)
+    if (shop?.description) updateStates("description", shop.description)
     if (shop?.tags) updateStates("tags", shop.tags)
   }, [shop])
 
@@ -55,9 +56,7 @@ function RegisterShopInfo() {
             </Flex>
           </VStack>
           <VStack align={"stretch"}>
-            <VStack align={"stretch"}>
-              <FieldLabel label='Store Name' isRequired />
-            </VStack>
+            <FieldLabel label='Store Name' isRequired />
             <Box>
               <AppInput name='name' maxLength={20} value={States.description} onChange={(e: any) => updateStates("description", e.target.value)} placeholder='e.g., droplinked' isRequired />
             </Box>
@@ -66,7 +65,8 @@ function RegisterShopInfo() {
         </VStack>
       </AppCard>
       <AppCard><ShopInfoAddress addressService={addressService} /></AppCard>
-      <AppCard><ShopTag updateStates={updateStates} value={States.tags} /></AppCard>
+      {/* <AppCard><ShopTag updateStates={updateStates} value={States.tags} /></AppCard> */}
+      <AppCard><ShopAPIKey /></AppCard>
       <Flex justifyContent={"right"}><ShopInfoSubmit States={States} /></Flex>
     </VStack>
   )

@@ -1,33 +1,42 @@
-import { Box, Flex, VStack } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import AppModal from 'components/common/modal/AppModal';
+import useAppToast from "functions/hooks/toast/useToast";
 import { IgetOrderService } from "lib/apis/order/interfaces";
 import { getOrderService } from "lib/apis/order/services";
 import React, { useEffect } from "react";
 import { useMutation } from "react-query";
-import BlockChainOrderModal from "./components/blockchain/BlockChainOrderModal";
-import CustomerInformationComponent from "./components/customer-information-component/customerInformationComponent";
-import OrderDetailComponent from "./components/order-detail-component/OrderDetailComponent";
-import LoadingComponent from "components/common/loading-component/LoadingComponent";
-import orderModalContext from "./context";
+import orderModalContext from "./parts/context";
+import CustomerInformation from "./parts/customer-information/CustomerInformation";
+import ModalSkeleton from "./parts/modal-skeleton/ModalSkeleton";
+import OrderDetails from "./parts/order-details/OrderDetails";
+import OrderInformation from "./parts/order-information/OrderInformation";
+import OrderItems from "./parts/order-items/OrderItems";
 
 export default function OrderModal({ orderID, show, close }) {
-  const { mutate, isLoading, data } = useMutation((params: IgetOrderService) => getOrderService(params))
+  const { showToast } = useAppToast()
+  const { mutate, isLoading, data } = useMutation((params: IgetOrderService) => getOrderService(params), {
+    onError: (error) => {
+      showToast({ message: (error as Error).message, type: "error" })
+      close()
+    }
+  })
 
   useEffect(() => mutate({ orderID }), [orderID])
 
   return (
-    <orderModalContext.Provider value={{ order: data?.data?.data }}>
-      <AppModal open={show} isCentered={false} close={close} size="3xl" contentProps={{ padding: 9 }}>
-        <Flex justifyContent="center">
-          {isLoading ? <LoadingComponent /> : (
-            <VStack align="stretch" spacing="24px" width="100%">
-              <CustomerInformationComponent />
-              <OrderDetailComponent />
-              <BlockChainOrderModal />
-            </VStack>
-          )}
-        </Flex>
-      </AppModal>
-    </orderModalContext.Provider>
+    <AppModal open={show} close={close} title={"Order Details"} size="3xl" isCentered={false} contentProps={{ paddingX: 2, paddingY: 5 }} >
+      <Flex justifyContent="center">
+        {isLoading ? <ModalSkeleton /> : (
+          <orderModalContext.Provider value={{ order: data?.data?.data }}>
+            <Flex direction={"column"} gap={"36px"} width={"100%"}>
+              <OrderInformation />
+              <CustomerInformation />
+              <OrderDetails />
+              <OrderItems />
+            </Flex>
+          </orderModalContext.Provider>
+        )}
+      </Flex>
+    </AppModal>
   )
 }

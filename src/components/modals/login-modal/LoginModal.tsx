@@ -1,16 +1,16 @@
 import { Box } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import React from "react";
-import { BottomText } from "./LoginModal-style";
-import { appDeveloment } from "lib/utils/app/variable";
-import AppInput from "components/common/form/textbox/AppInput";
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import AppErrors from "lib/utils/statics/errors/errors";
-import useAppToast from "functions/hooks/toast/useToast";
-import AppModal from "components/common/modal/AppModal";
 import BasicButton from "components/common/BasicButton/BasicButton";
+import AppInput from "components/common/form/textbox/AppInput";
+import AppModal from "components/common/modal/AppModal";
+import { Form, Formik } from 'formik';
 import useHookStore from "functions/hooks/store/useHookStore";
+import useAppToast from "functions/hooks/toast/useToast";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import { appDeveloment } from "lib/utils/app/variable";
+import AppErrors from "lib/utils/statics/errors/errors";
+import React from "react";
+import * as Yup from 'yup';
+import { BottomText } from "./LoginModal-style";
 
 interface Iform {
   email: string
@@ -19,8 +19,8 @@ interface Iform {
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   const { app: { login, loading } } = useHookStore()
-  const navigate = useNavigate();
   const { showToast } = useAppToast()
+  const { shopRoute, shopNavigate } = useCustomNavigate()
 
   // submit form function
   const onSubmit = async (data: Iform) => {
@@ -28,22 +28,21 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
       let result = await login(data)
       if (result) loginFunction(result);
     } catch (error) {
-      showToast(error?.message, "error");
+      showToast({ message: error?.message, type: "error" });
     }
   };
 
   // action on user data based on type and status
   const loginFunction = (data: any) => {
     // check customer
-    if (data.user.type !== "PRODUCER") return showToast("This account cant login", "error");
+    if (data.user.type !== "PRODUCER") return showToast({ message: "This account can not login", type: "error" });
 
     //first close modal
     close();
-
-    const status = data.user.status
+    const status = appDeveloment && data.user.status === "NEW" ? "VERIFIED" : data.user.status
 
     if (status === "DELETED") {
-      showToast("This account has been deleted", "error");
+      showToast({ message: "This account has been deleted", type: "error" });
       return;
     } else {
       navigateUser(status, data);
@@ -53,27 +52,26 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
   // navigate user based on status
   const navigateUser = (status: string, data: any) => {
-    const shopName = data.shop.name
     // eslint-disable-next-line default-case
     switch (status) {
       case "NEW":
         localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
-        navigate("/email-confirmation");
+        shopNavigate("/email-confirmation");
         return;
       case "VERIFIED":
-        navigate(`/${shopName}/c/register/shop-info`);
+        shopNavigate(`register/shop-info`);
         return;
       case "PROFILE_COMPLETED":
-        navigate(`/${shopName}/c/register/shop-info`);
+        shopNavigate(`register/shop-info`);
         return;
       case "SHOP_INFO_COMPLETED":
-        navigate(`/${shopName}/c/products/`);
+        shopNavigate(``);
         return;
       case "IMS_TYPE_COMPLETED":
-        navigate(`/${shopName}/c/products/`);
+        shopNavigate(``);
         return;
       case "ACTIVE":
-        navigate(`/${shopName}/c/products/`);
+        shopNavigate(``);
         return;
     }
   };

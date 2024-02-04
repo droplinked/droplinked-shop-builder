@@ -1,8 +1,7 @@
-import { Box, Flex, Image, VStack } from '@chakra-ui/react'
+import { Flex, Image, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
 import AppTypography from 'components/common/typography/AppTypography'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
-import { appDeveloment } from 'lib/utils/app/variable'
 import React from 'react'
 import { Link } from 'react-router-dom'
 

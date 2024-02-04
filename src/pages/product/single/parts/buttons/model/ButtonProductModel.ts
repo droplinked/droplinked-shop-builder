@@ -1,5 +1,5 @@
 import { IStacks } from 'functions/hooks/web3/models/module/record/recordModel'
-import { IproductState } from 'lib/apis/product/interfaces'
+import { IproductState, Isku } from 'lib/apis/product/interfaces'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { typesProperties } from 'lib/utils/statics/types'
 import { object, string, array, number } from 'yup'
@@ -23,6 +23,10 @@ interface Irecord {
     stacks: IStacks
 }
 
+interface IcheckSkuesRecord {
+    sku: Array<Isku>
+}
+
 const ButtonsProductClass = ({
     validate: ({ state, draft }: Ivalidate) => {
         return new Promise(async (resolve, reject) => {
@@ -30,7 +34,7 @@ const ButtonsProductClass = ({
                 let error = new Error();
 
                 // Digital product validation
-                if (state.product_type === "DIGITAL") {
+                if (state.product_type === "DIGITAL" && !draft) {
                     if (!state.sku[0].price) {
                         error.message = "Please enter price"
                         throw error
@@ -57,7 +61,7 @@ const ButtonsProductClass = ({
                         error.message = "Please enter packaging size property for all SKUs"
                         throw error
                     } else if (state.m2m_positions.length && !state.m2m_services.length) {
-                        error.message = "Please choose customers wallet options"
+                        error.message = "Please choose customer wallet options"
                         throw error
                     } else if ((state.artwork && !state.artwork_position) || (state.artwork2 && !state.artwork2_position)) {
                         error.message = "Please choose position for artworks"
@@ -113,7 +117,9 @@ const ButtonsProductClass = ({
         }
 
         return await method(dataForm)
-    }
+    },
+
+    checkSkuesRecord: ({ sku }: IcheckSkuesRecord) => sku.find(el => ['RECORDED', 'PENDING'].includes(el?.recordData?.status))
 })
 
 export default ButtonsProductClass

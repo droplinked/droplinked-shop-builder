@@ -1,8 +1,7 @@
-import { Checkbox, Text } from '@chakra-ui/react'
+import { Checkbox, Table, TableHeadProps, TableRowProps, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useCallback } from 'react'
 import AppTypography from '../typography/AppTypography'
-import classes from './style.module.scss'
 
 export interface ITableRows {
     _data?: any
@@ -17,13 +16,17 @@ export interface IAppTable {
     vertical?: boolean
     rows?: Array<ITableRows> | ITableRows
     empty?: any
+    props?: {
+        tr?: TableRowProps
+        thead?: TableHeadProps
+    }
     checkbox?: {
         state: Array<string>
         update(value: Array<string>): void
     }
 }
 
-function AppTable({ rows, vertical, empty, checkbox }: IAppTable) {
+function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
     const checkRows = vertical ? Object.keys(rows).length : rows.length
 
     const selected = useCallback((value: string, status: boolean) => {
@@ -40,50 +43,50 @@ function AppTable({ rows, vertical, empty, checkbox }: IAppTable) {
             {rows && checkRows ? (
                 <>
                     {vertical ? (
-                        <table className={classes.table}>
-                            <tbody>
+                        <Table color="#bebebe" width="100%" variant="unstyled">
+                            <Tbody>
                                 {Object.keys(rows).map((el, key) => (
-                                    <tr key={key}>
+                                    <Tr key={key}>
                                         <td width={"30%"}>{rows[el].caption ? rows[el].caption : el}</td>
                                         <td>{rows[el].value}</td>
-                                    </tr>
+                                    </Tr>
                                 ))}
-                            </tbody>
-                        </table>
+                            </Tbody>
+                        </Table>
                     ) : rows instanceof Array ? (
-                        <table className={classes.table}>
-                            <thead>
-                                <tr>
-                                    {checkbox && <th><Checkbox onChange={(e) => selectAll(e.target.checked)} colorScheme='green'></Checkbox></th>}
+                        <Table color="#bebebe" width="100%" variant="unstyled">
+                            <Thead borderTop="2px solid #292929" borderBottom="2px solid #292929" {...props?.thead}>
+                                <Tr>
+                                    {checkbox && <Th textTransform="uppercase" padding="14px 15px 14px 0"><Checkbox onChange={(e) => selectAll(e.target.checked)} colorScheme='green'></Checkbox></Th>}
                                     {Object.keys(rows[0]).filter(el => el !== "_data").map((el, key) =>
-                                        <th {...rows[0][el].props} key={key}>
+                                        <Th textTransform="uppercase" padding="14px 15px" {...key === 0 && { paddingLeft: 0 }} {...rows[0][el].props} key={key}>
                                             <AppTypography textTransform="none" fontSize='12px' color="#FFF">
                                                 {typeof rows[0][el].caption !== "undefined" ? rows[0][el].caption : capitalizeFirstLetter(el)}
                                             </AppTypography>
-                                        </th>
+                                        </Th>
                                     )}
-                                </tr>
-                            </thead>
-                            <tbody>
+                                </Tr>
+                            </Thead>
+                            <Tbody>
                                 {rows.map((el: any, key) =>
-                                    <tr key={key}>
+                                    <Tr borderBottom="2px solid #292929" key={key} {...props?.tr}>
                                         {checkbox && (
-                                            <td width="50">
+                                            <Td width="50" padding="14px 15px 14px 0">
                                                 <Checkbox
                                                     isChecked={checkbox.state.includes(el?._data?._id || key)}
                                                     colorScheme='green'
                                                     onChange={(e) => selected(el?._data?._id || key, e.target.checked)}
                                                 >
                                                 </Checkbox>
-                                            </td>
+                                            </Td>
                                         )}
                                         {Object.keys(el).filter(el => el !== "_data").map((item, key) => (
-                                            <td {...el[item].props} key={key}>{el[item].value}</td>
+                                            <Td padding="14px 15px" {...key === 0 && { paddingLeft: 0 }} fontSize=".9rem" {...el[item].props} key={key}>{el[item].value}</Td>
                                         ))}
-                                    </tr>
+                                    </Tr>
                                 )}
-                            </tbody>
-                        </table>
+                            </Tbody>
+                        </Table>
                     ) : null}
                 </>
             ) : empty || ""}

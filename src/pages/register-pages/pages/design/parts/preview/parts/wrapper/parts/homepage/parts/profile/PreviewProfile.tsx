@@ -14,11 +14,11 @@ function PreviewProfile() {
     return (
         <PreviewActive section='profile'>
             <VStack align="stretch" spacing="15px">
-                <VStack align="stretch" spacing={device === "desktop" ? "15px" : "5px"} padding={device === "desktop" ? "30px 20px" : "10px"} backgroundColor={foreground || "#141414"} borderRadius="8px">
+                <VStack align="stretch" spacing={device === "desktop" ? "15px" : "10px"} padding={device === "desktop" ? "30px 20px" : "10px"} backgroundColor={foreground || "#141414"} borderRadius="8px">
                     <Flex justifyContent="center">
-                        {logo && <Image width="90px" height="90px" borderRadius="100%" src={logo} />}
+                        {logo && <Image maxWidth={device === "desktop" ? "60%" : "40%"} borderRadius="100%" src={logo} />}
                     </Flex>
-                    <Flex justifyContent="center"><PreviewTypo fontSize="15px" fontfontWeight="bold" color={textColorParagraphs || "#FFF"}>{shop?.name}</PreviewTypo></Flex>
+                    <Flex justifyContent="center"><PreviewTypo fontSize="12px" textAlign="center" fontWeight="bold" color={textColorParagraphs || "#FFF"} wordBreak="break-word">{shop?.description}</PreviewTypo></Flex>
                     <PreviewSocials />
                 </VStack>
             </VStack>

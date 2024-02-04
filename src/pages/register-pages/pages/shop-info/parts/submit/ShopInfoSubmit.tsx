@@ -24,10 +24,10 @@ function ShopInfoSubmit({ States }: IProps) {
             if (isRegister) {
                 shopNavigate(`register/design`);
             } else {
-                showToast(AppErrors.store.has_been_updated("Store info"), "success")
+                showToast({ message: AppErrors.store.has_been_updated("Store info"), type: "success" })
             }
         } catch (error) {
-            showToast(error?.message, "error")
+            showToast({ message: error?.message, type: "error" })
         }
     }, [States, isRegister])
 

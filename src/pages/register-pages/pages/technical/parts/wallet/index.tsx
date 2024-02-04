@@ -1,21 +1,17 @@
-import { Box, Flex, HStack, Image, Menu, MenuButton, MenuItem, MenuList, Text, VStack } from '@chakra-ui/react'
-import React, { useCallback } from 'react'
-import classes from './style.module.scss'
-import moreIcon from "assest/icon/more-icon.svg";
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
-import AppIcons from 'assest/icon/Appicons';
-import AppCard from 'components/common/card/AppCard';
-import { useQuery } from 'react-query';
-import { supportedChainsService } from 'lib/apis/sku/services';
-import useAppWeb3 from 'functions/hooks/web3/useWeb3';
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
-import AppTypography from 'components/common/typography/AppTypography';
-import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain';
+import { Box, Flex, HStack, VStack } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
-import useAppToast from 'functions/hooks/toast/useToast';
+import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
+import AppCard from 'components/common/card/AppCard';
 import ClipboardText from 'components/common/clipboardText/ClipboardText';
-import useHookStore from 'functions/hooks/store/useHookStore';
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
+import AppTypography from 'components/common/typography/AppTypography';
 import useStack from 'functions/hooks/stack/useStack';
+import useHookStore from 'functions/hooks/store/useHookStore';
+import useAppToast from 'functions/hooks/toast/useToast';
+import useAppWeb3 from 'functions/hooks/web3/useWeb3';
+import { supportedChainsService } from 'lib/apis/sku/services';
+import React, { useCallback } from 'react';
+import { useQuery } from 'react-query';
 
 function Wallet() {
     const { data, isLoading } = useQuery({
@@ -33,7 +29,7 @@ function Wallet() {
         try {
             await login({ chain, wallets, stack })
         } catch (error) {
-            showToast(error || 'Failed login', 'warning')
+            showToast({ message: error || 'Failed login', type: 'warning' })
         }
     }, [wallets, stack.stxAddress])
 
@@ -47,8 +43,8 @@ function Wallet() {
                         return (
                             <Flex backgroundColor="#141414" height="55px" padding="0 18px" key={key} alignItems="center" justifyContent="space-between" borderRadius="8px" color="#C2C2C2">
                                 <HStack alignItems="center">
-                                    <IconBlockchain props={{ width: "18px", height: "18px" }} blockchain={el} />
-                                    <AppTypography fontSize="12px" color="lightGray">{capitalizeFirstLetter(el)}</AppTypography>
+                                    <BlockchainDisplay show='icon' props={{ width: "18px", height: "18px" }} blockchain={el} />
+                                    <AppTypography fontSize="12px" color="lightGray"><BlockchainDisplay show='name' blockchain={el} /></AppTypography>
                                 </HStack>
                                 <Box>
                                     {isExist ? (
