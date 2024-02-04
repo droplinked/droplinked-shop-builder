@@ -7,7 +7,7 @@ import 'react-quill/dist/quill.snow.css';
 import classes from './style.module.scss'
 
 function DescriptionProduct() {
-    const { state: { description }, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { description }, methods: { updateState }, loading } = useContext(productContext);
 
     return (
         <VStack align="stretch" position={"relative"}>
