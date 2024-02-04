@@ -1,24 +1,27 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import axios from "axios";
+import { Image, Box, Text, Flex } from "@chakra-ui/react";
+import React, { useRef, useState } from "react";
+import {
+  ImagesInputWrapper,
+  ItemImage,
+  InputAddImage,
+  DeleteIcon,
+} from "./Input-images-style";
 import dltImg from "assest/icon/icons8-multiply-100.png";
 import uploadImage from "assest/icon/upload-icon.svg";
-import axios from "axios";
 import LoadingComponent from 'components/common/loading-component/LoadingComponent';
+import AppErrors from "lib/utils/statics/errors/errors";
 import useAppToast from "functions/hooks/toast/useToast";
 import { toMb } from "lib/utils/heper/helpers";
-import AppErrors from "lib/utils/statics/errors/errors";
-import React, { useRef, useState } from "react";
-import { DeleteIcon, ImagesInputWrapper, InputAddImage, ItemImage } from "./Input-images-style";
 
 interface IProps {
   setState: any
   state: any
   vertical?: boolean
   message?: string
-  onSuccess?: Function
-  size?: "small" | "original" | "standard"
 }
 
-export default function InputImagesGroup({ setState, state, vertical, message, onSuccess, size = "standard" }: IProps) {
+export default function InputImagesGroup({ setState, state, vertical, message }: IProps) {
   const [loading, setLoading] = useState(false);
   const fileRef = useRef(null);
   const { showToast } = useAppToast()
@@ -30,7 +33,7 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
   const changeImage = (e) => {
     const file = e.target.files[0];
     if (file.size > toMb({ value: 5 })) {
-      showToast({ message: AppErrors.store.size_limit({ fieldName: "Product", size: "5MB" }), type: "error" });
+      showToast(AppErrors.store.size_limit({ fieldName: "Product", size: "5MB" }), "error");
       setLoading(false);
       return;
     }
@@ -40,7 +43,7 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
       file.type !== "image/webp" &&
       file.type !== "image/jpg"
     ) {
-      showToast({ message: AppErrors.product.product_image_type_not_supported, type: "error" });
+      showToast(AppErrors.product.product_image_type_not_supported, "error");
       setLoading(false);
       return;
     }
@@ -49,21 +52,20 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
     formData.append("image", file);
     setLoading(true);
     axios
-      .post("https://d2kpv1k2vro2sk.cloudfront.net/upload", formData)
+      .post("https://cdn.droplinked.com/upload", formData)
       .then((e) => {
         let imgArr = [];
         for (let i = 0; i < state.length; i++) {
           imgArr.push(state[i]);
         }
-        imgArr.push(e.data[size]);
-        if (onSuccess) onSuccess(e.data)
+        imgArr.push(e.data.standard);
         setState(imgArr);
-        showToast({ message: message ? message : e.data.message, type: "success" });
+        showToast(message ? message : e.data.message, "success");
         setLoading(false);
         return;
       })
       .catch((e) => {
-        showToast({ message: e.response.data.message, type: "error" });
+        showToast(e.response.data.message, "error");
         setLoading(false);
         return;
       });
@@ -85,7 +87,7 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
           <Flex gap={3} onClick={openFile} alignItems="center">
             <Image src={uploadImage} w="24px" h="24px" />
             <Text fontSize="14px" textAlign="center" color="darkGray">
-              Upload JPG, JPEG, PNG (Max 5 MB)
+            Upload JPG, JPEG, PNG (Max 5 MB)
             </Text>
           </Flex>
         ) : (
@@ -93,7 +95,7 @@ export default function InputImagesGroup({ setState, state, vertical, message, o
             <Image src={uploadImage} w="50px" h="50px" />
             <Box mb="24px"></Box>
             <Text fontSize="16px" textAlign="center" color="darkGray">
-              Upload JPG, JPEG, PNG<br />(Max 5 MB)
+            Upload JPG, JPEG, PNG<br />(Max 5 MB)
             </Text>
           </InputAddImage>
         )}

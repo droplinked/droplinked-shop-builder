@@ -15,7 +15,7 @@ function AppInput(props: Iprops) {
   const { error, name, label, loading } = props
 
   return (
-    <VStack align={"stretch"} width="100%" spacing="12px">
+    <VStack align={"stretch"} width="100%" spacing={1}>
       <FieldLabel loading={loading} isRequired={props.isRequired} label={label} />
       <AppSkeleton isLoaded={loading} className={classes.input}>
         <Input

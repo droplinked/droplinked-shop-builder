@@ -1,8 +1,8 @@
 import axiosInstance from "../axiosConfig"
-import { IgenerateBufferServices, IproductByIdServices, IproductDeleteServices, IproductList, IproductState, IproductUpdateServices } from "./interfaces"
+import { IproductByIdServices, IproductDeleteServices, IproductState, IproductUpdateServices, IskuUpdateByIdServices } from "./interfaces"
 
-export const productServices = ({ page, limit, filter }: IproductList) => {
-    return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ''}`)
+export const productServices = () => {
+    return axiosInstance.get("product")
 }
 
 export const productCreateServices = (params: IproductState) => {
@@ -18,21 +18,13 @@ export const productDeleteServices = ({ productID }: IproductDeleteServices) => 
 }
 
 export const productByIdServices = ({ productID, shopname }: IproductByIdServices) => {
-    return axiosInstance.get(`product/public/${productID}?shopname=${shopname}&recorded=true`)
+    return axiosInstance.get(`product/public/${productID}?shopname=${shopname}`)
 }
 
-export const printServicesServices = () => {
-    return axiosInstance.get(`product/public/print-services`)
+export const skuUpdateByIdServices = ({ skuID, params }: IskuUpdateByIdServices) => {
+    return axiosInstance.put(`sku/${skuID}`, params)
 }
 
-export const generateBufferServices = (urls: Array<string>) => {
-    return axiosInstance.post(`product/generate/image/buffer`, urls)
-}
-
-export const productCategoryervices = () => {
-    return axiosInstance.get(`product/public/categories/main`)
-}
-
-export const productsShopervices = (shopname: string) => {
-    return axiosInstance.get(`product/public/shop/${shopname}?page=1&limit=5`)
+export const printPositionsServices = () => {
+    return axiosInstance.get(`product/public/print-positions`)
 }

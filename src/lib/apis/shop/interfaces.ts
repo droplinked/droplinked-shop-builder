@@ -42,29 +42,6 @@ export interface IshopUpdateService extends IshopSocial {
     backgroundText?: string
     backgroundImage?: string
     backgroundImageSecondary?: string
-    templateID?: string
-    tags?: Array<string>
     infoEmail?: string
     imsType?: string
-    credit?: number
-}
-
-export interface IShopRecordedService {
-    subCategoryIds: Array<string>
-    categoryIds: Array<string>
-    title: string
-    page: string | number
-}
-
-export interface IshopPublicRecordedService {
-    tags: string
-    page: string | number
-}
-
-export interface IchargeCreditService {
-    amount: number
-}
-
-export interface ShopOAuth2Client {
-    domains: Array<string>
 }

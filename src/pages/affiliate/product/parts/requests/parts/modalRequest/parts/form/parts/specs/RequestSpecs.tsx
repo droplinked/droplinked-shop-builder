@@ -5,20 +5,17 @@ import { ModalRequestContext } from '../../context'
 
 function RequestSpecs() {
   const { sku } = useContext(ModalRequestContext)
-
   return (
     <>
       <AppTable vertical rows={{
         ...RequestProductModel.makeOptions(sku.options),
         requestQuantity: {
           caption: "Request Quantity",
-          value: sku.recorded_quantity
+          value: sku.quantity
         },
-        ...sku.dimensions.length + sku.dimensions.height + sku.dimensions.width >= 1 && {
-          PackageSize: {
-            caption: "Package size",
-            value: `${sku.dimensions.length} x ${sku.dimensions.height} x ${sku.dimensions.width}`
-          }
+        PackageSize: {
+          caption: "Package size",
+          value: `${sku.dimensions.length} x ${sku.dimensions.height} x ${sku.dimensions.width}`
         },
         Weight: {
           caption: "Weight",

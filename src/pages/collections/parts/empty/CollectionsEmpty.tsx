@@ -16,15 +16,15 @@ function CollectionsEmpty({ openModal }: IProps) {
                 }}
                 list={[
                     {
-                        icon: <AppIcons.AddIcon />,
+                        icon: <AppIcons.addIcon />,
                         label: "Create collections to categorize your products"
                     },
                     {
-                        icon: <AppIcons.RuleIcon />,
+                        icon: <AppIcons.ruleIcon />,
                         label: "Set exclusive discounts or access to product collections"
                     },
                     {
-                        icon: <AppIcons.CollectionIcon />,
+                        icon: <AppIcons.collectionIcon />,
                         label: "Manage and organize all collections in one place"
                     }
                 ]}

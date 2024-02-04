@@ -7,23 +7,23 @@ export interface IAppForm {
     loading?: boolean
 }
 
-const FormModel = ({
-    baseStyleProps: () => {
+export default class FormModel {
+    static baseStyleProps = () => {
         return {
             borderColor: "#141414",
             errorBorderColor: "red.200",
             backgroundColor: "#141414",
             padding: "22px 17px",
             fontSize: "14px",
-            color: "#C2C2C2",
+            fontWeight: "bold",
+            color: "#808080",
         }
-    },
-    styleProps: () => {
+    }
+    static styleProps = () => {
         return {
-            ...FormModel.baseStyleProps(),
+            ...this.baseStyleProps(),
             _placeholder: {
-                color: "#808080",
-                opacity: "1"
+                color: "#808080"
             },
             _focus: {
                 borderColor: "none",
@@ -35,6 +35,4 @@ const FormModel = ({
             }
         }
     }
-})
-
-export default FormModel 
+}

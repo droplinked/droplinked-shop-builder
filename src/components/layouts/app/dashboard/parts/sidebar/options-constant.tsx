@@ -1,26 +1,21 @@
+import { appDeveloment } from "lib/utils/app/variable";
 import AppIcons from "assest/icon/Appicons";
 import React from "react";
 
 export const OPTIONS = [
     {
-        icon: <AppIcons.Dashboard />, label: 'dashboard', path: ''
+        icon: <AppIcons.productsIcon />, label: 'Products', path: 'products'
     },
     {
-        icon: <AppIcons.ProductsIcon />, label: 'Products', path: '/products'
+        icon: <AppIcons.collectionIcon />, label: 'Collections', path: 'collections'
     },
     {
-        icon: <AppIcons.CollectionIcon />, label: 'Collections', path: '/collections'
+        icon: <AppIcons.orderIcon />, label: 'Orders', path: 'orders'
     },
     {
-        icon: <AppIcons.OrderIcon />, label: 'Orders', path: '/orders'
+        icon: <AppIcons.informationIcon />, label: 'Affiliate', path: appDeveloment ? "affiliate" : 'products'
     },
     {
-        icon: <AppIcons.InformationIcon />, label: 'Affiliate', path: '/affiliate'
-    },
-    // {
-    //     icon: <AppIcons.NFT />, label: 'NFTs', path: '/nfts'
-    // },
-    {
-        icon: <AppIcons.SettingIcon />, label: 'Settings', path: '/settings/shop-info'
+        icon: <AppIcons.settingIcon />, label: 'Settings', path: 'settings/shop-info'
     },
 ]

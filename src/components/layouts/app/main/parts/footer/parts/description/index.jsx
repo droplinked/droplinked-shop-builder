@@ -1,8 +1,6 @@
 import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import droplinkFull from "assest/image/droplinkFull.svg";
-import AppTypography from "components/common/typography/AppTypography";
-import { Link } from "react-router-dom";
 
 function Description() {
   return (
@@ -11,7 +9,7 @@ function Description() {
       spacing={5}
       w="max-content"
     >
-      <Link to="/#banner"><Image src={droplinkFull} maxW="210px" h="auto" mb="18px" /></Link>
+      <Image src={droplinkFull} maxW="210px" h="auto" mb="18px" />
 
       <Text
         fontFamily="Avenir Next"
@@ -21,7 +19,7 @@ function Description() {
         mb="18px"
         w='max-content'
       >
-        <AppTypography fontSize="12px" fontWeight="bold" display={"inline-block"}>Community driven commerce</AppTypography>
+        Community driven commerce
         <br />
         Launch a drop in minutes & unlock the power of web3.
       </Text>

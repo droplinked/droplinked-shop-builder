@@ -1,31 +1,29 @@
 import { useDisclosure } from '@chakra-ui/react'
-import useStack from 'functions/hooks/stack/useStack'
-import useHookStore from 'functions/hooks/store/useHookStore'
-import useAppToast from 'functions/hooks/toast/useToast'
-import acceptModel from 'functions/hooks/web3/models/module/accept/acceptModel'
-import useAppWeb3 from 'functions/hooks/web3/useWeb3'
+import { IacceptRejectRequestService } from 'lib/apis/affiliate/interfaces'
+import { acceptRejectRequestService } from 'lib/apis/affiliate/shopServices'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+import RecordModalModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel'
 import React, { useCallback, useState } from 'react'
-import { requestsButtonsContext } from './context'
+import { useMutation } from 'react-query'
+import NotificationsModal from './parts/modal/NotificationsModal'
+import requestsButtonsModel from './model'
 import requestInterfaces from './interfaces'
+import { requestsButtonsContext } from './context'
 import RequestButtons from './parts/buttons/RequestButtons'
 import ModalHashkey from './parts/hashkey/ModalHashkey'
-import NotificationsModal from './parts/modal/NotificationsModal'
+import useAppToast from 'functions/hooks/toast/useToast'
 
 function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
+    const { mutateAsync } = useMutation((params: IacceptRejectRequestService) => acceptRejectRequestService(params))
     const modal = useDisclosure()
     const modalHashKey = useDisclosure()
     const { showToast } = useAppToast()
-    const { web3 } = useAppWeb3()
-    const { app: { user: { wallets } } } = useHookStore()
-
+    const { approveRequest, disapproveRequest } = requestsButtonsModel
     const [States, setStates] = useState<requestInterfaces.IStates>({
         status: null,
         loading: false,
-        deployHash: null,
-        blockchain: null
+        deployHash: null
     })
-    const stack = useStack()
 
     const setLoading = useCallback((value: boolean) => setStates(prev => ({ ...prev, loading: value })), [])
 
@@ -36,25 +34,32 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
 
     const submit = useCallback(async () => {
         try {
-            let blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
-            if (States.status === "accept") {
-                const deploy_hash = await web3({ chain: blockchain, method: "accept", params: { shop, accept: States.status === "accept" }, wallets, stack })
-                modalHashKey.onOpen()
-                setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
-            } else {
-                await acceptModel.deploy({ deployHash: null, accept: false, chain: blockchain, shop })
-                refetch()
-            }
+            const casperWallet = await RecordModalModule.openCasperWallet()
+            const requestID = shop?._id
+            const data = { shop, casperWallet }
+            const request = States.status === "accept" ? await approveRequest(data) : await disapproveRequest(data)
 
+            await mutateAsync({
+                deploy_hash: request.deployHash,
+                requestID: requestID,
+                status: States.status === "accept" ? "ACCEPTED" : "REJECTED"
+            })
             setLoading(false)
             modal.onClose()
-            showToast({ message: `Request status change ${capitalizeFirstLetter(States.status)}`, type: "success" })
+            showToast(`Request status change ${capitalizeFirstLetter(States.status)}`, "success")
+
+            if (States.status === "accept") {
+                modalHashKey.onOpen()
+                setStates(prev => ({ ...prev, deployHash: request.deployHash }))
+            } else {
+                refetch()
+            }
         } catch (error) {
             setLoading(false)
-            if (error?.message && !error?.message.includes("The first argument")) showToast({ message: error.message, type: "error" })
+            if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
         }
-    }, [States.status, shop, refetch, modal, wallets, stack.stxAddress])
+    }, [States.status, shop, refetch, modal])
 
     return (
         <requestsButtonsContext.Provider value={{ shop, modal: { open: modal.onOpen }, methods: { setStates } }}>
@@ -62,11 +67,11 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             <NotificationsModal
                 status={States.status}
                 loading={States.loading}
-                close={modal.onClose}
+                close={States.loading ? () => { } : modal.onClose}
                 approveClick={submit}
                 open={modal.isOpen}
             />
-            <ModalHashkey close={closeModalHashkey} blockchain={States.blockchain} hashkey={States.deployHash} open={modalHashKey.isOpen} />
+            <ModalHashkey close={closeModalHashkey} hashKey={States.deployHash} open={modalHashKey.isOpen} />
         </requestsButtonsContext.Provider>
     )
 }

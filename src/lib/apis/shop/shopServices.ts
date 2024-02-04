@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IchargeCreditService, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, ShopOAuth2Client } from "./interfaces"
+import { IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopService, IshopUpdateService } from "./interfaces"
 
 export const shopService = ({ shopName }: IshopService) => {
     return axiosInstance.get(`shop/${shopName}`)
@@ -19,8 +19,8 @@ export const paymentCreateService = (params: Array<IpaymentCreateService>) => {
     })
 }
 
-export const shopPublicRecordedService = ({ page, tags }: IshopPublicRecordedService) => {
-    return axiosInstance.get(`shop/public/recorded?limit=10&page=${page}${tags ? '&tags=' + `["${tags}"]` : ''}`)
+export const shopPublicRecordedService = () => {
+    return axiosInstance.get(`shop/public/recorded`)
 }
 
 export const recordedShopService = ({ shopName }: IrecordedShopService) => {
@@ -28,7 +28,7 @@ export const recordedShopService = ({ shopName }: IrecordedShopService) => {
 }
 
 export const productService = ({ productID }: IproductService) => {
-    return axiosInstance.get(`product/${productID}`)
+    return axiosInstance.get(`product/${productID}?recorded=true`)
 }
 
 export const shopInfoService = ({ shopName }: IshopInfoService) => {
@@ -37,40 +37,4 @@ export const shopInfoService = ({ shopName }: IshopInfoService) => {
 
 export const shopUpdateService = (params: IshopUpdateService) => {
     return axiosInstance.put(`shop`, params)
-}
-
-export const availableTemplateService = () => {
-    return axiosInstance.get(`shop/available/templates`)
-}
-
-export const ShopRecordedService = ({ categoryIds, page, subCategoryIds, title }: IShopRecordedService) => {
-    return axiosInstance.get(`product/community/recorded?limit=25&page=${page}${categoryIds ? '&categoryIds=' + `["${categoryIds}"]` : ''}${subCategoryIds ? '&subCategoryIds=' + `["${subCategoryIds}"]` : ''}${title ? '&title=' + title : ''}`)
-}
-
-export const chargeCreditService = (props: IchargeCreditService) => {
-    return axiosInstance.post(`shop/credit/charge`, props)
-}
-
-export const patchedChargedService = () => {
-    return axiosInstance.patch(`shop/credit/charge`)
-}
-
-export const shopDashboardService = () => {
-    return axiosInstance.get(`shop/dashboard/products?limit=5`)
-}
-
-export const shopSellerService = () => {
-    return axiosInstance.get(`shop/dashboard/sellers?limit=5`)
-}
-
-export const bestPartnersService = () => {
-    return axiosInstance.get(`shop/dashboard/product-types`)
-}
-
-export const getShopApiKey = () => {
-    return axiosInstance.get(`shop/client/oauth2`)
-}
-
-export const generateShopAPIKey = (data: ShopOAuth2Client) => {
-    return axiosInstance.put("shop/client/oauth2 ", data)
 }

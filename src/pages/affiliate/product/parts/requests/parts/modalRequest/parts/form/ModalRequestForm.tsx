@@ -1,17 +1,17 @@
 import { Box, VStack } from '@chakra-ui/react'
 import { Form, Formik } from 'formik'
-import useStack from 'functions/hooks/stack/useStack'
-import useHookStore from 'functions/hooks/store/useHookStore'
 import useAppToast from 'functions/hooks/toast/useToast'
-import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
-import { requestService } from 'lib/apis/affiliate/shopServices'
+import { casperRequestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'
+import RecordModalModule from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/parts/form/recordFormModel'
 import React, { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
 import { ModalRequestContext } from './context'
+import ModalRequestModel, { IRequestModelValues } from './model'
 import RequestModalButtons from './parts/buttons/RequestModalButtons'
 import ModalRequestDetails from './parts/details/ModalRequestDetails'
+import RequestQuantity from './parts/quantity/RequestQuantity'
 import RequestSpecs from './parts/specs/RequestSpecs'
 
 interface IProps {
@@ -23,42 +23,32 @@ interface IProps {
 }
 
 function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
-    const { mutateAsync } = useMutation((params: IcasperRequestService) => requestService(params))
+    const { mutateAsync } = useMutation((params: IcasperRequestService) => casperRequestService(params))
+    const { formSchema, publish_request } = ModalRequestModel
+    const { openCasperWallet } = RecordModalModule
     const { showToast } = useAppToast()
-    const stack = useStack()
     const [Loading, setLoading] = useState(false)
-    const { web3 } = useAppWeb3()
-    const { app: { user: { wallets } } } = useHookStore()
 
-    const request = useCallback(async (deployHash: string, quantity: number, chain: string) => {
-        return mutateAsync({
-            chain,
-            params: {
+    const onSubmit = useCallback(async (values: IRequestModelValues) => {
+        try {
+            const casperWallet = await openCasperWallet()
+            setLoading(true)
+            const quantity = parseInt(values.quantity)
+            const publish = await publish_request({ casperWallet, quantity, sku })
+            await mutateAsync({
                 productID: product._id,
-                deploy_hash: deployHash,
+                deploy_hash: publish.deployHash,
                 quantity,
                 skuID: sku._id,
                 shopID: shop._id
-            }
-        })
-    }, [product, sku])
-
-    const onSubmit = useCallback(async () => {
-        const blockchain = sku?.recordData?.recordNetwork
-        const quantity = sku.recorded_quantity
-
-        try {
-            setLoading(true)
-            const deployHash = await web3({ chain: blockchain, method: "request", params: { sku }, wallets, stack })
-
-            await request(deployHash, quantity, blockchain)
-            setHahskey(deployHash)
+            })
             setLoading(false)
+            setHahskey(publish.deployHash)
         } catch (error) {
+            if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
             setLoading(false)
-            if (error?.message && !error?.message.includes("The first argument")) showToast({ message: error.message, type: "error" })
         }
-    }, [sku, product, shop, wallets, stack.stxAddress])
+    }, [sku, product, shop])
 
     return (
         <Formik
@@ -66,6 +56,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                 quantity: '',
             }}
             validateOnChange={false}
+            validationSchema={formSchema}
             onSubmit={onSubmit}
         >
             {(formik) => (
@@ -74,7 +65,8 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
                         <VStack align={"stretch"} color="#FFF" spacing={8}>
                             <Box><ModalRequestDetails /></Box>
                             <Box><RequestSpecs /></Box>
-                            <Box><RequestModalButtons close={close} /></Box>
+                            <Box><RequestQuantity /></Box>
+                            <Box><RequestModalButtons close={Loading ? () => { } : close} /></Box>
                         </VStack>
                     </Form>
                 </ModalRequestContext.Provider>

@@ -1,24 +1,30 @@
-import { IproductState, Iproperties } from "lib/apis/product/interfaces"
+import { Iproperties, Isku, IskuOption, product_type } from "lib/apis/product/interfaces"
 import VariantsMakeDataModel from "./modules/makeData"
+import VariantsRefactorModel from "./modules/refactor"
+
+interface Irefactor {
+    properties: Array<Iproperties>
+    skues: Array<Isku>
+    product_type: product_type
+    variants: any
+}
 
 interface ImakeData {
     properties: Array<Iproperties>
-    available_variant: Array<any>
-    state: IproductState
+    skues: Array<Isku>
 }
 
-const VariantsProductModel = ({
-    makeData: ({ properties, available_variant, state }: ImakeData) => {
-        const sort = VariantsMakeDataModel.sort({ properties })
-        const makedataModel = VariantsMakeDataModel.makePropertyChild({ sort })
+export default class VariantsProductModel {
+    static refactorModel = VariantsRefactorModel
+    static makedataModel = VariantsMakeDataModel
 
-        const refactor = VariantsMakeDataModel.getOptions({
+    static makeData = ({ properties, skues }: ImakeData) => {
+        const sort = this.makedataModel.sort({ properties })
+        const makedataModel = this.makedataModel.makePropertyChild({ sort })
+        const refactor = this.makedataModel.getOptions({
             properties: makedataModel,
-            state,
-            available_variant
+            skues
         })
         return refactor.filter(el => el.options.length)
     }
-})
-
-export default VariantsProductModel
+}

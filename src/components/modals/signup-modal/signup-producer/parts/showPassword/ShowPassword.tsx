@@ -6,8 +6,8 @@ interface IProps {
     showed: boolean
 }
 
-const ShowPassword = ({ onClick, showed }: IProps) => {
-    const Tag = showed ? AppIcons.VisibleIcon : AppIcons.InvisibleIcon
+function ShowPassword({ onClick, showed }: IProps) {
+    const Tag = showed ? AppIcons.visibleIcon : AppIcons.invisibleIcon
     return (
         <Tag
             style={{ position: "absolute", top: "15px", right: "20px", cursor: "pointer" }}

@@ -20,7 +20,7 @@ interface Iprops {
 const InputLefton = ({ isRequired, label, placeHolder, value, change, color, children, }: Iprops) => {
   return (
     <FormControl isRequired={isRequired} w="100%">
-      <AppTypography fontSize="16px" color="#C2C2C2">{label}</AppTypography>
+      <AppTypography size="16px" color="#C2C2C2">{label}</AppTypography>
       <Flex marginTop={2}>
         <InputLeftAddon
           bg="line"

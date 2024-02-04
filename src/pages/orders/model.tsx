@@ -2,16 +2,14 @@ import React from "react"
 import { ITableRows } from 'components/common/table/AppTable'
 import ControlsListOrder from "./parts/controls/Controls"
 import { convertToStandardFormat } from "lib/utils/date.utils/convertDate";
-import OrderpageID from "./parts/orderID/OrderpageID";
 
 interface IrefactorData {
     data: any
     search: string
 }
+export default class OrdersModel {
 
-const OrdersModel = ({
-
-    calculateHowTimePassed: (baseTime: string) => {
+    static calculateHowTimePassed = (baseTime: string) => {
         const now = new Date();
         const yourDate = new Date(baseTime);
 
@@ -32,38 +30,36 @@ const OrdersModel = ({
         } else {
             return convertToStandardFormat(yourDate.getTime());
         }
-    },
+    };
 
-    makeData: (element: any) => ({
+    static makeData = (element: any) => ({
         Code: {
             caption: "Order ID",
-            value: <OrderpageID order={element} />
+            value: element?._id
         },
         Customer: {
-            value: element?.customerAddressBook ? `${element?.customerAddressBook?.firstName} ${element?.customerAddressBook?.lastName}` : '---'
+            value: `${element?.customerAddressBook?.firstName} ${element?.customerAddressBook?.lastName}`
         },
         Date: {
             caption: "Date Created",
-            value: OrdersModel.calculateHowTimePassed(element?.createdAt)
+            value: this.calculateHowTimePassed(element?.createdAt)
         },
         Quantity: {
             value: element?.items?.length
         },
         Status: {
-            caption: "Status",
+            caption: "Delivery Status",
             value: element?.status
         },
         options: {
             caption: "",
             value: <ControlsListOrder order={element} />
         }
-    }),
+    })
 
-    refactorData: ({ data, search }: IrefactorData): Array<ITableRows> => {
+    static refactorData = ({ data,search }: IrefactorData): Array<ITableRows> => {
         search = search && search.toLowerCase()
         const products = search ? data.filter((el: any) => el?._id && el._id.toLowerCase().includes(search)) : data
-        return products.map((el: any): ITableRows => OrdersModel.makeData(el))
+        return products.map((el: any): ITableRows => this.makeData(el))
     }
-})
-
-export default OrdersModel
+}

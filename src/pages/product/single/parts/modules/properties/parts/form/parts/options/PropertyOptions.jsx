@@ -21,11 +21,11 @@ function PropertyOptions({ element, onChange, value }) {
         <>
             <AppSelectBox
                 name={element.title}
-                backgroundColor="#1C1C1C !important"
+                backgroundColor="#1C1C1C"
                 isDisabled={Boolean(productID) && publish_product}
                 onChange={onChange}
                 value={value}
-                {...!value && { placeholder: "Select property" }}
+                {...!value && { placeholder: "property" }}
                 items={typesProperties.map((el) => ({
                     value: el._id,
                     caption: el.name,

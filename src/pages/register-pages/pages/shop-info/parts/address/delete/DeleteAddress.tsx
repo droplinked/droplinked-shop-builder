@@ -23,13 +23,13 @@ function DeleteAddress({ addressID, addressRefetch }: IProps) {
             await mutateAsync({ addressID })
             addressRefetch()
         } catch (error) {
-            showToast({ message: error?.response?.data?.message, type: "error" })
+            showToast(error?.response?.data?.message, "error")
         }
     }, [])
 
     return (
         <>
-            <AppIcons.DeleteIcon style={{ cursor: "pointer" }} onClick={onOpen} width="16px" height="16px" />
+            <AppIcons.deleteIcon style={{ cursor: "pointer" }} onClick={onOpen} width="16px" height="16px" />
             <AppDialog
                 open={isOpen}
                 close={onClose}
@@ -48,7 +48,8 @@ function DeleteAddress({ addressID, addressRefetch }: IProps) {
                         buttonProps: {
                             isLoading: isLoading
                         }
-                    }
+                    },
+
                 ]}
             />
         </>

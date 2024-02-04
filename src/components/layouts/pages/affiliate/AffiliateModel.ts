@@ -1,34 +1,22 @@
-import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 
 export default class AffiliateModel {
     static links = () => {
-        const { shopRoute } = useCustomNavigate()
+        const { shop } = useProfile();
 
         return [
             {
-                caption: "Affiliate Products",
-                link: `${shopRoute}/affiliate`
+                caption: "Community",
+                link: `/${shop.name}/c/affiliate`
             },
-            {
-                caption: "Affiliate Stores",
-                link: `${shopRoute}/affiliate/stores`
-            },
-            // {
-            //     caption: "Joined Stores",
-            //     link: `${shopRoute}/affiliate/joined`
-            // },
             {
                 caption: "Notifications",
-                link: `${shopRoute}/affiliate/notifications`
+                link: `/${shop.name}/c/affiliate/notifications`
             },
             {
                 caption: "My Requests",
-                link: `${shopRoute}/affiliate/requests`
-            },
-            // {
-            //     caption: "Svaed Products",
-            //     link: `${shopRoute}/affiliate/saved`
-            // }
+                link: `/${shop.name}/c/affiliate/requests`
+            }
         ]
     }
 }

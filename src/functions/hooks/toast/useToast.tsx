@@ -1,9 +1,9 @@
-import { toast, ToastOptions, TypeOptions } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect } from 'react';
 
 const useAppToast = () => {
-    const showToast = (toastObject: { type: TypeOptions, message: string | JSX.Element, options?: ToastOptions }) => {
-        const { type, message, options } = toastObject
+    const showToast = (message: string | JSX.Element, type: "success" | "warning" | "error" | "info", options?: any) => {
         toast[type](message, options);
     };
 

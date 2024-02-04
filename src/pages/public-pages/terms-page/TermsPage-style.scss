@@ -11,11 +11,12 @@
   }
   
   .terms-body {
+    border: 1px solid #b3b3b3;
     box-sizing: border-box;
     border-radius: 16px;
     width: 100%;
-    padding: 60px 0;
-    max-width: 1400px;
+    padding: 15px;
+    max-width: 850px;
     height: auto;
   }
   
@@ -26,7 +27,7 @@
     p {
       margin: auto 0px;
       color: #fff;
-      font-family: "Avenir Next";
+      font-family: "AvenirNext";
       font-weight: 600;
       font-size: 32px;
     }
@@ -39,7 +40,7 @@
     p {
       margin: auto 0px;
       color: #fff;
-      font-family: "Avenir Next";
+      font-family: "AvenirNext";
       font-weight: 500;
       font-size: 18px;
       margin-bottom: 30px;
@@ -61,7 +62,7 @@
     p {
       margin: 0px auto;
       color: #ffffff;
-      font-family: "Avenir Next";
+      font-family: "AvenirNext";
       font-style: normal;
       font-weight: 600;
       font-size: 20px;

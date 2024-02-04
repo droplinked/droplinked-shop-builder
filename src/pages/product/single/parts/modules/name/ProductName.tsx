@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import AppLimitCharacter from 'components/common/form/limitCharacter/AppLimitCharacter'
 import AppInput from 'components/common/form/textbox/AppInput'
+import AppTypography from 'components/common/typography/AppTypography'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext } from 'react'
 

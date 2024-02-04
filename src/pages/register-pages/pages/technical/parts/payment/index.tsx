@@ -31,16 +31,16 @@ function Payments() {
     return (
         <AppCard>
             <VStack spacing={2} align='stretch'>
-                <Box><FieldLabel label='Payment Method' textProps={{ fontSize: "18px", fontWeight: "bolder" }} isRequired /></Box>
+                <Box><FieldLabel label='Payment Method' textProps={{ size: "18px", weight: "bolder" }} isRequired /></Box>
                 <Box>
-                    <AppTypography fontSize="14px" color="#C2C2C2">
+                    <AppTypography size="14px" color="#C2C2C2">
                         Activate the payment methods and add target wallet for each of them.
                     </AppTypography>
                 </Box>
                 <VStack align='stretch' spacing={3}>
                     <VStack spacing={2} align={"stretch"}>
                         {paymentPublic.isLoading ? <PaymentsLoading /> : payments && payments.map((el, key) => (
-                            <BlackBox key={key} padding="5px 20px" height="55px" display="flex" alignItems="center">
+                            <BlackBox key={key} padding={3}>
                                 <ContainerPayment
                                     title={el.type}
                                     locked={el.isActive}

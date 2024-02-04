@@ -16,7 +16,3 @@ export const createRuleService = (params: IcreateRuleService) => {
 export const updateRuleService = ({ data, ruleID }: IupdateRuleService) => {
     return axiosInstance.put(`rule-set/${ruleID}`, data)
 }
-
-export const rulesetChainsService = () => {
-    return axiosInstance.get(`rule-set/available-chains`)
-}

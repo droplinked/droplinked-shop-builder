@@ -1,8 +1,8 @@
 import { ButtonProps } from "@chakra-ui/react"
 export type BasicButtonStylesTypes = "solid" | "outline" | "ghost" | "link" | "unstyled"
 
-const BasicButtonStyles = ({
-    solid: (): ButtonProps => {
+export default class BasicButtonStyles {
+    static solid = (): ButtonProps => {
         return {
             color: "#084836",
             bgColor: "#2EC99E",
@@ -13,9 +13,9 @@ const BasicButtonStyles = ({
                 color: "primary",
             }
         }
-    },
+    }
 
-    outline: (): ButtonProps => {
+    static outline = (): ButtonProps => {
         return {
             color: "#FFF",
             bgColor: "1c1c1c",
@@ -26,9 +26,9 @@ const BasicButtonStyles = ({
                 color: "#offText",
             }
         }
-    },
+    }
 
-    link: (): ButtonProps => {
+    static link = (): ButtonProps => {
         return {
             color: "#FFF",
             bgColor: "none",
@@ -38,9 +38,9 @@ const BasicButtonStyles = ({
                 color: "#offText",
             }
         }
-    },
+    }
 
-    ghost: (): ButtonProps => {
+    static ghost = (): ButtonProps => {
         return {
             color: "#FFF",
             bgColor: "#292929",
@@ -51,6 +51,5 @@ const BasicButtonStyles = ({
             }
         }
     }
-})
 
-export default BasicButtonStyles
+}

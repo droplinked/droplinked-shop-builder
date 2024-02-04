@@ -14,10 +14,9 @@ export function useCustomNavigate() {
   const { shop } = useProfile();
   const navigate = useNavigate();
   const location = useLocation()
-  const shopRoute = `/dashboard`
 
   const shopNavigate = (path: string, checkCurrentPath = false) => {
-    const route = shopRoute + "/" + path
+    const route = `/${shop?.name}/c/${path}`
     const check = checkCurrentPath ? route !== location.pathname : true
     if (check) navigate(route);
   }
@@ -34,7 +33,6 @@ export function useCustomNavigate() {
 
   return {
     shopNavigate,
-    shopRoute,
     redirectToIo
   };
 }

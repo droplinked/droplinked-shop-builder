@@ -1,16 +1,16 @@
-import { VStack } from "@chakra-ui/react";
-import BasicButton from "components/common/BasicButton/BasicButton";
-import AppInput from 'components/common/form/textbox/AppInput';
-import AppModal from 'components/common/modal/AppModal';
-import AppTypography from 'components/common/typography/AppTypography';
-import { Form, Formik } from "formik";
-import useAppToast from "functions/hooks/toast/useToast";
-import { IforgetPasswordService } from "lib/apis/user/interfaces";
-import { forgetPasswordService } from "lib/apis/user/services";
-import AppErrors from "lib/utils/statics/errors/errors";
 import React from "react";
+import { Flex, VStack } from "@chakra-ui/react";
+import AppTypography from 'components/common/typography/AppTypography';
+import AppInput from 'components/common/form/textbox/AppInput';
+import useAppToast from "functions/hooks/toast/useToast";
+import AppModal from 'components/common/modal/AppModal';
 import { useMutation } from "react-query";
+import { forgetPasswordService } from "lib/apis/user/services";
+import { IforgetPasswordService } from "lib/apis/user/interfaces";
+import { Form, Formik } from "formik";
+import AppErrors from "lib/utils/statics/errors/errors";
 import * as Yup from 'yup';
+import BasicButton from "components/common/BasicButton/BasicButton";
 
 const ResetPassModal = ({ show, close, switchReset }) => {
   const { mutateAsync, isLoading } = useMutation((params: IforgetPasswordService) => forgetPasswordService(params))
@@ -19,10 +19,10 @@ const ResetPassModal = ({ show, close, switchReset }) => {
   const onSubmit = async (params: IforgetPasswordService) => {
     try {
       await mutateAsync(params)
-      showToast({ message: `Send an email to : ${params.email}`, type: "success" });
+      showToast(`Send an email to : ${params.email}`, "success");
       close();
     } catch (error) {
-      showToast({ message: error?.response?.data?.data?.message || error?.message, type: "error" })
+      showToast(error?.response?.data?.message, "error")
     }
   }
 
@@ -31,7 +31,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
   });
 
   return (
-    <AppModal open={show} close={close} title="Forgot Password">
+    <AppModal open={show} close={close} title="Reset your password">
       <Formik
         initialValues={{
           email: '',
@@ -43,7 +43,10 @@ const ResetPassModal = ({ show, close, switchReset }) => {
         {({ errors, values, setFieldValue }) => (
           <Form>
             <VStack align={"stretch"} spacing={4}>
-              <AppTypography fontSize="14px" color={"#FFF"}>Please enter the email address you’ve been registered for your store, we will send you an email to help you change your password</AppTypography>
+              <AppTypography size="14px" color={"#FFF"}>
+                Enter the email address associated with your account and we'll send
+                you a link to reset your password.
+              </AppTypography>
               <AppInput
                 name="email"
                 isRequired
@@ -53,7 +56,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
                 type={"email"}
                 onChange={(e) => setFieldValue("email", e.target.value)}
               />
-              <BasicButton minWidth={"100%"} type="submit" isLoading={isLoading}>Send Verification</BasicButton>
+              <BasicButton minWidth={"100%"} type="submit" isLoading={isLoading}>Reset password</BasicButton>
               <BasicButton width={"100%"} sizes="medium" onClick={switchReset} variant={"link"}>
                 Back to login
               </BasicButton>

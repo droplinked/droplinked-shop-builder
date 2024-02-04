@@ -1,10 +1,10 @@
-import { Box, Flex, HStack, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, HStack, Image, Text, VStack } from '@chakra-ui/react'
+import { faker } from '@faker-js/faker'
 import AppImage from 'components/common/image/AppImage'
+import casper from "assest/icon/casper.svg";
 import React, { useContext } from 'react'
 import { ModalReqDetailsStyles } from './style-component';
 import { ModalRequestContext } from '../../context';
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
-import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 
 function ModalRequestDetails() {
     const { product, sku } = useContext(ModalRequestContext)
@@ -16,13 +16,13 @@ function ModalRequestDetails() {
             <Box width={"100%"}>
                 <VStack align={"stretch"} spacing={.5}>
                     <Box marginBottom={2}><Text fontFamily={"aven"} fontSize="2xl">{product.title}</Text></Box>
-                    <Box><LabelText>Commission: %{sku?.recordData?.commision}</LabelText></Box>
-                    <Box><LabelText>Total Price: ${sku?.price.toFixed(2)} USD</LabelText></Box>
-                    <Box><LabelText>Your earning: {`${sku?.publisherEarning} USD`}</LabelText></Box>
+                    <Box><LabelText>Commission: %{sku?.recordData?.casperData?.details?.comission}</LabelText></Box>
+                    <Box><LabelText>Total Price: ${sku?.recordData?.casperData?.details?.price}</LabelText></Box>
+                    <Box><LabelText>Your Earning: ${sku?.recordData?.casperData?.details?.amount}</LabelText></Box>
                     <Box paddingTop={1}>
                         <HStack>
-                            <Box><BlockchainDisplay show='icon' blockchain={sku?.recordData?.recordNetwork} props={{ width: "16px" }} /></Box>
-                            <Box><Text fontSize={"sm"}>{capitalizeFirstLetter(sku?.recordData?.recordNetwork)}</Text></Box>
+                            <Box><Image src={casper} width="16px" /></Box>
+                            <Box><Text fontSize={"sm"}>Casper</Text></Box>
                         </HStack>
                     </Box>
                 </VStack>

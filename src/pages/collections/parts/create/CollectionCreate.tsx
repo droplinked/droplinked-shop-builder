@@ -2,6 +2,7 @@ import { Box, HStack, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppInput from 'components/common/form/textbox/AppInput'
 import AppModal from 'components/common/modal/AppModal'
+import AppTypography from 'components/common/typography/AppTypography'
 import { Form, Formik } from 'formik'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { IcreateCollectionService, IupdateCollectionService } from 'lib/apis/collection/interfaces'
@@ -9,7 +10,7 @@ import { createCollectionService, updateCollectionService } from 'lib/apis/colle
 import AppErrors from 'lib/utils/statics/errors/errors'
 import React, { useCallback } from 'react'
 import { useMutation } from 'react-query'
-import * as Yup from 'yup'
+import * as Yup from 'yup';
 
 interface IProps {
     close: Function
@@ -33,15 +34,15 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
             const { title } = data
             if (collection) {
                 await updateService.mutateAsync({ title, collectionID: collection._id })
-                showToast({ message: AppErrors.collection.update_Collection_name, type: "success" })
+                showToast(AppErrors.collection.update_Collection_name, "success")
             } else {
                 await createService.mutateAsync({ title })
-                showToast({ message: AppErrors.collection.create_Collection_name, type: "success" })
+                showToast(AppErrors.collection.create_Collection_name, "success")
             }
             close()
             refetch()
         } catch (error) {
-            showToast({ message: "Oops! Something went wrong", type: "error" })
+            showToast("Oops! Something went wrong", "error")
         }
     }, [collection])
 
@@ -70,7 +71,6 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
                                     value={values.title}
                                     onChange={(e: any) => setFieldValue("title", e.target.value)}
                                     isRequired
-                                    maxLength={40}
                                     label="Collection Title"
                                     placeholder="Summer Collection"
                                     error={errors.title ? errors.title.toString() : ""}
