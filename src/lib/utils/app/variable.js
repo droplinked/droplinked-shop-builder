@@ -7,4 +7,4 @@ export const BASE_URL = appDeveloment ? origin === "https://stage.droplinked.com
 export const SHOP_URL = appDeveloment ? "https://dev.droplinked.io" : "https://droplinked.io"
 export const appVersion = version
 
-console.log({ stage: process.env.REACT_APP_BASE_API_URL_STAGE, dev: process.env.REACT_APP_BASE_API_URL_DEV, base: process.env.REACT_APP_BASE_API_URL, BASE_URL });
+console.log({ stage: process.env.REACT_APP_BASE_API_URL_STAGE, dev: process.env.REACT_APP_BASE_API_URL_DEV, base: process.env.REACT_APP_BASE_API_URL, BASE_URL })
