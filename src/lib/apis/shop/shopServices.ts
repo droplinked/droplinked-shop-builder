@@ -67,10 +67,10 @@ export const bestPartnersService = () => {
     return axiosInstance.get(`shop/dashboard/product-types`)
 }
 
-export const getShopApiKey = () => {
+export const getShopAPIKeyService = () => {
     return axiosInstance.get(`shop/client/oauth2`)
 }
 
-export const generateShopAPIKey = (data: ShopOAuth2Client) => {
+export const updateShopAPIKeyService = (data: ShopOAuth2Client) => {
     return axiosInstance.put("shop/client/oauth2 ", data)
 }
