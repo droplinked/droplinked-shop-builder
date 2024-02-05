@@ -12,8 +12,8 @@ function BestSellingProduct({ product }: IProps) {
             <VStack align="stretch">
                 <AppTypography fontSize="14px" fontWeight="600">{product?.productName}</AppTypography>
                 <Flex alignItems="center" gap="6px">
-                    <Box backgroundColor="rgba(43, 207, 161, 0.25)" borderRadius="100px" padding="3px 8px"><AppTypography color="#2BCFA1">${product?.totalAmountDirect.toFixed(2)}</AppTypography></Box>
-                    <Box backgroundColor="rgba(156, 78, 255, 0.25)" borderRadius="100px" padding="3px 8px"><AppTypography color="#C59CFF">${product?.totalAmountAffiliate.toFixed(2)}</AppTypography></Box>
+                    <Box backgroundColor="rgba(43, 207, 161, 0.25)" borderRadius="100px" padding="3px 8px"><AppTypography color="#2BCFA1">${product?.totalAmountDirect.toFixed(2)} USD</AppTypography></Box>
+                    <Box backgroundColor="rgba(156, 78, 255, 0.25)" borderRadius="100px" padding="3px 8px"><AppTypography color="#C59CFF">${product?.totalAmountAffiliate.toFixed(2)} USD</AppTypography></Box>
                 </Flex>
             </VStack>
         </Flex>

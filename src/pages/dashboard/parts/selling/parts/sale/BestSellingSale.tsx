@@ -9,7 +9,7 @@ function BestSellingSale({ product }: IProps) {
 
     return (
         <VStack align="stretch" spacing="6px">
-            <AppTypography fontSize="14px">${product?.totalAmountCombined.toFixed(2)}</AppTypography>
+            <AppTypography fontSize="14px">${product?.totalAmountCombined.toFixed(2)} USD</AppTypography>
             <AppTypography fontSize="10px">{product?.totalCount} items</AppTypography>
         </VStack>
     )
