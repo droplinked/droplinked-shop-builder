@@ -39,7 +39,7 @@ function ProfileDropdownLinks({ shop, close }: Props) {
                         {link.label === "Settings" ? renderLinkAttributes(link) :
                             <Flex justifyContent={"space-between"} alignItems={"center"} gap={"12px"}>
                                 {renderLinkAttributes(link)}
-                                <AppTypography color={"#2BCFA1"} fontSize={"16px"} fontWeight={600}>${shop?.credit.toFixed(2)}</AppTypography>
+                                <AppTypography color={"#2BCFA1"} fontSize={"16px"} fontWeight={600}>${shop?.credit.toFixed(2)} USD</AppTypography>
                             </Flex>
                         }
                     </ReactLink>

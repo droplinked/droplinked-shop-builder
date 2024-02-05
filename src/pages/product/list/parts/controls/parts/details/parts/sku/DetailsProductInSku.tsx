@@ -1,13 +1,12 @@
-import { Box, Flex, useDisclosure, VStack } from '@chakra-ui/react'
+import { Flex, useDisclosure, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay"
 import AppTypography from 'components/common/typography/AppTypography'
+import DetailsModal from 'pages/product/single/parts/modules/variants/parts/table/parts/detailsModal/DetailsModal'
 import RecordModal from 'pages/product/single/parts/modules/variants/parts/table/parts/recordModal/RecordModal'
-import React, { useState } from 'react'
-import { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import detailsProductContext from '../../context'
 import classes from './style.module.scss'
-import BlockchainDisplay from "components/common/blockchainDisplay/BlockchainDisplay"
-import DetailsModal from 'pages/product/single/parts/modules/variants/parts/table/parts/detailsModal/DetailsModal'
 
 function DetailsProductInSku() {
     const { product, fetch } = useContext(detailsProductContext)
@@ -32,7 +31,7 @@ function DetailsProductInSku() {
                             <tr key={key}>
                                 <td><AppTypography fontSize='14px'>{el.options.map(el => el.caption).join("-")}</AppTypography></td>
                                 <td>---</td>
-                                <td><AppTypography fontSize='14px'>{el.price} USD</AppTypography></td>
+                                <td><AppTypography fontSize='14px'>${el.price} USD</AppTypography></td>
                                 <td>
                                     <Flex justifyContent="center">
                                         {el?.recordData ? (

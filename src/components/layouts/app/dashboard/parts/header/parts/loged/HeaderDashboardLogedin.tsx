@@ -52,7 +52,7 @@ function HeaderDashboardLogedin() {
                                 {shop?.description &&
                                     <AppTypography color={"#808080"} fontSize={"14px"} position={"relative"}>
                                         {shop.description.length <= 15 ? shop.description :
-                                            < AppTooltip label={shop?.description}>{`${shop?.description.slice(0, 15)}...`}</AppTooltip>
+                                            <AppTooltip label={shop?.description}>{`${shop?.description.slice(0, 15)}...`}</AppTooltip>
                                         }
                                     </AppTypography>
                                 }

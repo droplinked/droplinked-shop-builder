@@ -35,7 +35,7 @@ function ProfitChart() {
       {items ? (
         <VStack align="stretch" spacing="12px">
           <AppSkeleton isLoaded={isLoading}>
-            <AppTypography fontSize="18px" fontWeight="600">${revenue?.report?.profit?.value}</AppTypography>
+            <AppTypography fontSize="18px" fontWeight="600">${revenue?.report?.profit?.value.toFixed(2)} USD</AppTypography>
           </AppSkeleton>
           <AppSkeleton isLoaded={isLoading}>
             <VStack align="stretch" spacing="8px">
@@ -43,8 +43,8 @@ function ProfitChart() {
                 <Flex alignItems="center" gap="20px" key={key}>
                   <Box width="100px"><MiniChartsFlags caption={el.caption} color={el.color} /></Box>
                   <Box width="100%">
-                    <Box width={el.width + '%'} minWidth="30px" height="20px" backgroundColor={el.chartColor} textAlign="right" borderRadius="2px" padding="1px 5px">
-                      <AppTypography color="#333">${el.value}</AppTypography>
+                    <Box width={el.width + '%'} minWidth="52px" height="20px" backgroundColor={el.chartColor} textAlign="right" borderRadius="2px" padding="1px 5px">
+                      <AppTypography color="#333">${el.value} USD</AppTypography>
                     </Box>
                   </Box>
                 </Flex>
