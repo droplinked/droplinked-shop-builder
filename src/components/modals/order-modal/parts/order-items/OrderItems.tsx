@@ -43,7 +43,7 @@ function OrderItems() {
                         <Flex direction={"column"} alignItems={"end"} gap={"5px"} width={"140px"}>
                             <Flex alignItems={"center"} gap={"8px"}>
                                 {item.isAffiliate && <CartItemBadge text={`${item.percent}%`} colorScheme='green' />}
-                                <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>{`$${item?.price?.toFixed(2)} USD`}</AppTypography>
+                                <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>${item?.price?.toFixed(2)} USD</AppTypography>
                             </Flex>
                             {item.isGated &&
                                 <Flex alignItems={"center"} gap={"4px"}>
@@ -54,7 +54,7 @@ function OrderItems() {
                             {item.isDiscounted &&
                                 <Flex alignItems={"center"} gap={"4px"}>
                                     <AppIcons.GrayDiscountIcon />
-                                    <AppTypography fontSize={"10px"} color={"#FFFFFF"}>{`$${item.discountAmount?.toFixed(2)} USD Discount`}</AppTypography>
+                                    <AppTypography fontSize={"10px"} color={"#FFFFFF"}>${item.discountAmount?.toFixed(2)} USD Discount</AppTypography>
                                 </Flex>
                             }
                         </Flex>

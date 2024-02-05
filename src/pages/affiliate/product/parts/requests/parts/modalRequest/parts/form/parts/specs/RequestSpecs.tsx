@@ -29,7 +29,7 @@ function RequestSpecs() {
           value: sku.externalID
         },
         Price: {
-          value: sku.price
+          value: `$${sku.price.toFixed(2)} USD`
         },
       }} />
     </>
