@@ -75,7 +75,7 @@ const recordModel = ({
                         deploy_hash_link: hashkeyModel.getLink({ blockchain: data.blockchain, hashkey: deployHash }),
                         skuID: sku._id,
                         royalty: parseInt(data.royalty),
-                        canBeAffiliated: Boolean(data.commission && data.commission.length),
+                        canBeAffiliated: data.commission > 0,
                         commision: parseInt(data.commission),
                         ...product.product_type === "PRINT_ON_DEMAND" && { recorded_quantity: parseInt(data.quantity) }
                     }
