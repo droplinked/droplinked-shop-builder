@@ -17,7 +17,7 @@ function ProductTypeDetail({ boxes, image, title }: IProps) {
             return {
                 image: image || product_printful?.image,
                 title: title || product_printful?.title,
-                price: "34.4 USD",
+                price: "$34.4 USD",
                 description: product_printful?.description
             }
         }

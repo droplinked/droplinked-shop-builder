@@ -4,7 +4,6 @@ import { productContext } from './context'
 import { useParams } from 'react-router-dom'
 import { useMutation } from 'react-query'
 import ProductSingleModel from './model/model'
-import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import ProductStore from './parts/store/ProductStore'
 import productPageNamespace from './reducers'
 import ProductLoading from './parts/loading/ProductLoading'
@@ -19,7 +18,6 @@ function ProductSingle() {
     const { reducers, initialState } = productPageNamespace
     const params = useParams()
     const [state, dispatch] = useReducer(reducers, initialState)
-    const { shop } = useProfile()
     const { refactorData, productTypeHandle } = ProductSingleModel
     const productId = params?.productId
     const queryParams = useParams()
@@ -61,7 +59,7 @@ function ProductSingle() {
     }, [productId, state.params.product_type])
 
     // useEffect(() => {
-    //     console.log('sku test', state.params.sku);
+    //     console.log('sku test', state.params?.sku?.[0]?.recordData);
     // }, [state])
 
     return (

@@ -33,8 +33,8 @@ function DetailsModal({ open, close, sku }: Props) {
     const response = useMemo(() => data?.data.data, [data])
     const variant = getVariant(response?.sku)
     const skuAttributes = [
-        { label: "Variant Price:", value: `$ ${response?.sku.price} USD` },
-        { label: "Commission:", value: `% ${response?.sku.recordData.commision}` },
+        { label: "Variant Price:", value: `$${response?.sku.price} USD` },
+        { label: "Commission:", value: `%${response?.sku.recordData.commision}` },
         { label: "Deploy Hash:", value: response?.sku.deploy_hash_link },
     ]
 
