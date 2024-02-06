@@ -11,6 +11,7 @@ interface Props {
 
 function ConfirmDomainDeletion({ isOpen, close, selectedDomain }: Props) {
     const { getShopAPIKey, updateShopAPIKey, fetchedData } = useContext(APIKeyContext)
+    const isLoading = getShopAPIKey.isLoading || updateShopAPIKey.isLoading
     const { showToast } = useAppToast()
 
     const removeDomain = async () => {
@@ -39,7 +40,7 @@ function ConfirmDomainDeletion({ isOpen, close, selectedDomain }: Props) {
                 },
                 {
                     children: "Delete",
-                    buttonProps: { isLoading: updateShopAPIKey.isLoading },
+                    buttonProps: { isLoading },
                     onClick: removeDomain
                 }
             ]}

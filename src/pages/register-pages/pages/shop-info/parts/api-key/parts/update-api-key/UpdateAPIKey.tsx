@@ -10,9 +10,10 @@ import React, { useContext, useState } from 'react'
 import APIKeyContext from '../../context'
 
 function UpdateAPIKey() {
+    const { getShopAPIKey, updateShopAPIKey, fetchedData } = useContext(APIKeyContext)
+    const isLoading = getShopAPIKey.isLoading || updateShopAPIKey.isLoading
     const [domain, setDomain] = useState("")
     const { showToast } = useAppToast()
-    const { getShopAPIKey, updateShopAPIKey, fetchedData } = useContext(APIKeyContext)
     const handleApiKeyCreation = async () => {
         try {
             if (!domainRegex.test(domain)) throw Error("Please enter a valid domain.")
@@ -45,8 +46,8 @@ function UpdateAPIKey() {
                 />
                 <BasicButton
                     sizes='medium'
-                    isDisabled={!domain}
-                    isLoading={updateShopAPIKey.isLoading}
+                    isDisabled={!domain || isLoading}
+                    isLoading={isLoading}
                     onClick={handleApiKeyCreation}>
                     {fetchedData ? "Add domain" : "Generate API Key"}
                 </BasicButton>
