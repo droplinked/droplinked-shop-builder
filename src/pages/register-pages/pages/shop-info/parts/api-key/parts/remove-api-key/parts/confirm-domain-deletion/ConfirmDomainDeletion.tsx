@@ -1,6 +1,7 @@
 import AppDialog from 'components/common/dialog';
+import useAppToast from 'functions/hooks/toast/useToast';
 import React, { useContext } from 'react';
-import APIKeyContext from '../../context';
+import APIKeyContext from '../../../../context';
 
 interface Props {
     isOpen: boolean;
@@ -10,6 +11,7 @@ interface Props {
 
 function ConfirmDomainDeletion({ isOpen, close, selectedDomain }: Props) {
     const { getShopAPIKey, updateShopAPIKey, fetchedData } = useContext(APIKeyContext)
+    const { showToast } = useAppToast()
 
     const removeDomain = async () => {
         try {
@@ -46,7 +48,3 @@ function ConfirmDomainDeletion({ isOpen, close, selectedDomain }: Props) {
 }
 
 export default ConfirmDomainDeletion
-
-function showToast(arg0: { message: string; type: string }) {
-    throw new Error('Function not implemented.')
-}
