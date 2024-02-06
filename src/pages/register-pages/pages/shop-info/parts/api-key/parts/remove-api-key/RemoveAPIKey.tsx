@@ -4,8 +4,8 @@ import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useContext, useState } from 'react'
 import APIKeyContext from '../../context'
-import ConfirmDomainDeletion from '../confirm-domain-deletion/ConfirmDomainDeletion'
-import ShopAPIKeySkeleton from '../loading/ShopAPIKeySkeleton'
+import ConfirmDomainDeletion from './parts/confirm-domain-deletion/ConfirmDomainDeletion'
+import ShopAPIKeySkeleton from './parts/loading/ShopAPIKeySkeleton'
 
 function RemoveAPIKey() {
     const [selectedDomain, setSelectedDomain] = useState("")

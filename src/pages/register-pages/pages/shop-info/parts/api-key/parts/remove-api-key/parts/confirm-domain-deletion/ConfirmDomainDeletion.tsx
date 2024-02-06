@@ -18,7 +18,7 @@ function ConfirmDomainDeletion({ isOpen, close, selectedDomain }: Props) {
             if (fetchedData?.domains.length === 1) return
             const newDomains = fetchedData?.domains.filter(d => d !== selectedDomain)
             await updateShopAPIKey.mutateAsync({ domains: [...newDomains] })
-            getShopAPIKey.refetch()
+            await getShopAPIKey.refetch()
             close()
         } catch (error) {
             showToast({ message: (error as Error).message, type: "error" })
