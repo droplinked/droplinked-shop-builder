@@ -13,7 +13,7 @@ function OrderItems() {
         <Flex direction={"column"} gap={"24px"}>
             <AppTypography fontSize={"16px"} fontWeight={500} color={"#FFFFFF"}>Cart</AppTypography>
             <Flex direction={"column"} gap={"16px"}>
-                {order?.items.map((item) =>
+                {order?.items && order?.items.length ? order?.items.map((item) =>
                     <Flex justifyContent={"space-between"} key={item._id}>
                         {/* left part */}
                         <Flex alignItems={"center"} gap={"16px"} position={"relative"} width={"320px"}>
@@ -42,24 +42,24 @@ function OrderItems() {
                         {/* right part */}
                         <Flex direction={"column"} alignItems={"end"} gap={"5px"} width={"140px"}>
                             <Flex alignItems={"center"} gap={"8px"}>
-                                {item.isAffiliate && <CartItemBadge text={`${item.percent}%`} colorScheme='green' />}
+                                {item?.isAffiliate && <CartItemBadge text={`${item?.percent}%`} colorScheme='green' />}
                                 <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>${item?.price?.toFixed(2)} USD</AppTypography>
                             </Flex>
-                            {item.isGated &&
+                            {item?.isGated &&
                                 <Flex alignItems={"center"} gap={"4px"}>
                                     <AppIcons.GrayGatedIcon />
                                     <AppTypography fontSize={"10px"} color={"#FFFFFF"}>Gated Product</AppTypography>
                                 </Flex>
                             }
-                            {item.isDiscounted &&
+                            {item?.isDiscounted &&
                                 <Flex alignItems={"center"} gap={"4px"}>
                                     <AppIcons.GrayDiscountIcon />
-                                    <AppTypography fontSize={"10px"} color={"#FFFFFF"}>${item.discountAmount?.toFixed(2)} USD Discount</AppTypography>
+                                    <AppTypography fontSize={"10px"} color={"#FFFFFF"}>${item?.discountAmount?.toFixed(2)} USD Discount</AppTypography>
                                 </Flex>
                             }
                         </Flex>
                     </Flex>
-                )}
+                ) : null}
             </Flex>
         </Flex>
     )
