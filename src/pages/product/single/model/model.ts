@@ -40,7 +40,7 @@ const ProductSingleModel = ({
                     weight: el?.weight,
                     recordData: {
                         ...el?.recordData,
-                        commision: el?.commision || 0
+                        commision: el?.recordData?.commision || 0
                     },
                     image: el?.image,
                     ...el?.rawPrice && { rawPrice: el?.rawPrice }
@@ -67,7 +67,7 @@ const ProductSingleModel = ({
             mainCategory: data?.mainCategory ? data?.mainCategory._id : null,
             subCategories: data?.subCategories ? data?.subCategories.map(el => el._id) : [],
             technique: data?.technique,
-            isAddToCartDisabled: data?.isAddToCartDisabled
+            // isAddToCartDisabled: data?.isAddToCartDisabled,
         }
     },
 

@@ -3,18 +3,24 @@ import React from "react";
 
 export const OPTIONS = [
     {
-        icon: <AppIcons.ProductsIcon />, label: 'Products', path: 'products'
+        icon: <AppIcons.Dashboard />, label: 'dashboard', path: ''
     },
     {
-        icon: <AppIcons.CollectionIcon />, label: 'Collections', path: 'collections'
+        icon: <AppIcons.ProductsIcon />, label: 'Products', path: '/products'
     },
     {
-        icon: <AppIcons.OrderIcon />, label: 'Orders', path: 'orders'
+        icon: <AppIcons.CollectionIcon />, label: 'Collections', path: '/collections'
     },
     {
-        icon: <AppIcons.InformationIcon />, label: 'Affiliate', path: 'affiliate'
+        icon: <AppIcons.OrderIcon />, label: 'Orders', path: '/orders'
     },
     {
-        icon: <AppIcons.SettingIcon />, label: 'Settings', path: 'settings/shop-info'
+        icon: <AppIcons.InformationIcon />, label: 'Affiliate', path: '/affiliate'
+    },
+    // {
+    //     icon: <AppIcons.NFT />, label: 'NFTs', path: '/nfts'
+    // },
+    {
+        icon: <AppIcons.SettingIcon />, label: 'Settings', path: '/settings/shop-info'
     },
 ]

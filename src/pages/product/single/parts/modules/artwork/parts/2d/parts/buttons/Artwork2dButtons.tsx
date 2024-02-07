@@ -54,7 +54,7 @@ function Artwork2dButtons() {
             updateState("positions", position)
             updateState("artwork_position", 'front')
         } catch (error) {
-            showToast(error?.message || "Somthing went wrong", "error");
+            showToast({ message: error?.message || "Somthing went wrong", type: "error" });
         }
     }, [variants, sku, available_variant, artwork, position])
 

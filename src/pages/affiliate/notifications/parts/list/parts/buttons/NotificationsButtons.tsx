@@ -1,16 +1,16 @@
 import { useDisclosure } from '@chakra-ui/react'
+import useStack from 'functions/hooks/stack/useStack'
+import useHookStore from 'functions/hooks/store/useHookStore'
+import useAppToast from 'functions/hooks/toast/useToast'
+import acceptModel from 'functions/hooks/web3/models/module/accept/acceptModel'
+import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useCallback, useState } from 'react'
-import NotificationsModal from './parts/modal/NotificationsModal'
-import requestInterfaces from './interfaces'
 import { requestsButtonsContext } from './context'
+import requestInterfaces from './interfaces'
 import RequestButtons from './parts/buttons/RequestButtons'
 import ModalHashkey from './parts/hashkey/ModalHashkey'
-import useAppToast from 'functions/hooks/toast/useToast'
-import useStack from 'functions/hooks/stack/useStack'
-import useAppWeb3 from 'functions/hooks/web3/useWeb3'
-import acceptModel from 'functions/hooks/web3/models/module/accept/acceptModel'
-import useHookStore from 'functions/hooks/store/useHookStore'
+import NotificationsModal from './parts/modal/NotificationsModal'
 
 function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
     const modal = useDisclosure()
@@ -39,7 +39,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             let blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
             if (States.status === "accept") {
-                const deploy_hash = await web3({ chain: blockchain, method: "accept", params: { shop, accept: States.status === "accept"}, wallets, stack })
+                const deploy_hash = await web3({ chain: blockchain, method: "accept", params: { shop, accept: States.status === "accept" }, wallets, stack })
                 modalHashKey.onOpen()
                 setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
             } else {
@@ -49,12 +49,12 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
 
             setLoading(false)
             modal.onClose()
-            showToast(`Request status change ${capitalizeFirstLetter(States.status)}`, "success")
+            showToast({ message: `Request status change ${capitalizeFirstLetter(States.status)}`, type: "success" })
         } catch (error) {
             setLoading(false)
-            if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
+            if (error?.message && !error?.message.includes("The first argument")) showToast({ message: error.message, type: "error" })
         }
-    }, [States.status, shop, refetch, modal, wallets,stack.stxAddress])
+    }, [States.status, shop, refetch, modal, wallets, stack.stxAddress])
 
     return (
         <requestsButtonsContext.Provider value={{ shop, modal: { open: modal.onOpen }, methods: { setStates } }}>

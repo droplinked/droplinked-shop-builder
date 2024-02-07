@@ -5,7 +5,7 @@ import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext } from 'react'
 
 function CommissionDigital() {
-    const { methods: { updateState }, state: { sku }, productID } = useContext(productContext)
+    const { methods: { updateState }, state: { sku } } = useContext(productContext)
 
     const change = useCallback((checked: boolean) => {
         updateState('sku', [{

@@ -1,8 +1,7 @@
-import { Box } from '@chakra-ui/react';
 import axios from 'axios';
 import AppScrollBar from 'components/common/scrollbar';
 import useAppToast from 'functions/hooks/toast/useToast';
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useRef } from 'react';
 import { useMutation } from 'react-query';
 import appUploadImageContext, { ImodeUploadImage, IUploadImageDefault } from './context';
 import UploadImageModel from './model';
@@ -37,9 +36,9 @@ function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mod
             const images = product ? { url: data.data[size], thumbnail: data.data['small'] } : size ? data.data[size] : data.data
             onChange(typeof values === "object" ? [...values, images] : images)
             if (onSuccess) onSuccess(data.data)
-            showToast(toast || "Upload image successful", "success")
+            showToast({ message: toast || "Image has been uploaded!", type: "success" })
         } catch (error) {
-            showToast(error.message, "error");
+            showToast({ message: error.message, type: "error" });
         }
     }, [values, toast, size, product])
 
@@ -48,7 +47,7 @@ function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mod
         values = values.filter(el => el !== name)
         onChange(values)
         if (onDelete) onDelete(values)
-        showToast("Image has been deleted successfully", "success")
+        showToast({ message: "Image has been deleted successfully", type: "success" })
     }, [values, onChange, onDelete])
 
     return (

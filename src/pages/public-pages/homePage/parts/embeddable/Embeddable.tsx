@@ -1,11 +1,11 @@
-import { Box, Flex, Image, VStack } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
-import React from 'react'
-import { ReactComponent as PaymentIcon } from 'assest/image/homepage/payment.svg';
+import { Box, Flex, Image, VStack } from '@chakra-ui/react';
 import { ReactComponent as CryptoIcon } from 'assest/image/homepage/crypto.svg';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { ReactComponent as PaymentIcon } from 'assest/image/homepage/payment.svg';
+import AppTypography from 'components/common/typography/AppTypography';
+import React from 'react';
 import "swiper/css";
-import SwiperCore, { Autoplay } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 function Embeddable() {
 
@@ -13,12 +13,12 @@ function Embeddable() {
         {
             image: 'assets/images/homepage/Frame21377.jpg',
             title: 'Caramel Imagination',
-            price: '58.00 USD'
+            price: '$58.00 USD'
         },
         {
             image: 'assets/images/homepage/Frame21328.jpg',
             title: 'ColorWave Handbag',
-            price: '39.99 USD'
+            price: '$39.99 USD'
         }
     ]
 

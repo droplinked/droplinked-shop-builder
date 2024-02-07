@@ -52,7 +52,7 @@ function ProductCategory() {
       }
     })
   }, [pod_blank_product_id, productID])
-
+  
   return (
     <productCategoryContext.Provider value={{ state: States, dispatch }}>
       <VStack align="stretch" spacing="12px">

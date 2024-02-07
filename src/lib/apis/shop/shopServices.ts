@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService } from "./interfaces"
+import { IchargeCreditService, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, ShopOAuth2Client } from "./interfaces"
 
 export const shopService = ({ shopName }: IshopService) => {
     return axiosInstance.get(`shop/${shopName}`)
@@ -45,4 +45,32 @@ export const availableTemplateService = () => {
 
 export const ShopRecordedService = ({ categoryIds, page, subCategoryIds, title }: IShopRecordedService) => {
     return axiosInstance.get(`product/community/recorded?limit=25&page=${page}${categoryIds ? '&categoryIds=' + `["${categoryIds}"]` : ''}${subCategoryIds ? '&subCategoryIds=' + `["${subCategoryIds}"]` : ''}${title ? '&title=' + title : ''}`)
+}
+
+export const chargeCreditService = (props: IchargeCreditService) => {
+    return axiosInstance.post(`shop/credit/charge`, props)
+}
+
+export const patchedChargedService = () => {
+    return axiosInstance.patch(`shop/credit/charge`)
+}
+
+export const shopDashboardService = () => {
+    return axiosInstance.get(`shop/dashboard/products?limit=5`)
+}
+
+export const shopSellerService = () => {
+    return axiosInstance.get(`shop/dashboard/sellers?limit=5`)
+}
+
+export const bestPartnersService = () => {
+    return axiosInstance.get(`shop/dashboard/product-types`)
+}
+
+export const getShopAPIKeyService = () => {
+    return axiosInstance.get(`shop/client/oauth2`)
+}
+
+export const updateShopAPIKeyService = (data: ShopOAuth2Client) => {
+    return axiosInstance.put("shop/client/oauth2 ", data)
 }
