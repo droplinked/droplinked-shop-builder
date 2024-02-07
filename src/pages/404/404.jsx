@@ -1,9 +1,20 @@
 import { Box, Flex, HStack, Image, Text, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
+import { useProfile } from 'functions/hooks/useProfile/useProfile'
+import React, { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 function NotFound() {
+  const location = useLocation()
+  const { shop } = useProfile()
+  const { shopNavigate } = useCustomNavigate()
+
+  useEffect(() => {
+    if (shop && location.pathname.search(shop?.name + '/c') >= 0) shopNavigate('products')
+  }, [location, shop])
+
+
   return (
     <Flex justifyContent={"center"} padding={"80px 0"}>
       <HStack maxWidth={"1000px"} width="95%" spacing={55}>

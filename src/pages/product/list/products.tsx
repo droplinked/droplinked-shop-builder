@@ -11,6 +11,7 @@ import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import useHookStore from 'functions/hooks/store/useHookStore'
 import { useDisclosure } from '@chakra-ui/hooks'
 import ConfirmDeleteAll from './parts/deleteAll/ConfirmDeleteAll'
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 
 function Products() {
     const { data: { collection } } = useHookStore()
@@ -26,6 +27,7 @@ function Products() {
         checkboxes: []
     })
     const { shop } = useProfile()
+    const { shopRoute } = useCustomNavigate()
 
     // Fetch service
     const fetch = useCallback(() => {
@@ -62,7 +64,7 @@ function Products() {
         const data: any = [
             {
                 caption: "Add Product",
-                to: `/${shop?.name}/c/products/types`
+                to: `${shopRoute}/products/types`
             }
         ]
         if (States.checkboxes.length) data.push({

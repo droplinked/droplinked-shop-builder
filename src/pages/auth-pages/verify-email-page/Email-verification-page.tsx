@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import LoadingComponent from 'components/common/loading-component/LoadingComponent';
-import useAppToast from "functions/hooks/toast/useToast";
-import { useMutation } from "react-query";
-import { emailVerifyService } from "lib/apis/user/services";
-import { IemailVerifyService } from "lib/apis/user/interfaces";
 import { Flex, VStack } from "@chakra-ui/react";
+import LoadingComponent from 'components/common/loading-component/LoadingComponent';
 import AppTypography from "components/common/typography/AppTypography";
+import useAppToast from "functions/hooks/toast/useToast";
+import { IemailVerifyService } from "lib/apis/user/interfaces";
+import { emailVerifyService } from "lib/apis/user/services";
+import React, { useEffect } from "react";
+import { useMutation } from "react-query";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function VerifyEmailPage() {
   const { mutateAsync } = useMutation((params: IemailVerifyService) => emailVerifyService(params))
@@ -20,7 +20,7 @@ export default function VerifyEmailPage() {
         // Check code
         await mutateAsync({ token })
         nav("/?modal=login");
-        showToast("Your email has been verified, please login", "success");
+        showToast({ message: "Your email has been verified, please login", type: "success" });
       } catch (error) {
         nav("/");
       }

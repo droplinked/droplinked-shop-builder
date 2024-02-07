@@ -7,6 +7,8 @@ const ProductTypeModel = ({
     updateProductType: ({ updateState, value }: IUpdata) => {
         updateState("pod_blank_product_id", value)
         updateState("sku", [])
+        updateState("title", ' ')
+        updateState("description", '')
         updateState("artwork", null)
         updateState("artwork2", null)
         updateState("artwork_position", null)

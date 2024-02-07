@@ -7,7 +7,6 @@ import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { IcasperRequestService } from 'lib/apis/affiliate/interfaces'
 import { requestService } from 'lib/apis/affiliate/shopServices'
 import { Isku } from 'lib/apis/product/interfaces'
-import stacksRequest from 'lib/utils/blockchain/stacks/request'
 import React, { useCallback, useState } from 'react'
 import { useMutation } from 'react-query'
 import { ModalRequestContext } from './context'
@@ -57,7 +56,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            if (error?.message && !error?.message.includes("The first argument")) showToast(error.message, "error")
+            if (error?.message && !error?.message.includes("The first argument")) showToast({ message: error.message, type: "error" })
         }
     }, [sku, product, shop, wallets, stack.stxAddress])
 

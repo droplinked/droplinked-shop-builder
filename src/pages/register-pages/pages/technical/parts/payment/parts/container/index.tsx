@@ -1,17 +1,16 @@
 import { Box, HStack } from '@chakra-ui/react'
-import { PageContentWrapper, TextLabelBold } from 'pages/register-pages/RegisterPages-style'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
-import classes from './style.module.scss'
-import AppSwitch from 'components/common/swich'
-import technicalContext from 'pages/register-pages/pages/technical/context'
-import useAppToast from 'functions/hooks/toast/useToast'
 import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
+import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
+import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
-import IconBlockchain from 'components/common/iconBlockchain/IconBlockchain'
+import useAppToast from 'functions/hooks/toast/useToast'
+import technicalContext from 'pages/register-pages/pages/technical/context'
+import { PageContentWrapper } from 'pages/register-pages/RegisterPages-style'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
+import classes from './style.module.scss'
 
 function ContainerPayment({ title, value, locked }) {
-
   // Check active
   useEffect(() => locked && setActive(true), [title, value, locked])
 
@@ -25,7 +24,7 @@ function ContainerPayment({ title, value, locked }) {
   const activeMethod = useCallback((value?: boolean) => updatePayments("isActive", value), [updatePayments])
 
   const save = useCallback(() => {
-    if (title !== "STRIPE" && active && !value) return showToast("Please enter wallet", "error")
+    if (title !== "STRIPE" && active && !value) return showToast({ message: "Please enter wallet", type: "error" })
     activeMethod(true)
   }, [value, title, locked, active, showToast, activeMethod])
 
@@ -45,7 +44,7 @@ function ContainerPayment({ title, value, locked }) {
     <HStack justifyContent="space-between" width="100%">
       <HStack spacing="18px">
         <Box position={"relative"} bottom={1.9}><AppSwitch isChecked={Switch} onChange={activeHandle} /></Box>
-        <Box><AppTypography fontSize="14px" color="#C2C2C2" fontWeight='bold'>{title}</AppTypography></Box>
+        <Box><AppTypography fontSize="14px" color="#C2C2C2" fontWeight='bold'><BlockchainDisplay show='name' blockchain={title} /></AppTypography></Box>
       </HStack>
       {title !== "STRIPE" ? (
         <HStack width={"60%"}>
@@ -53,7 +52,7 @@ function ContainerPayment({ title, value, locked }) {
             <HStack alignItems="center" padding="0" justifyContent="space-between" width="100%">
               {locked ? (
                 <>
-                  <Box><IconBlockchain blockchain={title} props={{ width: "16px", height: "16px" }} /></Box>
+                  <Box><BlockchainDisplay show='icon' blockchain={title} props={{ width: "16px", height: "16px" }} /></Box>
                   <Box position={"relative"} width="100%" top={.9}>
                     <input type="text" style={{ width: "100%" }} className={classes.textbox} value={value} readOnly />
                   </Box>
@@ -78,7 +77,7 @@ function ContainerPayment({ title, value, locked }) {
             </HStack>
           </PageContentWrapper>
         </HStack>
-      ) : Switch ? <Box><IconBlockchain blockchain={title} props={{ width: "16px", height: "16px" }} /></Box> : null}
+      ) : Switch ? <Box><BlockchainDisplay show='icon' blockchain={title} props={{ width: "40px", height: "40px" }} /></Box> : null}
     </HStack>
   )
 }

@@ -35,7 +35,7 @@ function PricingPage() {
                     <VStack align="stretch" spacing={{ base: "10px", sm: "20px" }} width={{ base: "100%", sm: "50%" }} border="1px solid #6080CA" borderRadius="18px" padding={{ base: "30px 20px", md: "64px 56px" }}>
                         <AppTypography fontSize={{ base: "18px", sm: "24px" }} fontWeight='bold' color="#FFF">Pro</AppTypography>
                         <Flex alignItems="center" gap="14px">
-                            <AppTypography fontSize={{ base: "28px", sm: "40px" }} fontWeight='bold' color="#FFF">$20</AppTypography>
+                            <AppTypography fontSize={{ base: "28px", sm: "40px" }} fontWeight='bold' color="#FFF">$20 USD</AppTypography>
                             <AppTypography fontSize="16px">/ monthly</AppTypography>
                         </Flex>
                         <VStack align="stretch" spacing="24px" paddingTop={{ base: "0", sm: "40px" }}>

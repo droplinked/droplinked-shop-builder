@@ -1,11 +1,11 @@
 import { Box, HStack, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
+import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu'
 import AppTable from 'components/common/table/AppTable'
 import React, { useContext, useState } from 'react'
-import ModalRequest from './parts/modalRequest/ModalRequest'
-import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu'
 import { ShopProductContext } from '../../context'
 import RequestProductModel from './model'
+import ModalRequest from './parts/modalRequest/ModalRequest'
 
 function RequestProduct() {
     const { product, shop } = useContext(ShopProductContext)
@@ -21,7 +21,7 @@ function RequestProduct() {
                         value: el?.recorded_quantity || "---"
                     },
                     Price: {
-                        value: el?.price
+                        value: `$${el?.price.toFixed(2)} USD`
                     },
                     Button: {
                         caption: "",

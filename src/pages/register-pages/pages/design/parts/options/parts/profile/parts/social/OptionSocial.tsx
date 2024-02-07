@@ -10,7 +10,7 @@ function OptionSocial() {
     const [Socials, setSocials] = useState('')
     const { items } = optionSocialModel
 
-    const change = useCallback((e) => {        
+    const change = useCallback((e) => {
         const value = e.target.value
         if (value) setSocials(value)
         e.target.value = ''

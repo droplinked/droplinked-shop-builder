@@ -18,7 +18,7 @@ function ProductPositions() {
 
   return (
     <VStack align="stretch" spacing="16px">
-      <AppTypography fontSize='14px'>Customers Position Options</AppTypography>
+      <AppTypography fontSize='14px'>Customer Position Options</AppTypography>
       <Flex gap={3}>
         {m2m_positions_options.map((el: any, key: number) => {
           const isActive = m2m_positions.find((pos: any) => pos?.placement === el?.placement)

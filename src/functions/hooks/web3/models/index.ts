@@ -7,14 +7,15 @@ import { Chain, Network } from "lib/utils/chains/Chains"
 import acceptModel from "./module/accept/acceptModel"
 import recordModel, { Ideploy, IStacks } from "./module/record/recordModel"
 
-interface IRecordData {
+export interface IRecordParamsData {
     commission: any
     quantity: any
     blockchain: any
+    royalty: any
 }
 
 export interface IRecordPrams {
-    data: IRecordData
+    data: IRecordParamsData
     product: any
     sku: any
     imageUrl?: string
@@ -53,6 +54,7 @@ const web3Model = ({
             try {
                 const commission = data.commission
                 const quantity: any = data.quantity
+                if (!data.royalty) data.royalty = 0
                 const dataDeploy: Ideploy = {
                     data, deployHash: '', product, sku
                 }
@@ -71,7 +73,7 @@ const web3Model = ({
                     })
                     if (query) dataDeploy.deployHash = query.txId
                 } else {
-                    const res = await recordModel.record({ commission, product, blockchain: data.blockchain, sku, quantity, imageUrl, accountAddress })
+                    const res = await recordModel.record({ commission, product, royalty: data.royalty, blockchain: data.blockchain, sku, quantity, imageUrl, accountAddress })
                     if (res) dataDeploy.deployHash = res
                 }
 

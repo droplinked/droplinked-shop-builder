@@ -2,6 +2,7 @@ import React from "react"
 import { ITableRows } from 'components/common/table/AppTable'
 import ControlsListOrder from "./parts/controls/Controls"
 import { convertToStandardFormat } from "lib/utils/date.utils/convertDate";
+import OrderpageID from "./parts/orderID/OrderpageID";
 
 interface IrefactorData {
     data: any
@@ -36,7 +37,7 @@ const OrdersModel = ({
     makeData: (element: any) => ({
         Code: {
             caption: "Order ID",
-            value: element?._id
+            value: <OrderpageID order={element} />
         },
         Customer: {
             value: element?.customerAddressBook ? `${element?.customerAddressBook?.firstName} ${element?.customerAddressBook?.lastName}` : '---'

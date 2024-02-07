@@ -1,4 +1,4 @@
-import { Chain, Network } from "../../Chains";
+import { Beneficiary, Chain, Network, ProductType } from "../../Chains";
 import { ChainProvider, WalletNotFoundException } from "../../chainProvider";
 import { EVMApproveRequest, EVMCancelRequest, EVMDisapproveRequest } from "./evmAffiliate";
 import { metamaskLogin, isMetamaskInstalled, getAccounts, isWalletConnected, isChainCorrect, changeChain } from "./evmLogin";
@@ -12,6 +12,9 @@ export class EVMProvider implements ChainProvider {
     constructor(_chain: Chain, _network: Network) {
         this.chain = _chain;
         this.network = _network;
+    }
+    casperRecordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string> {
+        throw new Error("Method not implemented.");
     }
     setAddress(address: string): ChainProvider {
         this.address = address;
@@ -53,9 +56,9 @@ export class EVMProvider implements ChainProvider {
         this.address = address;
         return { address, signature };
     }
-    async recordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string> {
+    async recordProduct(sku_properties: any, product_title: string, discription: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, paymentWallet: string, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, apiKey: string): Promise<string> {
         await this.handleWallet(this.address);
-        return await EVMrecordMerch(this.chain, this.network, skuProperties, this.address, productTitle, description, imageUrl, price, amount, commission, apiKey);
+        return await EVMrecordMerch(this.chain, this.network, sku_properties, this.address, product_title, discription, image_url, price, amount, commission, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty, apiKey);
     }
     async publishRequest(producerAccountAddress: string, tokenId: string | number): Promise<string> {
         await this.handleWallet(this.address);

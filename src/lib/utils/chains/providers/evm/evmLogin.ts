@@ -10,7 +10,7 @@ let chainNames = {
         [Network.TESTNET]: { chainName: "Mumbai", chainId: "0x13881", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://rpc-mumbai.maticvigil.com'] },
         [Network.MAINNET]: { chainName: "Polygon Mainnet", chainId: "0x89", nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' }, rpcUrls: ['https://polygon-rpc.com/'] }
     },
-    [Chain.RIPPLESIDECHAIN]: {
+    [Chain.XRPLSIDECHAIN]: {
         [Network.TESTNET]: { chainName: "XRPL EVM Sidechain", chainId: "0x15f902", nativeCurrency: { name: 'XRP', decimals: 18, symbol: 'XRP' }, rpcUrls: ['https://rpc-evm-sidechain.xrpl.org'] },
         [Network.MAINNET]: { chainName: "XRPL EVM Sidechain", chainId: "0x15f902", nativeCurrency: { name: 'XRP', decimals: 18, symbol: 'XRP' }, rpcUrls: ['https://rpc-evm-sidechain.xrpl.org'] }
     },
@@ -34,6 +34,10 @@ let chainNames = {
         [Network.TESTNET]: { chainName: "Base Göerli", chainId: "0x14a33", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://goerli.base.org'] },
         [Network.MAINNET]: { chainName: "Base Mainnet", chainId: "0x2105", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://mainnet.base.org/'] }
     },
+    [Chain.LINEA]: {
+        [Network.MAINNET]: { chainName: "Linea", chainId: "0xe708", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'LineaETH' }, rpcUrls: ['https://rpc.linea.build'] },
+        [Network.TESTNET]: { chainName: "Linea", chainId: "0xe704", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'LineaETH' }, rpcUrls: ['https://rpc.goerli.linea.build'] }
+    }
 };
 
 export const isMetamaskInstalled = (): boolean => {
@@ -96,7 +100,9 @@ export async function metamaskLogin(chain: Chain, network: Network): Promise<{
                 rpcUrls: chainNames[chain][network].rpcUrls
             }]
         });
-    } catch (err) { }
+    } catch (err) { 
+        console.log(err);
+    }
     await changeChain(chain, network);
     const siweMessage = `Please sign this message to let droplinked view your PublicKey & Address and validate your identity`;
     let msg = `0x${Buffer.from(siweMessage, 'utf8').toString('hex')}`;

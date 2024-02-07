@@ -1,5 +1,4 @@
-import { Box, Flex, HStack, Text, VStack } from '@chakra-ui/react'
-import { faker } from '@faker-js/faker'
+import { Box, Flex, Text, VStack } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import React from 'react'
 
@@ -33,7 +32,7 @@ function AffiliateDetailCard({ decript, earning, image, options, price, title }:
                         </Flex>
                     </Box>
                     <Box><Text fontSize={["sm", "md"]}>Price: {price}</Text></Box>
-                    <Box><Text fontSize={["sm", "md"]}>Your earning: {parseFloat(earning).toFixed(2)} USD / each</Text></Box>
+                    <Box><Text fontSize={["sm", "md"]}>Your earning: ${parseFloat(earning).toFixed(2)} USD / each</Text></Box>
                 </VStack>
             </Box>
         </Flex>

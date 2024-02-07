@@ -1,24 +1,31 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import Banner from './parts/banner/Banner';
-import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
-import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
+import { Box, Image, Show, useDisclosure } from '@chakra-ui/react';
 import ReactFullpage from '@fullpage/react-fullpage';
-import classes from './style.module.scss'
-import { Box, Flex, Image, position, Show } from '@chakra-ui/react';
-import Partners from './parts/partners/Partners';
-import Community from './parts/community/Community';
-import ProductsMain from './parts/product/ProductsMain';
-import Networks from './parts/networks/Networks';
-import Embeddable from './parts/embeddable/Embeddable';
-import Supported from './parts/supported/Supported';
-import Contact from './parts/contact/Contact';
+import FooterLayout from 'components/layouts/app/main/parts/footer/FooterLayout';
+import HeaderMain from 'components/layouts/app/main/parts/header/HeaderMain';
+import AuthModal from 'components/modals/auth-modal/AuthModal';
+import useHookStore from 'functions/hooks/store/useHookStore';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Navigate, useSearchParams } from 'react-router-dom';
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import Banner from './parts/banner/Banner';
+import Community from './parts/community/Community';
+import Contact from './parts/contact/Contact';
+import Embeddable from './parts/embeddable/Embeddable';
+import Networks from './parts/networks/Networks';
+import Partners from './parts/partners/Partners';
+import ProductsMain from './parts/product/ProductsMain';
+import Supported from './parts/supported/Supported';
+import classes from './style.module.scss';
 
 function HomePage() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [States, setStates] = useState({
     pause: false,
     loaded: []
   })
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => searchParams.get('modal') === "login" && onOpen(), [searchParams])
 
   const effects = useMemo(() => (
     <>
@@ -27,7 +34,8 @@ function HomePage() {
     </>
   ), [])
 
-  return (
+  const { app: { user } } = useHookStore()
+  return user ? <Navigate to="/dashboard" /> : (
     <ParallaxProvider>
       <div style={{ color: "#FFF", overflowX: "hidden" }}>
         <Box className={`${classes.sshape} ${classes.shape1} ${States.pause ? classes.animationPaused : ''}`} fontSize={{ base: "400px", lg: "1400px" }} top={{ base: "0", lg: "100px" }} right="0">s</Box>
@@ -84,6 +92,7 @@ function HomePage() {
           }}
         />
       </div>
+      {isOpen && <AuthModal show={true} type="SIGNIN" close={onClose} />}
     </ParallaxProvider >
   )
 }

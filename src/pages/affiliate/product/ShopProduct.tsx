@@ -23,7 +23,7 @@ function ShopProduct() {
     slider: null
   },)
 
-  const updateState = (key, value) => setStates(prev => ({ ...prev, [key]: value }))
+  const updateState = (key: any, value: any) => setStates(prev => ({ ...prev, [key]: value }))
 
   // Get product
   useEffect(() => mutate({ productID: params.productID, shopname: params.shopName }), [params.productID])

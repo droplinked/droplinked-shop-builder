@@ -12,8 +12,8 @@ function PreviewHiro() {
 
     const isDesktop = useMemo(() => device === "desktop", [device])
 
-    const text = useMemo(() => <PreviewTypo fontSize={isDesktop ? "20px" : "14px"} fontfontWeight="bold" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-caption']} color={hiroTextColor}>{backgroundText}</PreviewTypo>, [hiroTextColor, backgroundText, device])
-    const image = useMemo(() => backgroundImage && <Image width={fullWidthHero ? "100%" : "auto"} height={fullWidthHero ? "auto" : "100%"} maxWidth="100%" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-image']} src={backgroundImage} />, [backgroundImage, fullWidthHero])
+    const text = useMemo(() => <PreviewTypo fontSize={isDesktop ? "20px" : "14px"} fontWeight="bold" {...template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-caption']} color={hiroTextColor}>{backgroundText}</PreviewTypo>, [hiroTextColor, backgroundText, device])
+    const image = useMemo(() => backgroundImage && <Image width={fullWidthHero ? "100%" : "auto"} height='500px' maxWidth="100%" {...fullWidthHero && { position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", objectFit: "cover" }} {...template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-image']} src={backgroundImage} />, [backgroundImage, fullWidthHero])
     const style = useMemo(() => template_options?.['--dlk-wrp']?.['--dlk-wrp-hiro']?.['--dlk-wrp-hiro-styles'], [template_options])
 
     const handleLayout = useMemo(() => {

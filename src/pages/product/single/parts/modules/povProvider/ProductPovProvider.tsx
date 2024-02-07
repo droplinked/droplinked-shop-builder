@@ -6,17 +6,17 @@ import React, { useCallback, useContext, useMemo } from 'react'
 import { useQuery } from 'react-query'
 
 function ProductPovProvider() {
-    const { data, isLoading } = useQuery({
-        queryKey: "PovProvider",
-        queryFn: providersService,
-        refetchOnWindowFocus: false
-    })
+    // const { data, isLoading } = useQuery({
+    //     queryKey: "PovProvider",
+    //     queryFn: providersService,
+    //     refetchOnWindowFocus: false
+    // })
     const { state: { prodviderID, publish_product, product_type }, productID, methods: { updateState }, loading } = useContext(productContext)
 
-    const items = useMemo(() => data?.data?.data ? data?.data?.data.map((el: any) => ({
-        caption: el,
-        value: el
-    })) : [], [data])
+    // const items = useMemo(() => data?.data?.data ? data?.data?.data.map((el: any) => ({
+    //     caption: el,
+    //     value: el
+    // })) : [], [data])
 
     const change = useCallback(async (e) => {
         updateState("prodviderID", e.target.value)

@@ -35,11 +35,11 @@ function ConfirmDeleteProduct({ open, close, productID, fetch }: IProps) {
                     onClick: () => {
                         mutate({ productID }, {
                             onSuccess: () => {
-                                showToast("The product has been deleted!", "success")
+                                showToast({ message: "The product has been deleted!", type: "success" })
                                 fetch()
                                 close()
                             },
-                            onError: async () => showToast("Oops! Something went wrong", "error")
+                            onError: async () => showToast({ message: "Oops! Something went wrong", type: "error" })
                         })
                     }
                 }

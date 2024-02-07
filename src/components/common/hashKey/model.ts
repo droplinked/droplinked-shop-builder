@@ -14,14 +14,16 @@ const hashkeyModel = {
                 return `https://explorer.hiro.so/txid/${hashkey}?chain=${appDeveloment ? "testnet" : "mainnet"}`
             case "POLYGON":
                 return `https://${appDeveloment ? "mumbai." : ""}polygonscan.com/tx/${hashkey}`
-            case "RIPPLESIDECHAIN":
+            case "XRPLSIDECHAIN":
                 return `https://evm-sidechain.xrpl.org/tx/${hashkey}`
             case "BINANCE":
                 return `https://${appDeveloment ? "testnet." : ""}bscscan.com/tx/${hashkey}`
             case "NEAR":
-                return `https://explorer.${appDeveloment? "testnet": "mainnet"}.aurora.dev/tx/${hashkey}`;
+                return `https://explorer.${appDeveloment ? "testnet" : "mainnet"}.aurora.dev/tx/${hashkey}`;
             case "BASE":
-                return `https://base${appDeveloment? "-goerli" : ""}.blockscout.com/tx/${hashkey}`;
+                return `https://base${appDeveloment ? "-goerli" : ""}.blockscout.com/tx/${hashkey}`;
+            case "LINEA":
+                return `https://${appDeveloment ? "goerli" : ""}.lineascan.build/tx/${hashkey}`
             default:
                 return ""
         }
