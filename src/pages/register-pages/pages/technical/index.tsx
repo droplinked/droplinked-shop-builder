@@ -52,7 +52,7 @@ function Technical() {
           {/* <Ims /> */}
           {/* <SupportedLoginMethods /> */}
           {Technical.imsType !== "SHOPIFY" && <Payments />}
-          {appDeveloment && <Wallet />}
+          <Wallet />
           <TechnicalSubmit />
         </VStack>
       </PageContent>
