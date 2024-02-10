@@ -64,7 +64,7 @@ function NotificationsList() {
                                                     </Box>
                                                     <Flex gap="32px" color="#808080">
                                                         <AppTypography fontSize="12px">Requested Quantity: {el?.quantity || "---"}</AppTypography>
-                                                        <AppTypography fontSize="12px">Price: {`${sku?.price} ${product?.priceUnit || ""}`}</AppTypography>
+                                                        <AppTypography fontSize="12px">Price: {`$${sku?.price.toFixed(2)} USD`}</AppTypography>
                                                         <AppTypography fontSize="12px">Commission: {sku?.recordData?.commision + '%'}</AppTypography>
                                                         {sku?.deploy_hash_link && <Flex alignItems="center" gap="10px">
                                                             <Link

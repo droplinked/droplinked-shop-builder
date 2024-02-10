@@ -3,6 +3,7 @@ import { recordCasperService } from "lib/apis/sku/services"
 import { appDeveloment } from "lib/utils/app/variable"
 import { getNetworkProvider } from "lib/utils/chains/chainProvider"
 import { Beneficiary, Chain, Network, ProductType } from "lib/utils/chains/Chains"
+import { droplink_wallet } from "lib/utils/statics/adresses"
 import { IRecordParamsData } from "../.."
 
 interface Irecord {
@@ -34,19 +35,26 @@ export interface Ideploy {
 const recordModel = ({
     record: async ({ product, commission, blockchain, quantity, sku, imageUrl, accountAddress, royalty }: Irecord) => {
         const provider = getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress)
+
         // ---------------- new parameters: ------------------------
         // get these parameters from recorder:
         const type = ProductType.DIGITAL; // type of the product
         const paymentWallet = accountAddress; // the wallet in which the funds would go
-        const beneficiaries: Beneficiary[] = []; // this is the value added services
+        let beneficiaries: Beneficiary[] = []; // this is the value added services
         const acceptsManageWallet = true; // if user accepts the manage wallet
+        const pod = product.product_type === "PRINT_ON_DEMAND"
+
         let record: any;
         // ----------------------------------------------------------
         if (blockchain === 'CASPER') {
-            record = await provider.casperRecordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
-
+            record = await provider.casperRecordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, pod ? quantity : sku.quantity, commission * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
         } else {
-            record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity, commission * 100, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
+            if (pod) beneficiaries = [{
+                isPercentage: false,
+                value: sku.rawPrice * 100,
+                wallet: droplink_wallet
+            }]
+            record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, pod ? quantity : sku.quantity, commission * 100, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
         }
         return record
     },
@@ -67,7 +75,7 @@ const recordModel = ({
                         deploy_hash_link: hashkeyModel.getLink({ blockchain: data.blockchain, hashkey: deployHash }),
                         skuID: sku._id,
                         royalty: parseInt(data.royalty),
-                        canBeAffiliated: Boolean(data.commission && data.commission.length),
+                        canBeAffiliated: data.commission > 0,
                         commision: parseInt(data.commission),
                         ...product.product_type === "PRINT_ON_DEMAND" && { recorded_quantity: parseInt(data.quantity) }
                     }

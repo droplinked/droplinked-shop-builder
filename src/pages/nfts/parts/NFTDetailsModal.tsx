@@ -69,7 +69,7 @@ function NFTDetailsModal({ open, close }: Props) {
                             },
                             size: { value: "Small", caption: "Size" },
                             quantity: { value: 1, caption: "Quantity" },
-                            price: { value: "$231.21", caption: "Price" },
+                            price: { value: "$231.21 USD", caption: "Price" },
                         }]} />
                     </Flex>
                 </Flex>

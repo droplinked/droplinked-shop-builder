@@ -17,7 +17,7 @@ function CouponsListHead() {
                 <VStack align="stretch" spacing="12px">
                     <AppTypography color="#C2C2C2" fontSize="12px">Your Credit</AppTypography>
                     <HStack alignItems="center">
-                        <AppTypography color="#FFF" fontWeight="bold" fontSize="18px">$ {shop?.credit.toFixed(2)}</AppTypography>
+                        <AppTypography color="#FFF" fontWeight="bold" fontSize="18px">${shop?.credit?.toFixed(2)} USD</AppTypography>
                         <AppTypography color="#C2C2C2" fontSize="12px">USD</AppTypography>
                     </HStack>
                 </VStack>

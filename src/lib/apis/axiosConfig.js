@@ -9,22 +9,20 @@ const axiosInstance = axios.create({
 });
 
 // Function to set the access token and refresh token in localStorage
-const setToken = (access_token, refresh_token) => {
-    useAppStore.setState(prev => ({ ...prev, ...{ access_token, refresh_token } }))
-};
+const setToken = async (access_token, refresh_token) => useAppStore.setState((prev) => ({ ...prev, ...{ access_token, refresh_token } }))
+let refreshPromise = null;
+const clearPromise = () => refreshPromise = null;
 
 // Function to refresh the access token
-const refreshAccessToken = async (refresh_token) => {
+const refreshAccessToken = async () => {
     try {
-        const response = await axios.post(
-            `${BASE_URL}/auth/refresh-token`, {}, {
-            headers: { 'Authorization': `Bearer ${refresh_token}`, },
-        })
+        const { refresh_token } = useAppStore.getState();
+        const response = await axios.post(`${BASE_URL}/auth/refresh-token`, {}, {
+            headers: { 'Authorization': `Bearer ${refresh_token}` },
+        });
         const data = response?.data?.data;
-        if (data) {
-            setToken(data.access_token, data.refresh_token);
-            return data.access_token;
-        }
+        await setToken(data.access_token, data.refresh_token);
+        return data.access_token;
     } catch (error) {
         AppStorage.clearStorage();
         window.location.replace(window.location.origin);
@@ -32,13 +30,13 @@ const refreshAccessToken = async (refresh_token) => {
     }
 };
 
-// Request interceptor for API calls
+// Add request interceptor for API calls
 axiosInstance.interceptors.request.use(
     async (config) => {
         const appStore = useAppStore.getState().access_token || '';
-        config.headers = {
+        if (!config.headers.authorization) config.headers = {
             ...config.headers,
-            'Authorization': `Bearer ${appStore || ''}`,
+            'authorization': `Bearer ${appStore || ''}`,
         };
         return config;
     },
@@ -47,24 +45,22 @@ axiosInstance.interceptors.request.use(
     }
 );
 
-// Response interceptor to handle token expiration
+// Add response interceptor to handle token expiration and refresh
 axiosInstance.interceptors.response.use(
     (response) => {
         return response;
     },
     async function (error) {
-        const originalRequest = error.config;
-        if (error.response.status === 401 && !originalRequest._retry) {
-            originalRequest._retry = true;
-            try {
-                const refreshToken = useAppStore.getState().refresh_token || '';
-                const access_token = await refreshAccessToken(refreshToken);
-                console.log('error', error);
-                originalRequest.headers['Authorization'] = `Bearer ${access_token}`;
-                return axiosInstance(originalRequest);
-            } catch (error) {
-                return Promise.reject(error);
-            }
+        const config = error.config;
+
+        if (error.response.status === 401 && !config._retry) {
+            config._retry = true;
+
+            if (!refreshPromise) refreshPromise = refreshAccessToken().finally(clearPromise)
+
+            const token = await refreshPromise;
+            config.headers.authorization = `Bearer ${token}`;
+            return axiosInstance(config);
         }
         return Promise.reject(error);
     }

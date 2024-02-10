@@ -50,6 +50,7 @@ export interface IshopUpdateService extends IshopSocial {
     imsType?: string;
     paymentMethods: any[];
     loginMethods: IAuthSupportedWalletsService[]
+    credit?: number
 }
 
 export interface IShopRecordedService {

@@ -17,8 +17,8 @@ function ModalRequestDetails() {
                 <VStack align={"stretch"} spacing={.5}>
                     <Box marginBottom={2}><Text fontFamily={"aven"} fontSize="2xl">{product.title}</Text></Box>
                     <Box><LabelText>Commission: %{sku?.recordData?.commision}</LabelText></Box>
-                    <Box><LabelText>Total Price: ${sku?.price}</LabelText></Box>
-                    <Box><LabelText>Your earning: {`${sku?.publisherEarning} USD`}</LabelText></Box>
+                    <Box><LabelText>Total Price: ${sku?.price.toFixed(2)} USD</LabelText></Box>
+                    <Box><LabelText>Your earning: ${sku?.publisherEarning} USD</LabelText></Box>
                     <Box paddingTop={1}>
                         <HStack>
                             <Box><BlockchainDisplay show='icon' blockchain={sku?.recordData?.recordNetwork} props={{ width: "16px" }} /></Box>

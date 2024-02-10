@@ -36,7 +36,7 @@ function AppUploadImage({ onChange, product, values, size, toast, onSuccess, mod
             const images = product ? { url: data.data[size], thumbnail: data.data['small'] } : size ? data.data[size] : data.data
             onChange(typeof values === "object" ? [...values, images] : images)
             if (onSuccess) onSuccess(data.data)
-            showToast({ message: toast || "Upload image successful", type: "success" })
+            showToast({ message: toast || "Image has been uploaded!", type: "success" })
         } catch (error) {
             showToast({ message: error.message, type: "error" });
         }

@@ -47,6 +47,7 @@ import { ReactComponent as PlusIcon } from './plus-icon.svg';
 import { ReactComponent as Polygon } from './polygon-matic-logo.svg';
 import { ReactComponent as VariantsIcon } from './products-active-icon.svg';
 import { ReactComponent as ProductsIcon } from './products-icon.svg';
+import { ReactComponent as RedTrash } from './red-trash.svg';
 import { ReactComponent as Ripple } from './ripple.svg';
 import { ReactComponent as RuleIcon } from './rulesets-active-icon.svg';
 import { ReactComponent as RulesetsIcon } from './rulesets-icon.svg';
@@ -145,6 +146,7 @@ const AppIcons = {
   Xumm,
   ETH,
   GrayGatedIcon,
-  GrayDiscountIcon
+  GrayDiscountIcon,
+  RedTrash
 }
 export default AppIcons

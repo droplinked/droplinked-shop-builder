@@ -6,9 +6,10 @@ import Annotation from 'chartjs-plugin-annotation';
 import AppSkeleton from 'components/common/skeleton/AppSkeleton';
 import AppTypography from 'components/common/typography/AppTypography';
 import DashboardEmpty from 'pages/dashboard/parts/parts/empty/DashboardEmpty';
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { Bar } from 'react-chartjs-2';
 import dashboardChartsContext from '../../context';
+import generalStatisticsModel from './model';
 
 ChartJS.register(
   CategoryScale,
@@ -22,8 +23,9 @@ ChartJS.register(
 
 function GeneralStatisticsChart() {
   const { states: { revenue }, isLoading } = useContext(dashboardChartsContext)
-
+  const { findMaxRevenue } = generalStatisticsModel;
   const barChartValues = revenue?.chart.map(el => el.value) || []
+  const maxRevenue = useCallback(() => findMaxRevenue(revenue), [revenue])
 
   const data = {
     labels: revenue?.chart.map(el => el.title),
@@ -96,14 +98,14 @@ function GeneralStatisticsChart() {
                 ${typeof data.revenue !== "undefined" ? `
                   <div style="display: flex; justify-content: space-between">
                     <p style="color: #878787">Earning</p>
-                    <p>$${data.revenue}</p>
+                    <p>$${data.revenue} USD</p>
                   </div>
                 `: ""}
 
                 ${typeof data.profit !== "undefined" ? `
                 <div style="display: flex; justify-content: space-between">
                   <p style="color: #878787">Profit</p>
-                  <p>$${data.profit}</p>
+                  <p>$${data.profit} USD</p>
                 </div>
                 `: ""}
               </div>
@@ -117,7 +119,7 @@ function GeneralStatisticsChart() {
                       <div style="width: 8px; height: 8px; border:2px solid #2BCFA1; border-radius: 50%;"></div>
                       <p style="color: #878787">Direct</p>
                     </div>
-                    <p>$${data.direct}</p>
+                    <p>$${data.direct} USD</p>
                   </div>
                 ` : ""}
                 
@@ -127,7 +129,7 @@ function GeneralStatisticsChart() {
                       <div style="width: 8px; height: 8px; border:2px solid #9C4EFF; border-radius: 50%;"></div>
                       <p style="color: #878787">Affiliate</p>
                     </div>
-                    <p>$${data.affiliate}</p>
+                    <p>$${data.affiliate} USD</p>
                   </div>
                 `: ""}
                 
@@ -161,12 +163,11 @@ function GeneralStatisticsChart() {
       },
     }
   };
-
   return (
     <AppSkeleton isLoaded={isLoading}>
       {revenue?.chart?.length ? (
         <VStack align="stretch">
-          <AppTypography textAlign="right" color="#2BCFA1" fontSize="16px">${revenue?.total.toFixed(2)}</AppTypography>
+          <AppTypography textAlign="right" color="#2BCFA1" fontSize="16px">${maxRevenue()} USD</AppTypography>
           <Bar options={options} data={data} height="100px" />
         </VStack>
       ) : <DashboardEmpty minHeight="300px" />}

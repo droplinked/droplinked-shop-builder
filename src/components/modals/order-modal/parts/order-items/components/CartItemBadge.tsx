@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react'
+import AppTooltip from 'components/common/tooltip/AppTooltip'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 
@@ -22,7 +23,10 @@ function CartItemBadge({ text, colorScheme = "gray" }: Props) {
                 fontWeight={isGrayScheme ? 400 : 600}
                 color={isGrayScheme ? "#FFFFFF" : "#2BCFA1"}
             >
-                {text}
+                {text.length <= 15 ?
+                    text :
+                    <AppTooltip label={text}>{`${text.slice(0, 15)}...`}</AppTooltip>
+                }
             </AppTypography>
         </Box>
     )

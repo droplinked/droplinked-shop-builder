@@ -1,6 +1,6 @@
 import { Box, VStack } from '@chakra-ui/react'
 import { IgetRevenueServices } from 'lib/apis/dashboard/interfaces'
-import { getRevenueServices } from 'lib/apis/dashboard/productServices'
+import { getRevenueServices } from 'lib/apis/dashboard/dashboardServices'
 import dashboardPageContext from 'pages/dashboard/context'
 import React, { useContext, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
@@ -15,7 +15,7 @@ function DashboardCharts() {
     const [States, setStates] = useState<IdashboardChartsStates>(dashboardChartsStates)
 
     const updateStates = (key: string, value: any) => setStates(prev => ({ ...prev, [key]: value }))
-
+    
     useEffect(() => mutate({ from, to, dateRange: value }, { onSuccess: (data) => updateStates('revenue', data?.data?.data) }), [from, to, value])
 
     return (

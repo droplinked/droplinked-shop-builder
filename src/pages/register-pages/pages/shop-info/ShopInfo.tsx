@@ -65,7 +65,7 @@ function RegisterShopInfo() {
         </VStack>
       </AppCard>
       <AppCard><ShopInfoAddress addressService={addressService} /></AppCard>
-      <AppCard><ShopTag updateStates={updateStates} value={States.tags} /></AppCard>
+      {/* <AppCard><ShopTag updateStates={updateStates} value={States.tags} /></AppCard> */}
       <AppCard><ShopAPIKey /></AppCard>
       <Flex justifyContent={"right"}><ShopInfoSubmit States={States} /></Flex>
     </VStack>

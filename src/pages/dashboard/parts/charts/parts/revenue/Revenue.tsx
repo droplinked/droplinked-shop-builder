@@ -15,7 +15,7 @@ function Revenue() {
             <AppTypography fontSize="16px">Total earning</AppTypography>
             <AppSkeleton isLoaded={isLoading}>
                 <Flex alignItems="center" gap="12px">
-                    <AppTypography fontSize="32px" fontWeight="600">${revenue?.total.toFixed(2)}</AppTypography>
+                    <AppTypography fontSize="32px" fontWeight="600">${revenue?.total.toFixed(2)} USD</AppTypography>
                 </Flex>
             </AppSkeleton>
             <AppTypography fontSize="12px" color="#C4C4C4">Your revenue from <strong>{moment(from).format('YYYY/MM/DD')}</strong> to <strong>{moment(to).format('YYYY/MM/DD')}</strong></AppTypography>

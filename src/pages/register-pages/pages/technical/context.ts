@@ -2,7 +2,7 @@ import { IAuthSupportedWalletsService } from "lib/apis/auth/interfaces";
 import { createContext } from "react";
 
 export const technicalContextState = {
-    imsType: '',
+    imsType: 'DROPLINKED',
     paymentMethods: [],
     loginMethods: [],
 }

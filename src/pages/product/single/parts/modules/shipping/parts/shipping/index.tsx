@@ -59,7 +59,7 @@ function Shipping() {
                     name="cost"
                     isRequired
                     label='Shipping Cost'
-                    placeholder="$ 0.00"
+                    placeholder="$0.00 USD"
                     value={shippingPrice}
                     onChange={(e) => updateState("shippingPrice", e.target.value ? parseFloat(e.target.value) : '')}
                 />

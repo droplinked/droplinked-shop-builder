@@ -34,7 +34,7 @@ const ButtonsProductClass = ({
                 let error = new Error();
 
                 // Digital product validation
-                if (state.product_type === "DIGITAL") {
+                if (state.product_type === "DIGITAL" && !draft) {
                     if (!state.sku[0].price) {
                         error.message = "Please enter price"
                         throw error
@@ -119,7 +119,7 @@ const ButtonsProductClass = ({
         return await method(dataForm)
     },
 
-    checkSkuesRecord: ({ sku }: IcheckSkuesRecord) => sku.find(el => ['RECORDED','PENDING'].includes(el?.recordData?.status))
+    checkSkuesRecord: ({ sku }: IcheckSkuesRecord) => sku.find(el => ['RECORDED', 'PENDING'].includes(el?.recordData?.status))
 })
 
 export default ButtonsProductClass
