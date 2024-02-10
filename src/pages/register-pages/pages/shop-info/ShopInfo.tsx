@@ -1,17 +1,17 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
+import ClipboardText from 'components/common/clipboardText/ClipboardText'
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppInput from 'components/common/form/textbox/AppInput'
 import AppTypography from 'components/common/typography/AppTypography'
+import { useProfile } from "functions/hooks/useProfile/useProfile"
 import { addressBookService } from 'lib/apis/address/addressServices'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
 import ShopInfoAddress from './parts/address/shopInfoAddress'
-import ShopInfoSubmit from './parts/submit/ShopInfoSubmit'
-import { useProfile } from "functions/hooks/useProfile/useProfile"
-import ClipboardText from 'components/common/clipboardText/ClipboardText'
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
-import ShopTag from './parts/tag/ShopTag'
 import ShopAPIKey from './parts/api-key/ShopAPIKey'
+import StoreInformation from './parts/store-information/StoreInformation'
+import ShopInfoSubmit from './parts/submit/ShopInfoSubmit'
 
 export interface IstatesShopInfo {
   description: string
@@ -66,6 +66,7 @@ function RegisterShopInfo() {
       </AppCard>
       <AppCard><ShopInfoAddress addressService={addressService} /></AppCard>
       {/* <AppCard><ShopTag updateStates={updateStates} value={States.tags} /></AppCard> */}
+      <AppCard><StoreInformation /></AppCard>
       <AppCard><ShopAPIKey /></AppCard>
       <Flex justifyContent={"right"}><ShopInfoSubmit States={States} /></Flex>
     </VStack>
