@@ -18,7 +18,6 @@ function ChainAccordion({ chain }: Props) {
     const ChainIcon = useMemo(() => <BlockchainDisplay blockchain={chain.name.toUpperCase()} show="icon" props={{ width: "24px", height: "24px" }} />, [chain.name])
 
     const handleActivateWallet = useCallback((wallet: { name: string, isActivated: boolean }) => {
-        debugger
         const selectedLoginMethods = [...loginMethods]
         const targetChain = selectedLoginMethods.findIndex(c => c.name === chain.name)
         if (wallet.isActivated) {
