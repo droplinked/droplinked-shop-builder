@@ -71,6 +71,7 @@ import { ReactComponent as Web } from './web.svg';
 import { ReactComponent as NFT } from './white-nft-icon.svg';
 import { ReactComponent as WhiteOpenWallet } from './white-open-wallet.svg';
 import { ReactComponent as WhiteShopIcon } from './white-shop.svg';
+import { ReactComponent as XRPL } from './xrpl.svg';
 import { ReactComponent as Xumm } from './xumm.svg';
 
 const AppIcons = {
@@ -147,6 +148,7 @@ const AppIcons = {
   ETH,
   GrayGatedIcon,
   GrayDiscountIcon,
-  RedTrash
+  RedTrash,
+  XRPL
 }
 export default AppIcons

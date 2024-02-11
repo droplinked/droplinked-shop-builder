@@ -17,15 +17,15 @@ function SupportedLoginMethods() {
         refetchOnWindowFocus: false,
         enabled: supportedLoginMethods.isSuccess,
         onSuccess: (data) => {
-            let selectedLoginMethods = data.data.loginMethods
+            let selectedLoginMethods = data.data.data.loginMethods.filter(chain => chain.wallets.length > 0)
             if (!Array.isArray(selectedLoginMethods) || selectedLoginMethods.length === 0) {
-                const [{ name, wallets: [firstWallet] }] = supportedLoginMethods.data.data
+                const [{ name, wallets: [firstWallet] }] = supportedLoginMethods.data.data.data
                 selectedLoginMethods = [{ name, wallets: [{ ...firstWallet, isActivated: true }] }]
             }
             updateState("loginMethods", selectedLoginMethods)
         }
     })
-    const response = useMemo(() => supportedLoginMethods.data?.data, [supportedLoginMethods.data])
+    const response = useMemo(() => supportedLoginMethods.data?.data?.data, [supportedLoginMethods.data])
     const isLoading = supportedLoginMethods.isLoading || selectedLoginMethods.isLoading
 
     return (

@@ -76,5 +76,5 @@ export const updateShopAPIKeyService = (data: ShopOAuth2Client) => {
 }
 
 export const getShopInformationService = () => {
-    return axiosInstance.get("shop").then(response => response.data)
+    return axiosInstance.get("shop")
 }

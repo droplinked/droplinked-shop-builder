@@ -18,6 +18,7 @@ function ChainAccordion({ chain }: Props) {
     const ChainIcon = useMemo(() => <BlockchainDisplay blockchain={chain.name.toUpperCase()} show="icon" props={{ width: "24px", height: "24px" }} />, [chain.name])
 
     const handleActivateWallet = useCallback((wallet: { name: string, isActivated: boolean }) => {
+        debugger
         const selectedLoginMethods = [...loginMethods]
         const targetChain = selectedLoginMethods.findIndex(c => c.name === chain.name)
         if (wallet.isActivated) {
@@ -51,7 +52,7 @@ function ChainAccordion({ chain }: Props) {
                     const isChecked = targetChain && targetChain.wallets.find(w => w.name === wallet.name) ? true : false
                     return < Flex key={index} justifyContent={"space-between"} alignItems={"center"} >
                         <Flex alignItems={"center"} gap={"8px"}>
-                            {ChainIcon}
+                            {wallet.name === "metamask" ? <AppIcons.MetaMaskIcon /> : ChainIcon}
                             <AppTypography color={"#C2C2C2"}>{wallet.name}</AppTypography>
                         </Flex>
                         <AppSwitch onChange={(e) => handleActivateWallet({ ...wallet, isActivated: e.currentTarget.checked })} isChecked={isChecked} />

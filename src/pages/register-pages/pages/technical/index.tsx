@@ -9,6 +9,7 @@ import technicalContext, { technicalContextState } from "./context";
 import technicalModel from "./model";
 import Payments from "./parts/payment";
 import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
+import SupportedLoginMethods from "./parts/supported-login-methods/SupportedLoginMethods";
 import Wallet from "./parts/wallet";
 
 function Technical() {
@@ -49,7 +50,7 @@ function Technical() {
       <PageContent>
         <VStack spacing={4} align="stretch">
           {/* <Ims /> */}
-          {/* <SupportedLoginMethods /> */}
+          <SupportedLoginMethods />
           {Technical.imsType !== "SHOPIFY" && <Payments />}
           <Wallet />
           <TechnicalSubmit />

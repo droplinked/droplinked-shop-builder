@@ -6,5 +6,5 @@ export const authLoginService = (params: IauthLoginService) => {
 };
 
 export const authSupportedWalletsService = () => {
-    return axiosInstance.get<{ data: IAuthSupportedWalletsService[] }>("auth/supported/wallets").then(response => response.data)
+    return axiosInstance.get<{ data: IAuthSupportedWalletsService[] }>("auth/supported/wallets")
 };
