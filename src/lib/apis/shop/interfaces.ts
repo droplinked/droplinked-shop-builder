@@ -68,3 +68,11 @@ export interface IchargeCreditService {
 export interface ShopOAuth2Client {
     domains: Array<string>
 }
+
+export interface ShopCustomURL {
+    domain: string;
+}
+
+export interface ShopDNSInformation {
+    domain_name: string;
+}

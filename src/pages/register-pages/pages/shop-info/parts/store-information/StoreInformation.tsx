@@ -4,15 +4,44 @@ import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import FormModel from 'components/common/form/FormModel'
 import AppInput from 'components/common/form/textbox/AppInput'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
-import React, { useState } from 'react'
+import useAppToast from 'functions/hooks/toast/useToast'
+import { useProfile } from 'functions/hooks/useProfile/useProfile'
+import { getShopDNSInformationService } from 'lib/apis/shop/shopServices'
+import { storeCustomURLRegex } from 'lib/utils/heper/regex'
+import React, { useMemo, useState } from 'react'
+import { useQuery } from 'react-query'
+import { IstatesShopInfo } from '../../ShopInfo'
 import ConfirmationModal from './parts/confirmation-modal/ConfirmationModal'
 import DNSInformationModal from './parts/dns-information-modal/DNSInformationModal'
 
-function StoreInformation() {
-    const [storeName, setStoreName] = useState("")
+interface Props {
+    States: IstatesShopInfo,
+    updateStates: (key: string, value: string) => void
+}
+
+function StoreInformation({ States, updateStates }: Props) {
+    const { showToast } = useAppToast()
+    const shopDNSInformationQuery = useQuery({
+        queryKey: "shopDNSInformation",
+        queryFn: () => getShopDNSInformationService(),
+        onError: () => {
+            showToast({ message: "Unable to fetch DNS Information", type: "error" })
+        }
+    })
+    const dnsData = useMemo(() => shopDNSInformationQuery.data?.data?.data?.dnsData, [shopDNSInformationQuery.data])
     const [customURL, setCustomURL] = useState("")
     const confirmationModal = useDisclosure()
+    const dnsInformationModal = useDisclosure()
+    const { shop } = useProfile()
+    const userStore = useMemo(() => 'https://droplinked.io/' + shop.name, [shop])
+
+    const validateEnteredURL = () => {
+        if (!storeCustomURLRegex.test(customURL))
+            return showToast({ message: "Please enter a valid URL.", type: "error" })
+        confirmationModal.onOpen()
+    }
 
     return (
         <>
@@ -26,13 +55,7 @@ function StoreInformation() {
                             alignItems={"center"}
                             backgroundColor={FormModel.baseStyleProps().backgroundColor}
                             paddingRight={"7.5px"}>
-                            <AppInput
-                                name='storeName'
-                                value={storeName}
-                                placeholder='e.g., droplinked'
-                                isRequired
-                                onChange={(e) => setStoreName(e.currentTarget.value)}
-                            />
+                            <AppInput name='name' maxLength={20} value={States.description} onChange={(e: any) => updateStates("description", e.target.value)} placeholder='e.g., droplinked' isRequired />
                         </Flex>
                         <AppTypography fontSize="14px" fontWeight={500} color="#808080">Enter your store name. (max 20 characters)</AppTypography>
                     </Flex>
@@ -41,8 +64,8 @@ function StoreInformation() {
                 <Flex direction={"column"} gap={"12px"}>
                     <FieldLabel label='Store URL' isRequired />
                     <Flex justifyContent={"space-between"} alignItems={"center"}>
-                        <AppTypography fontSize='16px' color={"#C2C2C2"}>https://droplinked.io/[username]</AppTypography>
-                        <ClipboardText text="https://droplinked.io/" />
+                        <AppTypography fontSize='16px' color={"#C2C2C2"}>{userStore}</AppTypography>
+                        <ClipboardText text={userStore} />
                     </Flex>
                 </Flex>
 
@@ -52,31 +75,32 @@ function StoreInformation() {
                         <AppTypography fontSize="14px" fontWeight={500} color="#808080">
                             Enter your domain without “www.” and then add the provided DNS to your domain settings.
                         </AppTypography>
-                        <Flex
-                            alignItems={"center"}
-                            backgroundColor={FormModel.baseStyleProps().backgroundColor}
-                            paddingRight={"7.5px"}>
-                            <AppInput
-                                name='customURL'
-                                value={customURL}
-                                placeholder='Domain.com'
-                                isRequired
-                                onChange={(e) => setCustomURL(e.currentTarget.value)}
-                            />
-                            <BasicButton
-                                sizes='medium'
-                                isDisabled={!customURL}
-                                onClick={confirmationModal.onOpen}
-                            >
-                                Save
-                            </BasicButton>
-                        </Flex>
+                        {shopDNSInformationQuery.isLoading ?
+                            <AppSkeleton isLoaded={false} width={"100%"} height="45.6px">{''}</AppSkeleton> :
+                            <Flex
+                                alignItems={"center"}
+                                backgroundColor={FormModel.baseStyleProps().backgroundColor}
+                                paddingRight={"7.5px"}>
+                                <AppInput
+                                    name='customURL'
+                                    value={dnsData?.domain_name || customURL}
+                                    isReadOnly={dnsData?.domain_name}
+                                    placeholder='Domain.com'
+                                    isRequired
+                                    onChange={(e) => setCustomURL(e.currentTarget.value)}
+                                />
+                                {
+                                    dnsData?.domain_name ?
+                                        <BasicButton sizes='medium' onClick={dnsInformationModal.onOpen}>DNS Information</BasicButton> :
+                                        <BasicButton sizes='medium' isDisabled={!customURL} onClick={validateEnteredURL}>Save</BasicButton>
+                                }
+                            </Flex>
+                        }
                     </Flex>
                 </Flex>
             </Flex >
-
-            {confirmationModal.isOpen && <ConfirmationModal isOpen={confirmationModal.isOpen} close={confirmationModal.onClose} />}
-
+            {confirmationModal.isOpen && <ConfirmationModal isOpen={confirmationModal.isOpen} close={confirmationModal.onClose} enteredURL={customURL} refetch={shopDNSInformationQuery.refetch} />}
+            {dnsInformationModal.isOpen && <DNSInformationModal isOpen={dnsInformationModal.isOpen} close={dnsInformationModal.onClose} dnsData={dnsData} />}
         </>
     )
 }

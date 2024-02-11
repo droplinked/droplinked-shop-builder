@@ -1,12 +1,8 @@
-import { Box, Flex, VStack } from '@chakra-ui/react'
+import { Flex, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
-import ClipboardText from 'components/common/clipboardText/ClipboardText'
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
-import AppInput from 'components/common/form/textbox/AppInput'
-import AppTypography from 'components/common/typography/AppTypography'
 import { useProfile } from "functions/hooks/useProfile/useProfile"
 import { addressBookService } from 'lib/apis/address/addressServices'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import ShopInfoAddress from './parts/address/shopInfoAddress'
 import ShopAPIKey from './parts/api-key/ShopAPIKey'
@@ -28,7 +24,6 @@ function RegisterShopInfo() {
     tags: []
   })
   const address = addressService.data?.data?.data
-  const userStore = useMemo(() => 'https://droplinked.io/' + shop.name, [shop])
 
   const updateStates = useCallback((key: string, value: string) => setStates((prev: IstatesShopInfo) => ({ ...prev, [key]: value })), [])
 
@@ -46,27 +41,9 @@ function RegisterShopInfo() {
 
   return (
     <VStack width={"100%"} spacing={4} justifyContent="center" align={"stretch"}>
-      <AppCard>
-        <VStack align={"stretch"} color="#FFF" spacing={7}>
-          <VStack align={"stretch"}>
-            <Box><AppTypography fontSize='18px' fontWeight='bold'>Store URL</AppTypography></Box>
-            <Flex justifyContent={"space-between"}>
-              <AppTypography fontSize='16px' color={"#C2C2C2"}>{userStore}</AppTypography>
-              <ClipboardText text={userStore} />
-            </Flex>
-          </VStack>
-          <VStack align={"stretch"}>
-            <FieldLabel label='Store Name' isRequired />
-            <Box>
-              <AppInput name='name' maxLength={20} value={States.description} onChange={(e: any) => updateStates("description", e.target.value)} placeholder='e.g., droplinked' isRequired />
-            </Box>
-            <AppTypography fontSize='14px' color={"rgb(128, 128, 128)"}>Enter your store name.(max 20 characters)</AppTypography>
-          </VStack>
-        </VStack>
-      </AppCard>
+      <AppCard><StoreInformation States={States} updateStates={updateStates} /></AppCard>
       <AppCard><ShopInfoAddress addressService={addressService} /></AppCard>
       {/* <AppCard><ShopTag updateStates={updateStates} value={States.tags} /></AppCard> */}
-      <AppCard><StoreInformation /></AppCard>
       <AppCard><ShopAPIKey /></AppCard>
       <Flex justifyContent={"right"}><ShopInfoSubmit States={States} /></Flex>
     </VStack>
