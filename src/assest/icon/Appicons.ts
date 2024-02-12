@@ -72,6 +72,9 @@ import { ReactComponent as NFT } from './white-nft-icon.svg';
 import { ReactComponent as WhiteOpenWallet } from './white-open-wallet.svg';
 import { ReactComponent as WhiteShopIcon } from './white-shop.svg';
 import { ReactComponent as Xumm } from './xumm.svg';
+import { ReactComponent as WhiteAlert } from './white-alert.svg';
+import { ReactComponent as GreenAlert } from './green-alert.svg';
+import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 
 const AppIcons = {
   ProductsIcon,
@@ -147,6 +150,9 @@ const AppIcons = {
   ETH,
   GrayGatedIcon,
   GrayDiscountIcon,
-  RedTrash
+  RedTrash,
+  WhiteAlert,
+  GreenAlert,
+  YellowAlert
 }
 export default AppIcons
