@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IchargeCreditService, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, ShopOAuth2Client } from "./interfaces"
+import { IchargeCreditService, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, ShopCustomURL, ShopDNSInformation, ShopOAuth2Client } from "./interfaces"
 
 export const shopService = ({ shopName }: IshopService) => {
     return axiosInstance.get(`shop/${shopName}`)
@@ -77,4 +77,16 @@ export const updateShopAPIKeyService = (data: ShopOAuth2Client) => {
 
 export const getShopInformationService = () => {
     return axiosInstance.get("shop")
+}
+
+export const generateShopCustomURLService = (data: ShopCustomURL) => {
+    return axiosInstance.post("shop/domain", data)
+}
+
+export const getShopDNSInformationService = () => {
+    return axiosInstance.get("shop/retrieve/dns")
+}
+
+export const getShopDNSStatusService = (data: ShopDNSInformation) => {
+    return axiosInstance.post("shop/retrieve/domain/info", data)
 }
