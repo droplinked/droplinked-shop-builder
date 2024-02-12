@@ -1,18 +1,18 @@
-import React, { useContext, useEffect } from 'react'
-import { Box, VStack } from '@chakra-ui/react'
+import { Box, VStack } from '@chakra-ui/react';
+import AppCard from 'components/common/card/AppCard';
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import AppTypography from 'components/common/typography/AppTypography';
 import { paymentPublicService } from 'lib/apis/shop/shopServices';
-import { BlackBox } from 'pages/register-pages/RegisterPages-style'
+import { BlackBox } from 'pages/register-pages/RegisterPages-style';
+import React, { useContext, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import technicalContext from '../../context';
 import technicalPaymentsModel from './model';
 import ContainerPayment from './parts/container';
 import PaymentsLoading from './parts/loading/PaymentsLoading';
-import AppCard from 'components/common/card/AppCard';
 
 function Payments() {
-    const { state: { payments }, userPayments, updateState } = useContext(technicalContext)
+    const { state: { paymentMethods }, userPayments, updateState } = useContext(technicalContext)
     const paymentPublic = useMutation(() => paymentPublicService())
     const { makePayments } = technicalPaymentsModel
 
@@ -22,7 +22,7 @@ function Payments() {
     // update payment methods
     useEffect(() => {
         const pPublic = paymentPublic.data?.data?.data
-        if (pPublic && userPayments) updateState("payments", makePayments({
+        if (pPublic && userPayments) updateState("paymentMethods", makePayments({
             paymentMethods: userPayments,
             paymentPublic: pPublic
         }))
@@ -39,7 +39,7 @@ function Payments() {
                 </Box>
                 <VStack align='stretch' spacing={3}>
                     <VStack spacing={2} align={"stretch"}>
-                        {paymentPublic.isLoading ? <PaymentsLoading /> : payments && payments.map((el, key) => (
+                        {paymentPublic.isLoading ? <PaymentsLoading /> : paymentMethods && paymentMethods.map((el, key) => (
                             <BlackBox key={key} padding="5px 20px" height="55px" display="flex" alignItems="center">
                                 <ContainerPayment
                                     title={el.type}

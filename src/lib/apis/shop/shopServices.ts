@@ -75,6 +75,10 @@ export const updateShopAPIKeyService = (data: ShopOAuth2Client) => {
     return axiosInstance.put("shop/client/oauth2 ", data)
 }
 
+export const getShopInformationService = () => {
+    return axiosInstance.get("shop")
+}
+
 export const generateShopCustomURLService = (data: ShopCustomURL) => {
     return axiosInstance.post("shop/domain", data)
 }
