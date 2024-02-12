@@ -12,9 +12,10 @@ interface Props {
     close: Function;
     enteredURL: string;
     refetch: Function;
+    openDNSInformationModal: Function;
 }
 
-function ConfirmationModal({ isOpen, close, enteredURL, refetch }: Props) {
+function ConfirmationModal({ isOpen, close, enteredURL, refetch, openDNSInformationModal }: Props) {
     const { isLoading, mutateAsync } = useMutation((params: { domain: string }) => generateShopCustomURLService(params))
     const { showToast } = useAppToast()
 
@@ -23,6 +24,7 @@ function ConfirmationModal({ isOpen, close, enteredURL, refetch }: Props) {
             await mutateAsync({ domain: enteredURL })
             showToast({ message: "The entered URL has been set as your shop’s custom URL", type: "success" })
             await refetch()
+            openDNSInformationModal()
             close()
         } catch (error) {
             showToast({ message: (error as Error).message, type: "error" })
