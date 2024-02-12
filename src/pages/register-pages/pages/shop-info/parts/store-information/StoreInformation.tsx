@@ -99,8 +99,22 @@ function StoreInformation({ States, updateStates }: Props) {
                     </Flex>
                 </Flex>
             </Flex >
-            {confirmationModal.isOpen && <ConfirmationModal isOpen={confirmationModal.isOpen} close={confirmationModal.onClose} enteredURL={customURL} refetch={shopDNSInformationQuery.refetch} />}
-            {dnsInformationModal.isOpen && <DNSInformationModal isOpen={dnsInformationModal.isOpen} close={dnsInformationModal.onClose} dnsData={dnsData} />}
+            {confirmationModal.isOpen &&
+                <ConfirmationModal
+                    isOpen={confirmationModal.isOpen}
+                    close={confirmationModal.onClose}
+                    enteredURL={customURL}
+                    refetch={shopDNSInformationQuery.refetch}
+                    openDNSInformationModal={dnsInformationModal.onOpen}
+                />
+            }
+            {dnsInformationModal.isOpen &&
+                <DNSInformationModal
+                    isOpen={dnsInformationModal.isOpen}
+                    close={dnsInformationModal.onClose}
+                    dnsData={dnsData}
+                />
+            }
         </>
     )
 }
