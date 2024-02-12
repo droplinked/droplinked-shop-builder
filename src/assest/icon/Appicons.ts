@@ -25,6 +25,7 @@ import { ReactComponent as GatedIcon } from './gated-active-icon.svg';
 import { ReactComponent as GiftSetting } from './gift-setting.svg';
 import { ReactComponent as GrayDiscountIcon } from './grayDiscountIcon.svg';
 import { ReactComponent as GrayGatedIcon } from './grayGatedIcon.svg';
+import { ReactComponent as GreenAlert } from './green-alert.svg';
 import { ReactComponent as Hand } from './hand.svg';
 import { ReactComponent as Hedera } from './hedera.svg';
 import { ReactComponent as HelpCenter } from './help-circle 1.svg';
@@ -68,10 +69,13 @@ import { ReactComponent as Upload } from './upload-icon.svg';
 import { ReactComponent as VisibleIcon } from './visible-icon.svg';
 import { ReactComponent as WalletConnectIcon } from './WalletConnect.svg';
 import { ReactComponent as Web } from './web.svg';
+import { ReactComponent as WhiteAlert } from './white-alert.svg';
 import { ReactComponent as NFT } from './white-nft-icon.svg';
 import { ReactComponent as WhiteOpenWallet } from './white-open-wallet.svg';
 import { ReactComponent as WhiteShopIcon } from './white-shop.svg';
+import { ReactComponent as XRPL } from './xrpl.svg';
 import { ReactComponent as Xumm } from './xumm.svg';
+import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 
 const AppIcons = {
   ProductsIcon,
@@ -147,6 +151,10 @@ const AppIcons = {
   ETH,
   GrayGatedIcon,
   GrayDiscountIcon,
-  RedTrash
+  RedTrash,
+  XRPL,
+  WhiteAlert,
+  GreenAlert,
+  YellowAlert
 }
 export default AppIcons
