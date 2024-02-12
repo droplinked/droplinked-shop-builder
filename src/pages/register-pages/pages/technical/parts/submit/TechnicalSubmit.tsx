@@ -3,8 +3,8 @@ import BasicButton from 'components/common/BasicButton/BasicButton';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
-import { IpaymentCreateService } from 'lib/apis/shop/interfaces';
-import { paymentCreateService } from 'lib/apis/shop/shopServices';
+import { IshopUpdateService } from 'lib/apis/shop/interfaces';
+import { shopUpdateService } from 'lib/apis/shop/shopServices';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import React, { useCallback, useContext, useMemo } from 'react';
 import { useMutation } from 'react-query';
@@ -14,8 +14,8 @@ import technicalModel from '../../model';
 import TechnicalSubmitModel from './TechnicalSubmitModel';
 
 function TechnicalSubmit() {
-    const { state: { imsType, payments }, userPayments } = useContext(technicalContext)
-    const { mutateAsync, isLoading } = useMutation((params: Array<IpaymentCreateService>) => paymentCreateService(params))
+    const { state: { imsType, paymentMethods, loginMethods }, userPayments, updateState } = useContext(technicalContext)
+    const { mutateAsync, isLoading } = useMutation((params: IshopUpdateService) => shopUpdateService(params))
     const currentPath = useLocation().pathname
     const { checkPaymentMethod } = technicalModel
     const { setShopData: { loading, update }, shop } = useProfile()
@@ -23,11 +23,16 @@ function TechnicalSubmit() {
     const { refactor } = TechnicalSubmitModel
     const isRegister = currentPath.includes("register")
     const { showToast } = useAppToast()
-    const checkPayment = useMemo(() => checkPaymentMethod(payments), [payments])
+    const checkPayment = useMemo(() => checkPaymentMethod(paymentMethods), [paymentMethods])
 
     const clickSubmit = useCallback(async () => {
         try {
-            await mutateAsync(isRegister ? payments.filter(el => el.isActive) : refactor({ payments, userPayments })) // Post payments service
+            const shopData: IshopUpdateService = {
+                paymentMethods: isRegister ? paymentMethods.filter(el => el.isActive) : refactor({ payments: paymentMethods, userPayments }),
+                loginMethods
+            }
+            await mutateAsync(shopData)
+
             if (isRegister) {
                 if (!shop.imsType) await update({ imsType: imsType })
                 shopNavigate(``);
@@ -37,7 +42,7 @@ function TechnicalSubmit() {
         } catch (error) {
             showToast({ message: error.message, type: "error" });
         }
-    }, [payments, imsType, userPayments, isRegister, shop])
+    }, [paymentMethods, imsType, userPayments, isRegister, shop, updateState])
     return (
         <Flex justifyContent={isRegister ? "space-between" : "right"} width={"100%"}>
             {isRegister && (

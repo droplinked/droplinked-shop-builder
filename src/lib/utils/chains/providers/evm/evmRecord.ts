@@ -25,7 +25,7 @@ export async function EVMrecordMerch(chain: Chain, network: Network, sku_propert
     }
     let ipfs_hash = await uploadToIPFS(metadata, apiKey);
     try {
-        let tx = await contract.mint(`https://ipfs.io/ipfs/${ipfs_hash}`, price, commission, amount, address, {
+        let tx = await contract.mint(`https://ipfs.io/ipfs/${ipfs_hash}`, price, commission, amount, address, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty, {
             gasLimit: 3000000
         });
         return tx.hash;

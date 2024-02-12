@@ -1,7 +1,6 @@
 import { VStack } from "@chakra-ui/react";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { paymentMethodsService } from "lib/apis/shop/shopServices";
-import { appDeveloment } from "lib/utils/app/variable";
 import { PageContent } from "pages/register-pages/RegisterPages-style";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useMutation } from "react-query";
@@ -10,6 +9,7 @@ import technicalContext, { technicalContextState } from "./context";
 import technicalModel from "./model";
 import Payments from "./parts/payment";
 import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
+import SupportedLoginMethods from "./parts/supported-login-methods/SupportedLoginMethods";
 import Wallet from "./parts/wallet";
 
 function Technical() {
@@ -29,7 +29,7 @@ function Technical() {
       value,
       type: title
     })
-    setTechnical((prev) => ({ ...prev, payments: refactor(prev.payments) }))
+    setTechnical((prev) => ({ ...prev, paymentMethods: refactor(prev.paymentMethods) }))
   }, [])
 
   // Set default "STRIPE" when register
@@ -52,7 +52,7 @@ function Technical() {
           {/* <Ims /> */}
           {/* <SupportedLoginMethods /> */}
           {Technical.imsType !== "SHOPIFY" && <Payments />}
-          {appDeveloment && <Wallet />}
+          <Wallet />
           <TechnicalSubmit />
         </VStack>
       </PageContent>

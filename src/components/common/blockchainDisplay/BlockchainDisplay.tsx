@@ -58,7 +58,7 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
             icon: <AppIcons.Skale {...props} />,
             name: 'Skale'
         },
-        "UNSTOPPABLEDOMAIN": {
+        "UNSTOPPABLEDOMAINS": {
             icon: <AppIcons.UnstoppableDomainsIcon {...props} />,
             name: 'Unstoppable domain'
         },
@@ -69,6 +69,10 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
         "ETH": {
             icon: <AppIcons.ETH {...props} />,
             name: 'Eth'
+        },
+        "XRPL": {
+            icon: <AppIcons.XRPL {...props} />,
+            name: 'Xrpl'
         }
     }), [props])
 
