@@ -15,8 +15,8 @@ function PrivateKey() {
         <Flex direction={"column"} gap={"36px"}>
             <Flex direction={"column"} gap={"8px"}>
                 <Flex justifyContent={"space-between"} alignItems={"center"}>
-                    <AppTypography fontSize='18px' fontWeight='bold'>API KEY</AppTypography>
-                    <Link href={`https://${appDeveloment ? 'apiv3dev' : 'apiv3'}.droplinked.com/v1/public-apis/document`} target="_blank">
+                    <AppTypography fontSize='18px' fontWeight='bold'>Private Key</AppTypography>
+                    <Link href={`https://${appDeveloment ? 'apiv3dev' : 'apiv3'}.droplinked.com/api/privateapis#/`} target="_blank">
                         <AppTypography fontSize={"14px"} color={"#33A9EC"} textDecoration={"underline"} textDecorationColor={"#33A9EC"}>Documentation</AppTypography>
                     </Link>
                 </Flex>
