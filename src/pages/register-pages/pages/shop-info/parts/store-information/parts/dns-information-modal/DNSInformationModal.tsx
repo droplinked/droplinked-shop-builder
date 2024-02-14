@@ -48,7 +48,7 @@ function DNSInformationModal({ isOpen, close, dnsData }: Props) {
 
                 <Flex direction={"column"} gap={"16px"}>
                     {visibleButton &&
-                        <BasicButton sizes='medium' isLoading={isLoading} onClick={() => mutate({ domain_name: dnsData?.domain_name })}>
+                        <BasicButton sizes='medium' isLoading={isLoading} isDisabled={isLoading || dnsInformation} onClick={() => mutate({ domain_name: dnsData?.domain_name })}>
                             Check DNS Status
                         </BasicButton>
                     }
