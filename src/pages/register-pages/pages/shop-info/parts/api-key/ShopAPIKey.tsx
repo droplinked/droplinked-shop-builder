@@ -17,7 +17,7 @@ export default function ShopAPIKey() {
         <>
             <Flex direction={"column"} gap={"36px"}>
                 <Flex justifyContent={"space-between"} alignItems={"center"}>
-                    <AppTypography fontSize='18px' fontWeight='bold'>API KEY</AppTypography>
+                    <AppTypography fontSize='18px' fontWeight='bold'>API Key</AppTypography>
                     <Link
                         href={`https://${appDeveloment ? 'apiv3dev' : 'apiv3'}.droplinked.com/v1/public-apis/document`}
                         target="_blank">

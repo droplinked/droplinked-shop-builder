@@ -69,7 +69,6 @@ import { ReactComponent as Upload } from './upload-icon.svg';
 import { ReactComponent as VisibleIcon } from './visible-icon.svg';
 import { ReactComponent as WalletConnectIcon } from './WalletConnect.svg';
 import { ReactComponent as Web } from './web.svg';
-import { ReactComponent as WhiteAlert } from './white-alert.svg';
 import { ReactComponent as NFT } from './white-nft-icon.svg';
 import { ReactComponent as WhiteOpenWallet } from './white-open-wallet.svg';
 import { ReactComponent as WhiteShopIcon } from './white-shop.svg';
@@ -153,7 +152,6 @@ const AppIcons = {
   GrayDiscountIcon,
   RedTrash,
   XRPL,
-  WhiteAlert,
   GreenAlert,
   YellowAlert
 }
