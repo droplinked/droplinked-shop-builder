@@ -1,10 +1,16 @@
 import { Flex, Link } from '@chakra-ui/react'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
+import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
+import { getShopPrivateKeyService } from 'lib/apis/shop/shopServices'
 import { appDeveloment } from 'lib/utils/app/variable'
 import React from 'react'
+import { useQuery } from 'react-query'
 
 function PrivateKey() {
+    const { isLoading, data } = useQuery("shopPrivateKey", getShopPrivateKeyService, { refetchOnWindowFocus: false })
+    const privateKey = data?.data.data.privateKey
+
     return (
         <Flex direction={"column"} gap={"36px"}>
             <Flex direction={"column"} gap={"8px"}>
@@ -19,10 +25,13 @@ function PrivateKey() {
                 </AppTypography>
             </Flex>
 
-            <Flex justifyContent={"space-between"} alignItems={"center"}>
-                <AppTypography fontSize={"16px"} color={"#C2C2C2"}>ABCD-1234-EFGH-5678</AppTypography>
-                <ClipboardText text='ABCD-1234-EFGH-5678' />
-            </Flex>
+            {isLoading ? <AppSkeleton isLoaded={false} width={"100%"} height="24px">{''}</AppSkeleton> :
+                privateKey ? <Flex justifyContent={"space-between"} alignItems={"center"}>
+                    <AppTypography fontSize={"16px"} color={"#C2C2C2"}>{privateKey}</AppTypography>
+                    <ClipboardText text={`${privateKey}`} />
+                </Flex> : null
+            }
+
         </Flex>
     )
 }

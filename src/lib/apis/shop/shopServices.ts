@@ -90,3 +90,7 @@ export const getShopDNSInformationService = () => {
 export const getShopDNSStatusService = (data: ShopDNSInformation) => {
     return axiosInstance.post("shop/retrieve/domain/info", data)
 }
+
+export const getShopPrivateKeyService = () => {
+    return axiosInstance.get("shop/retrieve/privatekey")
+}
