@@ -3,7 +3,7 @@ import React from "react";
 
 export const OPTIONS = [
     {
-        icon: <AppIcons.Dashboard />, label: 'dashboard', path: ''
+        icon: <AppIcons.Dashboard />, label: 'Analytics', path: ''
     },
     {
         icon: <AppIcons.ProductsIcon />, label: 'Products', path: '/products'
