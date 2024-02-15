@@ -59,6 +59,7 @@ import { ReactComponent as SnapchatIcon } from './snapchat.svg';
 import { ReactComponent as Stacks } from './stacks-stx-logo.svg';
 import { ReactComponent as StarFilled } from './starFilled.svg';
 import { ReactComponent as StarOutline } from './starOutline.svg';
+import { ReactComponent as StripeS } from './stripe-s-icon.svg';
 import { ReactComponent as Stripe } from './stripe.svg';
 import { ReactComponent as TearIcon } from './tear-icon.svg';
 import { ReactComponent as TikTok } from './tiktok.svg';
@@ -153,6 +154,7 @@ const AppIcons = {
   RedTrash,
   XRPL,
   GreenAlert,
-  YellowAlert
+  YellowAlert,
+  StripeS
 }
 export default AppIcons

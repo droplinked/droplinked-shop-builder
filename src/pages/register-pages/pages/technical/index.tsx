@@ -7,6 +7,7 @@ import { useMutation } from "react-query";
 import { useLocation } from "react-router-dom";
 import technicalContext, { technicalContextState } from "./context";
 import technicalModel from "./model";
+import FinancialAccounts from "./parts/financial-accounts/FinancialAccounts";
 import Payments from "./parts/payment";
 import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
 import SupportedLoginMethods from "./parts/supported-login-methods/SupportedLoginMethods";
@@ -50,6 +51,7 @@ function Technical() {
       <PageContent>
         <VStack spacing={4} align="stretch">
           {/* <Ims /> */}
+          <FinancialAccounts />
           <SupportedLoginMethods />
           {Technical.imsType !== "SHOPIFY" && <Payments />}
           <Wallet />
