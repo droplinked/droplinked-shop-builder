@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
+import { AxiosResponse } from 'axios'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppCard from 'components/common/card/AppCard'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
@@ -14,29 +15,16 @@ import { useQuery } from 'react-query'
 function FinancialAccounts() {
     const [isLoading, setLoading] = useState(false)
     const { showToast } = useAppToast()
-    const { isLoading: isFetchingShopData, data: shop, refetch: refetchShopData } = useQuery({
+    const { isLoading: isFetchingShopData, data: shop } = useQuery({
         queryFn: getShopInformationService,
         refetchOnWindowFocus: false
     })
 
-    const handleConnectAccount = async () => {
+    const handleStripeActions = async (service: () => Promise<AxiosResponse>, target = "_self") => {
         try {
             setLoading(true)
-            const res = await createStripeOnboardingLinkService()
-            window.open(res.data.url, '_blank')
-        } catch (error) {
-            showToast({ message: (error as Error).message, type: 'error' })
-        }
-        finally {
-            setLoading(false)
-        }
-    }
-
-    const handleViewAccount = async () => {
-        try {
-            setLoading(true)
-            const res = await createStripeLoginLinkService()
-            window.open(res.data.url, '_blank')
+            const res = await service()
+            window.open(res.data.url, target)
         } catch (error) {
             showToast({ message: (error as Error).message, type: 'error' })
         }
@@ -57,13 +45,12 @@ function FinancialAccounts() {
                         <Flex alignItems='center' gap='16px'>
                             <AppIcons.StripeS />
                             <AppTypography fontSize='14px' fontWeight='bold' color='#C2C2C2'>Stripe</AppTypography>
-
                         </Flex>
                         <AppSkeleton isLoaded={!isFetchingShopData} height='32px'>
                             {
                                 shop?.data.data.onboardedExpressStripeAccount ?
-                                    <BasicButton variant='outline' sizes='medium' isLoading={isLoading} onClick={handleViewAccount}>View Account</BasicButton> :
-                                    <BasicButton sizes='medium' isLoading={isLoading} onClick={handleConnectAccount}>Connect Account</BasicButton>
+                                    <BasicButton variant='outline' sizes='medium' isLoading={isLoading} onClick={() => handleStripeActions(createStripeLoginLinkService, "_blank")}>View Account</BasicButton> :
+                                    <BasicButton sizes='medium' isLoading={isLoading} onClick={() => handleStripeActions(createStripeOnboardingLinkService)}>Connect Account</BasicButton>
                             }
                         </AppSkeleton>
                     </Flex>
