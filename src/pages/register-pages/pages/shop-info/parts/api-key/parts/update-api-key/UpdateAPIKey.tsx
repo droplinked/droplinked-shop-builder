@@ -17,7 +17,7 @@ function UpdateAPIKey() {
     const handleApiKeyCreation = async () => {
         try {
             if (!domainRegex.test(domain)) throw Error("Please enter a valid domain.")
-            await updateShopAPIKey.mutateAsync({ domains: [...fetchedData.domains, domain] })
+            await updateShopAPIKey.mutateAsync({ domains: [...(fetchedData?.domains || []), domain] })
             setDomain("")
             getShopAPIKey.refetch()
         } catch (error) {
