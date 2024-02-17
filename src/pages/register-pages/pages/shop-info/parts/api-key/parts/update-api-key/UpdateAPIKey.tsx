@@ -18,8 +18,8 @@ function UpdateAPIKey() {
         try {
             if (!domainRegex.test(domain)) throw Error("Please enter a valid domain.")
             await updateShopAPIKey.mutateAsync({ domains: [...(fetchedData?.domains || []), domain] })
+            await getShopAPIKey.refetch()
             setDomain("")
-            getShopAPIKey.refetch()
         } catch (error) {
             showToast({ message: (error as Error).message, type: "error" })
         }
