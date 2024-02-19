@@ -51,7 +51,7 @@ function ChainAccordion({ chain }: Props) {
                     const isChecked = targetChain && targetChain.wallets.find(w => w.name === wallet.name) ? true : false
                     return < Flex key={index} justifyContent={"space-between"} alignItems={"center"} >
                         <Flex alignItems={"center"} gap={"8px"}>
-                            {wallet.name === "metamask" ? <AppIcons.MetaMaskIcon /> : ChainIcon}
+                            {wallet.name.startsWith("metamask") ? <AppIcons.MetaMaskIcon /> : ChainIcon}
                             <AppTypography color={"#C2C2C2"}>{wallet.name}</AppTypography>
                         </Flex>
                         <AppSwitch onChange={(e) => handleActivateWallet({ ...wallet, isActivated: e.currentTarget.checked })} isChecked={isChecked} />
