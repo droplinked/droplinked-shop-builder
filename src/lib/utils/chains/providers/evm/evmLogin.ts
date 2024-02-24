@@ -40,7 +40,7 @@ let chainNames = {
     },
     [Chain.ETH]: {
         [Network.MAINNET]: { chainName: "Ethereum", chainId: "0x1", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://mainnet.infura.io/v3/'] },
-        [Network.TESTNET]: { chainName: "Ethereum", chainId: "0xaa36a7", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://eth-sepolia.public.blastapi.io/'] }
+        [Network.TESTNET]: { chainName: "Sepolia", chainId: "0xaa36a7", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://eth-sepolia.public.blastapi.io/'] }
     }
 };
 
