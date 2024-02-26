@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
 import { VStack } from '@chakra-ui/react'
-import ProductName from '../modules/name/ProductName'
-import DescriptionProduct from '../modules/description/DescriptionProduct'
-import ProductCollapse from '../modules/collapse/ProductCollapse'
-import ProductImages from '../modules/images/ProductImages'
-import AvailablePurchase from '../modules/available/AvailablePurchase'
-import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
-import NetworkDigital from '../modules/network/NetworkDigital'
+import React, { useContext } from 'react'
 import { productContext } from '../../context'
-import PrepurchaseDataGathering from '../modules/prepurchaseDataGathering/PrepurchaseDataGathering'
+import AvailablePurchase from '../modules/available/AvailablePurchase'
+import ProductCollapse from '../modules/collapse/ProductCollapse'
+import DescriptionProduct from '../modules/description/DescriptionProduct'
+import ProductImages from '../modules/images/ProductImages'
+import ProductName from '../modules/name/ProductName'
+import NetworkDigital from '../modules/network/NetworkDigital'
+import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
+import PrepurchaseDataGatheringCheckbox from '../modules/prepurchaseDataGathering/PrepurchaseDataGatheringCheckbox'
 
 interface Iprops {
     open?: boolean
@@ -25,7 +25,7 @@ function General({ open = true }: Iprops) {
                 <ProductPovProvider />
                 <ProductImages />
                 <AvailablePurchase />
-                <PrepurchaseDataGathering />
+                <PrepurchaseDataGatheringCheckbox />
                 <NetworkDigital />
             </VStack>
         </ProductCollapse>
