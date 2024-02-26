@@ -8,9 +8,9 @@ import OrderDetailsModel from "./model";
 const OrderInformation = () => {
     const { order } = useContext(orderModalContext)
     const information = [
-        { label: "Status", value: order?.status, style: { color: "#2BCFA1" } },
-        { label: "Order ID", value: order?.orderId },
-        { label: "Transaction ID", value: order?.transactionId, style: { color: "#33A9EC", cursor: "pointer" } },
+        { label: "Status", value: order?.orderInformation?.status, style: { color: "#2BCFA1" } },
+        { label: "Order ID", value: order?.orderInformation?.orderId },
+        { label: "Transaction ID", value: order?.orderInformation?.transactionId, style: { color: "#33A9EC", cursor: "pointer" } },
     ]
 
     return (
