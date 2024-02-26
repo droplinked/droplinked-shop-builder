@@ -10,7 +10,7 @@ export default function OrderDetails() {
 
     return (
         <>
-            {orderDetails && orderDetails.length ? orderDetails.map((section, index) => <Flex direction={"column"} gap={"16px"} key={index}>
+            {orderDetails && orderDetails.length ? orderDetails.filter(section => section.renderCondition !== false).map((section, index) => <Flex direction={"column"} gap={"16px"} key={index}>
                 <AppTypography fontSize={"16px"} fontWeight={500} color={"#FFFFFF"}>{section.title}</AppTypography>
                 <Flex direction={"column"} gap={"12px"}>
                     {section.rows.map((row, index) =>
