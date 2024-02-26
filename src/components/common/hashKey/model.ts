@@ -24,6 +24,8 @@ const hashkeyModel = {
                 return `https://base${appDeveloment ? "-goerli" : ""}.blockscout.com/tx/${hashkey}`;
             case "LINEA":
                 return `https://${appDeveloment ? "goerli" : ""}.lineascan.build/tx/${hashkey}`
+            case "ETH":
+                return `https://${appDeveloment? "sepolia": ""}.etherscan.io/tx/${hashkey}`
             default:
                 return ""
         }
