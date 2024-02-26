@@ -60,7 +60,11 @@ export interface IproductState {
     mainCategory?: string
     subCategories?: Array<string>
     technique?: string
-    isAddToCartDisabled?: boolean
+    isAddToCartDisabled?: boolean;
+    pre_purchase_data_fetch: {
+        active: boolean;
+        title: string;
+    }
 }
 
 export interface IpropertiesItems {

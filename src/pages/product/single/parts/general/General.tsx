@@ -8,6 +8,7 @@ import AvailablePurchase from '../modules/available/AvailablePurchase'
 import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
 import NetworkDigital from '../modules/network/NetworkDigital'
 import { productContext } from '../../context'
+import PrepurchaseDataGathering from '../modules/prepurchaseDataGathering/PrepurchaseDataGathering'
 
 interface Iprops {
     open?: boolean
@@ -24,6 +25,7 @@ function General({ open = true }: Iprops) {
                 <ProductPovProvider />
                 <ProductImages />
                 <AvailablePurchase />
+                <PrepurchaseDataGathering />
                 <NetworkDigital />
             </VStack>
         </ProductCollapse>
