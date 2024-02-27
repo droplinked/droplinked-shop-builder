@@ -4,8 +4,6 @@ import AppTypography from "components/common/typography/AppTypography";
 import React from "react";
 
 namespace OrderDetailsModel {
-    type title = "Shipping" | "Tax" | "Gift Card" | "Affiliate" | "Commission" | "Payment Detail"
-
     function formattedPrice(price: number) {
         return <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>
             {`$${price.toFixed(2)}`}{" "}
@@ -14,24 +12,24 @@ namespace OrderDetailsModel {
     }
 
     export const getOrderDetails = (order: any) => {
-        const detailsMap: { title: title, renderCondition?: boolean, rows: { label: string, value: React.ReactNode }[] }[] = [
-            {
+        const detailsMap = {
+            shippings: {
+                order: 1,
                 title: "Shipping",
-                renderCondition: !!order?.shippings,
-                rows: order?.shippings?.map(item => ({ label: item.title, value: formattedPrice(item.value) })) || []
+                rows: order?.shippings?.map(item => ({ label: item.title, value: formattedPrice(item.value) }))
             },
-            {
+            tax: {
+                order: 2,
                 title: "Tax",
-                renderCondition: !!order?.tax?.total,
                 rows: [
                     { label: "Shop", value: formattedPrice(order?.tax?.shop || 0) },
                     { label: "Droplinked", value: formattedPrice(order?.tax?.droplinked || 0) },
                     { label: "Total Tax", value: formattedPrice(order?.tax?.total || 0) },
                 ]
             },
-            {
+            giftCard: {
+                order: 3,
                 title: "Gift Card",
-                renderCondition: !!order?.giftCard?.amount,
                 rows: [
                     { label: "Applied Gift Cart / Discount", value: formattedPrice(order?.giftCard?.amount || 0) },
                     { label: "Applied Ruleset", value: formattedPrice(order?.giftCard?.ruleset || 0) },
@@ -39,9 +37,9 @@ namespace OrderDetailsModel {
                     { label: "Credit", value: formattedPrice(order?.giftCard?.credit || 0) },
                 ]
             },
-            {
+            affiliates: {
+                order: 4,
                 title: "Affiliate",
-                renderCondition: !!order?.affiliates,
                 rows: [
                     { label: "Total Affiliated Products", value: formattedPrice(order?.affiliates?.[0].total || 0) },
                     { label: "Publisher Profit", value: formattedPrice(order?.affiliates?.[0].publisherProfit || 0) },
@@ -52,14 +50,16 @@ namespace OrderDetailsModel {
                     },
                 ]
             },
-            {
+            commision: {
+                order: 5,
                 title: "Commission",
                 rows: [
                     { label: "Droplinked Commission", value: formattedPrice(order?.commision?.droplinked || 0) },
                     { label: "Stripe Commission", value: formattedPrice(order?.commision?.stripe || 0) },
                 ]
             },
-            {
+            details: {
+                order: 6,
                 title: "Payment Detail",
                 rows: [
                     { label: "Total Products", value: formattedPrice(order?.details?.products || 0) },
@@ -70,19 +70,29 @@ namespace OrderDetailsModel {
                     { label: "Net Profit", value: formattedPrice(order?.details?.profit || 0) },
                     {
                         label: "Paid with",
-                        value: <Flex alignItems={"center"} gap={"5px"}>
-                            <BlockchainDisplay show="icon" blockchain={order?.details?.paidWith} props={{ width: "20px", height: "20px" }} />
-                            <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>
-                                {order?.details?.paidWith && <BlockchainDisplay show="name" blockchain={order?.details?.paidWith} />}{" "}
-                                payment
-                            </AppTypography>
-                        </Flex>
+                        value:
+                            <Flex alignItems={"center"} gap={"5px"}>
+                                <BlockchainDisplay show="icon" blockchain={order?.details?.paidWith} props={{ width: "20px", height: "20px" }} />
+                                <AppTypography fontSize={"14px"} fontWeight={500} color={"#FFFFFF"}>
+                                    {order?.details?.paidWith && <BlockchainDisplay show="name" blockchain={order?.details?.paidWith} />}{" "}
+                                    payment
+                                </AppTypography>
+                            </Flex>
                     }
                 ]
             },
-        ]
+        }
 
-        return detailsMap
+        return Object.keys(order || {}).filter(key => !["customer", "orderInformation", "items"].includes(key))
+            .map(key => {
+                const targetSection = detailsMap[key]
+                return {
+                    order: targetSection?.order,
+                    title: targetSection?.title,
+                    rows: targetSection?.rows
+                }
+            })
+            .sort((a, b) => a.order - b.order)
     };
 
 }

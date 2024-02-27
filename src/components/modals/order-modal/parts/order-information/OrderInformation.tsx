@@ -3,12 +3,12 @@ import AppIcons from "assest/icon/Appicons";
 import AppTypography from 'components/common/typography/AppTypography';
 import React, { useContext } from "react";
 import orderModalContext from "../context";
-import OrderDetailsModel from "./model";
+import OrderInformationModel from "./model";
 
 const OrderInformation = () => {
     const { order } = useContext(orderModalContext)
     const information = [
-        { label: "Status", value: order?.orderInformation?.status, style: { color: "#2BCFA1" } },
+        { label: "Status", value: order?.orderInformation?.status, style: { color: OrderInformationModel.getOrderStatusColor(order?.orderInformation?.status) } },
         { label: "Order ID", value: order?.orderInformation?.orderId },
         { label: "Transaction ID", value: order?.orderInformation?.transactionId, style: { color: "#33A9EC", cursor: "pointer" } },
     ]
@@ -32,7 +32,7 @@ const OrderInformation = () => {
                                     row.value
                                     :
                                     <Link
-                                        href={OrderDetailsModel.getTransactionLink(order)}
+                                        href={OrderInformationModel.getTransactionLink(order)}
                                         target={"_blank"}
                                         textDecoration={"underline"}
                                         isExternal
