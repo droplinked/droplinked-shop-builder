@@ -1,7 +1,5 @@
-import { IshopUpdateService } from "lib/apis/shop/interfaces";
 import AppStorage from "lib/utils/app/sessions";
 import useHookStore from "../store/useHookStore";
-
 
 //this hook have been used for handle shop and user data
 export function useProfile() {
