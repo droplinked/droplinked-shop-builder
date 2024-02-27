@@ -20,7 +20,7 @@ interface Iform {
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
   const { app: { login, loading } } = useHookStore()
   const { showToast } = useAppToast()
-  const { shopRoute, shopNavigate } = useCustomNavigate()
+  const { shopNavigate } = useCustomNavigate()
 
   // submit form function
   const onSubmit = async (data: Iform) => {
