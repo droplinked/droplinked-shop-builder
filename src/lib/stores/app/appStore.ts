@@ -49,7 +49,7 @@ const states = (set: any, get: any): IAppStore => ({
                 set({ loading: true })
                 const data = await authLoginService(params)
                 const result = data.data.data
-                if (!result?.user || !result?.shop) throw Error('Somthing went wrong')
+                if (!result?.user || !result?.shop) throw Error('This user cannot log in')
                 let status = appDeveloment && result?.user?.status === "NEW" ? "VERIFIED" : result?.user?.status
 
                 set({
