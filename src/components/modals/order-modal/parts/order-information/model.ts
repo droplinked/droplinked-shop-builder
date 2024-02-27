@@ -20,6 +20,8 @@ namespace OrderDetailsModel {
                 return `https://base${appDeveloment ? "-goerli" : ""}.blockscout.com/tx/${transactionId}`;
             case "LINEA":
                 return `https://${appDeveloment ? "goerli" : ""}.lineascan.build/tx/${transactionId}`
+            case "ETH":
+                return `https://${appDeveloment? "sepolia": ""}.etherscan.io/tx/${transactionId}`
             default:
                 return ""
         }
