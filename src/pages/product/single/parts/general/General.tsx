@@ -7,8 +7,8 @@ import DescriptionProduct from '../modules/description/DescriptionProduct'
 import ProductImages from '../modules/images/ProductImages'
 import ProductName from '../modules/name/ProductName'
 import NetworkDigital from '../modules/network/NetworkDigital'
+import PostPurchaseDataGatheringCheckbox from '../modules/postPurchaseDataGathering/PostPurchaseDataGatheringCheckbox'
 import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
-import PrepurchaseDataGatheringCheckbox from '../modules/prepurchaseDataGathering/PrepurchaseDataGatheringCheckbox'
 
 interface Iprops {
     open?: boolean
@@ -25,7 +25,7 @@ function General({ open = true }: Iprops) {
                 <ProductPovProvider />
                 <ProductImages />
                 <AvailablePurchase />
-                <PrepurchaseDataGatheringCheckbox />
+                <PostPurchaseDataGatheringCheckbox />
                 <NetworkDigital />
             </VStack>
         </ProductCollapse>
