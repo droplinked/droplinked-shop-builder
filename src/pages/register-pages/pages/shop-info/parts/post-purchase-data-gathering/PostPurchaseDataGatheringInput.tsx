@@ -9,13 +9,13 @@ interface Props {
     updateStates: (key: string, value: any) => void
 }
 
-function PrepurchaseDataGatheringInput({ States, updateStates }: Props) {
+function PostPurchaseDataGatheringInput({ States, updateStates }: Props) {
     return (
         <Flex direction={"column"} gap={"36px"}>
-            <AppTypography fontSize='18px' fontWeight='bold'>Pre-purchase Data Gathering</AppTypography>
+            <AppTypography fontSize='18px' fontWeight='bold'>Post-purchase Data Gathering</AppTypography>
             <AppInput
-                name="pre-purchase data gathering"
-                placeholder="christmas cat mug"
+                name="post-purchase-gata-gathering"
+                placeholder="Add a note for your purchase"
                 value={States.pre_purchase_data_fetch?.title}
                 onChange={({ currentTarget: { value } }) => updateStates("pre_purchase_data_fetch", !value ? null : { active: true, title: value })}
             />
@@ -23,4 +23,4 @@ function PrepurchaseDataGatheringInput({ States, updateStates }: Props) {
     )
 }
 
-export default PrepurchaseDataGatheringInput
+export default PostPurchaseDataGatheringInput

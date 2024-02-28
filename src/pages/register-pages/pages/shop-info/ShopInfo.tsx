@@ -6,7 +6,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import ShopInfoAddress from './parts/address/shopInfoAddress'
 import ShopAPIKey from './parts/api-key/ShopAPIKey'
-import PrepurchaseDataGatheringInput from './parts/prepurchase-data-gathering/PrepurchaseDataGatheringInput'
+import PostPurchaseDataGatheringInput from './parts/post-purchase-data-gathering/PostPurchaseDataGatheringInput'
 import PrivateKey from './parts/private-key/PrivateKey'
 import StoreInformation from './parts/store-information/StoreInformation'
 import ShopInfoSubmit from './parts/submit/ShopInfoSubmit'
@@ -54,7 +54,7 @@ function RegisterShopInfo() {
       {/* <AppCard><ShopTag updateStates={updateStates} value={States.tags} /></AppCard> */}
       <AppCard><ShopAPIKey /></AppCard>
       <AppCard><PrivateKey /></AppCard>
-      <AppCard><PrepurchaseDataGatheringInput States={States} updateStates={updateStates} /></AppCard>
+      <AppCard><PostPurchaseDataGatheringInput States={States} updateStates={updateStates} /></AppCard>
       <Flex justifyContent={"right"}><ShopInfoSubmit States={States} /></Flex>
     </VStack>
   )
