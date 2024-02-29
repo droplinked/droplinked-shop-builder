@@ -11,13 +11,14 @@ const OrderInformation = () => {
         { label: "Status", value: order?.status, style: { color: "#2BCFA1" } },
         { label: "Order ID", value: order?.orderId },
         { label: "Transaction ID", value: order?.transactionId, style: { color: "#33A9EC", cursor: "pointer" } },
+        { label: order?.details?.post_purchase_data_fetch?.title, value: order?.details?.post_purchase_data_fetch?.data },
     ]
 
     return (
         <Flex direction={"column"} gap={"16px"}>
             <AppTypography fontSize={"16px"} fontWeight={500} color={"#FFFFFF"}>Order Information</AppTypography>
             <Flex direction={"column"} gap={"12px"} as="dl">
-                {information.filter(row => row.value).map((row, index) =>
+                {information.filter(row => row.label && row.value).map((row, index) =>
                     <Flex key={index} alignItems={"center"}>
                         <AppTypography flexShrink={0} width={"200px"} fontSize={"14px"} color={"#C2C2C2"} as="dt">{row.label}</AppTypography>
                         <AppTypography
