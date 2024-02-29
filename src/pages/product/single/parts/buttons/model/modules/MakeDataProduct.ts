@@ -54,6 +54,7 @@ const MakeDataProductModel = ({
             "subCategories": state.subCategories,
             "technique": state.technique,
             "isAddToCartDisabled": state.isAddToCartDisabled,
+            "pre_purchase_data_fetch": state.pre_purchase_data_fetch,
             ...state.shippingPrice && { "shippingPrice": state.shippingPrice },
         }
     }

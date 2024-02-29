@@ -49,8 +49,12 @@ export interface IshopUpdateService extends IshopSocial {
     infoEmail?: string
     imsType?: string;
     paymentMethods: any[];
-    loginMethods: IAuthSupportedWalletsService[]
-    credit?: number
+    loginMethods: IAuthSupportedWalletsService[];
+    credit?: number;
+    pre_purchase_data_fetch?: {
+        active: boolean,
+        title: string
+    }
 }
 
 export interface IShopRecordedService {
