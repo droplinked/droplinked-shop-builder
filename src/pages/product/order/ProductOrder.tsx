@@ -5,6 +5,7 @@ import AppCard from 'components/common/card/AppCard'
 import ProductOrderSkues from './parts/steps/skues/ProductOrderSkues'
 import productOrderContext, { productOrderStates } from './context'
 import ProductOrderAddress from './parts/steps/address/ProductOrderAddress'
+import ProductOrderShipments from './parts/steps/shipments/ProductOrderShipments'
 
 function ProductOrder() {
     const [States, setStates] = useState(productOrderStates)
@@ -24,6 +25,7 @@ function ProductOrder() {
                         </VStack>
                         <ProductOrderSkues />
                         <ProductOrderAddress />
+                        <ProductOrderShipments />
                     </VStack>
                 </AppCard>
             </Flex>
