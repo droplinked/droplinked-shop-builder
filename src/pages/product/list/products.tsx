@@ -46,6 +46,8 @@ function Products() {
             fetch,
         }) : []
     }, [products, fetch])
+    console.log("rows",rows);
+    
 
     // Update parametrs url 
     const updateFilters = useCallback((key: string, value: string) => {

@@ -14,6 +14,7 @@ import DashboardPage from "pages/dashboard/DashboardPage";
 import NFTs from "pages/nfts/NFTs";
 import Orders from "pages/orders/Orders";
 import Products from "pages/product/list/products";
+import ProductOrder from "pages/product/order/ProductOrder";
 import ProductTypes from "pages/product/types/ProductTypes";
 import AboutUs from "pages/public-pages/about/AboutUs";
 import Enquiry from 'pages/public-pages/enquiry-page/EnquiryPage';
@@ -67,6 +68,7 @@ function AppRoutes() {
           <Route path="products">
             <Route index element={<Products />} />
             <Route path="types" element={<ProductTypes />} />
+            <Route path="order/:productID" element={<ProductOrder />} />
             <Route path="create/:type" element={<ProductSingle />} />
             <Route path=":productId" element={<ProductSingle />} />
           </Route>
