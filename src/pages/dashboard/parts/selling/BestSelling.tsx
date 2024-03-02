@@ -16,7 +16,7 @@ import { IbestProducts } from 'lib/apis/dashboard/interfaces'
 function BestSelling() {
     const { states: { dateRange: { from, to } } } = useContext(dashboardPageContext)
     const { mutate, data, isLoading } = useMutation((params: IbestProducts) => getBestSelledProducts(params))
-    useEffect(() => mutate({ from, to} ), [from, to])
+    useEffect(() => mutate({ from, to }), [from, to])
 
     const items: Array<ITableRows> = useMemo(() => {
         return data?.data?.data ? data?.data?.data.map(el => ({

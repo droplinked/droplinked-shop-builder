@@ -14,3 +14,10 @@ export interface IbestProducts {
     to: Date
 }
 
+export interface IClarityData {
+    shopName: string;
+    totalSessionCount: number;
+    pagesPerSession: number;
+    activeTimeSpent: number;
+    topCountries: Record<string, number>
+}
