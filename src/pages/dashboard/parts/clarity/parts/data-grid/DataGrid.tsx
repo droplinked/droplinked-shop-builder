@@ -7,7 +7,11 @@ function DataGrid() {
     const { clarityData } = useContext(clarityContext)
 
     return (
-        <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }} templateRows={"repeat(2, 1fr)"} gap={"24px"}>
+        <Grid
+            templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+            templateRows={"repeat(2, 1fr)"} gap={6}
+            height={"fit-content"}
+        >
             <Item title='Sessions' value={clarityData?.totalSessionCount || "-"} />
             <Item title='Pages Per Session' value={clarityData?.pagesPerSession || "-"} />
             <GridItem colSpan={{ base: 1, md: 2 }}>

@@ -12,7 +12,7 @@ function Clarity() {
 
     return (
         <clarityContext.Provider value={{ clarityData, isLoading }}>
-            <SimpleGrid columns={{ sm: 1, lg: 2 }} gap={"24px"}>
+            <SimpleGrid columns={{ sm: 1, lg: 2 }} gap={6}>
                 <DataGrid />
                 <BestSellingProducts />
             </SimpleGrid>
