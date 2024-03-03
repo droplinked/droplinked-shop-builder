@@ -12,8 +12,6 @@ function ProductOrder() {
 
     const updateState = (key, value) => setStates(prev => ({ ...prev, [key]: value }))
 
-    console.log("States", States);
-
     return (
         <productOrderContext.Provider value={{ methods: { updateState }, params: { ...States } }}>
             <Flex justifyContent="center">

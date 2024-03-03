@@ -18,6 +18,7 @@ interface IproductOrderStates {
     skus: IproductOrderSkues
     address: IcreateAddressService
     shipmentRates: Array<IshipmentRates>
+    rateId: string
 }
 
 interface IProps {
@@ -30,7 +31,8 @@ interface IProps {
 export const productOrderStates: IproductOrderStates = {
     address: {} as IcreateAddressService,
     skus: {} as IproductOrderSkues,
-    shipmentRates: {} as Array<IshipmentRates>
+    shipmentRates: {} as Array<IshipmentRates>,
+    rateId: null
 }
 
 const productOrderContext = createContext<IProps>({} as IProps)

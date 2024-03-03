@@ -13,3 +13,7 @@ export interface IcrateSampleService {
     skus: IcrateSampleServiceSkues[]
     address: IcreateAddressService
 }
+
+export interface IupdateSampleService {
+    rateId: string
+}

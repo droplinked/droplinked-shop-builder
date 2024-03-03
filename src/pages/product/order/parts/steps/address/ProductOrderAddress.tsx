@@ -15,7 +15,7 @@ import { createSampleService } from 'lib/apis/order/services';
 import { IcrateSampleService } from 'lib/apis/order/interfaces';
 
 function ProductOrderAddress() {
-    const { params: { skus }, methods: { updateState } } = useContext(productOrderContext)
+    const { params: { skus, shipmentRates }, methods: { updateState } } = useContext(productOrderContext)
     const countryService = useQuery({
         queryFn: allCountriesService,
         queryKey: "allCountriesService",
@@ -121,9 +121,11 @@ function ProductOrderAddress() {
                                     <AppInput name='zipcode' value={values.zip} error={errors.zip} onChange={(e: any) => setFieldValue('zip', e.target.value)} label='Zip Code' isRequired />
                                 </Box>
                             </Flex>
-                            <Flex flexDirection="row-reverse">
-                                <BasicButton type='submit' isLoading={createSample.isLoading}>Next</BasicButton>
-                            </Flex>
+                            {!shipmentRates && !Object.keys(shipmentRates).length ? (
+                                <Flex flexDirection="row-reverse">
+                                    <BasicButton type='submit' isLoading={createSample.isLoading}>Next</BasicButton>
+                                </Flex>
+                            ) : null}
                         </VStack>
                     </Form>
                 )}
