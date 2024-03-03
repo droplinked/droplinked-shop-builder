@@ -9,7 +9,8 @@ function DataGrid() {
     return (
         <Grid
             templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
-            templateRows={"repeat(2, 1fr)"} gap={6}
+            templateRows={"repeat(2, 1fr)"}
+            gap={6}
             height={"fit-content"}
         >
             <Item title='Sessions' value={clarityData?.totalSessionCount || "-"} />
