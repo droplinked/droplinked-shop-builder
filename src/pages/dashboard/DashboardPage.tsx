@@ -3,6 +3,7 @@ import AppCard from 'components/common/card/AppCard'
 import React, { useState } from 'react'
 import dashboardPageContext, { dashboardPageState } from './context'
 import DashboardCharts from './parts/charts/DashboardCharts'
+import Clarity from './parts/clarity/Clarity'
 import ProductGroups from './parts/groups/ProductGroups'
 import PartnersDashboard from './parts/partner/PartnersDashboard'
 import BestSelling from './parts/selling/BestSelling'
@@ -25,6 +26,7 @@ function DashboardPage() {
             <AppCard boxProps={{ padding: "30px" }}><ProductGroups /></AppCard>
           </VStack>
         </Flex>
+        <Clarity />
         <AppCard boxProps={{ padding: "30px" }}><PartnersDashboard /></AppCard>
       </VStack>
     </dashboardPageContext.Provider>

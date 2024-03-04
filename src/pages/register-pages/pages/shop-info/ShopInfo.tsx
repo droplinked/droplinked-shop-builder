@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import ShopInfoAddress from './parts/address/shopInfoAddress'
 import ShopAPIKey from './parts/api-key/ShopAPIKey'
+import PostPurchaseDataGatheringInput from './parts/post-purchase-data-gathering/PostPurchaseDataGatheringInput'
 import PrivateKey from './parts/private-key/PrivateKey'
 import StoreInformation from './parts/store-information/StoreInformation'
 import ShopInfoSubmit from './parts/submit/ShopInfoSubmit'
@@ -14,6 +15,10 @@ export interface IstatesShopInfo {
   description: string
   addressBookID: string
   tags?: Array<string>
+  pre_purchase_data_fetch: {
+    active: boolean,
+    title: string
+  } | null
 }
 
 function RegisterShopInfo() {
@@ -22,7 +27,8 @@ function RegisterShopInfo() {
   const [States, setStates] = useState<IstatesShopInfo>({
     description: null,
     addressBookID: null,
-    tags: []
+    tags: [],
+    pre_purchase_data_fetch: null
   })
   const address = addressService.data?.data?.data
 
@@ -38,6 +44,7 @@ function RegisterShopInfo() {
   useEffect(() => {
     if (shop?.description) updateStates("description", shop.description)
     if (shop?.tags) updateStates("tags", shop.tags)
+    if (shop?.pre_purchase_data_fetch) updateStates("pre_purchase_data_fetch", shop.pre_purchase_data_fetch)
   }, [shop])
 
   return (
@@ -47,6 +54,7 @@ function RegisterShopInfo() {
       {/* <AppCard><ShopTag updateStates={updateStates} value={States.tags} /></AppCard> */}
       <AppCard><ShopAPIKey /></AppCard>
       <AppCard><PrivateKey /></AppCard>
+      <AppCard><PostPurchaseDataGatheringInput States={States} updateStates={updateStates} /></AppCard>
       <Flex justifyContent={"right"}><ShopInfoSubmit States={States} /></Flex>
     </VStack>
   )
