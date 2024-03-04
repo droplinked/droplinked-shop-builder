@@ -1,17 +1,17 @@
+import { useDisclosure } from '@chakra-ui/hooks'
 import AppDataGrid from 'components/common/datagrid/DataGrid'
+import useHookStore from 'functions/hooks/store/useHookStore'
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { IproductList } from 'lib/apis/product/interfaces'
 import { productServices } from 'lib/apis/product/productServices'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import ProductListModel from './model'
-import ProductEmpty from './parts/empty/ProductEmpty'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
-import useHookStore from 'functions/hooks/store/useHookStore'
-import { useDisclosure } from '@chakra-ui/hooks'
 import ConfirmDeleteAll from './parts/deleteAll/ConfirmDeleteAll'
-import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
+import ProductEmpty from './parts/empty/ProductEmpty'
 
 function Products() {
     const { data: { collection } } = useHookStore()
@@ -32,7 +32,7 @@ function Products() {
     // Fetch service
     const fetch = useCallback(() => {
         const filter = searchParams.get("filter")
-        mutate({ limit: 10, page: page, ...filter && { filter } })
+        mutate({ limit: 15, page: page, ...filter && { filter } })
     }, [page, searchParams])
 
     useEffect(() => fetch(), [mutate, page, searchParams])
