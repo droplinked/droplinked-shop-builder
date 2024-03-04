@@ -2,22 +2,20 @@ import { Flex, VStack } from '@chakra-ui/react'
 import { PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import useAppToast from 'functions/hooks/toast/useToast'
-import { useProfile } from 'functions/hooks/useProfile/useProfile'
-import CouponsSettingContext from 'pages/register-pages/pages/coupons/context'
-import React, { useContext, useState } from 'react'
-import rechargeContext from '../../../context'
+import React, { useState } from 'react'
 
-function CheckoutForm() {
+export interface IFormStripe {
+    onSuccess: Function
+    cancel: Function
+}
+function CheckoutForm({ onSuccess, cancel }: IFormStripe) {
     const [States, setStates] = useState({
         loading: false,
         complete: false
     })
-    const { close } = useContext(rechargeContext)
-    const { fetch } = useContext(CouponsSettingContext)
     const stripe = useStripe();
     const elements = useElements();
     const { showToast } = useAppToast();
-    const { updateShopData } = useProfile()
     const setLoading = (loading: boolean) => setStates(prev => ({ ...prev, loading }))
 
     const handleSubmit = async (event) => {
@@ -27,12 +25,8 @@ function CheckoutForm() {
         try {
             setLoading(true)
             await stripe.confirmPayment({ elements, redirect: "if_required" });
-            await fetch()
-            await updateShopData()
+            onSuccess()
             setLoading(false)
-            close()
-
-            showToast({ message: "Payment confirmed! Your credit has been added successfully", type: 'success' });
         } catch (error) {
             setLoading(false)
             showToast({ message: error?.message, type: 'error' });
@@ -44,7 +38,7 @@ function CheckoutForm() {
             <VStack align="stretch" spacing="30px">
                 <PaymentElement onChange={(e) => setStates((prev) => ({ ...prev, complete: e.complete }))} />
                 <Flex justifyContent="space-between">
-                    <BasicButton variant='outline' onClick={close}>Cancel</BasicButton>
+                    <BasicButton variant='outline' onClick={() => cancel()}>Cancel</BasicButton>
                     <BasicButton type='submit' isDisabled={!States.complete} isLoading={States.loading}>Pay</BasicButton>
                 </Flex>
             </VStack>
