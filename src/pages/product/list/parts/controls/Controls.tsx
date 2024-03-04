@@ -63,6 +63,10 @@ function ControlsListProduct({ productID, product, fetch }) {
             caption: "Publish",
             onClick: publish
         })
+        if (product?.product_type === 'PRINT_ON_DEMAND' && product?.publish_status === "PUBLISHED") list.push({
+            caption: "Order Product Sample",
+            onClick: () => shopNavigate(`products/order/${productID}`)
+        })
 
         return list
     }, [product])
