@@ -8,10 +8,11 @@ import productOrderContext from 'pages/product/order/context'
 import React, { useContext } from 'react'
 import { useMutation } from 'react-query'
 import ProductOrderCard from '../../card/ProductOrderCard'
+import classes from './style.module.scss'
 
 function ProductOrderShipments() {
     const { params: { shipmentRates, rateId }, methods: { updateState } } = useContext(productOrderContext)
-    const { mutateAsync } = useMutation((params: IupdateSampleService) => updateSampleService(params))
+    const { mutateAsync, isLoading } = useMutation((params: IupdateSampleService) => updateSampleService(params))
     const { showToast } = useAppToast()
 
     const submit = async () => {
@@ -26,7 +27,7 @@ function ProductOrderShipments() {
     return shipmentRates && Object.keys(shipmentRates).length ? (
         <ProductOrderCard title="Shipping Methods">
             <VStack align="stretch" spacing="15px">
-                <RadioGroup onChange={e => updateState('rateId', e)}>
+                <RadioGroup className={classes.fullwidth} onChange={e => updateState('rateId', e)}>
                     <VStack align="stretch" spacing="15px">
                         {shipmentRates.map((el, key) => (
                             <Box key={key} border={`1px solid ${el.id === rateId ? "#FFF" : "#616161"}`} padding="15px" borderRadius="8px">
@@ -51,7 +52,10 @@ function ProductOrderShipments() {
                         ))}
                     </VStack>
                 </RadioGroup>
-                <Flex flexDirection="row-reverse"><BasicButton onClick={submit}>Pay with Stripe</BasicButton></Flex>
+                <Flex flexDirection="row-reverse" gap="20px">
+                    <BasicButton onClick={submit} isLoading={isLoading}>Pay with Stripe</BasicButton>
+                    <BasicButton onClick={() => updateState('shipmentRates', [])} variant="outline">Back</BasicButton>
+                </Flex>
             </VStack>
         </ProductOrderCard >
     ) : null

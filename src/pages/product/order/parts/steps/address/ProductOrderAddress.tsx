@@ -35,9 +35,8 @@ function ProductOrderAddress() {
             if (!Object.keys(skus).length) throw Error('Please enter skues')
             const { data } = await createSample.mutateAsync({ address: params, skus: Object.values(skus) })
             updateState('shipmentRates', data?.data?.shipmentRates);
-
-        } catch (error) {
-            showToast({ type: 'error', message: error?.message })
+        } catch (error) {            
+            showToast({ type: 'error', message: error?.response?.data?.data?.message || error?.message || 'An error occurred' })
         }
     }
 
@@ -121,7 +120,7 @@ function ProductOrderAddress() {
                                     <AppInput name='zipcode' value={values.zip} error={errors.zip} onChange={(e: any) => setFieldValue('zip', e.target.value)} label='Zip Code' isRequired />
                                 </Box>
                             </Flex>
-                            {!shipmentRates && !Object.keys(shipmentRates).length ? (
+                            {!Object.keys(shipmentRates).length ? (
                                 <Flex flexDirection="row-reverse">
                                     <BasicButton type='submit' isLoading={createSample.isLoading}>Next</BasicButton>
                                 </Flex>
