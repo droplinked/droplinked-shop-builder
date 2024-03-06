@@ -7,11 +7,12 @@ const stripePromise = loadStripe(`${appDeveloment ? process.env.REACT_APP_STRIPE
 
 interface IProps extends IFormStripe {
   clientSecret: string
+  amount?: number
 }
-function AppStripe({ clientSecret, cancel, onSuccess }: IProps) {
+function AppStripe({ clientSecret, amount, cancel, onSuccess }: IProps) {
   return (
     <Elements stripe={stripePromise} options={{ clientSecret, appearance: { theme: "night" }, paymentMethodCreation: "manual" }}>
-      <CheckoutForm cancel={cancel} onSuccess={onSuccess} />
+      <CheckoutForm cancel={cancel} onSuccess={onSuccess} amount={amount} />
     </Elements>
   )
 }

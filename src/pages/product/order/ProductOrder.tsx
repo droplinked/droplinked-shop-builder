@@ -1,30 +1,29 @@
-import { Flex, VStack } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
-import React, { useEffect, useState } from 'react'
+import { Flex } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
-import ProductOrderSkues from './parts/steps/skues/ProductOrderSkues'
+import AppTypography from 'components/common/typography/AppTypography'
+import React, { useState } from 'react'
 import productOrderContext, { productOrderStates } from './context'
 import ProductOrderAddress from './parts/steps/address/ProductOrderAddress'
 import ProductOrderShipments from './parts/steps/shipments/ProductOrderShipments'
+import ProductOrderSkues from './parts/steps/skues/ProductOrderSkues'
 
 function ProductOrder() {
     const [States, setStates] = useState(productOrderStates)
-
     const updateState = (key, value) => setStates(prev => ({ ...prev, [key]: value }))
 
     return (
         <productOrderContext.Provider value={{ methods: { updateState }, params: { ...States } }}>
             <Flex justifyContent="center">
                 <AppCard mini boxProps={{ padding: 0, background: "none" }}>
-                    <VStack align="stretch" color="#FFF" spacing="30px">
-                        <VStack align="stretch">
+                    <Flex direction={"column"} color="#fff" gap={4}>
+                        <Flex direction={"column"} gap={2}>
                             <AppTypography fontSize="18px" fontWeight="bold">Order Sample Product</AppTypography>
                             <AppTypography fontSize="14px" color="#C2C2C2">Select your products to receive a sample.</AppTypography>
-                        </VStack>
+                        </Flex>
                         <ProductOrderSkues />
                         <ProductOrderAddress />
                         <ProductOrderShipments />
-                    </VStack>
+                    </Flex>
                 </AppCard>
             </Flex>
         </productOrderContext.Provider>

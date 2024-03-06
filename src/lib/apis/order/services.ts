@@ -12,3 +12,7 @@ export const createSampleService = (data: IcrateSampleService) => {
 export const updateSampleService = (data: IupdateSampleService) => {
     return axiosInstance.put(`order/sample/order`, data)
 }
+
+export const cancelSampleService = () => {
+    return axiosInstance.delete("order/sample/order")
+}
