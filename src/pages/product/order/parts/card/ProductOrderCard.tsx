@@ -1,4 +1,4 @@
-import { Box, VStack } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
@@ -10,10 +10,10 @@ interface IProps {
 function ProductOrderCard({ children, title }: IProps) {
     return (
         <AppCard boxProps={{ padding: "50px 60px" }}>
-            <VStack align="stretch" spacing="30px">
+            <Flex direction={"column"} gap={12}>
                 <AppTypography fontSize="16px" color="#C2C2C2">{title}</AppTypography>
                 <Box>{children}</Box>
-            </VStack>
+            </Flex>
         </AppCard>
     )
 }

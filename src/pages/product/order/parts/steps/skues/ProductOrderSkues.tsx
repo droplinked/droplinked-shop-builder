@@ -1,4 +1,4 @@
-import { HStack, VStack } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTable, { ITableRows } from 'components/common/table/AppTable'
 import AppTypography from 'components/common/typography/AppTypography'
@@ -18,7 +18,7 @@ function ProductOrderSkues() {
     const product = data?.data?.data
     const [SkuesIDs, setSkuesIDs] = useState([])
 
-    // Get service product
+    // Get product service
     useEffect(() => { if (params?.productID) mutate({ productID: params?.productID }) }, [params])
 
     const updateSkus = (list: string[]) => {
@@ -35,19 +35,25 @@ function ProductOrderSkues() {
     return (
         <ProductOrderCard title="Product">
             {product ?
-                <VStack align="stretch" spacing="40px">
-                    <HStack alignItems="center" gap="10px">
+                <Flex direction={"column"} gap={8}>
+                    <Flex alignItems="center" gap={4}>
                         <AppImage src={product?.media.find(el => el.isMain === "true")?.url} width="48px" height="48px" />
                         <AppTypography>{product?.title}</AppTypography>
-                    </HStack>
-                    <AppTable checkbox={{
-                        state: SkuesIDs, update: (value) => {
-                            setSkuesIDs(value)
-                            updateSkus(value)
+                    </Flex>
+                    <AppTable
+                        checkbox={
+                            {
+                                state: SkuesIDs, update: (value) => {
+                                    setSkuesIDs(value)
+                                    updateSkus(value)
+                                }
+                            }
                         }
-                    }} rows={rows} />
-                </VStack>
-                : null}
+                        rows={rows}
+                    />
+                </Flex>
+                : null
+            }
         </ProductOrderCard>
     )
 }

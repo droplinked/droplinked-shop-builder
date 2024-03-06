@@ -7,8 +7,10 @@ import React, { useState } from 'react'
 export interface IFormStripe {
     onSuccess: Function
     cancel: Function
+    amount?: number
 }
-function CheckoutForm({ onSuccess, cancel }: IFormStripe) {
+
+function CheckoutForm({ onSuccess, cancel, amount }: IFormStripe) {
     const [States, setStates] = useState({
         loading: false,
         complete: false
@@ -39,7 +41,7 @@ function CheckoutForm({ onSuccess, cancel }: IFormStripe) {
                 <PaymentElement onChange={(e) => setStates((prev) => ({ ...prev, complete: e.complete }))} />
                 <Flex justifyContent="space-between">
                     <BasicButton variant='outline' onClick={() => cancel()}>Cancel</BasicButton>
-                    <BasicButton type='submit' isDisabled={!States.complete} isLoading={States.loading}>Pay</BasicButton>
+                    <BasicButton type='submit' isDisabled={!States.complete} isLoading={States.loading}>Pay {amount ? `$${amount.toFixed(2)}` : ""}</BasicButton>
                 </Flex>
             </VStack>
         </form>

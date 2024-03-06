@@ -1,18 +1,18 @@
-import React, { useContext } from 'react'
-import { Box, Flex, VStack } from '@chakra-ui/react';
-import { Form, Formik } from 'formik';
-import AddressModalModel from 'pages/register-pages/pages/shop-info/parts/address/modal/AddressModalModel';
-import AppInput from 'components/common/form/textbox/AppInput';
+import { Box, Flex } from '@chakra-ui/react';
+import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppDropDown from 'components/common/form/dropdown/AppDropDown';
-import { useMutation, useQuery } from 'react-query';
+import AppInput from 'components/common/form/textbox/AppInput';
+import { Form, Formik } from 'formik';
+import useAppToast from 'functions/hooks/toast/useToast';
 import { allCountriesService, citiesService, statesService } from 'lib/apis/address/addressServices';
 import { IcitiesService, IcreateAddressService, IsatatesService } from 'lib/apis/address/interfaces';
-import BasicButton from 'components/common/BasicButton/BasicButton';
-import ProductOrderCard from '../../card/ProductOrderCard';
-import productOrderContext from 'pages/product/order/context'
-import useAppToast from 'functions/hooks/toast/useToast';
-import { createSampleService } from 'lib/apis/order/services';
 import { IcrateSampleService } from 'lib/apis/order/interfaces';
+import { createSampleService } from 'lib/apis/order/services';
+import productOrderContext from 'pages/product/order/context';
+import AddressModalModel from 'pages/register-pages/pages/shop-info/parts/address/modal/AddressModalModel';
+import React, { useContext } from 'react';
+import { useMutation, useQuery } from 'react-query';
+import ProductOrderCard from '../../card/ProductOrderCard';
 
 function ProductOrderAddress() {
     const { params: { skus, shipmentRates }, methods: { updateState } } = useContext(productOrderContext)
@@ -35,7 +35,7 @@ function ProductOrderAddress() {
             if (!Object.keys(skus).length) throw Error('Please enter skues')
             const { data } = await createSample.mutateAsync({ address: params, skus: Object.values(skus) })
             updateState('shipmentRates', data?.data?.shipmentRates);
-        } catch (error) {            
+        } catch (error) {
             showToast({ type: 'error', message: error?.response?.data?.data?.message || error?.message || 'An error occurred' })
         }
     }
@@ -54,8 +54,8 @@ function ProductOrderAddress() {
             >
                 {({ errors, values, setFieldValue }) => (
                     <Form>
-                        <VStack align={"stretch"} spacing={8}>
-                            <Flex gap={7}>
+                        <Flex direction={"column"} gap={6}>
+                            <Flex gap={6}>
                                 <Box width={"50%"}>
                                     <AppInput name='First name' value={values.firstName} onChange={(e: any) => setFieldValue('firstName', e.target.value)} label='First Name' isRequired />
                                 </Box>
@@ -64,12 +64,12 @@ function ProductOrderAddress() {
                                 </Box>
                             </Flex>
                             <Box>
-                                <AppInput name='address' value={values.addressLine1} error={errors.addressLine1} onChange={(e: any) => setFieldValue('addressLine1', e.target.value)} label='Address line 1' isRequired />
+                                <AppInput name='address' value={values.addressLine1} error={errors.addressLine1} onChange={(e: any) => setFieldValue('addressLine1', e.target.value)} label='Address Line 1' isRequired />
                             </Box>
                             <Box>
-                                <AppInput name='address' value={values.addressLine2} error={errors.addressLine2} onChange={(e: any) => setFieldValue('addressLine2', e.target.value)} label='Address line 2' />
+                                <AppInput name='address' value={values.addressLine2} error={errors.addressLine2} onChange={(e: any) => setFieldValue('addressLine2', e.target.value)} label='Address Line 2' />
                             </Box>
-                            <Flex gap={7}>
+                            <Flex gap={6}>
                                 <Box width={"50%"}>
                                     <AppDropDown
                                         label={"Country"}
@@ -103,7 +103,7 @@ function ProductOrderAddress() {
                                     />
                                 </Box>
                             </Flex>
-                            <Flex gap={7}>
+                            <Flex gap={6}>
                                 <Box width={"50%"}>
                                     <AppDropDown
                                         label={"City"}
@@ -125,7 +125,7 @@ function ProductOrderAddress() {
                                     <BasicButton type='submit' isLoading={createSample.isLoading}>Next</BasicButton>
                                 </Flex>
                             ) : null}
-                        </VStack>
+                        </Flex>
                     </Form>
                 )}
             </Formik>
