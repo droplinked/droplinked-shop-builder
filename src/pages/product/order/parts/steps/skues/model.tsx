@@ -1,9 +1,9 @@
-import React from "react"
 import { Box, HStack } from "@chakra-ui/react"
+import AppSelectBox from "components/common/form/select/AppSelectBox"
 import AppTypography from "components/common/typography/AppTypography"
 import { typesProperties } from "lib/utils/statics/types"
-import AppSelectBox from "components/common/form/select/AppSelectBox"
 import { IproductOrderSkues } from "pages/product/order/context"
+import React from "react"
 
 interface Irows {
     product: any
@@ -11,6 +11,7 @@ interface Irows {
     skus: IproductOrderSkues
     updateState: any
 }
+
 namespace productOrderSkuesModel {
     export const rows = ({ product, SkuesIDs, skus, updateState }: Irows) => product ? product.skuIDs.map(el => {
         const option = (type: 'color' | 'Size') => el.options.find(option => option.variantID === typesProperties[type === "color" ? 0 : 1]._id)
@@ -27,8 +28,8 @@ namespace productOrderSkuesModel {
             cost: {
                 caption: "Product Cost",
                 value: (
-                    <HStack spacing="7px">
-                        <AppTypography>{el?.price}</AppTypography>
+                    <HStack spacing={2}>
+                        <AppTypography>{el?.rawPrice}</AppTypography>
                         <AppTypography color="#808080">USD</AppTypography>
                     </HStack>
                 )
