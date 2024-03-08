@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IgenerateBufferServices, IproductByIdServices, IproductDeleteServices, IproductList, IproductState, IproductUpdateServices } from "./interfaces"
+import { IproductByIdServices, IproductDeleteServices, IproductList, IProductReorder, IproductState, IproductUpdateServices } from "./interfaces"
 
 export const productServices = ({ page, limit, filter }: IproductList) => {
     return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ''}`)
@@ -35,4 +35,8 @@ export const productCategoryervices = () => {
 
 export const productsShopervices = (shopname: string) => {
     return axiosInstance.get(`product/public/shop/${shopname}?page=1&limit=5`)
+}
+
+export const reorderProductsService = (data: IProductReorder) => {
+    return axiosInstance.post("product/reorder", data)
 }

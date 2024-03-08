@@ -12,6 +12,7 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import ProductListModel from './model'
 import ConfirmDeleteAll from './parts/deleteAll/ConfirmDeleteAll'
 import ProductEmpty from './parts/empty/ProductEmpty'
+import ProductReorderModal from './parts/productReorderModal/ProductReorderModal'
 
 function Products() {
     const { data: { collection } } = useHookStore()
@@ -28,6 +29,7 @@ function Products() {
     })
     const { shop } = useProfile()
     const { shopRoute } = useCustomNavigate()
+    const productReorderModal = useDisclosure()
 
     // Fetch service
     const fetch = useCallback(() => {
@@ -45,7 +47,7 @@ function Products() {
             data: products?.data,
             fetch,
         }) : []
-    }, [products, fetch])    
+    }, [products, fetch])
 
     // Update parametrs url 
     const updateFilters = useCallback((key: string, value: string) => {
@@ -65,8 +67,16 @@ function Products() {
             {
                 caption: "Add Product",
                 to: `${shopRoute}/products/types`
+            },
+            {
+                caption: "Reorder Products",
+                onClick: productReorderModal.onOpen,
+                buttonProps: {
+                    variant: "outline",
+                }
             }
         ]
+
         if (States.checkboxes.length) data.push({
             caption: "Delete Products" + ` (${States.checkboxes.length})`,
             onClick: onOpen,
@@ -126,6 +136,7 @@ function Products() {
                 fetch()
                 setStates(prev => ({ ...prev, checkboxes: [] }))
             }} />}
+            <ProductReorderModal isOpen={productReorderModal.isOpen} close={productReorderModal.onClose} products={products?.data} />
         </>
     )
 }
