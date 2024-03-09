@@ -39,6 +39,9 @@ const DesignPageModel = ({
         tiktokURL: shop?.tiktokURL || initialStateDesignPage.shop.tiktokURL,
         twitterURL: shop?.twitterURL || initialStateDesignPage.shop.twitterURL,
         webURL: shop?.webURL || initialStateDesignPage.shop.webURL,
+        telegramURL: shop?.telegramURL || initialStateDesignPage.shop.telegramURL,
+        youtubeURL: shop?.youtubeURL || initialStateDesignPage.shop.youtubeURL,
+        messengerURL: shop?.messengerURL || initialStateDesignPage.shop.messengerURL,
         template_options: shop?.template_options || initialStateDesignPage.shop.template_options,
     })
 })

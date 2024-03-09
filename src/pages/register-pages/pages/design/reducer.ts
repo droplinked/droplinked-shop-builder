@@ -22,6 +22,9 @@ export interface IShopDesignPage {
     linkedinURL?: string
     tiktokURL?: string
     webURL?: string
+    telegramURL?: string
+    youtubeURL?: string
+    messengerURL?: string
     headerIcon?: string
     shopDesign?: {
         fontfamily?: string
