@@ -43,6 +43,7 @@ import { ReactComponent as MetaMaskIcon } from './MetaMask.svg';
 import { ReactComponent as MoreIcon } from './more-icon.svg';
 import { ReactComponent as NearWalletIcon } from './nearWallet.svg';
 import { ReactComponent as OrderIcon } from './order-icon.svg';
+import { ReactComponent as Order } from './order.svg';
 import { ReactComponent as PintrestIcon } from './pintrest.svg';
 import { ReactComponent as PlusIcon } from './plus-icon.svg';
 import { ReactComponent as Polygon } from './polygon-matic-logo.svg';
@@ -155,6 +156,7 @@ const AppIcons = {
   XRPL,
   GreenAlert,
   YellowAlert,
-  StripeS
+  StripeS,
+  Order
 }
 export default AppIcons

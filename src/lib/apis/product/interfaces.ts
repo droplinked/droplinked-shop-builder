@@ -129,3 +129,8 @@ export interface IproductUpdateServices {
 export interface IgenerateBufferServices {
     urls: Array<string>
 }
+
+export interface IProductReorder {
+    productId: string;
+    newPosition: number;
+}
