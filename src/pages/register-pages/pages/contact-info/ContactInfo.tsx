@@ -37,13 +37,16 @@ const ContactInfo = () => {
   return (
     <Formik
       initialValues={{
-        discordURL: shop?.discordURL ? shop.discordURL : "",
-        instagramURL: shop?.instagramURL ? shop.instagramURL : "",
-        twitterURL: shop?.twitterURL ? shop.twitterURL : "",
-        webURL: shop?.webURL ? shop.webURL : "",
-        linkedinURL: shop?.linkedinURL ? shop.linkedinURL : "",
-        tiktokURL: shop?.tiktokURL ? shop.tiktokURL : "",
-        facebookURL: shop?.facebookURL ? shop.facebookURL : "",
+        discordURL: shop.discordURL || "",
+        instagramURL: shop.instagramURL || "",
+        twitterURL: shop.twitterURL || "",
+        webURL: shop.webURL || "",
+        linkedinURL: shop.linkedinURL || "",
+        tiktokURL: shop.tiktokURL || "",
+        facebookURL: shop.facebookURL || "",
+        telegramURL: shop.telegramURL || "",
+        youtubeURL: shop.youtubeURL || "",
+        messengerURL: shop.messengerURL || "",
       }}
       enableReinitialize
       validateOnChange={false}

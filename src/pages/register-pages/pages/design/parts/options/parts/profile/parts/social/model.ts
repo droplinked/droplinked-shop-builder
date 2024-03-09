@@ -1,5 +1,5 @@
 const optionSocialModel = ({
-    items : [
+    items: [
         {
             caption: "Social Links",
             value: ''
@@ -25,13 +25,23 @@ const optionSocialModel = ({
             value: "tiktokURL"
         },
         {
-            caption: "webURL",
+            caption: "Web",
             value: "webURL"
         },
         {
             caption: "Discord",
             value: "discordURL"
-        }
+        },
+        {
+            caption: "Telegram",
+            value: "telegramURL"
+        }, {
+            caption: "Youtube",
+            value: "youtubeURL"
+        }, {
+            caption: "Messenger",
+            value: "messengerURL"
+        },
     ]
 })
 

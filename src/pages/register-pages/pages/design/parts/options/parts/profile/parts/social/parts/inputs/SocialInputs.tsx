@@ -17,7 +17,7 @@ function SocialInputs({ socials, updateSocial }) {
     })
 
     const items = useMemo(() => {
-        const { discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL } = shop
+        const { discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL, telegramURL, youtubeURL, messengerURL } = shop
         return {
             linkedinURL: {
                 icon: icons.linkedin,
@@ -46,7 +46,7 @@ function SocialInputs({ socials, updateSocial }) {
             tiktokURL: {
                 icon: icons.tiktok,
                 value: tiktokURL,
-                url: 'tiktok.com/',
+                url: 'tiktok.com/@',
                 pattern: /^(?:https?:\/\/)?(?:www\.)?tiktok\.com\/@([^/]+)\/?$/,
             },
             webURL: {
@@ -61,16 +61,30 @@ function SocialInputs({ socials, updateSocial }) {
                 url: 'discord.gg/',
                 pattern: /\b(?:https?:\/\/)?(?:www\.)?(?:discord\.gg|discordapp\.com\/invite)\/([a-zA-Z0-9-]+)\b/,
             },
+            telegramURL: {
+                icon: icons.telegram,
+                value: telegramURL,
+                url: 't.me/',
+                pattern: /^(?:https?:\/\/)?t\.me\/([a-zA-Z0-9_]{5,32})\/?$/,
+            },
+            youtubeURL: {
+                icon: icons.youtube,
+                value: youtubeURL,
+                url: 'youtube.com/@',
+                pattern: /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/@([a-zA-Z0-9_.-]+)\/?$/,
+            },
+            messengerURL: {
+                icon: icons.messenger,
+                value: messengerURL,
+                url: 'm.me/',
+                pattern: /^(?:https?:\/\/)?m\.me\/([a-zA-Z0-9._-]+)\/?$/,
+            },
         }
     }, [shop])
 
     const change = useCallback((key: string, value: string) => {
         const match = items[key].pattern.exec(value)
-        if (match) {
-            dispatch({ type: 'updateShop', params: { [key]: match[1] } })
-            return
-        }
-        dispatch({ type: 'updateShop', params: { [key]: value } })
+        dispatch({ type: 'updateShop', params: { [key]: match ? match[1] : value } })
     }, [shop])
 
     const submit = useCallback((e) => {

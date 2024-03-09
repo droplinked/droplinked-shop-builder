@@ -6,7 +6,7 @@ import classes from './style.module.scss'
 
 function PreviewSocials() {
     const { icons } = previewSocialsModel
-    const { state: { shop: { discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL, shopDesign: { textColorParagraphs } } } } = useContext(designContext)
+    const { state: { shop: { discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL, telegramURL, youtubeURL, messengerURL, shopDesign: { textColorParagraphs } } } } = useContext(designContext)
 
     const social = useMemo(() => [
         {
@@ -37,7 +37,19 @@ function PreviewSocials() {
             url: webURL,
             icon: icons({ color: textColorParagraphs }).web
         },
-    ], [textColorParagraphs, discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL])
+        {
+            url: telegramURL,
+            icon: icons({ color: textColorParagraphs }).telegram
+        },
+        {
+            url: youtubeURL,
+            icon: icons({ color: textColorParagraphs }).youtube
+        },
+        {
+            url: messengerURL,
+            icon: icons({ color: textColorParagraphs }).messenger
+        },
+    ], [textColorParagraphs, discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL, telegramURL, youtubeURL, messengerURL])
 
     return (
         <Flex justifyContent="center" gap="7px" alignItems="center" flexWrap="wrap" className={classes.icons}>

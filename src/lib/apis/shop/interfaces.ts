@@ -30,6 +30,9 @@ export interface IshopSocial {
     linkedinURL?: string
     tiktokURL?: string
     facebookURL?: string
+    telegramURL?: string
+    youtubeURL?: string
+    messengerURL?: string
 }
 
 export interface IshopUpdateService extends IshopSocial {
