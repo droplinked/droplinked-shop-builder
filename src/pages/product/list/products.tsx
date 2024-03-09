@@ -136,7 +136,17 @@ function Products() {
                 fetch()
                 setStates(prev => ({ ...prev, checkboxes: [] }))
             }} />}
-            {productReorderModal.isOpen && <ProductReorderModal isOpen={productReorderModal.isOpen} close={productReorderModal.onClose} />}
+
+            {
+                productReorderModal.isOpen &&
+                <ProductReorderModal
+                    isOpen={productReorderModal.isOpen}
+                    close={() => {
+                        productReorderModal.onClose()
+                        fetch()
+                    }}
+                />
+            }
         </>
     )
 }

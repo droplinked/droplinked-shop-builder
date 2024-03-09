@@ -14,12 +14,11 @@ import SortableProduct from './parts/sortableProduct/SortableProduct';
 interface Props {
     isOpen: boolean;
     close: () => void;
-    products: any
 }
 
 function ProductReorderModal({ isOpen, close }: Props) {
     const [products, setProducts] = useState([])
-    const { isLoading } = useQuery("", getAllProductsService, {
+    const { isLoading } = useQuery("products", getAllProductsService, {
         onSuccess: (response) => {
             setProducts(response.data.data)
         },
