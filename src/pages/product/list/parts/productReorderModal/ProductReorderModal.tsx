@@ -4,7 +4,11 @@ import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSo
 import AppIcons from 'assest/icon/Appicons';
 import AppModal from 'components/common/modal/AppModal';
 import AppTypography from 'components/common/typography/AppTypography';
+import useAppToast from 'functions/hooks/toast/useToast';
+import { getAllProductsService, reorderProductsService } from 'lib/apis/product/productServices';
 import React, { useState } from 'react';
+import { useQuery } from 'react-query';
+import Loading from './parts/loading/Loading';
 import SortableProduct from './parts/sortableProduct/SortableProduct';
 
 interface Props {
@@ -14,23 +18,30 @@ interface Props {
 }
 
 function ProductReorderModal({ isOpen, close }: Props) {
-    const [products, setProducts] = useState([
-        { id: 1, title: "Hello 1", media: [{ id: 1, isMain: "true", thumbnail: "" }] },
-        { id: 2, title: "Hello 2", media: [{ id: 1, isMain: "true", thumbnail: "" }] },
-        { id: 3, title: "Hello 3", media: [{ id: 1, isMain: "true", thumbnail: "" }] },
-    ])
+    const [products, setProducts] = useState([])
+    const { isLoading } = useQuery("", getAllProductsService, {
+        onSuccess: (response) => {
+            setProducts(response.data.data)
+        },
+        refetchOnWindowFocus: false
+    })
+    const { showToast } = useAppToast()
 
-    const getTaskPos = (id) => products.findIndex(p => p.id === id)
+    const getTaskPos = (id) => products.findIndex(p => p._id === id)
 
-    const handleDragEnd = (e) => {
-        const { active, over } = e
-        if (active.id === over.id) return
-
-        setProducts(products => {
-            const originalPos = getTaskPos(active.id)
-            const newPos = getTaskPos(over.id)
-            return arrayMove(products, originalPos, newPos)
-        })
+    const handleDragEnd = async (e) => {
+        const originalProducts = [...products]
+        try {
+            const { active, over } = e
+            if (active.id == over.id) return
+            const originalPosition = getTaskPos(active.id)
+            const newPosition = getTaskPos(over.id)
+            setProducts(products => arrayMove(products, originalPosition, newPosition))
+            reorderProductsService({ productId: active.id, newPosition: newPosition + 1 })
+        } catch (error) {
+            showToast({ type: "error", message: "Something went wrong!" })
+            setProducts(originalProducts)
+        }
     }
 
     const sensors = useSensors(
@@ -54,13 +65,16 @@ function ProductReorderModal({ isOpen, close }: Props) {
                         </Flex>
                     </Flex>
                 </Flex>
-                <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
-                    <SortableContext items={products} strategy={verticalListSortingStrategy}>
-                        <Flex direction={"column"} gap={6}>
-                            {products.map((product) => <SortableProduct product={product} />)}
-                        </Flex>
-                    </SortableContext>
-                </DndContext>
+                {
+                    isLoading ? <Loading /> :
+                        <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                            <SortableContext items={products.map((i) => i._id)} strategy={verticalListSortingStrategy}>
+                                <Flex direction={"column"} gap={6}>
+                                    {products.map((product, index) => <SortableProduct key={index} product={product} />)}
+                                </Flex>
+                            </SortableContext>
+                        </DndContext>
+                }
             </Flex>
         </AppModal >
     )

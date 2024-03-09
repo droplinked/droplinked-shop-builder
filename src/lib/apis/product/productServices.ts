@@ -40,3 +40,7 @@ export const productsShopervices = (shopname: string) => {
 export const reorderProductsService = (data: IProductReorder) => {
     return axiosInstance.post("product/reorder", data)
 }
+
+export const getAllProductsService = () => {
+    return axiosInstance.get("/product/all")
+}
