@@ -25,7 +25,6 @@ function ProductReorderModal({ isOpen, close }: Props) {
         refetchOnWindowFocus: false
     })
     const { showToast } = useAppToast()
-
     const getTaskPos = (id) => products.findIndex(p => p._id === id)
 
     const handleDragEnd = async (e) => {
@@ -50,7 +49,7 @@ function ProductReorderModal({ isOpen, close }: Props) {
     )
 
     return (
-        <AppModal open={isOpen} close={close} size="3xl" contentProps={{ paddingX: 3, paddingY: 6, overflow: "hidden" }}>
+        <AppModal open={isOpen} close={close} size="3xl" isCentered={false} contentProps={{ paddingX: 3, paddingY: 6, overflow: "hidden" }}>
             <Flex direction={"column"} gap={9}>
                 <Flex direction={"column"} gap={6}>
                     <AppTypography fontSize={16} fontWeight={500} color={"#fff"}>Reorder Products</AppTypography>
