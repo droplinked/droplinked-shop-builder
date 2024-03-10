@@ -1,14 +1,19 @@
+import { isStyleProp } from "@chakra-ui/react";
+
 export const capitalizeFirstLetter = (value: string) => {
-    if (!value) return ""
-    return value.split(" ").map(el => el.charAt(0).toUpperCase() + el.slice(1).toLowerCase()).join(" ")
-}
+    if (!value) return "";
+    return value
+        .split(" ")
+        .map((el) => el.charAt(0).toUpperCase() + el.slice(1).toLowerCase())
+        .join(" ");
+};
 
 interface ItoMb {
-    value: number
+    value: number;
 }
 export const toMb = ({ value }: ItoMb) => {
-    return value * 1024 * 1024
-}
+    return value * 1024 * 1024;
+};
 
 export const getMinMaxArray = (arr) => {
     let min = arr[0];
@@ -20,6 +25,20 @@ export const getMinMaxArray = (arr) => {
         max = arr[i] > max ? arr[i] : max;
     }
     return { min, max };
+};
+
+export const getPercentage = (number: number, max: number) => (number * 100) / max;
+
+const breakpoints = ["base", "xs", "sm", "md", "lg", "xl", "2xl"];
+function is_responsive_value(obj) {
+    if (obj && typeof obj === "object") if (breakpoints.some((key) => obj.hasOwnProperty(key))) return Object.values(obj).every((value) => typeof value === "string");
+    return false;
 }
 
-export const getPercentage = (number: number, max: number) => (number * 100) / max
+export const picker = (pick_from: any) =>
+    Object.keys(pick_from)
+        .filter((key) => isStyleProp(key))
+        .reduce((obj, key) => {
+            obj[key] = pick_from[key];
+            return obj;
+        }, {} as Record<string, any>);
