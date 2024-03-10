@@ -49,7 +49,7 @@ function ProductOrderShipments() {
                                                 <Flex alignItems="center" gap="8px">
                                                     <AppTypography color="#878787">Price</AppTypography>
                                                     <Box width="4px" height="4px" borderRadius="100%" backgroundColor="#FFF"></Box>
-                                                    <AppTypography>{el.price}</AppTypography>
+                                                    <AppTypography>{`$${el.price.toFixed(2)} USD`}</AppTypography>
                                                 </Flex>
                                             </Flex>
                                         </Flex>
