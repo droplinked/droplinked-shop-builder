@@ -41,6 +41,6 @@ export const reorderProductsService = (data: IProductReorder) => {
     return axiosInstance.post("product/reorder", data)
 }
 
-export const getAllProductsService = () => {
-    return axiosInstance.get("/product/all")
+export const getAllProductsService = (signal: AbortSignal) => {
+    return axiosInstance.get("/product/all", { signal })
 }

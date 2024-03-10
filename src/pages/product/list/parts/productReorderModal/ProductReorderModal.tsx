@@ -6,8 +6,7 @@ import AppModal from 'components/common/modal/AppModal';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { getAllProductsService, reorderProductsService } from 'lib/apis/product/productServices';
-import React, { useState } from 'react';
-import { useQuery } from 'react-query';
+import React, { useEffect, useState } from 'react';
 import Loading from './parts/loading/Loading';
 import SortableProduct from './parts/sortableProduct/SortableProduct';
 
@@ -18,22 +17,22 @@ interface Props {
 
 function ProductReorderModal({ isOpen, close }: Props) {
     const [products, setProducts] = useState([])
-    const { isLoading } = useQuery("products", getAllProductsService, {
-        onSuccess: (response) => {
-            setProducts(response.data.data)
-        },
-        refetchOnWindowFocus: false
-    })
+    const [isLoading, setLoading] = useState(false)
     const { showToast } = useAppToast()
-    const getTaskPos = (id) => products.findIndex(p => p._id === id)
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(TouchSensor),
+        useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+    )
+    const getProductPosition = (id) => products.findIndex(p => p._id === id)
 
     const handleDragEnd = async (e) => {
         const originalProducts = [...products]
         try {
             const { active, over } = e
             if (active.id == over.id) return
-            const originalPosition = getTaskPos(active.id)
-            const newPosition = getTaskPos(over.id)
+            const originalPosition = getProductPosition(active.id)
+            const newPosition = getProductPosition(over.id)
             setProducts(products => arrayMove(products, originalPosition, newPosition))
             reorderProductsService({ productId: active.id, newPosition: newPosition + 1 })
         } catch (error) {
@@ -42,11 +41,26 @@ function ProductReorderModal({ isOpen, close }: Props) {
         }
     }
 
-    const sensors = useSensors(
-        useSensor(PointerSensor),
-        useSensor(TouchSensor),
-        useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
-    )
+    useEffect(() => {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        (async () => {
+            try {
+                setLoading(true)
+                const products = await getAllProductsService(signal)
+                setProducts(products.data.data)
+            }
+            catch {
+                if (signal.aborted) return
+                showToast({ type: "error", message: "Something went wrong!" })
+            }
+            finally {
+                setLoading(false)
+            }
+        })()
+
+        return () => controller.abort()
+    }, []);
 
     return (
         <AppModal open={isOpen} close={close} size="3xl" isCentered={false} contentProps={{ paddingX: 3, paddingY: 6, overflow: "hidden" }}>
