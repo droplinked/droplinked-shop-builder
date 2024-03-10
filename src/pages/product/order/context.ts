@@ -1,9 +1,9 @@
 import { IcreateAddressService } from "lib/apis/address/interfaces";
-import { IcrateSampleServiceSkues } from "lib/apis/order/interfaces";
+import { IcreateSampleServiceSkues } from "lib/apis/order/interfaces";
 import { createContext } from "react";
 
 export interface IproductOrderSkues {
-    [propname: string]: IcrateSampleServiceSkues
+    [propname: string]: IcreateSampleServiceSkues
 }
 
 interface IshipmentRates {
@@ -24,7 +24,8 @@ interface IproductOrderStates {
 interface IProps {
     params: IproductOrderStates
     methods: {
-        updateState: any
+        updateState: any,
+        resetState: any
     }
 }
 

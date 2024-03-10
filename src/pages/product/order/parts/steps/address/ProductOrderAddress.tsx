@@ -32,9 +32,9 @@ function ProductOrderAddress() {
 
     const onSubmit = async (params: IcreateAddressService) => {
         try {
-            if (!Object.keys(skus).length) throw Error('Please enter skues')
+            if (!Object.keys(skus).length) throw Error('Please select a sku')
             const { data } = await createSample.mutateAsync({ address: params, skus: Object.values(skus) })
-            updateState('shipmentRates', data?.data?.shipmentRates);
+            updateState('shipmentRates', data.data.shipmentRates);
         } catch (error) {
             showToast({ type: 'error', message: error?.response?.data?.data?.message || error?.message || 'An error occurred' })
         }

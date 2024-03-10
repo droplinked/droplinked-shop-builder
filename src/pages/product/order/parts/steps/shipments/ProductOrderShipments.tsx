@@ -13,6 +13,7 @@ import classes from './style.module.scss'
 
 function ProductOrderShipments() {
     const { params: { shipmentRates, rateId }, methods: { updateState } } = useContext(productOrderContext)
+    const { params: contextParams } = useContext(productOrderContext)
     const { mutateAsync, isLoading, data } = useMutation((params: IupdateSampleService) => updateSampleService(params))
     const { showToast } = useAppToast()
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -20,7 +21,7 @@ function ProductOrderShipments() {
 
     const submit = async () => {
         try {
-            if (!rateId) throw Error('Please enter rate method')
+            if (!rateId) throw Error('Please select a rate method')
             await mutateAsync({ rateId })
             onOpen()
         } catch (error) {

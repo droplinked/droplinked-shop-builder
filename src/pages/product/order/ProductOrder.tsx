@@ -9,10 +9,15 @@ import ProductOrderSkues from './parts/steps/skues/ProductOrderSkues'
 
 function ProductOrder() {
     const [States, setStates] = useState(productOrderStates)
+    const [resetKey, setResetKey] = useState(0)
     const updateState = (key, value) => setStates(prev => ({ ...prev, [key]: value }))
+    const resetState = () => {
+        setStates(prev => ({ ...prev, skus: {}, shipmentRates: [], rateId: null }))
+        setResetKey(prev => prev + 1)
+    }
 
     return (
-        <productOrderContext.Provider value={{ methods: { updateState }, params: { ...States } }}>
+        <productOrderContext.Provider value={{ methods: { updateState, resetState }, params: { ...States } }} key={resetKey}>
             <Flex justifyContent="center">
                 <AppCard mini boxProps={{ padding: 0, background: "none" }}>
                     <Flex direction={"column"} color="#fff" gap={4}>

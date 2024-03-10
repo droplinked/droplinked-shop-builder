@@ -4,13 +4,13 @@ export interface IgetOrderService {
     orderID: string
 }
 
-export interface IcrateSampleServiceSkues {
+export interface IcreateSampleServiceSkues {
     _id: string
     quantity: number
 }
 
 export interface IcrateSampleService {
-    skus: IcrateSampleServiceSkues[]
+    skus: IcreateSampleServiceSkues[]
     address: IcreateAddressService
 }
 
