@@ -25,6 +25,7 @@ const DesignPageModel = ({
         shopDesign: {
             fontfamily: shop?.shopDesign?.fontfamily || initialStateDesignPage.shop.shopDesign.fontfamily,
             headerBackground: shop?.shopDesign?.headerBackground || initialStateDesignPage.shop.shopDesign.headerBackground,
+            isHeaderFixed: shop?.shopDesign?.isHeaderFixed || initialStateDesignPage.shop.shopDesign.isHeaderFixed,
             hiroLayout: shop?.shopDesign?.hiroLayout || initialStateDesignPage.shop.shopDesign.hiroLayout,
             hiroTextColor: shop?.shopDesign?.hiroTextColor || initialStateDesignPage.shop.shopDesign.hiroTextColor,
             productListTitle: shop?.shopDesign?.productListTitle || initialStateDesignPage.shop.shopDesign.productListTitle,
