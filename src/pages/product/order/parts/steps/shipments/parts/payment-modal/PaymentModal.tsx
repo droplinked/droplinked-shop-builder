@@ -5,7 +5,8 @@ import AppStripe from 'components/common/stripe/AppStripe';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { cancelSampleService } from 'lib/apis/order/services';
-import React, { useState } from 'react';
+import productOrderContext from 'pages/product/order/context';
+import React, { useContext, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,6 +18,7 @@ interface Props {
 }
 
 function PaymentModal({ isOpen, close, clientSecret, amount }: Props) {
+    const { methods: { resetState } } = useContext(productOrderContext)
     const [successfulPayment, setSuccessfulPayment] = useState(false)
     const { mutate } = useMutation(cancelSampleService)
     const { showToast } = useAppToast()
@@ -25,6 +27,7 @@ function PaymentModal({ isOpen, close, clientSecret, amount }: Props) {
     const cancel = async () => {
         try {
             await mutate()
+            resetState()
             close()
         }
         catch (e) {
@@ -35,7 +38,7 @@ function PaymentModal({ isOpen, close, clientSecret, amount }: Props) {
     return (
         <AppModal
             open={isOpen}
-            close={cancel}
+            close={() => { return }}
             isCentered={true}
             size="2xl"
             contentProps={{ padding: 8 }}
