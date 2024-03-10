@@ -1,81 +1,266 @@
 import { createContext } from "react";
-import { actionsDesignPage, IStateDesignPage } from "./reducer";
+import { actionsDesignPage, IStateDesignPage, ITemplateOptions } from "./reducer";
 
 interface IProps {
-  state: IStateDesignPage
-  methods: {
-    dispatch(action: actionsDesignPage): void
-    resetState: Function
-  }
+    state: IStateDesignPage;
+    methods: {
+        dispatch(action: actionsDesignPage): void;
+        resetState: Function;
+    };
 }
 
-export const template_options_defaults = {
-  '--dlk-hdr': {
-    '--dlk-hdr-styles': {},
-    '--dlk-hdr-container': {},
-    '--dlk-hdr-logo': {},
-    '--dlk-hdr-icons': {
-      '--dlk-hdr-icons-styles': {},
-      '--dlk-hdr-icons-profile': {},
-      '--dlk-hdr-icons-cart': {},
-      '--dlk-hdr-icons-notification': {}
-    }
-  },
-  '--dlk-wrp': {
-    '--dlk-wrp-styles': {},
-    '--dlk-wrp-hiro': {
-      '--dlk-wrp-hiro-styles': {},
-      '--dlk-wrp-hiro-image': {},
-      '--dlk-wrp-hiro-caption': {}
-    }
-  },
-  '--dlk-ftr': {
-    '--dlk-ftr-styles': {},
-    '--dlk-ftr-logo': {},
-    '--dlk-ftr-description': {}
-  }
-}
+export const template_options_defaults: ITemplateOptions = {
+    "--dlk-lyt": {
+        "--dlk-lyt-hdr": {
+            "--dlk-lyt-hdr-styles": {},
+            "--dlk-lyt-hdr-lgo": {},
+            "--dlk-lyt-hdr-icn": {
+                "--dlk-lyt-hdr-icn-styles": {},
+                "--dlk-lyt-hdr-icn-prfl": {
+                    "--dlk-lyt-hdr-icn-prfl-styles": {},
+                    "--dlk-lyt-hdr-icn-prfl-ppvr": {
+                        "--dlk-lyt-hdr-icn-prfl-ppvr-styles": {},
+                        "--dlk-lyt-hdr-icn-prfl-ppvr-btns": {},
+                    },
+                    "--dlk-lyt-hdr-icn-prfl-mdl": {
+                        "--dlk-lyt-hdr-icn-prfl-mdl-styles": {},
+                    },
+                },
+                "--dlk-lyt-hdr-icn-crt": {
+                    "--dlk-lyt-hdr-icn-crt-styles": {},
+                    "--dlk-lyt-hdr-icn-crt-ppvr": {
+                        "--dlk-lyt-hdr-icn-crt-ppvr-styles": {},
+                    },
+                },
+                "--dlk-lyt-hdr-icn-ntf": {
+                    "--dlk-lyt-hdr-icn-ntf-styles": {},
+                    "--dlk-lyt-hdr-icn-ntf-ppvr": {
+                        "--dlk-lyt-hdr-icn-ntf-ppvr-styles": {},
+                    },
+                },
+            },
+        },
+        "--dlk-lyt-ftr": {
+            "--dlk-lyt-ftr-styles": {},
+            "--dlk-lyt-ftr-lgo": {},
+            "--dlk-lyt-ftr-txt": {},
+        },
+    },
+    "--dlk-comps": {
+        "--dlk-comps-btn": {
+            "--dlk-comps-btn-styles": {},
+            "--dlk-comps-btn-out": {
+                "--dlk-comps-btn-out-styles": {},
+                "--dlk-comps-btn-out-pseudo": {
+                    _hover: {},
+                    _active: {},
+                    _focus: {},
+                },
+            },
+            "--dlk-comps-btn-fill": {
+                "--dlk-comps-btn-fill-styles": {},
+                "--dlk-comps-btn-fill-pseudo": {
+                    _hover: {},
+                    _active: {},
+                    _focus: {},
+                },
+            },
+        },
+        "--dlk-comps-inps": {
+            "--dlk-comps-inps-def": {},
+            "--dlk-comps-inps-dds": {},
+        },
+        "--dlk-comps-mdl": {
+            "--dlk-comps-mdl-styles": {},
+        },
+        "--dlk-comps-bc": {
+            "--dlk-comps-bc-actv": {},
+            "--dlk-comps-bc-def": {},
+        },
+    },
+    "--dlk-pgs": {
+        "--dlk-pgs-styles": {},
+        "--dlk-pgs-hme": {
+            "--dlk-pgs-hme-styles": {},
+            "--dlk-pgs-hme-sd": {
+                "--dlk-pgs-hme-sd-styles": {},
+                "--dlk-pgs-hme-sd-srch": {
+                    "--dlk-pgs-hme-sd-srch-styles": {},
+                    "--dlk-pgs-hme-sd-srch-inp": {},
+                    "--dlk-pgs-hme-sd-srch-icn": {},
+                },
+                "--dlk-pgs-hme-sd-prfl": {
+                    "--dlk-pgs-hme-sd-prfl-styles": {},
+                    "--dlk-pgs-hme-sd-prfl-soc": {
+                        "--dlk-pgs-hme-sd-prfl-soc-styles": {},
+                        "--dlk-pgs-hme-sd-prfl-soc-icn": {},
+                    },
+                    "--dlk-pgs-hme-sd-prfl-lgo": {},
+                    "--dlk-pgs-hme-sd-prfl-txt": {},
+                },
+            },
+            "--dlk-pgs-hme-prods": {
+                "--dlk-pgs-hme-prods-styles": {},
+                "--dlk-pgs-hme-prods-prod": {
+                    "--dlk-pgs-hme-prods-prod-styles": {},
+                    "--dlk-pgs-hme-prods-prod-img": {},
+                    "--dlk-pgs-hme-prods-prod-ttl": {},
+                    "--dlk-pgs-hme-prods-prod-prc": {},
+                    "--dlk-pgs-hme-prods-prod-clr": {},
+                },
+            },
+            "--dlk-pgs-hme-bnr": {
+                "--dlk-pgs-hme-bnr-styles": {},
+                "--dlk-pgs-hme-bnr-img": {},
+                "--dlk-pgs-hme-bnr-txt": {},
+            },
+        },
+        "--dlk-pgs-prod": {
+            "--dlk-pgs-prod-styles": {},
+            "--dlk-pgs-prod-dtls": {
+                "--dlk-pgs-prod-dtls-styles": {},
+                "--dlk-pgs-prod-dtls-grp": {
+                    "--dlk-pgs-prod-dtls-grp-styles": {},
+                    "--dlk-pgs-prod-dtls-grp-ttl": {},
+                    "--dlk-pgs-prod-dtls-grp-prc": {
+                        "--dlk-pgs-prod-dtls-grp-prc-styles": {},
+                        "--dlk-pgs-prod-dtls-grp-prc-def": {},
+                        "--dlk-pgs-prod-dtls-grp-prc-dis": {},
+                    },
+                    "--dlk-pgs-prod-dtls-grp-vars": {
+                        "--dlk-pgs-prod-dtls-grp-vars-clr": {
+                            "--dlk-pgs-prod-dtls-grp-vars-clr-styles": {},
+                            "--dlk-pgs-prod-dtls-grp-vars-clr-lbl": {},
+                            "--dlk-pgs-prod-dtls-grp-vars-clr-sel": {},
+                            "--dlk-pgs-prod-dtls-grp-vars-clr-opts": {
+                                "--dlk-pgs-prod-dtls-grp-vars-clr-opts-styles": {},
+                                "--dlk-pgs-prod-dtls-grp-vars-clr-opts-actv": {},
+                                "--dlk-pgs-prod-dtls-grp-vars-clr-opts-def": {},
+                            },
+                        },
+                        "--dlk-pgs-prod-dtls-grp-vars-sz": {
+                            "--dlk-pgs-prod-dtls-grp-vars-sz-styles": {},
+                            "--dlk-pgs-prod-dtls-grp-vars-sz-lbl": {},
+                            "--dlk-pgs-prod-dtls-grp-vars-sz-sel": {},
+                            "--dlk-pgs-prod-dtls-grp-vars-sz-opts": {
+                                "--dlk-pgs-prod-dtls-grp-vars-sz-opts-styles": {},
+                                "--dlk-pgs-prod-dtls-grp-vars-sz-opts-actv": {},
+                                "--dlk-pgs-prod-dtls-grp-vars-sz-opts-def": {},
+                            },
+                        },
+                    },
+                },
+            },
+            "--dlk-pgs-prod-sldr": {
+                "--dlk-pgs-prod-sldr-styles": {},
+                "--dlk-pgs-prod-sldr-grp": {
+                    "--dlk-pgs-prod-sldr-grp-styles": {},
+                    "--dlk-pgs-prod-sldr-grp-img": {},
+                    "--dlk-pgs-prod-sldr-grp-lst": {
+                        "--dlk-pgs-prod-sldr-grp-lst-styles": {},
+                        "--dlk-pgs-prod-sldr-grp-lst-opts": {},
+                    },
+                },
+            },
+        },
+        "--dlk-pgs-ckt": {
+            "--dlk-pgs-ckt-styles": {},
+            "--dlk-pgs-ckt-accs": {
+                "--dlk-pgs-ckt-accs-styles": {},
+                "--dlk-pgs-ckt-accs-em": {
+                    "--dlk-pgs-ckt-accs-em-styles": {},
+                    "--dlk-pgs-ckt-accs-em-inp": {},
+                    "--dlk-pgs-ckt-accs-em-btn": {},
+                },
+                "--dlk-pgs-ckt-accs-addr": {
+                    "--dlk-pgs-ckt-accs-addr-styles": {},
+                    "--dlk-pgs-ckt-accs-addr-trig": {
+                        "--dlk-pgs-ckt-accs-addr-trig-styles": {},
+                        "--dlk-pgs-ckt-accs-addr-trig-txt": {},
+                        "--dlk-pgs-ckt-accs-addr-trig-icn": {},
+                    },
+                    "--dlk-pgs-ckt-accs-addr-mdl": {
+                        "--dlk-pgs-ckt-accs-addr-mdl-styles": {},
+                    },
+                    "--dlk-pgs-ckt-accs-addr-btn": {},
+                },
+                "--dlk-pgs-ckt-accs-shp": {
+                    "--dlk-pgs-ckt-accs-shp-styles": {},
+                },
+                "--dlk-pgs-ckt-accs-pmt": {
+                    "--dlk-pgs-ckt-accs-pmt-styles": {},
+                },
+            },
+            "--dlk-pgs-ckt-gft": {
+                "--dlk-pgs-ckt-gft-styles": {},
+                "--dlk-pgs-ckt-gft-inp": {},
+                "--dlk-pgs-ckt-gft-btn": {},
+            },
+            "--dlk-pgs-ckt-smry": {
+                "--dlk-pgs-ckt-smry-styles": {},
+                "--dlk-pgs-ckt-smry-hdr": {},
+                "--dlk-pgs-ckt-smry-sep": {},
+                "--dlk-pgs-ckt-smry-itm": {
+                    "--dlk-pgs-ckt-smry-itm-styles": {},
+                    "--dlk-pgs-ckt-smry-itm-img": {},
+                    "--dlk-pgs-ckt-smry-itm-ttl": {},
+                    "--dlk-pgs-ckt-smry-itm-qty": {},
+                    "--dlk-pgs-ckt-smry-itm-prc": {},
+                },
+            },
+            "--dlk-pgs-ckt-totl": {
+                "--dlk-pgs-ckt-totl-styles": {},
+                "--dlk-pgs-ckt-totl-itm": {
+                    "--dlk-pgs-ckt-totl-itm-styles": {},
+                    "--dlk-pgs-ckt-totl-itm-ttl": {},
+                    "--dlk-pgs-ckt-totl-itm-prc": {},
+                },
+            },
+        },
+    },
+};
 
 export const initialStateDesignPage: IStateDesignPage = {
-  device: "desktop",
-  optionSelected: null,
-  shop: {
-    templateID: '6523b829f31b22884436a8da',
-    backgroundText: '',
-    logo: '',
-    discordURL: '',
-    instagramURL: '',
-    twitterURL: '',
-    facebookURL: '',
-    linkedinURL: '',
-    tiktokURL: '',
-    webURL: '',
-    headerIcon: '',
-    backgroundColor: '#141414',
-    backgroundImage: '',
-    backgroundImageSecondary: '',
-    fullWidthHero: false,
-    productSectionText: '',
-    shopDesign: {
-      fontfamily: '',
-      headerBackground: '',
-      hiroLayout: 'right',
-      hiroTextColor: '',
-      bannerLinks: [],
-      footerLinks: [],
-      iconHeaderColor: "#ffffff",
-      backgroundBody: '',
-      foreground: '',
-      textColorParagraphs: '',
+    device: "desktop",
+    optionSelected: null,
+    shop: {
+        templateID: "6523b829f31b22884436a8da",
+        backgroundText: "",
+        logo: "",
+        discordURL: "",
+        instagramURL: "",
+        twitterURL: "",
+        facebookURL: "",
+        linkedinURL: "",
+        tiktokURL: "",
+        webURL: "",
+        headerIcon: "",
+        backgroundColor: "#141414",
+        backgroundImage: "",
+        backgroundImageSecondary: "",
+        fullWidthHero: false,
+        productSectionText: "",
+        shopDesign: {
+            fontfamily: "",
+            headerBackground: "",
+            isHeaderFixed: false,
+            hiroLayout: "right",
+            hiroTextColor: "",
+            bannerLinks: [],
+            footerLinks: [],
+            iconHeaderColor: "#ffffff",
+            backgroundBody: "",
+            foreground: "",
+            textColorParagraphs: "",
+        },
+        template_options: template_options_defaults,
     },
-    template_options: template_options_defaults
-  }
-}
+};
 
 export const designContext = createContext<IProps>({
-  state: initialStateDesignPage,
-  methods: {
-    dispatch: null,
-    resetState: () => { },
-  }
+    state: initialStateDesignPage,
+    methods: {
+        dispatch: null,
+        resetState: () => {},
+    },
 });
