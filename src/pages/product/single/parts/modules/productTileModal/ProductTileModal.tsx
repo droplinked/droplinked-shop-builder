@@ -45,7 +45,7 @@ function ProductTileModal({ isOpen, close, selectedTile }: Props) {
     })
     const handleSave = async () => {
         try {
-            if (selectedTile._id) {
+            if (selectedTile?._id) {
                 const { data } = await editProductTile.mutateAsync()
                 const newTiles = productTile.map(tile => tile._id === selectedTile._id ? data.data : tile)
                 updateState("productTile", newTiles)
