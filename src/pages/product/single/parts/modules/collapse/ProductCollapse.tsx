@@ -7,7 +7,7 @@ import ProductPageTitle from '../title/ProductPageTitle'
 interface IProps {
   children: any
   title: string
-  description: string
+  description: string | React.ReactNode
   show?: boolean
   isReuired?: boolean
 }
@@ -20,7 +20,7 @@ function ProductCollapse({ children, description, title, show = false, isReuired
   return (
     <AppCard mini>
       <VStack align={"stretch"} spacing={10}>
-        <Flex justifyContent={"space-between"} onClick={toggle} style={{ cursor: "pointer" }} alignItems="center">
+        <Flex justifyContent={"space-between"} gap={10} onClick={toggle} style={{ cursor: "pointer" }} alignItems="center">
           <Box><ProductPageTitle head isReuired={isReuired} title={title} description={description} /></Box>
           <Box><AppIcons.ArrowDown style={{ transition: ".3s", ...Show && { transform: "rotate(180deg)" } }} /></Box>
         </Flex>

@@ -57,7 +57,8 @@ export const productParams: IproductState = {
     subCategories: [],
     technique: null,
     isAddToCartDisabled: false,
-    pre_purchase_data_fetch: false
+    pre_purchase_data_fetch: false,
+    productTile: []
 }
 
 namespace ProductPageNamespace {

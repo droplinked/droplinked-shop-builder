@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IproductByIdServices, IproductDeleteServices, IproductList, IProductReorder, IproductState, IproductUpdateServices } from "./interfaces"
+import { IproductByIdServices, IproductDeleteServices, IproductList, IProductReorder, IproductState, IProductTile, IproductUpdateServices } from "./interfaces"
 
 export const productServices = ({ page, limit, filter }: IproductList) => {
     return axiosInstance.get(`product?page=${page}&limit=${limit}${filter ? `&filter=${filter}` : ''}`)
@@ -43,4 +43,20 @@ export const reorderProductsService = (data: IProductReorder) => {
 
 export const getAllProductsService = (signal: AbortSignal) => {
     return axiosInstance.get("/product/all", { signal })
+}
+
+export const createProductTileService = (data: IProductTile) => {
+    return axiosInstance.post("/product/make/tile", data)
+}
+
+export const editProductTileService = (productTileId: string, data: IProductTile) => {
+    return axiosInstance.patch(`/product/edit/tile/${productTileId}`, data)
+}
+
+export const deleteProductTileService = (productTileId: string) => {
+    return axiosInstance.delete(`/product/tile/${productTileId}`)
+}
+
+export const getProductTileService = (productTileId: string) => {
+    return axiosInstance.get(`/product/tile/${productTileId}`)
 }
