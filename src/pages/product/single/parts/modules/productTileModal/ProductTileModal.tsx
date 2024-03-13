@@ -17,7 +17,7 @@ interface Props {
 }
 
 function ProductTileModal({ isOpen, close, selectedTile }: Props) {
-    const { state: { sku, productTile }, productID, methods: { updateState } } = useContext(productContext)
+    const { state: { sku, productTile }, methods: { updateState } } = useContext(productContext)
     const createProductTile = useMutation(() => createProductTileService({ skuIDs }))
     const editProductTile = useMutation(() => editProductTileService(selectedTile?._id!, { skuIDs }))
     const [skuIDs, setSkuIDs] = useState<string[]>(() => selectedTile?.skuIDs.map(sku => sku._id) ?? [])
@@ -47,7 +47,8 @@ function ProductTileModal({ isOpen, close, selectedTile }: Props) {
         try {
             if (selectedTile._id) {
                 const { data } = await editProductTile.mutateAsync()
-                // updateState("productTile", [...productTile, data.data])
+                const newTiles = productTile.map(tile => tile._id === selectedTile._id ? data.data : tile)
+                updateState("productTile", newTiles)
             }
             else {
                 const { data } = await createProductTile.mutateAsync()
