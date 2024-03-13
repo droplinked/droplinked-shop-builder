@@ -57,7 +57,8 @@ export interface IshopUpdateService extends IshopSocial {
     pre_purchase_data_fetch?: {
         active: boolean,
         title: string
-    }
+    },
+    productTile: any[]
 }
 
 export interface IShopRecordedService {

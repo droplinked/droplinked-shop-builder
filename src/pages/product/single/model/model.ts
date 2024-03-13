@@ -67,7 +67,8 @@ const ProductSingleModel = ({
             mainCategory: data?.mainCategory ? data?.mainCategory._id : null,
             subCategories: data?.subCategories ? data?.subCategories.map(el => el._id) : [],
             technique: data?.technique,
-            pre_purchase_data_fetch: data?.pre_purchase_data_fetch
+            pre_purchase_data_fetch: data?.pre_purchase_data_fetch,
+            productTile: data?.productTile
             // isAddToCartDisabled: data?.isAddToCartDisabled,
         }
     },

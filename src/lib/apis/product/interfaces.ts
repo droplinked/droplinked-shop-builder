@@ -61,7 +61,8 @@ export interface IproductState {
     subCategories?: Array<string>
     technique?: string
     isAddToCartDisabled?: boolean;
-    pre_purchase_data_fetch?: boolean
+    pre_purchase_data_fetch?: boolean;
+    productTile?: any[]
 }
 
 export interface IpropertiesItems {
@@ -133,4 +134,8 @@ export interface IgenerateBufferServices {
 export interface IProductReorder {
     productId: string;
     newPosition: number;
+}
+
+export interface IProductTile {
+    skuIDs: string[]
 }

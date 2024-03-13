@@ -3,6 +3,7 @@ import { ReactComponent as AddIcon } from './add.svg';
 import { ReactComponent as ArrowDown } from './arrowDown.svg';
 import { ReactComponent as Base } from './base-logo.svg';
 import { ReactComponent as Binance } from './binance.svg';
+import { ReactComponent as BluePlus } from './blue-plus.svg';
 import { ReactComponent as CasperIcon } from './casper.svg';
 import { ReactComponent as CasperWalletIcon } from './CasperWallet.svg';
 import { ReactComponent as Close } from './close.svg';
@@ -74,6 +75,7 @@ import { ReactComponent as Web } from './web.svg';
 import { ReactComponent as NFT } from './white-nft-icon.svg';
 import { ReactComponent as WhiteOpenWallet } from './white-open-wallet.svg';
 import { ReactComponent as WhiteShopIcon } from './white-shop.svg';
+import { ReactComponent as WhiteTrash } from './white-trash.svg';
 import { ReactComponent as XRPL } from './xrpl.svg';
 import { ReactComponent as Xumm } from './xumm.svg';
 import { ReactComponent as YellowAlert } from './yellow-alert.svg';
@@ -157,6 +159,8 @@ const AppIcons = {
   GreenAlert,
   YellowAlert,
   StripeS,
-  Order
+  Order,
+  BluePlus,
+  WhiteTrash
 }
 export default AppIcons
