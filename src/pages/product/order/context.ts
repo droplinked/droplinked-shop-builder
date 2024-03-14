@@ -1,6 +1,7 @@
 import { IcreateAddressService } from "lib/apis/address/interfaces";
 import { IcreateSampleServiceSkues } from "lib/apis/order/interfaces";
 import { createContext } from "react";
+import { number } from "yup";
 
 export interface IproductOrderSkues {
     [propname: string]: IcreateSampleServiceSkues
@@ -19,6 +20,8 @@ interface IproductOrderStates {
     address: IcreateAddressService
     shipmentRates: Array<IshipmentRates>
     rateId: string
+    orderId: string
+    taxAmount: number
 }
 
 interface IProps {
@@ -33,7 +36,9 @@ export const productOrderStates: IproductOrderStates = {
     address: {} as IcreateAddressService,
     skus: {} as IproductOrderSkues,
     shipmentRates: {} as Array<IshipmentRates>,
-    rateId: null
+    rateId: null,
+    orderId: null,
+    taxAmount: null
 }
 
 const productOrderContext = createContext<IProps>({} as IProps)

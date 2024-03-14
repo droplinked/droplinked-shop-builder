@@ -10,10 +10,11 @@ interface Irows {
     SkuesIDs: string[]
     skus: IproductOrderSkues
     updateState: any
+    orderId: string
 }
 
 namespace productOrderSkuesModel {
-    export const rows = ({ product, SkuesIDs, skus, updateState }: Irows) => product ? product.skuIDs.map(el => {
+    export const rows = ({ product, SkuesIDs, skus, updateState, orderId }: Irows) => product ? product.skuIDs.map(el => {
         const option = (type: 'color' | 'Size') => el.options.find(option => option.variantID === typesProperties[type === "color" ? 0 : 1]._id)
         return {
             _data: el,
@@ -37,7 +38,7 @@ namespace productOrderSkuesModel {
             quantity: {
                 value: (
                     <AppSelectBox
-                        isDisabled={!SkuesIDs.includes(el._id)}
+                        isDisabled={!SkuesIDs.includes(el._id) || !!orderId}
                         items={Array.from({ length: 20 }).map((el, key) => ({ caption: key.toString(), value: key }))}
                         name=""
                         value={skus[el._id]?.quantity || 0}

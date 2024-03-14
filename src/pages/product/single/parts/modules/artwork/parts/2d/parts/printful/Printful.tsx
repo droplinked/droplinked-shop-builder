@@ -176,7 +176,6 @@ function Printful({ close }: IProps) {
             setState('loading', true)
             States.DesignMaker.sendMessage({ event: 'saveDesign' })
         } catch (error) {
-            console.log(error);
         }
     }, [States.DesignMaker])
 

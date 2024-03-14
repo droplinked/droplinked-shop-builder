@@ -12,7 +12,7 @@ import ProductOrderCard from '../../card/ProductOrderCard'
 import productOrderSkuesModel from './model'
 
 function ProductOrderSkues() {
-    const { methods: { updateState }, params: { skus } } = useContext(productOrderContext)
+    const { methods: { updateState }, params: { skus, orderId } } = useContext(productOrderContext)
     const { mutate, data } = useMutation((param: IproductService) => productService(param))
     const params = useParams()
     const product = data?.data?.data
@@ -30,7 +30,7 @@ function ProductOrderSkues() {
     }
 
     // Handle rows appTable
-    const rows = useMemo((): ITableRows => productOrderSkuesModel.rows({ product, SkuesIDs, updateState, skus }), [product, SkuesIDs, skus])
+    const rows = useMemo((): ITableRows => productOrderSkuesModel.rows({ product, SkuesIDs, updateState, skus, orderId }), [product, SkuesIDs, skus, orderId])
 
     return (
         <ProductOrderCard title="Product">
@@ -46,7 +46,8 @@ function ProductOrderSkues() {
                                 state: SkuesIDs, update: (value) => {
                                     setSkuesIDs(value)
                                     updateSkus(value)
-                                }
+                                },
+                                isDisabled: !!orderId
                             }
                         }
                         rows={rows}

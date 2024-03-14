@@ -9,11 +9,11 @@ import React, { useContext } from 'react'
 import { useMutation } from 'react-query'
 import ProductOrderCard from '../../card/ProductOrderCard'
 import PaymentModal from './parts/payment-modal/PaymentModal'
-import classes from './style.module.scss'
+import classes from "./style.module.scss"
 
 function ProductOrderShipments() {
     const { params: { shipmentRates, rateId }, methods: { updateState } } = useContext(productOrderContext)
-    const { params: contextParams } = useContext(productOrderContext)
+    const { params: { taxAmount } } = useContext(productOrderContext)
     const { mutateAsync, isLoading, data } = useMutation((params: IupdateSampleService) => updateSampleService(params))
     const { showToast } = useAppToast()
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -56,11 +56,18 @@ function ProductOrderShipments() {
                                     </Radio>
                                 </Box>
                             ))}
+                            <Flex justifyContent="space-between" alignItems="center">
+                                <AppTypography fontSize="16px" color="#C2C2C2">Tax</AppTypography>
+                                <AppTypography fontSize="16px" color="#C2C2C2">{`$${taxAmount} USD`}</AppTypography>
+                            </Flex>
                         </Flex>
                     </RadioGroup>
                     <Flex flexDirection="row-reverse" gap={4}>
                         <BasicButton onClick={submit} isLoading={isLoading}>Pay with Stripe</BasicButton>
-                        <BasicButton onClick={() => updateState('shipmentRates', [])} variant="outline">Back</BasicButton>
+                        <BasicButton onClick={() => {
+                            updateState('shipmentRates', [])
+                            updateState('orderId', null)
+                        }} variant="outline">Back</BasicButton>
                     </Flex>
                 </Flex>
             </ProductOrderCard >

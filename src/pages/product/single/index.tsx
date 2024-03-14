@@ -58,10 +58,6 @@ function ProductSingle() {
         }
     }, [productId, state.params.product_type])
 
-    // useEffect(() => {
-    //     console.log('sku test', state.params?.sku?.[0]?.recordData);
-    // }, [state])
-
     return (
         <productContext.Provider value={{
             state: state.params,
