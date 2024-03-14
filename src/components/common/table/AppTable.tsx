@@ -23,6 +23,7 @@ export interface IAppTable {
     checkbox?: {
         state: Array<string>
         update(value: Array<string>): void
+        isDisabled?: boolean
     }
 }
 
@@ -57,7 +58,7 @@ function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
                         <Table color="#bebebe" width="100%" variant="unstyled">
                             <Thead borderTop="2px solid #292929" borderBottom="2px solid #292929" {...props?.thead}>
                                 <Tr>
-                                    {checkbox && <Th textTransform="uppercase" padding="14px 15px 14px 0"><Checkbox onChange={(e) => selectAll(e.target.checked)} colorScheme='green'></Checkbox></Th>}
+                                    {checkbox && <Th textTransform="uppercase" padding="14px 15px 14px 0"><Checkbox onChange={(e) => selectAll(e.target.checked)} isDisabled={checkbox.isDisabled} colorScheme='green'></Checkbox></Th>}
                                     {Object.keys(rows[0]).filter(el => el !== "_data").map((el, key) =>
                                         <Th textTransform="uppercase" padding="14px 15px" {...key === 0 && { paddingLeft: 0 }} {...rows[0][el].props} key={key}>
                                             <AppTypography textTransform="none" fontSize='12px' color="#FFF">
@@ -74,6 +75,7 @@ function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
                                             <Td width="50" padding="14px 15px 14px 0">
                                                 <Checkbox
                                                     isChecked={checkbox.state.includes(el?._data?._id || key)}
+                                                    isDisabled={checkbox.isDisabled}
                                                     colorScheme='green'
                                                     onChange={(e) => selected(el?._data?._id || key, e.target.checked)}
                                                 >

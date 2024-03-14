@@ -12,8 +12,12 @@ function ProductOrder() {
     const [resetKey, setResetKey] = useState(0)
     const updateState = (key, value) => setStates(prev => ({ ...prev, [key]: value }))
     const resetState = () => {
-        setStates(prev => ({ ...prev, skus: {}, shipmentRates: [], rateId: null }))
+        setStates(prev => ({ ...prev, skus: {}, shipmentRates: [], rateId: null, orderId: null, taxAmount: null }))
         setResetKey(prev => prev + 1)
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
     }
 
     return (
