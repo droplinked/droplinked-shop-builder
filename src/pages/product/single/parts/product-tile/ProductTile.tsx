@@ -20,7 +20,14 @@ function ProductTile() {
                         <AppTypography fontSize={14}>
                             Generate personalized product tiles for your website by choosing specific SKUs.
                             For detailed guidance on using product tiles, refer to our{" "}
-                            <Link href='https://www.google.com' target="_blank" textDecoration="underline" color="#33A9EC">Documentation</Link>.
+                            <Link
+                                href='https://simplistic-nymphea-62e.notion.site/Product-Tile-20b32ce908ee4a00b2040d93ee629683'
+                                target="_blank"
+                                textDecoration="underline"
+                                color="#33A9EC"
+                            >
+                                Documentation
+                            </Link>.
                         </AppTypography>
                     }
                     isReuired={false}
