@@ -42,12 +42,12 @@ const BasicButtonStyles = ({
 
     ghost: (): ButtonProps => {
         return {
-            color: "#FFF",
+            color: "#C2C2C2",
             bgColor: "#292929",
             border: "none !important",
             _hover: {
                 bgColor: "#292929",
-                color: "#FFF",
+                color: "#C2C2C2",
             }
         }
     }
