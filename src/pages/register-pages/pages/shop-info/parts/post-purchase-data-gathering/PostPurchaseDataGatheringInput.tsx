@@ -2,14 +2,9 @@ import { Flex } from '@chakra-ui/react'
 import AppInput from 'components/common/form/textbox/AppInput'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import { IstatesShopInfo } from '../../ShopInfo'
+import { IShopInfoChildProps } from '../../ShopInfo'
 
-interface Props {
-    States: IstatesShopInfo,
-    updateStates: (key: string, value: any) => void
-}
-
-function PostPurchaseDataGatheringInput({ States, updateStates }: Props) {
+function PostPurchaseDataGatheringInput({ States, updateStates }: IShopInfoChildProps) {
     return (
         <Flex direction={"column"} gap={"36px"}>
             <AppTypography fontSize='18px' fontWeight='bold'>Post-purchase Data Gathering</AppTypography>
