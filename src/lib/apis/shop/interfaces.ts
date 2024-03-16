@@ -87,3 +87,7 @@ export interface ShopCustomURL {
 export interface ShopDNSInformation {
     domain_name: string;
 }
+
+export interface ICustomReferralCode {
+    customCode: string;
+}
