@@ -27,7 +27,7 @@ function HeaderDashboardLogedin() {
         >
             <PopoverTrigger>
                 <Flex alignItems="center" gap="12px" cursor="pointer">
-                    <ShopnameText>{shop?.name}</ShopnameText>
+                    <AppTypography color={"lightGray"} fontSize={"18px"} fontWeight={"500"}>{shop?.name}</AppTypography>
                     <AppIcons.ShopIcon />
                 </Flex>
             </PopoverTrigger>
