@@ -1,96 +1,52 @@
 import axiosInstance from "../axiosConfig"
-import { IchargeCreditService, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, ShopCustomURL, ShopDNSInformation, ShopOAuth2Client } from "./interfaces"
+import { IchargeCreditService, ICustomReferralCode, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, ShopCustomURL, ShopDNSInformation, ShopOAuth2Client } from "./interfaces"
 
-export const shopService = ({ shopName }: IshopService) => {
-    return axiosInstance.get(`shop/${shopName}`)
-}
+export const shopService = ({ shopName }: IshopService) => axiosInstance.get(`shop/${shopName}`)
 
-export const paymentPublicService = async () => {
-    return axiosInstance.get(`shop/public/available-payment-methods`)
-}
+export const paymentPublicService = async () => axiosInstance.get(`shop/public/available-payment-methods`)
 
-export const paymentMethodsService = () => {
-    return axiosInstance.get(`shop/payment-methods`)
-}
+export const paymentMethodsService = () => axiosInstance.get(`shop/payment-methods`)
 
-export const paymentCreateService = (params: Array<IpaymentCreateService>) => {
-    return axiosInstance.post(`shop/payment-methods`, {
-        methods: params
-    })
-}
+export const paymentCreateService = (params: Array<IpaymentCreateService>) => axiosInstance.post(`shop/payment-methods`, { methods: params })
 
-export const shopPublicRecordedService = ({ page, tags }: IshopPublicRecordedService) => {
-    return axiosInstance.get(`shop/public/recorded?limit=10&page=${page}${tags ? '&tags=' + `["${tags}"]` : ''}`)
-}
+export const shopPublicRecordedService = ({ page, tags }: IshopPublicRecordedService) => axiosInstance.get(`shop/public/recorded?limit=10&page=${page}${tags ? '&tags=' + `["${tags}"]` : ''}`)
 
-export const recordedShopService = ({ shopName }: IrecordedShopService) => {
-    return axiosInstance.get(`shop/public/recorded/${shopName}`)
-}
+export const recordedShopService = ({ shopName }: IrecordedShopService) => axiosInstance.get(`shop/public/recorded/${shopName}`)
 
-export const productService = ({ productID }: IproductService) => {
-    return axiosInstance.get(`product/${productID}`)
-}
+export const productService = ({ productID }: IproductService) => axiosInstance.get(`product/${productID}`)
 
-export const shopInfoService = ({ shopName }: IshopInfoService) => {
-    return axiosInstance.get(`shop/shopInfo/${shopName}`)
-}
+export const shopInfoService = ({ shopName }: IshopInfoService) => axiosInstance.get(`shop/shopInfo/${shopName}`)
 
-export const shopUpdateService = (params: IshopUpdateService) => {
-    return axiosInstance.put(`shop`, params)
-}
+export const shopUpdateService = (params: IshopUpdateService) => axiosInstance.put(`shop`, params)
 
-export const availableTemplateService = () => {
-    return axiosInstance.get(`shop/available/templates`)
-}
+export const availableTemplateService = () => axiosInstance.get(`shop/available/templates`)
 
-export const ShopRecordedService = ({ categoryIds, page, subCategoryIds, title }: IShopRecordedService) => {
-    return axiosInstance.get(`product/community/recorded?limit=25&page=${page}${categoryIds ? '&categoryIds=' + `["${categoryIds}"]` : ''}${subCategoryIds ? '&subCategoryIds=' + `["${subCategoryIds}"]` : ''}${title ? '&title=' + title : ''}`)
-}
+export const ShopRecordedService = ({ categoryIds, page, subCategoryIds, title }: IShopRecordedService) => axiosInstance.get(`product/community/recorded?limit=25&page=${page}${categoryIds ? '&categoryIds=' + `["${categoryIds}"]` : ''}${subCategoryIds ? '&subCategoryIds=' + `["${subCategoryIds}"]` : ''}${title ? '&title=' + title : ''}`)
 
-export const chargeCreditService = (props: IchargeCreditService) => {
-    return axiosInstance.post(`shop/credit/charge`, props)
-}
+export const chargeCreditService = (props: IchargeCreditService) => axiosInstance.post(`shop/credit/charge`, props)
 
-export const patchedChargedService = () => {
-    return axiosInstance.patch(`shop/credit/charge`)
-}
+export const patchedChargedService = () => axiosInstance.patch(`shop/credit/charge`)
 
-export const shopDashboardService = () => {
-    return axiosInstance.get(`shop/dashboard/products?limit=5`)
-}
+export const shopDashboardService = () => axiosInstance.get(`shop/dashboard/products?limit=5`)
 
-export const shopSellerService = () => {
-    return axiosInstance.get(`shop/dashboard/sellers?limit=5`)
-}
+export const shopSellerService = () => axiosInstance.get(`shop/dashboard/sellers?limit=5`)
 
-export const bestPartnersService = () => {
-    return axiosInstance.get(`shop/dashboard/product-types`)
-}
+export const bestPartnersService = () => axiosInstance.get(`shop/dashboard/product-types`)
 
-export const getShopAPIKeyService = () => {
-    return axiosInstance.get(`shop/client/oauth2`)
-}
+export const getShopAPIKeyService = () => axiosInstance.get(`shop/client/oauth2`)
 
-export const updateShopAPIKeyService = (data: ShopOAuth2Client) => {
-    return axiosInstance.put("shop/client/oauth2 ", data)
-}
+export const updateShopAPIKeyService = (data: ShopOAuth2Client) => axiosInstance.put("shop/client/oauth2 ", data)
 
-export const getShopInformationService = () => {
-    return axiosInstance.get("shop")
-}
+export const getShopInformationService = () => axiosInstance.get("shop")
 
-export const generateShopCustomURLService = (data: ShopCustomURL) => {
-    return axiosInstance.post("shop/domain", data)
-}
+export const generateShopCustomURLService = (data: ShopCustomURL) => axiosInstance.post("shop/domain", data)
 
-export const getShopDNSInformationService = () => {
-    return axiosInstance.get("shop/retrieve/dns")
-}
+export const getShopDNSInformationService = () => axiosInstance.get("shop/retrieve/dns")
 
-export const getShopDNSStatusService = (data: ShopDNSInformation) => {
-    return axiosInstance.post("shop/retrieve/domain/info", data)
-}
+export const getShopDNSStatusService = (data: ShopDNSInformation) => axiosInstance.post("shop/retrieve/domain/info", data)
 
-export const getShopPrivateKeyService = () => {
-    return axiosInstance.get("shop/retrieve/privatekey")
-}
+export const getShopPrivateKeyService = () => axiosInstance.get("shop/retrieve/privatekey")
+
+export const getReferralReportService = () => axiosInstance.get("shop/referral/report")
+
+export const updateCustomReferralCodeService = (props: ICustomReferralCode) => axiosInstance.patch("shop/referral/custom/code", props)
