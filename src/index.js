@@ -1,6 +1,6 @@
 import React from "react";
 import { ClientProvider } from '@micro-stacks/react'
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import "assest/style/index.css";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,9 +10,14 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "./theme";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { appDeveloment } from "lib/utils/app/variable";
-const queryClient = new QueryClient()
 
-ReactDOM.render(
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+
+const queryClient = new QueryClient()
+root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme} >
@@ -22,7 +27,6 @@ ReactDOM.render(
       </ChakraProvider>
     </QueryClientProvider>
   </React.StrictMode>,
-  document.getElementById("root")
 );
 
 serviceWorkerRegistration.unregister();
