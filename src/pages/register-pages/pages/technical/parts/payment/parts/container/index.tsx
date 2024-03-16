@@ -12,7 +12,7 @@ import classes from './style.module.scss'
 
 function ContainerPayment({ title, value, locked }) {
   // Check active
-  useEffect(() => locked && setActive(true), [title, value, locked])
+  useEffect(() => {locked && setActive(true)}, [title, value, locked])
 
   const { updatePayment } = useContext(technicalContext)
   const [active, setActive] = useState(false)

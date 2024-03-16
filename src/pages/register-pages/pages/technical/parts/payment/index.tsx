@@ -17,7 +17,7 @@ function Payments() {
     const { makePayments } = technicalPaymentsModel
 
     // Fetch payments method
-    useEffect(() => paymentPublic.mutate(), [])
+    useEffect(() => {paymentPublic.mutate()}, [])
 
     // update payment methods
     useEffect(() => {
