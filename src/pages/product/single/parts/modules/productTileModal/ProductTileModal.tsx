@@ -52,7 +52,7 @@ function ProductTileModal({ isOpen, close, selectedTile }: Props) {
             }
             else {
                 const { data } = await createProductTile.mutateAsync()
-                updateState("productTile", [...productTile, data.data])
+                updateState("productTile", [...(productTile || []), data.data])
             }
             discard()
         } catch (error) {

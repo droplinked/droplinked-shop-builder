@@ -16,7 +16,7 @@ function ProductTileTable() {
     const confirmationModal = useDisclosure()
     const productTileModal = useDisclosure()
     const { showToast } = useAppToast()
-    const rows = productTile.map(tile => {
+    const rows = productTile?.map(tile => {
         const option = (index: number, type: 'color' | 'size') => tile.skuIDs[index].options.find(option => option.variantID === typesProperties[type === "color" ? 0 : 1]._id)
         return {
             _data: tile as any,
@@ -72,7 +72,7 @@ function ProductTileTable() {
                     </Flex>
             }
         }
-    })
+    }) || []
 
     return (
         <>

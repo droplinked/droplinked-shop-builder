@@ -10,7 +10,7 @@ import ProductTileTable from '../modules/productTileTable/ProductTileTable'
 
 function ProductTile() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { state: { sku, productTile }, productID, methods: { updateState } } = useContext(productContext)
+    const { state: { productTile }, productID } = useContext(productContext)
     return (
         productID ?
             <>
@@ -33,9 +33,10 @@ function ProductTile() {
                                 <AppTypography fontSize={14} color="#33A9EC">Create new tile</AppTypography>
                             </Flex>
                         </Flex>
-                        {productTile.length === 0 ?
-                            <ProductTileEmptyBox /> :
-                            <ProductTileTable />
+                        {
+                            (!productTile?.length) ?
+                                <ProductTileEmptyBox /> :
+                                <ProductTileTable />
                         }
                     </Flex>
                 </ProductCollapse>
