@@ -1,15 +1,10 @@
-import { switchAnatomy } from '@chakra-ui/anatomy'
-import { Switch, SwitchProps } from '@chakra-ui/react'
-import React from 'react'
-import classes from './style.module.scss'
+import { Switch, SwitchProps } from "@chakra-ui/react";
+import React from "react";
 
-interface IProps extends SwitchProps { }
+interface IProps extends SwitchProps {}
 
 function AppSwitch(props: IProps) {
-
-    return (
-        <Switch {...props} size='md' className={classes.switch} colorScheme='green' />
-    )
+    return <Switch border={"none"} outline={"none"} size="md" {...props} />;
 }
 
-export default AppSwitch
+export default AppSwitch;
