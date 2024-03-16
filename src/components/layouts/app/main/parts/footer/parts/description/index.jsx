@@ -13,7 +13,7 @@ function Description() {
     >
       <Link to="/#banner"><Image src={droplinkFull} maxW="210px" h="auto" mb="18px" /></Link>
 
-      <Text
+      <Box
         fontFamily="Avenir Next"
         fontSize="12px"
         fontWeight="500"
@@ -24,7 +24,7 @@ function Description() {
         <AppTypography fontSize="12px" fontWeight="bold" display={"inline-block"}>Community driven commerce</AppTypography>
         <br />
         Launch a drop in minutes & unlock the power of web3.
-      </Text>
+      </Box>
 
       <a href="mailto:Support@droplinked.com">
         <Text
