@@ -59,6 +59,8 @@ import { ReactComponent as ShopIcon } from './shop-green-icon.svg';
 import { ReactComponent as Skale } from './skale.svg';
 import { ReactComponent as SnapchatIcon } from './snapchat.svg';
 import { ReactComponent as Stacks } from './stacks-stx-logo.svg';
+import { ReactComponent as StarOff } from './star-off.svg';
+import { ReactComponent as StarOn } from './star-on.svg';
 import { ReactComponent as StarFilled } from './starFilled.svg';
 import { ReactComponent as StarOutline } from './starOutline.svg';
 import { ReactComponent as StripeS } from './stripe-s-icon.svg';
@@ -161,6 +163,8 @@ const AppIcons = {
   StripeS,
   Order,
   BluePlus,
-  WhiteTrash
+  WhiteTrash,
+  StarOff,
+  StarOn
 }
 export default AppIcons

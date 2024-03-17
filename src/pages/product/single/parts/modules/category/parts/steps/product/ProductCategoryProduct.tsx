@@ -1,14 +1,15 @@
-import { Box, Flex, Image, SimpleGrid, VStack } from '@chakra-ui/react'
+import { Flex, Image, SimpleGrid } from '@chakra-ui/react'
+import LoadingComponent from 'components/common/loading-component/LoadingComponent'
 import AppTypography from 'components/common/typography/AppTypography'
-import React, { useContext, useEffect } from 'react'
-import CategoryBox from '../../box/CategoryBox'
+import { IpodCategoryProductService } from 'lib/apis/pod/interfaces'
+import { podCategoryProductService } from 'lib/apis/pod/services'
 import { productContext } from 'pages/product/single/context'
+import React, { useContext, useEffect } from 'react'
+import { useMutation } from 'react-query'
 import ProductTypeModel from '../../../../productType/model'
-import { useMutation } from 'react-query';
-import { podCategoryProductService } from 'lib/apis/pod/services';
-import { IpodCategoryProductService } from 'lib/apis/pod/interfaces';
-import { productCategoryContext } from '../../../context';
-import LoadingComponent from 'components/common/loading-component/LoadingComponent';
+import { productCategoryContext } from '../../../context'
+import CategoryBox from '../../box/CategoryBox'
+import StarRating from './parts/starRating/StarRating'
 
 function ProductCategoryProduct() {
   const product = useContext(productContext)
@@ -34,11 +35,19 @@ function ProductCategoryProduct() {
                 product.methods.updateState('title', el?.title)
                 product.methods.updateState('description', `<p>${el?.description}</p>`)
               }}>
-                <VStack align="stretch" spacing="12px">
+                <Flex direction={"column"} gap={3} height={"fit-content"}>
                   <Flex justifyContent="center"><Image src={el?.image} alt={el?.title} borderRadius="5px" width="100%" /></Flex>
-                  <Box><AppTypography fontSize='14px'>{el?.title}</AppTypography></Box>
-                  <Box><AppTypography fontSize='14px'>{'---'}</AppTypography></Box>
-                </VStack>
+                  <Flex direction={"column"} gap={2}>
+                    <AppTypography fontSize='14px' fontWeight={500}>{el?.title}</AppTypography>
+                    {el.priceRange && <AppTypography color="#C2C2C2">{el.priceRange}</AppTypography>}
+                  </Flex>
+                  {el.rating &&
+                    <Flex justifyContent="space-between" alignItems={"center"}>
+                      <AppTypography color="#C2C2C2">Quality</AppTypography>
+                      <StarRating rate={el.rating} />
+                    </Flex>
+                  }
+                </Flex>
               </CategoryBox>
             ))}
           </SimpleGrid>
