@@ -1,5 +1,6 @@
 import { Flex, Image, SimpleGrid } from '@chakra-ui/react'
 import LoadingComponent from 'components/common/loading-component/LoadingComponent'
+import AppTooltip from 'components/common/tooltip/AppTooltip'
 import AppTypography from 'components/common/typography/AppTypography'
 import { IpodCategoryProductService } from 'lib/apis/pod/interfaces'
 import { podCategoryProductService } from 'lib/apis/pod/services'
@@ -38,7 +39,12 @@ function ProductCategoryProduct() {
                 <Flex direction={"column"} gap={3} height={"fit-content"}>
                   <Flex justifyContent="center"><Image src={el?.image} alt={el?.title} borderRadius="5px" width="100%" /></Flex>
                   <Flex direction={"column"} gap={2}>
-                    <AppTypography fontSize='14px' fontWeight={500}>{el?.title}</AppTypography>
+                    <AppTypography fontSize='14px' fontWeight={500} height={"40px"}>
+                      {
+                        el.title.length <= 30 ? el.title :
+                          <AppTooltip label={el.title}>{`${el.title.slice(0, 30)}...`}</AppTooltip>
+                      }
+                    </AppTypography>
                     {el.priceRange && <AppTypography color="#C2C2C2">{el.priceRange}</AppTypography>}
                   </Flex>
                   {el.rating &&
