@@ -29,10 +29,10 @@ namespace productOrderSkuesModel {
             cost: {
                 caption: "Product Cost",
                 value: (
-                    <HStack spacing={2}>
-                        <AppTypography>{el?.rawPrice}</AppTypography>
-                        <AppTypography color="#808080">USD</AppTypography>
-                    </HStack>
+                    <AppTypography>
+                        {`$${el?.rawPrice.toFixed(2)}`} {" "}
+                        <Box as="span" color="#808080">USD</Box>
+                    </AppTypography>
                 )
             },
             quantity: {
