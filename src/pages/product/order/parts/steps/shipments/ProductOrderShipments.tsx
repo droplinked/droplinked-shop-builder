@@ -58,7 +58,7 @@ function ProductOrderShipments() {
                             ))}
                             <Flex justifyContent="space-between" alignItems="center">
                                 <AppTypography fontSize="16px" color="#C2C2C2">Tax</AppTypography>
-                                <AppTypography fontSize="16px" color="#C2C2C2">{`$${taxAmount} USD`}</AppTypography>
+                                <AppTypography fontSize="16px" color="#C2C2C2">{`$${taxAmount.toFixed(2)} USD`}</AppTypography>
                             </Flex>
                         </Flex>
                     </RadioGroup>
