@@ -16,7 +16,8 @@ const clearPromise = () => refreshPromise = null;
 // Function to refresh the access token
 const refreshAccessToken = async () => {
     try {
-        const { refresh_token } = useAppStore.getState();
+        const appStore = localStorage.getItem("appStore");
+        const refresh_token = JSON.parse(appStore).state.refresh_token
         const response = await axios.post(`${BASE_URL}/auth/refresh-token`, {}, {
             headers: { 'Authorization': `Bearer ${refresh_token}` },
         });
