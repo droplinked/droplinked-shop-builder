@@ -27,7 +27,6 @@ function ShopInfoAddress({ addressService }: Iprops) {
 
     useEffect(() => setAddressID(null), [addressService.data])
 
-
     const rows = useMemo(() => {
         return address ? address.map((el: any) => ({
             State: {
@@ -37,7 +36,7 @@ function ShopInfoAddress({ addressService }: Iprops) {
                 value: `${el.addressLine1}`
             },
             zipcode: {
-                caption: "Zip-code",
+                caption: "Zip Code",
                 value: `${el.zip}`
             },
             Options: {
@@ -55,7 +54,6 @@ function ShopInfoAddress({ addressService }: Iprops) {
             },
         })) : []
     }, [address])
-
 
     return (
         <VStack align={"stretch"}>

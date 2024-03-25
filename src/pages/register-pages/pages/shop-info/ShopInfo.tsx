@@ -1,7 +1,7 @@
 import { Flex, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
 import { useProfile } from "functions/hooks/useProfile/useProfile"
-import { addressBookService } from 'lib/apis/address/addressServices'
+import { getShopAddressBookService } from 'lib/apis/address/addressServices'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 import ShopInfoAddress from './parts/address/shopInfoAddress'
@@ -23,7 +23,7 @@ export interface IstatesShopInfo {
 
 function RegisterShopInfo() {
   const { shop } = useProfile()
-  const addressService = useMutation(() => addressBookService())
+  const addressService = useMutation(() => getShopAddressBookService())
   const [States, setStates] = useState<IstatesShopInfo>({
     description: null,
     addressBookID: null,
