@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 import { closestCorners, DndContext, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import AppIcons from 'assest/icon/Appicons';
 import AppModal from 'components/common/modal/AppModal';
@@ -63,7 +64,7 @@ function ProductReorderModal({ isOpen, close }: Props) {
     }, []);
 
     return (
-        <AppModal open={isOpen} close={close} size="3xl" isCentered={false} contentProps={{ paddingX: 3, paddingY: 6, overflow: "hidden" }}>
+        <AppModal open={isOpen} close={close} size="3xl" isCentered={false} contentProps={{ paddingX: 3, paddingY: 6 }}>
             <Flex direction={"column"} gap={9}>
                 <Flex direction={"column"} gap={6}>
                     <AppTypography fontSize={16} fontWeight={500} color={"#fff"}>Reorder Products</AppTypography>
@@ -79,7 +80,7 @@ function ProductReorderModal({ isOpen, close }: Props) {
                 </Flex>
                 {
                     isLoading ? <Loading /> :
-                        <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                        <DndContext modifiers={[restrictToVerticalAxis, restrictToParentElement]} sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
                             <SortableContext items={products.map((i) => i._id)} strategy={verticalListSortingStrategy}>
                                 <Flex direction={"column"} gap={6}>
                                     {products.map((product, index) => <SortableProduct key={index} product={product} />)}

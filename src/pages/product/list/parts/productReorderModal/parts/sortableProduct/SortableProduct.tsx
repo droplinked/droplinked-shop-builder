@@ -7,7 +7,10 @@ import AppTypography from 'components/common/typography/AppTypography';
 import React from 'react';
 
 function SortableProduct({ product }: { product: any }) {
-    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: product._id });
+    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+        id: product._id,
+        animateLayoutChanges: () => false
+    })
     const style = {
         transform: CSS.Transform.toString(transform),
         transition
