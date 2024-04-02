@@ -25,7 +25,6 @@ const ReferralCode = ({ States:{ referralDetails: { code, customCode } }, update
     const { values, handleSubmit, handleChange, setFieldValue, setFieldError, errors } = useFormik({ initialValues: { customCode }, validationSchema: object().shape({ customCode: string().required("Required") }), validateOnChange: false, onSubmit: update_referral });
     useOutsideClick({ ref, handler: () => { start_transition(() => { set_enable(false); setFieldValue('customCode', customCode); setFieldError("customCode", null) })}});
     const debounced_code = useDebounce(values.customCode);
-    useEffect(() => { console.log(debounced_code) }, [debounced_code]);
     return (
         <Flex direction="column" gap="36px">
             <Flex direction="column" gap="8px"><AppTypography fontSize="18px" fontWeight="bold">Referral Code</AppTypography><AppTypography fontSize="16px" color="lightGray">Earn more with every referral! When someone joins our community using your referral code, you'll receive 50% of our commissions from their orders.</AppTypography></Flex>
