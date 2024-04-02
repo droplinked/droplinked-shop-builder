@@ -15,7 +15,7 @@ import { ICustomReferralCode } from "lib/apis/shop/interfaces";
 import { updateCustomReferralCodeService } from "lib/apis/shop/shopServices";
 import { IShopInfoChildProps } from "../../ShopInfo";
 
-const ReferralCode = ({ States:{ referralDetails: { code, customCode } }, updateStates } : IShopInfoChildProps) => {
+const ReferralCode = ({ States:{ referralDetails: { code, customCode, percent } }, updateStates } : IShopInfoChildProps) => {
     const {mutateAsync, isLoading: referral_update_loading } = useMutation((params: ICustomReferralCode) => updateCustomReferralCodeService(params))
     const [pending, start_transition] = useTransition();
     const [enable, set_enable] = useState<boolean>(false);
@@ -24,10 +24,10 @@ const ReferralCode = ({ States:{ referralDetails: { code, customCode } }, update
     const update_referral = async (values, actions) => await mutateAsync({customCode: values.customCode}).then((res) => updateStates('referralDetails', res.data.data)).catch((err) => actions.setFieldError('customCode',err.response.data.data.message))
     const { values, handleSubmit, handleChange, setFieldValue, setFieldError, errors } = useFormik({ initialValues: { customCode }, validationSchema: object().shape({ customCode: string().required("Required") }), validateOnChange: false, onSubmit: update_referral });
     useOutsideClick({ ref, handler: () => { start_transition(() => { set_enable(false); setFieldValue('customCode', customCode); setFieldError("customCode", null) })}});
-    const debounced_code = useDebounce(values.customCode);
+    const debounced_code = useDebounce(values?.customCode);
     return (
         <Flex direction="column" gap="36px">
-            <Flex direction="column" gap="8px"><AppTypography fontSize="18px" fontWeight="bold">Referral Code</AppTypography><AppTypography fontSize="16px" color="lightGray">Earn more with every referral! When someone joins our community using your referral code, you'll receive 50% of our commissions from their orders.</AppTypography></Flex>
+            <Flex direction="column" gap="8px"><AppTypography fontSize="18px" fontWeight="bold">Referral Code</AppTypography><AppTypography fontSize="16px" color="lightGray">Earn more with every referral! When someone joins our community using your referral code, you'll receive {percent}% of our commissions from their orders.</AppTypography></Flex>
             <Flex direction="column" gap="12px">
                 <AppTypography fontSize="16px" fontWeight={500} color="lightGray">Referral Link</AppTypography>
                 <Flex justifyContent="space-between" alignItems="center"><AppTypography fontSize="16px" fontWeight={400} color="lightGray">{`${BUILDER_URL}/referral=${code}`}</AppTypography><ClipboardText text={`${BUILDER_URL}/referral=${code}`} /></Flex>
