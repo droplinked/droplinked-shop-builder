@@ -11,12 +11,14 @@ namespace OrderDetailsModel {
         </AppTypography>
     }
 
-    export const getOrderDetails = (order: any) => {
+    export const getOrderDetails = (order: any, shopName: string) => {
         const detailsMap = {
             shippings: {
                 order: 1,
                 title: "Shipping",
-                rows: order?.shippings?.map(item => ({ label: item.title, value: formattedPrice(item.value) }))
+                rows: order?.shippings?.
+                    filter(shipping => shipping.title === "Total" ? shopName === "swissborg" ? false : true : true)
+                    .map(item => ({ label: item.title, value: formattedPrice(item.value) }))
             },
             tax: {
                 order: 2,
