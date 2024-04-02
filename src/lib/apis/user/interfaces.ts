@@ -4,6 +4,7 @@ export interface IsignupService {
     email: string
     password: string
     shopName: string
+    referral?: string
 
 }
 export interface IforgetPasswordService {

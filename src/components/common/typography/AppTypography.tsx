@@ -3,16 +3,17 @@ import React from 'react'
 
 export interface IAppTypography extends TextProps {
   children?: any
+  price?: boolean
 }
 
-function AppTypography(props: IAppTypography) {
-  const { children } = props
+function AppTypography({children, price = false, ...props}: IAppTypography) {
   return (
     <Text
+      margin={0}
       fontWeight={props.fontWeight || "normal"}
       fontSize={props.fontSize || "12px"}
       {...props}>
-      {children}
+      {price ? <>$ {children} USD</> :  children }
     </Text>
   )
 }
