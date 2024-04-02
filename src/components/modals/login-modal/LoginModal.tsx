@@ -11,6 +11,7 @@ import AppErrors from "lib/utils/statics/errors/errors";
 import React from "react";
 import * as Yup from "yup";
 import AppTypography from "components/common/typography/AppTypography";
+import { useNavigate } from "react-router-dom";
 
 interface Iform {
     email: string;
@@ -22,6 +23,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
         app: { login, loading },
     } = useHookStore();
     const { showToast } = useAppToast();
+    const navigate = useNavigate();
     const { shopNavigate } = useCustomNavigate();
 
     // submit form function
@@ -54,27 +56,29 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
     // navigate user based on status
     const navigateUser = (status: string, data: any) => {
-        // eslint-disable-next-line default-case
         switch (status) {
             case "NEW":
                 localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
-                shopNavigate("/email-confirmation");
+                navigate("/email-confirmation");
                 return;
             case "VERIFIED":
-                shopNavigate(`register/shop-info`);
+                shopNavigate("register/shop-info");
                 return;
             case "PROFILE_COMPLETED":
-                shopNavigate(`register/shop-info`);
+                shopNavigate("register/shop-info");
                 return;
             case "SHOP_INFO_COMPLETED":
-                shopNavigate(``);
+                shopNavigate("");
                 return;
             case "IMS_TYPE_COMPLETED":
-                shopNavigate(``);
+                shopNavigate("");
                 return;
             case "ACTIVE":
-                shopNavigate(``);
+                shopNavigate("");
                 return;
+            default:
+                navigate("")
+                return    
         }
     };
 
