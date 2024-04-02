@@ -1,6 +1,6 @@
 {
   "name": "demo-app",
-  "version": "1.19.64",
+  "version": "1.19.65",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^1.8.9",
