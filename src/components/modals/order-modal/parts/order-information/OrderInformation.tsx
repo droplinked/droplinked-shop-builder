@@ -5,6 +5,8 @@ import AppTypography from 'components/common/typography/AppTypography'
 import orderModalContext from "../context"
 import OrderInformationModel from "./model"
 
+type linkLabel = "Transaction ID" | "Tracking Link"
+
 const OrderInformation = () => {
     const { order } = useContext(orderModalContext)
 
@@ -12,11 +14,11 @@ const OrderInformation = () => {
         return OrderInformationModel.getOrderStatusColor(status)
     }
 
-    const renderTransactionLink = (label, value) => {
+    const renderLink = (label: linkLabel, value: string) => {
         const link = label === "Transaction ID" ? OrderInformationModel.getTransactionLink(order) : value
         return (
             <Link href={link} target="_blank" textDecoration="underline" isExternal>
-                {label === "Transaction ID" ? value.slice(0, 40) + "..." : value}
+                {label === "Transaction ID" ? value.slice(0, 40) + "..." : order.trackingInfo[0].trackings[0].name}
             </Link>
         )
     }
@@ -26,7 +28,7 @@ const OrderInformation = () => {
             { label: "Status", value: order?.orderInformation?.status, style: { color: getOrderStatusColor(order?.orderInformation?.status) } },
             { label: "Order ID", value: order?.orderInformation?.orderId },
             { label: "Transaction ID", value: order?.orderInformation?.transactionId, style: { color: "#33A9EC", cursor: "pointer" } },
-            { label: "Tracking Link", value: order?.trackingInfo?.[0].trackings[0]?.url, style: { color: "#33A9EC", cursor: "pointer" } },
+            { label: "Tracking Link", value: order?.trackingInfo?.[0]?.trackings[0]?.url, style: { color: "#33A9EC", cursor: "pointer" } },
             { label: order?.details?.post_purchase_data_fetch?.title, value: order?.details?.post_purchase_data_fetch?.data },
         ]
 
@@ -42,7 +44,7 @@ const OrderInformation = () => {
                 >
                     {
                         ["Transaction ID", "Tracking Link"].includes(row.label) ?
-                            renderTransactionLink(row.label, row.value) :
+                            renderLink(row.label, row.value) :
                             row.value
                     }
                 </AppTypography>

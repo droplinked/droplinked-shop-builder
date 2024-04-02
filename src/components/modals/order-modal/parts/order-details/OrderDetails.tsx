@@ -1,12 +1,14 @@
 import { Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
+import useHookStore from 'functions/hooks/store/useHookStore'
 import React, { useContext } from "react"
 import orderModalContext from '../context'
 import OrderDetailsModel from "./model"
 
 export default function OrderDetails() {
+    const { app: { shop } } = useHookStore();
     const { order } = useContext(orderModalContext)
-    const orderDetails = OrderDetailsModel.getOrderDetails(order)
+    const orderDetails = OrderDetailsModel.getOrderDetails(order, shop.name)
 
     return (
         <>
