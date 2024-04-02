@@ -6,8 +6,8 @@ import orderModalContext from '../context'
 import OrderDetailsModel from "./model"
 
 export default function OrderDetails() {
-    const { app: { shop } } = useHookStore();
     const { order } = useContext(orderModalContext)
+    const { app: { shop } } = useHookStore()
     const orderDetails = OrderDetailsModel.getOrderDetails(order, shop.name)
 
     return (
