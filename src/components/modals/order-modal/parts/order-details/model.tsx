@@ -17,7 +17,7 @@ namespace OrderDetailsModel {
                 order: 1,
                 title: "Shipping",
                 rows: order?.shippings?.
-                    filter(shipping => shipping.title === "Total" ? shopName === "swissborg" ? false : true : true)
+                    filter(shipping => shipping.title !== "Total")
                     .map(item => ({ label: item.title, value: formattedPrice(item.value) }))
             },
             tax: {
