@@ -11,7 +11,7 @@ namespace OrderDetailsModel {
         </AppTypography>
     }
 
-    export const getOrderDetails = (order: any, shopName: string) => {
+    export const getOrderDetails = (order: any) => {
         const detailsMap = {
             shippings: {
                 order: 1,
