@@ -1,6 +1,43 @@
-import { appDeveloment } from "lib/utils/app/variable"
+import { appDeveloment } from "lib/utils/app/variable";
 
-namespace OrderDetailsModel {
+namespace OrderInformationModel {
+    enum ORDER_STATUS_ENUM {
+        PAYMENT_CONFIRMED = "PAYMENT_CONFIRMED",
+        WAITING_FOR_PAYMENT = "WAITING_FOR_PAYMENT",
+        WAITING_FOR_CONFIRMATION = "WAITING_FOR_CONFIRMATION",
+        INITIALIZED_FOR_PAYMENT = "INITIALIZED_FOR_PAYMENT",
+        PROCESSING = "PROCESSING",
+        SENT = "SENT",
+        CANCELED = "CANCELED",
+        CANCELED_PAYMENT_TIMEOUT = "CANCELED_PAYMENT_TIMEOUT",
+        REFUNDED = "REFUNDED",
+        IN_CART = "IN_CART",
+    }
+
+    export const getOrderStatusColor = (status: string) => {
+        let result
+        switch (status) {
+            case ORDER_STATUS_ENUM.PAYMENT_CONFIRMED:
+                result = "#2BCFA1"
+                break;
+            case ORDER_STATUS_ENUM.PROCESSING:
+            case ORDER_STATUS_ENUM.SENT:
+                result = "#fff"
+                break;
+            case ORDER_STATUS_ENUM.WAITING_FOR_PAYMENT:
+            case ORDER_STATUS_ENUM.WAITING_FOR_CONFIRMATION:
+            case ORDER_STATUS_ENUM.INITIALIZED_FOR_PAYMENT:
+            case ORDER_STATUS_ENUM.CANCELED:
+            case ORDER_STATUS_ENUM.CANCELED_PAYMENT_TIMEOUT:
+            case ORDER_STATUS_ENUM.REFUNDED:
+            case ORDER_STATUS_ENUM.IN_CART:
+                result = "#FF665C"
+                break
+            default: result = "#fff"
+        }
+        return result
+    }
+
     export const getTransactionLink = (order: any) => {
         const { transactionId, details } = order
         switch (details.paidWith) {
@@ -20,10 +57,12 @@ namespace OrderDetailsModel {
                 return `https://base${appDeveloment ? "-goerli" : ""}.blockscout.com/tx/${transactionId}`;
             case "LINEA":
                 return `https://${appDeveloment ? "goerli" : ""}.lineascan.build/tx/${transactionId}`
+            case "ETH":
+                return `https://${appDeveloment ? "sepolia" : ""}.etherscan.io/tx/${transactionId}`
             default:
                 return ""
         }
     }
 }
 
-export default OrderDetailsModel
+export default OrderInformationModel
