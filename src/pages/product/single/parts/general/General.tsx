@@ -1,13 +1,14 @@
-import React, { useContext } from 'react'
 import { VStack } from '@chakra-ui/react'
-import ProductName from '../modules/name/ProductName'
-import DescriptionProduct from '../modules/description/DescriptionProduct'
-import ProductCollapse from '../modules/collapse/ProductCollapse'
-import ProductImages from '../modules/images/ProductImages'
-import AvailablePurchase from '../modules/available/AvailablePurchase'
-import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
-import NetworkDigital from '../modules/network/NetworkDigital'
+import React, { useContext } from 'react'
 import { productContext } from '../../context'
+import AvailablePurchase from '../modules/available/AvailablePurchase'
+import ProductCollapse from '../modules/collapse/ProductCollapse'
+import DescriptionProduct from '../modules/description/DescriptionProduct'
+import ProductImages from '../modules/images/ProductImages'
+import ProductName from '../modules/name/ProductName'
+import NetworkDigital from '../modules/network/NetworkDigital'
+import PostPurchaseDataGatheringCheckbox from '../modules/postPurchaseDataGathering/PostPurchaseDataGatheringCheckbox'
+import ProductPovProvider from '../modules/povProvider/ProductPovProvider'
 
 interface Iprops {
     open?: boolean
@@ -24,6 +25,7 @@ function General({ open = true }: Iprops) {
                 <ProductPovProvider />
                 <ProductImages />
                 <AvailablePurchase />
+                <PostPurchaseDataGatheringCheckbox />
                 <NetworkDigital />
             </VStack>
         </ProductCollapse>

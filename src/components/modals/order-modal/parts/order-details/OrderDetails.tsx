@@ -1,16 +1,18 @@
 import { Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
+import useHookStore from 'functions/hooks/store/useHookStore'
 import React, { useContext } from "react"
 import orderModalContext from '../context'
 import OrderDetailsModel from "./model"
 
 export default function OrderDetails() {
     const { order } = useContext(orderModalContext)
-    const orderDetails = OrderDetailsModel.getOrderDetails(order)
+    const { app: { shop } } = useHookStore()
+    const orderDetails = OrderDetailsModel.getOrderDetails(order, shop.name)
 
     return (
         <>
-            {orderDetails && orderDetails.length ? orderDetails.map((section, index) => <Flex direction={"column"} gap={"16px"} key={index}>
+            {orderDetails.map((section, index) => <Flex direction={"column"} gap={"16px"} key={index}>
                 <AppTypography fontSize={"16px"} fontWeight={500} color={"#FFFFFF"}>{section.title}</AppTypography>
                 <Flex direction={"column"} gap={"12px"}>
                     {section.rows.map((row, index) =>
@@ -20,7 +22,7 @@ export default function OrderDetails() {
                         </Flex>
                     )}
                 </Flex>
-            </Flex>) : null}
+            </Flex>)}
         </>
     )
 }
