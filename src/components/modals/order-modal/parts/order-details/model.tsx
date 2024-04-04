@@ -16,7 +16,9 @@ namespace OrderDetailsModel {
             shippings: {
                 order: 1,
                 title: "Shipping",
-                rows: order?.shippings?.map(item => ({ label: item.title, value: formattedPrice(item.value) }))
+                rows: order?.shippings?.
+                    filter(shipping => shipping.title !== "Total")
+                    .map(item => ({ label: item.title, value: formattedPrice(item.value) }))
             },
             tax: {
                 order: 2,
