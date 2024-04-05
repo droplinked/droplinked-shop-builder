@@ -31,7 +31,7 @@ function ShopInfoSubmit({ States }: IProps) {
         }
     }, [States, isRegister])
 
-    return <BasicButton disabled={!States.description || loading} isLoading={loading} onClick={submit}>{isRegister ? "Next" : "Update"}</BasicButton >
+    return <BasicButton isDisabled={!States.description || loading} isLoading={loading} onClick={submit}>{isRegister ? "Next" : "Update"}</BasicButton >
 }
 
 export default ShopInfoSubmit
