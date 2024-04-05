@@ -94,7 +94,7 @@
       "react-dom": "$react-dom"
     },
     "react-scripts": {
-      "typescript": "$typescript"
+      "typescript": "^5"
     }
   },
   "scripts": {
