@@ -27,7 +27,6 @@ function ShopInfoAddress({ addressService }: Iprops) {
 
     useEffect(() => setAddressID(null), [addressService.data])
 
-
     const rows = useMemo(() => {
         return address ? address.map((el: any) => ({
             State: {
