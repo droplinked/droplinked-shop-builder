@@ -92,6 +92,9 @@
     "react-json-view": {
       "react": "$react",
       "react-dom": "$react-dom"
+    },
+    "react-scripts": {
+      "typescript": "$typescript"
     }
   },
   "scripts": {
