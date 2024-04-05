@@ -3,7 +3,7 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import AppErrors from 'lib/utils/statics/errors/errors'
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
 import { IstatesShopInfo } from '../../ShopInfo'
 
@@ -31,9 +31,7 @@ function ShopInfoSubmit({ States }: IProps) {
         }
     }, [States, isRegister])
 
-    const checkDisable = useMemo(() => !States.addressBookID || !States.description, [States])
-
-    return <BasicButton disabled={checkDisable || loading} isLoading={loading} onClick={submit}>{isRegister ? "Next" : "Update"}</BasicButton >
+    return <BasicButton disabled={!States.description || loading} isLoading={loading} onClick={submit}>{isRegister ? "Next" : "Update"}</BasicButton >
 }
 
 export default ShopInfoSubmit
