@@ -57,7 +57,7 @@ function ShopInfoAddress({ addressService }: Iprops) {
 
     return (
         <VStack align={"stretch"}>
-            <Box><FieldLabel textProps={{ fontSize: "18px", fontWeight: "bolder" }} isRequired label='Store Address' /></Box>
+            <Box><FieldLabel textProps={{ fontSize: "18px", fontWeight: "bolder" }} label='Store Address' /></Box>
             <Flex justifyContent={"space-between"} alignItems="baseline">
                 <AppTypography fontSize='14px' color={"#C2C2C2"}>Add the physical location of your store or the place where your products are stored.</AppTypography>
                 {isRegister && !address?.length && !addressService.isLoading ? (
