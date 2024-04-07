@@ -35,7 +35,7 @@ function TechnicalSubmit() {
 
             if (isRegister) {
                 if (!shop.imsType) await update({ imsType: imsType })
-                shopNavigate(``);
+                shopNavigate("");
             } else {
                 showToast({ message: AppErrors.store.payment_options_have_been_updated, type: "success" });
             }
