@@ -106,8 +106,8 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                             Sign up
                         </BasicButton>
 
-                        <AppTypography display={'flex'} gap={'4px'} fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchToggle}>
-                            Already have an account?<Box color="#2EC99E !important">Sign in</Box>now
+                        <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchToggle}>
+                            Already have an account? <Box as="span" color="#2EC99E !important">Sign in</Box> now
                         </AppTypography>
                     </Stack>
                 </Form>

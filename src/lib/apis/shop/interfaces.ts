@@ -58,7 +58,7 @@ export interface IshopUpdateService extends IshopSocial {
         active: boolean,
         title: string
     },
-    productTile: any[]
+    productTile?: any[]
 }
 
 export interface IShopRecordedService {
