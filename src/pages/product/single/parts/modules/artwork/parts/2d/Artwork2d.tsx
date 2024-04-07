@@ -15,9 +15,9 @@ function Artwork2d() {
 
     const isTechnique = useMemo(() => technique || printful_template_id, [printful_template_id, States, technique])
 
-    useEffect(() => !printful_template_id && updateState("technique", null), [isOpen, printful_template_id])
+    useEffect(() => {!printful_template_id && updateState("technique", null)}, [isOpen, printful_template_id])
 
-    useEffect(() => positions && setStates(prev => ({ ...prev, position: positions })), [positions])
+    useEffect(() => {positions && setStates(prev => ({ ...prev, position: positions }))}, [positions])
 
     return (
         <artwork2dContext.Provider value={{ ...States, setStates: (key, value) => setStates(prev => ({ ...prev, [key]: value })) }} >
