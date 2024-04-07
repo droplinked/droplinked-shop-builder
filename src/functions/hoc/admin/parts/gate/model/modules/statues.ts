@@ -11,7 +11,7 @@ export class statuesModule {
 
     shopInfo = () => {
         const shop = this.shop
-        return !Boolean(this.shop.description && shop.addressBookID) && "register/shop-info"
+        return !Boolean(this.shop.description) && "register/shop-info"
     }
 
     designTemplate = () => {
