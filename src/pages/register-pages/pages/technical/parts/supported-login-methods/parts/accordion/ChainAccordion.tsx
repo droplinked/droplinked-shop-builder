@@ -16,7 +16,7 @@ function ChainAccordion({ chain }: Props) {
     let { state: { loginMethods }, updateState } = useContext(technicalContext)
     const [isExpanded, setExpanded] = useState(false);
     const ChainIcon = useMemo(() => <BlockchainDisplay blockchain={chain.name.toUpperCase()} show="icon" props={{ width: "24px", height: "24px" }} />, [chain.name])
-
+    const wallets = {"METAMASK": <AppIcons.MetaMaskIcon/>, "UNISAT": <AppIcons.Unisat/>, "METAMASK (XRPLSIDECHAIN)": <AppIcons.MetaMaskIcon/>}
     const handleActivateWallet = useCallback((wallet: { name: string, isActivated: boolean }) => {
         const selectedLoginMethods = [...loginMethods]
         const targetChain = selectedLoginMethods.findIndex(c => c.name === chain.name)
@@ -51,7 +51,7 @@ function ChainAccordion({ chain }: Props) {
                     const isChecked = targetChain && targetChain.wallets.find(w => w.name === wallet.name) ? true : false
                     return < Flex key={index} justifyContent={"space-between"} alignItems={"center"} >
                         <Flex alignItems={"center"} gap={"8px"}>
-                            {wallet.name.startsWith("metamask") ? <AppIcons.MetaMaskIcon /> : ChainIcon}
+                            {wallets[wallet.name.toUpperCase()] || ChainIcon}
                             <AppTypography color={"#C2C2C2"}>{wallet.name}</AppTypography>
                         </Flex>
                         <AppSwitch onChange={(e) => handleActivateWallet({ ...wallet, isActivated: e.currentTarget.checked })} isChecked={isChecked} />
