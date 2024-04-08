@@ -37,6 +37,10 @@ let chainNames = {
     [Chain.LINEA]: {
         [Network.MAINNET]: { chainName: "Linea", chainId: "0xe708", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'LineaETH' }, rpcUrls: ['https://rpc.linea.build'] },
         [Network.TESTNET]: { chainName: "Linea", chainId: "0xe704", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'LineaETH' }, rpcUrls: ['https://rpc.goerli.linea.build'] }
+    },
+    [Chain.ETH]: {
+        [Network.MAINNET]: { chainName: "Ethereum", chainId: "0x1", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://mainnet.infura.io/v3/'] },
+        [Network.TESTNET]: { chainName: "Sepolia", chainId: "0xaa36a7", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://eth-sepolia.public.blastapi.io/'] }
     }
 };
 

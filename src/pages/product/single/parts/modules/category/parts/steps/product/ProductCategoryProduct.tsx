@@ -1,14 +1,16 @@
-import { Box, Flex, Image, SimpleGrid, VStack } from '@chakra-ui/react'
+import { Flex, Image, SimpleGrid } from '@chakra-ui/react'
+import LoadingComponent from 'components/common/loading-component/LoadingComponent'
+import AppTooltip from 'components/common/tooltip/AppTooltip'
 import AppTypography from 'components/common/typography/AppTypography'
-import React, { useContext, useEffect } from 'react'
-import CategoryBox from '../../box/CategoryBox'
+import { IpodCategoryProductService } from 'lib/apis/pod/interfaces'
+import { podCategoryProductService } from 'lib/apis/pod/services'
 import { productContext } from 'pages/product/single/context'
+import React, { useContext, useEffect } from 'react'
+import { useMutation } from 'react-query'
 import ProductTypeModel from '../../../../productType/model'
-import { useMutation } from 'react-query';
-import { podCategoryProductService } from 'lib/apis/pod/services';
-import { IpodCategoryProductService } from 'lib/apis/pod/interfaces';
-import { productCategoryContext } from '../../../context';
-import LoadingComponent from 'components/common/loading-component/LoadingComponent';
+import { productCategoryContext } from '../../../context'
+import CategoryBox from '../../box/CategoryBox'
+import StarRating from './parts/starRating/StarRating'
 
 function ProductCategoryProduct() {
   const product = useContext(productContext)
@@ -21,9 +23,10 @@ function ProductCategoryProduct() {
     <>
       {isLoading ? <Flex justifyContent="center"><LoadingComponent /></Flex > : data?.data?.data?.data.length ?
         (
-          <SimpleGrid columns={5} spacing="13px">
-            {data && data?.data?.data?.data.map((el, key) => (
-              <CategoryBox key={key} padding="10px" onClick={async () => {
+          <SimpleGrid columns={5} spacing="12px">
+            {data && data?.data?.data?.data.map((el, key) => {
+              const titleLimit = !!el.rating ? 30 : 45
+              return <CategoryBox key={key} padding="10px" onClick={async () => {
                 ProductTypeModel.updateProductType({ value: el.id.toString(), updateState: product.methods.updateState })
                 dispatch({
                   type: "updateProduct", params: {
@@ -34,13 +37,26 @@ function ProductCategoryProduct() {
                 product.methods.updateState('title', el?.title)
                 product.methods.updateState('description', `<p>${el?.description}</p>`)
               }}>
-                <VStack align="stretch" spacing="12px">
-                  <Flex justifyContent="center"><Image src={el?.image} alt={el?.title} borderRadius="5px" width="100%" /></Flex>
-                  <Box><AppTypography fontSize='14px'>{el?.title}</AppTypography></Box>
-                  <Box><AppTypography fontSize='14px'>{'---'}</AppTypography></Box>
-                </VStack>
+                <Flex height={"full"} direction={"column"} gap={3}>
+                  <Image src={el?.image} alt={el?.title} borderRadius="5px" width="100%" />
+                  <Flex flex={1} direction={"column"} justifyContent={"space-between"} gap={3}>
+                    <AppTypography fontSize='14px' fontWeight={500}>
+                      {
+                        el.title.length <= titleLimit ? el.title :
+                          <AppTooltip label={el.title}>{`${el.title.slice(0, titleLimit)}...`}</AppTooltip>
+                      }
+                    </AppTypography>
+                    {el.priceRange && <AppTypography color="#C2C2C2">{el.priceRange}</AppTypography>}
+                    {el.rating &&
+                      <Flex justifyContent="space-between" alignItems={"center"}>
+                        <AppTypography color="#C2C2C2">Quality</AppTypography>
+                        <StarRating rate={el.rating} />
+                      </Flex>
+                    }
+                  </Flex>
+                </Flex>
               </CategoryBox>
-            ))}
+            })}
           </SimpleGrid>
         )
         :

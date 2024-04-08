@@ -1,12 +1,12 @@
-import { Box, Flex, VStack } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
-import React, { useCallback, useEffect } from 'react'
-import MiniChartsFlags from '../charts/parts/charts/parts/flags/MiniChartsFlags'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
-import miniChartsFlagsModel from '../charts/parts/charts/parts/flags/model';
-import { useMutation } from 'react-query';
+import { Box, Flex, VStack } from '@chakra-ui/react';
+import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
+import AppTypography from 'components/common/typography/AppTypography';
 import { bestPartnersService } from 'lib/apis/shop/shopServices';
+import React, { useCallback, useEffect } from 'react';
+import { Doughnut } from 'react-chartjs-2';
+import { useMutation } from 'react-query';
+import MiniChartsFlags from '../charts/parts/charts/parts/flags/MiniChartsFlags';
+import miniChartsFlagsModel from '../charts/parts/charts/parts/flags/model';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function ProductGroups() {
@@ -50,11 +50,11 @@ function ProductGroups() {
     return (
         <Flex alignItems="center" justifyContent="space-between" gap="30px">
             <VStack width="100%" align="stretch">
-                <AppTypography fontSize='16px'>Sales Based Category</AppTypography>
+                <AppTypography fontSize='16px'>Sales based Categories</AppTypography>
                 <Flex alignItems="center" gap="10px" flexWrap="wrap">
-                    <MiniChartsFlags caption='Digital Product' color='yellow' />
-                    <MiniChartsFlags caption='Production On Demand' color='gold' />
-                    <MiniChartsFlags caption='Physical Product' color='brown' />
+                    <MiniChartsFlags caption='Digital Goods' color='yellow' />
+                    <MiniChartsFlags caption='Production on Demand Items' color='gold' />
+                    <MiniChartsFlags caption='Physical Products' color='brown' />
                 </Flex>
             </VStack>
             <Box width="60px"><Doughnut options={options} data={items} /></Box>

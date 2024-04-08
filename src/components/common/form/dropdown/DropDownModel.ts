@@ -4,7 +4,7 @@ const DropDownModel = ({
     style: (error: any) => ({
         control: () => ({
             ...FormModel.baseStyleProps(),
-            padding: "4px 7px",
+            padding: "7px 7px",
             outline: "none",
             boxShadow: "none",
             borderRadius: "5px",

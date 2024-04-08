@@ -67,7 +67,7 @@ function Links() {
         <VStack
           align="stretch"
           spacing={3}>
-          <Header>Recourses</Header>
+          <Header>Resources</Header>
           <VStack
             align="stretch"
             spacing={3}>

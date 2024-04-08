@@ -9,7 +9,6 @@ function App() {
     <BrowserRouter>
       {/* toast box */}
       <AppToastify />
-
       {/* Routes */}
       <AppRoutes />
     </BrowserRouter >

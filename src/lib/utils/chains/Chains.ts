@@ -7,7 +7,8 @@ export enum Chain {
     NEAR,
     SKALE,
     BASE,
-    LINEA
+    LINEA,
+    ETH,
 }
 export enum Network {
     MAINNET,

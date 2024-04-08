@@ -1,6 +1,5 @@
 import SignupProducer from "./signup-producer/SignupProducer";
 import { Flex, Stack } from "@chakra-ui/react";
-import AppTypography from 'components/common/typography/AppTypography';
 import AppModal from 'components/common/modal/AppModal';
 
 const SignupModal = ({ show, close, switchModal, shopName }) => {

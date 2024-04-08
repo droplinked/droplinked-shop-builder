@@ -1,0 +1,10 @@
+<svg viewBox="0 10 160 140" width="64px" height="64px">
+	<style type="text/css">
+	</style>
+	<g>
+		<circle fill="#FC6432" cx="79.9" cy="79.9" r="79.9"></circle>
+		<path fill="#FFFFFF"
+			d="M112.5,122L95.3,95H120V84.8H39V95h24.7l-17.2,27h12.8l20.2-31.7L99.7,122H112.5z M120,74.9V64.7H95.8l17-26.7 H99.9L79.5,70.2L59.1,38H46.2l17,26.7H39V75L120,74.9z">
+		</path>
+	</g>
+</svg>

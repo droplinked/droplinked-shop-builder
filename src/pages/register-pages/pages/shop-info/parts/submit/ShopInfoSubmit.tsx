@@ -5,13 +5,9 @@ import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import React, { useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
-import { IstatesShopInfo } from '../../ShopInfo'
+import { IShopInfoChildProps } from '../../ShopInfo'
 
-interface IProps {
-    States: IstatesShopInfo
-}
-
-function ShopInfoSubmit({ States }: IProps) {
+function ShopInfoSubmit({ States }: IShopInfoChildProps) {
     const { setShopData: { update, loading } } = useProfile()
     const { shopNavigate } = useCustomNavigate();
     const isRegister = useLocation().pathname.includes("register")

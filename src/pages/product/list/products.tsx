@@ -1,17 +1,18 @@
+import { useDisclosure } from '@chakra-ui/hooks'
 import AppDataGrid from 'components/common/datagrid/DataGrid'
+import useHookStore from 'functions/hooks/store/useHookStore'
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { IproductList } from 'lib/apis/product/interfaces'
 import { productServices } from 'lib/apis/product/productServices'
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import ProductListModel from './model'
-import ProductEmpty from './parts/empty/ProductEmpty'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
-import useHookStore from 'functions/hooks/store/useHookStore'
-import { useDisclosure } from '@chakra-ui/hooks'
 import ConfirmDeleteAll from './parts/deleteAll/ConfirmDeleteAll'
-import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
+import ProductEmpty from './parts/empty/ProductEmpty'
+import ProductReorderModal from './parts/productReorderModal/ProductReorderModal'
 
 function Products() {
     const { data: { collection } } = useHookStore()
@@ -28,11 +29,12 @@ function Products() {
     })
     const { shop } = useProfile()
     const { shopRoute } = useCustomNavigate()
+    const productReorderModal = useDisclosure()
 
     // Fetch service
     const fetch = useCallback(() => {
         const filter = searchParams.get("filter")
-        mutate({ limit: 10, page: page, ...filter && { filter } })
+        mutate({ limit: 15, page: page, ...filter && { filter } })
     }, [page, searchParams])
 
     useEffect(() => fetch(), [mutate, page, searchParams])
@@ -65,8 +67,16 @@ function Products() {
             {
                 caption: "Add Product",
                 to: `${shopRoute}/products/types`
+            },
+            {
+                caption: "Reorder Products",
+                onClick: productReorderModal.onOpen,
+                buttonProps: {
+                    variant: "outline",
+                }
             }
         ]
+
         if (States.checkboxes.length) data.push({
             caption: "Delete Products" + ` (${States.checkboxes.length})`,
             onClick: onOpen,
@@ -126,6 +136,17 @@ function Products() {
                 fetch()
                 setStates(prev => ({ ...prev, checkboxes: [] }))
             }} />}
+
+            {
+                productReorderModal.isOpen &&
+                <ProductReorderModal
+                    isOpen={productReorderModal.isOpen}
+                    close={() => {
+                        productReorderModal.onClose()
+                        fetch()
+                    }}
+                />
+            }
         </>
     )
 }

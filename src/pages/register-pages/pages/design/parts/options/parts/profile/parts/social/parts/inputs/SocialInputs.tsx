@@ -1,9 +1,7 @@
 import { Box, Flex, useOutsideClick, VStack } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
 import AppInput from 'components/common/form/textbox/AppInput'
 import AppTooltip from 'components/common/tooltip/AppTooltip'
 import AppTypography from 'components/common/typography/AppTypography'
-import { Form } from 'formik'
 import { designContext } from 'pages/register-pages/pages/design/design-context'
 import React, { useCallback, useContext, useMemo } from 'react'
 import socialInputsModel from './model'
@@ -19,47 +17,75 @@ function SocialInputs({ socials, updateSocial }) {
     })
 
     const items = useMemo(() => {
-        const { discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL } = shop
+        const { discordURL, facebookURL, instagramURL, linkedinURL, tiktokURL, twitterURL, webURL, telegramURL, youtubeURL, messengerURL } = shop
         return {
             linkedinURL: {
                 icon: icons.linkedin,
                 value: linkedinURL,
-                url: 'linkedin.com/'
+                url: 'linkedin.com/',
+                pattern: /^(?:https?:\/\/)?(?:www\.)?linkedin\.com\/in\/([^/]+)\/?$/,
             },
             instagramURL: {
                 icon: icons.instagram,
                 value: instagramURL,
-                url: 'instagram.com/'
+                url: 'instagram.com/',
+                pattern: /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([^/]+)\/?$/
             },
             twitterURL: {
                 icon: icons.twitter,
                 value: twitterURL,
-                url: 'twitter.com/'
+                url: 'twitter.com/',
+                pattern: /^(?:https?:\/\/)?(?:www\.)?twitter\.com\/(?:#!\/)?([^/]+)\/?$/,
             },
             facebookURL: {
                 icon: icons.facebook,
                 value: facebookURL,
-                url: 'facebook.com/'
+                url: 'facebook.com/',
+                pattern: /^(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:profile\.php\?id=|([^/]+)\/?)$/,
             },
             tiktokURL: {
                 icon: icons.tiktok,
                 value: tiktokURL,
-                url: 'tiktok.com/'
+                url: 'tiktok.com/@',
+                pattern: /^(?:https?:\/\/)?(?:www\.)?tiktok\.com\/@([^/]+)\/?$/,
             },
             webURL: {
                 icon: icons.web,
                 value: webURL,
-                url: 'http://'
+                url: 'http://',
+                pattern: /^(?:https?:\/\/)?(.*)/
             },
             discordURL: {
                 icon: icons.discord,
                 value: discordURL,
-                url: 'discord.gg/'
+                url: 'discord.gg/',
+                pattern: /\b(?:https?:\/\/)?(?:www\.)?(?:discord\.gg|discordapp\.com\/invite)\/([a-zA-Z0-9-]+)\b/,
+            },
+            telegramURL: {
+                icon: icons.telegram,
+                value: telegramURL,
+                url: 't.me/',
+                pattern: /^(?:https?:\/\/)?t\.me\/([a-zA-Z0-9_]{5,32})\/?$/,
+            },
+            youtubeURL: {
+                icon: icons.youtube,
+                value: youtubeURL,
+                url: 'youtube.com/@',
+                pattern: /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/@([a-zA-Z0-9_.-]+)\/?$/,
+            },
+            messengerURL: {
+                icon: icons.messenger,
+                value: messengerURL,
+                url: 'm.me/',
+                pattern: /^(?:https?:\/\/)?m\.me\/([a-zA-Z0-9._-]+)\/?$/,
             },
         }
     }, [shop])
 
-    const change = useCallback((key, value) => dispatch({ type: 'updateShop', params: { [key]: value } }), [shop])
+    const change = useCallback((key: string, value: string) => {
+        const match = items[key].pattern.exec(value)
+        dispatch({ type: 'updateShop', params: { [key]: match ? match[1] : value } })
+    }, [shop])
 
     const submit = useCallback((e) => {
         e.preventDefault()

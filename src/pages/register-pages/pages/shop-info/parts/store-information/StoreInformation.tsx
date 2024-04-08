@@ -12,16 +12,11 @@ import { getShopDNSInformationService } from 'lib/apis/shop/shopServices'
 import { storeCustomURLRegex } from 'lib/utils/heper/regex'
 import React, { useMemo, useState } from 'react'
 import { useQuery } from 'react-query'
-import { IstatesShopInfo } from '../../ShopInfo'
+import { IShopInfoChildProps } from '../../ShopInfo'
 import ConfirmationModal from './parts/confirmation-modal/ConfirmationModal'
 import DNSInformationModal from './parts/dns-information-modal/DNSInformationModal'
 
-interface Props {
-    States: IstatesShopInfo,
-    updateStates: (key: string, value: string) => void
-}
-
-function StoreInformation({ States, updateStates }: Props) {
+function StoreInformation({ States, updateStates }: IShopInfoChildProps) {
     const { showToast } = useAppToast()
     const shopDNSInformationQuery = useQuery({
         queryKey: "shopDNSInformation",

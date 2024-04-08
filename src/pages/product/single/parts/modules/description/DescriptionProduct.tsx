@@ -10,9 +10,9 @@ function DescriptionProduct() {
     const { state: { description }, methods: { updateState }, loading, productID, store: { state: { product_printful } } } = useContext(productContext)
     const [Update, setUpdate] = useState(' ')
 
-    useEffect(() => product_printful && description === `<p>${product_printful?.description}</p>` && setUpdate(product_printful?.description), [product_printful?.description, description])
+    useEffect(() => {product_printful && description === `<p>${product_printful?.description}</p>` && setUpdate(product_printful?.description)}, [product_printful?.description, description])
 
-    useEffect(() => (!Update || Update === ' ') && productID && setUpdate(description), [description, productID])
+    useEffect(() => {(!Update || Update === ' ') && productID && setUpdate(description)}, [description, productID])
 
     return (
         <VStack align="stretch" position={"relative"} spacing={1}>

@@ -60,8 +60,9 @@ export interface IproductState {
     mainCategory?: string
     subCategories?: Array<string>
     technique?: string
-    isAddToCartDisabled?: boolean
-    pre_purchase_data_fetch?: boolean
+    isAddToCartDisabled?: boolean;
+    pre_purchase_data_fetch?: boolean;
+    productTile?: any[]
 }
 
 export interface IpropertiesItems {
@@ -128,4 +129,13 @@ export interface IproductUpdateServices {
 
 export interface IgenerateBufferServices {
     urls: Array<string>
+}
+
+export interface IProductReorder {
+    productId: string;
+    newPosition: number;
+}
+
+export interface IProductTile {
+    skuIDs: string[]
 }

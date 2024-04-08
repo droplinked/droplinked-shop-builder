@@ -5,7 +5,7 @@ import React from 'react'
 
 interface IProps {
     title: string
-    description: string
+    description: string | React.ReactNode
     head?: boolean
     isReuired?: boolean
 }

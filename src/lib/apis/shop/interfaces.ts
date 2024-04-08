@@ -30,6 +30,9 @@ export interface IshopSocial {
     linkedinURL?: string
     tiktokURL?: string
     facebookURL?: string
+    telegramURL?: string
+    youtubeURL?: string
+    messengerURL?: string
 }
 
 export interface IshopUpdateService extends IshopSocial {
@@ -49,12 +52,13 @@ export interface IshopUpdateService extends IshopSocial {
     infoEmail?: string
     imsType?: string;
     paymentMethods: any[];
-    loginMethods: IAuthSupportedWalletsService[];
-    credit?: number;
+    loginMethods: IAuthSupportedWalletsService[]
+    credit?: number,
     pre_purchase_data_fetch?: {
         active: boolean,
         title: string
-    }
+    },
+    productTile?: any[]
 }
 
 export interface IShopRecordedService {
@@ -83,4 +87,8 @@ export interface ShopCustomURL {
 
 export interface ShopDNSInformation {
     domain_name: string;
+}
+
+export interface ICustomReferralCode {
+    customCode: string;
 }

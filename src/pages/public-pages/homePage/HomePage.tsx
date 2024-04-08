@@ -17,6 +17,8 @@ import ProductsMain from './parts/product/ProductsMain';
 import Supported from './parts/supported/Supported';
 import classes from './style.module.scss';
 
+export enum MODAL_TYPE { SIGNIN= "SIGNIN", SIGNUP= "SIGNUP", RESET= "RESET" };
+
 function HomePage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [States, setStates] = useState({
@@ -25,7 +27,7 @@ function HomePage() {
   })
   const [searchParams] = useSearchParams()
 
-  useEffect(() => searchParams.get('modal') === "login" && onOpen(), [searchParams])
+  useEffect(() => {searchParams.get('modal') === "login" && onOpen()}, [searchParams])
 
   const effects = useMemo(() => (
     <>
@@ -34,8 +36,9 @@ function HomePage() {
     </>
   ), [])
 
-  const { app: { user } } = useHookStore()
-  return user ? <Navigate to="/dashboard" /> : (
+  const { app: { user, shop } } = useHookStore()
+  
+  return user && shop ? <Navigate to="/dashboard" /> : (
     <ParallaxProvider>
       <div style={{ color: "#FFF", overflowX: "hidden" }}>
         <Box className={`${classes.sshape} ${classes.shape1} ${States.pause ? classes.animationPaused : ''}`} fontSize={{ base: "400px", lg: "1400px" }} top={{ base: "0", lg: "100px" }} right="0">s</Box>
@@ -92,7 +95,7 @@ function HomePage() {
           }}
         />
       </div>
-      {isOpen && <AuthModal show={true} type="SIGNIN" close={onClose} />}
+      {isOpen && <AuthModal show={true} type={MODAL_TYPE.SIGNIN} close={onClose} />}
     </ParallaxProvider >
   )
 }

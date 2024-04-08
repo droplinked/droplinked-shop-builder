@@ -73,6 +73,10 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
         "XRPL": {
             icon: <AppIcons.XRPL {...props} />,
             name: 'Xrpl'
+        },
+        "BITCOIN": {
+            icon: <AppIcons.Bitcoin {...props}/>,
+            name: "Bitcoin"
         }
     }), [props])
 

@@ -70,6 +70,10 @@ let chainMapping = {
         [Network.TESTNET]: new EVMProvider(Chain.LINEA, Network.TESTNET),
         [Network.MAINNET]: new EVMProvider(Chain.LINEA, Network.MAINNET),
     },
+    [Chain.ETH]: {
+        [Network.TESTNET]: new EVMProvider(Chain.ETH, Network.TESTNET),
+        [Network.MAINNET]: new EVMProvider(Chain.ETH, Network.MAINNET),
+    }
 };
 
 export function getNetworkProvider(chain: Chain, network: Network, address: string) {

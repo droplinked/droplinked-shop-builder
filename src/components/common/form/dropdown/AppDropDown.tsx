@@ -23,7 +23,7 @@ interface Iprops extends merge {
 function AppDropDown({ options, isRequired, label, onChange, error, value, loading }: Iprops) {
 
     return (
-        <VStack align={"stretch"} spacing={1}>
+        <VStack align={"stretch"} spacing="12px">
             {label && <FieldLabel loading={loading} label={label} isRequired={isRequired} />}
             <AppSkeleton isLoaded={loading}>
                 <Select

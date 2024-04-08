@@ -1,11 +1,10 @@
 import { Flex } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
-import { Isku, IproductState } from "lib/apis/product/interfaces";
+import { IproductState, Isku } from "lib/apis/product/interfaces";
 import React from "react";
 import CoverSku from "../parts/cover/CoverSku";
 import FieldsSkuTable from "../parts/fields/FieldsSkuTable";
 import VariantsUnlimited from "../parts/unlimited/VariantsUnlimited";
-import ProductSkuesTable from "./modules/table";
 
 interface IgetRows {
     sku: Isku
@@ -58,11 +57,14 @@ const SkuTableModel = ({
                     caption: "Packaging Size",
                     value: (
                         <Flex gap={2} alignItems="center">
-                            <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.dimensions.height} maxWidth="35px" textAlign={"center"} name={"height"} />
-                            <AppTypography fontSize="12px" color={"#808080"}>x</AppTypography>
-                            <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.dimensions.length} maxWidth="35px" textAlign={"center"} name={"length"} />
-                            <AppTypography fontSize="12px" color={"#808080"}>x</AppTypography>
-                            <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.dimensions.width} maxWidth="35px" textAlign={"center"} name={"width"} />
+                            <Flex gap={1} alignItems="center">
+                                <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.dimensions.height} maxWidth="35px" textAlign={"center"} name={"height"} />
+                                <AppTypography fontSize="12px" color={"#808080"}>x</AppTypography>
+                                <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.dimensions.length} maxWidth="35px" textAlign={"center"} name={"length"} />
+                                <AppTypography fontSize="12px" color={"#808080"}>x</AppTypography>
+                                <FieldsSkuTable isDisabled={checkRecord} index={key} value={sku.dimensions.width} maxWidth="35px" textAlign={"center"} name={"width"} />
+                            </Flex>
+                            <AppTypography fontSize="12px" color={"#808080"}>Inc</AppTypography>
                         </Flex>
                     )
                 },

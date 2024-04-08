@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, useDisclosure, VStack } from '@chakra-ui/react'
+import { Box, Flex, useDisclosure, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
@@ -33,10 +33,10 @@ function ShopInfoAddress({ addressService }: Iprops) {
                 value: `${el.country}, ${el.state}`
             },
             Address: {
-                value: `${el.country}, ${el.city}`
+                value: `${el.addressLine1}`
             },
             zipcode: {
-                caption: "Zip-code",
+                caption: "Zip Code",
                 value: `${el.zip}`
             },
             Options: {
@@ -54,7 +54,6 @@ function ShopInfoAddress({ addressService }: Iprops) {
             },
         })) : []
     }, [address])
-
 
     return (
         <VStack align={"stretch"}>

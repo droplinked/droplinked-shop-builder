@@ -1,18 +1,17 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import LoadingComponent from 'components/common/loading-component/LoadingComponent'
-import AppTypography from 'components/common/typography/AppTypography'
 import { IpodProductService } from 'lib/apis/pod/interfaces'
 import { podCategoryService, podProductService } from 'lib/apis/pod/services'
 import { productContext } from 'pages/product/single/context'
 import React, { useContext, useEffect, useMemo, useReducer } from 'react'
 import { useMutation } from 'react-query'
 import ProductTypeDetail from '../productType/parts/normal/parts/details/ProductTypeDetail'
-import ProductCategoryNamespace from './reducer'
+import productCategoryContext from './context'
 import ProductCategoryButton from './parts/button/ProductCategoryButton'
 import ProductCategoryMenu from './parts/steps/menu/ProductCategoryMenu'
 import ProductCategoryProduct from './parts/steps/product/ProductCategoryProduct'
-import productCategoryContext from './context'
+import ProductCategoryNamespace from './reducer'
 
 function ProductCategory() {
   const { initialState, reducer } = ProductCategoryNamespace
@@ -35,7 +34,6 @@ function ProductCategory() {
 
 
   useEffect(() => {
-
     if (pod_blank_product_id || productID) mutate({ pod_blank_product_id }, {
       onSuccess: (res) => {
         const data = res?.data?.data
@@ -52,7 +50,7 @@ function ProductCategory() {
       }
     })
   }, [pod_blank_product_id, productID])
-  
+
   return (
     <productCategoryContext.Provider value={{ state: States, dispatch }}>
       <VStack align="stretch" spacing="12px">

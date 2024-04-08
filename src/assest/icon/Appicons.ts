@@ -3,6 +3,7 @@ import { ReactComponent as AddIcon } from './add.svg';
 import { ReactComponent as ArrowDown } from './arrowDown.svg';
 import { ReactComponent as Base } from './base-logo.svg';
 import { ReactComponent as Binance } from './binance.svg';
+import { ReactComponent as BluePlus } from './blue-plus.svg';
 import { ReactComponent as CasperIcon } from './casper.svg';
 import { ReactComponent as CasperWalletIcon } from './CasperWallet.svg';
 import { ReactComponent as Close } from './close.svg';
@@ -43,6 +44,7 @@ import { ReactComponent as MetaMaskIcon } from './MetaMask.svg';
 import { ReactComponent as MoreIcon } from './more-icon.svg';
 import { ReactComponent as NearWalletIcon } from './nearWallet.svg';
 import { ReactComponent as OrderIcon } from './order-icon.svg';
+import { ReactComponent as Order } from './order.svg';
 import { ReactComponent as PintrestIcon } from './pintrest.svg';
 import { ReactComponent as PlusIcon } from './plus-icon.svg';
 import { ReactComponent as Polygon } from './polygon-matic-logo.svg';
@@ -56,9 +58,12 @@ import { ReactComponent as SettingIcon } from './setting-icon.svg';
 import { ReactComponent as ShopIcon } from './shop-green-icon.svg';
 import { ReactComponent as Skale } from './skale.svg';
 import { ReactComponent as SnapchatIcon } from './snapchat.svg';
-import { ReactComponent as Stacks } from './stacks-stx-logo.svg';
+import { ReactComponent as Stacks } from './stx.svg';
+import { ReactComponent as StarOff } from './star-off.svg';
+import { ReactComponent as StarOn } from './star-on.svg';
 import { ReactComponent as StarFilled } from './starFilled.svg';
 import { ReactComponent as StarOutline } from './starOutline.svg';
+import { ReactComponent as StripeS } from './stripe-s-icon.svg';
 import { ReactComponent as Stripe } from './stripe.svg';
 import { ReactComponent as TearIcon } from './tear-icon.svg';
 import { ReactComponent as TikTok } from './tiktok.svg';
@@ -69,12 +74,13 @@ import { ReactComponent as Upload } from './upload-icon.svg';
 import { ReactComponent as VisibleIcon } from './visible-icon.svg';
 import { ReactComponent as WalletConnectIcon } from './WalletConnect.svg';
 import { ReactComponent as Web } from './web.svg';
-import { ReactComponent as WhiteAlert } from './white-alert.svg';
 import { ReactComponent as NFT } from './white-nft-icon.svg';
 import { ReactComponent as WhiteOpenWallet } from './white-open-wallet.svg';
 import { ReactComponent as WhiteShopIcon } from './white-shop.svg';
+import { ReactComponent as WhiteTrash } from './white-trash.svg';
 import { ReactComponent as XRPL } from './xrpl.svg';
 import { ReactComponent as Xumm } from './xumm.svg';
+import { ReactComponent as Bitcoin } from './bitcoin.svg';
 import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 
 const AppIcons = {
@@ -118,6 +124,7 @@ const AppIcons = {
   Close,
   Stacks,
   Info,
+  Bitcoin,
   Stripe,
   File,
   Discord,
@@ -153,8 +160,13 @@ const AppIcons = {
   GrayDiscountIcon,
   RedTrash,
   XRPL,
-  WhiteAlert,
   GreenAlert,
-  YellowAlert
+  YellowAlert,
+  StripeS,
+  Order,
+  BluePlus,
+  WhiteTrash,
+  StarOff,
+  StarOn
 }
 export default AppIcons

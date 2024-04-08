@@ -1,22 +1,20 @@
 import { VStack } from '@chakra-ui/react'
-import AppTable, { ITableRows } from 'components/common/table/AppTable'
-import { shopDashboardService } from 'lib/apis/shop/shopServices'
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import { ITableRows } from 'components/common/table/AppTable'
+import { getBestSelledProducts } from 'lib/apis/dashboard/dashboardServices'
+import { IbestProducts } from 'lib/apis/dashboard/interfaces'
+import dashboardPageContext from 'pages/dashboard/context'
+import React, { useContext, useEffect, useMemo } from 'react'
 import { useMutation } from 'react-query'
-import DashboardEmpty from '../parts/empty/DashboardEmpty'
 import HeadCardDashboard from '../parts/headcard/HeadCardDashboard'
 import DashboardTable from '../parts/table/DashboardTable'
 import BestSellingLoading from './parts/loading/BestSellingLoading'
 import BestSellingProduct from './parts/product/BestSellingProduct'
 import BestSellingSale from './parts/sale/BestSellingSale'
-import dashboardPageContext from 'pages/dashboard/context'
-import { getBestSelledProducts } from 'lib/apis/dashboard/dashboardServices'
-import { IbestProducts } from 'lib/apis/dashboard/interfaces'
 
 function BestSelling() {
     const { states: { dateRange: { from, to } } } = useContext(dashboardPageContext)
     const { mutate, data, isLoading } = useMutation((params: IbestProducts) => getBestSelledProducts(params))
-    useEffect(() => mutate({ from, to} ), [from, to])
+    useEffect(() => mutate({ from, to }), [from, to])
 
     const items: Array<ITableRows> = useMemo(() => {
         return data?.data?.data ? data?.data?.data.map(el => ({
@@ -39,7 +37,7 @@ function BestSelling() {
 
     return (
         <VStack align="stretch">
-            <HeadCardDashboard link='' title='Best Selling Products' />
+            <HeadCardDashboard link='/dashboard/products' title='Best Selling Products' />
             {isLoading ? <BestSellingLoading /> : <DashboardTable items={items} />}
         </VStack>
     )

@@ -76,8 +76,7 @@ function ButtonsProduct() {
                     onOpen()
                 } catch (error) {
                     // shopNavigate("products")
-                    console.log(error);
-                    showToast({ message: "Somthimg went wrong", type: "error" })
+                    showToast({ message: "Something went wrong!", type: "error" })
                 }
             } else {
                 showToast({ message: draft ? AppErrors.product.your_product_draft : productID ? AppErrors.product.your_product_updated : AppErrors.product.your_product_published, type: "success" })

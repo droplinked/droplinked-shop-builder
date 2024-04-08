@@ -2,9 +2,8 @@ import { chakra } from "@chakra-ui/react";
 
 export const HeaderWrapper = chakra("div", {
   baseStyle: {
-    d: "flex",
+    display: "flex",
     w: "100%",
-    //  bgColor: "bG",
     justifyContent: "space-between",
     alignItems: "center",
     padding: { base: "0px 20px", md: "0px 40px", lg: "0px 36px" },
@@ -16,9 +15,8 @@ export const HeaderWrapper = chakra("div", {
 
 export const UserHeaderWrapper = chakra("div", {
   baseStyle: {
-    d: "flex",
+    display: "flex",
     w: "100%",
-    //  bgColor: "bG",
     justifyContent: "space-between",
     alignItems: "center",
     padding: "29px 30px",
