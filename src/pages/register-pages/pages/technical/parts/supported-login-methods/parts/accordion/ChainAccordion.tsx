@@ -16,7 +16,7 @@ function ChainAccordion({ chain }: Props) {
     let { state: { loginMethods }, updateState } = useContext(technicalContext)
     const [isExpanded, setExpanded] = useState(false);
     const ChainIcon = useMemo(() => <BlockchainDisplay blockchain={chain.name.toUpperCase()} show="icon" props={{ width: "24px", height: "24px" }} />, [chain.name])
-    const wallets = {"METAMASK": <AppIcons.MetaMaskIcon/>, "UNISAT": <AppIcons.Unisat/>, "METAMASK (XRPLSIDECHAIN)": <AppIcons.MetaMaskIcon/>}
+    const wallets = {"METAMASK": <AppIcons.MetaMaskIcon/>, "UNISAT": <AppIcons.Unisat/>, "METAMASK (XRPLSIDECHAIN)": <AppIcons.MetaMaskIcon/>, "XVERSE": <AppIcons.Xverse/>}
     const handleActivateWallet = useCallback((wallet: { name: string, isActivated: boolean }) => {
         const selectedLoginMethods = [...loginMethods]
         const targetChain = selectedLoginMethods.findIndex(c => c.name === chain.name)
