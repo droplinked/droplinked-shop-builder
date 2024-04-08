@@ -80,6 +80,7 @@ import { ReactComponent as WhiteShopIcon } from './white-shop.svg';
 import { ReactComponent as WhiteTrash } from './white-trash.svg';
 import { ReactComponent as XRPL } from './xrpl.svg';
 import { ReactComponent as Xumm } from './xumm.svg';
+import { ReactComponent as Bitcoin } from './bitcoin.svg';
 import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 
 const AppIcons = {
@@ -123,6 +124,7 @@ const AppIcons = {
   Close,
   Stacks,
   Info,
+  Bitcoin,
   Stripe,
   File,
   Discord,
