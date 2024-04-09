@@ -85,7 +85,7 @@ namespace OrderDetailsModel {
             },
         }
 
-        return Object.keys(order || {}).filter(key => !["customer", "orderInformation", "items", "trackingInfo"].includes(key))
+        return Object.keys(order || {}).filter(section => detailsMap[section])
             .map(key => {
                 const targetSection = detailsMap[key]
                 return {

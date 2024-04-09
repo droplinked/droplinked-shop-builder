@@ -1,7 +1,7 @@
 import { Flex, Link } from "@chakra-ui/react"
-import React, { useContext } from "react"
 import AppIcons from "assest/icon/Appicons"
 import AppTypography from 'components/common/typography/AppTypography'
+import React, { useContext } from "react"
 import orderModalContext from "../context"
 import OrderInformationModel from "./model"
 
@@ -29,7 +29,7 @@ const OrderInformation = () => {
             { label: "Order ID", value: order?.orderInformation?.orderId },
             { label: "Transaction ID", value: order?.orderInformation?.transactionId, style: { color: "#33A9EC", cursor: "pointer" } },
             { label: "Tracking Link", value: order?.trackingInfo?.[0]?.trackings[0]?.url, style: { color: "#33A9EC", cursor: "pointer" } },
-            { label: order?.details?.post_purchase_data_fetch?.title, value: order?.details?.post_purchase_data_fetch?.data },
+            { label: order?.post_purchase_data_fetch?.title, value: order?.post_purchase_data_fetch?.data },
         ]
 
         return information.filter(row => row.value).map((row, index) => (
