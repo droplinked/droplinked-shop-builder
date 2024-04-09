@@ -12,10 +12,10 @@ import { useMutation } from 'react-query'
 import * as Yup from 'yup'
 
 interface IProps {
-    close: Function
-    open: boolean
-    collection?: any
-    refetch: Function
+    close: () => void;
+    open: boolean;
+    collection?: any;
+    refetch: () => void;
 }
 
 interface Iform {
@@ -27,7 +27,6 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
     const updateService = useMutation((params: IupdateCollectionService) => updateCollectionService(params))
     const { showToast } = useAppToast()
 
-    // submit form function
     const onSubmit = useCallback(async (data: Iform) => {
         try {
             const { title } = data
@@ -50,7 +49,7 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
     });
 
     return (
-        <AppModal close={close} open={open} size="2xl" title='Create Collection' contentProps={{ padding: "50px 30px" }}>
+        <AppModal close={close} open={open} size="2xl" title={collection ? "Edit Collection" : "Create Collection"} contentProps={{ padding: "50px 30px" }}>
             <Formik
                 initialValues={{
                     title: collection ? collection.title : '',
@@ -60,7 +59,6 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
                 validationSchema={formSchema}
                 onSubmit={onSubmit}
             >
-
                 {({ errors, values, setFieldValue }) => (
                     <Form>
                         <VStack spacing={5} align={"stretch"} color="#FFF">
@@ -78,7 +76,7 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
                             </Box>
                             <HStack justifyContent={"space-between"}>
                                 <Box><BasicButton variant='outline' onClick={() => close()}>Cancel</BasicButton></Box>
-                                <Box><BasicButton type='submit' isLoading={createService.isLoading || updateService.isLoading}>Create</BasicButton></Box>
+                                <Box><BasicButton type='submit' isLoading={createService.isLoading || updateService.isLoading}>{collection ? "Edit" : "Create"}</BasicButton></Box>
                             </HStack>
                         </VStack>
                     </Form>
