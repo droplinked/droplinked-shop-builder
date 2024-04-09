@@ -112,7 +112,10 @@ export const template_options_defaults: ITemplateOptions = {
             "--dlk-pgs-hme-bnr": {
                 "--dlk-pgs-hme-bnr-styles": {},
                 "--dlk-pgs-hme-bnr-img": {},
-                "--dlk-pgs-hme-bnr-txt": {},
+                "--dlk-pgs-hme-bnr-txt": {
+                    "--dlk-pgs-hme-bnr-txt-styles": {},
+                    "--dlk-pgs-hme-bnr-txt-cntnt": {},
+                },
             },
         },
         "--dlk-pgs-prod": {
