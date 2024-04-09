@@ -83,29 +83,29 @@ function GeneralStatisticsChart() {
 
             let innerHtml = `
             <div style="display: flex; flex-direction: column; gap: 10px">
-              <p style="text-align: center; font-weight: 600">${title}</p>
+              <p style="text-align: center; font-weight: 600; margin: 0">${title}</p>
 
               <div style="height: 1px; background-color: #878787"></div>
 
               <div style="display: flex; flex-direction: column; gap: 4px">
                 ${typeof data.order !== "undefined" ? `
                   <div style="display: flex; justify-content: space-between">
-                    <p style="color: #878787">Order</p>
-                    <p>${data.order}</p>
+                    <p style="color: #878787; margin: 0">Order</p>
+                    <p style="margin: 0">${data.order}</p>
                   </div>
                 `: ""}
                 
                 ${typeof data.revenue !== "undefined" ? `
                   <div style="display: flex; justify-content: space-between">
-                    <p style="color: #878787">Earning</p>
-                    <p>$${data.revenue} USD</p>
+                    <p style="color: #878787; margin: 0">Earning</p>
+                    <p style="margin: 0">$${data.revenue} USD</p>
                   </div>
                 `: ""}
 
                 ${typeof data.profit !== "undefined" ? `
                 <div style="display: flex; justify-content: space-between">
-                  <p style="color: #878787">Profit</p>
-                  <p>$${data.profit} USD</p>
+                  <p style="color: #878787; margin: 0">Profit</p>
+                  <p style="margin: 0">$${data.profit} USD</p>
                 </div>
                 `: ""}
               </div>
@@ -117,9 +117,9 @@ function GeneralStatisticsChart() {
                   <div style="display: flex; justify-content: space-between">
                     <div style="display: flex; align-items: center; gap: 4px">
                       <div style="width: 8px; height: 8px; border:2px solid #2BCFA1; border-radius: 50%;"></div>
-                      <p style="color: #878787">Direct</p>
+                      <p style="color: #87878; margin: 0">Direct</p>
                     </div>
-                    <p>$${data.direct} USD</p>
+                    <p style="margin: 0">$${data.direct} USD</p>
                   </div>
                 ` : ""}
                 
@@ -127,9 +127,9 @@ function GeneralStatisticsChart() {
                   <div style="display: flex; justify-content: space-between">
                     <div style="display: flex; align-items: center; gap: 4px">
                       <div style="width: 8px; height: 8px; border:2px solid #9C4EFF; border-radius: 50%;"></div>
-                      <p style="color: #878787">Affiliate</p>
+                      <p style="color: #878787; margin: 0">Affiliate</p>
                     </div>
-                    <p>$${data.affiliate} USD</p>
+                    <p style="margin: 0">$${data.affiliate} USD</p>
                   </div>
                 `: ""}
                 
@@ -145,7 +145,7 @@ function GeneralStatisticsChart() {
             tooltipEl.innerHTML = innerHtml;
           }
 
-          tooltipEl.style.width = '170px';
+          tooltipEl.style.minWidth = '170px';
           tooltipEl.style.position = 'absolute';
           tooltipEl.style.top = tooltipModel.caretY + 160 + 'px';
           tooltipEl.style.left = tooltipModel.caretX + 50 + 'px';
