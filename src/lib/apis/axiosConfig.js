@@ -1,70 +1,72 @@
-import axios from "axios";
-import useAppStore from "lib/stores/app/appStore";
-import AppStorage from "lib/utils/app/sessions";
-import { BASE_URL } from "lib/utils/app/variable";
+import axios from "axios"
+import useAppStore from "lib/stores/app/appStore"
+import AppStorage from "lib/utils/app/sessions"
+import { BASE_URL } from "lib/utils/app/variable"
 
-// Create an instance of Axios with the base URL
 const axiosInstance = axios.create({
-    baseURL: BASE_URL,
-});
+    baseURL: BASE_URL
+})
 
-// Function to set the access token and refresh token in localStorage
-const setToken = async (access_token, refresh_token) => useAppStore.setState((prev) => ({ ...prev, ...{ access_token, refresh_token } }))
-let refreshPromise = null;
-const clearPromise = () => refreshPromise = null;
+const setTokens = async (access_token, refresh_token) =>
+    useAppStore.setState((prev) => ({ ...prev, ...{ access_token, refresh_token } }))
 
-// Function to refresh the access token
+let refreshPromise = null
+let isRefreshing = false
+
+const clearPromise = () => {
+    refreshPromise = null
+    isRefreshing = false
+}
+
+// this function will refresh the access token
 const refreshAccessToken = async () => {
     try {
-        const appStore = localStorage.getItem("appStore");
-        const refresh_token = JSON.parse(appStore).state.refresh_token
+        const refresh_token = AppStorage.refreshToken()
         const response = await axios.post(`${BASE_URL}/auth/refresh-token`, {}, {
             headers: { 'Authorization': `Bearer ${refresh_token}` },
-        });
-        const data = response?.data?.data;
-        await setToken(data.access_token, data.refresh_token);
-        return data.access_token;
+        })
+        const data = response?.data?.data
+        await setTokens(data.access_token, data.refresh_token)
+        return data.access_token
     } catch (error) {
-        AppStorage.clearStorage();
-        window.location.replace(window.location.origin);
-        throw error;
+        AppStorage.clearStorage()
+        window.location.replace(window.location.origin)
+        throw error
     }
-};
+}
 
 // Add request interceptor for API calls
 axiosInstance.interceptors.request.use(
     async (config) => {
-        const appStore = useAppStore.getState().access_token || '';
+        const accessToken = AppStorage.accessToken() || ''
         if (!config.headers.authorization) config.headers = {
             ...config.headers,
-            'authorization': `Bearer ${appStore || ''}`,
-        };
-        return config;
+            'authorization': `Bearer ${accessToken}`,
+        }
+        return config
     },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
+    (error) => Promise.reject(error)
+)
 
-// Add response interceptor to handle token expiration and refresh
+// Add response interceptor to handle token expiration and refresh it
 axiosInstance.interceptors.response.use(
-    (response) => {
-        return response;
-    },
+    (response) => response,
     async function (error) {
-        const config = error.config;
+        const config = error.config
 
         if (error.response.status === 401 && !config._retry) {
-            config._retry = true;
+            if (!isRefreshing) {
+                isRefreshing = true
+                refreshPromise = refreshAccessToken().finally(clearPromise)
+            }
 
-            if (!refreshPromise) refreshPromise = refreshAccessToken().finally(clearPromise)
-
-            const token = await refreshPromise;
-            config.headers.authorization = `Bearer ${token}`;
-            return axiosInstance(config);
+            const token = await refreshPromise
+            config.headers.authorization = `Bearer ${token}`
+            config._retry = true
+            return axiosInstance(config)
         }
-        return Promise.reject(error);
+        return Promise.reject(error)
     }
-);
+)
 
-export default axiosInstance;
+export default axiosInstance
