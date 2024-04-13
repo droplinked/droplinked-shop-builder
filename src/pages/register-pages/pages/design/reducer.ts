@@ -97,7 +97,10 @@ export interface ITemplateOptions {
             "--dlk-pgs-hme-bnr": {
                 "--dlk-pgs-hme-bnr-styles": StyleProps;
                 "--dlk-pgs-hme-bnr-img": StyleProps;
-                "--dlk-pgs-hme-bnr-txt": StyleProps;
+                "--dlk-pgs-hme-bnr-txt":{
+                    "--dlk-pgs-hme-bnr-txt-styles": StyleProps,
+                    "--dlk-pgs-hme-bnr-txt-cntnt": StyleProps,
+                }
             };
         };
         "--dlk-pgs-prod": {

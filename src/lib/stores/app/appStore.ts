@@ -3,7 +3,7 @@ import { authLoginService } from 'lib/apis/auth/services'
 import { IshopInfoService, IshopUpdateService } from 'lib/apis/shop/interfaces'
 import { shopInfoService, shopUpdateService } from 'lib/apis/shop/shopServices'
 import { userUpdateService } from 'lib/apis/user/services'
-import { appDeveloment } from 'lib/utils/app/variable'
+import { appDevelopment } from 'lib/utils/app/variable'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
@@ -50,7 +50,7 @@ const states = (set: any, get: any): IAppStore => ({
                 const data = await authLoginService(params)
                 const result = data.data.data
                 if (!result?.user || !result?.shop) throw Error('This user cannot log in')
-                let status = appDeveloment && result?.user?.status === "NEW" ? "VERIFIED" : result?.user?.status
+                let status = appDevelopment && result?.user?.status === "NEW" ? "VERIFIED" : result?.user?.status
 
                 set({
                     loading: false,
@@ -130,6 +130,6 @@ const _persist = persist(states, {
         refresh_token: state.refresh_token,
     })
 })
-const useAppStore = appDeveloment ? create<IAppStore>()(devtools(_persist, { name: "App" })) : create<IAppStore>()(_persist)
+const useAppStore = appDevelopment ? create<IAppStore>()(devtools(_persist, { name: "App" })) : create<IAppStore>()(_persist)
 
 export default useAppStore

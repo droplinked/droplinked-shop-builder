@@ -1,9 +1,8 @@
 import { VStack } from '@chakra-ui/react'
-import AppTable, { ITableRows } from 'components/common/table/AppTable'
+import { ITableRows } from 'components/common/table/AppTable'
 import { shopSellerService } from 'lib/apis/shop/shopServices'
 import React, { useEffect, useMemo } from 'react'
 import { useMutation } from 'react-query'
-import DashboardEmpty from '../parts/empty/DashboardEmpty'
 import HeadCardDashboard from '../parts/headcard/HeadCardDashboard'
 import DashboardTable from '../parts/table/DashboardTable'
 import PartnersLoading from './parts/loading/PartnersLoading'
@@ -56,7 +55,7 @@ function PartnersDashboard() {
 
     return (
         <VStack align="stretch">
-            <HeadCardDashboard link='' title='Best Affiliate Partner' />
+            <HeadCardDashboard title='Best Affiliate Partner' />
             {isLoading ? <PartnersLoading /> : <DashboardTable items={items} />}
         </VStack>
     )

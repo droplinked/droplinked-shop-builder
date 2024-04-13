@@ -44,6 +44,7 @@ function FiltersDatagrid({ item }: IFiltersDatagrid) {
                                     <MenuItem
                                         key={key}
                                         borderRadius="4px"
+                                        backgroundColor="transparent"
                                         _focus={{
                                             background: "none"
                                         }}

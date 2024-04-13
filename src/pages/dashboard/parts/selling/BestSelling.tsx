@@ -37,7 +37,7 @@ function BestSelling() {
 
     return (
         <VStack align="stretch">
-            <HeadCardDashboard link='/dashboard/products' title='Best Selling Products' />
+            <HeadCardDashboard title='Best Selling Products' />
             {isLoading ? <BestSellingLoading /> : <DashboardTable items={items} />}
         </VStack>
     )

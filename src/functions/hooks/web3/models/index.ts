@@ -1,11 +1,11 @@
 import { Isku } from "lib/apis/product/interfaces"
-import { appDeveloment } from "lib/utils/app/variable"
+import { appDevelopment } from "lib/utils/app/variable"
 import { stacksRecord } from "lib/utils/blockchain/stacks/record"
 import stacksRequest from "lib/utils/blockchain/stacks/request"
-import { getNetworkProvider } from "lib/utils/chains/chainProvider"
 import { Chain, Network } from "lib/utils/chains/Chains"
+import { getNetworkProvider } from "lib/utils/chains/chainProvider"
 import acceptModel from "./module/accept/acceptModel"
-import recordModel, { Ideploy, IStacks } from "./module/record/recordModel"
+import recordModel, { IStacks, Ideploy } from "./module/record/recordModel"
 
 export interface IRecordParamsData {
     commission: any
@@ -105,7 +105,7 @@ const web3Model = ({
                     })
                     resolve(request.txId)
                 } else {
-                    const request = await getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress).publishRequest(sku?.recordData?.data?.details?.recipient, tokenID)
+                    const request = await getNetworkProvider(Chain[blockchain], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress).publishRequest(sku?.recordData?.data?.details?.recipient, tokenID)
                     resolve(request)
                 }
             } catch (error) {
@@ -125,7 +125,7 @@ const web3Model = ({
                     deployHash = request.txId
                     resolve(deployHash)
                 } else {
-                    const accept = await getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress).approveRequest(requestID)
+                    const accept = await getNetworkProvider(Chain[blockchain], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress).approveRequest(requestID)
                     deployHash = accept
                     resolve(deployHash)
                 }

@@ -1,12 +1,12 @@
+import { useDisclosure } from '@chakra-ui/react'
+import AppDataGrid from 'components/common/datagrid/DataGrid'
+import useHookStore from 'functions/hooks/store/useHookStore'
+import { collectionService } from 'lib/apis/collection/services'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
 import CollectionsModel from './model'
-import AppDataGrid from 'components/common/datagrid/DataGrid'
-import CollectionsEmpty from './parts/empty/CollectionsEmpty'
-import { collectionService } from 'lib/apis/collection/services'
 import CollectionCreate from './parts/create/CollectionCreate'
-import { useDisclosure } from '@chakra-ui/react'
-import useHookStore from 'functions/hooks/store/useHookStore'
+import CollectionsEmpty from './parts/empty/CollectionsEmpty'
 
 function Collections() {
     const { isOpen, onClose, onOpen } = useDisclosure()
@@ -18,7 +18,7 @@ function Collections() {
 
     const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
 
-    useEffect(() => mutate(), [mutate])
+    useEffect(() => { mutate() }, [mutate])
 
     const fetch = useCallback(() => {
         mutate()

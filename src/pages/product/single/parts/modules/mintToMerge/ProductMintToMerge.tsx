@@ -1,7 +1,6 @@
 import { Box, Checkbox, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
-import { appDeveloment } from 'lib/utils/app/variable'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import ProductPositions from '../positions/ProductPositions'
@@ -10,7 +9,7 @@ import M2MPlaceholder from './parts/placeholder/M2MPlaceholder'
 
 function ProductMintToMerge() {
     const [CheckBox, setCheckBox] = useState(false)
-    const { state: { m2m_positions, m2m_positions_options,m2m_services,isAddToCartDisabled }, store: { state: { variants } }, methods: { updateState }, loading } = useContext(productContext)
+    const { state: { m2m_positions, m2m_positions_options, m2m_services, isAddToCartDisabled }, store: { state: { variants } }, methods: { updateState }, loading } = useContext(productContext)
 
     // onChange checkbox
     const checkBoxHandle = useCallback((e: any) => {

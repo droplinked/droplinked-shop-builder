@@ -1,12 +1,18 @@
-import useAppStore, { appStorePersistName } from "lib/stores/app/appStore"
+import { appStorePersistName } from "lib/stores/app/appStore"
 
 class AppStorage {
     static accessToken = () => {
-        const token = localStorage.getItem(appStorePersistName)
-        return token ? JSON.parse(token).state.access_token : null
+        const retrievedItem = localStorage.getItem(appStorePersistName)
+        return retrievedItem ? JSON.parse(retrievedItem).state.access_token : null
     }
+
+    static refreshToken = () => {
+        const retrievedItem = localStorage.getItem(appStorePersistName)
+        return retrievedItem ? JSON.parse(retrievedItem).state.refresh_token : null
+    }
+
     static clearStorage = () => {
-        localStorage.clear();
+        localStorage.clear()
     }
 }
 

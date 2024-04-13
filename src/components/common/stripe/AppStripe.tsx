@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { appDevelopment } from 'lib/utils/app/variable';
+import React from 'react';
 import CheckoutForm, { IFormStripe } from './parts/CheckoutForm';
-import { appDeveloment } from 'lib/utils/app/variable';
-const stripePromise = loadStripe(`${appDeveloment ? process.env.REACT_APP_STRIPE_KEY_DEV : process.env.REACT_APP_STRIPE_KEY_MAIN}`);
+
+const stripePromise = loadStripe(`${appDevelopment ? process.env.REACT_APP_STRIPE_KEY_DEV : process.env.REACT_APP_STRIPE_KEY_MAIN}`);
 
 interface IProps extends IFormStripe {
   clientSecret: string
