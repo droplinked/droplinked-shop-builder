@@ -6,16 +6,15 @@ import React, { useContext } from 'react'
 import BlockchainNetwork from '../variants/parts/table/parts/recordModal/parts/form/parts/blockchainNetwork/BlockchainNetwork'
 
 function NetworkDigital() {
-    const { state: { product_type, digitalDetail: { chain } }, methods: { dispatch } } = useContext(productContext)
-
+    const { state, methods: { dispatch } } = useContext(productContext)
     return (
         <>
-            {product_type === "DIGITAL" && (
+            {state?.product_type === "DIGITAL" && (
                 <VStack align="stretch">
                     <BlockchainNetwork
                         error={null}
                         onChange={e => dispatch({ type: "updateDigitalLinks", params: { chain: e } })}
-                        value={chain}
+                        value={state?.digitalDetail?.chain}
                     />
                     <HStack alignItems="center">
                         <AppIcons.Info />
