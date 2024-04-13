@@ -54,13 +54,16 @@ function Shipping() {
             </VStack>
             {shippingType === "CUSTOM" && (
                 <AppInput
-                    type="text"
+                    type="number"
                     loading={loading}
                     name="cost"
                     isRequired
                     label='Shipping Cost'
                     placeholder="$0.00 USD"
                     value={shippingPrice}
+                    onKeyDown={(e) => {
+                        if (e.key === '+' || e.key === '-' || e.key === 'e') e.preventDefault()
+                    }}
                     onChange={(e) => updateState("shippingPrice", e.target.value ? parseFloat(e.target.value) : '')}
                 />
             )}
