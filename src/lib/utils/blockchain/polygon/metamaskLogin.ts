@@ -1,5 +1,5 @@
 import { Buffer } from "buffer";
-import { appDeveloment } from "lib/utils/app/variable";
+import { appDevelopment } from "lib/utils/app/variable";
 /**
  * 
  * @returns {boolean} true if Metamask is installed on the browser otherwise false
@@ -46,7 +46,7 @@ export async function PolygonLogin(): Promise<{
     network: "testnet" | "mainnet",
     signature: string,
 }> {
-    const network = appDeveloment ? "testnet" : "mainnet"
+    const network = appDevelopment ? "testnet" : "mainnet"
     if (!isMetamaskInstalled()) {
         throw ("Wallet is not installed");
     }

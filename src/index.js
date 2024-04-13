@@ -1,27 +1,25 @@
-import React from "react";
-import { ClientProvider } from '@micro-stacks/react'
-import { createRoot } from "react-dom/client";
+import { ChakraProvider } from "@chakra-ui/react";
+import { ClientProvider } from '@micro-stacks/react';
 import "assest/style/index.css";
-import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import { ChakraProvider } from "@chakra-ui/react";
-import { theme } from "./theme";
+import { appDevelopment } from "lib/utils/app/variable";
+import React from "react";
+import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { appDeveloment } from "lib/utils/app/variable";
-
+import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import { theme } from "./theme";
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
-
 
 const queryClient = new QueryClient()
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme} >
-        <ClientProvider appName="droplinked" appIconUrl="." network={appDeveloment ? "testnet" : "mainnet"}>
+        <ClientProvider appName="droplinked" appIconUrl="." network={appDevelopment ? "testnet" : "mainnet"}>
           <App />
         </ClientProvider>
       </ChakraProvider>

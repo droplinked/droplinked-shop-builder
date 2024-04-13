@@ -1,5 +1,5 @@
 import { Buffer } from "buffer";
-import { appDeveloment } from "lib/utils/app/variable";
+import { appDevelopment } from "lib/utils/app/variable";
 /**
  * 
  * @returns {boolean} true if Metamask is installed on the browser otherwise false
@@ -46,7 +46,7 @@ export async function XRPLogin(): Promise<{
     network: "testnet" | "mainnet",
     signature: string,
 }> {
-    const network: "testnet" | "mainnet" = appDeveloment ? "testnet" : "mainnet"
+    const network: "testnet" | "mainnet" = appDevelopment ? "testnet" : "mainnet"
     if (!isMetamaskInstalled()) {
         throw ("Wallet is not installed");
     }

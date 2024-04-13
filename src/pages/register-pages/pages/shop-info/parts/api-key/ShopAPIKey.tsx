@@ -2,7 +2,7 @@ import { Flex, Link } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import { ShopOAuth2Client } from 'lib/apis/shop/interfaces'
 import { getShopAPIKeyService, updateShopAPIKeyService } from 'lib/apis/shop/shopServices'
-import { appDeveloment } from 'lib/utils/app/variable'
+import { appDevelopment } from 'lib/utils/app/variable'
 import React, { useMemo } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import APIKeyContext from './context'
@@ -19,7 +19,7 @@ export default function ShopAPIKey() {
                 <Flex justifyContent={"space-between"} alignItems={"center"}>
                     <AppTypography fontSize='18px' fontWeight='bold'>API Key</AppTypography>
                     <Link
-                        href={`https://${appDeveloment ? 'apiv3dev' : 'apiv3'}.droplinked.com/v1/public-apis/document`}
+                        href={`https://${appDevelopment ? 'apiv3dev' : 'apiv3'}.droplinked.com/v1/public-apis/document`}
                         target="_blank">
                         <AppTypography
                             fontSize={"14px"}

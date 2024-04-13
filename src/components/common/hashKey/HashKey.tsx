@@ -1,6 +1,6 @@
-import { Box, Flex, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import { appDeveloment } from 'lib/utils/app/variable'
+import { appDevelopment } from 'lib/utils/app/variable'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useMemo } from 'react'
 import BlockchainDisplay from '../blockchainDisplay/BlockchainDisplay'
@@ -19,7 +19,7 @@ export interface IHashKeyModal {
 }
 
 function HashKey({ close, hashkey, text, blockchain, description }: IHashKeyModal) {
-    const getLink = useMemo(() => hashkeyModel.getLink({ blockchain, hashkey }), [blockchain, appDeveloment, hashkey])
+    const getLink = useMemo(() => hashkeyModel.getLink({ blockchain, hashkey }), [blockchain, appDevelopment, hashkey])
 
     return (
         <VStack align={"stretch"} spacing={3} color="#C2C2C2">

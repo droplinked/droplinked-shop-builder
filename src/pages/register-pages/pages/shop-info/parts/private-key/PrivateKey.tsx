@@ -3,7 +3,7 @@ import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import { getShopPrivateKeyService } from 'lib/apis/shop/shopServices'
-import { appDeveloment } from 'lib/utils/app/variable'
+import { appDevelopment } from 'lib/utils/app/variable'
 import React from 'react'
 import { useQuery } from 'react-query'
 
@@ -16,7 +16,7 @@ function PrivateKey() {
             <Flex direction={"column"} gap={"8px"}>
                 <Flex justifyContent={"space-between"} alignItems={"center"}>
                     <AppTypography fontSize='18px' fontWeight='bold'>Private Key</AppTypography>
-                    <Link href={`https://${appDeveloment ? 'apiv3dev' : 'apiv3'}.droplinked.com/api/privateapis#/`} target="_blank">
+                    <Link href={`https://${appDevelopment ? 'apiv3dev' : 'apiv3'}.droplinked.com/api/privateapis#/`} target="_blank">
                         <AppTypography fontSize={"14px"} color={"#33A9EC"} textDecoration={"underline"} textDecorationColor={"#33A9EC"}>Documentation</AppTypography>
                     </Link>
                 </Flex>

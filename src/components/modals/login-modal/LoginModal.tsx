@@ -2,16 +2,16 @@ import { Box } from "@chakra-ui/react";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppInput from "components/common/form/textbox/AppInput";
 import AppModal from "components/common/modal/AppModal";
+import AppTypography from "components/common/typography/AppTypography";
 import { Form, Formik } from "formik";
 import useHookStore from "functions/hooks/store/useHookStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
-import { appDeveloment } from "lib/utils/app/variable";
+import { appDevelopment } from "lib/utils/app/variable";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React from "react";
-import * as Yup from "yup";
-import AppTypography from "components/common/typography/AppTypography";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 
 interface Iform {
     email: string;
@@ -43,7 +43,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
         //first close modal
         close();
-        const status = appDeveloment && data.user.status === "NEW" ? "VERIFIED" : data.user.status;
+        const status = appDevelopment && data.user.status === "NEW" ? "VERIFIED" : data.user.status;
 
         if (status === "DELETED") {
             showToast({ message: "This account has been deleted", type: "error" });
@@ -78,7 +78,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
                 return;
             default:
                 navigate("")
-                return    
+                return
         }
     };
 

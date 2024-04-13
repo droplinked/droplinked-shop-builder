@@ -1,4 +1,4 @@
-import { appDeveloment } from 'lib/utils/app/variable'
+import { appDevelopment } from 'lib/utils/app/variable'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 import dataStoreModel from './model'
@@ -38,6 +38,6 @@ const states = (set: any): IDataStore => ({
 })
 
 export const appStorePersistName = "dataStore"
-const useDataStore = appDeveloment ? create<IDataStore>()(devtools(states, { name: "Datas" })) : create<IDataStore>()(states)
+const useDataStore = appDevelopment ? create<IDataStore>()(devtools(states, { name: "Datas" })) : create<IDataStore>()(states)
 
 export default useDataStore

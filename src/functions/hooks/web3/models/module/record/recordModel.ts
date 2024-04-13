@@ -1,6 +1,6 @@
 import hashkeyModel from "components/common/hashKey/model"
 import { recordCasperService } from "lib/apis/sku/services"
-import { appDeveloment } from "lib/utils/app/variable"
+import { appDevelopment } from "lib/utils/app/variable"
 import { getNetworkProvider } from "lib/utils/chains/chainProvider"
 import { Beneficiary, Chain, Network, ProductType } from "lib/utils/chains/Chains"
 import { droplink_wallet } from "lib/utils/statics/adresses"
@@ -24,7 +24,6 @@ export interface IStacks {
     stxAddress: any
 }
 
-
 export interface Ideploy {
     data: IRecordParamsData
     product: any
@@ -34,7 +33,7 @@ export interface Ideploy {
 
 const recordModel = ({
     record: async ({ product, commission, blockchain, quantity, sku, imageUrl, accountAddress, royalty }: Irecord) => {
-        const provider = getNetworkProvider(Chain[blockchain], Network[appDeveloment ? "TESTNET" : "MAINNET"], accountAddress)
+        const provider = getNetworkProvider(Chain[blockchain], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress)
 
         // ---------------- new parameters: ------------------------
         // get these parameters from recorder:
