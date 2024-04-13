@@ -1,5 +1,5 @@
 import { principalCV, stringAsciiCV, uintCV } from "@stacks/transactions"
-import { appDeveloment } from "lib/utils/app/variable"
+import { appDevelopment } from "lib/utils/app/variable"
 import { configStacks } from "./_constans"
 
 interface IstacksRecord {
@@ -26,7 +26,7 @@ export const stacksRecord = ({ isRequestPending, openContractCall, params }: Ist
                 functionName: 'create',
                 functionArgs: [
                     uintCV(amount),
-                    uintCV(appDeveloment ? 1 : price),
+                    uintCV(appDevelopment ? 1 : price),
                     uintCV(parseInt(commission)),
                     stringAsciiCV(uri),
                     stringAsciiCV(productID),

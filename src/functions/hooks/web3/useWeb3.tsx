@@ -1,5 +1,5 @@
 import { IUserWalletsProps } from 'lib/stores/app/appStore'
-import { appDeveloment } from 'lib/utils/app/variable'
+import { appDevelopment } from 'lib/utils/app/variable'
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider'
 import { Chain, Network } from 'lib/utils/chains/Chains'
 import useHookStore from '../store/useHookStore'
@@ -56,7 +56,7 @@ const useAppWeb3 = () => {
                     resolve(address)
                     updateWallet({ type: "STACKS", address: stack.stxAddress })
                 } else {
-                    const provider = await (await getNetworkProvider(Chain[chain], Network[appDeveloment ? "TESTNET" : "MAINNET"], null).walletLogin())
+                    const provider = await (await getNetworkProvider(Chain[chain], Network[appDevelopment ? "TESTNET" : "MAINNET"], null).walletLogin())
 
                     if (chain === "CASPER") {
                         resolve(provider.publicKey)

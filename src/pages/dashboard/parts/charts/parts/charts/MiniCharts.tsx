@@ -25,7 +25,7 @@ function MiniCharts() {
                 component: <OrdersChart green={order?.direct} purple={order?.affiliate} value={order?.value} percentage={getPercentage(order?.direct, order?.value)} />,
             },
             {
-                title: 'CustomerChart',
+                title: 'Customers',
                 width: '26%',
                 component: <OrdersChart green={customer?.direct} purple={customer?.affiliate} value={customer?.value} percentage={getPercentage(customer?.direct, customer?.value)} />,
             }

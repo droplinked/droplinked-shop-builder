@@ -3,7 +3,7 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { IpodGenerateMockupService } from 'lib/apis/pod/interfaces'
 import { podGenerateMockupService } from 'lib/apis/pod/services'
-import { appDeveloment } from 'lib/utils/app/variable'
+import { appDevelopment } from 'lib/utils/app/variable'
 import { productContext } from 'pages/product/single/context'
 import introductionClass from 'pages/product/single/parts/general/model'
 import VariantsMakeDataModel from 'pages/product/single/parts/modules/variants/model/modules/makeData'
@@ -68,7 +68,7 @@ function Artwork2dButtons() {
 
     return (
         <Flex justifyContent="space-between" flexDirection="row-reverse">
-            <BasicButton onClick={submit} isDisabled={!appDeveloment || Boolean(productID)} isLoading={isLoading}>Save</BasicButton>
+            <BasicButton onClick={submit} isDisabled={!appDevelopment || Boolean(productID)} isLoading={isLoading}>Save</BasicButton>
             <BasicButton onClick={reset} variant="outline" isDisabled={isLoading || Boolean(productID)}>Reset All</BasicButton>
         </Flex>
     )
