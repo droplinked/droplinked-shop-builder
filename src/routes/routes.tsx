@@ -1,39 +1,46 @@
-import DashboardLayout from "components/layouts/app/dashboard/DashboardLayout";
-import MainLayout from 'components/layouts/app/main/mainLayout';
-import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout";
-import NotFound from 'pages/404/404';
-import ShopProduct from 'pages/affiliate/product/ShopProduct';
-import AffiliateProducts from "pages/affiliate/products/AffiliateProducts";
-import Shops from "pages/affiliate/shops/Shops";
-import Shop from 'pages/affiliate/shopSingle/Shop';
-import ResetPassPage from 'pages/auth-pages/reset-pass-page/ResetPassPage';
-import ThankForRegisterPage from 'pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage';
-import VerifyEmailPage from 'pages/auth-pages/verify-email-page/Email-verification-page';
-import Collections from "pages/collections/Collections";
-import DashboardPage from "pages/dashboard/DashboardPage";
-import NFTs from "pages/nfts/NFTs";
-import Orders from "pages/orders/Orders";
-import Products from "pages/product/list/products";
-import ProductOrder from "pages/product/order/ProductOrder";
-import ProductTypes from "pages/product/types/ProductTypes";
-import AboutUs from "pages/public-pages/about/AboutUs";
-import Enquiry from 'pages/public-pages/enquiry-page/EnquiryPage';
-import HomePage from "pages/public-pages/homePage/HomePage";
-import LoadingPage from "pages/public-pages/loading-page/LoadingPage";
-import PricingPage from "pages/public-pages/pricing/PricingPage";
-import PrivacyPage from 'pages/public-pages/privacy-page/PrivacyPage';
-import ShopPage from 'pages/public-pages/shop-page/ShopPage';
-import TermsPage from 'pages/public-pages/terms-page/TermsPage';
-import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo";
-import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper";
-import React, { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import DashboardLayout from "components/layouts/app/dashboard/DashboardLayout"
+import MainLayout from "components/layouts/app/main/mainLayout"
+import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout"
+import NotFound from "pages/404/404"
+import ShopProduct from "pages/affiliate/product/ShopProduct"
+import AffiliateProducts from "pages/affiliate/products/AffiliateProducts"
+import Shops from "pages/affiliate/shops/Shops"
+import Shop from "pages/affiliate/shopSingle/Shop"
+import ResetPassPage from "pages/auth-pages/reset-pass-page/ResetPassPage"
+import ThankForRegisterPage from "pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage"
+import VerifyEmailPage from "pages/auth-pages/verify-email-page/Email-verification-page"
+import Collections from "pages/collections/Collections"
+import DashboardPage from "pages/dashboard/DashboardPage"
+import NFTs from "pages/nfts/NFTs"
+import Orders from "pages/orders/Orders"
+import Products from "pages/product/list/products"
+import ProductOrder from "pages/product/order/ProductOrder"
+import ProductTypes from "pages/product/types/ProductTypes"
+import AboutUs from "pages/public-pages/about/AboutUs"
+import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
+import HomePage from "pages/public-pages/homePage/HomePage"
+import LoadingPage from "pages/public-pages/loading-page/LoadingPage"
+import PricingPage from "pages/public-pages/pricing/PricingPage"
+import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
+import TokenPayPage from "pages/public-pages/token-pay-page/TokenPayPage"
+import ShopPage from "pages/public-pages/shop-page/ShopPage"
+import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
+import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
+import React, { lazy, Suspense } from "react"
+import { Route, Routes } from "react-router-dom"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
-const Notifications = lazy(() => import("pages/affiliate/notifications/Notifications"))
-const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"))
-const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPage"))
+const Notifications = lazy(
+  () => import("pages/affiliate/notifications/Notifications")
+)
+const CouponsSetting = lazy(
+  () => import("pages/register-pages/pages/coupons/CouponsSetting")
+)
+const DesignPage = lazy(
+  () => import("pages/register-pages/pages/design/DesignPage")
+)
 const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"))
 
 function AppRoutes() {
@@ -47,8 +54,15 @@ function AppRoutes() {
           <Route path="about" element={<AboutUs />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="email-confirmation" element={<ThankForRegisterPage />} />
-          <Route path="email-verification/:token" element={<VerifyEmailPage />} />
-          <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
+          <Route path="token-pay" element={<TokenPayPage />} />
+          <Route
+            path="email-verification/:token"
+            element={<VerifyEmailPage />}
+          />
+          <Route
+            path="producer/account-recovery/:token"
+            element={<ResetPassPage />}
+          />
           <Route path="plans" element={<PricingPage />} />
         </Route>
 
@@ -93,7 +107,7 @@ function AppRoutes() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
-  );
+  )
 }
 
-export default AppRoutes;
+export default AppRoutes
