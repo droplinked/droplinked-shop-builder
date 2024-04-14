@@ -4,6 +4,7 @@ import Details from "./parts/_components/Details"
 import AboveTheFoldSection from "./parts/above-the-fold/AboveTheFoldSection"
 import Features from "./parts/features/Features"
 import PricingPlans from "./parts/pricing-plans/PricingPlans"
+import LaunchShop from "./parts/launch-shop/LaunchShop"
 
 function TokenPayPage() {
   return (
@@ -13,6 +14,7 @@ function TokenPayPage() {
       <Features />
       <Details title="Empower Communities" description="Unlock market-changing features at unparalleled value. Our pricing plans are designed to revolutionize your commerce experience, providing powerful tools to elevate your token's utility and your shop's success." />
       <PricingPlans />
+      <LaunchShop />
     </Flex>
   )
 }
