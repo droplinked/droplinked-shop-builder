@@ -7,7 +7,7 @@ import AppTypography from 'components/common/typography/AppTypography';
 import { Formik } from 'formik';
 import useAppToast from "functions/hooks/toast/useToast";
 import { IcreateRuleService, IgetRuleService, IupdateRuleService } from "lib/apis/rule/interfaces";
-import { createRuleService, getRuleService, rulesetChainsService, updateRuleService } from "lib/apis/rule/ruleServices";
+import { createRuleService, getRuleService, rulesetChainsService, rulesetTypeService, updateRuleService } from "lib/apis/rule/ruleServices";
 import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useEffect, useState } from "react";
@@ -19,6 +19,7 @@ import SelectRule from "./parts/select/SelectRule";
 import TextboxRule from "./parts/textbox/TextboxRule";
 import RulesetType from "./parts/type/RulesetType";
 import { RuleTypes } from "./RuleModel";
+import SelectType from "./parts/select/selectType";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
@@ -32,6 +33,12 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     cacheTime: 60 * 60 * 1000,
     refetchOnWindowFocus: false
   })
+  const types = useQuery({
+    queryKey: "types_query",
+    queryFn: rulesetTypeService,
+    cacheTime: 60*60*1000,
+    refetchOnWindowFocus: false
+  });
   const { showToast } = useAppToast()
 
   useEffect(() => {
@@ -43,7 +50,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
   }, [getRule])
 
   const submit = async (data) => {
-    const { tag, weburl, chain, rule, discount, address, requirement } = data
+    const { tag, weburl, chain, ruleType, rule, discount, address, requirement } = data
     try {
       const requestBody: IcreateRuleService = {
         collectionID: collectionId,
@@ -59,6 +66,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
         ],
         type: chain,
         webUrl: weburl,
+        ruleType: ruleType,
         redeemedNFTs: [],
       };
       if (ruleId) {
@@ -96,6 +104,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
             tag: State ? State?.rules ? State?.rules[0].description : '' : '',
             weburl: State ? State?.webUrl : '',
             chain: State ? State?.type : 'ETH',
+            ruleType: State ? State?.ruleType : 'NFT',
             rule: State ? State?.gated ? RuleTypes.GATED : RuleTypes.DISCOUNT : RuleTypes.GATED,
             discount: State ? State?.rules ? State?.rules[0].discountPercentage : 0 : 0,
             address: State ? State?.rules ? State?.rules[0].addresses : [] : [],
@@ -135,6 +144,23 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                     placeholder="Select chain"
                     loading={!getRule.isLoading && !chains.isLoading}
                     items={chains.data ? chains.data?.data?.data.map((el) => {
+                      return {
+                        value: el,
+                        caption: capitalizeFirstLetter(el)
+                      }
+                    }) : []}
+                  />
+                </VStack>
+                <VStack align="stretch" spacing={1}>
+                  <VStack align="stretch" spacing={1}>
+                    <FieldLabel label="Ruleset Type" isRequired />
+                    <AppTypography fontSize="12px" color="#9C9C9C">Select a Ruleset type to validate the rules over them.</AppTypography>
+                  </VStack>
+                  <SelectType
+                    element={"ruleType"}
+                    placeholder="Select Rule Type"
+                    loading={!getRule.isLoading && !chains.isLoading}
+                    items={types.data ? types.data?.data?.data.map((el) => {
                       return {
                         value: el,
                         caption: capitalizeFirstLetter(el)
