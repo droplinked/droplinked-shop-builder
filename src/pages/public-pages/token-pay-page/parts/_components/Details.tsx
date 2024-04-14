@@ -12,7 +12,14 @@ function Details({ title, description }: Props) {
     return (
         <Flex direction={"column"} alignItems={"center"} gap={"24px"}>
             <CustomHeading title={title} textAlign={"center"} />
-            <AppTypography width={{ md: "80%", sm: "100%" }} textAlign={"center"} fontSize={"24px"} color={"#fff"}>{description}</AppTypography>
+            <AppTypography
+                width={{ md: "80%", sm: "100%" }}
+                textAlign={"center"}
+                fontSize={{ base: "20px", lg: "24px" }}
+                color={"#fff"}
+            >
+                {description}
+            </AppTypography>
         </Flex>
     )
 }

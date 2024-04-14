@@ -12,7 +12,7 @@ interface Props {
 function PlanAdvantage({ title, description, isComingSoon }: Props) {
     return (
         <Flex alignItems={description ? "start" : "center"} gap={"12px"}>
-            <AppIcons.CheckCircle />
+            <Box flexShrink={0}><AppIcons.CheckCircle /></Box>
             <Flex direction={"column"} gap={"4px"}>
                 <Flex alignItems={"center"} gap={"8px"}>
                     <AppTypography fontSize={"14px"} fontWeight={600} color={"#fff"}>{title}</AppTypography>

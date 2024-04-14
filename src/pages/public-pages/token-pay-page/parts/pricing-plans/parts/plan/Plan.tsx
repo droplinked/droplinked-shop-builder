@@ -16,12 +16,11 @@ function Plan({ icon, title, description, price, children }: Props) {
         <Flex
             direction={"column"}
             gap={"36px"}
-            padding={"48px"}
+            padding={{ base: "28px", lg: "48px" }}
             borderRadius={"16px"}
             border={"1px solid #fff"}
             background={"linear-gradient(155deg, rgba(255, 255, 255, 0.00) -2.13%, rgba(255, 255, 255, 0.15) 136.58%)"}
             boxShadow={"0px 4.282px 52.456px 0px rgba(0, 7, 72, 0.12)"}
-            backdropFilter={"blur(13.381682395935059px)"}
         >
             {icon}
             <Flex direction={"column"} gap={"28px"}>
@@ -37,8 +36,8 @@ function Plan({ icon, title, description, price, children }: Props) {
                     <AppTypography fontSize={"14px"} color={"#fff"}>Launch your token-powered shop with ease and unlock a new dimension of commerce.</AppTypography>
                 </Flex>
                 <Divider margin={0} backgroundColor={"#fff"} />
-                <AppTypography fontSize={"48px"} color={"#fff"} fontWeight={700}>
-                    {price} {" "} <Box as='span' fontSize={"28px"}>USD/USDC</Box>
+                <AppTypography fontSize={{ base: "36px", lg: "48px" }} color={"#fff"} fontWeight={700}>
+                    {price} {" "} <Box as='span' fontSize={{ base: "20px", lg: "28px" }}>USD/USDC</Box>
                 </AppTypography>
                 <Divider margin={0} backgroundColor={"#fff"} />
                 {children}
