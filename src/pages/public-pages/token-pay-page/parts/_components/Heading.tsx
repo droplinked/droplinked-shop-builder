@@ -1,11 +1,11 @@
+import { Heading, HeadingProps } from "@chakra-ui/react"
 import React from "react"
-import { Heading } from "@chakra-ui/react"
 
-interface Props {
+interface Props extends HeadingProps {
   title: string
 }
 
-function CustomHeading({ title }: Props) {
+function CustomHeading({ title, ...props }: Props) {
   return (
     <Heading
       margin={0}
@@ -15,6 +15,7 @@ function CustomHeading({ title }: Props) {
         "linear-gradient(90deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%);"
       }
       backgroundClip={"text"}
+      {...props}
     >
       {title}
     </Heading>
