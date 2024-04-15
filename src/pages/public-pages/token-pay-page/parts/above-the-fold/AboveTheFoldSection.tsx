@@ -6,11 +6,11 @@ import CustomHeading from "../_components/Heading"
 
 function AboveTheFoldSection() {
   return (
-    <Flex minHeight={"100dvh"} justifyContent={"center"} alignItems={"center"} paddingTop={{ base: "48px" }}>
+    <Flex minHeight={"100dvh"} justifyContent={"center"} alignItems={"center"} paddingTop={{ base: 12 }}>
       <Flex direction={{ base: "column", lg: "row" }} alignItems={"center"} gap={{ base: 14, lg: 20 }}>
         <Flex direction={"column"} gap={{ base: 14, lg: 20 }} order={{ base: 2, lg: 1 }}>
           <CustomHeading title="Token Powered Commerce Driven by Your Community" textAlign={{ base: "center", lg: "start" }} />
-          <AppTypography fontSize={{ base: "20px", lg: "24px" }} color={"#fff"} textAlign={{ base: "center", lg: "start" }}>
+          <AppTypography fontSize={{ base: 20, lg: 24 }} color={"#fff"} textAlign={{ base: "center", lg: "start" }}>
             Leverage Tokenpay with any erc20, brc20 and SPL tokens to unlock real utility for communities.
           </AppTypography>
           <BasicButton alignSelf={{ base: "center", lg: "start" }}>Get Started</BasicButton>

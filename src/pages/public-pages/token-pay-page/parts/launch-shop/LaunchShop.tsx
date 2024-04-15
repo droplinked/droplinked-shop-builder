@@ -6,18 +6,19 @@ import React from 'react'
 function LaunchShop() {
     return (
         <Flex
+            alignSelf={"stretch"}
             position={"relative"}
             direction={"column"}
             alignItems={"center"}
-            gap={"36px"}
-            paddingBlock={"48px"}
-            borderRadius={"16px"}
+            gap={9}
+            paddingBlock={12}
+            borderRadius={16}
             border={"1px solid #fff"}
             background={"linear-gradient(155deg, rgba(255, 255, 255, 0.00) -2.13%, rgba(255, 255, 255, 0.15) 136.58%)"}
             boxShadow={"0px 4.282px 52.456px 0px rgba(0, 7, 72, 0.12)"}
         >
-            <Heading margin={0} fontSize={{ base: "24px", lg: "32px" }} fontWeight={700} color={"#fff"} textAlign={"center"} paddingInline={{ base: "12px" }}>Launch a Token Powered Shop Today</Heading>
-            <AppTypography textAlign={"center"} fontSize={"16px"} color={"#fff"} width={{ base: "80%", lg: "60%" }}>
+            <Heading margin={0} fontSize={{ base: 24, lg: 32 }} fontWeight={700} color={"#fff"} textAlign={"center"} paddingInline={{ base: 3 }}>Launch a Token Powered Shop Today</Heading>
+            <AppTypography textAlign={"center"} fontSize={16} color={"#fff"} width={{ base: "80%", lg: "60%" }}>
                 Launch your token powered shop with droplinked today. Simple setup, secure transactions and endless possibilities await your community.
             </AppTypography>
             <BasicButton>Get Started</BasicButton>

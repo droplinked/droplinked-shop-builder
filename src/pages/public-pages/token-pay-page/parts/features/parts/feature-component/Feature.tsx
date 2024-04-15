@@ -13,17 +13,17 @@ function Feature({ icon, title, description }: Props) {
     return (
         <Flex
             direction={"column"}
-            gap={"36px"}
-            padding={{ base: "28px", lg: "48px 56px" }}
-            borderRadius={"16px"}
+            gap={9}
+            padding={{ base: 7, lg: "48px 56px" }}
+            borderRadius={16}
             border={"1px solid #fff"}
             background={"linear-gradient(155deg, rgba(255, 255, 255, 0.00) -2.13%, rgba(255, 255, 255, 0.15) 136.58%)"}
             boxShadow={"0px 4.282px 52.456px 0px rgba(0, 7, 72, 0.12)"}
         >
             {icon}
-            < Flex direction={"column"} gap={"24px"} >
-                <CustomHeading title={title} fontSize={{ base: "20px", lg: "24px" }} />
-                <AppTypography fontSize={{ base: "16px", lg: "20px" }} color={"#fff"}>{description}</AppTypography>
+            < Flex direction={"column"} gap={6} >
+                <CustomHeading title={title} fontSize={24} />
+                <AppTypography fontSize={20} color={"#fff"}>{description}</AppTypography>
             </Flex >
         </Flex >
     )

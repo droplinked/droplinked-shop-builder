@@ -10,12 +10,12 @@ interface Props {
 
 function Details({ title, description }: Props) {
     return (
-        <Flex direction={"column"} alignItems={"center"} gap={"24px"}>
+        <Flex direction={"column"} alignItems={"center"} gap={6}>
             <CustomHeading title={title} textAlign={"center"} />
             <AppTypography
                 width={{ md: "80%", sm: "100%" }}
                 textAlign={"center"}
-                fontSize={{ base: "20px", lg: "24px" }}
+                fontSize={{ base: 20, lg: 24 }}
                 color={"#fff"}
             >
                 {description}
