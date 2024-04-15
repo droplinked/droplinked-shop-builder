@@ -15,30 +15,29 @@ function Plan({ icon, title, description, price, children }: Props) {
     return (
         <Flex
             direction={"column"}
-            gap={"36px"}
-            padding={"48px"}
-            borderRadius={"16px"}
+            gap={9}
+            padding={{ base: 7, lg: "48px 56px" }}
+            borderRadius={16}
             border={"1px solid #fff"}
             background={"linear-gradient(155deg, rgba(255, 255, 255, 0.00) -2.13%, rgba(255, 255, 255, 0.15) 136.58%)"}
             boxShadow={"0px 4.282px 52.456px 0px rgba(0, 7, 72, 0.12)"}
-            backdropFilter={"blur(13.381682395935059px)"}
         >
             {icon}
-            <Flex direction={"column"} gap={"28px"}>
-                <Flex direction={"column"} gap={"16px"}>
+            <Flex direction={"column"} gap={7}>
+                <Flex direction={"column"} gap={4}>
                     <Box
                         alignSelf={"start"}
                         padding={"12px 16px"}
                         backgroundColor={"#3C3C3C"}
-                        borderRadius={"8px"}
+                        borderRadius={8}
                     >
-                        <CustomHeading title={title} fontSize={"16px"} />
+                        <CustomHeading title={title} fontSize={16} />
                     </Box>
-                    <AppTypography fontSize={"14px"} color={"#fff"}>Launch your token-powered shop with ease and unlock a new dimension of commerce.</AppTypography>
+                    <AppTypography fontSize={14} color={"#fff"}>{description}</AppTypography>
                 </Flex>
                 <Divider margin={0} backgroundColor={"#fff"} />
-                <AppTypography fontSize={"48px"} color={"#fff"} fontWeight={700}>
-                    {price} {" "} <Box as='span' fontSize={"28px"}>USD/USDC</Box>
+                <AppTypography fontSize={{ base: 36, lg: 48 }} color={"#fff"} fontWeight={700} whiteSpace={"nowrap"}>
+                    {price} {" "} <Box as='span' fontSize={{ base: 20, lg: 28 }} fontWeight={700}>USD/USDC</Box>
                 </AppTypography>
                 <Divider margin={0} backgroundColor={"#fff"} />
                 {children}

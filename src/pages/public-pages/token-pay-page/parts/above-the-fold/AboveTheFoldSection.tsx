@@ -6,19 +6,22 @@ import CustomHeading from "../_components/Heading"
 
 function AboveTheFoldSection() {
   return (
-    <Flex minHeight={"100dvh"} justifyContent={"center"} alignItems={"center"} paddingTop={{ base: "48px" }}>
-      <Flex direction={{ base: "column", lg: "row" }} alignItems={"center"} gap={20}>
-        <Flex direction={"column"} gap={20}>
-          <Flex direction={"column"}>
-            <CustomHeading title="Token Powered Commerce"></CustomHeading>
-            <CustomHeading title="Driven by Your Community"></CustomHeading>
-          </Flex>
-          <AppTypography fontSize={"24px"} color={"#fff"}>
+    <Flex minHeight={"100dvh"} justifyContent={"center"} alignItems={"center"} paddingTop={12}>
+      <Flex direction={{ base: "column", xl: "row" }} alignItems={"center"} gap={{ base: 14, xl: 20 }}>
+        <Flex direction={"column"} gap={{ base: 14, xl: 20 }} order={{ base: 2, xl: 1 }}>
+          <CustomHeading title="Token Powered Commerce Driven by Your Community" textAlign={{ base: "center", lg: "start" }} />
+          <AppTypography fontSize={{ base: 20, lg: 24 }} color={"#fff"} textAlign={{ base: "center", lg: "start" }}>
             Leverage Tokenpay with any erc20, brc20 and SPL tokens to unlock real utility for communities.
           </AppTypography>
-          <BasicButton alignSelf={"start"}>Get Started</BasicButton>
+          <BasicButton alignSelf={{ base: "center", lg: "start" }}>Get Started</BasicButton>
         </Flex>
-        <Image flexShrink={0} src={"assets/images/tokenPayPage/token-pay-bear.png"} width={"448px"} height={"474px"} />
+        <Image
+          src={"assets/images/tokenPayPage/token-pay-bear.png"}
+          width={{ base: "328px", md: "448px" }}
+          height={{ base: "354px", md: "474px" }}
+          objectFit={"cover"}
+          order={{ base: 1, xl: 2 }}
+        />
       </Flex>
     </Flex>
   )

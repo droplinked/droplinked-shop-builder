@@ -9,7 +9,7 @@ function CustomHeading({ title, ...props }: Props) {
   return (
     <Heading
       margin={0}
-      fontSize={48}
+      fontSize={{ base: 36, lg: 48 }}
       fontWeight={700}
       background={
         "linear-gradient(90deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%);"

@@ -1,8 +1,9 @@
-import React from 'react'
+import { Image } from "@chakra-ui/react"
+import React from "react"
 
 function Gallery() {
     return (
-        <div>Gallery</div>
+        <Image src="assets/images/tokenPayPage/token-pay-gallery.png" width={"100%"} />
     )
 }
 
