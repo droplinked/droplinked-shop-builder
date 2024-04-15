@@ -2,6 +2,7 @@ import axiosInstance from '../axiosConfig';
 import {
     IcreateRuleService,
     IgetRuleService,
+    IgetRuleTypeService,
     IupdateRuleService,
 } from './interfaces';
 
@@ -25,6 +26,6 @@ export const rulesetChainsService = () => {
     return axiosInstance.get(`rule-set/available-chains`);
 };
 
-export const rulesetTypeService = () => {
-    return axiosInstance.get(`rule-set/available-types`);
+export const rulesetTypeService = ({ chain }: IgetRuleTypeService) => {
+    return axiosInstance.get(`rule-set/available-types/${chain}`);
 };

@@ -24,3 +24,7 @@ export interface IupdateRuleService {
     ruleID: string;
     data: IcreateRuleService;
 }
+
+export interface IgetRuleTypeService {
+    chain: string;
+}

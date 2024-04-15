@@ -4,7 +4,6 @@ import ruleModelContext from '../../context'
 
 function SelectType({ element, items, ...props }) {
     const { errors, setFieldValue, values } = useContext(ruleModelContext)
-
     return (
         <AppSelectBox
             name={element}
