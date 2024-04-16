@@ -60,3 +60,7 @@ export const deleteProductTileService = (productTileId: string) => {
 export const getProductTileService = (productTileId: string) => {
     return axiosInstance.get(`/product/tile/${productTileId}`)
 }
+
+export const duplicateProductService = (productId: string) => {
+    return axiosInstance.post(`/product/duplicate`, { productId })
+}

@@ -10,12 +10,15 @@ import { productUpdateServices } from 'lib/apis/product/productServices';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import ProductSingleModel from 'pages/product/single/model/model';
 import ButtonsProductClass from 'pages/product/single/parts/buttons/model/ButtonProductModel';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useMutation } from 'react-query';
-import ConfirmDeleteProduct from './parts/delete/ConfirmDeleteCollection';
+import ConfirmationModal from './parts/confirmation-modal/ConfirmationModal';
 import DetailsProduct from './parts/details/DetailsProduct';
 
+export type action = "DELETE" | "DUPLICATE"
+
 function ControlsListProduct({ productID, product, fetch }) {
+    const [action, setAction] = useState<action>("DELETE")
     const { mutateAsync } = useMutation((params: IproductUpdateServices) => productUpdateServices(params))
     const { isOpen, onOpen, onClose } = useDisclosure()
     const detailModal = useDisclosure()
@@ -44,6 +47,11 @@ function ControlsListProduct({ productID, product, fetch }) {
         }
     }, [productID, fetch, product, wallets, stack.stxAddress])
 
+    const handleActionSelect = (action: action) => {
+        setAction(action)
+        onOpen()
+    }
+
     const items = useMemo(() => {
         const list = [
             {
@@ -52,11 +60,15 @@ function ControlsListProduct({ productID, product, fetch }) {
             },
             {
                 caption: "Delete",
-                onClick: onOpen
+                onClick: () => handleActionSelect("DELETE")
             },
             {
                 caption: "View Details",
                 onClick: detailModal.onOpen
+            },
+            {
+                caption: "Duplicate Product",
+                onClick: () => handleActionSelect("DUPLICATE")
             }
         ]
         if (product?.publish_status === "DRAFTED") list.push({
@@ -74,7 +86,7 @@ function ControlsListProduct({ productID, product, fetch }) {
     return (
         <>
             <PopOverMenu items={items} />
-            <ConfirmDeleteProduct close={onClose} open={isOpen} productID={productID} fetch={fetch} />
+            <ConfirmationModal open={isOpen} close={onClose} fetch={fetch} productID={productID} action={action} />
             {detailModal.isOpen && <DetailsProduct close={detailModal.onClose} open={detailModal.isOpen} productID={product._id} />}
         </>
     )
