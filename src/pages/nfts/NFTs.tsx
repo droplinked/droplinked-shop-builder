@@ -8,8 +8,9 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import React, { useState } from 'react'
 import NFTDetailsModal from './parts/NFTDetailsModal'
+
 function NFTs() {
-    const [pageData, setPageData] = useState({ searchTerm: "", myProducts: false, selectedNFT: null })
+    const [pageData, setPageData] = useState({ searchTerm: "", myProducts: false, selectedWallet: null, selectedNFT: null })
     const { isOpen, onOpen, onClose } = useDisclosure()
     const isLoading = false;
     const nfts = Array.from({ length: 8 }).map(() => ({
@@ -27,7 +28,8 @@ function NFTs() {
         setPageData({ ...pageData, [key]: value })
 
     const generateSkeletons = () => Array.from({ length: 6 }).map((_, key) =>
-        <AppSkeleton key={key} width={"196px"} height={"241px"} isLoaded={false}>{" "}</AppSkeleton>)
+        <AppSkeleton key={key} width={"196px"} height={"241px"} isLoaded={false}>{" "}</AppSkeleton>
+    )
 
     return (
         <>
@@ -39,14 +41,14 @@ function NFTs() {
                             onChange={e => updatePageData("searchTerm", e.target.value)}
                         />
                         <Flex alignItems={"center"} gap={"36px"}>
-                            <AppSelectBox name={"NFT"} items={selectOptions} />
+                            <AppSelectBox name={"NFT"} items={selectOptions} onChange={e => updatePageData("selectedWallet", e.target.value)} />
                             <Checkbox
                                 size='md'
                                 alignItems="center"
                                 colorScheme='green'
                                 checked={pageData.myProducts}
                                 onChange={e => updatePageData("myProducts", e.target.checked)} >
-                                <AppTypography fontSize="12px" color="#C2C2C2" width={"68px"}>My Products</AppTypography>
+                                <AppTypography color="#C2C2C2" whiteSpace={"nowrap"}>My Products</AppTypography>
                             </Checkbox>
                         </Flex>
                     </Flex>
@@ -67,7 +69,7 @@ function NFTs() {
                                     }}
                                 >
                                     <AppImage src={nft.image} objectFit={"cover"} width={"196px"} height={"196px"} />
-                                    <Box paddingBlock={"12px"} paddingInline={"16px"}>
+                                    <Box padding={"12px 16px"}>
                                         <AppTypography fontSize={"14px"} fontWeight={"600"}>{nft.title}</AppTypography>
                                     </Box>
                                 </Box>
