@@ -75,7 +75,7 @@ function ButtonsProduct() {
                     setStateHandle('hashkey', hashkey)
                     onOpen()
                 } catch (error) {
-                    // shopNavigate("products")
+                    shopNavigate("products")
                     showToast({ message: "Something went wrong!", type: "error" })
                 }
             } else {
