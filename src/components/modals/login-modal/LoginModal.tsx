@@ -29,7 +29,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     // submit form function
     const onSubmit = async (data: Iform) => {
         try {
-            let result = await login(data);
+            let result = await login({type: "default", params: data});
             if (result) loginFunction(result);
         } catch (error) {
             showToast({ message: error?.message, type: "error" });
@@ -88,7 +88,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     });
 
     return (
-        <AppModal open={show} title="Sign in" close={close}>
+        <AppModal open={show} title="Sign In" close={close}>
             <Formik
                 initialValues={{
                     email: "",
