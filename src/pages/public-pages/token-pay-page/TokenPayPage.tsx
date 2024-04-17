@@ -10,7 +10,7 @@ import PricingPlans from "./parts/pricing-plans/PricingPlans"
 function TokenPayPage() {
   return (
     <Flex justifyContent={"center"}>
-      <Flex direction="column" alignItems={"center"} gap={120} width={{ base: "100%", lg: "80%" }} maxWidth="1400px" paddingInline={{ base: "16px", sm: "28px" }} paddingBottom={120}>
+      <Flex direction="column" alignItems={"center"} gap={120} width={{ base: "100%", lg: "80%" }} maxWidth="1400px" paddingInline={{ base: "16px", sm: "28px" }} paddingBlock={120}>
         <AboveTheFoldSection />
         <Details title="Crypto Commerce" description="Unlock innovative features at unparalleled value. Pricing plans are designed to elevate the commerce experience by providing powerful on-chain tools to elevate a tokens utility and projects success." />
         <Features />
