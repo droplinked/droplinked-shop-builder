@@ -1,4 +1,4 @@
-import { Heading } from '@chakra-ui/react'
+import { Heading, Hide, Image, Show } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
@@ -17,8 +17,14 @@ function LaunchShop() {
                 Launch your token powered shop with droplinked today. Simple setup, secure transactions and endless possibilities await your community.
             </AppTypography>
             <BasicButton>Get Started</BasicButton>
-            {/* <Image width={"160px"} position={"absolute"} top={"10px"} right={"10px"} src='assets/images/tokenPayPage/Monero.png' />
-            <Image width={"160px"} position={"absolute"} bottom={0} left={{ base: 0, lg: "80px" }} src='assets/images/tokenPayPage/Etherium.png' /> */}
+            <Show above='lg'>
+                <Image width={"150px"} position={"absolute"} top={"75px"} right={"-3px"} src='assets/images/tokenPayPage/Monero.png' />
+                <Image width={"150px"} position={"absolute"} bottom={0} left={"80px"} src='assets/images/tokenPayPage/Etherium.png' />
+                <Image width={"150px"} position={"absolute"} top={"-75px"} left={"-2%"} src='assets/images/tokenPayPage/Bitcoin.png' />
+                <Image width={"40px"} position={"absolute"} top={"-30px"} right={"20%"} src='assets/images/tokenPayPage/star-img.png' />
+                <Image width={"40px"} position={"absolute"} bottom={"-10px"} right={"10%"} src='assets/images/tokenPayPage/star-img-1.png' />
+                <Image width={"40px"} position={"absolute"} top={"-10px"} left={"25%"} src='assets/images/tokenPayPage/star-img-1.png' />
+            </Show>
         </Container>
     )
 }
