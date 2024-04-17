@@ -23,11 +23,24 @@ function HomePage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [States, setStates] = useState({
     pause: false,
-    loaded: []
+    loaded: [],
+    typeOfModal: MODAL_TYPE.SIGNIN
   })
   const [searchParams] = useSearchParams()
 
-  useEffect(() => {searchParams.get('modal') === "login" && onOpen()}, [searchParams])
+  const modal_types_convertion = {
+      login: MODAL_TYPE.SIGNIN,
+      signup: MODAL_TYPE.SIGNUP,
+      forgot_password: MODAL_TYPE.RESET,
+  };
+
+  useEffect(() => {
+      const param = searchParams.get("modal");
+      if (param) {
+          setStates((prev) => ({...prev, typeOfModal: modal_types_convertion[param] || MODAL_TYPE.SIGNIN}))
+          onOpen();
+      }
+  }, [searchParams]);
 
   const effects = useMemo(() => (
     <>
@@ -95,7 +108,7 @@ function HomePage() {
           }}
         />
       </div>
-      {isOpen && <AuthModal show={true} type={MODAL_TYPE.SIGNIN} close={onClose} />}
+      {isOpen && <AuthModal show={true} type={States.typeOfModal} close={onClose} />}
     </ParallaxProvider >
   )
 }
