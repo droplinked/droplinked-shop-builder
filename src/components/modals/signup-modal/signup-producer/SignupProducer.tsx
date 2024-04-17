@@ -14,10 +14,12 @@ import * as Yup from "yup";
 import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppTypography from "components/common/typography/AppTypography";
 import AppIcons from "assest/icon/Appicons";
+import { googleService } from "lib/apis/auth/services";
 
 const SignupProducer = ({ close, shopname, switchToggle }) => {
     const [searchParams] = useSearchParams();
     const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params));
+    const { mutate: google_service, isLoading: loading_google_service } = useMutation(() => googleService());
     const [States, setStates] = useState({ show: { password: false, repassword: false } });
     let navigate = useNavigate();
     const { showToast } = useAppToast();
@@ -35,7 +37,6 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
             showToast({ message: error?.response?.data?.data?.message, type: "error" });
         }
     };
-    console.log(searchParams.get("referral"));
 
     const formSchema = Yup.object().shape({
         username: Yup.string().matches(usernameRegex, "Username can contain letters (a-z), numbers (0-9) and underscores.").required("Required"),
@@ -110,7 +111,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                             <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
                             <Divider color={"line"}/>
                         </HStack>
-                        <BasicButton backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{backgroundColor: "mainGray.500"}} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google/>} isLoading={isLoading}>Sign up with Google</BasicButton>
+                        <BasicButton onClick={() => google_service()} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{backgroundColor: "mainGray.500"}} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google/>} isDisabled={loading_google_service || isLoading} isLoading={loading_google_service}>Sign up with Google</BasicButton>
                     </VStack>
                 </Form>
             )}
