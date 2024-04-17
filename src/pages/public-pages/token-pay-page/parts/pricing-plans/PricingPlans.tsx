@@ -29,7 +29,7 @@ function PricingPlans() {
                 icon={<AppIcons.Diamond />}
                 title='Premium (Token Expansion)'
                 description="Elevate your token's utility across our entire marketplace for universal acceptance."
-                price='+ $5,000'
+                price='$10,000'
             >
                 <Flex direction={"column"} gap={"14px"}>
                     <PlanAdvantage title='Universal Token Use' description="Extend your token's reach, allowing it to be used as payment in all shops" />
