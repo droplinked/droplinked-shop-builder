@@ -26,7 +26,7 @@ function Contact() {
                     <Flex paddingTop={{ base: "50px", sm: "90px", md: "20px" }} justifyContent={{ base: "center", md: "left" }}>
                         <Link to={'/enquiry'}>
                             <BasicButton minWidth={{ base: "120px", sm: "160px" }} height={{ base: "32px", sm: "40px" }}>
-                                <AppTypography fontSize={{ base: "12px", sm: "16px" }}>Contact Us</AppTypography>
+                                <AppTypography fontSize={{ base: "12px", sm: "16px" }} fontWeight={600}>Contact Us</AppTypography>
                             </BasicButton>
                         </Link>
                     </Flex>

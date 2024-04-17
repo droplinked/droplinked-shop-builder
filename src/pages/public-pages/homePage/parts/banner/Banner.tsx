@@ -42,7 +42,7 @@ function Banner() {
                         </Box>
                         <Box>
                             <BasicButton onClick={onOpen} minWidth={{ base: "120px", sm: "160px" }} height={{ base: "32px", sm: "40px" }}>
-                                <AppTypography fontSize={{ base: "12px", sm: "16px" }}>Start Selling</AppTypography>
+                                <AppTypography fontSize={{ base: "12px", sm: "16px" }} fontWeight={600}>Start Selling</AppTypography>
                             </BasicButton>
                         </Box>
                     </VStack>
