@@ -6,11 +6,11 @@ import AppImage from 'components/common/image/AppImage'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import useHookStore from 'functions/hooks/store/useHookStore'
+import useAppToast from 'functions/hooks/toast/useToast'
 import { retrieveNFTs } from 'lib/apis/nft/nftServices'
+import { appDevelopment } from 'lib/utils/app/variable'
 import React, { useEffect, useState } from 'react'
 import NFTDetailsModal from './parts/NFTDetailsModal'
-import { appDevelopment } from 'lib/utils/app/variable'
-import useAppToast from 'functions/hooks/toast/useToast'
 
 function NFTs() {
     const { app: { user: { wallets } } } = useHookStore()
@@ -18,7 +18,7 @@ function NFTs() {
         isLoading: false,
         searchTerm: "",
         myProducts: false,
-        selectedWallet: wallets[0].address,
+        selectedChain: wallets[0].type,
         nfts: [],
         selectedNFT: null
     })
@@ -36,19 +36,19 @@ function NFTs() {
         (async () => {
             try {
                 updatePageData("isLoading", true)
-                const { selectedWallet, myProducts } = pageData
-                const selectedChain = wallets.find(w => w.address === selectedWallet)
-                const nfts = await retrieveNFTs({ myProducts, body: { address: selectedChain.address, chain: selectedChain.type, network: appDevelopment ? "TESTNET" : "MAINNET" } })
+                const { selectedChain, myProducts } = pageData
+                const chainData = wallets.find(w => w.type === selectedChain)
+                const nfts = await retrieveNFTs({ myProducts, body: { address: chainData.address, chain: chainData.type, network: appDevelopment ? "TESTNET" : "MAINNET" } })
                 updatePageData("nfts", nfts.data.data)
             }
-            catch {
+            catch (e) {
                 showToast({ message: "Oops! Something went wrong.", type: "error" })
             }
             finally {
                 updatePageData("isLoading", false)
             }
         })()
-    }, [pageData.selectedWallet, pageData.myProducts])
+    }, [pageData.selectedChain, pageData.myProducts])
 
     return (
         <>
@@ -60,7 +60,7 @@ function NFTs() {
                             onChange={e => updatePageData("searchTerm", e.target.value)}
                         />
                         <Flex alignItems={"center"} gap={"36px"}>
-                            <AppSelectBox name={"NFT"} items={wallets.map(wallet => ({ caption: wallet.type, value: wallet.address }))} onChange={e => updatePageData("selectedWallet", e.target.value)} />
+                            <AppSelectBox name={"NFT"} items={wallets.map(wallet => ({ caption: wallet.type, value: wallet.type }))} onChange={e => updatePageData("selectedChain", e.target.value)} />
                             <Checkbox
                                 size='md'
                                 alignItems="center"
@@ -72,27 +72,27 @@ function NFTs() {
                         </Flex>
                     </Flex>
                     <Flex gap={"16px"} flexWrap={"wrap"}>
-                        {pageData.isLoading ? generateSkeletons()
-                            :
-                            pageData.nfts.map((nft, index) => (
-                                <Box
-                                    key={index}
-                                    width={"196px"}
-                                    borderRadius={"8px"}
-                                    overflow={"hidden"}
-                                    backgroundColor={"#262626"}
-                                    cursor={"pointer"}
-                                    onClick={() => {
-                                        updatePageData("selectedNFT", nft)
-                                        onOpen()
-                                    }}
-                                >
-                                    <AppImage src={nft.image} objectFit={"cover"} width={"196px"} height={"196px"} />
-                                    <Box padding={"12px 16px"}>
-                                        <AppTypography fontSize={"14px"} fontWeight={"600"}>{nft.title}</AppTypography>
+                        {pageData.isLoading ? generateSkeletons() :
+                            pageData.nfts.length === 0 ? <AppTypography width={"100%"} paddingBlock={3} textAlign={"center"} color={"#fff"} fontSize={"14px"}>No NFT was found in your wallet.</AppTypography> :
+                                pageData.nfts.map((nft, index) => (
+                                    <Box
+                                        key={index}
+                                        width={"196px"}
+                                        borderRadius={"8px"}
+                                        overflow={"hidden"}
+                                        backgroundColor={"#262626"}
+                                        cursor={"pointer"}
+                                        onClick={() => {
+                                            updatePageData("selectedNFT", nft)
+                                            onOpen()
+                                        }}
+                                    >
+                                        <AppImage src={nft.image} objectFit={"cover"} width={"196px"} height={"196px"} />
+                                        <Box padding={"12px 16px"}>
+                                            <AppTypography fontSize={"14px"} fontWeight={"600"}>{nft.title}</AppTypography>
+                                        </Box>
                                     </Box>
-                                </Box>
-                            ))
+                                ))
                         }
                     </Flex>
                 </VStack>
