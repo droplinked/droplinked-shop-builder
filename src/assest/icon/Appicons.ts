@@ -35,6 +35,7 @@ import { ReactComponent as GrayGatedIcon } from './grayGatedIcon.svg';
 import { ReactComponent as GreenAlert } from './green-alert.svg';
 import { ReactComponent as Hand } from './hand.svg';
 import { ReactComponent as Hedera } from './hedera.svg';
+import { ReactComponent as Google } from './google.svg';
 import { ReactComponent as HelpCenter } from './help-circle 1.svg';
 import { ReactComponent as MinusIcon } from './image2vector.svg';
 import { ReactComponent as InfoIcon } from './info-icon.svg';
@@ -143,6 +144,7 @@ const AppIcons = {
   Cover,
   Upload,
   Polygon,
+  Google,
   DiscountSetting,
   GiftSetting,
   Ripple,
