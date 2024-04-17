@@ -1,5 +1,5 @@
-import { IauthLoginService } from 'lib/apis/auth/interfaces'
-import { authLoginService } from 'lib/apis/auth/services'
+import { ICompleteGoogleSignupService, IauthLoginService } from 'lib/apis/auth/interfaces'
+import { authLoginService, completeGoogleSignupService } from 'lib/apis/auth/services'
 import { IshopInfoService, IshopUpdateService } from 'lib/apis/shop/interfaces'
 import { shopInfoService, shopUpdateService } from 'lib/apis/shop/shopServices'
 import { userUpdateService } from 'lib/apis/user/services'
@@ -29,7 +29,7 @@ export interface IAppStore {
     loading: boolean
     access_token: string | null
     refresh_token: string | null
-    login(params: IauthLoginService): Promise<any>
+    login(method: {type: "default", params: IauthLoginService} | {type: "google", params: ICompleteGoogleSignupService}): Promise<any>
     fetchShop(params: IshopInfoService): Promise<any>
     reset(): void
     updateShop(params: IshopUpdateService): Promise<any>
@@ -43,12 +43,12 @@ const states = (set: any, get: any): IAppStore => ({
     access_token: null,
     refresh_token: null,
     loading: false,
-    login: (params: IauthLoginService) => {
+    login: (method) => {
         return new Promise<any>(async (resolve, reject) => {
             try {
                 set({ loading: true })
-                const data = await authLoginService(params)
-                const result = data.data.data
+                const data = method.type === "default" ? await authLoginService(method.params) : method.type === "google" ? await completeGoogleSignupService(method.params) : null
+                const result = data?.data?.data
                 if (!result?.user || !result?.shop) throw Error('This user cannot log in')
                 let status = appDevelopment && result?.user?.status === "NEW" ? "VERIFIED" : result?.user?.status
 
