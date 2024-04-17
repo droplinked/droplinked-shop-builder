@@ -17,7 +17,7 @@ import ProductsMain from './parts/product/ProductsMain';
 import Supported from './parts/supported/Supported';
 import classes from './style.module.scss';
 
-export enum MODAL_TYPE { SIGNIN= "SIGNIN", SIGNUP= "SIGNUP", RESET= "RESET" };
+export enum MODAL_TYPE { SIGNIN= "SIGNIN", SIGNUP= "SIGNUP", RESET= "RESET", GOOGLE= "GOOGLE" };
 
 function HomePage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -32,6 +32,7 @@ function HomePage() {
       login: MODAL_TYPE.SIGNIN,
       signup: MODAL_TYPE.SIGNUP,
       forgot_password: MODAL_TYPE.RESET,
+      google: MODAL_TYPE.GOOGLE
   };
 
   useEffect(() => {
