@@ -1,28 +1,29 @@
 import { Box, Checkbox, Flex, useDisclosure, VStack } from '@chakra-ui/react'
-import { faker } from '@faker-js/faker'
 import AppCard from 'components/common/card/AppCard'
 import SearchDatagrid from 'components/common/datagrid/parts/search/SearchDatagrid'
 import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import AppImage from 'components/common/image/AppImage'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
-import React, { useState } from 'react'
+import useHookStore from 'functions/hooks/store/useHookStore'
+import { retrieveNFTs } from 'lib/apis/nft/nftServices'
+import React, { useEffect, useState } from 'react'
 import NFTDetailsModal from './parts/NFTDetailsModal'
+import { appDevelopment } from 'lib/utils/app/variable'
+import useAppToast from 'functions/hooks/toast/useToast'
 
 function NFTs() {
-    const [pageData, setPageData] = useState({ searchTerm: "", myProducts: false, selectedWallet: null, selectedNFT: null })
+    const { app: { user: { wallets } } } = useHookStore()
+    const [pageData, setPageData] = useState({
+        isLoading: false,
+        searchTerm: "",
+        myProducts: false,
+        selectedWallet: wallets[0].address,
+        nfts: [],
+        selectedNFT: null
+    })
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const isLoading = false;
-    const nfts = Array.from({ length: 8 }).map(() => ({
-        image: faker.image.avatar(),
-        title: faker.lorem.sentence(5)
-    }))
-
-    const selectOptions = [
-        { caption: "All", value: "all" },
-        { caption: "My NFTs", value: "myNFTs" },
-        { caption: "My Products", value: "myProducts" }
-    ]
+    const { showToast } = useAppToast()
 
     const updatePageData = <K extends keyof typeof pageData>(key: K, value: typeof pageData[K]) =>
         setPageData({ ...pageData, [key]: value })
@@ -30,6 +31,24 @@ function NFTs() {
     const generateSkeletons = () => Array.from({ length: 6 }).map((_, key) =>
         <AppSkeleton key={key} width={"196px"} height={"241px"} isLoaded={false}>{" "}</AppSkeleton>
     )
+
+    useEffect(() => {
+        (async () => {
+            try {
+                updatePageData("isLoading", true)
+                const { selectedWallet, myProducts } = pageData
+                const selectedChain = wallets.find(w => w.address === selectedWallet)
+                const nfts = await retrieveNFTs({ myProducts, body: { address: selectedChain.address, chain: selectedChain.type, network: appDevelopment ? "TESTNET" : "MAINNET" } })
+                updatePageData("nfts", nfts.data.data)
+            }
+            catch {
+                showToast({ message: "Oops! Something went wrong.", type: "error" })
+            }
+            finally {
+                updatePageData("isLoading", false)
+            }
+        })()
+    }, [pageData.selectedWallet, pageData.myProducts])
 
     return (
         <>
@@ -41,7 +60,7 @@ function NFTs() {
                             onChange={e => updatePageData("searchTerm", e.target.value)}
                         />
                         <Flex alignItems={"center"} gap={"36px"}>
-                            <AppSelectBox name={"NFT"} items={selectOptions} onChange={e => updatePageData("selectedWallet", e.target.value)} />
+                            <AppSelectBox name={"NFT"} items={wallets.map(wallet => ({ caption: wallet.type, value: wallet.address }))} onChange={e => updatePageData("selectedWallet", e.target.value)} />
                             <Checkbox
                                 size='md'
                                 alignItems="center"
@@ -53,9 +72,9 @@ function NFTs() {
                         </Flex>
                     </Flex>
                     <Flex gap={"16px"} flexWrap={"wrap"}>
-                        {isLoading ? generateSkeletons()
+                        {pageData.isLoading ? generateSkeletons()
                             :
-                            nfts.map((nft, index) => (
+                            pageData.nfts.map((nft, index) => (
                                 <Box
                                     key={index}
                                     width={"196px"}
