@@ -9,22 +9,17 @@ import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useCallback, useState } from "react";
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppTypography from "components/common/typography/AppTypography";
 
 const SignupProducer = ({ close, shopname, switchToggle }) => {
+    const [searchParams] = useSearchParams()
     const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params));
-    const [States, setStates] = useState({
-        show: {
-            password: false,
-            repassword: false,
-        },
-    });
+    const [States, setStates] = useState({ show: { password: false, repassword: false } });
     let navigate = useNavigate();
     const { showToast } = useAppToast();
-
     const toggleShowField = useCallback((field: any) => setStates((prev) => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), []);
 
     const onSubmit = async (data: any) => {
@@ -39,6 +34,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
             showToast({ message: error?.response?.data?.data?.message, type: "error" });
         }
     };
+    console.log(searchParams.get("referral"))
 
     const formSchema = Yup.object().shape({
         username: Yup.string().matches(usernameRegex, "Username can contain letters (a-z), numbers (0-9) and underscores.").required("Required"),
@@ -57,7 +53,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                 email: "",
                 password: "",
                 repassword: "",
-                referral: "",
+                referral: searchParams.get("referral") || "",
             }}
             validateOnChange={false}
             validationSchema={formSchema}
@@ -73,7 +69,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                             onChange={(e) => setFieldValue("username", e.target.value)}
                             value={values.username}
                         />
-                        <AppInput error={errors?.email ? errors.email.toString() : ""} name="email" onChange={(e) => setFieldValue("email", e.target.value)} value={values.email} />
+                        <AppInput type="email" error={errors?.email ? errors.email.toString() : ""} name="email" onChange={(e) => setFieldValue("email", e.target.value)} value={values.email} />
                         <Box position={"relative"}>
                             <AppInput
                                 type={States.show.password ? "text" : "password"}
@@ -100,6 +96,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                             placeholder="Referral Code"
                             onChange={(e) => setFieldValue("referral", e.target.value)}
                             value={values.referral}
+                            isDisabled={Boolean(searchParams.get("referral"))}
                         />
 
                         <BasicButton type="submit" isLoading={isLoading}>
@@ -107,7 +104,11 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                         </BasicButton>
 
                         <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchToggle}>
-                            Already have an account? <Box as="span" color="#2EC99E !important">Sign in</Box> now
+                            Already have an account?{" "}
+                            <Box as="span" color="#2EC99E !important">
+                                Sign in
+                            </Box>{" "}
+                            now
                         </AppTypography>
                     </Stack>
                 </Form>
