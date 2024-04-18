@@ -6,13 +6,11 @@ import { Form, Formik } from "formik";
 import useHookStore from "functions/hooks/store/useHookStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
-import { ICompleteGoogleSignupService } from "lib/apis/auth/interfaces";
-import { completeGoogleSignupService } from "lib/apis/auth/services";
+import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import { usernameRegex } from "lib/utils/heper/regex";
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
 import React, { useEffect, useMemo } from "react";
-import { useMutation } from "react-query";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 
 const CompleteGoogelModal = ({ show, close, switchModal }: { show: boolean; close: () => void; switchModal: (type: MODAL_TYPE) => void }) => {
@@ -22,6 +20,7 @@ const CompleteGoogelModal = ({ show, close, switchModal }: { show: boolean; clos
     } = useHookStore();
     const { showToast } = useAppToast();
     const { shopNavigate } = useCustomNavigate();
+    const navigate = useNavigate();
     const formSchema = Yup.object().shape({
         username: Yup.string().matches(usernameRegex, "Username can contain letters (a-z), numbers (0-9) and underscores.").required("Required"),
         referral: Yup.string(),
@@ -41,7 +40,9 @@ const CompleteGoogelModal = ({ show, close, switchModal }: { show: boolean; clos
             if (results) {
                 showToast({ message: "Account successfully created", type: "success" });
                 close();
-                shopNavigate("register/shop-info");
+                const status = data.user.status;
+                const {href, dashboard} = navigating_user_based_on_status(status, data);
+                dashboard ? shopNavigate(href) : navigate(href)
             }
         } catch (error) {
             showToast({ message: error?.response?.data?.data?.message, type: "error" });
