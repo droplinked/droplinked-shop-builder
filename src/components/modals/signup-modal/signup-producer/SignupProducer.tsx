@@ -15,6 +15,7 @@ import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppTypography from "components/common/typography/AppTypography";
 import AppIcons from "assest/icon/Appicons";
 import { googleService } from "lib/apis/auth/services";
+import { BASE_URL } from "lib/utils/app/variable";
 
 const SignupProducer = ({ close, shopname, switchToggle }) => {
     const [searchParams] = useSearchParams();
@@ -111,7 +112,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                             <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
                             <Divider color={"line"}/>
                         </HStack>
-                        <BasicButton onClick={() => google_service()} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{backgroundColor: "mainGray.500"}} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google/>} isDisabled={loading_google_service || isLoading} isLoading={loading_google_service}>Sign up with Google</BasicButton>
+                        <BasicButton onClick={() => {window.location.href = `${BASE_URL}/auth/login/google`}} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{backgroundColor: "mainGray.500"}} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google/>} isDisabled={loading_google_service || isLoading} isLoading={loading_google_service}>Sign up with Google</BasicButton>
                     </VStack>
                 </Form>
             )}
