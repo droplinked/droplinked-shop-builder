@@ -2,7 +2,8 @@ import { ICompleteGoogleSignupService, IauthLoginService } from 'lib/apis/auth/i
 import { authLoginService, completeGoogleSignupService } from 'lib/apis/auth/services'
 import { IshopInfoService, IshopUpdateService } from 'lib/apis/shop/interfaces'
 import { shopInfoService, shopUpdateService } from 'lib/apis/shop/shopServices'
-import { userUpdateService } from 'lib/apis/user/services'
+import { IGetUserService } from 'lib/apis/user/interfaces'
+import { getUserService, userUpdateService } from 'lib/apis/user/services'
 import { appDevelopment } from 'lib/utils/app/variable'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
@@ -29,7 +30,7 @@ export interface IAppStore {
     loading: boolean
     access_token: string | null
     refresh_token: string | null
-    login(method: {type: "default", params: IauthLoginService} | {type: "google", params: ICompleteGoogleSignupService}): Promise<any>
+    login(method: {type: "default", params: IauthLoginService} | {type: "google", params: ICompleteGoogleSignupService} | {type: "get", params: IGetUserService}): Promise<any>
     fetchShop(params: IshopInfoService): Promise<any>
     reset(): void
     updateShop(params: IshopUpdateService): Promise<any>
@@ -47,7 +48,11 @@ const states = (set: any, get: any): IAppStore => ({
         return new Promise<any>(async (resolve, reject) => {
             try {
                 set({ loading: true })
-                const data = method.type === "default" ? await authLoginService(method.params) : method.type === "google" ? await completeGoogleSignupService(method.params) : null
+                let data;
+                if(method.type === "default") data = await authLoginService(method.params)
+                if(method.type === "google") data = await completeGoogleSignupService(method.params)
+                if(method.type === "get") data = await getUserService(method.params)
+
                 const result = data?.data?.data
                 if (!result?.user || !result?.shop) throw Error('This user cannot log in')
                 let status = appDevelopment && result?.user?.status === "NEW" ? "VERIFIED" : result?.user?.status
