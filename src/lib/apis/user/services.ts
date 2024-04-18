@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { IchangePasswordService, IemailVerifyService, IforgetPasswordService, IresendEmailService, IsignupService, IuserUpdateService } from "./interfaces";
+import { IRetrieveNFTs, IchangePasswordService, IemailVerifyService, IforgetPasswordService, IresendEmailService, IsignupService, IuserUpdateService } from "./interfaces";
 
 export const signupService = (props: IsignupService) => {
     return axiosInstance.post(`user/signup`, props)
@@ -23,4 +23,8 @@ export const emailVerifyService = (props: IemailVerifyService) => {
 
 export const userUpdateService = (props: IuserUpdateService) => {
     return axiosInstance.put(`user`, props)
+}
+
+export const retrieveNFTs = (data: IRetrieveNFTs) => {
+    return axiosInstance.post(`user/retrieve/nfts?myProducts=${data.myProducts}`, data.body)
 }

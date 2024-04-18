@@ -42,3 +42,12 @@ export interface IuserUpdateService {
     binanceAddress?: string,
     wallets?: Array<IUserWalletsProps>
 }
+
+export interface IRetrieveNFTs {
+    myProducts: boolean;
+    body: {
+        address: string;
+        chain: string;
+        network: string;
+    }
+}

@@ -5,14 +5,14 @@ import AppSelectBox from 'components/common/form/select/AppSelectBox'
 import AppImage from 'components/common/image/AppImage'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
+import useDebounce from 'functions/hooks/debounce/useDebounce'
 import useHookStore from 'functions/hooks/store/useHookStore'
 import useAppToast from 'functions/hooks/toast/useToast'
-import { retrieveNFTs } from 'lib/apis/nft/nftServices'
+import { retrieveNFTs } from 'lib/apis/user/services'
 import { appDevelopment } from 'lib/utils/app/variable'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import NFTDetailsModal from './parts/NFTDetailsModal'
-import useDebounce from 'functions/hooks/debounce/useDebounce'
 
 function NFTs() {
     const { app: { user: { wallets } } } = useHookStore()
