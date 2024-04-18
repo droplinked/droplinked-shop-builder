@@ -24,6 +24,10 @@ export interface IemailVerifyService {
     token: string
 }
 
+export interface IGetUserService {
+    access_token: string
+}
+
 export interface IuserUpdateService {
     firstname?: string,
     customerShop?: string,
