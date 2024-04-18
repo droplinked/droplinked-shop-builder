@@ -1,4 +1,5 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Divider, HStack, VStack } from "@chakra-ui/react";
+import AppIcons from "assest/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppInput from "components/common/form/textbox/AppInput";
 import AppModal from "components/common/modal/AppModal";
@@ -7,10 +8,11 @@ import { Form, Formik } from "formik";
 import useHookStore from "functions/hooks/store/useHookStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
-import { appDevelopment } from "lib/utils/app/variable";
+import { BASE_URL, appDevelopment } from "lib/utils/app/variable";
+import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useCallback, useEffect, useMemo } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 
 interface Iform {
@@ -19,6 +21,7 @@ interface Iform {
 }
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
+    const [searchParams] = useSearchParams();
     const {
         app: { login, loading },
     } = useHookStore();
@@ -29,12 +32,26 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     // submit form function
     const onSubmit = async (data: Iform) => {
         try {
-            let result = await login({type: "default", params: data});
+            let result = await login({ type: "default", params: data });
             if (result) loginFunction(result);
         } catch (error) {
             showToast({ message: error?.message, type: "error" });
         }
     };
+
+    const login_google = useCallback(
+        async (access_token: string) => {
+            let result = await login({ type: "get", params: { access_token } });
+            if (result) loginFunction(result);
+            close();
+        },
+        [searchParams]
+    );
+
+    useEffect(() => {
+        const access_token = searchParams.get("access_token");
+        if (access_token && access_token !== "" && searchParams.get("modal") === "login" && !loading) login_google(access_token);
+    }, [searchParams]);
 
     // action on user data based on type and status
     const loginFunction = (data: any) => {
@@ -49,38 +66,13 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
             showToast({ message: "This account has been deleted", type: "error" });
             return;
         } else {
-            navigateUser(status, data);
+            const { href, dashboard } = navigating_user_based_on_status(status, data);
+            dashboard ? shopNavigate(href) : navigate(href);
             return;
         }
     };
 
     // navigate user based on status
-    const navigateUser = (status: string, data: any) => {
-        switch (status) {
-            case "NEW":
-                localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
-                navigate("/email-confirmation");
-                return;
-            case "VERIFIED":
-                shopNavigate("register/shop-info");
-                return;
-            case "PROFILE_COMPLETED":
-                shopNavigate("register/shop-info");
-                return;
-            case "SHOP_INFO_COMPLETED":
-                shopNavigate("");
-                return;
-            case "IMS_TYPE_COMPLETED":
-                shopNavigate("");
-                return;
-            case "ACTIVE":
-                shopNavigate("");
-                return;
-            default:
-                navigate("")
-                return
-        }
-    };
 
     const formSchema = Yup.object().shape({
         email: Yup.string().email(AppErrors.signin.invalid_email_address).required("Required"),
@@ -100,10 +92,9 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
             >
                 {({ errors, values, setFieldValue }) => (
                     <Form>
-                        <Box w="100%">
-                            <Box w="100%">
+                        <VStack w="100%" spacing={"36px"} align={"stretch"}>
+                            <VStack w="100%" spacing={"16px"} align={"stretch"}>
                                 <AppInput error={errors.email ? errors.email.toString() : ""} name="email" onChange={(e) => setFieldValue("email", e.target.value)} value={values.email} />
-                                <Box mb="16px"></Box>
                                 <AppInput
                                     type="password"
                                     name="password"
@@ -111,27 +102,49 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
                                     onChange={(e) => setFieldValue("password", e.target.value)}
                                     value={values.password}
                                 />
-                                <Box mb="16px"></Box>
+                            </VStack>
+
+                            <VStack spacing={"8px"} align={"stretch"} alignItems={"flex-start"}>
                                 <BasicButton type="submit" minWidth={"100%"} isDisabled={loading} isLoading={loading}>
                                     Login
                                 </BasicButton>
-                            </Box>
-                            <Box mb="8px"></Box>
-                            <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchReset}>
-                                Forgot
-                                <Box as="span" ml={1} color="green.500">
-                                    password?
-                                </Box>
-                            </AppTypography>
-                            <Box mb="4px"></Box>
-                            <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchModal}>
-                                Don’t have an account?{" "}
-                                <Box as="span" mx={1} color="green.500">
-                                    Sign up
-                                </Box>
-                                now!
-                            </AppTypography>
-                        </Box>
+                                <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchReset}>
+                                    Forgot
+                                    <Box as="span" ml={1} color="green.500">
+                                        password?
+                                    </Box>
+                                </AppTypography>
+                                <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchModal}>
+                                    Don’t have an account?{" "}
+                                    <Box as="span" mx={1} color="green.500">
+                                        Sign up
+                                    </Box>
+                                    now!
+                                </AppTypography>
+                            </VStack>
+                            <HStack align={"stretch"} alignItems={"center"}>
+                                <Divider color={"line"} />
+                                <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>
+                                    OR
+                                </AppTypography>
+                                <Divider color={"line"} />
+                            </HStack>
+                            <BasicButton
+                                onClick={() => {
+                                    window.location.href = `${BASE_URL}/auth/login/google`;
+                                }}
+                                backgroundColor={"mainGray.500"}
+                                borderRadius={"8px"}
+                                border={"none"}
+                                _hover={{ backgroundColor: "mainGray.500" }}
+                                color={"lightgray"}
+                                iconSpacing={"12px"}
+                                leftIcon={<AppIcons.Google />}
+                                isDisabled={loading}
+                            >
+                                Sign up with Google
+                            </BasicButton>
+                        </VStack>
                     </Form>
                 )}
             </Formik>
