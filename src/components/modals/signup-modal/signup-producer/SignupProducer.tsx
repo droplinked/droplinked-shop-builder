@@ -27,7 +27,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
     const onSubmit = async (data: any) => {
         try {
             const { email, password, username, referral } = data;
-            await mutateAsync({ email, password, shopName: username, referral: referral && referral !== "" ? referral : undefined });
+            await mutateAsync({ email, password, shopName: username, referralCode: referral && referral !== "" ? referral : undefined });
             localStorage.setItem("registerEmail", JSON.stringify(email));
             showToast({ message: "Account successfully created", type: "success" });
             close();
