@@ -7,25 +7,23 @@ import { IsignupService } from "lib/apis/user/interfaces";
 import { signupService } from "lib/apis/user/services";
 import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
 import AppErrors from "lib/utils/statics/errors/errors";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppTypography from "components/common/typography/AppTypography";
 import AppIcons from "assest/icon/Appicons";
-import { googleService } from "lib/apis/auth/services";
 import { BASE_URL } from "lib/utils/app/variable";
 
 const SignupProducer = ({ close, shopname, switchToggle }) => {
     const [searchParams] = useSearchParams();
     const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params));
-    const { mutate: google_service, isLoading: loading_google_service } = useMutation(() => googleService());
     const [States, setStates] = useState({ show: { password: false, repassword: false } });
     let navigate = useNavigate();
     const { showToast } = useAppToast();
     const toggleShowField = useCallback((field: any) => setStates((prev) => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), []);
-
+    const referral_code_from_params = useMemo(() => searchParams.get("referral"),[searchParams])
     const onSubmit = async (data: any) => {
         try {
             const { email, password, username, referral } = data;
@@ -56,7 +54,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                 email: "",
                 password: "",
                 repassword: "",
-                referral: searchParams.get("referral") || "",
+                referral: referral_code_from_params || "",
             }}
             validateOnChange={false}
             validationSchema={formSchema}
@@ -112,7 +110,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                             <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
                             <Divider color={"line"}/>
                         </HStack>
-                        <BasicButton onClick={() => {window.location.href = `${BASE_URL}/auth/login/google`}} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{backgroundColor: "mainGray.500"}} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google/>} isDisabled={loading_google_service || isLoading} isLoading={loading_google_service}>Sign up with Google</BasicButton>
+                        <BasicButton onClick={() => {window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}`}} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{backgroundColor: "mainGray.500"}} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google/>} isDisabled={isLoading}>Sign up with Google</BasicButton>
                     </VStack>
                 </Form>
             )}
