@@ -30,7 +30,7 @@ export interface IAppStore {
     loading: boolean
     access_token: string | null
     refresh_token: string | null
-    login(method: {type: "default", params: IauthLoginService} | {type: "google", params: ICompleteGoogleSignupService} | {type: "get", access_token: string, refresh_token: string, params: IGetUserService}): Promise<any>
+    login(method: { type: "default", params: IauthLoginService } | { type: "google", params: ICompleteGoogleSignupService } | { type: "get", access_token: string, refresh_token: string, params: IGetUserService }): Promise<any>
     fetchShop(params: IshopInfoService): Promise<any>
     reset(): void
     updateShop(params: IshopUpdateService): Promise<any>
@@ -49,9 +49,9 @@ const states = (set: any, get: any): IAppStore => ({
             try {
                 set({ loading: true })
                 let data;
-                if(method.type === "default") data = await authLoginService(method.params)
-                if(method.type === "google") data = await completeGoogleSignupService(method.params)
-                if(method.type === "get") data = await getUserService(method.params)
+                if (method.type === "default") data = await authLoginService(method.params)
+                if (method.type === "google") data = await completeGoogleSignupService(method.params)
+                if (method.type === "get") data = await getUserService(method.params)
 
                 const result = data?.data?.data
                 const access_token = method.type === "get" ? method.access_token : result?.access_token

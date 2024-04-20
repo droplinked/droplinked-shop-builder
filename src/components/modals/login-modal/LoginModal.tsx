@@ -11,7 +11,7 @@ import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomN
 import { BASE_URL, appDevelopment } from "lib/utils/app/variable";
 import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 
@@ -22,9 +22,7 @@ interface Iform {
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
     const [searchParams] = useSearchParams();
-    const {
-        app: { login, loading },
-    } = useHookStore();
+    const { app: { login, loading } } = useHookStore();
     const { showToast } = useAppToast();
     const navigate = useNavigate();
     const { shopNavigate } = useCustomNavigate();
@@ -32,7 +30,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     // submit form function
     const onSubmit = async (data: Iform) => {
         try {
-            let result = await login({ type: "default", params: data });
+            let result = await login({ type: "default", params: { ...data, userType: "PRODUCER" } });
             if (result) loginFunction(result);
         } catch (error) {
             showToast({ message: error?.message, type: "error" });
@@ -41,7 +39,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
     const login_google = useCallback(
         async (access_token: string, refresh_token: string) => {
-            let result = await login({ type: "get",access_token, refresh_token, params: { access_token } });
+            let result = await login({ type: "get", access_token, refresh_token, params: { access_token } });
             if (result) loginFunction(result);
             close();
         },

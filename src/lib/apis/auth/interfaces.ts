@@ -1,4 +1,5 @@
 export interface IauthLoginService {
+    userType: "PRODUCER";
     email: string;
     password: string;
 }

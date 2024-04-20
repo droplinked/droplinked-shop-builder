@@ -11,4 +11,4 @@ export const authSupportedWalletsService = () => {
 
 export const googleService = () => axiosInstance.get(`auth/login/google`);
 
-export const completeGoogleSignupService = ({access_token, ...props}: ICompleteGoogleSignupService) => axiosInstance.post(`https://apiv3dev.droplinked.com/auth/login/google/complete`, props, { headers: { authorization: `Bearer ${access_token}` } });
+export const completeGoogleSignupService = ({ access_token, ...props }: ICompleteGoogleSignupService) => axiosInstance.post(`https://apiv3dev.droplinked.com/auth/login/google/complete`, props, { headers: { authorization: `Bearer ${access_token}` } });
