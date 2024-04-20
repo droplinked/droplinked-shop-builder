@@ -27,23 +27,30 @@ function NFTs() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { showToast } = useAppToast()
     const selectItems = useMemo(() => wallets ? wallets.map(wallet => ({ caption: wallet.type, value: wallet.type })) : [], [wallets])
-    const debouncedSearchTerm = useDebounce(pageData.searchTerm)
+    const debouncedSearchTerm = useDebounce(pageData.searchTerm, 500)
 
-    const updatePageData = <K extends keyof typeof pageData>(key: K, value: typeof pageData[K]) =>
+    const updatePageData = <K extends keyof typeof pageData>(key: K, value: typeof pageData[K]) => {
+        if (key === "searchTerm" && pageData.isLoading) return
         setPageData({ ...pageData, [key]: value })
+    }
 
     const generateSkeletons = () => Array.from({ length: 6 }).map((_, key) =>
         <AppSkeleton key={key} width={"196px"} height={"241px"} isLoaded={false}>{" "}</AppSkeleton>
     )
 
     useEffect(() => {
+        const controller = new AbortController();
         (async () => {
             try {
                 if (!selectItems.length) return
                 updatePageData("isLoading", true)
                 const { selectedChain, myProducts } = pageData
                 const chainData = wallets.find(w => w.type === selectedChain)
-                const nfts = await retrieveNFTs({ myProducts, body: { address: chainData?.address || "", chain: chainData?.type || "", network: appDevelopment ? "TESTNET" : "MAINNET" } })
+                const nfts = await retrieveNFTs({
+                    myProducts,
+                    search: debouncedSearchTerm,
+                    body: { address: chainData?.address || "", chain: chainData?.type || "", network: appDevelopment ? "TESTNET" : "MAINNET" }
+                })
                 updatePageData("nfts", nfts.data.data)
             }
             catch (e) {
@@ -53,6 +60,7 @@ function NFTs() {
                 updatePageData("isLoading", false)
             }
         })()
+        return controller.abort()
     }, [pageData.selectedChain, pageData.myProducts, debouncedSearchTerm])
 
     if (!selectItems.length) return (

@@ -1,3 +1,4 @@
+import { BASE_URL } from "lib/utils/app/variable";
 import axiosInstance from "../axiosConfig";
 import { IRetrieveNFTs, IchangePasswordService, IemailVerifyService, IforgetPasswordService, IresendEmailService, IsignupService, IuserUpdateService } from "./interfaces";
 
@@ -26,5 +27,13 @@ export const userUpdateService = (props: IuserUpdateService) => {
 }
 
 export const retrieveNFTs = (data: IRetrieveNFTs) => {
-    return axiosInstance.post(`user/retrieve/nfts?myProducts=${data.myProducts}`, data.body)
+    const { myProducts, search, body } = data
+    const params = new URLSearchParams();
+    if (myProducts) {
+        params.append("myProducts", myProducts.toString());
+    }
+    if (data.search) {
+        params.append("search", search);
+    }
+    return axiosInstance.post(`user/retrieve/nfts${params.toString() ? "?" + params.toString() : ""}`, body)
 }

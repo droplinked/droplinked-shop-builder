@@ -45,6 +45,7 @@ export interface IuserUpdateService {
 
 export interface IRetrieveNFTs {
     myProducts: boolean;
+    search: string;
     body: {
         address: string;
         chain: string;
