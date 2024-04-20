@@ -1,0 +1,29 @@
+.slick-slide {
+    padding: 12px;
+}
+
+/* .slick-dots{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.slick-dots > li{
+    width: fit-content;
+    margin: 0;
+}
+
+.slick-dots>.slick-active>div{
+    background-color: #fff;
+    width: 24px;
+}
+
+.custom-slick-dot{
+    width: 12px;
+    height: 3px;
+    border-radius: 24px;
+    background-color: #878787;
+    transition: 300ms ease;
+} */
