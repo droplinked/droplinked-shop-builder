@@ -90,6 +90,7 @@ import { ReactComponent as WhiteTrash } from './white-trash.svg';
 import { ReactComponent as XRPL } from './xrpl.svg';
 import { ReactComponent as Xumm } from './xumm.svg';
 import { ReactComponent as Xverse } from './xverse.svg';
+import { ReactComponent as Coinbase } from './coinbase.svg';
 import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 
 const AppIcons = {
@@ -161,6 +162,7 @@ const AppIcons = {
   WhiteOpenWallet,
   HelpCenter,
   Logout,
+  Coinbase,
   NFT,
   Unisat,
   Hedera,
