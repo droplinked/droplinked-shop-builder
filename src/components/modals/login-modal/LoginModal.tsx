@@ -40,8 +40,8 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     };
 
     const login_google = useCallback(
-        async (access_token: string) => {
-            let result = await login({ type: "get", params: { access_token } });
+        async (access_token: string, refresh_token: string) => {
+            let result = await login({ type: "get",access_token, refresh_token, params: { access_token } });
             if (result) loginFunction(result);
             close();
         },
@@ -50,7 +50,8 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
 
     useEffect(() => {
         const access_token = searchParams.get("access_token");
-        if (access_token && access_token !== "" && searchParams.get("modal") === "login" && !loading) login_google(access_token);
+        const refresh_token = searchParams.get("refresh_token");
+        if (access_token && refresh_token && access_token !== "" && refresh_token !== "" && searchParams.get("modal") === "login" && !loading) login_google(access_token, refresh_token);
     }, [searchParams]);
 
     // action on user data based on type and status
