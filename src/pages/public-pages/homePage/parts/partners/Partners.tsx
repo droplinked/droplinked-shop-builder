@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import MainCard from '../parts/card/MainCard'
 import LandingDescription from '../parts/description/LandingDescription'
 import LandingTitle from '../parts/title/LandingTitle'
+import PartnersSlider from './parts/PartnersSlider'
 
 function Partners({ loaded }) {
     const data = [
@@ -33,24 +34,10 @@ function Partners({ loaded }) {
     const checkLoad = useMemo(() => loaded.includes('partners'), [loaded])
 
     return (
-        <Flex alignItems="center" justifyContent="center" height="100%">
-            <Box position="relative">
-                <Flex justifyContent="center" alignItems="center">
-                    <VStack maxWidth={checkLoad ? "1400px" : "100%"} opacity={checkLoad ? 1 : 0} transition={".7s"} justifyContent="center" color="#FFF">
-                        <Box><LandingTitle title='Partners' /></Box>
-                        <Box padding="10px 0 30px 0"><LandingDescription text='Explore the network of collaborators taking commerce to the next level!' /></Box>
-                        <Flex width="100%" maxWidth={{ base: "500px", md: "100%" }} flexWrap={{ base: "wrap", md: "nowrap" }} transition=".7s" justifyContent="center" gap={{ base: "4%", md: checkLoad ? "20px" : "70px", xl: checkLoad ? "64px" : "130px" }}>
-                            {data.map((el, key) => (
-                                <MainCard transition="1s" padding={{ base: "25px", lg: "40px" }} key={key}>
-                                    <Image width={{ base: "36px", md: "64px" }} paddingBottom="10px" src={el.icon} alt={el.title} />
-                                    <AppTypography height={{ base: "42px", sm: "30px", md: "40px", lg: "72px" }} fontSize={{ base: "14px", sm: "16px", lg: "24px" }} fontWeight='bold' color="#f5f5f5">{el.title}</AppTypography>
-                                    <a href={el.url} target="_blank"><AppTypography backgroundColor="#292929" color="#C2C2C2" textAlign="center" borderRadius="8px" lineHeight="40px" height="40px" fontSize={{ base: '14px', md: '16px' }} fontWeight='normal'>View Store</AppTypography></a>
-                                </MainCard>
-                            ))}
-                        </Flex>
-                    </VStack>
-                </Flex>
-            </Box>
+        <Flex direction={"column"} alignItems="center" justifyContent="center" height="100%">
+            <LandingTitle title='Partners' />
+            <Box padding="10px 0 30px 0"><LandingDescription text='Explore the network of collaborators taking commerce to the next level!' /></Box>
+            <PartnersSlider />
         </Flex>
     )
 }
