@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { IGetUserService, IchangePasswordService, IemailVerifyService, IforgetPasswordService, IresendEmailService, IsignupService, IuserUpdateService } from "./interfaces";
+import { IGetUserService, IRetrieveNFTs, IchangePasswordService, IemailVerifyService, IforgetPasswordService, IresendEmailService, IsignupService, IuserUpdateService } from "./interfaces";
 
 export const signupService = (props: IsignupService) => {
     return axiosInstance.post(`user/signup`, props)
@@ -25,6 +25,18 @@ export const userUpdateService = (props: IuserUpdateService) => {
     return axiosInstance.put(`user`, props)
 }
 
-export const getUserService = ({access_token}: IGetUserService) => {
-    return axiosInstance.get(`user`, {headers: {authorization: `Bearer ${access_token}`}})
+export const getUserService = ({ access_token }: IGetUserService) => {
+    return axiosInstance.get(`user`, { headers: { authorization: `Bearer ${access_token}` } })
+}
+
+export const retrieveNFTs = (data: IRetrieveNFTs) => {
+    const { myProducts, search, body } = data
+    const params = new URLSearchParams();
+    if (myProducts) {
+        params.append("myProducts", myProducts.toString());
+    }
+    if (data.search) {
+        params.append("search", search);
+    }
+    return axiosInstance.post(`user/retrieve/nfts${params.toString() ? "?" + params.toString() : ""}`, body)
 }
