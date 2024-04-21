@@ -17,7 +17,7 @@ import ProductsMain from './parts/product/ProductsMain';
 import Supported from './parts/supported/Supported';
 import classes from './style.module.scss';
 
-export enum MODAL_TYPE { SIGNIN= "SIGNIN", SIGNUP= "SIGNUP", RESET= "RESET", GOOGLE= "GOOGLE" };
+export enum MODAL_TYPE { SIGNIN = "SIGNIN", SIGNUP = "SIGNUP", RESET = "RESET", GOOGLE = "GOOGLE" };
 
 function HomePage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -29,18 +29,18 @@ function HomePage() {
   const [searchParams] = useSearchParams()
 
   const modal_types_convertion = {
-      login: MODAL_TYPE.SIGNIN,
-      signup: MODAL_TYPE.SIGNUP,
-      forgot_password: MODAL_TYPE.RESET,
-      google: MODAL_TYPE.GOOGLE
+    login: MODAL_TYPE.SIGNIN,
+    signup: MODAL_TYPE.SIGNUP,
+    forgot_password: MODAL_TYPE.RESET,
+    google: MODAL_TYPE.GOOGLE
   };
 
   useEffect(() => {
-      const param = searchParams.get("modal");
-      if (param) {
-          setStates((prev) => ({...prev, typeOfModal: modal_types_convertion[param] || MODAL_TYPE.SIGNIN}))
-          onOpen();
-      }
+    const param = searchParams.get("modal");
+    if (param) {
+      setStates((prev) => ({ ...prev, typeOfModal: modal_types_convertion[param] || MODAL_TYPE.SIGNIN }))
+      onOpen();
+    }
   }, [searchParams]);
 
   const effects = useMemo(() => (
@@ -51,7 +51,7 @@ function HomePage() {
   ), [])
 
   const { app: { user, shop } } = useHookStore()
-  
+
   return user && shop ? <Navigate to="/dashboard" /> : (
     <ParallaxProvider>
       <div style={{ color: "#FFF", overflowX: "hidden" }}>
@@ -76,7 +76,7 @@ function HomePage() {
                 </div>
                 <div className="section" style={{ position: "relative" }}>
                   <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
-                  <Partners loaded={States.loaded} />
+                  <Partners />
                 </div>
                 <div className="section" style={{ position: "relative" }}>
                   <Parallax speed={45} easing={"easeInQuad"} style={{ position: "absolute", top: "30vh", left: "0", right: "0" }}>{effects}</Parallax>
