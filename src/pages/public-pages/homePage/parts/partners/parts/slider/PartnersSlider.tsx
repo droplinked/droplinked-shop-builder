@@ -1,6 +1,6 @@
 import { Box, Flex, Image } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import React from 'react';
+import React, { useRef } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -8,6 +8,7 @@ import MainCard from '../../../parts/card/MainCard';
 import "./styles.css";
 
 function PartnersSlider() {
+    const sliderRef = useRef(null)
     const data = [
         {
             title: 'Unstoppable',
@@ -70,7 +71,6 @@ function PartnersSlider() {
             icon: "/assets/images/homepage/elixir.jpeg"
         }
     ]
-
     const settings = {
         infinite: true,
         speed: 300,
@@ -81,10 +81,13 @@ function PartnersSlider() {
         autoplaySpeed: 4000,
         pauseOnHover: false,
         arrows: false,
-        // customPaging: () => (
-        //     <Box className='custom-slick-dot' />
-        // ),
-        // dots: true,
+        customPaging: (i: number) => (
+            <Box className='custom-slick-dot' onClick={() => {
+                console.log(i)
+                sliderRef.current.slickGoTo(i)
+            }} />
+        ),
+        dots: true,
         responsive: [
             {
                 breakpoint: 1280,
@@ -104,7 +107,7 @@ function PartnersSlider() {
     return (
         <Flex justify={"center"} width={"100%"}>
             <Box width={{ base: "100%", lg: "80%" }} maxWidth="1400px" paddingInline={{ base: "16px", sm: "28px" }}>
-                <Slider {...settings}>
+                <Slider ref={sliderRef} {...settings}>
                     {
                         data.map((el, key) => (
                             <MainCard display={"flex !important"} transition="1s" padding={{ base: "24px", lg: "40px" }} key={key}>
