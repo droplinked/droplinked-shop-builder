@@ -82,10 +82,7 @@ function PartnersSlider() {
         pauseOnHover: false,
         arrows: false,
         customPaging: (i: number) => (
-            <Box className='custom-slick-dot' onClick={() => {
-                console.log(i)
-                sliderRef.current.slickGoTo(i)
-            }} />
+            <Box className='custom-slick-dot' />
         ),
         dots: true,
         responsive: [
