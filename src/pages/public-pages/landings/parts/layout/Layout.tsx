@@ -9,7 +9,7 @@ function Layout({ children }: { children: React.ReactNode }) {
                 maxWidth="1400px"
                 direction="column"
                 alignItems={"center"}
-                gap={120}
+                gap={{ base: 150, md: 200 }}
                 paddingInline={{ base: "16px", sm: "28px" }}
                 paddingBlock={120}
             >

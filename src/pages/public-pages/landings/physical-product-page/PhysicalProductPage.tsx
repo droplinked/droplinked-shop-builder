@@ -21,8 +21,8 @@ function PhysicalProductPage() {
             <TabularContent />
             <Features />
             <StarryBorder
-                title='Start to Sell your Products Today'
-                description='Launch your store with droplinked today. Simple setup, secure transactions and endless possibilities await your community.'
+                title='Launch a Store Today'
+                description='Simple setup, secure transactions and endless possibilities await your community.'
                 CTAButtonText='Get Started'
             />
         </Layout>

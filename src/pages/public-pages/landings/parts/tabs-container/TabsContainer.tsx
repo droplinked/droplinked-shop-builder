@@ -1,4 +1,4 @@
-import { Button, Flex, Grid } from '@chakra-ui/react';
+import { Button, Grid } from '@chakra-ui/react';
 import React from 'react';
 
 interface Props {
@@ -10,7 +10,6 @@ interface Props {
 function TabsContainer({ tabs, activeTab, setter }: Props) {
     return (
         <Grid
-            width={"100%"}
             templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, auto)" }}
             templateRows={{ base: "repeat(2, 1fr)", md: "repeat(1, 1fr)" }}
             gap={2}
