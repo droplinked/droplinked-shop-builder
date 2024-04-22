@@ -18,12 +18,14 @@ function LaunchShop() {
             </AppTypography>
             <BasicButton>Get Started</BasicButton>
             <Show above='lg'>
-                <Image width={"150px"} position={"absolute"} top={"75px"} right={"-3px"} src='assets/images/tokenPayPage/Monero.png' />
+                <Image width={"150px"} position={"absolute"} top={"35px"} right={"-3px"} src='assets/images/tokenPayPage/Monero.png' />
                 <Image width={"150px"} position={"absolute"} bottom={0} left={"80px"} src='assets/images/tokenPayPage/Etherium.png' />
                 <Image width={"150px"} position={"absolute"} top={"-75px"} left={"-2%"} src='assets/images/tokenPayPage/Bitcoin.png' />
                 <Image width={"40px"} position={"absolute"} top={"-30px"} right={"20%"} src='assets/images/tokenPayPage/star-img.png' />
                 <Image width={"40px"} position={"absolute"} bottom={"-10px"} right={"10%"} src='assets/images/tokenPayPage/star-img-1.png' />
                 <Image width={"40px"} position={"absolute"} top={"-10px"} left={"25%"} src='assets/images/tokenPayPage/star-img-1.png' />
+                <Image width={"150px"} position={"absolute"} bottom={"-75px"} right={"15%"} src='assets/images/tokenPayPage/LiteCoin.png' />
+                <Image width={"40px"} position={"absolute"} bottom={"-15px"} left={"0"} src='assets/images/tokenPayPage/star-img-2.png' />
             </Show>
         </Container>
     )

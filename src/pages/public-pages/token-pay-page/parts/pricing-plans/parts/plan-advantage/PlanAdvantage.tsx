@@ -21,7 +21,7 @@ function PlanAdvantage({ title, description, isComingSoon }: Props) {
                             padding={"4px 8px"}
                             borderRadius={4}
                             backgroundColor={"#2BCFA1"}
-                            fontSize={8}
+                            fontSize={12}
                             fontWeight={700}
                             color={"#000"}
                         >

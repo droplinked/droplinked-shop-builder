@@ -7,6 +7,7 @@ import Plan from './parts/plan/Plan'
 function PricingPlans() {
     return (
         <Grid
+            width={"100%"}
             templateColumns={{ base: "repeat(1, 1fr)", xl: "repeat(2, 1fr)" }}
             templateRows={"repeat(1, 1fr)"}
             gap={12}

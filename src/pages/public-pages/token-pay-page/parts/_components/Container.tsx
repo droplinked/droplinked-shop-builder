@@ -10,7 +10,7 @@ function Container({ children, ...props }: Props) {
         <Flex
             direction={"column"}
             gap={9}
-            padding={{ base: 7, lg: "48px 56px" }}
+            padding={{ base: 7, lg: 9 }}
             borderRadius={16}
             border={"1px solid rgb(255, 255, 255 , 0.3)"}
             background={"linear-gradient(155deg, rgba(255, 255, 255, 0.00) -2.13%, rgba(255, 255, 255, 0.15) 136.58%)"}
