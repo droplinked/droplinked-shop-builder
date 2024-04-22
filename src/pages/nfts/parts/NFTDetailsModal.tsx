@@ -15,9 +15,29 @@ interface Props {
 function NFTDetailsModal({ open, close, nft }: Props) {
     const nftAttributes = [
         { label: "NFT Name", value: nft.name },
-        { label: "Creator", value: nft.creator },
-        { label: "Network", value: nft.network }
+        { label: "Creator", value: nft.creator?.email },
+        { label: "Network", value: !nft.network || nft.network === "NONE" ? undefined : nft.network }
     ]
+
+    let tableColumns: any = {
+        quantity: { value: nft.productQuantity, caption: "Quantity" },
+        price: { value: `$${nft.productPrice.toFixed(2)} USD`, caption: "Price" },
+    }
+    if (nft.productSize && nft.productSize !== "not found")
+        tableColumns.size = { value: nft.productSize, caption: "Size" }
+
+    if (nft.productColor && nft.productColor !== "not found")
+        tableColumns.color = {
+            value: <Flex alignItems={"center"} gap={"8px"}>
+                <Box
+                    backgroundColor={nft.productColor}
+                    width="20px"
+                    height="20px"
+                    borderRadius="100%">
+                </Box>
+            </Flex>,
+            caption: "Color"
+        }
 
     return <AppModal
         open={open}
@@ -25,7 +45,7 @@ function NFTDetailsModal({ open, close, nft }: Props) {
         contentProps={{ padding: "36px", maxWidth: "95%", width: "900px" }}
     >
         <Flex alignItems={"flex-start"} gap={"36px"}>
-            <AppImage objectFit={"cover"} width={"250px"} height={"250px"} borderRadius={"8px"} />
+            <AppImage src={nft.image} objectFit={"cover"} width={"250px"} height={"250px"} borderRadius={"8px"} />
             <Flex gap={"36px"} flexDirection={"column"}>
                 <Flex gap={"24px"} flexDirection={"column"}>
                     <AppTypography fontSize={"16px"} color={"#fff"}>NFT Information</AppTypography>
@@ -66,25 +86,7 @@ function NFTDetailsModal({ open, close, nft }: Props) {
                         </Flex>
                     }
 
-                    <AppTable
-                        rows={[{
-                            color: {
-                                value: <Flex alignItems={"center"} gap={"8px"}>
-                                    <Box
-                                        backgroundColor={nft.productColor}
-                                        width="20px"
-                                        height="20px"
-                                        borderRadius="100%">
-                                    </Box>
-                                    Red
-                                </Flex>,
-                                caption: "Color"
-                            },
-                            size: { value: nft.productSize, caption: "Size" },
-                            quantity: { value: nft.productQuantity, caption: "Quantity" },
-                            price: { value: `$${nft.productPrice.toFixed(2)} USD`, caption: "Price" },
-                        }]}
-                    />
+                    <AppTable rows={[tableColumns]} />
                 </Flex>
             </Flex>
         </Flex>

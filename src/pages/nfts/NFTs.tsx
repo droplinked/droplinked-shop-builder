@@ -16,23 +16,16 @@ import NFTDetailsModal from './parts/NFTDetailsModal'
 
 function NFTs() {
     const { app: { user: { wallets } } } = useHookStore()
-    const [pageData, setPageData] = useState({
-        isLoading: false,
-        searchTerm: "",
-        myProducts: false,
-        selectedChain: wallets ? wallets[0].type : null,
-        nfts: [],
-        selectedNFT: null
-    })
+    const [isLoading, setLoading] = useState(false)
+    const [searchTerm, setSearchTerm] = useState("")
+    const [myProducts, setMyProducts] = useState(false)
+    const [selectedChain, setSelectedChain] = useState(wallets ? wallets[0].type : null)
+    const [nfts, setNfts] = useState([])
+    const [selectedNFT, setSelectedNFT] = useState(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { showToast } = useAppToast()
     const selectItems = useMemo(() => wallets ? wallets.map(wallet => ({ caption: wallet.type, value: wallet.type })) : [], [wallets])
-    const debouncedSearchTerm = useDebounce(pageData.searchTerm, 500)
-
-    const updatePageData = <K extends keyof typeof pageData>(key: K, value: typeof pageData[K]) => {
-        if (key === "searchTerm" && pageData.isLoading) return
-        setPageData({ ...pageData, [key]: value })
-    }
+    const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
     const generateSkeletons = () => Array.from({ length: 6 }).map((_, key) =>
         <AppSkeleton key={key} width={"196px"} height={"241px"} isLoaded={false}>{" "}</AppSkeleton>
@@ -43,25 +36,24 @@ function NFTs() {
         (async () => {
             try {
                 if (!selectItems.length) return
-                updatePageData("isLoading", true)
-                const { selectedChain, myProducts } = pageData
+                setLoading(true)
                 const chainData = wallets.find(w => w.type === selectedChain)
                 const nfts = await retrieveNFTs({
                     myProducts,
                     search: debouncedSearchTerm,
                     body: { address: chainData?.address || "", chain: chainData?.type || "", network: appDevelopment ? "TESTNET" : "MAINNET" }
                 })
-                updatePageData("nfts", nfts.data.data)
+                setNfts(nfts.data.data)
             }
             catch (e) {
                 showToast({ message: "Oops! Something went wrong.", type: "error" })
             }
             finally {
-                updatePageData("isLoading", false)
+                setLoading(false)
             }
         })()
         return controller.abort()
-    }, [pageData.selectedChain, pageData.myProducts, debouncedSearchTerm])
+    }, [selectedChain, myProducts, debouncedSearchTerm])
 
     if (!selectItems.length) return (
         <AppCard>
@@ -80,46 +72,45 @@ function NFTs() {
             <AppCard>
                 <VStack align={"stretch"} spacing={"24px"}>
                     <Flex justifyContent={"space-between"} alignItems={"center"}>
-                        <SearchDatagrid value={pageData.searchTerm} onChange={e => updatePageData("searchTerm", e.target.value)} />
+                        <SearchDatagrid value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
                         <Flex alignItems={"center"} gap={"36px"}>
-                            <AppSelectBox name={"NFT"} items={selectItems} onChange={e => updatePageData("selectedChain", e.target.value)} />
+                            <AppSelectBox name={"NFT"} items={selectItems} onChange={e => setSelectedChain(e.target.value)} />
                             <Checkbox
                                 size='md'
                                 alignItems="center"
                                 colorScheme='green'
-                                checked={pageData.myProducts}
-                                onChange={e => updatePageData("myProducts", e.target.checked)} >
+                                checked={myProducts}
+                                onChange={e => setMyProducts(e.target.checked)} >
                                 <AppTypography color="#C2C2C2" whiteSpace={"nowrap"}>My Products</AppTypography>
                             </Checkbox>
                         </Flex>
                     </Flex>
                     {
-                        pageData.isLoading ?
+                        isLoading ?
                             <SimpleGrid
-                                columns={{ base: 1, sm: 2, md: 3, lg: 5, xl: 6 }}
+                                columns={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
                                 gap={4}
                             >
                                 {generateSkeletons()}
                             </SimpleGrid> :
-                            !pageData.nfts.length ?
+                            nfts.length === 0 ?
                                 <AppTypography width={"100%"} paddingBlock={3} textAlign={"center"} color={"#fff"} fontSize={"14px"}>No NFT was found in your wallet.</AppTypography> :
                                 <SimpleGrid
-                                    columns={{ base: 1, sm: 2, md: 3, lg: 5, xl: 6 }}
+                                    columns={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
                                     gap={4}
                                 >
                                     {
-                                        pageData.nfts.map((nft, index) => {
-                                            const { myProducts } = pageData
+                                        nfts.map((nft, index) => {
                                             return <Box
                                                 key={index}
                                                 width={"196px"}
                                                 borderRadius={"8px"}
                                                 overflow={"hidden"}
                                                 backgroundColor={"#262626"}
-                                                cursor={pageData.myProducts ? "pointer" : "default"}
+                                                cursor={myProducts ? "pointer" : "default"}
                                                 onClick={() => {
                                                     if (myProducts) {
-                                                        updatePageData("selectedNFT", nft)
+                                                        setSelectedNFT(nft)
                                                         onOpen()
                                                     }
                                                 }}
@@ -136,7 +127,7 @@ function NFTs() {
 
                 </VStack>
             </AppCard >
-            {isOpen && <NFTDetailsModal open={isOpen} close={onClose} nft={pageData.selectedNFT} />}
+            {isOpen && <NFTDetailsModal open={isOpen} close={onClose} nft={selectedNFT} />}
         </>
 
     )
