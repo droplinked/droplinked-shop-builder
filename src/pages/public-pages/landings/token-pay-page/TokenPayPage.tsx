@@ -1,0 +1,33 @@
+import React from "react"
+import AboveTheFoldSection from "../parts/above-the-fold/AboveTheFoldSection"
+import Layout from "../parts/layout/Layout"
+import StarryBorder from "../parts/starry-border/StarryBorder"
+import Details from "./parts/_components/Details"
+import Features from "./parts/features/Features"
+import Gallery from "./parts/gallery/Gallery"
+import PricingPlans from "./parts/pricing-plans/PricingPlans"
+
+function TokenPayPage() {
+  return (
+    <Layout>
+      <AboveTheFoldSection
+        image="assets/images/tokenPayPage/token-pay-bear.png"
+        title="Token Powered Commerce Driven by Your Community"
+        description="Leverage Tokenpay with any erc20, brc20 and SPL tokens to unlock real utility for communities."
+        CTAButtonText="Started"
+      />
+      <Details title="Crypto Commerce" description="Unlock innovative features at unparalleled value. Pricing plans are designed to elevate the commerce experience by providing powerful on-chain tools to elevate a tokens utility and projects success." />
+      <Features />
+      <Gallery />
+      <Details title="Empower Communities" description="Unlock market-changing features at unparalleled value. Our pricing plans are designed to revolutionize your commerce experience, providing powerful tools to elevate your token's utility and your shop's success." />
+      <PricingPlans />
+      <StarryBorder
+        title='Launch a Token Powered Shop Today'
+        description='Launch your token powered shop with droplinked today. Simple setup, secure transactions and endless possibilities await your community.'
+        CTAButtonText='Get Started'
+      />
+    </Layout>
+  )
+}
+
+export default TokenPayPage

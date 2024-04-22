@@ -22,13 +22,14 @@ import HomePage from "pages/public-pages/homePage/HomePage"
 import LoadingPage from "pages/public-pages/loading-page/LoadingPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
-import TokenPayPage from "pages/public-pages/token-pay-page/TokenPayPage"
+import TokenPayPage from "pages/public-pages/landings/token-pay-page/TokenPayPage"
 import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
+import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -55,6 +56,7 @@ function AppRoutes() {
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="email-confirmation" element={<ThankForRegisterPage />} />
           <Route path="token-pay" element={<TokenPayPage />} />
+          <Route path="physical-product" element={<PhysicalProductPage />} />
           <Route
             path="email-verification/:token"
             element={<VerifyEmailPage />}
