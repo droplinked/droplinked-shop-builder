@@ -1,10 +1,10 @@
 import React from 'react'
 import AboveTheFoldSection from '../parts/above-the-fold/AboveTheFoldSection'
+import CustomizationDetails from '../parts/customization-details/CustomizationDetails'
+import Features from '../parts/features/Features'
 import Layout from '../parts/layout/Layout'
+import PaymentDetails from '../parts/payment-details/PaymentDetails'
 import StarryBorder from '../parts/starry-border/StarryBorder'
-import CustomizationDetails from './parts/customization-details/CustomizationDetails'
-import Features from './parts/features/Features'
-import PaymentDetails from './parts/payment-details/PaymentDetails'
 import TabularContent from './parts/tabular-content/TabularContent'
 
 function PhysicalProductPage() {

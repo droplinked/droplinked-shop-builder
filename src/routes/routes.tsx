@@ -30,6 +30,7 @@ import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
+import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -57,6 +58,7 @@ function AppRoutes() {
           <Route path="email-confirmation" element={<ThankForRegisterPage />} />
           <Route path="token-pay" element={<TokenPayPage />} />
           <Route path="physical-product" element={<PhysicalProductPage />} />
+          <Route path="digital-product" element={<DigitalProductPage />} />
           <Route
             path="email-verification/:token"
             element={<VerifyEmailPage />}
