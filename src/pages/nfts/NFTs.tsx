@@ -47,6 +47,7 @@ function NFTs() {
             }
             catch (e) {
                 showToast({ message: "Oops! Something went wrong.", type: "error" })
+                setNfts([])
             }
             finally {
                 setLoading(false)
