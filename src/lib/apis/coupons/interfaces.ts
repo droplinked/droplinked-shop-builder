@@ -5,10 +5,15 @@ export interface IgiftcardCreateService {
     expiryDate: string
     quantity: string
     shopID: string
-
 }
+
+export interface IGiftCardExpiryDate {
+    id: string;
+    expiryDate: string
+}
+
 export interface IgiftcardsService {
     page: string
     limit?: number
-    search?:string
+    search?: string
 }
