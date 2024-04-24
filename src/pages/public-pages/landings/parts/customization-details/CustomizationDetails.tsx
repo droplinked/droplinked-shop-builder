@@ -8,7 +8,7 @@ import Details from '../details/Details'
 function CustomizationDetails() {
     return (
         <Details
-            title='Build Fully Customizable Storefronts'
+            title='Fully Customizable Storefronts'
             description='Empower your brand with our fully customizable storefront tools'
         >
             <Grid

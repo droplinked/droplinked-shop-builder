@@ -12,8 +12,8 @@ function DigitalProductPage() {
         <Layout>
             <AboveTheFoldSection
                 image="assets/images/digitalProduct/nft.png"
-                title="Minting and Monetizing Digital Assets with droplinked"
-                description="Convert your physical and digital assets into exclusive NFTs, ready to dazzle collectors in your custom storefronts"
+                title="Minting and Monetizing Digital Assets"
+                description="Convert digital assets into exclusive collectibles that work seamlessly with a storefront to engage the community"
                 CTAButtonText="Get Started"
             />
             <CustomizationDetails />
@@ -21,27 +21,23 @@ function DigitalProductPage() {
             <DualSideFlex
                 direction='rtl'
                 image='assets/images/digitalProduct/create-nft.png'
-                title='Creating your own NFTs'
-                description='Convert your art, document, sounds and videos into NFTs and sell in your Storefronts'
+                title='Minting NFTs'
+                description='Convert  art pieces, documents, audio, video and tickets into NFTs to offer within storefronts'
             />
             <DualSideFlex
                 direction='ltr'
                 image='assets/images/digitalProduct/chain-support.png'
-                title='Supporting Multiple Chain'
-                description='We support multiple blockchain networks to offer greater flexibility in creating your NFTs'
+                title='Multi-Chain Integration'
+                description='Supporting multiple blockchain networks to offer greater flexibility'
             />
             <DualSideFlex
                 direction='rtl'
-                image='assets/images/digitalProduct/delivery.png'
-                title='Sending delivery Email'
-                description='You can include a delivery message and original asset link for your customers upon purchase'
+                image='assets/images/digitalProduct/royalty.png'
+                title='Loyalty and Royalty Programs '
+                description='Maximize earnings and rewards with co-selling and reselling'
             />
             <Features />
-            <StarryBorder
-                title='Launch a Store Today'
-                description='Launch your store with droplinked today. Simple setup, secure transactions and endless possibilities await your community.'
-                CTAButtonText='Get Started'
-            />
+            <StarryBorder />
         </Layout>
     )
 }

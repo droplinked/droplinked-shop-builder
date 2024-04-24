@@ -20,11 +20,7 @@ function PhysicalProductPage() {
             <PaymentDetails />
             <TabularContent />
             <Features />
-            <StarryBorder
-                title='Launch a Store Today'
-                description='Simple setup, secure transactions and endless possibilities await your community.'
-                CTAButtonText='Get Started'
-            />
+            <StarryBorder />
         </Layout>
     )
 }

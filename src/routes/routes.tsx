@@ -19,18 +19,19 @@ import ProductTypes from "pages/product/types/ProductTypes"
 import AboutUs from "pages/public-pages/about/AboutUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import HomePage from "pages/public-pages/homePage/HomePage"
+import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
+import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
+import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
+import TokenPayPage from "pages/public-pages/landings/token-pay-page/TokenPayPage"
 import LoadingPage from "pages/public-pages/loading-page/LoadingPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
-import TokenPayPage from "pages/public-pages/landings/token-pay-page/TokenPayPage"
 import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
-import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
-import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
@@ -59,6 +60,7 @@ function AppRoutes() {
           <Route path="token-pay" element={<TokenPayPage />} />
           <Route path="physical-product" element={<PhysicalProductPage />} />
           <Route path="digital-product" element={<DigitalProductPage />} />
+          <Route path="pod-product" element={<PODProductPage />} />
           <Route
             path="email-verification/:token"
             element={<VerifyEmailPage />}

@@ -4,14 +4,7 @@ import { Heading, Image, Show } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 
-interface Props {
-    title: string;
-    description: string;
-    CTAButtonText: string;
-    CTAButtonFunction?: () => void
-}
-
-function StarryBorder({ title, description, CTAButtonText, CTAButtonFunction }: Props) {
+function StarryBorder() {
     return (
         <Container
             alignSelf={"stretch"}
@@ -19,9 +12,13 @@ function StarryBorder({ title, description, CTAButtonText, CTAButtonFunction }: 
             alignItems={"center"}
             paddingBlock={12}
         >
-            <Heading margin={0} fontSize={{ base: 24, lg: 32 }} fontWeight={700} color={"#fff"} textAlign={"center"} paddingInline={{ base: 3 }}>{title}</Heading>
-            <AppTypography textAlign={"center"} fontSize={16} color={"#fff"} width={{ base: "80%", lg: "60%" }}>{description}</AppTypography>
-            <BasicButton>{CTAButtonText}</BasicButton>
+            <Heading margin={0} fontSize={{ base: 24, lg: 32 }} fontWeight={700} color={"#fff"} textAlign={"center"} paddingInline={{ base: 3 }}>
+                Launch a Store Today
+            </Heading>
+            <AppTypography textAlign={"center"} fontSize={16} color={"#fff"} width={{ base: "80%", lg: "60%" }}>
+                Simple setup, secure transactions and endless possibilities await your community.
+            </AppTypography>
+            <BasicButton>Get Started</BasicButton>
             <Show above='lg'>
                 <Image width={"150px"} position={"absolute"} top={"35px"} right={"-3px"} src='assets/images/tokenPayPage/Monero.png' />
                 <Image width={"150px"} position={"absolute"} bottom={0} left={"80px"} src='assets/images/tokenPayPage/Etherium.png' />
