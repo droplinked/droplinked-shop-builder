@@ -20,6 +20,7 @@ function CouponsListHead() {
                         <AppTypography color="#FFF" fontWeight="bold" fontSize="18px">${shop?.credit?.toFixed(2)} USD</AppTypography>
                         <AppTypography color="#C2C2C2" fontSize="12px">USD</AppTypography>
                     </HStack>
+                    {shop && shop.name === "unstoppable" && <AppTypography color="#C2C2C2" fontSize="12px" >$200 monthly charge for enterprise support and design services</AppTypography>}
                 </VStack>
                 <Flex gap="10px">
                     <BasicButton sizes="medium" variant='outline' onClick={rechargeModel.onOpen}>Recharge Credit</BasicButton>
