@@ -17,6 +17,7 @@ import Products from "pages/product/list/products"
 import ProductOrder from "pages/product/order/ProductOrder"
 import ProductTypes from "pages/product/types/ProductTypes"
 import AboutUs from "pages/public-pages/about/AboutUs"
+import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import HomePage from "pages/public-pages/homePage/HomePage"
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
@@ -55,6 +56,7 @@ function AppRoutes() {
           <Route path="enquiry" element={<Enquiry />} />
           <Route path="terms" element={<TermsPage />} />
           <Route path="about" element={<AboutUs />} />
+          <Route path="contact-us" element={<ContactUs />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="email-confirmation" element={<ThankForRegisterPage />} />
           <Route path="token-pay" element={<TokenPayPage />} />
