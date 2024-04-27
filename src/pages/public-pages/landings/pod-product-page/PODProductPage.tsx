@@ -13,7 +13,7 @@ function PODProductPage() {
             <AboveTheFoldSection
                 image="assets/images/podProduct/pod-lion.png"
                 title="Transform Digital Artwork and IP into Premium Merchandise"
-                description="With droplinked you can create and sell customizable on-demand products with no inventory and shipment hassles across personalized storefronts"
+                description="With droplinked you can create and sell customizable on-demand products with no inventory and shipment hassles"
                 CTAButtonText="Get Started"
             />
             <CustomizationDetails />
@@ -21,19 +21,19 @@ function PODProductPage() {
             <DualSideFlex
                 direction='rtl'
                 image='assets/images/podProduct/customize.png'
-                title='More than +10K Items to Customize'
-                description='Explore +10K high quality merchandise blanks ready for sale on-demand'
+                title='More Than +10K Items To Customize'
+                description='Explore high quality merchandise blanks customizable and ready to sell on-demand'
             />
             <DualSideFlex
                 direction='ltr'
                 image='assets/images/podProduct/easy-customization.png'
-                title='Easy Customization Within the Console'
+                title='Admin Console To Design, Publish And Track Performance'
                 description='Quickly design your favorite products with our free design tool'
             />
             <DualSideFlex
                 direction='rtl'
                 image='assets/images/podProduct/automated-shipping.png'
-                title='Automated Shipping and Fulfillment'
+                title='Automated Shipping And Fulfillment'
                 description='Hassle-free shipping and fulfillment, everything is handled on your behalf'
             />
             <DualSideFlex
