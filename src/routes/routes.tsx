@@ -17,6 +17,7 @@ import Products from "pages/product/list/products"
 import ProductOrder from "pages/product/order/ProductOrder"
 import ProductTypes from "pages/product/types/ProductTypes"
 import AboutUs from "pages/public-pages/about/AboutUs"
+import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import HomePage from "pages/public-pages/homePage/HomePage"
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
@@ -62,6 +63,7 @@ function AppRoutes() {
           <Route path="physical-product" element={<PhysicalProductPage />} />
           <Route path="digital-product" element={<DigitalProductPage />} />
           <Route path="pod-product" element={<PODProductPage />} />
+          <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
           <Route
             path="email-verification/:token"
             element={<VerifyEmailPage />}
