@@ -13,10 +13,10 @@ function StarryBorder() {
             paddingBlock={12}
         >
             <Heading margin={0} fontSize={{ base: 24, lg: 32 }} fontWeight={700} color={"#fff"} textAlign={"center"} paddingInline={{ base: 3 }}>
-                Launch a Store Today
+            Launch a Store Today
             </Heading>
             <AppTypography textAlign={"center"} fontSize={16} color={"#fff"} width={{ base: "80%", lg: "60%" }}>
-                Simple setup, secure transactions and endless possibilities await your community.
+            Simple setup, secure transactions and endless possibilities await your community.
             </AppTypography>
             <BasicButton>Get Started</BasicButton>
             <Show above='lg'>

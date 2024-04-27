@@ -9,16 +9,16 @@ function Features() {
             <CustomHeading title='Features and Benefits' fontSize={36} whiteSpace={"nowrap"} />
             <Flex direction={"column"} gap={14}>
                 <Flex direction={"column"} gap={4}>
-                    <AppTypography fontSize={20} fontWeight={700} color={"#fff"}>Unlock decentralized Affiliate Network</AppTypography>
-                    <AppTypography fontSize={20} color={"#fff"}>Deploying your product on-chain connects you to our decentralized network, unlocking royalty benefits</AppTypography>
+                    <AppTypography fontSize={20} fontWeight={700} color={"#fff"}>Offer Perks, Discounts and Token-gated Items</AppTypography>
+                    <AppTypography fontSize={20} color={"#fff"}>Grant exclusive access and discounts to customers that are community members</AppTypography>
                 </Flex>
                 <Flex direction={"column"} gap={4}>
-                    <AppTypography fontSize={20} fontWeight={700} color={"#fff"}>Unlock decentralized Affiliate Network</AppTypography>
-                    <AppTypography fontSize={20} color={"#fff"}>Expand your reach by promoting and selling your products on third-party websites</AppTypography>
+                    <AppTypography fontSize={20} fontWeight={700} color={"#fff"}>Embeddable Product Tiles for Products</AppTypography>
+                    <AppTypography fontSize={20} color={"#fff"}>Expand reach by promoting and selling inventory across third-party sites and platforms</AppTypography>
                 </Flex>
                 <Flex direction={"column"} gap={4}>
-                    <AppTypography fontSize={20} fontWeight={700} color={"#fff"}>Unlock decentralized Affiliate Network</AppTypography>
-                    <AppTypography fontSize={20} color={"#fff"}>Get a sneak peek at what's coming next with our pre-launch showcase</AppTypography>
+                    <AppTypography fontSize={20} fontWeight={700} color={"#fff"}>Decentralized Affiliate Network</AppTypography>
+                    <AppTypography fontSize={20} color={"#fff"}>Deploying products on-chain connects them to the decentralized network, unlocking royalty benefits and more</AppTypography>
                 </Flex>
             </Flex>
         </Flex>

@@ -19,7 +19,7 @@ function PaymentDetails() {
 
     return (
         <Details
-            title='Multiple Networks and payment Methods'
+            title='Multiple Networks and Payment Methods'
             description='Integrated with both Web2 and Web3 login and payment options for your storefronts'
         >
             <Flex

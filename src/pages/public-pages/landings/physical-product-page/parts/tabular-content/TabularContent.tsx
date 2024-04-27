@@ -9,12 +9,12 @@ function TabularContent() {
     const [activeTab, setActiveTab] = useState(tabs[0])
     const contentMap: { [key: string]: { title: string, description: string } } = {
         "Inventory Management": {
-            title: "Managing Inventory On-chain",
-            description: "Digitize and manage products in your blockchain-integrated storefronts",
+            title: "Manage Inventory On-chain",
+            description: "Digitize and manage catalogues with blockchain-integrated tools",
         },
         "Custom Shipping": {
-            title: "Custom Shipping",
-            description: "Customizing shipping rates by region ensures cost-effective global delivery",
+            title: "Custom Shipping Methods",
+            description: "Customized shipping rates by region to ensure cost-effective global delivery",
         },
         "Automated Shipping": {
             title: "Automated Shipping and Fulfillment",
@@ -22,7 +22,7 @@ function TabularContent() {
         },
         "Warehouse": {
             title: "Warehouse Management System Integration",
-            description: "WMS streamlines shipping, boosts accuracy, cuts costs, and ensures customer satisfaction",
+            description: "WMS streamlines shipping, boosts accuracy and cuts costs to ensure customer satisfaction",
         },
     }
     const { title, description } = contentMap[activeTab]

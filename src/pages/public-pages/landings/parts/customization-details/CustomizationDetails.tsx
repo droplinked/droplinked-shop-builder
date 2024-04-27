@@ -8,7 +8,7 @@ import Details from '../details/Details'
 function CustomizationDetails() {
     return (
         <Details
-            title='Fully Customizable Storefronts'
+            title='Front-End Modularity'
             description='Empower your brand with our fully customizable storefront tools'
         >
             <Grid
@@ -34,7 +34,7 @@ function CustomizationDetails() {
                 <Container gap={6}>
                     <Image width={12} height={12} src='assets/images/physicalProduct/template.png' />
                     <Flex direction="column" gap={4}>
-                        <CustomHeading title='Order your uniqe Template' fontSize={20} />
+                        <CustomHeading title='Create custom templates' fontSize={20} />
                         <AppTypography fontSize={16} color={"#fff"}>Seeking a unique template? Our designers are here to turn your vision into reality
                         </AppTypography>
                     </Flex>
