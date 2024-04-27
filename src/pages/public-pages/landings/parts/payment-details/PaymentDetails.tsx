@@ -14,7 +14,10 @@ function PaymentDetails() {
         'assets/images/homepage/Solana.png',
         'assets/images/homepage/base.png',
         'assets/images/homepage/skale.png',
-        'assets/images/homepage/Hedera.png'
+        'assets/images/homepage/Hedera.png',
+        'https://upload-file-flatlay.s3.us-west-2.amazonaws.com/fac2d50acefbc555c6eb606030489e11409f3bd22611abafc5eb5ea43ec02458.png_or.png',
+        'https://upload-file-flatlay.s3.us-west-2.amazonaws.com/86bc62aa00b03f8c368694ae03ad997f354aa54c89fd3f1a29449a72746c00c6.png_or.png',
+        'https://upload-file-flatlay.s3.us-west-2.amazonaws.com/322b20d5e47893778a60ca1b548d4bcc8ead9dced8990343cfc14b152dba82df.png_or.png'
     ]
 
     return (
