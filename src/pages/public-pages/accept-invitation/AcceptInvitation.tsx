@@ -37,42 +37,52 @@ function AcceptInvitation() {
     })
 
     return (
-        <Formik
-            initialValues={{ password: "", confirmPassword: "" }}
-            validateOnChange={false}
-            validationSchema={formSchema}
-            onSubmit={onSubmit}
-        >
-            {({ errors, values, setFieldValue }) => (
-                <Form>
-                    <Flex direction={"column"} gap={9} paddingBlock={120}>
-                        <Box position={"relative"}>
-                            <AppInput
-                                name="password"
-                                type={inputTypes.password}
-                                placeContent={"Password"}
-                                error={errors?.password ? errors.password.toString() : ""}
-                                onChange={(e) => setFieldValue("password", e.target.value)}
-                                value={values.password}
-                            />
-                            <ShowPassword showed={inputTypes.password === "text"} onClick={() => toggleInputType("password")} />
-                        </Box>
-                        <Box position={"relative"}>
-                            <AppInput
-                                name="confirm-password"
-                                type={inputTypes.confirmPassword}
-                                placeholder="Confirm Password"
-                                value={values.confirmPassword}
-                                error={errors?.confirmPassword ? errors.confirmPassword.toString() : ""}
-                                onChange={(e) => setFieldValue("confirmPassword", e.target.value)}
-                            />
-                            <ShowPassword showed={inputTypes.confirmPassword === "text"} onClick={() => toggleInputType("confirmPassword")} />
-                        </Box>
-                        <BasicButton type='submit'>Accept invitation</BasicButton>
-                    </Flex>
-                </Form>
-            )}
-        </Formik>
+        <Flex justifyContent={"center"} paddingBlock={120} paddingInline={{ base: "16px", sm: "28px" }}>
+            <Flex
+                width={{ base: "100%", lg: "50%" }}
+                maxWidth="1400px"
+                borderRadius={24}
+                backgroundColor={"#1C1C1C"}
+                padding={{ base: 5, md: 7, xl: 9 }}
+            >
+                <Formik
+                    initialValues={{ password: "", confirmPassword: "" }}
+                    validateOnChange={false}
+                    validationSchema={formSchema}
+                    onSubmit={onSubmit}
+                >
+                    {({ errors, values, setFieldValue }) => (
+                        <Form style={{ width: "100%" }}>
+                            <Flex direction={"column"} gap={9}>
+                                <Box position={"relative"} width={"100%"}>
+                                    <AppInput
+                                        name="password"
+                                        type={inputTypes.password}
+                                        placeContent={"Password"}
+                                        error={errors?.password ? errors.password.toString() : ""}
+                                        onChange={(e) => setFieldValue("password", e.target.value)}
+                                        value={values.password}
+                                    />
+                                    <ShowPassword showed={inputTypes.password === "text"} onClick={() => toggleInputType("password")} />
+                                </Box>
+                                <Box position={"relative"}>
+                                    <AppInput
+                                        name="confirm-password"
+                                        type={inputTypes.confirmPassword}
+                                        placeholder="Confirm Password"
+                                        value={values.confirmPassword}
+                                        error={errors?.confirmPassword ? errors.confirmPassword.toString() : ""}
+                                        onChange={(e) => setFieldValue("confirmPassword", e.target.value)}
+                                    />
+                                    <ShowPassword showed={inputTypes.confirmPassword === "text"} onClick={() => toggleInputType("confirmPassword")} />
+                                </Box>
+                                <BasicButton type='submit'>Accept invitation</BasicButton>
+                            </Flex>
+                        </Form>
+                    )}
+                </Formik>
+            </Flex>
+        </Flex>
     )
 }
 
