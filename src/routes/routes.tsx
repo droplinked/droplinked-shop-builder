@@ -17,6 +17,7 @@ import Products from "pages/product/list/products"
 import ProductOrder from "pages/product/order/ProductOrder"
 import ProductTypes from "pages/product/types/ProductTypes"
 import AboutUs from "pages/public-pages/about/AboutUs"
+import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
 import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import HomePage from "pages/public-pages/homePage/HomePage"
@@ -29,6 +30,7 @@ import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import Admins from "pages/register-pages/pages/admins/Admins"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import React, { lazy, Suspense } from "react"
@@ -63,6 +65,7 @@ function AppRoutes() {
           <Route path="physical-product" element={<PhysicalProductPage />} />
           <Route path="digital-product" element={<DigitalProductPage />} />
           <Route path="pod-product" element={<PODProductPage />} />
+          <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
           <Route
             path="email-verification/:token"
             element={<VerifyEmailPage />}
@@ -86,6 +89,7 @@ function AppRoutes() {
             <Route path="design" element={<DesignPage />} />
             <Route path="technical" element={<TechnicalPage />} />
             <Route path="coupons" element={<CouponsSetting />} />
+            <Route path="admins" element={<Admins />} />
           </Route>
           <Route path="products">
             <Route index element={<Products />} />

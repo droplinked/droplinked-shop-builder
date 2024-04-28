@@ -22,6 +22,7 @@ const SelectPagesComponent = () => {
       >
         Store Info
       </SideText>
+
       <SideText
         cursor={isSettings && "pointer"}
         color={currentPath.includes("design") ? "primary" : "lightGray"}
@@ -31,6 +32,7 @@ const SelectPagesComponent = () => {
       >
         Store Design
       </SideText>
+
       <SideText
         cursor={isSettings && "pointer"}
         color={currentPath.includes("technical") ? "primary" : "lightGray"}
@@ -40,6 +42,7 @@ const SelectPagesComponent = () => {
       >
         Payment Options
       </SideText>
+
       {isSettings && (
         <SideText
           cursor={isSettings && "pointer"}
@@ -49,6 +52,18 @@ const SelectPagesComponent = () => {
           }}
         >
           Coupons
+        </SideText>
+      )}
+
+      {isSettings && (
+        <SideText
+          cursor={isSettings && "pointer"}
+          color={currentPath.includes("admins") ? "primary" : "lightGray"}
+          onClick={() => {
+            if (isSettings) shopNavigate("settings/admins");
+          }}
+        >
+          Admins
         </SideText>
       )}
     </>
