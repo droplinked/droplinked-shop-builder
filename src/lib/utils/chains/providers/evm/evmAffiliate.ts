@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { getContractABI, getContractAddress } from './evmConstants'
-import { Chain, Network } from '../../Chains';
+import { Chain, Network } from '../../dto/chains';
 
 export let EVMApproveRequest = async function (chain: Chain, network: Network, address: string, request_id: number): Promise<string> {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);

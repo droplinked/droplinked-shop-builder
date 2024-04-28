@@ -1,7 +1,8 @@
 import { NFTStorage } from "nft.storage";
 import { ethers } from 'ethers';
 import { getContractABI, getContractAddress } from './evmConstants'
-import { Beneficiary, Chain, Network, ProductType } from "../../Chains";
+import { Chain, Network } from "../../dto/chains";
+import { Beneficiary, ProductType } from "../../dto/chainStructs";
 export async function uploadToIPFS(metadata: any, apiKey: string) {
     const client = new NFTStorage({ token: apiKey });
     if (typeof (metadata) == typeof ({}) || typeof (metadata) == typeof ([])) {

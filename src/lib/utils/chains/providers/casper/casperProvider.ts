@@ -1,9 +1,10 @@
-import { Beneficiary, Chain, Network, ProductType } from "../../Chains";
+import { Chain, Network } from "../../dto/chains";
 import { ChainProvider } from "../../chainProvider";
 import { casperApproveRequest, casperDisapproveRequest } from "./casperAffiliate";
 import { casperPublishRequest } from "./casperPublish";
 import { casperRecordMerch } from "./casperRecord";
 import { casper_login } from "./casperWalletAuth";
+import { Beneficiary, ProductType } from "../../dto/chainStructs";
 
 export class CasperProvider implements ChainProvider{
     network: Network = Network.TESTNET;
