@@ -17,9 +17,9 @@ export const OPTIONS = [
     {
         icon: <AppIcons.InformationIcon />, label: 'Affiliate', path: '/affiliate'
     },
-    // {
-    //     icon: <AppIcons.NFT />, label: 'NFTs', path: '/nfts'
-    // },
+    {
+        icon: <AppIcons.NFT />, label: 'NFTs', path: '/nfts'
+    },
     {
         icon: <AppIcons.SettingIcon />, label: 'Settings', path: '/settings/shop-info'
     },

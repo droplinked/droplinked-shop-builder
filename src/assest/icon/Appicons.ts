@@ -12,6 +12,7 @@ import { ReactComponent as Brain } from './brain.svg';
 import { ReactComponent as CasperIcon } from './casper.svg';
 import { ReactComponent as CheckCircle } from './check-circle.svg';
 import { ReactComponent as Close } from './close.svg';
+import { ReactComponent as Coinbase } from './coinbase.svg';
 import { ReactComponent as CollectionIcon } from './collection-icon.svg';
 import { ReactComponent as CopyIcon } from './copy.svg';
 import { ReactComponent as Cover } from './cover.svg';
@@ -30,6 +31,7 @@ import { ReactComponent as File } from './file.svg';
 import { ReactComponent as SaveIcon } from './frame20783.svg';
 import { ReactComponent as GatedIcon } from './gated-active-icon.svg';
 import { ReactComponent as GiftSetting } from './gift-setting.svg';
+import { ReactComponent as Google } from './google.svg';
 import { ReactComponent as GrayDiscountIcon } from './grayDiscountIcon.svg';
 import { ReactComponent as GrayGatedIcon } from './grayGatedIcon.svg';
 import { ReactComponent as GreenAlert } from './green-alert.svg';
@@ -51,6 +53,7 @@ import { ReactComponent as NearWalletIcon } from './nearWallet.svg';
 import { ReactComponent as OrderIcon } from './order-icon.svg';
 import { ReactComponent as Order } from './order.svg';
 import { ReactComponent as Personalize } from "./personalize.svg";
+import { ReactComponent as Phantom } from "./phantom.svg";
 import { ReactComponent as PintrestIcon } from './pintrest.svg';
 import { ReactComponent as PlusIcon } from './plus-icon.svg';
 import { ReactComponent as Polygon } from './polygon-matic-logo.svg';
@@ -64,6 +67,7 @@ import { ReactComponent as SettingIcon } from './setting-icon.svg';
 import { ReactComponent as ShopIcon } from './shop-green-icon.svg';
 import { ReactComponent as Skale } from './skale.svg';
 import { ReactComponent as SnapchatIcon } from './snapchat.svg';
+import { ReactComponent as Solana } from "./solana.svg";
 import { ReactComponent as StarOff } from './star-off.svg';
 import { ReactComponent as StarOn } from './star-on.svg';
 import { ReactComponent as StarFilled } from './starFilled.svg';
@@ -80,6 +84,7 @@ import { ReactComponent as Unisat } from './unisat.svg';
 import { ReactComponent as Unlock } from './unlock.svg';
 import { ReactComponent as UnstoppableDomainsIcon } from './unstoppableDomains.svg';
 import { ReactComponent as Upload } from './upload-icon.svg';
+import { ReactComponent as UserInvitation } from "./user-invitation.svg";
 import { ReactComponent as VisibleIcon } from './visible-icon.svg';
 import { ReactComponent as Web } from './web.svg';
 import { ReactComponent as NFT } from './white-nft-icon.svg';
@@ -124,6 +129,8 @@ const AppIcons = {
   GatedIcon,
   PlusIcon,
   MinusIcon,
+  Solana,
+  Phantom,
   TearIcon,
   InfoIcon,
   ManageIcon,
@@ -143,6 +150,7 @@ const AppIcons = {
   Cover,
   Upload,
   Polygon,
+  Google,
   DiscountSetting,
   GiftSetting,
   Ripple,
@@ -159,6 +167,7 @@ const AppIcons = {
   WhiteOpenWallet,
   HelpCenter,
   Logout,
+  Coinbase,
   NFT,
   Unisat,
   Hedera,
@@ -183,6 +192,7 @@ const AppIcons = {
   Trust,
   Diamond,
   ThreeStars,
-  CheckCircle
-}
-export default AppIcons
+  CheckCircle,
+  UserInvitation,
+};
+export default AppIcons;

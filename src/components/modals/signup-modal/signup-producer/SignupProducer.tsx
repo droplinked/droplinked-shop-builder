@@ -1,4 +1,4 @@
-import { Box, Stack } from "@chakra-ui/react";
+import { Box, Divider, HStack, Stack, VStack } from "@chakra-ui/react";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppInput from "components/common/form/textbox/AppInput";
 import { Form, Formik } from "formik";
@@ -7,30 +7,27 @@ import { IsignupService } from "lib/apis/user/interfaces";
 import { signupService } from "lib/apis/user/services";
 import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
 import AppErrors from "lib/utils/statics/errors/errors";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppTypography from "components/common/typography/AppTypography";
+import AppIcons from "assest/icon/Appicons";
+import { BASE_URL } from "lib/utils/app/variable";
 
 const SignupProducer = ({ close, shopname, switchToggle }) => {
+    const [searchParams] = useSearchParams();
     const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params));
-    const [States, setStates] = useState({
-        show: {
-            password: false,
-            repassword: false,
-        },
-    });
+    const [States, setStates] = useState({ show: { password: false, repassword: false } });
     let navigate = useNavigate();
     const { showToast } = useAppToast();
-
     const toggleShowField = useCallback((field: any) => setStates((prev) => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), []);
-
+    const referral_code_from_params = useMemo(() => searchParams.get("referral"),[searchParams])
     const onSubmit = async (data: any) => {
         try {
             const { email, password, username, referral } = data;
-            await mutateAsync({ email, password, shopName: username, referral: referral && referral !== "" ? referral : undefined });
+            await mutateAsync({ email, password, shopName: username, referralCode: referral && referral !== "" ? referral : undefined });
             localStorage.setItem("registerEmail", JSON.stringify(email));
             showToast({ message: "Account successfully created", type: "success" });
             close();
@@ -57,7 +54,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                 email: "",
                 password: "",
                 repassword: "",
-                referral: "",
+                referral: referral_code_from_params || "",
             }}
             validateOnChange={false}
             validationSchema={formSchema}
@@ -65,51 +62,56 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
         >
             {({ errors, values, setFieldValue }) => (
                 <Form>
-                    <Stack w="100%" h="100%" spacing="20px">
-                        <AppInput
-                            error={errors?.username ? errors.username.toString() : ""}
-                            name="username"
-                            isReadOnly={shopname && shopname.length}
-                            onChange={(e) => setFieldValue("username", e.target.value)}
-                            value={values.username}
-                        />
-                        <AppInput error={errors?.email ? errors.email.toString() : ""} name="email" onChange={(e) => setFieldValue("email", e.target.value)} value={values.email} />
-                        <Box position={"relative"}>
+                    <VStack align={'stretch'} spacing={'32px'}>
+                        <Stack w="100%" h="100%" spacing="16px">
                             <AppInput
-                                type={States.show.password ? "text" : "password"}
-                                name="password"
-                                error={errors?.password ? errors.password.toString() : ""}
-                                onChange={(e) => setFieldValue("password", e.target.value)}
-                                value={values.password}
+                                error={errors?.username ? errors.username.toString() : ""}
+                                name="username"
+                                isReadOnly={shopname && shopname.length}
+                                onChange={(e) => setFieldValue("username", e.target.value)}
+                                value={values.username}
                             />
-                            <ShowPassword showed={States.show.password} onClick={() => toggleShowField("password")} />
-                        </Box>
-                        <Box position={"relative"}>
+                            <AppInput type="email" error={errors?.email ? errors.email.toString() : ""} name="email" onChange={(e) => setFieldValue("email", e.target.value)} value={values.email} />
+                            <Box position={"relative"}>
+                                <AppInput
+                                    type={States.show.password ? "text" : "password"}
+                                    name="password"
+                                    error={errors?.password ? errors.password.toString() : ""}
+                                    onChange={(e) => setFieldValue("password", e.target.value)}
+                                    value={values.password}
+                                />
+                                <ShowPassword showed={States.show.password} onClick={() => toggleShowField("password")} />
+                            </Box>
+                            <Box position={"relative"}>
+                                <AppInput
+                                    type={States.show.repassword ? "text" : "password"}
+                                    placeholder="Confirm Password"
+                                    name="repassword"
+                                    error={errors?.repassword ? errors.repassword.toString() : ""}
+                                    onChange={(e) => setFieldValue("repassword", e.target.value)}
+                                    value={values.repassword}
+                                />
+                                <ShowPassword showed={States.show.repassword} onClick={() => toggleShowField("repassword")} />
+                            </Box>
                             <AppInput
-                                type={States.show.repassword ? "text" : "password"}
-                                placeholder="Confirm Password"
-                                name="repassword"
-                                error={errors?.repassword ? errors.repassword.toString() : ""}
-                                onChange={(e) => setFieldValue("repassword", e.target.value)}
-                                value={values.repassword}
+                                name="referral"
+                                placeholder="Referral Code"
+                                onChange={(e) => setFieldValue("referral", e.target.value)}
+                                value={values.referral}
+                                isDisabled={Boolean(searchParams.get("referral"))}
                             />
-                            <ShowPassword showed={States.show.repassword} onClick={() => toggleShowField("repassword")} />
-                        </Box>
-                        <AppInput
-                            name="referral"
-                            placeholder="Referral Code"
-                            onChange={(e) => setFieldValue("referral", e.target.value)}
-                            value={values.referral}
-                        />
-
-                        <BasicButton type="submit" isLoading={isLoading}>
-                            Sign up
-                        </BasicButton>
-
-                        <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchToggle}>
-                            Already have an account? <Box as="span" color="#2EC99E !important">Sign in</Box> now
-                        </AppTypography>
-                    </Stack>
+                        </Stack>
+                        <VStack align={"stretch"} spacing={"8px"}>
+                            <BasicButton type="submit" isLoading={isLoading}>Sign up</BasicButton>
+                            <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchToggle}>Already have an account?{" "}<Box as="span" color="#2EC99E !important">Sign in</Box>{" "}now</AppTypography>
+                        </VStack>
+                        <HStack align={"stretch"} alignItems={"center"}>
+                            <Divider color={"line"}/>
+                            <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
+                            <Divider color={"line"}/>
+                        </HStack>
+                        <BasicButton onClick={() => {window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}`}} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{backgroundColor: "mainGray.500"}} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google/>} isDisabled={isLoading}>Sign up with Google</BasicButton>
+                    </VStack>
                 </Form>
             )}
         </Formik>

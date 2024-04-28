@@ -30,7 +30,7 @@ const ReferralCode = ({ States:{ referralDetails: { code, customCode, percent } 
             <Flex direction="column" gap="8px"><AppTypography fontSize="18px" fontWeight="bold">Referral Code</AppTypography><AppTypography fontSize="16px" color="lightGray">Earn more with every referral! When someone joins our community using your referral code, you'll receive {percent}% of our commissions from their orders.</AppTypography></Flex>
             <Flex direction="column" gap="12px">
                 <AppTypography fontSize="16px" fontWeight={500} color="lightGray">Referral Link</AppTypography>
-                <Flex justifyContent="space-between" alignItems="center"><AppTypography fontSize="16px" fontWeight={400} color="lightGray">{`${BUILDER_URL}/referral=${code}`}</AppTypography><ClipboardText text={`${BUILDER_URL}/referral=${code}`} /></Flex>
+                <Flex justifyContent="space-between" alignItems="center"><AppTypography fontSize="16px" fontWeight={400} color="lightGray">{`${BUILDER_URL}/?modal=signup&referral=${code.toLowerCase()}`}</AppTypography><ClipboardText text={`${BUILDER_URL}/?modal=signup&referral=${code.toLowerCase()}`} /></Flex>
                 <Flex gap="8px" alignItems="center"><AppIcons.InfoIcon /><AppTypography color="lightGray" fontSize="12px" fontWeight="400">Users also have the option to enter the code <span style={{ fontWeight: 700 }}>{code}</span> in their signup form.</AppTypography></Flex>
             </Flex>
             <Flex direction="column" gap="12px"><AppTypography fontSize="16px" fontWeight={500} color="lightGray">Custom Referral Code</AppTypography>
@@ -40,7 +40,7 @@ const ReferralCode = ({ States:{ referralDetails: { code, customCode, percent } 
                             <AppInput isReadOnly={!enable} value={values.customCode} placeholder="Your custom referral code" onChange={handleChange} id="customCode" name="customCode" border="none"/>
                             {!enable ? 
                                 (<Flex gap="8px" alignItems="center">
-                                    <BasicButton py="12px" px="14px" minW="auto" variant="ghost" sizes="medium" onClick={() => { navigator.clipboard.writeText(`${BUILDER_URL}/referral=${customCode}`); showToast({ message: "Copied", type: "info", options: { autoClose: 200, hideProgressBar: true } })}}>Copy Link</BasicButton>
+                                    <BasicButton py="12px" px="14px" minW="auto" variant="ghost" sizes="medium" onClick={() => { navigator.clipboard.writeText(`${BUILDER_URL}/?modal=signup&referral=${customCode}`); showToast({ message: "Copied", type: "info", options: { autoClose: 200, hideProgressBar: true } })}}>Copy Link</BasicButton>
                                     <BasicButton py="12px" px="14px" minW="auto" sizes="medium" onClick={() => set_enable(true)}>Edit</BasicButton>
                                 </Flex>) : (<BasicButton isLoading={referral_update_loading} type="submit" py="12px" px="14px" minW="auto" variant="ghost" sizes="medium" onClick={() => {}}>Create</BasicButton>)}
                         </Flex>

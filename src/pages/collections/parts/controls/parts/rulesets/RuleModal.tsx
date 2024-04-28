@@ -35,9 +35,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
         cacheTime: 60 * 60 * 1000,
         refetchOnWindowFocus: false,
     });
-    const types = useMemo(() => {
 
-    },[])
     const { showToast } = useAppToast();
 
     useEffect(() => {
@@ -45,8 +43,13 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     }, [ruleId]);
 
     useEffect(() => {
-        if (getRule.data) setState(getRule.data.data.data);
-    }, [getRule]);
+        if (getRule.data) {
+            setState(getRule.data.data.data);
+            if(getRule?.data?.data?.data?.type) availableRuleTypes.mutate({chain: getRule?.data?.data?.data?.type})
+        }else if(!ruleId){
+            availableRuleTypes.mutate({chain: "ETH"})
+    }
+    }, [getRule.data]);
 
     const submit = async (data) => {
         const { tag, weburl, chain, ruleType, rule, discount, address, requirement } = data;

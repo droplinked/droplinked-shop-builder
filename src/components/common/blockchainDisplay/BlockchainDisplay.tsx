@@ -62,6 +62,10 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
             icon: <AppIcons.UnstoppableDomainsIcon {...props} />,
             name: 'Unstoppable domain'
         },
+        "UNSTOPPABLE DOMAINS": {
+            icon: <AppIcons.UnstoppableDomainsIcon {...props} />,
+            name: 'Unstoppable domain'
+        },
         "XUMM": {
             icon: <AppIcons.Xumm {...props} />,
             name: 'Xumm'
@@ -77,6 +81,22 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
         "BITCOIN": {
             icon: <AppIcons.Bitcoin {...props}/>,
             name: "Bitcoin"
+        },
+        "ORDINALS": {
+            icon: <AppIcons.Bitcoin {...props}/>,
+            name: "Ordinals"
+        },
+        "COINBASE": {
+            icon: <AppIcons.Coinbase {...props}/>,
+            name: "Coinbase"
+        },
+        "SOLANA":{
+            icon: <AppIcons.Solana {...props}/>,
+            name: "Solana"
+        },
+        "GOOGLE":{
+            icon: <AppIcons.Google {...props}/>,
+            name: "Google"
         }
     }), [props])
 

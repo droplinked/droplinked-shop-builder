@@ -1,12 +1,19 @@
 export interface IauthLoginService {
-    email: string
-    password: string
+    userType: "PRODUCER";
+    email: string;
+    password: string;
 }
 
 export interface IAuthSupportedWalletsService {
-    name: string,
+    name: string;
     wallets: {
-        name: string,
-        isActivated: boolean
-    }[]
+        name: string;
+        isActivated: boolean;
+    }[];
+}
+
+export interface ICompleteGoogleSignupService {
+    username: string;
+    access_token: string;
+    referralCode?: string;
 }

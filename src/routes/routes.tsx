@@ -17,14 +17,20 @@ import Products from "pages/product/list/products"
 import ProductOrder from "pages/product/order/ProductOrder"
 import ProductTypes from "pages/product/types/ProductTypes"
 import AboutUs from "pages/public-pages/about/AboutUs"
+import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
+import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import HomePage from "pages/public-pages/homePage/HomePage"
+import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
+import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
+import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
+import TokenPayPage from "pages/public-pages/landings/token-pay-page/TokenPayPage"
 import LoadingPage from "pages/public-pages/loading-page/LoadingPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
-import TokenPayPage from "pages/public-pages/token-pay-page/TokenPayPage"
 import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import Admins from "pages/register-pages/pages/admins/Admins"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import React, { lazy, Suspense } from "react"
@@ -52,9 +58,14 @@ function AppRoutes() {
           <Route path="enquiry" element={<Enquiry />} />
           <Route path="terms" element={<TermsPage />} />
           <Route path="about" element={<AboutUs />} />
+          <Route path="contact-us" element={<ContactUs />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="email-confirmation" element={<ThankForRegisterPage />} />
           <Route path="token-pay" element={<TokenPayPage />} />
+          <Route path="physical-product" element={<PhysicalProductPage />} />
+          <Route path="digital-product" element={<DigitalProductPage />} />
+          <Route path="pod-product" element={<PODProductPage />} />
+          <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
           <Route
             path="email-verification/:token"
             element={<VerifyEmailPage />}
@@ -78,6 +89,7 @@ function AppRoutes() {
             <Route path="design" element={<DesignPage />} />
             <Route path="technical" element={<TechnicalPage />} />
             <Route path="coupons" element={<CouponsSetting />} />
+            <Route path="admins" element={<Admins />} />
           </Route>
           <Route path="products">
             <Route index element={<Products />} />
