@@ -30,7 +30,7 @@ type PaymentInfo = {
     beneficiaries: Uint256[];
     paymentType: PaymentMethodType;
 }
-
+    
 type Product = {
     tokenId: Uint256;
     nftAddress: EthAddress;

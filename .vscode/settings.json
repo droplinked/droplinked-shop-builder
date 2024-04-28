@@ -1,4 +1,10 @@
 {
     "typescript.tsdk": "node_modules\\typescript\\lib",
-    "jest.runMode": "on-demand"
+    "jest.runMode": "on-demand",
+    "cSpell.words": [
+        "droplinked",
+        "LINEA",
+        "SKALE",
+        "XRPLSIDECHAIN"
+    ]
 }
