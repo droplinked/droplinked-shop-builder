@@ -2,7 +2,7 @@ import hashkeyModel from "components/common/hashKey/model"
 import { recordCasperService } from "lib/apis/sku/services"
 import { appDevelopment } from "lib/utils/app/variable"
 import { getNetworkProvider } from "lib/utils/chains/chainProvider"
-import { Beneficiary, Chain, Network, ProductType } from "lib/utils/chains/Chains"
+import { Beneficiary, Chain, Network, ProductType } from "lib/utils/chains/dto/chains"
 import { droplink_wallet } from "lib/utils/statics/adresses"
 import { IRecordParamsData } from "../.."
 

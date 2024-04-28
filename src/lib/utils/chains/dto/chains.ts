@@ -14,14 +14,3 @@ export enum Network {
     MAINNET,
     TESTNET
 }
-export enum ProductType{
-    DIGITAL,
-    POD,
-    PHYSICAL
-}
-
-export type Beneficiary = {
-    isPercentage: boolean; 
-    value: number;
-    wallet: string;
-}

@@ -1,4 +1,6 @@
-import { Beneficiary, Chain, Network, ProductType } from "./Chains";
+import { ProductType } from "./dto/chainStructs";
+import { Beneficiary } from "./dto/chainStructs";
+import { Chain, Network } from "./dto/chains";
 import { CasperProvider } from "./providers/casper/casperProvider";
 import { EVMProvider } from "./providers/evm/evmProvider";
 
