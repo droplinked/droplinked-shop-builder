@@ -81,6 +81,10 @@ function BlockchainDisplay({ blockchain, props, show }: IProps) {
         "COINBASE": {
             icon: <AppIcons.Coinbase {...props}/>,
             name: "Coinbase"
+        },
+        "SOLANA":{
+            icon: <AppIcons.Solana {...props}/>,
+            name: "Solana"
         }
     }), [props])
 
