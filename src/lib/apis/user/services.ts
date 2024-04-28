@@ -52,3 +52,7 @@ export const getInvitationsService = () => {
 export const acceptInvitationService = (props: IAcceptInvitation) => {
     return axiosInstance.post(`rbac/invitations/${props.invitationId}/accept`, { password: props.password })
 }
+
+export const getInvitationDetails = (invitationId: string) => {
+    return axiosInstance.post(`rbac/invitations/${invitationId}/info`)
+}

@@ -13,14 +13,18 @@ function InvitationForm({ fetch }: { fetch: () => void }) {
     const sendInvitationEmail = useMutation((email: string) => sendInvitaionEmailService(email))
     const { showToast } = useAppToast()
 
-    const onSubmit = async ({ email }: { email: string }) => {
+    const onSubmit = async (values, actions) => {
         try {
-            await sendInvitationEmail.mutateAsync(email)
+            console.log(values, actions)
+            await sendInvitationEmail.mutateAsync(values.email)
             showToast({ type: "success", message: "An invitation has been sent to this email." })
             fetch()
         }
         catch (e) {
             showToast({ type: "error", message: (e as Error).message })
+        }
+        finally {
+            actions.resetForm()
         }
     }
 

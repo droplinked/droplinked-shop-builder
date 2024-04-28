@@ -12,6 +12,7 @@ import { ReactComponent as Brain } from './brain.svg';
 import { ReactComponent as CasperIcon } from './casper.svg';
 import { ReactComponent as CheckCircle } from './check-circle.svg';
 import { ReactComponent as Close } from './close.svg';
+import { ReactComponent as Coinbase } from './coinbase.svg';
 import { ReactComponent as CollectionIcon } from './collection-icon.svg';
 import { ReactComponent as CopyIcon } from './copy.svg';
 import { ReactComponent as Cover } from './cover.svg';
@@ -30,12 +31,12 @@ import { ReactComponent as File } from './file.svg';
 import { ReactComponent as SaveIcon } from './frame20783.svg';
 import { ReactComponent as GatedIcon } from './gated-active-icon.svg';
 import { ReactComponent as GiftSetting } from './gift-setting.svg';
+import { ReactComponent as Google } from './google.svg';
 import { ReactComponent as GrayDiscountIcon } from './grayDiscountIcon.svg';
 import { ReactComponent as GrayGatedIcon } from './grayGatedIcon.svg';
 import { ReactComponent as GreenAlert } from './green-alert.svg';
 import { ReactComponent as Hand } from './hand.svg';
 import { ReactComponent as Hedera } from './hedera.svg';
-import { ReactComponent as Google } from './google.svg';
 import { ReactComponent as HelpCenter } from './help-circle 1.svg';
 import { ReactComponent as MinusIcon } from './image2vector.svg';
 import { ReactComponent as InfoIcon } from './info-icon.svg';
@@ -81,6 +82,7 @@ import { ReactComponent as Unisat } from './unisat.svg';
 import { ReactComponent as Unlock } from './unlock.svg';
 import { ReactComponent as UnstoppableDomainsIcon } from './unstoppableDomains.svg';
 import { ReactComponent as Upload } from './upload-icon.svg';
+import { ReactComponent as UserInvitation } from "./user-invitation.svg";
 import { ReactComponent as VisibleIcon } from './visible-icon.svg';
 import { ReactComponent as Web } from './web.svg';
 import { ReactComponent as NFT } from './white-nft-icon.svg';
@@ -90,7 +92,6 @@ import { ReactComponent as WhiteTrash } from './white-trash.svg';
 import { ReactComponent as XRPL } from './xrpl.svg';
 import { ReactComponent as Xumm } from './xumm.svg';
 import { ReactComponent as Xverse } from './xverse.svg';
-import { ReactComponent as Coinbase } from './coinbase.svg';
 import { ReactComponent as YellowAlert } from './yellow-alert.svg';
 
 const AppIcons = {
@@ -187,6 +188,7 @@ const AppIcons = {
   Trust,
   Diamond,
   ThreeStars,
-  CheckCircle
+  CheckCircle,
+  UserInvitation
 }
 export default AppIcons
