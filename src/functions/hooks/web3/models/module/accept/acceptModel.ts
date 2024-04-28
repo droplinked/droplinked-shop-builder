@@ -1,4 +1,3 @@
-import { approve_request } from "lib/utils/blockchain/casper/casper_wallet_approve_request"
 import { configStacks } from "lib/utils/blockchain/stacks/_constans"
 import { principalCV, uintCV } from "@stacks/transactions"
 import { acceptRejectRequestService } from "lib/apis/affiliate/shopServices"
@@ -25,17 +24,6 @@ interface IDeployAccept {
 }
 
 const acceptModel = ({
-    approveRequestCasper: async ({ shop, accountAddress }: IapproveCasper) => {
-        const { request_id, account_info } = {
-            request_id: shop?.recordData?.details?.request_id,
-            account_info: {
-                publicKey: accountAddress.publicKey,
-                account_hash: accountAddress.account_hash,
-                signature: accountAddress.signature
-            }
-        }
-        return await approve_request(request_id, account_info)
-    },
 
     approveRequestStack: async ({ isRequestPending, openContractCall, params: { id, publisher } }: IapproveStack) => {
         if (isRequestPending) return
