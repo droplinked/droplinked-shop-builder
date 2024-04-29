@@ -30,7 +30,7 @@ export interface IAppStore {
     loading: boolean
     access_token: string | null
     refresh_token: string | null
-    login(method: { type: "default", params: IauthLoginService } | { type: "google", params: ICompleteGoogleSignupService } | { type: "get", access_token: string, refresh_token: string, params: IGetUserService }): Promise<any>
+    login(method: { type: "default", params: IauthLoginService } | { type: "google", access_token: string, refresh_token: string, params: ICompleteGoogleSignupService } | { type: "get", access_token: string, refresh_token: string, params: IGetUserService }): Promise<any>
     fetchShop(params: IshopInfoService): Promise<any>
     reset(): void
     updateShop(params: IshopUpdateService): Promise<any>
@@ -54,8 +54,8 @@ const states = (set: any, get: any): IAppStore => ({
                 if (method.type === "get") data = await getUserService(method.params)
 
                 const result = data?.data?.data
-                const access_token = method.type === "get" ? method.access_token : result?.access_token
-                const refresh_token = method.type === "get" ? method.refresh_token : result?.refresh_token;
+                const access_token = method.type === "default" ? result?.access_token : method.access_token
+                const refresh_token = method.type === "default" ? result?.refresh_token : method.refresh_token;
                 if (!result?.user || !result?.shop) throw Error('This user cannot log in')
                 let status = appDevelopment && result?.user?.status === "NEW" ? "VERIFIED" : result?.user?.status
 

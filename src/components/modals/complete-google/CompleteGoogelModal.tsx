@@ -26,7 +26,8 @@ const CompleteGoogelModal = ({ show, close, switchModal }: { show: boolean; clos
         referral: Yup.string(),
     });
     const access_token = useMemo(() => searchParams.get("access_token"), [searchParams]);
-    const condition_to_kick_user_from_here = !access_token || access_token === "" || searchParams.get("modal") !== "google";
+    const refresh_token = useMemo(() => searchParams.get("refresh_token"), [searchParams]);
+    const condition_to_kick_user_from_here = !access_token || !refresh_token || access_token === "" || refresh_token === "" || searchParams.get("modal") !== "google";
 
     useEffect(() => {
         if (condition_to_kick_user_from_here) switchModal(MODAL_TYPE.SIGNUP);
@@ -36,7 +37,7 @@ const CompleteGoogelModal = ({ show, close, switchModal }: { show: boolean; clos
             if (condition_to_kick_user_from_here) throw Error("You cannot complete your process right now!");
             const { username, referral } = data;
             const params = { username, referralCode: referral && referral !== "" ? referral : undefined, access_token };
-            const results = await login({ type: "google", params });
+            const results = await login({ type: "google", access_token, refresh_token, params });
             if (results) {
                 showToast({ message: "Account successfully created", type: "success" });
                 close();
