@@ -8,7 +8,7 @@ import InvitationForm from './parts/form/InvitationForm';
 import UserList from './parts/list/UserList';
 
 function Admins() {
-    const fetchInvitations = useQuery({ queryFn: () => getInvitationsService(), refetchOnWindowFocus: false })
+    const { isFetching, data, refetch } = useQuery({ queryFn: () => getInvitationsService(), refetchOnWindowFocus: false })
 
     return (
         <AppCard>
@@ -18,10 +18,10 @@ function Admins() {
                         <AppTypography fontSize={18} fontWeight='bold'>User Management</AppTypography>
                         <AppTypography fontSize={16}>Use your unique Private Key for specialized services in Shop Builder. You should keep this key confidential and exposing it will compromise the security of your services.</AppTypography>
                     </Flex>
-                    <InvitationForm fetch={fetchInvitations.refetch} />
+                    <InvitationForm fetch={refetch} />
                 </Flex>
                 <Divider margin={0} borderColor={"#262626"} />
-                <UserList users={fetchInvitations.data?.data || []} isLoading={fetchInvitations.isFetching} />
+                <UserList users={data?.data || []} isLoading={isFetching} />
             </Flex>
         </AppCard>
     )

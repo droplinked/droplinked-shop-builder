@@ -40,9 +40,9 @@ function AcceptInvitation() {
                         >
                             <Flex direction={"column"} gap={2}>
                                 <Heading margin={0} fontSize={24} fontWeight={700} color={"#fff"}>Welcome to droplinked!</Heading>
-                                <AppTypography fontSize={14} color={"#fff"}>Sign up with your credentials to start managing your shop <Box as='span' fontWeight={600}>{data?.data.data.shop}</Box></AppTypography>
+                                <AppTypography fontSize={14} color={"#fff"}>Sign up with your credentials to start managing your shop <Box as='span' fontWeight={600}>{data?.data?.shop}</Box></AppTypography>
                             </Flex>
-                            <InvitationForm invitationId={invitationId} email={data?.data.data.email} />
+                            <InvitationForm invitationId={invitationId} email={data?.data?.email} />
                         </Flex>
                 }
             </Flex>
