@@ -1,7 +1,7 @@
 import { CLAccountHash, CLKey, CLPublicKey, CLU64, Contracts, DeployUtil, NamedArg, RuntimeArgs } from 'casper-js-sdk';
 import * as casper_consts from './casperConstants';
 import { getCasperWalletInstance } from './casperWalletAuth';
-import { Network } from '../../Chains';
+import { Network } from '../../dto/chains';
 export let casperPublishRequest = async function(network: Network, address: string, producer_account_address: string, token_id: number | string){
     const fromHexString = (hexString:string) =>
         Uint8Array.from(hexString.match(/.{1,2}/g).map((byte) => parseInt(byte, 16)));

@@ -56,3 +56,15 @@ export interface IRetrieveNFTs {
         network: string;
     }
 }
+
+export interface IInvitation {
+    _id: string;
+    recipientEmail: string;
+    status: string;
+    role: string;
+}
+
+export interface IAcceptInvitation {
+    invitationId: string;
+    password: string;
+}

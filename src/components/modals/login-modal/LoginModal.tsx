@@ -55,10 +55,10 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     // action on user data based on type and status
     const loginFunction = (data: any) => {
         // check customer
-        if (data.user.type !== "PRODUCER") return showToast({ message: "This account can not login", type: "error" });
+        if (!["PRODUCER", "ADMIN"].includes(data.user.type)) return showToast({ message: "This account can not login", type: "error" });
 
         //first close modal
-        close();
+        close()
         const status = appDevelopment && data.user.status === "NEW" ? "VERIFIED" : data.user.status;
 
         if (status === "DELETED") {
