@@ -1,25 +1,23 @@
 import { Box, Flex, Heading, Image, Spinner } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
-import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { getInvitationDetails } from 'lib/apis/user/services'
 import React from 'react'
 import { useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import InvitationForm from './parts/form/InvitationForm'
 
 function AcceptInvitation() {
     const { invitationId } = useParams()
+    const navigate = useNavigate()
     const { showToast } = useAppToast()
-    const { shopNavigate } = useCustomNavigate()
     const { isFetching, data } = useQuery({
         queryFn: () => getInvitationDetails(invitationId),
         onError: (error) => {
+            navigate("/")
             showToast({ type: "error", message: (error as Error).message })
-            shopNavigate("")
         },
         refetchOnWindowFocus: false,
-        retry: 1
     })
 
     return (
@@ -44,7 +42,7 @@ function AcceptInvitation() {
                                 <Heading margin={0} fontSize={24} fontWeight={700} color={"#fff"}>Welcome to droplinked!</Heading>
                                 <AppTypography fontSize={14} color={"#fff"}>Sign up with your credentials to start managing your shop <Box as='span' fontWeight={600}>{data?.data.data.shop}</Box></AppTypography>
                             </Flex>
-                            <InvitationForm invitationId={invitationId} email={data?.data.data.email || ""} />
+                            <InvitationForm invitationId={invitationId} email={data?.data.data.email} />
                         </Flex>
                 }
             </Flex>

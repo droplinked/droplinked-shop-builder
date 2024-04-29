@@ -7,6 +7,7 @@ import { acceptInvitationService } from 'lib/apis/user/services'
 import { passwordRegex } from 'lib/utils/heper/regex'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as Yup from "yup"
 import InvitationInput from '../input/Input'
 
@@ -16,9 +17,10 @@ interface Props {
 }
 
 function InvitationForm({ invitationId, email }: Props) {
+    const navigate = useNavigate()
     const [isLoading, setLoading] = useState(false)
-    const { showToast } = useAppToast()
     const { app: { login } } = useHookStore()
+    const { showToast } = useAppToast()
 
     const onSubmit = async (data: any) => {
         const { password } = data
@@ -26,7 +28,7 @@ function InvitationForm({ invitationId, email }: Props) {
             setLoading(true)
             await acceptInvitationService({ invitationId, password })
             await login({ type: "default", params: { email, password, userType: "PRODUCER" } })
-            showToast({ type: "success", message: "An invitation has been sent to this email." })
+            navigate("/dashboard")
         }
         catch (e) {
             showToast({ type: "error", message: (e as Error).message })
@@ -44,7 +46,7 @@ function InvitationForm({ invitationId, email }: Props) {
 
     return (
         <Formik
-            initialValues={{ email: "mahdipoursepahi@gmail.com", password: "", confirmPassword: "" }}
+            initialValues={{ email, password: "", confirmPassword: "" }}
             validateOnChange={false}
             validationSchema={formSchema}
             onSubmit={onSubmit}
