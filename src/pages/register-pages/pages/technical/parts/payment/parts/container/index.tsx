@@ -4,39 +4,25 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
-import useAppToast from 'functions/hooks/toast/useToast'
 import { PageContentWrapper } from 'pages/register-pages/RegisterPages-style'
 import technicalContext from 'pages/register-pages/pages/technical/context'
-import React, { useCallback, useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import classes from './style.module.scss'
 
-interface Props {
-  // title: string;
-  chain: any;
-  token?: any;
-  // walletAddress: string;
-}
-
-function ContainerPayment({ chain, token }: Props) {
-  // Check active
-  // useEffect(() => { locked && setActive(true) }, [title, value, locked])
-
+function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
   const { state: { paymentMethods }, updateState } = useContext(technicalContext)
-  // const [active, setActive] = useState(token?.isActive || chain.isActive)
-  // const [Switch, setSwitch] = useState()
-  const { showToast } = useAppToast()
+  const [walletAddress, setWalletAddress] = useState(chain.destinationAddress)
+  const [canEditWallet, setWalletEditability] = useState(!!walletAddress) // If the 'chain' object has an 'destinationAddress' property, we can edit it
 
-  // const updatePayments = useCallback((key, value) => updatePayment(key, value, title), [title, updatePayment])
-
-  // const activeMethod = useCallback((value?: boolean) => updatePayments("isActive", value), [updatePayments])
-
-  // const save = useCallback(() => {
-  //   if (title !== "STRIPE" && active && !value) return showToast({ message: "Please enter wallet", type: "error" })
-  //   activeMethod(true)
-  // }, [value, title, locked, active, showToast, activeMethod])
-
-  const save = () => {
-
+  const persistWalletAddress = () => {
+    const updatedPaymentMethods = [...paymentMethods]
+    const existingChainIndex = updatedPaymentMethods.findIndex(payment => payment.type === chain.type)
+    if (existingChainIndex !== -1) {
+      updatedPaymentMethods[existingChainIndex].destinationAddress = walletAddress
+    }
+    else updatedPaymentMethods.push({ ...chain, destinationAddress: walletAddress })
+    updateState("paymentMethods", updatedPaymentMethods)
+    setWalletEditability(true)
   }
 
   const handleActivation = (e: any) => {
@@ -129,14 +115,8 @@ function ContainerPayment({ chain, token }: Props) {
     updateState("paymentMethods", updatedPaymentMethods)
   }
 
-
-  const edit = useCallback(() => {
-    // activeMethod(false)
-    // setSwitch(true)
-  }, [])
-
   return (
-    <HStack justifyContent="space-between" width="100%">
+    <Flex justifyContent="space-between" width="100%">
       <Flex alignItems={"center"} gap={4}>
         <AppSwitch isChecked={token?.isActive || chain.isActive} onChange={handleActivation} />
         <AppTypography fontSize="14px" color="#C2C2C2" fontWeight='bold'><BlockchainDisplay show='name' blockchain={token ? `${chain.type} (${token.type})` : chain.type} /></AppTypography>
@@ -146,35 +126,24 @@ function ContainerPayment({ chain, token }: Props) {
         (
           <HStack width={"60%"}>
             <PageContentWrapper padding={3} height="45px" display="flex" alignItems="center">
-              <HStack width="100%" justifyContent="space-between" alignItems="center" padding="0">
-                {token?.isActive || chain.isActive ? (
-                  <Flex width={"100%"} gap={1}>
-                    <BlockchainDisplay show='icon' blockchain={chain.type} props={{ width: "16px", height: "16px" }} />
-                    <input type="text" style={{ flex: 1 }} className={classes.textbox} value={chain.destinationAddress} />
-                    <Box onClick={edit} cursor={"pointer"}><AppIcons.EditIcon width="16px" height="16px" /></Box>
-                  </Flex>
-                ) : (
-                  <>
-                    <Box position={"relative"} width="100%" top={.9}>
-                      <input
-                        style={{ width: "100%" }}
-                        type="text"
-                        className={classes.textbox}
-                        // readOnly={!Switch}
-                        // onChange={(e) => updatePayments("destinationAddress", e.target.value)}
-                        placeholder='Please enter wallet address.'
-                        value={chain.destinationAddress}
-                      />
-                    </Box>
-                    <BasicButton sizes='medium' minWidth={"50px"} onClick={save}>Save</BasicButton>
-                  </>
-                )}
-              </HStack>
+              <Flex width={"100%"} gap={4}>
+                <input
+                  type="text"
+                  className={classes.textbox}
+                  placeholder='Please enter wallet address'
+                  spellCheck={false}
+                  disabled={canEditWallet}
+                  value={walletAddress}
+                  onChange={(e) => setWalletAddress(e.target.value)}
+                />
+                {canEditWallet && <Box onClick={() => setWalletEditability(false)}><AppIcons.EditIcon width="16px" height="16px" cursor={"pointer"} /></Box>}
+                {!canEditWallet && <BasicButton minWidth={"48px"} sizes='medium' onClick={persistWalletAddress}>Save</BasicButton>}
+              </Flex>
             </PageContentWrapper>
           </HStack>
         )
       }
-    </HStack>
+    </Flex>
   )
 }
 

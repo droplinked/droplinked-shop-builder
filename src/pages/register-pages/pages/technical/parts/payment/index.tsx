@@ -1,4 +1,4 @@
-import { Box, VStack, chakra } from '@chakra-ui/react';
+import { Flex, VStack } from '@chakra-ui/react';
 import AppCard from 'components/common/card/AppCard';
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import AppTypography from 'components/common/typography/AppTypography';
@@ -13,68 +13,39 @@ import PaymentsLoading from './parts/loading/PaymentsLoading';
 
 function Payments() {
     const { state: { paymentMethods } } = useContext(technicalContext)
-    console.log("reading payment methods", paymentMethods)
-    // console.log("heyyyuuuu", paymentMethods)
     const paymentPublic = useMutation(() => paymentPublicService())
     const { makePayments } = technicalPaymentsModel
     const combinedPaymentMethods = makePayments({
         paymentMethods: paymentMethods,
         paymentPublic: paymentPublic.data?.data?.data
     })
-    // console.log("combined", combinedPaymentMethods)
 
     useEffect(() => { paymentPublic.mutate() }, [])
 
-    // update payment methods
-    // useEffect(() => {
-    //     const pPublic = paymentPublic.data?.data?.data
-    //     if (pPublic && userPayments) updateState("paymentMethods", makePayments({
-    //         paymentMethods: userPayments,
-    //         paymentPublic: pPublic
-    //     }))
-    // }, [userPayments, paymentPublic.data]);
-
     return (
         <AppCard>
-            <VStack spacing={2} align='stretch'>
-                <Box><FieldLabel label='Payment Method' textProps={{ fontSize: "18px", fontWeight: "bolder" }} isRequired /></Box>
-                <Box>
-                    <AppTypography fontSize="14px" color="#C2C2C2">
-                        Activate the payment methods and add target wallet for each of them.
-                    </AppTypography>
-                </Box>
+            <Flex direction={"column"} gap={6}>
+                <Flex direction={"column"} gap={0}>
+                    <FieldLabel label='Payment Method' textProps={{ fontSize: "18px", fontWeight: "bolder" }} isRequired />
+                    <AppTypography fontSize="14px" color="#C2C2C2">Activate the payment methods and add target wallet for each of them.</AppTypography>
+                </Flex>
                 <VStack align='stretch' spacing={3}>
                     <VStack spacing={2} align={"stretch"}>
                         {paymentPublic.isLoading ? <PaymentsLoading /> : combinedPaymentMethods?.map((payment, key) => {
                             return payment.tokens?.length ?
                                 payment.tokens.map((token, index) =>
-                                    <BlackBox key={index} padding="5px 20px" height="55px" display="flex" alignItems="center">
-                                        <ContainerPayment
-                                            // title={`${payment.type} (${token.type})`}
-                                            // locked={payment.isActive}
-                                            // value={payment.destinationAddress}
-                                            // title={`${payment.type} (${token.type})`}
-                                            chain={payment}
-                                            token={token}
-                                        // walletAddress={(paymentMethods?.find(method => method.type === payment.type))?.destinationAddress ?? ""}
-                                        />
+                                    <BlackBox key={index} padding="4px 20px" height="56px" display="flex" alignItems="center">
+                                        <ContainerPayment chain={payment} token={token} />
                                     </BlackBox>
                                 )
                                 :
-                                <BlackBox key={key} padding="5px 20px" height="55px" display="flex" alignItems="center">
-                                    <ContainerPayment
-                                        // title={payment.type}
-                                        // locked={payment.isActive}
-                                        // value={payment.destinationAddress}
-                                        // title={payment.type}
-                                        chain={payment}
-                                    // walletAddress={(paymentMethods?.find(method => method.type === payment.type))?.destinationAddress ?? ""}
-                                    />
+                                <BlackBox key={key} padding="4px 20px" height="56px" display="flex" alignItems="center">
+                                    <ContainerPayment chain={payment} />
                                 </BlackBox>
                         })}
                     </VStack>
                 </VStack>
-            </VStack>
+            </Flex>
         </AppCard>
     )
 }

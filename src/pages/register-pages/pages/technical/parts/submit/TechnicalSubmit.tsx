@@ -6,24 +6,19 @@ import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { IshopUpdateService } from 'lib/apis/shop/interfaces';
 import { shopUpdateService } from 'lib/apis/shop/shopServices';
 import AppErrors from 'lib/utils/statics/errors/errors';
-import React, { useCallback, useContext, useMemo } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { useMutation } from 'react-query';
 import { useLocation } from 'react-router-dom';
 import technicalContext from '../../context';
-import technicalModel from '../../model';
-import TechnicalSubmitModel from './TechnicalSubmitModel';
 
 function TechnicalSubmit() {
     const { state: { imsType, paymentMethods, loginMethods }, updateState } = useContext(technicalContext)
     const { mutateAsync, isLoading } = useMutation((params: IshopUpdateService) => shopUpdateService(params))
     const currentPath = useLocation().pathname
-    const { checkPaymentMethod } = technicalModel
     const { setShopData: { loading, update }, shop } = useProfile()
     const { shopNavigate } = useCustomNavigate()
-    const { refactor } = TechnicalSubmitModel
     const isRegister = currentPath.includes("register")
     const { showToast } = useAppToast()
-    // const checkPayment = useMemo(() => checkPaymentMethod(paymentMethods), [paymentMethods])
 
     const clickSubmit = useCallback(async () => {
         try {
