@@ -1,14 +1,13 @@
 import { ethers } from 'ethers';
-import { Chain, Network } from '../../dto/chains';
 import { EthAddress, Uint256 } from '../../dto/chainStructs';
 import { shopABI } from '../../dto/chainABI';
 import { AlreadyRequested } from '../../dto/chainErrors';
 
-export let EVMPublishRequest = async function (chain: Chain, network: Network, address: string, productId: Uint256, shopAddress: EthAddress) {
+export let EVMPublishRequest = async function (address: string, productId: Uint256, shopAddress: EthAddress) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
-    if ((await signer.getAddress()).toLocaleLowerCase() != address.toLocaleLowerCase()) {
-        throw "Address does not match signer address";
+    if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
+        throw new Error("Address does not match signer address");
     }
     const contract = new ethers.Contract(shopAddress, shopABI, signer);
     try {
@@ -20,13 +19,13 @@ export let EVMPublishRequest = async function (chain: Chain, network: Network, a
         });
         const receipt = await tx.wait();
         const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log); } catch { return null } }).filter((log: any) => log != null);
-        const affiliateLog = logs.find((log: any) => log.name == "AffiliateRequested");
+        const affiliateLog = logs.find((log: any) => log.name === "AffiliateRequested");
         const requestId = affiliateLog.args.requestId;
         const publisher = affiliateLog.args.requester;
         return { transactionHash: tx.hash, requestId: requestId, publisher: publisher };
     } catch (e: any) {
-        if (e.code.toString() == "ACTION_REJECTED") {
-            throw "Transaction Rejected";
+        if (e.code.toString() === "ACTION_REJECTED") {
+            throw new Error("Transaction Rejected");
         }
         const err = contract.interface.parseError(e.data);
         if (err.name === "AlreadyRequested") {
