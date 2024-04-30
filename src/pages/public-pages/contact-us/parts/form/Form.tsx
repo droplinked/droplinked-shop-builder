@@ -35,38 +35,44 @@ function ContactUsForm() {
             validationSchema={formSchema}
             onSubmit={onSubmit}
         >
-            {({ errors, values, setFieldValue }) => (
+            {({ errors, values, handleChange }) => (
                 <Form>
                     <Flex direction={"column"} gap={{ base: 4, lg: 6 }}>
                         <Flex direction={{ base: "column", lg: "row" }} alignItems={"center"} gap={4}>
                             <Box width={{ base: "100%", lg: "50%" }}>
                                 <ContactUsInput
+                                    id="firstName"
                                     name="firstName"
                                     value={values.firstName}
                                     placeholder='First Name'
-                                    onChange={(e) => setFieldValue("firstName", e.target.value)}
+                                    onChange={handleChange}
                                 />
                             </Box>
                             <Box width={{ base: "100%", lg: "50%" }}>
                                 <ContactUsInput
+                                    id="lastName"
                                     name="lastName"
                                     value={values.lastName}
                                     placeholder='Last Name'
-                                    onChange={(e) => setFieldValue("lastName", e.target.value)}
+                                    onChange={handleChange}
                                 />
                             </Box>
                         </Flex>
 
                         <ContactUsInput
+                            id="email"
                             name="email"
                             value={values.email}
                             placeholder='Email'
                             // error={errors.email ? errors.email.toString() : ""}
-                            onChange={(e) => setFieldValue("email", e.target.value)}
+                            onChange={handleChange}
                         />
 
                         <AppTextarea
+                            id='message'
                             name='message'
+                            value={values.message}
+                            onChange={handleChange}
                             border={"1px solid #3C3C3C"}
                             borderRadius={8}
                             backgroundColor={"#262626"}
