@@ -1,6 +1,5 @@
 import { NFTStorage } from "nft.storage";
 import { ethers } from 'ethers';
-import { Chain, Network } from "../../dto/chains";
 import { Beneficiary, EthAddress, NFTType, PaymentMethodType, ProductType } from "../../dto/chainStructs";
 import { shopABI } from "../../dto/chainABI";
 import { Unauthorized } from "../../dto/chainErrors";

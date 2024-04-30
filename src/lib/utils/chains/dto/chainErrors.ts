@@ -23,3 +23,36 @@ export class Unauthorized {
         this.to = to;
     }
 }
+
+export class RequestAlreadyConfirmed {
+    public readonly message: string = "";
+    public readonly requestId: Uint256 = 0;
+    public readonly shopAddress: EthAddress = "";
+    constructor(requestId: Uint256, shopAddress: EthAddress) {
+        this.message = `Request ${requestId} already confirmed`;
+        this.shopAddress = shopAddress;
+        this.requestId = requestId;
+    }
+}
+
+export class RequestDoesntExist {
+    public readonly message: string = "";
+    public readonly requestId: Uint256 = 0;
+    public readonly shopAddress: EthAddress = "";
+    constructor(requestId: Uint256, shopAddress: EthAddress) {
+        this.message = `Request ${requestId} does not exist`;
+        this.shopAddress = shopAddress;
+        this.requestId = requestId;
+    }
+}
+
+export class RequestNotConfirmed{
+    public readonly message: string = "";
+    public readonly requestId: Uint256 = 0;
+    public readonly publisher: EthAddress = "";
+    constructor(requestId: Uint256, publisher: EthAddress) {
+        this.message = `Request ${requestId} not confirmed`;
+        this.publisher = publisher;
+        this.requestId = requestId;
+    }
+}

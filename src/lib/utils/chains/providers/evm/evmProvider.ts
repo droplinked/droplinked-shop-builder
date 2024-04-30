@@ -1,5 +1,5 @@
 import { ChainProvider, WalletNotFoundException } from "../../chainProvider";
-import { AffiliateRequestData, Beneficiary, DeployedShop, EthAddress, ProductType, RecordData, Uint256 } from "../../dto/chainStructs";
+import { AffiliateRequestData, Beneficiary, EthAddress, ProductType, RecordData, Uint256 } from "../../dto/chainStructs";
 import { Chain, Network } from "../../dto/chains";
 import { EVMApproveRequest, EVMDisapproveRequest } from "./evmAffiliate";
 import { EVMDeployShop } from "./evmDeployShop";
@@ -15,8 +15,8 @@ export class EVMProvider implements ChainProvider {
         this.chain = _chain;
         this.network = _network;
     }
-    
-    async deployShop(shopName: string, shopAddress: string, shopOwner: string, shopLogo: string, shopDescription: string): Promise<DeployedShop> {
+
+    async deployShop(shopName: string, shopAddress: string, shopOwner: string, shopLogo: string, shopDescription: string): Promise<any> {
         await this.handleWallet(this.address);
         return await EVMDeployShop(this.chain, this.network, this.address, shopName, shopAddress, shopOwner, shopLogo, shopDescription);
     }
@@ -29,7 +29,7 @@ export class EVMProvider implements ChainProvider {
         this.address = address;
         return this;
     }
-    
+
     async handleWallet(_address: string) {
         if (!isMetamaskInstalled())
             throw new WalletNotFoundException("Metamask is not installed");
@@ -74,12 +74,12 @@ export class EVMProvider implements ChainProvider {
         await this.handleWallet(this.address);
         return await EVMPublishRequest(this.address, productId, shopAddress);
     }
-    async approveRequest(requestId: number): Promise<string> {
+    async approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string> {
         await this.handleWallet(this.address);
-        return await EVMApproveRequest(this.chain, this.network, this.address, requestId);
+        return await EVMApproveRequest(this.address, requestId, shopAddress);
     }
-    async disapproveRequest(requestId: string | number): Promise<string> {
+    async disapproveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string> {
         await this.handleWallet(this.address);
-        return await EVMDisapproveRequest(this.chain, this.network, this.address, requestId);
+        return await EVMDisapproveRequest(this.address, requestId, shopAddress);
     }
 }
