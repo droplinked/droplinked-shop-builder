@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Chain, Network } from "./chains";
+import { ethers } from "ethers";
 
 async function getShopByteCode(){
     let result = String((await axios.get(`https://apiv3dev.droplinked.com/storage/shopByteCode`)).data.value);
@@ -18,5 +19,8 @@ async function getProxyAddress(chain: Chain, network: Network) {
     return result;
 }
 
+async function getGasPrice(provider: ethers.providers.Web3Provider): Promise<BigInt> {
+    return (await provider.getGasPrice()).toBigInt();
+}
 
-export {getShopByteCode, getDeployerAddress, getProxyAddress}
+export { getShopByteCode, getDeployerAddress, getProxyAddress, getGasPrice }
