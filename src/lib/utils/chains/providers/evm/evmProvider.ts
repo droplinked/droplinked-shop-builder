@@ -1,5 +1,5 @@
 import { ChainProvider, WalletNotFoundException } from "../../chainProvider";
-import { Beneficiary, ProductType } from "../../dto/chainStructs";
+import { Beneficiary, DeployedShop, ProductType } from "../../dto/chainStructs";
 import { Chain, Network } from "../../dto/chains";
 import { EVMApproveRequest, EVMCancelRequest, EVMDisapproveRequest } from "./evmAffiliate";
 import { EVMDeployShop } from "./evmDeployShop";
@@ -16,7 +16,7 @@ export class EVMProvider implements ChainProvider {
         this.network = _network;
     }
     
-    async deployShop(shopName: string, shopAddress: string, shopOwner: string, shopLogo: string, shopDescription: string): Promise<string> {
+    async deployShop(shopName: string, shopAddress: string, shopOwner: string, shopLogo: string, shopDescription: string): Promise<DeployedShop> {
         await this.handleWallet(this.address);
         return await EVMDeployShop(this.chain, this.network, this.address, shopName, shopAddress, shopOwner, shopLogo, shopDescription);
     }

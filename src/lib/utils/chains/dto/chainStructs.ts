@@ -66,4 +66,10 @@ type PurchaseData =  {
     shopAddress: EthAddress;
 }
 
-export { AffiliateRequest, Beneficiary, EthAddress, Issuer, NFTType, PaymentInfo, PaymentMethodType, Product, ProductType, PurchaseData, ShopInfo, Uint256 }
+type DeployedShop = {
+    shop: EthAddress,
+    nft: EthAddress,
+    transactionHash: string
+}
+
+export { AffiliateRequest, Beneficiary, EthAddress, Issuer, NFTType, PaymentInfo, PaymentMethodType, Product, ProductType, PurchaseData, ShopInfo, Uint256, DeployedShop }
