@@ -2,6 +2,7 @@ import { ChainProvider, WalletNotFoundException } from "../../chainProvider";
 import { Beneficiary, ProductType } from "../../dto/chainStructs";
 import { Chain, Network } from "../../dto/chains";
 import { EVMApproveRequest, EVMCancelRequest, EVMDisapproveRequest } from "./evmAffiliate";
+import { EVMDeployShop } from "./evmDeployShop";
 import { metamaskLogin, isMetamaskInstalled, getAccounts, isWalletConnected, isChainCorrect, changeChain } from "./evmLogin";
 import { EVMPublishRequest } from "./evmPublish";
 import { EVMrecordMerch } from "./evmRecord";
@@ -14,13 +15,21 @@ export class EVMProvider implements ChainProvider {
         this.chain = _chain;
         this.network = _network;
     }
+    
+    async deployShop(shopName: string, shopAddress: string, shopOwner: string, shopLogo: string, shopDescription: string): Promise<string> {
+        await this.handleWallet(this.address);
+        return await EVMDeployShop(this.chain, this.network, this.address, shopName, shopAddress, shopOwner, shopLogo, shopDescription);
+    }
+
     casperRecordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string> {
         throw new Error("Method not implemented.");
     }
+
     setAddress(address: string): ChainProvider {
         this.address = address;
         return this;
     }
+    
     async handleWallet(_address: string) {
         if (!isMetamaskInstalled())
             throw new WalletNotFoundException("Metamask is not installed");

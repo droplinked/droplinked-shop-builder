@@ -14,6 +14,9 @@ export class CasperProvider implements ChainProvider{
         this.chain = _chain;
         this.network = _network;
     }
+    deployShop(shopName: string, shopAddress: string, shopOwner: string, shopLogo: string, shopDescription: string): Promise<string> {
+        throw new Error("Method not implemented.");
+    }
     async walletLogin(): Promise<any> {
         return casper_login();
     }

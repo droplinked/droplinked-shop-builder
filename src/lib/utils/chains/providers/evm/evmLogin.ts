@@ -60,7 +60,7 @@ export async function isWalletConnected() {
 
 export async function isChainCorrect(chain: Chain, network: Network) {
     let chainId = await (window as any).ethereum.request({ method: 'eth_chainId' })
-    return String(chainId).toLowerCase() == chainNames[chain][network].chainId.toLowerCase();
+    return String(chainId).toLowerCase() === chainNames[chain][network].chainId.toLowerCase();
 }
 
 export async function changeChain(chain: Chain, network: Network) {
@@ -88,7 +88,7 @@ export async function metamaskLogin(chain: Chain, network: Network): Promise<{
     signature: string,
 }> {
     if (!isMetamaskInstalled()) {
-        throw ("Wallet is not installed");
+        throw new Error("Wallet is not installed");
     }
     if (!await isWalletConnected()) {
         await requestAccounts();
@@ -108,8 +108,7 @@ export async function metamaskLogin(chain: Chain, network: Network): Promise<{
         console.log(err);
     }
     await changeChain(chain, network);
-    const siweMessage = `Please sign this message to let droplinked view your PublicKey & Address and validate your identity`;
-    let msg = `0x${Buffer.from(siweMessage, 'utf8').toString('hex')}`;
+    let msg = `0x${Buffer.from(`Please sign this message to let droplinked view your PublicKey & Address and validate your identity`, 'utf8').toString('hex')}`;
     const signature = await (window as any).ethereum.request({ method: 'personal_sign', params: [msg, address] });
     return {
         address: address,
