@@ -21,11 +21,7 @@ function TokenPayPage() {
       <Gallery />
       <Details title="Empower Communities" description="Unlock market-changing features at unparalleled value. Our pricing plans are designed to revolutionize your commerce experience, providing powerful tools to elevate your token's utility and your shop's success." />
       <PricingPlans />
-      <StarryBorder
-        title='Launch a Token Powered Shop Today'
-        description='Launch your token powered shop with droplinked today. Simple setup, secure transactions and endless possibilities await your community.'
-        CTAButtonText='Get Started'
-      />
+      <StarryBorder/>
     </Layout>
   )
 }
