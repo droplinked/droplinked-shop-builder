@@ -12,7 +12,7 @@ function CustomHeading({ title, ...props }: Props) {
       fontSize={{ base: 36, lg: 48 }}
       fontWeight={700}
       background={
-        "linear-gradient(90deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%);"
+        "linear-gradient(92deg, #2BCFA1 0%, #C59CFF 47.99%, #9C4EFF 99.98%)"
       }
       backgroundClip={"text"}
       {...props}
