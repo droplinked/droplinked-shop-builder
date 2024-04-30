@@ -33,8 +33,8 @@ export class EVMProvider implements ChainProvider {
     async handleWallet(_address: string) {
         if (!isMetamaskInstalled())
             throw new WalletNotFoundException("Metamask is not installed");
-        let accs = await getAccounts();
-        if (!isWalletConnected() || accs.length === 0) {
+        let accounts = await getAccounts();
+        if (!isWalletConnected() || accounts.length === 0) {
             let { address } = await this.walletLogin();
             if (_address.toLocaleLowerCase() !== address.toLocaleLowerCase()) {
                 await (window as any).ethereum.request({
@@ -50,7 +50,7 @@ export class EVMProvider implements ChainProvider {
         if (!await isChainCorrect(this.chain, this.network)) {
             await changeChain(this.chain, this.network);
         }
-        if (String(accs[0]).toLocaleLowerCase() !== _address.toLocaleLowerCase()) {
+        if (String(accounts[0]).toLocaleLowerCase() !== _address.toLocaleLowerCase()) {
             await (window as any).ethereum.request({
                 method: 'wallet_requestPermissions',
                 params: [{

@@ -2,6 +2,7 @@ import { ethers } from 'ethers';
 import { EthAddress, Uint256 } from '../../dto/chainStructs';
 import { shopABI } from '../../dto/chainABI';
 import { AlreadyRequested } from '../../dto/chainErrors';
+import { getGasPrice } from '../../dto/chainConstants';
 
 export let EVMPublishRequest = async function (address: string, productId: Uint256, shopAddress: EthAddress) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
@@ -11,11 +12,11 @@ export let EVMPublishRequest = async function (address: string, productId: Uint2
     }
     const contract = new ethers.Contract(shopAddress, shopABI, signer);
     try {
-        await contract.callStatic.requestAffiliate(productId, {
-            gasLimit: 300 * 1e3
-        });
+        await contract.callStatic.requestAffiliate(productId);
+        const gasEstimation = (await contract.estimateGas.requestAffiliate(productId)).toBigInt().valueOf();
         const tx = await contract.callStatic.requestAffiliate(productId, {
-            gasLimit: 300 * 1e3
+            gasLimit: gasEstimation * BigInt(105) / BigInt(100),
+            gasPrice: getGasPrice(provider)
         });
         const receipt = await tx.wait();
         const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log); } catch { return null } }).filter((log: any) => log != null);
