@@ -141,7 +141,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
                                 leftIcon={<AppIcons.Google />}
                                 isDisabled={loading}
                             >
-                                Sign up with Google
+                                Sign in with Google
                             </BasicButton>
                         </VStack>
                     </Form>
