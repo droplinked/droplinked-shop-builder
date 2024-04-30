@@ -20,7 +20,7 @@ function TabularContent() {
             title: "Automated Shipping and Fulfillment",
             description: "Simplify shipping and fulfillment processes with our third-party shipping services",
         },
-        "Warehouse": {
+        "Warehouse Management": {
             title: "Warehouse Management System Integration",
             description: "WMS streamlines shipping, boosts accuracy and cuts costs to ensure customer satisfaction",
         },
@@ -34,7 +34,7 @@ function TabularContent() {
                 {activeTab === "Inventory Management" && <Image flexShrink={0} src={"assets/images/physicalProduct/managing-inventory.png"} width={"253px"} height={"228px"} />}
                 {activeTab === "Custom Shipping" && <Image flexShrink={0} src={"assets/images/physicalProduct/custom-shipping.png"} width={"253px"} height={"228px"} />}
                 {activeTab === "Automated Shipping" && <Image flexShrink={0} src={"assets/images/physicalProduct/automated-shipping.png"} width={"253px"} height={"228px"} />}
-                {activeTab === "Warehouse" && <Image flexShrink={0} src={"assets/images/physicalProduct/warehouse.png"} width={"253px"} height={"228px"} />}
+                {activeTab === "Warehouse Management" && <Image flexShrink={0} src={"assets/images/physicalProduct/warehouse.png"} width={"253px"} height={"228px"} />}
 
                 <Flex width={{ base: "100%", lg: "50%" }} direction={"column"} gap={6}>
                     <CustomHeading title={title} fontSize={36} textAlign={{ base: "center", lg: "start" }} />

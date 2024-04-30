@@ -12,7 +12,7 @@ function DigitalProductPage() {
         <Layout>
             <AboveTheFoldSection
                 image="assets/images/digitalProduct/nft.png"
-                title="Minting and Monetizing Digital Assets"
+                title="Minting and Monetizing Assets"
                 description="Convert digital assets into exclusive collectibles that work seamlessly with a storefront to engage the community"
                 CTAButtonText="Get Started"
             />
