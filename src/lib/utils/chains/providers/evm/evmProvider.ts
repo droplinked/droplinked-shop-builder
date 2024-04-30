@@ -1,7 +1,7 @@
 import { ChainProvider, WalletNotFoundException } from "../../chainProvider";
-import { Beneficiary, DeployedShop, EthAddress, ProductType, RecordData } from "../../dto/chainStructs";
+import { AffiliateRequestData, Beneficiary, DeployedShop, EthAddress, ProductType, RecordData, Uint256 } from "../../dto/chainStructs";
 import { Chain, Network } from "../../dto/chains";
-import { EVMApproveRequest, EVMCancelRequest, EVMDisapproveRequest } from "./evmAffiliate";
+import { EVMApproveRequest, EVMDisapproveRequest } from "./evmAffiliate";
 import { EVMDeployShop } from "./evmDeployShop";
 import { metamaskLogin, isMetamaskInstalled, getAccounts, isWalletConnected, isChainCorrect, changeChain } from "./evmLogin";
 import { EVMPublishRequest } from "./evmPublish";
@@ -66,21 +66,17 @@ export class EVMProvider implements ChainProvider {
         this.address = address;
         return { address, signature };
     }
-    async recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, apiKey: string): Promise<RecordData> {
+    async recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, apiKey: string): Promise<RecordData> {
         await this.handleWallet(this.address);
-        return await EVMrecordMerch(this.chain, this.network, sku_properties, this.address, product_title, description, image_url, price, amount, commission, type, beneficiaries, acceptsManageWallet, royalty, nftContract, shopAddress, apiKey);
+        return await EVMrecordMerch(this.chain, this.network, sku_properties, this.address, product_title, description, image_url, price, amount, commission, type, beneficiaries, acceptsManageWallet, royalty, nftContract, shopAddress, currencyAddress, apiKey);
     }
-    async publishRequest(producerAccountAddress: string, tokenId: string | number): Promise<string> {
+    async publishRequest(productId: Uint256, shopAddress: EthAddress): Promise<AffiliateRequestData> {
         await this.handleWallet(this.address);
-        return await EVMPublishRequest(this.chain, this.network, this.address, producerAccountAddress, tokenId);
+        return await EVMPublishRequest(this.chain, this.network, this.address, productId, shopAddress);
     }
     async approveRequest(requestId: number): Promise<string> {
         await this.handleWallet(this.address);
         return await EVMApproveRequest(this.chain, this.network, this.address, requestId);
-    }
-    async cancelRequest(requestId: string | number): Promise<string> {
-        await this.handleWallet(this.address);
-        return await EVMCancelRequest(this.chain, this.network, this.address, requestId);
     }
     async disapproveRequest(requestId: string | number): Promise<string> {
         await this.handleWallet(this.address);
