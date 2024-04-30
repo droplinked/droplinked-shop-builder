@@ -4,20 +4,20 @@ import React from 'react'
 
 function PaymentDetails() {
     const networks = [
-        'assets/images/homepage/stacks.png',
-        'assets/images/homepage/polygon.png',
-        'assets/images/homepage/casper.png',
-        'assets/images/homepage/Near.png',
-        'assets/images/homepage/xrp-ledger.png',
-        'assets/images/homepage/Unisat.png',
-        'assets/images/homepage/Binance.png',
-        'assets/images/homepage/Solana.png',
-        'assets/images/homepage/base.png',
-        'assets/images/homepage/skale.png',
-        'assets/images/homepage/Hedera.png',
-        'https://upload-file-flatlay.s3.us-west-2.amazonaws.com/fac2d50acefbc555c6eb606030489e11409f3bd22611abafc5eb5ea43ec02458.png_or.png',
-        'https://upload-file-flatlay.s3.us-west-2.amazonaws.com/86bc62aa00b03f8c368694ae03ad997f354aa54c89fd3f1a29449a72746c00c6.png_or.png',
-        'https://upload-file-flatlay.s3.us-west-2.amazonaws.com/322b20d5e47893778a60ca1b548d4bcc8ead9dced8990343cfc14b152dba82df.png_or.png'
+        'assets/images/homepage/black_and_white/eth.png',
+        'assets/images/homepage/black_and_white/bitcoin.png',
+        'assets/images/homepage/black_and_white/binance.png',
+        'assets/images/homepage/black_and_white/stacks.png',
+        'assets/images/homepage/black_and_white/near.png',
+        'assets/images/homepage/black_and_white/polygon.png',
+        'assets/images/homepage/black_and_white/casper.png',
+        'assets/images/homepage/black_and_white/unisat.png',
+        'assets/images/homepage/black_and_white/base.png',
+        'assets/images/homepage/black_and_white/solana.png',
+        'assets/images/homepage/black_and_white/xrpl.png',
+        'assets/images/homepage/black_and_white/skale.png',
+        'assets/images/homepage/black_and_white/hedera.png',
+        'assets/images/homepage/black_and_white/stripe.png',
     ]
 
     return (
