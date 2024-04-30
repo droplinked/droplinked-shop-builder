@@ -5,7 +5,7 @@ import TabsContainer from 'pages/public-pages/landings/parts/tabs-container/Tabs
 import React, { useState } from 'react'
 
 function TabularContent() {
-    const tabs = ["Inventory Management", "Custom Shipping", "Automated Shipping", "Warehouse"]
+    const tabs = ["Inventory Management", "Custom Shipping", "Automated Shipping", "Warehouse Management"]
     const [activeTab, setActiveTab] = useState(tabs[0])
     const contentMap: { [key: string]: { title: string, description: string } } = {
         "Inventory Management": {
