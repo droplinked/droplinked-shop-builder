@@ -7,8 +7,8 @@ interface Iupdate {
 
 const technicalModel = ({
   checkPaymentMethod: (payments: Array<any>) => {
-    const check = payments.find((el: any) => el.isActive)
-    return Boolean(check?.type)
+    // const check = payments.find((el: any) => el.isActive)
+    // return Boolean(check?.type)
   },
 
   refactorPayment: ({ key, payments, value, type }: Iupdate) => {

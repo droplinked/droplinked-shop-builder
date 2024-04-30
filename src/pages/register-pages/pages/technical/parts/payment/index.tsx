@@ -1,4 +1,4 @@
-import { Box, VStack } from '@chakra-ui/react';
+import { Box, VStack, chakra } from '@chakra-ui/react';
 import AppCard from 'components/common/card/AppCard';
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import AppTypography from 'components/common/typography/AppTypography';
@@ -12,21 +12,27 @@ import ContainerPayment from './parts/container';
 import PaymentsLoading from './parts/loading/PaymentsLoading';
 
 function Payments() {
-    const { state: { paymentMethods }, userPayments, updateState } = useContext(technicalContext)
+    const { state: { paymentMethods } } = useContext(technicalContext)
+    console.log("reading payment methods", paymentMethods)
+    // console.log("heyyyuuuu", paymentMethods)
     const paymentPublic = useMutation(() => paymentPublicService())
     const { makePayments } = technicalPaymentsModel
+    const combinedPaymentMethods = makePayments({
+        paymentMethods: paymentMethods,
+        paymentPublic: paymentPublic.data?.data?.data
+    })
+    // console.log("combined", combinedPaymentMethods)
 
-    // Fetch payments method
-    useEffect(() => {paymentPublic.mutate()}, [])
+    useEffect(() => { paymentPublic.mutate() }, [])
 
     // update payment methods
-    useEffect(() => {
-        const pPublic = paymentPublic.data?.data?.data
-        if (pPublic && userPayments) updateState("paymentMethods", makePayments({
-            paymentMethods: userPayments,
-            paymentPublic: pPublic
-        }))
-    }, [userPayments, paymentPublic.data]);
+    // useEffect(() => {
+    //     const pPublic = paymentPublic.data?.data?.data
+    //     if (pPublic && userPayments) updateState("paymentMethods", makePayments({
+    //         paymentMethods: userPayments,
+    //         paymentPublic: pPublic
+    //     }))
+    // }, [userPayments, paymentPublic.data]);
 
     return (
         <AppCard>
@@ -39,15 +45,33 @@ function Payments() {
                 </Box>
                 <VStack align='stretch' spacing={3}>
                     <VStack spacing={2} align={"stretch"}>
-                        {paymentPublic.isLoading ? <PaymentsLoading /> : paymentMethods && paymentMethods.map((el, key) => (
-                            <BlackBox key={key} padding="5px 20px" height="55px" display="flex" alignItems="center">
-                                <ContainerPayment
-                                    title={el.type}
-                                    locked={el.isActive}
-                                    value={el.destinationAddress}
-                                />
-                            </BlackBox>
-                        ))}
+                        {paymentPublic.isLoading ? <PaymentsLoading /> : combinedPaymentMethods?.map((payment, key) => {
+                            return payment.tokens?.length ?
+                                payment.tokens.map((token, index) =>
+                                    <BlackBox key={index} padding="5px 20px" height="55px" display="flex" alignItems="center">
+                                        <ContainerPayment
+                                            // title={`${payment.type} (${token.type})`}
+                                            // locked={payment.isActive}
+                                            // value={payment.destinationAddress}
+                                            // title={`${payment.type} (${token.type})`}
+                                            chain={payment}
+                                            token={token}
+                                        // walletAddress={(paymentMethods?.find(method => method.type === payment.type))?.destinationAddress ?? ""}
+                                        />
+                                    </BlackBox>
+                                )
+                                :
+                                <BlackBox key={key} padding="5px 20px" height="55px" display="flex" alignItems="center">
+                                    <ContainerPayment
+                                        // title={payment.type}
+                                        // locked={payment.isActive}
+                                        // value={payment.destinationAddress}
+                                        // title={payment.type}
+                                        chain={payment}
+                                    // walletAddress={(paymentMethods?.find(method => method.type === payment.type))?.destinationAddress ?? ""}
+                                    />
+                                </BlackBox>
+                        })}
                     </VStack>
                 </VStack>
             </VStack>

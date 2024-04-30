@@ -3,30 +3,24 @@ interface ImakePayments {
     paymentPublic: any
 }
 
-interface Ifind {
-    type: string
-    paymentMethods: any
-}
-
-
 const technicalPaymentsModel = ({
-    find: ({ paymentMethods, type }: Ifind) => paymentMethods.filter((el: any) => el.type === type)[0],
-
     makePayments: ({ paymentMethods, paymentPublic }: ImakePayments) => {
-        const result = paymentPublic.map((el: any) => {
-            const findElement: any = technicalPaymentsModel.find({
-                paymentMethods: paymentMethods,
-                type: el
-            })
-
+        return paymentPublic?.map((payment: any) => {
+            const correspondingMethod = paymentMethods?.find(method => method.type === payment.type)
             return {
-                type: el,
-                destinationAddress: findElement ? findElement.destinationAddress || "" : "",
-                isActive: findElement ? findElement.isActive || false : false
+                ...payment,
+                destinationAddress: correspondingMethod?.destinationAddress || "",
+                isActive: correspondingMethod?.isActive || false,
+                tokens:
+                    payment.tokens?.map(token => (
+                        {
+                            ...token,
+                            isActive: (correspondingMethod?.tokens.find(currentToken => currentToken.type === token.type)?.isActive || false)
+                        }
+                    ))
+                    || []
             }
         })
-
-        return result
     }
 })
 

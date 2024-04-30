@@ -15,31 +15,35 @@ import Wallet from "./parts/wallet";
 
 function Technical() {
   const userPaymentsService = useMutation(() => paymentMethodsService())
-  const [Technical, setTechnical] = useState(technicalContextState);
-  const { shop } = useProfile()
-  const { refactorPayment } = technicalModel
+  const [technical, setTechnical] = useState(technicalContextState)
+  // const { shop } = useProfile()
+  // const { refactorPayment } = technicalModel
   const currentPath = useLocation().pathname
   const isRegister = currentPath.includes("register")
 
   const updateState = (key: string, value: string) => setTechnical((prev) => ({ ...prev, [key]: value }))
 
-  const updatePayment = useCallback((key: string, value: string, title: string) => {
-    const refactor = (payments: any) => refactorPayment({
-      payments,
-      key,
-      value,
-      type: title
-    })
-    setTechnical((prev) => ({ ...prev, paymentMethods: refactor(prev.paymentMethods) }))
-  }, [])
+  // const updatePayment = useCallback((key: string, value: string, title: string) => {
+  //   const refactor = (payments: any) => refactorPayment({
+  //     payments,
+  //     key,
+  //     value,
+  //     type: title
+  //   })
+  //   setTechnical((prev) => ({ ...prev, paymentMethods: refactor(prev.paymentMethods) }))
+  // }, [])
 
   // Set default "STRIPE" when register
-  const userPayments = useMemo(() => {
-    return isRegister ? [{ type: "STRIPE", destinationAddress: "", isActive: true }] : userPaymentsService.data?.data?.data
-  }, [isRegister, userPaymentsService.data])
+  // const userPayments = useMemo(() => {
+  //   return isRegister ? [{ type: "STRIPE", destinationAddress: "", isActive: true }] : userPaymentsService.data?.data?.data
+  // }, [isRegister, userPaymentsService.data])
 
   // Fetch payments user
   useEffect(() => userPaymentsService.mutate(), [])
+
+  useEffect(() => {
+    updateState("paymentMethods", userPaymentsService.data?.data?.data)
+  }, [userPaymentsService.data?.data?.data])
 
   // update imsType as state managment
   // useEffect(() => {
@@ -47,13 +51,13 @@ function Technical() {
   // }, [shop]);
 
   return (
-    <technicalContext.Provider value={{ state: Technical, updateState, updatePayment, userPayments }}>
+    <technicalContext.Provider value={{ state: technical, updateState }}>
       <PageContent>
         <VStack spacing={4} align="stretch">
           {/* <Ims /> */}
           <FinancialAccounts />
           <SupportedLoginMethods />
-          {Technical.imsType !== "SHOPIFY" && <Payments />}
+          {technical.imsType !== "SHOPIFY" && <Payments />}
           <Wallet />
           <TechnicalSubmit />
         </VStack>
