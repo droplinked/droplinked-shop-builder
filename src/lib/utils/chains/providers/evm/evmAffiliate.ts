@@ -3,21 +3,30 @@ import { EthAddress, Uint256 } from '../../dto/chainStructs';
 import { shopABI } from '../../dto/chainABI';
 import { getGasPrice } from '../../dto/chainConstants';
 import { RequestAlreadyConfirmed, RequestDoesntExist, RequestNotConfirmed, Unauthorized } from '../../dto/chainErrors';
+import { ModalInterface } from '../../dto/modalInterface';
 
-export let EVMApproveRequest = async function (address: string, requestId: Uint256, shopAddress: EthAddress): Promise<string> {
+export let EVMApproveRequest = async function (address: string, requestId: Uint256, shopAddress: EthAddress, modalInterface: ModalInterface): Promise<string> {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
     if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
         throw new Error("Address does not match signer address");
     }
+    modalInterface.waiting("Approving request...");
     const contract = new ethers.Contract(shopAddress, shopABI, signer);
     try {
         await contract.callStatic.approveRequest(requestId);
         const gasEstimation = (await contract.estimateGas.approveRequest(requestId)).toBigInt().valueOf();
+        modalInterface.waiting("Approving...");
         const tx = await contract.approveRequest(requestId, {
             gasLimit: gasEstimation * BigInt(105) / BigInt(100),
             gasPrice: getGasPrice(provider)
         })
+        const receipt = await tx.wait();
+        const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log); } catch { return null } }).filter((log: any) => log != null);
+        const affiliateLog = logs.find((log: any) => log.name === "AffiliateRequestApproved");
+        const _requestId = affiliateLog.args.requestId;
+        const approver = affiliateLog.args.approver;
+        modalInterface.success("Request Approved.");
         return tx.hash;
     } catch (e: any) {
         if (e.code.toString() === "ACTION_REJECTED") {
@@ -36,20 +45,28 @@ export let EVMApproveRequest = async function (address: string, requestId: Uint2
     }
 }
 
-export let EVMDisapproveRequest = async function (address: string, requestId: Uint256, shopAddress: EthAddress) {
+export let EVMDisapproveRequest = async function (address: string, requestId: Uint256, shopAddress: EthAddress, modalInterface: ModalInterface) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
     const signer = provider.getSigner();
     if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
         throw new Error("Address does not match signer address");
     }
+    modalInterface.waiting("Disapproving request...");
     const contract = new ethers.Contract(shopAddress, shopABI, signer);
     try {
         await contract.callStatic.disapprove(requestId);
         const gasEstimation = (await contract.estimateGas.disapprove(requestId)).toBigInt().valueOf();
+        modalInterface.waiting("Disapproving...");
         const tx = await contract.disapprove(requestId, {
             gasLimit: gasEstimation * BigInt(105) / BigInt(100),
             gasPrice: getGasPrice(provider)
         });
+        const receipt = await tx.wait();
+        const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log); } catch { return null } }).filter((log: any) => log != null);
+        const affiliateLog = logs.find((log: any) => log.name === "AffiliateRequestDisapproved");
+        const _requestId = affiliateLog.args.requestId;
+        const disapprover = affiliateLog.args.disapprover;
+        modalInterface.success("Request Disapproved.");
         return tx.hash;
     } catch (e: any) {
         if (e.code.toString() === "ACTION_REJECTED") {

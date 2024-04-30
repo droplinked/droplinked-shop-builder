@@ -1,6 +1,7 @@
 import { AffiliateRequestData, DeployedShop, EthAddress, ProductType, RecordData, Uint256 } from "./dto/chainStructs";
 import { Beneficiary } from "./dto/chainStructs";
 import { Chain, Network } from "./dto/chains";
+import { ModalInterface, defaultModal } from "./dto/modalInterface";
 import { CasperProvider } from "./providers/casper/casperProvider";
 import { EVMProvider } from "./providers/evm/evmProvider";
 
@@ -33,6 +34,7 @@ export interface ChainProvider {
     approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
     disapproveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
     setAddress(address: EthAddress): ChainProvider;
+    setModal(modal: ModalInterface): ChainProvider;
 }
 
 let chainMapping = {
@@ -78,8 +80,11 @@ let chainMapping = {
     }
 };
 
-export function getNetworkProvider(chain: Chain, network: Network, address: string) {
+export function getNetworkProvider(chain: Chain, network: Network, address: string, modalInterface: ModalInterface = null) {
     if (chainMapping[chain][network] == null)
         throw new ChainNotImplementedException("The given chain is not implemented yet");
-    return chainMapping[chain][network]?.setAddress(address);
+    if (modalInterface == null){
+        modalInterface = new defaultModal();
+    }
+    return chainMapping[chain][network]?.setAddress(address).setModal(modalInterface);
 }
