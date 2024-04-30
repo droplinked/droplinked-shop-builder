@@ -1,5 +1,5 @@
 import { ChainProvider, WalletNotFoundException } from "../../chainProvider";
-import { Beneficiary, DeployedShop, ProductType } from "../../dto/chainStructs";
+import { Beneficiary, DeployedShop, EthAddress, ProductType, RecordData } from "../../dto/chainStructs";
 import { Chain, Network } from "../../dto/chains";
 import { EVMApproveRequest, EVMCancelRequest, EVMDisapproveRequest } from "./evmAffiliate";
 import { EVMDeployShop } from "./evmDeployShop";
@@ -34,9 +34,9 @@ export class EVMProvider implements ChainProvider {
         if (!isMetamaskInstalled())
             throw new WalletNotFoundException("Metamask is not installed");
         let accs = await getAccounts();
-        if (!isWalletConnected() || accs.length == 0) {
+        if (!isWalletConnected() || accs.length === 0) {
             let { address } = await this.walletLogin();
-            if (_address.toLocaleLowerCase() != address.toLocaleLowerCase()) {
+            if (_address.toLocaleLowerCase() !== address.toLocaleLowerCase()) {
                 await (window as any).ethereum.request({
                     method: 'wallet_requestPermissions',
                     params: [{
@@ -50,7 +50,7 @@ export class EVMProvider implements ChainProvider {
         if (!await isChainCorrect(this.chain, this.network)) {
             await changeChain(this.chain, this.network);
         }
-        if (String(accs[0]).toLocaleLowerCase() != _address.toLocaleLowerCase()) {
+        if (String(accs[0]).toLocaleLowerCase() !== _address.toLocaleLowerCase()) {
             await (window as any).ethereum.request({
                 method: 'wallet_requestPermissions',
                 params: [{
@@ -66,9 +66,9 @@ export class EVMProvider implements ChainProvider {
         this.address = address;
         return { address, signature };
     }
-    async recordProduct(sku_properties: any, product_title: string, discription: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, paymentWallet: string, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, apiKey: string): Promise<string> {
+    async recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, apiKey: string): Promise<RecordData> {
         await this.handleWallet(this.address);
-        return await EVMrecordMerch(this.chain, this.network, sku_properties, this.address, product_title, discription, image_url, price, amount, commission, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty, apiKey);
+        return await EVMrecordMerch(this.chain, this.network, sku_properties, this.address, product_title, description, image_url, price, amount, commission, type, beneficiaries, acceptsManageWallet, royalty, nftContract, shopAddress, apiKey);
     }
     async publishRequest(producerAccountAddress: string, tokenId: string | number): Promise<string> {
         await this.handleWallet(this.address);

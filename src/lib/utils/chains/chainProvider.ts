@@ -1,4 +1,4 @@
-import { DeployedShop, EthAddress, ProductType, Uint256 } from "./dto/chainStructs";
+import { DeployedShop, EthAddress, ProductType, RecordData, Uint256 } from "./dto/chainStructs";
 import { Beneficiary } from "./dto/chainStructs";
 import { Chain, Network } from "./dto/chains";
 import { CasperProvider } from "./providers/casper/casperProvider";
@@ -28,7 +28,7 @@ export interface ChainProvider {
     walletLogin(): Promise<any>;
     casperRecordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string>;
     deployShop(shopName: string, shopAddress: string, shopOwner: EthAddress, shopLogo: string, shopDescription: string): Promise<DeployedShop>;
-    recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, paymentWallet: string, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, apiKey: string): Promise<string>;
+    recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, apiKey: string): Promise<RecordData>;
     publishRequest(producerAccountAddress: EthAddress, tokenId: Uint256): Promise<string>;
     approveRequest(requestId: Uint256): Promise<string>;
     cancelRequest(requestId: Uint256): Promise<string>;

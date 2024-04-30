@@ -72,4 +72,6 @@ type DeployedShop = {
     transactionHash: string
 }
 
-export { AffiliateRequest, Beneficiary, EthAddress, Issuer, NFTType, PaymentInfo, PaymentMethodType, Product, ProductType, PurchaseData, ShopInfo, Uint256, DeployedShop }
+type RecordData = { transactionHash: string, productId: Uint256, amountRecorded: Uint256 };
+
+export { AffiliateRequest, RecordData, Beneficiary, EthAddress, Issuer, NFTType, PaymentInfo, PaymentMethodType, Product, ProductType, PurchaseData, ShopInfo, Uint256, DeployedShop }
