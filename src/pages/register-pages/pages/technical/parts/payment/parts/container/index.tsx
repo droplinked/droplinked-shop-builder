@@ -6,18 +6,20 @@ import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
 import { PageContentWrapper } from 'pages/register-pages/RegisterPages-style'
 import technicalContext from 'pages/register-pages/pages/technical/context'
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import classes from './style.module.scss'
 import useAppToast from 'functions/hooks/toast/useToast'
 
 function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
   const { showToast } = useAppToast()
   const { state: { paymentMethods }, updateState } = useContext(technicalContext)
-  const walletAddressInputRef = useRef<HTMLInputElement>(null)
+  const [walletAddress, setWalletAddress] = useState<string>(chain.destinationAddress)
   const [canEditWallet, setWalletEditability] = useState(!!chain.destinationAddress) // If the 'chain' object has an 'destinationAddress' property, we can edit it
 
   const persistWalletAddress = () => {
-    const newWalletAddress = walletAddressInputRef.current.value.trim()
+    const newWalletAddress = walletAddress.trim()
+    if (!newWalletAddress) return
+
     const updatedPaymentMethods = [...paymentMethods]
     const existingChainIndex = updatedPaymentMethods.findIndex(payment => payment.type === chain.type)
     if (existingChainIndex !== -1) {
@@ -26,6 +28,7 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
     }
     else updatedPaymentMethods.push({ ...chain, destinationAddress: newWalletAddress })
     updateState("paymentMethods", updatedPaymentMethods)
+    setWalletEditability(true)
   }
 
   const handleActivation = (e) => {
@@ -59,7 +62,6 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
       }
 
       targetChain.isActive = true
-
       const targetTokenIndex = targetChain.tokens.findIndex(currentToken => currentToken.type === token.type)
 
       if (isChecked) {
@@ -70,7 +72,6 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
         }
       } else {
         const activePaymentMethodsCount = updatedPaymentMethods.filter(payment => payment.isActive).length
-        console.log("token dar chain truw", updatedPaymentMethods.filter(payment => payment.isActive))
         if (activePaymentMethodsCount === 1) return
         if (targetTokenIndex !== -1) {
           targetChain.tokens[targetTokenIndex].isActive = false
@@ -88,6 +89,9 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
     updateState("paymentMethods", updatedPaymentMethods)
   }
 
+  // whenever we change wallet address, it should also be updated in other chain-token pairs (because we store wallet address in state)
+  useEffect(() => { setWalletAddress(chain.destinationAddress) }, [chain.destinationAddress])
+
   return (
     <Flex justifyContent="space-between" width="100%">
       <Flex alignItems={"center"} gap={4}>
@@ -101,17 +105,16 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
             <PageContentWrapper padding={3} height="45px" display="flex" alignItems="center">
               <Flex width={"100%"} gap={4}>
                 <input
-                  ref={walletAddressInputRef}
                   type="text"
                   className={classes.textbox}
                   placeholder='Please enter wallet address'
                   spellCheck={false}
                   disabled={canEditWallet}
-                  value={chain.destinationAddress}
-                  onChange={persistWalletAddress}
+                  value={walletAddress}
+                  onChange={(e) => setWalletAddress(e.target.value)}
                 />
                 {canEditWallet && <Box onClick={() => setWalletEditability(false)}><AppIcons.EditIcon width="16px" height="16px" cursor={"pointer"} /></Box>}
-                {!canEditWallet && <BasicButton minWidth={"48px"} sizes='medium' onClick={() => setWalletEditability(true)}>Save</BasicButton>}
+                {!canEditWallet && <BasicButton minWidth={"48px"} sizes='medium' onClick={persistWalletAddress}>Save</BasicButton>}
               </Flex>
             </PageContentWrapper>
           </HStack>
