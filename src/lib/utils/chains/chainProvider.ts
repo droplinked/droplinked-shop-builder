@@ -81,7 +81,7 @@ let chainMapping = {
     }
 };
 
-export function getNetworkProvider(chain: Chain, network: Network, address: string, wallet: ChainWallet, modalInterface: ModalInterface) {
+export function getNetworkProvider(chain: Chain, network: Network, address: string, wallet: ChainWallet = ChainWallet.Metamask, modalInterface: ModalInterface = new defaultModal()) {
     if (chainMapping[chain][network] == null)
         throw new ChainNotImplementedException("The given chain is not implemented yet");
     if (modalInterface == null) {
