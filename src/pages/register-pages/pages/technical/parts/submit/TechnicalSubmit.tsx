@@ -6,29 +6,24 @@ import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import { IshopUpdateService } from 'lib/apis/shop/interfaces';
 import { shopUpdateService } from 'lib/apis/shop/shopServices';
 import AppErrors from 'lib/utils/statics/errors/errors';
-import React, { useCallback, useContext, useMemo } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { useMutation } from 'react-query';
 import { useLocation } from 'react-router-dom';
 import technicalContext from '../../context';
-import technicalModel from '../../model';
-import TechnicalSubmitModel from './TechnicalSubmitModel';
 
 function TechnicalSubmit() {
-    const { state: { imsType, paymentMethods, loginMethods }, userPayments, updateState } = useContext(technicalContext)
+    const { state: { imsType, paymentMethods, loginMethods }, updateState } = useContext(technicalContext)
     const { mutateAsync, isLoading } = useMutation((params: IshopUpdateService) => shopUpdateService(params))
     const currentPath = useLocation().pathname
-    const { checkPaymentMethod } = technicalModel
     const { setShopData: { loading, update }, shop } = useProfile()
     const { shopNavigate } = useCustomNavigate()
-    const { refactor } = TechnicalSubmitModel
     const isRegister = currentPath.includes("register")
     const { showToast } = useAppToast()
-    const checkPayment = useMemo(() => checkPaymentMethod(paymentMethods), [paymentMethods])
 
     const clickSubmit = useCallback(async () => {
         try {
             const shopData: IshopUpdateService = {
-                paymentMethods: isRegister ? paymentMethods.filter(el => el.isActive) : refactor({ payments: paymentMethods, userPayments }),
+                paymentMethods: isRegister ? paymentMethods.filter(el => el.isActive) : paymentMethods,
                 loginMethods
             }
             await mutateAsync(shopData)
@@ -42,7 +37,7 @@ function TechnicalSubmit() {
         } catch (error) {
             showToast({ message: error.message, type: "error" });
         }
-    }, [paymentMethods, imsType, userPayments, isRegister, shop, updateState])
+    }, [paymentMethods, imsType, paymentMethods, isRegister, shop, updateState])
     return (
         <Flex justifyContent={isRegister ? "space-between" : "right"} width={"100%"}>
             {isRegister && (
@@ -51,7 +46,7 @@ function TechnicalSubmit() {
                 </Box>
             )}
             <Box>
-                <BasicButton sizes="large" isDisabled={imsType === "DROPLINKED" ? !imsType || !checkPayment : !imsType} onClick={clickSubmit} isLoading={isLoading || loading}>
+                <BasicButton sizes="large" isDisabled={imsType === "DROPLINKED" && !imsType} onClick={clickSubmit} isLoading={isLoading || loading}>
                     {isRegister ? "Publish Store" : "Update"}
                 </BasicButton>
             </Box>

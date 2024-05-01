@@ -1,10 +1,11 @@
 @import "assest/style/colors";
 
 .textbox {
-    background: #1C1C1C;
-    border: none;
-    font-size: .85rem;
+    flex: 1;
     outline: none;
+    border: none;
+    background: #1C1C1C;
+    font-size: .85rem;
 }
 
 .active {
