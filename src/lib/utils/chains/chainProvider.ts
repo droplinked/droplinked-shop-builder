@@ -30,7 +30,7 @@ export interface ChainProvider {
     casperRecordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string>;
     deployShop(shopName: string, shopAddress: string, shopOwner: EthAddress, shopLogo: string, shopDescription: string): Promise<DeployedShop>;
     recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, apiKey: string): Promise<RecordData>;
-    publishRequest(producerAccountAddress: EthAddress, tokenId: Uint256): Promise<AffiliateRequestData>;
+    publishRequest(productId: Uint256, shopAddress: EthAddress): Promise<AffiliateRequestData>;
     approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
     disapproveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
     setAddress(address: EthAddress): ChainProvider;
