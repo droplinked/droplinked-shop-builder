@@ -5,8 +5,7 @@ import { AlreadyRequested } from '../../dto/chainErrors';
 import { getGasPrice } from '../../dto/chainConstants';
 import { ModalInterface } from '../../dto/modalInterface';
 
-export let EVMPublishRequest = async function (address: string, productId: Uint256, shopAddress: EthAddress, modalInterface: ModalInterface) {
-    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+export let EVMPublishRequest = async function (provider: any,address: string, productId: Uint256, shopAddress: EthAddress, modalInterface: ModalInterface) {
     const signer = provider.getSigner();
     if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
         throw new Error("Address does not match signer address");

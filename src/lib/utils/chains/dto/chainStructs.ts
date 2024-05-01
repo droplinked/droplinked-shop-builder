@@ -66,7 +66,7 @@ type PurchaseData = {
     shopAddress: EthAddress;
 }
 
-type RecordData = { transactionHash: string, productId: Uint256, amountRecorded: Uint256 } | undefined;
+type RecordData = { transactionHash: string, productId: Uint256, amountRecorded: Uint256 };
 
 type AffiliateRequestData = { transactionHash: string; requestId: Uint256; publisher: EthAddress } | undefined;
 
@@ -76,4 +76,5 @@ type DeployedShop = {
     transactionHash: string
 }
 
-export { AffiliateRequest, DeployedShop, AffiliateRequestData, RecordData, Beneficiary, EthAddress, Issuer, NFTType, PaymentInfo, PaymentMethodType, Product, ProductType, PurchaseData, ShopInfo, Uint256 }
+export { NFTType, PaymentMethodType, ProductType };
+export type { AffiliateRequest, DeployedShop, AffiliateRequestData, RecordData, Beneficiary, EthAddress, Issuer, PaymentInfo, Product, PurchaseData, ShopInfo, Uint256 };

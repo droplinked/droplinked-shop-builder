@@ -13,8 +13,7 @@ export async function uploadToIPFS(metadata: any, apiKey: string) {
     const ipfs_hash = await client.storeBlob(new Blob([metadata]));
     return ipfs_hash;
 }
-export async function EVMrecordMerch(sku_properties: any, address: string, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, apiKey: string, modalInterface: ModalInterface) {
-    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+export async function EVMrecordMerch(provider: any,sku_properties: any, address: string, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, apiKey: string, modalInterface: ModalInterface) {
     const signer = provider.getSigner();
     if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
         throw new Error("Address does not match signer address");

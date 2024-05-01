@@ -9,8 +9,7 @@ function sixify(num: number): string {
     return num.toString().padStart(6, "0");
 }
 
-export async function EVMDeployShop(chain: Chain, network: Network, address: string, shopName: string, shopAddress: string, shopOwner: string, shopLogo: string, shopDescription: string, modalInterface: ModalInterface) {
-    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+export async function EVMDeployShop(provider: any, chain: Chain, network: Network, address: string, shopName: string, shopAddress: string, shopOwner: string, shopLogo: string, shopDescription: string, modalInterface: ModalInterface) {
     const signer = provider.getSigner();
     if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
         throw new Error("Address does not match signer address");
