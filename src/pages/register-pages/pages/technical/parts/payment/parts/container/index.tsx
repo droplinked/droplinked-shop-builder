@@ -6,80 +6,50 @@ import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
 import { PageContentWrapper } from 'pages/register-pages/RegisterPages-style'
 import technicalContext from 'pages/register-pages/pages/technical/context'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import classes from './style.module.scss'
+import useAppToast from 'functions/hooks/toast/useToast'
 
 function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
+  const { showToast } = useAppToast()
   const { state: { paymentMethods }, updateState } = useContext(technicalContext)
-  const [walletAddress, setWalletAddress] = useState(chain.destinationAddress)
-  const [canEditWallet, setWalletEditability] = useState(!!walletAddress) // If the 'chain' object has an 'destinationAddress' property, we can edit it
+  const walletAddressInputRef = useRef<HTMLInputElement>(null)
+  const [canEditWallet, setWalletEditability] = useState(!!chain.destinationAddress) // If the 'chain' object has an 'destinationAddress' property, we can edit it
 
   const persistWalletAddress = () => {
+    const newWalletAddress = walletAddressInputRef.current.value.trim()
     const updatedPaymentMethods = [...paymentMethods]
     const existingChainIndex = updatedPaymentMethods.findIndex(payment => payment.type === chain.type)
     if (existingChainIndex !== -1) {
-      updatedPaymentMethods[existingChainIndex].destinationAddress = walletAddress
+      updatedPaymentMethods[existingChainIndex].destinationAddress = newWalletAddress
+      if (!newWalletAddress) updatedPaymentMethods[existingChainIndex].isActive = false
     }
-    else updatedPaymentMethods.push({ ...chain, destinationAddress: walletAddress })
+    else updatedPaymentMethods.push({ ...chain, destinationAddress: newWalletAddress })
     updateState("paymentMethods", updatedPaymentMethods)
-    setWalletEditability(true)
   }
 
-  const handleActivation = (e: any) => {
-    // const checked = e.target.checked
-    // const selectedPaymentMethods = [...paymentMethods]
-    // const targetChain = selectedPaymentMethods.find(payment => payment.type === chain.type)
-    // if (["STRIPE", "COINBASE"].includes(chain.type)) {
-    //   targetChain ?
-    //     targetChain.isActive = checked :
-    //     selectedPaymentMethods.push({ ...chain, isActive: checked })
-
-    //   updateState("paymentMethods", selectedPaymentMethods)
-    //   return
-    // }
-
-    // if (!token) {
-    //   targetChain ?
-    //     targetChain.isActive = checked :
-    //     selectedPaymentMethods.push({ ...chain, isActive: checked })
-
-    //   updateState("paymentMethods", selectedPaymentMethods)
-    //   return
-    // }
-
-    // if (checked) {
-    //   if (targetChain) {
-    //     targetChain.isActive = true
-    //     const targetToken = targetChain.tokens.find(currentToken => currentToken.type === token.type)
-    //     targetToken ? token.isActive = true :
-    //       targetChain.tokens.push({ ...token, isActive: true })
-    //   }
-    //   else {
-    //     const newChain = { ...chain, isActive: true }
-    //     selectedPaymentMethods.push(newChain)
-    //   }
-    // }
-    // else {
-    //   const targetToken = targetChain.tokens.find(currentToken => currentToken.type === token.type)
-    //   targetToken.isActive = false
-    //   targetChain.isActive = targetChain.tokens.some(token => token.isActive === true) ? true : false
-    // }
-
-    // updateState("paymentMethods", selectedPaymentMethods)
+  const handleActivation = (e) => {
+    if (!["STRIPE", "COINBASE"].includes(chain.type) && !chain.destinationAddress) return showToast({ type: "info", message: "Please enter your wallet address first" })
     const isChecked = e.target.checked
     const updatedPaymentMethods = [...paymentMethods]
 
-    const findAndUpdateChain = (chain) => {
+    const findAndUpdateChain = () => {
       const existingChainIndex = updatedPaymentMethods.findIndex(payment => payment.type === chain.type)
-
-      if (existingChainIndex !== -1) {
-        updatedPaymentMethods[existingChainIndex].isActive = isChecked
-      } else {
-        updatedPaymentMethods.push({ ...chain, isActive: isChecked })
+      if (isChecked) {
+        if (existingChainIndex !== -1) {
+          updatedPaymentMethods[existingChainIndex].isActive = true
+        } else {
+          updatedPaymentMethods.push({ ...chain, isActive: true })
+        }
+      }
+      else {
+        const activePaymentMethodsCount = updatedPaymentMethods.filter(payment => payment.isActive).length
+        if (activePaymentMethodsCount === 1) return
+        updatedPaymentMethods[existingChainIndex].isActive = false
       }
     }
 
-    const findAndUpdateToken = (chain, token) => {
+    const findAndUpdateToken = () => {
       const targetChain = updatedPaymentMethods.find(payment => payment.type === chain.type)
 
       if (!targetChain) {
@@ -99,6 +69,9 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
           targetChain.tokens.push({ ...token, isActive: true })
         }
       } else {
+        const activePaymentMethodsCount = updatedPaymentMethods.filter(payment => payment.isActive).length
+        console.log("token dar chain truw", updatedPaymentMethods.filter(payment => payment.isActive))
+        if (activePaymentMethodsCount === 1) return
         if (targetTokenIndex !== -1) {
           targetChain.tokens[targetTokenIndex].isActive = false
         }
@@ -107,9 +80,9 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
     }
 
     if (["STRIPE", "COINBASE"].includes(chain.type) || !token) {
-      findAndUpdateChain(chain)
+      findAndUpdateChain()
     } else {
-      findAndUpdateToken(chain, token)
+      findAndUpdateToken()
     }
 
     updateState("paymentMethods", updatedPaymentMethods)
@@ -118,7 +91,7 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
   return (
     <Flex justifyContent="space-between" width="100%">
       <Flex alignItems={"center"} gap={4}>
-        <AppSwitch isChecked={token?.isActive || chain.isActive} onChange={handleActivation} />
+        <AppSwitch isChecked={token ? chain.isActive && token.isActive : chain.isActive} onChange={handleActivation} />
         <AppTypography fontSize="14px" color="#C2C2C2" fontWeight='bold'><BlockchainDisplay show='name' blockchain={token ? `${chain.type} (${token.type})` : chain.type} /></AppTypography>
       </Flex>
       {["STRIPE", "COINBASE"].includes(chain.type) ?
@@ -128,16 +101,17 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
             <PageContentWrapper padding={3} height="45px" display="flex" alignItems="center">
               <Flex width={"100%"} gap={4}>
                 <input
+                  ref={walletAddressInputRef}
                   type="text"
                   className={classes.textbox}
                   placeholder='Please enter wallet address'
                   spellCheck={false}
                   disabled={canEditWallet}
-                  value={walletAddress}
-                  onChange={(e) => setWalletAddress(e.target.value)}
+                  value={chain.destinationAddress}
+                  onChange={persistWalletAddress}
                 />
                 {canEditWallet && <Box onClick={() => setWalletEditability(false)}><AppIcons.EditIcon width="16px" height="16px" cursor={"pointer"} /></Box>}
-                {!canEditWallet && <BasicButton minWidth={"48px"} sizes='medium' onClick={persistWalletAddress}>Save</BasicButton>}
+                {!canEditWallet && <BasicButton minWidth={"48px"} sizes='medium' onClick={() => setWalletEditability(true)}>Save</BasicButton>}
               </Flex>
             </PageContentWrapper>
           </HStack>

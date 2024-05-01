@@ -19,17 +19,13 @@ function Technical() {
 
   const updateState = (key: string, value: string) => setTechnical((prev) => ({ ...prev, [key]: value }))
 
-  // Set default "STRIPE" when register
-  // const userPayments = useMemo(() => {
-  //   return isRegister ? [{ type: "STRIPE", destinationAddress: "", isActive: true }] : userPaymentsService.data?.data?.data
-  // }, [isRegister, userPaymentsService.data])
-
   // Fetch payments user
   useEffect(() => userPaymentsService.mutate(), [])
 
+  // Stripe is active by default in registration process
   useEffect(() => {
-    updateState("paymentMethods", userPaymentsService.data?.data?.data)
-  }, [userPaymentsService.data?.data?.data])
+    updateState("paymentMethods", isRegister ? [{ type: "STRIPE", destinationAddress: "", isActive: true, tokens: [] }] : userPaymentsService.data?.data?.data.filter(payment => payment.type !== "STACKS"))
+  }, [isRegister, userPaymentsService.data?.data?.data])
 
   return (
     <technicalContext.Provider value={{ state: technical, updateState }}>
