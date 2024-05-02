@@ -1,12 +1,12 @@
 import { Isku } from "lib/apis/product/interfaces"
-import { appDevelopment } from "lib/utils/app/variable"
+import { deployShopContractService } from "lib/apis/shop/shopServices"
+import { SHOP_URL, appDevelopment } from "lib/utils/app/variable"
 import { stacksRecord } from "lib/utils/blockchain/stacks/record"
 import stacksRequest from "lib/utils/blockchain/stacks/request"
-import { Chain, Network } from "lib/utils/chains/dto/chains"
 import { getNetworkProvider } from "lib/utils/chains/chainProvider"
+import { Chain, Network } from "lib/utils/chains/dto/chains"
 import acceptModel from "./module/accept/acceptModel"
 import recordModel, { IStacks, Ideploy } from "./module/record/recordModel"
-import { SHOP_URL } from "lib/utils/app/variable"
 
 export interface IRecordParamsData {
     commission: any
@@ -52,55 +52,51 @@ interface IAccept {
 
 const web3Model = ({
     record: async ({ params: { data, product, sku, imageUrl }, accountAddress, stack: { isRequestPending, openContractCall, stxAddress }, shop }: Irecord) => {
-        console.log("shop", shop)
-        console.log("product", product)
-        const targetChainContract = shop.deployedContracts.find(contract => contract.chainId.type === product.digitalDetail.chain)
-        if (!targetChainContract) {
+        return new Promise<void>(async (resolve: any, reject) => {
             try {
-                const result = await getNetworkProvider(Chain[(product.digitalDetail.chain) as string], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress)
-                    .deployShop(shop.name, `${SHOP_URL}/${shop.name}`, accountAddress, shop.logo, shop.description)
-                console.log("shop contract", result)
+                const targetChainContract = shop.deployedContracts.find(contract => contract.type === product.digitalDetail.chain)
+                let deployedContract
+                if (!targetChainContract) {
+                    deployedContract = await getNetworkProvider(Chain[(product.digitalDetail.chain) as string], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress)
+                        .deployShop(shop.name, `${SHOP_URL}/${shop.name}`, accountAddress, shop.logo, shop.description)
 
+                    await deployShopContractService({ type: product.digitalDetail.chain, ...deployedContract })
+                }
+
+                const commission = data.commission
+                const quantity: any = data.quantity
+                if (!data.royalty) data.royalty = 0
+                const dataDeploy: Ideploy = {
+                    data, deployHash: '', product, sku
+                }
+                if (data.blockchain === "STACKS") {
+                    const query = await stacksRecord({
+                        isRequestPending,
+                        openContractCall,
+                        params: {
+                            price: sku.price * 100,
+                            amount: product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity,
+                            commission,
+                            productID: product?._id,
+                            creator: stxAddress,
+                            uri: "record"
+                        }
+                    })
+                    if (query) dataDeploy.deployHash = query.txId
+                } else {
+                    const nftContract = targetChainContract?.deployedNFTAddress || deployedContract.deployedNFTAddress
+                    const shopAddress = targetChainContract?.deployedShopAddress || deployedContract.deployedShopAddress
+                    const currencyAddress = "0x0000000000000000000000000000000000000000"
+                    const res = await recordModel.record({ commission, product, royalty: data.royalty, blockchain: data.blockchain, sku, quantity, imageUrl, accountAddress, nftContract, shopAddress, currencyAddress })
+                    if (res) dataDeploy.deployHash = res.transactionHash
+                }
+
+                await recordModel.deploy(dataDeploy)
+                resolve(dataDeploy.deployHash)
             } catch (error) {
-                console.error("error", error)
+                reject(error)
             }
-
-            // console.log("provider", provider)
-            // const shopContract = await provider.deployShop(shop.name, `${SHOP_URL}/${shop.name}`, accountAddress, shop.logo, shop.description)
-        }
-        // return new Promise<void>(async (resolve: any, reject) => {
-        //     try {
-        //         const commission = data.commission
-        //         const quantity: any = data.quantity
-        //         if (!data.royalty) data.royalty = 0
-        //         const dataDeploy: Ideploy = {
-        //             data, deployHash: '', product, sku
-        //         }
-        //         if (data.blockchain === "STACKS") {
-        //             const query = await stacksRecord({
-        //                 isRequestPending,
-        //                 openContractCall,
-        //                 params: {
-        //                     price: sku.price * 100,
-        //                     amount: product.product_type === "PRINT_ON_DEMAND" ? quantity : sku.quantity,
-        //                     commission,
-        //                     productID: product?._id,
-        //                     creator: stxAddress,
-        //                     uri: "record"
-        //                 }
-        //             })
-        //             if (query) dataDeploy.deployHash = query.txId
-        //         } else {
-        //             const res = await recordModel.record({ commission, product, royalty: data.royalty, blockchain: data.blockchain, sku, quantity, imageUrl, accountAddress })
-        //             if (res) dataDeploy.deployHash = res
-        //         }
-
-        //         await recordModel.deploy(dataDeploy)
-        //         resolve(dataDeploy.deployHash)
-        //     } catch (error) {
-        //         reject(error)
-        //     }
-        // })
+        })
     },
 
     request: ({ accountAddress, params: { sku }, stack: { isRequestPending, openContractCall, stxAddress } }: IRequest) => {
@@ -123,7 +119,7 @@ const web3Model = ({
                     })
                     resolve(request.txId)
                 } else {
-                    const request = await getNetworkProvider(Chain[blockchain], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress).publishRequest(sku?.recordData?.data?.details?.recipient, tokenID)
+                    const request = await getNetworkProvider(Chain[blockchain], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress).publishRequest(tokenID, sku?.recordData?.data?.details?.recipient)
                     resolve(request)
                 }
             } catch (error) {
@@ -143,7 +139,7 @@ const web3Model = ({
                     deployHash = request.txId
                     resolve(deployHash)
                 } else {
-                    const accept = await getNetworkProvider(Chain[blockchain], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress).approveRequest(requestID)
+                    const accept = await getNetworkProvider(Chain[blockchain], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress).approveRequest(requestID, shop.sku[0]?.recordData?.data?.details?.recipient)
                     deployHash = accept
                     resolve(deployHash)
                 }

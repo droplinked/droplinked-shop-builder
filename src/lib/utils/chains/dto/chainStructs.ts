@@ -30,7 +30,7 @@ type PaymentInfo = {
     beneficiaries: Uint256[];
     paymentType: PaymentMethodType;
 }
-    
+
 type Product = {
     tokenId: Uint256;
     nftAddress: EthAddress;
@@ -59,11 +59,22 @@ type Issuer = {
     royalty: Uint256;
 }
 
-type PurchaseData =  {
+type PurchaseData = {
     id: Uint256;
     amount: Uint256;
     isAffiliate: boolean;
     shopAddress: EthAddress;
 }
 
-export { AffiliateRequest, Beneficiary, EthAddress, Issuer, NFTType, PaymentInfo, PaymentMethodType, Product, ProductType, PurchaseData, ShopInfo, Uint256 }
+type RecordData = { transactionHash: string, productId: Uint256, amountRecorded: Uint256 };
+
+type AffiliateRequestData = { transactionHash: string; requestId: Uint256; publisher: EthAddress } | undefined;
+
+type DeployedShop = {
+    shop: EthAddress,
+    nft: EthAddress,
+    transactionHash: string
+}
+
+export { NFTType, PaymentMethodType, ProductType };
+export type { AffiliateRequest, DeployedShop, AffiliateRequestData, RecordData, Beneficiary, EthAddress, Issuer, PaymentInfo, Product, PurchaseData, ShopInfo, Uint256 };

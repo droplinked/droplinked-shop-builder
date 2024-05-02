@@ -1,14 +1,15 @@
 import axios from "axios";
 import { Chain, Network } from "./chains";
+import { ethers } from "ethers";
 
-async function getShopByteCode(){
+async function getShopByteCode() {
     let result = String((await axios.get(`https://apiv3dev.droplinked.com/storage/shopByteCode`)).data.value);
     return result;
 }
 
 async function getDeployerAddress(chain: Chain, network: Network) {
-    const snakeCase = (str: string) => str[0].toUpperCase()+ str.slice(1).toLowerCase();
-    let result = String((await axios.get(`https://${network === Network.TESTNET ? "apiv3dev": "apiv3"}.droplinked.com/storage/${snakeCase(Chain[chain])}${snakeCase(Network[network])}ContractAddressDeployer`)).data.value);
+    const snakeCase = (str: string) => str[0].toUpperCase() + str.slice(1).toLowerCase();
+    let result = String((await axios.get(`https://${network === Network.TESTNET ? "apiv3dev" : "apiv3"}.droplinked.com/storage/${snakeCase(Chain[chain])}${snakeCase(Network[network])}ContractAddressDeployer`)).data.value);
     return result;
 }
 
@@ -18,5 +19,8 @@ async function getProxyAddress(chain: Chain, network: Network) {
     return result;
 }
 
+async function getGasPrice(provider: ethers.providers.Web3Provider): Promise<BigInt> {
+    return (await provider.getGasPrice()).toBigInt();
+}
 
-export {getShopByteCode, getDeployerAddress, getProxyAddress}
+export { getShopByteCode, getDeployerAddress, getProxyAddress, getGasPrice }

@@ -67,10 +67,6 @@ function ButtonsProduct() {
 
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
-                    const chainContract = shop.deployedContracts.find(contract => contract.chainId.type) === state?.digitalDetail?.chain
-                    if (!chainContract) {
-
-                    }
                     const hashkey = await record({
                         method: (data) => appWeb3.web3({ method: "record", params: data, chain: state?.digitalDetail?.chain, wallets, stack: stacks, shop }),
                         product: {

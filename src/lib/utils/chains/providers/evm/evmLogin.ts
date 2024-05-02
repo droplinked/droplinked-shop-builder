@@ -1,5 +1,6 @@
 import { Buffer } from "buffer";
 import { Chain, Network } from "../../dto/chains";
+import { ModalInterface } from "../../dto/modalInterface";
 
 let chainNames = {
     [Chain.BINANCE]: {
@@ -48,53 +49,60 @@ export const isMetamaskInstalled = (): boolean => {
     const { ethereum } = window as any;
     return Boolean(ethereum && ethereum.isMetaMask);
 };
+export const isCoinBaseInstalled = (): boolean => {
+    const { ethereum } = window as any;
+    return Boolean(ethereum && ethereum.providers.find((x: any) => { return x.isCoinbaseWallet }) != -1);
+};
 
-export async function getAccounts() {
-    return await (window as any).ethereum.request({ method: 'eth_accounts' });
+export async function getAccounts(ethereum: any) {
+    return await ethereum.request({ method: 'eth_accounts' });
 }
 
-export async function isWalletConnected() {
-    let accounts = await getAccounts();
+export async function isWalletConnected(ethereum: any) {
+    let accounts = await getAccounts(ethereum);
     return accounts && accounts[0] > 0;
 }
 
-export async function isChainCorrect(chain: Chain, network: Network) {
-    let chainId = await (window as any).ethereum.request({ method: 'eth_chainId' })
-    return String(chainId).toLowerCase() == chainNames[chain][network].chainId.toLowerCase();
+export async function isChainCorrect(ethereum: any, chain: Chain, network: Network) {
+    let chainId = await ethereum.request({ method: 'eth_chainId' })
+    return String(chainId).toLowerCase() === chainNames[chain][network].chainId.toLowerCase();
 }
 
-export async function changeChain(chain: Chain, network: Network) {
-    await (window as any).ethereum.request({
+export async function changeChain(ethereum: any, chain: Chain, network: Network) {
+    await ethereum.request({
         method: 'wallet_switchEthereumChain',
         params: [{ chainId: chainNames[chain][network].chainId }],
     });
 }
 
-async function requestAccounts() {
+async function requestAccounts(ethereum: any) {
     try {
-        return await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
+        return await ethereum.request({ method: 'eth_requestAccounts' });
     }
     catch (error) {
         console.error(error);
     }
 }
 
-export async function getBalance(address: string): Promise<number> {
-    return Number(await (window as any).ethereum.request({ method: 'eth_getBalance', params: [address, 'latest'] }));
+export async function getBalance(provider: any, address: string): Promise<number> {
+    return Number(await provider.provider.request({ method: 'eth_getBalance', params: [address, 'latest'] }));
 }
 
-export async function metamaskLogin(chain: Chain, network: Network): Promise<{
+export async function evmLogin(provider: any, chain: Chain, network: Network, modalInterface: ModalInterface): Promise<{
     address: string,
     signature: string,
 }> {
-    if (!isMetamaskInstalled()) {
-        throw ("Wallet is not installed");
+    const ethereum = provider.provider;
+
+    modalInterface.waiting("Connecting to wallet...");
+    if (!await isWalletConnected(ethereum)) {
+        modalInterface.waiting("Connecting to wallet");
+        await requestAccounts(ethereum);
     }
-    if (!await isWalletConnected()) {
-        await requestAccounts();
-    }
-    let address = (await getAccounts())[0];
+
+    let address = (await getAccounts(ethereum))[0];
     try {
+        modalInterface.waiting("Adding chain...");
         await (window as any).ethereum.request({
             method: 'wallet_addEthereumChain',
             params: [{
@@ -104,15 +112,22 @@ export async function metamaskLogin(chain: Chain, network: Network): Promise<{
                 rpcUrls: chainNames[chain][network].rpcUrls
             }]
         });
-    } catch (err) { 
+    } catch (err) {
+        modalInterface.error(err as any);
         console.log(err);
     }
-    await changeChain(chain, network);
-    const siweMessage = `Please sign this message to let droplinked view your PublicKey & Address and validate your identity`;
-    let msg = `0x${Buffer.from(siweMessage, 'utf8').toString('hex')}`;
-    const signature = await (window as any).ethereum.request({ method: 'personal_sign', params: [msg, address] });
-    return {
-        address: address,
-        signature: signature
-    };
+    await changeChain(ethereum, chain, network);
+    modalInterface.waiting("Signing message...");
+    try {
+        let msg = `0x${Buffer.from(`Please sign this message to let droplinked view your PublicKey & Address and validate your identity`, 'utf8').toString('hex')}`;
+        const signature = await ethereum.request({ method: 'personal_sign', params: [msg, address] });
+        return {
+            address: address,
+            signature: signature
+        };
+    }
+    catch (err) {
+        modalInterface.error(((err as any).code as number) === 4001 ? "User rejected the signing" : (err as string));
+        throw new Error(((err as any).code as number) === 4001 ? "User rejected the signing" : (err as string));
+    }
 }
