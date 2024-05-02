@@ -32,7 +32,7 @@ function ButtonsProduct() {
     const stacks = useStack()
     const { refactorData } = ProductSingleModel
     const appWeb3 = useAppWeb3()
-    const { app: { user: { wallets, _id } } } = useHookStore()
+    const { app: { user: { wallets, _id }, shop } } = useHookStore()
 
     const isProducer = useMemo(() => productID && (_id !== state?.ownerID), [state, _id, productID])
 
@@ -56,12 +56,23 @@ function ButtonsProduct() {
 
             // Request service
             const requestData = productID ? { productID, params: formData } : formData
-            const product = state.product_type === "DIGITAL" ? !productID ? refactorData(await (await create.mutateAsync(requestData)).data?.data) : productID && !isChanged ? refactorData(await (await update.mutateAsync(requestData)).data?.data) : state : !productID ? await create.mutateAsync(requestData) : await update.mutateAsync(requestData)
+            const product = state.product_type === "DIGITAL" ?
+                !productID ?
+                    refactorData(await (await create.mutateAsync(requestData)).data?.data) :
+                    productID && !isChanged ?
+                        refactorData(await (await update.mutateAsync(requestData)).data?.data) :
+                        state :
+                !productID ? await create.mutateAsync(requestData) :
+                    await update.mutateAsync(requestData)
 
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
+                    const chainContract = shop.deployedContracts.find(contract => contract.chainId.type) === state?.digitalDetail?.chain
+                    if (!chainContract) {
+
+                    }
                     const hashkey = await record({
-                        method: (data) => appWeb3.web3({ method: "record", params: data, chain: state?.digitalDetail?.chain, wallets, stack: stacks }),
+                        method: (data) => appWeb3.web3({ method: "record", params: data, chain: state?.digitalDetail?.chain, wallets, stack: stacks, shop }),
                         product: {
                             ...state,
                             _id: product._id,

@@ -36,6 +36,20 @@ export interface ChainProvider {
     setAddress(address: EthAddress): ChainProvider;
 }
 
+
+// export interface ChainProvider {
+//     walletLogin(): Promise<any>;
+//     casperRecordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string>;
+//     deployShop(shopName: string, shopAddress: string, shopOwner: EthAddress, shopLogo: string, shopDescription: string): Promise<DeployedShop>;
+//     recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, apiKey: string): Promise<RecordData>;
+//     publishRequest(productId: Uint256, shopAddress: EthAddress): Promise<AffiliateRequestData>;
+//     approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
+//     disapproveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
+//     setAddress(address: EthAddress): ChainProvider;
+//     setWallet(wallet: ChainWallet): ChainProvider;
+//     setModal(modal: ModalInterface): ChainProvider;
+// }
+
 let chainMapping = {
     [Chain.BINANCE]: {
         [Network.TESTNET]: new EVMProvider(Chain.BINANCE, Network.TESTNET),

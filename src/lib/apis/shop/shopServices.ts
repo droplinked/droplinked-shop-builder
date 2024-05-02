@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IchargeCreditService, ICustomReferralCode, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, ShopCustomURL, ShopDNSInformation, ShopOAuth2Client } from "./interfaces"
+import { IchargeCreditService, ICustomReferralCode, IDeployContract, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, ShopCustomURL, ShopDNSInformation, ShopOAuth2Client } from "./interfaces"
 
 export const shopService = ({ shopName }: IshopService) => axiosInstance.get(`shop/${shopName}`)
 
@@ -50,3 +50,5 @@ export const getShopPrivateKeyService = () => axiosInstance.get("shop/retrieve/p
 export const getReferralReportService = () => axiosInstance.get("shop/referral/report")
 
 export const updateCustomReferralCodeService = (props: ICustomReferralCode) => axiosInstance.patch("shop/referral/custom/code", props)
+
+export const deployShopContractService = (props: IDeployContract) => axiosInstance.patch("shop/contract/deploy", props)
