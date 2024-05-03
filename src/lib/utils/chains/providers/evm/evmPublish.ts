@@ -16,7 +16,7 @@ export let EVMPublishRequest = async function (provider: any,address: string, pr
         await contract.callStatic.requestAffiliate(productId);
         const gasEstimation = (await contract.estimateGas.requestAffiliate(productId)).toBigInt().valueOf();
         modalInterface.waiting("Sending request...");
-        const tx = await contract.callStatic.requestAffiliate(productId, {
+        const tx = await contract.requestAffiliate(productId, {
             gasLimit: gasEstimation * BigInt(105) / BigInt(100),
             gasPrice: getGasPrice(provider)
         });
