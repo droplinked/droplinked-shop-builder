@@ -7,6 +7,7 @@ import { ReactComponent as ArrowDown } from './arrowDown.svg';
 import { ReactComponent as Base } from './base-logo.svg';
 import { ReactComponent as Binance } from './binance.svg';
 import { ReactComponent as Bitcoin } from './bitcoin.svg';
+import { ReactComponent as BlackInformation } from './black-information.svg';
 import { ReactComponent as BluePlus } from './blue-plus.svg';
 import { ReactComponent as Brain } from './brain.svg';
 import { ReactComponent as CasperIcon } from './casper.svg';
@@ -39,6 +40,7 @@ import { ReactComponent as Hand } from './hand.svg';
 import { ReactComponent as Hedera } from './hedera.svg';
 import { ReactComponent as HelpCenter } from './help-circle 1.svg';
 import { ReactComponent as MinusIcon } from './image2vector.svg';
+import { ReactComponent as ImportFile } from './import-file.svg';
 import { ReactComponent as InfoIcon } from './info-icon.svg';
 import { ReactComponent as Info } from './info.svg';
 import { ReactComponent as InformationIcon } from './information-icon.svg';
@@ -194,5 +196,8 @@ const AppIcons = {
   ThreeStars,
   CheckCircle,
   UserInvitation,
-};
-export default AppIcons;
+  ImportFile,
+  BlackInformation
+}
+
+export default AppIcons
