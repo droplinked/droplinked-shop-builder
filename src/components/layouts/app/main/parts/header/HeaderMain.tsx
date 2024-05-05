@@ -110,7 +110,7 @@ function HeaderMain() {
                                 },
                             }}
                         />
-                        <Link to='pricing'>
+                        <Link to='/plans'>
                             <AppTypography color='#878787' fontSize={{ base: "12px", sm: "14px", md: "16px" }}>
                                 Pricing
                             </AppTypography>
