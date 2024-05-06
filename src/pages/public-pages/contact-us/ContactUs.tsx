@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from '@chakra-ui/react'
+import { Box, Flex, Image, Show } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import CustomHeading from '../landings/parts/heading/Heading'
@@ -27,25 +27,21 @@ function ContactUs() {
                 >
                     <Box
                         width={{ base: "100%", md: "50%" }}
-                        height={{ base: "514px", lg: "482px" }}
                         order={{ base: 2, md: 1 }}
                     >
                         <ContactUsForm />
                     </Box>
-                    <Box
-                        position={"relative"}
-                        width={{ base: "100%", md: "50%" }}
-                        height={{ base: "514px", lg: "482px" }}
-                        flexShrink={0}
-                        order={{ base: 1, md: 2 }}
-                        borderRadius={12}
-                        background={"linear-gradient(0deg, rgba(10, 13, 23, 0.75) 20.4%, rgba(10, 13, 23, 0.00) 100%), url('assets/images/homepage/contact-us.png') lightgray 50% / cover no-repeat"}
-                    >
-                        <Flex position={"absolute"} left={6} right={6} bottom={6} direction={"column"} gap={2}>
-                            <AppTypography fontSize={24} fontWeight={600} color={"#fff"}>Let’s connect constellations</AppTypography>
-                            <AppTypography fontSize={16} color={"#fff"}>Let's align our constellations! Reach out and let the magic of collaboration illuminate our skies.</AppTypography>
-                        </Flex>
-                    </Box>
+                    <Show above='md'>
+                        <Box
+                            position={"relative"}
+                            width={{ base: "100%", md: "50%" }}
+                            height={{ base: "504px", lg: "488px" }}
+                            flexShrink={0}
+                            order={{ base: 1, md: 2 }}
+                            borderRadius={12}
+                            background={"linear-gradient(0deg, rgba(10, 13, 23, 0.75) 20.4%, rgba(10, 13, 23, 0.00) 100%), url('assets/images/homepage/contact-us.png') lightgray 50% / cover no-repeat"}
+                        />
+                    </Show>
                 </Flex>
             </Flex>
         </Box >

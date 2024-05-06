@@ -1,8 +1,12 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, Show } from '@chakra-ui/react';
 import BasicButton from 'components/common/BasicButton/BasicButton';
 import AppTextarea from 'components/common/form/textarea/AppTextarea';
+import AppTypography from 'components/common/typography/AppTypography';
 import { Form, Formik } from 'formik';
+import useAppToast from 'functions/hooks/toast/useToast';
+import { contactUsService } from 'lib/apis/constact-us/services';
 import React from 'react';
+import { useMutation } from 'react-query';
 import * as Yup from "yup";
 import ContactUsInput from '../contact-us-input/ContactUsInput';
 
@@ -14,10 +18,16 @@ interface IFormData {
 }
 
 function ContactUsForm() {
-    const onSubmit = async (data: IFormData) => {
-        try {
+    const { mutateAsync, isLoading } = useMutation((data: IContactUs) => contactUsService(data))
+    const { showToast } = useAppToast()
 
+    const onSubmit = async (data: IFormData, actions) => {
+        try {
+            await mutateAsync(data)
+            actions.resetForm()
+            showToast({ type: "success", message: "Message sent successfully!" })
         } catch (error) {
+            showToast({ type: "error", message: "Oops. Something went wrong!" })
         }
     }
 
@@ -35,10 +45,14 @@ function ContactUsForm() {
             validationSchema={formSchema}
             onSubmit={onSubmit}
         >
-            {({ errors, values, handleChange }) => (
+            {({ values, handleChange }) => (
                 <Form>
-                    <Flex direction={"column"} gap={{ base: 4, lg: 6 }}>
-                        <Flex direction={{ base: "column", lg: "row" }} alignItems={"center"} gap={4}>
+                    <Flex direction={"column"} gap={{ base: 2, lg: 4 }}>
+                        <Show above='md'>
+                            <AppTypography fontSize={24} fontWeight={600} color={"#fff"} whiteSpace={"nowrap"}>Let’s connect constellations</AppTypography>
+                        </Show>
+
+                        <Flex direction={{ base: "column", lg: "row" }} alignItems={"center"} gap={{ base: 2, lg: 4 }}>
                             <Box width={{ base: "100%", lg: "50%" }}>
                                 <ContactUsInput
                                     id="firstName"
@@ -64,7 +78,6 @@ function ContactUsForm() {
                             name="email"
                             value={values.email}
                             placeholder='Email'
-                            // error={errors.email ? errors.email.toString() : ""}
                             onChange={handleChange}
                         />
 
@@ -80,13 +93,20 @@ function ContactUsForm() {
                             color={"#7B7B7B"}
                             fontSize={16}
                             resize={"none"}
-                            rows={12}
+                            rows={11}
                             _hover={{ backgroundColor: "#262626" }}
                             _focus={{ backgroundColor: "#262626" }}
-                        // error={errors?.message ? errors.message.toString() : ""}
                         />
 
-                        <BasicButton type='submit' fontSize={16} fontWeight={500}>Send</BasicButton>
+                        <BasicButton
+                            type='submit'
+                            fontSize={16}
+                            fontWeight={500}
+                            isDisabled={!values.firstName || !values.lastName || !values.email || !values.message || isLoading}
+                            isLoading={isLoading}
+                        >
+                            Send
+                        </BasicButton>
                     </Flex>
                 </Form>
             )}
