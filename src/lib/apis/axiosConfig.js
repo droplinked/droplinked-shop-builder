@@ -7,35 +7,35 @@ const axiosInstance = axios.create({
     baseURL: BASE_URL
 })
 
-const setTokens = async (access_token, refresh_token) =>
+const set_tokens = async (access_token, refresh_token) =>
     useAppStore.setState((prev) => ({ ...prev, ...{ access_token, refresh_token } }))
 
 let refreshPromise = null
 let isRefreshing = false
+let requests_queue = []
 
 const clearPromise = () => {
     refreshPromise = null
     isRefreshing = false
 }
 
-// this function will refresh the access token
-const refreshAccessToken = async () => {
+const refresh_access_token = async () => {
     try {
         const refresh_token = AppStorage.refreshToken()
         const response = await axios.post(`${BASE_URL}/auth/refresh-token`, {}, {
             headers: { 'Authorization': `Bearer ${refresh_token}` },
         })
         const data = response?.data?.data
-        await setTokens(data.access_token, data.refresh_token)
+        await set_tokens(data.access_token, data.refresh_token)
+        requests_queue.forEach(callback => callback(data.access_token))
+        requests_queue = []
         return data.access_token
     } catch (error) {
         AppStorage.clearStorage()
         window.location.replace(window.location.origin)
-        throw error
     }
 }
 
-// Add request interceptor for API calls
 axiosInstance.interceptors.request.use(
     async (config) => {
         const accessToken = AppStorage.accessToken() || ''
@@ -48,22 +48,24 @@ axiosInstance.interceptors.request.use(
     (error) => Promise.reject(error)
 )
 
-// Add response interceptor to handle token expiration and refresh it
 axiosInstance.interceptors.response.use(
     (response) => response,
     async function (error) {
-        const config = error.config
+        const original_request = error.config
 
-        if (error.response.status === 401 && !config._retry) {
+        if (error.response.status === 401 && !original_request._retry) {
             if (!isRefreshing) {
                 isRefreshing = true
-                refreshPromise = refreshAccessToken().finally(clearPromise)
+                refreshPromise = refresh_access_token().finally(clearPromise)
             }
 
-            const token = await refreshPromise
-            config.headers.authorization = `Bearer ${token}`
-            config._retry = true
-            return axiosInstance(config)
+            const retry_original_request = new Promise(resolve => {
+                requests_queue.push((token) => {
+                    original_request.headers.Authorization = `Bearer ${token}`
+                    resolve(axiosInstance(original_request))
+                })
+            })
+            return retry_original_request
         }
         return Promise.reject(error)
     }

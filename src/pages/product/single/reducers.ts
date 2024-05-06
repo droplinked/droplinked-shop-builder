@@ -49,10 +49,7 @@ export const productParams: IproductState = {
     printful_template_id: null,
     custome_external_id: null,
     m2m_positions_options: [],
-    digitalDetail: {
-        file_url: null,
-        message: null
-    },
+    digitalDetail: undefined,
     mainCategory: null,
     subCategories: [],
     technique: null,
@@ -114,7 +111,7 @@ namespace ProductPageNamespace {
                     ...state,
                     params: {
                         ...state.params,
-                        digitalDetail: { ...state.params.digitalDetail, ...action.params }
+                        digitalDetail: { ...state.params?.digitalDetail, ...action.params }
                     }
                 }
             case 'updateStore':

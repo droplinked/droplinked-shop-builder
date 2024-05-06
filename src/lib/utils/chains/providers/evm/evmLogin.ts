@@ -1,5 +1,5 @@
 import { Buffer } from "buffer";
-import { Chain, Network } from "../../Chains";
+import { Chain, Network } from "../../dto/chains";
 
 let chainNames = {
     [Chain.BINANCE]: {

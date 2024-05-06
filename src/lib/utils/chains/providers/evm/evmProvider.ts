@@ -1,5 +1,6 @@
-import { Beneficiary, Chain, Network, ProductType } from "../../Chains";
 import { ChainProvider, WalletNotFoundException } from "../../chainProvider";
+import { Beneficiary, ProductType } from "../../dto/chainStructs";
+import { Chain, Network } from "../../dto/chains";
 import { EVMApproveRequest, EVMCancelRequest, EVMDisapproveRequest } from "./evmAffiliate";
 import { metamaskLogin, isMetamaskInstalled, getAccounts, isWalletConnected, isChainCorrect, changeChain } from "./evmLogin";
 import { EVMPublishRequest } from "./evmPublish";

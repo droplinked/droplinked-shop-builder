@@ -1,4 +1,5 @@
-import { Box, HStack, Link, Text, VStack } from "@chakra-ui/react"
+import { Box, HStack, Link as ChakraLink, Text, VStack } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 import React from "react"
 
 function Links() {
@@ -23,11 +24,11 @@ function Links() {
   )
 
   const LinkComponent = ({ children, path }) => (
-    <Link
+    <ChakraLink
       target="_blank"
       href={path}>
       {children}
-    </Link>
+    </ChakraLink>
   )
 
   return (
@@ -71,17 +72,22 @@ function Links() {
           <VStack
             align="stretch"
             spacing={3}>
-            <Link
+            <ChakraLink
               target="_blank"
               href="https://droplinked.gitbook.io/droplinked-store-front-help-center/about-us/what-is-droplinked">
               <Sublink>Help center</Sublink>
-            </Link>
+            </ChakraLink>
             <a
               href="https://drive.google.com/file/d/1b5cggMs0D94Dl2e92-JIP_NPAMK2pjrr/view?usp=sharing"
               target="_blank"
               download>
               <Sublink>Media kit</Sublink>
             </a>
+            <Link
+              target="_blank"
+              to="/token-pay">
+              <Sublink>Token Pay</Sublink>
+            </Link>
           </VStack>
         </VStack>
       </Box>
@@ -97,11 +103,11 @@ function Links() {
           <VStack
             align="stretch"
             spacing={3}>
-            <Link
+            <ChakraLink
               target="_blank"
               href="https://events.droplinked.com">
               <Sublink>Events</Sublink>
-            </Link>
+            </ChakraLink>
           </VStack>
         </VStack>
       </VStack>

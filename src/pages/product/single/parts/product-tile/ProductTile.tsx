@@ -21,7 +21,7 @@ function ProductTile() {
                             Generate personalized product tiles for your website by choosing specific SKUs.
                             For detailed guidance on using product tiles, refer to our{" "}
                             <Link
-                                href='https://simplistic-nymphea-62e.notion.site/Product-Tile-20b32ce908ee4a00b2040d93ee629683'
+                                href="https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/product-tile"
                                 target="_blank"
                                 textDecoration="underline"
                                 color="#33A9EC"

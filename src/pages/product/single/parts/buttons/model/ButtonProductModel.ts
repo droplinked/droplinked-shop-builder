@@ -41,7 +41,7 @@ const ButtonsProductClass = ({
                     } else if (!state.sku[0].quantity) {
                         error.message = "Please enter quantity"
                         throw error
-                    } else if (!state.digitalDetail.chain) {
+                    } else if (!state?.digitalDetail?.chain) {
                         error.message = "Please enter Blockchain Network"
                         throw error
                     }
@@ -107,7 +107,7 @@ const ButtonsProductClass = ({
     record: async ({ method, product, stacks }: Irecord) => {
         const dataForm = {
             data: {
-                blockchain: product.digitalDetail.chain,
+                blockchain: product?.digitalDetail?.chain,
                 commission: product.sku[0].recordData.commision,
                 quantity: product.sku[0].quantity
             },

@@ -1,5 +1,5 @@
 import {uploadToIPFS} from '../evm/evmRecord'
-import { Network } from "../../Chains";
+import { Network } from "../../dto/chains";
 import {CLPublicKey, CLString, CLU64, Contracts, DeployUtil, NamedArg, RuntimeArgs } from 'casper-js-sdk';
 import { casperService, getContractAddress } from './casperConstants';
 import { getCasperWalletInstance } from './casperWalletAuth';

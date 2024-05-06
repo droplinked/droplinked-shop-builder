@@ -55,7 +55,7 @@ export interface IproductState {
     positions?: IProductPosition
     printful_template_id?: string
     custome_external_id: string,
-    digitalDetail: IDigitalLinks
+    digitalDetail: IDigitalLinks | undefined,
     m2m_positions_options: Array<any>
     mainCategory?: string
     subCategories?: Array<string>
