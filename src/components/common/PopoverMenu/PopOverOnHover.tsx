@@ -1,4 +1,4 @@
-import { Box, Button, Popover, PopoverBody, PopoverCloseButton, PopoverContent, PopoverContentProps, PopoverFooter, PopoverProps, PopoverTrigger, Portal, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Popover, PopoverContent, PopoverContentProps, PopoverFooter, PopoverProps, PopoverTrigger, Portal, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 
 interface IProps extends PopoverProps {
@@ -22,9 +22,7 @@ function AppPopoverOnHover({ nodes: { trigger, content }, ...props }: IProps) {
                             {trigger.children}
                         </Button>
                     </PopoverTrigger>
-                    {/* <Portal> */}
-                        <PopoverContent {...content.props}>{content.children}</PopoverContent>
-                    {/* </Portal> */}
+                    <PopoverContent {...content.props}>{content.children}</PopoverContent>
                 </>
             )}
         </Popover>
