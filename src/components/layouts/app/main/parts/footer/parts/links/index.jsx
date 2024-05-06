@@ -105,7 +105,7 @@ function Links() {
             spacing={3}>
             <ChakraLink
               target="_blank"
-              href="https://events.droplinked.com">
+              href="https://events.airfoil.studio/">
               <Sublink>Events</Sublink>
             </ChakraLink>
           </VStack>

@@ -12,15 +12,14 @@ function HeaderMain() {
     const {
         app: { shop },
     } = useHookStore();
-    const [header_state, set_header_state] = useState<{auth_modal: boolean, scrolled: boolean}>({auth_modal: false, scrolled: false});
-    const toggleAuthModal = () => set_header_state((p) => ({...p, auth_modal: !p.auth_modal}));
+    const [header_state, set_header_state] = useState<{ auth_modal: boolean; scrolled: boolean }>({ auth_modal: false, scrolled: false });
+    const toggleAuthModal = () => set_header_state((p) => ({ ...p, auth_modal: !p.auth_modal }));
     const location = useLocation();
     window.onscroll = () => {
         if (window.scrollY > 10) set_header_state((p) => ({ ...p, scrolled: true }));
         else set_header_state((p) => ({ ...p, scrolled: false }));
         return () => (window.onscroll = null);
     };
-
 
     const products_menu = [
         {
@@ -48,16 +47,15 @@ function HeaderMain() {
                 zIndex="10"
                 alignItems="center"
                 borderBottom={header_state.scrolled ? "1px solid #3C3C3C" : "transparent"}
-                backgroundColor={header_state.scrolled ? "black" : 'transparent'} style={{ transition: `all 1s ease` }}
+                backgroundColor={header_state.scrolled ? "black" : "transparent"}
+                style={{ transition: `all 1s ease` }}
             >
                 <HStack spacing={{ base: "20px", sm: "40px", md: "80px" }}>
-                    {location.pathname !== "/" ? (
-                        <Link to="/#banner">
-                            <Box width={{ base: "94px", md: "140px", lg: "164px", xl: "210px" }}>
-                                <AppIcons.Droplinked width={"100%"} height={"40px"} />
-                            </Box>
-                        </Link>
-                    ) : null}
+                    <Link to="/">
+                        <Box width={{ base: "94px", md: "140px", lg: "164px", xl: "210px" }}>
+                            <AppIcons.Droplinked width={"100%"} height={"32px"} />
+                        </Box>
+                    </Link>
                     <HStack color="#FFF" spacing={{ base: "10px", sm: "20px", md: "48px" }} alignItems="center">
                         <Link to="about">
                             <AppTypography color="#878787" fontSize={{ base: "12px", sm: "14px", md: "16px" }}>
@@ -108,15 +106,15 @@ function HeaderMain() {
                                     ),
                                     props: {
                                         backgroundColor: "#222222",
-                                        display: {base: "none", md:"flex"},
+                                        display: { base: "none", md: "flex" },
                                         justifyContent: "flex-end",
-                                        padding: { md: "12px 24px",lg: "24px 48px", xl: "56px 92px" },
+                                        padding: { md: "12px 24px", lg: "24px 48px", xl: "56px 92px" },
                                         alignItems: "center",
                                         alignSelf: "stretch",
                                         gap: "80px",
                                         width: "100%",
                                         border: "none",
-                                        marginTop: {sm: "1px",md: "8px",lg: "10px", xl: "16px"}
+                                        marginTop: { sm: "1px", md: "8px", lg: "10px", xl: "16px" },
                                     },
                                 },
                             }}
