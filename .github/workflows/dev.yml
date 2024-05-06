@@ -19,7 +19,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_2 }}
           aws-region: ${{ vars.AWS_REGION_2 }}
       - name: Copy the env variables
-        run:  echo "${{ vars.ENV_FILE_DEV }}" > .env
+        run:  echo "${{ vars.ENV_FILE }}" > .env
       - name: Build React App
         run: npm install && npm run build 
       - name: Deploy app build to S3 bucket
