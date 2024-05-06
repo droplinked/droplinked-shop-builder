@@ -1,22 +1,23 @@
-import { Box, Flex, HStack, PopoverBody, Show, VStack } from "@chakra-ui/react";
-import AppIcons from "assest/icon/Appicons";
-import AppPopoverOnHover from "components/common/PopoverMenu/PopOverOnHover";
+import { Box, Flex, HStack, Image, Menu, MenuButton, MenuItem, MenuList, PopoverBody, Show, VStack } from "@chakra-ui/react";
 import AppTypography from "components/common/typography/AppTypography";
-import HeaderDashboardLogedin from "components/layouts/app/dashboard/parts/header/parts/loged/HeaderDashboardLogedin";
 import AuthModal from "components/modals/auth-modal/AuthModal";
 import useHookStore from "functions/hooks/store/useHookStore";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import HeaderDashboardLogedin from "components/layouts/app/dashboard/parts/header/parts/loged/HeaderDashboardLogedin";
+import AppIcons from "assest/icon/Appicons";
+import AppPopoverOnHover from "components/common/PopoverMenu/PopOverOnHover";
 
 function HeaderMain() {
     const { app: { shop } } = useHookStore();
-    const [header_state, set_header_state] = useState<{ auth_modal: boolean; scrolled: boolean }>({ auth_modal: false, scrolled: false });
+    const [header_state, set_header_state] = useState<{ auth_modal: boolean, scrolled: boolean }>({ auth_modal: false, scrolled: false });
     const toggleAuthModal = () => set_header_state((p) => ({ ...p, auth_modal: !p.auth_modal }));
     window.onscroll = () => {
         if (window.scrollY > 10) set_header_state((p) => ({ ...p, scrolled: true }));
         else set_header_state((p) => ({ ...p, scrolled: false }));
         return () => (window.onscroll = null);
     };
+
 
     const products_menu = [
         {
@@ -44,13 +45,12 @@ function HeaderMain() {
                 zIndex="10"
                 alignItems="center"
                 borderBottom={header_state.scrolled ? "1px solid #3C3C3C" : "transparent"}
-                backgroundColor={header_state.scrolled ? "#141414" : "transparent"}
-                style={{ transition: `all 1s ease` }}
+                backgroundColor={header_state.scrolled ? "#141414" : 'transparent'} style={{ transition: `all 1s ease` }}
             >
-                <HStack spacing={{ base: "24px", md: "36px" }}>
-                    <Link to="/">
+                <HStack spacing={{ base: "24px", sm: "36px", md: "48px" }}>
+                    <Link to="/#banner">
                         <Box width={{ base: "94px", md: "140px", lg: "164px", xl: "210px" }}>
-                            <AppIcons.Droplinked width={"100%"} height={"32px"} />
+                            <AppIcons.Droplinked width={"100%"} height={"40px"} />
                         </Box>
                     </Link>
                     <Show above='md'>
@@ -67,7 +67,7 @@ function HeaderMain() {
                                             <AppTypography color="#878787" fontSize={{ base: "12px", sm: "14px", md: "16px" }} fontWeight={600} transition={"0.2s"} _hover={{ color: "#fff" }}>
                                                 Products
                                             </AppTypography>
-                                        ),
+                                        )
                                     },
                                     content: {
                                         children: (
@@ -104,6 +104,7 @@ function HeaderMain() {
                                         ),
                                         props: {
                                             backgroundColor: "#1C1C1C",
+                                            display: "flex",
                                             justifyContent: "flex-end",
                                             padding: { base: "10px 15px", sm: "12px 36px", md: "16px 64px", lg: "20px 128px", xl: "24px 158px", "2xl": "192px" },
                                             alignItems: "center",
@@ -111,7 +112,7 @@ function HeaderMain() {
                                             gap: "80px",
                                             width: "100vw",
                                             border: "none",
-                                            marginTop: { sm: "1px", md: "8px", lg: "10px", xl: "16px" },
+                                            marginTop: { sm: "1px", md: "8px", lg: "10px", xl: "16px" }
                                         },
                                     },
                                 }}
