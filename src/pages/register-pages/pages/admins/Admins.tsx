@@ -16,7 +16,7 @@ function Admins() {
                 <Flex direction={"column"} gap={6}>
                     <Flex direction={"column"} gap={2}>
                         <AppTypography fontSize={18} fontWeight='bold'>User Management</AppTypography>
-                        <AppTypography fontSize={16}>Use your unique Private Key for specialized services in Shop Builder. You should keep this key confidential and exposing it will compromise the security of your services.</AppTypography>
+                        <AppTypography fontSize={16}>Add or remove team members by entering their email addresses. They will receive an email with the necessary instructions.</AppTypography>
                     </Flex>
                     <InvitationForm fetch={refetch} />
                 </Flex>

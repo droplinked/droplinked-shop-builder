@@ -15,8 +15,8 @@ function ShopInfoSubmit({ States }: IShopInfoChildProps) {
 
     const submit = useCallback(async () => {
         try {
-            const { addressBookID, description, tags, pre_purchase_data_fetch } = States
-            await update({ addressBookID, description, tags, pre_purchase_data_fetch })
+            const { addressBookID, description, tags, pre_purchase_data_fetch, referralDetails } = States
+            await update({ addressBookID, description, tags, pre_purchase_data_fetch, referralDetails })
             if (isRegister) {
                 shopNavigate(`register/design`);
             } else {

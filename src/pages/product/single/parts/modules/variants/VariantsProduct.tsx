@@ -35,7 +35,7 @@ function VariantsProduct() {
         <Box>
           <ProductPageTitle
             head
-            isReuired
+            isRequired
             title='Product Variants'
             description=''
           />
