@@ -1,4 +1,4 @@
-import { Box, Flex, useDisclosure, VStack } from '@chakra-ui/react'
+import { Flex, useDisclosure, VStack } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
@@ -57,14 +57,13 @@ function ShopInfoAddress({ addressService }: Iprops) {
 
     return (
         <VStack align={"stretch"}>
-            <Box><FieldLabel textProps={{ fontSize: "18px", fontWeight: "bolder" }} label='Store Address' /></Box>
+            <FieldLabel textProps={{ fontSize: "18px", fontWeight: "bolder" }} label='Store Address' />
             <Flex justifyContent={"space-between"} alignItems="baseline">
                 <AppTypography fontSize='14px' color={"#C2C2C2"}>Add the physical location of your store or the place where your products are stored.</AppTypography>
-                {isRegister && !address?.length && !addressService.isLoading ? (
-                    <Box>
-                        <BasicButton sizes={"medium"} width={"100%"} onClick={onOpen} marginBottom={1} variant='outline'>Add Address</BasicButton>
-                    </Box>
-                ) : null}
+                {
+                    !address?.length && !addressService.isLoading &&
+                    <BasicButton sizes={"medium"} width={"100%"} onClick={onOpen} marginBottom={1} variant='outline'>Add Address</BasicButton>
+                }
             </Flex>
             <AppTable rows={rows} />
             {isOpen && <AddressModal close={onClose} addressID={AddressID} onSuccess={addressService.mutate} open={isOpen} />}
