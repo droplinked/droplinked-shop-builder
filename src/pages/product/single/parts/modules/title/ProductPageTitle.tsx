@@ -7,16 +7,16 @@ interface IProps {
     title: string
     description: string | React.ReactNode
     head?: boolean
-    isReuired?: boolean
+    isRequired?: boolean
 }
 
-function ProductPageTitle({ description, title, head, isReuired }: IProps) {
+function ProductPageTitle({ description, title, head, isRequired }: IProps) {
     return (
         <VStack align={"stretch"}>
             <Box>
                 <HStack width={"fit-content"}>
                     <AppTypography fontSize='18px' fontWeight={head ? 'bold' : "normal"}>{title}</AppTypography>
-                    {isReuired && <FieldLabelReuired fontSize={"larger"} fontFamily="aven" fontWeight={"bold"} />}
+                    {isRequired && <FieldLabelReuired fontSize={"larger"} fontFamily="aven" fontWeight={"bold"} />}
                 </HStack>
             </Box>
             <AppTypography fontSize='14px' color={"#C2C2C2"}>{description}</AppTypography>
