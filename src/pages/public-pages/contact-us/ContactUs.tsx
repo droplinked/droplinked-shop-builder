@@ -32,7 +32,7 @@ function ContactUs() {
                         <Image
                             width={{ base: "100%", md: "50%" }}
                             height={{ base: "504px", lg: "488px" }}
-                            src='assets/images/homepage/contact-us.png'
+                            src='https://upload-file-flatlay.s3.us-west-2.amazonaws.com/dfde56b6e38bf9c95228a80c89e2320a568002d4dc4142a76c11bd7e08a073eb.png_or.png'
                             objectFit={"cover"}
                             borderRadius={12}
                         />
