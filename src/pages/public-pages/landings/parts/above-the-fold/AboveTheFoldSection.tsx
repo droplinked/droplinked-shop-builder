@@ -18,7 +18,7 @@ function AboveTheFoldSection({ image, title, description, CTAButtonText, CTAButt
       <Flex order={{ base: 2, xl: 1 }} direction={"column"} gap={{ base: 14, xl: 20 }}>
         <CustomHeading title={title} textAlign={{ base: "center", xl: "start" }} />
         <AppTypography fontSize={{ base: 20, xl: 24 }} color={"#fff"} textAlign={{ base: "center", xl: "start" }}>{description}</AppTypography>
-        <BasicButton alignSelf={{ base: "center", xl: "start" }}>{CTAButtonText}</BasicButton>
+        <BasicButton alignSelf={{ base: "center", xl: "start" }} onClick={CTAButtonFunction}>{CTAButtonText}</BasicButton>
       </Flex>
       <Image
         order={{ base: 1, xl: 2 }}

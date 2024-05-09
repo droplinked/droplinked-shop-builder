@@ -85,8 +85,8 @@ function Links() {
             </a>
             <Link
               target="_blank"
-              to="/token-pay">
-              <Sublink>Token Pay</Sublink>
+              to="/tokenpay">
+              <Sublink>Tokenpay</Sublink>
             </Link>
           </VStack>
         </VStack>

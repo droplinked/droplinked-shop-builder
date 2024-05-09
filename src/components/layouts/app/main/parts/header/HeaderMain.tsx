@@ -29,7 +29,7 @@ function HeaderMain() {
         },
         {
             label: "Services",
-            links: [{ label: "Token Integration", desctiption: "All our items in one place", icon: <AppIcons.Coins />, href: "token-pay" }],
+            links: [{ label: "Token Integration", desctiption: "All our items in one place", icon: <AppIcons.Coins />, href: "tokenpay" }],
         },
     ];
     return (
