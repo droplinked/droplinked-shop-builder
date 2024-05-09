@@ -11,45 +11,45 @@ import ProductTileTable from '../modules/productTileTable/ProductTileTable'
 function ProductTile() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { state: { productTile }, productID } = useContext(productContext)
+
     return (
-        productID ?
-            <>
-                <ProductCollapse
-                    title="Product Tile"
-                    description={
-                        <AppTypography fontSize={14}>
-                            Generate personalized product tiles for your website by choosing specific SKUs.
-                            For detailed guidance on using product tiles, refer to our{" "}
-                            <Link
-                                href='https://simplistic-nymphea-62e.notion.site/Product-Tile-20b32ce908ee4a00b2040d93ee629683'
-                                target="_blank"
-                                textDecoration="underline"
-                                color="#33A9EC"
-                            >
-                                Documentation
-                            </Link>.
-                        </AppTypography>
-                    }
-                    isReuired={false}
-                >
-                    <Flex direction="column" gap={6}>
-                        <Flex justify="space-between" align="center">
-                            <AppTypography fontSize={16} color="#C2C2C2">My Tiles</AppTypography>
-                            <Flex as="button" align="center" gap={1} onClick={onOpen}>
-                                <AppIcons.BluePlus />
-                                <AppTypography fontSize={14} color="#33A9EC">Create new tile</AppTypography>
-                            </Flex>
+        <>
+            <ProductCollapse
+                title="Product Tile"
+                description={
+                    <AppTypography fontSize={14}>
+                        Generate personalized product tiles for your website by choosing specific SKUs.
+                        For detailed guidance on using product tiles, refer to our{" "}
+                        <Link
+                            href="https://droplinked.gitbook.io/droplinked-store-front-help-center/getting-started/product-tile"
+                            target="_blank"
+                            textDecoration="underline"
+                            color="#33A9EC"
+                        >
+                            Documentation
+                        </Link>.
+                    </AppTypography>
+                }
+                isRequired={false}
+                isDisabled={!productID}
+            >
+                <Flex direction="column" gap={6}>
+                    <Flex justify="space-between" align="center">
+                        <AppTypography fontSize={16} color="#C2C2C2">My Tiles</AppTypography>
+                        <Flex as="button" align="center" gap={1} onClick={onOpen}>
+                            <AppIcons.BluePlus />
+                            <AppTypography fontSize={14} color="#33A9EC">Create new tile</AppTypography>
                         </Flex>
-                        {
-                            (!productTile?.length) ?
-                                <ProductTileEmptyBox /> :
-                                <ProductTileTable />
-                        }
                     </Flex>
-                </ProductCollapse>
-                {isOpen && <ProductTileModal isOpen={isOpen} close={onClose} />}
-            </>
-            : null
+                    {
+                        (!productTile?.length) ?
+                            <ProductTileEmptyBox /> :
+                            <ProductTileTable />
+                    }
+                </Flex>
+            </ProductCollapse>
+            {isOpen && <ProductTileModal isOpen={isOpen} close={onClose} />}
+        </>
     )
 }
 

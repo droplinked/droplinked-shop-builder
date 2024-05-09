@@ -7,7 +7,6 @@ import classes from './style.module.scss'
 
 function CouponsCreateHome() {
     const { updateState } = useContext(CouponsCreateContext)
-
     const data = [
         {
             title: 'Discount',

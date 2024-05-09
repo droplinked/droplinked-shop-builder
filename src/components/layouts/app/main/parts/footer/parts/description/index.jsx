@@ -23,7 +23,7 @@ function Description() {
       >
         <AppTypography fontSize="12px" fontWeight="bold" display={"inline-block"}>Community driven commerce</AppTypography>
         <br />
-        Launch a drop in minutes & unlock the power of web3.
+        Launch a drop to instantly unlock the power of web3
       </Box>
 
       <a href="mailto:Support@droplinked.com">

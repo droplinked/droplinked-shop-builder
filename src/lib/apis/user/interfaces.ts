@@ -4,7 +4,7 @@ export interface IsignupService {
     email: string
     password: string
     shopName: string
-    referral?: string
+    referralCode?: string
 
 }
 export interface IforgetPasswordService {
@@ -24,6 +24,10 @@ export interface IemailVerifyService {
     token: string
 }
 
+export interface IGetUserService {
+    access_token: string
+}
+
 export interface IuserUpdateService {
     firstname?: string,
     customerShop?: string,
@@ -41,4 +45,26 @@ export interface IuserUpdateService {
     polygonAddress?: string,
     binanceAddress?: string,
     wallets?: Array<IUserWalletsProps>
+}
+
+export interface IRetrieveNFTs {
+    myProducts: boolean;
+    search: string;
+    body: {
+        address: string;
+        chain: string;
+        network: string;
+    }
+}
+
+export interface IInvitation {
+    _id: string;
+    recipientEmail: string;
+    status: string;
+    role: string;
+}
+
+export interface IAcceptInvitation {
+    invitationId: string;
+    password: string;
 }

@@ -1,7 +1,7 @@
 import { CLPublicKey, CLU64, Contracts, DeployUtil, NamedArg, RuntimeArgs } from "casper-js-sdk";
 import * as casper_consts from './casperConstants'
 import { getCasperWalletInstance } from "./casperWalletAuth";
-import { Network } from "../../Chains";
+import { Network } from "../../dto/chains";
 
 export let casperApproveRequest = async function(network: Network, address: string, request_id: number){
     const publicKeyHex = address;

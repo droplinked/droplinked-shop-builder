@@ -61,7 +61,7 @@ function ButtonsProduct() {
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
                     const hashkey = await record({
-                        method: (data) => appWeb3.web3({ method: "record", params: data, chain: state.digitalDetail.chain, wallets, stack: stacks }),
+                        method: (data) => appWeb3.web3({ method: "record", params: data, chain: state?.digitalDetail?.chain, wallets, stack: stacks }),
                         product: {
                             ...state,
                             _id: product._id,
@@ -75,7 +75,7 @@ function ButtonsProduct() {
                     setStateHandle('hashkey', hashkey)
                     onOpen()
                 } catch (error) {
-                    // shopNavigate("products")
+                    shopNavigate("products")
                     showToast({ message: "Something went wrong!", type: "error" })
                 }
             } else {
@@ -116,7 +116,7 @@ function ButtonsProduct() {
                 ) : null}
             </HStack>
             {isOpen && <ModalHashkey
-                blockchain={state.digitalDetail.chain}
+                blockchain={state?.digitalDetail?.chain}
                 size='3xl'
                 description={(<AppTypography textAlign="center" fontSize="18px">By hashing your product variant on the blockchain network, it becomes secured and decentralized, unlocking the potential to join the droplinked decentralized affiliate network. <Link color="#2BCFA1" _hover={{ color: "#2BCFA1" }}>Learn more</Link></AppTypography>)}
                 close={() => {

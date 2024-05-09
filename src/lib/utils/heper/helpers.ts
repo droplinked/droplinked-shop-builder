@@ -42,3 +42,23 @@ export const picker = (pick_from: any) =>
             obj[key] = pick_from[key];
             return obj;
         }, {} as Record<string, any>);
+
+export const navigating_user_based_on_status = (status: string, data: any) => {
+    switch (status) {
+        case "NEW":
+            localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
+            return { href: "/email-confirmation", dashboard: false };
+        case "VERIFIED":
+            return { href: "register/shop-info", dashboard: true };
+        case "PROFILE_COMPLETED":
+            return { href: "register/shop-info", dashboard: true };
+        case "SHOP_INFO_COMPLETED":
+            return { href: "", dashboard: true };
+        case "IMS_TYPE_COMPLETED":
+            return { href: "", dashboard: true };
+        case "ACTIVE":
+            return { href: "", dashboard: true };
+        default:
+            return { href: "", dashboard: false };
+    }
+};

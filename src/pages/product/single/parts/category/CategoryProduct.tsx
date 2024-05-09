@@ -5,7 +5,7 @@ import ProductCategories from '../modules/tags/ProductCategories'
 
 function CategoryProduct() {
     return (
-        <ProductCollapse title='Product Category' isReuired={false} description='Product Category'>
+        <ProductCollapse title='Product Category' isRequired={false} description='Product Category'>
             <VStack spacing="60px" align={"stretch"}>
                 <ProductCategories />
             </VStack>

@@ -1,8 +1,12 @@
 import axiosInstance from "../axiosConfig"
-import { IgiftcardCreateService, IgiftcardsService } from "./interfaces"
+import { IGiftCardExpiryDate, IgiftcardCreateService, IgiftcardsService } from "./interfaces"
 
 export const giftcardCreateService = (params: IgiftcardCreateService) => {
     return axiosInstance.post(`giftcard/create`, params)
+}
+
+export const updateGiftCartExpiryDateService = ({ id, expiryDate }: IGiftCardExpiryDate) => {
+    return axiosInstance.patch(`giftcard/expire/${id}`, { expiryDate })
 }
 
 export const giftcardsService = ({ limit, page, search }: IgiftcardsService) => {

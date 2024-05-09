@@ -1,7 +1,7 @@
 import { IUserWalletsProps } from 'lib/stores/app/appStore'
 import { appDevelopment } from 'lib/utils/app/variable'
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider'
-import { Chain, Network } from 'lib/utils/chains/Chains'
+import { Chain, Network } from 'lib/utils/chains/dto/chains'
 import useHookStore from '../store/useHookStore'
 import web3Model, { IAcceptData, IRecordPrams, IRequestData } from './models'
 

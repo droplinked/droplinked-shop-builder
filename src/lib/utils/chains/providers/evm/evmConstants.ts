@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Chain, Network } from '../../Chains';
+import { Chain, Network } from '../../dto/chains';
 async function getContractAddress(chain: Chain, network: Network) {
 	let result = String((await axios.get(`https://apiv3dev.droplinked.com/storage/${snakeCase(Chain[chain])}${snakeCase(Network[network])}ContractAddress`)).data.value); // example: BinanceContractAddress
 	return result;

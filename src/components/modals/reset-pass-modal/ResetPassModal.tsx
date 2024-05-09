@@ -28,7 +28,7 @@ const ResetPassModal = ({ show, close, switchReset }) => {
 
   const formSchema = Yup.object().shape({
     email: Yup.string().email(AppErrors.signin.invalid_email_address).required('Required'),
-  });
+  })
 
   return (
     <AppModal open={show} close={close} title="Forgot Password">

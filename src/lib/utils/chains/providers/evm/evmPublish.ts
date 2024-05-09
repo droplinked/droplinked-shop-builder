@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { getContractABI, getContractAddress } from './evmConstants'
-import { Chain, Network } from '../../Chains';
+import { Chain, Network } from '../../dto/chains';
 
 export let EVMPublishRequest = async function (chain: Chain, network: Network, address: string, producer_account_address: string, token_id: number | string) {
     const provider = new ethers.providers.Web3Provider((window as any).ethereum);
