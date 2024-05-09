@@ -15,16 +15,17 @@ function InvitationForm({ fetch }: { fetch: () => void }) {
 
     const onSubmit = async (values, actions) => {
         try {
-            console.log(values, actions)
             await sendInvitationEmail.mutateAsync(values.email)
             showToast({ type: "success", message: "An invitation has been sent to this email." })
+            actions.resetForm()
             fetch()
         }
         catch (e) {
-            showToast({ type: "error", message: (e as Error).message })
-        }
-        finally {
-            actions.resetForm()
+            const { response: { status, data } } = e
+            showToast({
+                type: "error",
+                message: status === 409 ? data?.data?.message : "Oops! Something went wrong."
+            })
         }
     }
 

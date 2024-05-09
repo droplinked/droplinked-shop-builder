@@ -6,6 +6,7 @@ import useHookStore from 'functions/hooks/store/useHookStore'
 import React from 'react'
 import Typewriter from 'typewriter-effect'
 import Droplinked from './parts/droplinked/Droplinked'
+import { MODAL_TYPE } from '../../HomePage'
 
 function Banner() {
     const { app: { shop } } = useHookStore();
@@ -14,7 +15,7 @@ function Banner() {
     return (
         <>
             <Box position="relative">
-                <Image src="assets/images/homepage/droplinked1.svg" position="absolute" zIndex="1" top="-200px" width="100%" />
+                {/* <Image src="assets/images/homepage/droplinked1.svg" position="absolute" zIndex="1" top="-200px" width="100%" /> */}
                 <Flex height="100%" justifyContent="center" alignItems="center" position="relative" zIndex="2">
                     <VStack justifyContent="center" color="#FFF">
                         <Droplinked />
@@ -48,7 +49,7 @@ function Banner() {
                     </VStack>
                 </Flex>
             </Box>
-            {isOpen && <AuthModal show={isOpen} type="SIGNUP" shopName={shop?.name} close={onClose} />}
+            {isOpen && <AuthModal show={isOpen} type={MODAL_TYPE.SIGNUP} shopName={shop?.name} close={onClose} />}
         </>
     )
 }

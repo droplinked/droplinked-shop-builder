@@ -5,10 +5,11 @@ interface IProps {
   mini?: boolean
   boxProps?: BoxProps
   [prop: string]: any
+  isDisabled?: boolean
 }
 
 function AppCard(props: IProps) {
-  const { mini, boxProps } = props
+  const { mini, boxProps, isDisabled } = props
   const styles = {
     width: "100%",
     maxWidth: boxProps?.maxWidth ? boxProps?.maxWidth : mini ? "1000px" : "100%",
@@ -16,6 +17,7 @@ function AppCard(props: IProps) {
     borderRadius: "8px",
     p: "36px 48px",
     color: "#FFF",
+    cursor: isDisabled ? "not-allowed" : "default"
   }
 
   return (

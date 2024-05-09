@@ -6,8 +6,12 @@ import Layout from '../parts/layout/Layout'
 import PaymentDetails from '../parts/payment-details/PaymentDetails'
 import StarryBorder from '../parts/starry-border/StarryBorder'
 import TabularContent from './parts/tabular-content/TabularContent'
+import { useDisclosure } from '@chakra-ui/react'
+import AuthModal from 'components/modals/auth-modal/AuthModal'
+import { MODAL_TYPE } from 'pages/public-pages/homePage/HomePage'
 
 function PhysicalProductPage() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
     return (
         <Layout>
             <AboveTheFoldSection
@@ -15,12 +19,14 @@ function PhysicalProductPage() {
                 title="Monetize Inventory with Tailored Storefronts"
                 description="Maximize sales value of inventory with a comprehensive storefront and on-chain inventory management system. Leverage tokenization and product minting to gain deeper insights on your customer base and distribution"
                 CTAButtonText="Get Started"
+                CTAButtonFunction={onOpen}
             />
             <CustomizationDetails />
             <PaymentDetails />
             <TabularContent />
             <Features />
-            <StarryBorder />
+            <StarryBorder onOpen={onOpen}/>
+            {isOpen && <AuthModal show={isOpen} type={MODAL_TYPE.SIGNUP} close={onClose} />}
         </Layout>
     )
 }

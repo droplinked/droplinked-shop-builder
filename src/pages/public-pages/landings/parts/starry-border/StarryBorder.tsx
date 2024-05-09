@@ -4,7 +4,7 @@ import { Heading, Image, Show } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 
-function StarryBorder() {
+function StarryBorder({onOpen}: {onOpen: () => void}) {
     return (
         <Container
             alignSelf={"stretch"}
@@ -18,7 +18,7 @@ function StarryBorder() {
             <AppTypography textAlign={"center"} fontSize={16} color={"#fff"} width={{ base: "80%", lg: "60%" }}>
             Simple setup, secure transactions and endless possibilities await your community.
             </AppTypography>
-            <BasicButton>Get Started</BasicButton>
+            <BasicButton onClick={onOpen}>Get Started</BasicButton>
             <Show above='lg'>
                 <Image width={"150px"} position={"absolute"} top={"35px"} right={"-3px"} src='assets/images/tokenPayPage/Monero.png' />
                 <Image width={"150px"} position={"absolute"} bottom={0} left={"80px"} src='assets/images/tokenPayPage/Etherium.png' />

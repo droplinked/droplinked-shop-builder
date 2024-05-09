@@ -22,7 +22,7 @@ const ReferralCode = ({ States:{ referralDetails: { code, customCode, percent } 
     const { showToast } = useAppToast();
     const ref = useRef();
     const update_referral = async (values, actions) => await mutateAsync({customCode: values.customCode}).then((res) => updateStates('referralDetails', res.data.data)).catch((err) => actions.setFieldError('customCode',err.response.data.data.message))
-    const { values, handleSubmit, handleChange, setFieldValue, setFieldError, errors } = useFormik({ initialValues: { customCode }, validationSchema: object().shape({ customCode: string().required("Required") }), validateOnChange: false, onSubmit: update_referral });
+    const { values, handleSubmit, handleChange, setFieldValue, setFieldError, errors } = useFormik({ initialValues: { customCode }, validationSchema: object().shape({ customCode: string().matches(/^[A-Za-z0-9_]+$/, 'Invalid format').required("Required") }), validateOnChange: false, onSubmit: update_referral });
     useOutsideClick({ ref, handler: () => { start_transition(() => { set_enable(false); setFieldValue('customCode', customCode); setFieldError("customCode", null) })}});
     const debounced_code = useDebounce(values?.customCode);
     return (

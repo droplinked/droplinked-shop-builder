@@ -30,7 +30,7 @@ namespace productOrderSkuesModel {
                 caption: "Product Cost",
                 value: (
                     <AppTypography>
-                        {`$${el?.rawPrice.toFixed(2)}`} {" "}
+                        {`$${el?.rawPrice?.toFixed(2)}`} {" "}
                         <Box as="span" color="#808080">USD</Box>
                     </AppTypography>
                 )

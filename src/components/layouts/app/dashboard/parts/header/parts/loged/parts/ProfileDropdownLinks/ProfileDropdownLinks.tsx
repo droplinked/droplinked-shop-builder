@@ -1,4 +1,4 @@
-import { Flex, Link as ChakraLink } from '@chakra-ui/react';
+import { Link as ChakraLink, Flex } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
 import { SHOP_URL } from 'lib/utils/app/variable';
@@ -39,7 +39,7 @@ function ProfileDropdownLinks({ shop, close }: Props) {
                         {link.label === "Settings" ? renderLinkAttributes(link) :
                             <Flex justifyContent={"space-between"} alignItems={"center"} gap={"12px"}>
                                 {renderLinkAttributes(link)}
-                                <AppTypography color={"#2BCFA1"} fontSize={"16px"} fontWeight={600}>${shop?.credit.toFixed(2)} USD</AppTypography>
+                                <AppTypography color={"#2BCFA1"} fontSize={"16px"} fontWeight={600}>${shop?.credit?.toFixed(2)} USD</AppTypography>
                             </Flex>
                         }
                     </ReactLink>
