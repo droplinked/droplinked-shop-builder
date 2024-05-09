@@ -15,16 +15,16 @@ interface IStates {
 
 interface IProps {
     state: IStates
-    userPayments: any
+    // userPayments: any
     updateState: Function
-    updatePayment: Function
+    // updatePayment: Function
 }
 
 const technicalContext = createContext<IProps>({
     state: technicalContextState,
-    userPayments: {},
+    // userPayments: [],
     updateState: () => { },
-    updatePayment: () => { }
+    // updatePayment: () => { }
 })
 
 export default technicalContext

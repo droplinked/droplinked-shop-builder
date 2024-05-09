@@ -1,39 +1,52 @@
-import DashboardLayout from "components/layouts/app/dashboard/DashboardLayout";
-import MainLayout from 'components/layouts/app/main/mainLayout';
-import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout";
-import NotFound from 'pages/404/404';
-import ShopProduct from 'pages/affiliate/product/ShopProduct';
-import AffiliateProducts from "pages/affiliate/products/AffiliateProducts";
-import Shops from "pages/affiliate/shops/Shops";
-import Shop from 'pages/affiliate/shopSingle/Shop';
-import ResetPassPage from 'pages/auth-pages/reset-pass-page/ResetPassPage';
-import ThankForRegisterPage from 'pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage';
-import VerifyEmailPage from 'pages/auth-pages/verify-email-page/Email-verification-page';
-import Collections from "pages/collections/Collections";
-import DashboardPage from "pages/dashboard/DashboardPage";
-import NFTs from "pages/nfts/NFTs";
-import Orders from "pages/orders/Orders";
-import Products from "pages/product/list/products";
-import ProductOrder from "pages/product/order/ProductOrder";
-import ProductTypes from "pages/product/types/ProductTypes";
-import AboutUs from "pages/public-pages/about/AboutUs";
-import Enquiry from 'pages/public-pages/enquiry-page/EnquiryPage';
-import HomePage from "pages/public-pages/homePage/HomePage";
-import LoadingPage from "pages/public-pages/loading-page/LoadingPage";
-import PricingPage from "pages/public-pages/pricing/PricingPage";
-import PrivacyPage from 'pages/public-pages/privacy-page/PrivacyPage';
-import ShopPage from 'pages/public-pages/shop-page/ShopPage';
-import TermsPage from 'pages/public-pages/terms-page/TermsPage';
-import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo";
-import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper";
-import React, { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import DashboardLayout from "components/layouts/app/dashboard/DashboardLayout"
+import MainLayout from "components/layouts/app/main/mainLayout"
+import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout"
+import NotFound from "pages/404/404"
+import ShopProduct from "pages/affiliate/product/ShopProduct"
+import AffiliateProducts from "pages/affiliate/products/AffiliateProducts"
+import Shops from "pages/affiliate/shops/Shops"
+import Shop from "pages/affiliate/shopSingle/Shop"
+import ResetPassPage from "pages/auth-pages/reset-pass-page/ResetPassPage"
+import ThankForRegisterPage from "pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage"
+import VerifyEmailPage from "pages/auth-pages/verify-email-page/Email-verification-page"
+import Collections from "pages/collections/Collections"
+import DashboardPage from "pages/dashboard/DashboardPage"
+import NFTs from "pages/nfts/NFTs"
+import Orders from "pages/orders/Orders"
+import Products from "pages/product/list/products"
+import ProductOrder from "pages/product/order/ProductOrder"
+import ProductTypes from "pages/product/types/ProductTypes"
+import AboutUs from "pages/public-pages/about/AboutUs"
+import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
+import ContactUs from "pages/public-pages/contact-us/ContactUs"
+import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
+import HomePage from "pages/public-pages/homePage/HomePage"
+import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
+import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
+import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
+import TokenPayPage from "pages/public-pages/landings/tokenpay-page/TokenPayPage"
+import LoadingPage from "pages/public-pages/loading-page/LoadingPage"
+import PricingPage from "pages/public-pages/pricing/PricingPage"
+import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
+import ShopPage from "pages/public-pages/shop-page/ShopPage"
+import TermsPage from "pages/public-pages/terms-page/TermsPage"
+import Admins from "pages/register-pages/pages/admins/Admins"
+import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
+import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
+import React, { lazy, Suspense } from "react"
+import { Route, Routes } from "react-router-dom"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
-const Notifications = lazy(() => import("pages/affiliate/notifications/Notifications"))
-const CouponsSetting = lazy(() => import("pages/register-pages/pages/coupons/CouponsSetting"))
-const DesignPage = lazy(() => import("pages/register-pages/pages/design/DesignPage"))
+const Notifications = lazy(
+  () => import("pages/affiliate/notifications/Notifications")
+)
+const CouponsSetting = lazy(
+  () => import("pages/register-pages/pages/coupons/CouponsSetting")
+)
+const DesignPage = lazy(
+  () => import("pages/register-pages/pages/design/DesignPage")
+)
 const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"))
 
 function AppRoutes() {
@@ -45,10 +58,22 @@ function AppRoutes() {
           <Route path="enquiry" element={<Enquiry />} />
           <Route path="terms" element={<TermsPage />} />
           <Route path="about" element={<AboutUs />} />
+          <Route path="contact-us" element={<ContactUs />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="email-confirmation" element={<ThankForRegisterPage />} />
-          <Route path="email-verification/:token" element={<VerifyEmailPage />} />
-          <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
+          <Route path="tokenpay" element={<TokenPayPage />} />
+          <Route path="physical-product" element={<PhysicalProductPage />} />
+          <Route path="digital-product" element={<DigitalProductPage />} />
+          <Route path="pod-product" element={<PODProductPage />} />
+          <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
+          <Route
+            path="email-verification/:token"
+            element={<VerifyEmailPage />}
+          />
+          <Route
+            path="producer/account-recovery/:token"
+            element={<ResetPassPage />}
+          />
           <Route path="plans" element={<PricingPage />} />
         </Route>
 
@@ -64,6 +89,7 @@ function AppRoutes() {
             <Route path="design" element={<DesignPage />} />
             <Route path="technical" element={<TechnicalPage />} />
             <Route path="coupons" element={<CouponsSetting />} />
+            <Route path="admins" element={<Admins />} />
           </Route>
           <Route path="products">
             <Route index element={<Products />} />
@@ -93,7 +119,7 @@ function AppRoutes() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
-  );
+  )
 }
 
-export default AppRoutes;
+export default AppRoutes

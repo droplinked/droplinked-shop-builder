@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Network } from "../../Chains";
+import { Network } from "../../dto/chains";
 import { CasperServiceByJsonRPC } from "casper-js-sdk";
 async function getContractAddress(network: Network) {
 	let result = String((await axios.get(`https://apiv3dev.droplinked.com/storage/Casper${snakeCase(Network[network])}ContractAddress`)).data.value); // example: BinanceContractAddress

@@ -48,7 +48,7 @@ function PODProperties() {
             <Flex justifyContent={"space-between"}>
                 <ProductPageTitle
                     head
-                    isReuired
+                    isRequired
                     title='Product Properties'
                     description='Add at least one property to enable all variant fields.'
                 />

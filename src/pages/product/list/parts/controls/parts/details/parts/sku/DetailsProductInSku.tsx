@@ -31,7 +31,7 @@ function DetailsProductInSku() {
                             <tr key={key}>
                                 <td><AppTypography fontSize='14px'>{el.options.map(el => el.caption).join("-")}</AppTypography></td>
                                 <td>---</td>
-                                <td><AppTypography fontSize='14px'>${el.price} USD</AppTypography></td>
+                                <td><AppTypography fontSize='14px'>${el.price.toFixed(2)} USD</AppTypography></td>
                                 <td>
                                     <Flex justifyContent="center">
                                         {el?.recordData ? (

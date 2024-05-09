@@ -7,9 +7,9 @@ import { IShopInfoChildProps } from '../../ShopInfo'
 function PostPurchaseDataGatheringInput({ States, updateStates }: IShopInfoChildProps) {
     return (
         <Flex direction={"column"} gap={"36px"}>
-            <AppTypography fontSize='18px' fontWeight='bold'>Post-purchase Data Gathering</AppTypography>
+            <AppTypography fontSize='18px' fontWeight='bold'>Post-Purchase Data Gathering</AppTypography>
             <AppInput
-                name="post-purchase-gata-gathering"
+                name="post-purchase-data-gathering"
                 placeholder="Add a note for your purchase"
                 value={States.pre_purchase_data_fetch?.title}
                 onChange={({ currentTarget: { value } }) => updateStates("pre_purchase_data_fetch", !value ? null : { active: true, title: value })}
