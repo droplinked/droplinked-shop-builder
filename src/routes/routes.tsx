@@ -32,6 +32,7 @@ import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import Admins from "pages/register-pages/pages/admins/Admins"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
+import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
@@ -79,11 +80,14 @@ function AppRoutes() {
 
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardPage />} />
-          <Route path="register" element={<RegisterPagesWrapper />}>
+          <Route path="url-registration" element={<SimpleRegistration />} />
+
+          {/* <Route path="register" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
             <Route path="design" element={<DesignPage />} />
             <Route path="technical" element={<TechnicalPage />} />
-          </Route>
+          </Route> */}
+
           <Route path="settings" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
             <Route path="design" element={<DesignPage />} />

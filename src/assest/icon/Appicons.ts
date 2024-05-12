@@ -4,6 +4,7 @@ import { ReactComponent as WalletConnectIcon } from "./WalletConnect.svg";
 import { ReactComponent as ActiveIcon } from "./active.svg";
 import { ReactComponent as AddIcon } from "./add.svg";
 import { ReactComponent as ArrowDown } from "./arrowDown.svg";
+import { ReactComponent as Bag } from "./bag.svg";
 import { ReactComponent as Base } from "./base-logo.svg";
 import { ReactComponent as Binance } from "./binance.svg";
 import { ReactComponent as Bitcoin } from "./bitcoin.svg";
@@ -12,8 +13,10 @@ import { ReactComponent as BluePlus } from "./blue-plus.svg";
 import { ReactComponent as Brain } from "./brain.svg";
 import { ReactComponent as CasperIcon } from "./casper.svg";
 import { ReactComponent as CheckCircle } from "./check-circle.svg";
+import { ReactComponent as CircleCheck } from "./circle-check.svg";
 import { ReactComponent as Close } from "./close.svg";
 import { ReactComponent as Coinbase } from "./coinbase.svg";
+import { ReactComponent as Coins } from "./coins.svg";
 import { ReactComponent as CollectionIcon } from "./collection-icon.svg";
 import { ReactComponent as CopyIcon } from "./copy.svg";
 import { ReactComponent as Cover } from "./cover.svg";
@@ -24,12 +27,14 @@ import { ReactComponent as Diamond } from "./diamond.svg";
 import { ReactComponent as Discord } from "./discord.svg";
 import { ReactComponent as DiscountIcon } from "./discount-active-icon.svg";
 import { ReactComponent as DiscountSetting } from "./discount-setting.svg";
+import { ReactComponent as Droplinked } from "./droplinked.svg";
 import { ReactComponent as EditIcon } from "./edit-icon.svg";
 import { ReactComponent as Email } from "./email.svg";
 import { ReactComponent as ETH } from "./eth.svg";
 import { ReactComponent as FacebookIcon } from "./facebook.svg";
 import { ReactComponent as File } from "./file.svg";
 import { ReactComponent as SaveIcon } from "./frame20783.svg";
+import { ReactComponent as Gallery } from "./gallery.svg";
 import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
 import { ReactComponent as GiftSetting } from "./gift-setting.svg";
 import { ReactComponent as Google } from "./google.svg";
@@ -37,7 +42,6 @@ import { ReactComponent as GrayDiscountIcon } from "./grayDiscountIcon.svg";
 import { ReactComponent as GrayGatedIcon } from "./grayGatedIcon.svg";
 import { ReactComponent as GreenAlert } from "./green-alert.svg";
 import { ReactComponent as Hand } from "./hand.svg";
-import { ReactComponent as Droplinked } from "./droplinked.svg";
 import { ReactComponent as Hedera } from "./hedera.svg";
 import { ReactComponent as HelpCenter } from "./help-circle 1.svg";
 import { ReactComponent as MinusIcon } from "./image2vector.svg";
@@ -62,11 +66,13 @@ import { ReactComponent as PlusIcon } from "./plus-icon.svg";
 import { ReactComponent as Polygon } from "./polygon-matic-logo.svg";
 import { ReactComponent as VariantsIcon } from "./products-active-icon.svg";
 import { ReactComponent as ProductsIcon } from "./products-icon.svg";
+import { ReactComponent as RedCircleCross } from "./red-circle-cross.svg";
 import { ReactComponent as RedTrash } from "./red-trash.svg";
 import { ReactComponent as Ripple } from "./ripple.svg";
 import { ReactComponent as RuleIcon } from "./rulesets-active-icon.svg";
 import { ReactComponent as RulesetsIcon } from "./rulesets-icon.svg";
 import { ReactComponent as SettingIcon } from "./setting-icon.svg";
+import { ReactComponent as Shirt } from "./shirt.svg";
 import { ReactComponent as ShopIcon } from "./shop-green-icon.svg";
 import { ReactComponent as Skale } from "./skale.svg";
 import { ReactComponent as SnapchatIcon } from "./snapchat.svg";
@@ -96,10 +102,6 @@ import { ReactComponent as WhiteShopIcon } from "./white-shop.svg";
 import { ReactComponent as WhiteTrash } from "./white-trash.svg";
 import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
-import { ReactComponent as Coins } from "./coins.svg";
-import { ReactComponent as Shirt } from "./shirt.svg";
-import { ReactComponent as Bag } from "./bag.svg";
-import { ReactComponent as Gallery } from "./gallery.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 
@@ -207,7 +209,9 @@ const AppIcons = {
   CheckCircle,
   UserInvitation,
   ImportFile,
-  BlackInformation
+  BlackInformation,
+  RedCircleCross,
+  CircleCheck
 }
 
 export default AppIcons
