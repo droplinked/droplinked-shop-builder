@@ -23,7 +23,7 @@ function ProductTileModal({ isOpen, close, selectedTile }: Props) {
     const [skuIDs, setSkuIDs] = useState<string[]>(() => selectedTile?.skuIDs.map(sku => sku._id) ?? [])
     const { showToast } = useAppToast()
     const rows = sku.map(el => {
-        const option = (type: 'color' | 'Size') => el.options.find(option => option.variantID === typesProperties[type === "color" ? 0 : 1]._id)
+        const option = (type: 'color' | 'Size') => el.options.find(option => option?.variantID === typesProperties[type === "color" ? 0 : 1]._id)
         return {
             _data: el as any,
             variant: {

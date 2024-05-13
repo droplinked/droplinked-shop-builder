@@ -8,14 +8,14 @@ const propertyFactor = ({
         items.forEach(item => {
             const data: Array<any> = item
             data.forEach(element => {
-                if (!properties[element.variantID]) {
-                    properties[element.variantID] = {
+                if (!properties[element?.variantID]) {
+                    properties[element?.variantID || "1"] = {
                         items: [],
-                        title: AppendModule.getCaption(element.variantID),
-                        value: element.variantID
+                        title: AppendModule.getCaption(element.variantID || "1"),
+                        value: element.variantID || "1"
                     }
                 }
-                properties[element.variantID]["items"][element.value] = { 
+                properties[element?.variantID || "1"]["items"][element.value] = { 
                     value: element.value,
                     caption: element.caption
                  }

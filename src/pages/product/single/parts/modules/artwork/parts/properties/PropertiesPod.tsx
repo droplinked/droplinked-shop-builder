@@ -10,8 +10,8 @@ function PropertiesPod() {
 
     const sizes = useMemo(() => {
         const size_clothes = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL", "7XL"]
-        const size_available = options(sku).sizes.map(el => el.value);
-        return size_clothes.includes(size_available[0]) ? size_clothes.filter(el => size_available.includes(el)) : size_available
+        const size_available = options(sku)?.sizes?.map(el => el?.value);
+        return size_clothes.includes(size_available?.[0]) ? size_clothes?.filter(el => size_available?.includes(el)) : size_available
     }, [sku])
 
     return (
@@ -21,15 +21,15 @@ function PropertiesPod() {
                     <Flex gap={"10px"}>
                         <Box><AppTypography fontSize='14px'>Available Colors:</AppTypography></Box>
                         <Flex gap={"5px"}>
-                            {options(sku).colors.map((el, key) => (
-                                <Box key={key} backgroundColor={el.value} width="18px" height="18px" borderRadius="100%"></Box>
+                            {options(sku)?.colors?.map((el, key) => (
+                                <Box key={key} backgroundColor={el?.value} width="18px" height="18px" borderRadius="100%"></Box>
                             ))}
                         </Flex>
                     </Flex>
                     <Flex gap={"10px"}>
                         <Box><AppTypography fontSize='14px'>Available Size: </AppTypography></Box>
                         <Flex gap={"10px"}>
-                            {sizes.map((el, key) => (
+                            {sizes?.map((el, key) => (
                                 <Box key={key}><AppTypography fontSize='14px'>{el}</AppTypography></Box>
                             ))}
                         </Flex>

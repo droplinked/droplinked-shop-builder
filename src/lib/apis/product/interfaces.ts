@@ -1,3 +1,5 @@
+import { VARIANT_OPTIONS_ENUM } from "types/enum/variant.options.enum"
+
 export interface IproductList {
     page: number
     limit: number
@@ -72,13 +74,13 @@ export interface IpropertiesItems {
 
 export interface Iproperties {
     title: string
-    value: string
     items: Array<IpropertiesItems>
+    // propery_type: VARIANT_OPTIONS_ENUM | null
+    custom_title?: string
 }
 
 export interface IskuOption {
     value: string
-    variantID: string
     variantName: string,
     caption: string
 }

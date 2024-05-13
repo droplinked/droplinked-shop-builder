@@ -1,73 +1,67 @@
-// import { Iproperties, IpropertiesItems } from "pages/product/single/context"
-import { Iproperties } from "lib/apis/product/interfaces"
-import AppendModule from "./module/append"
+import { Iproperties } from "lib/apis/product/interfaces";
+import AppendModule from "./module/append";
+
+export interface IaddProperty {
+    available_properties: Array<Iproperties>;
+    title: string;
+    index: number;
+}
+
+interface IappendHandle {
+    state: Array<Iproperties>;
+    types: Array<any>;
+}
 
 interface ItypesAvailable {
     state: Array<Iproperties>
     propertyValue: string
-    typeID: string
+    title: string
 }
 
-export interface IaddProperty {
-    state: Array<Iproperties>
-    value: string
-    index: number
-}
+const append = AppendModule;
 
-interface IappendHandle {
-    state: Array<Iproperties>
-    types: Array<any>
-}
-
-const append = AppendModule
-
-const PropertiesFormModel = ({
-
+const PropertiesFormModel = {
     // This method for button "Make New Properties" in "PropertiesForm" component
     appendHandle: ({ state, types }: IappendHandle): Array<Iproperties> => {
         if (state.length) {
-
             // Check exist left types for append
             const checkLePr = append.checkLengthProperty({
                 properties: state,
-                types
-            })
-            if (checkLePr) return state
+                types,
+            });
+            if (checkLePr) return state;
 
-            return append.appendProperty(state)
-
+            return append.appendProperty(state);
         } else {
-            return append.mock()
+            return append.mock();
         }
     },
 
-    // check and filter types can choose
-    typesAvailable: ({ state, propertyValue, typeID }: ItypesAvailable): Boolean => {
+    typesAvailable: ({ state, propertyValue, title }: ItypesAvailable): Boolean => {
         const indexesState = state.map((el) => {
-            return el.value
+            return el.title
         })
-        return [propertyValue, ...indexesState].includes(typeID)
+        return [propertyValue, ...indexesState].includes(title)
     },
 
-    // Set new property
-    addProperty: ({ state, value, index }: IaddProperty): Array<Iproperties> => {
-        const propertiesLenght = state.length > 1
+    addProperty: ({ available_properties, title, index }: IaddProperty): Array<Iproperties> => {
+        // key === index condition means that we want to keep previous properties but with additional property that we wanna add
+        const propertiesLenght = available_properties.length > 1
         return append.loopProperty({
-            state,
-            action: (el: Iproperties, key: number) => {
+            state: available_properties,
+            action: (el: Iproperties, key) => {
                 return {
-                    value: key === index ? value : el.value,
-                    title: key === index ? append.getCaption(value) : append.getCaption(el.value),
-                    items: propertiesLenght ? el.items : []
+                    title: key === index ? title : el.title,
+                    items: propertiesLenght ? el.items : [],
                 }
             }
         })
     },
 
-    // Make data 
+    // Make data
     makeData: (state: Array<Iproperties>) => {
-        return state.filter(el => el.value && el.items.filter(item => item.value.length).length)
-    }
-})
+        return state.filter((el) => el?.items?.filter((item) => item.value.length).length);
+    },
+};
 
-export default PropertiesFormModel
+export default PropertiesFormModel;
