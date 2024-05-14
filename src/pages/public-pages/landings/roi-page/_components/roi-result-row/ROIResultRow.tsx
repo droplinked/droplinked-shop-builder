@@ -10,7 +10,7 @@ function ROIResultRow({ title, value }: Props) {
     return (
         <Flex justifyContent={"space-between"} alignItems={"center"} gap={3}>
             <Box as='span'>{title}</Box>
-            {!!value && <Box as='span'>${value.toFixed(2)}</Box>}
+            {!!value && <Box as='span'>${value.toLocaleString(undefined, { minimumFractionDigits: 2 })}</Box>}
         </Flex>
     )
 }
