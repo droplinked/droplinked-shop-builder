@@ -24,6 +24,7 @@ import HomePage from "pages/public-pages/homePage/HomePage"
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
+import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
 import TokenPayPage from "pages/public-pages/landings/tokenpay-page/TokenPayPage"
 import LoadingPage from "pages/public-pages/loading-page/LoadingPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
@@ -67,6 +68,7 @@ function AppRoutes() {
           <Route path="digital-product" element={<DigitalProductPage />} />
           <Route path="pod-product" element={<PODProductPage />} />
           <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
+          <Route path="roi" element={<ROIPage />} />
           <Route
             path="email-verification/:token"
             element={<VerifyEmailPage />}

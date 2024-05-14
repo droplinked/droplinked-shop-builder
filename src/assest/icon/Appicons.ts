@@ -8,6 +8,8 @@ import { ReactComponent as Bag } from "./bag.svg";
 import { ReactComponent as Base } from "./base-logo.svg";
 import { ReactComponent as Binance } from "./binance.svg";
 import { ReactComponent as Bitcoin } from "./bitcoin.svg";
+import { ReactComponent as BlackChevronDown } from "./black-chevron-down.svg";
+import { ReactComponent as BlackCircleI } from "./black-circle-i.svg";
 import { ReactComponent as BlackInformation } from './black-information.svg';
 import { ReactComponent as BluePlus } from "./blue-plus.svg";
 import { ReactComponent as Brain } from "./brain.svg";
@@ -38,6 +40,8 @@ import { ReactComponent as Gallery } from "./gallery.svg";
 import { ReactComponent as GatedIcon } from "./gated-active-icon.svg";
 import { ReactComponent as GiftSetting } from "./gift-setting.svg";
 import { ReactComponent as Google } from "./google.svg";
+import { ReactComponent as GrayDollor } from "./gray-dollar.svg";
+import { ReactComponent as GrayPercent } from "./gray-percent.svg";
 import { ReactComponent as GrayDiscountIcon } from "./grayDiscountIcon.svg";
 import { ReactComponent as GrayGatedIcon } from "./grayGatedIcon.svg";
 import { ReactComponent as GreenAlert } from "./green-alert.svg";
@@ -211,7 +215,11 @@ const AppIcons = {
   ImportFile,
   BlackInformation,
   RedCircleCross,
-  CircleCheck
+  CircleCheck,
+  GrayDollor,
+  BlackCircleI,
+  GrayPercent,
+  BlackChevronDown
 }
 
 export default AppIcons
