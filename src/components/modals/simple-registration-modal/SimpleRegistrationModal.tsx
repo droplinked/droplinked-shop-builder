@@ -71,7 +71,7 @@ function SimpleRegistrationModal({ isOpen }: { isOpen: boolean }) {
         <AppModal open={isOpen} close={() => { }} size="xl">
             <Flex direction="column" gap={128}>
                 <Flex justifyContent="center" pt={83}>
-                    <Flex alignItems="center" gap={3} borderRadius={8} padding={"14px 16px"} bgColor="#fff" color="#B1B1B1">
+                    <Flex alignItems="center" gap={3} borderRadius={8} padding={"14px 16px"} bgColor="#fff" color="#7B7B7B">
                         <Flex>
                             <Box as='span' fontWeight={500}>{`${appDevelopment ? "dev." : ""}droplinked.io/`}</Box>
                             &nbsp;
