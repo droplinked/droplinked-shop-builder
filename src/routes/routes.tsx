@@ -9,6 +9,9 @@ import Shop from "pages/affiliate/shopSingle/Shop"
 import ResetPassPage from "pages/auth-pages/reset-pass-page/ResetPassPage"
 import ThankForRegisterPage from "pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage"
 import VerifyEmailPage from "pages/auth-pages/verify-email-page/Email-verification-page"
+import Blogs from "pages/blogs/Blogs"
+import BlogForm from "pages/blogs/parts/blog-form/BlogForm"
+import Blog from "pages/blogs/parts/blog/Blog"
 import Collections from "pages/collections/Collections"
 import DashboardPage from "pages/dashboard/DashboardPage"
 import NFTs from "pages/nfts/NFTs"
@@ -120,6 +123,11 @@ function AppRoutes() {
             <Route path="notifications" element={<Notifications />} />
           </Route>
           <Route path="nfts" element={<NFTs />} />
+          <Route path="blogs">
+            <Route index element={<Blogs />} />
+            <Route path="create" element={<BlogForm />} />
+            <Route path=":slug" element={<Blog />} />
+          </Route>
         </Route>
         <Route path=":shopname" element={<ShopPage />} />
         <Route path="*" element={<NotFound />} />
