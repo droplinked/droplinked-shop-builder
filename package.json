@@ -1,6 +1,6 @@
 {
   "name": "demo-app",
-  "version": "1.32.69",
+  "version": "1.33.69",
   "private": true,
   "dependencies": {
     "@blocknote/core": "^0.13.2",
