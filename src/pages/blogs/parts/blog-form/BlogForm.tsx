@@ -17,7 +17,7 @@ import TextEditor from './parts/text-editor/TextEditor'
 
 function BlogForm({ blog }: { blog?: Blog }) {
     const { shop } = useAppStore()
-    const [blogData, setBlogData] = useState<Blog>(blog || { title: "", content: "", isVisible: false, writer: "", tags: [], shopID: shop._id })
+    const [blogData, setBlogData] = useState<Blog>(blog || { title: "", content: null, isVisible: false, writer: "", tags: [], shopID: shop._id })
     const [blogImage, setBlogImage] = useState(blog?.image || "")
     const updateBlog = <K extends keyof typeof blogData>(key: K, value: typeof blogData[K]) => setBlogData({ ...blogData, [key]: value })
     const [isLoading, setLoading] = useState(false)
@@ -31,7 +31,7 @@ function BlogForm({ blog }: { blog?: Blog }) {
             setLoading(true)
             if (blog) {
                 // this means we are in edit mode
-                await updateBlogService({ ...blogData, image: blogImage })
+                await updateBlogService({ ...blogData, image: blogImage, content: JSON.stringify(blogData.content) })
                 showToast({ type: "success", message: "Blog updated successfully." })
             }
             else {
@@ -41,7 +41,7 @@ function BlogForm({ blog }: { blog?: Blog }) {
                     return
                 }
 
-                await createBlogService({ ...blogData, image: blogImage })
+                await createBlogService({ ...blogData, image: blogImage, content: JSON.stringify(blogData.content) })
                 showToast({ type: "success", message: "Blog created successfully." })
             }
             shopNavigate("blogs")

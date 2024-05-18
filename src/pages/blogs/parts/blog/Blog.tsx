@@ -9,7 +9,7 @@ import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import BlogForm from '../blog-form/BlogForm'
 
-function Blog() {
+function SingleBlog() {
     const { shop } = useAppStore()
     const { slug } = useParams()
     const { showToast } = useAppToast()
@@ -29,9 +29,9 @@ function Blog() {
 
     return (
         <>
-            {isFetching ? <ProductLoading /> : <BlogForm blog={blog} />}
+            {isFetching ? <ProductLoading /> : <BlogForm blog={{ ...blog, content: JSON.parse(blog.content) }} />}
         </>
     )
 }
 
-export default Blog
+export default SingleBlog
