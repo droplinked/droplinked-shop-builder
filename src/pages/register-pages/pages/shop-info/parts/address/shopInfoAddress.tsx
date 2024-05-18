@@ -62,7 +62,7 @@ function ShopInfoAddress({ addressService }: Iprops) {
                 <AppTypography fontSize='14px' color={"#C2C2C2"}>Add the physical location of your store or the place where your products are stored.</AppTypography>
                 {
                     !address?.length && !addressService.isLoading &&
-                    <BasicButton sizes={"medium"} width={"100%"} onClick={onOpen} marginBottom={1} variant='outline'>Add Address</BasicButton>
+                    <BasicButton sizes={"medium"} onClick={onOpen} marginBottom={1} variant='outline'>Add Address</BasicButton>
                 }
             </Flex>
             <AppTable rows={rows} />
