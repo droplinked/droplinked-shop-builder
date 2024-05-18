@@ -1,13 +1,15 @@
 import { Box, Flex } from '@chakra-ui/react'
 import AppImage from 'components/common/image/AppImage'
 import AppTypography from 'components/common/typography/AppTypography'
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
+import { Blog } from 'lib/apis/blog/interfaces'
 import React from 'react'
 
 function BlogCard({ blog }: { blog: Blog }) {
-    console.log(blog)
+    const { shopNavigate } = useCustomNavigate()
+
     return (
         <Flex
-            key={blog._id}
             width={"100%"}
             minWidth={"196px"}
             direction="column"
@@ -15,8 +17,9 @@ function BlogCard({ blog }: { blog: Blog }) {
             overflow={"hidden"}
             backgroundColor={"#262626"}
             cursor={"pointer"}
+            onClick={() => shopNavigate(`blogs/${blog.seoData.slug}`)}
         >
-            <AppImage src={blog.image} objectFit={"cover"} width={"100%"} height={"196px"} />
+            <AppImage width={"100%"} height={"196px"} src={blog.image} objectFit={"cover"} />
             <Box padding={"12px 16px"}>
                 <AppTypography fontSize={"14px"} fontWeight={"600"}>{blog.title}</AppTypography>
             </Box>

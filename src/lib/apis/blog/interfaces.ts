@@ -1,20 +1,20 @@
-interface Blog {
-    _id: string;
+export interface Blog {
+    _id?: string;
     title: string;
     content: any;
-    shopID: string;
-    author: string;
+    shopID?: string;
+    author?: string;
     writer: string;
     isVisible: boolean;
-    image: string;
+    image?: string;
     tags: string[];
-    category: string[],
-    commentsCount: number;
-    likes: number;
-    readTime: number;
-    version: number;
-    isFeatured: boolean;
-    seoData: {
+    category?: string[],
+    commentsCount?: number;
+    likes?: number;
+    readTime?: number;
+    version?: number;
+    isFeatured?: boolean;
+    seoData?: {
         metaDescription: string;
         keywords: string[];
         slug: string;
@@ -23,13 +23,18 @@ interface Blog {
         ogDescription: string;
         ogImage: string;
         structuredData: string;
-        _id: string;
+        _id?: string;
     },
-    mediaData: {
+    mediaData?: {
         url: string;
         type: string;
         title: string;
         positionIndex: number;
-        _id: string;
+        _id?: string;
     }[]
+}
+
+export interface ICheckSlug {
+    title: string;
+    shopId: string
 }
