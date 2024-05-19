@@ -22,7 +22,7 @@ function Input({ label, value, errorMessage, isDisabled = false, leftIcon, right
         <Flex direction="column" gap={2}>
             <div className={styles["input-group"]}>
                 {leftIcon}
-                <input type={"number"} value={value} placeholder=" " disabled={isDisabled} onKeyDown={onKeyDown} onChange={onChange} />
+                <input type={"number"} value={value} min={0} placeholder=" " disabled={isDisabled} onKeyDown={onKeyDown} onChange={onChange} />
                 <FormLabel left={leftIcon ? "42px" : "12px"}>{label}</FormLabel>
                 {rightIcon}
             </div>

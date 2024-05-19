@@ -1,32 +1,29 @@
 import { Box, Flex } from '@chakra-ui/react';
 import React from 'react';
+import { Plan } from '../../utils/interfaces/interfaces';
 import styles from "./styles.module.scss";
 
 interface Props {
+    plan: Plan;
     isSelected: boolean;
     onChange: () => void;
-    title: string;
-    duration: number;
-    skus: number;
-    productRecords: number;
-    baseCommitment: number;
 }
 
-function Radio({ isSelected, onChange, title, duration, skus, productRecords, baseCommitment }: Props) {
+function Radio({ plan, isSelected, onChange, }: Props) {
     return (
         <div className={styles["custom-radio-group"]}>
-            <input id={title} name="selected-plan" type='radio' value={title} onChange={onChange} checked={isSelected} />
-            <label htmlFor={title}>
+            <input id={plan.title} name="selected-plan" type='radio' value={plan.title} onChange={onChange} checked={isSelected} />
+            <label htmlFor={plan.title}>
                 <div className={styles["custom-radio"]}></div>
                 <div className={styles["label-content"]}>
                     <div>
-                        <span>{title}</span>
-                        <span>{`${duration} Days`}</span>
+                        <span>{plan.title}</span>
+                        <span>{`${plan.duration} Days`}</span>
                     </div>
                     <div>
-                        <PlanDetails title='SKUs' value={skus} />
-                        <PlanDetails title='Product Records' value={productRecords} />
-                        <PlanDetails title='Base Commitment' value={baseCommitment} />
+                        <PlanDetails title='SKUs' value={plan.skus} />
+                        <PlanDetails title='Product Records' value={plan.productRecords} />
+                        <PlanDetails title='Base Commitment' value={plan.baseCommitment} />
                     </div>
                 </div>
             </label>
