@@ -16,35 +16,31 @@ function Banner() {
         <>
             <Box position="relative" pt={14}>
                 <Flex height="100%" justifyContent="center" alignItems="center" position="relative" zIndex="2">
-                    <VStack justifyContent="center" color="#FFF">
+                    <VStack justifyContent="center" color="#fff">
                         <Droplinked />
-                        <Box textAlign="center" padding="0 20px"><AppTypography fontSize={{ base: "20px", sm: "25px", lg: "30px", xl: "50px" }} fontWeight='bold' whiteSpace={"nowrap"}>The Next Generation of Commerce</AppTypography></Box>
-                        <Box padding="10px 0 30px 0">
-                            <Text fontSize={{ base: "14px", sm: "24px", xl: "34px" }} display="flex">
-                                <Typewriter
-                                    options={{
-                                        strings: [
-                                            'Build a Customizable Store',
-                                            'Sell Diverse Products',
-                                            'Token Gating Collections',
-                                            'Mint to Merch',
-                                            'Decentralize Inventory',
-                                            'Sales Tracking',
-                                            'Transparent Co-selling',
-                                            'Increase Earnings'
-                                        ],
-                                        cursor: '',
-                                        autoStart: true,
-                                        loop: true
-                                    }}
-                                /> | On-Chain
-                            </Text>
-                        </Box>
-                        <Box>
-                            <BasicButton onClick={onOpen} minWidth={{ base: "120px", sm: "160px" }} height={{ base: "32px", sm: "40px" }}>
-                                <AppTypography fontSize={{ base: "12px", sm: "16px" }} fontWeight={600}>Start Selling</AppTypography>
-                            </BasicButton>
-                        </Box>
+                        <AppTypography textAlign={"center"} fontSize={{ base: "20px", sm: "24px", lg: "32px", xl: "48px" }} fontWeight='bold' whiteSpace={"nowrap"}>The Next Generation of Commerce</AppTypography>
+                        <Text fontSize={{ base: "14px", sm: "24px", xl: "34px" }} display="flex">
+                            <Typewriter
+                                options={{
+                                    strings: [
+                                        'Build a Customizable Store',
+                                        'Sell Diverse Products',
+                                        'Token Gating Collections',
+                                        'Mint to Merch',
+                                        'Decentralize Inventory',
+                                        'Sales Tracking',
+                                        'Transparent Co-selling',
+                                        'Increase Earnings'
+                                    ],
+                                    cursor: '',
+                                    autoStart: true,
+                                    loop: true
+                                }}
+                            /> | On-Chain
+                        </Text>
+                        <BasicButton onClick={onOpen} minWidth={{ base: "120px", sm: "160px" }} height={{ base: "32px", sm: "40px" }}>
+                            <AppTypography fontSize={{ base: "12px", sm: "16px" }} fontWeight={600}>Start Selling</AppTypography>
+                        </BasicButton>
                     </VStack>
                 </Flex>
             </Box>

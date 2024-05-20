@@ -6,11 +6,9 @@ import PartnersSlider from './parts/slider/PartnersSlider'
 
 function Partners() {
     return (
-        <Flex maxWidth={"100%"} direction={"column"} gap={4}>
-            <Flex direction={"column"} gap={2}>
-                <LandingTitle title='Partners' />
-                <LandingDescription text='Explore the network of collaborators taking commerce to the next level!' />
-            </Flex>
+        <Flex direction={"column"} gap={5}>
+            <LandingTitle title='Partners' />
+            <LandingDescription text='Explore the network of collaborators taking commerce to the next level!' />
             <PartnersSlider />
         </Flex>
     )

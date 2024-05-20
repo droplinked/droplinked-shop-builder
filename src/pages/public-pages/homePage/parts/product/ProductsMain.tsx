@@ -31,16 +31,14 @@ function ProductsMain() {
     ]
 
     return (
-        <Flex maxWidth={"100%"} direction={"column"} gap={4}>
-            <Flex direction={"column"} gap={2}>
-                <LandingTitle title='Decentralized Registration of Products' />
-                <LandingDescription text='Start selling today with a customizable storefront paired with web3 tools for on-chain transparency' />
-            </Flex>
+        <Flex maxWidth={"100%"} direction={"column"} gap={5}>
+            <LandingTitle title='Decentralized Registration of Products' />
+            <LandingDescription text='Start selling today with a customizable storefront paired with web3 tools for on-chain transparency' />
             <Flex flexWrap={{ base: "wrap", md: "nowrap" }} transition=".7s" justifyContent="center" gap={{ base: "4%", md: "20px", xl: "56px" }}>
                 {data.map((el, key) => (
                     <MainCard key={key}>
-                        <VStack justifyContent="center" spacing={{ base: "10px", lg: "40px" }}>
-                            <AppTypography textAlign="center" height={{ base: "42px", sm: "30px", md: "40px", lg: "auto" }} fontSize={{ base: '14px', sm: '16px', xl: '20px' }} color="#f5f5f5">{el.title}</AppTypography>
+                        <VStack justifyContent="center" spacing={{ base: "12px", lg: "40px" }}>
+                            <AppTypography textAlign="center" height={{ base: "40px", sm: "32px", md: "40px", lg: "auto" }} fontSize={{ base: '14px', sm: '16px', xl: '20px' }} color="#f5f5f5">{el.title}</AppTypography>
                             <Box width="100%" height={{ base: "60px", sm: "130px" }} className={classes.images} position="relative">
                                 <Image width={{ base: "63px", sm: "90px", lg: "130px" }} src={el.icon} alt={el.title} />
                                 <Image width={{ base: "63px", sm: "90px", lg: "130px" }} src={el.icon} alt={el.title} />
