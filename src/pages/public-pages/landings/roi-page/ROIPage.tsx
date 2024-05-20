@@ -28,7 +28,7 @@ function ROIPage() {
             <Flex width={"100%"} direction={"column"} gap={100}>
                 <Flex direction={"column"} gap={4}>
                     <CustomHeading title='Product Record Calculator' textAlign={"center"} />
-                    <AppTypography margin={"auto"} maxWidth={"700px"} fontSize={24} color={"#fff"} textAlign={"center"}>Project anticipated ROI when using droplinked’s enterprise inventory management and sales tracking.</AppTypography>
+                    <AppTypography margin={"auto"} maxWidth={"700px"} fontSize={24} color={"#fff"} textAlign={"center"}>Easily project ROI with droplinkeds' enterprise inventory management and sales tracking</AppTypography>
                 </Flex>
                 <Flex direction={{ base: "column", xl: "row" }} gap={{ base: 6, xl: 9 }}>
                     {/* left side */}
@@ -47,16 +47,16 @@ function ROIPage() {
                         </Container>
 
                         <Container title='Product Details'>
-                            <Input label='Service Fee' value={productDetails.serviceFee} isDisabled leftIcon={<AppIcons.GrayDollor />} rightIcon={<AppIcons.BlackCircleI />} onChange={(e) => updateProductDetails("serviceFee", e.target.value)} />
+                            <Input label='Service Fee' value={productDetails.serviceFee} isDisabled leftIcon={<AppIcons.GrayDollor />} tooltipText='Baseline cost associated with plan selected' onChange={(e) => updateProductDetails("serviceFee", e.target.value)} />
                             <Input label='Total SKUs' value={productDetails.totalSkus} errorMessage={totalSkusErrorMessage} onChange={handleTotalSkusChange} />
                             <Input label='Product Record Count' value={productDetails.productRecordCount} onChange={(e) => updateProductDetails("productRecordCount", e.target.value)} />
                             <Input label='Transaction Count' value={productDetails.transactionCount} onChange={(e) => updateProductDetails("transactionCount", e.target.value)} />
                         </Container>
 
                         <Container title='Financial and Performance Metrics'>
-                            <Input label='Average Order Value' value={metrics.averageOrderValue} leftIcon={<AppIcons.GrayDollor />} rightIcon={<AppIcons.BlackCircleI />} onChange={(e) => updateMetrics("averageOrderValue", e.target.value)} />
-                            <Input label='Royalty Percentage from Resales' value={metrics.royaltyPercentage} leftIcon={<AppIcons.GrayPercent />} rightIcon={<AppIcons.BlackCircleI />} onChange={(e) => updateMetrics("royaltyPercentage", e.target.value)} />
-                            <Input label='Captured Secondary Sales Percentage' value={metrics.CapturedSecondarySales} leftIcon={<AppIcons.GrayPercent />} rightIcon={<AppIcons.BlackCircleI />} onChange={(e) => updateMetrics("CapturedSecondarySales", e.target.value)} />
+                            <Input label='Average Order Value' value={metrics.averageOrderValue} leftIcon={<AppIcons.GrayDollor />} tooltipText='Anticipated retail price of the item sold' onChange={(e) => updateMetrics("averageOrderValue", e.target.value)} />
+                            <Input label='Royalty Percentage from Resales' value={metrics.royaltyPercentage} leftIcon={<AppIcons.GrayPercent />} tooltipText='The payout % of the retail price of an item sold that goes back to originator for ongoing sales' onChange={(e) => updateMetrics("royaltyPercentage", e.target.value)} />
+                            <Input label='Captured Secondary Sales Percentage' value={metrics.CapturedSecondarySales} leftIcon={<AppIcons.GrayPercent />} tooltipText='The % of anticipated secondary sales of an item the originator expects' onChange={(e) => updateMetrics("CapturedSecondarySales", e.target.value)} />
                         </Container>
                     </Flex>
 
