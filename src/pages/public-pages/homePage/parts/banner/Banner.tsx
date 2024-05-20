@@ -1,12 +1,12 @@
-import { Box, Flex, Image, Text, useDisclosure, VStack } from '@chakra-ui/react'
+import { Box, Flex, Text, useDisclosure, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import AuthModal from 'components/modals/auth-modal/AuthModal'
 import useHookStore from 'functions/hooks/store/useHookStore'
 import React from 'react'
 import Typewriter from 'typewriter-effect'
-import Droplinked from './parts/droplinked/Droplinked'
 import { MODAL_TYPE } from '../../HomePage'
+import Droplinked from './parts/droplinked/Droplinked'
 
 function Banner() {
     const { app: { shop } } = useHookStore();
@@ -14,8 +14,7 @@ function Banner() {
 
     return (
         <>
-            <Box position="relative">
-                {/* <Image src="assets/images/homepage/droplinked1.svg" position="absolute" zIndex="1" top="-200px" width="100%" /> */}
+            <Box position="relative" pt={14}>
                 <Flex height="100%" justifyContent="center" alignItems="center" position="relative" zIndex="2">
                     <VStack justifyContent="center" color="#FFF">
                         <Droplinked />

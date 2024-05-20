@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
 import React, { useRef } from 'react';
 import Slider from "react-slick";
@@ -102,21 +102,19 @@ function PartnersSlider() {
     }
 
     return (
-        <Flex justify={"center"} width={"100%"}>
-            <Box width={{ base: "100%", lg: "80%" }} maxWidth="1400px" paddingInline={{ base: "16px", sm: "28px" }}>
-                <Slider ref={sliderRef} {...settings}>
-                    {
-                        data.map((el, key) => (
-                            <MainCard display={"flex !important"} transition="1s" padding={{ base: "24px", lg: "40px" }} key={key}>
-                                <Image width={{ base: "36px", md: "64px" }} aspectRatio={1} objectFit={"contain"} paddingBottom="10px" src={el.icon} alt={el.title} />
-                                <AppTypography fontSize={{ base: "14px", sm: "16px", lg: "24px" }} fontWeight='bold' color="#f5f5f5">{el.title}</AppTypography>
-                                <a href={el.url} target="_blank"><AppTypography backgroundColor="#292929" color="#C2C2C2" textAlign="center" borderRadius="8px" lineHeight="40px" height="40px" fontSize={{ base: '14px', md: '16px' }} fontWeight='normal'>View Store</AppTypography></a>
-                            </MainCard>
-                        ))
-                    }
-                </Slider>
-            </Box>
-        </Flex>
+        <Box width={"100%"}>
+            <Slider ref={sliderRef} {...settings}>
+                {
+                    data.map((el, key) => (
+                        <MainCard display={"flex !important"} transition="1s" padding={{ base: "24px", lg: "40px" }} key={key}>
+                            <Image width={{ base: "36px", md: "64px" }} aspectRatio={1} objectFit={"contain"} paddingBottom="10px" src={el.icon} alt={el.title} />
+                            <AppTypography fontSize={{ base: "14px", sm: "16px", lg: "24px" }} fontWeight='bold' color="#f5f5f5">{el.title}</AppTypography>
+                            <a href={el.url} target="_blank"><AppTypography backgroundColor="#292929" color="#C2C2C2" textAlign="center" borderRadius="8px" lineHeight="40px" height="40px" fontSize={{ base: '14px', md: '16px' }} fontWeight='normal'>View Store</AppTypography></a>
+                        </MainCard>
+                    ))
+                }
+            </Slider>
+        </Box>
     );
 }
 
