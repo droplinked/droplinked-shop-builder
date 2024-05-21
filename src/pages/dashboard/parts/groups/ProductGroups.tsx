@@ -7,6 +7,8 @@ import { Doughnut } from 'react-chartjs-2';
 import { useMutation } from 'react-query';
 import MiniChartsFlags from '../charts/parts/charts/parts/flags/MiniChartsFlags';
 import miniChartsFlagsModel from '../charts/parts/charts/parts/flags/model';
+import DashboardEmpty from '../parts/empty/DashboardEmpty';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function ProductGroups() {
@@ -51,11 +53,17 @@ function ProductGroups() {
         <Flex alignItems="center" justifyContent="space-between" gap="30px">
             <VStack width="100%" align="stretch">
                 <AppTypography fontSize='16px'>Sales based Categories</AppTypography>
-                <Flex alignItems="center" gap="10px" flexWrap="wrap">
-                    <MiniChartsFlags caption='Digital Goods' color='yellow' />
-                    <MiniChartsFlags caption='Production on Demand Items' color='gold' />
-                    <MiniChartsFlags caption='Physical Products' color='brown' />
-                </Flex>
+                {data?.data?.data?.length > 0 ? 
+                    <Flex alignItems="center" gap="10px" flexWrap="wrap">
+                        <MiniChartsFlags caption='Digital Goods' color='yellow' />
+                        <MiniChartsFlags caption='Production on Demand Items' color='gold' />
+                        <MiniChartsFlags caption='Physical Products' color='brown' />
+                    </Flex> 
+                    : 
+                    <Flex alignItems="center" justifyContent={'flex-start'} width={"100%"}>
+                        <DashboardEmpty minHeight={"20px"}  />
+                    </Flex>
+                }
             </VStack>
             <Box width="60px"><Doughnut options={options} data={items} /></Box>
         </Flex>
