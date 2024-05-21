@@ -8,7 +8,7 @@ function OptionUploadLogo() {
     const { methods: { dispatch }, state: { shop: { headerIcon } } } = useContext(designContext)
     return (
         <VStack align="stretch">
-            <OptionsCaption caption='Site Logo' />
+            <OptionsCaption isRequired caption='Site Logo' />
             <AppUploadImage onChange={(value) => dispatch({ type: 'updateShop', params: { headerIcon: value } })} size="original" values={headerIcon} mode="horizontal" />
         </VStack>
     )
