@@ -22,14 +22,18 @@ function HeaderMain() {
         {
             label: "Products",
             links: [
-                { label: "Physical Products", desctiption: "All our items in one place", icon: <AppIcons.Bag />, href: "/physical-product" },
-                { label: "Digital Products", desctiption: "Shop by type and interest", icon: <AppIcons.Gallery />, href: "/digital-product" },
-                { label: "Print on Demand", desctiption: "Themed and seasonal product selections", icon: <AppIcons.Shirt />, href: "/pod-product" },
+                { label: "Physical Products", desctiption: "Monetize Inventory with Tailored Storefronts", icon: <AppIcons.Bag />, href: "/physical-product" },
+                { label: "Digital Products", desctiption: "Minting and Monetizing Assets", icon: <AppIcons.Gallery />, href: "/digital-product" },
+                { label: "Print on Demand", desctiption: "Transform Artwork and IP into Premium Merchandise", icon: <AppIcons.Shirt />, href: "/pod-product" },
+                { label: "Token Pay", desctiption: "Token Powered Commerce Driven by Your Community", icon: <AppIcons.Coins />, href: "/tokenpay" },
             ],
         },
         {
-            label: "Services",
-            links: [{ label: "Token Integration", desctiption: "All our items in one place", icon: <AppIcons.Coins />, href: "tokenpay" }],
+            label: "Enterprice",
+            links: [
+                { label: "DIMST", desctiption: "On chain inventory management", icon: <AppIcons.Coins />, href: "tokenpay" },
+                { label: "DPP", desctiption: "Digital product passport", icon: <AppIcons.Gallery />, href: "tokenpay" }
+            ],
         },
     ];
     return (
@@ -55,11 +59,6 @@ function HeaderMain() {
                     </Link>
                     <Show above='md'>
                         <HStack color="#FFF" spacing={{ base: "10px", sm: "20px", md: "48px" }} alignItems="center">
-                            <Link to="about">
-                                <AppTypography color="#878787" fontSize={{ base: "12px", sm: "14px", md: "16px" }} fontWeight={600} transition={"0.2s"} _hover={{ color: "#fff" }} whiteSpace={"nowrap"}>
-                                    About Us
-                                </AppTypography>
-                            </Link>
                             <AppPopoverOnHover
                                 nodes={{
                                     trigger: {
@@ -81,7 +80,7 @@ function HeaderMain() {
                                                             <HStack align={"stretch"} spacing={"16px"} display={"grid"} gridTemplateColumns={{ base: "repeat(2, 1fr)", xl: "repeat(3, 1fr)" }}>
                                                                 {menu_item?.links?.map((link) => (
                                                                     <Link key={link.label} to={link.href}>
-                                                                        <Flex alignItems={"flex-start"} gap={4}>
+                                                                        <Flex alignItems={"flex-start"} gap={4} width={"300px"}>
                                                                             <Box flexShrink={0} backgroundColor={"#F2F2F2"} padding={"12px"} rounded={"8px"}>
                                                                                 {link.icon}
                                                                             </Box>
@@ -119,6 +118,11 @@ function HeaderMain() {
                             <Link to="/plans">
                                 <AppTypography color="#878787" fontSize={{ base: "12px", sm: "14px", md: "16px" }} fontWeight={600} transition={"0.2s"} _hover={{ color: "#fff" }}>
                                     Pricing
+                                </AppTypography>
+                            </Link>
+                            <Link to="about">
+                                <AppTypography color="#878787" fontSize={{ base: "12px", sm: "14px", md: "16px" }} fontWeight={600} transition={"0.2s"} _hover={{ color: "#fff" }} whiteSpace={"nowrap"}>
+                                    About Us
                                 </AppTypography>
                             </Link>
                             {/* <a href="https://droplinked.gitbook.io/droplinked-store-front-help-center/about-us/what-is-droplinked" target="_blank">
