@@ -60,7 +60,7 @@ function Shipping() {
                                     return <Box key={key}>
                                         <BlackBox padding={5}>
                                             <Flex justifyContent={"space-between"} alignItems={"center"}>
-                                                <Radio alignItems="start" gap={2} size='md' value={el.shippingType} colorScheme='white'>
+                                                <Radio alignItems="start" gap={2} size='md' value={el.shippingType} colorScheme='teal'>
                                                     <Flex direction={"column"} gap={2}>
                                                         <TextLabelBold>{el.title}</TextLabelBold>
                                                         {el.description && <Text fontSize="sm" color="lightGray">{el.description}</Text>}
