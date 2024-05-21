@@ -41,7 +41,7 @@ function NFTs() {
                 const nfts = await retrieveNFTs({
                     myProducts,
                     search: debouncedSearchTerm,
-                    body: { address: chainData?.address || "", chain: chainData?.type || "", network: appDevelopment ? "TESTNET" : "MAINNET" }
+                    body: { address: chainData?.address || "", chain: chainData?.type === "UNISAT" ? "ORDINALS" : chainData?.type || "", network: appDevelopment ? "TESTNET" : "MAINNET" }
                 })
                 setNfts(nfts.data.data)
             }
