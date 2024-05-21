@@ -32,7 +32,7 @@ function HomePage() {
     <>
       <HeaderMain />
       <ParallaxProvider>
-        <Flex direction={"column"} gap={{ base: 150, md: 200 }} paddingBlock={120}>
+        <Flex direction={"column"}>
 
           <HomePageSection>
             <Effects />

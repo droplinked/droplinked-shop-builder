@@ -14,7 +14,7 @@ function Banner() {
 
     return (
         <>
-            <Box position="relative" pt={14}>
+            <Box height={"100dvh"} position="relative">
                 <Flex height="100%" justifyContent="center" alignItems="center" position="relative" zIndex="2">
                     <VStack justifyContent="center" color="#fff">
                         <Droplinked />
