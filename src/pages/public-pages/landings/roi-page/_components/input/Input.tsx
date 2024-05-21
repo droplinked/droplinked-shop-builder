@@ -1,4 +1,4 @@
-import { Flex, FormLabel, Tooltip } from "@chakra-ui/react";
+import { Button, Flex, FormLabel, Tooltip } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppTypography from "components/common/typography/AppTypography";
 import React, { ReactNode } from 'react';
@@ -27,7 +27,16 @@ function Input({ label, value, errorMessage, isDisabled = false, leftIcon, toolt
                 <FormLabel left={leftIcon ? "42px" : "12px"}>{label}</FormLabel>
                 {tooltipText &&
                     <Tooltip label={tooltipText} padding={"12px 16px"} borderRadius={8} bgColor={"#fff"} color={"#000"}>
-                        <AppIcons.BlackCircleI />
+                        <Button
+                            width={"16px"}
+                            height={"16px"}
+                            backgroundColor={"transparent"}
+                            padding={0}
+                            _focus={{ backgroundColor: "transparent" }}
+                            _hover={{ backgroundColor: "transparent" }}
+                        >
+                            <AppIcons.BlackCircleI />
+                        </Button>
                     </Tooltip>
                 }
             </div>

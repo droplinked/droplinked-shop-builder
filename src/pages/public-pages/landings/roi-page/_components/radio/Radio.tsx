@@ -36,7 +36,7 @@ function PlanDetails({ title, value }: { title: string, value: number }) {
         <Flex alignItems={"center"} gap={2}>
             <Box as="span" className={styles['details-title']}>{title}</Box>
             <Box width={1} height={1} borderRadius={"50%"} bgColor={"#DBDBDB"} />
-            <Box as="span" fontSize={14}>{`${value.toLocaleString()} ${title === "Base Commitment" ? "$" : ""}`}</Box>
+            <Box as="span" fontSize={14}>{`${title === "Base Commitment" ? "$" : ""}${value.toLocaleString()}`}</Box>
         </Flex>
     )
 }

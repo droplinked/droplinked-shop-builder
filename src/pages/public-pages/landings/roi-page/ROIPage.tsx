@@ -12,8 +12,10 @@ import Radio from './_components/radio/Radio'
 import ROIResultRow from './_components/roi-result-row/ROIResultRow'
 import Select from './_components/select/Select'
 import useROICalculation from './utils/hooks/useROICalculation'
+import { useNavigate } from 'react-router-dom'
 
 function ROIPage() {
+    const navigate = useNavigate()
     const {
         plans, selectedPlan, handlePlanChange,
         networks, selectedNetwork, setSelectedNetwork,
@@ -56,7 +58,7 @@ function ROIPage() {
                         <Container title='Financial and Performance Metrics'>
                             <Input label='Average Order Value' value={metrics.averageOrderValue} leftIcon={<AppIcons.GrayDollor />} tooltipText='Anticipated retail price of the item sold' onChange={(e) => updateMetrics("averageOrderValue", e.target.value)} />
                             <Input label='Royalty Percentage from Resales' value={metrics.royaltyPercentage} leftIcon={<AppIcons.GrayPercent />} tooltipText='The payout % of the retail price of an item sold that goes back to originator for ongoing sales' onChange={(e) => updateMetrics("royaltyPercentage", e.target.value)} />
-                            <Input label='Captured Secondary Sales Percentage' value={metrics.CapturedSecondarySales} leftIcon={<AppIcons.GrayPercent />} tooltipText='The % of anticipated secondary sales of an item the originator expects' onChange={(e) => updateMetrics("CapturedSecondarySales", e.target.value)} />
+                            <Input label='Captured Secondary Sales Percentage' value={metrics.CapturedSecondarySales} leftIcon={<AppIcons.GrayPercent />} tooltipText='The % of anticipated secondary sales captured' onChange={(e) => updateMetrics("CapturedSecondarySales", e.target.value)} />
                         </Container>
                     </Flex>
 
@@ -77,7 +79,7 @@ function ROIPage() {
                 title='Enquire to learn more'
                 description='Minimize fraud, adhere to compliance, increase conversions for your organization'
                 buttonText='Contact Us'
-                buttonFunctionality={() => { }}
+                buttonFunctionality={() => navigate("/contact-us")}
             />
         </Layout>
     )

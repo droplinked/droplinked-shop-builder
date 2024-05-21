@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Plan } from "../interfaces/interfaces"
 
 const plans: Plan[] = [
@@ -8,17 +8,17 @@ const plans: Plan[] = [
 ]
 
 const availableNetworks = [
-    { title: "ETH", constantValue: 7.2 },
-    { title: "POLY", constantValue: 0.1 },
-    { title: "ARB", constantValue: 0.02 },
+    { title: "Ethereum", constantValue: 7.2 },
+    { title: "Polygon", constantValue: 0.1 },
+    { title: "Arbitrum", constantValue: 0.02 },
     { title: "OP", constantValue: 0.008 },
-    { title: "BASE", constantValue: 0.001 },
-    { title: "SKALE", constantValue: 0 },
-    { title: "SOL", constantValue: 0 },
-    { title: "NEAR", constantValue: 0.002 },
-    { title: "STX", constantValue: 0.007 },
-    { title: "HBAR", constantValue: 0.05 },
-    { title: "CSPR", constantValue: 0.04 }
+    { title: "Base", constantValue: 0.001 },
+    { title: "Skale", constantValue: 0 },
+    { title: "Solana", constantValue: 0 },
+    { title: "Near", constantValue: 0.002 },
+    { title: "Stacks", constantValue: 0.007 },
+    { title: "Hedera", constantValue: 0.05 },
+    { title: "Casper", constantValue: 0.04 }
 ]
 
 const useROICalculation = () => {
@@ -83,7 +83,7 @@ const useROICalculation = () => {
 
     const buttonDisabled = [...Object.values(productDetails), ...Object.values(metrics)].some(value => !value)
 
-    const handleCalculation = () => {
+    const handleCalculation = useCallback(() => {
         if (buttonDisabled) return
         const { averageOrderValue, royaltyPercentage, CapturedSecondarySales } = metrics
 
@@ -93,7 +93,7 @@ const useROICalculation = () => {
         const ROI = grossCapturedValue / grossInvestment
 
         setResult({ grossInvestment, grossMerchandiseValue, grossCapturedValue, ROI })
-    }
+    }, [buttonDisabled, metrics, selectedNetwork, productDetails, setResult])
 
     useEffect(() => {
         setProductDetails({
@@ -103,6 +103,8 @@ const useROICalculation = () => {
             totalSkus: selectedPlan.skus.toString()
         })
     }, [selectedPlan])
+
+    useEffect(() => { handleCalculation() }, [handleCalculation])
 
     return {
         plans,
