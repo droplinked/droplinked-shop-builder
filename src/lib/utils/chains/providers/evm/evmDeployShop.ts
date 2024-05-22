@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { Chain, Network } from "../../dto/chains";
-import { getDeployerAddress, getGasPrice, getShopByteCode } from "../../dto/chainConstants";
+import { getDeployerAddress, getFundsProxy, getGasPrice, getShopByteCode } from "../../dto/chainConstants";
 import { deployerABI } from "../../dto/chainABI";
 import { chainLink } from '../../dto/chainLinkAddresses';
 import { ModalInterface } from '../../dto/modalInterface';
@@ -19,7 +19,7 @@ export async function EVMDeployShop(provider: any, chain: Chain, network: Networ
     const contract = new ethers.Contract(deployerAddress, deployerABI, signer);
     const byteCode = await getShopByteCode();
     const salt = "0x" + address.split("0x")[1] + "000000000000000000" + sixify((await provider.getTransactionCount(address)) + 1);
-    const constructorArgs = [shopName, shopAddress, shopOwner, shopLogo, shopDescription, deployerAddress, chainLink[chain][network]];
+    const constructorArgs = [shopName, shopAddress, shopOwner, shopLogo, shopDescription, deployerAddress, chainLink[chain][network], await getFundsProxy(chain, network)];
     const bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(["string", "string", "address", "string", "string", "address", "address"], constructorArgs);
     try {
         await contract.callStatic.deployShop(byteCode + bytecodeWithArgs.split("0x")[1], salt,);
