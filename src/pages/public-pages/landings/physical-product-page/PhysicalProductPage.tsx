@@ -25,7 +25,12 @@ function PhysicalProductPage() {
             <PaymentDetails />
             <TabularContent />
             <Features />
-            <StarryBorder onOpen={onOpen}/>
+            <StarryBorder
+                title='Launch a Store Today'
+                description='Simple setup, secure transactions and endless possibilities await your community.'
+                buttonText='Get Started'
+                buttonFunctionality={onOpen}
+            />
             {isOpen && <AuthModal show={isOpen} type={MODAL_TYPE.SIGNUP} close={onClose} />}
         </Layout>
     )

@@ -6,10 +6,9 @@ import AppTypography from 'components/common/typography/AppTypography';
 import useHookStore from 'functions/hooks/store/useHookStore';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
 import React, { useCallback } from 'react';
-import { ShopnameText } from '../../HeaderLayout-style';
 import ProfileDropdownLinks from './parts/ProfileDropdownLinks/ProfileDropdownLinks';
 
-function HeaderDashboardLogedin() {
+function HeaderDashboardLoggedin() {
     const { onOpen, onClose, isOpen } = useDisclosure();
     const { logoutUser } = useProfile()
     const { app: { shop, user } } = useHookStore();
@@ -72,4 +71,4 @@ function HeaderDashboardLogedin() {
     )
 }
 
-export default HeaderDashboardLogedin
+export default HeaderDashboardLoggedin

@@ -86,6 +86,7 @@ function Shipping() {
                 {shippingType === "CUSTOM" && (
                     <AppInput
                         type="number"
+                        min={0}
                         loading={loading}
                         name="cost"
                         isRequired

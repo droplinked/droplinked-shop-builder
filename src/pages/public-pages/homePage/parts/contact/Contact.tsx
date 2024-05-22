@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Show, VStack } from '@chakra-ui/react'
+import { Box, Flex, Show, VStack } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'

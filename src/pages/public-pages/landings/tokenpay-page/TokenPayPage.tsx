@@ -26,7 +26,12 @@ function TokenPayPage() {
       <Gallery />
       <Details title="Empower Communities" description="Unlock market-changing features at unparalleled value. Our pricing plans are designed to revolutionize your commerce experience, providing powerful tools to elevate your token's utility and your shop's success." />
       <PricingPlans />
-      <StarryBorder onOpen={onOpen}/>
+      <StarryBorder
+        title='Launch a Store Today'
+        description='Simple setup, secure transactions and endless possibilities await your community.'
+        buttonText='Get Started'
+        buttonFunctionality={onOpen}
+      />
       {isOpen && <AuthModal show={isOpen} type={MODAL_TYPE.SIGNUP} close={onClose} />}
     </Layout>
   )
