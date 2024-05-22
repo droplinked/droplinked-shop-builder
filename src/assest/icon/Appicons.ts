@@ -4,6 +4,7 @@ import { ReactComponent as WalletConnectIcon } from "./WalletConnect.svg";
 import { ReactComponent as ActiveIcon } from "./active.svg";
 import { ReactComponent as AddIcon } from "./add.svg";
 import { ReactComponent as ArrowDown } from "./arrowDown.svg";
+import { ReactComponent as BackArrow } from "./back-arrow.svg";
 import { ReactComponent as Bag } from "./bag.svg";
 import { ReactComponent as Base } from "./base-logo.svg";
 import { ReactComponent as Binance } from "./binance.svg";
@@ -219,7 +220,8 @@ const AppIcons = {
   GrayDollor,
   BlackCircleI,
   GrayPercent,
-  BlackChevronDown
+  BlackChevronDown,
+  BackArrow
 }
 
 export default AppIcons
