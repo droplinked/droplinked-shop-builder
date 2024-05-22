@@ -14,9 +14,12 @@ import { useMutation } from 'react-query'
 import { productContext } from '../../context'
 import ProductSingleModel from '../../model/model'
 import ButtonsProductClass from './model/ButtonProductModel'
+import useAppStore from 'lib/stores/app/appStore'
+import { useProfile } from 'functions/hooks/useProfile/useProfile'
 
 // prdocut page
 function ButtonsProduct() {
+    const { updateShopData } = useProfile()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const create = useMutation((params) => productCreateServices(params))
     const update = useMutation((params) => productUpdateServices(params))
@@ -67,6 +70,7 @@ function ButtonsProduct() {
 
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
+                    // debugger;
                     const hashkey = await record({
                         method: (data) => appWeb3.web3({ method: "record", params: data, chain: state?.digitalDetail?.chain, wallets, stack: stacks, shop }),
                         product: {
@@ -79,6 +83,7 @@ function ButtonsProduct() {
                         stacks
                     })
                     await update.mutateAsync({ productID: productID || product._id, params: { publish_product: true } })
+                    await updateShopData()
                     setStateHandle('hashkey', hashkey)
                     onOpen()
                 } catch (error) {

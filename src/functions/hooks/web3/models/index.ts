@@ -55,13 +55,21 @@ const web3Model = ({
         return new Promise<void>(async (resolve: any, reject) => {
             try {
                 const targetChainContract = shop.deployedContracts.find(contract => contract.type === product.digitalDetail.chain)
+                console.log("targetChainContract", targetChainContract)
                 let deployedContract
                 if (!targetChainContract) {
+                    console.log(shop.name)
+                    console.log(`${SHOP_URL}/${shop.name}`)
+                    console.log(accountAddress)
+                    console.log(shop.logo)
+                    console.log(shop.description)
+
                     deployedContract = await getNetworkProvider(Chain[(product.digitalDetail.chain) as string], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress)
                         .deployShop(shop.name, `${SHOP_URL}/${shop.name}`, accountAddress, shop.logo, shop.description)
 
                     await deployShopContractService({ type: product.digitalDetail.chain, ...deployedContract })
                 }
+                console.log("deployedContract", deployedContract)
 
                 const commission = data.commission
                 const quantity: any = data.quantity
@@ -85,9 +93,12 @@ const web3Model = ({
                     if (query) dataDeploy.deployHash = query.txId
                 } else {
                     const nftContract = targetChainContract?.deployedNFTAddress || deployedContract.deployedNFTAddress
+                    console.log("nftContract", nftContract)
                     const shopAddress = targetChainContract?.deployedShopAddress || deployedContract.deployedShopAddress
+                    console.log("shopAddress", shopAddress)
                     const currencyAddress = "0x0000000000000000000000000000000000000000"
                     const res = await recordModel.record({ commission, product, royalty: data.royalty, blockchain: data.blockchain, sku, quantity, imageUrl, accountAddress, nftContract, shopAddress, currencyAddress })
+                    console.log("result", res)
                     if (res) dataDeploy.deployHash = res.transactionHash
                 }
 
