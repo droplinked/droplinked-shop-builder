@@ -20,7 +20,7 @@ export async function EVMDeployShop(provider: any, chain: Chain, network: Networ
     const byteCode = await getShopByteCode();
     const salt = "0x" + address.split("0x")[1] + "000000000000000000" + sixify((await provider.getTransactionCount(address)) + 1);
     const constructorArgs = [shopName, shopAddress, shopOwner, shopLogo, shopDescription, deployerAddress, chainLink[chain][network], await getFundsProxy(chain, network)];
-    const bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(["string", "string", "address", "string", "string", "address", "address"], constructorArgs);
+    const bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(["string", "string", "address", "string", "string", "address", "address", "address"], constructorArgs);
     try {
         await contract.callStatic.deployShop(byteCode + bytecodeWithArgs.split("0x")[1], salt,);
         const gasEstimation = (await contract.estimateGas.deployShop(byteCode + bytecodeWithArgs.split("0x")[1], salt,)).toBigInt().valueOf();
