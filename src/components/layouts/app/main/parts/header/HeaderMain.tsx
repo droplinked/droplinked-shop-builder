@@ -20,17 +20,17 @@ function HeaderMain() {
         {
             label: "Products",
             links: [
-                { label: "Physical Products", desctiption: "Monetize Inventory with Tailored Storefronts", icon: <AppIcons.Bag />, href: "/physical-product" },
-                { label: "Digital Products", desctiption: "Minting and Monetizing Assets", icon: <AppIcons.Gallery />, href: "/digital-product" },
-                { label: "Print on Demand", desctiption: "Transform Artwork and IP into Premium Merchandise", icon: <AppIcons.Shirt />, href: "/pod-product" },
-                { label: "Token Pay", desctiption: "Token Powered Commerce Driven by Your Community", icon: <AppIcons.Coins />, href: "/tokenpay" },
+                { label: "Physical Products", description: "Monetize Inventory with Tailored Storefronts", icon: <AppIcons.Bag />, href: "/physical-product" },
+                { label: "Digital Products", description: "Minting and Monetizing Assets", icon: <AppIcons.Gallery />, href: "/digital-product" },
+                { label: "Print on Demand", description: "Transform Artwork and IP into Premium Merchandise", icon: <AppIcons.Shirt />, href: "/pod-product" },
+                { label: "Token Pay", description: "Token Powered Commerce Driven by Your Community", icon: <AppIcons.Coins />, href: "/tokenpay" },
             ],
         },
         {
             label: "Enterprice",
             links: [
-                { label: "DIMST", desctiption: "On chain inventory management", icon: <AppIcons.Coins />, href: "tokenpay" },
-                { label: "DPP", desctiption: "Digital product passport", icon: <AppIcons.Gallery />, href: "tokenpay" }
+                { label: "DIMST", description: "On chain inventory management", icon: <AppIcons.Coins />, href: "tokenpay" },
+                { label: "DPP", description: "Digital product passport", icon: <AppIcons.Gallery />, href: "tokenpay" }
             ],
         },
     ]
