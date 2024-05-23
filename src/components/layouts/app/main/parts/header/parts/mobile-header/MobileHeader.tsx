@@ -57,14 +57,14 @@ function MobileHeader({ products_menu, toggleAuthModal }: Props) {
                 zIndex={10}
             >
                 <Flex direction={"column"} gap={9}>
-                    <AppTypography color="#fff" fontSize={20} fontWeight={700} cursor={"pointer"} onClick={() => handleNavigation("/about")}>
-                        About Us
-                    </AppTypography>
                     <AppTypography color="#fff" fontSize={20} fontWeight={700} cursor={"pointer"} onClick={() => updateMenuVisibility("subMenu", true)}>
                         Products
                     </AppTypography>
                     <AppTypography color="#fff" fontSize={20} fontWeight={700} cursor={"pointer"} onClick={() => handleNavigation("/plans")}>
                         Pricing
+                    </AppTypography>
+                    <AppTypography color="#fff" fontSize={20} fontWeight={700} cursor={"pointer"} onClick={() => handleNavigation("/about")}>
+                        About Us
                     </AppTypography>
                 </Flex>
                 <BasicButton variant='outline' onClick={toggleAuthModal}>Sign In</BasicButton>

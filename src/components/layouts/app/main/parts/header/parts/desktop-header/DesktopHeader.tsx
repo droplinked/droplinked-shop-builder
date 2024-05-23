@@ -29,11 +29,6 @@ function DesktopHeader({ products_menu, toggleAuthModal }: Props) {
                 <Droplinked />
 
                 <HStack color="#FFF" spacing={{ base: "10px", sm: "20px", md: "48px" }} alignItems="center">
-                    <Link to="/about">
-                        <AppTypography color="#878787" fontSize={{ base: "12px", sm: "14px", md: "16px" }} fontWeight={600} transition={"0.2s"} _hover={{ color: "#fff" }} whiteSpace={"nowrap"}>
-                            About Us
-                        </AppTypography>
-                    </Link>
                     <AppPopoverOnHover
                         nodes={{
                             trigger: {
@@ -52,10 +47,10 @@ function DesktopHeader({ products_menu, toggleAuthModal }: Props) {
                                                     <AppTypography color={"white"} fontSize={"16px"} fontWeight={"600"}>
                                                         {menu_item?.label}
                                                     </AppTypography>
-                                                    <Flex width={"100%"} flexWrap={"wrap"} justifyContent={"space-between"} gap={"32px"}>
+                                                    <Flex width={"100%"} flexWrap={"wrap"} justifyContent={"flex-start"} gap={"16px"}>
                                                         {menu_item?.links?.map((link) => (
                                                             <Link key={link.label} to={link.href}>
-                                                                <Flex alignItems={"flex-start"} gap={4}>
+                                                                <Flex alignItems={"flex-start"} gap={4} width={"300px"}>
                                                                     <Box flexShrink={0} backgroundColor={"#F2F2F2"} padding={"12px"} rounded={"8px"}>
                                                                         {link.icon}
                                                                     </Box>
@@ -93,6 +88,11 @@ function DesktopHeader({ products_menu, toggleAuthModal }: Props) {
                     <Link to="/plans">
                         <AppTypography color="#878787" fontSize={{ base: "12px", sm: "14px", md: "16px" }} fontWeight={600} transition={"0.2s"} _hover={{ color: "#fff" }}>
                             Pricing
+                        </AppTypography>
+                    </Link>
+                    <Link to="/about">
+                        <AppTypography color="#878787" fontSize={{ base: "12px", sm: "14px", md: "16px" }} fontWeight={600} transition={"0.2s"} _hover={{ color: "#fff" }} whiteSpace={"nowrap"}>
+                            About Us
                         </AppTypography>
                     </Link>
                 </HStack>
