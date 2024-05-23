@@ -54,6 +54,7 @@ export async function EVMrecordMerch(provider: any,sku_properties: any, address:
             modalInterface.error("You are not the owner of the shop");
             throw new Unauthorized("record", address, shopAddress);
         }
+        modalInterface.error(e);
         throw e;
     }
 }

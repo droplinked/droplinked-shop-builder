@@ -12,21 +12,18 @@ export type IWeb3 = {
     chain: string
     stack: any
     wallets: Array<IUserWalletsProps>
-    shop: any
 } | {
     method: "request"
     params: IRequestData
     chain: string
     stack: any
     wallets: Array<IUserWalletsProps>
-    shop: any
 } | {
     method: "accept"
     params: IAcceptData
     chain: string
     stack: any
     wallets: Array<IUserWalletsProps>
-    shop: any
 }
 
 interface IGetChain {
@@ -75,10 +72,12 @@ const useAppWeb3 = () => {
         })
     }
 
-    const web3 = ({ method, params, chain, wallets, stack, shop }: IWeb3) => {
+    const web3 = ({ method, params, chain, wallets, stack }: IWeb3) => {
         return new Promise<any>(async (resolve, reject) => {
             try {
                 const accountAddress = await login({ chain, wallets, stack })
+                const shop = JSON.parse(localStorage.getItem('appStore')).state.shop;
+                console.log(shop);
 
                 if (method === "record") {
                     const records = await record({ params, accountAddress, stack, shop })
