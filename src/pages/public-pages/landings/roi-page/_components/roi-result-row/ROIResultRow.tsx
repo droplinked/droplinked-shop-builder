@@ -7,11 +7,13 @@ interface Props {
 }
 
 function ROIResultRow({ title, value }: Props) {
-    const sign = title === "Return on Investment (ROI)" ? "%" : "$"
+    const sign = title === "Return on Investment (ROI)" ? "%" : "$";
+    const formattedValue = value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
     return (
         <Flex justifyContent={"space-between"} alignItems={"center"} gap={3}>
             <Box as='span' width={"60%"}>{title}</Box>
-            <Box as='span' whiteSpace={"nowrap"}>{`${sign}${value.toLocaleString(undefined, { maximumFractionDigits: 2 })}`}</Box>
+            <Box as='span' whiteSpace={"nowrap"}>{sign === "$" ? `${sign}${formattedValue}` : `${formattedValue}${sign}` }</Box> 
         </Flex>
     )
 }
