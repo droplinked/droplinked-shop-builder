@@ -1,4 +1,4 @@
-import { Flex, Show } from "@chakra-ui/react";
+import { Flex, Hide, Show } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AuthModal from "components/modals/auth-modal/AuthModal";
 import useHookStore from "functions/hooks/store/useHookStore";
@@ -50,7 +50,7 @@ function HeaderMain() {
                 zIndex="10"
                 style={{ transition: `all 1s ease` }}
             >
-                <Show above="md"><DesktopHeader products_menu={products_menu} toggleAuthModal={toggleAuthModal} /></Show>
+                <Hide below="md"><DesktopHeader products_menu={products_menu} toggleAuthModal={toggleAuthModal} /></Hide>
                 <Show below="md"><MobileHeader products_menu={products_menu} toggleAuthModal={toggleAuthModal} /></Show>
             </Flex>
             <AuthModal show={header_state.auth_modal} shopName={shop?.name} close={toggleAuthModal} />
