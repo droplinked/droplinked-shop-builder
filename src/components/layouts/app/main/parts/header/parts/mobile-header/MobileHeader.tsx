@@ -96,7 +96,7 @@ function MobileHeader({ products_menu, toggleAuthModal }: Props) {
                             <Flex direction={"column"} gap={3}>
                                 {
                                     menuItem.links.map(link =>
-                                        <Flex alignItems={"center"} gap={3} onClick={() => handleNavigation(link.href)}>
+                                        <Flex key={link.label} alignItems={"center"} gap={3} onClick={() => handleNavigation(link.href)}>
                                             <Grid placeContent={"center"} width={"36px"} height={"36px"} backgroundColor={"#F2F2F2"} padding={"12px"} rounded={"8px"}>
                                                 {link.icon}
                                             </Grid>
