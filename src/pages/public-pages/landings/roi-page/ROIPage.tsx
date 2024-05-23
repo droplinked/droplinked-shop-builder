@@ -58,7 +58,7 @@ function ROIPage() {
                         <Container title='Financial and Performance Metrics'>
                             <Input label='Average Order Value' value={metrics.averageOrderValue} leftIcon={<AppIcons.GrayDollor />} tooltipText='Anticipated retail price of the item sold' onChange={(e) => updateMetrics("averageOrderValue", e.target.value)} />
                             <Input label='Royalty Percentage from Resales' value={metrics.royaltyPercentage} leftIcon={<AppIcons.GrayPercent />} tooltipText='The payout % of the retail price of an item sold that goes back to originator for ongoing sales' onChange={(e) => updateMetrics("royaltyPercentage", e.target.value)} />
-                            <Input label='Captured Secondary Sales Percentage' value={metrics.CapturedSecondarySales} leftIcon={<AppIcons.GrayPercent />} tooltipText='The % of anticipated secondary sales captured' onChange={(e) => updateMetrics("CapturedSecondarySales", e.target.value)} />
+                            <Input label='Captured Secondary Sales Percentage' value={metrics.CapturedSecondarySalesPercentage} leftIcon={<AppIcons.GrayPercent />} tooltipText='The % of anticipated secondary sales captured' onChange={(e) => updateMetrics("CapturedSecondarySalesPercentage", e.target.value)} />
                         </Container>
                     </Flex>
 

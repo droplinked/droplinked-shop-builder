@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react"
 import { Plan } from "../interfaces/interfaces"
 
 const plans: Plan[] = [
-    { title: 'Capsule', duration: 30, skus: 5, productRecords: 50000, baseCommitment: 10000 },
+    { title: 'Capsule', duration: 30, skus: 5, productRecords: 25000, baseCommitment: 10000 },
     { title: 'Pilot', duration: 90, skus: 25, productRecords: 250000, baseCommitment: 50000 },
     { title: 'Enterprise', duration: 365, skus: 100, productRecords: 1000000, baseCommitment: 150000 },
 ]
@@ -13,8 +13,8 @@ const availableNetworks = [
     { title: "Arbitrum", constantValue: 0.02 },
     { title: "OP", constantValue: 0.008 },
     { title: "Base", constantValue: 0.001 },
-    { title: "Skale", constantValue: 0 },
-    { title: "Solana", constantValue: 0 },
+    { title: "Skale", constantValue: 0.00 },
+    { title: "Solana", constantValue: 0.000 },
     { title: "Near", constantValue: 0.002 },
     { title: "Stacks", constantValue: 0.007 },
     { title: "Hedera", constantValue: 0.05 },
@@ -34,15 +34,16 @@ const useROICalculation = () => {
     const [metrics, setMetrics] = useState({
         averageOrderValue: "500",
         royaltyPercentage: "5",
-        CapturedSecondarySales: "50",
+        CapturedSecondarySalesPercentage: "50",
         transactionCost: "100",
     })
 
     const networks = availableNetworks.map(network => {
         const { totalSkus, productRecordCount, serviceFee } = productDetails
+        const protocolsValue = ((network.constantValue) * ((+productRecordCount * 100) + +totalSkus) + +serviceFee) / +productRecordCount
         return {
-            title: network.title,
-            value: ((network.constantValue) * (+totalSkus + +productRecordCount * 100) + +serviceFee) / +productRecordCount
+            title: `${network.title}: $${protocolsValue.toFixed(2)}`,
+            value: protocolsValue ,
         }
     })
 
@@ -85,12 +86,12 @@ const useROICalculation = () => {
 
     const handleCalculation = useCallback(() => {
         if (buttonDisabled) return
-        const { averageOrderValue, royaltyPercentage, CapturedSecondarySales } = metrics
+        const { averageOrderValue, royaltyPercentage, CapturedSecondarySalesPercentage } = metrics
 
         const grossInvestment = selectedNetwork * +productDetails.productRecordCount
         const grossMerchandiseValue = +averageOrderValue * +productDetails.transactionCount
-        const grossCapturedValue = grossMerchandiseValue * +royaltyPercentage * +CapturedSecondarySales
-        const ROI = grossCapturedValue / grossInvestment
+        const grossCapturedValue = grossMerchandiseValue * (+royaltyPercentage / 100) * (+CapturedSecondarySalesPercentage / 100)
+        const ROI = (grossCapturedValue / grossInvestment) * 100
 
         setResult({ grossInvestment, grossMerchandiseValue, grossCapturedValue, ROI })
     }, [buttonDisabled, metrics, selectedNetwork, productDetails, setResult])
