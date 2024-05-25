@@ -27,10 +27,10 @@ function HeaderMain() {
             ],
         },
         {
-            label: "Enterprice",
+            label: "Enterprise",
             links: [
-                { label: "DIMST", description: "On chain inventory management", icon: <AppIcons.Coins />, href: "tokenpay" },
-                { label: "DPP", description: "Digital product passport", icon: <AppIcons.Gallery />, href: "tokenpay" }
+                { label: "DIMST", description: "On-Chain Inventory Management", icon: <AppIcons.Coins />, href: "tokenpay" },
+                { label: "DPP", description: "Digital Product Passport", icon: <AppIcons.Gallery />, href: "tokenpay" }
             ],
         },
     ]
