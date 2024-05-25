@@ -23,11 +23,11 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
     let navigate = useNavigate();
     const { showToast } = useAppToast();
     const toggleShowField = useCallback((field: any) => setStates((prev) => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), []);
-    const referral_code_from_params = useMemo(() => searchParams.get("referral"),[searchParams])
+    const referral_code_from_params = useMemo(() => searchParams.get("referral"), [searchParams])
     const onSubmit = async (data: any) => {
         try {
-            const { email, password, username, referral } = data;
-            await mutateAsync({ email, password, shopName: username, referralCode: referral && referral !== "" ? referral : undefined });
+            const { email, password, referral } = data;
+            await mutateAsync({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true });
             localStorage.setItem("registerEmail", JSON.stringify(email));
             showToast({ message: "Account successfully created", type: "success" });
             close();
@@ -38,7 +38,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
     };
 
     const formSchema = Yup.object().shape({
-        username: Yup.string().matches(usernameRegex, "Username can contain letters (a-z), numbers (0-9) and underscores.").required("Required"),
+        // username: Yup.string().matches(usernameRegex, "Username can contain letters (a-z), numbers (0-9) and underscores.").required("Required"),
         email: Yup.string().email(AppErrors.signin.invalid_email_address).required("Required"),
         password: Yup.string().matches(passwordRegex, AppErrors.signup.password_requirements_not_met).required("Required"),
         repassword: Yup.string()
@@ -50,7 +50,7 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
     return (
         <Formik
             initialValues={{
-                username: shopname || "",
+                // username: shopname || "",
                 email: "",
                 password: "",
                 repassword: "",
@@ -64,13 +64,13 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                 <Form>
                     <VStack align={'stretch'} spacing={'32px'}>
                         <Stack w="100%" h="100%" spacing="16px">
-                            <AppInput
+                            {/* <AppInput
                                 error={errors?.username ? errors.username.toString() : ""}
                                 name="username"
                                 isReadOnly={shopname && shopname.length}
                                 onChange={(e) => setFieldValue("username", e.target.value)}
                                 value={values.username}
-                            />
+                            /> */}
                             <AppInput type="email" error={errors?.email ? errors.email.toString() : ""} name="email" onChange={(e) => setFieldValue("email", e.target.value)} value={values.email} />
                             <Box position={"relative"}>
                                 <AppInput
@@ -106,11 +106,11 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                             <AppTypography fontWeight={"400"} fontSize={{ base: "12px", md: "14px" }} color={"white"} cursor={"pointer"} _hover={{ color: "#b3b3b3" }} onClick={switchToggle}>Already have an account?{" "}<Box as="span" color="#2EC99E !important">Sign in</Box>{" "}now</AppTypography>
                         </VStack>
                         <HStack align={"stretch"} alignItems={"center"}>
-                            <Divider color={"line"}/>
+                            <Divider color={"line"} />
                             <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
-                            <Divider color={"line"}/>
+                            <Divider color={"line"} />
                         </HStack>
-                        <BasicButton onClick={() => {window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}`}} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{backgroundColor: "mainGray.500"}} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google/>} isDisabled={isLoading}>Sign up with Google</BasicButton>
+                        <BasicButton onClick={() => { window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}` }} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{ backgroundColor: "mainGray.500" }} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google />} isDisabled={isLoading}>Sign up with Google</BasicButton>
                     </VStack>
                 </Form>
             )}

@@ -93,18 +93,7 @@ export interface ICustomReferralCode {
     customCode: string;
 }
 
-export type IPaymentMethod = {
-    _id: string;
-    type: string;
-    icon?: string;
-    isActive: boolean;
-    tokens?: {
-        _id: string
-        name: string;
-        icon?: string;
-        type: string;
-        isActive: boolean;
-        isNative: boolean;
-        isCustom: boolean;
-    }[]
+export interface IUpdateShopName {
+    id: string;
+    shopName: string;
 }

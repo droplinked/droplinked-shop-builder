@@ -1,7 +1,7 @@
-import { statuesModule } from "./modules/statues";
+import { statusesModule } from "./modules/statues";
 
 interface IcheckPermission {
-    shop: Object
+    user: any
 }
 
 interface IregisterGate extends IcheckPermission {
@@ -11,16 +11,14 @@ interface IregisterGate extends IcheckPermission {
 }
 
 const DashboardGateModel = ({
-    checkPermission: ({ shop }: IcheckPermission) => {
-        const statues = new statuesModule(shop)
-        const shopInfo = statues.shopInfo()
-        const designTemplate = statues.designTemplate()
-        const technical = statues.technical()
-        return shopInfo || designTemplate || technical
+    checkPermission: ({ user }: IcheckPermission) => {
+        const statuses = new statusesModule(user)
+        const urlRegistration = statuses.urlRegistration()
+        return urlRegistration
     },
 
     registerGate: ({ to, redirect, pathname }: IregisterGate) => {
-        if (pathname.includes("register")) return false
+        if (pathname.includes("url-registration")) return false
         const checkPath = pathname.includes(to) // check current path
         if (!checkPath) redirect(to)
     }
