@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from "react"
 import { Plan } from "../interfaces/interfaces"
 
 const plans: Plan[] = [
-    { title: 'Capsule', duration: 30, skus: 5, productRecords: 25000, baseCommitment: 10000 },
-    { title: 'Pilot', duration: 90, skus: 25, productRecords: 250000, baseCommitment: 50000 },
+    { title: 'Capsule', duration: 30, skus: 5, productRecords: 10000, baseCommitment: 10000 },
+    { title: 'Pilot', duration: 90, skus: 25, productRecords: 250000, baseCommitment: 50000 }, // BASE COMMITMENTS - there are other variants including pilot-500 @90k pilot-750 @130
     { title: 'Enterprise', duration: 365, skus: 100, productRecords: 1000000, baseCommitment: 150000 },
 ]
 
@@ -32,18 +32,25 @@ const useROICalculation = () => {
     })
 
     const [metrics, setMetrics] = useState({
-        averageOrderValue: "500",
+        averageOrderValue: "750",
         royaltyPercentage: "5",
-        CapturedSecondarySalesPercentage: "50",
+        CapturedSecondarySalesPercentage: "40",
         transactionCost: "100",
     })
 
     const networks = availableNetworks.map(network => {
+
+        // handle errors later
+        if (parseFloat(metrics.transactionCost) == 0) {
+            console.log('TX % cannot be 0')
+        }
+
+
         const { totalSkus, productRecordCount, serviceFee } = productDetails
-        const protocolsValue = ((network.constantValue) * ((+productRecordCount * 100) + +totalSkus) + +serviceFee) / +productRecordCount
+        const protocolsValue = ((network.constantValue) * ((+ productRecordCount * parseFloat(metrics.transactionCost) / 100) + +totalSkus) + +serviceFee) / +productRecordCount
         return {
             title: `${network.title}: $${protocolsValue.toFixed(2)}`,
-            value: protocolsValue ,
+            value: protocolsValue,
         }
     })
 
@@ -88,7 +95,14 @@ const useROICalculation = () => {
         if (buttonDisabled) return
         const { averageOrderValue, royaltyPercentage, CapturedSecondarySalesPercentage } = metrics
 
-        const grossInvestment = selectedNetwork * +productDetails.productRecordCount
+        const grossInvestment = selectedNetwork * +productDetails.productRecordCount // error here on pilot, does not match price per item
+        // const grossInvestment = selectedNetwork // should be 7.20 per unit, selected network variable is wrong
+        // console.log(grossInvestment)
+        // console.log(networks[0].value)
+
+        // const grossInvestment = selectedNetwork * +productDetails.productRecordCount // error here on pilot, does not match price per item
+ 
+
         const grossMerchandiseValue = +averageOrderValue * +productDetails.transactionCount
         const grossCapturedValue = grossMerchandiseValue * (+royaltyPercentage / 100) * (+CapturedSecondarySalesPercentage / 100)
         const ROI = (grossCapturedValue / grossInvestment) * 100
