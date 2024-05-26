@@ -18,5 +18,6 @@ export enum Network {
 export enum ChainWallet {
     Metamask,
     CoinBase,
-    CasperWallet
+    CasperWallet,
+    Phantom
 }

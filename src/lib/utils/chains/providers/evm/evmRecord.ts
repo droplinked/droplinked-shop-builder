@@ -18,6 +18,7 @@ export async function EVMrecordMerch(provider: any,sku_properties: any, address:
     if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
         throw new Error("Address does not match signer address");
     }
+    console.log(`shopAddress: ${shopAddress}`);
     const contract = new ethers.Contract(shopAddress, shopABI, signer);
     modalInterface.waiting("Minting...");
     let metadata = {
@@ -28,11 +29,15 @@ export async function EVMrecordMerch(provider: any,sku_properties: any, address:
     }
     let ipfsHash = await uploadToIPFS(metadata, apiKey);
     try {
-        await contract.callStatic.mintAndRegister(nftContract, `https://ipfs.io/ipfs/${ipfsHash}`, amount, acceptsManageWallet, commission, price, currencyAddress, royalty, NFTType.ERC1155, type, PaymentMethodType.USD, beneficiaries);
-        const gasEstimation = (await contract.estimateGas.mintAndRegister(nftContract, `https://ipfs.io/ipfs/${ipfsHash}`, amount, acceptsManageWallet, commission, price, currencyAddress, royalty, NFTType.ERC1155, type, PaymentMethodType.USD, beneficiaries)).toBigInt();
+        console.log(ipfsHash);
+        console.log(`nftContract: ${nftContract}`);
+        await contract.callStatic.mintAndRegister(nftContract, `https://ipfs.io/ipfs/${ipfsHash}`, amount, acceptsManageWallet, commission, price, currencyAddress, royalty, NFTType.ERC1155, type, PaymentMethodType.USD, beneficiaries, false);
+        modalInterface.waiting("callStatic");
+        const gasEstimation = (await contract.estimateGas.mintAndRegister(nftContract, `https://ipfs.io/ipfs/${ipfsHash}`, amount, acceptsManageWallet, commission, price, currencyAddress, royalty, NFTType.ERC1155, type, PaymentMethodType.USD, beneficiaries, false)).toBigInt();
+        modalInterface.waiting("gasEstimation");
         const gasPrice = ((await getGasPrice(provider)).valueOf());
         modalInterface.waiting("Minting the NFT...");
-        const tx = await contract.mintAndRegister(nftContract, `https://ipfs.io/ipfs/${ipfsHash}`, amount, acceptsManageWallet, commission, price, currencyAddress, royalty, NFTType.ERC1155, type, PaymentMethodType.USD, beneficiaries, {
+        const tx = await contract.mintAndRegister(nftContract, `https://ipfs.io/ipfs/${ipfsHash}`, amount, acceptsManageWallet, commission, price, currencyAddress, royalty, NFTType.ERC1155, type, PaymentMethodType.USD, beneficiaries, false, {
             gasLimit: (gasEstimation * BigInt(105)) / BigInt(100),
             gasPrice: gasPrice
         });
@@ -45,6 +50,7 @@ export async function EVMrecordMerch(provider: any,sku_properties: any, address:
         modalInterface.success("Successfully recorded the product!");
         return { transactionHash: tx.hash, productId, amountRecorded };
     } catch (e: any) {
+        console.log(e);
         if (e.code.toString() === "ACTION_REJECTED") {
             modalInterface.error("Transaction Rejected");
             throw new Error("Transaction Rejected");

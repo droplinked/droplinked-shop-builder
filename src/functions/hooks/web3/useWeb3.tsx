@@ -51,7 +51,7 @@ const useAppWeb3 = () => {
 
                 if (chainAccount?.address) {
                     resolve(chainAccount[chain === "CASPER" ? "public_key" : "address"])
-                } else if (chain == "STACKS") {
+                } else if (chain === "STACKS") {
                     const address: any = await stack.login()
                     resolve(address)
                     updateWallet({ type: "STACKS", address: stack.stxAddress })
@@ -76,11 +76,11 @@ const useAppWeb3 = () => {
         return new Promise<any>(async (resolve, reject) => {
             try {
                 const accountAddress = await login({ chain, wallets, stack })
-                const shop = JSON.parse(localStorage.getItem('appStore')).state.shop;
-                console.log(shop);
+                // const shop = JSON.parse(localStorage.getItem('appStore')).state.shop;
+                // console.log(shop);
 
                 if (method === "record") {
-                    const records = await record({ params, accountAddress, stack, shop })
+                    const records = await record({ params, accountAddress, stack })
                     resolve(records)
                 } else if (method === "request") {
                     const requests = await request({ params, accountAddress, stack })

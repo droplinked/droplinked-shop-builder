@@ -41,11 +41,27 @@ export class EVMProvider implements ChainProvider {
                     throw new WalletNotFoundException("Metamask is not installed");
                 return new ethers.providers.Web3Provider(ethereum.providers.find((x: any) => { return x.isMetaMask }));
             } else if (this.wallet === ChainWallet.CoinBase) {
-                if (!ethereum.providerMap.get("CoinbaseWallet"))
-                    throw new WalletNotFoundException("Coinbase wallet not found");
-                return new ethers.providers.Web3Provider(ethereum.providers.find((x: any) => { return x.isCoinbaseWallet }));
+                if (!ethereum.providerMap.get('CoinbaseWallet'))
+                    throw new WalletNotFoundException(
+                        'Coinbase wallet not found'
+                    );
+                return new ethers.providers.Web3Provider(
+                    ethereum.providers.find((x: any) => {
+                        return x.isCoinbaseWallet;
+                    })
+                );
+            } else if (this.wallet === ChainWallet.Phantom) {
+                if (!ethereum.providerMap.get('CoinbaseWallet'))
+                    throw new WalletNotFoundException(
+                        'Coinbase wallet not found'
+                    );
+                return new ethers.providers.Web3Provider(
+                    ethereum.providers.find((x: any) => {
+                        return x.isCoinbaseWallet;
+                    })
+                );
             } else {
-                throw new Error("Wallet not implemented");
+                throw new Error('Wallet not implemented');
             }
         } else {
             // single wallet installed

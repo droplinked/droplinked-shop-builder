@@ -43,7 +43,9 @@ function RecordForm({ close, product, sku }: Iprops) {
             updateState("loading", true)
             const { commission, quantity, blockchain, royalty } = data
             const params = { commission, quantity, blockchain, royalty }
-            const deployhash = await web3({ method: "record", params: { data: params, product, sku, imageUrl: image }, chain: data.blockchain, wallets, stack })
+            const shop = JSON.parse(localStorage.getItem('appStore')).state.shop;
+            console.log(`params.shop: ${JSON.stringify(shop)}`)
+            const deployhash = await web3({ method: "record", params: { data: params, product, sku, imageUrl: image, shop }, chain: data.blockchain, wallets, stack })
             updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", data.blockchain)

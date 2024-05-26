@@ -93,24 +93,25 @@ export interface IrecordData {
 }
 
 export interface Isku {
-    _id?: string
+    _id?: string;
     dimensions: {
-        height: number
-        length: number
-        width: number
-    }
-    externalID: string
-    index: number
-    rawPrice?: number
-    options: Array<IskuOption>
-    price: number
-    quantity: number
-    record: Boolean
-    weight: number
-    recordData?: IrecordData
-    image?: string
-    recorded_quantity?: number
-    deploy_hash_link?: string
+        height: number;
+        length: number;
+        width: number;
+    };
+    externalID: string;
+    index: number;
+    rawPrice?: number;
+    options: Array<IskuOption>;
+    price: number;
+    quantity: number;
+    record: Boolean;
+    weight: number;
+    recordData?: IrecordData;
+    image?: string;
+    recorded_quantity?: number;
+    deploy_hash_link?: string;
+    deployedShopAddress: string;
 }
 
 export interface IproductByIdServices {
