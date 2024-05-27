@@ -58,8 +58,9 @@ const web3Model = ({
     record: async ({ params: { data, product, sku, imageUrl, shop }, accountAddress, stack: { isRequestPending, openContractCall, stxAddress } }: Irecord) => {
         return new Promise<void>(async (resolve: any, reject) => {
             try {
+                const chain = product.product_type === "DIGITAL" ? product.digitalDetail.chain : data.blockchain
                 console.log('shop:', shop)
-                const targetChainContract = shop.deployedContracts.find(contract => contract.type === product.digitalDetail.chain)
+                const targetChainContract = shop.deployedContracts.find(contract => contract.type === chain)
                 console.log("targetChainContract", targetChainContract)
                 let deployedContract
                 if (!targetChainContract) {
@@ -69,10 +70,10 @@ const web3Model = ({
                     console.log(shop.logo)
                     console.log(shop.description)
 
-                    deployedContract = await getNetworkProvider(Chain[(product.digitalDetail.chain) as string], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress)
+                    deployedContract = await getNetworkProvider(Chain[(chain) as string], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress)
                         .deployShop(shop.name, `${SHOP_URL}/${shop.name}`, accountAddress, shop.logo, shop.description)
 
-                    await deployShopContractService({ type: product.digitalDetail.chain, ...deployedContract })
+                    await deployShopContractService({ type: chain, ...deployedContract })
                 }
                 console.log("deployedContract", deployedContract)
 
@@ -118,7 +119,7 @@ const web3Model = ({
     request: ({ accountAddress, params: { sku, shop }, stack: { isRequestPending, openContractCall, stxAddress } }: IRequest) => {
         return new Promise<any>(async (resolve: any, reject) => {
             try {
-                
+
                 const deployedContractAddress = sku.deployedShopAddress;
                 console.log(`deployedContracts: ${deployShopContractService}`)
                 const productId = sku?.recordData?.data?.details?.productId
@@ -129,7 +130,7 @@ const web3Model = ({
                 if (!deployedContractAddress) {
                     reject("Contract not deployed")
                 }
-                
+
                 const shopAddress = deployedContractAddress;
                 if (blockchain === "STACKS") {
                     const request = await stacksRequest({
@@ -152,7 +153,7 @@ const web3Model = ({
                         productId,
                         shopAddress
                     );
-                    
+
                     resolve(request.transactionHash);
                 }
             } catch (error) {
