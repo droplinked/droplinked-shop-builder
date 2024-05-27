@@ -9,7 +9,7 @@ function BannerDescription() {
 
   return (
     <VStack align="stretch">
-      <OptionsCaption caption='Hero Text' isRequired />
+      <OptionsCaption caption='Hero Text' />
       <AppInput name='' value={backgroundText} onChange={(e) => dispatch({ type: 'updateShop', params: { backgroundText: e.target.value } })} placeholder='Enter a slogan' isRequired />
     </VStack>
   )

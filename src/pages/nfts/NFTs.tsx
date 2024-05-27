@@ -27,8 +27,8 @@ function NFTs() {
     const selectItems = useMemo(() => wallets ? wallets.map(wallet => ({ caption: wallet.type, value: wallet.type })) : [], [wallets])
     const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
-    const generateSkeletons = () => Array.from({ length: 6 }).map((_, key) =>
-        <AppSkeleton key={key} width={"196px"} height={"241px"} isLoaded={false}>{" "}</AppSkeleton>
+    const generateSkeletons = () => Array.from({ length: 5 }).map((_, key) =>
+        <AppSkeleton key={key} width={"100%"} minWidth={"196px"} height={"241px"} borderRadius={8} isLoaded={false}>{" "}</AppSkeleton>
     )
 
     useEffect(() => {
@@ -41,7 +41,7 @@ function NFTs() {
                 const nfts = await retrieveNFTs({
                     myProducts,
                     search: debouncedSearchTerm,
-                    body: { address: chainData?.address || "", chain: chainData?.type || "", network: appDevelopment ? "TESTNET" : "MAINNET" }
+                    body: { address: chainData?.address || "", chain: chainData?.type === "UNISAT" ? "ORDINALS" : chainData?.type || "", network: appDevelopment ? "TESTNET" : "MAINNET" }
                 })
                 setNfts(nfts.data.data)
             }
@@ -104,8 +104,9 @@ function NFTs() {
                                         nfts.map((nft, index) => {
                                             return <Box
                                                 key={index}
-                                                width={"196px"}
-                                                borderRadius={"8px"}
+                                                width={"100%"}
+                                                minWidth={"196px"}
+                                                borderRadius={8}
                                                 overflow={"hidden"}
                                                 backgroundColor={"#262626"}
                                                 cursor={myProducts ? "pointer" : "default"}
@@ -116,7 +117,7 @@ function NFTs() {
                                                     }
                                                 }}
                                             >
-                                                <AppImage src={myProducts ? nft.image : nft.imageUrl} objectFit={"cover"} width={"196px"} height={"196px"} />
+                                                <AppImage src={myProducts ? nft.image : nft.imageUrl} objectFit={"cover"} width={"100%"} height={"196px"} />
                                                 <Box padding={"12px 16px"}>
                                                     <AppTypography fontSize={"14px"} fontWeight={"600"}>{myProducts ? nft.name : nft.collectionName}</AppTypography>
                                                 </Box>

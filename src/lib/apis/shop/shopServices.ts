@@ -52,3 +52,7 @@ export const getReferralReportService = () => axiosInstance.get("shop/referral/r
 export const updateCustomReferralCodeService = (props: ICustomReferralCode) => axiosInstance.patch("shop/referral/custom/code", props)
 
 export const deployShopContractService = (props: IDeployContract) => axiosInstance.patch("shop/contract/deploy", props)
+
+export const checkUsernameAvailabilityService = (shopName: string) => axiosInstance.post("shop/check-shop-name", { shopName })
+
+export const updateUsernameService = ({ id, shopName }: IUpdateShopName) => axiosInstance.put(`shop/${id}/shop-name`, { shopName })

@@ -1,35 +1,61 @@
-import { Box, Flex, Image } from '@chakra-ui/react'
-import AppTypography from 'components/common/typography/AppTypography'
-import AuthModal from 'components/modals/auth-modal/AuthModal';
-import useHookStore from 'functions/hooks/store/useHookStore';
-import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import droplinkFull from "assest/image/droplinkFull.svg";
-import HeaderDashboardLogedin from 'components/layouts/app/dashboard/parts/header/parts/loged/HeaderDashboardLogedin';
+import { Flex, Hide, Show } from "@chakra-ui/react";
+import AppIcons from "assest/icon/Appicons";
+import AuthModal from "components/modals/auth-modal/AuthModal";
+import useHookStore from "functions/hooks/store/useHookStore";
+import React, { useState } from "react";
+import DesktopHeader from "./parts/desktop-header/DesktopHeader";
+import MobileHeader from "./parts/mobile-header/MobileHeader";
 
 function HeaderMain() {
-  const { app: { shop } } = useHookStore();
-  const [authModal, setAuthModal] = useState(false);
-  const toggleAuthModal = () => setAuthModal((p) => !p);
-  const location = useLocation()
+    const { app: { shop } } = useHookStore()
+    const [header_state, set_header_state] = useState<{ auth_modal: boolean; scrolled: boolean }>({ auth_modal: false, scrolled: false })
+    const toggleAuthModal = () => set_header_state((p) => ({ ...p, auth_modal: !p.auth_modal }))
+    window.onscroll = () => {
+        if (window.scrollY > 10) set_header_state((p) => ({ ...p, scrolled: true }))
+        else set_header_state((p) => ({ ...p, scrolled: false }))
+        return () => (window.onscroll = null)
+    }
 
-  return (
-    <>
-      <Flex justifyContent="space-between" position="absolute" top="0" right="0" left="0" padding={{ base: "10px 15px", sm: "20px 30px" }} zIndex="10" alignItems="center">
-        <Flex color="#FFF" gap={{ base: "13px", md: "100px" }} alignItems="center">
-          {location.pathname !== "/" ? <Link to="/#banner"><Image src={droplinkFull} width={{ base: "75px", lg: "125px" }} h="auto" /></Link> : null}
-          <Link to='about'><AppTypography color="#FFF" fontSize={{ base: '12px', sm: '14px' }}>About Us</AppTypography></Link>
-          <a href='https://droplinked.gitbook.io/droplinked-store-front-help-center/about-us/what-is-droplinked' target="_blank"><AppTypography color="#FFF" fontSize={{ base: '12px', sm: '14px' }}>Help Center</AppTypography></a>
-        </Flex>
-        <Box>
-          {shop ? <HeaderDashboardLogedin /> : (
-            <AppTypography borderRadius="8px" cursor="pointer" onClick={toggleAuthModal} color="#C2C2C2" border="2px solid #292929" padding={{ base: "6px 13px", lg: "6px 23px" }} fontSize='12px'>Sign In</AppTypography>
-          )}
-        </Box>
-      </Flex>
-      <AuthModal show={authModal} shopName={shop?.name} close={toggleAuthModal} />
-    </>
-  )
+    const products_menu = [
+        {
+            label: "Products",
+            links: [
+                { label: "Physical Products", description: "Monetize Inventory with Tailored Storefronts", icon: <AppIcons.Bag />, href: "/physical-product" },
+                { label: "Digital Products", description: "Minting and Monetizing Assets", icon: <AppIcons.Gallery />, href: "/digital-product" },
+                { label: "Print on Demand", description: "Transform Artwork and IP into Premium Merchandise", icon: <AppIcons.Shirt />, href: "/pod-product" },
+                { label: "Token Pay", description: "Token Powered Commerce Driven by Your Community", icon: <AppIcons.Coins />, href: "/tokenpay" },
+            ],
+        },
+        {
+            label: "Enterprise",
+            links: [
+                { label: "DIMST", description: "On-Chain Inventory Management", icon: <AppIcons.Coins />, href: "tokenpay" },
+                { label: "DPP", description: "Digital Product Passport", icon: <AppIcons.Gallery />, href: "tokenpay" }
+            ],
+        },
+    ]
+
+    return (
+        <>
+            <Flex
+                justifyContent="space-between"
+                alignItems="center"
+                position="fixed"
+                top={0}
+                left={0}
+                right={0}
+                borderBottom={header_state.scrolled ? "1px solid #3C3C3C" : "transparent"}
+                padding={{ base: "12px 16px", sm: "12px 36px", md: "16px 64px", lg: "20px 128px", xl: "24px 156px", "2xl": "192px" }}
+                backgroundColor={header_state.scrolled ? "#141414" : "transparent"}
+                zIndex="10"
+                style={{ transition: `all 1s ease` }}
+            >
+                <Hide below="md"><DesktopHeader products_menu={products_menu} toggleAuthModal={toggleAuthModal} /></Hide>
+                <Show below="md"><MobileHeader products_menu={products_menu} toggleAuthModal={toggleAuthModal} /></Show>
+            </Flex>
+            <AuthModal show={header_state.auth_modal} shopName={shop?.name} close={toggleAuthModal} />
+        </>
+    );
 }
 
-export default HeaderMain
+export default HeaderMain;

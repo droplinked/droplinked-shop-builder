@@ -81,6 +81,10 @@ function ControlsListProduct({ productID, product, fetch }) {
             caption: "Order Product Sample",
             onClick: () => shopNavigate(`products/order/${productID}`)
         })
+        if(product?.publish_status === "PUBLISHED") list.push({
+            caption: "Draft",
+            onClick: async () => await mutateAsync({ productID, params: { publish_product: false } }).then(()=> fetch())
+        })
 
         return list
     }, [product])

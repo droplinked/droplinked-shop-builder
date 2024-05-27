@@ -99,3 +99,8 @@ export interface IDeployContract {
     deployedShopAddress: string;
     deployedNFTAddress: string;
 }
+
+export interface IUpdateShopName {
+    id: string;
+    shopName: string;
+}

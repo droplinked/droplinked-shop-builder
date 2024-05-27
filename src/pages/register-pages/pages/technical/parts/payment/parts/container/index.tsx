@@ -4,60 +4,66 @@ import BasicButton from 'components/common/BasicButton/BasicButton'
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
+import useAppToast from 'functions/hooks/toast/useToast'
 import { PageContentWrapper } from 'pages/register-pages/RegisterPages-style'
 import technicalContext from 'pages/register-pages/pages/technical/context'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import classes from './style.module.scss'
-import useAppToast from 'functions/hooks/toast/useToast'
 
 function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
-  const { showToast } = useAppToast()
   const { state: { paymentMethods }, updateState } = useContext(technicalContext)
+  const { showToast } = useAppToast()
   const [walletAddress, setWalletAddress] = useState<string>(chain.destinationAddress)
   const [canEditWallet, setWalletEditability] = useState(!!chain.destinationAddress) // If the 'chain' object has an 'destinationAddress' property, we can edit it
 
   const persistWalletAddress = () => {
     const newWalletAddress = walletAddress.trim()
-    if (!newWalletAddress) return
-
-    const updatedPaymentMethods = [...paymentMethods]
-    const existingChainIndex = updatedPaymentMethods.findIndex(payment => payment.type === chain.type)
-    if (existingChainIndex !== -1) {
-      updatedPaymentMethods[existingChainIndex].destinationAddress = newWalletAddress
-      if (!newWalletAddress) updatedPaymentMethods[existingChainIndex].isActive = false
+    const selectedPaymentMethods = [...paymentMethods]
+    const targetPaymentMethod = selectedPaymentMethods.find(payment => payment.type === chain.type)
+    if (targetPaymentMethod) {
+      targetPaymentMethod.destinationAddress = newWalletAddress
+      if (!newWalletAddress) {
+        targetPaymentMethod.isActive = false
+        targetPaymentMethod.tokens.forEach(token => token.isActive = false)
+      }
     }
-    else updatedPaymentMethods.push({ ...chain, destinationAddress: newWalletAddress })
-    updateState("paymentMethods", updatedPaymentMethods)
+    else {
+      const newPaymentMethod = { ...chain, destinationAddress: newWalletAddress }
+      if (!newWalletAddress) {
+        targetPaymentMethod.isActive = false
+        targetPaymentMethod.tokens.forEach(token => token.isActive = false)
+      }
+      selectedPaymentMethods.push(newPaymentMethod)
+    }
+    updateState("paymentMethods", selectedPaymentMethods)
     setWalletEditability(true)
   }
 
   const handleActivation = (e) => {
     if (!["STRIPE", "COINBASE"].includes(chain.type) && !chain.destinationAddress) return showToast({ type: "info", message: "Please enter your wallet address first" })
     const isChecked = e.target.checked
-    const updatedPaymentMethods = [...paymentMethods]
+    const selectedPaymentMethods = [...paymentMethods]
 
     const findAndUpdateChain = () => {
-      const existingChainIndex = updatedPaymentMethods.findIndex(payment => payment.type === chain.type)
+      const existingChainIndex = selectedPaymentMethods.findIndex(payment => payment.type === chain.type)
       if (isChecked) {
-        if (existingChainIndex !== -1) {
-          updatedPaymentMethods[existingChainIndex].isActive = true
-        } else {
-          updatedPaymentMethods.push({ ...chain, isActive: true })
-        }
+        existingChainIndex !== -1 ?
+          selectedPaymentMethods[existingChainIndex].isActive = true :
+          selectedPaymentMethods.push({ ...chain, isActive: true })
       }
       else {
-        const activePaymentMethodsCount = updatedPaymentMethods.filter(payment => payment.isActive).length
+        const activePaymentMethodsCount = selectedPaymentMethods.filter(payment => payment.isActive).length
         if (activePaymentMethodsCount === 1) return
-        updatedPaymentMethods[existingChainIndex].isActive = false
+        selectedPaymentMethods[existingChainIndex].isActive = false
       }
     }
 
     const findAndUpdateToken = () => {
-      const targetChain = updatedPaymentMethods.find(payment => payment.type === chain.type)
+      const targetChain = selectedPaymentMethods.find(payment => payment.type === chain.type)
 
       if (!targetChain) {
         const newChain = { ...chain, isActive: true, tokens: [{ ...token, isActive: true }] }
-        updatedPaymentMethods.push(newChain)
+        selectedPaymentMethods.push(newChain)
         return
       }
 
@@ -65,14 +71,12 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
       const targetTokenIndex = targetChain.tokens.findIndex(currentToken => currentToken.type === token.type)
 
       if (isChecked) {
-        if (targetTokenIndex !== -1) {
-          targetChain.tokens[targetTokenIndex].isActive = true
-        } else {
+        targetTokenIndex !== -1 ?
+          targetChain.tokens[targetTokenIndex].isActive = true :
           targetChain.tokens.push({ ...token, isActive: true })
-        }
       } else {
-        const activePaymentMethodsCount = updatedPaymentMethods.filter(payment => payment.isActive).length
-        if (activePaymentMethodsCount === 1) return
+        const activePaymentMethods = selectedPaymentMethods.filter(payment => payment.isActive)
+        if (activePaymentMethods.length === 1 && activePaymentMethods[0].tokens.filter(token => token.isActive).length === 1) return
         if (targetTokenIndex !== -1) {
           targetChain.tokens[targetTokenIndex].isActive = false
         }
@@ -86,11 +90,15 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
       findAndUpdateToken()
     }
 
-    updateState("paymentMethods", updatedPaymentMethods)
+    updateState("paymentMethods", selectedPaymentMethods)
   }
 
   // whenever we change wallet address, it should also be updated in other chain-token pairs (because we store wallet address in state)
-  useEffect(() => { setWalletAddress(chain.destinationAddress) }, [chain.destinationAddress])
+  useEffect(() => {
+    const walletAddress = chain.destinationAddress
+    setWalletAddress(walletAddress)
+    setWalletEditability(!!walletAddress)
+  }, [chain.destinationAddress])
 
   return (
     <Flex justifyContent="space-between" width="100%">

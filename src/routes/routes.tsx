@@ -9,6 +9,9 @@ import Shop from "pages/affiliate/shopSingle/Shop"
 import ResetPassPage from "pages/auth-pages/reset-pass-page/ResetPassPage"
 import ThankForRegisterPage from "pages/auth-pages/thank-for-regsiter-page/ThankForRegisterPage"
 import VerifyEmailPage from "pages/auth-pages/verify-email-page/Email-verification-page"
+import Blogs from "pages/blogs/Blogs"
+import BlogForm from "pages/blogs/parts/blog-form/BlogForm"
+import Blog from "pages/blogs/parts/blog/Blog"
 import Collections from "pages/collections/Collections"
 import DashboardPage from "pages/dashboard/DashboardPage"
 import NFTs from "pages/nfts/NFTs"
@@ -24,7 +27,8 @@ import HomePage from "pages/public-pages/homePage/HomePage"
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
-import TokenPayPage from "pages/public-pages/landings/token-pay-page/TokenPayPage"
+import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
+import TokenPayPage from "pages/public-pages/landings/tokenpay-page/TokenPayPage"
 import LoadingPage from "pages/public-pages/loading-page/LoadingPage"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
@@ -32,6 +36,7 @@ import ShopPage from "pages/public-pages/shop-page/ShopPage"
 import TermsPage from "pages/public-pages/terms-page/TermsPage"
 import Admins from "pages/register-pages/pages/admins/Admins"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
+import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
@@ -61,11 +66,12 @@ function AppRoutes() {
           <Route path="contact-us" element={<ContactUs />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="email-confirmation" element={<ThankForRegisterPage />} />
-          <Route path="token-pay" element={<TokenPayPage />} />
+          <Route path="tokenpay" element={<TokenPayPage />} />
           <Route path="physical-product" element={<PhysicalProductPage />} />
           <Route path="digital-product" element={<DigitalProductPage />} />
           <Route path="pod-product" element={<PODProductPage />} />
           <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
+          <Route path="roi" element={<ROIPage />} />
           <Route
             path="email-verification/:token"
             element={<VerifyEmailPage />}
@@ -79,11 +85,14 @@ function AppRoutes() {
 
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardPage />} />
-          <Route path="register" element={<RegisterPagesWrapper />}>
+          <Route path="url-registration" element={<SimpleRegistration />} />
+
+          {/* <Route path="register" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
             <Route path="design" element={<DesignPage />} />
             <Route path="technical" element={<TechnicalPage />} />
-          </Route>
+          </Route> */}
+
           <Route path="settings" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
             <Route path="design" element={<DesignPage />} />
@@ -114,6 +123,11 @@ function AppRoutes() {
             <Route path="notifications" element={<Notifications />} />
           </Route>
           <Route path="nfts" element={<NFTs />} />
+          <Route path="blogs">
+            <Route index element={<Blogs />} />
+            <Route path="create" element={<BlogForm />} />
+            <Route path=":slug" element={<Blog />} />
+          </Route>
         </Route>
         <Route path=":shopname" element={<ShopPage />} />
         <Route path="*" element={<NotFound />} />
