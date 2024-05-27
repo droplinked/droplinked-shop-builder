@@ -59,12 +59,18 @@ const web3Model = ({
         return new Promise<void>(async (resolve: any, reject) => {
             try {
                 const chain = product.product_type === "DIGITAL" ? product.digitalDetail.chain : data.blockchain
-                const targetChainContract = shop.deployedContracts.find(contract => contract.type === chain)
-                let deployedContract
-                if (!targetChainContract) {
+                let deployedContract;
+                let targetChainContract;
+                if (shop.deployedContracts) {
+                    targetChainContract = shop.deployedContracts.find(contract => contract.type === chain)
+                    if (!targetChainContract) {
+                        deployedContract = await getNetworkProvider(Chain[(chain) as string], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress)
+                            .deployShop(shop.name, `${SHOP_URL}/${shop.name}`, accountAddress, shop.logo, shop.description)
+                        await deployShopContractService({ type: chain, ...deployedContract })
+                    }
+                } else {
                     deployedContract = await getNetworkProvider(Chain[(chain) as string], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress)
                         .deployShop(shop.name, `${SHOP_URL}/${shop.name}`, accountAddress, shop.logo, shop.description)
-
                     await deployShopContractService({ type: chain, ...deployedContract })
                 }
                 const commission = data.commission
