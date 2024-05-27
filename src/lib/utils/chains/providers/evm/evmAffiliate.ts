@@ -1,62 +1,80 @@
 import { ethers } from 'ethers';
-import { getContractABI, getContractAddress } from './evmConstants'
-import { Chain, Network } from '../../dto/chains';
+import { EthAddress, Uint256 } from '../../dto/chainStructs';
+import { shopABI } from '../../dto/chainABI';
+import { getGasPrice } from '../../dto/chainConstants';
+import { RequestAlreadyConfirmed, RequestDoesntExist, RequestNotConfirmed, Unauthorized } from '../../dto/chainErrors';
+import { ModalInterface } from '../../dto/modalInterface';
 
-export let EVMApproveRequest = async function (chain: Chain, network: Network, address: string, request_id: number): Promise<string> {
-    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+export let EVMApproveRequest = async function (provider: any,address: string, requestId: Uint256, shopAddress: EthAddress, modalInterface: ModalInterface): Promise<string> {
     const signer = provider.getSigner();
-    if ((await signer.getAddress()).toLocaleLowerCase() != address.toLocaleLowerCase()) {
-        throw "Address does not match signer address";
+    if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
+        throw new Error("Address does not match signer address");
     }
-    const contract = new ethers.Contract(await getContractAddress(chain, network), await getContractABI(chain), signer);
+    modalInterface.waiting("Approving request...");
+    const contract = new ethers.Contract(shopAddress, shopABI, signer);
     try {
-        let tx = await contract.approve_request(request_id, {
-            gasLimit: 3000000
-        });
+        await contract.callStatic.approveRequest(requestId);
+        const gasEstimation = (await contract.estimateGas.approveRequest(requestId)).toBigInt().valueOf();
+        modalInterface.waiting("Approving...");
+        const tx = await contract.approveRequest(requestId, {
+            gasLimit: gasEstimation * BigInt(105) / BigInt(100),
+            gasPrice: getGasPrice(provider)
+        })
+        const receipt = await tx.wait();
+        const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log); } catch { return null } }).filter((log: any) => log != null);
+        const affiliateLog = logs.find((log: any) => log.name === "AffiliateRequestApproved");
+        console.log(affiliateLog);
+        modalInterface.success("Request Approved.");
         return tx.hash;
     } catch (e: any) {
-        if (e.code.toString() == "ACTION_REJECTED") {
-            throw "Transaction Rejected";
+        if (e.code.toString() === "ACTION_REJECTED") {
+            throw new Error("Transaction Rejected");
         }
-        throw e;
+        const err = contract.interface.parseError(e.data);
+        if (err.name === "RequestAlreadyConfirmed") {
+            throw new RequestAlreadyConfirmed(requestId, shopAddress);
+        } else if (err.name === "RequestDoesntExist") {
+            throw new RequestDoesntExist(requestId, shopAddress);
+        } else if (err.name === "OwnableUnauthorizedAccount") {
+            throw new Unauthorized("Approve", address, shopAddress);
+        } else {
+            throw e;
+        }
     }
 }
 
-export let EVMCancelRequest = async function (chain: Chain, network: Network, address: string, request_id: number | string): Promise<string> {
-    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+export let EVMDisapproveRequest = async function (provider: any,address: string, requestId: Uint256, shopAddress: EthAddress, modalInterface: ModalInterface) {
     const signer = provider.getSigner();
-    if ((await signer.getAddress()).toLocaleLowerCase() != address.toLocaleLowerCase()) {
-        throw "Address does not match signer address";
+    if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
+        throw new Error("Address does not match signer address");
     }
-    const contract = new ethers.Contract(await getContractAddress(chain, network), await getContractABI(chain), signer);
+    modalInterface.waiting("Disapproving request...");
+    const contract = new ethers.Contract(shopAddress, shopABI, signer);
     try {
-        let tx = await contract.cancel_request(request_id, {
-            gasLimit: 3000000
+        await contract.callStatic.disapprove(requestId);
+        const gasEstimation = (await contract.estimateGas.disapprove(requestId)).toBigInt().valueOf();
+        modalInterface.waiting("Disapproving...");
+        const tx = await contract.disapprove(requestId, {
+            gasLimit: gasEstimation * BigInt(105) / BigInt(100),
+            gasPrice: getGasPrice(provider)
         });
+        const receipt = await tx.wait();
+        const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log); } catch { return null } }).filter((log: any) => log != null);
+        const affiliateLog = logs.find((log: any) => log.name === "AffiliateRequestDisapproved");
+        console.log(affiliateLog);
+        modalInterface.success("Request Disapproved.");
         return tx.hash;
     } catch (e: any) {
-        if (e.code.toString() == "ACTION_REJECTED") {
-            throw "Transaction Rejected";
+        if (e.code.toString() === "ACTION_REJECTED") {
+            throw new Error("Transaction Rejected");
         }
-        throw e;
-    }
-}
-
-export let EVMDisapproveRequest = async function (chain: Chain, network: Network, address: string, request_id: number | string) {
-    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
-    const signer = provider.getSigner();
-    if ((await signer.getAddress()).toLocaleLowerCase() != address.toLocaleLowerCase()) {
-        throw "Address does not match signer address";
-    }
-    const contract = new ethers.Contract(await getContractAddress(chain, network), await getContractABI(chain), signer);
-    try {
-        let tx = await contract.disapprove(request_id, {
-            gasLimit: 3000000
-        });
-        return tx.hash;
-    } catch (e: any) {
-        if (e.code.toString() == "ACTION_REJECTED") {
-            throw "Transaction Rejected";
+        const err = contract.interface.parseError(e.data);
+        if (err.name === "OwnableUnauthorizedAccount") {
+            throw new Unauthorized("Disapprove", address, shopAddress);
+        } else if (err.name === "RequestDoesntExist") {
+            throw new RequestDoesntExist(requestId, shopAddress);
+        } else if (err.name === "RequestNotConfirmed") {
+            throw new RequestNotConfirmed(requestId, shopAddress);
         }
         throw e;
     }

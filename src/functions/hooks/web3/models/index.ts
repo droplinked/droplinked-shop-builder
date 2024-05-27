@@ -1,9 +1,10 @@
 import { Isku } from "lib/apis/product/interfaces"
-import { appDevelopment } from "lib/utils/app/variable"
+import { deployShopContractService } from "lib/apis/shop/shopServices"
+import { SHOP_URL, appDevelopment } from "lib/utils/app/variable"
 import { stacksRecord } from "lib/utils/blockchain/stacks/record"
 import stacksRequest from "lib/utils/blockchain/stacks/request"
-import { Chain, Network } from "lib/utils/chains/dto/chains"
 import { getNetworkProvider } from "lib/utils/chains/chainProvider"
+import { Chain, Network } from "lib/utils/chains/dto/chains"
 import acceptModel from "./module/accept/acceptModel"
 import recordModel, { IStacks, Ideploy } from "./module/record/recordModel"
 
@@ -19,6 +20,7 @@ export interface IRecordPrams {
     product: any
     sku: any
     imageUrl?: string
+    shop: any
 }
 
 export interface Irecord {
@@ -28,30 +30,53 @@ export interface Irecord {
 }
 
 export interface IRequestData {
-    sku: Isku
+    sku: Isku,
+    shop: any,
+    deployedContracts: any
 }
 
 interface IRequest {
-    params: IRequestData
-    accountAddress: any
-    stack: IStacks
+    params: IRequestData;
+    accountAddress: any;
+    stack: IStacks;
 }
 
 export interface IAcceptData {
-    shop: any
     accept: boolean
+    shop: any,
+    deployedContracts: any,
+    sku: any
 }
 
 interface IAccept {
-    params: IAcceptData
-    accountAddress: any
-    stack: IStacks
+    params: IAcceptData;
+    accountAddress: any;
+    stack: IStacks;
 }
 
 const web3Model = ({
-    record: async ({ params: { data, product, sku, imageUrl }, accountAddress, stack: { isRequestPending, openContractCall, stxAddress } }: Irecord) => {
+    record: async ({ params: { data, product, sku, imageUrl, shop }, accountAddress, stack: { isRequestPending, openContractCall, stxAddress } }: Irecord) => {
         return new Promise<void>(async (resolve: any, reject) => {
             try {
+                const chain = product.product_type === "DIGITAL" ? product.digitalDetail.chain : data.blockchain
+                console.log('shop:', shop)
+                const targetChainContract = shop.deployedContracts.find(contract => contract.type === chain)
+                console.log("targetChainContract", targetChainContract)
+                let deployedContract
+                if (!targetChainContract) {
+                    console.log(shop.name)
+                    console.log(`${SHOP_URL}/${shop.name}`)
+                    console.log(accountAddress)
+                    console.log(shop.logo)
+                    console.log(shop.description)
+
+                    deployedContract = await getNetworkProvider(Chain[(chain) as string], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress)
+                        .deployShop(shop.name, `${SHOP_URL}/${shop.name}`, accountAddress, shop.logo, shop.description)
+
+                    await deployShopContractService({ type: chain, ...deployedContract })
+                }
+                console.log("deployedContract", deployedContract)
+
                 const commission = data.commission
                 const quantity: any = data.quantity
                 if (!data.royalty) data.royalty = 0
@@ -73,8 +98,14 @@ const web3Model = ({
                     })
                     if (query) dataDeploy.deployHash = query.txId
                 } else {
-                    const res = await recordModel.record({ commission, product, royalty: data.royalty, blockchain: data.blockchain, sku, quantity, imageUrl, accountAddress })
-                    if (res) dataDeploy.deployHash = res
+                    const nftContract = targetChainContract?.deployedNFTAddress || deployedContract.deployedNFTAddress
+                    console.log("nftContract", nftContract)
+                    const shopAddress = targetChainContract?.deployedShopAddress || deployedContract.deployedShopAddress
+                    console.log("shopAddress", shopAddress)
+                    const currencyAddress = "0x0000000000000000000000000000000000000000"
+                    const res = await recordModel.record({ commission, product, royalty: data.royalty, blockchain: data.blockchain, sku, quantity, imageUrl, accountAddress, nftContract, shopAddress, currencyAddress })
+                    console.log("result", res)
+                    if (res) dataDeploy.deployHash = res.transactionHash
                 }
 
                 await recordModel.deploy(dataDeploy)
@@ -85,13 +116,22 @@ const web3Model = ({
         })
     },
 
-    request: ({ accountAddress, params: { sku }, stack: { isRequestPending, openContractCall, stxAddress } }: IRequest) => {
+    request: ({ accountAddress, params: { sku, shop }, stack: { isRequestPending, openContractCall, stxAddress } }: IRequest) => {
         return new Promise<any>(async (resolve: any, reject) => {
             try {
-                const tokenID = sku?.recordData?.data?.details?.token_id
+
+                const deployedContractAddress = sku.deployedShopAddress;
+                console.log(`deployedContracts: ${deployShopContractService}`)
+                const productId = sku?.recordData?.data?.details?.productId
+                console.log(`productID: ${productId}`)
                 const blockchain: string = sku?.recordData?.recordNetwork
                 const quantity = sku.recorded_quantity
+                console.log(shop);
+                if (!deployedContractAddress) {
+                    reject("Contract not deployed")
+                }
 
+                const shopAddress = deployedContractAddress;
                 if (blockchain === "STACKS") {
                     const request = await stacksRequest({
                         isRequestPending,
@@ -99,14 +139,22 @@ const web3Model = ({
                         params: {
                             amount: quantity,
                             commission: sku?.recordData?.data?.details?.commision,
-                            id: parseInt(tokenID),
+                            id: parseInt(productId),
                             publisher: stxAddress
                         }
                     })
                     resolve(request.txId)
                 } else {
-                    const request = await getNetworkProvider(Chain[blockchain], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress).publishRequest(sku?.recordData?.data?.details?.recipient, tokenID)
-                    resolve(request)
+                    const request = await getNetworkProvider(
+                        Chain[blockchain],
+                        Network[appDevelopment ? 'TESTNET' : 'MAINNET'],
+                        accountAddress
+                    ).publishRequest(
+                        productId,
+                        shopAddress
+                    );
+
+                    resolve(request.transactionHash);
                 }
             } catch (error) {
                 reject(error)
@@ -114,20 +162,37 @@ const web3Model = ({
         })
     },
 
-    accept: ({ accountAddress, params: { shop, accept }, stack: { isRequestPending, openContractCall } }: IAccept) => {
+    accept: ({ accountAddress, params: { accept, shop, sku }, stack: { isRequestPending, openContractCall } }: IAccept) => {
         return new Promise<any>(async (resolve, reject) => {
             try {
                 const requestID = shop?.recordData?.details?.request_id
                 const blockchain: string = shop.sku[0]?.recordData?.recordNetwork
+                const deployShopContract = sku.deployedShopAddress;
+                if (!deployShopContract) {
+                    reject("Contract not deployed")
+                }
                 let deployHash = null
                 if (blockchain === "STACKS") {
                     const request = await acceptModel.approveRequestStack({ isRequestPending, openContractCall, params: { id: requestID, publisher: shop?.recordData?.details?.publisher } })
                     deployHash = request.txId
                     resolve(deployHash)
                 } else {
-                    const accept = await getNetworkProvider(Chain[blockchain], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress).approveRequest(requestID)
-                    deployHash = accept
-                    resolve(deployHash)
+                    //    approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
+                    console.log(
+                        `shop.sku[0].recordData.data.details: ${JSON.stringify(
+                            shop.sku[0]?.recordData?.data?.details
+                        )}`
+                    );
+                    const accept = await getNetworkProvider(
+                        Chain[blockchain],
+                        Network[appDevelopment ? 'TESTNET' : 'MAINNET'],
+                        accountAddress
+                    ).approveRequest(
+                        requestID,
+                        shop.sku[0]?.recordData?.data?.details?.recipient
+                    );
+                    deployHash = accept;
+                    resolve(deployHash);
                 }
                 await acceptModel.deploy({ deployHash, accept, chain: blockchain, shop })
             } catch (error) {

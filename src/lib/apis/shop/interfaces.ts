@@ -93,6 +93,13 @@ export interface ICustomReferralCode {
     customCode: string;
 }
 
+export interface IDeployContract {
+    type: string;
+    transaction_id: string;
+    deployedShopAddress: string;
+    deployedNFTAddress: string;
+}
+
 export interface IUpdateShopName {
     id: string;
     shopName: string;

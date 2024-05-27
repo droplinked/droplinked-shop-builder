@@ -49,7 +49,9 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
 
         try {
             setLoading(true)
-            const deployHash = await web3({ chain: blockchain, method: "request", params: { sku }, wallets, stack })
+            console.log(`product: ${JSON.stringify(product)}`);
+            console.log(`sku: ${JSON.stringify(sku)}`)
+            const deployHash = await web3({ chain: blockchain, method: "request", params: { sku, shop, deployedContracts: sku.deployedShopAddress }, wallets, stack })
 
             await request(deployHash, quantity, blockchain)
             setHahskey(deployHash)

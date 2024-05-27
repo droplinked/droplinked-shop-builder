@@ -89,7 +89,7 @@ function NotificationsList() {
                                             </Flex>
                                         </VStack>
                                     </Box>
-                                    <Box><NotificationsButtons refetch={() => fetch()} shop={el} /></Box>
+                                    <Box><NotificationsButtons refetch={() => fetch()} shop={el} sku={sku} /></Box>
                                 </Flex>
                             </VStack>
                         )

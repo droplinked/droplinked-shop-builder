@@ -1,6 +1,7 @@
-import { EthAddress, ProductType, Uint256 } from "./dto/chainStructs";
+import { AffiliateRequestData, DeployedShop, EthAddress, ProductType, RecordData, Uint256 } from "./dto/chainStructs";
 import { Beneficiary } from "./dto/chainStructs";
-import { Chain, Network } from "./dto/chains";
+import { Chain, ChainWallet, Network } from "./dto/chains";
+import { ModalInterface, defaultModal } from "./dto/modalInterface";
 import { CasperProvider } from "./providers/casper/casperProvider";
 import { EVMProvider } from "./providers/evm/evmProvider";
 
@@ -10,6 +11,7 @@ export class WalletNotFoundException {
         this.message = field;
     }
 }
+
 export class AccountChangedException {
     public readonly message: string = "";
     constructor(field: string) {
@@ -27,13 +29,14 @@ export class ChainNotImplementedException {
 export interface ChainProvider {
     walletLogin(): Promise<any>;
     casperRecordProduct(skuProperties: any, productTitle: string, description: string, imageUrl: string, price: number, amount: number, commission: number, apiKey: string): Promise<string>;
-    deployShop(shopName: string, shopAddress: string, shopOwner: EthAddress, shopLogo: string, shopDescription: string): Promise<string>;
-    recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, paymentWallet: string, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, apiKey: string): Promise<string>;
-    publishRequest(producerAccountAddress: EthAddress, tokenId: Uint256): Promise<string>;
-    approveRequest(requestId: Uint256): Promise<string>;
-    cancelRequest(requestId: Uint256): Promise<string>;
-    disapproveRequest(requestId: Uint256): Promise<string>;
+    deployShop(shopName: string, shopAddress: string, shopOwner: EthAddress, shopLogo: string, shopDescription: string): Promise<DeployedShop>;
+    recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, apiKey: string): Promise<RecordData>;
+    publishRequest(productId: Uint256, shopAddress: EthAddress): Promise<AffiliateRequestData>;
+    approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
+    disapproveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>;
     setAddress(address: EthAddress): ChainProvider;
+    setWallet(wallet: ChainWallet): ChainProvider;
+    setModal(modal: ModalInterface): ChainProvider;
 }
 
 let chainMapping = {
@@ -79,8 +82,14 @@ let chainMapping = {
     }
 };
 
-export function getNetworkProvider(chain: Chain, network: Network, address: string) {
+export function getNetworkProvider(chain: Chain, network: Network, address: string, wallet: ChainWallet = ChainWallet.Metamask, modalInterface: ModalInterface = new defaultModal()) {
     if (chainMapping[chain][network] == null)
         throw new ChainNotImplementedException("The given chain is not implemented yet");
-    return chainMapping[chain][network]?.setAddress(address);
+    if (modalInterface == null) {
+        modalInterface = new defaultModal();
+    }
+    if (wallet == null && (chain !== Chain.CASPER && chain !== Chain.STACKS)) {
+        wallet = ChainWallet.Metamask;
+    }
+    return chainMapping[chain][network]?.setAddress(address).setModal(modalInterface).setWallet(wallet);
 }
