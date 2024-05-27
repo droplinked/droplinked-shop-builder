@@ -39,7 +39,6 @@ function NotificationsButtons({ shop, refetch, sku }: requestInterfaces.Iprops) 
             let blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
             if (States.status === "accept") {
-                console.log('sku:', sku);
                 const deploy_hash = await web3({ chain: blockchain, method: "accept", params: { shop, accept: States.status === "accept", deployedContracts: null, sku  }, wallets, stack })
                 modalHashKey.onOpen()
                 setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))

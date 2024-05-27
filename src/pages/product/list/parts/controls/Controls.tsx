@@ -35,7 +35,6 @@ function ControlsListProduct({ productID, product, fetch }) {
             await validate({ draft: false, state })
 
             const shop = JSON.parse(localStorage.getItem('appStore')).state.shop;
-            console.log(`digital shop: ${JSON.stringify(shop)}`)
             // Digital product record
             if (state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") await record({ method: (data: any) => appWeb3.web3({ method: "record", params: data, chain: state?.digitalDetail?.chain, wallets, stack }), product: state, stacks: stack, shop })
 

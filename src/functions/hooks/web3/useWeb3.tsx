@@ -76,9 +76,6 @@ const useAppWeb3 = () => {
         return new Promise<any>(async (resolve, reject) => {
             try {
                 const accountAddress = await login({ chain, wallets, stack })
-                // const shop = JSON.parse(localStorage.getItem('appStore')).state.shop;
-                // console.log(shop);
-
                 if (method === "record") {
                     const records = await record({ params, accountAddress, stack })
                     resolve(records)

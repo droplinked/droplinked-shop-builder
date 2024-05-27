@@ -20,10 +20,10 @@ export let EVMApproveRequest = async function (provider: any,address: string, re
             gasLimit: gasEstimation * BigInt(105) / BigInt(100),
             gasPrice: getGasPrice(provider)
         })
-        const receipt = await tx.wait();
-        const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log); } catch { return null } }).filter((log: any) => log != null);
-        const affiliateLog = logs.find((log: any) => log.name === "AffiliateRequestApproved");
-        console.log(affiliateLog);
+        //const receipt = await tx.wait();
+        //const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log); } catch { return null } }).filter((log: any) => log != null);
+        //const affiliateLog = logs.find((log: any) => log.name === "AffiliateRequestApproved");
+        //console.log(affiliateLog);
         modalInterface.success("Request Approved.");
         return tx.hash;
     } catch (e: any) {
@@ -58,10 +58,10 @@ export let EVMDisapproveRequest = async function (provider: any,address: string,
             gasLimit: gasEstimation * BigInt(105) / BigInt(100),
             gasPrice: getGasPrice(provider)
         });
-        const receipt = await tx.wait();
-        const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log); } catch { return null } }).filter((log: any) => log != null);
-        const affiliateLog = logs.find((log: any) => log.name === "AffiliateRequestDisapproved");
-        console.log(affiliateLog);
+        //const receipt = await tx.wait();
+        //const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log); } catch { return null } }).filter((log: any) => log != null);
+        //const affiliateLog = logs.find((log: any) => log.name === "AffiliateRequestDisapproved");
+        //console.log(affiliateLog);
         modalInterface.success("Request Disapproved.");
         return tx.hash;
     } catch (e: any) {
