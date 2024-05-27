@@ -165,9 +165,11 @@ const web3Model = ({
     accept: ({ accountAddress, params: { accept, shop, sku }, stack: { isRequestPending, openContractCall } }: IAccept) => {
         return new Promise<any>(async (resolve, reject) => {
             try {
-                const requestID = shop?.recordData?.details?.request_id
-                const blockchain: string = shop.sku[0]?.recordData?.recordNetwork
+                const requestID = shop?.recordData?.details?.requestId
+                console.log(`sku: ${JSON.stringify(sku)}`)
+                const blockchain: string = sku?.recordData?.recordNetwork
                 const deployShopContract = sku.deployedShopAddress;
+                console.log(deployShopContract)
                 if (!deployShopContract) {
                     reject("Contract not deployed")
                 }
@@ -189,7 +191,7 @@ const web3Model = ({
                         accountAddress
                     ).approveRequest(
                         requestID,
-                        shop.sku[0]?.recordData?.data?.details?.recipient
+                        deployShopContract
                     );
                     deployHash = accept;
                     resolve(deployHash);
