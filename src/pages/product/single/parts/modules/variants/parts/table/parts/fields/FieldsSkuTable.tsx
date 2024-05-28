@@ -25,9 +25,9 @@ function FieldsSkuTable(props: IProps) {
             ...isDimensions ? {
                 dimensions: {
                     ...el.dimensions,
-                    [name]: inputvalue
+                    [name]: Number(inputvalue)
                 }
-            } : { [name]: inputvalue }
+            } : { [name]: Number(inputvalue) }
         } : el))
         updateState("sku", refactor)
     }, [sku, index, name, value])
