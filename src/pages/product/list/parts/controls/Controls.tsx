@@ -34,8 +34,9 @@ function ControlsListProduct({ productID, product, fetch }) {
             const state = ProductSingleModel.refactorData(product)
             await validate({ draft: false, state })
 
+            const shop = JSON.parse(localStorage.getItem('appStore')).state.shop;
             // Digital product record
-            if (state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") await record({ method: (data: any) => appWeb3.web3({ method: "record", params: data, chain: state?.digitalDetail?.chain, wallets, stack }), product: state, stacks: stack })
+            if (state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") await record({ method: (data: any) => appWeb3.web3({ method: "record", params: data, chain: state?.digitalDetail?.chain, wallets, stack }), product: state, stacks: stack, shop })
 
             await mutateAsync({ productID: state._id, params: { publish_product: true } })
             showToast({ message: AppErrors.product.your_product_published, type: "success" })

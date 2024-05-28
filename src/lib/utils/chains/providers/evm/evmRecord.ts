@@ -1,8 +1,10 @@
 import { NFTStorage } from "nft.storage";
 import { ethers } from 'ethers';
-import { getContractABI, getContractAddress } from './evmConstants'
-import { Chain, Network } from "../../dto/chains";
-import { Beneficiary, ProductType } from "../../dto/chainStructs";
+import { Beneficiary, EthAddress, NFTType, PaymentMethodType, ProductType } from "../../dto/chainStructs";
+import { shopABI } from "../../dto/chainABI";
+import { Unauthorized } from "../../dto/chainErrors";
+import { getGasPrice } from "../../dto/chainConstants";
+import { ModalInterface } from "../../dto/modalInterface";
 export async function uploadToIPFS(metadata: any, apiKey: string) {
     const client = new NFTStorage({ token: apiKey });
     if (typeof (metadata) == typeof ({}) || typeof (metadata) == typeof ([])) {
@@ -11,29 +13,51 @@ export async function uploadToIPFS(metadata: any, apiKey: string) {
     const ipfs_hash = await client.storeBlob(new Blob([metadata]));
     return ipfs_hash;
 }
-export async function EVMrecordMerch(chain: Chain, network: Network, sku_properties: any, address: string, product_title: string, discription: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, paymentWallet: string, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, apiKey: string) {
-    const provider = new ethers.providers.Web3Provider((window as any).ethereum);
+export async function EVMrecordMerch(provider: any,sku_properties: any, address: string, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, apiKey: string, modalInterface: ModalInterface) {
     const signer = provider.getSigner();
-    if ((await signer.getAddress()).toLocaleLowerCase() != address.toLocaleLowerCase()) {
-        throw "Address does not match signer address";
+    if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
+        throw new Error("Address does not match signer address");
     }
-    const contract = new ethers.Contract(await getContractAddress(chain, network), await getContractABI(chain), signer);
+    const contract = new ethers.Contract(shopAddress, shopABI, signer);
+    modalInterface.waiting("Minting...");
     let metadata = {
         "name": product_title,
-        "description": discription,
+        "description": description,
         "image": image_url,
         "properties": sku_properties
     }
-    let ipfs_hash = await uploadToIPFS(metadata, apiKey);
+    let ipfsHash = await uploadToIPFS(metadata, apiKey);
     try {
-        let tx = await contract.mint(`https://ipfs.io/ipfs/${ipfs_hash}`, price, commission, amount, address, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty, {
-            gasLimit: 3000000
+        await contract.callStatic.mintAndRegister(nftContract, `https://ipfs.io/ipfs/${ipfsHash}`, amount, acceptsManageWallet, commission, price, currencyAddress, royalty, NFTType.ERC1155, type, PaymentMethodType.USD, beneficiaries, false);
+        modalInterface.waiting("callStatic");
+        const gasEstimation = (await contract.estimateGas.mintAndRegister(nftContract, `https://ipfs.io/ipfs/${ipfsHash}`, amount, acceptsManageWallet, commission, price, currencyAddress, royalty, NFTType.ERC1155, type, PaymentMethodType.USD, beneficiaries, false)).toBigInt();
+        modalInterface.waiting("gasEstimation");
+        const gasPrice = ((await getGasPrice(provider)).valueOf());
+        modalInterface.waiting("Minting the NFT...");
+        const tx = await contract.mintAndRegister(nftContract, `https://ipfs.io/ipfs/${ipfsHash}`, amount, acceptsManageWallet, commission, price, currencyAddress, royalty, NFTType.ERC1155, type, PaymentMethodType.USD, beneficiaries, false, {
+            gasLimit: (gasEstimation * BigInt(105)) / BigInt(100),
+            gasPrice: gasPrice
         });
-        return tx.hash;
+        modalInterface.waiting("Waiting for confirmation...");
+        let receipt = await tx.wait();
+        const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log) } catch { return null } }).filter((log: any) => log != null);
+        const productIdLog = logs.find((log: any) => log.name === "ProductRegistered");
+        const productId = productIdLog.args.productId.toString();
+        const amountRecorded = productIdLog.args.amount.toString();
+        modalInterface.success("Successfully recorded the product!");
+        return { transactionHash: tx.hash, productId, amountRecorded };
     } catch (e: any) {
-        if (e.code.toString() == "ACTION_REJECTED") {
-            throw "Transaction Rejected";
+        console.error(e);
+        if (e.code.toString() === "ACTION_REJECTED") {
+            modalInterface.error("Transaction Rejected");
+            throw new Error("Transaction Rejected");
         }
+        const err = contract.interface.parseError(e.data);
+        if (err.name === "OwnableUnauthorizedAccount") {
+            modalInterface.error("You are not the owner of the shop");
+            throw new Unauthorized("record", address, shopAddress);
+        }
+        modalInterface.error(e);
         throw e;
     }
 }
