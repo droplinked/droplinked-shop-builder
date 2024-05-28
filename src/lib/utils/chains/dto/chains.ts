@@ -14,3 +14,10 @@ export enum Network {
     MAINNET,
     TESTNET
 }
+
+export enum ChainWallet {
+    Metamask,
+    CoinBase,
+    CasperWallet,
+    Phantom
+}

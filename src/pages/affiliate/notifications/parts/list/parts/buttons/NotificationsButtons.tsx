@@ -12,7 +12,7 @@ import RequestButtons from './parts/buttons/RequestButtons'
 import ModalHashkey from './parts/hashkey/ModalHashkey'
 import NotificationsModal from './parts/modal/NotificationsModal'
 
-function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
+function NotificationsButtons({ shop, refetch, sku }: requestInterfaces.Iprops) {
     const modal = useDisclosure()
     const modalHashKey = useDisclosure()
     const { showToast } = useAppToast()
@@ -39,7 +39,7 @@ function NotificationsButtons({ shop, refetch }: requestInterfaces.Iprops) {
             let blockchain = shop.sku[0]?.recordData?.recordNetwork
             setLoading(true)
             if (States.status === "accept") {
-                const deploy_hash = await web3({ chain: blockchain, method: "accept", params: { shop, accept: States.status === "accept" }, wallets, stack })
+                const deploy_hash = await web3({ chain: blockchain, method: "accept", params: { shop, accept: States.status === "accept", deployedContracts: null, sku  }, wallets, stack })
                 modalHashKey.onOpen()
                 setStates(prev => ({ ...prev, deployHash: deploy_hash, blockchain }))
             } else {

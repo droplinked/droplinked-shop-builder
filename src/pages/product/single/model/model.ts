@@ -43,7 +43,8 @@ const ProductSingleModel = ({
                         commision: el?.recordData?.commision || 0
                     },
                     image: el?.image,
-                    ...el?.rawPrice && { rawPrice: el?.rawPrice }
+                    ...el?.rawPrice && { rawPrice: el?.rawPrice },
+                    deployedShopAddress: el?.deployedShopAddress //TODO:
                 }
             }),
             product_type: data?.product_type,

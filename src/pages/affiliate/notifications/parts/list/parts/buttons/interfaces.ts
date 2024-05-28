@@ -11,7 +11,8 @@ namespace requestInterfaces {
 
     export interface Iprops {
         shop: any
-        refetch: Function
+        refetch: Function,
+        sku: any
     }
 }
 
