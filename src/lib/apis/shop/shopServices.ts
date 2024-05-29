@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IchargeCreditService, ICustomReferralCode, IDeployContract, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, ShopCustomURL, ShopDNSInformation, ShopOAuth2Client } from "./interfaces"
+import { IchargeCreditService, ICustomReferralCode, IDeployContract, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, IUpdateShopName, ShopCustomURL, ShopDNSInformation, ShopOAuth2Client } from "./interfaces"
 
 export const shopService = ({ shopName }: IshopService) => axiosInstance.get(`shop/${shopName}`)
 
