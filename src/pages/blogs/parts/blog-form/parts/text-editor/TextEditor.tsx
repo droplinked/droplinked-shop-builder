@@ -6,6 +6,8 @@ import { Flex } from '@chakra-ui/react';
 import FieldLabel from 'components/common/form/fieldLabel/FieldLabel';
 import React from 'react';
 
+import "./styles.css";
+
 interface Props {
     initialContent: any,
     updateBlog: (document: any) => void
@@ -17,7 +19,7 @@ function TextEditor({ initialContent, updateBlog }: Props) {
     return (
         <Flex direction={"column"} gap={3}>
             <FieldLabel isRequired label={"Content"} />
-            <BlockNoteView editor={editor} onChange={() => updateBlog(editor.document)} />
+            <BlockNoteView editor={editor} onChange={() => updateBlog(editor.document)} data-theming-css-variables-demo />
         </Flex>
     )
 }

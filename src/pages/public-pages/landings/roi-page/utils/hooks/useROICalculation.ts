@@ -39,12 +39,9 @@ const useROICalculation = () => {
     })
 
     const networks = availableNetworks.map(network => {
-
-        // handle errors later
         if (parseFloat(metrics.transactionCost) == 0) {
-            console.log('TX % cannot be 0')
+            // handle errors later
         }
-
 
         const { totalSkus, productRecordCount, serviceFee } = productDetails
         const protocolsValue = ((network.constantValue) * ((+ productRecordCount * parseFloat(metrics.transactionCost) / 100) + +totalSkus) + +serviceFee) / +productRecordCount
@@ -96,13 +93,6 @@ const useROICalculation = () => {
         const { averageOrderValue, royaltyPercentage, CapturedSecondarySalesPercentage } = metrics
 
         const grossInvestment = selectedNetwork * +productDetails.productRecordCount // error here on pilot, does not match price per item
-        // const grossInvestment = selectedNetwork // should be 7.20 per unit, selected network variable is wrong
-        // console.log(grossInvestment)
-        // console.log(networks[0].value)
-
-        // const grossInvestment = selectedNetwork * +productDetails.productRecordCount // error here on pilot, does not match price per item
- 
-
         const grossMerchandiseValue = +averageOrderValue * +productDetails.transactionCount
         const grossCapturedValue = grossMerchandiseValue * (+royaltyPercentage / 100) * (+CapturedSecondarySalesPercentage / 100)
         const ROI = (grossCapturedValue / grossInvestment) * 100
