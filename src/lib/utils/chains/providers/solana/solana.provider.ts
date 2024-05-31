@@ -1,6 +1,11 @@
-import { ChainProvider, WalletNotFoundException } from '../../chainProvider'
+import {
+	AccountChangedException,
+	ChainProvider,
+	WalletNotFoundException,
+} from '../../chainProvider'
 import { Chain, ChainWallet, Network } from '../../dto/chains'
 import { ModalInterface, defaultModal } from '../../dto/modalInterface'
+import { SolanDeployShop } from './deployShop.solana'
 import { SolanaLogin } from './login.solana'
 
 export class SolanaProvider implements ChainProvider {
@@ -27,6 +32,7 @@ export class SolanaProvider implements ChainProvider {
 
 	setAddress(_address: string): ChainProvider {
 		this.address = _address
+		return this
 	}
 
 	isPhantomInstalled() {
@@ -34,11 +40,11 @@ export class SolanaProvider implements ChainProvider {
 	}
 
 	getPhantomProvider() {
-		if (!this.isPhantomInstalled)
+		if (!this.isPhantomInstalled())
 			throw new WalletNotFoundException('Phantom wallet is not installed')
 
 		const provider = (window as any).phantom.solana
-		if (provider.isPhantom) throw new WalletNotFoundException('Phantom wallet is not installed')
+		if (!provider.isPhantom) throw new WalletNotFoundException('Phantom wallet is not installed')
 
 		return provider
 	}
@@ -48,5 +54,53 @@ export class SolanaProvider implements ChainProvider {
 		this.setAddress(address)
 
 		return { address, signature }
+	}
+
+	async handleWallet(_address: string) {
+		if (!this.isPhantomInstalled()) {
+			this.modalInterface.error('Phantom wallet is not installed')
+			throw new WalletNotFoundException('Phantom wallet  is not installed')
+		}
+		this.modalInterface.waiting('Getting accounts...')
+		const provider = this.getPhantomProvider()
+		if (!provider.isConnected) {
+			this.modalInterface.waiting('Please connect your wallet')
+			let { address } = await this.walletLogin()
+			if (_address.toLocaleLowerCase() !== address.toLocaleLowerCase()) {
+				throw new AccountChangedException(
+					"The current account on your wallet is not the one you've logged in with!"
+				)
+			}
+		}
+		const { publicKey } = await provider.connect()
+		if (publicKey.toString().toLocaleLowerCase() !== _address.toLocaleLowerCase()) {
+			throw new AccountChangedException(
+				"The current account on your wallet is not the one you've logged in with!"
+			)
+		}
+		this.modalInterface.success('Wallet connected')
+	}
+
+	deployShop(
+		shopName: string,
+		shopAddress: string,
+		shopOwner: string,
+		shopLogo: string,
+		shopDescription: string
+	): Promise<any> {
+		this.handleWallet(this.address)
+		return SolanDeployShop(
+			this.getPhantomProvider(),
+			this.address,
+			{
+				name: shopName,
+				address: shopAddress,
+				logo: shopLogo,
+				owner: shopOwner,
+				description: shopDescription,
+			},
+			process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE,
+			this.modalInterface
+		)
 	}
 }
