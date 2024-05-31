@@ -140,6 +140,7 @@ export function getNetworkProvider(
 	if (wallet == null && chain !== Chain.CASPER && chain !== Chain.STACKS) {
 		wallet = ChainWallet.Metamask
 	}
+
 	return chainMapping[chain][network]
 		?.setAddress(address)
 		.setModal(modalInterface)
