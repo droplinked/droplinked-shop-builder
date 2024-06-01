@@ -71,7 +71,11 @@ export async function SolanDeployShop(
 			program.programId
 		)
 
-		return { transaction_id: signature, deployedShopAddress, deployedNFTAddress: '' }
+		return {
+			transaction_id: signature,
+			deployedShopAddress: deployedShopAddress,
+			deployedNFTAddress: deployedShopAddress,
+		}
 	} catch (err) {
 		modalInterface.error(err)
 		throw new Error(err)
