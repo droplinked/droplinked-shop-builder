@@ -3,10 +3,13 @@ import {
 	ChainProvider,
 	WalletNotFoundException,
 } from '../../chainProvider'
+import { ProductType, Beneficiary, RecordData } from '../../dto/chainStructs'
 import { Chain, ChainWallet, Network } from '../../dto/chains'
 import { ModalInterface, defaultModal } from '../../dto/modalInterface'
 import { SolanDeployShop } from './deployShop.solana'
 import { SolanaLogin } from './login.solana'
+import { SolanaRecordMerch } from './record.solana'
+import { PublicKey } from '@solana/web3.js'
 
 export class SolanaProvider implements ChainProvider {
 	chain: Chain = Chain.SOLANA
@@ -100,6 +103,45 @@ export class SolanaProvider implements ChainProvider {
 				description: shopDescription,
 			},
 			process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE,
+			this.modalInterface
+		)
+	}
+
+	recordProduct(
+		sku_properties: any,
+		product_title: string,
+		description: string,
+		image_url: string,
+		price: number,
+		amount: number,
+		commission: number,
+		type: ProductType,
+		beneficiaries: Beneficiary[],
+		acceptsManageWallet: boolean,
+		royalty: number,
+		nftContract: string,
+		shopAddress: string,
+		currencyAddress: string,
+		apiKey: string
+	): Promise<RecordData> {
+		this.handleWallet(this.address)
+		return SolanaRecordMerch(
+			this.getPhantomProvider(),
+			sku_properties,
+			this.address,
+			{
+				title: product_title,
+				description: description,
+				image_url: image_url,
+				price: price,
+				amount: amount,
+				commission: commission,
+				royalty: royalty,
+				type: type,
+			},
+			shopAddress,
+			currencyAddress,
+			apiKey,
 			this.modalInterface
 		)
 	}
