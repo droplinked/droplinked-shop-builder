@@ -7,7 +7,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react'
 
 function DigitalProductRoyalty() {
     const { methods: { updateState }, state: { sku } } = useContext(productContext)
-    const [showInput, setInputVisibility] = useState(() => Boolean(sku[0].royalty))
+    const [showInput, setInputVisibility] = useState(() => Boolean(sku[0]?.royalty))
 
     const updateRoyalty = useCallback((value: number) => {
         updateState('sku', [{
@@ -23,7 +23,7 @@ function DigitalProductRoyalty() {
     return (
         <Flex direction={"column"} gap={6}>
             <Flex alignItems={"center"} gap={3}>
-                <AppSwitch isChecked={sku[0].royalty ? true : showInput} onChange={(e) => setInputVisibility(e.target.checked)} />
+                <AppSwitch isChecked={showInput} onChange={(e) => setInputVisibility(e.target.checked)} />
                 <AppTypography fontSize={14} color="#C2C2C2" fontWeight='bold'>Activate Royalty for this product and ensures receiving a percentage from each resale</AppTypography>
             </Flex>
             {
@@ -36,15 +36,17 @@ function DigitalProductRoyalty() {
                     max={99}
                     placeholder='%25'
                     onKeyDown={(e) => {
-                        const invalidKeys = ['+', '-', 'e'];
+                        const invalidKeys = ['+', '-', 'e']
                         if (invalidKeys.includes(e.key)) {
-                            e.preventDefault();
+                            e.preventDefault()
                         }
                     }}
                     onChange={(e) => {
-                        const value = e.target.value;
-                        if (value === '' || (parseInt(value) >= 1 && parseInt(value) <= 99)) {
-                            updateRoyalty(value === '' ? null : parseInt(value));
+                        const value = e.target.value
+                        if (!value) return updateRoyalty(null)
+                        const convertedValue = +value
+                        if ((convertedValue >= 1 && convertedValue <= 99)) {
+                            updateRoyalty(convertedValue)
                         }
                     }}
                 />
