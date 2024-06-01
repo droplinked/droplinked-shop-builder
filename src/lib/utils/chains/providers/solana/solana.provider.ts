@@ -139,8 +139,8 @@ export class SolanaProvider implements ChainProvider {
 				royalty: royalty,
 				type: type,
 			},
-			new PublicKey(shopAddress),
-			new PublicKey(currencyAddress),
+			shopAddress,
+			currencyAddress,
 			apiKey,
 			this.modalInterface
 		)
