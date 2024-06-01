@@ -34,8 +34,8 @@ export async function SolanaRecordMerch(
 		type: ProductType
 		royalty: number
 	},
-	shopAddress: PublicKey,
-	currencyAddress: PublicKey,
+	shopAddress: string,
+	currencyAddress: string,
 	apiKey: string,
 	modalInterface: ModalInterface
 ) {
@@ -111,16 +111,17 @@ export async function SolanaRecordMerch(
 					symbol: 'd',
 					sellerFeeBasisPoints: productInformation.royalty,
 				})
-				.accountsStrict({
-					owner: owner_address,
-					shop: shop_address,
-					standardProduct: sku_address,
-					productMint: sku_mint_address,
-					metadata: sku_metadata_address,
-					systemProgram: SYSTEM_PROGRAM_ID,
-					tokenProgram: TOKEN_PROGRAM_ID,
-					tokenMetadataProgram: TOKEN_METADATA_PROGRAM_ID,
-				})
+				.accounts({ metadata: sku_metadata_address, owner: owner_address })
+				// .accountsStrict({
+				// 	owner: owner_address,
+				// 	shop: shop_address,
+				// 	standardProduct: sku_address,
+				// 	productMint: sku_mint_address,
+				// 	metadata: sku_metadata_address,
+				// 	systemProgram: SYSTEM_PROGRAM_ID,
+				// 	tokenProgram: TOKEN_PROGRAM_ID,
+				// 	tokenMetadataProgram: TOKEN_METADATA_PROGRAM_ID,
+				// })
 				.rpc()
 		} else {
 			const publishers: PublicKey[] = []
@@ -139,16 +140,17 @@ export async function SolanaRecordMerch(
 						uri: metadata_ipfs_hash,
 					}
 				)
-				.accountsStrict({
-					owner: owner_address,
-					shop: shop_address,
-					commissionableProduct: sku_address,
-					productMint: sku_mint_address,
-					metadata: sku_metadata_address,
-					systemProgram: SYSTEM_PROGRAM_ID,
-					tokenProgram: TOKEN_PROGRAM_ID,
-					tokenMetadataProgram: TOKEN_METADATA_PROGRAM_ID,
-				})
+				.accounts({ metadata: sku_metadata_address, owner: owner_address })
+				// 	.accountsStrict({
+				// 		owner: owner_address,
+				// 		shop: shop_address,
+				// 		commissionableProduct: sku_address,
+				// 		productMint: sku_mint_address,
+				// 		metadata: sku_metadata_address,
+				// 		systemProgram: SYSTEM_PROGRAM_ID,
+				// 		tokenProgram: TOKEN_PROGRAM_ID,
+				// 		tokenMetadataProgram: TOKEN_METADATA_PROGRAM_ID,
+				// 	})
 				.rpc()
 		}
 		modalInterface.waiting('Finalizing Transaction...')
