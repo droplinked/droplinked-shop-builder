@@ -113,6 +113,7 @@ export interface Isku {
     recorded_quantity?: number;
     deploy_hash_link?: string;
     deployedShopAddress: string;
+    royalty?: number
 }
 
 export interface IproductByIdServices {

@@ -38,6 +38,7 @@ const ProductSingleModel = ({
                     quantity: el?.quantity,
                     record: false,
                     weight: el?.weight,
+                    royalty: el?.royalty,
                     recordData: {
                         ...el?.recordData,
                         commision: el?.recordData?.commision || 0
