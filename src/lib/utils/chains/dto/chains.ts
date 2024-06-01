@@ -1,23 +1,24 @@
 export enum Chain {
-    CASPER,
-    POLYGON,
-    BINANCE,
-    STACKS,
-    XRPLSIDECHAIN,
-    NEAR,
-    SKALE,
-    BASE,
-    LINEA,
-    ETH,
+	CASPER,
+	POLYGON,
+	BINANCE,
+	STACKS,
+	XRPLSIDECHAIN,
+	NEAR,
+	SKALE,
+	BASE,
+	LINEA,
+	ETH,
+	SOLANA,
 }
 export enum Network {
-    MAINNET,
-    TESTNET
+	MAINNET,
+	TESTNET,
 }
 
 export enum ChainWallet {
-    Metamask,
-    CoinBase,
-    CasperWallet,
-    Phantom
+	Metamask,
+	CoinBase,
+	CasperWallet,
+	Phantom,
 }
