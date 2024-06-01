@@ -97,6 +97,8 @@ function Printful({ close }: IProps) {
             // Generate mock
             const mockups = await mockupGenerator.mutateAsync(mockBody)
             const mockupsData = mockups?.data?.data
+            const printful_option_data = mockupsData?.option_data
+            updateState('printful_option_data', printful_option_data)
 
             // Upload printfiles url on cdn
             const generateThumbPrintfiles = await generateThumb.mutateAsync(mockupsData?.printfiles.map(el => el?.url))
