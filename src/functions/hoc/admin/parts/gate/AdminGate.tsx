@@ -1,6 +1,6 @@
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import DashboardGateModel from './model/DashboardGateModel';
 
@@ -12,8 +12,8 @@ function AdminGate({ children }) {
 
     useEffect(() => {
         if (profile && shop) {
-            const check = checkPermission({ shop })
-            if (check) registerGate({ to: check, redirect: shopNavigate, pathname: location.pathname, shop })
+            const check = checkPermission({ user: profile })
+            if (check) registerGate({ to: check, redirect: shopNavigate, pathname: location.pathname, user: profile })
         }
     }, [shop, profile, location]);
 

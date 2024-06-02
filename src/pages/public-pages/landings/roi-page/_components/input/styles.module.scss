@@ -1,0 +1,51 @@
+.input-group{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #F2F2F2;
+    border-radius: 8px;
+    padding: 12px 16px;
+
+    &:has(> input:focus , input:not(:placeholder-shown):not(:focus)){
+        border-color: #000;
+    }
+
+    &:has(> input:disabled){
+        border-color: #BCBCBC !important;
+
+        &>:where(input , label){
+            color:#BCBCBC;
+        }
+    }
+
+    &>input{
+        flex: 1;
+        outline: none;
+        border: none;
+        font-size: 16px;
+
+        &:focus + label , 
+        &:not(:placeholder-shown):not(:focus) + label{
+            top: 0;
+            left: 12px;
+            background-color: #fff;
+            font-size: 12px;
+        }
+
+        &:disabled{
+            background-color:transparent;
+        }
+    }
+
+    &>label{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding-inline: 4px;
+        color: #000;
+        font-size: 16px;
+        pointer-events: none;
+        transition: 0.2s;
+    }
+}

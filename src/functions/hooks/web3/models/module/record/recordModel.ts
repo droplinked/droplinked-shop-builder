@@ -16,6 +16,9 @@ interface Irecord {
     imageUrl?: string
     accountAddress: string
     royalty: number
+    nftContract: string
+    shopAddress: string
+    currencyAddress: string
 }
 
 export interface IStacks {
@@ -33,7 +36,7 @@ export interface Ideploy {
 }
 
 const recordModel = ({
-    record: async ({ product, commission, blockchain, quantity, sku, imageUrl, accountAddress, royalty }: Irecord) => {
+    record: async ({ product, commission, blockchain, quantity, sku, imageUrl, accountAddress, royalty, nftContract, shopAddress, currencyAddress }: Irecord) => {
         const provider = getNetworkProvider(Chain[blockchain], Network[appDevelopment ? "TESTNET" : "MAINNET"], accountAddress)
 
         // ---------------- new parameters: ------------------------
@@ -54,7 +57,9 @@ const recordModel = ({
                 value: sku.rawPrice * 100,
                 wallet: droplink_wallet
             }]
-            record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, pod ? quantity : sku.quantity, commission * 100, type, paymentWallet, beneficiaries, acceptsManageWallet, royalty * 100, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
+            // record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, pod ? quantity : sku.quantity, commission * 100, type, beneficiaries, acceptsManageWallet, royalty * 100, nftContract, shopAddress, currencyAddress, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE, paymentWallet)
+            record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, pod ? quantity : sku.quantity, commission * 100, type, beneficiaries, acceptsManageWallet, royalty * 100, nftContract, shopAddress, currencyAddress, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
+
         }
         return record
     },

@@ -20,9 +20,11 @@ function Supported() {
 
     return (
         <Flex justifyContent="center" height="100%" alignItems="center">
-            <VStack width="90%" justifyContent="center" spacing="20px" color="#FFF">
-                <Box><LandingTitle title='Supported Networks' /></Box>
-                <Box padding="10px 0 30px 0"><LandingDescription text='Multi-chain support to provide the flexibility you need' /></Box>
+            <Flex width="90%" direction={"column"} justifyContent="center" gap={14} color="#FFF">
+                <Flex direction={"column"} gap={6}>
+                    <LandingTitle title='Supported Networks' />
+                    <LandingDescription text='Multi-chain support to provide the flexibility you need' />
+                </Flex>
                 <Flex
                     width="100%"
                     justifyContent="center"
@@ -32,7 +34,7 @@ function Supported() {
                 >
                     {data.map((el, key) => <Image key={key} height={{ base: "14px", sm: "24px", lg: "34px" }} src={el} />)}
                 </Flex>
-            </VStack>
+            </Flex>
         </Flex>
     )
 }

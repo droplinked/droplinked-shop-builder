@@ -2,7 +2,6 @@ import { IproductState } from "lib/apis/product/interfaces";
 import { createContext } from "react";
 import ProductPageNamespace, { productActions, productParams } from "./reducers";
 
-
 export interface IpropertiesItems {
     value: string
 }
@@ -25,7 +24,6 @@ interface IproductContext {
     loading: boolean,
     sync: boolean,
 }
-
 
 export const productContext = createContext<IproductContext>({
     state: ProductPageNamespace.initialState.params,

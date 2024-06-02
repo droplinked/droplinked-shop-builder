@@ -3,9 +3,8 @@ import { IUserWalletsProps } from "lib/stores/app/appStore"
 export interface IsignupService {
     email: string
     password: string
-    shopName: string
     referralCode?: string
-
+    hasProducerAccount: boolean
 }
 export interface IforgetPasswordService {
     email: string

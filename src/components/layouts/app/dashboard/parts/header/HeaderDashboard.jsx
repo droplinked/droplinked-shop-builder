@@ -1,16 +1,13 @@
-import { Link } from "react-router-dom";
-import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
-import {
-  UserHeaderWrapper,
-  UserHeaderIcon,
-} from "./HeaderLayout-style";
 import droplinkedIcon from "assest/image/green-droplinked-logo.svg";
-import HeaderLogin from "./parts/login/HeaderLogin";
 import useHookStore from "functions/hooks/store/useHookStore";
-import HeaderDashboardLogedin from "./parts/loged/HeaderDashboardLogedin";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
+import { Link } from "react-router-dom";
+import { UserHeaderIcon, UserHeaderWrapper } from "./HeaderLayout-style";
+import HeaderDashboardLoggedin from "./parts/loged/HeaderDashboardLoggedin";
+import HeaderLogin from "./parts/login/HeaderLogin";
 
 const HeaderDashboard = () => {
-  const { app: { shop } } = useHookStore();
+  const { app: { shop } } = useHookStore()
   const { shopRoute } = useCustomNavigate()
 
   return (
@@ -18,11 +15,11 @@ const HeaderDashboard = () => {
       <Link to={`${shopRoute}`}>
         <UserHeaderIcon src={droplinkedIcon} />
       </Link>
-      {shop ? <HeaderDashboardLogedin /> : (
+      {shop ? <HeaderDashboardLoggedin /> : (
         <HeaderLogin />
       )}
     </UserHeaderWrapper>
-  );
-};
+  )
+}
 
 export default HeaderDashboard;

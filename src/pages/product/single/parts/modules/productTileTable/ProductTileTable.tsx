@@ -22,7 +22,7 @@ function ProductTileTable() {
             _data: tile as any,
             variants: {
                 value: (
-                    <Flex alignItems="center" gap={4}>
+                    <Flex alignItems="center" flexWrap={"wrap"} gap={4}>
                         {tile.skuIDs.map((sku, index) =>
                             <Flex
                                 key={sku._id}

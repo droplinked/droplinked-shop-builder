@@ -62,7 +62,8 @@ export interface IproductState {
     technique?: string
     isAddToCartDisabled?: boolean;
     pre_purchase_data_fetch?: boolean;
-    productTile?: any[]
+    productTile?: any[],
+    printful_option_data?: any
 }
 
 export interface IpropertiesItems {
@@ -93,24 +94,26 @@ export interface IrecordData {
 }
 
 export interface Isku {
-    _id?: string
+    _id?: string;
     dimensions: {
-        height: number
-        length: number
-        width: number
-    }
-    externalID: string
-    index: number
-    rawPrice?: number
-    options: Array<IskuOption>
-    price: number
-    quantity: number
-    record: Boolean
-    weight: number
-    recordData?: IrecordData
-    image?: string
-    recorded_quantity?: number
-    deploy_hash_link?: string
+        height: number;
+        length: number;
+        width: number;
+    };
+    externalID: string;
+    index: number;
+    rawPrice?: number;
+    options: Array<IskuOption>;
+    price: number;
+    quantity: number;
+    record: Boolean;
+    weight: number;
+    recordData?: IrecordData;
+    image?: string;
+    recorded_quantity?: number;
+    deploy_hash_link?: string;
+    deployedShopAddress: string;
+    royalty?: number
 }
 
 export interface IproductByIdServices {
