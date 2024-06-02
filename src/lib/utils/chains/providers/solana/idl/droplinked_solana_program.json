@@ -1,0 +1,1638 @@
+{
+  "address": "3vvPxPKucHcfPL1CGd1nVgsPbXxpe3ue6tJSaczqi1FL",
+  "metadata": {
+    "name": "droplinked_solana_program",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "create_commissionable_product",
+      "discriminator": [
+        81,
+        32,
+        220,
+        236,
+        185,
+        40,
+        91,
+        139
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "shop",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  104,
+                  111,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "shop_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "commissionable_product",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  100,
+                  117,
+                  99,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "arg",
+                "path": "product_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "metadata",
+          "writable": true
+        },
+        {
+          "name": "product_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "account",
+                "path": "commissionable_product"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "token_metadata_program",
+          "address": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+        }
+      ],
+      "args": [
+        {
+          "name": "_shop_nonce",
+          "type": {
+            "array": [
+              "u8",
+              8
+            ]
+          }
+        },
+        {
+          "name": "product_nonce",
+          "type": {
+            "array": [
+              "u8",
+              8
+            ]
+          }
+        },
+        {
+          "name": "variant",
+          "type": {
+            "defined": {
+              "name": "ProductVariant"
+            }
+          }
+        },
+        {
+          "name": "price",
+          "type": {
+            "defined": {
+              "name": "ProductPrice"
+            }
+          }
+        },
+        {
+          "name": "commission",
+          "type": "u16"
+        },
+        {
+          "name": "publishers",
+          "type": {
+            "vec": "pubkey"
+          }
+        },
+        {
+          "name": "information",
+          "type": {
+            "defined": {
+              "name": "ProductInformation"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_shop",
+      "discriminator": [
+        83,
+        215,
+        157,
+        151,
+        185,
+        162,
+        84,
+        154
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "shop",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  104,
+                  111,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "shop_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "shop_nonce",
+          "type": {
+            "array": [
+              "u8",
+              8
+            ]
+          }
+        },
+        {
+          "name": "metadata",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "create_standard_product",
+      "discriminator": [
+        15,
+        173,
+        223,
+        52,
+        20,
+        31,
+        88,
+        194
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "shop",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  104,
+                  111,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "shop_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "standard_product",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  100,
+                  117,
+                  99,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "arg",
+                "path": "product_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "metadata",
+          "writable": true
+        },
+        {
+          "name": "product_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "account",
+                "path": "standard_product"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "token_metadata_program",
+          "address": "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
+        }
+      ],
+      "args": [
+        {
+          "name": "_shop_nonce",
+          "type": {
+            "array": [
+              "u8",
+              8
+            ]
+          }
+        },
+        {
+          "name": "product_nonce",
+          "type": {
+            "array": [
+              "u8",
+              8
+            ]
+          }
+        },
+        {
+          "name": "variant",
+          "type": {
+            "defined": {
+              "name": "ProductVariant"
+            }
+          }
+        },
+        {
+          "name": "price",
+          "type": {
+            "defined": {
+              "name": "ProductPrice"
+            }
+          }
+        },
+        {
+          "name": "information",
+          "type": {
+            "defined": {
+              "name": "ProductInformation"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "purchase_commissionable_product_sol",
+      "discriminator": [
+        184,
+        31,
+        164,
+        53,
+        218,
+        213,
+        234,
+        87
+      ],
+      "accounts": [
+        {
+          "name": "purchaser",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "owner",
+          "writable": true
+        },
+        {
+          "name": "publisher",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "shop",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  104,
+                  111,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "shop_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "commissionable_product",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  100,
+                  117,
+                  99,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "arg",
+                "path": "product_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "account",
+                "path": "commissionable_product"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_destination",
+          "writable": true
+        },
+        {
+          "name": "droplinked",
+          "writable": true,
+          "address": "4QJUPa4yudpPB7joCk53Q9uy6RX1c6ARYDnbZnqtowUD"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "purchase_commissionable_product_spl",
+      "discriminator": [
+        228,
+        119,
+        51,
+        68,
+        249,
+        47,
+        59,
+        231
+      ],
+      "accounts": [
+        {
+          "name": "purchaser",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "owner",
+          "writable": true
+        },
+        {
+          "name": "shop",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  104,
+                  111,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "shop_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "commissionable_product",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  100,
+                  117,
+                  99,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "arg",
+                "path": "product_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "account",
+                "path": "commissionable_product"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_destination",
+          "writable": true
+        },
+        {
+          "name": "droplinked",
+          "writable": true,
+          "address": "4QJUPa4yudpPB7joCk53Q9uy6RX1c6ARYDnbZnqtowUD"
+        },
+        {
+          "name": "price_mint"
+        },
+        {
+          "name": "purchaser_price_associated",
+          "writable": true
+        },
+        {
+          "name": "owner_price_associated",
+          "writable": true
+        },
+        {
+          "name": "droplinked_price_associated",
+          "writable": true
+        },
+        {
+          "name": "publisher_price_associated",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "publisher",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "purchase_commissionable_product_usd",
+      "discriminator": [
+        131,
+        156,
+        98,
+        56,
+        22,
+        109,
+        14,
+        17
+      ],
+      "accounts": [
+        {
+          "name": "purchaser",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "owner",
+          "writable": true
+        },
+        {
+          "name": "publisher",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "shop",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  104,
+                  111,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "shop_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "commissionable_product",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  100,
+                  117,
+                  99,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "arg",
+                "path": "product_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "account",
+                "path": "commissionable_product"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_destination",
+          "writable": true
+        },
+        {
+          "name": "droplinked",
+          "writable": true,
+          "address": "4QJUPa4yudpPB7joCk53Q9uy6RX1c6ARYDnbZnqtowUD"
+        },
+        {
+          "name": "chainlink_store_program"
+        },
+        {
+          "name": "chainlink_price_feed"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "purchase_standard_product_sol",
+      "discriminator": [
+        34,
+        163,
+        246,
+        43,
+        121,
+        69,
+        36,
+        62
+      ],
+      "accounts": [
+        {
+          "name": "purchaser",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "owner",
+          "writable": true
+        },
+        {
+          "name": "shop",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  104,
+                  111,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "shop_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "standard_product",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  100,
+                  117,
+                  99,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "arg",
+                "path": "product_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "account",
+                "path": "standard_product"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_destination",
+          "writable": true
+        },
+        {
+          "name": "droplinked",
+          "writable": true,
+          "address": "4QJUPa4yudpPB7joCk53Q9uy6RX1c6ARYDnbZnqtowUD"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "purchase_standard_product_spl",
+      "discriminator": [
+        184,
+        71,
+        21,
+        163,
+        174,
+        64,
+        92,
+        147
+      ],
+      "accounts": [
+        {
+          "name": "purchaser",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "owner",
+          "writable": true
+        },
+        {
+          "name": "shop",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  104,
+                  111,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "shop_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "standard_product",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  100,
+                  117,
+                  99,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "arg",
+                "path": "product_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "account",
+                "path": "standard_product"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_destination",
+          "writable": true
+        },
+        {
+          "name": "droplinked",
+          "writable": true,
+          "address": "4QJUPa4yudpPB7joCk53Q9uy6RX1c6ARYDnbZnqtowUD"
+        },
+        {
+          "name": "price_mint"
+        },
+        {
+          "name": "purchaser_price_associated",
+          "writable": true
+        },
+        {
+          "name": "owner_price_associated",
+          "writable": true
+        },
+        {
+          "name": "droplinked_price_associated",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "purchase_standard_product_usd",
+      "discriminator": [
+        7,
+        81,
+        91,
+        29,
+        255,
+        132,
+        220,
+        234
+      ],
+      "accounts": [
+        {
+          "name": "purchaser",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "owner",
+          "writable": true
+        },
+        {
+          "name": "shop",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  104,
+                  111,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "shop_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "standard_product",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  100,
+                  117,
+                  99,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "arg",
+                "path": "product_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "account",
+                "path": "standard_product"
+              }
+            ]
+          }
+        },
+        {
+          "name": "product_destination",
+          "writable": true
+        },
+        {
+          "name": "droplinked",
+          "writable": true,
+          "address": "4QJUPa4yudpPB7joCk53Q9uy6RX1c6ARYDnbZnqtowUD"
+        },
+        {
+          "name": "chainlink_store_program"
+        },
+        {
+          "name": "chainlink_price_feed"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "whitelist_publisher",
+      "discriminator": [
+        106,
+        237,
+        182,
+        76,
+        38,
+        39,
+        250,
+        155
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "signer": true
+        },
+        {
+          "name": "shop",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  104,
+                  111,
+                  112
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "shop_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "commissionable_product",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  100,
+                  117,
+                  99,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "shop"
+              },
+              {
+                "kind": "arg",
+                "path": "product_nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "publisher"
+        }
+      ],
+      "args": [
+        {
+          "name": "_shop_nonce",
+          "type": {
+            "array": [
+              "u8",
+              8
+            ]
+          }
+        },
+        {
+          "name": "_product_nonce",
+          "type": {
+            "array": [
+              "u8",
+              8
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "CommissionableProduct",
+      "discriminator": [
+        55,
+        0,
+        74,
+        225,
+        166,
+        204,
+        66,
+        226
+      ]
+    },
+    {
+      "name": "Shop",
+      "discriminator": [
+        57,
+        31,
+        123,
+        216,
+        254,
+        72,
+        11,
+        77
+      ]
+    },
+    {
+      "name": "StandardProduct",
+      "discriminator": [
+        23,
+        5,
+        77,
+        66,
+        17,
+        210,
+        185,
+        1
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Overflow",
+      "msg": "overflow"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidCurrency",
+      "msg": "product does not support the given payment currency"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidPriceMint",
+      "msg": "product price mint is invalid"
+    },
+    {
+      "code": 6003,
+      "name": "PublisherMaximumReached",
+      "msg": "product publisher maximum reached"
+    }
+  ],
+  "types": [
+    {
+      "name": "CommissionableProduct",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "shop",
+            "type": "pubkey"
+          },
+          {
+            "name": "variant",
+            "type": {
+              "defined": {
+                "name": "ProductVariant"
+              }
+            }
+          },
+          {
+            "name": "price",
+            "type": {
+              "defined": {
+                "name": "ProductPrice"
+              }
+            }
+          },
+          {
+            "name": "commission",
+            "type": "u16"
+          },
+          {
+            "name": "publishers",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "nonce",
+            "type": {
+              "array": [
+                "u8",
+                8
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProductInformation",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "seller_fee_basis_points",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProductPrice",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "USD",
+            "fields": [
+              {
+                "name": "cents",
+                "type": "u64"
+              }
+            ]
+          },
+          {
+            "name": "SOL",
+            "fields": [
+              {
+                "name": "lamports",
+                "type": "u64"
+              }
+            ]
+          },
+          {
+            "name": "SPLToken",
+            "fields": [
+              {
+                "name": "quantity",
+                "type": "u64"
+              },
+              {
+                "name": "mint",
+                "type": "pubkey"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProductVariant",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Physical"
+          },
+          {
+            "name": "Print"
+          },
+          {
+            "name": "Service"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Shop",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "metadata",
+            "type": "string"
+          },
+          {
+            "name": "nonce",
+            "type": {
+              "array": [
+                "u8",
+                8
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "StandardProduct",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "shop",
+            "type": "pubkey"
+          },
+          {
+            "name": "variant",
+            "type": {
+              "defined": {
+                "name": "ProductVariant"
+              }
+            }
+          },
+          {
+            "name": "price",
+            "type": {
+              "defined": {
+                "name": "ProductPrice"
+              }
+            }
+          },
+          {
+            "name": "nonce",
+            "type": {
+              "array": [
+                "u8",
+                8
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

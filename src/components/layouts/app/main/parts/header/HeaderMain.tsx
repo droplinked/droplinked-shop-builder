@@ -29,8 +29,8 @@ function HeaderMain() {
         {
             label: "Enterprise",
             links: [
-                { label: "DIMST", description: "On-Chain Inventory Management", icon: <AppIcons.Coins />, href: "tokenpay" },
-                { label: "DPP", description: "Digital Product Passport", icon: <AppIcons.Gallery />, href: "tokenpay" }
+                { label: "DIMST", description: "On-Chain Inventory Management", icon: <AppIcons.Coins />, href: "/roi" },
+                // { label: "DPP", description: "Digital Product Passport", icon: <AppIcons.Gallery />, href: "tokenpay" }
             ],
         },
     ]

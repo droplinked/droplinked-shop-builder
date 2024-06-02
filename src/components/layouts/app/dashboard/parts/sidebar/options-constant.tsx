@@ -8,6 +8,6 @@ export const OPTIONS = [
     { icon: <AppIcons.OrderIcon />, label: 'Orders', path: '/orders' },
     { icon: <AppIcons.InformationIcon />, label: 'Affiliate', path: '/affiliate' },
     { icon: <AppIcons.NFT />, label: 'NFTs', path: '/nfts' },
-    { icon: <AppIcons.NFT />, label: 'Blogs', path: '/blogs' },
+    { icon: <AppIcons.Blog />, label: 'Blogs', path: '/blogs' },
     { icon: <AppIcons.SettingIcon />, label: 'Settings', path: '/settings/shop-info' },
 ]

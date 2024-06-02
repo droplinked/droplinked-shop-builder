@@ -11,7 +11,6 @@ function RequestProduct() {
     const { product, shop } = useContext(ShopProductContext)
     const [Sku, setSku] = useState(null)
     const { isOpen, onOpen, onClose } = useDisclosure()
-
     return (
         <>
             <AppTable

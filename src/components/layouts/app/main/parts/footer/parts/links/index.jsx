@@ -74,14 +74,19 @@ function Links() {
             spacing={3}>
             <ChakraLink
               target="_blank"
+              href="https://droplinked.gitbook.io/droplinked-store-front-help-center/library/droplinked-tools">
+              <Sublink>Developers</Sublink>
+            </ChakraLink>
+            <ChakraLink
+              target="_blank"
               href="https://droplinked.gitbook.io/droplinked-store-front-help-center/about-us/what-is-droplinked">
-              <Sublink>Help center</Sublink>
+              <Sublink>Help Center</Sublink>
             </ChakraLink>
             <a
               href="https://drive.google.com/file/d/1b5cggMs0D94Dl2e92-JIP_NPAMK2pjrr/view?usp=sharing"
               target="_blank"
               download>
-              <Sublink>Media kit</Sublink>
+              <Sublink>Media Kit</Sublink>
             </a>
             <Link
               target="_blank"
