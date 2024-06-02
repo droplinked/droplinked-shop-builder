@@ -16,7 +16,7 @@ function DescriptionProduct() {
 
     return (
         <VStack align="stretch" position={"relative"} spacing={1}>
-            <FieldLabel label='Description test' isRequired loading={loading} />
+            <FieldLabel label='Description' isRequired loading={loading} />
             <AppSkeleton isLoaded={loading}>
                 <Box className={classes.editor}>
                     <Editor
