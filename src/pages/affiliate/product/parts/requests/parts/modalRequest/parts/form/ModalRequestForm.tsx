@@ -45,7 +45,7 @@ function ModalRequestForm({ product, shop, sku, setHahskey, close }: IProps) {
 					deploy_hash: deployHash,
 					quantity,
 					skuID: sku._id,
-					shopID: /* shop._id */ '665d8edf617a7f5fd1664572',
+					shopID: shop._id,
 					affiliateData,
 				},
 			})
