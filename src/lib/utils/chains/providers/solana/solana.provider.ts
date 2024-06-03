@@ -9,7 +9,6 @@ import { ModalInterface, defaultModal } from '../../dto/modalInterface'
 import { SolanDeployShop } from './deployShop.solana'
 import { SolanaLogin } from './login.solana'
 import { SolanaRecordMerch } from './record.solana'
-import { PublicKey } from '@solana/web3.js'
 
 export class SolanaProvider implements ChainProvider {
 	chain: Chain = Chain.SOLANA

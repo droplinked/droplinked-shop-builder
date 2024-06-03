@@ -27,6 +27,7 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/user-event": "^13.5.0",
     "@tinymce/tinymce-react": "^4.3.0",
+    "@tiptap/prosemirror-tables": "^1.1.4",
     "@types/jest": "^29.2.5",
     "@types/node": "^18.11.18",
     "@types/react": "^18.2.64",
@@ -92,6 +93,7 @@
     "workbox-strategies": "^6.5.4",
     "workbox-streams": "^6.5.4",
     "xlsx": "^0.18.5",
+    "y-prosemirror": "^1.2.5",
     "yet-another-react-lightbox": "^3.14.0",
     "yup": "^1.4.0",
     "zustand": "^4.3.8"
