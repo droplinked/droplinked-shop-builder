@@ -37,7 +37,7 @@ function BlogTags({ tags, setTags }: Props) {
                 {/* tags */}
                 {tags.map((tag, index) =>
                     <Flex
-                        key={tag}
+                        key={index}
                         alignItems={"center"}
                         gap={3}
                         borderRadius={28}
