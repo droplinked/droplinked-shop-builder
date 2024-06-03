@@ -5,4 +5,5 @@
 
 .bn-editor{
   height: 400px;
+  overflow-y: scroll;
 }
