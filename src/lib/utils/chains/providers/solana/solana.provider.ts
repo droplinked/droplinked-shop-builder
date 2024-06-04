@@ -3,7 +3,7 @@ import {
 	ChainProvider,
 	WalletNotFoundException,
 } from '../../chainProvider'
-import { ProductType, Beneficiary, RecordData } from '../../dto/chainStructs'
+import { ProductType, Beneficiary, RecordData, Uint256 } from '../../dto/chainStructs'
 import { Chain, ChainWallet, Network } from '../../dto/chains'
 import { ModalInterface, defaultModal } from '../../dto/modalInterface'
 import { SolanDeployShop } from './deployShop.solana'
@@ -143,5 +143,17 @@ export class SolanaProvider implements ChainProvider {
 			apiKey,
 			this.modalInterface
 		)
+	}
+
+	publishRequest(
+		productId: Uint256,
+		shopAddress: string
+	): Promise<{ transactionHash: string; requestId: Uint256; publisher: string }> {
+		this.handleWallet(this.address)
+		return Promise.resolve({
+			publisher: this.address,
+			requestId: this.address,
+			transactionHash: this.address,
+		})
 	}
 }
