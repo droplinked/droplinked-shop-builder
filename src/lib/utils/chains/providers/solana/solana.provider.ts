@@ -1,16 +1,13 @@
-import {
-	AccountChangedException,
-	ChainProvider,
-	WalletNotFoundException,
-} from '../../chainProvider'
+import { AccountChangedException, WalletNotFoundException } from '../../chainProvider'
 import { ProductType, Beneficiary, RecordData, Uint256 } from '../../dto/chainStructs'
 import { Chain, ChainWallet, Network } from '../../dto/chains'
 import { ModalInterface, defaultModal } from '../../dto/modalInterface'
+import { SolanaApproveRequest } from './approve.solana'
 import { SolanDeployShop } from './deployShop.solana'
 import { SolanaLogin } from './login.solana'
 import { SolanaRecordMerch } from './record.solana'
 
-export class SolanaProvider implements ChainProvider {
+export class SolanaProvider {
 	chain: Chain = Chain.SOLANA
 	network: Network = Network.TESTNET
 	address = ''
@@ -22,17 +19,17 @@ export class SolanaProvider implements ChainProvider {
 		this.network = _network
 	}
 
-	setWallet(_wallet: ChainWallet): ChainProvider {
+	setWallet(_wallet: ChainWallet): SolanaProvider {
 		this.wallet = _wallet
 		return this
 	}
 
-	setModal(_modalInterface: ModalInterface): ChainProvider {
+	setModal(_modalInterface: ModalInterface): SolanaProvider {
 		this.modalInterface = _modalInterface
 		return this
 	}
 
-	setAddress(_address: string): ChainProvider {
+	setAddress(_address: string): SolanaProvider {
 		this.address = _address
 		return this
 	}
@@ -155,5 +152,17 @@ export class SolanaProvider implements ChainProvider {
 			requestId: this.address,
 			transactionHash: this.address,
 		})
+	}
+
+	approveRequest(shop: any, sku: any, recordData: any): Promise<string> {
+		this.handleWallet(this.address)
+		return SolanaApproveRequest(
+			this.getPhantomProvider(),
+			shop,
+			sku,
+			this.address,
+			recordData,
+			this.modalInterface
+		)
 	}
 }
