@@ -110,6 +110,11 @@ import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as Blog } from "./blog.svg";
+import { ReactComponent as Tick } from "./tick.svg";
+import { ReactComponent as Starter } from "./starter.svg";
+import { ReactComponent as Business } from "./business.svg";
+import { ReactComponent as Premium } from "./premium.svg";
+import { ReactComponent as Enterprise } from "./enterprise.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -223,7 +228,12 @@ const AppIcons = {
   GrayPercent,
   BlackChevronDown,
   BackArrow,
-  Blog
+  Blog,
+  Tick,
+  Starter,
+  Business,
+  Premium,
+  Enterprise
 }
 
 export default AppIcons
