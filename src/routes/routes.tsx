@@ -16,6 +16,7 @@ import Collections from "pages/collections/Collections"
 import DashboardPage from "pages/dashboard/DashboardPage"
 import NFTs from "pages/nfts/NFTs"
 import Orders from "pages/orders/Orders"
+import Plans from "pages/plans/Plans"
 import Products from "pages/product/list/products"
 import ProductOrder from "pages/product/order/ProductOrder"
 import ProductTypes from "pages/product/types/ProductTypes"
@@ -127,6 +128,9 @@ function AppRoutes() {
             <Route index element={<Blogs />} />
             <Route path="create" element={<BlogForm />} />
             <Route path=":slug" element={<Blog />} />
+          </Route>
+          <Route path="plans">
+            <Route index element=<Plans/>/>
           </Route>
         </Route>
         <Route path=":shopname" element={<ShopPage />} />
