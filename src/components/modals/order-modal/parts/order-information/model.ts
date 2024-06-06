@@ -39,7 +39,9 @@ namespace OrderInformationModel {
     }
 
     export const getTransactionLink = (order: any) => {
-        const { transactionId, details } = order
+        console.log(order)
+        const { orderInformation, details } = order
+        const { transactionId } = orderInformation
         switch (details.paidWith) {
             case "CASPER":
                 return `https://${appDevelopment ? "testnet." : ""}cspr.live/deploy/${transactionId}`
