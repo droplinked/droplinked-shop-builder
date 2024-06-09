@@ -1,4 +1,4 @@
-export interface IPlansInterface {
+export default interface IPlan {
     label: string;
     price: { amount: string; foreground: string; background: string };
     description: string;

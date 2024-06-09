@@ -16,7 +16,6 @@ import Collections from "pages/collections/Collections"
 import DashboardPage from "pages/dashboard/DashboardPage"
 import NFTs from "pages/nfts/NFTs"
 import Orders from "pages/orders/Orders"
-import Plans from "pages/plans/Plans"
 import Products from "pages/product/list/products"
 import ProductOrder from "pages/product/order/ProductOrder"
 import ProductTypes from "pages/product/types/ProductTypes"
@@ -39,6 +38,7 @@ import Admins from "pages/register-pages/pages/admins/Admins"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
+import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
 
@@ -87,13 +87,6 @@ function AppRoutes() {
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardPage />} />
           <Route path="url-registration" element={<SimpleRegistration />} />
-
-          {/* <Route path="register" element={<RegisterPagesWrapper />}>
-            <Route path="shop-info" element={<RegisterShopInfo />} />
-            <Route path="design" element={<DesignPage />} />
-            <Route path="technical" element={<TechnicalPage />} />
-          </Route> */}
-
           <Route path="settings" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
             <Route path="design" element={<DesignPage />} />
@@ -130,7 +123,7 @@ function AppRoutes() {
             <Route path=":slug" element={<Blog />} />
           </Route>
           <Route path="plans">
-            <Route index element=<Plans/>/>
+            <Route index element={<SubscriptionPlans />} />
           </Route>
         </Route>
         <Route path=":shopname" element={<ShopPage />} />

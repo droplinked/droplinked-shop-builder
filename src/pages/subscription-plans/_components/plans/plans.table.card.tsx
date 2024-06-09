@@ -1,16 +1,17 @@
-import { Box, Flex, HStack, VStack } from "@chakra-ui/react";
+import { Flex, HStack, VStack } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
-import AppTypography from "components/common/typography/AppTypography";
-import plans_constant from "./constants/plans.json";
-import React from "react";
-import { IPlansInterface } from "./plans.interface";
 import BasicButton from "components/common/BasicButton/BasicButton";
+import AppTypography from "components/common/typography/AppTypography";
+import IPlan from "pages/subscription-plans/interfaces/plans.interface";
+import React from "react";
+import plans_constant from "../../constants/plans.json";
 
 const PlansTableCard = ({ plan }: { plan: "starter" | "business" | "premium" | "enterprise" }) => {
-    const { label, price, description, base_feature, features }: IPlansInterface = plans_constant?.[plan];
-    const label_icon = { starter: <AppIcons.Starter />, business: <AppIcons.Business />, premium: <AppIcons.Premium />, enterprise: <AppIcons.Enterprise /> };
+    const { label, price, description, base_feature, features }: IPlan = plans_constant?.[plan]
+    const label_icon = { starter: <AppIcons.Starter />, business: <AppIcons.Business />, premium: <AppIcons.Premium />, enterprise: <AppIcons.Enterprise /> }
+
     return (
-        <VStack padding="16px" gap="10px" alignItems="flex-start" width="full" rounded="8px" backgroundColor="#262626">
+        <VStack padding="16px" gap="10px" alignItems="flex-start" width="100%" rounded="8px" backgroundColor="#262626">
             <HStack alignSelf="stretch" alignItems="center" justifyContent="space-between">
                 <HStack spacing="8px" alignItems="center">
                     {label_icon?.[plan]}
@@ -19,7 +20,7 @@ const PlansTableCard = ({ plan }: { plan: "starter" | "business" | "premium" | "
                     </AppTypography>
                 </HStack>
                 <Flex paddingX="8px" alignItems="center" backgroundColor={price?.background} justifyContent={"center"} rounded={"18px"} alignSelf={"stretch"}>
-                    <AppTypography fontSize="12px" fontWeight="500" textAlign={"center"} width={"full"} color={price?.foreground}>
+                    <AppTypography fontSize="12px" fontWeight="500" textAlign={"center"} width={"full"} color={price?.foreground} whiteSpace={"nowrap"}>
                         {price?.amount}
                     </AppTypography>
                 </Flex>
@@ -27,7 +28,7 @@ const PlansTableCard = ({ plan }: { plan: "starter" | "business" | "premium" | "
             <AppTypography fontSize="12px" fontWeight="400" color="white">
                 {description}
             </AppTypography>
-            <BasicButton sizes="large">Apply</BasicButton>
+            <BasicButton sizes="large" width={"100%"}>Apply</BasicButton>
             <AppTypography fontSize="12px" fontWeight="600" color="white">
                 Features: {base_feature}
             </AppTypography>
