@@ -21,7 +21,6 @@ import ProductOrder from "pages/product/order/ProductOrder"
 import ProductTypes from "pages/product/types/ProductTypes"
 import AboutUs from "pages/public-pages/about/AboutUs"
 import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
-import PublicBlogs from "pages/public-pages/blogs/Blogs"
 import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import HomePage from "pages/public-pages/homePage/HomePage"
@@ -54,6 +53,7 @@ const DesignPage = lazy(
   () => import("pages/register-pages/pages/design/DesignPage")
 )
 const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"))
+const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"))
 
 function AppRoutes() {
   return (
