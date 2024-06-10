@@ -1,9 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { IAcceptInvitation, IGetUserService, IInvitation, IRetrieveNFTs, IchangePasswordService, IemailVerifyService, IforgetPasswordService, IresendEmailService, IsignupService, IuserUpdateService } from "./interfaces";
-
-export const signupService = (props: IsignupService) => {
-    return axiosInstance.post(`user/signup`, props)
-}
+import { IAcceptInvitation, IGetUserService, IInvitation, IRetrieveNFTs, IchangePasswordService, IemailVerifyService, IforgetPasswordService, IresendEmailService, IuserUpdateService } from "./interfaces";
 
 export const forgetPasswordService = (props: IforgetPasswordService) => {
     return axiosInstance.post(`user/forgot-password`, props)
