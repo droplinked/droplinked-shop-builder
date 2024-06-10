@@ -10,3 +10,5 @@ export const getShopBlogsService = (shopId: string) => axiosInstance.get<{ data:
 export const getBlogByIdService = (shopId: string, slug: string) => axiosInstance.get<{ data: Blog }>(`blogs/shops/${shopId}/${slug}`).then(res => res.data)
 
 export const updateBlogService = (blog: Blog) => axiosInstance.put(`blogs/${blog.seoData!.slug}`, blog)
+
+export const getSuperAdminBlogs = () => axiosInstance.get(`/blogs/admin/shop-builder`)
