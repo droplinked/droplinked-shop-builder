@@ -17,9 +17,9 @@ export async function EVMDeployShop(provider: any, chain: Chain, network: Networ
     const deployerAddress = await getDeployerAddress(chain, network);
     modalInterface.waiting("Getting ready to deploy...");
     const contract = new ethers.Contract(deployerAddress, deployerABI, signer);
-    const byteCode = await getShopByteCode();
+    const byteCode = (await getShopByteCode());
     const salt = "0x" + address.split("0x")[1] + "000000000000000000" + sixify((await provider.getTransactionCount(address)) + 1);
-    const constructorArgs = [shopName, shopAddress, shopOwner, shopLogo, shopDescription, deployerAddress, chainLink[chain][network], await getFundsProxy(chain, network)];
+    const constructorArgs = [shopName ? shopName : "", shopAddress, shopOwner, shopLogo ? shopLogo : "", shopDescription ? shopDescription : "", deployerAddress, chainLink[chain][network], (await getFundsProxy(chain, network))];
     const bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(["string", "string", "address", "string", "string", "address", "address", "address"], constructorArgs);
     try {
         await contract.callStatic.deployShop(byteCode + bytecodeWithArgs.split("0x")[1], salt,);
@@ -38,6 +38,7 @@ export async function EVMDeployShop(provider: any, chain: Chain, network: Networ
         modalInterface.success("Shop Deployed");
         return { transaction_id: tx.hash, deployedShopAddress, deployedNFTAddress };
     } catch (e: any) {
+        console.log(e);
         if (e.code.toString() === "ACTION_REJECTED") {
             modalInterface.error("Transaction Rejected");
             throw new Error("Transaction Rejected");

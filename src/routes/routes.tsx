@@ -53,6 +53,7 @@ const DesignPage = lazy(
   () => import("pages/register-pages/pages/design/DesignPage")
 )
 const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"))
+const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"))
 
 function AppRoutes() {
   return (
@@ -72,6 +73,7 @@ function AppRoutes() {
           <Route path="pod-product" element={<PODProductPage />} />
           <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
           <Route path="roi" element={<ROIPage />} />
+          <Route path="blogs" element={<PublicBlogs />} />
           <Route
             path="email-verification/:token"
             element={<VerifyEmailPage />}

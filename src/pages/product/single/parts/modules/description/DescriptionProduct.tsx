@@ -10,9 +10,9 @@ function DescriptionProduct() {
     const { state: { description }, methods: { updateState }, loading, productID, store: { state: { product_printful } } } = useContext(productContext)
     const [Update, setUpdate] = useState(' ')
 
-    useEffect(() => {product_printful && description === `<p>${product_printful?.description}</p>` && setUpdate(product_printful?.description)}, [product_printful?.description, description])
+    useEffect(() => { product_printful && description === `<p>${product_printful?.description}</p>` && setUpdate(product_printful?.description) }, [product_printful?.description, description])
 
-    useEffect(() => {(!Update || Update === ' ') && productID && setUpdate(description)}, [description, productID])
+    useEffect(() => { (!Update || Update === ' ') && productID && setUpdate(description) }, [description, productID])
 
     return (
         <VStack align="stretch" position={"relative"} spacing={1}>
@@ -21,7 +21,7 @@ function DescriptionProduct() {
                 <Box className={classes.editor}>
                     <Editor
                         onEditorChange={(el: any) => updateState('description', el)}
-                        apiKey='6pfzx71rzzdg48m2qr77o5du3ueym435j2nxhsjnqc6e18s3'
+                        apiKey='7gufli29cu48xcjj3nbyusk89bbdgdd4yxs4lj1q2pd0pnk2'
                         initialValue={Update}
                         init={{
                             skin: "oxide-dark",

@@ -5,6 +5,7 @@ import useStack from 'functions/hooks/stack/useStack'
 import useHookStore from 'functions/hooks/store/useHookStore'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
+import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { productCreateServices, productUpdateServices } from 'lib/apis/product/productServices'
 import AppErrors from 'lib/utils/statics/errors/errors'
@@ -14,8 +15,6 @@ import { useMutation } from 'react-query'
 import { productContext } from '../../context'
 import ProductSingleModel from '../../model/model'
 import ButtonsProductClass from './model/ButtonProductModel'
-import useAppStore from 'lib/stores/app/appStore'
-import { useProfile } from 'functions/hooks/useProfile/useProfile'
 
 // prdocut page
 function ButtonsProduct() {
@@ -72,7 +71,7 @@ function ButtonsProduct() {
                 try {
                     // debugger;
                     const hashkey = await record({
-                        method: (data) => appWeb3.web3({ method: "record", params: {...data, shop: shop}, chain: state?.digitalDetail?.chain, wallets, stack: stacks, shop }),
+                        method: (data) => appWeb3.web3({ method: "record", params: { ...data, shop: shop }, chain: state?.digitalDetail?.chain, wallets, stack: stacks, shop }),
                         product: {
                             ...state,
                             _id: product._id,

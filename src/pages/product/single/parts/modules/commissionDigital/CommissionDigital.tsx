@@ -1,4 +1,4 @@
-import { Box, Flex, VStack } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
 import { productContext } from 'pages/product/single/context'
@@ -19,9 +19,8 @@ function CommissionDigital() {
 
     return (
         <Flex gap={3} alignItems="center">
-            <Box><AppSwitch onChange={(e: any) => change(e.target.checked)} isChecked={sku.length && sku[0].recordData.commision === 10} /></Box>
+            <Box><AppSwitch onChange={(e: any) => change(e.target.checked)} isChecked={sku.length && sku[0].recordData?.commision === 10} /></Box>
             <AppTypography fontSize='14px' color="#C2C2C2" fontWeight='bold'>I want to available this NFT to affiliate purchases with %10 commission for collaborators</AppTypography>
-
         </Flex>
     )
 }

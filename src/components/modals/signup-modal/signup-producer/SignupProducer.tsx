@@ -3,9 +3,7 @@ import BasicButton from "components/common/BasicButton/BasicButton";
 import AppInput from "components/common/form/textbox/AppInput";
 import { Form, Formik } from "formik";
 import useAppToast from "functions/hooks/toast/useToast";
-import { IsignupService } from "lib/apis/user/interfaces";
-import { signupService } from "lib/apis/user/services";
-import { passwordRegex, usernameRegex } from "lib/utils/heper/regex";
+import { passwordRegex } from "lib/utils/heper/regex";
 import AppErrors from "lib/utils/statics/errors/errors";
 import React, { useCallback, useMemo, useState } from "react";
 import { useMutation } from "react-query";
@@ -15,6 +13,8 @@ import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppTypography from "components/common/typography/AppTypography";
 import AppIcons from "assest/icon/Appicons";
 import { BASE_URL } from "lib/utils/app/variable";
+import { IsignupService } from "lib/apis/auth/interfaces";
+import { signupService } from "lib/apis/auth/services";
 
 const SignupProducer = ({ close, shopname, switchToggle }) => {
     const [searchParams] = useSearchParams();
