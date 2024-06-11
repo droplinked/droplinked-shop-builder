@@ -14,8 +14,8 @@ const getProgressColors = (progressValue: number) => {
     }
 }
 
-function CircularProgressBar({ used, total }: { used: number, total: number }) {
-    const progressValue = (used / total) * 100
+function CircularProgressBar({ used, all }: { used: number, all: number | string }) {
+    const progressValue = typeof all === "string" ? 0 : (used / all) * 100
     const { backgroundColor, progressColor } = getProgressColors(progressValue)
 
     return (
@@ -32,7 +32,9 @@ function CircularProgressBar({ used, total }: { used: number, total: number }) {
         >
             <CircularProgressLabel>
                 <AppTypography fontSize={10} color={"white"}>
-                    <Box as="span" fontWeight={600}>{total}</Box> of <Box as='span' fontWeight={600}>{used}</Box>
+                    <Box as="span" fontWeight={600}>{all === "Unlimited" ? "∞" : all}</Box> {" "}
+                    of {" "}
+                    <Box as='span' fontWeight={600}>{used}</Box>
                 </AppTypography>
             </CircularProgressLabel>
         </CircularProgress>

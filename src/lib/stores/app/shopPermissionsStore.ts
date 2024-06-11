@@ -14,7 +14,7 @@ const useShopPermissionsStore = create<ShopPermissions>()(persist((set, get) => 
     shopSubscriptionData: {} as ShopSubscriptionData,
     fetchShopPermissionsAsync: async () => {
         try {
-            const data = await getShopSubscriptionDataService()
+            const { data } = await getShopSubscriptionDataService()
             console.log(data.subscriptionId.subOptionIds)
             set({ shopSubscriptionData: data })
         } catch (error) {

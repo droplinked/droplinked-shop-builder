@@ -6,7 +6,7 @@ import Loading from "./Loading";
 import PlanCard from "./PlanCard";
 
 const Plans = ({ showBuyButton }: { showBuyButton: boolean }) => {
-    const { isFetching, data, error } = useQuery({
+    const { isFetching, data } = useQuery({
         queryKey: ["subscription-plans"],
         queryFn: () => getSubscriptionPlansService(),
         refetchOnWindowFocus: false
@@ -21,7 +21,7 @@ const Plans = ({ showBuyButton }: { showBuyButton: boolean }) => {
                 isFetching ?
                     <Loading /> :
                     <>
-                        {data.map(plan => <PlanCard key={plan._id} plan={plan} showBuyButton={showBuyButton} />)}
+                        {data.data.map(plan => <PlanCard key={plan._id} plan={plan} showBuyButton={showBuyButton} />)}
                     </>
             }
 

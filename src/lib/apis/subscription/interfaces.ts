@@ -1,12 +1,25 @@
 export interface SubscriptionPlan {
     _id: string;
     type: string;
-    subOptionIds: {
-        title?: string;
-        key: string;
-        value: boolean | string | Record<string, any>;
-    }[];
     price: string;
+    description: string;
+    subOptionIds: {
+        title: string;
+        key: string;
+        value: {
+            title: string;
+            key: string;
+            value: boolean | string;
+        }[]
+    }[]
+}
+
+export interface LegalUsage {
+    all: string;
+    key: string;
+    remaining: string;
+    used: number;
+    value: string;
 }
 
 export interface ShopSubscriptionData {
@@ -14,15 +27,18 @@ export interface ShopSubscriptionData {
     shopId: string;
     subscriptionId: {
         _id: string;
+        description: string;
+        price: string;
         type: string;
         subOptionIds: {
             key: string;
             value: boolean | string
         }[];
-        price: string;
     };
     purchaseStatus: string;
-    startsAt: Date;
     status: string;
     daysUntilExpiration: string;
+    startsAt: Date;
+    expiresAt: Date;
+    legalUsage: LegalUsage[]
 }

@@ -5,16 +5,17 @@ import React, { PropsWithChildren } from 'react';
 
 interface Props extends PropsWithChildren {
     requiredPermission: string
+    action?: "default" | "hide"
 }
 
-function WithPermission({ requiredPermission, children }: Props) {
+function WithPermission({ children, requiredPermission, action = "default" }: Props) {
     const hasPermission = useShopPermissionsStore(state => state.hasPermission)
 
     if (hasPermission(requiredPermission)) {
         return children
     }
 
-    return <AppPermissionDenied />
+    return action === "default" ? <AppPermissionDenied /> : null
 }
 
 export default WithPermission
