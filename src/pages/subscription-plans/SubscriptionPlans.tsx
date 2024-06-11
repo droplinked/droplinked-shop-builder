@@ -24,7 +24,7 @@ function SubscriptionPlans() {
                     <SelectedPlanDetails title='Royalty Program Integration' total={200} used={80} />
                 </SimpleGrid>
             </Flex>
-            <Plans />
+            <Plans showBuyButton />
         </Flex>
     )
 }

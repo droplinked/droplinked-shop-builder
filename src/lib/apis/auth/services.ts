@@ -2,7 +2,7 @@ import axiosInstance from "../axiosConfig";
 import { IauthLoginService, IAuthSupportedWalletsService, ICompleteGoogleSignupService } from "./interfaces";
 
 export const authLoginService = (params: IauthLoginService) => {
-    return axiosInstance.post("auth/login", params);
+    return axiosInstance.post("auth/login/basic", params);
 };
 
 export const authSupportedWalletsService = () => {
