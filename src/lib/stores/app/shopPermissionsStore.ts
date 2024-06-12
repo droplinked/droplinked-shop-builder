@@ -1,5 +1,6 @@
 import { ShopSubscriptionData } from "lib/apis/subscription/interfaces"
 import { getShopSubscriptionDataService } from "lib/apis/subscription/subscriptionServices"
+import { useCallback } from "react"
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
@@ -7,7 +8,7 @@ type ShopPermissions = {
     shopSubscriptionData: ShopSubscriptionData,
     fetchShopPermissionsAsync: () => Promise<void>,
     updateShopPermissionsAsync: () => Promise<void>,
-    hasPermission: (permission: string) => any
+    hasPermission: (permission: string) => boolean
 }
 
 const useShopPermissionsStore = create<ShopPermissions>()(persist((set, get) => ({
@@ -15,7 +16,6 @@ const useShopPermissionsStore = create<ShopPermissions>()(persist((set, get) => 
     fetchShopPermissionsAsync: async () => {
         try {
             const { data } = await getShopSubscriptionDataService()
-            console.log(data.subscriptionId.subOptionIds)
             set({ shopSubscriptionData: data })
         } catch (error) {
             throw new Error(error.message)
@@ -41,5 +41,7 @@ const useShopPermissionsStore = create<ShopPermissions>()(persist((set, get) => 
 }),
     { name: 'shop-permissions-storage' }
 ))
+
+export const useHasPermission = () => useShopPermissionsStore(state => state.hasPermission)
 
 export default useShopPermissionsStore

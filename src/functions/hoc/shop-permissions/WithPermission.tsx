@@ -1,7 +1,6 @@
 import AppPermissionDenied from 'components/common/permission-denied/AppPermissionDenied';
-import useShopPermissionsStore from 'lib/stores/app/shopPermissionsStore';
+import { useHasPermission } from 'lib/stores/app/shopPermissionsStore';
 import React, { PropsWithChildren } from 'react';
-
 
 interface Props extends PropsWithChildren {
     requiredPermission: string
@@ -9,8 +8,7 @@ interface Props extends PropsWithChildren {
 }
 
 function WithPermission({ children, requiredPermission, action = "default" }: Props) {
-    const hasPermission = useShopPermissionsStore(state => state.hasPermission)
-
+    const hasPermission = useHasPermission()
     if (hasPermission(requiredPermission)) {
         return children
     }
