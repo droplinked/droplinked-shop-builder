@@ -5,6 +5,8 @@ import AppTable from 'components/common/table/AppTable';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { createProductTileService, editProductTileService } from 'lib/apis/product/productServices';
+import { useHasPermission } from 'lib/stores/app/shopPermissionsStore';
+import AppErrors from 'lib/utils/statics/errors/errors';
 import { typesProperties } from 'lib/utils/statics/types';
 import { productContext } from 'pages/product/single/context';
 import React, { useContext, useState } from 'react';
@@ -17,6 +19,7 @@ interface Props {
 }
 
 function ProductTileModal({ isOpen, close, selectedTile }: Props) {
+    const hasPermission = useHasPermission()
     const { state: { sku, productTile }, methods: { updateState } } = useContext(productContext)
     const createProductTile = useMutation(() => createProductTileService({ skuIDs }))
     const editProductTile = useMutation(() => editProductTileService(selectedTile?._id!, { skuIDs }))
@@ -45,6 +48,8 @@ function ProductTileModal({ isOpen, close, selectedTile }: Props) {
     })
     const handleSave = async () => {
         try {
+            if (!hasPermission("product_tile_display"))
+                return showToast({ message: AppErrors.permission.permission_denied, type: "error" })
             if (selectedTile?._id) {
                 const { data } = await editProductTile.mutateAsync()
                 const newTiles = productTile.map(tile => tile._id === selectedTile._id ? data.data : tile)

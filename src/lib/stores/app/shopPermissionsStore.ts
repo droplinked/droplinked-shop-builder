@@ -1,6 +1,5 @@
 import { ShopSubscriptionData } from "lib/apis/subscription/interfaces"
 import { getShopSubscriptionDataService } from "lib/apis/subscription/subscriptionServices"
-import { useCallback } from "react"
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 

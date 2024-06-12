@@ -12,6 +12,7 @@ const AppErrors = {
     product: productErrors,
     collection: collectionErrors,
     affiliate: affiliateErrors,
+    permission: permissionErrors
 }
 
 export default AppErrors
