@@ -1,7 +1,8 @@
-import { Checkbox, Table, TableHeadProps, TableRowProps, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import { Box, Checkbox, Flex, Image, Table, TableHeadProps, TableRowProps, Tbody, Td, Text, Th, Thead, Tooltip, Tr } from '@chakra-ui/react'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useCallback } from 'react'
 import AppTypography from '../typography/AppTypography'
+import AppIcons from 'assest/icon/Appicons'
 
 export interface ITableRows {
     _data?: any
@@ -39,6 +40,11 @@ function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
         checkbox.update(status ? rows.map((el, key) => el?._data?._id || key) : []);
     }, [checkbox, rows])
 
+    const generateRandomColor = () => {
+        const color = Math.floor(Math.random() * 16777215).toString(16);
+        return `#${color.padStart(6, '0')}`;
+    }
+
     return (
         <>
             {rows && checkRows ? (
@@ -69,7 +75,8 @@ function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                {rows.map((el: any, key) =>
+                            {rows.map((el: any, key) => {
+                                return (
                                     <Tr borderBottom="2px solid #292929" key={key} {...props?.tr}>
                                         {checkbox && (
                                             <Td width="50" padding="14px 15px 14px 0">
@@ -83,10 +90,29 @@ function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
                                             </Td>
                                         )}
                                         {Object.keys(el).filter(el => el !== "_data").map((item, key) => (
-                                            <Td padding="14px 15px" {...key === 0 && { paddingLeft: 0 }} fontSize=".9rem" {...el[item].props} key={key}>{el[item].value}</Td>
+                                            <Td padding="14px 15px" {...key === 0 && { paddingLeft: 0 }} fontSize=".9rem" {...el[item].props} key={key}>
+                                                {item === "Collection" ? 
+                                                    <Flex gap={"8px"} alignItems={"center"}>
+                                                        {el[item].image ? <Image src={el[item].image} width={"40px"} height={"40px"} borderRadius={"7px"} /> : <Box width="40px" height="40px" borderRadius="7px" backgroundColor={generateRandomColor()} />}
+                                                        {el[item].value}
+                                                    </Flex>
+                                                    :
+                                                    item === "rulesets" ? 
+                                                        el[item].value !== "-" ?
+                                                            <Flex gap={"8px"} alignItems={"center"} padding={"6px 12px"} borderRadius={"27px"} bgColor={"#292929"} width={"85%"}>
+                                                                <AppIcons.DiscountIcon/>
+                                                                {el[item].value}
+                                                            </Flex>
+                                                            :
+                                                            el[item].value
+                                                    :
+                                                    el[item].value
+                                                }
+                                            </Td>
                                         ))}
                                     </Tr>
-                                )}
+                                );
+                            })}
                             </Tbody>
                         </Table>
                     ) : null}
