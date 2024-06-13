@@ -111,6 +111,8 @@ import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as Blog } from "./blog.svg";
 import { ReactComponent as CloseRed } from "./close-red.svg";
+import { ReactComponent as Clock } from "./clock.svg";
+import { ReactComponent as Pen } from "./pen.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -226,6 +228,8 @@ const AppIcons = {
   BackArrow,
   Blog,
   CloseRed,
+  Clock,
+  Pen
 }
 
 export default AppIcons

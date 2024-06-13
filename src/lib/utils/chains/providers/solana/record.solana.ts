@@ -78,8 +78,8 @@ export async function SolanaRecordMerch(
 				: productInformation.type === ProductType.POD
 				? { print: {} }
 				: { service: {} }
-		const product_price: { usd: { cents: BN } } = {
-			usd: { cents: new BN(productInformation.price * 100_000_000) },
+		const product_price = {
+			usd: { cents: new BN(productInformation.price * 100000000) },
 		}
 
 		const owner_address = new PublicKey(address)
@@ -125,13 +125,14 @@ export async function SolanaRecordMerch(
 				.rpc()
 		} else {
 			const publishers: PublicKey[] = []
+
 			signature = await program.methods
 				.createCommissionableProduct(
 					shop_nonce,
 					sku_nonce,
 					product_type,
 					product_price,
-					productInformation.commission * 100 /** basis points */,
+					productInformation.commission /** basis points */,
 					publishers,
 					{
 						name: productInformation.title,

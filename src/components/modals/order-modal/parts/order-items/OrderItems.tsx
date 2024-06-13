@@ -18,7 +18,7 @@ function OrderItems() {
                     <Flex justifyContent={"space-between"} key={item._id}>
                         {/* left part */}
                         <Flex alignItems={"center"} gap={"16px"} position={"relative"} width={"320px"}>
-                            <AppImage src={item.image} width="48px" height="48px" borderRadius="4px" />
+                            <AppImage src={item.skuImage || item.image} width="48px" height="48px" borderRadius="4px" />
                             <Flex direction={"column"} gap={"5px"}>
                                 <Flex alignItems={"center"} gap={"8px"}>
                                     <AppTypography color={"#FFFFFF"} fontSize={"14px"} position={"relative"}>
