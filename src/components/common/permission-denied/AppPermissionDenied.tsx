@@ -10,13 +10,10 @@ function AppPermissionDenied() {
             gap={8}
             borderRadius={8}
             padding={4}
-            bgColor={"red.300"}
-            color={"red.900"}
+            bgColor={"#8B0000"}
+            color={"#FFA07A"}
         >
-            <AppTypography textAlign={"center"} fontSize={28} fontWeight={700}>Permission Denied!</AppTypography>
-            <AppTypography width={"80%"} textAlign={"center"} fontSize={16}>
-                Sorry, you don't have access to this section. To unlock it, please upgrade to a plan that includes this feature. Visit the plans page to explore your options. If you believe you should have access, please contact support for assistance.
-            </AppTypography>
+            <AppTypography textAlign={"center"} fontSize={20} fontWeight={700}>Permission Denied!</AppTypography>
         </Flex>
     )
 }

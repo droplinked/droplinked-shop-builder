@@ -2,16 +2,20 @@ import { Flex, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
 import AppTypography from 'components/common/typography/AppTypography'
+import { useCheckPermission } from 'lib/stores/app/shopPermissionsStore'
 import React, { useContext, useState } from 'react'
 import APIKeyContext from '../../context'
 import ConfirmDomainDeletion from './parts/confirm-domain-deletion/ConfirmDomainDeletion'
 import ShopAPIKeySkeleton from './parts/loading/ShopAPIKeySkeleton'
 
 function RemoveAPIKey() {
+    const checkPermissionAndShowToast = useCheckPermission()
     const [selectedDomain, setSelectedDomain] = useState("")
     const { getShopAPIKey, fetchedData } = useContext(APIKeyContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
+
     const openConfirmationDialog = (domain: string) => {
+        if (!checkPermissionAndShowToast("shopfront_apis")) return
         if (fetchedData?.domains.length === 1) return
         setSelectedDomain(domain)
         onOpen()

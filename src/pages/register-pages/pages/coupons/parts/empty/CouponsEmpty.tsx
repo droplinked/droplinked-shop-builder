@@ -3,12 +3,19 @@ import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppCard from 'components/common/card/AppCard'
 import AppTypography from 'components/common/typography/AppTypography'
+import { useCheckPermission } from 'lib/stores/app/shopPermissionsStore'
 import React from 'react'
 import CouponsCreate from '../list/parts/head/parts/modal/create/CouponsCreate'
 import classes from './style.module.scss'
 
 function CouponsEmpty() {
+    const checkPermissionAndShowToast = useCheckPermission()
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const handleOpenCreateCouponModal = () => {
+        if (!checkPermissionAndShowToast("coupon_creation")) return
+        onOpen()
+    }
 
     return (
         <>
@@ -20,7 +27,7 @@ function CouponsEmpty() {
                         <AppIcons.GiftSetting />
                     </HStack>
                     <Flex justifyContent="center">
-                        <BasicButton onClick={onOpen}>Create Coupon</BasicButton>
+                        <BasicButton onClick={handleOpenCreateCouponModal}>Create Coupon</BasicButton>
                     </Flex>
                 </VStack>
             </AppCard>

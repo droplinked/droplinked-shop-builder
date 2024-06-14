@@ -6,6 +6,7 @@ import { Form, Formik } from 'formik'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { IcreateCollectionService, IupdateCollectionService } from 'lib/apis/collection/interfaces'
 import { createCollectionService, updateCollectionService } from 'lib/apis/collection/services'
+import { useCheckPermission } from 'lib/stores/app/shopPermissionsStore'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import React, { useCallback } from 'react'
 import { useMutation } from 'react-query'
@@ -23,6 +24,7 @@ interface Iform {
 }
 
 function CollectionCreate({ close, open, collection, refetch }: IProps) {
+    const checkPermissionAndShowToast = useCheckPermission()
     const createService = useMutation((params: IcreateCollectionService) => createCollectionService(params))
     const updateService = useMutation((params: IupdateCollectionService) => updateCollectionService(params))
     const { showToast } = useAppToast()
@@ -34,6 +36,7 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
                 await updateService.mutateAsync({ title, collectionID: collection._id })
                 showToast({ message: AppErrors.collection.update_Collection_name, type: "success" })
             } else {
+                if (!checkPermissionAndShowToast("collection_management")) return
                 await createService.mutateAsync({ title })
                 showToast({ message: AppErrors.collection.create_Collection_name, type: "success" })
             }

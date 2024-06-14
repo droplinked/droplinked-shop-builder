@@ -1,5 +1,6 @@
 import AppDialog from 'components/common/dialog';
 import useAppToast from 'functions/hooks/toast/useToast';
+import { useCheckPermission } from 'lib/stores/app/shopPermissionsStore';
 import React, { useContext } from 'react';
 import APIKeyContext from '../../../../context';
 
@@ -10,12 +11,14 @@ interface Props {
 }
 
 function ConfirmDomainDeletion({ isOpen, close, selectedDomain }: Props) {
+    const checkPermissionAndShowToast = useCheckPermission()
     const { getShopAPIKey, updateShopAPIKey, fetchedData } = useContext(APIKeyContext)
     const isLoading = getShopAPIKey.isLoading || updateShopAPIKey.isLoading
     const { showToast } = useAppToast()
 
     const removeDomain = async () => {
         try {
+            if (!checkPermissionAndShowToast("shopfront_apis")) return
             if (fetchedData?.domains.length === 1) return
             const domains = [...fetchedData?.domains]
             domains.splice(fetchedData?.domains.indexOf(selectedDomain), 1)

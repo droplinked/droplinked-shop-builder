@@ -7,6 +7,7 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import { giftcardCreateService, updateGiftCartExpiryDateService } from 'lib/apis/coupons/addressServices'
 import { IGiftCardExpiryDate, IgiftcardCreateService } from 'lib/apis/coupons/interfaces'
 import useAppStore from 'lib/stores/app/appStore'
+import { useCheckPermission } from 'lib/stores/app/shopPermissionsStore'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import moment from 'moment/moment'
 import CouponsSettingContext from 'pages/register-pages/pages/coupons/context'
@@ -29,6 +30,7 @@ interface IFrom {
 
 function CouponForm({ coupon, close }: Props) {
     const isEditMode = !!coupon
+    const checkPermissionAndShowToast = useCheckPermission()
     const createGiftcard = useMutation((params: IgiftcardCreateService) => giftcardCreateService(params))
     const updateGiftcardExpiryDate = useMutation((params: IGiftCardExpiryDate) => updateGiftCartExpiryDateService(params))
     const isLoading = createGiftcard.isLoading || updateGiftcardExpiryDate.isLoading
@@ -44,6 +46,7 @@ function CouponForm({ coupon, close }: Props) {
                 await updateGiftcardExpiryDate.mutateAsync({ id: coupon._id, expiryDate: params.expiryDate.toISOString() })
             }
             else {
+                if (!checkPermissionAndShowToast("coupon_creation")) return
                 const body: IgiftcardCreateService = {
                     balance: params.balance,
                     name: params.name,

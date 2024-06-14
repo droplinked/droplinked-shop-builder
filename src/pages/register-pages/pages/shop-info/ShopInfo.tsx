@@ -2,17 +2,18 @@ import { Flex, VStack } from '@chakra-ui/react'
 import AppCard from 'components/common/card/AppCard'
 import { useProfile } from "functions/hooks/useProfile/useProfile"
 import { getShopAddressBookService } from 'lib/apis/address/addressServices'
+import { getReferralReportService } from 'lib/apis/shop/shopServices'
+import { useHasPermission } from 'lib/stores/app/shopPermissionsStore'
 import React, { useEffect, useState, useTransition } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import ShopInfoAddress from './parts/address/shopInfoAddress'
 import ShopAPIKey from './parts/api-key/ShopAPIKey'
 import PostPurchaseDataGatheringInput from './parts/post-purchase-data-gathering/PostPurchaseDataGatheringInput'
 import PrivateKey from './parts/private-key/PrivateKey'
+import ReferralCommunity from './parts/referral-community/ReferralCommunity'
+import ReferralCode from './parts/referral/ReferralCode'
 import StoreInformation from './parts/store-information/StoreInformation'
 import ShopInfoSubmit from './parts/submit/ShopInfoSubmit'
-import ReferralCode from './parts/referral/ReferralCode'
-import { getReferralReportService } from 'lib/apis/shop/shopServices'
-import ReferralCommunity from './parts/referral-community/ReferralCommunity'
 
 export interface IstatesShopInfo {
   description: string
@@ -31,23 +32,24 @@ export interface IstatesShopInfo {
   } | null
 }
 
-export interface IShopInfoChildProps{
+export interface IShopInfoChildProps {
   States: IstatesShopInfo;
   updateStates: (key: string, value: any) => void;
 }
 
 function RegisterShopInfo() {
+  const hasPermission = useHasPermission()
   const { shop } = useProfile()
   const addressService = useMutation(() => getShopAddressBookService())
-  const { data: referralReports, isLoading: referralReportsLoading } = useQuery({queryKey: 'referral_report', queryFn: getReferralReportService, cacheTime: 1, refetchOnWindowFocus: false});
+  const { data: referralReports, isLoading: referralReportsLoading } = useQuery({ queryKey: 'referral_report', queryFn: getReferralReportService, cacheTime: 1, refetchOnWindowFocus: false, enabled: hasPermission("create_referral_code") });
   const [States, setStates] = useState<IstatesShopInfo>({ description: null, addressBookID: null, tags: [], pre_purchase_data_fetch: null, referralDetails: null })
   const [pending, start_transition] = useTransition()
   const updateStates = (key: string, value: string) => start_transition(() => setStates((prev: IstatesShopInfo) => ({ ...prev, [key]: value })))
-  
+
   const address = addressService.data?.data?.data
 
-  useEffect(() => {addressService.mutate()}, [])
-  useEffect(() => {updateStates("addressBookID", address && address.length ? address[0]._id : null)}, [addressService.data])
+  useEffect(() => { addressService.mutate() }, [])
+  useEffect(() => { updateStates("addressBookID", address && address.length ? address[0]._id : null) }, [addressService.data])
   useEffect(() => {
     if (shop?.description) updateStates("description", shop.description)
     if (shop?.tags) updateStates("tags", shop.tags)
@@ -62,8 +64,8 @@ function RegisterShopInfo() {
       <AppCard><ShopAPIKey /></AppCard>
       <AppCard><PrivateKey /></AppCard>
       <AppCard><PostPurchaseDataGatheringInput States={States} updateStates={updateStates} /></AppCard>
-      { States?.referralDetails && <AppCard><ReferralCode States={States} updateStates={updateStates}/></AppCard>}
-      {!referralReportsLoading && referralReports.data.data.length && <AppCard><ReferralCommunity referralReports={referralReports.data.data}/></AppCard>}
+      {States?.referralDetails && <AppCard><ReferralCode States={States} updateStates={updateStates} /></AppCard>}
+      {!referralReportsLoading && referralReports?.data.data.length && <AppCard><ReferralCommunity referralReports={referralReports.data.data} /></AppCard>}
       <Flex justifyContent={"right"}><ShopInfoSubmit States={States} updateStates={updateStates} /></Flex>
     </VStack>
   )

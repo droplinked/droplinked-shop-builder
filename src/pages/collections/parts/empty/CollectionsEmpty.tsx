@@ -1,18 +1,18 @@
-import EmptyTable from 'components/common/table/parts/empty/EmptyTable'
-import React from 'react'
 import AppIcons from 'assest/icon/Appicons';
+import EmptyTable from 'components/common/table/parts/empty/EmptyTable';
+import React from 'react';
 
 interface IProps {
-    openModal: Function
+    handleOpenCreateCollectionModal: () => void
 }
 
-function CollectionsEmpty({ openModal }: IProps) {
+function CollectionsEmpty({ handleOpenCreateCollectionModal }: IProps) {
     return (
         <>
             <EmptyTable
                 add={{
                     caption: "New Collection",
-                    onClick: () => openModal()
+                    onClick: () => handleOpenCreateCollectionModal()
                 }}
                 list={[
                     {

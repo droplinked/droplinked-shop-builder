@@ -2,6 +2,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import AppDataGrid from 'components/common/datagrid/DataGrid'
 import useHookStore from 'functions/hooks/store/useHookStore'
 import { collectionService } from 'lib/apis/collection/services'
+import { useCheckPermission } from 'lib/stores/app/shopPermissionsStore'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMutation } from 'react-query'
 import CollectionsModel from './model'
@@ -9,12 +10,16 @@ import CollectionCreate from './parts/create/CollectionCreate'
 import CollectionsEmpty from './parts/empty/CollectionsEmpty'
 
 function Collections() {
+    const checkPermissionAndShowToast = useCheckPermission()
     const { isOpen, onClose, onOpen } = useDisclosure()
     const { mutate, isLoading, data } = useMutation(() => collectionService())
-    const [States, setStates] = useState({
-        search: null
-    })
+    const [States, setStates] = useState({ search: null })
     const { data: { collection } } = useHookStore()
+
+    const handleOpenCreateCollectionModal = () => {
+        if (!checkPermissionAndShowToast("collection_management")) return
+        onOpen()
+    }
 
     const setSearch = useCallback((keyword: string) => setStates(prev => ({ ...prev, search: keyword })), [])
 
@@ -41,12 +46,12 @@ function Collections() {
                 buttons={[
                     {
                         caption: "Create Collection",
-                        onClick: onOpen
+                        onClick: handleOpenCreateCollectionModal
                     }
                 ]}
                 rows={rows}
                 search={{ onChange: (e) => setSearch(e.target.value) }}
-                empty={<CollectionsEmpty openModal={onOpen} />}
+                empty={<CollectionsEmpty handleOpenCreateCollectionModal={handleOpenCreateCollectionModal} />}
             />
             <CollectionCreate close={onClose} refetch={fetch} open={isOpen} />
         </>

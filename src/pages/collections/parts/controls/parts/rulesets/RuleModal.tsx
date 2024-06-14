@@ -1,6 +1,7 @@
 import { Box, HStack, VStack } from "@chakra-ui/react";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
+import AppSelectBox from "components/common/form/select/AppSelectBox";
 import LoadingComponent from "components/common/loading-component/LoadingComponent";
 import AppModal from "components/common/modal/AppModal";
 import AppTypography from "components/common/typography/AppTypography";
@@ -8,22 +9,21 @@ import { Formik } from "formik";
 import useAppToast from "functions/hooks/toast/useToast";
 import { IcreateRuleService, IgetRuleService, IgetRuleTypeService, IupdateRuleService } from "lib/apis/rule/interfaces";
 import { createRuleService, getRuleService, rulesetChainsService, rulesetTypeService, updateRuleService } from "lib/apis/rule/ruleServices";
+import { useCheckPermission } from "lib/stores/app/shopPermissionsStore";
 import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import * as Yup from "yup";
+import { RuleTypes } from "./RuleModel";
 import ruleModelContext from "./context";
 import RulesetAddress from "./parts/address/RulesetAddress";
-import SelectRule from "./parts/select/SelectRule";
 import TextboxRule from "./parts/textbox/TextboxRule";
 import RulesetType from "./parts/type/RulesetType";
-import { RuleTypes } from "./RuleModel";
-import SelectType from "./parts/select/selectType";
-import AppSelectBox from "components/common/form/select/AppSelectBox";
 
 // this modal use for add new rule or edit exsiting rule
 const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
+    const checkPermissionAndShowToast = useCheckPermission()
     const [State, setState] = useState(null);
     const getRule = useMutation((params: IgetRuleService) => getRuleService(params));
     const createRule = useMutation((params: IcreateRuleService) => createRuleService(params));
@@ -45,10 +45,10 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
     useEffect(() => {
         if (getRule.data) {
             setState(getRule.data.data.data);
-            if(getRule?.data?.data?.data?.type) availableRuleTypes.mutate({chain: getRule?.data?.data?.data?.type})
-        }else if(!ruleId){
-            availableRuleTypes.mutate({chain: "ETH"})
-    }
+            if (getRule?.data?.data?.data?.type) availableRuleTypes.mutate({ chain: getRule?.data?.data?.data?.type })
+        } else if (!ruleId) {
+            availableRuleTypes.mutate({ chain: "ETH" })
+        }
     }, [getRule.data]);
 
     const submit = async (data) => {
@@ -74,7 +74,8 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
             if (ruleId) {
                 await updateRule.mutateAsync({ ruleID: ruleId, data: requestBody });
             } else {
-                await createRule.mutateAsync(requestBody);
+                if (!checkPermissionAndShowToast("rulesets")) return
+                await createRule.mutateAsync(requestBody)
             }
             update();
             close();
@@ -152,17 +153,17 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                                         name={"chain"}
                                         placeholder="Select chain"
                                         onChange={(e) => {
-                                          setFieldValue("chain", e.target.value)
-                                          availableRuleTypes.mutate({chain: e.target.value})
+                                            setFieldValue("chain", e.target.value)
+                                            availableRuleTypes.mutate({ chain: e.target.value })
                                         }}
                                         items={
                                             chains.data
                                                 ? chains.data?.data?.data.map((el) => {
-                                                      return {
-                                                          value: el,
-                                                          caption: capitalizeFirstLetter(el),
-                                                      };
-                                                  })
+                                                    return {
+                                                        value: el,
+                                                        caption: capitalizeFirstLetter(el),
+                                                    };
+                                                })
                                                 : []
                                         }
                                         value={values["chain"]}
@@ -185,11 +186,11 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                                         items={
                                             availableRuleTypes.data
                                                 ? availableRuleTypes.data?.data?.data.map((el) => {
-                                                      return {
-                                                          value: el,
-                                                          caption: capitalizeFirstLetter(el),
-                                                      };
-                                                  })
+                                                    return {
+                                                        value: el,
+                                                        caption: capitalizeFirstLetter(el),
+                                                    };
+                                                })
                                                 : []
                                         }
                                         value={values["ruleType"]}
@@ -228,7 +229,7 @@ const RuleModal = ({ show, collectionId, update, close, ruleId }) => {
                 </Formik>
             )}
         </AppModal>
-    );
-};
+    )
+}
 
-export default RuleModal;
+export default RuleModal

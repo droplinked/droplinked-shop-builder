@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
 import Plans from './_components/plans/Plans'
-import SelectedPlan from './_components/selected-plan/SelectedPlan'
+import CurrentPlan from './_components/current-plan/CurrentPlan'
 
 function SubscriptionPlans() {
     return (
@@ -15,7 +15,7 @@ function SubscriptionPlans() {
                 bgColor={"#262626"}
             >
                 <AppTypography fontSize={16} fontWeight={600} color={"white"}>Current subscription plan</AppTypography>
-                <SelectedPlan />
+                <CurrentPlan />
             </Flex>
             <Plans showBuyButton />
         </Flex>

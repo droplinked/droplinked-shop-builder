@@ -5,7 +5,7 @@ import React from 'react';
 import CircularProgressBar from './CircularProgressBar';
 import Container from './Container';
 
-function SelectedPlanDetails({ legalUsage }: { legalUsage: LegalUsage }) {
+function LegalUsageItem({ legalUsage }: { legalUsage: LegalUsage }) {
     const { used, all, key, remaining } = legalUsage
     const title = key.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
 
@@ -20,4 +20,4 @@ function SelectedPlanDetails({ legalUsage }: { legalUsage: LegalUsage }) {
     )
 }
 
-export default SelectedPlanDetails
+export default LegalUsageItem

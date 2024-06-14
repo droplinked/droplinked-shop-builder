@@ -27,7 +27,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     const { showToast } = useAppToast()
     const navigate = useNavigate()
     const { shopNavigate } = useCustomNavigate()
-    const fetchShopPermissionsAsync = useShopPermissionsStore(state => state.fetchShopPermissionsAsync)
+    const fetchShopSubscriptionDataAsync = useShopPermissionsStore(state => state.fetchShopSubscriptionDataAsync)
 
     const handleLogin = async (data) => {
         try {
@@ -50,7 +50,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
                 return
             }
 
-            await fetchShopPermissionsAsync()
+            await fetchShopSubscriptionDataAsync()
             const { href, dashboard } = navigating_user_based_on_status(status, data)
             dashboard ? shopNavigate(href) : navigate(href)
             close()
