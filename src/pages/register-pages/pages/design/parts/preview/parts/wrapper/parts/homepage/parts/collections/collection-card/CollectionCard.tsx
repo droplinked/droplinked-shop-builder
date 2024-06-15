@@ -9,7 +9,7 @@ interface ICollectionCard {
 
 function CollectionCard({ imageSrc, title }: ICollectionCard) {
     return (
-      <VStack align="stretch" spacing="3px" width="100px" textAlign="center">
+      <VStack align="stretch" spacing="3px" textAlign="center">
         <Image src={imageSrc} width="100%" borderRadius="8px"  />
         <PreviewTypo fontSize="12px" fontWeight={500}>{title}</PreviewTypo>
       </VStack>
