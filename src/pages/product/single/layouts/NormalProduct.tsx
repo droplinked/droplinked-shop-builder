@@ -10,8 +10,6 @@ import ShippingProduct from '../parts/modules/shipping/ShippingProduct'
 import ProductPodDesign from '../parts/podDesign/ProductPodDesign'
 import ProductTile from '../parts/product-tile/ProductTile'
 import Variant from '../parts/variant/Variant'
-import Properties from '../parts/properties/properties'
-import {App} from '../parts/properties/newFormik/NewFormikOp'
 
 function NormalProduct() {
     const { state: { prodviderID } } = useContext(productContext)
@@ -23,11 +21,7 @@ function NormalProduct() {
             <DigitalLinks />
             <ShippingProduct />
             {!ProductModel.isPrintful(prodviderID) && <Variant />}
-            <Properties/>
-            <App/>
             <ProductPodDesign />
-            {ProductModel.isPrintful(prodviderID) && <Variant />}
-            {/* <CategoryProduct /> */}
             <CollectionProduct />
             <ProductTile />
             <ButtonsProduct />

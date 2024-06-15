@@ -112,6 +112,7 @@ import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as Blog } from "./blog.svg";
 import { ReactComponent as Clock } from "./clock.svg";
 import { ReactComponent as Pen } from "./pen.svg";
+import { ReactComponent as Delete } from "./delete.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -227,7 +228,8 @@ const AppIcons = {
   BackArrow,
   Blog,
   Clock,
-  Pen
+  Pen,
+  Delete
 }
 
 export default AppIcons
