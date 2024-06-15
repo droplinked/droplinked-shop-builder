@@ -1,8 +1,11 @@
-import { Box, Checkbox, Flex, Image, Table, TableHeadProps, TableRowProps, Tbody, Td, Text, Th, Thead, Tooltip, Tr } from '@chakra-ui/react'
-import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useCallback } from 'react'
+import { Checkbox, Table, TableHeadProps, TableRowProps, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+
+//Helper Functions
+import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
+
+//Components
 import AppTypography from '../typography/AppTypography'
-import AppIcons from 'assest/icon/Appicons'
 
 export interface ITableRows {
     _data?: any

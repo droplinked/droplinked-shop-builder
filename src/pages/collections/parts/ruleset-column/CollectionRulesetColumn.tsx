@@ -12,9 +12,11 @@ const CollectionRulesetColumn = ({ruleset}) => {
   const rulesetsValue = ruleset ? isGated ? "Gated" : "Discount" : "-";
 
   return (
-    <Flex gap={"8px"} alignItems={"center"} padding={"6px 12px"} borderRadius={"27px"} bgColor={"#292929"} width={"85%"}>
-      {isGated ? <AppIcons.GatedIcon/> :<AppIcons.DiscountIcon/>}
-      <AppTypography fontSize={"14px"}>{rulesetsValue}</AppTypography>
+    <Flex alignItems={"flex-start"}>
+      <Flex bgColor={"#292929"} alignItems={"center"} padding={"6px 12px"} borderRadius={"27px"} gap={"8px"}>
+        {isGated ? <AppIcons.GatedIcon/> : <AppIcons.DiscountIcon/>}
+        <AppTypography fontSize={"14px"}>{rulesetsValue}</AppTypography>
+      </Flex>
     </Flex>
   )
 }
