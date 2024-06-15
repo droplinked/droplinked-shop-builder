@@ -1,20 +1,22 @@
 import { VStack } from '@chakra-ui/react'
-import React, { useCallback, useEffect, useReducer } from 'react'
-import { productContext } from './context'
-import { useParams } from 'react-router-dom'
-import { useMutation } from 'react-query'
-import ProductSingleModel from './model/model'
-import ProductStore from './parts/store/ProductStore'
-import productPageNamespace from './reducers'
-import ProductLoading from './parts/loading/ProductLoading'
+import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData'
+import { IproductService } from 'lib/apis/shop/interfaces'
+import { productService } from 'lib/apis/shop/shopServices'
 import { nanoid } from 'nanoid'
+import React, { useCallback, useEffect, useReducer } from 'react'
+import { useMutation } from 'react-query'
+import { useParams } from 'react-router-dom'
+import { productContext } from './context'
 import NormalProduct from './layouts/NormalProduct'
 import PODProduct from './layouts/PODProduct'
-import { productService } from 'lib/apis/shop/shopServices'
-import { IproductService } from 'lib/apis/shop/interfaces'
+import ProductSingleModel from './model/model'
+import ProductLoading from './parts/loading/ProductLoading'
+import ProductStore from './parts/store/ProductStore'
+import productPageNamespace from './reducers'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductService) => productService(params))
+    const { isFetching } = useShopSubscriptionData()
     const { reducers, initialState } = productPageNamespace
     const params = useParams()
     const [state, dispatch] = useReducer(reducers, initialState)

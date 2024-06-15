@@ -2,14 +2,14 @@ import { Flex, SimpleGrid } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces'
-import useShopPermissionsStore from 'lib/stores/app/shopPermissionsStore'
+import { useGetPermissionValue } from 'lib/stores/app/shopPermissionsStore'
 import PlanHeading from 'pages/subscription-plans/_components/PlanHeading'
 import React from 'react'
 import Container from './Container'
 import LegalUsageItem from './LegalUsageItem'
 
 function CurrentPlanDetails({ shopSubscriptionData }: { shopSubscriptionData: ShopSubscriptionData }) {
-    const getPermissionValue = useShopPermissionsStore(state => state.getPermissionValue)
+    const getPermissionValue = useGetPermissionValue()
     const { subscriptionId: { type, description }, legalUsage } = shopSubscriptionData
     const planDetails = [
         { title: "Web3 Login Methods", value: getPermissionValue("web3_network_login") },

@@ -1,4 +1,4 @@
-import { ShopSubscriptionData } from "lib/apis/subscription/interfaces"
+import { LegalUsageKey, ShopSubscriptionData } from "lib/apis/subscription/interfaces"
 import { getShopSubscriptionDataService } from "lib/apis/subscription/subscriptionServices"
 import AppErrors from "lib/utils/statics/errors/errors"
 import { toast } from 'react-toastify'
@@ -58,4 +58,6 @@ const useShopPermissionsStore = create<ShopPermissions>()(persist((set, get) => 
 
 export const useHasPermission = () => useShopPermissionsStore(state => state.hasPermission)
 export const useCheckPermission = () => useShopPermissionsStore(state => state.checkPermissionAndShowToast)
+export const useGetPermissionValue = () => useShopPermissionsStore(state => state.getPermissionValue)
+export const useLegalUsage = () => useShopPermissionsStore(state => state.shopSubscriptionData.legalUsage)
 export default useShopPermissionsStore

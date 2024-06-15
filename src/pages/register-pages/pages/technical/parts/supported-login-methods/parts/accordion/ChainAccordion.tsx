@@ -5,14 +5,14 @@ import AppSwitch from 'components/common/swich';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { IAuthSupportedWalletsService } from 'lib/apis/auth/interfaces';
-import useShopPermissionsStore from 'lib/stores/app/shopPermissionsStore';
+import { useGetPermissionValue } from 'lib/stores/app/shopPermissionsStore';
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import technicalContext from 'pages/register-pages/pages/technical/context';
 import React, { useCallback, useContext, useMemo, useState } from 'react';
 
 function ChainAccordion({ chain }: { chain: IAuthSupportedWalletsService }) {
-    const getPermissionValue = useShopPermissionsStore(state => state.getPermissionValue)
+    const getPermissionValue = useGetPermissionValue()
     const { showToast } = useAppToast()
     let { state: { loginMethods }, updateState } = useContext(technicalContext)
     const [isExpanded, setExpanded] = useState(false);

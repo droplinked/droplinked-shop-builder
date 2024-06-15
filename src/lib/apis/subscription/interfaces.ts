@@ -14,9 +14,11 @@ export interface SubscriptionPlan {
     }[]
 }
 
+export type LegalUsageKey = "physical_product" | "digital_product" | "print_on_demand" | "drop"
+
 export interface LegalUsage {
     all: string;
-    key: string;
+    key: LegalUsageKey;
     remaining: string;
     used: number;
     value: string;

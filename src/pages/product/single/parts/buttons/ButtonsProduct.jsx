@@ -8,6 +8,8 @@ import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomN
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { productCreateServices, productUpdateServices } from 'lib/apis/product/productServices'
+import { useLegalUsage } from 'lib/stores/app/shopPermissionsStore'
+import productTypeLegalUsageMap from 'lib/utils/heper/productTypeLegalUsageMap'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import ModalHashkey from 'pages/affiliate/notifications/parts/list/parts/buttons/parts/hashkey/ModalHashkey'
 import React, { useCallback, useContext, useMemo, useState } from 'react'
@@ -18,6 +20,7 @@ import ButtonsProductClass from './model/ButtonProductModel'
 
 // prdocut page
 function ButtonsProduct() {
+    const shopLegalUsage = useLegalUsage()
     const { updateShopData } = useProfile()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const create = useMutation((params) => productCreateServices(params))
@@ -40,6 +43,13 @@ function ButtonsProduct() {
 
     const setStateHandle = useCallback((key, value) => setStates(prev => ({ ...prev, [key]: value })), [])
 
+    const checkProductTypeLegalUsage = () => {
+        const { errorMessage, key } = productTypeLegalUsageMap[state.product_type]
+        const legalUsage = shopLegalUsage.find(obj => obj.key === key)
+        if (!(legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0))
+            throw new Error(errorMessage)
+    }
+
     // Submit product
     const submit = useCallback(async (draft) => {
         try {
@@ -58,14 +68,36 @@ function ButtonsProduct() {
 
             // Request service
             const requestData = productID ? { productID, params: formData } : formData
-            const product = state.product_type === "DIGITAL" ?
-                !productID ?
-                    refactorData(await (await create.mutateAsync(requestData)).data?.data) :
-                    productID && !isChanged ?
-                        refactorData(await (await update.mutateAsync(requestData)).data?.data) :
-                        state :
-                !productID ? await create.mutateAsync(requestData) :
-                    await update.mutateAsync(requestData)
+            // const product = state.product_type === "DIGITAL" ?
+            //     !productID ?
+            //         refactorData(await (await create.mutateAsync(requestData)).data?.data) :
+            //         productID && !isChanged ?
+            //             refactorData(await (await update.mutateAsync(requestData)).data?.data) :
+            //             state :
+            //     !productID ? await create.mutateAsync(requestData) :
+            //         await update.mutateAsync(requestData)
+
+            let product;
+
+            if (state.product_type === "DIGITAL") {
+                if (!productID) {
+                    checkProductTypeLegalUsage()
+                    const createResponse = await create.mutateAsync(requestData);
+                    product = refactorData(createResponse.data?.data);
+                } else if (productID && !isChanged) {
+                    const updateResponse = await update.mutateAsync(requestData);
+                    product = refactorData(updateResponse.data?.data);
+                } else {
+                    product = state;
+                }
+            } else {
+                if (!productID) {
+                    checkProductTypeLegalUsage()
+                    product = await create.mutateAsync(requestData);
+                } else {
+                    product = await update.mutateAsync(requestData);
+                }
+            }
 
             if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
