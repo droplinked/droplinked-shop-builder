@@ -110,6 +110,7 @@ import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as Blog } from "./blog.svg";
+import { ReactComponent as CloseRed } from "./close-red.svg";
 import { ReactComponent as Clock } from "./clock.svg";
 import { ReactComponent as Pen } from "./pen.svg";
 import { ReactComponent as Delete } from "./delete.svg";
@@ -227,6 +228,7 @@ const AppIcons = {
   BlackChevronDown,
   BackArrow,
   Blog,
+  CloseRed,
   Clock,
   Pen,
   Delete

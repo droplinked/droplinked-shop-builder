@@ -8,7 +8,7 @@ import IsHeaderFixed from './parts/fixed/IsHeaderFixed'
 
 function DesignPageHeader() {
     return (
-        <DesignPageCard title='Header' section='header'>
+        <DesignPageCard title='Header' section='header' isRequired>
             <VStack align="stretch" spacing="24px">
                 <OptionUploadLogo />
                 <IsHeaderFixed/>

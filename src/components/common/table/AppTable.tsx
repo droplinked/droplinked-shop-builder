@@ -1,7 +1,8 @@
-import { Checkbox, Table, TableHeadProps, TableRowProps, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import { Box, Checkbox, Flex, Image, Table, TableHeadProps, TableRowProps, Tbody, Td, Text, Th, Thead, Tooltip, Tr } from '@chakra-ui/react'
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers'
 import React, { useCallback } from 'react'
 import AppTypography from '../typography/AppTypography'
+import AppIcons from 'assest/icon/Appicons'
 
 export interface ITableRows {
     _data?: any
@@ -69,7 +70,8 @@ function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                {rows.map((el: any, key) =>
+                            {rows.map((el: any, key) => {
+                                return (
                                     <Tr borderBottom="2px solid #292929" key={key} {...props?.tr}>
                                         {checkbox && (
                                             <Td width="50" padding="14px 15px 14px 0">
@@ -83,10 +85,13 @@ function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
                                             </Td>
                                         )}
                                         {Object.keys(el).filter(el => el !== "_data").map((item, key) => (
-                                            <Td padding="14px 15px" {...key === 0 && { paddingLeft: 0 }} fontSize=".9rem" {...el[item].props} key={key}>{el[item].value}</Td>
+                                            <Td padding="14px 15px" {...key === 0 && { paddingLeft: 0 }} fontSize=".9rem" {...el[item].props} key={key}>
+                                                {el[item].value}
+                                            </Td>
                                         ))}
                                     </Tr>
-                                )}
+                                );
+                            })}
                             </Tbody>
                         </Table>
                     ) : null}
