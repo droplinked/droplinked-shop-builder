@@ -42,7 +42,6 @@ const PropertyVariants = () => {
     } = useContext(productContext);
     console.log(properties);
     const getProps = useCallback(() => {
-        console.log(properties)
         return properties
             ? {
                   options: properties?.map((api_properties) => ({
@@ -52,7 +51,6 @@ const PropertyVariants = () => {
               }
             : defaultValues;
     }, [properties]);
-    console.log(getProps())
     const ref = useRef();
     const handleOutsideClick = useCallback(() => {
         if (formikRef.current) {
