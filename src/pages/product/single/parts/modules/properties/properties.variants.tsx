@@ -36,10 +36,23 @@ const PropertyVariants = () => {
     });
     const formikRef = useRef(null);
     const {
-        state: { product_type, publish_product, pod_blank_product_id, prodviderID },
+        state: { product_type, properties, publish_product, pod_blank_product_id, prodviderID },
         productID,
         methods: { updateState },
     } = useContext(productContext);
+    console.log(properties);
+    const getProps = useCallback(() => {
+        console.log(properties)
+        return properties
+            ? {
+                  options: properties?.map((api_properties) => ({
+                      name: api_properties?.title || "",
+                      values: api_properties?.items || [],
+                  })),
+              }
+            : defaultValues;
+    }, [properties]);
+    console.log(getProps())
     const ref = useRef();
     const handleOutsideClick = useCallback(() => {
         if (formikRef.current) {
@@ -58,7 +71,7 @@ const PropertyVariants = () => {
                 "properties",
                 cleaned_values.map((property) => ({
                     title: property.name,
-                    value: property.name === "Color" ? "62a989ab1f2c2bbc5b1e7153" : property?.name === "Size" ? "62a989ab1f2c2bbc5b1e7154" : "",
+                    value: property.name === "Color" ? "62a989ab1f2c2bbc5b1e7153" : property?.name === "Size" ? "62a989ab1f2c2bbc5b1e7154" : undefined,
                     items: property.values,
                 }))
             );
@@ -76,7 +89,8 @@ const PropertyVariants = () => {
     return (
         <Formik
             innerRef={formikRef}
-            initialValues={defaultValues}
+            initialValues={getProps()}
+            enableReinitialize
             onSubmit={(values) => {
                 console.log("Submitted Data", values);
             }}

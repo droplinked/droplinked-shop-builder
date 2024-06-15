@@ -22,6 +22,7 @@ function NormalProduct() {
             <ShippingProduct />
             {!ProductModel.isPrintful(prodviderID) && <Variant />}
             <ProductPodDesign />
+            {ProductModel.isPrintful(prodviderID) && <Variant />}
             <CollectionProduct />
             <ProductTile />
             <ButtonsProduct />
