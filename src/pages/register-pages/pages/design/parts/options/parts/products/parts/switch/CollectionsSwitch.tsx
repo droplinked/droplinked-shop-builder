@@ -9,11 +9,11 @@ import OptionsCaption from '../../../caption/OptionsCaption'
 import AppSwitch from 'components/common/swich'
 
 function CollectionsSwitch() {
-    const { methods: { dispatch }, state: { shop: { shopDesign, shopDesign: { isCollectionShown } } } } = useContext(designContext)
+    const { methods: { dispatch }, state: { shop: { shopDesign: { isCollectionShown } } } } = useContext(designContext)
 
     const handleSwitchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const isChecked = e.target.checked;
-        dispatch({ type: "updateShop", params: { shopDesign: { isCollectionShown: isChecked } } });
+        const isCollectionShown = e.target.checked;
+        dispatch({ type: "updateShop", params: { shopDesign: { isCollectionShown } } });
     };
 
     return (

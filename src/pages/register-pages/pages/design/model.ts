@@ -35,6 +35,7 @@ const DesignPageModel = ({
             iconHeaderColor: shop?.shopDesign?.iconHeaderColor || initialStateDesignPage.shop.shopDesign.iconHeaderColor,
             footerLinks: shop?.shopDesign?.footerLinks && typeof shop?.shopDesign?.footerLinks === "object" ? DesignPageModel.refactorAdditionalLinkes(shop?.shopDesign?.footerLinks) : initialStateDesignPage.shop.shopDesign.footerLinks,
             bannerLinks: shop?.shopDesign?.bannerLinks && typeof shop?.shopDesign?.bannerLinks === "object" ? DesignPageModel.refactorAdditionalLinkes(shop?.shopDesign?.bannerLinks) : initialStateDesignPage.shop.shopDesign.bannerLinks,
+            isCollectionShown: shop?.shopDesign?.isCollectionShown || initialStateDesignPage.shop.shopDesign.isCollectionShown
         },
         templateID: shop?.templateID || initialStateDesignPage.shop.templateID,
         tiktokURL: shop?.tiktokURL || initialStateDesignPage.shop.tiktokURL,
