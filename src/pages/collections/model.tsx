@@ -1,6 +1,10 @@
-import { ITableRows } from 'components/common/table/AppTable'
 import React from "react"
+
+//Components
+import { ITableRows } from 'components/common/table/AppTable'
 import ControlsListCollection from "./parts/controls/Controls"
+import CollectionTitleColumn from './parts/title-column/CollectionTitleColumn'
+import CollectionRulesetColumn from './parts/ruleset-column/CollectionRulesetColumn'
 
 interface IrefactorData {
     data: any
@@ -12,18 +16,13 @@ const CollectionsModel = {
 
     makeData: (element: any, fetch: any) => {
         const ruleSet = element?.ruleSets && element.ruleSets[0];
-        const discount = ruleSet?.rules[0]?.discountPercentage || "-";
-        const nftCount = ruleSet?.rules[0]?.nftsCount || "-";
-        const totalNftCount = ruleSet?.rules?.reduce((acc, rule) => acc + rule.nftsCount, 0);
-        const rulesetsValue = ruleSet ? `%${discount} discount on minimum ${nftCount} NFT out of ${totalNftCount}` : "-";
 
         return {
             Collection: {
-                value: element?.title,
-                image: element?.image,
+                value: <CollectionTitleColumn collection={element} />
             },
             rulesets: {
-                value: rulesetsValue
+                value: ruleSet ? <CollectionRulesetColumn ruleset={ruleSet} /> : "-"
             },
             Products: {
                 value: element.productCount || "-"
