@@ -93,7 +93,7 @@ function AppTable({ rows, vertical, empty, checkbox, props }: IAppTable) {
                                             <Td padding="14px 15px" {...key === 0 && { paddingLeft: 0 }} fontSize=".9rem" {...el[item].props} key={key}>
                                                 {item === "Collection" ? 
                                                     <Flex gap={"8px"} alignItems={"center"}>
-                                                        {el[item].image ? <Image src={el[item].image} width={"40px"} height={"40px"} borderRadius={"7px"} /> : <Box width="40px" height="40px" borderRadius="7px" backgroundColor={generateRandomColor()} />}
+                                                        {el[item].image ? <Image src={el[item].image} width={"40px"} height={"40px"} borderRadius={"7px"} objectFit={"cover"} /> : <Box width="40px" height="40px" borderRadius="7px" backgroundColor={generateRandomColor()} />}
                                                         {el[item].value}
                                                     </Flex>
                                                     :
