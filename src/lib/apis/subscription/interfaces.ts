@@ -44,3 +44,15 @@ export interface ShopSubscriptionData {
     expiresAt: Date;
     legalUsage: LegalUsage[]
 }
+
+export interface SubscriptionCheckout {
+    amount: number;
+    subId: string
+}
+
+export interface SubscriptionPurchaseResult {
+    amount: number
+    transactionId: string;
+    clientSecret: string;
+    paymentIntentId: string;
+}

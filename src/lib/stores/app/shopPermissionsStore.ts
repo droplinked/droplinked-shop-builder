@@ -60,4 +60,5 @@ export const useHasPermission = () => useShopPermissionsStore(state => state.has
 export const useCheckPermission = () => useShopPermissionsStore(state => state.checkPermissionAndShowToast)
 export const useGetPermissionValue = () => useShopPermissionsStore(state => state.getPermissionValue)
 export const useLegalUsage = () => useShopPermissionsStore(state => state.shopSubscriptionData.legalUsage)
+export const useUpdateShopPermissions = () => useShopPermissionsStore(state => state.updateShopSubscriptionData)
 export default useShopPermissionsStore

@@ -6,7 +6,7 @@ const productTypeLegalUsageMap: Record<product_type | "drop", { errorMessage: st
     "DIGITAL": { errorMessage: AppErrors.permission.product_creation_limit_reached, key: "digital_product" },
     "PRINT_ON_DEMAND": { errorMessage: AppErrors.permission.product_creation_limit_reached, key: "print_on_demand" },
     "NORMAL": { errorMessage: AppErrors.permission.product_creation_limit_reached, key: "physical_product" },
-    "drop": { errorMessage: AppErrors.permission.product_creation_limit_reached, key: "physical_product" }
+    "drop": { errorMessage: AppErrors.permission.drop_limit_reached, key: "physical_product" }
 }
 
 export default productTypeLegalUsageMap

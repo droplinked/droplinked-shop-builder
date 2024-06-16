@@ -5,7 +5,11 @@ import React from 'react'
 function Loading() {
     return (
         <Flex direction={"column"} gap={5}>
-            {Array.from({ length: 4 }).map((_, index) => <AppSkeleton key={index} height={"124px"} isLoaded={false}>{""}</AppSkeleton>)}
+            {
+                Array.from({ length: 4 }).map((_, index) =>
+                    <AppSkeleton key={index} height={"124px"} borderRadius={8} isLoaded={false}>{""}</AppSkeleton>
+                )
+            }
         </Flex>
     )
 }

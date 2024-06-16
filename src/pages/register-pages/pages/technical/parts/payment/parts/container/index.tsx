@@ -15,7 +15,7 @@ import classes from './style.module.scss'
 function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
   const getPermissionValue = useGetPermissionValue()
   const { state: { paymentMethods }, updateState } = useContext(technicalContext)
-  const selectedPaymentMethods = [...paymentMethods]
+  const selectedPaymentMethods = [...(paymentMethods ?? [])]
   const { showToast } = useAppToast()
   const [walletAddress, setWalletAddress] = useState<string>(chain.destinationAddress)
   const [canEditWallet, setWalletEditability] = useState(!!chain.destinationAddress) // If the 'chain' object has an 'destinationAddress' property, we can edit it
@@ -71,8 +71,8 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
         selectedPaymentMethods.push({ ...chain, isActive: true })
     }
     else {
-      const activePaymentMethodsCount = selectedPaymentMethods.filter(payment => payment.isActive).length
-      if (activePaymentMethodsCount === 1) return
+      // const activePaymentMethodsCount = selectedPaymentMethods.filter(payment => payment.isActive).length
+      // if (activePaymentMethodsCount === 1) return
       selectedPaymentMethods[existingChainIndex].isActive = false
     }
   }
@@ -95,8 +95,8 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
         targetChain.tokens[targetTokenIndex].isActive = true :
         targetChain.tokens.push({ ...token, isActive: true })
     } else {
-      const activePaymentMethods = selectedPaymentMethods.filter(payment => payment.isActive)
-      if (activePaymentMethods.length === 1 && activePaymentMethods[0].tokens.filter(token => token.isActive).length === 1) return
+      // const activePaymentMethods = selectedPaymentMethods.filter(payment => payment.isActive)
+      // if (activePaymentMethods.length === 1 && activePaymentMethods[0].tokens.filter(token => token.isActive).length === 1) return
       if (targetTokenIndex !== -1) {
         targetChain.tokens[targetTokenIndex].isActive = false
       }

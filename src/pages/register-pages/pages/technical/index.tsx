@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { useLocation } from "react-router-dom";
 import technicalContext, { technicalContextState } from "./context";
-import FinancialAccounts from "./parts/financial-accounts/FinancialAccounts";
 import Payments from "./parts/payment";
 import TechnicalSubmit from "./parts/submit/TechnicalSubmit";
 import SupportedLoginMethods from "./parts/supported-login-methods/SupportedLoginMethods";

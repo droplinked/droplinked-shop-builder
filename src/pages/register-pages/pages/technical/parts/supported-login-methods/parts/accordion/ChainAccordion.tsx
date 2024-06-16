@@ -45,7 +45,7 @@ function ChainAccordion({ chain }: { chain: IAuthSupportedWalletsService }) {
                 selectedLoginMethods.push({ ...chain, wallets: [{ ...wallet }] })
         }
         else {
-            if (selectedLoginMethods.length === 1 && loginMethods[0].wallets.length === 1) return
+            // if (selectedLoginMethods.length === 1 && loginMethods[0].wallets.length === 1) return
             selectedLoginMethods[targetChain].wallets = selectedLoginMethods[targetChain].wallets.filter(w => w.name !== wallet.name)
             if (!selectedLoginMethods[targetChain].wallets.length) {
                 selectedLoginMethods.splice(targetChain, 1)

@@ -1,9 +1,9 @@
 import { getShopSubscriptionDataService } from "lib/apis/subscription/subscriptionServices"
-import useShopPermissionsStore from "lib/stores/app/shopPermissionsStore"
+import useShopPermissionsStore, { useUpdateShopPermissions } from "lib/stores/app/shopPermissionsStore"
 import { useQuery } from "react-query"
 
 const useShopSubscriptionData = () => {
-    const updateShopSubscriptionData = useShopPermissionsStore(state => state.updateShopSubscriptionData)
+    const updateShopSubscriptionData = useUpdateShopPermissions()
 
     const queryObj = useQuery({
         queryKey: "shop-subscription-plan",
