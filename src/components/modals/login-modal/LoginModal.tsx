@@ -8,7 +8,6 @@ import { Form, Formik } from "formik";
 import useHookStore from "functions/hooks/store/useHookStore";
 import useAppToast from "functions/hooks/toast/useToast";
 import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
-import useShopPermissionsStore from "lib/stores/app/shopPermissionsStore";
 import { BASE_URL, appDevelopment } from "lib/utils/app/variable";
 import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import AppErrors from "lib/utils/statics/errors/errors";
@@ -27,7 +26,6 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
     const { showToast } = useAppToast()
     const navigate = useNavigate()
     const { shopNavigate } = useCustomNavigate()
-    const fetchShopSubscriptionDataAsync = useShopPermissionsStore(state => state.fetchShopSubscriptionDataAsync)
 
     const handleLogin = async (data) => {
         try {
@@ -50,7 +48,6 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
                 return
             }
 
-            await fetchShopSubscriptionDataAsync()
             const { href, dashboard } = navigating_user_based_on_status(status, data)
             dashboard ? shopNavigate(href) : navigate(href)
             close()

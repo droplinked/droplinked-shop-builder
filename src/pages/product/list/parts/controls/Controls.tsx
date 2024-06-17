@@ -7,7 +7,7 @@ import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomN
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { IproductUpdateServices } from 'lib/apis/product/interfaces';
 import { productUpdateServices } from 'lib/apis/product/productServices';
-import { useLegalUsage } from 'lib/stores/app/shopPermissionsStore';
+import { useLegalUsage } from 'lib/stores/app/appStore';
 import productTypeLegalUsageMap from 'lib/utils/heper/productTypeLegalUsageMap';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import ProductSingleModel from 'pages/product/single/model/model';

@@ -8,7 +8,7 @@ import useHookStore from 'functions/hooks/store/useHookStore';
 import useAppToast from 'functions/hooks/toast/useToast';
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { Isku } from 'lib/apis/product/interfaces';
-import { useCheckPermission } from 'lib/stores/app/shopPermissionsStore';
+import { useCheckPermission } from 'lib/stores/app/appStore';
 import React, { useCallback, useContext, useMemo } from 'react';
 import * as Yup from 'yup';
 import recordContext from '../../context';

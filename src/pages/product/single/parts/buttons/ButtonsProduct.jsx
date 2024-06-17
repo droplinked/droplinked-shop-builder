@@ -8,7 +8,7 @@ import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomN
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import useAppWeb3 from 'functions/hooks/web3/useWeb3'
 import { productCreateServices, productUpdateServices } from 'lib/apis/product/productServices'
-import { useLegalUsage } from 'lib/stores/app/shopPermissionsStore'
+import { useLegalUsage } from 'lib/stores/app/appStore'
 import productTypeLegalUsageMap from 'lib/utils/heper/productTypeLegalUsageMap'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import ModalHashkey from 'pages/affiliate/notifications/parts/list/parts/buttons/parts/hashkey/ModalHashkey'

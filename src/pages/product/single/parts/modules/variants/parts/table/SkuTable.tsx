@@ -2,7 +2,7 @@ import { Flex, Text, useDisclosure } from '@chakra-ui/react';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import AppTable from 'components/common/table/AppTable';
 import useAppToast from 'functions/hooks/toast/useToast';
-import { useLegalUsage } from 'lib/stores/app/shopPermissionsStore';
+import { useLegalUsage } from 'lib/stores/app/appStore';
 import productTypeLegalUsageMap from 'lib/utils/heper/productTypeLegalUsageMap';
 import { productContext } from 'pages/product/single/context';
 import React, { useCallback, useContext, useMemo, useState } from 'react';

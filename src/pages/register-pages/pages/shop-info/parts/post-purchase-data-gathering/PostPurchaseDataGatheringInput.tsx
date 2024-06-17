@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import AppInput from 'components/common/form/textbox/AppInput'
 import AppTypography from 'components/common/typography/AppTypography'
 import WithPermission from 'functions/hoc/shop-permissions/WithPermission'
-import { useHasPermission } from 'lib/stores/app/shopPermissionsStore'
+import { useHasPermission } from 'lib/stores/app/appStore'
 import React from 'react'
 import { IShopInfoChildProps } from '../../ShopInfo'
 

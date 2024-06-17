@@ -1,5 +1,5 @@
 import AppPermissionDenied from 'components/common/permission-denied/AppPermissionDenied';
-import { useHasPermission } from 'lib/stores/app/shopPermissionsStore';
+import { useHasPermission } from 'lib/stores/app/appStore';
 import React, { PropsWithChildren } from 'react';
 
 interface Props extends PropsWithChildren {

@@ -14,7 +14,7 @@ function SubscriptionPlanCheckoutModal({ selectedPlan, open, close }: Props) {
     const [paymentStatus, setPaymentStatus] = useState<"success" | "error" | null>(null)
 
     const renderContent = () => {
-        if (paymentStatus) return <PaymentStatus paymentStatus={paymentStatus} setPaymentStatus={setPaymentStatus} selectedPlan={selectedPlan} close={close} />
+        if (paymentStatus) return <PaymentStatus paymentStatus={paymentStatus} selectedPlan={selectedPlan} close={close} />
         if (clientSecret) return <StripeModal clientSecret={clientSecret} close={close} setPaymentStatus={setPaymentStatus} />
         return <ConfirmPlan selectedPlan={selectedPlan} setClientSecret={setClientSecret} close={close} />
     }

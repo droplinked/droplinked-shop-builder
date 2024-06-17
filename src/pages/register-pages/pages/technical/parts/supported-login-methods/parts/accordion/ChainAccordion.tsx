@@ -5,7 +5,7 @@ import AppSwitch from 'components/common/swich';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { IAuthSupportedWalletsService } from 'lib/apis/auth/interfaces';
-import { useGetPermissionValue } from 'lib/stores/app/shopPermissionsStore';
+import { useGetPermissionValue } from 'lib/stores/app/appStore';
 import { capitalizeFirstLetter } from 'lib/utils/heper/helpers';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import technicalContext from 'pages/register-pages/pages/technical/context';

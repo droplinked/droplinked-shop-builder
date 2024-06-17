@@ -5,7 +5,7 @@ import AppTable from 'components/common/table/AppTable';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { createProductTileService, editProductTileService } from 'lib/apis/product/productServices';
-import { useCheckPermission } from 'lib/stores/app/shopPermissionsStore';
+import { useCheckPermission } from 'lib/stores/app/appStore';
 import { typesProperties } from 'lib/utils/statics/types';
 import { productContext } from 'pages/product/single/context';
 import React, { useContext, useState } from 'react';

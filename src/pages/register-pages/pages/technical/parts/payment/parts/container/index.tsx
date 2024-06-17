@@ -5,7 +5,7 @@ import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDis
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
-import { useGetPermissionValue } from 'lib/stores/app/shopPermissionsStore'
+import { useGetPermissionValue } from 'lib/stores/app/appStore'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { PageContentWrapper } from 'pages/register-pages/RegisterPages-style'
 import technicalContext from 'pages/register-pages/pages/technical/context'

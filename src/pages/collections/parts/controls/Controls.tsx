@@ -1,6 +1,6 @@
 import { useDisclosure } from '@chakra-ui/react';
 import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu';
-import { useCheckPermission } from 'lib/stores/app/shopPermissionsStore';
+import { useCheckPermission } from 'lib/stores/app/appStore';
 import React from 'react';
 import CollectionCreate from '../create/CollectionCreate';
 import ConfirmDeleteCollection from './parts/delete/ConfirmDeleteCollection';

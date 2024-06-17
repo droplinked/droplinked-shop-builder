@@ -3,7 +3,7 @@ import AppCard from 'components/common/card/AppCard'
 import { useProfile } from "functions/hooks/useProfile/useProfile"
 import { getShopAddressBookService } from 'lib/apis/address/addressServices'
 import { getReferralReportService } from 'lib/apis/shop/shopServices'
-import { useHasPermission } from 'lib/stores/app/shopPermissionsStore'
+import { useHasPermission } from 'lib/stores/app/appStore'
 import React, { useEffect, useState, useTransition } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import ShopInfoAddress from './parts/address/shopInfoAddress'

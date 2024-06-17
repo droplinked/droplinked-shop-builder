@@ -22,12 +22,12 @@ function ProductTypes() {
   const { isFetching, isError, data } = useShopSubscriptionData()
   const { showToast } = useAppToast()
   const { shopRoute } = useCustomNavigate()
-  const createProductRoute = shopRoute + '/products/create/'
 
   if (isFetching) return <Loading />
 
   if (isError) return <AppTypography fontSize={16} color={"red.400"}>{AppErrors.permission.shop_subscription_data_unavailable}</AppTypography>
 
+  const createProductRoute = shopRoute + '/products/create/'
   const productTypes: ProductType[] = [
     {
       type: "Physical Product",
