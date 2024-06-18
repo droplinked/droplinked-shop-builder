@@ -1,5 +1,4 @@
 import { Flex, SimpleGrid } from '@chakra-ui/react'
-import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces'
 import PlanHeading from 'pages/subscription-plans/_components/PlanHeading'
@@ -17,7 +16,7 @@ function CurrentPlanDetails({ shopSubscriptionData }: { shopSubscriptionData: Sh
             <Container>
                 <Flex justifyContent={"space-between"} alignItems={"center"}>
                     <PlanHeading planTitle={type} />
-                    {type !== "STARTER" && <BasicButton sizes='medium'>renewal Plan</BasicButton>}
+                    {/* {type !== "STARTER" && <BasicButton sizes='medium'>renewal Plan</BasicButton>} */}
                 </Flex>
                 <AppTypography color={"white"}>{description}</AppTypography>
             </Container>
