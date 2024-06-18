@@ -51,7 +51,7 @@ function PaymentStatus({ paymentStatus, selectedPlan, close }: Props) {
                 {isSuccessful ?
                     <>
                         Thank you for subscribing to the {" "}
-                        <Box as="span" color={"primary"}>{subscriptionPlanMap[selectedPlan.type]} Plan!</Box> {" "}
+                        <Box as="span" color={"primary"}>{subscriptionPlanMap[selectedPlan.type].title} Plan!</Box> {" "}
                         Your payment was successful.
                     </>
                     :
