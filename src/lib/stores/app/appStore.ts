@@ -2,9 +2,12 @@ import { ICompleteGoogleSignupService, IauthLoginService } from 'lib/apis/auth/i
 import { authLoginService, completeGoogleSignupService } from 'lib/apis/auth/services'
 import { IshopInfoService, IshopUpdateService } from 'lib/apis/shop/interfaces'
 import { shopInfoService, shopUpdateService } from 'lib/apis/shop/shopServices'
+import { ShopSubscriptionData } from 'lib/apis/subscription/interfaces'
 import { IGetUserService } from 'lib/apis/user/interfaces'
 import { getUserService, userUpdateService } from 'lib/apis/user/services'
 import { appDevelopment } from 'lib/utils/app/variable'
+import AppErrors from 'lib/utils/statics/errors/errors'
+import { toast } from 'react-toastify'
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
@@ -36,9 +39,13 @@ export interface IAppStore {
     updateShop(params: IshopUpdateService): Promise<any>
     updateState({ key, params }: IPropsUpdatestate): void
     updateWallet({ address, type, public_key }: IUserWalletsProps): void
+    updateShopSubscriptionData: (shopSubscriptionData: ShopSubscriptionData) => void,
+    hasPermission: (permission: string) => boolean,
+    checkPermissionAndShowToast: (permission: string, message?: string) => boolean,
+    getPermissionValue: (permission: string) => any
 }
 
-const states = (set: any, get: any): IAppStore => ({
+const states = (set, get): IAppStore => ({
     user: null,
     shop: null,
     access_token: null,
@@ -125,6 +132,36 @@ const states = (set: any, get: any): IAppStore => ({
                 user: { ...state.user, wallets }
             }
         })
+    },
+    updateShopSubscriptionData: (shopSubscriptionData) => {
+        const { shop } = get()
+        set({ shopSubscriptionData })
+        set({ shop: { ...shop, subscription: shopSubscriptionData } })
+    },
+    hasPermission: (permission) => {
+        const { shop } = get()
+        const permissions = shop.subscription.subscriptionId.subOptionIds
+        const permissionObj = permissions.find(p => p.key === permission)
+        if (!permissionObj) return false
+
+        const value = permissionObj.value
+        return (value || (!isNaN(Number(value)) && Number(value) > 0)) ? true : false
+    },
+    checkPermissionAndShowToast: (permission, message) => {
+        const { hasPermission } = get()
+        if (!hasPermission(permission)) {
+            toast["error"](message || AppErrors.permission.permission_denied)
+            return false
+        }
+        return true
+    },
+    getPermissionValue: (permission) => {
+        const { shop } = get()
+        const permissions = shop.subscription.subscriptionId.subOptionIds
+        const permissionObj = permissions.find(p => p.key === permission)
+        if (!permissionObj) return null
+
+        return permissionObj.value
     }
 })
 
@@ -138,5 +175,11 @@ const _persist = persist(states, {
     })
 })
 const useAppStore = appDevelopment ? create<IAppStore>()(devtools(_persist, { name: "App" })) : create<IAppStore>()(_persist)
+
+export const useHasPermission = () => useAppStore(state => state.hasPermission)
+export const useCheckPermission = () => useAppStore(state => state.checkPermissionAndShowToast)
+export const useGetPermissionValue = () => useAppStore(state => state.getPermissionValue)
+export const useLegalUsage = () => useAppStore(state => state.shop.subscription.legalUsage)
+export const useUpdateShopPermissions = () => useAppStore(state => state.updateShopSubscriptionData)
 
 export default useAppStore

@@ -2,10 +2,15 @@ import { Flex } from '@chakra-ui/react'
 import AppInput from 'components/common/form/textbox/AppInput'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
+import useAppToast from 'functions/hooks/toast/useToast'
+import { useHasPermission } from 'lib/stores/app/appStore'
+import AppErrors from 'lib/utils/statics/errors/errors'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 
 function DigitalProductRoyalty() {
+    const hasPermission = useHasPermission()
+    const { showToast } = useAppToast()
     const { methods: { updateState }, state: { sku } } = useContext(productContext)
     const [showInput, setInputVisibility] = useState(() => Boolean(sku[0]?.royalty))
 
@@ -16,6 +21,13 @@ function DigitalProductRoyalty() {
         }])
     }, [sku])
 
+    const enableRoyalty = (checked: boolean) => {
+        if (!hasPermission("web3_royalty_feature") && checked) {
+            return showToast({ message: AppErrors.permission.permission_denied, type: "error" })
+        }
+        setInputVisibility(checked)
+    }
+
     useEffect(() => {
         if (!showInput) updateRoyalty(null)
     }, [showInput])
@@ -23,7 +35,7 @@ function DigitalProductRoyalty() {
     return (
         <Flex direction={"column"} gap={6}>
             <Flex alignItems={"center"} gap={3}>
-                <AppSwitch isChecked={showInput} onChange={(e) => setInputVisibility(e.target.checked)} />
+                <AppSwitch isChecked={showInput} onChange={({ target: { checked } }) => enableRoyalty(checked)} />
                 <AppTypography fontSize={14} color="#C2C2C2" fontWeight='bold'>Activate Royalty for this product and ensures receiving a percentage from each resale</AppTypography>
             </Flex>
             {

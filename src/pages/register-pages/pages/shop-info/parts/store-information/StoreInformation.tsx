@@ -1,14 +1,16 @@
 import { Flex, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import ClipboardText from 'components/common/clipboardText/ClipboardText'
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import FormModel from 'components/common/form/FormModel'
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppInput from 'components/common/form/textbox/AppInput'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { useProfile } from 'functions/hooks/useProfile/useProfile'
 import { getShopDNSInformationService } from 'lib/apis/shop/shopServices'
+import { useCheckPermission } from 'lib/stores/app/appStore'
+import { appDevelopment } from 'lib/utils/app/variable'
 import { storeCustomURLRegex } from 'lib/utils/heper/regex'
 import React, { useMemo, useState } from 'react'
 import { useQuery } from 'react-query'
@@ -17,6 +19,7 @@ import ConfirmationModal from './parts/confirmation-modal/ConfirmationModal'
 import DNSInformationModal from './parts/dns-information-modal/DNSInformationModal'
 
 function StoreInformation({ States, updateStates }: IShopInfoChildProps) {
+    const checkPermissionAndShowToast = useCheckPermission()
     const { showToast } = useAppToast()
     const shopDNSInformationQuery = useQuery({
         queryKey: "shopDNSInformation",
@@ -30,11 +33,14 @@ function StoreInformation({ States, updateStates }: IShopInfoChildProps) {
     const confirmationModal = useDisclosure()
     const dnsInformationModal = useDisclosure()
     const { shop } = useProfile()
-    const userStore = useMemo(() => 'https://droplinked.io/' + shop.name, [shop])
+    const userStore = `https://${appDevelopment ? "dev." : ""}droplinked.io/` + shop.name
 
     const validateEnteredURL = () => {
+        if (!checkPermissionAndShowToast("custom_domain_integration")) return setCustomURL("")
+
         if (!storeCustomURLRegex.test(customURL))
             return showToast({ message: "Please enter a valid URL.", type: "error" })
+
         confirmationModal.onOpen()
     }
 
@@ -82,7 +88,7 @@ function StoreInformation({ States, updateStates }: IShopInfoChildProps) {
                                     isReadOnly={dnsData?.domain_name}
                                     placeholder='Domain.com'
                                     isRequired
-                                    onChange={(e) => setCustomURL(e.currentTarget.value)}
+                                    onChange={(e) => { setCustomURL(e.currentTarget.value) }}
                                 />
                                 {
                                     dnsData?.domain_name ?

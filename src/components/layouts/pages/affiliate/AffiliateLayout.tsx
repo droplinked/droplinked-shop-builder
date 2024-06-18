@@ -1,7 +1,8 @@
-import { Box, HStack, Text, VStack } from '@chakra-ui/react'
+import { Box, HStack, VStack } from '@chakra-ui/react';
 import AppTypography from 'components/common/typography/AppTypography';
-import React from 'react'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import WithPermission from 'functions/hoc/shop-permissions/WithPermission';
+import React from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import AffiliateModel from './AffiliateModel';
 
 function AffiliateLayout() {
@@ -9,18 +10,20 @@ function AffiliateLayout() {
   const { links } = AffiliateModel
 
   return (
-    <HStack alignItems={"start"}>
-      <VStack width={"150px"} spacing={4} color="#FFF" align={"stretch"}>
-        {links().map((el, key) => (
-          <Box key={key}>
-            <Link to={el.link}>
-              <AppTypography color={el.link === location.pathname ? "#2EC99E" : "#FFF"} fontSize="14px">{el.caption}</AppTypography>
-            </Link>
-          </Box>
-        ))}
-      </VStack>
-      <Box width={"88%"}><Outlet /></Box>
-    </HStack>
+    <WithPermission requiredPermission='affiliate_panel'>
+      <HStack alignItems={"start"}>
+        <VStack width={"150px"} spacing={4} color="#FFF" align={"stretch"}>
+          {links().map((el, key) => (
+            <Box key={key}>
+              <Link to={el.link}>
+                <AppTypography color={el.link === location.pathname ? "#2EC99E" : "#FFF"} fontSize="14px">{el.caption}</AppTypography>
+              </Link>
+            </Box>
+          ))}
+        </VStack>
+        <Box width={"88%"}><Outlet /></Box>
+      </HStack>
+    </WithPermission>
   )
 }
 

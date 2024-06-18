@@ -5,12 +5,13 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import React, { useState } from 'react'
 
 export interface IFormStripe {
-    onSuccess: Function
-    cancel: Function
+    onSuccess: () => void
+    onError?: () => void
+    cancel: () => void
     amount?: number
 }
 
-function CheckoutForm({ onSuccess, cancel, amount }: IFormStripe) {
+function CheckoutForm({ onSuccess, cancel, amount, onError }: IFormStripe) {
     const [States, setStates] = useState({
         loading: false,
         complete: false
@@ -31,7 +32,8 @@ function CheckoutForm({ onSuccess, cancel, amount }: IFormStripe) {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            showToast({ message: error?.message, type: 'error' });
+            showToast({ message: error?.message, type: 'error' })
+            onError?.()
         }
     };
 

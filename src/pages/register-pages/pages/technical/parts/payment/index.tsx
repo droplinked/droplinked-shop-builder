@@ -14,6 +14,7 @@ import PaymentsLoading from './parts/loading/PaymentsLoading';
 function Payments() {
     const { state: { paymentMethods } } = useContext(technicalContext)
     const paymentPublic = useMutation(() => paymentPublicService())
+
     const { makePayments } = technicalPaymentsModel
     const combinedPaymentMethods = makePayments({
         paymentMethods: paymentMethods,

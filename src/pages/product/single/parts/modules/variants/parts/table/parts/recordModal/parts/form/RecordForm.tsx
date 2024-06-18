@@ -8,6 +8,7 @@ import useHookStore from 'functions/hooks/store/useHookStore';
 import useAppToast from 'functions/hooks/toast/useToast';
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { Isku } from 'lib/apis/product/interfaces';
+import { useCheckPermission } from 'lib/stores/app/appStore';
 import React, { useCallback, useContext, useMemo } from 'react';
 import * as Yup from 'yup';
 import recordContext from '../../context';
@@ -30,6 +31,7 @@ interface IRecordSubmit {
 }
 
 function RecordForm({ close, product, sku }: Iprops) {
+    const checkPermissionAndShowToast = useCheckPermission()
     const stack = useStack()
     const { updateState, state: { loading, image } } = useContext(recordContext)
     const { web3 } = useAppWeb3()
@@ -43,7 +45,7 @@ function RecordForm({ close, product, sku }: Iprops) {
             updateState("loading", true)
             const { commission, quantity, blockchain, royalty } = data
             const params = { commission, quantity, blockchain, royalty }
-            
+
             const shop = JSON.parse(localStorage.getItem('appStore')).state.shop;
             const deployhash = await web3({ method: "record", params: { data: params, product, sku, imageUrl: image, shop }, chain: data.blockchain, wallets, stack })
             updateState("hashkey", deployhash)
@@ -125,7 +127,16 @@ function RecordForm({ close, product, sku }: Iprops) {
                                 </VStack>
                             )}
                             <Box>
-                                <Checkbox size='md' onChange={e => setFieldValue('royaltyon', e.target.checked)} value='DROPLINKED' alignItems="flex-start" colorScheme='green'>
+                                <Checkbox
+                                    size='md'
+                                    value='DROPLINKED'
+                                    alignItems="flex-start"
+                                    colorScheme='green'
+                                    onChange={({ target: { checked } }) => {
+                                        if (!checkPermissionAndShowToast("web3_royalty_feature")) return
+                                        setFieldValue('royaltyon', checked)
+                                    }}
+                                >
                                     <VStack align='stretch' paddingLeft={2} spacing={2}>
                                         <AppTypography fontWeight='700' fontSize="14px" color="#C2C2C2">Royalty</AppTypography>
                                         <AppTypography fontSize="14px" color="#C2C2C2">Ensures you receive a percentage from each resale.</AppTypography>

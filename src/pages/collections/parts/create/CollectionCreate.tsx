@@ -8,6 +8,7 @@ import { Form, Formik } from 'formik';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { IcreateCollectionService, IupdateCollectionService } from 'lib/apis/collection/interfaces';
 import { createCollectionService, updateCollectionService } from 'lib/apis/collection/services';
+import { useCheckPermission } from 'lib/stores/app/appStore';
 import AppErrors from 'lib/utils/statics/errors/errors';
 import React, { useCallback } from 'react';
 import { useMutation } from 'react-query';
@@ -27,6 +28,7 @@ interface IForm {
 }
 
 function CollectionCreate({ close, open, collection, refetch }: IProps) {
+    const checkPermissionAndShowToast = useCheckPermission()
     const createService = useMutation((params: IcreateCollectionService) => createCollectionService(params));
     const updateService = useMutation((params: IupdateCollectionService) => updateCollectionService(params));
     const { showToast } = useAppToast();
@@ -39,6 +41,7 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
                     await updateService.mutateAsync({ title, collectionID: collection._id, description, image });
                     showToast({ message: AppErrors.collection.update_Collection_name, type: 'success' });
                 } else {
+                    if (!checkPermissionAndShowToast("collection_management")) return
                     await createService.mutateAsync({ title, description, image });
                     showToast({ message: AppErrors.collection.create_Collection_name, type: 'success' });
                 }
@@ -96,14 +99,14 @@ function CollectionCreate({ close, open, collection, refetch }: IProps) {
                                 />
 
                                 <Flex width="100%">
-                                    {values.image === "" || !values.image ? 
+                                    {values.image === "" || !values.image ?
                                         <Flex direction={"column"} gap={3} width={"100%"}>
                                             <AppUploadImage onChange={(image: any) => setFieldValue("image", image)} values={values.image} mode="single" size="original" />
                                         </Flex>
-                                    :
+                                        :
                                         <Box position={"relative"}>
                                             <Box position={"absolute"} right={"12px"} top={"12px"} cursor={"pointer"} onClick={() => setFieldValue("image", "")}>
-                                                <AppIcons.CloseRed/>
+                                                <AppIcons.CloseRed />
                                             </Box>
                                             <Image height={"157px"} width={"157px"} src={values.image} objectFit={"cover"} borderRadius={"4px"} bgColor={"black"} />
                                         </Box>
