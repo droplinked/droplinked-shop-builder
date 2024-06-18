@@ -1,13 +1,10 @@
 import { Box, Divider, Flex, Heading, Image } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
-import useAppToast from 'functions/hooks/toast/useToast'
 import { SubscriptionPlan } from 'lib/apis/subscription/interfaces'
-import { getShopSubscriptionDataService } from 'lib/apis/subscription/subscriptionServices'
-import { useUpdateShopPermissions } from 'lib/stores/app/appStore'
-import AppErrors from 'lib/utils/statics/errors/errors'
 import { subscriptionPlanMap } from 'pages/subscription-plans/_components/PlanHeading'
-import React, { useState } from 'react'
+import React from 'react'
+import { useQueryClient } from 'react-query'
 
 interface Props {
     paymentStatus: "success" | "error",
@@ -16,27 +13,16 @@ interface Props {
 }
 
 function PaymentStatus({ paymentStatus, selectedPlan, close }: Props) {
-    const updateShopSubscriptionData = useUpdateShopPermissions()
-    const { showToast } = useAppToast()
-    const [isLoading, setLoading] = useState(false)
+    const queryClient = useQueryClient()
     const isSuccessful = paymentStatus === "success"
     const headingText = isSuccessful ? "Subscription Confirmed" : "Payment Failed"
     const imageSrc = isSuccessful ?
         "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/4cfd82e7a9d58675c6acad5dffe9725e6a836a162a0a658e541d0a8bf870636d.png_or.png" :
         "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/6a17656baa42fae845213dd5c060842ee27598a8eac4975c0400b3cb4b254828.png_or.png"
 
-    const fetchShopSubscriptionData = async () => {
-        try {
-            setLoading(true)
-            const { data } = await getShopSubscriptionDataService()
-            updateShopSubscriptionData(data)
-            close()
-        } catch (error) {
-            showToast({ message: AppErrors.permission.shop_subscription_data_unavailable, type: "error" })
-        }
-        finally {
-            setLoading(false)
-        }
+    const fetchShopSubscriptionData = () => {
+        queryClient.invalidateQueries({ queryKey: ["shop-subscription-plan"] })
+        close()
     }
 
     return (
@@ -62,8 +48,8 @@ function PaymentStatus({ paymentStatus, selectedPlan, close }: Props) {
             <Flex justifyContent={"center"}>
                 {
                     isSuccessful ?
-                        <BasicButton isLoading={isLoading} isDisabled={isLoading} onClick={fetchShopSubscriptionData}>Great</BasicButton> :
-                        <BasicButton variant='outline' isLoading={isLoading} isDisabled={isLoading} onClick={close}>Cancel</BasicButton>
+                        <BasicButton onClick={fetchShopSubscriptionData}>Great</BasicButton> :
+                        <BasicButton variant='outline' onClick={close}>Cancel</BasicButton>
                 }
             </Flex>
         </Flex>

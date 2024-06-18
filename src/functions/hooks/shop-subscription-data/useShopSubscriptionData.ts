@@ -6,7 +6,7 @@ const useShopSubscriptionData = () => {
     const updateShopSubscriptionData = useUpdateShopPermissions()
 
     const queryObj = useQuery({
-        queryKey: "shop-subscription-plan",
+        queryKey: ["shop-subscription-plan"],
         queryFn: () => getShopSubscriptionDataService(),
         refetchOnWindowFocus: false,
         onSuccess: (data) => updateShopSubscriptionData(data.data)

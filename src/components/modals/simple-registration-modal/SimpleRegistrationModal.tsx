@@ -36,7 +36,7 @@ function SimpleRegistrationModal({ isOpen }: { isOpen: boolean }) {
             setLoading(true)
             const { data } = await updateUsernameService({ id: shop._id, shopName: username })
             updateState({ key: "user", params: data.data.user })
-            updateState({ key: "shop", params: data.data.shop })
+            updateState({ key: "shop", params: { shop, name: data.data.shop.name } })
             navigate("/dashboard")
         } catch (error) {
             showToast({ type: "error", message: "Oops! Something went wrong." })
