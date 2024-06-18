@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from "./styles.module.scss";
 
 function SimpleRegistrationModal({ isOpen }: { isOpen: boolean }) {
-    const { shop, updateShopData, profile } = useProfile()
+    const { shop } = useProfile()
     const { updateState, } = useAppStore()
     const [username, setUsername] = useState("")
     const debouncedUsername = useDebounce(username, 1000)

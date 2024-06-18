@@ -6,6 +6,7 @@ import ProductCollapse from '../modules/collapse/ProductCollapse'
 import ProductType from '../modules/productType/ProductType'
 import VariantsProduct from '../modules/variants/VariantsProduct'
 import PropertyVariants from '../modules/properties/properties.variants'
+import PODProperties from '../modules/properties/parts/pod/PODProperties'
 
 function Variant() {
   const { state: { product_type, pod_blank_product_id, prodviderID } } = useContext(productContext)
@@ -16,7 +17,7 @@ function Variant() {
         <ProductCollapse title='Variants' description="Set product type and define product properties for use in product variations.">
           <VStack align={"stretch"} spacing="60px">
             {!ProductModel.isPrintful(prodviderID) && product_type === "PRINT_ON_DEMAND" && <ProductType />}
-            <PropertyVariants />
+            {["NORMAL", "DIGITAL"].includes(product_type) ? <PropertyVariants /> : <PODProperties/>}
             <VariantsProduct />
           </VStack>
         </ProductCollapse >

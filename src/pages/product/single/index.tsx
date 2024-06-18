@@ -1,26 +1,33 @@
 import { VStack } from '@chakra-ui/react'
-import React, { useCallback, useEffect, useReducer } from 'react'
-import { productContext } from './context'
-import { useParams } from 'react-router-dom'
-import { useMutation } from 'react-query'
-import ProductSingleModel from './model/model'
-import ProductStore from './parts/store/ProductStore'
-import productPageNamespace from './reducers'
-import ProductLoading from './parts/loading/ProductLoading'
+import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData'
+import useAppToast from 'functions/hooks/toast/useToast'
+import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
+import { IproductService } from 'lib/apis/shop/interfaces'
+import { productService } from 'lib/apis/shop/shopServices'
+import AppErrors from 'lib/utils/statics/errors/errors'
 import { nanoid } from 'nanoid'
+import React, { useCallback, useEffect, useReducer } from 'react'
+import { useMutation } from 'react-query'
+import { useParams } from 'react-router-dom'
+import { productContext } from './context'
 import NormalProduct from './layouts/NormalProduct'
 import PODProduct from './layouts/PODProduct'
-import { productService } from 'lib/apis/shop/shopServices'
-import { IproductService } from 'lib/apis/shop/interfaces'
+import ProductSingleModel from './model/model'
+import ProductLoading from './parts/loading/ProductLoading'
+import ProductStore from './parts/store/ProductStore'
+import productPageNamespace from './reducers'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductService) => productService(params))
+    const { isFetching, error: fetchShopSubscriptionDataError } = useShopSubscriptionData()
     const { reducers, initialState } = productPageNamespace
     const params = useParams()
     const [state, dispatch] = useReducer(reducers, initialState)
     const { refactorData, productTypeHandle } = ProductSingleModel
     const productId = params?.productId
     const queryParams = useParams()
+    const { showToast } = useAppToast()
+    const { shopNavigate } = useCustomNavigate()
 
     // Fetch product for edit
     const fetch = useCallback(() => {
@@ -58,6 +65,13 @@ function ProductSingle() {
         }
     }, [productId, state.params.product_type])
 
+    useEffect(() => {
+        if (fetchShopSubscriptionDataError) {
+            showToast({ message: AppErrors.permission.shop_subscription_data_unavailable, type: "error" })
+            shopNavigate("products")
+        }
+    }, [fetchShopSubscriptionDataError])
+
     return (
         <productContext.Provider value={{
             state: state.params,
@@ -81,7 +95,10 @@ function ProductSingle() {
             <ProductStore>
                 <ProductLoading />
                 <VStack spacing={5}>
-                    {state.params.product_type === "PRINT_ON_DEMAND" ? <PODProduct /> : <NormalProduct />}
+                    {isFetching ?
+                        <ProductLoading /> :
+                        state.params.product_type === "PRINT_ON_DEMAND" ? <PODProduct /> : <NormalProduct />
+                    }
                 </VStack>
             </ProductStore>
         </productContext.Provider>
