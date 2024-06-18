@@ -7,4 +7,4 @@ export const getSubscriptionPlansService = () => axiosInstance.get<{ data: Subsc
 
 export const getShopSubscriptionDataService = () => axiosInstance.get<{ data: ShopSubscriptionData }>(`${endpoint}/shop`).then(res => res.data)
 
-export const buySubscriptionPlanService = (checkoutData: SubscriptionCheckout) => axiosInstance.post<{ data: SubscriptionPurchaseResult }>(`${endpoint}/buy`).then(res => res.data)
+export const buySubscriptionPlanService = (checkoutData: SubscriptionCheckout) => axiosInstance.post<{ data: SubscriptionPurchaseResult }>(`${endpoint}/buy`, checkoutData).then(res => res.data)
