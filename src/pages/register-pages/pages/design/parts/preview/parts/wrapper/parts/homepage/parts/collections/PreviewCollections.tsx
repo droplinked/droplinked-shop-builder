@@ -31,7 +31,7 @@ const PreviewCollections = () => {
   return (
     <Flex alignItems={"center"} justifyContent={"center"} gap={"14px"} flexDirection={"column"} alignSelf={"stretch"}>
       <Flex alignItems={"center"} justifyContent={"space-between"} alignSelf={"stretch"} paddingX={isDesktop ? "" : "10px"}>
-        <PreviewTypo fontSize={"16px"} fontWeight={700} color={"#FFF"}>Collections</PreviewTypo>
+        <PreviewTypo fontSize={"16px"} fontWeight={700}>Collections</PreviewTypo>
         {/* <PreviewTypo fontSize={"12px"} fontWeight={500} color={"#2BCFA1"} textShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}>See all</PreviewTypo> */}
       </Flex>
       <SimpleGrid columns={isDesktop ? { base: 2, xl: 3 } : 2} spacing={isDesktop ? "25px" : "10px"}>
