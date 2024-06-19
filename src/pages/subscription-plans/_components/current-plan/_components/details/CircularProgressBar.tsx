@@ -8,7 +8,7 @@ const getProgressColors = (progressValue: number) => {
         case progressValue >= 75:
             return { backgroundColor: "rgba(230, 63, 67, 0.25)", progressColor: "#E63F43" } // red
         case progressValue >= 50:
-            return { backgroundColor: "rgba(254, 185, 0, 0.25)", progressColor: "#FEB900" } // orange
+            return { backgroundColor: "rgba(254, 185, 0, 0.25)", progressColor: "#FEB900" } // yellow
         default:
             return { backgroundColor: "rgba(43, 207, 161, 0.25)", progressColor: "#25A07E" } // green
     }
@@ -32,9 +32,9 @@ function CircularProgressBar({ used, all }: { used: number, all: number | string
         >
             <CircularProgressLabel>
                 <AppTypography fontSize={10} color={"white"}>
-                    <Box as="span" fontWeight={600}>{all === "Unlimited" ? "∞" : all}</Box> {" "}
+                    <Box as="span" fontWeight={600}>{used}</Box> {" "}
                     of {" "}
-                    <Box as='span' fontWeight={600}>{used}</Box>
+                    <Box as="span" fontWeight={600}>{all === "Unlimited" ? "∞" : all}</Box>
                 </AppTypography>
             </CircularProgressLabel>
         </CircularProgress>
