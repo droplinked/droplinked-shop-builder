@@ -259,6 +259,8 @@ export const initialStateDesignPage: IStateDesignPage = {
             foreground: "#F7F7F2",
             textColorParagraphs: "#121314",
             isCollectionShown: false,
+            isLogoAsFavicon: false,
+            faviconURL: "",
         },
         template_options: template_options_defaults,
     },

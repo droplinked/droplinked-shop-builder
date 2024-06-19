@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, Spinner } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
@@ -22,7 +22,7 @@ function ROIPage() {
         productDetails, updateProductDetails,
         handleTotalSkusChange, totalSkusErrorMessage,
         metrics, updateMetrics,
-        buttonDisabled, handleCalculation, result
+        buttonDisabled, handleCalculation, result, isLoading
     } = useROICalculation()
 
     return (
@@ -45,7 +45,11 @@ function ROIPage() {
                         </Container>
 
                         <Container title='Protocols'>
-                            <Select items={networks} selectedItem={selectedNetwork} onChange={(e) => setSelectedNetwork(+e.target.value)} />
+                            {isLoading ? 
+                                <Spinner />
+                                :
+                                <Select items={networks} selectedItem={selectedNetwork} onChange={(e) => setSelectedNetwork(+e.target.value)} />
+                            }
                         </Container>
 
                         <Container title='Product Details'>
