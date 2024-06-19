@@ -22,11 +22,12 @@ function PaymentStatus({ paymentStatus, selectedPlan, close }: Props) {
 
     const fetchShopSubscriptionData = () => {
         queryClient.invalidateQueries({ queryKey: ["shop-subscription-plan"] })
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         close()
     }
 
     return (
-        <Flex direction={"column"} gap={5}>
+        <Flex direction={"column"} alignItems={"center"} gap={5}>
             <Heading textAlign={"center"} fontSize={36} fontWeight={700} color={"primary"}>{headingText}</Heading>
 
             <Divider m={0} height={"1px"} borderColor={"#292929"} />
@@ -45,13 +46,11 @@ function PaymentStatus({ paymentStatus, selectedPlan, close }: Props) {
                 }
             </AppTypography>
 
-            <Flex justifyContent={"center"}>
-                {
-                    isSuccessful ?
-                        <BasicButton onClick={fetchShopSubscriptionData}>Great</BasicButton> :
-                        <BasicButton variant='outline' onClick={close}>Cancel</BasicButton>
-                }
-            </Flex>
+            {
+                isSuccessful ?
+                    <BasicButton onClick={fetchShopSubscriptionData}>Great</BasicButton> :
+                    <BasicButton variant='outline' onClick={close}>Cancel</BasicButton>
+            }
         </Flex>
     )
 }
