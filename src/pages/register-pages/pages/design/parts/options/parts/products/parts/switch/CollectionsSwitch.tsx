@@ -5,8 +5,8 @@ import { Flex } from '@chakra-ui/react'
 import { designContext } from 'pages/register-pages/pages/design/design-context'
 
 // Components
-import OptionsCaption from '../../../caption/OptionsCaption'
 import AppSwitch from 'components/common/swich'
+import AppTypography from 'components/common/typography/AppTypography'
 
 function CollectionsSwitch() {
     const { methods: { dispatch }, state: { shop: { shopDesign: { isCollectionShown } } } } = useContext(designContext)
@@ -22,7 +22,7 @@ function CollectionsSwitch() {
                 isChecked={isCollectionShown}
                 onChange={handleSwitchChange}
             />
-            <OptionsCaption caption='Show Collections' />
+            <AppTypography fontSize={"14px"} fontWeight={400}>Show Collections</AppTypography>
         </Flex>
     )
 }
