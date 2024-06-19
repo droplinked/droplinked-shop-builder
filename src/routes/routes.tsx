@@ -30,6 +30,7 @@ import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProd
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
 import TokenPayPage from "pages/public-pages/landings/tokenpay-page/TokenPayPage"
 import LoadingPage from "pages/public-pages/loading-page/LoadingPage"
+import MultiShopManagement from "pages/public-pages/multi-shop-management/MultiShopManagement"
 import PricingPage from "pages/public-pages/pricing/PricingPage"
 import PrivacyPage from "pages/public-pages/privacy-page/PrivacyPage"
 import ShopPage from "pages/public-pages/shop-page/ShopPage"
@@ -79,15 +80,10 @@ function AppRoutes() {
             <Route index element={<PublicBlogs />} />
             <Route path=":slug" element={<PublicBlog />} />
           </Route>
-          <Route
-            path="email-verification/:token"
-            element={<VerifyEmailPage />}
-          />
-          <Route
-            path="producer/account-recovery/:token"
-            element={<ResetPassPage />}
-          />
+          <Route path="email-verification/:token" element={<VerifyEmailPage />} />
+          <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
           <Route path="plans" element={<PricingPage />} />
+          <Route path="shop-management" element={<MultiShopManagement />} />
         </Route>
 
         <Route path="dashboard" element={<DashboardLayout />}>
