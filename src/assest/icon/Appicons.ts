@@ -67,6 +67,7 @@ import { ReactComponent as LinkedIn } from "./linkedin.svg";
 import { ReactComponent as Logout } from "./log-out.svg";
 import { ReactComponent as ManageIcon } from "./manage.svg";
 import { ReactComponent as MoreIcon } from "./more-icon.svg";
+import { ReactComponent as MultiShopManagement } from "./multi-shop.svg";
 import { ReactComponent as NearWalletIcon } from "./nearWallet.svg";
 import { ReactComponent as OrderIcon } from "./order-icon.svg";
 import { ReactComponent as Order } from "./order.svg";
@@ -243,7 +244,8 @@ const AppIcons = {
   Business,
   Premium,
   Enterprise,
-  SubscriptionPlan
+  SubscriptionPlan,
+  MultiShopManagement
 }
 
 export default AppIcons
