@@ -95,8 +95,7 @@ function ProductSingle() {
             <ProductStore>
                 <ProductLoading />
                 <VStack spacing={5}>
-                    {isFetching ?
-                        <ProductLoading /> :
+                    {
                         state.params.product_type === "PRINT_ON_DEMAND" ? <PODProduct /> : <NormalProduct />
                     }
                 </VStack>
