@@ -139,7 +139,17 @@ const useROICalculation = () => {
         fetchChainsFee();
     }, []);
 
-    useEffect(() => { handleCalculation() }, [handleCalculation])
+    useEffect(() => {
+        if (!isLoading && availableNetworks.length > 0) {
+            setSelectedNetwork(networks[0]?.value);
+        }
+    }, [availableNetworks, isLoading]);
+
+    useEffect(() => {
+        if (!isLoading && selectedNetwork) {
+            handleCalculation();
+        }
+    }, [selectedNetwork, isLoading, handleCalculation]);
 
     return {
         plans,
