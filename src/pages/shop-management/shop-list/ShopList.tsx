@@ -1,9 +1,9 @@
 import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import React, { useState } from 'react'
-import styles from "./styles.module.scss"
+import EmptyBox from './_components/empty-box/EmptyBox'
 
-function ShopStatusTabs() {
+function ShopList() {
     const [tabIndex, setTabIndex] = useState(0)
 
     return (
@@ -17,14 +17,20 @@ function ShopStatusTabs() {
                 <BasicButton>+ Create Store</BasicButton>
             </Flex>
 
-            <TabPanels bgColor={"blue"} marginTop={5}>
-                <TabPanel>
-                    1
+            <TabPanels marginTop={5} border={"2px solid rgba(128, 128, 128, 0.10)"} borderRadius={30}>
+                <TabPanel padding={9}>
+                    <Flex direction={"column"} gap={2}>
+                        <EmptyBox tab='active' />
+                    </Flex>
                 </TabPanel>
-                <TabPanel>2</TabPanel>
+                <TabPanel padding={9}>
+                    <Flex direction={"column"} gap={2}>
+                        <EmptyBox tab='inactive' />
+                    </Flex>
+                </TabPanel>
             </TabPanels>
         </Tabs>
     )
 }
 
-export default ShopStatusTabs
+export default ShopList

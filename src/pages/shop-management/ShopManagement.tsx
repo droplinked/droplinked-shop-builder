@@ -1,10 +1,14 @@
 import { Divider, Flex, Heading } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
-import React from 'react'
-import ShopStatusTabs from './_components/shop-status-tabs/ShopStatusTabs'
+import React, { useEffect } from 'react'
+import ShopList from './shop-list/ShopList'
 
 function ShopManagement() {
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, [])
+
     return (
         <Flex justifyContent={"center"} marginBlock={"190px"}>
             <Flex
@@ -25,7 +29,7 @@ function ShopManagement() {
 
                 <Divider m={0} borderColor={"#808080"} />
 
-                <ShopStatusTabs />
+                <ShopList />
             </Flex>
         </Flex>
     )
