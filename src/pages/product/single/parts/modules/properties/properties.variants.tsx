@@ -1,12 +1,9 @@
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppTypography from "components/common/typography/AppTypography";
-import { Field, FieldArray, Form, Formik } from "formik";
+import { FieldArray, Form, Formik } from "formik";
 import React, { useCallback, useContext, useRef } from "react";
-import ProductCollapse from "../collapse/ProductCollapse";
 import { VStack, HStack, Input, Box, useOutsideClick } from "@chakra-ui/react";
 import { productContext } from "pages/product/single/context";
-import ProductModel from "pages/product/single/model";
-import ProductType from "../productType/ProductType";
 import AppIcons from "assest/icon/Appicons";
 import CreatableSelect from "react-select/creatable";
 import DropDownModel from "components/common/form/dropdown/DropDownModel";
@@ -69,7 +66,7 @@ const PropertyVariants = () => {
                 "properties",
                 cleaned_values.map((property) => ({
                     title: property.name,
-                    value: property.name === "Color" ? "62a989ab1f2c2bbc5b1e7153" : property?.name === "Size" ? "62a989ab1f2c2bbc5b1e7154" : undefined,
+                    value: property.name === "Color" ? "62a989ab1f2c2bbc5b1e7153" : property?.name === "Size" ? "62a989ab1f2c2bbc5b1e7154" : property.name,
                     items: property.values,
                 }))
             );
@@ -119,7 +116,7 @@ const PropertyVariants = () => {
                                                         arrayHelpers?.form?.setFieldValue(`options[${index}].name`, e);
                                                         console.log(option?.values);
                                                     }}
-                                                    isDisabled={option?.values?.length > 1 && option?.values?.[0]?.value !== ""}
+                                                    // isDisabled={option?.values?.length > 1 && option?.values?.[0]?.value !== ""}
                                                     onChange={(e) => {
                                                         if (
                                                             (option?.values?.length > 1 && option?.values?.[0]?.value !== "") ||
@@ -130,7 +127,24 @@ const PropertyVariants = () => {
                                                         arrayHelpers?.form?.setFieldValue(`options[${index}].values`, []);
                                                     }}
                                                     value={option?.name !== "" && { value: option?.name, label: option?.name }}
-                                                    options={droplinked_variants}
+                                                    options={
+                                                        // properties?.length
+                                                        //     ? droplinked_variants.concat(
+                                                        //           properties
+                                                        //               ?.map((api_properties) => {
+                                                        //                   console.log(api_properties);
+                                                        //                   if (api_properties?.title && api_properties?.title !== "" && is_custom(api_properties?.title))
+                                                        //                       return {
+                                                        //                           value: api_properties?.title,
+                                                        //                           label: api_properties?.title,
+                                                        //                       };
+                                                        //                   return { value: undefined, label: undefined };
+                                                        //               })
+                                                        //               ?.filter((filtering) => filtering?.value)
+                                                        //       )
+                                                        //     :
+                                                        droplinked_variants
+                                                    }
                                                     styles={{
                                                         ...DropDownModel.style(undefined),
                                                         indicatorsContainer: (baseStyles) => ({ ...baseStyles }),

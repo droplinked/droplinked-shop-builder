@@ -1,16 +1,17 @@
+import { Flex } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import React from 'react'
 
 function Loading() {
     return (
-        <>
+        <Flex direction={"column"} alignItems={"center"} gap={5}>
             {
                 Array.from({ length: 4 }).map((_, index) =>
                     <AppSkeleton
                         key={index}
                         width={"100%"}
                         maxWidth={"1000px"}
-                        height={"400px"}
+                        height={"124px"}
                         borderRadius={8}
                         isLoaded={false}
                     >
@@ -18,7 +19,7 @@ function Loading() {
                     </AppSkeleton>
                 )
             }
-        </>
+        </Flex>
     )
 }
 

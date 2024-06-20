@@ -1,8 +1,8 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import { getSubscriptionPlansService } from "lib/apis/subscription/subscriptionServices";
-import Loading from "pages/product/types/Loading";
 import React from "react";
 import { useQuery } from "react-query";
+import Loading from "./_components/loading/Loading";
 import PlanCard from "./_components/plan-card/PlanCard";
 
 const Plans = ({ showBuyButton }: { showBuyButton: boolean }) => {
