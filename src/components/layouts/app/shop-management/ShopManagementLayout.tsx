@@ -13,7 +13,7 @@ function ShopManagementLayout() {
                 minHeight={"80dvh"}
                 flex={1}
                 padding="86px 36px 24px 36px"
-                bgImg={"https://upload-file-flatlay.s3.us-west-2.amazonaws.com/2b7b70c4e1f6a4288cc468e07048880deafcd6c44d7edccb5a39314b6f56f5a4.jpg_or.jpg"}
+                bgImage={"assets/images/multi-shop-bg.jpg"}
                 bgSize={"cover"}
                 bgPosition={"center"}
             >
