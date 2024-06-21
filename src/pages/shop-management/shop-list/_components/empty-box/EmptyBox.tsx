@@ -11,7 +11,7 @@ function EmptyBox({ tab }: { tab: "active" | "inactive" }) {
     return (
         <Flex direction={"column"} alignItems={"center"} gap={2}>
             <Image width={264} height={204} src={imageSrc} />
-            <AppTypography textAlign={"center"} fontSize={16} color={"#808080"}>
+            <AppTypography width={"80%"} textAlign={"center"} fontSize={16} color={"#808080"}>
                 Oops! It looks like you have no {isActiveShopsTab ? "active" : "deactivated"} shops.
                 Check the <Box as='span' fontWeight={700} color={"primary"}>{isActiveShopsTab ? "deactivated" : "active"} tab</Box> to view all your inactive shops.
             </AppTypography>

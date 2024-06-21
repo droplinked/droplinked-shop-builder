@@ -8,7 +8,7 @@ function ShopList() {
 
     return (
         <Tabs variant={"unstyled"} onChange={(index) => setTabIndex(index)}>
-            <Flex justifyContent={"space-between"} alignItems={"center"}>
+            <Flex justifyContent={"space-between"} alignItems={"center"} paddingBlock={3}>
                 <TabList>
                     <Tab mr={3} p={0}><BasicButton variant={tabIndex === 0 ? "solid" : "outline"}>Active Shops</BasicButton></Tab>
                     <Tab p={0}><BasicButton variant={tabIndex === 1 ? "solid" : "outline"}>Deactivated Shops</BasicButton></Tab>
@@ -17,16 +17,20 @@ function ShopList() {
                 <BasicButton>+ Create Store</BasicButton>
             </Flex>
 
-            <TabPanels marginTop={5} border={"2px solid rgba(128, 128, 128, 0.10)"} borderRadius={30}>
-                <TabPanel padding={9}>
-                    <Flex direction={"column"} gap={2}>
-                        <EmptyBox tab='active' />
-                    </Flex>
+            <TabPanels
+                marginTop={5}
+                border={"2px solid rgba(128, 128, 128, 0.10)"}
+                borderRadius={30}
+            >
+                <TabPanel>
+                    {/* <Flex direction={"column"} gap={2} padding={9}>
+                    </Flex> */}
+                    <EmptyBox tab='active' />
                 </TabPanel>
-                <TabPanel padding={9}>
-                    <Flex direction={"column"} gap={2}>
-                        <EmptyBox tab='inactive' />
-                    </Flex>
+                <TabPanel>
+                    {/* <Flex direction={"column"} gap={2} padding={9}>
+                    </Flex> */}
+                    <EmptyBox tab='inactive' />
                 </TabPanel>
             </TabPanels>
         </Tabs>
