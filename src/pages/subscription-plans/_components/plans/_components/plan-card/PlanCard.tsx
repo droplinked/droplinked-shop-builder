@@ -9,7 +9,17 @@ import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutM
 
 const PlanCard = ({ plan, showBuyButton }: { plan: SubscriptionPlan, showBuyButton: boolean }) => {
     const { onOpen, isOpen, onClose } = useDisclosure()
-    const isFree = plan.price == "FREE"
+    const { price, type, description, subOptionIds } = plan
+    const isFree = type === "STARTER"
+    const isEnterprise = type === "ENTERPRISE"
+
+    const handlePlanPurchase = () => {
+        if (isEnterprise) {
+            window.location.href = "mailto:Support@droplinked.com"
+            return
+        }
+        onOpen()
+    }
 
     return (
         <>
@@ -24,7 +34,7 @@ const PlanCard = ({ plan, showBuyButton }: { plan: SubscriptionPlan, showBuyButt
                     justifyContent={"space-between"}
                     alignItems={"center"}
                 >
-                    <PlanHeading planTitle={plan.type} />
+                    <PlanHeading planTitle={type} />
                     <Box
                         as="span"
                         borderRadius={16}
@@ -34,13 +44,13 @@ const PlanCard = ({ plan, showBuyButton }: { plan: SubscriptionPlan, showBuyButt
                         fontSize={12}
                         fontWeight={500}
                     >
-                        {isNaN(Number(plan.price)) ? plan.price : `$${plan.price}`}
+                        {isNaN(Number(price)) ? price : `$${price}`}
                     </Box>
                 </Flex>
-                <AppTypography color={"white"}>{plan.description}</AppTypography>
-                {showBuyButton && !isFree && <BasicButton onClick={onOpen}>Buy</BasicButton>}
+                <AppTypography color={"white"}>{description}</AppTypography>
+                {showBuyButton && !isFree && <BasicButton onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Buy"}</BasicButton>}
                 {
-                    plan.subOptionIds.map(featureGroup =>
+                    subOptionIds.map(featureGroup =>
                         <Flex key={featureGroup.key} direction={"column"} gap={2}>
                             <AppTypography fontWeight={500} color={"white"}>{featureGroup.title || featureGroup.key}</AppTypography>
                             {
