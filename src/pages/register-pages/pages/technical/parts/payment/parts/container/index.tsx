@@ -45,7 +45,7 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
 
   const canActivateNewPaymentMethod = (): boolean => {
     const maxActivePaymentMethodCount = getPermissionValue("web3_payment")
-    if (maxActivePaymentMethodCount === "Unlimited") return true
+    if (maxActivePaymentMethodCount === "Unlimited" || chain.type === "STRIPE") return true
 
     const activePaymentMethods = selectedPaymentMethods
       .filter(payment => payment.isActive || payment.type !== "STRIPE") //We filter stripe because it's not a web3 payment method

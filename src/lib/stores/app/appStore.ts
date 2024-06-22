@@ -83,12 +83,13 @@ const states = (set, get): IAppStore => ({
         })
     },
     fetchShop: (params: IshopInfoService) => {
+        const { shop: prevShop } = get()
         return new Promise<any>(async (resolve, reject) => {
             try {
                 set({ loading: true })
                 const data = await shopInfoService(params)
                 const shop = data.data.data
-                set({ shop, loading: false })
+                set({ shop: { ...prevShop, ...shop }, loading: false })
                 resolve(shop)
             } catch (error) {
                 reject(error?.response?.data);
@@ -135,7 +136,6 @@ const states = (set, get): IAppStore => ({
     },
     updateShopSubscriptionData: (shopSubscriptionData) => {
         const { shop } = get()
-        set({ shopSubscriptionData })
         set({ shop: { ...shop, subscription: shopSubscriptionData } })
     },
     hasPermission: (permission) => {

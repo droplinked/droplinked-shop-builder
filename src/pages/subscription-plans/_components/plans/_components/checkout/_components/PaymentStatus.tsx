@@ -16,9 +16,7 @@ function PaymentStatus({ paymentStatus, selectedPlan, close }: Props) {
     const queryClient = useQueryClient()
     const isSuccessful = paymentStatus === "success"
     const headingText = isSuccessful ? "Subscription Confirmed" : "Payment Failed"
-    const imageSrc = isSuccessful ?
-        "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/4cfd82e7a9d58675c6acad5dffe9725e6a836a162a0a658e541d0a8bf870636d.png_or.png" :
-        "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/6a17656baa42fae845213dd5c060842ee27598a8eac4975c0400b3cb4b254828.png_or.png"
+    const imageSrc = `/assets/images/subscription/${isSuccessful ? "subscription-successful-payment" : "subscription-failed-payment"}.png`
 
     const fetchShopSubscriptionData = () => {
         queryClient.invalidateQueries({ queryKey: ["shop-subscription-plan"] })

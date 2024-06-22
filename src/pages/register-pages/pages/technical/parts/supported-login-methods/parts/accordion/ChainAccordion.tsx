@@ -21,7 +21,7 @@ function ChainAccordion({ chain }: { chain: IAuthSupportedWalletsService }) {
 
     const canActivateNewLoginMethod = (): boolean => {
         const maxActiveLoginMethodCount = getPermissionValue("web3_network_login")
-        if (maxActiveLoginMethodCount === "Unlimited") return true
+        if (maxActiveLoginMethodCount === "Unlimited" || chain.name === "Google") return true
 
         const activePaymentMethods = loginMethods
             .filter(method => method.name !== "Google")
