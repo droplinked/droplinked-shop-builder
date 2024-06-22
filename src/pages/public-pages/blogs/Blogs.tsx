@@ -29,9 +29,9 @@ const PublicBlogs = () => {
     const columns = [blogs.slice(0, Math.ceil(blogs.length / 3)), blogs.slice(Math.ceil(blogs.length / 3), Math.ceil((2 * blogs.length) / 3)), blogs?.slice(Math.ceil((2 * blogs.length) / 3))];
     if (isLoading) return <LoadingBlogs />;
     return (
-        <VStack justifyContent={"center"} alignItems={"center"} maxWidth="1400px" spacing={"32px"} padding={"108px 64px 64px 64px"}>
+        <VStack ref={ref} justifyContent={"center"} alignItems={"center"} spacing={"32px"} padding={"108px 64px 64px 64px"}>
             <LatestBlog blog={sort_by_date(blogs, "createdAt")?.[0] || blogs?.[0]} />
-            <HStack spacing={"24px"} paddingY={"200px"} align={"stretch"} width={"full"} justifyContent={"space-between"} ref={ref}>
+            <HStack spacing={"24px"} paddingY={"200px"} align={"stretch"} width={"full"} justifyContent={"space-between"} maxWidth="1400px">
                 <VStack width={"full"} spacing={"24px"}>
                     {columns?.[0]?.map((blog, index) => {
                         return <Blog key={blog._id} blog={blog} />;
