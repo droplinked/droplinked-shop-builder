@@ -18,9 +18,11 @@ function TechnicalSubmit() {
     const clickSubmit = useCallback(async () => {
         try {
             if (!loginMethods.length) throw new Error("You should activate at least one login method")
-            if (!paymentMethods.filter(payment => payment.isActive).length) throw new Error("You should activate at least one payment method")
 
-            const shopData: IshopUpdateService = { paymentMethods, loginMethods }
+            const activePaymentMethods = paymentMethods.filter(payment => payment.isActive)
+            if (!activePaymentMethods.length) throw new Error("You should activate at least one payment method")
+
+            const shopData: IshopUpdateService = { paymentMethods: activePaymentMethods, loginMethods }
             await mutateAsync(shopData)
             showToast({ message: AppErrors.store.payment_options_have_been_updated, type: "success" })
         } catch (error) {
