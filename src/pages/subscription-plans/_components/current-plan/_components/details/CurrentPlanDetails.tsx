@@ -23,12 +23,16 @@ function CurrentPlanDetails({ shopSubscriptionData }: { shopSubscriptionData: Sh
             </Container>
 
             {/* current plan's expiration date */}
-            <Container>
-                <AppTypography fontSize={14} fontWeight={600} color={"white"}>Expiration Date</AppTypography>
-                <AppTypography fontSize={14} color={"white"}>
-                    Your plan will expire on {(new Date(expiresAt)).toLocaleDateString("en-US", { minute: "numeric", hour: "numeric", day: "numeric", month: "long", year: "numeric" })}
-                </AppTypography>
-            </Container>
+            {
+                type !== "STARTER" && (
+                    <Container>
+                        <AppTypography fontSize={14} fontWeight={600} color={"white"}>Expiration Date</AppTypography>
+                        <AppTypography fontSize={14} color={"white"}>
+                            Your plan will expire on {(new Date(expiresAt)).toLocaleDateString("en-US", { minute: "numeric", hour: "numeric", day: "numeric", month: "long", year: "numeric" })}
+                        </AppTypography>
+                    </Container>
+                )
+            }
 
             {/* product types */}
             {legalUsage.map(data => <LegalUsageItem key={data.key} legalUsage={data} />)}
