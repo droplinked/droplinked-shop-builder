@@ -19,7 +19,7 @@ function CurrentPlanDetails({ shopSubscriptionData }: { shopSubscriptionData: Sh
                     <PlanHeading planTitle={type} />
                 </Flex>
                 <AppTypography fontSize={14} color={"white"}>Start: {formatDate(startsAt)}</AppTypography>
-                <AppTypography fontSize={14} color={"white"}>End: {formatDate(expiresAt)}</AppTypography>
+                <AppTypography fontSize={14} color={"white"}>End: {type === "STARTER" ? "--" : formatDate(expiresAt)}</AppTypography>
             </Container>
 
             {/* product types */}
