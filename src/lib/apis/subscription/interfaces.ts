@@ -1,17 +1,19 @@
+export interface SubOptionId {
+    title: string;
+    key: string;
+    value: {
+        title: string;
+        key: string;
+        value: boolean | string;
+    }[]
+}
+
 export interface SubscriptionPlan {
     _id: string;
     type: string;
     price: string;
     description: string;
-    subOptionIds: {
-        title: string;
-        key: string;
-        value: {
-            title: string;
-            key: string;
-            value: boolean | string;
-        }[]
-    }[]
+    subOptionIds: SubOptionId[]
 }
 
 export type LegalUsageKey = "physical_product" | "digital_product" | "print_on_demand" | "drop"
@@ -40,8 +42,8 @@ export interface ShopSubscriptionData {
     purchaseStatus: string;
     status: string;
     daysUntilExpiration: string;
-    startsAt: Date;
-    expiresAt: Date;
+    startsAt: string;
+    expiresAt: string;
     legalUsage: LegalUsage[]
 }
 

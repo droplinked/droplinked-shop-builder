@@ -51,7 +51,7 @@ function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, clos
                     padding={8}
                     bgColor={"rgba(43, 207, 161, 0.03)"}
                 >
-                    <PlanHeading planTitle={type} fontSize={24} />
+                    <PlanHeading planTitle={type} fontSize={24} iconSize={24} />
                     <AppTypography fontSize={24} fontWeight={700} color={"white"}>
                         {isNaN(+price) ? price : `$${price} per month`}
                     </AppTypography>

@@ -7,7 +7,8 @@ import Container from './Container'
 import LegalUsageItem from './LegalUsageItem'
 
 function CurrentPlanDetails({ shopSubscriptionData }: { shopSubscriptionData: ShopSubscriptionData }) {
-    const { subscriptionId: { type, description }, legalUsage, expiresAt } = shopSubscriptionData
+    const { subscriptionId: { type }, legalUsage, expiresAt, startsAt } = shopSubscriptionData
+    const formatDate = (date: string) => (new Date(date)).toLocaleDateString("en-US", { minute: "numeric", hour: "numeric", day: "numeric", month: "long", year: "numeric" })
 
     return (
         <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap={4}>
@@ -16,18 +17,9 @@ function CurrentPlanDetails({ shopSubscriptionData }: { shopSubscriptionData: Sh
             <Container>
                 <Flex justifyContent={"space-between"} alignItems={"center"}>
                     <PlanHeading planTitle={type} />
-                    {/* {type !== "STARTER" && <BasicButton sizes='medium'>renewal Plan</BasicButton>} */}
                 </Flex>
-
-                <AppTypography color={"white"}>{description}</AppTypography>
-            </Container>
-
-            {/* current plan's expiration date */}
-            <Container>
-                <AppTypography fontSize={14} fontWeight={600} color={"white"}>Expiration Date</AppTypography>
-                <AppTypography fontSize={14} color={"white"}>
-                    Your plan will expire on {(new Date(expiresAt)).toLocaleDateString("en-US", { minute: "numeric", hour: "numeric", day: "numeric", month: "long", year: "numeric" })}
-                </AppTypography>
+                <AppTypography fontSize={14} color={"white"}>Start: {formatDate(startsAt)}</AppTypography>
+                <AppTypography fontSize={14} color={"white"}>End: {formatDate(expiresAt)}</AppTypography>
             </Container>
 
             {/* product types */}

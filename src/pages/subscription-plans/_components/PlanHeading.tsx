@@ -1,10 +1,12 @@
-import { Flex, TextProps } from '@chakra-ui/react'
-import AppIcons from 'assest/icon/Appicons'
-import AppTypography from 'components/common/typography/AppTypography'
-import React from 'react'
+import { Flex } from '@chakra-ui/react';
+import AppIcons from 'assest/icon/Appicons';
+import AppTypography from 'components/common/typography/AppTypography';
+import React from 'react';
 
-interface Props extends TextProps {
-    planTitle: string
+interface Props {
+    planTitle: string,
+    fontSize?: number;
+    iconSize?: number;
 }
 
 export const subscriptionPlanMap = {
@@ -15,13 +17,19 @@ export const subscriptionPlanMap = {
     "ENTERPRISE": { icon: <AppIcons.Enterprise />, title: "Enterprise" }
 }
 
-function PlanHeading({ planTitle, ...props }: Props) {
+function PlanHeading({ planTitle, fontSize = 16, iconSize = 16 }: Props) {
     const { icon, title } = subscriptionPlanMap[planTitle]
 
     return (
-        <Flex alignItems={"center"} gap={2}>
+        <Flex
+            alignItems={"center"}
+            gap={2}
+            sx={{
+                svg: { width: `${iconSize}px`, height: `${iconSize}px` }
+            }}
+        >
             {icon}
-            <AppTypography fontSize={16} fontWeight={700} color={"white"} {...props}>{title}</AppTypography>
+            <AppTypography fontSize={fontSize} fontWeight={700} color={"white"}>{title}</AppTypography>
         </Flex>
     )
 }

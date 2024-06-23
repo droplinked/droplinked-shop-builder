@@ -7,7 +7,7 @@ import { time_ago } from "lib/utils/heper/helpers";
 
 const LatestBlog = ({ blog }: { blog: IBlog }) => {
     return (
-        <Box width={"full"} pos={"relative"} height={"512px"}>
+        <Box width={"full"} pos={"relative"} height={"512px"}  maxWidth="1400px">
             <Image width={"full"} height={"512px"} objectFit={"cover"} rounded={"32px"} src={blog?.image} />
             <Flex
                 position={"absolute"}
@@ -26,15 +26,6 @@ const LatestBlog = ({ blog }: { blog: IBlog }) => {
                 <AppTypography color="white" fontSize={"32px"} fontWeight={"700"} width={"full"}>
                     {blog?.title}
                 </AppTypography>
-                <HStack spacing={"12px"} align={"stretch"}>
-                    {blog?.tags?.map((tag) => (
-                        <Box key={tag} paddingX={"16px"} paddingY={"6px"} bg={"#2EC99E"} rounded={"24px"}>
-                            <AppTypography color="#084836" fontSize={"24px"} fontWeight={"500"}>
-                                {tag}
-                            </AppTypography>
-                        </Box>
-                    ))}
-                </HStack>
                 <HStack>
                     <AppIcons.Clock fill="#C2C2C2" width={"16px"} height={"16px"} />
                     <AppTypography color="white" fontWeight={"500"} fontSize={"18px"}>
@@ -46,6 +37,15 @@ const LatestBlog = ({ blog }: { blog: IBlog }) => {
                     <AppTypography color="white" fontWeight={"500"} fontSize={"18px"}>
                         By {blog?.writer}
                     </AppTypography>
+                </HStack>
+                <HStack spacing={"12px"} align={"stretch"}>
+                    {blog?.tags?.map((tag) => (
+                        <Box key={tag} paddingX={"8px"} paddingY={"4px"} bg={"#2EC99E"} rounded={"16px"}>
+                            <AppTypography color="#084836" fontSize={"14px"} fontWeight={"500"}>
+                                {tag}
+                            </AppTypography>
+                        </Box>
+                    ))}
                 </HStack>
             </Flex>
         </Box>
