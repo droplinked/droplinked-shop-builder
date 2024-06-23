@@ -21,16 +21,16 @@ function HeaderMain() {
             label: "Products",
             links: [
                 { label: "Physical Products", description: "Monetize Inventory with Tailored Storefronts", icon: <AppIcons.Bag />, href: "/physical-product" },
-                { label: "Digital Products", description: "Minting and Monetizing Assets", icon: <AppIcons.Gallery />, href: "/digital-product" },
-                { label: "Print on Demand", description: "Transform Artwork and IP into Premium Merchandise", icon: <AppIcons.Shirt />, href: "/pod-product" },
-                { label: "Token Pay", description: "Token Powered Commerce Driven by Your Community", icon: <AppIcons.Coins />, href: "/tokenpay" },
+                { label: "Product on Demand", description: "Transform Artwork and IP with Mint to Merch", icon: <AppIcons.Shirt />, href: "/pod-product" },
+                { label: "Digital Goods", description: "Minting and Monetizing Assets", icon: <AppIcons.Gallery />, href: "/digital-product" },
+                { label: "Tokenpay", description: "Token Powered Commerce Driven by Your Community", icon: <AppIcons.Coins />, href: "/tokenpay" },
             ],
         },
         {
-            label: "Enterprise",
+            label: "Commerce Tools",
             links: [
                 { label: "DIMST", description: "On-Chain Inventory Management", icon: <AppIcons.Coins />, href: "/roi" },
-                // { label: "DPP", description: "Digital Product Passport", icon: <AppIcons.Gallery />, href: "tokenpay" }
+                { label: "DPP", description: "Digital Product Passport", icon: <AppIcons.Gallery />, href: "tokenpay" }
             ],
         },
     ]
