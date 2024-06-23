@@ -1,15 +1,16 @@
-import { Box, Flex, useDisclosure } from "@chakra-ui/react";
+import { Flex, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppTypography from "components/common/typography/AppTypography";
 import { SubscriptionPlan } from "lib/apis/subscription/interfaces";
+import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 import PlanHeading from "pages/subscription-plans/_components/PlanHeading";
 import React from "react";
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal";
 
 const PlanCard = ({ plan, showBuyButton }: { plan: SubscriptionPlan, showBuyButton: boolean }) => {
     const { onOpen, isOpen, onClose } = useDisclosure()
-    const { price, type, description, subOptionIds } = plan
+    const { price, type, subOptionIds } = plan
     const isFree = type === "STARTER"
     const isEnterprise = type === "ENTERPRISE"
 
@@ -30,25 +31,21 @@ const PlanCard = ({ plan, showBuyButton }: { plan: SubscriptionPlan, showBuyButt
                 padding={4}
                 bgColor={"#262626"}
             >
-                <Flex
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
-                >
-                    <PlanHeading planTitle={type} />
-                    <Box
-                        as="span"
-                        borderRadius={16}
-                        padding={"4px 12px"}
-                        bgColor={isFree ? "rgba(43, 207, 161, 0.25)" : "rgba(156, 78, 255, 0.25)"}
-                        color={isFree ? "#2BCFA1" : "#C59CFF"}
-                        fontSize={12}
-                        fontWeight={500}
-                    >
-                        {isNaN(Number(price)) ? price : `$${price}`}
-                    </Box>
+                <Flex justifyContent={"center"}>
+                    <PlanHeading planTitle={type} fontSize={24} iconSize={24} />
                 </Flex>
-                <AppTypography color={"white"}>{description}</AppTypography>
+
+                <AppTypography
+                    textAlign={"center"}
+                    color={isFree ? "#2BCFA1" : "#9C4EFF"}
+                    fontSize={24}
+                    fontWeight={600}
+                >
+                    {isNaN(Number(price)) ? capitalizeFirstLetter(plan.price) : `$${price}/mo`}
+                </AppTypography>
+
                 {showBuyButton && !isFree && <BasicButton onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Buy"}</BasicButton>}
+
                 {
                     subOptionIds.map(featureGroup =>
                         <Flex key={featureGroup.key} direction={"column"} gap={2}>

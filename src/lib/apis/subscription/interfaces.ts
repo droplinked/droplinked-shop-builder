@@ -40,8 +40,8 @@ export interface ShopSubscriptionData {
     purchaseStatus: string;
     status: string;
     daysUntilExpiration: string;
-    startsAt: Date;
-    expiresAt: Date;
+    startsAt: string;
+    expiresAt: string;
     legalUsage: LegalUsage[]
 }
 
