@@ -16,7 +16,7 @@ const Plans = ({ showBuyButton }: { showBuyButton: boolean }) => {
     })
 
     if (isFetching) return (
-        <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap={{ lg: 8, md: 6 }}>
+        <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap={{ lg: 8, md: 6, base: 4 }}>
             <Loading />
         </SimpleGrid>
     )
@@ -52,7 +52,7 @@ const Plans = ({ showBuyButton }: { showBuyButton: boolean }) => {
     const enterprisePlan = plans.find(plan => plan.type === 'ENTERPRISE')
 
     return (
-        <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap={{ lg: 8, md: 6 }}>
+        <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap={{ lg: 8, md: 6, base: 4 }}>
             <PlanCard plan={starterPlan} showBuyButton={showBuyButton} features={getFilteredFeatures(starterPlan)} />
             <PlanCard plan={basicPlan} showBuyButton={showBuyButton} features={getFilteredFeatures(basicPlan, starterPlan)} />
             <PlanCard plan={businessPlan} showBuyButton={showBuyButton} features={(getFilteredFeatures(businessPlan, basicPlan))} />
