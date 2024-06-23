@@ -12,11 +12,11 @@ function DesignPagePreview() {
     const scrollRef = useRef(null)
 
     useEffect(() => {
-        scrollRef.current && scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "start" });
+        scrollRef.current && scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start", inline: "start" });
     }, [scrollRef, optionSelected])
 
     const shouldScroll = () => {
-        const validOptions = [null, "theme", "profile", "products"];
+        const validOptions = [null, "theme"];
         return validOptions.includes(optionSelected);
     };
     
