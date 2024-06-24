@@ -7,7 +7,7 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { getShopInformationService } from 'lib/apis/shop/shopServices'
-import { createStripeLoginLinkService, createStripeOnboardingLinkService } from 'lib/apis/stripe/stripeServices'
+import { createStripeOnboardingLinkService } from 'lib/apis/stripe/stripeServices'
 import { BlackBox } from 'pages/register-pages/RegisterPages-style'
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
@@ -49,8 +49,8 @@ function FinancialAccounts() {
                         <AppSkeleton isLoaded={!isFetchingShopData} height='32px'>
                             {
                                 shop?.data.data.onboardedExpressStripeAccount ?
-                                    <BasicButton variant='outline' sizes='medium' isLoading={isLoading} onClick={() => handleStripeActions(createStripeLoginLinkService, "_blank")}>View Account</BasicButton> :
-                                    <BasicButton sizes='medium' isLoading={isLoading} onClick={() => handleStripeActions(createStripeOnboardingLinkService)}>Connect Account</BasicButton>
+                                    <AppTypography color={"white"}>Your aaccount has ben set up successfully!</AppTypography> :
+                                    <BasicButton sizes='medium' isLoading={isLoading} onClick={() => handleStripeActions(createStripeOnboardingLinkService)}>Create Account</BasicButton>
                             }
                         </AppSkeleton>
                     </Flex>
