@@ -2,20 +2,33 @@ import { Box, Flex } from '@chakra-ui/react'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
 import { productContext } from 'pages/product/single/context'
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
 
 function CommissionDigital() {
-    const { methods: { updateState }, state: { sku } } = useContext(productContext)
+    const { productID, methods: { updateState }, state: { sku } } = useContext(productContext)
+    console.log(sku)
 
     const change = useCallback((checked: boolean) => {
-        updateState('sku', [{
+        const updatedSku = {
             ...sku[0],
-            'recordData': {
+            recordData: {
                 ...sku[0].recordData,
                 commision: checked ? 10 : 0
             }
-        }])
-    }, [sku])
+        }
+        updateState('sku', [updatedSku])
+    }, [sku, updateState])
+
+    useEffect(() => {
+        if (productID || sku[0]?.recordData?.commision !== undefined) return
+        const updatedSku = {
+            ...sku[0],
+            recordData: {
+                commision: 0
+            }
+        }
+        updateState('sku', [updatedSku])
+    }, [productID, sku])
 
     return (
         <Flex gap={3} alignItems="center">
