@@ -89,7 +89,7 @@ const PlanCard = ({ plan, showBuyButton, features }: Props) => {
                                     <Flex key={feature.key} alignItems={"center"} gap={2}>
                                         <AppIcons.Tick />
                                         <AppTypography color={"white"}>
-                                            {`${feature.title} ${typeof feature.value === "boolean" ? "" : `: ${feature.value}`}`}
+                                            {`${capitalizeFirstLetter(feature.title)} ${typeof feature.value === "boolean" ? "" : `: ${feature.value}`}`}
                                         </AppTypography>
                                     </Flex>
                                 )
