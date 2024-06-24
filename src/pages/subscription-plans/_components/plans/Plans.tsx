@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 import Loading from "./_components/loading/Loading";
 import PlanCard from "./_components/plan-card/PlanCard";
 
-const Plans = ({ showBuyButton }: { showBuyButton: boolean }) => {
+const Plans = () => {
     const { isFetching, isError, data } = useQuery({
         queryKey: ["subscription-plans"],
         queryFn: () => getSubscriptionPlansService(),
@@ -43,22 +43,25 @@ const Plans = ({ showBuyButton }: { showBuyButton: boolean }) => {
             }
         })
     }
-
     const plans = data.data
-    const starterPlan = plans.find(plan => plan.type === 'STARTER')
-    const businessPlan = plans.find(plan => plan.type === 'BUSINESS')
-    const businessProPlan = plans.find(plan => plan.type === 'BUSINESS_PRO')
-    const enterprisePlan = plans.find(plan => plan.type === 'ENTERPRISE')
 
     return (
         <SimpleGrid
             columns={{ base: 1, md: 2, xl: 4 }}
             gap={{ lg: 8, md: 6, base: 4 }}
         >
-            <PlanCard plan={starterPlan} showBuyButton={showBuyButton} features={getFilteredFeatures(starterPlan)} />
-            <PlanCard plan={businessPlan} showBuyButton={showBuyButton} features={(getFilteredFeatures(businessPlan, starterPlan))} />
-            <PlanCard plan={businessProPlan} showBuyButton={showBuyButton} features={getFilteredFeatures(businessProPlan, businessPlan)} />
-            <PlanCard plan={enterprisePlan} showBuyButton={showBuyButton} features={getFilteredFeatures(enterprisePlan, businessProPlan)} />
+            {plans.map((plan, index) => {
+                const prevPlan = plans[index - 1] || plans[0]
+                return <PlanCard
+                    key={plan._id}
+                    plan={plan}
+                    prevPlanType={prevPlan.type}
+                    features={index === 0 ?
+                        getFilteredFeatures(plan) :
+                        getFilteredFeatures(plan, plans[index - 1])
+                    }
+                />
+            })}
         </SimpleGrid>
     )
 }
