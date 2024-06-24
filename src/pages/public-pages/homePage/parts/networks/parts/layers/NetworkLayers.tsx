@@ -34,17 +34,17 @@ function NetworkLayers() {
 
     return (
         <Flex justifyContent="center">
-        <VStack align="stretch" spacing="20px" width="80%">
-            {data.map((el, key) => (
-                <Flex key={key} gap="15px">
-                    <Box width="100px"><Image src={el.image} width="100%" /></Box>
-                    <VStack width="100%" align="stretch">
-                        <AppTypography fontSize={{base: "12px", md: "16px"}} fontWeight='bold'>{el.title}</AppTypography>
-                        <AppTypography fontSize={{base: "12px", md: "16px"}} color="#666">{el.description}</AppTypography>
-                    </VStack>
-                </Flex>
-            ))}
-        </VStack>
+            <VStack align="stretch" spacing="20px" width="80%">
+                {data.map((el, key) => (
+                    <Flex key={key} gap="15px">
+                        <Box width="100px"><Image src={el.image} width="100%" /></Box>
+                        <VStack width="100%" align="stretch">
+                            <AppTypography fontSize={{ base: "12px", md: "16px" }} fontWeight='bold'>{el.title}</AppTypography>
+                            <AppTypography fontSize={{ base: "12px", md: "16px" }} color="#666">{el.description}</AppTypography>
+                        </VStack>
+                    </Flex>
+                ))}
+            </VStack>
         </Flex>
     )
 }

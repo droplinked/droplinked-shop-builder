@@ -13,7 +13,6 @@ interface Props extends InputProps {
 }
 
 function InvitationInput({ label, type, value, isRequired, error, ...props }: Props) {
-    console.log(error)
     const [inputType, setInputType] = useState(type)
     const toggleInputType = () => setInputType(inputType === "password" ? "text" : "password")
 

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: public/assets/images/homepage/ef1.png
+Disallow: public/assets/images/homepage/ef2.png
+Disallow: public/assets/images/homepage/com.svg

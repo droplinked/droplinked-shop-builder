@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
 import { VStack } from '@chakra-ui/react'
-import ProductCollapse from '../modules/collapse/ProductCollapse'
+import React, { useContext } from 'react'
 import { productContext } from '../../context'
-import SaleInfromation from '../modules/saleInfromation/SaleInfromation'
-import NftImage from '../modules/nftImage/NftImage'
+import ProductCollapse from '../modules/collapse/ProductCollapse'
 import CommissionDigital from '../modules/commissionDigital/CommissionDigital'
-
+import NftImage from '../modules/nftImage/NftImage'
+import SaleInfromation from '../modules/saleInfromation/SaleInfromation'
+import DigitalProductRoyalty from '../modules/digitalProductRoyalty/DigitalProductRoyalty'
 
 function DigitalInformation() {
     const { state: { product_type } } = useContext(productContext)
@@ -18,6 +18,7 @@ function DigitalInformation() {
                         <SaleInfromation />
                         <NftImage />
                         <CommissionDigital />
+                        <DigitalProductRoyalty />
                     </VStack>
                 </ProductCollapse>
             )}

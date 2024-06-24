@@ -12,26 +12,28 @@ function OptionBanner() {
     const { defaults } = OptionBannerModel
     const [States, setStates] = useState({ defaults })
 
-    const upload = useCallback((image: string) => {
+    const upload = useCallback((image) => {
         setStates(prev => ({
             ...prev,
-            defaults: [{ banner_src: image, color: "#000", thumb: image }, ...prev.defaults]
+            defaults: [{ banner_src: image, color: "#000", thumb: image }, ...prev.defaults.filter(el => el.banner_src !== image)]
         }))
     }, [])
 
-    const setImage = useCallback((image: string) => {
+    const setImage = useCallback((image) => {
         dispatch({
-            type: 'updateShop', params: {
+            type: 'updateShop',
+            params: {
                 backgroundImage: image,
                 backgroundImageSecondary: image,
             }
         })
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
-        if (backgroundImage && !States.defaults.find(el => el.banner_src === backgroundImage)) upload(backgroundImage)
-    }, [backgroundImage, States])
-
+        if (backgroundImage && !States.defaults.some(el => el.banner_src === backgroundImage)) {
+            upload(backgroundImage);
+        }
+    }, [backgroundImage, States, upload])
 
     return (
         <VStack align="stretch">

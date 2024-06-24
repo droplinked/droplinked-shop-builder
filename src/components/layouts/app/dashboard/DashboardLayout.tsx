@@ -10,9 +10,8 @@ import FooterLayout from "../main/parts/footer/FooterLayout";
 import StickyBox from "react-sticky-box";
 
 const DashboardLayout = () => {
-  const { shop } = useProfile()
-
-  const permission = useMemo(() => DashboardGateModel.checkPermission({ shop }), [shop])
+  const { profile } = useProfile()
+  const permission = useMemo(() => DashboardGateModel.checkPermission({ user: profile }), [profile])
 
   // This component manage layout 
   return (

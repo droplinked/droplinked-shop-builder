@@ -1,6 +1,9 @@
 import { Box, Checkbox, VStack } from '@chakra-ui/react'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
+import useAppToast from 'functions/hooks/toast/useToast'
+import { useHasPermission } from 'lib/stores/app/appStore'
+import AppErrors from 'lib/utils/statics/errors/errors'
 import { productContext } from 'pages/product/single/context'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import ProductPositions from '../positions/ProductPositions'
@@ -8,12 +11,18 @@ import ProductM2m from './parts/m2m/ProductM2m'
 import M2MPlaceholder from './parts/placeholder/M2MPlaceholder'
 
 function ProductMintToMerge() {
+    const hasPermission = useHasPermission()
+    const { showToast } = useAppToast()
     const [CheckBox, setCheckBox] = useState(false)
     const { state: { m2m_positions, m2m_positions_options, m2m_services, isAddToCartDisabled }, store: { state: { variants } }, methods: { updateState }, loading } = useContext(productContext)
 
     // onChange checkbox
     const checkBoxHandle = useCallback((e: any) => {
         const checked = e.target.checked
+
+        if (!hasPermission("mint_to_merch") && checked)
+            return showToast({ message: AppErrors.permission.permission_denied, type: "error" })
+
         if (!checked) {
             updateState("m2m_positions", [])
             updateState("m2m_services", [])

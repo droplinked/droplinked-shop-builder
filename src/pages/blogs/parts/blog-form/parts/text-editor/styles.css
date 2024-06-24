@@ -1,0 +1,11 @@
+.bn-container[data-theming-css-variables-demo][data-color-scheme="dark"] {
+  --bn-colors-editor-text: #C2C2C2;
+  --bn-colors-editor-background: #141414;
+}
+
+.bn-editor{
+  height: 400px;
+  width: 100%;
+  max-width: 810px;
+  overflow-y: scroll;
+}

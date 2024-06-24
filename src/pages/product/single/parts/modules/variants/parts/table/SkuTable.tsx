@@ -1,6 +1,9 @@
 import { Flex, Text, useDisclosure } from '@chakra-ui/react';
 import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDisplay';
 import AppTable from 'components/common/table/AppTable';
+import useAppToast from 'functions/hooks/toast/useToast';
+import { useLegalUsage } from 'lib/stores/app/appStore';
+import productTypeLegalUsageMap from 'lib/utils/heper/productTypeLegalUsageMap';
 import { productContext } from 'pages/product/single/context';
 import React, { useCallback, useContext, useMemo, useState } from 'react';
 import SkeletonProduct from '../../../skeleton/SkeletonProduct';
@@ -11,6 +14,8 @@ import RecordModal from './parts/recordModal/RecordModal';
 import SkuTableModal from './parts/skuModal/SkuTableModal';
 
 function SkuTable() {
+    const shopLegalUsage = useLegalUsage()
+    const { showToast } = useAppToast()
     const { state, store: { state: { available_variant } }, methods: { fetch, updateState } } = useContext(productContext)
     const [Sku, setSku] = useState(null)
     const { getRows } = SkuTableModel
@@ -18,11 +23,18 @@ function SkuTable() {
     const editModal = useDisclosure()
     const detailsModal = useDisclosure()
 
+    const checkDropLegalUsage = () => {
+        const { errorMessage, key } = productTypeLegalUsageMap["drop"]
+        const legalUsage = shopLegalUsage.find(obj => obj.key === key)
+        if ((legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0))
+            return recordModal.onOpen()
+        showToast({ message: errorMessage, type: "error" })
+    }
+
     const rows = useMemo(() => {
         if (!state.sku.length) return null
 
         return state.sku.map((el, key) => {
-
             return {
                 ...getRows({ sku: el, state, key, available_variant }),
                 controls: {
@@ -51,7 +63,8 @@ function SkuTable() {
                                             />
                                         </Flex>
                                         :
-                                        el.recordData.status !== "NOT_RECORDED" ?
+                                        el.recordData.status !== "NOT_RECORDED"
+                                            ?
                                             <Flex justifyContent={"center"}>
                                                 <Text backgroundColor={"#000"} borderRadius="100px" fontSize={"xs"} padding="4px 20px">
                                                     {el?.recordData.status}
@@ -64,7 +77,7 @@ function SkuTable() {
                                                 elementKey={key}
                                                 modals={{
                                                     editModal: editModal.onOpen,
-                                                    recordMoal: recordModal.onOpen
+                                                    recordMoal: checkDropLegalUsage
                                                 }}
                                             />
                                     : <SkuTableOptions
@@ -73,7 +86,7 @@ function SkuTable() {
                                         elementKey={key}
                                         modals={{
                                             editModal: editModal.onOpen,
-                                            recordMoal: recordModal.onOpen
+                                            recordMoal: checkDropLegalUsage
                                         }}
                                     />
                             }

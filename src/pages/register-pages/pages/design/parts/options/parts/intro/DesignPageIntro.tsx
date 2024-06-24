@@ -9,7 +9,7 @@ import OptionLayout from './parts/layout/OptionLayout'
 
 function DesignPageIntro() {
     return (
-        <DesignPageCard title='Hero Section' section='hero'>
+        <DesignPageCard title='Hero Section' section='hero' isRequired>
             <VStack align="stretch" spacing="24px">
                 <OptionLayout />
                 <OptionBanner />

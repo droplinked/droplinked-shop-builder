@@ -93,18 +93,14 @@ export interface ICustomReferralCode {
     customCode: string;
 }
 
-export type IPaymentMethod = {
-    _id: string;
+export interface IDeployContract {
     type: string;
-    icon?: string;
-    isActive: boolean;
-    tokens?: {
-        _id: string
-        name: string;
-        icon?: string;
-        type: string;
-        isActive: boolean;
-        isNative: boolean;
-        isCustom: boolean;
-    }[]
+    transaction_id: string;
+    deployedShopAddress: string;
+    deployedNFTAddress: string;
+}
+
+export interface IUpdateShopName {
+    id: string;
+    shopName: string;
 }

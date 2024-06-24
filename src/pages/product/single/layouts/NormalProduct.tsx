@@ -23,7 +23,6 @@ function NormalProduct() {
             {!ProductModel.isPrintful(prodviderID) && <Variant />}
             <ProductPodDesign />
             {ProductModel.isPrintful(prodviderID) && <Variant />}
-            {/* <CategoryProduct /> */}
             <CollectionProduct />
             <ProductTile />
             <ButtonsProduct />

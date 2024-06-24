@@ -1,6 +1,7 @@
 import { Flex, Link, useDisclosure } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import AppTypography from 'components/common/typography/AppTypography'
+import WithPermission from 'functions/hoc/shop-permissions/WithPermission'
 import React, { useContext } from 'react'
 import { productContext } from '../../context'
 import ProductCollapse from '../modules/collapse/ProductCollapse'
@@ -33,22 +34,26 @@ function ProductTile() {
                 isRequired={false}
                 isDisabled={!productID}
             >
-                <Flex direction="column" gap={6}>
-                    <Flex justify="space-between" align="center">
-                        <AppTypography fontSize={16} color="#C2C2C2">My Tiles</AppTypography>
-                        <Flex as="button" align="center" gap={1} onClick={onOpen}>
-                            <AppIcons.BluePlus />
-                            <AppTypography fontSize={14} color="#33A9EC">Create new tile</AppTypography>
+                <WithPermission requiredPermission='product_tile_display'>
+                    <Flex direction="column" gap={6}>
+                        <Flex justify="space-between" align="center">
+                            <AppTypography fontSize={16} color="#C2C2C2">My Tiles</AppTypography>
+                            <Flex as="button" align="center" gap={1} onClick={onOpen}>
+                                <AppIcons.BluePlus />
+                                <AppTypography fontSize={14} color="#33A9EC">Create new tile</AppTypography>
+                            </Flex>
                         </Flex>
+                        {
+                            (!productTile?.length) ?
+                                <ProductTileEmptyBox /> :
+                                <ProductTileTable />
+                        }
                     </Flex>
-                    {
-                        (!productTile?.length) ?
-                            <ProductTileEmptyBox /> :
-                            <ProductTileTable />
-                    }
-                </Flex>
+                </WithPermission>
             </ProductCollapse>
-            {isOpen && <ProductTileModal isOpen={isOpen} close={onClose} />}
+            <WithPermission requiredPermission='product_tile_display' action='hide'>
+                {isOpen && <ProductTileModal isOpen={isOpen} close={onClose} />}
+            </WithPermission>
         </>
     )
 }

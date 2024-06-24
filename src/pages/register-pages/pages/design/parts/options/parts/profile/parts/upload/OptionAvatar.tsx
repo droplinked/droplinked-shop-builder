@@ -9,7 +9,7 @@ function OptionAvatar() {
 
     return (
         <VStack align="stretch">
-            <OptionsCaption caption='Profile Logo' />
+            <OptionsCaption caption='Profile Logo' isRequired />
             <AppUploadImage onChange={(image) => dispatch({ type: 'updateShop', params: { logo: image } })} size="original" values={logo} mode="horizontal" />
         </VStack>
     )

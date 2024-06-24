@@ -1,7 +1,6 @@
-import React from "react"
-import { ITableRows } from 'components/common/table/AppTable'
-import ControlsListOrder from "./parts/controls/Controls"
-import { convertToStandardFormat } from "lib/utils/date.utils/convertDate";
+import { ITableRows } from 'components/common/table/AppTable';
+import React from "react";
+import ControlsListOrder from "./parts/controls/Controls";
 import OrderpageID from "./parts/orderID/OrderpageID";
 
 interface IrefactorData {
@@ -10,18 +9,14 @@ interface IrefactorData {
 }
 
 const OrdersModel = ({
-
     calculateHowTimePassed: (baseTime: string) => {
         const now = new Date();
         const yourDate = new Date(baseTime);
-
         const timePassed = (now.getTime() - yourDate.getTime());
-
         const secondsPassed = Math.floor(timePassed / 1000);
         const minutesPassed = Math.floor(secondsPassed / 60);
         const hoursPassed = Math.floor(minutesPassed / 60);
         const daysPassed = Math.floor(hoursPassed / 24);
-        const monthsPassed = Math.floor(daysPassed / 30);
 
         if (minutesPassed < 1) {
             return "now";
@@ -30,7 +25,7 @@ const OrdersModel = ({
         } else if (daysPassed < 1) {
             return `${hoursPassed} hours`;
         } else {
-            return convertToStandardFormat(yourDate.getTime());
+            return yourDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
         }
     },
 

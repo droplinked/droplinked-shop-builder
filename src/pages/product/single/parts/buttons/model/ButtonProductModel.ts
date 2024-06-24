@@ -20,7 +20,8 @@ interface Ivalidate {
 interface Irecord {
     method: Function
     product: IproductState
-    stacks: IStacks
+    stacks: IStacks,
+    shop: any
 }
 
 interface IcheckSkuesRecord {
@@ -107,13 +108,14 @@ const ButtonsProductClass = ({
 
     },
 
-    record: async ({ method, product, stacks }: Irecord) => {
+    record: async ({ method, product, stacks, shop }: Irecord) => {
         const dataForm = {
             data: {
                 blockchain: product?.digitalDetail?.chain,
                 commission: product.sku[0].recordData.commision,
-                quantity: product.sku[0].quantity
+                quantity: product.sku[0].quantity,
             },
+            shop,
             product,
             sku: product?.sku[0],
             stacks

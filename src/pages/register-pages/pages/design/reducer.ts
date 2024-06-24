@@ -246,6 +246,9 @@ export interface IShopDesignPage {
         foreground?: string;
         backgroundBody?: string;
         textColorParagraphs?: string;
+        isCollectionShown?: boolean;
+        isLogoAsFavicon?: boolean;
+        faviconURL?: string;
     };
     template_options?: ITemplateOptions;
 }

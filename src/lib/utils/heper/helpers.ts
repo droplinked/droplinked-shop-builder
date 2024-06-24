@@ -49,9 +49,9 @@ export const navigating_user_based_on_status = (status: string, data: any) => {
             localStorage.setItem("registerEmail", JSON.stringify(data.user.email));
             return { href: "/email-confirmation", dashboard: false };
         case "VERIFIED":
-            return { href: "register/shop-info", dashboard: true };
+            return { href: "url-registration", dashboard: true };
         case "PROFILE_COMPLETED":
-            return { href: "register/shop-info", dashboard: true };
+            return { href: "url-registration", dashboard: true };
         case "SHOP_INFO_COMPLETED":
             return { href: "", dashboard: true };
         case "IMS_TYPE_COMPLETED":
@@ -62,3 +62,41 @@ export const navigating_user_based_on_status = (status: string, data: any) => {
             return { href: "", dashboard: false };
     }
 };
+
+
+export function sort_by_date<T extends {[key: string]: any}>(data: T[], date_key: keyof T, order: "asc" | "desc" = "asc"): T[] {
+    return data.sort((a, b) => {
+        const date_a = new Date(a[date_key]);
+        const date_b = new Date(b[date_key]);
+        if (order === "asc") return date_a.getTime() - date_b.getTime();
+        else return date_b.getTime() - date_a.getTime();
+    });
+}
+  
+export const time_ago = (date_string: string): string => {
+    const given_date = new Date(date_string);
+    if (isNaN(given_date.getTime())) return 'Invalid date';
+    const current_date = new Date();
+
+    const ms_per_minute = 60 * 1000;
+    const ms_per_hour = ms_per_minute * 60;
+    const ms_per_day = ms_per_hour * 24;
+    const ms_per_month = ms_per_day * 30;
+    const ms_per_year = ms_per_day * 365;
+
+    const elapsed = current_date.getTime() - given_date.getTime();
+
+    if (elapsed < ms_per_day) {
+        return 'less than a day ago';
+    } else if (elapsed < ms_per_month) {
+        const days = Math.floor(elapsed / ms_per_day);
+        return `${days} day${days !== 1 ? 's' : ''} ago`;
+    } else if (elapsed < ms_per_year) {
+        const months = Math.floor(elapsed / ms_per_month);
+        if (months <= 5) {
+            return `${months} month${months !== 1 ? 's' : ''} ago`;
+        }
+    }
+
+    return new Intl.DateTimeFormat('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' }).format(given_date);
+}

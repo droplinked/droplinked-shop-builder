@@ -1,21 +1,24 @@
 import { Flex } from '@chakra-ui/layout'
 import BasicButton from 'components/common/BasicButton/BasicButton'
-import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import FormModel from 'components/common/form/FormModel'
+import FieldLabel from 'components/common/form/fieldLabel/FieldLabel'
 import AppInput from 'components/common/form/textbox/AppInput'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
+import { useCheckPermission } from 'lib/stores/app/appStore'
 import { domainRegex } from 'lib/utils/heper/regex'
 import React, { useContext, useState } from 'react'
 import APIKeyContext from '../../context'
 
 function UpdateAPIKey() {
+    const checkPermissionAndShowToast = useCheckPermission()
     const { getShopAPIKey, updateShopAPIKey, fetchedData } = useContext(APIKeyContext)
     const isLoading = getShopAPIKey.isLoading || updateShopAPIKey.isLoading
     const [domain, setDomain] = useState("")
     const { showToast } = useAppToast()
     const handleApiKeyCreation = async () => {
         try {
+            if (!checkPermissionAndShowToast("shopfront_apis")) return
             if (!domainRegex.test(domain)) throw Error("Please enter a valid domain.")
             await updateShopAPIKey.mutateAsync({ domains: [...(fetchedData?.domains || []), domain] })
             await getShopAPIKey.refetch()
