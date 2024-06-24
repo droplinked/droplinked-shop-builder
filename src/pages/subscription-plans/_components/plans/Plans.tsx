@@ -46,16 +46,17 @@ const Plans = ({ showBuyButton }: { showBuyButton: boolean }) => {
 
     const plans = data.data
     const starterPlan = plans.find(plan => plan.type === 'STARTER')
-    const basicPlan = plans.find(plan => plan.type === 'BASIC')
     const businessPlan = plans.find(plan => plan.type === 'BUSINESS')
     const businessProPlan = plans.find(plan => plan.type === 'BUSINESS_PRO')
     const enterprisePlan = plans.find(plan => plan.type === 'ENTERPRISE')
 
     return (
-        <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} gap={{ lg: 8, md: 6, base: 4 }}>
+        <SimpleGrid
+            columns={{ base: 1, md: 2, xl: 4 }}
+            gap={{ lg: 8, md: 6, base: 4 }}
+        >
             <PlanCard plan={starterPlan} showBuyButton={showBuyButton} features={getFilteredFeatures(starterPlan)} />
-            <PlanCard plan={basicPlan} showBuyButton={showBuyButton} features={getFilteredFeatures(basicPlan, starterPlan)} />
-            <PlanCard plan={businessPlan} showBuyButton={showBuyButton} features={(getFilteredFeatures(businessPlan, basicPlan))} />
+            <PlanCard plan={businessPlan} showBuyButton={showBuyButton} features={(getFilteredFeatures(businessPlan, starterPlan))} />
             <PlanCard plan={businessProPlan} showBuyButton={showBuyButton} features={getFilteredFeatures(businessProPlan, businessPlan)} />
             <PlanCard plan={enterprisePlan} showBuyButton={showBuyButton} features={getFilteredFeatures(enterprisePlan, businessProPlan)} />
         </SimpleGrid>
