@@ -15,7 +15,7 @@ import { useQuery } from 'react-query'
 function FinancialAccounts() {
     const [isLoading, setLoading] = useState(false)
     const { showToast } = useAppToast()
-    const { isLoading: isFetchingShopData, data: shop } = useQuery({
+    const { isFetching: isFetchingShopData, data: shop } = useQuery({
         queryFn: getShopInformationService,
         refetchOnWindowFocus: false
     })
@@ -46,13 +46,13 @@ function FinancialAccounts() {
                             <AppIcons.StripeS />
                             <AppTypography fontSize='14px' fontWeight='bold' color='#C2C2C2'>Stripe</AppTypography>
                         </Flex>
-                        <AppSkeleton isLoaded={!isFetchingShopData} height='32px'>
-                            {
+                        {
+                            isFetchingShopData ?
+                                <AppSkeleton isLoaded={false} width={"160px"} height={8}>{""}</AppSkeleton> :
                                 shop?.data.data.onboardedExpressStripeAccount ?
-                                    <AppTypography color={"white"}>Your aaccount has ben set up successfully!</AppTypography> :
+                                    <AppTypography height={8} lineHeight={8} fontSize={14} color={"white"}>Your account has ben set up successfully!</AppTypography> :
                                     <BasicButton sizes='medium' isLoading={isLoading} onClick={() => handleStripeActions(createStripeOnboardingLinkService)}>Create Account</BasicButton>
-                            }
-                        </AppSkeleton>
+                        }
                     </Flex>
                 </BlackBox>
             </Flex >
