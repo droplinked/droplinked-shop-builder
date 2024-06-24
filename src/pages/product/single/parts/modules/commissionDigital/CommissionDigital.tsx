@@ -6,7 +6,6 @@ import React, { useCallback, useContext, useEffect } from 'react'
 
 function CommissionDigital() {
     const { productID, methods: { updateState }, state: { sku } } = useContext(productContext)
-    console.log(sku)
 
     const change = useCallback((checked: boolean) => {
         const updatedSku = {
