@@ -1,6 +1,5 @@
 import { Flex } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
-import { AxiosResponse } from 'axios'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppCard from 'components/common/card/AppCard'
 import AppSkeleton from 'components/common/skeleton/AppSkeleton'
@@ -20,11 +19,11 @@ function FinancialAccounts() {
         refetchOnWindowFocus: false
     })
 
-    const handleStripeActions = async (service: () => Promise<AxiosResponse>, target = "_self") => {
+    const createStripeOnboardingLink = async () => {
         try {
             setLoading(true)
-            const res = await service()
-            window.open(res.data.url, target)
+            const res = await createStripeOnboardingLinkService()
+            window.open(res.data.url, "_self")
         } catch (error) {
             showToast({ message: (error as Error).message, type: 'error' })
         }
@@ -51,7 +50,7 @@ function FinancialAccounts() {
                                 <AppSkeleton isLoaded={false} width={"160px"} height={8}>{""}</AppSkeleton> :
                                 shop?.data.data.onboardedExpressStripeAccount ?
                                     <AppTypography height={8} lineHeight={8} fontSize={14} color={"white"}>Your account has been set up successfully!</AppTypography> :
-                                    <BasicButton sizes='medium' isLoading={isLoading} onClick={() => handleStripeActions(createStripeOnboardingLinkService)}>Create Account</BasicButton>
+                                    <BasicButton sizes='medium' isDisabled={isLoading} isLoading={isLoading} onClick={createStripeOnboardingLink}>Create Account</BasicButton>
                         }
                     </Flex>
                 </BlackBox>
