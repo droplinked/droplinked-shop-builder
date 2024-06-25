@@ -7,7 +7,7 @@ import AppSkeleton from 'components/common/skeleton/AppSkeleton'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
 import { getShopInformationService } from 'lib/apis/shop/shopServices'
-import { createStripeLoginLinkService, createStripeOnboardingLinkService } from 'lib/apis/stripe/stripeServices'
+import { createStripeOnboardingLinkService } from 'lib/apis/stripe/stripeServices'
 import { BlackBox } from 'pages/register-pages/RegisterPages-style'
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
@@ -15,7 +15,7 @@ import { useQuery } from 'react-query'
 function FinancialAccounts() {
     const [isLoading, setLoading] = useState(false)
     const { showToast } = useAppToast()
-    const { isLoading: isFetchingShopData, data: shop } = useQuery({
+    const { isFetching: isFetchingShopData, data: shop } = useQuery({
         queryFn: getShopInformationService,
         refetchOnWindowFocus: false
     })
@@ -46,13 +46,13 @@ function FinancialAccounts() {
                             <AppIcons.StripeS />
                             <AppTypography fontSize='14px' fontWeight='bold' color='#C2C2C2'>Stripe</AppTypography>
                         </Flex>
-                        <AppSkeleton isLoaded={!isFetchingShopData} height='32px'>
-                            {
+                        {
+                            isFetchingShopData ?
+                                <AppSkeleton isLoaded={false} width={"160px"} height={8}>{""}</AppSkeleton> :
                                 shop?.data.data.onboardedExpressStripeAccount ?
-                                    <BasicButton variant='outline' sizes='medium' isLoading={isLoading} onClick={() => handleStripeActions(createStripeLoginLinkService, "_blank")}>View Account</BasicButton> :
-                                    <BasicButton sizes='medium' isLoading={isLoading} onClick={() => handleStripeActions(createStripeOnboardingLinkService)}>Connect Account</BasicButton>
-                            }
-                        </AppSkeleton>
+                                    <AppTypography height={8} lineHeight={8} fontSize={14} color={"white"}>Your account has ben set up successfully!</AppTypography> :
+                                    <BasicButton sizes='medium' isLoading={isLoading} onClick={() => handleStripeActions(createStripeOnboardingLinkService)}>Create Account</BasicButton>
+                        }
                     </Flex>
                 </BlackBox>
             </Flex >

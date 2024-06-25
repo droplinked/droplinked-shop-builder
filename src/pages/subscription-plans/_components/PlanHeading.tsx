@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import AppIcons from 'assest/icon/Appicons';
 import AppTypography from 'components/common/typography/AppTypography';
-import React from 'react';
+import React, { JSX } from 'react';
 
 interface Props {
     planTitle: string,
@@ -9,7 +9,7 @@ interface Props {
     iconSize?: number;
 }
 
-export const subscriptionPlanMap = {
+export const subscriptionPlanMap: Record<string, { icon: JSX.Element, title: string }> = {
     "STARTER": { icon: <AppIcons.Starter />, title: "Starter" },
     "BASIC": { icon: <AppIcons.Starter />, title: "Basic" },
     "BUSINESS": { icon: <AppIcons.Business />, title: "Business" },

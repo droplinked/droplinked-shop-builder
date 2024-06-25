@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react'
 import AppTypography from 'components/common/typography/AppTypography'
 import React from 'react'
-import Plans from './_components/plans/Plans'
 import CurrentPlan from './_components/current-plan/CurrentPlan'
+import Plans from './_components/plans/Plans'
 
 function SubscriptionPlans() {
     return (
@@ -17,7 +17,7 @@ function SubscriptionPlans() {
                 <AppTypography fontSize={16} fontWeight={600} color={"white"}>Current subscription plan</AppTypography>
                 <CurrentPlan />
             </Flex>
-            <Plans showBuyButton />
+            <Plans />
         </Flex>
     )
 }
