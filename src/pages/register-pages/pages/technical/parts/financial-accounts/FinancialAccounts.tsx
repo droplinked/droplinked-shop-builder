@@ -50,7 +50,7 @@ function FinancialAccounts() {
                             isFetchingShopData ?
                                 <AppSkeleton isLoaded={false} width={"160px"} height={8}>{""}</AppSkeleton> :
                                 shop?.data.data.onboardedExpressStripeAccount ?
-                                    <AppTypography height={8} lineHeight={8} fontSize={14} color={"white"}>Your account has ben set up successfully!</AppTypography> :
+                                    <AppTypography height={8} lineHeight={8} fontSize={14} color={"white"}>Your account has been set up successfully!</AppTypography> :
                                     <BasicButton sizes='medium' isLoading={isLoading} onClick={() => handleStripeActions(createStripeOnboardingLinkService)}>Create Account</BasicButton>
                         }
                     </Flex>
