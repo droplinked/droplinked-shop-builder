@@ -6,7 +6,7 @@ import useAppToast from 'functions/hooks/toast/useToast'
 import { useHasPermission } from 'lib/stores/app/appStore'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { productContext } from 'pages/product/single/context'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 
 function DigitalProductRoyalty() {
     const hasPermission = useHasPermission()
@@ -26,11 +26,8 @@ function DigitalProductRoyalty() {
             return showToast({ message: AppErrors.permission.permission_denied, type: "error" })
         }
         setInputVisibility(checked)
+        if (!checked) updateRoyalty(null)
     }
-
-    useEffect(() => {
-        if (!showInput) updateRoyalty(null)
-    }, [showInput])
 
     return (
         <Flex direction={"column"} gap={6}>
