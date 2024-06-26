@@ -1,5 +1,5 @@
 import { Isku, IskuOption } from "lib/apis/product/interfaces"
-import { typesProperties } from "lib/utils/statics/types"
+import { property_to_id, typesProperties } from "lib/utils/statics/types"
 
 const dataFactoryModule = ({
     makeProperties: (props: Object): Array<IskuOption> => {
@@ -9,7 +9,7 @@ const dataFactoryModule = ({
             if (propertyKeyes.includes(el)) {
                 result.push({
                     value: props[el],
-                    variantID: typesProperties.filter(type => type.name === el && type)[0]._id,
+                    variantID: property_to_id?.[el] || undefined,
                     variantName: el,
                 })
             }

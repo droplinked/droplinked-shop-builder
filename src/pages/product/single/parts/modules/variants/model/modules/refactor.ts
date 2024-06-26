@@ -12,7 +12,7 @@ interface IfindByOptionSku {
 
 const VariantsRefactorModel = ({
     findByOptionSku: ({ options, skues }: IfindByOptionSku) => {
-        return skues.find(el => JSON.stringify(el.options) === JSON.stringify(options))
+        return skues?.find(el => JSON.stringify(el?.options?.map((option) => option?.value)) === JSON.stringify(options?.map((option) => option?.value)))
     },
 
     checkAvailable: ({ options, variants }: IcheckAvailable) => {

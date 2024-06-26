@@ -6,7 +6,7 @@ const Artwork2dSkuModel = ({
 
         // Remove dublicate
         const uniqueOptions = (options) => options ? options.filter((option, index) => {
-            const previousIndex = options.findIndex((prevOption, prevIndex) => prevIndex < index && prevOption.value === option.value);
+            const previousIndex = options.findIndex((prevOption, prevIndex) => prevIndex < index && prevOption?.value === option?.value);
             return previousIndex === -1;
         }) : []
 

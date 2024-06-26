@@ -8,7 +8,7 @@ export interface Blog {
     isVisible: boolean;
     image?: string;
     tags: string[];
-    category?: string[],
+    category?: string[];
     commentsCount?: number;
     likes?: number;
     readTime?: number;
@@ -24,17 +24,21 @@ export interface Blog {
         ogImage: string;
         structuredData: string;
         _id?: string;
-    },
+    };
     mediaData?: {
         url: string;
         type: string;
         title: string;
         positionIndex: number;
         _id?: string;
-    }[]
+    }[];
 }
 
 export interface ICheckSlug {
     title: string;
-    shopId: string
+    shopId: string;
+}
+
+export interface IGetPublicBlogService {
+    slug: string;
 }

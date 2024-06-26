@@ -1,6 +1,7 @@
 import { IproductState, Iproperties, Isku, product_type } from "lib/apis/product/interfaces"
 import ProductSkuesTable from "../../parts/table/model/modules/table"
 import VariantsRefactorModel from "./refactor"
+import { property_to_id } from "lib/utils/statics/types"
 
 interface Isort {
     properties: Array<Iproperties>
@@ -85,12 +86,13 @@ const VariantsMakeDataModel = ({
         }
 
         const handle = (obj: any, options: any = []) => {
+            console.log(options)
             if (!obj) {
-                const optionCombination = options.map(option => {
+                const optionCombination = options?.map(option => {
                     return {
                         value: option.value,
-                        variantID: option.variantID,
                         variantName: option.variantName,
+                        variantID: option?.variantID,
                         caption: option?.caption
                     };
                 });
@@ -117,8 +119,8 @@ const VariantsMakeDataModel = ({
 
             const variantOption = {
                 value: "",
-                variantID: obj.value,
-                variantName: obj.title,
+                variantName: obj?.custom_title || obj?.title,
+                variantID: property_to_id?.[obj?.title?.toLowerCase()] || undefined,
                 caption: ""
             };
 

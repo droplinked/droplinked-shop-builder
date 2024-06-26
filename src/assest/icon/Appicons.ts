@@ -12,11 +12,15 @@ import { ReactComponent as Bitcoin } from "./bitcoin.svg";
 import { ReactComponent as BlackChevronDown } from "./black-chevron-down.svg";
 import { ReactComponent as BlackCircleI } from "./black-circle-i.svg";
 import { ReactComponent as BlackInformation } from './black-information.svg';
+import { ReactComponent as Blog } from "./blog.svg";
 import { ReactComponent as BluePlus } from "./blue-plus.svg";
 import { ReactComponent as Brain } from "./brain.svg";
+import { ReactComponent as Business } from "./business.svg";
 import { ReactComponent as CasperIcon } from "./casper.svg";
 import { ReactComponent as CheckCircle } from "./check-circle.svg";
 import { ReactComponent as CircleCheck } from "./circle-check.svg";
+import { ReactComponent as Clock } from "./clock.svg";
+import { ReactComponent as CloseRed } from "./close-red.svg";
 import { ReactComponent as Close } from "./close.svg";
 import { ReactComponent as Coinbase } from "./coinbase.svg";
 import { ReactComponent as Coins } from "./coins.svg";
@@ -26,6 +30,7 @@ import { ReactComponent as Cover } from "./cover.svg";
 import { ReactComponent as Dashboard } from "./dashboard.svg";
 import { ReactComponent as DatepickerDashboard } from "./datepicker-dashboard.svg";
 import { ReactComponent as DeleteIcon } from "./delete-icon.svg";
+import { ReactComponent as Delete } from "./delete.svg";
 import { ReactComponent as Diamond } from "./diamond.svg";
 import { ReactComponent as Discord } from "./discord.svg";
 import { ReactComponent as DiscountIcon } from "./discount-active-icon.svg";
@@ -33,6 +38,7 @@ import { ReactComponent as DiscountSetting } from "./discount-setting.svg";
 import { ReactComponent as Droplinked } from "./droplinked.svg";
 import { ReactComponent as EditIcon } from "./edit-icon.svg";
 import { ReactComponent as Email } from "./email.svg";
+import { ReactComponent as Enterprise } from "./enterprise.svg";
 import { ReactComponent as ETH } from "./eth.svg";
 import { ReactComponent as FacebookIcon } from "./facebook.svg";
 import { ReactComponent as File } from "./file.svg";
@@ -64,11 +70,13 @@ import { ReactComponent as MoreIcon } from "./more-icon.svg";
 import { ReactComponent as NearWalletIcon } from "./nearWallet.svg";
 import { ReactComponent as OrderIcon } from "./order-icon.svg";
 import { ReactComponent as Order } from "./order.svg";
+import { ReactComponent as Pen } from "./pen.svg";
 import { ReactComponent as Personalize } from "./personalize.svg";
 import { ReactComponent as Phantom } from "./phantom.svg";
 import { ReactComponent as PintrestIcon } from "./pintrest.svg";
 import { ReactComponent as PlusIcon } from "./plus-icon.svg";
 import { ReactComponent as Polygon } from "./polygon-matic-logo.svg";
+import { ReactComponent as Premium } from "./premium.svg";
 import { ReactComponent as VariantsIcon } from "./products-active-icon.svg";
 import { ReactComponent as ProductsIcon } from "./products-icon.svg";
 import { ReactComponent as RedCircleCross } from "./red-circle-cross.svg";
@@ -86,11 +94,13 @@ import { ReactComponent as StarOff } from "./star-off.svg";
 import { ReactComponent as StarOn } from "./star-on.svg";
 import { ReactComponent as StarFilled } from "./starFilled.svg";
 import { ReactComponent as StarOutline } from "./starOutline.svg";
+import { ReactComponent as Starter } from "./starter.svg";
 import { ReactComponent as StripeS } from "./stripe-s-icon.svg";
 import { ReactComponent as Stripe } from "./stripe.svg";
 import { ReactComponent as Stacks } from "./stx.svg";
 import { ReactComponent as TearIcon } from "./tear-icon.svg";
 import { ReactComponent as ThreeStars } from "./three-stars.svg";
+import { ReactComponent as Tick } from "./tick.svg";
 import { ReactComponent as TikTok } from "./tiktok.svg";
 import { ReactComponent as Trust } from "./trust.svg";
 import { ReactComponent as TwitterIcon } from "./twitter.svg";
@@ -109,7 +119,7 @@ import { ReactComponent as XRPL } from "./xrpl.svg";
 import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
-import { ReactComponent as Blog } from "./blog.svg";
+import { ReactComponent as SubscriptionPlan } from "./subscription-plan.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -223,7 +233,17 @@ const AppIcons = {
   GrayPercent,
   BlackChevronDown,
   BackArrow,
-  Blog
+  Blog,
+  CloseRed,
+  Clock,
+  Pen,
+  Delete,
+  Tick,
+  Starter,
+  Business,
+  Premium,
+  Enterprise,
+  SubscriptionPlan
 }
 
 export default AppIcons

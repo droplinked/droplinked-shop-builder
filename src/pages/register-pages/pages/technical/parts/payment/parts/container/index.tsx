@@ -5,13 +5,17 @@ import BlockchainDisplay from 'components/common/blockchainDisplay/BlockchainDis
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
 import useAppToast from 'functions/hooks/toast/useToast'
+import { useGetPermissionValue } from 'lib/stores/app/appStore'
+import AppErrors from 'lib/utils/statics/errors/errors'
 import { PageContentWrapper } from 'pages/register-pages/RegisterPages-style'
 import technicalContext from 'pages/register-pages/pages/technical/context'
 import React, { useContext, useEffect, useState } from 'react'
 import classes from './style.module.scss'
 
 function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
+  const getPermissionValue = useGetPermissionValue()
   const { state: { paymentMethods }, updateState } = useContext(technicalContext)
+  const selectedPaymentMethods = [...(paymentMethods ?? [])]
   const { showToast } = useAppToast()
   const [walletAddress, setWalletAddress] = useState<string>(chain.destinationAddress)
   const [canEditWallet, setWalletEditability] = useState(!!chain.destinationAddress) // If the 'chain' object has an 'destinationAddress' property, we can edit it
@@ -39,57 +43,72 @@ function ContainerPayment({ chain, token }: { chain: any, token?: any }) {
     setWalletEditability(true)
   }
 
+  const canActivateNewPaymentMethod = (): boolean => {
+    const maxActivePaymentMethodCount = getPermissionValue("web3_payment")
+    if (maxActivePaymentMethodCount === "Unlimited" || chain.type === "STRIPE") return true
+
+    const activePaymentMethods = selectedPaymentMethods
+      .filter(payment => payment.isActive || payment.type !== "STRIPE") //We filter stripe because it's not a web3 payment method
+      .reduce((count, payment) => {
+        if (payment.type === "COINBASE") return count + (payment.isActive ? 1 : 0)
+        return count + payment.tokens.filter(token => token.isActive).length
+      },
+        0
+      )
+
+    if (activePaymentMethods < +maxActivePaymentMethodCount) return true
+
+    showToast({ message: AppErrors.permission.maxActivePaymentMethods(maxActivePaymentMethodCount), type: "error" })
+    return false
+  }
+
+  const findAndUpdateChain = (isChecked: boolean) => {
+    const existingChainIndex = selectedPaymentMethods.findIndex(payment => payment.type === chain.type)
+    if (isChecked) {
+      if (!canActivateNewPaymentMethod()) return
+      existingChainIndex !== -1 ?
+        selectedPaymentMethods[existingChainIndex].isActive = true :
+        selectedPaymentMethods.push({ ...chain, isActive: true })
+    }
+    else {
+      // const activePaymentMethodsCount = selectedPaymentMethods.filter(payment => payment.isActive).length
+      // if (activePaymentMethodsCount === 1) return
+      selectedPaymentMethods[existingChainIndex].isActive = false
+    }
+  }
+
+  const findAndUpdateToken = (isChecked: boolean) => {
+    const targetChain = selectedPaymentMethods.find(payment => payment.type === chain.type)
+
+    if (!targetChain) {
+      const newChain = { ...chain, isActive: true, tokens: [{ ...token, isActive: true }] }
+      selectedPaymentMethods.push(newChain)
+      return
+    }
+
+    targetChain.isActive = true
+    const targetTokenIndex = targetChain.tokens.findIndex(currentToken => currentToken.type === token.type)
+
+    if (isChecked) {
+      if (!canActivateNewPaymentMethod()) return
+      targetTokenIndex !== -1 ?
+        targetChain.tokens[targetTokenIndex].isActive = true :
+        targetChain.tokens.push({ ...token, isActive: true })
+    } else {
+      // const activePaymentMethods = selectedPaymentMethods.filter(payment => payment.isActive)
+      // if (activePaymentMethods.length === 1 && activePaymentMethods[0].tokens.filter(token => token.isActive).length === 1) return
+      if (targetTokenIndex !== -1) {
+        targetChain.tokens[targetTokenIndex].isActive = false
+      }
+      targetChain.isActive = targetChain.tokens.some(token => token.isActive)
+    }
+  }
+
   const handleActivation = (e) => {
     if (!["STRIPE", "COINBASE"].includes(chain.type) && !chain.destinationAddress) return showToast({ type: "info", message: "Please enter your wallet address first" })
     const isChecked = e.target.checked
-    const selectedPaymentMethods = [...paymentMethods]
-
-    const findAndUpdateChain = () => {
-      const existingChainIndex = selectedPaymentMethods.findIndex(payment => payment.type === chain.type)
-      if (isChecked) {
-        existingChainIndex !== -1 ?
-          selectedPaymentMethods[existingChainIndex].isActive = true :
-          selectedPaymentMethods.push({ ...chain, isActive: true })
-      }
-      else {
-        const activePaymentMethodsCount = selectedPaymentMethods.filter(payment => payment.isActive).length
-        if (activePaymentMethodsCount === 1) return
-        selectedPaymentMethods[existingChainIndex].isActive = false
-      }
-    }
-
-    const findAndUpdateToken = () => {
-      const targetChain = selectedPaymentMethods.find(payment => payment.type === chain.type)
-
-      if (!targetChain) {
-        const newChain = { ...chain, isActive: true, tokens: [{ ...token, isActive: true }] }
-        selectedPaymentMethods.push(newChain)
-        return
-      }
-
-      targetChain.isActive = true
-      const targetTokenIndex = targetChain.tokens.findIndex(currentToken => currentToken.type === token.type)
-
-      if (isChecked) {
-        targetTokenIndex !== -1 ?
-          targetChain.tokens[targetTokenIndex].isActive = true :
-          targetChain.tokens.push({ ...token, isActive: true })
-      } else {
-        const activePaymentMethods = selectedPaymentMethods.filter(payment => payment.isActive)
-        if (activePaymentMethods.length === 1 && activePaymentMethods[0].tokens.filter(token => token.isActive).length === 1) return
-        if (targetTokenIndex !== -1) {
-          targetChain.tokens[targetTokenIndex].isActive = false
-        }
-        targetChain.isActive = targetChain.tokens.some(token => token.isActive)
-      }
-    }
-
-    if (["STRIPE", "COINBASE"].includes(chain.type) || !token) {
-      findAndUpdateChain()
-    } else {
-      findAndUpdateToken()
-    }
-
+    if (["STRIPE", "COINBASE"].includes(chain.type) || !token) findAndUpdateChain(isChecked)
+    else findAndUpdateToken(isChecked)
     updateState("paymentMethods", selectedPaymentMethods)
   }
 

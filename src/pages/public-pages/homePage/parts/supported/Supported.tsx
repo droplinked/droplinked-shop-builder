@@ -22,7 +22,7 @@ function Supported() {
         <Flex justifyContent="center" height="100%" alignItems="center">
             <Flex width="90%" direction={"column"} justifyContent="center" gap={14} color="#FFF">
                 <Flex direction={"column"} gap={6}>
-                    <LandingTitle title='Supported Networks' />
+                    <LandingTitle title='Networks' />
                     <LandingDescription text='Multi-chain support to provide the flexibility you need' />
                 </Flex>
                 <Flex

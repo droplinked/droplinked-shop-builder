@@ -15,79 +15,67 @@ import React, { useCallback, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 
-interface Iform {
-    email: string;
-    password: string;
-}
+const formSchema = Yup.object().shape({
+    email: Yup.string().email(AppErrors.signin.invalid_email_address).required("Required"),
+    password: Yup.string().required("Required"),
+})
 
 const LoginModal = ({ show, close, switchModal, switchReset }) => {
-    const [searchParams] = useSearchParams();
-    const { app: { login, loading } } = useHookStore();
-    const { showToast } = useAppToast();
-    const navigate = useNavigate();
-    const { shopNavigate } = useCustomNavigate();
+    const [searchParams] = useSearchParams()
+    const { app: { login, loading } } = useHookStore()
+    const { showToast } = useAppToast()
+    const navigate = useNavigate()
+    const { shopNavigate } = useCustomNavigate()
 
-    // submit form function
-    const onSubmit = async (data: Iform) => {
+    const handleLogin = async (data) => {
         try {
-            let result = await login({ type: "default", params: { ...data, userType: "PRODUCER" } });
-            if (result) loginFunction(result);
+            const result = await login({ type: "default", params: { ...data, userType: "PRODUCER" } })
+            if (result) processLogin(result)
         } catch (error) {
-            showToast({ message: error?.message, type: "error" });
+            showToast({ message: error?.message, type: "error" })
         }
-    };
+    }
 
-    const login_google = useCallback(
-        async (access_token: string, refresh_token: string) => {
-            let result = await login({ type: "get", access_token, refresh_token, params: { access_token } });
-            if (result) loginFunction(result);
-            close();
-        },
-        [searchParams]
-    );
+    const processLogin = async (data: any) => {
+        try {
+            const { user } = data
+            if (!["PRODUCER", "ADMIN"].includes(user.type))
+                return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
+
+            const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status
+            if (status === "DELETED") {
+                showToast({ message: "This account has been deleted", type: "error" })
+                return
+            }
+
+            const { href, dashboard } = navigating_user_based_on_status(status, data)
+            dashboard ? shopNavigate(href) : navigate(href)
+            close()
+        } catch (error) {
+            showToast({ message: error.message, type: "error" })
+        }
+    }
+
+    const loginWithGoogle = useCallback(async (access_token: string, refresh_token: string) => {
+        let result = await login({ type: "get", access_token, refresh_token, params: { access_token } })
+        if (result) await processLogin(result)
+        close()
+    }, [searchParams])
 
     useEffect(() => {
-        const access_token = searchParams.get("access_token");
-        const refresh_token = searchParams.get("refresh_token");
-        if (access_token && refresh_token && access_token !== "" && refresh_token !== "" && searchParams.get("modal") === "login" && !loading) login_google(access_token, refresh_token);
-    }, [searchParams]);
-
-    // action on user data based on type and status
-    const loginFunction = (data: any) => {
-        // check customer
-        if (!["PRODUCER", "ADMIN"].includes(data.user.type)) return showToast({ message: "This account can not login", type: "error" });
-
-        //first close modal
-        close()
-        const status = appDevelopment && data.user.status === "NEW" ? "VERIFIED" : data.user.status;
-
-        if (status === "DELETED") {
-            showToast({ message: "This account has been deleted", type: "error" });
-            return;
-        } else {
-            const { href, dashboard } = navigating_user_based_on_status(status, data);
-            dashboard ? shopNavigate(href) : navigate(href);
-            return;
-        }
-    };
-
-    // navigate user based on status
-
-    const formSchema = Yup.object().shape({
-        email: Yup.string().email(AppErrors.signin.invalid_email_address).required("Required"),
-        password: Yup.string().required("Required"),
-    });
+        const access_token = searchParams.get("access_token")
+        const refresh_token = searchParams.get("refresh_token")
+        if (access_token && refresh_token && searchParams.get("modal") === "login" && !loading)
+            loginWithGoogle(access_token, refresh_token)
+    }, [searchParams])
 
     return (
         <AppModal open={show} title="Sign In" close={close}>
             <Formik
-                initialValues={{
-                    email: "",
-                    password: "",
-                }}
+                initialValues={{ email: "", password: "" }}
                 validateOnChange={false}
                 validationSchema={formSchema}
-                onSubmit={onSubmit}
+                onSubmit={handleLogin}
             >
                 {({ errors, values, setFieldValue }) => (
                     <Form>
@@ -148,7 +136,7 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
                 )}
             </Formik>
         </AppModal>
-    );
-};
+    )
+}
 
-export default LoginModal;
+export default LoginModal

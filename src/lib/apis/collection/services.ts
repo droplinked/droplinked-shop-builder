@@ -9,8 +9,8 @@ export const createCollectionService = (params: IcreateCollectionService) => {
     return axiosInstance.post("collection", params)
 };
 
-export const updateCollectionService = ({ collectionID, title }: IupdateCollectionService) => {
-    return axiosInstance.put(`collection/${collectionID}`, { title })
+export const updateCollectionService = ({ collectionID, title, description, image }: IupdateCollectionService) => {
+    return axiosInstance.put(`collection/${collectionID}`, { title, description, image })
 };
 
 export const deleteCollectionService = ({ collectionID }: IdeleteCollectionService) => {

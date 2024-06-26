@@ -8,14 +8,15 @@ function CommissionDigital() {
     const { methods: { updateState }, state: { sku } } = useContext(productContext)
 
     const change = useCallback((checked: boolean) => {
-        updateState('sku', [{
+        const updatedSku = {
             ...sku[0],
-            'recordData': {
+            recordData: {
                 ...sku[0].recordData,
                 commision: checked ? 10 : 0
             }
-        }])
-    }, [sku])
+        }
+        updateState('sku', [updatedSku])
+    }, [sku, updateState])
 
     return (
         <Flex gap={3} alignItems="center">

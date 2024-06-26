@@ -1,14 +1,25 @@
-import React from 'react'
-import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu'
 import { useDisclosure } from '@chakra-ui/react';
+import PopOverMenu from 'components/common/PopoverMenu/PopOverMenu';
+import { useCheckPermission } from 'lib/stores/app/appStore';
+import React from 'react';
+import CollectionCreate from '../create/CollectionCreate';
 import ConfirmDeleteCollection from './parts/delete/ConfirmDeleteCollection';
 import RuleModal from './parts/rulesets/RuleModal';
-import CollectionCreate from '../create/CollectionCreate';
 
 function ControlsListCollection({ collection, fetch }) {
+    const checkPermissionAndShowToast = useCheckPermission()
     const deleteModal = useDisclosure()
     const ruleModal = useDisclosure()
     const editModal = useDisclosure()
+
+    const handleOpenRulesetModal = () => {
+        if (collection.ruleSetID) {
+            ruleModal.onOpen()
+            return
+        }
+        if (!checkPermissionAndShowToast("rulesets")) return
+        ruleModal.onOpen()
+    }
 
     return (
         <>
@@ -19,7 +30,7 @@ function ControlsListCollection({ collection, fetch }) {
                 },
                 {
                     caption: "Ruleset",
-                    onClick: ruleModal.onOpen
+                    onClick: handleOpenRulesetModal
                 },
                 {
                     caption: "Delete",

@@ -17,3 +17,10 @@ export interface ICompleteGoogleSignupService {
     access_token: string;
     referralCode?: string;
 }
+
+export interface IsignupService {
+    email: string
+    password: string
+    referralCode?: string
+    hasProducerAccount: boolean
+}

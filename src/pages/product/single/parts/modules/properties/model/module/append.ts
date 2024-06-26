@@ -15,7 +15,8 @@ class AppendModule {
     static mockItem = (): Array<IpropertiesItems> => {
         return [
             {
-                value: ""
+                value: "",
+                caption: ""
             }
         ]
     }
@@ -24,8 +25,7 @@ class AppendModule {
         return [
             {
                 title: "",
-                value: "",
-                items: []
+                items: [],
             }
         ]
     }
