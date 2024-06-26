@@ -11,7 +11,7 @@ import { useQuery } from 'react-query'
 
 function PrivateKey() {
     const hasPermission = useHasPermission()
-    const { isLoading, data } = useQuery("shopPrivateKey", getShopPrivateKeyService, { refetchOnWindowFocus: false, enabled: hasPermission("report_apis") })
+    const { isLoading, data } = useQuery("shopPrivateKey", getShopPrivateKeyService, { refetchOnWindowFocus: false, enabled: hasPermission("shopfront_apis") })
     const privateKey = data?.data.data.privateKey
 
     return (
@@ -19,7 +19,7 @@ function PrivateKey() {
             <Flex direction={"column"} gap={"8px"}>
                 <Flex justifyContent={"space-between"} alignItems={"center"}>
                     <AppTypography fontSize='18px' fontWeight='bold'>Private Key</AppTypography>
-                    <WithPermission requiredPermission='report_apis' action='hide'>
+                    <WithPermission requiredPermission='shopfront_apis' action='hide'>
                         <Link href={`https://${appDevelopment ? 'apiv3dev' : 'apiv3'}.droplinked.com/api/privateapis#/`} target="_blank">
                             <AppTypography fontSize={"14px"} color={"#33A9EC"} textDecoration={"underline"} textDecorationColor={"#33A9EC"}>Documentation</AppTypography>
                         </Link>
@@ -30,7 +30,7 @@ function PrivateKey() {
                 </AppTypography>
             </Flex>
 
-            <WithPermission requiredPermission='report_apis'>
+            <WithPermission requiredPermission='shopfront_apis'>
                 {isLoading ? <AppSkeleton isLoaded={false} width={"100%"} height="24px">{''}</AppSkeleton> :
                     privateKey ? <Flex justifyContent={"space-between"} alignItems={"center"}>
                         <AppTypography fontSize={"16px"} color={"#C2C2C2"}>{privateKey}</AppTypography>
