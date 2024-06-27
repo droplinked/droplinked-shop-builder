@@ -12,7 +12,7 @@ function OrginalFile() {
     return (
         <VStack align="stretch">
             <AppSkeleton isLoaded={loading}>
-                <FieldLabel label='Original file Url' isRequired loading={loading} />
+                <FieldLabel label='Original file Url' loading={loading} />
             </AppSkeleton>
             <AppSkeleton isLoaded={loading}>
                 <HStack backgroundColor="#141414" spacing="1px" padding="2px" borderRadius="8px">
