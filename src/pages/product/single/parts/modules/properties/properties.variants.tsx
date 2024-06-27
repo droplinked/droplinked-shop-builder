@@ -25,7 +25,7 @@ const droplinked_variants = [
 ];
 
 const PropertyVariants = () => {
-    const { data, isLoading } = useQuery({
+    const { data } = useQuery({
         queryFn: variantOptionsService,
         queryKey: "product_properties",
         cacheTime: 60 * 60 * 1000,
@@ -37,7 +37,6 @@ const PropertyVariants = () => {
         productID,
         methods: { updateState },
     } = useContext(productContext);
-    console.log(properties);
     const getProps = useCallback(() => {
         return properties
             ? {
@@ -64,12 +63,15 @@ const PropertyVariants = () => {
                 ?.filter((option, index) => option?.values?.length > 0);
             updateState(
                 "properties",
-                cleaned_values.map((property) => ({
-                    title: property.name,
-                    value: property.name === "Color" ? "62a989ab1f2c2bbc5b1e7153" : property?.name === "Size" ? "62a989ab1f2c2bbc5b1e7154" : property.name,
-                    items: property.values,
-                }))
+                cleaned_values.map((property) => {
+                    return {
+                        title: property?.name,
+                        value: property?.name === "Color" ? "62a989ab1f2c2bbc5b1e7153" : property?.name === "Size" ? "62a989ab1f2c2bbc5b1e7154" : property.name,
+                        items: property?.values,
+                    };
+                })
             );
+
             formik.setFieldValue("options", cleaned_values);
         }
     }, [formikRef?.current?.values?.options]);

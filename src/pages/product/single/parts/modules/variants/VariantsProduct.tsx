@@ -17,9 +17,8 @@ function VariantsProduct() {
   const { makeData } = VariantsProductModel
 
   const addSku = useCallback(() => {
-    console.log(properties)
     const makedata = makeData({
-      properties: properties.filter(el => el.title.length && el.items.length),
+      properties: properties.filter(el => el?.title?.length && el?.items?.length),
       available_variant,
       state
     })

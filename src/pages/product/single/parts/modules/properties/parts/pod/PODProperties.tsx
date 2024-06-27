@@ -19,7 +19,7 @@ function PODProperties() {
 
     const makeproperties = useCallback((title: string) => {
         const datas = data?.data?.data
-        return datas ? datas.find(el => el.name === title)?.values || [] : []
+        return datas ? datas.find(el => el?.name === title)?.values || [] : []
     }, [data])
 
 
@@ -29,12 +29,10 @@ function PODProperties() {
         if (properties.length !== 2) {
             updateState("properties", [
                 {
-                    "value": "62a989ab1f2c2bbc5b1e7153",
                     "title": "Color",
                     "items": getItems("Color") ? getItems("Color").items : []
                 },
                 {
-                    "value": "62a989e21f2c2bbc5b1e7154",
                     "title": "Size",
                     "items": getItems("Size") ? getItems("Size").items : []
                 }
@@ -60,8 +58,8 @@ function PODProperties() {
                         <Flex>
                             <Box width={"20%"}><AppTypography fontSize="14px" color="#FFF">Colors</AppTypography></Box>
                             <Flex width={"80%"} flexWrap="wrap" gap={3}>
-                                {makeproperties('color').map(el => ({ caption: el.caption, value: el.value.includes("#") ? el.value : '#' + el.value })).map((el, key) => (
-                                    <PropertyItem key={key} type="Color" item={el} />
+                                {makeproperties('color')?.map(el => ({ caption: el?.caption, value: el?.value?.includes("#") ? el?.value : '#' + el?.value })).map((el, key) => (
+                                    <PropertyItem key={key} property={data?.data?.data?.find(findProperty => findProperty?.name === ("color"))} podItem={el} />
                                 ))}
                             </Flex>
                         </Flex>
@@ -71,8 +69,8 @@ function PODProperties() {
                             <Box width={"20%"}><AppTypography fontSize="14px" color="#FFF">Sizes</AppTypography></Box>
                             <Box width={"80%"}>
                                 <Flex width={"80%"} flexWrap="wrap" gap={4}>
-                                    {makeproperties('size').map((el, key) => (
-                                        <PropertyItem key={key} type="Size" item={el} />
+                                    {makeproperties('size')?.map((el, key) => (
+                                        <PropertyItem key={key} property={data?.data?.data?.find(findProperty => findProperty?.name === ("size"))} podItem={el} />
                                     ))}
                                 </Flex>
                             </Box>

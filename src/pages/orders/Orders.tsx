@@ -6,9 +6,13 @@ import { ordersServices, ordersStatuesServices } from 'lib/apis/orders/orderServ
 import AppEmptyPage from 'components/common/empty/AppEmptyPage'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { IordersServices } from 'lib/apis/orders/interfaces'
+import { exportOrdersReportService } from 'lib/apis/order/services'
+import useAppToast from 'functions/hooks/toast/useToast'
+import { AxiosError } from 'axios'
 
 function Orders() {
     const { mutate, isLoading, data } = useMutation((params: IordersServices) => ordersServices(params))
+    const [isFetchingOrdersReport, setFetchingOrdersReport] = useState(false)
     const statues = useMutation(() => ordersStatuesServices())
     const [States, setStates] = useState({
         search: null
@@ -16,6 +20,7 @@ function Orders() {
     const orders = useMemo(() => data?.data?.data, [data])
     const navigate = useNavigate()
     const location = useLocation()
+    const { showToast } = useAppToast()
     const [searchParams] = useSearchParams()
     const page = useMemo(() => parseInt(searchParams.get("page")), [searchParams]) || 1
 
@@ -47,11 +52,43 @@ function Orders() {
         }) : []
     }, [States.search, data])
 
+    const handleExportOrdersReport = async () => {
+        try {
+            setFetchingOrdersReport(true)
+            const data = await exportOrdersReportService()
+            const url = window.URL.createObjectURL(data);
+            const link = document.createElement('a')
+            link.href = url
+            link.download = `${Date.now()}.xlsx`
+            document.body.appendChild(link)
+            link.click()
+            link.remove()
+            setTimeout(() => {
+                window.URL.revokeObjectURL(url)
+            }, 100)
+        } catch (error) {
+            showToast({ message: (error as AxiosError).message, type: "error" })
+        }
+        finally {
+            setFetchingOrdersReport(false)
+        }
+    }
+
     return (
         <>
             <AppDataGrid
                 loading={isLoading}
                 rows={rows}
+                buttons={[
+                    {
+                        caption: "Export",
+                        onClick: handleExportOrdersReport,
+                        buttonProps: {
+                            isDisabled: isFetchingOrdersReport,
+                            isLoading: isFetchingOrdersReport
+                        }
+                    }
+                ]}
                 search={{ onChange: (e) => setSearch(e.target.value) }}
                 empty={<AppEmptyPage title="No orders available yet!" />}
                 pagination={{

@@ -12,7 +12,7 @@ interface checkExistAllPropperty {
 const ProductValidateModel = ({
     skues: ({ skues }: Iskues) => {
         return skues.find(sku => {
-            return parseInt(sku.quantity) <= 0
+            return sku?.quantity <= 0
         })
     },
     checkExistAllPropperty: ({ properties }: checkExistAllPropperty) => {

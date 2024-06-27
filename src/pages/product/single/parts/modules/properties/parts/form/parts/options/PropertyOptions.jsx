@@ -9,14 +9,13 @@ function PropertyOptions({ element, onChange, value }) {
     const { state: { properties, publish_product }, productID } = useContext(productContext)
     const { typesAvailable } = PropertiesFormModel
 
-    const typesSelected = useCallback((propertyValue, typeID) => {
+    const typesSelected = useCallback((propertyValue, title) => {
         return typesAvailable({
             state: properties,
-            typeID,
+            title,
             propertyValue
         })
     }, [properties, typesProperties])
-
     return (
         <>
             <AppSelectBox
@@ -27,9 +26,9 @@ function PropertyOptions({ element, onChange, value }) {
                 value={value}
                 {...!value && { placeholder: "Select property" }}
                 items={typesProperties.map((el) => ({
-                    value: el._id,
+                    value: el.name,
                     caption: el.name,
-                    disabled: typesSelected(element.value, el._id)
+                    disabled: typesSelected(element.value, el.name)
                 }))}
             />
         </>

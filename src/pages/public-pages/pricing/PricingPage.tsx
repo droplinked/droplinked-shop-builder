@@ -11,7 +11,7 @@ function PricingPage() {
                 paddingInline={{ base: "16px", sm: "28px" }}
                 paddingBlock={120}
             >
-                <Plans showBuyButton={false} />
+                <Plans />
             </Box>
         </Flex>
     )
