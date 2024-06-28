@@ -56,14 +56,14 @@ const ProductPassport = () => {
   );
 
   const productOptions = [
-    { label: "Product ID", value: activeProduct.product_id, icon: "assets/images/dpp-page/icon-scanner.png" },
-    { label: "Weight", value: activeProduct.weight, icon: "assets/images/dpp-page/icon-weight.png" },
-    { label: "Traceability", value: activeProduct.traceability, icon: "assets/images/dpp-page/icon-road.png" },
-    { label: "Manufacturing site", value: activeProduct.manufacturingSite, icon: "assets/images/dpp-page/icon-factory.png" },
-    { label: "Certifications", value: activeProduct.certifications, icon: "assets/images/dpp-page/icon-certificate.png" },
-    { label: "Circular characteristics", value: activeProduct.circularCharacteristics, icon: "assets/images/dpp-page/icon-recycle.png" },
-    { label: "Sourcing composition", value: activeProduct.sourcingComposition, icon: "assets/images/dpp-page/icon-puzzel.png" },
-    { label: "LCA", value: activeProduct.LCA, icon: "assets/images/dpp-page/icon-earth.png" },
+    { label: "Product ID", value: activeProduct.product_id, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/e8484afab2db79beca0ea52244b7d6022b502bdfc138f0a8304b9a4e0154632c.png_st.png" },
+    { label: "Weight", value: activeProduct.weight, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/1a49141c98c67903387ec9f5fa96f7ae134d16abc06f14ab9b9f163e9dfc8d6c.png_st.png" },
+    { label: "Traceability", value: activeProduct.traceability, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/b7ce0f43bfd9741447959d0d6e7d7ac13b0aee23659bb052b3cc1328fa9611b9.png_st.png" },
+    { label: "Manufacturing site", value: activeProduct.manufacturingSite, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/386a3c15720ebecea5a5f23b66cbf48a7a661dd521c3c38914ecb54b0f80abb9.png_st.png" },
+    { label: "Certifications", value: activeProduct.certifications, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/0518b602ffba9cd2c8539b817e8c3e245b75cd03d27d16ac523231006ccac730.png_st.png" },
+    { label: "Circular characteristics", value: activeProduct.circularCharacteristics, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/6c88f22a538ede68647b3cffeb4798efd19559ee425b8ef844e2b52b3a2bc3b6.png_st.png" },
+    { label: "Sourcing composition", value: activeProduct.sourcingComposition, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/b2fc63388419e09779ed114a5e1b2b28f42ffd0a1c37a2baf6bea5b0b0078503.png_st.png" },
+    { label: "LCA", value: activeProduct.LCA, icon: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/54da0df50de53760d5b9bf4b730c0e28895fbea4c59314a6a353203484c2d87a.png_st.png" },
   ];
 
   return (
@@ -156,13 +156,13 @@ const ProductPassport = () => {
         <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"10px"}>
           <AppTypography fontSize={"35px"} fontWeight={700} color={"#2BCFA1"}>Chain of custody</AppTypography>
           <Flex alignItems={"center"} gap="10px">
-            <Image src="assets/images/dpp-page/icon-truck.png" width={"40px"} height={"40px"} objectFit={"cover"} />
+            <Image src="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/9299c3d7eabfb00567fdba7440c9efc7812e9e9269442e47bbbfc57579bb9c0b.png_st.png" width={"40px"} height={"40px"} objectFit={"cover"} />
             <AppTypography fontSize={"25px"} fontWeight={700} color={"#FFF"}>10/09/2022, 14:22</AppTypography>
             <Flex width={"5px"} alignSelf={"stretch"} bgColor={"#2BCFA1"} />
             <AppTypography fontSize={"25px"} fontWeight={700} color={"#FFF"}>Product created</AppTypography>
           </Flex>
         </Flex>
-        <Image src="assets/images/dpp-page/sample-qrcode.png" width={"92px"} height={"92px"} borderRadius={"8px"} objectFit={"cover"} />
+        <Image src="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/fc09f0bd1bc6b56ca3890e4031fa1452cf76ff640010f6a0f2460975e62c551c.png_st.png" width={"92px"} height={"92px"} borderRadius={"8px"} objectFit={"cover"} />
       </Flex>
 
       {/* divider */}

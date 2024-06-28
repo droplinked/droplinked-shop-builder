@@ -9,17 +9,17 @@ const dppWithBlcBenefits = [
   {
     title: "Traceability",
     benefits: ["Real-Time Tracking", "Supply Chain Insights", "Counterfeit Prevention"],
-    imageUrl: "assets/images/dpp-page/img-traceability.png",
+    imageUrl: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/8189319e13867f3f38c3cc35f2a19ccf6cd0978d88d837e8ce5829552fcc7b38.png_st.png",
   },
   {
     title: "Transparency",
     benefits: ["Product History Visibility", "Public Verification", "Consistent Information"],
-    imageUrl: "assets/images/dpp-page/img-transparency.png",
+    imageUrl: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/84c564db1a66734b32c22c535bbaac18ab674ddb35acb1a5ab24d5c07d0fcf46.png_st.png",
   },
   {
     title: "Security",
     benefits: ["Immutable Records", "Decentralization", "Controlled Access"],
-    imageUrl: "assets/images/dpp-page/img-security.png",
+    imageUrl: "https://upload-file-flatlay.s3.us-west-2.amazonaws.com/4b62b0b38320a5f39b2927feb44d9ba205a3623196ed265a0e570d8e31a99f27.png_st.png",
   },
 ];
 
