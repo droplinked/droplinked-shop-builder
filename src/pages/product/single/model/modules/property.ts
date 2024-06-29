@@ -1,5 +1,5 @@
 import { Iproperties } from "lib/apis/product/interfaces";
-import AppendModule from "../../parts/modules/properties/model/module/append";
+import { typesProperties } from "lib/utils/statics/types";
 
 const propertyFactor = {
     refactor: (items: Array<any>): Array<Iproperties> => {
@@ -7,7 +7,7 @@ const propertyFactor = {
         items.forEach((item) => {
             const data: Array<any> = item;
             data.forEach((element) => {
-                const variantName = element?.variantName || AppendModule?.getCaption(element?.variantID);
+                const variantName = element?.variantName || typesProperties.filter(el => el._id === element?.variantID && el)?.[0]?.name || ""
                 if (!properties[variantName]) {
                     properties[variantName] = {
                         items: [],

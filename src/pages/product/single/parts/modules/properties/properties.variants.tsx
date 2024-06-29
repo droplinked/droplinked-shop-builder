@@ -1,7 +1,7 @@
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppTypography from "components/common/typography/AppTypography";
 import { FieldArray, Form, Formik } from "formik";
-import React, { useCallback, useContext, useRef } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 import { VStack, HStack, Input, Box, useOutsideClick } from "@chakra-ui/react";
 import { productContext } from "pages/product/single/context";
 import AppIcons from "assest/icon/Appicons";
@@ -10,162 +10,93 @@ import DropDownModel from "components/common/form/dropdown/DropDownModel";
 import { useQuery } from "react-query";
 import { variantOptionsService } from "lib/apis/variant/services";
 
-const defaultValues = {
-    options: [
-        {
-            name: "",
-            values: [{ value: "", caption: "" }],
-        },
-    ],
-};
-
-const droplinked_variants = [
-    { label: "Color", value: "Color" },
-    { label: "Size", value: "Size" },
-];
+/**
+ * Handles the application of changes or cancellation of edits for property variant forms.
+ * This function is designed to either commit the changes to the global state or revert
+ * any changes made to a form depending on user interaction (apply or cancel).
+ *
+ * @param {number} index_of_form_that_called_me - The index of the form where the apply or cancel action was triggered.
+ * @param {boolean} [cancel=false] - A boolean flag indicating whether the action is to cancel the changes. Defaults to false, meaning changes are to be applied.
+ * 
+ * Detailed Function Logic:
+ * - **Form Reference**: The function first checks if there's a current reference to the Formik form, which is necessary to access and manipulate form data.
+ * - **Data Processing**:
+ *   - The options are iterated over to filter and clean data based on the condition that custom properties must not have empty values and captions.
+ *   - Each option is also checked to close its form view if it's the one that triggered the apply or cancel action.
+ * - **Apply Changes**:
+ *   - If not cancelling, it updates the global state with the cleaned and processed data where each property's ID and items are updated based on predefined conditions.
+ *   - The Formik state is then updated to reflect these changes.
+ * - **Cancel Changes**:
+ *   - If cancelling and the property existed previously (checked against an external properties array), the form values are reset to their original state.
+ *   - If the property was newly added and not previously existing, it is removed entirely from the Formik state.
+ * 
+ * Note: This function heavily relies on external state (`properties`) for original data reference and `formikRef` to access and manipulate Formik state.
+ */
 
 const PropertyVariants = () => {
-    const { data } = useQuery({
-        queryFn: variantOptionsService,
-        queryKey: "product_properties",
-        cacheTime: 60 * 60 * 1000,
-        refetchOnWindowFocus: false,
-    });
+    const { data } = useQuery({ queryFn: variantOptionsService, queryKey: "product_properties", cacheTime: 60 * 60 * 1000, refetchOnWindowFocus: false });
     const formikRef = useRef(null);
-    const {
-        state: { product_type, properties, publish_product, pod_blank_product_id, prodviderID },
-        productID,
-        methods: { updateState },
-    } = useContext(productContext);
-    const getProps = useCallback(() => {
-        return properties
-            ? {
-                  options: properties?.map((api_properties) => ({
-                      name: api_properties?.title || "",
-                      values: api_properties?.items || [],
-                  })),
-              }
-            : defaultValues;
-    }, [properties]);
-    const ref = useRef();
-    const handleOutsideClick = useCallback(() => {
+    const { state: { properties, publish_product }, productID, methods: { updateState } } = useContext(productContext);
+    const getProps = useCallback(() => properties ? { options: properties?.map((api_properties) => ({ name: api_properties?.title || "", values: api_properties?.items || [], isOpen: false })) } : { options: [{ name: "", values: [{ value: "", caption: "" }], isOpen: true }]  }, [properties]);
+    const handle_form_apply = useCallback((index_of_form_that_called_me: number, cancel: boolean = false) => {
         if (formikRef.current) {
             const formik = formikRef.current;
             const cleaned_values = formik?.values?.options
                 ?.map((option, index) => ({
                     ...option,
                     values: option?.values?.filter((each_value_field_array) => {
-                        console.log(each_value_field_array, !is_custom(option?.name), option?.values?.length);
-                        if (!is_custom(option?.name) || option?.values?.length === 1) return true;
-                        return each_value_field_array?.value !== "" && each_value_field_array?.caption !== "";
+                        if (!is_custom(option?.name)) return true;
+                        return (each_value_field_array?.value !== "" && each_value_field_array?.caption !== "");
                     }),
+                    ...(index_of_form_that_called_me === index && {isOpen: false})
                 }))
                 ?.filter((option, index) => option?.values?.length > 0);
-            updateState(
-                "properties",
-                cleaned_values.map((property) => {
-                    return {
-                        title: property?.name,
-                        value: property?.name === "Color" ? "62a989ab1f2c2bbc5b1e7153" : property?.name === "Size" ? "62a989ab1f2c2bbc5b1e7154" : property.name,
-                        items: property?.values,
-                    };
-                })
-            );
-
-            formik.setFieldValue("options", cleaned_values);
+            if(!cancel){
+                updateState("properties", cleaned_values.map((property) => ({ title: property?.name, value: property?.name === "Color" ? "62a989ab1f2c2bbc5b1e7153" : property?.name === "Size" ? "62a989ab1f2c2bbc5b1e7154" : property.name, items: property?.values })));
+                formik.setFieldValue("options", cleaned_values);
+            }
+            if(cancel){
+                if(properties[index_of_form_that_called_me]){
+                    formik.setFieldValue(`options[${index_of_form_that_called_me}]`, {name: properties[index_of_form_that_called_me]?.title, values: properties[index_of_form_that_called_me]?.items, isOpen: false})
+                }else{
+                    formik.setFieldValue("options", formik.values.options.filter((_, idx) => idx !== index_of_form_that_called_me));
+                }
+            }
         }
     }, [formikRef?.current?.values?.options]);
-
-    useOutsideClick({
-        ref,
-        handler: handleOutsideClick,
-    });
 
     const is_custom = (variant_name: string) => !["Size", "Color"].includes(variant_name);
 
     return (
-        <Formik
-            innerRef={formikRef}
-            initialValues={getProps()}
-            enableReinitialize
-            onSubmit={(values) => {
-                console.log("Submitted Data", values);
-            }}
-        >
-            {({ values, resetForm, handleChange }) => (
+        <Formik innerRef={formikRef} initialValues={getProps()} enableReinitialize onSubmit={(values) => {}}>
+            {({ values }) => (
                 <Form>
                     <FieldArray
                         name="options"
                         render={(arrayHelpers) => (
-                            <VStack spacing={"24px"} align={"stretch"}>
+                            <VStack spacing={"32px"} align={"stretch"}>
                                 {values.options.map((option, index) => (
-                                    <VStack key={index} ref={ref} align={"stretch"} padding={"24px"} spacing={"24px"} backgroundColor={"#141414"} rounded={"16px"}>
+                                    option?.isOpen ? 
+                                    <VStack key={index} align={"stretch"} padding={"24px"} spacing={"24px"} backgroundColor={"#141414"} rounded={"16px"}>
                                         <VStack spacing={"12px"} align={"flex-start"} width={"full"}>
-                                            <AppTypography fontSize={"16px"} color="#C2C2C2">
-                                                Property Name
-                                            </AppTypography>
+                                            <AppTypography fontSize={"16px"} color="#C2C2C2">Property Name</AppTypography>
                                             <HStack width="300px" display="flex" alignItems="center" justifyContent="center" borderRadius="8px" background="#262626">
                                                 <CreatableSelect
                                                     placeholder={"Select or type"}
                                                     formatCreateLabel={(e) => `Create ${e}`}
                                                     onCreateOption={(e) => {
-                                                        if (
-                                                            (option?.values?.length > 1 && option?.values?.[0]?.value !== "") ||
-                                                            values.options.some((opt) => opt.name.toLowerCase() === e.toLowerCase())
-                                                        )
-                                                            return;
+                                                        if ((option?.values?.length > 1 && option?.values?.[0]?.value !== "") || values.options.some((opt) => opt.name.toLowerCase() === e.toLowerCase())) return;
                                                         option?.values?.length === 0 && arrayHelpers?.form?.setFieldValue(`options[${index}].values`, [{ value: "", caption: "" }]);
                                                         arrayHelpers?.form?.setFieldValue(`options[${index}].name`, e);
-                                                        console.log(option?.values);
                                                     }}
-                                                    // isDisabled={option?.values?.length > 1 && option?.values?.[0]?.value !== ""}
                                                     onChange={(e) => {
-                                                        if (
-                                                            (option?.values?.length > 1 && option?.values?.[0]?.value !== "") ||
-                                                            values.options.some((opt) => opt?.name?.toLowerCase() === e?.value.toLowerCase())
-                                                        )
-                                                            return;
+                                                        if ((option?.values?.length > 1 && option?.values?.[0]?.value !== "") || values.options.some((opt) => opt?.name?.toLowerCase() === e?.value.toLowerCase())) return;
                                                         arrayHelpers?.form?.setFieldValue(`options[${index}].name`, e?.value);
                                                         arrayHelpers?.form?.setFieldValue(`options[${index}].values`, []);
                                                     }}
                                                     value={option?.name !== "" && { value: option?.name, label: option?.name }}
-                                                    options={
-                                                        // properties?.length
-                                                        //     ? droplinked_variants.concat(
-                                                        //           properties
-                                                        //               ?.map((api_properties) => {
-                                                        //                   console.log(api_properties);
-                                                        //                   if (api_properties?.title && api_properties?.title !== "" && is_custom(api_properties?.title))
-                                                        //                       return {
-                                                        //                           value: api_properties?.title,
-                                                        //                           label: api_properties?.title,
-                                                        //                       };
-                                                        //                   return { value: undefined, label: undefined };
-                                                        //               })
-                                                        //               ?.filter((filtering) => filtering?.value)
-                                                        //       )
-                                                        //     :
-                                                        droplinked_variants
-                                                    }
-                                                    styles={{
-                                                        ...DropDownModel.style(undefined),
-                                                        indicatorsContainer: (baseStyles) => ({ ...baseStyles }),
-                                                        indicatorSeparator: (baseStyles) => ({ ...baseStyles, display: "none" }),
-                                                        container: (baseStyles) => ({ ...baseStyles, width: "100%" }),
-                                                        input: (baseStyles) => ({ ...baseStyles, color: "#C2C2C2" }),
-                                                        control: (baseStyles) => ({
-                                                            ...baseStyles,
-                                                            borderColor: "transparent",
-                                                            backgroundColor: "transparent",
-                                                            fontSize: "16x",
-                                                            padding: "8px 18px",
-                                                            borderRadius: "8px",
-                                                            display: "flex",
-                                                        }),
-                                                        placeholder: (baseStyles) => ({ ...baseStyles, color: "#808080" }),
-                                                        singleValue: (baseStyles) => ({ ...baseStyles, color: "#C2C2C2" }),
-                                                        option: () => ({ fontSize: "14px", padding: "10px 16px", color: "#C2C2C2", ":hover": { backgroundColor: "#444" } }),
-                                                    }}
+                                                    options={[{ label: "Color", value: "Color" }, { label: "Size", value: "Size" }]}
+                                                    styles={{ ...DropDownModel.style(undefined), indicatorsContainer: (baseStyles) => ({ ...baseStyles }), indicatorSeparator: (baseStyles) => ({ ...baseStyles, display: "none" }), container: (baseStyles) => ({ ...baseStyles, width: "100%" }), input: (baseStyles) => ({ ...baseStyles, color: "#C2C2C2" }), control: (baseStyles) => ({ ...baseStyles, borderColor: "transparent", backgroundColor: "transparent", fontSize: "16x", padding: "8px 18px", borderRadius: "8px", display: "flex" }), placeholder: (baseStyles) => ({ ...baseStyles, color: "#808080" }), singleValue: (baseStyles) => ({ ...baseStyles, color: "#C2C2C2" }), option: () => ({ fontSize: "14px", padding: "10px 16px", color: "#C2C2C2", ":hover": { backgroundColor: "#444" } }) }}
                                                 />
                                             </HStack>
                                         </VStack>
@@ -173,66 +104,34 @@ const PropertyVariants = () => {
                                             name={`options[${index}].values`}
                                             render={(valueHelpers) => (
                                                 <VStack width="full" spacing={"16px"} align={"flex-start"}>
-                                                    <AppTypography fontSize={"16px"} color="#C2C2C2">
-                                                        Property Values
-                                                    </AppTypography>
+                                                    <AppTypography fontSize={"16px"} color="#C2C2C2">Property Values</AppTypography>
                                                     <HStack align={"stretch"} flexWrap={"wrap"}>
                                                         {!is_custom(option?.name) &&
                                                             data?.data?.data?.length &&
                                                             data?.data?.data
                                                                 ?.find((service_variants) => service_variants?.name?.toLowerCase() === option?.name?.toLowerCase())
-                                                                ?.values?.map((founded_values_from_service: { caption: string; value: string }) => {
-                                                                    // value stands for hex code
-                                                                    const index_of_active_value_if_exist = option?.values?.findIndex(
-                                                                        (formik_field_selected_values) => formik_field_selected_values?.value === founded_values_from_service?.value
-                                                                    );
+                                                                ?.values?.map((founded_value_from_service: { caption: string; value: string }) => {
+                                                                    const index_of_active_value_if_exist = option?.values?.findIndex((formik_field_selected_values) => formik_field_selected_values?.value === founded_value_from_service?.value);
                                                                     const is_value_active = index_of_active_value_if_exist !== -1;
-                                                                    const styles_based_on_option_name = {
-                                                                        Color: {
-                                                                            background: founded_values_from_service.value,
-                                                                            borderRadius: "100%",
-                                                                            border: "2px solid #353535",
-                                                                            width: "32px",
-                                                                            height: "32px",
-                                                                            ...(is_value_active && { borderColor: "#2BCFA1" }),
-                                                                        },
-                                                                        Size: {
-                                                                            background: "#1C1C1C",
-                                                                            borderRadius: "28px",
-                                                                            padding: "6px 16px",
-                                                                            border: "2px solid transparent",
-                                                                            ...(is_value_active && { borderColor: "#2BCFA1" }),
-                                                                        },
-                                                                    };
+                                                                    const styles_based_on_option_name = { Color: { background: founded_value_from_service.value, borderRadius: "100%", border: "2px solid #353535", width: "32px", height: "32px", ...(is_value_active && { borderColor: "#2BCFA1" }) }, Size: { background: "#1C1C1C", borderRadius: "28px", padding: "6px 16px", border: "2px solid transparent", ...(is_value_active && { borderColor: "#2BCFA1" }) } };
                                                                     return (
                                                                         <Box
-                                                                            key={founded_values_from_service?.value}
+                                                                            key={founded_value_from_service?.value}
                                                                             onClick={() => {
-                                                                                const the_clicked_value = {
-                                                                                    value: founded_values_from_service?.value,
-                                                                                    caption: founded_values_from_service?.caption,
-                                                                                };
+                                                                                const the_clicked_value = { value: founded_value_from_service?.value, caption: founded_value_from_service?.caption };
                                                                                 if (is_value_active) valueHelpers.remove(index_of_active_value_if_exist);
                                                                                 else valueHelpers.push(the_clicked_value);
                                                                             }}
                                                                             cursor={productID && publish_product ? "auto" : "pointer"}
                                                                             {...styles_based_on_option_name[option?.name]}
                                                                         >
-                                                                            {option?.name === "Size" && founded_values_from_service?.caption}
+                                                                            {option?.name === "Size" && founded_value_from_service?.caption}
                                                                         </Box>
                                                                     );
                                                                 })}
                                                     </HStack>
                                                     {option?.values?.map((value, k) => (
-                                                        <HStack
-                                                            padding={"8px 18px"}
-                                                            height={"48px"}
-                                                            key={k}
-                                                            width={"full"}
-                                                            align="center"
-                                                            justifyContent={"center"}
-                                                            borderRadius="8px"
-                                                            background="#262626"
+                                                        <HStack padding={"8px 18px"} height={"48px"} key={k} width={"full"} align="center" justifyContent={"center"} borderRadius="8px" background="#262626"
                                                         >
                                                             <Input
                                                                 isReadOnly={!is_custom(option?.name) || option?.name === ""}
@@ -274,13 +173,21 @@ const PropertyVariants = () => {
                                                             />
                                                         </HStack>
                                                     ))}
-                                                    {/* {is_custom(option?.name) && <BasicButton onClick={() => valueHelpers.push({ value: "" })}>Add another Value</BasicButton>} */}
+                                                    <HStack width={"full"} spacing={"16px"} align={"flex-end"} justifyContent={"flex-end"}>
+                                                        <BasicButton onClick={() => handle_form_apply(index, true)} variant="outline" border={"1px solid #2BCFA1"} color={"#2BCFA1"} _hover={{ borderColor: "#5D5D5D !important", bgColor: "unset", color: "#5D5D5D" }}>Cancel</BasicButton>
+                                                        <BasicButton _hover={{}} onClick={() => handle_form_apply(index)}>Apply</BasicButton>
+                                                    </HStack>
                                                 </VStack>
                                             )}
                                         />
                                     </VStack>
-                                ))}
-                                <BasicButton onClick={() => arrayHelpers.push({ name: "", values: [{ value: "", caption: "" }] })}>Add another option</BasicButton>
+                                :
+                                <HStack justifyContent="space-between" onClick={() => arrayHelpers?.form?.setFieldValue(`options[${index}].isOpen`, true)} cursor={"pointer"} padding={"24px"} backgroundColor={"#141414"} rounded={"16px"}>
+                                    <AppTypography fontSize={"16px"} color="#C2C2C2">{option.name}</AppTypography>
+                                    <HStack>{option?.values?.map((opt) => <Box padding={"4px 8px"} backgroundColor={"#262626"} rounded={"4px"}>{opt?.caption}</Box>)}</HStack>
+                                </HStack>
+                            ))}
+                                <BasicButton onClick={() => {arrayHelpers.push({ name: "", values: [{ value: "", caption: "" }], isOpen: true })}}>Add another option</BasicButton>
                             </VStack>
                         )}
                     />
