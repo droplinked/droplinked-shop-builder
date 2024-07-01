@@ -1,10 +1,6 @@
 import { VStack } from '@chakra-ui/react'
-import useShopSubscriptionData from 'functions/hooks/shop-subscription-data/useShopSubscriptionData'
-import useAppToast from 'functions/hooks/toast/useToast'
-import { useCustomNavigate } from 'functions/hooks/useCustomeNavigate/useCustomNavigate'
 import { IproductService } from 'lib/apis/shop/interfaces'
 import { productService } from 'lib/apis/shop/shopServices'
-import AppErrors from 'lib/utils/statics/errors/errors'
 import { nanoid } from 'nanoid'
 import React, { useCallback, useEffect, useReducer } from 'react'
 import { useMutation } from 'react-query'
@@ -19,15 +15,12 @@ import productPageNamespace from './reducers'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductService) => productService(params))
-    const { isFetching, error: fetchShopSubscriptionDataError } = useShopSubscriptionData()
     const { reducers, initialState } = productPageNamespace
     const params = useParams()
     const [state, dispatch] = useReducer(reducers, initialState)
     const { refactorData, productTypeHandle } = ProductSingleModel
     const productId = params?.productId
     const queryParams = useParams()
-    const { showToast } = useAppToast()
-    const { shopNavigate } = useCustomNavigate()
 
     // Fetch product for edit
     const fetch = useCallback(() => {
@@ -64,13 +57,6 @@ function ProductSingle() {
             dispatch({ type: "updateState", params: { element: "custome_external_id", value: Date.now() + nanoid(13) } })
         }
     }, [productId, state.params.product_type])
-
-    useEffect(() => {
-        if (fetchShopSubscriptionDataError) {
-            showToast({ message: AppErrors.permission.shop_subscription_data_unavailable, type: "error" })
-            shopNavigate("products")
-        }
-    }, [fetchShopSubscriptionDataError])
 
     return (
         <productContext.Provider value={{

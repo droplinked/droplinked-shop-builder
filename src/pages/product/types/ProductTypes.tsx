@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import Loading from './Loading'
 
 interface ProductType {
-  type: "Physical Product" | "Print On Demand" | "Digital Product" | "Event"
+  type: "Physical Product" | "Production on Demand" | "Digital Product" | "Event"
   description: string;
   image: string;
   route: string;
@@ -37,7 +37,7 @@ function ProductTypes() {
       legalUsageKey: "physical_product"
     },
     {
-      type: "Print On Demand",
+      type: "Production on Demand",
       description: `Transform your Artwork or NFT into exclusive custom apparel, printed
       and shipped by our trusted providers`,
       image: "/assets/images/pod.svg",
