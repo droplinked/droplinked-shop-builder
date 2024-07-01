@@ -104,3 +104,10 @@ export interface IUpdateShopName {
     id: string;
     shopName: string;
 }
+
+export interface UserShop {
+    _id: string;
+    name: string;
+    logo?: string;
+    selected?: boolean;
+}
