@@ -1,5 +1,4 @@
 import { IproductState } from "lib/apis/product/interfaces";
-import AppendModule from "../parts/modules/properties/model/module/append";
 import propertyFactor from "./modules/property";
 import { property_to_id } from "lib/utils/statics/types";
 

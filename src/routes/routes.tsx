@@ -26,6 +26,7 @@ import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import HomePage from "pages/public-pages/homePage/HomePage"
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
+import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
@@ -77,6 +78,7 @@ function AppRoutes() {
           <Route path="pod-product" element={<PODProductPage />} />
           <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
           <Route path="roi" element={<ROIPage />} />
+          <Route path="dpp" element={<DppPage />} />
           <Route path="blogs">
             <Route index element={<PublicBlogs />} />
             <Route path=":slug" element={<PublicBlog />} />

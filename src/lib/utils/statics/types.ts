@@ -8,10 +8,6 @@ export const typesProperties = [
         _id: "62a989e21f2c2bbc5b1e7154",
         name: "Size",
     },
-    {
-        _id: "1",
-        name: "Custom Property",
-    },
 ];
 
 export const property_to_id = {
