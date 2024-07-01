@@ -2,7 +2,6 @@ import { HStack, Skeleton, SkeletonText, VStack } from "@chakra-ui/react";
 import React from "react";
 
 const LoadingBlogs = () => {
-    console.log("hi");
     return (
         <VStack justifyContent={"center"} alignItems={"center"} maxWidth="1400px" spacing={"32px"} padding={"108px 64px 64px 64px"}>
             <Skeleton width={"full"} height={"512px"} rounded={"32px"} />

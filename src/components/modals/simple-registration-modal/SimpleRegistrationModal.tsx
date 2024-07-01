@@ -6,7 +6,8 @@ import AppTypography from 'components/common/typography/AppTypography';
 import useDebounce from 'functions/hooks/debounce/useDebounce';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { useProfile } from 'functions/hooks/useProfile/useProfile';
-import { checkUsernameAvailabilityService, updateUsernameService } from 'lib/apis/shop/shopServices';
+import { IUpdateShopName } from 'lib/apis/shop/interfaces';
+import { checkUsernameAvailabilityService, createExtraShopForCurrentUserService, updateShopNameService } from 'lib/apis/shop/shopServices';
 import useAppStore from 'lib/stores/app/appStore';
 import { appDevelopment } from 'lib/utils/app/variable';
 import React, { useEffect, useState } from 'react';
@@ -14,14 +15,32 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styles from "./styles.module.scss";
 
-function SimpleRegistrationModal({ isOpen }: { isOpen: boolean }) {
+type CommonProps = {
+    isOpen: boolean;
+}
+
+type RegisterShopNameProps = CommonProps & {
+    mode: "REGISTER_SHOP_NAME";
+}
+
+type CreateExtraShopProps = CommonProps & {
+    mode: "CREATE_EXTRA_SHOP";
+    close: () => void;
+    refetchUserShops: () => void;
+}
+
+type Props = RegisterShopNameProps | CreateExtraShopProps
+
+function SimpleRegistrationModal(props: Props) {
+    const { isOpen, mode } = props
     const { shop } = useProfile()
     const { updateState, } = useAppStore()
     const [username, setUsername] = useState("")
     const debouncedUsername = useDebounce(username, 1000)
     const [isUsernameAvailable, setUsernameAvailability] = useState<boolean | null>(null)
     const checkUsernameService = useMutation((shopName: string) => checkUsernameAvailabilityService(shopName))
-    const [isLoading, setLoading] = useState(false)
+    const UpdateUsernameService = useMutation((props: IUpdateShopName) => updateShopNameService(props))
+    const createExtraShopService = useMutation((shopName: string) => createExtraShopForCurrentUserService(shopName))
     const { showToast } = useAppToast()
     const navigate = useNavigate()
 
@@ -33,16 +52,12 @@ function SimpleRegistrationModal({ isOpen }: { isOpen: boolean }) {
     const handleUsernameRegistration = async () => {
         try {
             if (!isUsernameAvailable) return
-            setLoading(true)
-            const { data } = await updateUsernameService({ id: shop._id, shopName: username })
+            const { data } = await UpdateUsernameService.mutateAsync({ id: shop._id, shopName: username })
             updateState({ key: "user", params: data.data.user })
             updateState({ key: "shop", params: data.data.shop })
             navigate("/dashboard")
         } catch (error) {
             showToast({ type: "error", message: "Oops! Something went wrong." })
-        }
-        finally {
-            setLoading(false)
         }
     }
 
@@ -51,6 +66,19 @@ function SimpleRegistrationModal({ isOpen }: { isOpen: boolean }) {
         else if (isUsernameAvailable === false) return <AppIcons.RedCircleCross />
         else if (isUsernameAvailable) return <AppIcons.CircleCheck />
         return null
+    }
+
+    const handleCreateExtraShop = async () => {
+        try {
+            await createExtraShopService.mutateAsync(username)
+            if (props.mode === "CREATE_EXTRA_SHOP") {
+                const { close, refetchUserShops } = props
+                close()
+                refetchUserShops()
+            }
+        } catch (error) {
+            showToast({ type: "error", message: "Oops! Something went wrong." })
+        }
     }
 
     useEffect(() => {
@@ -68,7 +96,15 @@ function SimpleRegistrationModal({ isOpen }: { isOpen: boolean }) {
     }, [debouncedUsername])
 
     return (
-        <AppModal open={isOpen} close={() => { }} size="xl">
+        <AppModal
+            open={isOpen}
+            size="xl"
+            close={() => {
+                if (mode === "CREATE_EXTRA_SHOP") {
+                    return props.close()
+                }
+            }}
+        >
             <Flex direction="column" gap={128}>
                 <Flex justifyContent="center" pt={83}>
                     <Flex alignItems="center" gap={3} borderRadius={8} padding={"14px 16px"} bgColor="#fff" color="#7B7B7B">
@@ -85,13 +121,33 @@ function SimpleRegistrationModal({ isOpen }: { isOpen: boolean }) {
                         <Heading margin={0} textAlign="center" fontSize={24} fontWeight={700} color="#fff">Choose URL</Heading>
                         <AppTypography fontSize={14} color="#fff">Embark on your creator journey by crafting a unique username that sets you apart from the crowd.</AppTypography>
                     </Flex>
-                    <BasicButton
-                        isDisabled={!isUsernameAvailable || isLoading || checkUsernameService.isLoading}
-                        isLoading={isLoading}
-                        onClick={handleUsernameRegistration}
-                    >
-                        Continue
-                    </BasicButton>
+                    {
+                        mode === "REGISTER_SHOP_NAME" ?
+                            <BasicButton
+                                isDisabled={!isUsernameAvailable || UpdateUsernameService.isLoading || checkUsernameService.isLoading}
+                                isLoading={UpdateUsernameService.isLoading}
+                                onClick={handleUsernameRegistration}
+                            >
+                                Continue
+                            </BasicButton>
+                            :
+                            <Flex justifyContent={"space-between"} alignItems={"center"}>
+                                <BasicButton
+                                    variant='outline'
+                                    isDisabled={createExtraShopService.isLoading}
+                                    onClick={() => props.close()}
+                                >
+                                    Cancel
+                                </BasicButton>
+                                <BasicButton
+                                    isDisabled={!isUsernameAvailable || createExtraShopService.isLoading || checkUsernameService.isLoading}
+                                    isLoading={createExtraShopService.isLoading}
+                                    onClick={handleCreateExtraShop}
+                                >
+                                    Create
+                                </BasicButton>
+                            </Flex>
+                    }
                 </Flex>
             </Flex>
         </AppModal>

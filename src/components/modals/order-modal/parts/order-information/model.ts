@@ -39,7 +39,6 @@ namespace OrderInformationModel {
     }
 
     export const getTransactionLink = (order: any) => {
-        console.log(order)
         const { orderInformation, details } = order
         const { transactionId } = orderInformation
         switch (details.paidWith) {

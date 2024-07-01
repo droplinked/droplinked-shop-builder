@@ -86,7 +86,6 @@ const VariantsMakeDataModel = ({
         }
 
         const handle = (obj: any, options: any = []) => {
-            console.log(options)
             if (!obj) {
                 const optionCombination = options?.map(option => {
                     return {
