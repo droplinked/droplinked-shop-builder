@@ -31,7 +31,7 @@ function OrderItems() {
                                     {item.isAffiliate && <CartItemBadge text={"Affiliate"} colorScheme='green' />}
                                 </Flex>
                                 <Flex alignItems={"center"} gap={"5px"}>
-                                    {item.shipping && <CartItemBadge text={item.shipping} />}
+                                    {item.shipping && <CartItemBadge text={item?.shipping} />}
                                     {cart_item_options_to_array_of_variants(item?.options)?.map((option) => <CartItemBadge text={option?.caption} />)}
                                 </Flex>
                             </Flex>
