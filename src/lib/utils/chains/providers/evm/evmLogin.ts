@@ -60,16 +60,16 @@ export async function getAccounts(ethereum: any) {
     return await ethereum.request({ method: 'eth_accounts' });
 }
 
-export function isWalletInstalled(chain: Chain){
-    if ([Chain.BASE, Chain.BINANCE, Chain.ETH, Chain.LINEA, Chain.NEAR, Chain.POLYGON, Chain.SKALE, Chain.XRPLSIDECHAIN].includes(chain)){
-        return isMetamaskInstalled()
+export function isWalletInstalled(chain: string){
+    if (["POLYGON", "XRPLSIDECHAIN", "NEAR", "BINANCE", "BASE", "LINEA", "ETH"].includes(chain)){
+        return {installed: isMetamaskInstalled(), walletName: "Metamask"}
     } 
-    else if (chain === Chain.SOLANA){
-        return (window as any).phantom?.solana?.isPhantom;
-    } else if (chain === Chain.CASPER){
-        return isCasperWalletExtentionInstalled()
-    } else if (chain === Chain.STACKS){
-        return isStacksWalletInstalled()
+    else if (chain === "SOLANA"){
+        return {installed: (window as any).phantom?.solana?.isPhantom, walletName: "Phantom"};
+    } else if (chain === "CASPER"){
+        return { installed: isCasperWalletExtentionInstalled() , walletName: "CasperWallet"}
+    } else if (chain === "STACKS"){
+        return {installed: isStacksWalletInstalled(), walletName: "Leather"}
     }
 }
 
