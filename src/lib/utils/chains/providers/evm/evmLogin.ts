@@ -1,6 +1,8 @@
 import { Buffer } from "buffer";
 import { Chain, Network } from "../../dto/chains";
 import { ModalInterface } from "../../dto/modalInterface";
+import { isCasperWalletExtentionInstalled } from "../casper/casperWalletAuth";
+import { isStacksWalletInstalled } from "@stacks/connect";
 
 let chainNames = {
     [Chain.BINANCE]: {
@@ -51,11 +53,24 @@ export const isMetamaskInstalled = (): boolean => {
 };
 export const isCoinBaseInstalled = (): boolean => {
     const { ethereum } = window as any;
-    return Boolean(ethereum && ethereum.providers.find((x: any) => { return x.isCoinbaseWallet }) != -1);
+    return Boolean(ethereum && ethereum.providers.find((x: any) => { return x.isCoinbaseWallet }) !== -1);
 };
 
 export async function getAccounts(ethereum: any) {
     return await ethereum.request({ method: 'eth_accounts' });
+}
+
+export function isWalletInstalled(chain: Chain){
+    if ([Chain.BASE, Chain.BINANCE, Chain.ETH, Chain.LINEA, Chain.NEAR, Chain.POLYGON, Chain.SKALE, Chain.XRPLSIDECHAIN].includes(chain)){
+        return isMetamaskInstalled()
+    } 
+    else if (chain === Chain.SOLANA){
+        return (window as any).phantom?.solana?.isPhantom;
+    } else if (chain === Chain.CASPER){
+        return isCasperWalletExtentionInstalled()
+    } else if (chain === Chain.STACKS){
+        return isStacksWalletInstalled()
+    }
 }
 
 export async function isWalletConnected(ethereum: any) {
