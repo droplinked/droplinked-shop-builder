@@ -10,6 +10,7 @@ import useHookStore from 'functions/hooks/store/useHookStore';
 import useAppToast from 'functions/hooks/toast/useToast';
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { supportedChainsService } from 'lib/apis/sku/services';
+import { isWalletInstalled } from 'lib/utils/chains/providers/evm/evmLogin';
 import React, { useCallback } from 'react';
 import { useQuery } from 'react-query';
 
@@ -27,6 +28,13 @@ function Wallet() {
 
     const loginChain = useCallback(async (chain: string) => {
         try {
+            const { installed, walletName } = isWalletInstalled(chain)
+            if (!installed) {
+                showToast({ type: "error", message: `${walletName} extension not found. Please ensure the extension is installed and try again` })
+                if (chain === "STACKS") window.open("https://www.xverse.app", "_blank")
+                return
+            }
+
             await login({ chain, wallets, stack })
         } catch (error) {
             showToast({ message: error || 'Failed login', type: 'warning' })
