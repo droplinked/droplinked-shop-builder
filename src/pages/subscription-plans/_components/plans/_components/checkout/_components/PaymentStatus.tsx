@@ -32,7 +32,7 @@ function PaymentStatus({ paymentStatus, selectedPlan, close }: Props) {
 
             <Image src={imageSrc} width={"349px"} height={"auto"} objectFit={"cover"} />
 
-            <AppTypography fontSize={20} color={"#C2C2C2"}>
+            <AppTypography textAlign={"center"} fontSize={20} color={"#C2C2C2"}>
                 {isSuccessful ?
                     <>
                         Thank you for subscribing to the {" "}
