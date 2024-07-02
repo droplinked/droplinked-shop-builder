@@ -16,10 +16,10 @@ function FieldsSkuTable(props: IProps) {
 
     const updateSku = useCallback((e: any) => {
         let inputvalue: any = e.target.value
-
-        if (!["externalID"].includes(name) && inputvalue) inputvalue = floatNumberRegex.test(inputvalue) ? inputvalue : value
-
+        if (!["externalID", "price"].includes(name) && inputvalue) inputvalue = floatNumberRegex.test(inputvalue) ? inputvalue : value
+        if(name === "price") inputvalue = (/^[1-9]\d*(\.\d{0,2})?$/).test(inputvalue) ? inputvalue : value
         const isDimensions = ["height", "length", "width"].includes(name)
+        const converted_price = name === "price" ? (inputvalue) : Number(inputvalue)
         const refactor = sku.map((el, key) => (key === index ? {
             ...el,
             ...isDimensions ? {
@@ -27,7 +27,7 @@ function FieldsSkuTable(props: IProps) {
                     ...el.dimensions,
                     [name]: Number(inputvalue)
                 }
-            } : { [name]: Number(inputvalue) }
+            } : { [name]: converted_price }
         } : el))
         updateState("sku", refactor)
     }, [sku, index, name, value])
