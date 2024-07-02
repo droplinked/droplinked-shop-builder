@@ -80,7 +80,7 @@ function CouponForm({ coupon, close }: Props) {
                 name: isEditMode ? coupon.name : "",
                 quantity: isEditMode ? coupon.codes.length : "",
                 balance: isEditMode ? coupon.balance : "",
-                expiryDate: isEditMode ? new Date(coupon.expiryDate) : null
+                expiryDate: isEditMode && coupon?.expiryDate ? new Date(coupon.expiryDate) : null
             }}
             validationSchema={formSchema}
             validateOnChange={false}
@@ -90,14 +90,14 @@ function CouponForm({ coupon, close }: Props) {
                 <Form>
                     <VStack align="stretch" spacing='20px'>
                         <HStack>
-                            <AppInput name='Title' value={values.name} error={errors.name} onChange={el => setFieldValue('name', el.target.value)} label='Title' placeholder='Summer Offer' isDisabled={isEditMode} />
+                            <AppInput name='Title' value={values.name} error={errors?.name?.toString()} onChange={el => setFieldValue('name', el.target.value)} label='Title' placeholder='Summer Offer' isDisabled={isEditMode} />
                         </HStack>
                         <HStack justifyContent="space-between" alignItems="baseline" spacing="20px">
                             <Box width="50%">
-                                <AppInput value={values.quantity} error={errors.quantity} name='Available Quantity' onChange={el => setFieldValue('quantity', parseInt(el.target.value))} label='Available Quantity' placeholder='100' isDisabled={isEditMode} />
+                                <AppInput value={values.quantity} error={errors?.quantity?.toString()} name='Available Quantity' onChange={el => setFieldValue('quantity', parseInt(el.target.value))} label='Available Quantity' placeholder='100' isDisabled={isEditMode} />
                             </Box>
                             <Box width="50%">
-                                <AppInput value={values.balance} error={errors.balance} name={`${capitalizeFirstLetter(type)} Value`} onChange={el => setFieldValue('balance', parseInt(el.target.value))} label={`${capitalizeFirstLetter(type)} Value`} placeholder={type === "DISCOUNT" ? '20%' : '200'} isDisabled={isEditMode} />
+                                <AppInput value={values.balance} error={errors?.balance?.toString()} name={`${capitalizeFirstLetter(type)} Value`} onChange={el => setFieldValue('balance', parseInt(el.target.value))} label={`${capitalizeFirstLetter(type)} Value`} placeholder={type === "DISCOUNT" ? '20%' : '200'} isDisabled={isEditMode} />
                             </Box>
                         </HStack>
                         <AppDatepicker
