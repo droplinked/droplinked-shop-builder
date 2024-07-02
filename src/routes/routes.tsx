@@ -25,6 +25,7 @@ import ContactUs from "pages/public-pages/contact-us/ContactUs"
 import Enquiry from "pages/public-pages/enquiry-page/EnquiryPage"
 import HomePage from "pages/public-pages/homePage/HomePage"
 import DigitalProductPage from "pages/public-pages/landings/digital-product-page/DigitalProductPage"
+import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 import PhysicalProductPage from "pages/public-pages/landings/physical-product-page/PhysicalProductPage"
 import PODProductPage from "pages/public-pages/landings/pod-product-page/PODProductPage"
 import ROIPage from "pages/public-pages/landings/roi-page/ROIPage"
@@ -38,6 +39,7 @@ import Admins from "pages/register-pages/pages/admins/Admins"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
+import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
 
@@ -53,6 +55,8 @@ const DesignPage = lazy(
   () => import("pages/register-pages/pages/design/DesignPage")
 )
 const TechnicalPage = lazy(() => import("pages/register-pages/pages/technical"))
+const PublicBlogs = lazy(() => import("pages/public-pages/blogs/Blogs"))
+const PublicBlog = lazy(() => import("pages/public-pages/blogs/blog/Blog"))
 
 function AppRoutes() {
   return (
@@ -72,6 +76,11 @@ function AppRoutes() {
           <Route path="pod-product" element={<PODProductPage />} />
           <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
           <Route path="roi" element={<ROIPage />} />
+          <Route path="dpp" element={<DppPage />} />
+          <Route path="blogs">
+            <Route index element={<PublicBlogs />} />
+            <Route path=":slug" element={<PublicBlog />} />
+          </Route>
           <Route
             path="email-verification/:token"
             element={<VerifyEmailPage />}
@@ -86,13 +95,6 @@ function AppRoutes() {
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardPage />} />
           <Route path="url-registration" element={<SimpleRegistration />} />
-
-          {/* <Route path="register" element={<RegisterPagesWrapper />}>
-            <Route path="shop-info" element={<RegisterShopInfo />} />
-            <Route path="design" element={<DesignPage />} />
-            <Route path="technical" element={<TechnicalPage />} />
-          </Route> */}
-
           <Route path="settings" element={<RegisterPagesWrapper />}>
             <Route path="shop-info" element={<RegisterShopInfo />} />
             <Route path="design" element={<DesignPage />} />
@@ -127,6 +129,9 @@ function AppRoutes() {
             <Route index element={<Blogs />} />
             <Route path="create" element={<BlogForm />} />
             <Route path=":slug" element={<Blog />} />
+          </Route>
+          <Route path="plans">
+            <Route index element={<SubscriptionPlans />} />
           </Route>
         </Route>
         <Route path=":shopname" element={<ShopPage />} />

@@ -21,16 +21,16 @@ function HeaderMain() {
             label: "Products",
             links: [
                 { label: "Physical Products", description: "Monetize Inventory with Tailored Storefronts", icon: <AppIcons.Bag />, href: "/physical-product" },
-                { label: "Digital Products", description: "Minting and Monetizing Assets", icon: <AppIcons.Gallery />, href: "/digital-product" },
-                { label: "Print on Demand", description: "Transform Artwork and IP into Premium Merchandise", icon: <AppIcons.Shirt />, href: "/pod-product" },
-                { label: "Token Pay", description: "Token Powered Commerce Driven by Your Community", icon: <AppIcons.Coins />, href: "/tokenpay" },
+                { label: "Product on Demand", description: "Transform Artwork and IP with Mint to Merch", icon: <AppIcons.Shirt />, href: "/pod-product" },
+                { label: "Digital Goods", description: "Minting and Monetizing Assets", icon: <AppIcons.Gallery />, href: "/digital-product" },
+                { label: "Tokenpay", description: "Token Powered Commerce Driven by Your Community", icon: <AppIcons.Coins />, href: "/tokenpay" },
             ],
         },
         {
-            label: "Enterprise",
+            label: "Commerce Tools",
             links: [
                 { label: "DIMST", description: "On-Chain Inventory Management", icon: <AppIcons.Coins />, href: "/roi" },
-                // { label: "DPP", description: "Digital Product Passport", icon: <AppIcons.Gallery />, href: "tokenpay" }
+                { label: "DPP", description: "Digital Product Passport", icon: <AppIcons.Gallery />, href: "/dpp" }
             ],
         },
     ]
@@ -47,7 +47,7 @@ function HeaderMain() {
                 borderBottom={header_state.scrolled ? "1px solid #3C3C3C" : "transparent"}
                 padding={{ base: "12px 16px", sm: "12px 36px", md: "16px 64px", lg: "20px 128px", xl: "24px 156px", "2xl": "192px" }}
                 backgroundColor={header_state.scrolled ? "#141414" : "transparent"}
-                zIndex="10"
+                zIndex="10000"
                 style={{ transition: `all 1s ease` }}
             >
                 <Hide below="md"><DesktopHeader products_menu={products_menu} toggleAuthModal={toggleAuthModal} /></Hide>

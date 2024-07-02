@@ -69,7 +69,12 @@ function PartnersSlider() {
             title: "Elixir",
             url: "https://droplinked.io/elixir",
             icon: "/assets/images/homepage/elixir.jpeg"
-        }
+        },
+        {
+            title: "SwissBorg",
+            url: "https://droplinked.io/swissborg",
+            icon: "/assets/images/homepage/swissborg.jpeg"
+        },
     ]
     const settings = {
         infinite: true,

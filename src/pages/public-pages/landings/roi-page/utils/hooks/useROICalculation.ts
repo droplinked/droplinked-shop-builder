@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { Plan } from "../interfaces/interfaces"
+import { getChainsFee } from "lib/apis/roi/services"
 
 const plans: Plan[] = [
     { title: 'Capsule', duration: 30, skus: 5, productRecords: 10000, baseCommitment: 10000 },
@@ -7,22 +8,11 @@ const plans: Plan[] = [
     { title: 'Enterprise', duration: 365, skus: 100, productRecords: 1000000, baseCommitment: 150000 },
 ]
 
-const availableNetworks = [
-    { title: "Ethereum", constantValue: 7.2 },
-    { title: "Polygon", constantValue: 0.1 },
-    { title: "Arbitrum", constantValue: 0.02 },
-    { title: "OP", constantValue: 0.008 },
-    { title: "Base", constantValue: 0.001 },
-    { title: "Skale", constantValue: 0.00 },
-    { title: "Solana", constantValue: 0.000 },
-    { title: "Near", constantValue: 0.002 },
-    { title: "Stacks", constantValue: 0.007 },
-    { title: "Hedera", constantValue: 0.05 },
-    { title: "Casper", constantValue: 0.04 }
-]
 
 const useROICalculation = () => {
     const [selectedPlan, setSelectedPlan] = useState(() => plans[0])
+    const [availableNetworks, setAvailableNetworks] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     const [productDetails, setProductDetails] = useState({
         serviceFee: selectedPlan.baseCommitment.toString(),
@@ -38,20 +28,20 @@ const useROICalculation = () => {
         transactionCost: "100",
     })
 
-    const networks = availableNetworks.map(network => {
-        if (parseFloat(metrics.transactionCost) == 0) {
+    const networks = availableNetworks?.map(network => {
+        if (parseFloat(metrics.transactionCost) === 0) {
             // handle errors later
         }
 
         const { totalSkus, productRecordCount, serviceFee } = productDetails
-        const protocolsValue = ((network.constantValue) * ((+ productRecordCount * parseFloat(metrics.transactionCost) / 100) + +totalSkus) + +serviceFee) / +productRecordCount
+        const protocolsValue = ((network.constantValue) * ((+productRecordCount * parseFloat(metrics.transactionCost) / 100) + +totalSkus) + +serviceFee) / +productRecordCount
         return {
-            title: `${network.title}: $${protocolsValue.toFixed(2)}`,
+            title: `${network.title.charAt(0).toUpperCase() + network.title.slice(1).toLowerCase()}: $${protocolsValue.toFixed(2)}`,
             value: protocolsValue,
         }
     })
 
-    const [selectedNetwork, setSelectedNetwork] = useState(() => networks[0].value)
+    const [selectedNetwork, setSelectedNetwork] = useState(() => networks[0]?.value)
 
     const [result, setResult] = useState({
         grossInvestment: 0,
@@ -109,7 +99,57 @@ const useROICalculation = () => {
         })
     }, [selectedPlan])
 
-    useEffect(() => { handleCalculation() }, [handleCalculation])
+    useEffect(() => {
+        const fetchChainsFee = async () => {
+            setIsLoading(true)
+            try {
+                const response = await getChainsFee();
+                const chainFees = response?.data;
+                setAvailableNetworks(chainFees)
+
+                // Update available networks with fetched data and add any missing networks
+                const updatedNetworks = availableNetworks.map(network => {
+                    const networkKey = network.title.toUpperCase();
+                    let constantValue = network.constantValue;
+
+                    if (chainFees && (chainFees[networkKey] !== undefined)) {
+                        constantValue = chainFees[networkKey];
+                    }
+
+                    return { ...network, constantValue };
+                });
+
+                // Add any new networks that are not initially defined
+                Object.keys(chainFees).forEach(key => {
+                    const networkKey = key.toUpperCase();
+                    if (!availableNetworks.some(network => network.title.toUpperCase() === networkKey)) {
+                        updatedNetworks.push({ title: key, constantValue: chainFees[key] });
+                    }
+                });
+
+                setAvailableNetworks(updatedNetworks);
+            } catch (error) {
+                console.error("Error fetching chain fees:", error);
+                setIsLoading(false)
+            } finally {
+                setIsLoading(false)
+            }
+        };
+
+        fetchChainsFee();
+    }, []);
+
+    useEffect(() => {
+        if (!isLoading && availableNetworks.length > 0) {
+            setSelectedNetwork(networks[0]?.value);
+        }
+    }, [availableNetworks, isLoading]);
+
+    useEffect(() => {
+        if (!isLoading && selectedNetwork) {
+            handleCalculation();
+        }
+    }, [selectedNetwork, isLoading, handleCalculation]);
 
     return {
         plans,
@@ -126,7 +166,8 @@ const useROICalculation = () => {
         updateMetrics,
         buttonDisabled,
         handleCalculation,
-        result
+        result,
+        isLoading
     }
 }
 

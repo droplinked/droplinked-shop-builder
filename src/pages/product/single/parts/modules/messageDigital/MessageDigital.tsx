@@ -8,7 +8,15 @@ function MessageDigital() {
 
     return (
         <VStack align="stretch">
-            <AppTextarea loading={loading} value={state?.digitalDetail?.message} onChange={e => dispatch({ type: "updateDigitalLinks", params: { message: e.target.value } })} label='Email Message' isRequired placeholder='e.g.,Your digital product is ready for download!' name='message' rows={8} />
+            <AppTextarea
+                label='Email Message'
+                name='message'
+                placeholder='e.g.,Your digital product is ready for download!'
+                value={state?.digitalDetail?.message}
+                rows={8}
+                loading={loading}
+                onChange={e => dispatch({ type: "updateDigitalLinks", params: { message: e.target.value } })}
+            />
         </VStack>
     )
 }

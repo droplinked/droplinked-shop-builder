@@ -5,6 +5,7 @@ import AppTable from 'components/common/table/AppTable';
 import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { createProductTileService, editProductTileService } from 'lib/apis/product/productServices';
+import { useCheckPermission } from 'lib/stores/app/appStore';
 import { typesProperties } from 'lib/utils/statics/types';
 import { productContext } from 'pages/product/single/context';
 import React, { useContext, useState } from 'react';
@@ -17,13 +18,14 @@ interface Props {
 }
 
 function ProductTileModal({ isOpen, close, selectedTile }: Props) {
+    const checkPermissionAndShowToast = useCheckPermission()
     const { state: { sku, productTile }, methods: { updateState } } = useContext(productContext)
     const createProductTile = useMutation(() => createProductTileService({ skuIDs }))
     const editProductTile = useMutation(() => editProductTileService(selectedTile?._id!, { skuIDs }))
     const [skuIDs, setSkuIDs] = useState<string[]>(() => selectedTile?.skuIDs.map(sku => sku._id) ?? [])
     const { showToast } = useAppToast()
     const rows = sku.map(el => {
-        const option = (type: 'color' | 'Size') => el.options.find(option => option.variantID === typesProperties[type === "color" ? 0 : 1]._id)
+        const option = (type: 'color' | 'Size') => el.options.find(option => option?.variantID === typesProperties[type === "color" ? 0 : 1]._id)
         return {
             _data: el as any,
             variant: {
@@ -45,6 +47,7 @@ function ProductTileModal({ isOpen, close, selectedTile }: Props) {
     })
     const handleSave = async () => {
         try {
+            if (!checkPermissionAndShowToast("product_tile_display")) return
             if (selectedTile?._id) {
                 const { data } = await editProductTile.mutateAsync()
                 const newTiles = productTile.map(tile => tile._id === selectedTile._id ? data.data : tile)

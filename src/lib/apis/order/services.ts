@@ -1,3 +1,4 @@
+import { Retryer } from "react-query/types/core/retryer";
 import axiosInstance from "../axiosConfig";
 import { IcrateSampleService, IgetOrderService, IupdateSampleService } from "./interfaces";
 
@@ -15,4 +16,8 @@ export const updateSampleService = (data: IupdateSampleService) => {
 
 export const cancelSampleService = () => {
     return axiosInstance.delete("order/sample/order")
+}
+
+export const exportOrdersReportService = () => {
+    return axiosInstance.get("order/report/export/excel", { responseType: "blob" }).then(res => res.data)
 }

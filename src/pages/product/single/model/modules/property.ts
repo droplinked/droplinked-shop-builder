@@ -1,43 +1,40 @@
 import { Iproperties } from "lib/apis/product/interfaces";
-import AppendModule from "../../parts/modules/properties/model/module/append";
+import { typesProperties } from "lib/utils/statics/types";
 
-const propertyFactor = ({
-    refactor : (items: Array<any>): Array<Iproperties> => {
-
-        let properties = {}
-        items.forEach(item => {
-            const data: Array<any> = item
-            data.forEach(element => {
-                if (!properties[element.variantID]) {
-                    properties[element.variantID] = {
+const propertyFactor = {
+    refactor: (items: Array<any>): Array<Iproperties> => {
+        let properties = {};
+        items.forEach((item) => {
+            const data: Array<any> = item;
+            data.forEach((element) => {
+                const variantName = element?.variantName || typesProperties.filter(el => el._id === element?.variantID && el)?.[0]?.name || ""
+                if (!properties[variantName]) {
+                    properties[variantName] = {
                         items: [],
-                        title: AppendModule.getCaption(element.variantID),
-                        value: element.variantID
-                    }
+                        title: variantName,
+                        value: element.variantID,
+                    };
                 }
-                properties[element.variantID]["items"][element.value] = { 
+                properties[variantName]["items"][element.value] = {
                     value: element.value,
-                    caption: element.caption
-                 }
+                    caption: element.caption,
+                };
             });
-
         });
-        
-        const refactorToArray = Object.keys(properties).map(el => {
-            const items = properties[el].items
+        const refactorToArray = Object.keys(properties).map((el) => {
+            const items = properties[el].items;
             return {
                 ...properties[el],
-                items: Object.keys(items).map(el => {
+                items: Object.keys(items).map((el) => {
                     return {
                         value: items[el].value,
                         caption: items[el].caption,
-                    }
-                })
-            }
-        })
+                    };
+                }),
+            };
+        });
+        return refactorToArray;
+    },
+};
 
-        return refactorToArray
-    }
-})
-
-export default propertyFactor
+export default propertyFactor;

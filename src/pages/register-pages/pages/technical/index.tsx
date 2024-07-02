@@ -31,7 +31,7 @@ function Technical() {
     <technicalContext.Provider value={{ state: technical, updateState }}>
       <PageContent>
         <VStack spacing={4} align="stretch">
-          {/* <FinancialAccounts /> */}
+          <FinancialAccounts />
           <SupportedLoginMethods />
           {technical.imsType !== "SHOPIFY" && <Payments />}
           <Wallet />

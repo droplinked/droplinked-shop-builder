@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, Spinner } from '@chakra-ui/react'
 import AppIcons from 'assest/icon/Appicons'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
@@ -22,7 +22,7 @@ function ROIPage() {
         productDetails, updateProductDetails,
         handleTotalSkusChange, totalSkusErrorMessage,
         metrics, updateMetrics,
-        buttonDisabled, handleCalculation, result
+        buttonDisabled, handleCalculation, result, isLoading
     } = useROICalculation()
 
     return (
@@ -30,7 +30,7 @@ function ROIPage() {
             <Flex width={"100%"} direction={"column"} gap={100}>
                 <Flex direction={"column"} gap={4}>
                     <CustomHeading title='Product Record Calculator' textAlign={"center"} />
-                    <AppTypography margin={"auto"} maxWidth={"700px"} fontSize={24} color={"#fff"} textAlign={"center"}>Easily project ROI with droplinkeds' enterprise inventory management and sales tracking</AppTypography>
+                    <AppTypography margin={"auto"} maxWidth={"700px"} fontSize={24} color={"#fff"} textAlign={"center"}>Project anticipated ROI when using droplinked's enterprise inventory management and sales tracking.</AppTypography>
                 </Flex>
                 <Flex direction={{ base: "column", xl: "row" }} gap={{ base: 6, xl: 9 }}>
                     {/* left side */}
@@ -45,7 +45,11 @@ function ROIPage() {
                         </Container>
 
                         <Container title='Protocols'>
-                            <Select items={networks} selectedItem={selectedNetwork} onChange={(e) => setSelectedNetwork(+e.target.value)} />
+                            {isLoading ? 
+                                <Spinner />
+                                :
+                                <Select items={networks} selectedItem={selectedNetwork} onChange={(e) => setSelectedNetwork(+e.target.value)} />
+                            }
                         </Container>
 
                         <Container title='Product Details'>

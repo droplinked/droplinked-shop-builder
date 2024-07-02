@@ -19,10 +19,10 @@ const OptionComponent = ({ icon, label, path }) => {
     <Link to={path ? `${shopRoute}${path}` : ""}>
       <Tooltip
         label={label}
-        placement="right-end"
+        placement="right"
         borderRadius="100px"
         color="#C2C2C2"
-        padding="5px 11px"
+        padding="5px 10px"
         fontSize="12px"
         bg="#292929"
       >

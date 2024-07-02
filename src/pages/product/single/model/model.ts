@@ -1,6 +1,6 @@
 import { IproductState } from "lib/apis/product/interfaces";
-import AppendModule from "../parts/modules/properties/model/module/append";
 import propertyFactor from "./modules/property";
+import { property_to_id } from "lib/utils/statics/types";
 
 const ProductSingleModel = ({
 
@@ -29,8 +29,8 @@ const ProductSingleModel = ({
                     options: options.map(option => {
                         return {
                             value: option.value,
-                            variantID: option.variantID,
-                            variantName: AppendModule.getCaption(option.variantID),
+                            variantName: option?.custom_title || option?.variantName,
+                            variantID: property_to_id?.[option?.variantName?.toLowerCase()] || undefined,
                             caption: option.caption
                         }
                     }),

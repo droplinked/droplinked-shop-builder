@@ -9,7 +9,7 @@ function Loading() {
 
     return (
         <SimpleGrid
-            columns={{ base: 1, sm: 2, md: 3, lg: 4, xl: 5 }}
+            columns={{ base: 1, md: 2, xl: 4 }}
             gap={4}
         >
             {generateSkeletons()}

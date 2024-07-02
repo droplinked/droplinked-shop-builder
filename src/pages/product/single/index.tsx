@@ -1,17 +1,17 @@
 import { VStack } from '@chakra-ui/react'
-import React, { useCallback, useEffect, useReducer } from 'react'
-import { productContext } from './context'
-import { useParams } from 'react-router-dom'
-import { useMutation } from 'react-query'
-import ProductSingleModel from './model/model'
-import ProductStore from './parts/store/ProductStore'
-import productPageNamespace from './reducers'
-import ProductLoading from './parts/loading/ProductLoading'
+import { IproductService } from 'lib/apis/shop/interfaces'
+import { productService } from 'lib/apis/shop/shopServices'
 import { nanoid } from 'nanoid'
+import React, { useCallback, useEffect, useReducer } from 'react'
+import { useMutation } from 'react-query'
+import { useParams } from 'react-router-dom'
+import { productContext } from './context'
 import NormalProduct from './layouts/NormalProduct'
 import PODProduct from './layouts/PODProduct'
-import { productService } from 'lib/apis/shop/shopServices'
-import { IproductService } from 'lib/apis/shop/interfaces'
+import ProductSingleModel from './model/model'
+import ProductLoading from './parts/loading/ProductLoading'
+import ProductStore from './parts/store/ProductStore'
+import productPageNamespace from './reducers'
 
 function ProductSingle() {
     const { mutate, isLoading } = useMutation((params: IproductService) => productService(params))
@@ -81,7 +81,9 @@ function ProductSingle() {
             <ProductStore>
                 <ProductLoading />
                 <VStack spacing={5}>
-                    {state.params.product_type === "PRINT_ON_DEMAND" ? <PODProduct /> : <NormalProduct />}
+                    {
+                        state.params.product_type === "PRINT_ON_DEMAND" ? <PODProduct /> : <NormalProduct />
+                    }
                 </VStack>
             </ProductStore>
         </productContext.Provider>

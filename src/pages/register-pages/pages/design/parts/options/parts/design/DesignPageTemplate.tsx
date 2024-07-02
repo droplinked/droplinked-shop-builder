@@ -7,7 +7,7 @@ import OptionTemplatePreview from './parts/preview/OptionTemplatePreview'
 
 function DesignPageTemplate() {
     return (
-        <DesignPageCard title='Store Theme' section="theme">
+        <DesignPageCard title='Store Theme' section="theme" isRequired>
             <VStack align="stretch" spacing="24px">
                 <OptionTemplatePreview />
                 <OptionImages />

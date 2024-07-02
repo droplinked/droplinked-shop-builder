@@ -4,6 +4,8 @@
 }
 
 .bn-editor{
-  height: 400px;
-  overflow-y: scroll;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 400px !important;
+  overflow-y: scroll !important;
 }
