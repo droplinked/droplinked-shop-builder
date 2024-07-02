@@ -56,7 +56,7 @@ namespace OrderInformationModel {
             case "NEAR":
                 return `https://explorer.${appDevelopment ? "testnet" : "mainnet"}.aurora.dev/tx/${transactionId}`;
             case "BASE":
-                return `https://base${appDevelopment ? "-goerli." : ""}blockscout.com/tx/${transactionId}`;
+                return `https://base${appDevelopment ? "goerli." : "."}blockscout.com/tx/${transactionId}`;
             case "LINEA":
                 return `https://${appDevelopment ? "goerli." : ""}lineascan.build/tx/${transactionId}`
             case "ETH":
