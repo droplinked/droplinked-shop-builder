@@ -23,7 +23,7 @@ const SkuTableModel = ({
                 props: {
                     width: "20%"
                 },
-                value: sku.options.map(el => el.caption).join("-")
+                value: sku?.options?.map(el => el?.caption).join("-")
             },
             price: {
                 caption: product_type === "PRINT_ON_DEMAND" ? "Retail Price" : "Price",
