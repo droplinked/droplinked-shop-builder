@@ -14,6 +14,7 @@ import React, { useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styles from "./styles.module.scss";
+import useShopSwitcher from 'pages/shop-management/hooks/useShopSwitch';
 
 type CommonProps = {
     isOpen: boolean;
@@ -26,7 +27,6 @@ type RegisterShopNameProps = CommonProps & {
 type CreateExtraShopProps = CommonProps & {
     mode: "CREATE_EXTRA_SHOP";
     close: () => void;
-    refetchUserShops: () => void;
 }
 
 type Props = RegisterShopNameProps | CreateExtraShopProps
@@ -41,6 +41,7 @@ function SimpleRegistrationModal(props: Props) {
     const checkUsernameService = useMutation((shopName: string) => checkUsernameAvailabilityService(shopName))
     const UpdateUsernameService = useMutation((props: IUpdateShopName) => updateShopNameService(props))
     const createExtraShopService = useMutation((shopName: string) => createExtraShopForCurrentUserService(shopName))
+    const { isLoading, mutateAsync: switchShop } = useShopSwitcher()
     const { showToast } = useAppToast()
     const navigate = useNavigate()
 
@@ -70,12 +71,8 @@ function SimpleRegistrationModal(props: Props) {
 
     const handleCreateExtraShop = async () => {
         try {
-            await createExtraShopService.mutateAsync(username)
-            if (props.mode === "CREATE_EXTRA_SHOP") {
-                const { close, refetchUserShops } = props
-                close()
-                refetchUserShops()
-            }
+            const { data: { _id } } = await createExtraShopService.mutateAsync(username)
+            await switchShop(_id)
         } catch (error) {
             showToast({ type: "error", message: "Oops! Something went wrong." })
         }
@@ -99,11 +96,7 @@ function SimpleRegistrationModal(props: Props) {
         <AppModal
             open={isOpen}
             size="xl"
-            close={() => {
-                if (mode === "CREATE_EXTRA_SHOP") {
-                    return props.close()
-                }
-            }}
+            close={() => mode === "CREATE_EXTRA_SHOP" && props.close()}
         >
             <Flex direction="column" gap={128}>
                 <Flex justifyContent="center" pt={83}>
@@ -134,14 +127,14 @@ function SimpleRegistrationModal(props: Props) {
                             <Flex justifyContent={"space-between"} alignItems={"center"}>
                                 <BasicButton
                                     variant='outline'
-                                    isDisabled={createExtraShopService.isLoading}
+                                    isDisabled={createExtraShopService.isLoading || isLoading}
                                     onClick={() => props.close()}
                                 >
                                     Cancel
                                 </BasicButton>
                                 <BasicButton
-                                    isDisabled={!isUsernameAvailable || createExtraShopService.isLoading || checkUsernameService.isLoading}
-                                    isLoading={createExtraShopService.isLoading}
+                                    isDisabled={!isUsernameAvailable || checkUsernameService.isLoading || createExtraShopService.isLoading || isLoading}
+                                    isLoading={createExtraShopService.isLoading || isLoading}
                                     onClick={handleCreateExtraShop}
                                 >
                                     Create

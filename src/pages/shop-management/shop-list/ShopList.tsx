@@ -31,7 +31,7 @@ function ShopList() {
                 <BasicButton marginBlock={3} alignSelf={"flex-end"} onClick={onOpen}>+ Create Store</BasicButton>
                 {renderContent()}
             </Flex>
-            {isOpen && <SimpleRegistrationModal isOpen={isOpen} mode='CREATE_EXTRA_SHOP' close={onClose} refetchUserShops={refetch} />}
+            {isOpen && <SimpleRegistrationModal isOpen={isOpen} mode='CREATE_EXTRA_SHOP' close={onClose} />}
         </>
     )
 }

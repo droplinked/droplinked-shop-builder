@@ -111,3 +111,10 @@ export interface UserShop {
     logo?: string;
     selected?: boolean;
 }
+
+export interface UserExtraShopResponse {
+    _id: string;
+    name: string;
+    ownerID: string;
+    apiKey: string;
+}
