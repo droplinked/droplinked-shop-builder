@@ -93,11 +93,7 @@ function SimpleRegistrationModal(props: Props) {
     }, [debouncedUsername])
 
     return (
-        <AppModal
-            open={isOpen}
-            size="xl"
-            close={() => mode === "CREATE_EXTRA_SHOP" && props.close()}
-        >
+        <AppModal open={isOpen} size="xl" close={() => isCreatingShop && props.close()}>
             <Flex direction="column" gap={128}>
                 <Flex justifyContent="center" pt={83}>
                     <Flex alignItems="center" gap={3} borderRadius={8} padding={"14px 16px"} bgColor="#fff" color="#7B7B7B">
