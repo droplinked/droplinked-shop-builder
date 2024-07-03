@@ -1,4 +1,4 @@
-import { Flex, useDisclosure } from '@chakra-ui/react'
+import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/common/BasicButton/BasicButton'
 import AppTypography from 'components/common/typography/AppTypography'
 import SimpleRegistrationModal from 'components/modals/simple-registration-modal/SimpleRegistrationModal'
@@ -27,10 +27,28 @@ function ShopList() {
 
     return (
         <>
-            <Flex direction={"column"} gap={5}>
-                <BasicButton marginBlock={3} alignSelf={"flex-end"} onClick={onOpen}>+ Create Store</BasicButton>
-                {renderContent()}
-            </Flex>
+            <Tabs variant='unstyled' display={"flex"} flexDirection={"column"} gap={5}>
+                <Flex justifyContent={"space-between"} alignItems={"center"} paddingBlock={2}>
+                    <TabList>
+                        <Tab p={0}>
+                            <BasicButton>Active Shops</BasicButton>
+                        </Tab>
+                    </TabList>
+                    <BasicButton alignSelf={"flex-end"} onClick={onOpen}>+ Create Store</BasicButton>
+                </Flex>
+                <TabPanels>
+                    <TabPanel
+                        display={"flex"}
+                        flexDirection={"column"}
+                        gap={3}
+                        border={"2px solid #3C3C3C"}
+                        borderRadius={"32px"}
+                        padding={"36px 40px"}
+                    >
+                        {renderContent()}
+                    </TabPanel>
+                </TabPanels>
+            </Tabs>
             {isOpen && <SimpleRegistrationModal isOpen={isOpen} mode='CREATE_EXTRA_SHOP' close={onClose} />}
         </>
     )
