@@ -9,7 +9,7 @@ function RequestSpecs() {
   return (
     <>
       <AppTable vertical rows={{
-        ...RequestProductModel.makeOptions(sku.options),
+        ...RequestProductModel.makeOptions(sku?.options),
         requestQuantity: {
           caption: "Request Quantity",
           value: sku.recorded_quantity

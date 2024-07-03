@@ -25,17 +25,17 @@ function CheckoutForm({ onSuccess, cancel, amount, onError }: IFormStripe) {
         event.preventDefault()
         if (!stripe || !elements) return
 
-        try {
-            setLoading(true)
-            await stripe.confirmPayment({ elements, redirect: "if_required" });
-            onSuccess()
+        setLoading(true)
+        const { error } = await stripe.confirmPayment({ elements, redirect: "if_required" })
+        if (error) {
             setLoading(false)
-        } catch (error) {
-            setLoading(false)
-            showToast({ message: error?.message, type: 'error' })
+            showToast({ message: error.message, type: 'error' })
             onError?.()
+            return
         }
-    };
+        setLoading(false)
+        onSuccess()
+    }
 
     return (
         <form onSubmit={handleSubmit}>
