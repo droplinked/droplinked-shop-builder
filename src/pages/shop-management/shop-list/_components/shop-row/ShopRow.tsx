@@ -7,8 +7,10 @@ import { UserShop } from 'lib/apis/shop/interfaces'
 import { appDevelopment } from 'lib/utils/app/variable'
 import useShopSwitcher from 'pages/shop-management/hooks/useShopSwitch'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function ShopRow({ shop }: { shop: UserShop }) {
+    const navigate = useNavigate()
     const { isLoading, mutateAsync: switchShop } = useShopSwitcher()
     const { showToast } = useAppToast()
     const shopLink = `${appDevelopment ? "dev." : ""}droplinked.io/${shop.name}`
@@ -16,7 +18,7 @@ function ShopRow({ shop }: { shop: UserShop }) {
 
     const switchToShop = async () => {
         try {
-            if (shop.selected) return
+            if (shop.selected) return navigate("/dashboard")
             await switchShop(shop._id)
         }
         catch {
