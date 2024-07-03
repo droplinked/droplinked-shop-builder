@@ -11,7 +11,7 @@ import ShopRow from './_components/shop-row/ShopRow'
 
 function ShopList() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { isFetching, error, data, refetch } = useQuery({
+    const { isFetching, error, data } = useQuery({
         queryFn: () => getUserShopsService(),
         queryKey: ["current-user-shops"],
         refetchOnWindowFocus: false
