@@ -4,11 +4,10 @@ import { useMutation } from "react-query";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
-
-//API
+// API
 import { contactUsService } from 'lib/apis/constact-us/services';
 
-//Components
+// Components
 import useAppToast from 'functions/hooks/toast/useToast';
 import AppTypography from "components/common/typography/AppTypography";
 import BasicButton from "components/common/BasicButton/BasicButton";
@@ -42,8 +41,8 @@ const DppContactUs = () => {
   });
 
   return (
-    <Flex flexDirection={"column"} alignItems={"center"} gap={"32px"}>
-      <AppTypography fontSize={"48px"} fontWeight={700} color={"#FFF"} textAlign={"center"}>
+    <Flex flexDirection={"column"} alignItems={"center"} gap={"32px"} padding={{ base: "28px", md: "32px" }} width={"100%"}>
+      <AppTypography fontSize={{ base: "32px", md: "48px" }} fontWeight={700} color={"#FFF"} textAlign={"center"}>
         Contact us to learn more
       </AppTypography>
       <Formik
@@ -53,9 +52,9 @@ const DppContactUs = () => {
         onSubmit={onSubmit}
       >
         {({ values, handleChange, handleSubmit, errors, touched }) => (
-          <Form onSubmit={handleSubmit}>
-            <Flex flexDirection={"column"} alignItems={"center"} justifyContent={"center"} gap={"24px"} width={"444px"}>
-              <Flex direction={{ base: "column", md: "row" }} gap="16px" width="100%">
+          <Form onSubmit={handleSubmit} style={{width: "60%"}}>
+            <Flex flexDirection={"column"} alignItems={"center"} justifyContent={"center"} gap={"24px"} width={"100%"}>
+              <Flex flexDirection={{ base: "column", md: "row" }} gap="16px" width="100%">
                 <Box width="100%">
                   <Input
                     name="firstName"
@@ -81,6 +80,7 @@ const DppContactUs = () => {
                     border="1px solid #E0E0E0"
                     padding={"12px 20px"}
                     borderRadius={"8px"}
+                    width={"100%"}
                     height={"50px"}
                     color={"#FFF"}
                     value={values.lastName}

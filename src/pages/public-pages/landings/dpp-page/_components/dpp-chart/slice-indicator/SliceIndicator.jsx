@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, keyframes } from "@chakra-ui/react";
+import { Box, keyframes, useMediaQuery } from "@chakra-ui/react";
 
 const sliceWrapperStyles = (length, index) => ({
   width: "50%",
@@ -49,10 +49,19 @@ const sliceEmptyStyles = {
   boxShadow: "0px 20px 50px 0px rgba(0, 0, 0, 0.75)",
 };
 
-
 const SliceIndicator = ({ slices }) => {
+  const [isLargerThan600] = useMediaQuery("(min-width: 600px)");
+  const [isLargerThan900] = useMediaQuery("(min-width: 900px)");
+
+  const containerSize = isLargerThan900 ? "500px" : isLargerThan600 ? "300px" : "200px";
+
   return (
-    <Box width="500px" height="500px" position="relative">
+    <Box
+      width={containerSize}
+      height={containerSize}
+      position={"relative"}
+      mx={"auto"}
+    >
       {slices.map(({ active, lastSliceWon }, index) => (
         <Box
           as="svg"
