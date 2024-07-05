@@ -10,11 +10,11 @@ const DppChart = () => {
   return (
     <Flex flexDirection={"column"} alignItems={"center"} gap={"20px"}>
       <Flex flexDirection={"column"} alignItems={"center"} gap={"20px"}>
-        <CustomHeading title="Transparency with Enhanced Sustainability " textAlign={"center"} fontSize={"48px"} fontWeight={600} />
+        <CustomHeading title="Transparency with Enhanced Sustainability " textAlign={"center"} />
         <AppTypography fontSize={"24px"} fontWeight={400} color={"#FFF"} textAlign={"center"}>The Digital Product Passport (DPP), proposed by the EU, supports circularity and sustainability in line with the EU's Circular Economy Action Plan and the European Green Deal, targeting Europe's climate neutrality by 2050.</AppTypography>
       </Flex>
 
-      <Flex flexDirection={"column"} alignItems={"center"}>
+      <Flex flexDirection={"column"} alignItems={"center"} width={"100%"}>
         <SliceIndicator
           slices={[
             {

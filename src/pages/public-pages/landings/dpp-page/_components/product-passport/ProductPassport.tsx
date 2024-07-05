@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Flex, Image } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
 
-//Components
+// Components
 import AppTypography from "components/common/typography/AppTypography";
 
 const productPassportData = [
@@ -47,7 +47,6 @@ const productPassportData = [
   },
 ];
 
-
 const ProductPassport = () => {
   const [activeCategory, setActiveCategory] = useState("Clothing");
 
@@ -70,7 +69,8 @@ const ProductPassport = () => {
     <Flex
       flexDirection={"column"}
       alignItems={"flex-start"}
-      width={"979px"}
+      width={"100%"}
+      maxWidth={"979px"}
       border={"2px solid #2EC99E"}
       borderRadius={"30px"}
       bg={"rgba(0, 0, 0, 0.25)"}
@@ -79,13 +79,14 @@ const ProductPassport = () => {
       zIndex={999}
       gap={"15px"}
       style={{ backdropFilter: "blur(50px)" }}
+      mx="auto"
     >
       {/* header */}
-      <Flex alignItems={"center"} justifyContent={"space-evenly"} gap={"22px"}>
+      <Flex alignItems={"center"} justifyContent={"space-evenly"} gap={"22px"} flexWrap={"wrap"}>
         {["Clothing", "Retail", "Electronics"].map((category) => (
           <AppTypography
             key={category}
-            fontSize={"32px"}
+            fontSize={{ base: "24px", md: "32px" }}
             fontWeight={700}
             color={activeCategory === category ? "#2BCFA1" : "#C2C2C2"}
             textDecoration={activeCategory === category ? "underline" : "none"}
@@ -110,9 +111,9 @@ const ProductPassport = () => {
           transition={{ duration: 0.2 }}
           style={{ width: "100%" }}
         >
-          <Flex alignItems={"center"} gap={"30px"}>
+          <Flex alignItems={"center"} flexDirection={{ base: "column", lg: "row" }} gap={"30px"}>
             <Flex
-              width={"364px"}
+              width={{ base: "100%", lg: "364px" }}
               height={"355px"}
               border={"2px solid #80edce89"}
               borderRadius={"22px"}
@@ -128,17 +129,17 @@ const ProductPassport = () => {
               />
             </Flex>
             <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"10px"}>
-              <AppTypography fontSize={"35px"} fontWeight={700} color={"#2BCFA1"}>
+              <AppTypography fontSize={{ base: "28px", md: "35px" }} fontWeight={700} color={"#2BCFA1"}>
                 {activeProduct.productName}
               </AppTypography>
               {productOptions.map((option) => (
-                <Flex alignItems={"center"} gap={"10px"} width={"100%"} key={option.label}>
+                <Flex alignItems={"center"} gap={"10px"} width={"100%"} key={option.label} flexWrap={"wrap"}>
                   <Image src={option.icon} width={"40px"} height={"40px"} objectFit={"cover"} />
                   <Flex alignItems={"center"} gap={"4px"} flexWrap={"wrap"}>
-                    <AppTypography fontSize={"21px"} fontWeight={700} color={"#2BCFA1"}>
+                    <AppTypography fontSize={{ base: "18px", md: "21px" }} fontWeight={700} color={"#2BCFA1"}>
                       {option.label} :
                     </AppTypography>
-                    <AppTypography fontSize={"21px"} fontWeight={500} color={"#FFF"}>
+                    <AppTypography fontSize={{ base: "18px", md: "21px" }} fontWeight={500} color={"#FFF"}>
                       {option.value}
                     </AppTypography>
                   </Flex>
@@ -152,14 +153,14 @@ const ProductPassport = () => {
       {/* divider */}
       <Flex width={"100%"} height={"2px"} alignSelf={"stretch"} bg={"linear-gradient(90deg, rgba(46, 201, 158, 0.00) 0%, #2EC99E 50%, rgba(46, 201, 158, 0.00) 100%)"} />
 
-      <Flex alignItems={"center"} justifyContent={"space-between"} width={"100%"}>
+      <Flex alignItems={"center"} justifyContent={"space-between"} flexDirection={{ base: "column", lg: "row" }} gap={"16px"} width={"100%"}>
         <Flex flexDirection={"column"} alignItems={"flex-start"} gap={"10px"}>
-          <AppTypography fontSize={"35px"} fontWeight={700} color={"#2BCFA1"}>Chain of custody</AppTypography>
-          <Flex alignItems={"center"} gap="10px">
+          <AppTypography fontSize={{ base: "28px", md: "35px" }} fontWeight={700} color={"#2BCFA1"}>Chain of custody</AppTypography>
+          <Flex alignItems={"center"} gap="10px" flexWrap={"wrap"}>
             <Image src="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/9299c3d7eabfb00567fdba7440c9efc7812e9e9269442e47bbbfc57579bb9c0b.png_st.png" width={"40px"} height={"40px"} objectFit={"cover"} />
-            <AppTypography fontSize={"25px"} fontWeight={700} color={"#FFF"}>10/09/2022, 14:22</AppTypography>
+            <AppTypography fontSize={{ base: "20px", md: "25px" }} fontWeight={700} color={"#FFF"}>10/09/2022, 14:22</AppTypography>
             <Flex width={"5px"} alignSelf={"stretch"} bgColor={"#2BCFA1"} />
-            <AppTypography fontSize={"25px"} fontWeight={700} color={"#FFF"}>Product created</AppTypography>
+            <AppTypography fontSize={{ base: "20px", md: "25px" }} fontWeight={700} color={"#FFF"}>Product created</AppTypography>
           </Flex>
         </Flex>
         <Image src="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/fc09f0bd1bc6b56ca3890e4031fa1452cf76ff640010f6a0f2460975e62c551c.png_st.png" width={"92px"} height={"92px"} borderRadius={"8px"} objectFit={"cover"} />
@@ -169,7 +170,7 @@ const ProductPassport = () => {
       <Flex width={"100%"} height={"2px"} alignSelf={"stretch"} bg={"linear-gradient(90deg, rgba(46, 201, 158, 0.00) 0%, #2EC99E 50%, rgba(46, 201, 158, 0.00) 100%)"} />
 
       <Flex alignItems={"center"} justifyContent={"center"} width={"100%"}>
-        <AppTypography fontSize={"25px"} fontWeight={700} textAlign={"center"} color={"#2BCFA1"} letterSpacing={"3.75px"}>Digital product passport Powered By droplinked</AppTypography>
+        <AppTypography fontSize={{ base: "20px", md: "25px" }} fontWeight={700} textAlign={"center"} color={"#2BCFA1"} letterSpacing={"3.75px"}>Digital product passport Powered By droplinked</AppTypography>
       </Flex>
 
     </Flex>
