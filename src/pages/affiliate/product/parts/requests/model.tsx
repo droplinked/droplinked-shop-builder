@@ -7,7 +7,7 @@ const RequestProductModel = ({
 
     makeOptions: (list: any) => {
         let options = {}
-        list.forEach((element: any) => {
+        list?.forEach((element: any) => {
             options[RequestProductModel.getCaption(element.variantID)] = {
                 value: element.variantID === "62a989ab1f2c2bbc5b1e7153" ? <Box backgroundColor={element.value} width="25px" height="25px" borderRadius="100%"></Box> : element.value
             }

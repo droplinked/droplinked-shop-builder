@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig"
-import { IchargeCreditService, ICustomReferralCode, IDeployContract, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, IUpdateShopName, ShopCustomURL, ShopDNSInformation, ShopOAuth2Client } from "./interfaces"
+import { IchargeCreditService, ICustomReferralCode, IDeployContract, IpaymentCreateService, IproductService, IrecordedShopService, IshopInfoService, IshopPublicRecordedService, IShopRecordedService, IshopService, IshopUpdateService, IUpdateShopName, ShopCustomURL, ShopDNSInformation, ShopOAuth2Client, UserExtraShopResponse, UserShop } from "./interfaces"
 
 export const shopService = ({ shopName }: IshopService) => axiosInstance.get(`shop/${shopName}`)
 
@@ -55,4 +55,10 @@ export const deployShopContractService = (props: IDeployContract) => axiosInstan
 
 export const checkUsernameAvailabilityService = (shopName: string) => axiosInstance.post("shop/check-shop-name", { shopName })
 
-export const updateUsernameService = ({ id, shopName }: IUpdateShopName) => axiosInstance.put(`shop/${id}/shop-name`, { shopName })
+export const updateShopNameService = ({ id, shopName }: IUpdateShopName) => axiosInstance.put(`shop/${id}/shop-name`, { shopName })
+
+export const getUserShopsService = () => axiosInstance.get<{ data: UserShop[] }>("shop/all").then(res => res.data)
+
+export const createExtraShopForCurrentUserService = (name: string) => axiosInstance.post<{ data: UserExtraShopResponse }>("shop/create/extra", { name }).then(res => res.data)
+
+export const switchShopService = (shopId: string) => axiosInstance.post("shop/switch", { shopId }).then(res => res.data)

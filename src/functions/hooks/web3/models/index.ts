@@ -70,7 +70,7 @@ const web3Model = {
 				let deployedContract
 				let targetChainContract
 				if (shop.deployedContracts) {
-					targetChainContract = shop.deployedContracts.find((contract) => contract.type === chain)
+					targetChainContract = shop.deployedContracts.find((contract) => (contract.type === chain && contract.platform === "DROPLINKED"))
 					if (!targetChainContract) {
 						deployedContract = await getNetworkProvider(
 							Chain[chain as string],
