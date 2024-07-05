@@ -50,7 +50,7 @@ function FinancialAccounts() {
                                 <AppSkeleton isLoaded={false} width={"160px"} height={8}>{""}</AppSkeleton> :
                                 shop?.data.data.onboardedExpressStripeAccount ?
                                     <AppTypography height={8} lineHeight={8} fontSize={14} color={"white"}>Your account has been set up successfully!</AppTypography> :
-                                    <BasicButton sizes='medium' isDisabled={isLoading} isLoading={isLoading} onClick={createStripeOnboardingLink}>Create Account</BasicButton>
+                                    <BasicButton sizes='medium' isDisabled={isLoading} isLoading={isLoading} onClick={createStripeOnboardingLink}>Connect Account</BasicButton>
                         }
                     </Flex>
                 </BlackBox>

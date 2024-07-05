@@ -9,7 +9,7 @@ function SimpleRegistration() {
 
     return (
         <>
-            {isOpen && <SimpleRegistrationModal isOpen={isOpen} />}
+            {isOpen && <SimpleRegistrationModal isOpen={isOpen} mode='REGISTER_SHOP_NAME' />}
         </>
     )
 }

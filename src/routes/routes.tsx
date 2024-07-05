@@ -1,5 +1,6 @@
 import DashboardLayout from "components/layouts/app/dashboard/DashboardLayout"
 import MainLayout from "components/layouts/app/main/mainLayout"
+import ShopManagementLayout from "components/layouts/app/shop-management/ShopManagementLayout"
 import AffiliateLayout from "components/layouts/pages/affiliate/AffiliateLayout"
 import NotFound from "pages/404/404"
 import ShopProduct from "pages/affiliate/product/ShopProduct"
@@ -39,6 +40,7 @@ import Admins from "pages/register-pages/pages/admins/Admins"
 import RegisterShopInfo from "pages/register-pages/pages/shop-info/ShopInfo"
 import SimpleRegistration from "pages/register-pages/pages/simple-registration/SimpleRegistration"
 import RegisterPagesWrapper from "pages/register-pages/RegisterPageWrapper"
+import ShopManagement from "pages/shop-management/ShopManagement"
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
@@ -81,14 +83,8 @@ function AppRoutes() {
             <Route index element={<PublicBlogs />} />
             <Route path=":slug" element={<PublicBlog />} />
           </Route>
-          <Route
-            path="email-verification/:token"
-            element={<VerifyEmailPage />}
-          />
-          <Route
-            path="producer/account-recovery/:token"
-            element={<ResetPassPage />}
-          />
+          <Route path="email-verification/:token" element={<VerifyEmailPage />} />
+          <Route path="producer/account-recovery/:token" element={<ResetPassPage />} />
           <Route path="plans" element={<PricingPage />} />
         </Route>
 
@@ -134,7 +130,13 @@ function AppRoutes() {
             <Route index element={<SubscriptionPlans />} />
           </Route>
         </Route>
+
+        <Route path="shop-management" element={<ShopManagementLayout />}>
+          <Route index element={<ShopManagement />} />
+        </Route>
+
         <Route path=":shopname" element={<ShopPage />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

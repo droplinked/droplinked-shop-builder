@@ -6,6 +6,7 @@ import AppTypography from 'components/common/typography/AppTypography'
 import React, { useContext } from 'react'
 import orderModalContext from '../context'
 import CartItemBadge from './components/CartItemBadge'
+import { cart_item_options_to_array_of_variants } from 'lib/utils/heper/helpers'
 
 function OrderItems() {
     const { order } = useContext(orderModalContext)
@@ -30,9 +31,8 @@ function OrderItems() {
                                     {item.isAffiliate && <CartItemBadge text={"Affiliate"} colorScheme='green' />}
                                 </Flex>
                                 <Flex alignItems={"center"} gap={"5px"}>
-                                    {item.shipping && <CartItemBadge text={item.shipping} />}
-                                    {item.size.title && <CartItemBadge text={item.size.title} />}
-                                    {item.color.title && <CartItemBadge text={item.color.title} />}
+                                    {item.shipping && <CartItemBadge text={item?.shipping} />}
+                                    {cart_item_options_to_array_of_variants(item?.options)?.map((option) => <CartItemBadge text={option?.caption} />)}
                                 </Flex>
                             </Flex>
                         </Flex>

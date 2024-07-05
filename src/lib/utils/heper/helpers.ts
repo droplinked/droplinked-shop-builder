@@ -100,3 +100,13 @@ export const time_ago = (date_string: string): string => {
 
     return new Intl.DateTimeFormat('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' }).format(given_date);
 }
+
+export const cart_item_options_to_array_of_variants = (options: any) => {
+    let result: { name: string; caption: string; }[] = [];
+    Object.keys(options).forEach((key) => {
+        if (key !== "quantity") {
+            result.push({ name: key, caption: options?.[key].caption || options?.[key]?.title });
+        }
+    });
+    return result
+};
