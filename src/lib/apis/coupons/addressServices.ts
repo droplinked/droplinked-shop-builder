@@ -12,3 +12,7 @@ export const updateGiftCartExpiryDateService = ({ id, expiryDate }: IGiftCardExp
 export const giftcardsService = ({ limit, page, search }: IgiftcardsService) => {
     return axiosInstance.get(`giftcard?page=${page || 1}&limit=${limit || 20}${search ? `&search=${search}` : ''}`)
 }
+
+export const exportCouponsReport = () => {
+    return axiosInstance.get("/giftcard/report/export/excel", { responseType: "blob" }).then(res => res.data)
+}
