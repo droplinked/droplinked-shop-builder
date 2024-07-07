@@ -47,6 +47,7 @@ const DesignPageModel = ({
         youtubeURL: shop?.youtubeURL || initialStateDesignPage.shop.youtubeURL,
         messengerURL: shop?.messengerURL || initialStateDesignPage.shop.messengerURL,
         template_options: shop?.template_options || initialStateDesignPage.shop.template_options,
+        launchDate: shop?.launchDate || initialStateDesignPage.shop.launchDate
     })
 })
 
