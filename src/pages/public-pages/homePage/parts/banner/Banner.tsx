@@ -18,7 +18,7 @@ function Banner() {
                 <Flex height="100%" justifyContent="center" alignItems="center" position="relative" zIndex="2">
                     <VStack justifyContent="center" color="#fff">
                         <Droplinked />
-                        <AppTypography textAlign={"center"} fontSize={{ base: "20px", sm: "24px", lg: "32px", xl: "48px" }} fontWeight='bold' whiteSpace={"nowrap"}>The Next Generation of Commerce</AppTypography>
+                        <AppTypography textAlign={"center"} fontSize={{ base: "20px", sm: "24px", lg: "32px", xl: "48px" }} fontWeight='bold'>The Next Generation of Commerce</AppTypography>
                         <Text fontSize={{ base: "14px", sm: "24px", xl: "34px" }} display="flex">
                             <Typewriter
                                 options={{
