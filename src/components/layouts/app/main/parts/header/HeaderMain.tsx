@@ -47,7 +47,7 @@ function HeaderMain() {
                 borderBottom={header_state.scrolled ? "1px solid #3C3C3C" : "transparent"}
                 padding={{ base: "12px 16px", sm: "12px 36px", md: "16px 64px", lg: "20px 128px", xl: "24px 156px", "2xl": "192px" }}
                 backgroundColor={header_state.scrolled ? "#141414" : "transparent"}
-                zIndex="10000"
+                zIndex={999}
                 style={{ transition: `all 1s ease` }}
             >
                 <Hide below="md"><DesktopHeader products_menu={products_menu} toggleAuthModal={toggleAuthModal} /></Hide>
