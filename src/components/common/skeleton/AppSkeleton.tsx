@@ -2,7 +2,7 @@ import { Skeleton, SkeletonProps } from '@chakra-ui/react'
 import React from 'react'
 
 interface IAppSkeleton extends SkeletonProps {
-    children: any
+    children?: any
     isLoaded: boolean
 }
 
