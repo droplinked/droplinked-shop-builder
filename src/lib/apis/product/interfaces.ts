@@ -64,8 +64,9 @@ export interface IproductState {
     technique?: string
     isAddToCartDisabled?: boolean;
     pre_purchase_data_fetch?: boolean;
-    productTile?: any[],
-    printful_option_data?: any
+    productTile?: any[];
+    printful_option_data?: any;
+    launchDate?: string | null;
 }
 
 export interface IpropertiesItems {

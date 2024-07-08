@@ -2,14 +2,14 @@ import { Flex, Grid } from '@chakra-ui/react'
 import AppDatepicker from 'components/common/datepicker/AppDatepicker'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
-import { designContext } from 'pages/register-pages/pages/design/design-context'
+import TimeInput from 'pages/register-pages/pages/design/parts/options/parts/releaseDate/TimeInput'
 import React, { Fragment, useContext, useEffect, useState } from 'react'
-import DesignPageCard from '../card/DesignPageCard'
-import TimeInput from './TimeInput'
+import { productContext } from '../../context'
+import ProductCollapse from '../modules/collapse/ProductCollapse'
 
-function DesignPageReleaseDate() {
-    const { methods: { dispatch }, state: { shop: { launchDate } } } = useContext(designContext)
-    const [showDetails, setDetailsVisibility] = useState(() => Boolean(launchDate))
+const LaunchDate = () => {
+    const { state: { launchDate }, methods: { updateState } } = useContext(productContext)
+    const [showDetails, setDetailsVisibility] = useState(Boolean(launchDate))
     const [time, setTime] = useState(() => {
         const date = launchDate ? new Date(launchDate) : null
         return {
@@ -21,7 +21,9 @@ function DesignPageReleaseDate() {
 
     const handleSwitchChange = (checked: boolean) => {
         setDetailsVisibility(checked)
-        if (!checked) dispatch({ type: 'updateShop', params: { launchDate: null } })
+        if (!checked) {
+            updateState("launchDate", null)
+        }
     }
 
     const handleTimeChange = (key, value) => {
@@ -31,7 +33,7 @@ function DesignPageReleaseDate() {
         date.setHours(key === "hour" ? value : date.getHours())
         date.setMinutes(key === "minute" ? value : date.getMinutes())
         date.setSeconds(key === "second" ? value : date.getSeconds())
-        dispatch({ type: 'updateShop', params: { launchDate: date.toISOString() } })
+        updateState("launchDate", date.toISOString())
     }
 
     useEffect(() => {
@@ -45,26 +47,25 @@ function DesignPageReleaseDate() {
     }, [launchDate])
 
     return (
-        <DesignPageCard title='Release Date' section='releaseDate'>
-            <Flex direction={"column"} gap={12}>
-                <Flex alignItems={"center"} gap={3}>
+        <ProductCollapse
+            title="Release Date"
+            description="Select a shipping method to deliver your product."
+            isRequired={false}
+        >
+            <Flex direction="column" gap={6}>
+                <Flex alignItems="center" gap={3}>
                     <AppSwitch isChecked={showDetails} onChange={({ target: { checked } }) => handleSwitchChange(checked)} />
-                    <AppTypography userSelect={"none"} fontSize={14} fontWeight={"600"} color='#C2C2C2'>Date Counter</AppTypography>
+                    <AppTypography userSelect="none" fontSize={14} fontWeight={600} color='#C2C2C2'>
+                        Date Counter
+                    </AppTypography>
                 </Flex>
 
-                {showDetails &&
-                    <Flex direction={"column"} gap={4}>
-                        <AppDatepicker
-                            onChange={(value: any) => dispatch({ type: 'updateShop', params: { launchDate: value.toISOString() } })}
-                            placeholderText="YYYY-MM-DD"
-                            minDate={new Date()}
-                            label="Shop Release Date"
-                            value={launchDate ? new Date(launchDate) : null}
-                        />
-
+                {showDetails && (
+                    <Flex justifyContent="space-between">
+                        {/* Time Inputs */}
                         <Flex direction="column" gap={3}>
-                            <AppTypography fontSize={16} fontWeight={500}>Shop Release Time</AppTypography>
-                            <Flex height={12} flexWrap="wrap" gap={3}>
+                            <AppTypography fontSize={16} fontWeight={500}>Product Release Time</AppTypography>
+                            <Flex flexWrap="wrap" gap={3}>
                                 {["hour", "minute", "second"].map((unit, index) => (
                                     <Fragment key={unit}>
                                         {index > 0 && (
@@ -85,11 +86,20 @@ function DesignPageReleaseDate() {
                                 ))}
                             </Flex>
                         </Flex>
+
+                        {/* Date Picker */}
+                        <AppDatepicker
+                            onChange={(value) => updateState("launchDate", value.toISOString())}
+                            placeholderText="YYYY-MM-DD"
+                            minDate={new Date()}
+                            label='Product Release Date'
+                            value={launchDate ? new Date(launchDate) : null}
+                        />
                     </Flex>
-                }
+                )}
             </Flex>
-        </DesignPageCard>
+        </ProductCollapse>
     )
 }
 
-export default DesignPageReleaseDate
+export default LaunchDate
