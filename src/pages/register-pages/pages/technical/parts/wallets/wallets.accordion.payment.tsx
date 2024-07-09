@@ -1,0 +1,104 @@
+import { Box, Flex, useOutsideClick } from "@chakra-ui/react";
+import AppIcons from "assest/icon/Appicons";
+import AppSwitch from "components/common/swich";
+import useAppToast from "functions/hooks/toast/useToast";
+import { useGetPermissionValue } from "lib/stores/app/appStore";
+import technicalContext from "pages/register-pages/pages/technical/context";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { canActivateNewPaymentMethod } from "./wallets.helpers";
+
+const WalletsAccordionPayment = ({ chain, token }: { chain: any; token?: any }) => {
+    const getPermissionValue = useGetPermissionValue();
+    const {
+        state: { paymentMethods },
+        updateState,
+    } = useContext(technicalContext);
+    const selectedPaymentMethods = [...(paymentMethods ?? [])];
+    const { showToast } = useAppToast();
+    const [walletAddress, setWalletAddress] = useState<string>(chain.destinationAddress);
+    const [canEditWallet, setWalletEditability] = useState(!!chain.destinationAddress); // If the 'chain' object has an 'destinationAddress' property, we can edit it
+
+    const persistWalletAddress = useCallback(() => {
+        if (!walletAddress) return;
+        const newWalletAddress = walletAddress?.trim();
+        const selectedPaymentMethods = [...paymentMethods];
+        const targetPaymentMethod = selectedPaymentMethods.find((payment) => payment?.type === chain?.type);
+        if (targetPaymentMethod) {
+            targetPaymentMethod.destinationAddress = newWalletAddress;
+            if (!newWalletAddress) {
+                targetPaymentMethod.isActive = false;
+                targetPaymentMethod?.tokens?.forEach((token) => (token.isActive = false));
+            }
+        } else {
+            const newPaymentMethod = { ...chain, destinationAddress: newWalletAddress };
+            if (!newWalletAddress) {
+                targetPaymentMethod.isActive = false;
+                targetPaymentMethod.tokens.forEach((token) => (token.isActive = false));
+            }
+            selectedPaymentMethods.push(newPaymentMethod);
+        }
+        updateState("paymentMethods", selectedPaymentMethods);
+        setWalletEditability(true);
+    }, [walletAddress, paymentMethods, chain]);
+
+    const findAndUpdateToken = (e) => {
+        const isChecked = e.target.checked;
+        if (!chain?.destinationAddress) return showToast({ type: "info", message: "Please enter your wallet address first" });
+        const targetChain = selectedPaymentMethods?.find((payment) => payment.type === chain.type);
+        console.log(targetChain)
+        if (!targetChain) {
+            const newChain = { ...chain, isActive: true, tokens: [{ ...token, isActive: true }] };
+            selectedPaymentMethods?.push(newChain);
+            return;
+        }
+
+        targetChain.isActive = true;
+        const targetTokenIndex = targetChain?.tokens?.findIndex((currentToken) => currentToken?.type === token?.type);
+
+        if (isChecked) {
+            if (!canActivateNewPaymentMethod(chain, selectedPaymentMethods, getPermissionValue, showToast)) return;
+            targetTokenIndex !== -1 ? (targetChain.tokens[targetTokenIndex].isActive = true) : targetChain?.tokens?.push({ ...token, isActive: true });
+        } else {
+            // const activePaymentMethods = selectedPaymentMethods.filter(payment => payment.isActive)
+            // if (activePaymentMethods.length === 1 && activePaymentMethods[0].tokens.filter(token => token.isActive).length === 1) return
+            if (targetTokenIndex !== -1) {
+                targetChain.tokens[targetTokenIndex].isActive = false;
+            }
+            targetChain.isActive = targetChain.tokens.some((token) => token.isActive);
+        }
+        updateState("paymentMethods", selectedPaymentMethods);
+    };
+
+    // whenever we change wallet address, it should also be updated in other chain-token pairs (because we store wallet address in state)
+    useEffect(() => {
+        const walletAddress = chain.destinationAddress;
+        setWalletAddress(walletAddress);
+        setWalletEditability(!!walletAddress);
+    }, [chain.destinationAddress]);
+    const inputRef = useRef(null);
+    useOutsideClick({ ref: inputRef, handler: persistWalletAddress, enabled: !canEditWallet });
+
+    return (
+        <>
+            <Flex bg={"mainLayer"} rounded={"8px"} width={"100%"} gap={4} padding={"16px 16px"} alignItems={"center"}>
+                {canEditWallet && (
+                    <Box onClick={() => setWalletEditability(false)}>
+                        <AppIcons.EditIcon width="16px" height="16px" cursor={"pointer"} />
+                    </Box>
+                )}
+                <input
+                    ref={inputRef}
+                    type="text"
+                    placeholder="Please enter wallet address"
+                    spellCheck={false}
+                    disabled={canEditWallet}
+                    value={walletAddress}
+                    onChange={(e) => setWalletAddress(e.target.value)}
+                />
+                <AppSwitch isChecked={token ? chain.isActive && token.isActive : chain.isActive} onChange={findAndUpdateToken} />
+            </Flex>
+        </>
+    );
+};
+
+export default WalletsAccordionPayment;

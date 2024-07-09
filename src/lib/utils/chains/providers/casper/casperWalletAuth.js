@@ -1,4 +1,4 @@
-import { CLPublicKey, CasperWalletEventTypes } from "casper-js-sdk";
+// import { CLPublicKey, CasperWalletEventTypes } from "casper-js-sdk";
 let casperWalletInstance;
 export let account_information;
 export const getCasperWalletInstance = () => {
@@ -25,7 +25,8 @@ let get_account_information = async function(publicKey){
     let sign = await getCasperWalletInstance().signMessage("matin.ghiasvand1381@gmail.com", await getCasperWalletInstance().getActivePublicKey());
     return {
         "publicKey":publicKey,
-        "account_hash":CLPublicKey.fromHex(publicKey).toAccountRawHashStr(),
+        // "account_hash":CLPublicKey.fromHex(publicKey).toAccountRawHashStr(),
+        "account_hash": "",
         "signature" :sign.signatureHex
     };
 }
@@ -55,7 +56,7 @@ export async function casper_login(){
                 reject(err);
             }
         };
-        window.addEventListener(CasperWalletEventTypes.Connected, handleConnected);
+        // window.addEventListener(CasperWalletEventTypes.Connected, handleConnected);
         if (!called)
             resolve(await get_account_information(await getCasperWalletInstance().getActivePublicKey()));  
     })
