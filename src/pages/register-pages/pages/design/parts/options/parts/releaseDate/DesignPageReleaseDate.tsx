@@ -2,6 +2,7 @@ import { Flex, Grid } from '@chakra-ui/react'
 import AppDatepicker from 'components/common/datepicker/AppDatepicker'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
+import { getTomorrowMidnightISO } from 'lib/utils/heper/helpers'
 import { designContext } from 'pages/register-pages/pages/design/design-context'
 import React, { Fragment, useContext, useEffect, useState } from 'react'
 import DesignPageCard from '../card/DesignPageCard'
@@ -21,12 +22,11 @@ function DesignPageReleaseDate() {
 
     const handleSwitchChange = (checked: boolean) => {
         setDetailsVisibility(checked)
-        if (!checked) dispatch({ type: 'updateShop', params: { launchDate: null } })
+        if (checked) return dispatch({ type: 'updateShop', params: { launchDate: getTomorrowMidnightISO() } })
+        dispatch({ type: 'updateShop', params: { launchDate: null } })
     }
 
     const handleTimeChange = (key, value) => {
-        setTime(prevTime => ({ ...prevTime, [key]: value }))
-
         const date = launchDate ? new Date(launchDate) : new Date()
         date.setHours(key === "hour" ? value : date.getHours())
         date.setMinutes(key === "minute" ? value : date.getMinutes())
@@ -75,11 +75,7 @@ function DesignPageReleaseDate() {
                                             value={time[unit]}
                                             min={0}
                                             max={unit === "hour" ? 23 : 59}
-                                            onChange={({ target: { value, validity } }) => {
-                                                if (validity.valid) {
-                                                    handleTimeChange(unit, value)
-                                                }
-                                            }}
+                                            onChange={({ target: { value, validity } }) => validity.valid && handleTimeChange(unit, value)}
                                         />
                                     </Fragment>
                                 ))}

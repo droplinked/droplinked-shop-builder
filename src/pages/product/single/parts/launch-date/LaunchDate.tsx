@@ -2,6 +2,7 @@ import { Flex, Grid } from '@chakra-ui/react'
 import AppDatepicker from 'components/common/datepicker/AppDatepicker'
 import AppSwitch from 'components/common/swich'
 import AppTypography from 'components/common/typography/AppTypography'
+import { getTomorrowMidnightISO } from 'lib/utils/heper/helpers'
 import TimeInput from 'pages/register-pages/pages/design/parts/options/parts/releaseDate/TimeInput'
 import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { productContext } from '../../context'
@@ -21,14 +22,11 @@ const LaunchDate = () => {
 
     const handleSwitchChange = (checked: boolean) => {
         setDetailsVisibility(checked)
-        if (!checked) {
-            updateState("launchDate", null)
-        }
+        if (checked) return updateState("launchDate", getTomorrowMidnightISO())
+        updateState("launchDate", null)
     }
 
     const handleTimeChange = (key, value) => {
-        setTime(prevTime => ({ ...prevTime, [key]: value }))
-
         const date = launchDate ? new Date(launchDate) : new Date()
         date.setHours(key === "hour" ? value : date.getHours())
         date.setMinutes(key === "minute" ? value : date.getMinutes())
@@ -76,11 +74,7 @@ const LaunchDate = () => {
                                             value={time[unit]}
                                             min={0}
                                             max={unit === "hour" ? 23 : 59}
-                                            onChange={({ target: { value, validity } }) => {
-                                                if (validity.valid) {
-                                                    handleTimeChange(unit, value)
-                                                }
-                                            }}
+                                            onChange={({ target: { value, validity } }) => validity.valid && handleTimeChange(unit, value)}
                                         />
                                     </Fragment>
                                 ))}

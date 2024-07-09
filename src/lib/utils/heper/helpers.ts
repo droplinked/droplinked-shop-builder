@@ -64,7 +64,7 @@ export const navigating_user_based_on_status = (status: string, data: any) => {
 };
 
 
-export function sort_by_date<T extends {[key: string]: any}>(data: T[], date_key: keyof T, order: "asc" | "desc" = "asc"): T[] {
+export function sort_by_date<T extends { [key: string]: any }>(data: T[], date_key: keyof T, order: "asc" | "desc" = "asc"): T[] {
     return data.sort((a, b) => {
         const date_a = new Date(a[date_key]);
         const date_b = new Date(b[date_key]);
@@ -72,7 +72,7 @@ export function sort_by_date<T extends {[key: string]: any}>(data: T[], date_key
         else return date_b.getTime() - date_a.getTime();
     });
 }
-  
+
 export const time_ago = (date_string: string): string => {
     const given_date = new Date(date_string);
     if (isNaN(given_date.getTime())) return 'Invalid date';
@@ -110,3 +110,11 @@ export const cart_item_options_to_array_of_variants = (options: any) => {
     });
     return result
 };
+
+export const getTomorrowMidnightISO = () => {
+    let currentDate = new Date()
+    let tomorrowDate = new Date(currentDate)
+    tomorrowDate.setDate(currentDate.getDate() + 1)
+    tomorrowDate.setHours(0, 0, 0, 0)
+    return tomorrowDate.toISOString()
+}
