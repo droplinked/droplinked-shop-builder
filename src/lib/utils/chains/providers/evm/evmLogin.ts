@@ -2,7 +2,6 @@ import { Buffer } from "buffer";
 import { Chain, Network } from "../../dto/chains";
 import { ModalInterface } from "../../dto/modalInterface";
 import { isCasperWalletExtentionInstalled } from "../casper/casperWalletAuth";
-import { isStacksWalletInstalled } from "@stacks/connect";
 
 let chainNames = {
     [Chain.BINANCE]: {
@@ -68,9 +67,10 @@ export function isWalletInstalled(chain: string) {
         return { installed: (window as any).phantom?.solana?.isPhantom, walletName: "Phantom wallet" };
     } else if (chain === "CASPER") {
         return { installed: isCasperWalletExtentionInstalled(), walletName: "Casper wallet" }
-    } else if (chain === "STACKS") {
-        return { installed: isStacksWalletInstalled(), walletName: "Leather wallet" }
-    }
+    } 
+    // else if (chain === "STACKS") {
+    //     return { installed: isStacksWalletInstalled(), walletName: "Leather wallet" }
+    // }
 }
 
 export async function isWalletConnected(ethereum: any) {

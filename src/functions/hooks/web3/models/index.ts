@@ -1,8 +1,8 @@
 import { Isku } from 'lib/apis/product/interfaces'
 import { deployShopContractService } from 'lib/apis/shop/shopServices'
 import { SHOP_URL, appDevelopment } from 'lib/utils/app/variable'
-import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
-import stacksRequest from 'lib/utils/blockchain/stacks/request'
+// import { stacksRecord } from 'lib/utils/blockchain/stacks/record'
+// import stacksRequest from 'lib/utils/blockchain/stacks/request'
 import { getNetworkProvider } from 'lib/utils/chains/chainProvider'
 import { Chain, Network } from 'lib/utils/chains/dto/chains'
 import acceptModel from './module/accept/acceptModel'
@@ -109,19 +109,19 @@ const web3Model = {
 					sku,
 				}
 				if (data.blockchain === 'STACKS') {
-					const query = await stacksRecord({
-						isRequestPending,
-						openContractCall,
-						params: {
-							price: sku.price * 100,
-							amount: product.product_type === 'PRINT_ON_DEMAND' ? quantity : sku.quantity,
-							commission,
-							productID: product?._id,
-							creator: stxAddress,
-							uri: 'record',
-						},
-					})
-					if (query) dataDeploy.deployHash = query.txId
+					// const query = await stacksRecord({
+					// 	isRequestPending,
+					// 	openContractCall,
+					// 	params: {
+					// 		price: sku.price * 100,
+					// 		amount: product.product_type === 'PRINT_ON_DEMAND' ? quantity : sku.quantity,
+					// 		commission,
+					// 		productID: product?._id,
+					// 		creator: stxAddress,
+					// 		uri: 'record',
+					// 	},
+					// })
+					// if (query) dataDeploy.deployHash = query.txId
 				} else {
 					const nftContract =
 						targetChainContract?.deployedNFTAddress || deployedContract.deployedNFTAddress
@@ -169,17 +169,17 @@ const web3Model = {
 
 				const shopAddress = deployedContractAddress
 				if (blockchain === 'STACKS') {
-					const request = await stacksRequest({
-						isRequestPending,
-						openContractCall,
-						params: {
-							amount: quantity,
-							commission: sku?.recordData?.data?.details?.commision,
-							id: parseInt(productId),
-							publisher: stxAddress,
-						},
-					})
-					resolve(request.txId)
+					// const request = await stacksRequest({
+					// 	isRequestPending,
+					// 	openContractCall,
+					// 	params: {
+					// 		amount: quantity,
+					// 		commission: sku?.recordData?.data?.details?.commision,
+					// 		id: parseInt(productId),
+					// 		publisher: stxAddress,
+					// 	},
+					// })
+					// resolve(request.txId)
 				} else {
 					const request = await getNetworkProvider(
 						Chain[blockchain],
