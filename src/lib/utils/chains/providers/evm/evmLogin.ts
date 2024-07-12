@@ -43,6 +43,10 @@ let chainNames = {
     [Chain.ETH]: {
         [Network.MAINNET]: { chainName: "Ethereum", chainId: "0x1", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://mainnet.infura.io/v3/'] },
         [Network.TESTNET]: { chainName: "Sepolia", chainId: "0xaa36a7", nativeCurrency: { name: 'ETH', decimals: 18, symbol: 'ETH' }, rpcUrls: ['https://eth-sepolia.public.blastapi.io/'] }
+    },
+    [Chain.REDBELLY]: {
+        [Network.TESTNET]: { chainName: "Redbelly Network Testnet", chainId: "0x99", nativeCurrency: { name: 'RBNT', decimals: 18, symbol: 'RBNT' }, rpcUrls: ['https://governors.testnet.redbelly.network'] },
+        [Network.MAINNET]: null
     }
 };
 

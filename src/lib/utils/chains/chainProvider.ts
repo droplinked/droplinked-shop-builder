@@ -125,6 +125,10 @@ let chainMapping = {
 		[Network.MAINNET]: new SolanaProvider(Chain.SOLANA, Network.TESTNET),
 		[Network.TESTNET]: new SolanaProvider(Chain.SOLANA, Network.TESTNET),
 	},
+	[Chain.REDBELLY]: {
+		[Network.MAINNET]: new EVMProvider(Chain.REDBELLY, Network.MAINNET),
+		[Network.TESTNET]: new EVMProvider(Chain.REDBELLY, Network.TESTNET),
+	}
 }
 
 export function getNetworkProvider(
