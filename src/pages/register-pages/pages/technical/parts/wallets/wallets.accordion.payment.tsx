@@ -1,4 +1,4 @@
-import { Box, Flex, useOutsideClick } from "@chakra-ui/react";
+import { Box, Flex, useOutsideClick, VStack } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppSwitch from "components/common/swich";
 import useAppToast from "functions/hooks/toast/useToast";
@@ -6,6 +6,7 @@ import { useGetPermissionValue } from "lib/stores/app/appStore";
 import technicalContext from "pages/register-pages/pages/technical/context";
 import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { canActivateNewPaymentMethod } from "./wallets.helpers";
+import AppTypography from "components/common/typography/AppTypography";
 
 const WalletsAccordionPayment = ({ chain, token }: { chain: any; token?: any }) => {
     const getPermissionValue = useGetPermissionValue();
@@ -41,11 +42,10 @@ const WalletsAccordionPayment = ({ chain, token }: { chain: any; token?: any }) 
         setWalletEditability(true);
     }, [walletAddress, paymentMethods, chain]);
 
-    const findAndUpdateToken = (e) => {
+    const findAndUpdateToken = (e, token) => {
         const isChecked = e.target.checked;
         if (!chain?.destinationAddress) return showToast({ type: "info", message: "Please enter your wallet address first" });
         const targetChain = selectedPaymentMethods?.find((payment) => payment.type === chain.type);
-        console.log(targetChain)
         if (!targetChain) {
             const newChain = { ...chain, isActive: true, tokens: [{ ...token, isActive: true }] };
             selectedPaymentMethods?.push(newChain);
@@ -59,8 +59,6 @@ const WalletsAccordionPayment = ({ chain, token }: { chain: any; token?: any }) 
             if (!canActivateNewPaymentMethod(chain, selectedPaymentMethods, getPermissionValue, showToast)) return;
             targetTokenIndex !== -1 ? (targetChain.tokens[targetTokenIndex].isActive = true) : targetChain?.tokens?.push({ ...token, isActive: true });
         } else {
-            // const activePaymentMethods = selectedPaymentMethods.filter(payment => payment.isActive)
-            // if (activePaymentMethods.length === 1 && activePaymentMethods[0].tokens.filter(token => token.isActive).length === 1) return
             if (targetTokenIndex !== -1) {
                 targetChain.tokens[targetTokenIndex].isActive = false;
             }
@@ -69,17 +67,17 @@ const WalletsAccordionPayment = ({ chain, token }: { chain: any; token?: any }) 
         updateState("paymentMethods", selectedPaymentMethods);
     };
 
-    // whenever we change wallet address, it should also be updated in other chain-token pairs (because we store wallet address in state)
     useEffect(() => {
         const walletAddress = chain.destinationAddress;
         setWalletAddress(walletAddress);
         setWalletEditability(!!walletAddress);
     }, [chain.destinationAddress]);
+
     const inputRef = useRef(null);
     useOutsideClick({ ref: inputRef, handler: persistWalletAddress, enabled: !canEditWallet });
 
     return (
-        <>
+        <VStack align={"stretch"} gap={"16px"}>
             <Flex bg={"mainLayer"} rounded={"8px"} width={"100%"} gap={4} padding={"16px 16px"} alignItems={"center"}>
                 {canEditWallet && (
                     <Box onClick={() => setWalletEditability(false)}>
@@ -95,9 +93,16 @@ const WalletsAccordionPayment = ({ chain, token }: { chain: any; token?: any }) 
                     value={walletAddress}
                     onChange={(e) => setWalletAddress(e.target.value)}
                 />
-                <AppSwitch isChecked={token ? chain.isActive && token.isActive : chain.isActive} onChange={findAndUpdateToken} />
+                {chain.tokens?.length === 1 && <AppSwitch isChecked={chain?.isActive} onChange={(e) => findAndUpdateToken(e, chain?.tokens[0])} />}
             </Flex>
-        </>
+            {chain.tokens?.length > 1 &&
+                chain?.tokens?.map((token, index) => (
+                    <Flex key={index} bg={"mainLayer"} rounded={"8px"} width={"100%"} gap={4} padding={"16px 16px"} alignItems={"center"} justifyContent="space-between">
+                        <AppTypography color={"#C2C2C2"}>{token?.type}</AppTypography>
+                        <AppSwitch isChecked={token.isActive} onChange={(e) => findAndUpdateToken(e, token)} />
+                    </Flex>
+                ))}
+        </VStack>
     );
 };
 
