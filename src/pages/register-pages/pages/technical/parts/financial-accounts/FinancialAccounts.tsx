@@ -26,7 +26,7 @@ function FinancialAccounts() {
             window.open(res.data.url, "_self")
         }
         catch (error) {
-            showToast({ message: (error as Error).message, type: 'error' })
+            showToast({ message: error?.response?.data?.data?.message || "Oops! Something went wrong", type: 'error' })
         }
         finally {
             setLoading(false)
@@ -52,8 +52,9 @@ function FinancialAccounts() {
                                 isFetchingShopData ?
                                     <AppSkeleton isLoaded={false} width={"160px"} height={8}>{""}</AppSkeleton> :
                                     shopData.data.data.onboardedExpressStripeAccount ?
-                                        <BasicButton sizes='medium' onClick={() => window.open("https://dashboard.stripe.com/login", "_blank")}>View Account</BasicButton> :
-                                        <BasicButton sizes='medium' isDisabled={isLoading} isLoading={isLoading} onClick={createStripeOnboardingLink}>Connect Account</BasicButton>
+                                        <BasicButton sizes='medium' isDisabled={isLoading} isLoading={isLoading} onClick={createStripeOnboardingLink}>Connect Account</BasicButton> :
+                                        <BasicButton sizes='medium' onClick={() => window.open("https://dashboard.stripe.com/login", "_blank")}>View Account</BasicButton>
+                                // <BasicButton sizes='medium' isDisabled={isLoading} isLoading={isLoading} onClick={createStripeOnboardingLink}>Connect Account</BasicButton>
                             }
                         </Flex>
                     </BlackBox>
