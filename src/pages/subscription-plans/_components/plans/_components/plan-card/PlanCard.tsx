@@ -2,11 +2,13 @@ import { Box, Flex, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppTypography from "components/common/typography/AppTypography";
+import AuthModal from "components/modals/auth-modal/AuthModal";
+import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
 import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
+import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
 import PlanHeading, { subscriptionPlanMap } from "pages/subscription-plans/_components/PlanHeading";
 import React from "react";
-import { useLocation } from "react-router-dom";
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal";
 
 interface Props {
@@ -16,19 +18,18 @@ interface Props {
 }
 
 const PlanCard = ({ plan, prevPlanType, features }: Props) => {
-    const { onOpen, isOpen, onClose } = useDisclosure()
-    const pathname = useLocation().pathname
+    const { profile } = useProfile()
+    const purchaseModal = useDisclosure()
+    const signInModal = useDisclosure()
     const { price, type } = plan
     const isStarter = type === "STARTER"
     const isEnterprise = type === "ENTERPRISE"
     const prevPlanTitle = subscriptionPlanMap[prevPlanType].title
 
     const handlePlanPurchase = () => {
-        if (isEnterprise) {
-            window.location.href = "mailto:Support@droplinked.com"
-            return
-        }
-        onOpen()
+        if (!profile) return signInModal.onOpen()
+        if (isEnterprise) return window.location.href = "mailto:Support@droplinked.com"
+        purchaseModal.onOpen()
     }
 
     return (
@@ -48,7 +49,7 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
                     {isNaN(Number(price)) ? capitalizeFirstLetter(plan.price) : `$${price}/mo`}
                 </AppTypography>
 
-                {pathname.includes("dashboard") && !isStarter && <BasicButton onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Buy"}</BasicButton>}
+                {!isStarter && <BasicButton onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Buy"}</BasicButton>}
 
                 <AppTypography fontSize={12} fontWeight={600} color={"white"}>
                     {
@@ -77,7 +78,8 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
                     })
                 }
             </Flex>
-            {isOpen && <SubscriptionPlanCheckoutModal selectedPlan={plan} open={isOpen} close={onClose} />}
+            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={plan} open={purchaseModal.isOpen} close={purchaseModal.onClose} />}
+            {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={signInModal.onClose} type={MODAL_TYPE.SIGNUP} />}
         </>
     )
 }
