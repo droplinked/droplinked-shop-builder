@@ -19,7 +19,7 @@
 .datepicker {
     :global {
         .react-datepicker__tab-loop {
-            margin: 0;
+            position: absolute;
         }
 
         .react-datepicker__month-container {
@@ -32,6 +32,7 @@
 
         .react-datepicker-popper {
             padding: 0;
+            z-index: 100;
         }
 
         .react-datepicker__day {

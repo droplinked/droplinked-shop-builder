@@ -13,8 +13,9 @@ import { supportedChainsService } from 'lib/apis/sku/services';
 import { isWalletInstalled } from 'lib/utils/chains/providers/evm/evmLogin';
 import React, { useCallback } from 'react';
 import { useQuery } from 'react-query';
+import { ConnectWalletsLoading } from './connect.wallets.loading';
 
-function Wallet() {
+function ConnectWallets() {
     const { data, isLoading } = useQuery({
         queryFn: supportedChainsService,
         queryKey: "supported_chains",
@@ -41,12 +42,14 @@ function Wallet() {
         }
     }, [wallets, stack.stxAddress])
 
+    if(isLoading) return <ConnectWalletsLoading/>;
+
     return (
         <AppCard>
             <VStack spacing={3} align='stretch'>
-                <FieldLabel label='Connected Wallets' textProps={{ fontSize: "18px", fontWeight: "bolder" }} isRequired />
+                {/* <FieldLabel label='Connected Wallets' textProps={{ fontSize: "18px", fontWeight: "bolder" }} isRequired /> */}
                 <VStack align="stretch" spacing="8px">
-                    {data?.data?.data ? data?.data?.data.map((el, key) => {
+                    {data?.data?.data && data?.data?.data.map((el, key) => {
                         const isExist = getChain({ chain: el, wallets })
                         return (
                             <Flex backgroundColor="#141414" height="55px" padding="0 18px" key={key} alignItems="center" justifyContent="space-between" borderRadius="8px" color="#C2C2C2">
@@ -66,11 +69,11 @@ function Wallet() {
                                 </Box>
                             </Flex>
                         )
-                    }) : null}
+                    })}
                 </VStack>
             </VStack>
         </AppCard>
     )
 }
 
-export default Wallet
+export default ConnectWallets

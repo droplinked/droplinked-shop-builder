@@ -16,6 +16,11 @@ function PartnersSlider() {
             icon: '/assets/images/homepage/uns.svg'
         },
         {
+            title: "SwissBorg",
+            url: "https://droplinked.io/swissborg",
+            icon: "/assets/images/homepage/swissborg.jpeg"
+        },
+        {
             title: 'Casper Punks',
             url: 'https://shop.casperpunks.io/',
             icon: '/assets/images/homepage/casper.svg'
@@ -69,12 +74,7 @@ function PartnersSlider() {
             title: "Elixir",
             url: "https://droplinked.io/elixir",
             icon: "/assets/images/homepage/elixir.jpeg"
-        },
-        {
-            title: "SwissBorg",
-            url: "https://droplinked.io/swissborg",
-            icon: "/assets/images/homepage/swissborg.jpeg"
-        },
+        }
     ]
     const settings = {
         infinite: true,

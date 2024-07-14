@@ -40,7 +40,7 @@ const SelectPagesComponent = () => {
           if (isSettings) shopNavigate("settings/technical");
         }}
       >
-        Payment Options
+        Wallet and Payment
       </SideText>
 
       {isSettings && (
