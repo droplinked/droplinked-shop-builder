@@ -14,7 +14,7 @@ const IsHeaderFixed = () => {
     return (
         <Flex alignItems="center" gap="16px">
             <AppSwitch isChecked={isHeaderFixed} onChange={change} />
-            <AppTypography fontSize="14px">Wanna header to be sticky?</AppTypography>
+            <AppTypography fontSize="14px">Scrolling header</AppTypography>
         </Flex>
     );
 };
