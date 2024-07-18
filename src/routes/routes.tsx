@@ -78,7 +78,7 @@ function AppRoutes() {
           <Route path="pod-product" element={<PODProductPage />} />
           <Route path="accept-invitation/:invitationId" element={<AcceptInvitation />} />
           <Route path="roi" element={<ROIPage />} />
-          {/* <Route path="dpp" element={<DppPage />} /> */}
+          <Route path="dpp" element={<DppPage />} />
           <Route path="blogs">
             <Route index element={<PublicBlogs />} />
             <Route path=":slug" element={<PublicBlog />} />

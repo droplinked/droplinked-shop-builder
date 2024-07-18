@@ -30,7 +30,7 @@ function HeaderMain() {
             label: "Commerce Tools",
             links: [
                 { label: "DIMST", description: "On-Chain Inventory Management", icon: <AppIcons.Coins />, href: "/roi" },
-                // { label: "DPP", description: "Digital Product Passport", icon: <AppIcons.Gallery />, href: "/dpp" }
+                { label: "DPP", description: "Digital Product Passport", icon: <AppIcons.Gallery />, href: "/dpp" }
             ],
         },
     ]
