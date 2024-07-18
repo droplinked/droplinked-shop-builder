@@ -84,51 +84,51 @@ function AppGDPR() {
             transition={{ duration: 1 }}
             style={{
               display: "flex",
-              alignItems: "center",
-              gap: "12px",
+              alignItems: "flex-start",
+              gap: "16px",
               flexDirection: "column",
-              backgroundColor: "#1a1a1a",
+              backgroundColor: "#141414",
               position: "fixed",
               bottom: 0,
               width: "100%",
-              padding: "22px 12px",
+              padding: "32px",
               color: "#fff",
+              borderRadius: "15px",
               zIndex: 99999,
             }}
           >
-            <Flex flexDirection={"column"} alignItems={"flex-start"} width={"90%"}>
-              <AppTypography fontSize={"28px"} fontWeight={600} color={"#2EC99E"}>Privacy Policy</AppTypography>
-              <AppTypography fontSize={{ base: "16px", md: "22px" }}>
-                Droplinked values your privacy. We collect minimal data such as name, email, and IP address to provide our services. Your data is protected and you have the right to access, correct, or delete it. For inquiries, contact us at <Link href="mailto:Support@droplinked.com" color={"#2EC99E"} fontSize={{ base: "16px", md: "22px" }}>Support@droplinked.com</Link> .
-              </AppTypography>
-            </Flex>
+            <AppTypography textAlign={{base: "center", sm: "left"}} fontSize={"24px"} fontWeight={700} color={"#2BCFA1"} width={"100%"}>Privacy Policy</AppTypography>
+            <AppTypography textAlign={{base: "center", sm: "left"}} fontSize={{ base: "14px", md: "20px" }} fontWeight={500}>
+              Droplinked values your privacy. We collect minimal data such as name, email, and IP address to provide our services. Your data is protected and you have the right to access, correct, or delete it. For inquiries, contact us at <Link href="mailto:Support@droplinked.com" textDecoration={"underline"}>Support@droplinked.com</Link> .
+            </AppTypography>
             <Flex
               alignItems={"center"}
-              justifyContent={"flex-end"}
-              gap={"8px"}
-              width={"85%"}
+              justifyContent={{base: "center", sm: "flex-start"}}
+              gap={"16px"}
+              flexDirection={{base: "column", sm: "row"}}
+              width={"100%"}
             >
               <Button
-                onClick={handleDecline}
-                variant="outline"
-                borderColor={"#9C4EFF"}
-                color={"#9C4EFF"}
-                backgroundColor={"transparent"}
-                width={"150px"}
-                _hover={{ backgroundColor: "#9C4EFF", color: "#fff" }}
-                _active={{ backgroundColor: "#7a40c7", borderColor: "#7a40c7", color: "#fff" }}
-              >
-                Deny
-              </Button>
-              <Button
                 onClick={handleAccept}
-                backgroundColor={"#2EC99E"}
-                color={"#fff"}
-                width={"150px"}
+                backgroundColor={"#2BCFA1"}
+                color={"#084836"}
+                width={{base: "100%", sm: "160px"}}
+                padding={"12px 36px"}
                 _hover={{ backgroundColor: "#17916f" }}
                 _active={{ backgroundColor: "#0e664a" }}
               >
                 Accept
+              </Button>
+              <Button
+                onClick={handleDecline}
+                color={"#C2C2C2"}
+                backgroundColor={"#292929"}
+                width={{base: "100%", sm: "160px"}}
+                padding={"12px 36px"}
+                _hover={{ backgroundColor: "#3A3A3A", color: "#C2C2C2" }}
+                _active={{ backgroundColor: "#1F1F1F", color: "#C2C2C2" }}
+              >
+                Decline
               </Button>
             </Flex>
           </motion.div>
