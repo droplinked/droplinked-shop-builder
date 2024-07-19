@@ -1,16 +1,28 @@
 import axios from 'axios';
-import { Chain, Network } from './chains';
+import { Chain, ChainWallet, Network } from './chains';
 import { ethers } from 'ethers';
 
-async function getShopByteCode() {
-    let result = String(
-        (
-            await axios.get(
-                `https://apiv3dev.droplinked.com/storage/shopByteCode`
-            )
-        ).data.value
-    );
-    return result;
+async function getShopByteCode(chain: Chain) {
+    if (chain !== Chain.REDBELLY) {
+        let result = String(
+            (
+                await axios.get(
+                    `https://apiv3dev.droplinked.com/storage/shopByteCode`
+                )
+            ).data.value
+        );
+        return result;
+    }
+    else {
+        let result = String(
+            (
+                await axios.get(
+                    `https://apiv3dev.droplinked.com/storage/shopBytecodeRedbelly`
+                )
+            ).data.value
+        );
+        return result;
+    }
 }
 
 async function getDeployerAddress(chain: Chain, network: Network) {
@@ -19,8 +31,7 @@ async function getDeployerAddress(chain: Chain, network: Network) {
     let result = String(
         (
             await axios.get(
-                `https://${
-                    network === Network.TESTNET ? 'apiv3dev' : 'apiv3'
+                `https://${network === Network.TESTNET ? 'apiv3dev' : 'apiv3'
                 }.droplinked.com/storage/${snakeCase(Chain[chain])}${snakeCase(
                     Network[network]
                 )}ContractAddressDeployer`
@@ -36,8 +47,7 @@ async function getProxyAddress(chain: Chain, network: Network) {
     let result = String(
         (
             await axios.get(
-                `https://${
-                    network === Network.TESTNET ? 'apiv3dev' : 'apiv3'
+                `https://${network === Network.TESTNET ? 'apiv3dev' : 'apiv3'
                 }.droplinked.com/storage/${snakeCase(Chain[chain])}${snakeCase(
                     Network[network]
                 )}ContractAddressProxy`

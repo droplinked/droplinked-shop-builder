@@ -64,7 +64,7 @@ export async function getAccounts(ethereum: any) {
 }
 
 export function isWalletInstalled(chain: string) {
-    if (["POLYGON", "XRPLSIDECHAIN", "NEAR", "BINANCE", "BASE", "LINEA", "ETH"].includes(chain)) {
+    if (["POLYGON", "XRPLSIDECHAIN", "NEAR", "BINANCE", "BASE", "LINEA", "ETH", "REDBELLY"].includes(chain)) {
         return { installed: isMetamaskInstalled(), walletName: "MetaMask wallet" }
     }
     else if (chain === "SOLANA") {

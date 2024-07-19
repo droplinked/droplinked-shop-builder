@@ -139,7 +139,7 @@ export class EVMProvider implements ChainProvider {
     }
     async recordProduct(sku_properties: any, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, apiKey: string): Promise<RecordData> {
         await this.handleWallet(this.address);
-        return await EVMrecordMerch(this.getWalletProvider(),sku_properties, this.address, product_title, description, image_url, price, amount, commission, type, beneficiaries, acceptsManageWallet, royalty, nftContract, shopAddress, currencyAddress, apiKey, this.modalInterface);
+        return await EVMrecordMerch(this.getWalletProvider(), this.chain,sku_properties, this.address, product_title, description, image_url, price, amount, commission, type, beneficiaries, acceptsManageWallet, royalty, nftContract, shopAddress, currencyAddress, apiKey, this.modalInterface);
     }
     async publishRequest(productId: Uint256, shopAddress: EthAddress): Promise<AffiliateRequestData> {
         await this.handleWallet(this.address);

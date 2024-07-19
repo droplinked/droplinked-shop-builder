@@ -60,6 +60,8 @@ namespace OrderInformationModel {
                 return `https://${appDevelopment ? "goerli." : ""}lineascan.build/tx/${transactionId}`
             case "ETH":
                 return `https://${appDevelopment ? "sepolia." : ""}etherscan.io/tx/${transactionId}`
+            case 'REDBELLY': 
+				return `https://explorer.testnet.redbelly.network/transaction/${transactionId}`
             default:
                 return ""
         }

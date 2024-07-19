@@ -30,6 +30,8 @@ const hashkeyModel = {
 				return `https://${appDevelopment ? 'sepolia' : ''}.etherscan.io/tx/${hashkey}`
 			case 'SOLANA':
 				return `https://explorer.solana.com/tx/${hashkey}?cluster=devnet`
+			case 'REDBELLY':
+				return `https://explorer.testnet.redbelly.network/transaction/${hashkey}`
 			default:
 				return ''
 		}
