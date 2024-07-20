@@ -10,6 +10,6 @@ export const OPTIONS = [
     { icon: <AppIcons.NFT />, label: 'NFTs', path: '/nfts' },
     { icon: <AppIcons.Blog />, label: 'Blogs', path: '/blogs' },
     { icon: <AppIcons.SubscriptionPlan />, label: 'Pricing Plans', path: '/plans' },
-    { icon: <AppIcons.SubscriptionPlan />, label: 'Gamification', path: '/gamification' },
+    { icon: <AppIcons.Gamification />, label: 'Gamification', path: '/gamification' },
     { icon: <AppIcons.SettingIcon />, label: 'Settings', path: '/settings/shop-info' },
 ]
