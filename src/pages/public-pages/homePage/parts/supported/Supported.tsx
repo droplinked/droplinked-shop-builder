@@ -1,4 +1,4 @@
-import { Box, Flex, Image, VStack } from '@chakra-ui/react'
+import { Flex, Image } from '@chakra-ui/react'
 import React from 'react'
 import LandingDescription from '../parts/description/LandingDescription'
 import LandingTitle from '../parts/title/LandingTitle'
