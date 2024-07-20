@@ -15,7 +15,8 @@ function Supported() {
         'assets/images/homepage/Solana.png',
         'assets/images/homepage/base.png',
         'assets/images/homepage/skale.png',
-        'assets/images/homepage/Hedera.png'
+        'assets/images/homepage/Hedera.png',
+        'assets/images/homepage/circle.png',
     ]
 
     return (
