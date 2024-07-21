@@ -7,7 +7,8 @@ import { EVMApproveRequest, EVMDisapproveRequest } from "./evmAffiliate";
 import { EVMDeployShop } from "./evmDeployShop";
 import { evmLogin, isMetamaskInstalled, getAccounts, isWalletConnected, isChainCorrect, changeChain } from "./evmLogin";
 import { EVMPublishRequest } from "./evmPublish";
-import { EVMrecordMerch } from "./evmRecord";
+import { EVMBatchRecord, EVMrecordMerch } from "./evmRecord";
+import { RecordProduct } from "../../dto/recordDTO";
 
 export class EVMProvider implements ChainProvider {
     chain: Chain = Chain.BINANCE;
@@ -141,6 +142,12 @@ export class EVMProvider implements ChainProvider {
         await this.handleWallet(this.address);
         return await EVMrecordMerch(this.getWalletProvider(), this.chain,sku_properties, this.address, product_title, description, image_url, price, amount, commission, type, beneficiaries, acceptsManageWallet, royalty, nftContract, shopAddress, currencyAddress, apiKey, this.modalInterface);
     }
+
+    async recordBatch(products: RecordProduct[], shopAddress: string, nftContract: string, apiKey: string): Promise<RecordData>{
+        await this.handleWallet(this.address)
+        return await EVMBatchRecord(this.getWalletProvider(), this.chain, this.address, shopAddress, nftContract, apiKey, this.modalInterface, products)
+    }
+
     async publishRequest(productId: Uint256, shopAddress: EthAddress): Promise<AffiliateRequestData> {
         await this.handleWallet(this.address);
         return await EVMPublishRequest(this.getWalletProvider(),this.address, productId, shopAddress, this.modalInterface);
