@@ -30,7 +30,10 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
 
     const closeModal = () => {
         onClose()
-        isCompleted && queryClient.invalidateQueries({ queryKey: ['participates'] })
+        if (isCompleted) {
+            queryClient.invalidateQueries({ queryKey: ['participates'] })
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
     }
 
     const checkMissionCompletion = async () => {
@@ -74,7 +77,7 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                         {!error && (
                             <Flex direction="column" gap={4}>
                                 <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
-                                    Points: <Box as="span" color="#C2C2C2">25</Box>
+                                    Points: <Box as="span" color="#C2C2C2">{missionCreditReward}</Box>
                                 </AppTypography>
                                 <BasicButton alignSelf="center" isDisabled={isLoading} onClick={checkMissionCompletion}>
                                     Review Status
