@@ -28,7 +28,7 @@ function CompletedMissions({ isLoading, missions }: { isLoading: boolean, missio
                 <AppImage width={"95px"} height={"95px"} borderRadius={"50%"} src="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/1bac072951d09ae1d3fa4f8f072d69acfcecab3e3743b008153c9ae1bbb344d2.png_or.png" />
                 <Flex direction={"column"}>
                     <AppTypography fontSize={14} fontWeight={500} color={"#C2C2C2"}>Points</AppTypography>
-                    <AppSkeleton isLoaded={!isLoading}><AppTypography fontSize={20} fontWeight={700} bgGradient="linear(to-b, #C0FFEE, #17FFBF , #00FFB8)" bgClip="text">{pointsEarned}</AppTypography></AppSkeleton>
+                    <AppSkeleton isLoaded={!isLoading}><AppTypography fontSize={20} fontWeight={700} bgGradient="linear(to-b, #C0FFEE, #17FFBF , #00FFB8)" bgClip="text">{pointsEarned.toFixed(2)}</AppTypography></AppSkeleton>
                 </Flex>
             </GamificationCard>
 
@@ -46,7 +46,7 @@ function CompletedMissions({ isLoading, missions }: { isLoading: boolean, missio
                 >
                     <AppTypography fontSize={20} fontWeight={700}>Missions Completed</AppTypography>
                     <Progress width={"320px"} isIndeterminate={isLoading} min={0} max={100} value={(100 * pointsEarned) / totalPoints} colorScheme={"linear(to-b, #C0FFEE, #17FFBF , #00FFB8)"} />
-                    <AppSkeleton width={"fit-content"} isLoaded={!isLoading}><AppTypography fontSize={20} fontWeight={700}>{pointsEarned}/{totalPoints}</AppTypography></AppSkeleton>
+                    <AppSkeleton width={"fit-content"} isLoaded={!isLoading}><AppTypography fontSize={20} fontWeight={700}>{pointsEarned.toFixed(2)}/{totalPoints}</AppTypography></AppSkeleton>
                 </Flex>
             </GamificationCard>
         </Flex>
