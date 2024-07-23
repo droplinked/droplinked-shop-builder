@@ -43,6 +43,16 @@ const SelectPagesComponent = () => {
         Wallet and Payment
       </SideText>
 
+      <SideText
+        cursor={isSettings && "pointer"}
+        color={currentPath.includes("technical") ? "primary" : "lightGray"}
+        onClick={() => {
+          if (isSettings) shopNavigate("settings/tile");
+        }}
+      >
+        Product Tile Design
+      </SideText>
+
       {isSettings && (
         <SideText
           cursor={isSettings && "pointer"}

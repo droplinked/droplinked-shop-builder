@@ -5,9 +5,8 @@ import WithPermission from 'functions/hoc/shop-permissions/WithPermission'
 import React, { useContext } from 'react'
 import { productContext } from '../../context'
 import ProductCollapse from '../modules/collapse/ProductCollapse'
-import ProductTileEmptyBox from '../modules/productTileEmptyBox/ProductTileEmptyBox'
-import ProductTileModal from '../modules/productTileModal/ProductTileModal'
-import ProductTileTable from '../modules/productTileTable/ProductTileTable'
+import ProductTileModal from './product.tile.modal'
+import ProductTileTable from './product.tile.table'
 
 function ProductTile() {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -43,11 +42,14 @@ function ProductTile() {
                                 <AppTypography fontSize={14} color="#33A9EC">Create new tile</AppTypography>
                             </Flex>
                         </Flex>
-                        {
-                            (!productTile?.length) ?
-                                <ProductTileEmptyBox /> :
-                                <ProductTileTable />
-                        }
+                        {!productTile?.length ? (
+                            <Flex justifyContent="center" align="center" gap={1}>
+                                <AppIcons.InfoIcon />
+                                <AppTypography color="#C2C2C2">You don’t have any product tile.</AppTypography>
+                            </Flex>
+                        ) : (
+                            <ProductTileTable />
+                        )}
                     </Flex>
                 </WithPermission>
             </ProductCollapse>

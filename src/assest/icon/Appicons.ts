@@ -121,6 +121,7 @@ import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as SubscriptionPlan } from "./subscription-plan.svg";
+import { ReactComponent as Paint } from "./paint.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -245,7 +246,8 @@ const AppIcons = {
   Premium,
   Enterprise,
   SubscriptionPlan,
-  MultiShopManagement
+  MultiShopManagement,
+  Paint
 }
 
 export default AppIcons

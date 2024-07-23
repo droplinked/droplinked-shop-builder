@@ -82,9 +82,10 @@ export interface Iproperties {
 }
 
 export interface IskuOption {
-    value: string
-    variantName: string,
-    caption: string
+    value: string;
+    variantName: string;
+    variantID: string;
+    caption: string;
 }
 
 export interface IrecordData {

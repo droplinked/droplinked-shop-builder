@@ -6,7 +6,6 @@ import AppTypography from 'components/common/typography/AppTypography';
 import useAppToast from 'functions/hooks/toast/useToast';
 import { createProductTileService, editProductTileService } from 'lib/apis/product/productServices';
 import { useCheckPermission } from 'lib/stores/app/appStore';
-import { typesProperties } from 'lib/utils/statics/types';
 import { productContext } from 'pages/product/single/context';
 import React, { useContext, useState } from 'react';
 import { useMutation } from 'react-query';
@@ -25,25 +24,30 @@ function ProductTileModal({ isOpen, close, selectedTile }: Props) {
     const [skuIDs, setSkuIDs] = useState<string[]>(() => selectedTile?.skuIDs.map(sku => sku._id) ?? [])
     const { showToast } = useAppToast()
     const rows = sku.map(el => {
-        const option = (type: 'color' | 'Size') => el.options.find(option => option?.variantID === typesProperties[type === "color" ? 0 : 1]._id)
         return {
             _data: el as any,
             variant: {
                 value: (
                     <Flex alignItems="center" gap={1}>
-                        {option('color') && <Box backgroundColor={option('color')?.value} width="16px" height="16px" borderRadius="100%"></Box>}
-                        {option('Size') && <AppTypography color="#C2C2C2">{option('Size')?.value}</AppTypography>}
+                        {el?.options?.map((variant, idx) => {
+                            if (variant?.variantID === "62a989ab1f2c2bbc5b1e7153") return <Box key={idx} backgroundColor={variant?.value} width="16px" height="16px" borderRadius="100%"></Box>;
+                            return <AppTypography key={idx} color="#C2C2C2">{variant?.value}</AppTypography>
+                        })}
                     </Flex>
-                )
+                ),
             },
             cost: {
                 caption: "Product Cost",
-                value: <AppTypography fontSize={12} color="#C2C2C2">
-                    ${el.price} {" "}
-                    <Box as="span" color="#808080">USD</Box>
-                </AppTypography>
-            }
-        }
+                value: (
+                    <AppTypography fontSize={12} color="#C2C2C2">
+                        ${el.price}{" "}
+                        <Box as="span" color="#808080">
+                            USD
+                        </Box>
+                    </AppTypography>
+                ),
+            },
+        };
     })
     const handleSave = async () => {
         try {
