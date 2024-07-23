@@ -122,6 +122,7 @@ import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as SubscriptionPlan } from "./subscription-plan.svg";
 import { ReactComponent as Gamification } from "./gamification.svg";
+import { ReactComponent as Paint } from "./paint.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -247,7 +248,8 @@ const AppIcons = {
   Enterprise,
   SubscriptionPlan,
   MultiShopManagement,
-  Gamification
+  Gamification,
+  Paint
 }
 
 export default AppIcons

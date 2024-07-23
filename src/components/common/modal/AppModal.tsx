@@ -1,14 +1,14 @@
-import { Flex, Modal, ModalBody, ModalContent, ModalOverlay, StyleProps } from '@chakra-ui/react'
+import { Flex, Modal, ModalBody, ModalContent, ModalOverlay, ModalProps, StyleProps } from '@chakra-ui/react'
 import React from 'react'
 import AppTypography from '../typography/AppTypography'
 
-export interface IAppModal {
+export interface IAppModal extends Omit<ModalProps, "isOpen" | "onClose">{
     open: boolean
     close: any
     scrollBehavior?: "inside" | "outside"
     contentProps?: StyleProps
     title?: string
-    [props: string]: any
+    
 }
 
 function AppModal(props: IAppModal) {
