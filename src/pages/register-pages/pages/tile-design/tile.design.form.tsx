@@ -154,7 +154,7 @@ const TileDesignForm = () => {
     };
 
     return (
-        <VStack align={"stretch"} backgroundColor={"white"} maxW={"280px"} padding={"16px"} rounded={"8px"}>
+        <VStack align={"stretch"} backgroundColor={"white"} width={"280px"} padding={"16px"} rounded={"8px"}>
             <HStack borderBottom={"4px solid #2BCFA1"}>
                 <AppIcons.Paint />
                 <AppTypography fontSize={"16px"} fontWeight={"500"}>
@@ -188,7 +188,7 @@ const TileDesignForm = () => {
                             if (input?.type === TILE_INPUT_TYPES.COLOR_PICKER)
                                 return (
                                     <AppColorPicker
-                                        props={{ containerProps: { backgroundColor: "white", border: "1px solid #DEDEDE" } }}
+                                        props={{ containerProps: { backgroundColor: "white", border: "1px solid #DEDEDE", minW: "128px" } }}
                                         value={currentValue}
                                         onChange={(e) => updateFormFields({ page: current.page, section: current.section, key: input?.key, value: e })}
                                     />

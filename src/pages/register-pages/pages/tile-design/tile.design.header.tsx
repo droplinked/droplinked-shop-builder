@@ -4,7 +4,7 @@ import Select from "react-select";
 import DropDownModel from "components/common/form/dropdown/DropDownModel";
 import AppTypography from "components/common/typography/AppTypography";
 import { TileDesignContext } from "./context/tile.design.context";
-import { TILE_DESIGN_PAGES_ENUM } from "./types/tile.design.types";
+import { PRODUCT_SECTIONS_ENUM, TILE_DESIGN_PAGES_ENUM } from "./types/tile.design.types";
 
 function TileDesignHeader() {
     const {
@@ -23,7 +23,7 @@ function TileDesignHeader() {
                         { label: TILE_DESIGN_PAGES_ENUM.POST_PURCHASE, value: TILE_DESIGN_PAGES_ENUM.POST_PURCHASE },
                     ]}
                     onChange={(e) => {
-                        updateState("current", { page: e?.value, section: "none" });
+                        updateState("current", { page: e?.value, section: e.value === TILE_DESIGN_PAGES_ENUM.PRODUCT ? PRODUCT_SECTIONS_ENUM.CONTAINER : "none" });
                     }}
                     value={{ label: current.page, value: current.page }}
                     isSearchable={false}

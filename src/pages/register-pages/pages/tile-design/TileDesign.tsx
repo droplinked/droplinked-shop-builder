@@ -50,7 +50,7 @@ const TileDesign = () => {
             case TILE_DESIGN_PAGES_ENUM.PRODUCT:
                 return (
                     <>
-                        <HStack align={"center"} width={"full"} justifyContent={"flex-end"}>
+                        <HStack align={"center"} width={"full"} justifyContent={"center"}>
                             <TileDesignPageProduct />
                             <TileDesignForm />
                         </HStack>
