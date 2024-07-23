@@ -64,7 +64,7 @@ const TileDesignPageProduct = () => {
         return `${basic}px`;
     };
     return (
-        <Box minW={"40%"} height={height_of_container()} position={"relative"} display="flex" flexDirection="column" alignItems={"center"} justifyContent={"center"} color={white_if_dark_mode}>
+        <Box width={"40%"} minW={"380px"} height={height_of_container()} position={"relative"} display="flex" flexDirection="column" alignItems={"center"} justifyContent={"center"} color={white_if_dark_mode}>
             <VStack
                 align={"stretch"}
                 padding="24px 32px"

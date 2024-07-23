@@ -154,8 +154,8 @@ const TileDesignForm = () => {
     };
 
     return (
-        <VStack align={"stretch"} position={"absolute"} backgroundColor={"white"} width={"280px"} top={"30%"} padding={"16px"} right={"5%"} rounded={"8px"}>
-            <HStack borderBottom={"4px solid #2BCFA1"} maxW={"auto"}>
+        <VStack align={"stretch"} backgroundColor={"white"} maxW={"280px"} padding={"16px"} rounded={"8px"}>
+            <HStack borderBottom={"4px solid #2BCFA1"}>
                 <AppIcons.Paint />
                 <AppTypography fontSize={"16px"} fontWeight={"500"}>
                     Style
@@ -165,7 +165,6 @@ const TileDesignForm = () => {
                 <VStack align={"stretch"} spacing={"16px"} paddingY={"16px"}>
                     {tile_design_form_fields_object?.[current?.page]?.[current?.section]?.inputs?.map((input: any) => {
                         const currentValue = design?.[current?.page][current?.section][input?.key];
-                        console.log(currentValue);
                         const inputComponent = () => {
                             if (input?.type === TILE_INPUT_TYPES.TEXT)
                                 return (

@@ -1,4 +1,4 @@
-import { Flex, VStack } from "@chakra-ui/react";
+import { Flex, HStack, VStack } from "@chakra-ui/react";
 import React, { useCallback, useState } from "react";
 import TileDesignHeader from "./tile.design.header";
 import { ITileDesignState, TILE_DESIGN_PAGES_ENUM, PRODUCT_SECTIONS_ENUM } from "./types/tile.design.types";
@@ -50,8 +50,10 @@ const TileDesign = () => {
             case TILE_DESIGN_PAGES_ENUM.PRODUCT:
                 return (
                     <>
-                        <TileDesignPageProduct />
-                        <TileDesignForm />
+                        <HStack align={"center"} width={"full"} justifyContent={"flex-end"}>
+                            <TileDesignPageProduct />
+                            <TileDesignForm />
+                        </HStack>
                         <Flex justifyContent="flex-end" width={"full"} gap={"8px"}>
                             <BasicButton variant="outline">Cancel</BasicButton>
                             <BasicButton isLoading={isLoading} onClick={submit} isDisabled={JSON.stringify(initialTileDesignState) === JSON.stringify(States) || isLoading}>
