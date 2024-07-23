@@ -19,6 +19,8 @@ import NFTs from "pages/nfts/NFTs"
 import Orders from "pages/orders/Orders"
 import Products from "pages/product/list/products"
 import ProductOrder from "pages/product/order/ProductOrder"
+import ConnectEventAccount from "pages/product/single/parts/event/connect-event-account/ConnectEventAccount"
+import EventsList from "pages/product/single/parts/event/events-list/EventsList"
 import ProductTypes from "pages/product/types/ProductTypes"
 import AboutUs from "pages/public-pages/about/AboutUs"
 import AcceptInvitation from "pages/public-pages/accept-invitation/AcceptInvitation"
@@ -104,6 +106,8 @@ function AppRoutes() {
             <Route path="order/:productID" element={<ProductOrder />} />
             <Route path="create/:type" element={<ProductSingle />} />
             <Route path=":productId" element={<ProductSingle />} />
+            <Route path="connect-event-account" element={<ConnectEventAccount />} />
+            <Route path="events-list" element={<EventsList />} />
           </Route>
           <Route path="collections" element={<Collections />} />
           <Route path="orders" element={<Orders />} />

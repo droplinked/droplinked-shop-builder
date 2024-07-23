@@ -22,6 +22,7 @@ function ProductTypes() {
   const { isFetching, isError, data } = useShopSubscriptionData()
   const { showToast } = useAppToast()
   const { shopRoute } = useCustomNavigate()
+  const isLoginEventAccaount = true
 
   if (isFetching) return <Loading />
 
@@ -53,19 +54,23 @@ function ProductTypes() {
     },
     {
       type: "Event",
-      description: "Coming soon...",
-      image: "",
-      route: null,
-      legalUsageKey: ""
+      description: "Connect your event account and list your events as products to sell tickets directly from your storefront.",
+      image: "https://upload-file-droplinked.s3.amazonaws.com/5deb23e6807730a9587de9183782da44d0662342404f86a8a9fb0020d23309b8_or.png",
+      route: isLoginEventAccaount ? shopRoute + "/products/events-list" : shopRoute + "/products/connect-event-account",
+      legalUsageKey: "event"
     }
   ]
 
   const navigateToProductForm = (productType: ProductType) => {
     const legalUsage = data.data.legalUsage.find(obj => obj.key === productType.legalUsageKey)
-    if (legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0) {
-      return navigate(productType.route)
+    try {
+      if (legalUsage.remaining === "Unlimited" || +legalUsage.remaining > 0) {
+        return navigate(productType.route)
+      }
+    } catch (error) {
+      showToast({ message: AppErrors.permission.product_creation_limit_reached, type: "error" })
     }
-    showToast({ message: AppErrors.permission.product_creation_limit_reached, type: "error" })
+    
   }
 
   return (
@@ -78,7 +83,7 @@ function ProductTypes() {
                 <AppTypography fontSize='20px' color={productType.type ? "#FFF" : "#878787"} fontWeight='bold'>{productType.type}</AppTypography>
                 <AppTypography fontSize='14px' color="#C2C2C2">{productType.description}</AppTypography>
               </VStack>
-              <Image src={productType.image} />
+              <Image src={productType.image} maxWidth={"195px"} maxHeight={"161px"} />
             </Flex>
           </AppCard>
         </Flex>

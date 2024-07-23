@@ -121,6 +121,9 @@ import { ReactComponent as Xumm } from "./xumm.svg";
 import { ReactComponent as Xverse } from "./xverse.svg";
 import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as SubscriptionPlan } from "./subscription-plan.svg";
+import { ReactComponent as EventCalendar } from "./event-calendar.svg";
+import { ReactComponent as EventLocation } from "./event-location.svg";
+import { ReactComponent as EventHost } from "./event-host.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -245,7 +248,10 @@ const AppIcons = {
   Premium,
   Enterprise,
   SubscriptionPlan,
-  MultiShopManagement
+  MultiShopManagement,
+  EventCalendar,
+  EventLocation,
+  EventHost,
 }
 
 export default AppIcons
