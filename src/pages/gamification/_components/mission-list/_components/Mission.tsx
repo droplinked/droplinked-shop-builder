@@ -28,7 +28,7 @@ function Mission({ mission }: { mission: Participation }) {
                                 <AppTypography fontSize={12} fontWeight={700} color={"#2BCFA1"}>Points: {missionCreditReward}</AppTypography>
                             </Flex>
                         </Flex>
-                        <Divider margin={0} height={mission.isCompleted ? "1px" : "2px"} borderColor={mission.isCompleted ? "#80EDCF" : "#292929"} />
+                        <Divider height={mission.isCompleted ? "1px" : "2px"} borderColor={mission.isCompleted ? "#80EDCF" : "#292929"} />
                         <AppTypography fontSize={12} fontWeight={400} color={mission.isCompleted ? "#2BCFA1" : "#fff"}>{mission.description}</AppTypography>
                     </Flex>
                     {
