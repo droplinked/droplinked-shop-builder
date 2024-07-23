@@ -45,6 +45,7 @@ import ShopManagement from "pages/shop-management/ShopManagement"
 import SubscriptionPlans from "pages/subscription-plans/SubscriptionPlans"
 import React, { lazy, Suspense } from "react"
 import { Route, Routes } from "react-router-dom"
+import DppPage from "pages/public-pages/landings/dpp-page/DppPage"
 
 const ProductSingle = lazy(() => import("pages/product/single"))
 const Requests = lazy(() => import("pages/affiliate/requests/Requests"))
