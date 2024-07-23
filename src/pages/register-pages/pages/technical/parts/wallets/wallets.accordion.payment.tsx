@@ -1,4 +1,4 @@
-import { Box, Flex, useOutsideClick, VStack } from "@chakra-ui/react";
+import { Box, Flex, HStack, useOutsideClick, VStack } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import AppSwitch from "components/common/swich";
 import useAppToast from "functions/hooks/toast/useToast";
@@ -7,6 +7,7 @@ import technicalContext from "pages/register-pages/pages/technical/context";
 import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { canActivateNewPaymentMethod } from "./wallets.helpers";
 import AppTypography from "components/common/typography/AppTypography";
+import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
 
 const WalletsAccordionPayment = ({ chain, token }: { chain: any; token?: any }) => {
     const getPermissionValue = useGetPermissionValue();
@@ -78,6 +79,8 @@ const WalletsAccordionPayment = ({ chain, token }: { chain: any; token?: any }) 
 
     return (
         <VStack align={"stretch"} gap={"16px"}>
+            <FieldLabel label="Target Wallet" textProps={{ fontSize: "14px", color: "#C2C2C2", fontWeight: "600" }} />
+
             <Flex bg={"mainLayer"} rounded={"8px"} width={"100%"} gap={4} padding={"16px 16px"} alignItems={"center"}>
                 {canEditWallet && (
                     <Box onClick={() => setWalletEditability(false)}>
@@ -93,15 +96,19 @@ const WalletsAccordionPayment = ({ chain, token }: { chain: any; token?: any }) 
                     value={walletAddress}
                     onChange={(e) => setWalletAddress(e.target.value)}
                 />
-                {chain.tokens?.length === 1 && <AppSwitch isChecked={chain?.isActive} onChange={(e) => findAndUpdateToken(e, chain?.tokens[0])} />}
+                {/* {chain.tokens?.length === 1 && <AppSwitch isChecked={chain?.isActive} onChange={(e) => findAndUpdateToken(e, chain?.tokens[0])} />} */}
             </Flex>
-            {chain.tokens?.length > 1 &&
-                chain?.tokens?.map((token, index) => (
-                    <Flex key={index} bg={"mainLayer"} rounded={"8px"} width={"100%"} gap={4} padding={"16px 16px"} alignItems={"center"} justifyContent="space-between">
-                        <AppTypography color={"#C2C2C2"}>{token?.type}</AppTypography>
-                        <AppSwitch isChecked={token.isActive} onChange={(e) => findAndUpdateToken(e, token)} />
-                    </Flex>
-                ))}
+            <FieldLabel label="Payments" textProps={{ fontSize: "14px", color: "#C2C2C2", fontWeight: "600" }} />
+
+            <HStack align={"stretch"} width={"full"} justify={"flex-start"}>
+                {chain.tokens?.length &&
+                    chain?.tokens?.map((token, index) => (
+                        <Flex key={index} bg={"mainLayer"} rounded={"8px"} width={"auto"} gap={4} padding={"16px 16px"} alignItems={"center"} justifyContent="space-between">
+                            <AppTypography color={"#C2C2C2"}>{token?.type}</AppTypography>
+                            <AppSwitch isChecked={token.isActive} onChange={(e) => findAndUpdateToken(e, token)} />
+                        </Flex>
+                    ))}
+            </HStack>
         </VStack>
     );
 };

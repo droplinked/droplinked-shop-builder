@@ -72,7 +72,6 @@ function WalletsAccordion({ chain, payment }: { chain: IAuthSupportedWalletsServ
                                 </Flex>
                                 {index === 0 && foundedPaymentMethod && (
                                     <VStack align={"stretch"} gap={"16px"}>
-                                        <FieldLabel label="Target Wallet" textProps={{ fontSize: "14px", color: "#C2C2C2", fontWeight: "600" }} />
                                         {/* {foundedPaymentMethod?.tokens?.map((token, idx) => ( */}
                                             <WalletsAccordionPayment chain={foundedPaymentMethod}/>
                                         {/* ))} */}
