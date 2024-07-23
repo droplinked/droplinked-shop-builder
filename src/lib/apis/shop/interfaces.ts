@@ -59,7 +59,7 @@ export interface IshopUpdateService extends IshopSocial {
         title: string
     },
     productTile?: any[],
-    productTileStyle?: any
+    productTileStyle?: any,
 }
 
 export interface IShopRecordedService {
