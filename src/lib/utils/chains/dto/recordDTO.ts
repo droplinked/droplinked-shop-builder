@@ -1,6 +1,7 @@
 import { Beneficiary, ProductType } from "./chainStructs"
 
 export type RecordProduct = {
+    sku_id: string,
     skuProperties: any,
     productTitle: string,
     description: string,
