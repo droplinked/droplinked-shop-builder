@@ -13,7 +13,7 @@ import React, { useEffect, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as Yup from "yup";
 
-const CompleteGoogelModal = ({ show, close, switchModal }: { show: boolean; close: () => void; switchModal: (type: MODAL_TYPE) => void }) => {
+const CompleteGoogelModal = ({ show, close, switchModal, isFromPlansPage, subscriptionPlan }: { show: boolean; close: () => void; switchModal: (type: MODAL_TYPE) => void; isFromPlansPage?: boolean, subscriptionPlan?: any }) => {
     const [searchParams] = useSearchParams();
     const {
         app: { login, loading },
@@ -42,8 +42,10 @@ const CompleteGoogelModal = ({ show, close, switchModal }: { show: boolean; clos
                 showToast({ message: "Account successfully created", type: "success" });
                 close();
                 const status = data.user.status;
-                const {href, dashboard} = navigating_user_based_on_status(status, data);
-                dashboard ? shopNavigate(href) : navigate(href)
+                if (isFromPlansPage) {
+                    const {href, dashboard} = navigating_user_based_on_status(status, data);
+                    dashboard ? shopNavigate(href) : navigate(href)
+                }
             }
         } catch (error) {
             showToast({ message: error?.response?.data?.data?.message, type: "error" });

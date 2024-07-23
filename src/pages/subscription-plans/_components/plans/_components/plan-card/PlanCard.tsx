@@ -1,3 +1,4 @@
+import React, { useCallback, useEffect } from "react";
 import { Box, Flex, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
@@ -8,8 +9,8 @@ import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces"
 import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
 import PlanHeading, { subscriptionPlanMap } from "pages/subscription-plans/_components/PlanHeading";
-import React from "react";
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 interface Props {
     plan: SubscriptionPlan;
@@ -26,11 +27,34 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
     const isEnterprise = type === "ENTERPRISE"
     const prevPlanTitle = subscriptionPlanMap[prevPlanType].title
 
+    const [searchParams] = useSearchParams();
+    const location = useLocation();
+    const isPlansPage = location.pathname === "/plans";
+
     const handlePlanPurchase = () => {
         if (!profile) return signInModal.onOpen()
         if (isEnterprise) return window.location.href = "mailto:Support@droplinked.com"
         purchaseModal.onOpen()
     }
+
+    const handleAuthModalClose = useCallback(() => {
+        signInModal.onClose();
+        if (isPlansPage) {
+            purchaseModal.onOpen();
+        }
+    }, [profile])
+
+    console.log(purchaseModal.isOpen)
+    console.log(signInModal.isOpen)
+    console.log(isPlansPage)
+
+    useEffect(() => {
+        const access_token = searchParams.get("access_token")
+        const refresh_token = searchParams.get("refresh_token")
+        if (access_token && refresh_token && searchParams.get("modal") === "purchase") {
+            purchaseModal.isOpen = true
+        }
+    }, [searchParams])
 
     return (
         <>
@@ -78,8 +102,8 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
                     })
                 }
             </Flex>
-            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={plan} open={purchaseModal.isOpen} close={purchaseModal.onClose} />}
-            {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={signInModal.onClose} type={MODAL_TYPE.SIGNUP} />}
+            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={plan} open={purchaseModal.isOpen} close={purchaseModal.onClose} isFromPlansPage={isPlansPage} />}
+            {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={handleAuthModalClose} type={MODAL_TYPE.SIGNUP} isFromPlansPage={isPlansPage} subscriptionPlan={plan} />}
         </>
     )
 }

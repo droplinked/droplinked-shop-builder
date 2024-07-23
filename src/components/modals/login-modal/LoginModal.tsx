@@ -20,7 +20,7 @@ const formSchema = Yup.object().shape({
     password: Yup.string().required("Required"),
 })
 
-const LoginModal = ({ show, close, switchModal, switchReset }) => {
+const LoginModal = ({ show, close, switchModal, switchReset, isFromPlansPage }) => {
     const [searchParams] = useSearchParams()
     const { app: { login, loading } } = useHookStore()
     const { showToast } = useAppToast()
@@ -46,8 +46,10 @@ const LoginModal = ({ show, close, switchModal, switchReset }) => {
             if (user.type !== "SHOPBUILDER")
                 return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
 
-            const { href, dashboard } = navigating_user_based_on_status(status, data)
-            dashboard ? shopNavigate(href) : navigate(href)
+            if (!isFromPlansPage) {
+                const { href, dashboard } = navigating_user_based_on_status(status, data)
+                dashboard ? shopNavigate(href) : navigate(href)
+            }
             close()
         } catch (error) {
             showToast({ message: error.message, type: "error" })

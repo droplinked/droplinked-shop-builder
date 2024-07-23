@@ -12,11 +12,14 @@ import * as Yup from "yup";
 import ShowPassword from "./parts/showPassword/ShowPassword";
 import AppTypography from "components/common/typography/AppTypography";
 import AppIcons from "assest/icon/Appicons";
-import { BASE_URL } from "lib/utils/app/variable";
+import { appDevelopment, BASE_URL } from "lib/utils/app/variable";
 import { IsignupService } from "lib/apis/auth/interfaces";
 import { signupService } from "lib/apis/auth/services";
+import useHookStore from "functions/hooks/store/useHookStore";
+import { navigating_user_based_on_status } from "lib/utils/heper/helpers";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 
-const SignupProducer = ({ close, shopname, switchToggle }) => {
+const SignupProducer = ({ close, shopname, switchToggle, isFromPlansPage, subscriptionPlan }) => {
     const [searchParams] = useSearchParams();
     const { mutateAsync, isLoading } = useMutation((params: IsignupService) => signupService(params));
     const [States, setStates] = useState({ show: { password: false, repassword: false } });
@@ -24,14 +27,52 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
     const { showToast } = useAppToast();
     const toggleShowField = useCallback((field: any) => setStates((prev) => ({ ...prev, show: { ...prev.show, [field]: !prev.show[field] } })), []);
     const referral_code_from_params = useMemo(() => searchParams.get("referral"), [searchParams])
+
+
+    const { app: { login } } = useHookStore()
+    const { shopNavigate } = useCustomNavigate()
+
+
+    const handleLogin = async (data) => {
+        try {
+            const result = await login({ type: "default", params: { ...data, userType: "PRODUCER" } })
+            if (result) processLogin(result)
+        } catch (error) {
+            showToast({ message: error?.message, type: "error" })
+        }
+    }
+
+    const processLogin = async (data: any) => {
+        try {
+            const { user } = data
+            const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status
+            if (status === "DELETED")
+                return showToast({ message: "This account has been deleted", type: "error" })
+
+            if (user.type !== "SHOPBUILDER")
+                return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" })
+
+            if (!isFromPlansPage) {
+                const { href, dashboard } = navigating_user_based_on_status(status, data)
+                dashboard ? shopNavigate(href) : navigate(href)
+            }
+            close()
+        } catch (error) {
+            showToast({ message: error.message, type: "error" })
+        }
+    }
+    
+    
+    
     const onSubmit = async (data: any) => {
         try {
             const { email, password, referral } = data;
-            await mutateAsync({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true });
+            await mutateAsync({ email, password, referralCode: referral && referral !== "" ? referral : undefined, hasProducerAccount: true, subscriptionId: subscriptionPlan?._id });
+            handleLogin({email, password})
             localStorage.setItem("registerEmail", JSON.stringify(email));
             showToast({ message: "Account successfully created", type: "success" });
             close();
-            navigate("/email-confirmation");
+            !isFromPlansPage && navigate("/email-confirmation");
         } catch (error) {
             showToast({ message: error?.response?.data?.data?.message, type: "error" });
         }
@@ -110,7 +151,32 @@ const SignupProducer = ({ close, shopname, switchToggle }) => {
                             <AppTypography color={"lightGray"} fontSize={"12px"} fontWeight={"500"}>OR</AppTypography>
                             <Divider color={"line"} />
                         </HStack>
-                        <BasicButton onClick={() => { window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}` }} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{ backgroundColor: "mainGray.500" }} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google />} isDisabled={isLoading}>Sign up with Google</BasicButton>
+                        {/* <BasicButton onClick={() => { window.location.href = `${BASE_URL}/auth/login/google${(referral_code_from_params && referral_code_from_params !== "") ? `/?referralCode=${referral_code_from_params}` : ""}${isFromPlansPage ? `subscriptionId=${subscriptionPlan?._id}`}` }} backgroundColor={"mainGray.500"} borderRadius={"8px"} border={"none"} _hover={{ backgroundColor: "mainGray.500" }} color={"lightgray"} iconSpacing={"12px"} leftIcon={<AppIcons.Google />} isDisabled={isLoading}>Sign up with Google</BasicButton> */}
+                        <BasicButton
+                            onClick={() => {
+                                const googleAuthUrl = new URL(`${BASE_URL}/auth/login/google`);
+                                
+                                if (referral_code_from_params && referral_code_from_params !== "") {
+                                    googleAuthUrl.searchParams.append("referralCode", referral_code_from_params);
+                                }
+                                
+                                if (isFromPlansPage && subscriptionPlan?._id) {
+                                    googleAuthUrl.searchParams.append("subscriptionId", subscriptionPlan._id);
+                                }
+                                
+                                window.location.href = googleAuthUrl.toString();
+                            }}
+                            backgroundColor={"mainGray.500"}
+                            borderRadius={"8px"}
+                            border={"none"}
+                            _hover={{ backgroundColor: "mainGray.500" }}
+                            color={"lightgray"}
+                            iconSpacing={"12px"}
+                            leftIcon={<AppIcons.Google />}
+                            isDisabled={isLoading}
+                            >
+                                Sign up with Google
+                            </BasicButton>
                     </VStack>
                 </Form>
             )}

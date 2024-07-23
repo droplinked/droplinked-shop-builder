@@ -23,4 +23,5 @@ export interface IsignupService {
     password: string
     referralCode?: string
     hasProducerAccount: boolean
+    subscriptionId?: string
 }
