@@ -58,7 +58,8 @@ const recordModel = ({
                 wallet: droplink_wallet
             }]
             // record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, pod ? quantity : sku.quantity, commission * 100, type, beneficiaries, acceptsManageWallet, royalty * 100, nftContract, shopAddress, currencyAddress, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE, paymentWallet)
-            record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, pod ? quantity : sku.quantity, commission * 100, type, beneficiaries, acceptsManageWallet, royalty * 100, nftContract, shopAddress, currencyAddress, process.env.REACT_APP_RECORD_MATCH_POLYGON_RIPPLE)
+            const skuId = sku['_id']; // TODO: check here
+            record = await provider.recordProduct(sku, product.title, product.description, imageUrl || product.media[0].url, sku.price * 100, pod ? quantity : sku.quantity, commission * 100, type, beneficiaries, acceptsManageWallet, royalty * 100, nftContract, shopAddress, currencyAddress, skuId)
 
         }
         return record

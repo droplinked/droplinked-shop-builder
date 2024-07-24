@@ -1,4 +1,3 @@
-import { NFTStorage } from "nft.storage";
 import { ethers } from 'ethers';
 import { Beneficiary, EthAddress, NFTType, PaymentMethodType, ProductType, RecordData } from "../../dto/chainStructs";
 import { shopABI } from "../../dto/chainABI";
@@ -6,18 +5,21 @@ import { Unauthorized } from "../../dto/chainErrors";
 import { getGasPrice } from "../../dto/chainConstants";
 import { ModalInterface } from "../../dto/modalInterface";
 import { Chain } from "../../dto/chains";
-import { ChainNotImplementedException, MetadataUploadFailedException } from "../../chainProvider";
+import { MetadataUploadFailedException } from "../../chainProvider";
 import { RecordProduct } from "../../dto/recordDTO";
-export async function uploadToIPFS(metadata: any, apiKey: string) {
-    // const client = new NFTStorage({ token: apiKey });
-    // if (typeof (metadata) == typeof ({}) || typeof (metadata) == typeof ([])) {
-    //     metadata = JSON.stringify(metadata);
-    // }
-    // const ipfs_hash = await client.storeBlob(new Blob([metadata]));
-    // return ipfs_hash;
-    return "";
+import axiosInstance from "lib/apis/axiosConfig";
+export async function uploadMetadata(metadata: any, skuID: string) {
+    if (typeof (metadata) == typeof ({}) || typeof (metadata) == typeof ([])) {
+        metadata = JSON.stringify(metadata);
+    }
+    const res = (await axiosInstance.patch(`sku/metadata/${skuID}`, {
+        "metadata": metadata
+    })).data
+    console.log(res)
+    return res.data
 }
-export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties: any, address: string, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, apiKey: string, modalInterface: ModalInterface) {
+
+export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties: any, address: string, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, skuID: string, modalInterface: ModalInterface) {
     const signer = provider.getSigner();
 
     if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
@@ -32,7 +34,7 @@ export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties
         "properties": sku_properties
     }
 
-    let ipfsHash = await uploadToIPFS(metadata, apiKey);
+    let metadataURL = await uploadMetadata(metadata, skuID);
     try {
         if (chain !== Chain.REDBELLY) {
             type Product = {
@@ -52,7 +54,7 @@ export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties
             };
             const recordData: Product = {
                 _nftAddress: nftContract,
-                _uri: `https://ipfs.io/ipfs/${ipfsHash}`,
+                _uri: metadataURL,
                 _amount: amount,
                 _accepted: acceptsManageWallet,
                 _affiliatePercentage: commission,
@@ -100,7 +102,7 @@ export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties
             };
             const recordData: Product = {
                 _nftAddress: nftContract,
-                _uri: `https://ipfs.io/ipfs/${ipfsHash}`,
+                _uri: metadataURL,
                 _amount: amount,
                 _accepted: acceptsManageWallet,
                 _affiliatePercentage: commission,
@@ -140,7 +142,7 @@ export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties
 }
 
 
-async function RedbellyRecordBatch(modalInterface: ModalInterface, products: RecordProduct[], apiKey: string, nftContract: string, contract: any, provider: any, address: string, shopAddress: string) {
+async function RedbellyRecordBatch(modalInterface: ModalInterface, products: RecordProduct[], nftContract: string, contract: any, provider: any, address: string, shopAddress: string) {
     type Product = {
         _nftAddress: string,
         _uri: string,
@@ -164,7 +166,13 @@ async function RedbellyRecordBatch(modalInterface: ModalInterface, products: Rec
         let product: Product
         modalInterface.waiting("Uploading metadata")
         try {
-            const metadataUrl = await uploadToIPFS(productTemp.skuProperties, apiKey)
+            let metadata = {
+                "name": productTemp.productTitle,
+                "description": productTemp.description,
+                "image": productTemp.image_url,
+                "properties": productTemp.skuProperties
+            }
+            const metadataUrl = await uploadMetadata(metadata, productTemp.sku_id)
             product = {
                 _nftAddress: nftContract,
                 _uri: metadataUrl,
@@ -219,7 +227,7 @@ async function RedbellyRecordBatch(modalInterface: ModalInterface, products: Rec
     }
 }
 
-export async function EVMBatchRecord(provider: any, chain: Chain, address: string, shopAddress: string, nftContract: string, apiKey: string, modalInterface: ModalInterface, products: RecordProduct[]): Promise<RecordData> {
+export async function EVMBatchRecord(provider: any, chain: Chain, address: string, shopAddress: string, nftContract: string, modalInterface: ModalInterface, products: RecordProduct[]): Promise<RecordData> {
     const signer = provider.getSigner()
     if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
         throw new Error("Address does not match signer address");
@@ -229,7 +237,7 @@ export async function EVMBatchRecord(provider: any, chain: Chain, address: strin
     const contract = new ethers.Contract(shopAddress, shopABI, signer);
     modalInterface.waiting("Created contract")
     if (chain === Chain.REDBELLY) {
-        return await RedbellyRecordBatch(modalInterface, products, apiKey, nftContract, contract, provider, address, shopAddress)
+        return await RedbellyRecordBatch(modalInterface, products, nftContract, contract, provider, address, shopAddress)
     }
 
     type Product = {
@@ -255,7 +263,13 @@ export async function EVMBatchRecord(provider: any, chain: Chain, address: strin
         let product: Product
         modalInterface.waiting("Uploading metadata")
         try {
-            const metadataUrl = await uploadToIPFS(productTemp.skuProperties, apiKey)
+            let metadata = {
+                "name": productTemp.productTitle,
+                "description": productTemp.description,
+                "image": productTemp.image_url,
+                "properties": productTemp.skuProperties
+            }
+            const metadataUrl = await uploadMetadata(metadata, productTemp.sku_id)
             product = {
                 _nftAddress: nftContract,
                 _uri: metadataUrl,
@@ -279,7 +293,7 @@ export async function EVMBatchRecord(provider: any, chain: Chain, address: strin
         }
     }
     modalInterface.waiting("Recording products")
-    try{
+    try {
         await contract.callStatic.mintAndRegisterBatch(recordingProducts);
         modalInterface.waiting("callStatic");
         const gasEstimation = (await contract.estimateGas.mintAndRegisterBatch(recordingProducts)).toBigInt();
@@ -294,7 +308,7 @@ export async function EVMBatchRecord(provider: any, chain: Chain, address: strin
         await tx.wait();
         modalInterface.success("Successfully recorded the product!");
         return { transactionHash: tx.hash };
-    } catch(e: any){
+    } catch (e: any) {
         console.error(e);
         if (e.code.toString() === "ACTION_REJECTED") {
             modalInterface.error("Transaction Rejected");

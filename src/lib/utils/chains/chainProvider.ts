@@ -77,9 +77,9 @@ export interface ChainProvider {
 		nftContract: EthAddress,
 		shopAddress: EthAddress,
 		currencyAddress: EthAddress,
-		apiKey: string
+		skuID: string
 	): Promise<RecordData>
-	recordBatch(products: RecordProduct[], shopAddress: string, nftContract: string, apiKey: string) : Promise<RecordData>
+	recordBatch(products: RecordProduct[], shopAddress: string, nftContract: string) : Promise<RecordData>
 	publishRequest(productId: Uint256, shopAddress: EthAddress): Promise<AffiliateRequestData>
 	approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>
 	disapproveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string>

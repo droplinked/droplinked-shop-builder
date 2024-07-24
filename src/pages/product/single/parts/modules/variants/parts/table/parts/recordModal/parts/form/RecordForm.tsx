@@ -9,6 +9,7 @@ import useAppToast from 'functions/hooks/toast/useToast';
 import useAppWeb3 from 'functions/hooks/web3/useWeb3';
 import { Isku } from 'lib/apis/product/interfaces';
 import { useCheckPermission } from 'lib/stores/app/appStore';
+import { productContext } from 'pages/product/single/context';
 import React, { useCallback, useContext, useMemo } from 'react';
 import * as Yup from 'yup';
 import recordContext from '../../context';
@@ -34,6 +35,7 @@ function RecordForm({ close, product, sku }: Iprops) {
     const checkPermissionAndShowToast = useCheckPermission()
     const stack = useStack()
     const { updateState, state: { loading, image } } = useContext(recordContext)
+    const { state: { legalUsage }, methods: { updateState: updateProductContext } } = useContext(productContext)
     const { web3 } = useAppWeb3()
     const { showToast } = useAppToast()
     const { app: { user: { wallets } } } = useHookStore()
@@ -51,6 +53,10 @@ function RecordForm({ close, product, sku }: Iprops) {
             updateState("hashkey", deployhash)
             updateState("loading", false)
             updateState("blockchain", data.blockchain)
+            updateProductContext("legalUsage", legalUsage.map(legalUsageObj => {
+                if (legalUsageObj.key !== "drop") return legalUsageObj
+                return { ...legalUsageObj, remaining: legalUsageObj.remaining === "Unlimited" ? "Unlimited" : +legalUsageObj.remaining - 1 }
+            }))
         } catch (error) {
             if (error?.message) {
                 if (error?.message.includes("The first argument")) return updateState("loading", false)
@@ -132,8 +138,9 @@ function RecordForm({ close, product, sku }: Iprops) {
                                     value='DROPLINKED'
                                     alignItems="flex-start"
                                     colorScheme='green'
+                                    isChecked={values.royaltyon}
                                     onChange={({ target: { checked } }) => {
-                                        if (!checkPermissionAndShowToast("web3_royalty_feature")) return
+                                        if (!checkPermissionAndShowToast("web3_royalty_feature")) return;
                                         setFieldValue('royaltyon', checked)
                                     }}
                                 >

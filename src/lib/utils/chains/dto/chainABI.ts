@@ -30,6 +30,16 @@ const shopABI = [
 				"internalType": "address",
 				"name": "_deployer",
 				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_chainLink",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_IFundsProxy",
+				"type": "address"
 			}
 		],
 		"stateMutability": "nonpayable",
@@ -353,6 +363,12 @@ const shopABI = [
 				"internalType": "address",
 				"name": "owner",
 				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "uri",
+				"type": "string"
 			}
 		],
 		"name": "ProductRegistered",
@@ -672,6 +688,11 @@ const shopABI = [
 						"internalType": "enum PaymentMethodType",
 						"name": "paymentType",
 						"type": "uint8"
+					},
+					{
+						"internalType": "bool",
+						"name": "receiveUSDC",
+						"type": "bool"
 					}
 				],
 				"internalType": "struct PaymentInfo",
@@ -735,6 +756,11 @@ const shopABI = [
 								"internalType": "enum PaymentMethodType",
 								"name": "paymentType",
 								"type": "uint8"
+							},
+							{
+								"internalType": "bool",
+								"name": "receiveUSDC",
+								"type": "bool"
 							}
 						],
 						"internalType": "struct PaymentInfo",
@@ -813,6 +839,11 @@ const shopABI = [
 								"internalType": "enum PaymentMethodType",
 								"name": "paymentType",
 								"type": "uint8"
+							},
+							{
+								"internalType": "bool",
+								"name": "receiveUSDC",
+								"type": "bool"
 							}
 						],
 						"internalType": "struct PaymentInfo",
@@ -918,6 +949,11 @@ const shopABI = [
 								"internalType": "enum PaymentMethodType",
 								"name": "paymentType",
 								"type": "uint8"
+							},
+							{
+								"internalType": "bool",
+								"name": "receiveUSDC",
+								"type": "bool"
 							}
 						],
 						"internalType": "struct PaymentInfo",
@@ -1107,6 +1143,11 @@ const shopABI = [
 						"internalType": "struct Beneficiary[]",
 						"name": "_beneficiaries",
 						"type": "tuple[]"
+					},
+					{
+						"internalType": "bool",
+						"name": "_receiveUSDC",
+						"type": "bool"
 					}
 				],
 				"internalType": "struct RecordData",
@@ -1205,6 +1246,11 @@ const shopABI = [
 						"internalType": "struct Beneficiary[]",
 						"name": "_beneficiaries",
 						"type": "tuple[]"
+					},
+					{
+						"internalType": "bool",
+						"name": "_receiveUSDC",
+						"type": "bool"
 					}
 				],
 				"internalType": "struct RecordData[]",
@@ -1406,6 +1452,11 @@ const shopABI = [
 						"internalType": "enum PaymentMethodType",
 						"name": "paymentType",
 						"type": "uint8"
+					},
+					{
+						"internalType": "bool",
+						"name": "receiveUSDC",
+						"type": "bool"
 					}
 				],
 				"internalType": "struct PaymentInfo",
@@ -1416,6 +1467,19 @@ const shopABI = [
 				"internalType": "uint256",
 				"name": "affiliatePercentage",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "proxyRouter",
+		"outputs": [
+			{
+				"internalType": "contract IFundsProxy",
+				"name": "",
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -1545,6 +1609,11 @@ const shopABI = [
 				"internalType": "struct Beneficiary[]",
 				"name": "_beneficiaries",
 				"type": "tuple[]"
+			},
+			{
+				"internalType": "bool",
+				"name": "_receiveUSDC",
+				"type": "bool"
 			}
 		],
 		"name": "registerProduct",
@@ -1630,6 +1699,7 @@ const shopABI = [
 		"type": "function"
 	}
 ];
+
 const proxyABI = [
     {
         inputs: [],
