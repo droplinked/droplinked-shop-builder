@@ -125,7 +125,7 @@ export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties
                 _beneficiaries: beneficiaries
             }
             modalInterface.waiting("Minting the NFT...");
-            const tx = await contract.mintAndRegister(recordData);
+            const tx = await contract.mintAndRegister(recordData, {gasLimit: 600_000});
             modalInterface.waiting("Waiting for confirmation...");
             let receipt = await tx.wait();
             const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log) } catch { return null } }).filter((log: any) => log != null);
