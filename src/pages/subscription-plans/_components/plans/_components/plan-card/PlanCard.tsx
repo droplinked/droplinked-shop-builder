@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Box, Flex, useDisclosure } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
@@ -14,11 +14,12 @@ import { useLocation, useSearchParams } from "react-router-dom";
 
 interface Props {
     plan: SubscriptionPlan;
+    plans?: any
     prevPlanType: string;
     features: SubOptionId[];
 }
 
-const PlanCard = ({ plan, prevPlanType, features }: Props) => {
+const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
     const { profile } = useProfile()
     const purchaseModal = useDisclosure()
     const signInModal = useDisclosure()
@@ -31,6 +32,8 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
     const location = useLocation();
     const isPlansPage = location.pathname === "/plans";
 
+    const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(plan);
+
     const handlePlanPurchase = () => {
         if (!profile) return signInModal.onOpen()
         if (isEnterprise) return window.location.href = "mailto:Support@droplinked.com"
@@ -42,7 +45,7 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
         if (isPlansPage) {
             purchaseModal.onOpen();
         }
-    }, [profile])
+    }, [isPlansPage, profile, purchaseModal, signInModal])
 
     console.log(purchaseModal.isOpen)
     console.log(signInModal.isOpen)
@@ -51,8 +54,13 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
     useEffect(() => {
         const access_token = searchParams.get("access_token")
         const refresh_token = searchParams.get("refresh_token")
-        if (access_token && refresh_token && searchParams.get("modal") === "purchase") {
-            purchaseModal.isOpen = true
+        const subscription_id = searchParams.get("subscriptionId")
+        if (access_token && refresh_token && searchParams.get("modal") === "purchase" && subscription_id) {
+            const foundPlan = plans.find(plan => plan._id === subscription_id);
+            if (foundPlan) {
+                setSelectedPlan(foundPlan);
+                purchaseModal.onOpen();
+            }
         }
     }, [searchParams])
 
@@ -70,7 +78,7 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
                 </Flex>
 
                 <AppTypography textAlign={"center"} fontSize={24} fontWeight={600} color={isStarter ? "#2BCFA1" : "#9C4EFF"}>
-                    {isNaN(Number(price)) ? capitalizeFirstLetter(plan.price) : `$${price}/mo`}
+                    {isNaN(Number(price)) ? capitalizeFirstLetter(selectedPlan?.price) : `$${price}/mo`}
                 </AppTypography>
 
                 {!isStarter && <BasicButton onClick={handlePlanPurchase}>{isEnterprise ? "Contact Us" : "Buy"}</BasicButton>}
@@ -102,8 +110,8 @@ const PlanCard = ({ plan, prevPlanType, features }: Props) => {
                     })
                 }
             </Flex>
-            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={plan} open={purchaseModal.isOpen} close={purchaseModal.onClose} isFromPlansPage={isPlansPage} />}
-            {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={handleAuthModalClose} type={MODAL_TYPE.SIGNUP} isFromPlansPage={isPlansPage} subscriptionPlan={plan} />}
+            {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={selectedPlan} open={purchaseModal.isOpen} close={purchaseModal.onClose} isFromPlansPage={isPlansPage} />}
+            {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={handleAuthModalClose} type={MODAL_TYPE.SIGNUP} isFromPlansPage={isPlansPage} subscriptionPlan={selectedPlan} />}
         </>
     )
 }
