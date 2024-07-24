@@ -29,7 +29,10 @@ export async function EVMDeployShop(provider: any, chain: Chain, network: Networ
     }
     else constructorArgs = [shopName ? shopName : "", shopAddress, shopOwner, shopLogo ? shopLogo : "", shopDescription ? shopDescription : "", deployerAddress, chainLink[chain][network], (await getFundsProxy(chain, network))];
     modalInterface.waiting("created constructor args")
-    const bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(["string", "string", "address", "string", "string", "address"], constructorArgs);
+    let bytecodeWithArgs;
+    if (chain === Chain.REDBELLY)
+        bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(["string", "string", "address", "string", "string", "address"], constructorArgs);
+    else bytecodeWithArgs = ethers.utils.defaultAbiCoder.encode(["string", "string", "address", "string", "string", "address", "address", "address"], constructorArgs);
     modalInterface.waiting("Created bytecodeWithArgs")
     try {
         if (chain !== Chain.REDBELLY) {

@@ -45,7 +45,7 @@ const SelectPagesComponent = () => {
 
       <SideText
         cursor={isSettings && "pointer"}
-        color={currentPath.includes("technical") ? "primary" : "lightGray"}
+        color={currentPath.includes("tile") ? "primary" : "lightGray"}
         onClick={() => {
           if (isSettings) shopNavigate("settings/tile");
         }}

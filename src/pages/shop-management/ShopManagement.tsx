@@ -31,7 +31,7 @@ function ShopManagement() {
 
                     <AppTypography fontSize={16} color={"#808080"}>Here you can manage all your shops in one place. Easily create, edit, and switch between shops</AppTypography>
 
-                    <Divider m={0} borderColor={"#808080"} />
+                    <Divider borderColor={"#808080"} />
 
                     <ShopList />
                 </Flex>

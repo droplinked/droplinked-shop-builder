@@ -16,7 +16,7 @@ export async function uploadMetadata(metadata: any, skuID: string) {
         "metadata": metadata
     })).data
     console.log(res)
-    return res
+    return res.data
 }
 
 export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties: any, address: string, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, skuID: string, modalInterface: ModalInterface) {
@@ -27,11 +27,21 @@ export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties
     }
     const contract = new ethers.Contract(shopAddress, shopABI, signer);
     modalInterface.waiting("Minting...");
+    const properties = {
+        "_id": sku_properties["_id"],
+        "ownerID": sku_properties["ownerID"],
+        "price": sku_properties["price"],
+        "quantity": sku_properties["quantity"],
+        "externalID": sku_properties["externalID"],
+        "options": sku_properties["options"],
+        "royalty": sku_properties["royalty"],
+        "createdAt": sku_properties["createdAt"]
+    }
     let metadata = {
         "name": product_title,
         "description": description,
         "image": image_url,
-        "properties": sku_properties
+        "properties": properties
     }
 
     let metadataURL = await uploadMetadata(metadata, skuID);
@@ -115,7 +125,7 @@ export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties
                 _beneficiaries: beneficiaries
             }
             modalInterface.waiting("Minting the NFT...");
-            const tx = await contract.mintAndRegister(recordData);
+            const tx = await contract.mintAndRegister(recordData, {gasLimit: 3_000_000});
             modalInterface.waiting("Waiting for confirmation...");
             let receipt = await tx.wait();
             const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log) } catch { return null } }).filter((log: any) => log != null);
@@ -166,11 +176,21 @@ async function RedbellyRecordBatch(modalInterface: ModalInterface, products: Rec
         let product: Product
         modalInterface.waiting("Uploading metadata")
         try {
+            const properties = {
+                "_id": productTemp.skuProperties["_id"],
+                "ownerID": productTemp.skuProperties["ownerID"],
+                "price": productTemp.skuProperties["price"],
+                "quantity": productTemp.skuProperties["quantity"],
+                "externalID": productTemp.skuProperties["externalID"],
+                "options": productTemp.skuProperties["options"],
+                "royalty": productTemp.skuProperties["royalty"],
+                "createdAt": productTemp.skuProperties["createdAt"]
+            }
             let metadata = {
                 "name": productTemp.productTitle,
                 "description": productTemp.description,
                 "image": productTemp.image_url,
-                "properties": productTemp.skuProperties
+                "properties": properties
             }
             const metadataUrl = await uploadMetadata(metadata, productTemp.sku_id)
             product = {
@@ -263,11 +283,21 @@ export async function EVMBatchRecord(provider: any, chain: Chain, address: strin
         let product: Product
         modalInterface.waiting("Uploading metadata")
         try {
+            const properties = {
+                "_id": productTemp.skuProperties["_id"],
+                "ownerID": productTemp.skuProperties["ownerID"],
+                "price": productTemp.skuProperties["price"],
+                "quantity": productTemp.skuProperties["quantity"],
+                "externalID": productTemp.skuProperties["externalID"],
+                "options": productTemp.skuProperties["options"],
+                "royalty": productTemp.skuProperties["royalty"],
+                "createdAt": productTemp.skuProperties["createdAt"]
+            }
             let metadata = {
                 "name": productTemp.productTitle,
                 "description": productTemp.description,
                 "image": productTemp.image_url,
-                "properties": productTemp.skuProperties
+                "properties": properties
             }
             const metadataUrl = await uploadMetadata(metadata, productTemp.sku_id)
             product = {

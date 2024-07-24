@@ -123,6 +123,7 @@ import { ReactComponent as YellowAlert } from "./yellow-alert.svg";
 import { ReactComponent as SubscriptionPlan } from "./subscription-plan.svg";
 import { ReactComponent as Gamification } from "./gamification.svg";
 import { ReactComponent as Paint } from "./paint.svg";
+import { ReactComponent as Redbelly } from "./redbelly.svg";
 
 const AppIcons = {
   ProductsIcon,
@@ -249,7 +250,8 @@ const AppIcons = {
   SubscriptionPlan,
   MultiShopManagement,
   Gamification,
-  Paint
+  Paint,
+  Redbelly
 }
 
 export default AppIcons

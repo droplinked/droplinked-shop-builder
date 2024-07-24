@@ -6,6 +6,7 @@ import AppTypography from 'components/common/typography/AppTypography';
 import { motion } from 'framer-motion';
 import { checkMissionCompletionService } from 'lib/apis/gamification/gamificationServices';
 import { Participation } from 'lib/apis/gamification/interfaces';
+import useAppStore from 'lib/stores/app/appStore';
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import GamificationSpinner from './gamificationSpinner/GamificationSpinner';
@@ -23,6 +24,7 @@ const fadeIn = {
 
 function MissionReviewModal({ isOpen, onClose, mission }: Props) {
     const queryClient = useQueryClient()
+    const { shop, updateState } = useAppStore()
     const { isLoading, mutateAsync } = useMutation(checkMissionCompletionService)
     const [isCompleted, setCompleted] = useState(false)
     const [error, setError] = useState<string | null>(null)
@@ -40,6 +42,7 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
         try {
             await mutateAsync(mission._id)
             setCompleted(true)
+            updateState({ key: 'shop', params: { ...shop, credit: shop.credit + +missionCreditReward } })
         } catch (err) {
             setError(err.response.data.data.message)
         }
@@ -64,40 +67,41 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                         </AppTypography>
                     </Flex>
                 </Flex>
-                <Divider margin={0} height="2px" borderColor="#292929" />
-                {!isCompleted ? (
-                    <>
-                        <Box position="relative">
-                            {isLoading && <GamificationSpinner />}
-                            <AppTypography fontSize={16} fontWeight={500} color="#C2C2C2" filter={isLoading ? 'blur(4px)' : 'none'}>
-                                <Box as="span" color="#2BCFA1" fontWeight={700}>Mission Description:</Box> {mission.description}
-                            </AppTypography>
-                        </Box>
-                        <Divider margin={0} height="2px" borderColor="#292929" />
-                        {!error && (
-                            <Flex direction="column" gap={4}>
-                                <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
-                                    Points: <Box as="span" color="#C2C2C2">{missionCreditReward}</Box>
+                <Divider height="2px" borderColor="#292929" />
+                {
+                    !isCompleted ?
+                        <>
+                            <Box position="relative">
+                                {isLoading && <GamificationSpinner />}
+                                <AppTypography fontSize={16} fontWeight={500} color="#C2C2C2" filter={isLoading ? 'blur(4px)' : 'none'}>
+                                    <Box as="span" color="#2BCFA1" fontWeight={700}>Mission Description:</Box> {mission.description}
                                 </AppTypography>
-                                <BasicButton alignSelf="center" isDisabled={isLoading} onClick={checkMissionCompletion}>
-                                    Review Status
-                                </BasicButton>
+                            </Box>
+                            <Divider height="2px" borderColor="#292929" />
+                            {!error && (
+                                <Flex direction="column" gap={4}>
+                                    <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
+                                        Points: <Box as="span" color="#C2C2C2">{missionCreditReward}</Box>
+                                    </AppTypography>
+                                    <BasicButton alignSelf="center" isDisabled={isLoading} onClick={checkMissionCompletion}>
+                                        Review Status
+                                    </BasicButton>
+                                </Flex>
+                            )}
+                        </>
+                        :
+                        <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+                            <Flex direction="column" sx={{ textAlign: 'center' }}>
+                                <AppTypography fontSize={72} fontWeight={700} whiteSpace="nowrap" bgGradient="linear(to-b, #2EC99E1A, #2EC99EA6)" bgClip="text">
+                                    {`“${missionCreditReward} Points“`}
+                                </AppTypography>
+                                <AppTypography fontSize={28} fontWeight={700} color="#2BCFA1">Congratulations!</AppTypography>
+                                <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
+                                    Task completed! You've earned {missionCreditReward} points!
+                                </AppTypography>
                             </Flex>
-                        )}
-                    </>
-                ) : (
-                    <motion.div initial="hidden" animate="visible" variants={fadeIn}>
-                        <Flex direction="column" sx={{ textAlign: 'center' }}>
-                            <AppTypography fontSize={76} fontWeight={700} whiteSpace="nowrap" bgGradient="linear(to-b, #2EC99E1A, #2EC99EA6)" bgClip="text">
-                                {`“${missionCreditReward} Points“`}
-                            </AppTypography>
-                            <AppTypography fontSize={28} fontWeight={700} color="#2BCFA1">Congratulations!</AppTypography>
-                            <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">
-                                Task completed! You've earned {missionCreditReward} points!
-                            </AppTypography>
-                        </Flex>
-                    </motion.div>
-                )}
+                        </motion.div>
+                }
                 {error && (
                     <AppTypography fontSize={16} fontWeight={500} color="#C2C2C2">
                         <Box as="span" color="#2BCFA1" fontWeight={700}>Mission Progress:</Box> {error}

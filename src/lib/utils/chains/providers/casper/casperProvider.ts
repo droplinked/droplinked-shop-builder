@@ -14,7 +14,7 @@ export class CasperProvider implements ChainProvider{
         this.chain = _chain;
         this.network = _network;
     }
-    recordBatch(products: RecordProduct[], shopAddress: string, nftContract: string, apiKey: string): Promise<RecordData> {
+    recordBatch(products: RecordProduct[], shopAddress: string, nftContract: string): Promise<RecordData> {
         throw new Error("Method not implemented.");
     }
     deployShop(shopName: string, shopAddress: string, shopOwner: string, shopLogo: string, shopDescription: string): Promise<DeployedShop> {
