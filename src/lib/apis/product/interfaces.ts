@@ -69,7 +69,7 @@ export interface IproductState {
     printful_option_data?: any;
     launchDate?: string | null;
     legalUsage: LegalUsage[],
-    publish_status: "PUBLISHED" | "DRAFTED"
+    publish_status?: "PUBLISHED" | "DRAFTED"
 }
 
 export interface IpropertiesItems {
