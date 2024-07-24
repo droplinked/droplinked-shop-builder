@@ -28,7 +28,7 @@ function PaymentStatus({ paymentStatus, selectedPlan, close }: Props) {
         <Flex direction={"column"} alignItems={"center"} gap={5}>
             <Heading textAlign={"center"} fontSize={36} fontWeight={700} color={"primary"}>{headingText}</Heading>
 
-            <Divider m={0} height={"1px"} borderColor={"#292929"} />
+            <Divider height={"1px"} borderColor={"#292929"} />
 
             <Image src={imageSrc} width={"349px"} height={"auto"} objectFit={"cover"} />
 

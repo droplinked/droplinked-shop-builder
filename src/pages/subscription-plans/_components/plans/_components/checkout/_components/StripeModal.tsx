@@ -12,7 +12,7 @@ function StripeModal({ clientSecret, setPaymentStatus, close }: Props) {
     return (
         <Flex direction={"column"} gap={5}>
             <Heading textAlign={"center"} fontSize={36} fontWeight={700} color={"primary"}>Payment Information</Heading>
-            <Divider m={0} height={"1px"} borderColor={"#292929"} />
+            <Divider height={"1px"} borderColor={"#292929"} />
             <AppStripe
                 clientSecret={clientSecret}
                 cancel={close}

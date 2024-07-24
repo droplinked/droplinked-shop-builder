@@ -38,7 +38,7 @@ function ConfirmPlan({ selectedPlan: { price, _id, type }, setClientSecret, clos
                     </AppTypography>
                 </Flex>
 
-                <Divider m={0} height={"1px"} borderColor={"#292929"} />
+                <Divider height={"1px"} borderColor={"#292929"} />
 
                 <AppTypography textAlign={"center"} fontSize={20} color={"#C2C2C2"}>Upgrade to the Business Plan for advanced customization, exclusive features, and priority support. Confirm your subscription now to enhance your store.</AppTypography>
 

@@ -68,15 +68,6 @@ function ButtonsProduct() {
 
             // Request service
             const requestData = productID ? { productID, params: formData } : formData
-            // const product = state.product_type === "DIGITAL" ?
-            //     !productID ?
-            //         refactorData(await (await create.mutateAsync(requestData)).data?.data) :
-            //         productID && !isChanged ?
-            //             refactorData(await (await update.mutateAsync(requestData)).data?.data) :
-            //             state :
-            //     !productID ? await create.mutateAsync(requestData) :
-            //         await update.mutateAsync(requestData)
-
             let product;
 
             if (state.product_type === "DIGITAL") {
@@ -84,10 +75,12 @@ function ButtonsProduct() {
                     checkProductTypeLegalUsage()
                     const createResponse = await create.mutateAsync(requestData);
                     product = refactorData(createResponse.data?.data);
-                } else if (productID && !isChanged) {
+                }
+                else if (productID && !isChanged) {
                     const updateResponse = await update.mutateAsync(requestData);
                     product = refactorData(updateResponse.data?.data);
-                } else {
+                }
+                else {
                     product = state;
                 }
             } else {
@@ -99,9 +92,8 @@ function ButtonsProduct() {
                 }
             }
 
-            if (!draft && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
+            if (!draft && state?.digitalDetail?.chain && state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") {
                 try {
-                    // debugger;
                     const hashkey = await record({
                         method: (data) => appWeb3.web3({ method: "record", params: { ...data, shop: shop }, chain: state?.digitalDetail?.chain, wallets, stack: stacks, shop }),
                         product: {
@@ -121,7 +113,8 @@ function ButtonsProduct() {
                     shopNavigate("products")
                     showToast({ message: "Something went wrong!", type: "error" })
                 }
-            } else {
+            }
+            else {
                 showToast({ message: draft ? AppErrors.product.your_product_draft : productID ? AppErrors.product.your_product_updated : AppErrors.product.your_product_published, type: "success" })
                 shopNavigate("products")
             }
@@ -153,7 +146,7 @@ function ButtonsProduct() {
                             isDisabled={States.loading || isProducer}
                             onClick={() => !isProducer && submit(false)}
                         >
-                            {productID && state.publish_product ? "Update Product" : state.product_type === "DIGITAL" ? "Publish And Drop" : "Publish Product"}
+                            {productID && state.publish_product ? "Update Product" : "Publish Product"}
                         </BasicButton>
                     </Box>
                 ) : null}

@@ -28,11 +28,11 @@ function Plan({ icon, title, description, price, children }: Props) {
                     </Box>
                     <AppTypography fontSize={14} color={"#fff"}>{description}</AppTypography>
                 </Flex>
-                <Divider margin={0} backgroundColor={"#fff"} />
+                <Divider backgroundColor={"#fff"} />
                 <AppTypography fontSize={{ base: 36, lg: 48 }} color={"#fff"} fontWeight={700} whiteSpace={"nowrap"}>
                     {price} {" "} <Box as='span' fontSize={{ base: 20, lg: 28 }} fontWeight={700}>USD/USDC</Box>
                 </AppTypography>
-                <Divider margin={0} backgroundColor={"#fff"} />
+                <Divider backgroundColor={"#fff"} />
                 {children}
             </Flex>
         </Container>

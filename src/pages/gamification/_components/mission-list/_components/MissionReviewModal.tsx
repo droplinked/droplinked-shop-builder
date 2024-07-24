@@ -64,7 +64,7 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                         </AppTypography>
                     </Flex>
                 </Flex>
-                <Divider margin={0} height="2px" borderColor="#292929" />
+                <Divider height="2px" borderColor="#292929" />
                 {!isCompleted ? (
                     <>
                         <Box position="relative">
@@ -73,7 +73,7 @@ function MissionReviewModal({ isOpen, onClose, mission }: Props) {
                                 <Box as="span" color="#2BCFA1" fontWeight={700}>Mission Description:</Box> {mission.description}
                             </AppTypography>
                         </Box>
-                        <Divider margin={0} height="2px" borderColor="#292929" />
+                        <Divider height="2px" borderColor="#292929" />
                         {!error && (
                             <Flex direction="column" gap={4}>
                                 <AppTypography fontSize={16} fontWeight={700} color="#2BCFA1">

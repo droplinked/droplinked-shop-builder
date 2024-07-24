@@ -21,7 +21,7 @@ function HowGamificationWorksModal({ isOpen, onClose }: Props) {
         <AppModal open={isOpen} close={onClose} scrollBehavior="inside" size="5xl" contentProps={{ padding: 4, margin: 4 }}>
             <Flex direction={"column"} gap={4}>
                 <AppTypography textAlign={"center"} fontSize={16} fontWeight={700} color={"#2BCFA1"}>How do missions work?</AppTypography>
-                <Divider margin={0} height={"2px"} borderColor={"#292929"} />
+                <Divider height={"2px"} borderColor={"#292929"} />
                 <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} columnGap={4} rowGap={"80px"}>
                     <Flex direction={'column'} gap={4}>
                         <AppImage height={"205px"} objectFit={"cover"} src="https://upload-file-flatlay.s3.us-west-2.amazonaws.com/300dd99cbedab92ea74dd88f6c565985c9cce1f61040cd48071b7c4c1e9fab8b.png_or.png" />
