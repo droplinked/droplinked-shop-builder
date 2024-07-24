@@ -2,7 +2,7 @@ import { IStacks } from 'functions/hooks/web3/models/module/record/recordModel'
 import { IproductState, Isku } from 'lib/apis/product/interfaces'
 import AppErrors from 'lib/utils/statics/errors/errors'
 import { typesProperties } from 'lib/utils/statics/types'
-import { object, string, array, number } from 'yup'
+import { array, number, object, string } from 'yup'
 import MakeDataProductModel from './modules/MakeDataProduct'
 import ProductValidateModel from './modules/validate'
 
@@ -37,13 +37,10 @@ const ButtonsProductClass = ({
                 // Digital product validation
                 if (state.product_type === "DIGITAL" && !draft) {
                     if (!state.sku[0].price) {
-                        error.message = "Please enter price"
+                        error.message = "Price field cannot be empty"
                         throw error
                     } else if (!state.sku[0].quantity) {
-                        error.message = "Please enter quantity"
-                        throw error
-                    } else if (!state?.digitalDetail?.chain) {
-                        error.message = "Please enter Blockchain Network"
+                        error.message = "Quantity field cannot be empty"
                         throw error
                     }
                 }
@@ -93,11 +90,10 @@ const ButtonsProductClass = ({
         })
     },
 
-    makeData: ({ state: inputState, draft, productID }: ImakeData) => {
-        const state: IproductState = { ...inputState, properties: inputState?.properties.map((state_property) => { return ({ ...state_property, child: null }) }) }
+    makeData: ({ state: { publish_status, ...rest }, draft, productID }: ImakeData) => {
+        const state: IproductState = { ...rest, properties: rest?.properties.map((state_property) => { return ({ ...state_property, child: null }) }) }
         // Check PRINT_ON_DEMAND
         if (state.product_type === "PRINT_ON_DEMAND") state.shippingType = state.prodviderID
-        if (state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") draft = true
         const updateData = (publish_product: boolean) => MakeDataProductModel.update({ state: { ...state, publish_product } })
         const data = { ...state, sku: MakeDataProductModel.refactorSku({ skues: state.sku }) }
         return draft ? productID ? updateData(false) : { ...data, publish_product: false } : productID ? updateData(true) : { ...data, publish_product: true }

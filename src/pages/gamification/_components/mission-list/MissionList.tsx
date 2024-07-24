@@ -18,7 +18,7 @@ function MissionList({ isLoading, missions }: { isLoading: boolean, missions: Pa
                     <AppTypography as={"button"} fontSize={14} fontWeight={700} color={"#2BCFA1"} onClick={onOpen}>How do missions work?</AppTypography>
                 </Flex>
 
-                <Divider margin={0} height={"2px"} borderColor={"#292929"} />
+                <Divider height={"2px"} borderColor={"#292929"} />
                 <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} gap={10}>
                     {
                         isLoading ?

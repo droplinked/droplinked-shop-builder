@@ -68,7 +68,8 @@ export interface IproductState {
     productTile?: any[];
     printful_option_data?: any;
     launchDate?: string | null;
-    legalUsage: LegalUsage[]
+    legalUsage: LegalUsage[],
+    publish_status?: "PUBLISHED" | "DRAFTED"
 }
 
 export interface IpropertiesItems {

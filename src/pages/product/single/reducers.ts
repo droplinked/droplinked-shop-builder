@@ -58,7 +58,8 @@ export const productParams: IproductState = {
     productTile: [],
     printful_option_data: null,
     launchDate: null,
-    legalUsage: []
+    legalUsage: [],
+    publish_status: "PUBLISHED"
 }
 
 namespace ProductPageNamespace {

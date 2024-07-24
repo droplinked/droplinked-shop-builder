@@ -21,7 +21,7 @@ function MissionLoading() {
                                 <AppSkeleton width={100} isLoaded={false} height={18}>{""}</AppSkeleton>
                             </Flex>
                         </Flex>
-                        <Divider margin={0} height={"2px"} borderColor={"#292929"} />
+                        <Divider height={"2px"} borderColor={"#292929"} />
                         <Flex direction={"column"} gap={1}>
                             <AppSkeleton width={"100%"} height={18} isLoaded={false}>{""}</AppSkeleton>
                             <AppSkeleton width={"100%"} height={18} isLoaded={false}>{""}</AppSkeleton>
