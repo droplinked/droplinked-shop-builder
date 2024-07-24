@@ -97,7 +97,7 @@ function GeneralStatisticsChart() {
                 
                 ${typeof data.revenue !== "undefined" ? `
                   <div style="display: flex; justify-content: space-between">
-                    <p style="color: #878787; margin: 0">Earning</p>
+                    <p style="color: #878787; margin: 0">Earnings</p>
                     <p style="margin: 0">$${data.revenue} USD</p>
                   </div>
                 `: ""}

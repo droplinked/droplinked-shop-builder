@@ -21,7 +21,7 @@ function HeaderMain() {
             label: "Products",
             links: [
                 { label: "Physical Products", description: "Monetize Inventory with Tailored Storefronts", icon: <AppIcons.Bag />, href: "/physical-product" },
-                { label: "Product on Demand", description: "Transform Artwork and IP with Mint to Merch", icon: <AppIcons.Shirt />, href: "/pod-product" },
+                { label: "Production on Demand", description: "Transform Artwork and IP with Mint to Merch", icon: <AppIcons.Shirt />, href: "/pod-product" },
                 { label: "Digital Goods", description: "Minting and Monetizing Assets", icon: <AppIcons.Gallery />, href: "/digital-product" },
                 { label: "Tokenpay", description: "Token Powered Commerce Driven by Your Community", icon: <AppIcons.Coins />, href: "/tokenpay" },
             ],

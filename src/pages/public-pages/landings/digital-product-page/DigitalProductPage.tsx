@@ -26,8 +26,8 @@ function DigitalProductPage() {
             <DualSideFlex
                 direction='rtl'
                 image='assets/images/digitalProduct/create-nft.png'
-                title='Minting NFTs'
-                description='Convert  art pieces, documents, audio, video and tickets into NFTs to offer within storefronts'
+                title='Mint NFTs'
+                description='Convert art pieces, documents, audio, video and ticketing into on-chain records'
             />
             <DualSideFlex
                 direction='ltr'
