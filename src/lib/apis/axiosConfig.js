@@ -21,18 +21,22 @@ const clearPromise = () => {
 
 const refresh_access_token = async () => {
     try {
-        const refresh_token = AppStorage.refreshToken()
+        const refreshToken = localStorage.getItem('refresh_token');
+        const accessToken = localStorage.getItem('access_token');
+        const refresh_token = AppStorage.refreshToken() || refreshToken
+        console.log(refresh_token)
         const response = await axios.post(`${BASE_URL}/auth/refresh-token`, {}, {
             headers: { 'Authorization': `Bearer ${refresh_token}` },
         })
         const data = response?.data?.data
-        await set_tokens(data.access_token, data.refresh_token)
+        console.log("access",data.access_token)
+        await set_tokens(data.access_token || accessToken, data.refresh_token || refresh_token)
         requests_queue.forEach(callback => callback(data.access_token))
         requests_queue = []
         return data.access_token
     } catch (error) {
         AppStorage.clearStorage()
-        window.location.replace(window.location.origin)
+        // window.location.replace(window.location.origin)
     }
 }
 

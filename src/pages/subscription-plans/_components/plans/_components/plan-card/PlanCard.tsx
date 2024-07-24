@@ -41,11 +41,12 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
     }
 
     const handleAuthModalClose = useCallback(() => {
+        const refreshToken = localStorage.getItem('refresh_token');
         signInModal.onClose();
-        if (isPlansPage) {
+        if (isPlansPage && refreshToken) {
             purchaseModal.onOpen();
         }
-    }, [isPlansPage, profile, purchaseModal, signInModal])
+    }, [isPlansPage, purchaseModal, signInModal])
 
     console.log(purchaseModal.isOpen)
     console.log(signInModal.isOpen)
@@ -55,6 +56,9 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
         const access_token = searchParams.get("access_token")
         const refresh_token = searchParams.get("refresh_token")
         const subscription_id = searchParams.get("subscriptionId")
+        localStorage.setItem('access_token', access_token);
+        localStorage.setItem('refresh_token', refresh_token);
+
         if (access_token && refresh_token && searchParams.get("modal") === "purchase" && subscription_id) {
             const foundPlan = plans.find(plan => plan._id === subscription_id);
             if (foundPlan) {
