@@ -150,14 +150,14 @@ export class EVMProvider implements ChainProvider {
 
     async publishRequest(productId: Uint256, shopAddress: EthAddress): Promise<AffiliateRequestData> {
         await this.handleWallet(this.address);
-        return await EVMPublishRequest(this.getWalletProvider(),this.address, productId, shopAddress, this.modalInterface);
+        return await EVMPublishRequest(this.getWalletProvider(), this.chain,this.address, productId, shopAddress, this.modalInterface);
     }
     async approveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string> {
         await this.handleWallet(this.address);
-        return await EVMApproveRequest(this.getWalletProvider(),this.address, requestId, shopAddress, this.modalInterface);
+        return await EVMApproveRequest(this.getWalletProvider(), this.chain,this.address, requestId, shopAddress, this.modalInterface);
     }
     async disapproveRequest(requestId: Uint256, shopAddress: EthAddress): Promise<string> {
         await this.handleWallet(this.address);
-        return await EVMDisapproveRequest(this.getWalletProvider(),this.address, requestId, shopAddress, this.modalInterface);
+        return await EVMDisapproveRequest(this.getWalletProvider(), this.chain,this.address, requestId, shopAddress, this.modalInterface);
     }
 }

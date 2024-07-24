@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { Beneficiary, EthAddress, NFTType, PaymentMethodType, ProductType, RecordData } from "../../dto/chainStructs";
-import { shopABI } from "../../dto/chainABI";
+import { getShopABI } from "../../dto/chainABI";
 import { Unauthorized } from "../../dto/chainErrors";
 import { getGasPrice } from "../../dto/chainConstants";
 import { ModalInterface } from "../../dto/modalInterface";
@@ -25,7 +25,8 @@ export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties
     if ((await signer.getAddress()).toLocaleLowerCase() !== address.toLocaleLowerCase()) {
         throw new Error("Address does not match signer address");
     }
-    const contract = new ethers.Contract(shopAddress, shopABI, signer);
+    // const shopABI = getShopABI();
+    const contract = new ethers.Contract(shopAddress, getShopABI(chain), signer);
     modalInterface.waiting("Minting...");
     const properties = {
         "_id": sku_properties["_id"],
@@ -125,7 +126,7 @@ export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties
                 _beneficiaries: beneficiaries
             }
             modalInterface.waiting("Minting the NFT...");
-            const tx = await contract.mintAndRegister(recordData, {gasLimit: 3_000_000});
+            const tx = await contract.mintAndRegister(recordData);
             modalInterface.waiting("Waiting for confirmation...");
             let receipt = await tx.wait();
             const logs = receipt.logs.map((log: any) => { try { return contract.interface.parseLog(log) } catch { return null } }).filter((log: any) => log != null);
@@ -254,7 +255,7 @@ export async function EVMBatchRecord(provider: any, chain: Chain, address: strin
     }
 
     modalInterface.waiting("Fetching data")
-    const contract = new ethers.Contract(shopAddress, shopABI, signer);
+    const contract = new ethers.Contract(shopAddress, getShopABI(chain), signer);
     modalInterface.waiting("Created contract")
     if (chain === Chain.REDBELLY) {
         return await RedbellyRecordBatch(modalInterface, products, nftContract, contract, provider, address, shopAddress)
