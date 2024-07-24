@@ -37,13 +37,10 @@ const ButtonsProductClass = ({
                 // Digital product validation
                 if (state.product_type === "DIGITAL" && !draft) {
                     if (!state.sku[0].price) {
-                        error.message = "Please enter price"
+                        error.message = "Price field cannot be empty"
                         throw error
                     } else if (!state.sku[0].quantity) {
-                        error.message = "Please enter quantity"
-                        throw error
-                    } else if (!state?.digitalDetail?.chain) {
-                        error.message = "Please enter Blockchain Network"
+                        error.message = "Quantity field cannot be empty"
                         throw error
                     }
                 }
@@ -97,7 +94,6 @@ const ButtonsProductClass = ({
         const state: IproductState = { ...inputState, properties: inputState?.properties.map((state_property) => { return ({ ...state_property, child: null }) }) }
         // Check PRINT_ON_DEMAND
         if (state.product_type === "PRINT_ON_DEMAND") state.shippingType = state.prodviderID
-        if (state.product_type === "DIGITAL" && state.sku[0].recordData.status === "NOT_RECORDED") draft = true
         const updateData = (publish_product: boolean) => MakeDataProductModel.update({ state: { ...state, publish_product } })
         const data = { ...state, sku: MakeDataProductModel.refactorSku({ skues: state.sku }) }
         return draft ? productID ? updateData(false) : { ...data, publish_product: false } : productID ? updateData(true) : { ...data, publish_product: true }
