@@ -16,7 +16,7 @@ export async function uploadMetadata(metadata: any, skuID: string) {
         "metadata": metadata
     })).data
     console.log(res)
-    return res
+    return res.data
 }
 
 export async function EVMrecordMerch(provider: any, chain: Chain, sku_properties: any, address: string, product_title: string, description: string, image_url: string, price: number, amount: number, commission: number, type: ProductType, beneficiaries: Beneficiary[], acceptsManageWallet: boolean, royalty: number, nftContract: EthAddress, shopAddress: EthAddress, currencyAddress: EthAddress, skuID: string, modalInterface: ModalInterface) {
