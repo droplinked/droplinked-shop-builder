@@ -9,7 +9,7 @@ import { canActivateNewPaymentMethod } from "./wallets.helpers";
 import AppTypography from "components/common/typography/AppTypography";
 import FieldLabel from "components/common/form/fieldLabel/FieldLabel";
 
-const WalletsAccordionPayment = ({ chain, token }: { chain: any; token?: any }) => {
+const WalletsAccordionPayment = ({ chain }: { chain: any }) => {
     const getPermissionValue = useGetPermissionValue();
     const {
         state: { paymentMethods },
