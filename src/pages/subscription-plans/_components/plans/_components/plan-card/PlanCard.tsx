@@ -1,72 +1,125 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Flex, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, useDisclosure, Spinner } from "@chakra-ui/react";
 import AppIcons from "assest/icon/Appicons";
 import BasicButton from "components/common/BasicButton/BasicButton";
 import AppTypography from "components/common/typography/AppTypography";
 import AuthModal from "components/modals/auth-modal/AuthModal";
 import { useProfile } from "functions/hooks/useProfile/useProfile";
 import { SubOptionId, SubscriptionPlan } from "lib/apis/subscription/interfaces";
-import { capitalizeFirstLetter } from "lib/utils/heper/helpers";
+import { capitalizeFirstLetter, navigating_user_based_on_status } from "lib/utils/heper/helpers";
 import { MODAL_TYPE } from "pages/public-pages/homePage/HomePage";
 import PlanHeading, { subscriptionPlanMap } from "pages/subscription-plans/_components/PlanHeading";
 import SubscriptionPlanCheckoutModal from "../checkout/SubscriptionPlanCheckoutModal";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import useHookStore from "functions/hooks/store/useHookStore";
+import useAppToast from "functions/hooks/toast/useToast";
+import { appDevelopment } from "lib/utils/app/variable";
+import { useCustomNavigate } from "functions/hooks/useCustomeNavigate/useCustomNavigate";
 
 interface Props {
     plan: SubscriptionPlan;
-    plans?: any
+    plans?: any;
     prevPlanType: string;
     features: SubOptionId[];
 }
 
 const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
-    const { profile } = useProfile()
-    const purchaseModal = useDisclosure()
-    const signInModal = useDisclosure()
-    const { price, type } = plan
-    const isStarter = type === "STARTER"
-    const isEnterprise = type === "ENTERPRISE"
-    const prevPlanTitle = subscriptionPlanMap[prevPlanType].title
+    const { profile, isLoading: profileLoading } = useProfile();
+    const purchaseModal = useDisclosure();
+    const signInModal = useDisclosure();
+    const { price, type } = plan;
+    const isStarter = type === "STARTER";
+    const isEnterprise = type === "ENTERPRISE";
+    const prevPlanTitle = subscriptionPlanMap[prevPlanType].title;
+
+    const { app: { login, loading } } = useHookStore();
+    const { showToast } = useAppToast();
+    const navigate = useNavigate();
+    const { shopNavigate } = useCustomNavigate();
 
     const [searchParams] = useSearchParams();
     const location = useLocation();
     const isPlansPage = location.pathname === "/plans";
 
     const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(plan);
-
-    const handlePlanPurchase = () => {
-        if (!profile) return signInModal.onOpen()
-        if (isEnterprise) return window.location.href = "mailto:Support@droplinked.com"
-        purchaseModal.onOpen()
-    }
-
-    const handleAuthModalClose = useCallback(() => {
-        const refreshToken = localStorage.getItem('refresh_token');
-        signInModal.onClose();
-        if (isPlansPage && refreshToken) {
-            purchaseModal.onOpen();
-        }
-    }, [isPlansPage, purchaseModal, signInModal])
-
-    console.log(purchaseModal.isOpen)
-    console.log(signInModal.isOpen)
-    console.log(isPlansPage)
+    const [hasProfile, setHasProfile] = useState<boolean>(!!profile);
+    const [isProfileUpdating, setIsProfileUpdating] = useState<boolean>(false);
+    const [shouldOpenPurchaseModal, setShouldOpenPurchaseModal] = useState<boolean>(false);
 
     useEffect(() => {
-        const access_token = searchParams.get("access_token")
-        const refresh_token = searchParams.get("refresh_token")
-        const subscription_id = searchParams.get("subscriptionId")
-        localStorage.setItem('access_token', access_token);
-        localStorage.setItem('refresh_token', refresh_token);
+        if (profileLoading) {
+            setIsProfileUpdating(true);
+        } else {
+            setIsProfileUpdating(false);
+            setHasProfile(!!profile);
+            // Check if the flag is set to open the purchase modal
+            if (shouldOpenPurchaseModal && !isProfileUpdating) {
+                purchaseModal.onOpen();
+                setShouldOpenPurchaseModal(false); // Reset the flag after opening the modal
+            }
+        }
+    }, [profile, profileLoading, shouldOpenPurchaseModal, isProfileUpdating]);
 
-        if (access_token && refresh_token && searchParams.get("modal") === "purchase" && subscription_id) {
+    console.log(shouldOpenPurchaseModal)
+    console.log(isProfileUpdating)
+
+    const handlePlanPurchase = () => {
+        if (!profile) return signInModal.onOpen();
+        if (isEnterprise) return window.location.href = "mailto:Support@droplinked.com";
+        purchaseModal.onOpen();
+    };
+
+    const handleAuthModalClose = useCallback(() => {
+        signInModal.onClose();
+        if (isPlansPage && hasProfile && !isProfileUpdating) {
+            setShouldOpenPurchaseModal(true); // Set the flag to open purchase modal
+        }
+    }, [isPlansPage, hasProfile, isProfileUpdating, signInModal]);
+
+    const processLogin = async (data: any) => {
+        try {
+            const { user } = data;
+            const status = appDevelopment && user.status === "NEW" ? "VERIFIED" : user.status;
+            if (status === "DELETED")
+                return showToast({ message: "This account has been deleted", type: "error" });
+
+            if (user.type !== "SHOPBUILDER")
+                return showToast({ message: "This account is unable to log in. Please check your credentials.", type: "error" });
+
+            if (!isPlansPage) {
+                const { href, dashboard } = navigating_user_based_on_status(status, data);
+                dashboard ? shopNavigate(href) : navigate(href);
+            }
+            signInModal.onClose();
+        } catch (error) {
+            showToast({ message: error.message, type: "error" });
+        }
+    };
+
+    const loginWithGoogle = useCallback(async (access_token: string, refresh_token: string) => {
+        let result = await login({ type: "get", access_token, refresh_token, params: { access_token } });
+        if (result) await processLogin(result);
+        signInModal.onClose();
+    }, [login, processLogin]);
+
+    useEffect(() => {
+        const access_token = searchParams.get("access_token");
+        const refresh_token = searchParams.get("refresh_token");
+        const subscription_id = searchParams.get("subscriptionId");
+
+        if (access_token && refresh_token) {
+            localStorage.setItem('access_token', access_token);
+            localStorage.setItem('refresh_token', refresh_token);
+        }
+
+        if (access_token && refresh_token && searchParams.get("modal") === "purchase" && subscription_id && !loading) {
             const foundPlan = plans.find(plan => plan._id === subscription_id);
             if (foundPlan) {
                 setSelectedPlan(foundPlan);
-                purchaseModal.onOpen();
+                loginWithGoogle(access_token, refresh_token);
             }
         }
-    }, [searchParams])
+    }, [searchParams, plans, loading, loginWithGoogle]);
 
     return (
         <>
@@ -97,7 +150,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
 
                 {
                     features.map(featureGroup => {
-                        if (featureGroup.value.every(feature => !feature.value)) return null
+                        if (featureGroup.value.every(feature => !feature.value)) return null;
                         return <Flex key={featureGroup.key} direction={"column"} gap={2}>
                             <AppTypography fontWeight={500} color={"white"}>{featureGroup.title || featureGroup.key}</AppTypography>
                             {
@@ -117,7 +170,7 @@ const PlanCard = ({ plan, prevPlanType, features, plans }: Props) => {
             {purchaseModal.isOpen && <SubscriptionPlanCheckoutModal selectedPlan={selectedPlan} open={purchaseModal.isOpen} close={purchaseModal.onClose} isFromPlansPage={isPlansPage} />}
             {signInModal.isOpen && <AuthModal show={signInModal.isOpen} close={handleAuthModalClose} type={MODAL_TYPE.SIGNUP} isFromPlansPage={isPlansPage} subscriptionPlan={selectedPlan} />}
         </>
-    )
-}
+    );
+};
 
-export default PlanCard
+export default PlanCard;
