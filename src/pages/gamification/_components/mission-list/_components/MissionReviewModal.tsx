@@ -25,7 +25,6 @@ const fadeIn = {
 function MissionReviewModal({ isOpen, onClose, mission }: Props) {
     const queryClient = useQueryClient()
     const { shop, updateState } = useAppStore()
-    console.log(shop.credit)
     const { isLoading, mutateAsync } = useMutation(checkMissionCompletionService)
     const [isCompleted, setCompleted] = useState(false)
     const [error, setError] = useState<string | null>(null)
